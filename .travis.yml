@@ -24,5 +24,5 @@ before_install:
         - sed -e "s/SET lock_timeout = 0;//g" db/datos-basicas.sql.conlock >db/datos-basicas.sql
         - cp config/database.travis.yml config/database.yml
         - rake db:setup
-        - rake sivel:indices
+        - rake sivel2gen:indices
 
