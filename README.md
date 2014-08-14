@@ -1,4 +1,4 @@
-# SIVeL 2 Genérico [![Build Status](https://api.travis-ci.org/pasosdeJesus/sivel2_gen.svg?branch=master)](https://travis-ci.org/pasosdeJesus/sivel2_gen)
+# SIVeL 2 Genérico [![Build Status](https://api.travis-ci.org/pasosdeJesus/sivel2_gen.svg?branch=master)](https://travis-ci.org/pasosdeJesus/sivel2_gen) [![Code Climate](https://codeclimate.com/github/pasosdeJesus/sivel2_gen/badges/gpa.svg)](https://codeclimate.com/github/pasosdeJesus/sivel2_gen) 
 
 ## Tabla de Contenido
 * [Diseño](#diseño)
