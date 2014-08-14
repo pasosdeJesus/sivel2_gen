@@ -22,6 +22,6 @@ Gem::Specification.new do |s|
   s.add_dependency "devise"
   s.add_dependency "rspec-rails"
   s.add_dependency "capybara"
-  s.add_dependency "factory-girl-rails"
+  s.add_dependency "factory_girl_rails"
 
 end

@@ -1,6 +1,8 @@
 #encoding: UTF-8
 ENV['RAILS_ENV'] = 'test'
 
+require "codeclimate-test-reporter"
+CodeClimate::TestReporter.start
 require File.expand_path("../dummy/config/environment.rb",  __FILE__)
 require 'rspec/rails'
 require 'factory_girl_rails'
