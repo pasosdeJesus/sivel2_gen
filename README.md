@@ -1,4 +1,4 @@
-# SIVeL 2 Genérico [![Build Status](https://api.travis-ci.org/pasosdeJesus/SIVeL.svg?branch=dis2)](https://travis-ci.org/pasosdeJesus/SIVeL)
+# SIVeL 2 Genérico [![Build Status](https://api.travis-ci.org/pasosdeJesus/sivel2_gen.svg?branch=master)](https://travis-ci.org/pasosdeJesus/sivel2_gen)
 
 ## Tabla de Contenido
 * [Diseño](#diseño)

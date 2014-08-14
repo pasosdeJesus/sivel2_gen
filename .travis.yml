@@ -1,0 +1,27 @@
+language: ruby
+rvm:
+        - 1.9.3
+        - 2.1.2
+        - jruby-19mode
+        - rbx
+notifications:
+        email: false
+script: xvfb-run rake
+env:
+        global:
+                - NOKOGIRI_USE_SYSTEM_LIBRARIES=true
+before_install: 
+        - sudo apt-add-repository -y ppa:ubuntu-sdk-team/ppa
+        - sudo apt-get update
+        - sudo apt-get install libqt5webkit5-dev qtdeclarative5-dev qtlocation5-dev qtsensors5-dev libgstreamer0.10-dev libgstreamer-plugins-base0.10-dev qt4-default
+        - sudo locale-gen --no-archive es_CO.UTF-8
+        - cd spec/dummy
+        - bundle install
+        - psql -c 'CREATE DATABASE sivel2gen_pru;' -U postgres
+        - cp db/structure.sql db/structure.sql.conlock
+        - cp db/datos-basicas.sql db/datos-basicas.sql.conlock
+        - sed -e "s/SET lock_timeout = 0;//g" db/structure.sql.conlock >db/structure.sql
+        - sed -e "s/SET lock_timeout = 0;//g" db/datos-basicas.sql.conlock >db/datos-basicas.sql
+        - rake db:setup
+        - rake sivel:indices
+
