@@ -25,4 +25,5 @@ before_install:
         - cp config/database.travis.yml config/database.yml
         - rake db:setup
         - rake sivel2gen:indices
+        - cd ../..
 
