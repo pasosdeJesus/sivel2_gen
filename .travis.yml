@@ -22,8 +22,7 @@ before_install:
         - cp db/datos-basicas.sql db/datos-basicas.sql.conlock
         - sed -e "s/SET lock_timeout = 0;//g" db/structure.sql.conlock >db/structure.sql
         - sed -e "s/SET lock_timeout = 0;//g" db/datos-basicas.sql.conlock >db/datos-basicas.sql
-        - cp config/database.yml config/database.yml.pretravis
-        - sed -e "s/username:.*/username: postgres/g;s/.*password:.*//g;s/.*host:.*//g" config/database.yml.pretravis > config/database.yml
+        - cp config/database.travis.yml config/database.yml
         - rake db:setup
         - rake sivel:indices
 
