@@ -1,0 +1,43 @@
+<%= simple_form_for @actividad, :html => { :class => 'form-horizontal' } do |f| %>
+  <%= f.error_notification %>
+  <%= f.association :oficina,
+    label: "Oficina",
+    label_method: :nombre, 
+    value_method: :id %>
+  <%= f.input :minutos %>
+  <%= f.input :nombre %>
+  <%= f.association :actividadareas, 
+	  label: "Áreas",
+	  label_method: :nombre, 
+	  value_method: :id %>
+  <%= f.input :objetivo %>
+  <%= f.input :proyecto %>
+  <%= f.input :resultado, label: "Resultado" %>
+  <%= f.input :fecha, :input_html => { "data-behaviour" => "datepicker"}, 
+	  :as => :string %>
+   <table border=1>
+     <thead>
+       <tr><th>Rango de Edad</th><th>Venezolanas</th><th>Colombianas</th><th>Venezolanos</th><th>Colombianos</th><th></th></tr>
+     </thead>
+     <tbody id="actividad_rangoedadac">
+       <%= f.simple_fields_for :actividad_rangoedadac do |s| %>
+         <%= render 'actividad_rangoedadac_fields', :f => s %>
+       <% end %>
+     </tbody>
+   </table>
+   <div class="links">
+     <%= link_to_add_association 'Añadir Rango de Edad', f, 
+       :actividad_rangoedadac, 
+       :"data-association-insertion-node" => "tbody#actividad_rangoedadac", 
+       :"data-association-insertion-method" => "append", 
+       :partial => "actividad_rangoedadac_fields", 
+       :class => "btn-primary" %>
+   </div>
+
+  <%= f.input :observaciones %>
+  <div class="form-actions">
+    <%= f.button :submit, :class => 'btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                actividades_path, :class => 'btn' %>
+  </div>
+<% end %>

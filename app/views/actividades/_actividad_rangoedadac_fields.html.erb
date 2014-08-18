@@ -1,0 +1,13 @@
+<tr class='nested-fields'>
+  <td>
+    <%= f.collection_select :rangoedadac_id, Rangoedadac.all, :id, :nombre %>
+  </td>
+  <td><%= f.number_field :fl, size: "2" %></td>
+  <td><%= f.number_field :fr, size: "2" %></td>
+  <td><%= f.number_field :ml, size: "2" %></td>
+  <td><%= f.number_field :mr, size: "2" %></td>
+  <td><%= f.input :id, as: :hidden %><%= link_to_remove_association "Eliminar", f, 
+		:class => 'btn-danger' %>
+		<div><%= f.error_notification %></div>
+	</td>
+</tr>

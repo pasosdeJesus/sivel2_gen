@@ -1,0 +1,36 @@
+<div class='control-group nested-fields'>
+  <div class="controls">
+    <%= f.association :presponsable,
+      collection: Presponsable.from('caso_presponsable, presponsable').where('caso_presponsable.id_presponsable=presponsable.id AND caso_presponsable.id_caso=?', @caso.id),
+      label: "Presunto Responsable",
+      label_method: :nombre,
+			value_method: :id %>
+
+    <%= f.association :categoria,
+			collection: Categoria.from('categoria').where(
+				"fechadeshabilitacion IS NULL 
+				AND id_tviolencia<>'R'").order(:id_tviolencia, :id),
+	    label: "Categoria",
+	    label_method: :nombre, 
+      label_method: lambda {|t| t.id_tviolencia + t.id.to_s + ' ' + t.nombre },
+			value_method: :id %>
+
+    <%= f.association :persona,
+      collection: Persona.from('victima, persona').where('victima.id_persona=persona.id AND victima.id_caso=?', @caso.id),
+	    label: "Víctima",
+      label_method: lambda {|t| t.nombres + ' ' + t.apellidos},
+      value_method: :id %>
+
+    <%= f.input :fecha, 
+        :input_html => { "data-behaviour" => "datepicker" },
+        :as => :string, :label => "Fecha" %>
+
+    <%= f.association :desplazamiento,
+      collection: ([] + Desplazamiento.where(:id_caso => @caso.id)),
+      #selected: :fechaexpulsion,
+	    label: "Causó desplazamiento",
+      label_method: :fechaexpulsion,
+      value_method: :fechaexpulsion %>
+    <%= link_to_remove_association "Eliminar Causa/Antecedente", f, :class => 'btn-danger' %> 
+  </div>
+</div>

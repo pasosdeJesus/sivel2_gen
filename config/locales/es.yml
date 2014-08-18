@@ -1,0 +1,144 @@
+
+es:
+  attributes:
+    fechacreacion: Creación
+    fechadeshabilitacion: Deshabilitación 
+    id_municipio: Municipio
+    id_departamento: Departamento/Estado
+    id_tclase: Tipo de Centro Poblado
+    id_pais: País
+    id_supracategoria: Supracategoria
+    id_tviolencia: Tipo de Violencia
+    limiteinferior: Límite Inferior
+    limitesuperior: Límite Superior
+  will_paginate:
+    previous_label: "&#8592; Anterior"
+    next_label: "&#8594; Siguiente"
+    page_gap: "&hellip;"
+  activerecord:
+    attributes:
+      actividadarea: 
+        Actividadarea: Área de Actividad
+        Actividadareas: Áreas de Actividades
+      actividadoficio: 
+        Actividadoficios: Actividades y Oficios
+        Actividadoficio: Actividad u Oficio
+      aslegal: 
+        Aslegal: Asistencia Legal
+        Aslegales: Asistencias Legales
+      aspsicosocial: 
+        Aspsicosocial: Asistencia Psicosocial
+        Aspsicosociales: Asistencias Psicosociales
+      ayudaestado: 
+        Ayudaestado: Ayuda del Estado
+        Ayudasestado: Ayudas del Estado
+      ayudasjr: 
+        Ayudasjr: Ayuda del SJR
+        Ayudassjr: Ayudas del SJR
+      actividad: 
+        id: Identificación
+        numero: Número
+        minutos: Minutos
+        nombre:  Nombre
+        areas:  Áreas
+        objetivo: Objetivo
+        proyecto:  Proyecto
+        resultado: Resultado
+        fecha: Fecha
+        actividad:  Actividad
+        observaciones: Observaciones
+        created_at: Creado en
+      casosjr:
+        fecharec: F. Atención
+        regionsjr: Oficina
+        contacto: Solicitante Principal
+      caso:
+        memo: Descripción
+        created_at: F. Creación
+        fecha: F. Hecho
+      categoria:
+        Categoria: Categoria
+        Categorias: Categorias
+        tipocat: Tipo de Categoria
+        contadaen: Contada en
+      causaref:
+        Causaref: Causa de Refugio
+        Causasref: Causas de Refugio
+      clase:
+        Clase: Centro Poblado
+        Clases: Centros Poblados
+      comosupo:
+        Comosupo: Como Supo del SJR
+        Comosupos: Como Supo del SJR
+      departamento:
+        Departamento: Departamento/Estado
+        Departamentos: Departamentos/Estados
+      emprendimiento:
+        Emprendimiento: Emprendimiento
+        Emprendimientos: Emprendimientos
+      escolaridad:
+        Escolaridad: Nivel de Escolaridad
+        Escolaridades: Niveles de Escolaridad
+      estadocivil:
+        Estadocivil: Estado Civil
+        Estadosciviles: Estado Civil
+      idioma:
+        Idioma: Idioma
+        Idiomas: Idiomas
+      iglesia:
+        Iglesia: Iglesia
+        Iglesias: Iglesias
+      maternidad:
+        Maternidad: Estado Maternidad
+        Maternidades: Estados Maternidad
+      municipio:
+        Municipio: Municipio
+        Municipios: Municipios
+      pais:
+        Pais: Pais
+        Paises: Paises
+      presponsable:
+        Presponsable: Presunto Responsable
+        Presponsables: Presuntos Responsables
+      profesion:
+        Profesion: Profesión
+        Profesiones: Profesiones
+      proteccion:
+        Proteccion: Medida de Protección
+        Protecciones: Medidas de Protección
+      rangoedadac:
+        Rangoedad: Rango de Edad para Actividad
+        Rangosedad: Rangos de Edad para Actividades
+      rangoedad:
+        Rangoedad: Rango de Edad
+        Rangosedad: Rangos de Edad
+      regionsjr:
+        Regionsjr: Oficina
+        Regionessjr: Oficinas
+      rolfamilia:
+        Rolfamilia: Rol en familia
+        Rolesfamilia: Roles en familia
+      statusmigratorio:
+        Statusmigratorio: Status Migratorio
+        Statusmigratorios: Status Migratorio
+      supracategoria: 
+        Supracategoria: Supracategoria
+        Supracategorias: Supracategorias
+        id_tviolencia: Tipo de Violencia
+      tclase:
+        Tclase: Tipo de Centro Poblado
+        Tclases: Tipos de Centros Poblados
+      tsitio: 
+        Tsitio: Tipo de Sitios
+        Tsitios: Tipos de Sitios
+      tviolencia: 
+        Tviolencia: Tipo de Violencia
+        Tviolencias: Tipos de Violencia
+        nomcorto: Nombre Corto
+      usuario:
+        nusuario: Usuario
+        regionsjr: Oficina
+        descripcion: Descripción
+        encrypted_password: Clave
+        created_at: Fecha Registro
+

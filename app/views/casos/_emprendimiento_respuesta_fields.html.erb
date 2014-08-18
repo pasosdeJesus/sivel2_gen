@@ -1,0 +1,13 @@
+<div class='control-group nested-fields'>
+  <div class="controls">
+    <%= f.association :emprendimiento,
+			collection: Emprendimiento.order(:nombre),
+	    label: "Emprendimiento",
+      label_method: :nombre,
+	    value_method: :id %>
+    <%= f.input :detalleem, label: "Carácter" %>
+    <%= f.input :montoem, label: "Monto" %>
+    <%= link_to_remove_association "Eliminar Emprendimiento", f, 
+        :class => 'btn-danger' %> 
+  </div>
+</div>

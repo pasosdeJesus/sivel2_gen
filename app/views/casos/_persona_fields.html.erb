@@ -1,0 +1,39 @@
+<!-- %= f.input :id, readonly: true %-->
+<%= f.input :id, as: :hidden %>
+<%= f.input :nombres, placeholder: 'N',
+	value_method: lambda {|t| '' if t.nombres == 'N'}
+ %>
+<%= f.input :apellidos, placeholder: 'N',
+	value_method: lambda {|t| '' if t.apellidos == 'N'}
+%>
+<%= f.input :anionac, label: 'Año Nacimiento' %>
+<%= f.input :mesnac, label: 'Mes Nacimiento' %>
+<%= f.input :dianac, label: 'Día Nacimiento' %>
+<%= f.input :sexo, collection: [["SIN INFORMACIÓN", :S], ["FEMENINO", :F], ["MASCULINO", :M]], include_blank: false %>
+<%= f.input :tipodocumento, collection: [["CÉDULA DE CIUDADANÍA", :CC], ["CÉDULA DE IDENTIDAD", :CI], ["CÉDULA DE RESIDENTE", :CR], ["CÉDULA DE TRANSEUNTE", :CT], ["CONTRASEÑA", :CT], ["DOCUMENTO PROVISIONAL", :DP], ["OTRO", :OT], ["PARTIDA DE NACIMIENTO", :PN], ["PASAPORTE", :P], ["REGISTRO CIVIL", :RC], ["SIN DOCUMENTO", :SD], ["TARJETA DE IDENTIDAD", :TI]], label: "Tipo de Documento" %>
+<%= f.input :numerodocumento, label: 'Número Documento'%>
+<%= f.association :nacional,
+  collection: Pais.order(:nombre).all,
+  label: "País de Nacionalidad",
+  label_method: :nombre,
+  value_method: :id %>
+<%= f.association :pais,
+  collection: Pais.order(:nombre).all,
+  label: "País de Nacimiento",
+  label_method: :nombre,
+  value_method: :id %>
+<%= f.association :departamento,
+  collection: (Departamento.order(:nombre).where(id_pais: f.object.id_pais)),
+  label: "Estado/Departamento",
+  label_method: :nombre,
+  value_method: :id %>
+<%= f.association :municipio,
+  collection: (Municipio.order(:nombre).where(id_pais: f.object.id_pais, id_departamento: f.object.id_departamento)),
+  label: "Municipio",
+  label_method: :nombre,
+  value_method: :id %>
+<%= f.association :clase,
+  collection: (Clase.where(id_pais: f.object.id_pais, id_departamento: f.object.id_departamento, id_municipio: f.object.id_municipio).order(:nombre)),
+  label: "Centro Poblado",
+  label_method: :nombre,
+  value_method: :id %>

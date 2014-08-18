@@ -1,0 +1,42 @@
+<div class='control-group nested-fields'>
+  <div class="controls">
+    <%= f.association :pais,
+			collection: Pais.where(fechadeshabilitacion: nil).order(:nombre),
+	    label: "País",
+      label_method: :nombre,
+			value_method: :id %>
+    <%= f.association :departamento,
+      collection: (Departamento.where(id_pais: f.object.id_pais, 
+                                      fechadeshabilitacion: nil).order(:nombre)),
+	    label: "Estado/Departamento",
+      label_method: :nombre,
+			value_method: :id %>
+    <%= f.association :municipio,
+      collection: (Municipio.where(id_pais: f.object.id_pais, 
+                                   id_departamento: f.object.id_departamento,
+                                  fechadeshabilitacion: nil).order(:nombre)),
+	    label: "Municipio",
+      label_method: :nombre,
+			value_method: :id %>
+    <%= f.association :clase,
+      collection: (Clase.where(id_pais: f.object.id_pais, 
+                               id_departamento: f.object.id_departamento, 
+                               id_municipio: f.object.id_municipio,
+                               fechadeshabilitacion: nil).order(:nombre)),
+	    label: "Centro Poblado",
+      label_method: :nombre,
+			value_method: :id %>
+    <%= f.input :lugar %>
+    <%= f.input :sitio %>
+    <%= f.input :latitud%>
+    <%= f.input :longitud%>
+		<%= f.association :tsitio,
+			collection: Tsitio.where(fechadeshabilitacion: nil).order(:nombre),
+	    label: "Tipo de Sitio",
+	    label_method: :nombre, 
+      value_method: :id %>
+    <%= f.input :id, as: :hidden %>
+    <%= link_to_remove_association "Eliminar Ubicación", f, 
+      {:class => 'btn-danger', :'data-existing' => 'true'} %> 
+  </div>
+</div>

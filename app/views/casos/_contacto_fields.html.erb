@@ -1,0 +1,76 @@
+<%= f.simple_fields_for :persona do |p| %>
+	<%= render 'persona_fields', :f => p %>
+<% end %>
+<%= f.association :profesion,
+	collection: Profesion.all.order(:nombre),
+	include_blank: false,
+	label: "Profesión",
+	label_method: :nombre, 
+	value_method: :id 
+%>
+<%= f.association :rangoedad,
+	include_blank: false,
+	label: "Rango de Edad",
+	label_method: :rango, 
+	value_method: :id 
+%>
+<%= f.association :etnia,
+	collection: Etnia.all.order(:nombre),
+	include_blank: false,
+	label: "Etnia",
+	label_method: :nombre, 
+	value_method: :id 
+%>
+<%= f.association :iglesia,
+	collection: Iglesia.all.order(:nombre),
+	include_blank: false,
+	label: "Religión/Iglesia",
+	label_method: :nombre, 
+	value_method: :id 
+%>
+<%= f.input(:orientacionsexual, collection: [
+						[:HETEROSEXUAL, :H], [:LESBIANA, :L], [:GAY, :G], 
+						[:BISEXUAL, :B], [:TRANSEXUAL, :T] 
+], 
+	label: "Orientación Sexual",
+	include_blank: false ) 
+%>
+<%= f.input :id, as: :hidden %>
+
+<%= f.simple_fields_for :victimasjr do |s| %>
+	<%= s.association :estadocivil,
+		collection: Estadocivil.all.order(:nombre),
+		include_blank: false,
+		label: "Estado Civil",
+		label_method: :nombre, 
+		value_method: :id 
+	%>
+	<%= s.association :rolfamilia,
+		collection: Rolfamilia.all.order(:nombre),
+		include_blank: false,
+		label: "Rol en Familia",
+		label_method: :nombre, 
+		value_method: :id 
+	%>
+	<%= s.association :maternidad,
+		collection: Maternidad.all.order(:nombre),
+		label: "Maternidad",
+		label_method: :nombre, 
+		value_method: :id 
+	%>
+	<%= s.association :actividadoficio,
+		collection: Actividadoficio.all.order(:nombre),
+		include_blank: false,
+		label: "Actividad/Oficio actual",
+		label_method: :nombre, 
+		value_method: :id 
+	%>
+	<%= s.association :escolaridad,
+		collection: Escolaridad.all.order(:nombre),
+		include_blank: false,
+		label: "Nivel Escolar",
+		label_method: :nombre, 
+		value_method: :id 
+	%>
+	<%= s.input :id_victima, as: :hidden %>
+<% end %>

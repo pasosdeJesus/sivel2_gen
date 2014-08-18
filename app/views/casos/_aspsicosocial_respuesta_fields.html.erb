@@ -1,0 +1,12 @@
+<div class='control-group nested-fields'>
+  <div class="controls">
+		<%= f.association :aspsicosocial,
+			collection: Aspsicosocial.order(:nombre),
+	    label: "Asistencia Psicosocial",
+      label_method: :nombre,
+	    value_method: :id %>
+    <%= f.input :detalleap, label: "Carácter" %>
+    <%= link_to_remove_association "Eliminar Asistencia Psicosocial", f, 
+        :class => 'btn-danger' %> 
+  </div>
+</div>

@@ -1,0 +1,47 @@
+<%- model_class = Caso -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt><strong><%= Caso.human_attribute_name(:id) %>:</strong></dt>
+  <dd><%= @caso.id %></dd>
+  <dt><strong><%= Casosjr.human_attribute_name(:fecharec) %>:</strong></dt>
+  <dd><%= @caso.casosjr.fecharec if !@caso.casosjr.nil? %></dd>
+  <dt><strong><%= Casosjr.human_attribute_name(:regionsjr) %>:</strong></dt>
+  <dd><%= @caso.casosjr.regionsjr.nombre if !@caso.casosjr.nil? && !@caso.casosjr.regionsjr.nil? %></dd>
+  <dt><strong><%= Caso.human_attribute_name(:fecha) %>:</strong></dt>
+  <dd><%= @caso.fecha %></dd>
+  <% if !@caso.memo.nil? && @caso.memo != '' %>
+    <dt><strong><%= Caso.human_attribute_name(:memo) %>:</strong></dt>
+    <dd><%= @caso.memo %></dd>
+  <% end %>
+  <dt><strong><%= Caso.human_attribute_name(:created_at) %>:</strong></dt>
+  <dd><%= @caso.created_at %></dd>
+  <dt><strong><%= Casosjr.human_attribute_name(:asesor) %>:</strong></dt>
+  <dd><%= @caso.casosjr.usuario.nusuario if !@caso.casosjr.nil? %></dd>
+  <% if !@caso.casosjr.nil? && !@caso.casosjr.contacto.nil? %>
+    <dt><strong><%= Casosjr.human_attribute_name(:contacto) %>:</strong></dt>
+    <dd><%= (@caso.casosjr.contacto.nombres + " " + @caso.casosjr.contacto.apellidos) %></dd>
+  <% end %>
+  <% if !@casosjr.nil? && @casosjr.direccion != '' %>
+    <dt><strong><%= Casosjr.human_attribute_name(:direccion) %>:</strong></dt>
+    <dd><%= @caso.casosjr.direccion %></dd>
+  <% end %>
+  <% if !@casosjr.nil? && @casosjr.telefono != '' %>
+    <dt><strong><%= Casosjr.human_attribute_name(:telefono) %>:</strong></dt>
+    <dd><%= @caso.casosjr.telefono %></dd>
+  <% end %>
+</dl>
+
+<div class="form-actions">
+  <%= link_to t('.back', :default => t("helpers.links.back")),
+              casos_path, :class => 'btn'  %>
+  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_caso_path(@caso), :class => 'btn' %>
+  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              caso_path(@caso),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => '¿Está seguro(a)?')) },
+              :class => 'btn btn-danger' %>
+</div>

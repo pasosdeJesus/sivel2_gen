@@ -1,0 +1,20 @@
+<div class='control-group nested-fields'>
+  <div class="controls">
+    <%= f.input :fechaatencion, 
+      :input_html => { "data-behaviour" => "datepicker" },
+      :as => :string, :label => "Fecha de Atención" %>
+    <%= f.input :descamp, as: :text, label: "Situación encontrada" %>
+    <%= f.input :observaciones, as: :text, label: "Observaciones" %>
+    <%= f.input :orientaciones, as: :text, label: "Recomendaciones" %>
+    <%= f.input :compromisos, as: :text, label: "Compromisos de la Persona" %>
+    <%= f.input :gestionessjr, as: :text, label: "Compromisos del SJR" %>
+    <%= f.simple_fields_for :ayudasjr_respuesta do |a| %>
+      <%= render 'ayudasjr_respuesta_fields', :f => a %>
+    <% end %>
+    <div class="links">
+      <%= link_to_add_association 'Añadir Asistencia Humanitaria', f, :ayudasjr_respuesta, :class => 'btn-primary' %>
+    </div>
+
+    <%= link_to_remove_association "Eliminar Sesión de Atención", f, :class => 'btn-danger' %> 
+  </div>
+</div>
