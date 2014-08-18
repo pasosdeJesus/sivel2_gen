@@ -1,0 +1,29 @@
+<article> 
+<h1>Formulario de Contacto</h1> 
+
+<div class="span6">
+
+	<form>
+		<div class="controls controls-row">
+			<input id="name" name="name" type="text" class="span3" placeholder="Nombre"> 
+			<input id="email" name="email" type="email" class="span3" placeholder="Correo electrónico">
+		</div>
+		<div class="controls controls-row">
+			<span class="span1">Interés:</span>
+			<%= select_tag(:razon, options_for_select([
+			['Soporte', 1], 
+			['Reportar falla', 2],
+			['Sugerencias, Comentarios, Preguntas', 3]],1),
+			class: "span4"
+			) %>
+		</div>
+		<div class="controls">
+			<textarea id="message" name="message" class="span6" placeholder="Su Mensaje" rows="5"></textarea>
+		</div>
+
+		<div class="controls">
+			<button id="contact-submit" type="submit" class="btn btn-primary input-medium pull-right">Enviar  <i class="icon-envelope-alt"></i></button>
+		</div>
+	</form>
+</div>
+</article>
