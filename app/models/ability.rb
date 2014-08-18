@@ -11,7 +11,7 @@ class Ability
 
   ROLES = [["Administrador", ROLADMIN], ["Invitado Nacional", ROLINV], 
     ["Director Nacional", ROLDIR], ["Coordinador oficina", ROLCOOR], 
-    ["Analista nacional", ROLANALI], ["Sistematizador oficina", ROLSIST]]
+    ["Analista", ROLANALI], ["Sistematizador", ROLSIST]]
 
   @@tablasbasicas = [
     'actividadarea', 'actividadoficio', 'aslegal', 'aspsicosocial', 'ayudasjr', 
