@@ -395,6 +395,19 @@ $(document).on 'ready page:load',  ->
   #  $("article").css("cursor", "default") 
   )
 
+  # Al cambiar fecha de expulsión desplazamiento verificar que no esté repetida
+  $(document).on('changeDate', 'input[id^=caso_desplazamiento][id$=_fechaexpulsion]', (e) ->
+    idb = $(this).attr('id')
+    fb = $(this).val()
+    lcg = $('#desplazamiento .control-group[style!="display: none;"]')
+    lcg.each((k, v) ->
+      # id: fechaexpulsion
+      d = $(v).find('.caso_desplazamiento_fechaexpulsion input')
+      if idb != d.attr('id') && fb == d.val()
+        alert('Fecha de expulsión repetida')
+    )
+    return
+  )
 
   # Deshabilitar parte para obligar a completar partes para continuar
   # http://stackoverflow.com/questions/16777003/what-is-the-easiest-way-to-disable-enable-buttons-and-links-jquery-bootstrap
