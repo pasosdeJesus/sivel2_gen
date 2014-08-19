@@ -16,20 +16,20 @@
     </tr>
   </thead>
   <tbody>
-    <% @casos.try(:each) do |caso| %>
+    <% Casosjr.order(fecharec: :desc).try(:each) do |casosjr| %>
       <tr>
-        <td><%= link_to caso.id, caso_path(caso) %></td>
-        <td><%= caso.casosjr.fecharec if !caso.casosjr.nil? %></td>
-        <td><%= caso.casosjr.regionsjr.nombre if !caso.casosjr.nil? && !caso.casosjr.regionsjr.nil? %></td>
-        <td><%= caso.casosjr.usuario.nusuario if !caso.casosjr.nil? && !caso.casosjr.usuario.nil? %></td>
-        <td><%= caso.fecha %></td>
-        <td><%= caso.memo %></td>
-	      <td><%= caso.created_at.to_date if !caso.created_at.nil?%></td>
+        <td><%= link_to casosjr.caso.id, caso_path(casosjr.caso) %></td>
+        <td><%= casosjr.fecharec if !casosjr.fecharec.nil? %></td>
+        <td><%= casosjr.regionsjr.nombre if !casosjr.nil? && !casosjr.regionsjr.nil? %></td>
+        <td><%= casosjr.usuario.nusuario if !casosjr.nil? && !casosjr.usuario.nil? %></td>
+        <td><%= casosjr.caso.fecha %></td>
+        <td><%= casosjr.caso.memo %></td>
+	      <td><%= casosjr.created_at.to_date if !casosjr.created_at.nil?%></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_caso_path(caso), :class => 'btn btn-xs' %>
+                      edit_caso_path(casosjr.caso), :class => 'btn btn-xs' %>
           <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-                      caso_path(caso),
+                      caso_path(casosjr.caso),
                       :method => :delete,
                       :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
                       :class => 'btn btn-xs btn-danger' %>

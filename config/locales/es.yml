@@ -49,7 +49,7 @@ es:
         observaciones: Observaciones
         created_at: Creado en
       casosjr:
-        fecharec: F. Atención
+        fecharec: F. Recepción
         regionsjr: Oficina
         contacto: Solicitante Principal
       caso:
