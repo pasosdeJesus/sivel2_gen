@@ -404,7 +404,10 @@ $(document).on 'ready page:load',  ->
       # id: fechaexpulsion
       d = $(v).find('.caso_desplazamiento_fechaexpulsion input')
       if idb != d.attr('id') && fb == d.val()
-        alert('Fecha de expulsión repetida')
+        talertan = +Date.now()
+        if (typeof root.talerta == 'undefined' || talertan - root.talerta > 1000) 
+          root.talerta = talertan
+          alert('Fecha de expulsión repetida')
     )
     return
   )
