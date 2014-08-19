@@ -12,15 +12,16 @@ class CasosController < ApplicationController
     #      current_usuario.regionsjr_id.to_s + "')").paginate(
     #      :page => params[:pagina], per_page: 20)
     #else
+    @casossjr = Casosjr.order(fecharec: :desc)
     if (current_usuario.rol == Ability::ROLINV) 
-        @casos = @casos.where(
-          "id IN (SELECT id_caso FROM caso_etiqueta, etiqueta_usuario 
+        @casossjr = @casossjr.where(
+          "id_caso IN (SELECT id_caso FROM caso_etiqueta, etiqueta_usuario 
           WHERE caso_etiqueta.id_etiqueta=etiqueta_usuario.etiqueta_id
           AND etiqueta_usuario.usuario_id ='" + 
           current_usuario.id.to_s + "')").paginate(
           :page => params[:pagina], per_page: 20)
     else
-        @casos = @casos.paginate(:page => params[:pagina], per_page: 20)
+        @casossjr = @casossjr.paginate(:page => params[:pagina], per_page: 20)
     end
   end
 

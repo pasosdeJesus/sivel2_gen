@@ -16,7 +16,7 @@
     </tr>
   </thead>
   <tbody>
-    <% Casosjr.order(fecharec: :desc).try(:each) do |casosjr| %>
+    <% @casossjr.try(:each) do |casosjr| %>
       <tr>
         <td><%= link_to casosjr.caso.id, caso_path(casosjr.caso) %></td>
         <td><%= casosjr.fecharec if !casosjr.fecharec.nil? %></td>
@@ -38,7 +38,7 @@
     <% end %>
   </tbody>
 </table>
-<%= will_paginate @caso, { param_name: :pagina }  %>
+<%= will_paginate @casossjr, { param_name: :pagina }  %>
 <%= link_to t('.new', :default => t("helpers.links.new")),
             new_caso_path,
             :class => 'btn btn-primary' %>
