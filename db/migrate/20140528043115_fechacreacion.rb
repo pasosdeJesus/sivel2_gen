@@ -2,7 +2,7 @@ class Fechacreacion < ActiveRecord::Migration
 
   TABLASBASICAS = [:actividadarea, :ayudaestado, :departamento,
     :municipio, :actividadoficio, :ayudasjr, 
-    :categoria, :causaref, :escolaridad, 
+    :categoria, :escolaridad, 
     :estadocivil, :etiqueta, :iglesia, :maternidad, :presponsable, 
     :profesion,  :regionsjr, :rolfamilia, 
     :tsitio

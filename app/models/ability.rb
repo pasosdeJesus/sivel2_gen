@@ -15,7 +15,7 @@ class Ability
 
   @@tablasbasicas = [
     'actividadarea', 'actividadoficio', 'aslegal', 'aspsicosocial', 'ayudasjr', 
-    'categoria', 'causaref', 'clase', 'comosupo',
+    'categoria', 'clase', 'comosupo',
     'departamento', 
     'emprendimiento', 'escolaridad', 'estadocivil', 'etiqueta', 'etnia', 
     'idioma', 'iglesia', 

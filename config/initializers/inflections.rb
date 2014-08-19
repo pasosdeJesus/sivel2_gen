@@ -25,7 +25,6 @@ ActiveSupport::Inflector.inflections do |inflect|
 	inflect.irregular 'actividad', 'actividades'
 	inflect.irregular 'ayudaestado', 'ayudasestado'
 	inflect.irregular 'ayudasjr', 'ayudassjr'
-	inflect.irregular 'causaref', 'causasref'
 	inflect.irregular 'clase', 'clases'
 	inflect.irregular 'estadocivil', 'estadosciviles'
 	inflect.irregular 'etiqueta', 'etiquetas'

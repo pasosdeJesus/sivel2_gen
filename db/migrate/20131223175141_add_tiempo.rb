@@ -52,8 +52,6 @@ class AddTiempo < ActiveRecord::Migration
 	  add_column :casosjr, :updated_at, :datetime
 	  add_column :categoria, :created_at, :datetime 
 	  add_column :categoria, :updated_at, :datetime
-	  add_column :causaref, :created_at, :datetime 
-	  add_column :causaref, :updated_at, :datetime
 	  add_column :clase, :created_at, :datetime 
 	  add_column :clase, :updated_at, :datetime
 	  add_column :clasifdesp, :created_at, :datetime 
