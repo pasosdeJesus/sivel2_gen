@@ -4,13 +4,6 @@ GIT
   specs:
     cocoon (1.2.5)
 
-GIT
-  remote: https://github.com/kristianmandrup/jquery-ui-bootstrap-rails
-  revision: 944cf4164ea511a2977f91031cc7f69d3e06e6cb
-  specs:
-    jquery-ui-bootstrap-rails (0.1.1)
-      rails
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -256,7 +249,6 @@ DEPENDENCIES
   factory_girl_rails (~> 4.0)
   jbuilder
   jquery-rails
-  jquery-ui-bootstrap-rails!
   launchy
   paperclip (~> 4.1)
   pg
