@@ -56,7 +56,7 @@ gem "rspec-rails", group: [:development, :test]
 gem "rspec-activemodel-mocks", group: [:development, :test]
 gem "cucumber-rails", group: "test", :require => false
 gem "capybara", group: [:development, :test]
-gem "capybara-webkit", group: [:development, :test]
+gem "capybara-webkit", '1.2.0', group: [:development, :test]
 gem "launchy", group: [:development, :test]
 gem "factory_girl_rails", "~> 4.0", group: [:development, :test]
 gem "rails-i18n"

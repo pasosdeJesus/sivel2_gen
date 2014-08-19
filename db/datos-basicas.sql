@@ -16178,34 +16178,6 @@ SET client_min_messages = warning;
 SET search_path = public, pg_catalog;
 
 --
--- Data for Name: causaref; Type: TABLE DATA; Schema: public; Owner: -
---
-
-INSERT INTO causaref (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at, codigo) VALUES (0, 'SIN INFORMACIÓN', '2013-06-17', NULL, NULL, NULL, NULL);
-INSERT INTO causaref (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at, codigo) VALUES (1, 'GRUPO SOCIAL', '2013-06-17', NULL, NULL, NULL, NULL);
-INSERT INTO causaref (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at, codigo) VALUES (10, 'AGRESIÓN EXTRANJERA', '2013-06-17', NULL, NULL, NULL, NULL);
-INSERT INTO causaref (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at, codigo) VALUES (103, 'POLITICAS ECONOMICAS ERRONEAS', '2014-07-26', NULL, '2014-07-27 00:29:54.776931', '2014-07-27 00:29:54.776931', NULL);
-INSERT INTO causaref (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at, codigo) VALUES (104, 'DESASTRES NATURALES', '2014-07-26', NULL, '2014-07-27 00:30:43.241775', '2014-07-27 00:30:43.241775', NULL);
-INSERT INTO causaref (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at, codigo) VALUES (105, 'SOLICITUD DE ASILO', '2014-07-26', NULL, '2014-07-27 00:31:31.51124', '2014-07-27 00:31:31.51124', NULL);
-INSERT INTO causaref (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at, codigo) VALUES (11, 'CONFLICTOS INTERNOS', '2013-06-17', NULL, NULL, NULL, NULL);
-INSERT INTO causaref (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at, codigo) VALUES (12, 'VIOLACIÓN MASIVA A LOS DDHH', '2013-06-17', NULL, NULL, NULL, NULL);
-INSERT INTO causaref (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at, codigo) VALUES (13, 'GRAVE PERTURBACIÓN AL ORDEN PÚBLICO', '2013-06-17', NULL, NULL, NULL, NULL);
-INSERT INTO causaref (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at, codigo) VALUES (14, 'GENERO', '2014-03-19', NULL, NULL, NULL, NULL);
-INSERT INTO causaref (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at, codigo) VALUES (15, 'RAZONES ECONÓMICAS', '2014-03-19', NULL, NULL, NULL, NULL);
-INSERT INTO causaref (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at, codigo) VALUES (2, 'NACIONALIDAD', '2013-06-17', NULL, NULL, NULL, NULL);
-INSERT INTO causaref (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at, codigo) VALUES (3, 'OPINIÓN POLÍTICA', '2013-06-17', NULL, NULL, NULL, NULL);
-INSERT INTO causaref (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at, codigo) VALUES (4, 'RAZA', '2013-06-17', NULL, NULL, NULL, NULL);
-INSERT INTO causaref (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at, codigo) VALUES (5, 'RELIGIÓN', '2013-06-17', NULL, NULL, NULL, NULL);
-INSERT INTO causaref (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at, codigo) VALUES (6, 'SEXO', '2013-06-17', NULL, NULL, NULL, NULL);
-INSERT INTO causaref (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at, codigo) VALUES (7, 'VIOLENCIA GENERALIZADA', '2013-06-17', NULL, NULL, NULL, NULL);
-INSERT INTO causaref (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at, codigo) VALUES (9, 'PERSECUCIÓN', '2013-06-17', NULL, NULL, NULL, NULL);
-
-
---
--- PostgreSQL database dump complete
---
-
---
 -- PostgreSQL database dump
 --
 
