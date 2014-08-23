@@ -34,7 +34,7 @@ Se han implementado algunas pruebas con RSpec a modelos y pruebas de regresión.
 ``` sh
   cd spec/dummy
   RAILS_ENV=test rake db:setup
-  RAILS_ENV=test rake sivel:indices
+  RAILS_ENV=test rake sivel2gen:indices
 ```
 * Ejecute las pruebas desde el directorio del motor con:
 ```sh
