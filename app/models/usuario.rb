@@ -25,7 +25,7 @@ class Usuario < ActiveRecord::Base
   validates_format_of :nusuario, :with  => /\A[a-zA-Z_0-9]+\z/, :allow_blank => true
 
   validates_presence_of :nusuario
-  validates_presence_of :password
+  #validates_presence_of :password
   validates_presence_of :idioma
   validates_presence_of :rol
   validates_presence_of :email

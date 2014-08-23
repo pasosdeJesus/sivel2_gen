@@ -5,7 +5,19 @@
   <%= simple_form_for @caso, :html => { :class => 'form-horizontal' } do |f| %>
     <div data-role="content" class="form-inputs">
       <div id="errores">
-        <%= f.error_notification %>
+        <% if f.object.errors.any? %>
+          <div id="error_explanation">
+            <div class="alert alert-error">
+              El formulario tiene <%= pluralize(f.object.errors.count, "error") %>.
+            </div>
+            <ul>
+              <% f.object.errors.full_messages.each do |msg| %>
+                <li>* <%= msg %></li>
+              <% end %>
+            </ul>
+          </div>
+          <!--%= f.error_notification %-->
+        <% end %>
       </div>
       <div class="accordion" id="accordion2">
 

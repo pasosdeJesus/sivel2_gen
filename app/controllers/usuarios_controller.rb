@@ -48,7 +48,6 @@ class UsuariosController < ApplicationController
   # PATCH/PUT /usuarios/1
   # PATCH/PUT /usuarios/1.json
   def update
-    debugger
     if (!params[:usuario][:encrypted_password].nil? &&
        params[:usuario][:encrypted_password] != "")
       params[:usuario][:encrypted_password] = BCrypt::Password.create(
