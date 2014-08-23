@@ -38,7 +38,7 @@ Se han implementado algunas pruebas con RSpec a modelos y pruebas de regresión.
 ```
 * Ejecute las pruebas desde el directorio del motor con:
 ```sh
-  rake
+  rspec
 ```
 
 ## Desarrollo
