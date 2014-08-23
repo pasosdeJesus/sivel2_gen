@@ -57,4 +57,5 @@ set autoindent
 
 http://betterspecs.org/
 http://www.caliban.org/ruby/rubyguide.shtml
+https://hakiri.io/blog/ruby-security-tools-and-resources
 
