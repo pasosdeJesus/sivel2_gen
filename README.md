@@ -18,7 +18,6 @@ https://github.com/pasosdeJesus/SIVeL/tree/dis2
 ### Requerimientos
 * Ruby version >= 1.9
 * PostgreSQL >= 9.3
-* Se puede emplear en paralelo con una instancia de SIVeL 1.3 
 * Recomendado sobre adJ 5.5 (que incluye todos los componentes mencionados).  
   Las siguientes instrucciones suponen que opera en este ambiente.
 

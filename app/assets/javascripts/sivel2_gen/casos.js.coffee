@@ -183,6 +183,11 @@ $(document).on 'ready page:load',  ->
   # Al cambiar país se recalcula lista de departamentos
   $(document).on('change', 'select[id^=caso_][id$=id_pais]', (e) ->
     llenaDepartamento($(this))
+    # Exprimentando actualizar a medida que se modifica:
+    idfu = $(this).attr('id').replace('_id_pais', '_id');
+    idu = $('#' + idfu).val();
+    #if (idu > 0)
+    #   $.ajax(url: '/ubicacion/' + idu + '/update/'
   )
 
   # Al cambiar departamento se recalcula lista de municipios
@@ -416,6 +421,5 @@ $(document).on 'ready page:load',  ->
   # http://stackoverflow.com/questions/16777003/what-is-the-easiest-way-to-disable-enable-buttons-and-links-jquery-bootstrap
   #$('body').on('click', 'a.disabled', (e) -> 
   #  e.preventDefault() )
-  
-
+ 
   return
