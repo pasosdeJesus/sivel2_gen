@@ -5,7 +5,8 @@ class Anexo < ActiveRecord::Base
   belongs_to :fotra, foreign_key: "id_fotra", validate: true
   belongs_to :caso_ffrecuente, foreign_key: "id_caso,id_ffrecuente,fechaffrecuente", validate: true
 
-  has_attached_file :adjunto, :path => "/var/www/resbase/anexos-sjrven/:id_:filename"
+  has_attached_file :adjunto, :path => Sivel2Gen.ruta_anexos + 
+    "/:id_:filename"
   validates_attachment_content_type :adjunto, 
     :content_type => ['text/plain', /.*/]
   validates_attachment_presence :adjunto

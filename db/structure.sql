@@ -412,22 +412,6 @@ CREATE TABLE actocolectivo (
 
 
 --
--- Name: actosjr; Type: TABLE; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE TABLE actosjr (
-    id_presponsable integer NOT NULL,
-    id_categoria integer NOT NULL,
-    id_persona integer NOT NULL,
-    id_caso integer NOT NULL,
-    fecha date NOT NULL,
-    fechaexpulsion date,
-    created_at timestamp without time zone,
-    updated_at timestamp without time zone
-);
-
-
---
 -- Name: actualizacionbase; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -3147,14 +3131,6 @@ ALTER TABLE ONLY actocolectivo
 
 
 --
--- Name: actosjr_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
---
-
-ALTER TABLE ONLY actosjr
-    ADD CONSTRAINT actosjr_pkey PRIMARY KEY (id_presponsable, id_categoria, id_persona, id_caso, fecha);
-
-
---
 -- Name: actualizacionbase_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -4201,46 +4177,6 @@ ALTER TABLE ONLY actocolectivo
 
 ALTER TABLE ONLY actocolectivo
     ADD CONSTRAINT actocolectivo_id_presponsable_fkey FOREIGN KEY (id_presponsable) REFERENCES presponsable(id);
-
-
---
--- Name: actosjr_id_caso_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY actosjr
-    ADD CONSTRAINT actosjr_id_caso_fkey FOREIGN KEY (id_caso) REFERENCES caso(id);
-
-
---
--- Name: actosjr_id_categoria_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY actosjr
-    ADD CONSTRAINT actosjr_id_categoria_fkey FOREIGN KEY (id_categoria) REFERENCES categoria(id);
-
-
---
--- Name: actosjr_id_persona_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY actosjr
-    ADD CONSTRAINT actosjr_id_persona_fkey FOREIGN KEY (id_persona) REFERENCES persona(id);
-
-
---
--- Name: actosjr_id_presponsable_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY actosjr
-    ADD CONSTRAINT actosjr_id_presponsable_fkey FOREIGN KEY (id_presponsable) REFERENCES presponsable(id);
-
-
---
--- Name: actosjr_id_presponsable_fkey1; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY actosjr
-    ADD CONSTRAINT actosjr_id_presponsable_fkey1 FOREIGN KEY (id_presponsable, id_categoria, id_persona, id_caso) REFERENCES acto(id_presponsable, id_categoria, id_persona, id_caso);
 
 
 --
@@ -5580,6 +5516,8 @@ SET search_path TO "$user",public;
 INSERT INTO schema_migrations (version) VALUES ('20131128151014');
 
 INSERT INTO schema_migrations (version) VALUES ('20131204135932');
+
+INSERT INTO schema_migrations (version) VALUES ('20131204140000');
 
 INSERT INTO schema_migrations (version) VALUES ('20131204143718');
 

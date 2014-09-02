@@ -6,9 +6,6 @@
   <thead>
     <tr>
       <th><%= Caso.human_attribute_name(:id) %></th>
-      <th><%= Casosjr.human_attribute_name(:fecharec) %></th>
-      <th><%= Casosjr.human_attribute_name(:regionsjr) %></th>
-      <th><%= Casosjr.human_attribute_name(:asesor) %></th>
       <th><%= Caso.human_attribute_name(:fecha) %></th>
       <th><%= Caso.human_attribute_name(:memo) %></th>
       <th><%= Caso.human_attribute_name(:created_at) %></th>
@@ -16,20 +13,17 @@
     </tr>
   </thead>
   <tbody>
-    <% @casossjr.try(:each) do |casosjr| %>
+    <% @casos.try(:each) do |caso| %>
       <tr>
-        <td><%= link_to casosjr.caso.id, caso_path(casosjr.caso) %></td>
-        <td><%= casosjr.fecharec if !casosjr.fecharec.nil? %></td>
-        <td><%= casosjr.regionsjr.nombre if !casosjr.nil? && !casosjr.regionsjr.nil? %></td>
-        <td><%= casosjr.usuario.nusuario if !casosjr.nil? && !casosjr.usuario.nil? %></td>
-        <td><%= casosjr.caso.fecha %></td>
-        <td><%= casosjr.caso.memo %></td>
-	      <td><%= casosjr.created_at.to_date if !casosjr.created_at.nil?%></td>
+        <td><%= link_to caso.id, caso_path(caso) %></td>
+        <td><%= caso.fecha %></td>
+        <td><%= caso.memo %></td>
+	      <td><%= caso.created_at.to_date if !caso.created_at.nil?%></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_caso_path(casosjr.caso), :class => 'btn btn-xs' %>
+                      edit_caso_path(caso), :class => 'btn btn-xs' %>
           <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-                      caso_path(casosjr.caso),
+                      caso_path(caso),
                       :method => :delete,
                       :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
                       :class => 'btn btn-xs btn-danger' %>
@@ -38,7 +32,7 @@
     <% end %>
   </tbody>
 </table>
-<%= will_paginate @casossjr, { param_name: :pagina }  %>
+<%= will_paginate @casos, { param_name: :pagina }  %>
 <%= link_to t('.new', :default => t("helpers.links.new")),
             new_caso_path,
             :class => 'btn btn-primary' %>

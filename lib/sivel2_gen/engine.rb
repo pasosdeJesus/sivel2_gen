@@ -8,8 +8,10 @@ module Sivel2Gen
       g.helper false
     end
 
+    # Basado en 
+    # http://pivotallabs.com/leave-your-migrations-in-your-rails-engines/
     initializer :append_migrations do |app|
-      unless app.root.to_s.match root.to_s
+      unless app.root.to_s == root.to_s
         config.paths["db/migrate"].expanded.each do |expanded_path|
           app.config.paths["db/migrate"] << expanded_path
         end
@@ -17,4 +19,14 @@ module Sivel2Gen
     end
 
   end
+
+  class << self
+    mattr_accessor :ruta_anexos
+    self.ruta_anexos = "/var/www/resbase/anexos"
+  end
+
+  def self.setup(&block)
+    yield self
+  end
+
 end

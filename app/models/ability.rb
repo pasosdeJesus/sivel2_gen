@@ -3,27 +3,30 @@ class Ability
   include CanCan::Ability
 
   ROLADMIN  = 1
-  ROLINV    = 2
-  ROLDIR    = 3
-  ROLCOOR   = 4
+  #ROLINV    = 2
+  #ROLDIR    = 3
+  #ROLCOOR   = 4
   ROLANALI  = 5
   ROLSIST   = 6
 
-  ROLES = [["Administrador", ROLADMIN], ["Invitado Nacional", ROLINV], 
-    ["Director Nacional", ROLDIR], ["Coordinador oficina", ROLCOOR], 
-    ["Analista", ROLANALI], ["Sistematizador", ROLSIST]]
+  ROLES = [["Administrador", ROLADMIN], 
+    #["Invitado Nacional", ROLINV], 
+    #["Director Nacional", ROLDIR], 
+    #["Coordinador oficina", ROLCOOR], 
+    ["Analista", ROLANALI], 
+    ["Sistematizador", ROLSIST]]
 
   @@tablasbasicas = [
-    'actividadarea', 'actividadoficio', 'aslegal', 'aspsicosocial', 'ayudasjr', 
-    'categoria', 'clase', 'comosupo',
+    'actividadarea', 'actividadoficio',  
+    'categoria', 'clase', 
     'departamento', 
-    'emprendimiento', 'escolaridad', 'estadocivil', 'etiqueta', 'etnia', 
-    'idioma', 'iglesia', 
-    'maternidad', 'municipio', 
-    'pais', 'presponsable', 'profesion', 'proteccion', 
-    'rangoedad', 'rangoedadac', 'regionsjr', 'rolfamilia', 
-    'statusmigratorio', 'supracategoria',
-    'tclase', 'tsitio', 'tviolencia'
+    'escolaridad', 'etiqueta', 'etnia', 
+    'frontera',
+    'iglesia', 
+    'municipio', 
+    'pais', 'presponsable', 'profesion', 
+    'rangoedad', 'region', 'regionsjr',
+    'supracategoria', 'tclase', 'tsitio', 'tviolencia'
   ]
 
   def self.tablasbasicas
@@ -36,46 +39,19 @@ class Ability
     if !usuario.nil? && !usuario.rol.nil? then
       case usuario.rol 
       when Ability::ROLSIST
-        can :read, Caso, casosjr: { id_regionsjr: usuario.regionsjr_id }
+        can :read, Caso
         can :new, Caso
-        can [:update, :create, :destroy], Caso, 
-          casosjr: { asesor: usuario.id, id_regionsjr:usuario.regionsjr_id }
+        can [:update, :create, :destroy], Caso
         can :read, Actividad
         can :new, Actividad
-        can [:update, :create, :destroy], Actividad, 
-          oficina: { id: usuario.regionsjr_id}
+        can [:update, :create, :destroy], Actividad
       when Ability::ROLANALI
         can :read, Caso
         can :new, Caso
-        can [:update, :create, :destroy], Caso, 
-          casosjr: { id_regionsjr: usuario.regionsjr_id }
+        can [:update, :create, :destroy], Caso
         can :read, Actividad
         can :new, Actividad
-        can [:update, :create, :destroy], Actividad, 
-          oficina: { id: usuario.regionsjr_id}
-      when Ability::ROLCOOR
-        can :read, Caso
-        can :new, Caso
-        can [:update, :create, :destroy, :poneretcomp], Caso, 
-          casosjr: { id_regionsjr: usuario.regionsjr_id }
-        can :read, Actividad
-        can :new, Actividad
-        can [:update, :create, :destroy], Actividad, 
-          oficina: { id: usuario.regionsjr_id}
-        can :new, Usuario
-        can [:read, :manage], Usuario, regionsjr: { id: usuario.regionsjr_id}
-      when Ability::ROLDIR
-        can [:read, :new, :update, :create, :destroy, :ponetetcomp], Caso
-        can [:read, :new, :update, :create, :destroy], Actividad
-        can :manage, Usuario
-        can :manage, :tablasbasicas
-        @@tablasbasicas.each do |t|
-          c = t.capitalize.constantize
-          can :manage, c
-        end
-      when Ability::ROLINV
-        cannot :buscar, Caso
-        can :read, Caso 
+        can [:update, :create, :destroy], Actividad
       when Ability::ROLADMIN
         can :manage, Caso
         can :manage, Actividad
