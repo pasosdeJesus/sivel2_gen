@@ -8,7 +8,7 @@ namespace :sivel2gen do
   task indices: :environment do
     connection = ActiveRecord::Base.connection();
 		# Primero tablas basicas creadas en Rails
-    tbn = [ "actividadarea", "comosupo", "pais", "rangoedadac" ]
+    tbn = [ "actividadarea", "pais", "rangoedadac" ]
     tbn.each do |t|
     	connection.execute("SELECT setval('#{t}_id_seq', MAX(id)) FROM 
              (SELECT 100 as id UNION SELECT MAX(id) FROM #{t}) AS s;")
@@ -37,10 +37,7 @@ namespace :sivel2gen do
 			"pconsolidado", "tviolencia", "supracategoria",
 			"tclase", "pais", "departamento", "municipio", "clase",
 			"intervalo", "filiacion", "organizacion", "sectorsocial",
-			"vinculoestado", "regimensalud", "acreditacion",
-			"clasifdesp", "declaroante", "inclusion", "modalidadtierra",
-			"tipodesp", "personadesea", "ayudaestado", "derecho", "progestado",
-			"motivosjr"
+			"vinculoestado", "regimensalud"
 		];
     tb= sb + (Ability::tablasbasicas - sb);
     set_psql_env(abcs[Rails.env])
