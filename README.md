@@ -33,6 +33,7 @@ Se han implementado algunas pruebas con RSpec a modelos y pruebas de regresión.
 * Prepare base de prueba con:
 ``` sh
   cd spec/dummy
+  RAILS_ENV=test rake db:drop
   RAILS_ENV=test rake db:setup
   RAILS_ENV=test rake sivel2gen:indices
 ```
