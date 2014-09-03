@@ -10,6 +10,7 @@ class Usuario < ActiveRecord::Base
 	has_many :caso_usuario, foreign_key: "id_usuario", validate: true
 	has_many :caso_etiqueta, foreign_key: "id_usuario", validate: true
 
+	belongs_to :regionsjr, foreign_key: "regionsjr_id", validate: true
 
   #http://stackoverflow.com/questions/1200568/using-rails-how-can-i-set-my-primary-key-to-not-be-an-integer-typed-column
   self.primary_key=:id

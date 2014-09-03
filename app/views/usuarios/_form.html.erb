@@ -32,11 +32,6 @@
     label: "Rol",
     include_blank: false
   %>
-  <%= f.association :etiqueta, 
-    collection: Etiqueta.where("nombre LIKE 'COMPARTIR%'").order(:nombre),
-	  label: "Etiquetas Compartir",
-	  label_method: :nombre, 
-	  value_method: :id %>
   <%= f.input :idioma %>
   <%= f.input :email %>
 	<%= f.input :encrypted_password %>
