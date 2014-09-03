@@ -35,6 +35,14 @@
   <%= f.input :idioma %>
   <%= f.input :email %>
 	<%= f.input :encrypted_password %>
+  <%= f.input :fechacreacion,
+    input_html: { "data-behaviour" => "datepicker" }, 
+    as: :string
+  %>
+	<%= f.input :fechadeshabilitacion,
+    input_html: { "data-behaviour" => "datepicker" }, 
+    as: :string
+  %>
 	<%= f.input :failed_attempts,
 		label: 'Intentos fallidos'
 	%>

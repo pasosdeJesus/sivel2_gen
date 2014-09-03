@@ -18,9 +18,9 @@ class UsuariosController < ApplicationController
 
   # GET /usuarios/new
   def new
+    @usuario = Usuario.new
     @usuario.current_usuario = current_usuario
-    @usuario.regionsjr_id = current_usuario.regionsjr_id.nil? ?  
-      0 : current_usuario.regionsjr_id
+    @usuario.fechacreacion = Date.today.to_s
   end
 
   # GET /usuarios/1/edit
@@ -87,7 +87,8 @@ class UsuariosController < ApplicationController
       params.require(:usuario).permit(
         :id, :nusuario, :password, 
         :nombre, :descripcion, :regionsjr_id, 
-        :rol, :idioma, :email, :encrypted_password, :reset_password_token, 
+        :rol, :idioma, :email, :encrypted_password, 
+        :fechacreacion, :fechadeshabilitacion, :reset_password_token, 
         :reset_password_sent_at, :remember_created_at, :sign_in_count, 
         :current_sign_in_at, :last_sign_in_at, :current_sign_in_ip, 
         :failed_attempts, :unlock_token, :locked_at,
