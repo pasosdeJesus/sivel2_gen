@@ -1,4 +1,5 @@
 require 'devise'
+require "sivel2_gen/version"
 module Sivel2Gen
   class Engine < ::Rails::Engine
     config.generators do |g|
