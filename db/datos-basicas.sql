@@ -12,7 +12,7 @@
 --
 
 SET statement_timeout = 0;
-SET lock_timeout = 0;
+
 SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
 SET check_function_bodies = false;
@@ -60,7 +60,7 @@ INSERT INTO pconsolidado (id, rotulo, tipoviolencia, clasificacion, peso, fechac
 --
 
 SET statement_timeout = 0;
-SET lock_timeout = 0;
+
 SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
 SET check_function_bodies = false;
@@ -77,6 +77,7 @@ INSERT INTO tviolencia (id, nombre, nomcorto, fechacreacion, fechadeshabilitacio
 INSERT INTO tviolencia (id, nombre, nomcorto, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES ('C', 'ACCIONES BÉLICAS', 'BELICAS', '2000-07-24', NULL, NULL, NULL);
 INSERT INTO tviolencia (id, nombre, nomcorto, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES ('D', 'INFRACCIONES AL DIH', 'DIH', '2000-07-24', NULL, NULL, NULL);
 
+
 --
 -- PostgreSQL database dump complete
 --
@@ -86,7 +87,7 @@ INSERT INTO tviolencia (id, nombre, nomcorto, fechacreacion, fechadeshabilitacio
 --
 
 SET statement_timeout = 0;
-SET lock_timeout = 0;
+
 SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
 SET check_function_bodies = false;
@@ -108,6 +109,7 @@ INSERT INTO supracategoria (id, nombre, fechacreacion, fechadeshabilitacion, id_
 INSERT INTO supracategoria (id, nombre, fechacreacion, fechadeshabilitacion, id_tviolencia, created_at, updated_at) VALUES (3, 'INTOLERANCIA SOCIAL', '2000-07-26', NULL, 'A', NULL, NULL);
 INSERT INTO supracategoria (id, nombre, fechacreacion, fechadeshabilitacion, id_tviolencia, created_at, updated_at) VALUES (3, 'MÉTODOS', '2000-07-26', NULL, 'D', NULL, NULL);
 
+
 --
 -- PostgreSQL database dump complete
 --
@@ -117,7 +119,7 @@ INSERT INTO supracategoria (id, nombre, fechacreacion, fechadeshabilitacion, id_
 --
 
 SET statement_timeout = 0;
-SET lock_timeout = 0;
+
 SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
 SET check_function_bodies = false;
@@ -154,7 +156,7 @@ INSERT INTO tclase (id, nombre, fechacreacion, fechadeshabilitacion, created_at,
 --
 
 SET statement_timeout = 0;
-SET lock_timeout = 0;
+
 SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
 SET check_function_bodies = false;
@@ -417,6 +419,13 @@ INSERT INTO pais (id, nombre, nombreiso, latitud, longitud, alfa2, alfa3, codiso
 
 
 --
+-- Name: pais_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('pais_id_seq', 1, false);
+
+
+--
 -- PostgreSQL database dump complete
 --
 
@@ -425,7 +434,7 @@ INSERT INTO pais (id, nombre, nombreiso, latitud, longitud, alfa2, alfa3, codiso
 --
 
 SET statement_timeout = 0;
-SET lock_timeout = 0;
+
 SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
 SET check_function_bodies = false;
@@ -507,7 +516,7 @@ INSERT INTO departamento (id, nombre, latitud, longitud, fechacreacion, fechades
 --
 
 SET statement_timeout = 0;
-SET lock_timeout = 0;
+
 SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
 SET check_function_bodies = false;
@@ -1995,7 +2004,7 @@ INSERT INTO municipio (id, nombre, id_departamento, latitud, longitud, fechacrea
 --
 
 SET statement_timeout = 0;
-SET lock_timeout = 0;
+
 SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
 SET check_function_bodies = false;
@@ -15199,7 +15208,7 @@ INSERT INTO clase (id, nombre, id_departamento, id_municipio, id_tclase, latitud
 --
 
 SET statement_timeout = 0;
-SET lock_timeout = 0;
+
 SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
 SET check_function_bodies = false;
@@ -15227,7 +15236,7 @@ INSERT INTO intervalo (id, nombre, rango, fechacreacion, fechadeshabilitacion, c
 --
 
 SET statement_timeout = 0;
-SET lock_timeout = 0;
+
 SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
 SET check_function_bodies = false;
@@ -15265,7 +15274,7 @@ INSERT INTO filiacion (id, nombre, fechacreacion, fechadeshabilitacion, created_
 --
 
 SET statement_timeout = 0;
-SET lock_timeout = 0;
+
 SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
 SET check_function_bodies = false;
@@ -15305,7 +15314,7 @@ INSERT INTO organizacion (id, nombre, fechacreacion, fechadeshabilitacion, creat
 --
 
 SET statement_timeout = 0;
-SET lock_timeout = 0;
+
 SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
 SET check_function_bodies = false;
@@ -15344,7 +15353,7 @@ INSERT INTO sectorsocial (id, nombre, fechacreacion, fechadeshabilitacion, creat
 --
 
 SET statement_timeout = 0;
-SET lock_timeout = 0;
+
 SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
 SET check_function_bodies = false;
@@ -15407,7 +15416,7 @@ INSERT INTO vinculoestado (id, nombre, fechacreacion, fechadeshabilitacion, crea
 --
 
 SET statement_timeout = 0;
-SET lock_timeout = 0;
+
 SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
 SET check_function_bodies = false;
@@ -15434,7 +15443,7 @@ INSERT INTO regimensalud (id, nombre, fechacreacion, fechadeshabilitacion, creat
 --
 
 SET statement_timeout = 0;
-SET lock_timeout = 0;
+
 SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
 SET check_function_bodies = false;
@@ -15472,7 +15481,30 @@ SELECT pg_catalog.setval('actividadarea_id_seq', 105, true);
 --
 
 SET statement_timeout = 0;
-SET lock_timeout = 0;
+
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+
+SET search_path = public, pg_catalog;
+
+--
+-- Data for Name: actividadoficio; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+
+
+--
+-- PostgreSQL database dump complete
+--
+
+--
+-- PostgreSQL database dump
+--
+
+SET statement_timeout = 0;
+
 SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
 SET check_function_bodies = false;
@@ -15629,7 +15661,30 @@ INSERT INTO categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_supra
 --
 
 SET statement_timeout = 0;
-SET lock_timeout = 0;
+
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+
+SET search_path = public, pg_catalog;
+
+--
+-- Data for Name: escolaridad; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+
+
+--
+-- PostgreSQL database dump complete
+--
+
+--
+-- PostgreSQL database dump
+--
+
+SET statement_timeout = 0;
+
 SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
 SET check_function_bodies = false;
@@ -15656,7 +15711,7 @@ INSERT INTO etiqueta (id, nombre, observaciones, fechacreacion, fechadeshabilita
 --
 
 SET statement_timeout = 0;
-SET lock_timeout = 0;
+
 SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
 SET check_function_bodies = false;
@@ -15783,19 +15838,40 @@ INSERT INTO etnia (id, nombre, descripcion, fechacreacion, fechadeshabilitacion,
 -- PostgreSQL database dump complete
 --
 
+--
+-- PostgreSQL database dump
+--
 
-INSERT INTO frontera (id, nombre, fechacreacion, fechadeshabilitacion) VALUES (1, 'Ecuador', '2001-01-01', NULL);
-INSERT INTO frontera (id, nombre, fechacreacion, fechadeshabilitacion) VALUES (2, 'Brasil', '2001-01-01', NULL);
-INSERT INTO frontera (id, nombre, fechacreacion, fechadeshabilitacion) VALUES (5, 'Panamá', '2001-01-01', NULL);
-INSERT INTO frontera (id, nombre, fechacreacion, fechadeshabilitacion) VALUES (4, 'Venezuela', '2001-01-01', NULL);
-INSERT INTO frontera (id, nombre, fechacreacion, fechadeshabilitacion) VALUES (6, 'Perú', '2001-01-01', NULL);
+SET statement_timeout = 0;
+
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+
+SET search_path = public, pg_catalog;
+
+--
+-- Data for Name: frontera; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+INSERT INTO frontera (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (1, 'Ecuador', '2001-01-01', NULL, NULL, NULL);
+INSERT INTO frontera (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (2, 'Brasil', '2001-01-01', NULL, NULL, NULL);
+INSERT INTO frontera (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (4, 'Venezuela', '2001-01-01', NULL, NULL, NULL);
+INSERT INTO frontera (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (5, 'Panamá', '2001-01-01', NULL, NULL, NULL);
+INSERT INTO frontera (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (6, 'Perú', '2001-01-01', NULL, NULL, NULL);
+
+
+--
+-- PostgreSQL database dump complete
+--
 
 --
 -- PostgreSQL database dump
 --
 
 SET statement_timeout = 0;
-SET lock_timeout = 0;
+
 SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
 SET check_function_bodies = false;
@@ -15888,7 +15964,7 @@ INSERT INTO iglesia (id, nombre, descripcion, fechacreacion, fechadeshabilitacio
 --
 
 SET statement_timeout = 0;
-SET lock_timeout = 0;
+
 SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
 SET check_function_bodies = false;
@@ -15955,7 +16031,7 @@ INSERT INTO presponsable (id, nombre, papa, fechacreacion, fechadeshabilitacion,
 --
 
 SET statement_timeout = 0;
-SET lock_timeout = 0;
+
 SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
 SET check_function_bodies = false;
@@ -16001,7 +16077,7 @@ INSERT INTO profesion (id, nombre, fechacreacion, fechadeshabilitacion, created_
 --
 
 SET statement_timeout = 0;
-SET lock_timeout = 0;
+
 SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
 SET check_function_bodies = false;
@@ -16030,7 +16106,7 @@ INSERT INTO rangoedad (id, nombre, rango, limiteinferior, limitesuperior, fechac
 --
 
 SET statement_timeout = 0;
-SET lock_timeout = 0;
+
 SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
 SET check_function_bodies = false;
@@ -16039,42 +16115,28 @@ SET client_min_messages = warning;
 SET search_path = public, pg_catalog;
 
 --
--- Data for Name: rangoedadac; Type: TABLE DATA; Schema: public; Owner: -
+-- Data for Name: region; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-INSERT INTO rangoedadac (id, nombre, limiteinferior, limitesuperior, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (1, 'De 0 a 11', 0, 10, '2014-02-11', NULL, '2014-03-07 19:19:02.690768', '2014-03-07 19:19:02.690768');
-INSERT INTO rangoedadac (id, nombre, limiteinferior, limitesuperior, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (2, 'De 12 a 17', 0, 10, '2014-02-11', NULL, '2014-03-07 19:19:02.690768', '2014-03-07 19:19:02.690768');
-INSERT INTO rangoedadac (id, nombre, limiteinferior, limitesuperior, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (3, 'De 18 a 25', 16, 25, '2014-02-11', NULL, '2014-03-07 19:19:09.515802', '2014-03-07 19:19:09.515802');
-INSERT INTO rangoedadac (id, nombre, limiteinferior, limitesuperior, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (4, 'De 26 a 45', 26, 45, '2014-02-11', NULL, '2014-03-07 19:19:09.527935', '2014-03-07 19:19:09.527935');
-INSERT INTO rangoedadac (id, nombre, limiteinferior, limitesuperior, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (5, 'De 46 a 60', 46, 60, '2014-02-11', NULL, '2014-03-07 19:19:09.539237', '2014-03-07 19:19:09.539237');
-INSERT INTO rangoedadac (id, nombre, limiteinferior, limitesuperior, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (6, '61 en adelante', 61, NULL, '2014-02-11', NULL, '2014-03-07 19:19:09.549437', '2014-03-07 19:19:09.549437');
-
-
---
--- Name: rangoedadac_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
---
-
-SELECT pg_catalog.setval('rangoedadac_id_seq', 100, true);
+INSERT INTO region (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (10, 'EJE CAFETERO Y TOLIMA GRANDE', '2001-01-01', NULL, NULL, NULL);
+INSERT INTO region (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (11, 'EXTERIOR', '2001-01-01', NULL, NULL, NULL);
+INSERT INTO region (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (5, 'COSTA ATLANTICA', '2001-01-01', NULL, NULL, NULL);
+INSERT INTO region (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (6, 'ANTIOQUIA CHOCO SANT', '2001-01-01', NULL, NULL, NULL);
+INSERT INTO region (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (7, 'LLANOS', '2001-01-01', NULL, NULL, NULL);
+INSERT INTO region (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (8, 'CENTRO', '2001-01-01', NULL, NULL, NULL);
+INSERT INTO region (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (9, 'SUR OCCIDENTE', '2001-01-01', NULL, NULL, NULL);
 
 
 --
 -- PostgreSQL database dump complete
 --
 
-INSERT INTO region (id, nombre, fechacreacion, fechadeshabilitacion) VALUES (5, 'COSTA ATLANTICA', '2001-01-01', NULL);
-INSERT INTO region (id, nombre, fechacreacion, fechadeshabilitacion) VALUES (7, 'LLANOS', '2001-01-01', NULL);
-INSERT INTO region (id, nombre, fechacreacion, fechadeshabilitacion) VALUES (9, 'SUR OCCIDENTE', '2001-01-01', NULL);
-INSERT INTO region (id, nombre, fechacreacion, fechadeshabilitacion) VALUES (6, 'ANTIOQUIA CHOCO SANT', '2001-01-01', NULL);
-INSERT INTO region (id, nombre, fechacreacion, fechadeshabilitacion) VALUES (8, 'CENTRO', '2001-01-01', NULL);
-INSERT INTO region (id, nombre, fechacreacion, fechadeshabilitacion) VALUES (10, 'EJE CAFETERO Y TOLIMA GRANDE', '2001-01-01', NULL);
-INSERT INTO region (id, nombre, fechacreacion, fechadeshabilitacion) VALUES (11, 'EXTERIOR', '2001-01-01', NULL);
-
 --
 -- PostgreSQL database dump
 --
 
 SET statement_timeout = 0;
-SET lock_timeout = 0;
+
 SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
 SET check_function_bodies = false;
@@ -16093,13 +16155,12 @@ INSERT INTO regionsjr (id, nombre, fechacreacion, fechadeshabilitacion, created_
 -- PostgreSQL database dump complete
 --
 
-
 --
 -- PostgreSQL database dump
 --
 
 SET statement_timeout = 0;
-SET lock_timeout = 0;
+
 SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
 SET check_function_bodies = false;

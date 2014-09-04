@@ -56,7 +56,7 @@ namespace :sivel2gen do
 
       " 
       tb.each do |t|
-        command = "pg_dump -i -a -x -O --column-inserts -t #{t}  #{search_path} #{Shellwords.escape(abcs[Rails.env]['database'])} > #{archt}"
+        command = "pg_dump -i -a -x -O --column-inserts -t #{t}  #{search_path} #{Shellwords.escape(abcs[Rails.env]['database'])} | sed -e \"s/SET lock_timeout = 0;//g\" > #{archt}"
         puts command
         raise "Error al volcar tabla #{t}" unless Kernel.system(command)
         inserto = false
