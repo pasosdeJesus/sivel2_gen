@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  get '/casos/descarga_anexo/:id' => 'casos#descarga_anexo'
+  get '/anexos/descarga_anexo/:id' => 'anexos#descarga_anexo'
   get '/casos/lista' => 'casos#lista'
   get '/casos/nuevaubicacion' => 'casos#nueva_ubicacion'
   get '/casos/nuevavictima' => 'casos#nueva_victima'
