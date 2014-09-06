@@ -1,6 +1,7 @@
 <%= f.association :presponsable,
   collection: Presponsable.from('caso_presponsable, presponsable').where('caso_presponsable.id_presponsable=presponsable.id AND caso_presponsable.id_caso=?', @caso.id),
   label: "Presunto Responsable",
+  wrapper_html: { style: "padding-bottom: 18px;" },
   label_method: :nombre,
   value_method: :id 
 %>
