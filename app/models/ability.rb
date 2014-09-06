@@ -25,7 +25,7 @@ class Ability
     'iglesia', 
     'municipio', 
     'pais', 'presponsable', 'profesion', 
-    'rangoedad', 'region', 'regionsjr',
+    'rangoedad', 'rangoedadac', 'region', 'regionsjr',
     'supracategoria', 'tclase', 'tsitio', 'tviolencia'
   ]
 
