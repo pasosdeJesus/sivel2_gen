@@ -9,7 +9,7 @@
     <% else %>
       <div class="caso_anexo_adjunto">
         <label for="caso_anexo_attributes_<%=f.object.id%>_adjunto">Archivo</label>
-        <a id="caso_anexo_attributes_<%=f.object.id%>_adjunto" href="/casos/descarga_anexo/<%=f.object.id%>", style="text-decoration:none"><%= f.object.adjunto_file_name %></a>
+        <a id="caso_anexo_attributes_<%=f.object.id%>_adjunto" href="/anexos/descarga_anexo/<%=f.object.id%>", style="text-decoration:none"><%= f.object.adjunto_file_name %></a>
       </div>
     <% end %>
     <%= link_to_remove_association "Eliminar Anexo", f, 
