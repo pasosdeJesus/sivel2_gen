@@ -1,5 +1,7 @@
 # encoding: UTF-8
 class AnexosController < ApplicationController
+  load_and_authorize_resource
+
   def descarga_anexo
     if !params[:id].nil?
       @anexo = Anexo.find(params[:id])
