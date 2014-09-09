@@ -8,7 +8,6 @@ module Admin
       "etnia"
     end
 
-    # Use callbacks to share common setup or constraints between actions.
     def set_etnia
       @basica = Etnia.find(params[:id])
     end
@@ -17,7 +16,6 @@ module Admin
       ["id", "nombre", "descripcion", "fechacreacion", "fechadeshabilitacion"]
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def etnia_params
       params.require(:etnia).permit(*atributos_form)
     end

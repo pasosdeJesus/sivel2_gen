@@ -8,7 +8,6 @@ module Admin
       "actividadoficio"
     end
 
-    # Use callbacks to share common setup or constraints between actions.
     def set_actividadoficio
       @basica = Actividadoficio.find(params[:id])
     end
@@ -17,7 +16,6 @@ module Admin
       ["id", "nombre", "fechacreacion", "fechadeshabilitacion"]
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def actividadoficio_params
       params.require(:actividadoficio).permit(*atributos_form)
     end

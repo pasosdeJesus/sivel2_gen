@@ -6,8 +6,11 @@
   <td><%= f.number_field :fr, size: "2" %></td>
   <td><%= f.number_field :ml, size: "2" %></td>
   <td><%= f.number_field :mr, size: "2" %></td>
-  <td><%= f.input :id, as: :hidden %><%= link_to_remove_association "Eliminar", f, 
-		:class => 'btn-danger' %>
+  <td>
+    <%= 
+      f.input :id, as: :hidden %><%= link_to_remove_association "Eliminar", f, 
+        :class => 'btn-danger' 
+      %>
 		<div><%= f.error_notification %></div>
 	</td>
 </tr>

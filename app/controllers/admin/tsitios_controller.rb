@@ -8,7 +8,6 @@ module Admin
       "tsitio"
     end
 
-    # Use callbacks to share common setup or constraints between actions.
     def set_tsitio
       @basica = Tsitio.find(params[:id])
     end
@@ -17,7 +16,6 @@ module Admin
 			return 'M';
 		end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def tsitio_params
       params.require(:tsitio).permit(*atributos_form)
     end

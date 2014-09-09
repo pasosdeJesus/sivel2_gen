@@ -8,7 +8,6 @@ module Admin
       "frontera"
     end
 
-    # Use callbacks to share common setup or constraints between actions.
     def set_frontera
       @basica = Frontera.find(params[:id])
     end
@@ -17,7 +16,6 @@ module Admin
       ["id", "nombre", "fechacreacion", "fechadeshabilitacion"]
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def frontera_params
       params.require(:frontera).permit(*atributos_form)
     end

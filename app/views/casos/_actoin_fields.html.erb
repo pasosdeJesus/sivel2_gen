@@ -1,5 +1,8 @@
 <%= f.association :presponsable,
-  collection: Presponsable.from('caso_presponsable, presponsable').where('caso_presponsable.id_presponsable=presponsable.id AND caso_presponsable.id_caso=?', @caso.id),
+  collection: Presponsable.from(
+    'caso_presponsable, presponsable').where(
+    'caso_presponsable.id_presponsable=presponsable.id 
+      AND caso_presponsable.id_caso=?', @caso.id),
   label: "Presunto Responsable",
   wrapper_html: { style: "padding-bottom: 18px;" },
   label_method: :nombre,
@@ -7,7 +10,9 @@
 %>
 
 <%= f.association :categoria,
-  collection: Categoria.from('categoria').where("fechadeshabilitacion IS NULL AND id_tviolencia<>'R'").order(:id_tviolencia, :id),
+  collection: Categoria.from('categoria').where(
+    "fechadeshabilitacion IS NULL AND id_tviolencia<>'R'").order(
+    :id_tviolencia, :id),
   label: "Categoria",
   label_method: :nombre, 
   label_method: lambda {|t| t.id_tviolencia + t.id.to_s + ' ' + t.nombre },
@@ -15,7 +20,8 @@
 %>
 
 <%= f.association :persona,
-  collection: Persona.from('victima, persona').where('victima.id_persona=persona.id AND victima.id_caso=?', @caso.id),
+  collection: Persona.from('victima, persona').where(
+    'victima.id_persona=persona.id AND victima.id_caso=?', @caso.id),
   label: "Víctima",
   label_method: lambda {|t| t.nombres + ' ' + t.apellidos},
   value_method: :id 

@@ -16,7 +16,6 @@
               <% end %>
             </ul>
           </div>
-          <!--%= f.error_notification %-->
         <% end %>
       </div>
       <div class="accordion" id="accordion2">
@@ -40,18 +39,21 @@
               <%= f.input :hora %> <!--, as: :time, ampm: true -->
               <%= f.input :duracion %>
               <%= f.association :intervalo,
-                collection: Intervalo.where(fechadeshabilitacion: nil).order(:nombre).all,
+                collection: Intervalo.where(
+                  fechadeshabilitacion: nil).order(:nombre).all,
                 label_method: :nombre,
                 value_method: :id 
               %>
               <%= f.association :region, 
-                collection: Region.where(fechadeshabilitacion: nil).order(:nombre).all,
+                collection: Region.where(
+                  fechadeshabilitacion: nil).order(:nombre).all,
                 label: "Región",
                 label_method: :nombre, 
                 value_method: :id 
               %>
               <%= f.association :frontera, 
-                collection: Frontera.where(fechadeshabilitacion: nil).order(:nombre).all,
+                collection: Frontera.where(
+                  fechadeshabilitacion: nil).order(:nombre).all,
                 label: "Frontera",
                 label_method: :nombre, 
                 value_method: :id 
@@ -81,7 +83,7 @@
               </div>
             </div>
           </div>
-        </div> <! -- accordion-group -->
+        </div> <! -- accordion-group Ubicacion -->
 
         <div class="accordion-group">
           <div class="accordion-heading">
@@ -92,7 +94,8 @@
           <div id="presponsable" class="accordion-body collapse">
             <div class="accordion-inner">
               <%= f.simple_fields_for :caso_presponsable do |caso_presponsable| %>
-                <%= render 'caso_presponsable_fields', :f => caso_presponsable %>
+                <%= render 'caso_presponsable_fields', 
+                  :f => caso_presponsable %>
               <% end %>
               <div class="links">
                 <%= link_to_add_association 'Añadir Presunto Responsable', f, 
@@ -103,14 +106,15 @@
               </div>
             </div>
           </div>
-        </div> <! -- accordion-group -->
+        </div> <! -- accordion-group Presuntos Responsable-->
 
         <div class="accordion-group">
           <div class="accordion-heading">
             <a class="accordion-toggle" data-toggle="collapse" href="#victima">Víctimas</a>
           </div>
           <div id="victima" class="accordion-body collapse">
-            <div class="accordion-inner"> <%= f.simple_fields_for :victima do |victima| %>
+            <div class="accordion-inner"> 
+              <%= f.simple_fields_for :victima do |victima| %>
                 <%= render 'victima_fields', :f => victima %>
               <% end %>
               <div class="links">
@@ -142,7 +146,7 @@
               </div>
             </div>
           </div>
-        </div> <! -- accordion-group -->
+        </div> <! -- accordion-group Actos -->
 
         <div class="accordion-group">
           <div class="accordion-heading">

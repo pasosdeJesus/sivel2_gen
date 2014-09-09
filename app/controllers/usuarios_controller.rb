@@ -76,13 +76,13 @@ class UsuariosController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
+    # Configuración común
     def set_usuario
       @usuario = Usuario.find(params[:id])
     	@usuario.current_usuario = current_usuario
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
+    # Lista blanca de paramétros
     def usuario_params
       params.require(:usuario).permit(
         :id, :nusuario, :password, 

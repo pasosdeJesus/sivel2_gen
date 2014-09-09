@@ -8,12 +8,10 @@ module Admin
       "profesion"
     end
 
-    # Use callbacks to share common setup or constraints between actions.
     def set_profesion
       @basica = Profesion.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def profesion_params
       params.require(:profesion).permit(*atributos_form)
     end

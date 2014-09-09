@@ -8,7 +8,6 @@ module Admin
       "presponsable"
     end
 
-    # Use callbacks to share common setup or constraints between actions.
     def set_presponsable
       @basica = Presponsable.find(params[:id])
     end
@@ -17,7 +16,6 @@ module Admin
 			return 'M';
 		end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def presponsable_params
       params.require(:presponsable).permit(*atributos_form)
     end
