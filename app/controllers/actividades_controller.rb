@@ -66,13 +66,12 @@ class ActividadesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_actividad
       @actividad = Actividad.find(params[:id])
     	@actividad.current_usuario = current_usuario
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
+    # No confiar parametros a Internet, sólo permitir lista blanca
     def actividad_params
       params.require(:actividad).permit(:regionsjr_id, :minutos, :nombre, 
         :objetivo, :proyecto, :resultado, :fecha, :actividad, 

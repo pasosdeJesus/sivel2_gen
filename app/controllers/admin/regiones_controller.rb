@@ -8,7 +8,6 @@ module Admin
       "region"
     end
 
-    # Use callbacks to share common setup or constraints between actions.
     def set_region
       @basica = Region.find(params[:id])
     end
@@ -17,7 +16,6 @@ module Admin
       ["id", "nombre", "fechacreacion", "fechadeshabilitacion"]
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def region_params
       params.require(:region).permit(*atributos_form)
     end

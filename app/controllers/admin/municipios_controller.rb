@@ -8,7 +8,6 @@ module Admin
       "municipio"
     end
 
-    # Use callbacks to share common setup or constraints between actions.
     def set_municipio
       @basica = Municipio.find(params[:id])
     end
@@ -26,7 +25,6 @@ module Admin
 			return 'M';
 		end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def municipio_params
       params.require(:municipio).permit( *atributos_form)
     end

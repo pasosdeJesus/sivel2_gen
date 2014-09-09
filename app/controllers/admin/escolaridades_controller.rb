@@ -8,7 +8,6 @@ module Admin
       "escolaridad"
     end
 
-    # Use callbacks to share common setup or constraints between actions.
     def set_escolaridad
       @basica = Escolaridad.find(params[:id])
     end
@@ -17,7 +16,6 @@ module Admin
 			'M'
 		end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def escolaridad_params
       params.require(:escolaridad).permit(*atributos_form)
     end

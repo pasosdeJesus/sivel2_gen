@@ -8,16 +8,17 @@ module Admin
       "actividadarea"
     end
 
-    # Use callbacks to share common setup or constraints between actions.
     def set_actividadarea
       @basica = Actividadarea.find(params[:id])
     end
 
     def atributos_index
-      ["id", "nombre", "observaciones", "fechacreacion", "fechadeshabilitacion"]
+      ["id", "nombre", "observaciones", "fechacreacion", 
+        "fechadeshabilitacion"
+      ]
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
+    # Filtrar parametros
     def actividadarea_params
       params.require(:actividadarea).permit(*atributos_form)
     end

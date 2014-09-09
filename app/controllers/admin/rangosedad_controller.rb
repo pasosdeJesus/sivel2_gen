@@ -8,7 +8,6 @@ module Admin
       "rangoedad"
     end
 
-    # Use callbacks to share common setup or constraints between actions.
     def set_rangoedad
       @basica = Rangoedad.find(params[:id])
     end
@@ -22,7 +21,6 @@ module Admin
 			return 'M';
 		end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def rangoedad_params
       params.require(:rangoedad).permit(*atributos_form)
     end

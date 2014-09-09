@@ -8,7 +8,6 @@ module Admin
       "rangoedadac"
     end
 
-    # Use callbacks to share common setup or constraints between actions.
     def set_rangoedadac
       @basica = Rangoedadac.find(params[:id])
     end
@@ -22,7 +21,6 @@ module Admin
 			return 'M';
 		end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def rangoedadac_params
       params.require(:rangoedadac).permit(*atributos_form)
     end

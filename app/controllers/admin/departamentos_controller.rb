@@ -8,14 +8,15 @@ module Admin
       "departamento"
     end
 
-    # Use callbacks to share common setup or constraints between actions.
     def set_departamento
       @basica = Departamento.find(params[:id])
     end
 
     def atributos_index
-      ["id", "id_pais", "nombre", "latitud", "longitud", 
-        "fechacreacion", "fechadeshabilitacion"]
+      [
+        "id", "id_pais", "nombre", "latitud", "longitud", 
+        "fechacreacion", "fechadeshabilitacion"
+      ]
     end
 
     def atributos_form
@@ -26,7 +27,6 @@ module Admin
 			return 'M';
 		end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def departamento_params
       params.require(:departamento).permit(*atributos_form)
     end

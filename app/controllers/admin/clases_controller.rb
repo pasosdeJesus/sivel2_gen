@@ -8,15 +8,16 @@ module Admin
       "clase"
     end
 
-    # Use callbacks to share common setup or constraints between actions.
     def set_clase
       @basica = Clase.find(params[:id])
     end
 
     def atributos_index
-      ["id", "id_pais", "id_departamento", "id_municipio", "nombre",
+      [ 
+        "id", "id_pais", "id_departamento", "id_municipio", "nombre",
         "id_tclase", "latitud", "longitud", 
-        "fechacreacion", "fechadeshabilitacion"]
+        "fechacreacion", "fechadeshabilitacion"
+      ]
     end
 
     def atributos_form
@@ -27,7 +28,6 @@ module Admin
 			return 'M';
 		end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def clase_params
       params.require(:clase).permit(*atributos_form)
     end

@@ -8,12 +8,10 @@ module Admin
       "iglesia"
     end
 
-    # Use callbacks to share common setup or constraints between actions.
     def set_iglesia
       @basica = Iglesia.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def iglesia_params
       params.require(:iglesia).permit(*atributos_form)
     end

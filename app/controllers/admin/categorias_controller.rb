@@ -8,13 +8,13 @@ module Admin
       "categoria"
     end
 
-    # Use callbacks to share common setup or constraints between actions.
     def set_categoria
       @basica = Categoria.find(params[:id])
     end
 
     def atributos_index
-      ["id", "nombre", "id_tviolencia", "id_supracategoria",
+      [
+        "id", "nombre", "id_tviolencia", "id_supracategoria",
         "contadaen", "tipocat", "fechacreacion", "fechadeshabilitacion"
       ]
     end
@@ -23,7 +23,6 @@ module Admin
       atributos_index
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def categoria_params
       params.require(:categoria).permit(*atributos_form)
     end

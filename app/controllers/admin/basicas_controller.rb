@@ -5,61 +5,72 @@ module Admin
     helper BasicasHelpers
     load_and_authorize_resource
 
-    # GET /basicas
-    # GET /basicas.json
+    # Despliega listado de registros
     def index
       c = clase.capitalize.constantize
-      @basica = c.order(:nombre).paginate(:page => params[:pagina], per_page: 20)
+      @basica = c.order(:nombre).paginate(
+        :page => params[:pagina], per_page: 20
+      )
     end
 
-    # GET /basicas/1
-    # GET /basicas/1.json
+    # Despliega detalle de un registro
     def show
     end
 
-    # GET /basicas/new
+    # Presenta formulario para crear nuevo registro
     def new
       @basica = clase.capitalize.constantize.new
       @basica.fechacreacion = DateTime.now.strftime('%Y-%m-%d')
     end
 
-    # GET /basicas/1/edit
+    # Despliega formulario para editar un regisro
     def edit
       @basica = clase.capitalize.constantize.find(params[:id])
     end
 
-    # POST /basicas
-    # POST /basicas.json
+    # Crea un registro a partir de información de formulario
     def create
       @basica = clase.capitalize.constantize.new(send(clase + '_params'))
-
       respond_to do |format|
         if @basica.save
-          format.html { redirect_to admin_basica_path(@basica), notice: clase + ' creada.' }
-          format.json { render action: 'show', status: :created, location: @basica}
+          format.html { 
+            redirect_to admin_basica_path(@basica), 
+            notice: clase + ' creada.' 
+          }
+          format.json { 
+            render action: 'show', 
+            status: :created, 
+            location: @basica
+          }
         else
           format.html { render action: 'new' }
-          format.json { render json: @basica.errors, status: :unprocessable_entity }
+          format.json { 
+            render json: @basica.errors, 
+            status: :unprocessable_entity 
+          }
         end
       end
     end
 
-    # PATCH/PUT /basicas/1
-    # PATCH/PUT /basicas/1.json
+    # Actualiza un registro con información recibida de formulario
     def update
       respond_to do |format|
         if @basica.update(send(clase + "_params"))
-          format.html { redirect_to admin_basica_path(@basica), notice: clase + ' actualizada.' }
+          format.html { 
+            redirect_to admin_basica_path(@basica), 
+            notice: clase + ' actualizada.' 
+          }
           format.json { head :no_content }
         else
           format.html { render action: 'edit' }
-          format.json { render json: @basica.errors, status: :unprocessable_entity }
+          format.json { 
+            render json: @basica.errors, status: :unprocessable_entity 
+          }
         end
       end
     end
 
-    # DELETE /basicas/1
-    # DELETE /basicas/1.json
+    # Elimina un registro 
     def destroy
       @basica.destroy
       respond_to do |format|
@@ -68,18 +79,22 @@ module Admin
       end
     end
 
+    # Nombre de la tabla básica
     def clase 
       "BASICA_CAMBIAR"
     end
 
+    # Genero del nombre (F - Femenino, M - Masculino)
 		def genclase
 			return 'F';
 		end
 
+    # Campos de la tabla
     def atributos_index
       ["id", "nombre", "fechacreacion", "fechadeshabilitacion"]
     end
 
+    # Campos que se esperan del formulario
     def atributos_form
       atributos_index - ["id"]
     end
