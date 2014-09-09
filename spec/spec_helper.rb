@@ -7,6 +7,11 @@ require File.expand_path("../dummy/config/environment.rb",  __FILE__)
 require 'rspec/rails'
 require 'factory_girl_rails'
 
+Rails.backtrace_cleaner.remove_silencers!
+
+# Load support files
+Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each { |f| require f }
+
 RSpec.configure do |config|
   config.mock_with :rspec
 
@@ -18,8 +23,8 @@ RSpec.configure do |config|
   # instead of true.
   config.use_transactional_fixtures = true
 
-	# De https://gist.github.com/Bregor/1053489
-	config.use_transactional_examples= true
+  # De https://gist.github.com/Bregor/1053489
+  config.use_transactional_examples= true
 
   # If true, the base class of anonymous controllers will be inferred
   # automatically. This will be the default behavior in future versions of
@@ -32,18 +37,18 @@ RSpec.configure do |config|
   #     --seed 1234
   config.order = "random"
 
-	config.include FactoryGirl::Syntax::Methods
+  config.include FactoryGirl::Syntax::Methods
 
-	config.include Capybara::DSL
+  config.include Capybara::DSL
 
-	config.expect_with :rspec do |c|
-		c.syntax = :expect
-	end
+  config.expect_with :rspec do |c|
+	  c.syntax = :expect
+  end
 
-	config.include Rails.application.routes.url_helpers
+  config.include Rails.application.routes.url_helpers
 
-	config.include Devise::TestHelpers, :type => :controller
-	#config.include ControllerHelpers, :type => :controller
+  config.include Devise::TestHelpers, :type => :controller
+  #config.include ControllerHelpers, :type => :controller
 
   Capybara.javascript_driver = :webkit
 end

@@ -2,8 +2,8 @@ default: &default
   adapter: postgresql
   encoding: unicode
   pool: 5
-  username: sivel2gen
-  password: sivel2gen
+  username: sivel2
+  password: xyz
   host: /var/www/tmp
 
 development:
@@ -19,4 +19,4 @@ test:
 
 production:
   <<: *default
-  database: sivel2gen
+  database: sivel2gen_pro
