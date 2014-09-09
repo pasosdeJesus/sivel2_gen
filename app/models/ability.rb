@@ -10,8 +10,12 @@ class Ability
   #ROLSIST   = 6
 
   ROLES = [
-    ["Administrador", ROLADMIN], 
-    ["Analista", ROLANALI]
+    ["Administrador", ROLADMIN],  # 1
+    ["", 0], # 2
+    ["", 0], # 3
+    ["", 0], # 4
+    ["Analista", ROLANALI], # 5
+    ["", 0] #6
   ]
 
   @@tablasbasicas = [
@@ -41,6 +45,8 @@ class Ability
   def initialize(usuario)
     can :contar, Caso
     can :buscar, Caso
+    can :lista, Caso
+    can :descarga_anexo, Anexo
     can :nuevo, Ubicacion
     can :nuevo, Presponsable
     can :nuevo, Victima

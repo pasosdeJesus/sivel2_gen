@@ -26,7 +26,7 @@
   %>
   <%= f.input :descripcion %>
   <%= f.input :rol,
-    collection: Ability::ROLES,
+    collection: Ability::ROLES.keep_if { |v| v.last != 0 },
     label: "Rol",
     include_blank: false
   %>
