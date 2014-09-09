@@ -14,11 +14,9 @@ module Admin
 
     def atributos_index
       ["id", "nombre", "observaciones", "fechacreacion", 
-        "fechadeshabilitacion"
-      ]
+        "fechadeshabilitacion"]
     end
 
-    # Filtrar parametros
     def actividadarea_params
       params.require(:actividadarea).permit(*atributos_form)
     end

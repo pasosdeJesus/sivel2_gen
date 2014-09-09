@@ -11,7 +11,8 @@ class Actividad < ActiveRecord::Base
     dependent: :delete_all
   accepts_nested_attributes_for :actividad_rangoedadac, 
     allow_destroy: true, reject_if: :all_blank
-  belongs_to :oficina, class_name: 'Regionsjr', foreign_key: 'regionsjr_id', validate: true
+  belongs_to :oficina, class_name: 'Regionsjr', foreign_key: 'regionsjr_id', 
+    validate: true
 
   validates_presence_of :oficina
   validates_presence_of :nombre
