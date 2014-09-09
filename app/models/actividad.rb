@@ -17,16 +17,4 @@ class Actividad < ActiveRecord::Base
   validates_presence_of :nombre
   validates_presence_of :fecha
 
-=begin
-  validate :rol_usuario
-  def rol_usuario
-    if (current_usuario.rol == Ability::ROLSIST || 
-        current_usuario.rol == Ability::ROLCOOR || 
-        current_usuario.rol == Ability::ROLANALI)
-      if (oficina.id != current_usuario.regionsjr_id)
-        errors.add(:oficina, "Solo puede editar actividades de su oficina")
-      end
-    end
-  end
-=end
 end
