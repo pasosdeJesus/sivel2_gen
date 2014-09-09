@@ -75,7 +75,7 @@
               <div class="links">
                 <%= link_to_add_association 'Añadir Ubicación', f, 
                   :ubicacion, { :class => 'btn-primary',
-                    "data-ajax" => "/casos/nuevaubicacion", 
+                    "data-ajax" => "/ubicaciones/nuevo", 
                     "data-ajaxdata" => "caso_id" }
                 %>
               </div>
@@ -97,7 +97,7 @@
               <div class="links">
                 <%= link_to_add_association 'Añadir Presunto Responsable', f, 
                   :caso_presponsable, {:class => 'btn-primary', 
-                    "data-ajax" => "/casos/nuevopresponsable", 
+                    "data-ajax" => "/presponsables/nuevo", 
                     "data-ajaxdata" => "caso_id"}
                 %>
               </div>
@@ -116,7 +116,7 @@
               <div class="links">
                 <%= link_to_add_association 'Añadir Víctima', f, :victima, 
                   { :class => 'btn-primary',
-                  "data-ajax" => "/casos/nuevavictima", 
+                  "data-ajax" => "/victimas/nuevo", 
                   "data-ajaxdata" => "caso_id" } 
                 %>
               </div>
