@@ -52,14 +52,9 @@ class Caso < ActiveRecord::Base
 
   validate :rol_usuario
   def rol_usuario
-    if (current_usuario.rol != Ability::ROLADMIN &&
-        current_usuario.rol != Ability::ROLSIST &&
+    if (current_usuario && current_usuario.rol != Ability::ROLADMIN &&
         current_usuario.rol != Ability::ROLANALI) 
       errors.add(:id, "Rol de usuario no apropiado para editar")
-    end
-    if (current_usuario.rol == Ability::ROLSIST && 
-        (casosjr.asesor != current_usuario.id))
-      errors.add(:id, "Sistematizador solo puede editar sus casos")
     end
   end
 

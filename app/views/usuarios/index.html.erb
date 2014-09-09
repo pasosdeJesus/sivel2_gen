@@ -25,7 +25,8 @@
         <td><%= usuario.nombre %></td>
         <td><%= usuario.regionsjr.nombre if !usuario.regionsjr.nil? %></td>
         <td><%= usuario.descripcion %></td>
-        <td><%= usuario.rol %></td>
+        <!--td><!-- %= Ability::ROLES[usuario.rol-1][0] if usuario && usuario.rol %></td-->
+        <td><%= Ability::ROLES[usuario.rol - 1][0] if usuario && usuario.rol && Ability::ROLES[usuario.rol-1] %></td>
         <td><%= usuario.idioma %></td>
         <td><%= usuario.email %></td>
         <td><%= usuario.created_at.strftime('%Y-%m-%d') %></td>

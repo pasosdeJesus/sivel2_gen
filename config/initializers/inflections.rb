@@ -34,4 +34,5 @@ ActiveSupport::Inflector.inflections do |inflect|
 	inflect.irregular 'rangoedadac', 'rangosedadac'
 	inflect.irregular 'regionsjr', 'regionessjr'
 	inflect.irregular 'rolfamilia', 'rolesfamilia'
+	inflect.irregular 'ubicacion', 'ubicaciones'
 end

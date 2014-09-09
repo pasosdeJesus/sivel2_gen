@@ -13,6 +13,8 @@ Este es un motor de SIVeL 2 que podrá incluir en su desarrollo personalizado.
 Puede ver el diseño y prototipo en la rama dis2 de SIVeL 1.2:
 https://github.com/pasosdeJesus/SIVeL/tree/dis2
 
+Roles: administrador y usuario
+
 ## Uso
 
 ### Requerimientos

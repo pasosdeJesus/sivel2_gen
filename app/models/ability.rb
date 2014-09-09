@@ -7,14 +7,16 @@ class Ability
   #ROLDIR    = 3
   #ROLCOOR   = 4
   ROLANALI  = 5
-  ROLSIST   = 6
+  #ROLSIST   = 6
 
-  ROLES = [["Administrador", ROLADMIN], 
-    #["Invitado Nacional", ROLINV], 
-    #["Director Nacional", ROLDIR], 
-    #["Coordinador oficina", ROLCOOR], 
-    ["Analista", ROLANALI], 
-    ["Sistematizador", ROLSIST]]
+  ROLES = [
+    ["Administrador", ROLADMIN],  # 1
+    ["", 0], # 2
+    ["", 0], # 3
+    ["", 0], # 4
+    ["Analista", ROLANALI], # 5
+    ["", 0] #6
+  ]
 
   @@tablasbasicas = [
     'actividadarea', 'actividadoficio',  
@@ -43,15 +45,13 @@ class Ability
   def initialize(usuario)
     can :contar, Caso
     can :buscar, Caso
+    can :lista, Caso
+    can :descarga_anexo, Anexo
+    can :nuevo, Ubicacion
+    can :nuevo, Presponsable
+    can :nuevo, Victima
     if !usuario.nil? && !usuario.rol.nil? then
       case usuario.rol 
-      when Ability::ROLSIST
-        can :read, Caso
-        can :new, Caso
-        can [:update, :create, :destroy], Caso
-        can :read, Actividad
-        can :new, Actividad
-        can [:update, :create, :destroy], Actividad
       when Ability::ROLANALI
         can :read, Caso
         can :new, Caso
