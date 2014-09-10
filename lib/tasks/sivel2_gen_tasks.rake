@@ -3,9 +3,10 @@
 require 'active_support/core_ext/object/inclusion'
 require 'active_record'
 
-namespace :sivel2gen do
+namespace :sivel2 do
   desc "Actualiza indices"
   task indices: :environment do
+    puts "sivel2_gen - indices"
     connection = ActiveRecord::Base.connection();
 		# Primero tablas basicas creadas en Rails
     tbn = Ability::basicas_seq_con_id
@@ -109,10 +110,11 @@ EOF
 
 	desc "Vuelca base de datos completa"
   task vuelca: :environment do
-		fecha = DateTime.now.strftime('%Y-%m-%d') 
-		archcopia = "db/copia-" + fecha + ".sql"
-		File.open(archcopia, "w") { |f| f << "-- Volcado del #{fecha}\n\n" }
 		abcs = ActiveRecord::Base.configurations
+		fecha = DateTime.now.strftime('%Y-%m-%d') 
+    archcopia = Sivel2Gen.ruta_volcados + "/" + abcs[Rails.env]['database'] +
+      "-" + fecha + ".sql"
+		File.open(archcopia, "w") { |f| f << "-- Volcado del #{fecha}\n\n" }
 		set_psql_env(abcs[Rails.env])
 		search_path = abcs[Rails.env]['schema_search_path']
 		unless search_path.blank?

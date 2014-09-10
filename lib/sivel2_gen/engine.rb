@@ -23,8 +23,10 @@ module Sivel2Gen
 
   class << self
     mattr_accessor :ruta_anexos
+    mattr_accessor :ruta_volcados
     mattr_accessor :titulo
     self.ruta_anexos = "/var/www/resbase/anexos"
+    self.ruta_volcados = "/var/www/resbase/sivel2"
     self.titulo = "Motor de SIveL generico " + Sivel2Gen::VERSION
   end
 
