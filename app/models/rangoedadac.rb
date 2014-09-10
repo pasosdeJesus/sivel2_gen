@@ -3,5 +3,6 @@ class Rangoedadac < ActiveRecord::Base
 	has_many :actividad_rangoedadac, :dependent => :delete_all
 	has_many :actividad, :through => :actividad_rangoedadac
 
-  validates_presence_of :nombre
+  validates :nombre, presence: true, allow_blank: false
+  validates :fechacreacion, presence: true, allow_blank: false
 end

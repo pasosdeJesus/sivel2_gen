@@ -10,8 +10,8 @@ class Pais < ActiveRecord::Base
 	has_many :desplazamiento, foreign_key: "paisdecl", validate: true
 	has_many :victimasjr, foreign_key: "id_pais", validate: true
 
-  validates_presence_of :id  # Diseñados en caso de SIVeL 
-  validates_presence_of :nombre
-  validates_presence_of :nombreiso
-  validates_presence_of :fechacreacion
+  validates :id, presence: true  # Diseñados en caso de SIVeL 
+  validates :nombreiso, presence: true, allow_blank: false
+  validates :nombre, presence: true, allow_blank: false
+  validates :fechacreacion, presence: true, allow_blank: false
 end
