@@ -3,7 +3,7 @@ default: &default
   encoding: unicode
   pool: 5
   username: sivel2
-  password: xyz
+  password: <%= ENV['CLAVE_SIVEL2'] %>
   host: /var/www/tmp
 
 development:

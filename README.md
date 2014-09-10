@@ -32,6 +32,10 @@ Se han implementado algunas pruebas con RSpec a modelos y pruebas de regresión.
   sudo bundle install
   bundle install
 ```
+* Cree usuario para PostgreSQL (recomendado sivel2 o el que especifique en config/database.yml) 
+  y ponga la clave en .env por ejemplo
+CLAVE_SIVEL2=xyz
+
 * Prepare base de prueba con:
 ``` sh
   cd spec/dummy

@@ -76,3 +76,5 @@ gem "will_paginate"
 gem "paperclip", "~> 4.1"
 
 gem "codeclimate-test-reporter", group: :test, require: nil
+
+gem "foreman"
