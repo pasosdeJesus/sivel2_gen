@@ -16115,6 +16115,42 @@ SET client_min_messages = warning;
 SET search_path = public, pg_catalog;
 
 --
+-- Data for Name: rangoedadac; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+INSERT INTO rangoedadac (id, nombre, limiteinferior, limitesuperior, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (1, 'De 0 a 11', 0, 11, '2014-02-11', NULL, '2014-03-07 19:19:02.690768', '2014-03-07 19:19:02.690768');
+INSERT INTO rangoedadac (id, nombre, limiteinferior, limitesuperior, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (2, 'De 12 a 17', 12, 17, '2014-02-11', NULL, '2014-03-07 19:19:02.690768', '2014-03-07 19:19:02.690768');
+INSERT INTO rangoedadac (id, nombre, limiteinferior, limitesuperior, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (3, 'De 18 a 25', 18, 25, '2014-02-11', NULL, '2014-03-07 19:19:09.515802', '2014-09-10 09:03:40.161016');
+INSERT INTO rangoedadac (id, nombre, limiteinferior, limitesuperior, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (4, 'De 26 a 45', 26, 45, '2014-02-11', NULL, '2014-03-07 19:19:09.527935', '2014-03-07 19:19:09.527935');
+INSERT INTO rangoedadac (id, nombre, limiteinferior, limitesuperior, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (5, 'De 46 a 60', 46, 60, '2014-02-11', NULL, '2014-03-07 19:19:09.539237', '2014-03-07 19:19:09.539237');
+INSERT INTO rangoedadac (id, nombre, limiteinferior, limitesuperior, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (6, 'De 61 en adelante', 61, NULL, '2014-02-11', NULL, '2014-03-07 19:19:09.549437', '2014-09-10 09:05:59.855681');
+
+
+--
+-- Name: rangoedadac_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('rangoedadac_id_seq', 100, true);
+
+
+--
+-- PostgreSQL database dump complete
+--
+
+--
+-- PostgreSQL database dump
+--
+
+SET statement_timeout = 0;
+
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+
+SET search_path = public, pg_catalog;
+
+--
 -- Data for Name: region; Type: TABLE DATA; Schema: public; Owner: -
 --
 

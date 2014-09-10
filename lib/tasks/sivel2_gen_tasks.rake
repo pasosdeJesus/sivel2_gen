@@ -6,8 +6,8 @@ require 'active_record'
 namespace :sivel2 do
   desc "Actualiza indices"
   task indices: :environment do
-    puts "sivel2_gen - indices"
     connection = ActiveRecord::Base.connection();
+    puts "sivel2_gen - indices"
 		# Primero tablas basicas creadas en Rails
     tbn = Ability::basicas_seq_con_id
     tbn.each do |t|
@@ -15,14 +15,13 @@ namespace :sivel2 do
              (SELECT 100 as id UNION SELECT MAX(id) FROM #{t}) AS s;")
 		end
 		# Despues otras tablas basicas pero excluyendo las que no tienen id autoincremental
-    tb= (Ability::tablasbasicas - tbn) -
-      [ "categoria", "clase", "departamento", "municipio",
-        "supracategoria", "tclase", "tviolencia" ]
+    tb= (Ability::tablasbasicas - tbn) - Ability::basicas_id_noauto
     tb.each do |t|
       connection.execute("SELECT setval('#{t}_seq', MAX(id)) FROM 
              (SELECT 100 as id UNION SELECT MAX(id) FROM #{t}) AS s;");
     end
-    ['caso', 'persona', 'ubicacion', 'usuario'].each do |t|
+    # Finalmente otras tablas no basicas pero con índices
+    Ability::nobasicas_indice.each do |t|
       connection.execute("SELECT setval('#{t}_seq', MAX(id)) FROM #{t}");
     end
   end
@@ -31,20 +30,17 @@ namespace :sivel2 do
 	# https://github.com/opdemand/puppet-modules/blob/master/rails/files/databases.rakeset
   desc "Vuelca tablas básicas en orden"
   task vuelcabasicas: :environment do
+    puts "sivel2_gen - vuelcabasicas"
 		abcs = ActiveRecord::Base.configurations
-    connection = ActiveRecord::Base.connection()
-		# Asegurasmo que primero se vuelcan superbasicas y otras en orden correcto
-		sb= [
-			"pconsolidado", "tviolencia", "supracategoria",
-			"tclase", "pais", "departamento", "municipio", "clase",
-			"intervalo", "filiacion", "organizacion", "sectorsocial",
-			"vinculoestado", "regimensalud"
-		];
-    tb= sb + (Ability::tablasbasicas - sb);
     set_psql_env(abcs[Rails.env])
     search_path = abcs[Rails.env]['schema_search_path']
+    connection = ActiveRecord::Base.connection()
+		# Asegurasmo que primero se vuelcan superbasicas y otras en orden correcto
+    tb = Ability::tablasbasicas_prio + (Ability::tablasbasicas - Ability::tablasbasicas_prio);
     unless search_path.blank?
-      search_path = search_path.split(",").map{|search_path_part| "--schema=#{Shellwords.escape(search_path_part.strip)}" }.join(" ")
+      search_path = search_path.split(",").map{|search_path_part| 
+        "--schema=#{Shellwords.escape(search_path_part.strip)}" 
+      }.join(" ")
     end
     archt = Dir::Tmpname.make_tmpname(["/tmp/vb", ".sql"], nil)
 		filename = "db/datos-basicas.sql"
@@ -100,16 +96,18 @@ namespace :sivel2 do
 
  	desc "Actualiza tablas básicas"
 	task actbasicas: :environment do
+    puts "sivel2_gen - actbasicas"
 		value = %x(
 			pwd
-			rails dbconsole <<EOF
-\\i db/datos-basicas.sql
-EOF
+			rails dbconsole <<-EOF
+        \\i db/datos-basicas.sql
+      EOF
 		)
   end
 
 	desc "Vuelca base de datos completa"
   task vuelca: :environment do
+    puts "sivel2_gen - vuelca"
 		abcs = ActiveRecord::Base.configurations
 		fecha = DateTime.now.strftime('%Y-%m-%d') 
     archcopia = Sivel2Gen.ruta_volcados + "/" + abcs[Rails.env]['database'] +
@@ -118,9 +116,13 @@ EOF
 		set_psql_env(abcs[Rails.env])
 		search_path = abcs[Rails.env]['schema_search_path']
 		unless search_path.blank?
-			search_path = search_path.split(",").map{|search_path_part| "--schema=#{Shellwords.escape(search_path_part.strip)}" }.join(" ")
+			search_path = search_path.split(",").map{|search_path_part| 
+        "--schema=#{Shellwords.escape(search_path_part.strip)}" 
+      }.join(" ")
 		end
-		command = "pg_dump --encoding=UTF8 -cO --column-inserts #{search_path} #{Shellwords.escape(abcs[Rails.env]['database'])} > #{Shellwords.escape(archcopia)}"
+		command = "pg_dump --encoding=UTF8 -cO --column-inserts " +
+      "#{search_path} #{Shellwords.escape(abcs[Rails.env]['database'])} " +
+      " > #{Shellwords.escape(archcopia)}"
 		puts command
 		raise "Error al volcar" unless Kernel.system(command)
 	end	
