@@ -1,10 +1,17 @@
 source 'https://rubygems.org'
 
-# Rails
+# Rails (internacionalización)
 gem "rails", '~> 4.1.5'
+gem "rails-i18n"
 
 # Postgresql
 gem "pg"
+
+# Maneja variables de ambiente (como claves y secretos) en .env
+gem "foreman"
+
+# API JSON facil. Ver: https://github.com/rails/jbuilder
+gem "jbuilder"
 
 # SCSS para hojas de estilo
 gem "sass-rails", '~> 4.0.0.rc1'
@@ -17,63 +24,74 @@ gem "coffee-rails", '~> 4.0.0'
 
 # jquery como librería JavaScript
 gem "jquery-rails"
+gem "jquery-ui-rails"
+gem "jquery-ui-bootstrap-rails", git: "https://github.com/kristianmandrup/jquery-ui-bootstrap-rails"
 
 # Seguir enlaces más rápido. Ver: https://github.com/rails/turbolinks
 gem "turbolinks"
-
-# API JSON facil. Ver: https://github.com/rails/jbuilder
-gem "jbuilder"
-
-# Genera documentación en doc/api con bundle exec rake doc:rails
-gem "sdoc",          group: :doc, require: false
-
-# Acelera desarrollo ejecutando en fondo.  Ver: https://github.com/jonleighton/spring
-gem "spring",        group: :development
-
-# Usar has_secure_password de ActiveModel
-gem "bcrypt"
-
-# Zonas horarias
-gem "tzinfo"
-gem "tzinfo-data"
-
-# Pruebas con rspec
-gem "rspec", group: [:development, :test]
-gem "rspec-rails", group: [:development, :test]
-
-# Monitor para lanzar pruebas automáticamente
-gem "guard-rspec", group: [:development, :test]
-
-# Maneja datos de prueba
-gem "factory_girl_rails", "~> 4.0", group: [:development, :test]
-
-# Internacionalización
-gem "rails-i18n"
-
-# Formularios simples 
-gem "simple_form"
 
 # Ambiente de CSS
 gem "twitter-bootstrap-rails"
 gem "bootstrap-datepicker-rails"
 gem "bootstrap-sass"
 
-# Autenticación
-gem "devise"
-gem "devise-i18n"
-gem "cancan"
+# Formularios simples 
+gem "simple_form"
 
 # Formularios anidados (algunos con ajax)
 gem "cocoon", github: "vtamara/cocoon"
 
+# Autenticación y roles
+gem "devise"
+gem "devise-i18n"
+gem "cancan"
+gem "bcrypt"
+
 # Pagina listados
 gem "will_paginate"
 
-# Maneja anexos
+# Maneja adjuntos
 gem "paperclip", "~> 4.1"
 
-# Envia resultados de pruebas desde travis a codeclimate
-gem "codeclimate-test-reporter", group: :test, require: nil
+# Zonas horarias
+gem "tzinfo"
+gem "tzinfo-data"
 
-# Maneja variables de ambiente (como claves y secretos) en .env
-gem "foreman"
+group :doc do
+  # Genera documentación en doc/api con bundle exec rake doc:rails
+  gem "sdoc", require: false
+end
+
+# Los siguientes son para desarrollo o para pruebas con generadores
+group :development, :test do
+  # Acelera desarrollo ejecutando en fondo. https://github.com/jonleighton/spring
+  gem "spring"
+  
+  # Pruebas con rspec
+  gem 'spring-commands-rspec'
+  gem 'rspec-rails'
+
+  # Monitor para lanzar pruebas automáticamente
+  gem "guard-rspec", group: [:development, :test]
+
+  # Un proceso para cada prueba -- acelera
+  gem 'spork', '~> 1.0rc'
+  gem 'guard-spork'
+
+  # Maneja datos de prueba
+  gem "factory_girl_rails", "~> 4.0", group: [:development, :test]
+
+  # https://www.relishapp.com/womply/rails-style-guide/docs/developing-rails-applications/bundler
+  # Lanza programas para examinar resultados
+  gem "launchy"
+
+  # Depurar
+  #gem 'debugger'
+end
+
+# Los siguientes son para pruebas y no tiene generadores requeridos en desarrollo
+group :test do
+  # Envia resultados de pruebas desde travis a codeclimate
+  gem "codeclimate-test-reporter", require: nil
+end
+

@@ -4,6 +4,13 @@ GIT
   specs:
     cocoon (1.2.5)
 
+GIT
+  remote: https://github.com/kristianmandrup/jquery-ui-bootstrap-rails
+  revision: 944cf4164ea511a2977f91031cc7f69d3e06e6cb
+  specs:
+    jquery-ui-bootstrap-rails (0.1.1)
+      rails
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -33,6 +40,7 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.1)
       tzinfo (~> 1.1)
+    addressable (2.3.6)
     arel (5.0.1.20140414130214)
     bcrypt (3.1.7)
     bootstrap-datepicker-rails (1.3.0.2)
@@ -43,6 +51,8 @@ GEM
     cancan (1.6.10)
     celluloid (0.16.0)
       timers (~> 4.0.0)
+    childprocess (0.5.3)
+      ffi (~> 1.0, >= 1.0.11)
     climate_control (0.0.3)
       activesupport (>= 3.0)
     cocaine (0.5.4)
@@ -90,6 +100,10 @@ GEM
     guard-rspec (4.3.1)
       guard (~> 2.1)
       rspec (>= 2.14, < 4.0)
+    guard-spork (1.5.1)
+      childprocess (>= 0.2.3)
+      guard (>= 1.1)
+      spork (>= 0.8.4)
     hike (1.2.3)
     hitimes (1.2.2)
     i18n (0.6.11)
@@ -99,7 +113,11 @@ GEM
     jquery-rails (3.1.2)
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
+    jquery-ui-rails (5.0.0)
+      railties (>= 3.2.16)
     json (1.8.1)
+    launchy (2.4.2)
+      addressable (~> 2.3)
     listen (2.7.9)
       celluloid (>= 0.15.2)
       rb-fsevent (>= 0.9.3)
@@ -189,7 +207,10 @@ GEM
       simplecov-html (~> 0.8.0)
     simplecov-html (0.8.0)
     slop (3.6.0)
+    spork (1.0.0rc4)
     spring (1.1.3)
+    spring-commands-rspec (1.0.2)
+      spring (>= 0.9.1)
     sprockets (2.11.0)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -241,18 +262,23 @@ DEPENDENCIES
   factory_girl_rails (~> 4.0)
   foreman
   guard-rspec
+  guard-spork
   jbuilder
   jquery-rails
+  jquery-ui-bootstrap-rails!
+  jquery-ui-rails
+  launchy
   paperclip (~> 4.1)
   pg
   rails (~> 4.1.5)
   rails-i18n
-  rspec
   rspec-rails
   sass-rails (~> 4.0.0.rc1)
   sdoc
   simple_form
+  spork (~> 1.0rc)
   spring
+  spring-commands-rspec
   turbolinks
   twitter-bootstrap-rails
   tzinfo
