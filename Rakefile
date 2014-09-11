@@ -24,19 +24,19 @@ Bundler::GemHelper.install_tasks
 Dir[File.join(File.dirname(__FILE__), 'tasks/**/*.rake')].each {|f| load f }
 require 'rspec/core'
 require 'rspec/core/rake_task'
-
-desc "Run all specs in spec directory (excluding plugin specs)"
-RSpec::Core::RakeTask.new(:spec => 'app:db:test:prepare')
-
-task :default => :spec
-
 require 'rake/testtask'
 
-Rake::TestTask.new(:spec => 'app:db:test:prepare') do |t|
-  t.libs << 'spec'
-  t.pattern = 'spec/**/*_spec.rb'
-  t.verbose = false
-end
+desc "Run all specs in spec directory (excluding plugin specs)"
+RSpec::Core::RakeTask.new(:spec => 'app:spec')
+
+#RSpec::Core::RakeTask.new(:spec => 'app:db:test:prepare')
 
 
-task default: :spec
+#Rake::TestTask.new(:spec => 'app:db:test:prepare') do |t|
+#  t.libs << 'spec'
+#  t.pattern = 'spec/**/*_spec.rb'
+#  t.verbose = false
+#end
+
+
+task default: 'app:spec'

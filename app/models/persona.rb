@@ -15,7 +15,7 @@ class Persona < ActiveRecord::Base
 
   # identificación autogenerada en este y demás modelos (excepto los de
   # información geográfica).
-  validates_presence_of :nombres
-  validates_presence_of :apellidos
-  validates_presence_of :sexo
+  validates :nombres, presence: true, allow_blank: false
+  validates :apellidos, presence: true, allow_blank: false
+  validates :sexo, presence: true
 end

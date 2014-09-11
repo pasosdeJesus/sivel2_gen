@@ -2,7 +2,6 @@
 require 'rails/generators/base'
 
 module Sivel2Gen
-  module Generators
     class TablabasicaGenerator < Rails::Generators::Base
       desc "Genera tabla básica"
 
@@ -66,6 +65,5 @@ module Sivel2Gen
         tablabasica.pluralize.capitalize
       end
     end
-  end
 end
 

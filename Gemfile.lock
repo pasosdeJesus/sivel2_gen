@@ -279,6 +279,7 @@ DEPENDENCIES
   spork (~> 1.0rc)
   spring
   spring-commands-rspec
+  thor
   turbolinks
   twitter-bootstrap-rails
   tzinfo

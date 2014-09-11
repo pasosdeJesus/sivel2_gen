@@ -10,6 +10,8 @@ gem "pg"
 # Maneja variables de ambiente (como claves y secretos) en .env
 gem "foreman"
 
+gem "thor"
+
 # API JSON facil. Ver: https://github.com/rails/jbuilder
 gem "jbuilder"
 
