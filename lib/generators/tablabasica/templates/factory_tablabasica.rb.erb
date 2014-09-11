@@ -1,0 +1,10 @@
+# encoding: UTF-8
+
+FactoryGirl.define do
+  factory :<%= nom_arch %> do
+		id 1000 # Buscamos que no intefiera con existentes
+    nombre "<%= nom_clase %>"
+    fechacreacion "<%= Date.today %>"
+    created_at "<%= Date.today %>"
+  end
+end
