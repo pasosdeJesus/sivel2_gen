@@ -1,0 +1,24 @@
+module Admin
+  class #{class_name.pluralize}Controller < BasicasController
+    before_action :set_#{file_name}, only: [:show, :edit, :update, :destroy]
+    load_and_authorize_resource
+
+    def clase 
+      "#{file_name}"
+    end
+
+    def set_#{file_name}
+      @basica = #{class_name}.find(params[:id])
+    end
+
+    def atributos_index
+      ["id", "nombre", "fechacreacion", "fechadeshabilitacion"]
+    end
+
+    def #{file_name}_params
+      params.require(:#{file_name}).permit( *(atributos_index - ["id"]))
+    end
+
+    helper_method :clase, :atributos_index
+  end
+end

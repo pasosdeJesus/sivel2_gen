@@ -37,26 +37,14 @@ gem "spring",        group: :development
 # Use ActiveModel has_secure_password
 gem "bcrypt"
 
-# Use unicorn as the app server
-# gem "unicorn"
-
-# Use Capistrano for deployment
-# gem "capistrano-rails", group: :development
-
-# Use debugger
-# gem "debugger", group: [:development, :test]
-
 gem "tzinfo"
 gem "tzinfo-data"
-
-gem "unicorn", group: [:production]
 
 gem "rspec", group: [:development, :test]
 gem "rspec-rails", group: [:development, :test]
 gem "rspec-activemodel-mocks", group: [:development, :test]
-gem "cucumber-rails", group: "test", :require => false
+gem "guard-rspec", group: [:development, :test]
 gem "capybara", group: [:development, :test]
-gem "capybara-webkit", '1.2.0', group: [:development, :test]
 gem "launchy", group: [:development, :test]
 gem "factory_girl_rails", "~> 4.0", group: [:development, :test]
 gem "rails-i18n"
@@ -64,11 +52,10 @@ gem "simple_form"
 gem "twitter-bootstrap-rails"
 gem "bootstrap-datepicker-rails"
 gem "bootstrap-sass"
-#gem "jquery-ui-rails"
-#gem "jquery-ui-bootstrap-rails", git: "https://github.com/kristianmandrup/jquery-ui-bootstrap-rails"
 gem "devise"
 gem "devise-i18n"
 gem "cancan"
+
 gem "cocoon", github: "vtamara/cocoon"
 
 gem "will_paginate"
@@ -77,4 +64,5 @@ gem "paperclip", "~> 4.1"
 
 gem "codeclimate-test-reporter", group: :test, require: nil
 
+# Para manejar variables de ambiente en .env
 gem "foreman"

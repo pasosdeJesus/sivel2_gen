@@ -18,10 +18,11 @@ Gem::Specification.new do |s|
   s.files = Dir["{app,config,db,lib}/**/*", "LICENCIA.md", "Rakefile", "README.md"]
   s.test_files = Dir["spec/**/*"]
 
-  s.add_dependency "rails", "~> 4.1.4"
-  s.add_dependency "devise"
-  s.add_dependency "rspec-rails"
-  s.add_dependency "capybara"
-  s.add_dependency "factory_girl_rails"
+  s.add_runtime_dependency "rails", "~> 4.1.4"
+  s.add_runtime_dependency "devise"
+
+  s.add_development_dependency "rspec-rails"
+  s.add_development_dependency "capybara"
+  s.add_development_dependency "factory_girl_rails"
 
 end

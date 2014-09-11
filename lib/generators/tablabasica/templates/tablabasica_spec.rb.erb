@@ -1,0 +1,24 @@
+# encoding: UTF-8
+require 'rails_helper'
+
+RSpec.describe <%= nom_clase %>, :type => :model do
+
+  it "valido" do
+		<%= nom_arch %> = FactoryGirl.build(:<%= nom_arch %>)
+		expect(<%= nom_arch %>).to be_valid
+		<%= nom_arch %>.destroy
+	end
+
+  it "no valido" do
+		<%= nom_arch %> = FactoryGirl.build(:<%= nom_arch %>, nombre: '')
+		expect(<%= nom_arch %>).not_to be_valid
+		<%= nom_arch %>.destroy
+	end
+
+	it "existente" do
+		<%= nom_arch %> = <%= nom_clase %>.where(id: 1).take
+		expect(<%= nom_arch %>.nombre).to eq("SIN INFORMACIÓN")
+	end
+
+end
+

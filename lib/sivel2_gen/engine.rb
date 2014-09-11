@@ -1,7 +1,8 @@
 require 'devise'
-require "sivel2_gen/version"
+
 module Sivel2Gen
   class Engine < ::Rails::Engine
+
     config.generators do |g|
       g.test_framework      :rspec,        :fixture => false
       g.fixture_replacement :factory_girl, :dir => 'spec/factories'
@@ -27,7 +28,7 @@ module Sivel2Gen
     mattr_accessor :titulo
     self.ruta_anexos = "/var/www/resbase/anexos"
     self.ruta_volcados = "/var/www/resbase/sivel2"
-    self.titulo = "Motor de SIveL generico " + Sivel2Gen::VERSION
+    self.titulo = "Motor de SIveL generico " 
   end
 
   def self.setup(&block)
