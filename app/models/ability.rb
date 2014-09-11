@@ -28,7 +28,8 @@ class Ability
     'municipio', 
     'pais', 'presponsable', 'profesion', 
     'rangoedad', 'rangoedadac', 'region', 'regionsjr',
-    'supracategoria', 'tclase', 'tsitio', 'tviolencia'
+    'supracategoria', 
+    'tclase', 'tsitio', 'tviolencia'
   ]
 
   def self.tablasbasicas

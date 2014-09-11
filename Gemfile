@@ -10,8 +10,6 @@ gem "pg"
 # Maneja variables de ambiente (como claves y secretos) en .env
 gem "foreman"
 
-gem "thor"
-
 # API JSON facil. Ver: https://github.com/rails/jbuilder
 gem "jbuilder"
 
@@ -66,6 +64,9 @@ end
 
 # Los siguientes son para desarrollo o para pruebas con generadores
 group :development, :test do
+  # Requerido por rake
+  gem "thor"
+
   # Acelera desarrollo ejecutando en fondo. https://github.com/jonleighton/spring
   gem "spring"
   

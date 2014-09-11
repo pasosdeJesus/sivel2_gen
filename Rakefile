@@ -26,17 +26,4 @@ require 'rspec/core'
 require 'rspec/core/rake_task'
 require 'rake/testtask'
 
-desc "Run all specs in spec directory (excluding plugin specs)"
-RSpec::Core::RakeTask.new(:spec => 'app:spec')
-
-#RSpec::Core::RakeTask.new(:spec => 'app:db:test:prepare')
-
-
-#Rake::TestTask.new(:spec => 'app:db:test:prepare') do |t|
-#  t.libs << 'spec'
-#  t.pattern = 'spec/**/*_spec.rb'
-#  t.verbose = false
-#end
-
-
 task default: 'app:spec'
