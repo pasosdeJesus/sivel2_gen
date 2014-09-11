@@ -9,8 +9,8 @@ module Sivel2Gen
 
     before_action :configure_permitted_parameters, if: :devise_controller?
 
-    # Prevenir atauqe CSRF
-    protect_from_forgery with: :exception
+    # Clas que hereda debe llamar 
+    #protect_from_forgery with: :exception
 
     def current_ability
       @current_ability ||= Ability.new(current_usuario)
