@@ -126,6 +126,25 @@ namespace :sivel2 do
 		puts command
 		raise "Error al volcar" unless Kernel.system(command)
 	end	
+
+  desc "Restaura volcado"
+  task restaura: :environment do |t|
+    arch=ENV['ARCH']
+    puts "Restaurar #{arch} en ambiente"
+		abcs = ActiveRecord::Base.configurations
+		set_psql_env(abcs[Rails.env])
+		search_path = abcs[Rails.env]['schema_search_path']
+		unless search_path.blank?
+			search_path = search_path.split(",").map{|search_path_part| 
+        "--schema=#{Shellwords.escape(search_path_part.strip)}" 
+      }.join(" ")
+		end
+		command = "psql " +
+      "#{search_path} #{Shellwords.escape(abcs[Rails.env]['database'])} " +
+      " -f #{Shellwords.escape(arch)}"
+		puts command
+		raise "Error al restaurar #{arch}" unless Kernel.system(command)
+  end
 end
 
 # de https://github.com/opdemand/puppet-modules/blob/master/rails/files/databases.rake
