@@ -39,8 +39,6 @@ RSpec.configure do |config|
 
   config.include FactoryGirl::Syntax::Methods
 
-  config.include Capybara::DSL
-
   config.expect_with :rspec do |c|
 	  c.syntax = :expect
   end
@@ -49,6 +47,4 @@ RSpec.configure do |config|
 
   config.include Devise::TestHelpers, :type => :controller
   #config.include ControllerHelpers, :type => :controller
-
-  Capybara.javascript_driver = :webkit
 end

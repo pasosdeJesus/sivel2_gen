@@ -1,68 +1,79 @@
 source 'https://rubygems.org'
 
-
-# Bundle edge Rails instead: gem "rails", github: 'rails/rails'
+# Rails
 gem "rails", '~> 4.1.5'
 
+# Postgresql
 gem "pg"
 
-# Use SCSS for stylesheets
+# SCSS para hojas de estilo
 gem "sass-rails", '~> 4.0.0.rc1'
 
-# Use Uglifier as compressor for JavaScript assets
+# Uglifier comprime recursos Javascript
 gem "uglifier", '>= 1.3.0'
 
-# Use CoffeeScript for .js.coffee assets and views
+# CoffeeScript para recuersos .js.coffee y vistas
 gem "coffee-rails", '~> 4.0.0'
 
-# See https://github.com/sstephenson/execjs#readme for more supported runtimes
-# gem "therubyracer",  platforms: :ruby
-
-# Use jquery as the JavaScript library
+# jquery como librería JavaScript
 gem "jquery-rails"
-#gem "jquery-migrate-rails"
 
-# Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
+# Seguir enlaces más rápido. Ver: https://github.com/rails/turbolinks
 gem "turbolinks"
 
-# Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
+# API JSON facil. Ver: https://github.com/rails/jbuilder
 gem "jbuilder"
 
-# bundle exec rake doc:rails generates the API under doc/api.
+# Genera documentación en doc/api con bundle exec rake doc:rails
 gem "sdoc",          group: :doc, require: false
 
-# Spring speeds up development by keeping your application running in the background. Read more: https://github.com/jonleighton/spring
+# Acelera desarrollo ejecutando en fondo.  Ver: https://github.com/jonleighton/spring
 gem "spring",        group: :development
 
-# Use ActiveModel has_secure_password
+# Usar has_secure_password de ActiveModel
 gem "bcrypt"
 
+# Zonas horarias
 gem "tzinfo"
 gem "tzinfo-data"
 
+# Pruebas con rspec
 gem "rspec", group: [:development, :test]
 gem "rspec-rails", group: [:development, :test]
-gem "rspec-activemodel-mocks", group: [:development, :test]
+
+# Monitor para lanzar pruebas automáticamente
 gem "guard-rspec", group: [:development, :test]
-gem "capybara", group: [:development, :test]
-gem "launchy", group: [:development, :test]
+
+# Maneja datos de prueba
 gem "factory_girl_rails", "~> 4.0", group: [:development, :test]
+
+# Internacionalización
 gem "rails-i18n"
+
+# Formularios simples 
 gem "simple_form"
+
+# Ambiente de CSS
 gem "twitter-bootstrap-rails"
 gem "bootstrap-datepicker-rails"
 gem "bootstrap-sass"
+
+# Autenticación
 gem "devise"
 gem "devise-i18n"
 gem "cancan"
 
+# Formularios anidados (algunos con ajax)
 gem "cocoon", github: "vtamara/cocoon"
 
+# Pagina listados
 gem "will_paginate"
 
+# Maneja anexos
 gem "paperclip", "~> 4.1"
 
+# Envia resultados de pruebas desde travis a codeclimate
 gem "codeclimate-test-reporter", group: :test, require: nil
 
-# Para manejar variables de ambiente en .env
+# Maneja variables de ambiente (como claves y secretos) en .env
 gem "foreman"
