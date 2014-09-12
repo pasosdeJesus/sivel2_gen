@@ -31,7 +31,7 @@ gem "jquery-ui-bootstrap-rails", git: "https://github.com/kristianmandrup/jquery
 gem "turbolinks"
 
 # Ambiente de CSS
-gem "twitter-bootstrap-rails"
+gem "twitter-bootstrap-rails", '~> 3.2.0'
 gem "bootstrap-datepicker-rails"
 gem "bootstrap-sass"
 
