@@ -3,7 +3,7 @@
 
 grep "^ *gem *.debugger*" Gemfile > /dev/null 2> /dev/null
 if (test "$?" = "0") then {
-	echo "Gemfile inlcuye debugger que heroku no quiere"
+	echo "Gemfile incluye debugger que heroku no quiere"
 	exit 1;
 } fi;
 
