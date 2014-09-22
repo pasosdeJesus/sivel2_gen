@@ -29,7 +29,7 @@ class Ability
     'pais', 'presponsable', 'profesion', 
     'rangoedad', 'rangoedadac', 'region', 'regionsjr',
     'supracategoria', 
-    'tclase', 'tsitio', 'tviolencia'
+    'tclase', 'tdocumento', 'tsitio', 'tviolencia'
   ]
 
   def self.tablasbasicas
@@ -37,7 +37,7 @@ class Ability
   end
 
   # Tablas basicas cuya secuencia es de la forma tabla_id_seq  (convención rails)
-  @@basicas_seq_con_id = [ "actividadarea", "pais", "rangoedadac" ]
+  @@basicas_seq_con_id = [ "actividadarea", "pais", "rangoedadac", "tdocumento" ]
 
   def self.basicas_seq_con_id
     @@basicas_seq_con_id

@@ -422,7 +422,7 @@ INSERT INTO pais (id, nombre, nombreiso, latitud, longitud, alfa2, alfa3, codiso
 -- Name: pais_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('pais_id_seq', 1, false);
+SELECT pg_catalog.setval('pais_id_seq', 894, true);
 
 
 --
@@ -16118,12 +16118,12 @@ SET search_path = public, pg_catalog;
 -- Data for Name: rangoedadac; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-INSERT INTO rangoedadac (id, nombre, limiteinferior, limitesuperior, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (1, 'De 0 a 11', 0, 11, '2014-02-11', NULL, '2014-03-07 19:19:02.690768', '2014-03-07 19:19:02.690768');
-INSERT INTO rangoedadac (id, nombre, limiteinferior, limitesuperior, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (2, 'De 12 a 17', 12, 17, '2014-02-11', NULL, '2014-03-07 19:19:02.690768', '2014-03-07 19:19:02.690768');
-INSERT INTO rangoedadac (id, nombre, limiteinferior, limitesuperior, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (3, 'De 18 a 25', 18, 25, '2014-02-11', NULL, '2014-03-07 19:19:09.515802', '2014-09-10 09:03:40.161016');
+INSERT INTO rangoedadac (id, nombre, limiteinferior, limitesuperior, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (1, 'De 0 a 11', 0, 10, '2014-02-11', NULL, '2014-03-07 19:19:02.690768', '2014-03-07 19:19:02.690768');
+INSERT INTO rangoedadac (id, nombre, limiteinferior, limitesuperior, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (2, 'De 12 a 17', 0, 10, '2014-02-11', NULL, '2014-03-07 19:19:02.690768', '2014-03-07 19:19:02.690768');
+INSERT INTO rangoedadac (id, nombre, limiteinferior, limitesuperior, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (3, 'De 18 a 25', 16, 25, '2014-02-11', NULL, '2014-03-07 19:19:09.515802', '2014-03-07 19:19:09.515802');
 INSERT INTO rangoedadac (id, nombre, limiteinferior, limitesuperior, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (4, 'De 26 a 45', 26, 45, '2014-02-11', NULL, '2014-03-07 19:19:09.527935', '2014-03-07 19:19:09.527935');
 INSERT INTO rangoedadac (id, nombre, limiteinferior, limitesuperior, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (5, 'De 46 a 60', 46, 60, '2014-02-11', NULL, '2014-03-07 19:19:09.539237', '2014-03-07 19:19:09.539237');
-INSERT INTO rangoedadac (id, nombre, limiteinferior, limitesuperior, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (6, 'De 61 en adelante', 61, NULL, '2014-02-11', NULL, '2014-03-07 19:19:09.549437', '2014-09-10 09:05:59.855681');
+INSERT INTO rangoedadac (id, nombre, limiteinferior, limitesuperior, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (6, '61 en adelante', 61, NULL, '2014-02-11', NULL, '2014-03-07 19:19:09.549437', '2014-03-07 19:19:09.549437');
 
 
 --
@@ -16185,6 +16185,49 @@ SET search_path = public, pg_catalog;
 --
 
 INSERT INTO regionsjr (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (1, 'SIN INFORMACIÓN', '2014-09-01', NULL, '2014-09-01 12:54:42.630253', '2014-09-03 10:40:11.967004');
+INSERT INTO regionsjr (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (2, 'OBSUR', '2014-09-09', NULL, '2014-09-09 18:53:04.476258', '2014-09-09 18:53:04.476258');
+
+
+--
+-- PostgreSQL database dump complete
+--
+
+--
+-- PostgreSQL database dump
+--
+
+SET statement_timeout = 0;
+
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+
+SET search_path = public, pg_catalog;
+
+--
+-- Data for Name: tdocumento; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+INSERT INTO tdocumento (id, nombre, sigla, formatoregex, fechacreacion, fechadeshabilitacion) VALUES (1, 'CÉDULA DE CIUDADANÍA', 'CC', '[0-9]*', '2014-09-21', NULL);
+INSERT INTO tdocumento (id, nombre, sigla, formatoregex, fechacreacion, fechadeshabilitacion) VALUES (10, 'REGISTRO CIVIL', 'RC', '[0-9]*', '2014-09-21', NULL);
+INSERT INTO tdocumento (id, nombre, sigla, formatoregex, fechacreacion, fechadeshabilitacion) VALUES (11, 'SIN DOCUMENTO', 'SD', '[0-9]*', '2014-09-21', NULL);
+INSERT INTO tdocumento (id, nombre, sigla, formatoregex, fechacreacion, fechadeshabilitacion) VALUES (12, 'TARJETA DE IDENTIDAD', 'TI', '[0-9]*', '2014-09-21', NULL);
+INSERT INTO tdocumento (id, nombre, sigla, formatoregex, fechacreacion, fechadeshabilitacion) VALUES (2, 'CÉDULA DE IDENTIDAD', 'CI', '[0-9]*', '2014-09-21', NULL);
+INSERT INTO tdocumento (id, nombre, sigla, formatoregex, fechacreacion, fechadeshabilitacion) VALUES (3, 'CÉDULA DE RESIDENTE', 'CR', '[0-9]*', '2014-09-21', NULL);
+INSERT INTO tdocumento (id, nombre, sigla, formatoregex, fechacreacion, fechadeshabilitacion) VALUES (4, 'CÉDULA DE TRANSEUNTE', 'CT', '[0-9]*', '2014-09-21', NULL);
+INSERT INTO tdocumento (id, nombre, sigla, formatoregex, fechacreacion, fechadeshabilitacion) VALUES (5, 'CONTRASEÑA', 'CT', '[0-9]*', '2014-09-21', NULL);
+INSERT INTO tdocumento (id, nombre, sigla, formatoregex, fechacreacion, fechadeshabilitacion) VALUES (6, 'DOCUMENTO PROVISIONAL', 'DP', '[A-Z]-[-0-9]*', '2014-09-21', NULL);
+INSERT INTO tdocumento (id, nombre, sigla, formatoregex, fechacreacion, fechadeshabilitacion) VALUES (7, 'OTRO', 'OT', '', '2014-09-21', NULL);
+INSERT INTO tdocumento (id, nombre, sigla, formatoregex, fechacreacion, fechadeshabilitacion) VALUES (8, 'PARTIDA DE NACIMIENTO', 'PN', '[0-9]*', '2014-09-21', NULL);
+INSERT INTO tdocumento (id, nombre, sigla, formatoregex, fechacreacion, fechadeshabilitacion) VALUES (9, 'PASAPORTE', 'P', '[0-9]*', '2014-09-21', NULL);
+
+
+--
+-- Name: tdocumento_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('tdocumento_id_seq', 12, true);
 
 
 --

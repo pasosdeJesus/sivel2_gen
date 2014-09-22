@@ -14,6 +14,28 @@
 	label_method: :rango, 
 	value_method: :id 
 %>
+<%= f.association :filiacion,
+	collection: Filiacion.all.order(:nombre),
+	include_blank: false,
+	label: "Filiación",
+	label_method: :nombre, 
+	value_method: :id 
+%>
+<%= f.association :organizacion,
+	collection: Organizacion.all.order(:nombre),
+	include_blank: false,
+	label: "Organización",
+	label_method: :nombre, 
+	value_method: :id 
+%>
+<%= f.association :vinculoestado,
+	collection: Vinculoestado.all.order(:nombre),
+	include_blank: false,
+	label: "Vínculo con el Estado",
+	label_method: :nombre, 
+	value_method: :id
+  #wrapper_html: { style: "padding-bottom: 18px;" }
+%>
 <%= f.association :etnia,
 	collection: Etnia.all.order(:nombre),
 	include_blank: false,

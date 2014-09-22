@@ -13,18 +13,15 @@
   ["FEMENINO", :F], ["MASCULINO", :M]], 
   include_blank: false 
 %>
-<%= f.input :tipodocumento, collection: [["CÉDULA DE CIUDADANÍA", :CC], 
-  ["CÉDULA DE IDENTIDAD", :CI], ["CÉDULA DE RESIDENTE", :CR], 
-  ["CÉDULA DE TRANSEUNTE", :CT], ["CONTRASEÑA", :CT], 
-  ["DOCUMENTO PROVISIONAL", :DP], ["OTRO", :OT], 
-  ["PARTIDA DE NACIMIENTO", :PN], ["PASAPORTE", :P], 
-  ["REGISTRO CIVIL", :RC], ["SIN DOCUMENTO", :SD], 
-  ["TARJETA DE IDENTIDAD", :TI]], 
-  label: "Tipo de Documento" 
+<%= f.input :tdocumento_id,
+  collection: Tdocumento.where(fechadeshabilitacion: nil).order(:nombre).all,
+  label: "Tipo de Documento",
+  label_method: :nombre,
+  value_method: :id 
 %>
 <%= f.input :numerodocumento, label: 'Número Documento'%>
 <%= f.association :nacional,
-  collection: Pais.order(:nombre).all,
+  collection: Pais.all.where(fechadeshabilitacion: nil).order(:nombre).all,
   label: "País de Nacionalidad",
   label_method: :nombre,
   value_method: :id 

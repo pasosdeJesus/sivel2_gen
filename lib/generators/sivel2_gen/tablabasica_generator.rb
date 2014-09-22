@@ -10,7 +10,7 @@ module Sivel2Gen
       argument :tablabasica, :type => :string
       class_option :modelo, :type => :boolean, :default => false, 
         :desc => "Genera modelo"  
-      class_option :controlador, :type => :boolean, :default => false, 
+      class_option :controlador, :type => :boolean, :default => true, 
         :desc => "Genera controlador"  
       class_option :mspec, :type => :boolean, :default => true, 
         :desc => "Genera prueba rspec para el modelo"  

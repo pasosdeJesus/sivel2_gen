@@ -128,7 +128,6 @@ class CasosController < ApplicationController
       format.json { head :no_content }
     end
   end
-
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_caso
@@ -144,11 +143,12 @@ class CasosController < ApplicationController
         :bienes, :id_intervalo, :memo, 
         :victima_attributes => [
           :id, :id_persona, :id_profesion, :id_rangoedad, :id_etnia, 
+          :id_filiacion, :id_organizacion, :id_vinculoestado, :anotaciones,
           :id_iglesia, :orientacionsexual, :_destroy, 
           :persona_attributes => [
             :id, :nombres, :apellidos, :anionac, :mesnac, :dianac, 
             :id_pais, :id_departamento, :id_municipio, :id_clase, 
-            :nacionalde, :numerodocumento, :sexo, :tipodocumento
+            :nacionalde, :numerodocumento, :sexo, :tdocumento_id
           ],
         ], 
         :ubicacion_attributes => [

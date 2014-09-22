@@ -3,6 +3,7 @@ es:
   attributes:
     fechacreacion: Creación
     fechadeshabilitacion: Deshabilitación 
+    formatoregex: Formato (exp. reg)
     id_municipio: Municipio
     id_departamento: Departamento/Estado
     id_tclase: Tipo de Centro Poblado
@@ -107,8 +108,8 @@ es:
         Proteccion: Medida de Protección
         Protecciones: Medidas de Protección
       rangoedadac:
-        Rangoedad: Rango de Edad para Actividad
-        Rangosedad: Rangos de Edad para Actividades
+        Rangoedadac: Rango de Edad para Actividad
+        Rangosedadac: Rangos de Edad para Actividades
       rangoedad:
         Rangoedad: Rango de Edad
         Rangosedad: Rangos de Edad
@@ -132,6 +133,9 @@ es:
       tclase:
         Tclase: Tipo de Centro Poblado
         Tclases: Tipos de Centros Poblados
+      tdocumento:
+        Tdocumento: Tipo de Documento
+        Tdocumentos: Tipos de Documentos
       tsitio: 
         Tsitio: Tipo de Sitios
         Tsitios: Tipos de Sitios

@@ -12,7 +12,7 @@ FactoryGirl.define do
     id_municipio 1
     id_clase 1
     tipodocumento "CC"
-    numerodocumento 10000000
+    numerodocumento "10000000"
     id_pais 1
     nacionalde 1
   end

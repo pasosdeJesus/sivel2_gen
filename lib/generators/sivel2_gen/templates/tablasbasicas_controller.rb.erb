@@ -1,24 +1,24 @@
+# encoding: UTF-8
 module Admin
-  class #{class_name.pluralize}Controller < BasicasController
-    before_action :set_#{file_name}, only: [:show, :edit, :update, :destroy]
+  class <%= nom_clase.pluralize %>Controller < BasicasController
+    before_action :set_<%= nom_arch %>, only: [:show, :edit, :update, :destroy]
     load_and_authorize_resource
 
     def clase 
-      "#{file_name}"
+      "<%= nom_arch %>"
     end
 
-    def set_#{file_name}
-      @basica = #{class_name}.find(params[:id])
+    def set_<%= nom_arch %>
+      @basica = <%= nom_clase %>.find(params[:id])
     end
 
     def atributos_index
       ["id", "nombre", "fechacreacion", "fechadeshabilitacion"]
     end
 
-    def #{file_name}_params
-      params.require(:#{file_name}).permit( *(atributos_index - ["id"]))
+    def <%= nom_arch %>_params
+      params.require(:<%= nom_arch %>).permit( *(atributos_index - ["id"]))
     end
 
-    helper_method :clase, :atributos_index
   end
 end
