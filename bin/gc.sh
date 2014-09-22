@@ -7,7 +7,7 @@ if (test "$?" = "0") then {
 	exit 1;
 } fi;
 
-(cd spec/dummy; RAILS_ENV=test rake db:drop db:setup sivel2:indices)
+(cd spec/dummy; RAILS_ENV=test rake db:drop db:setup db:migrate sivel2:indices)
 if (test "$?" != "0") then {
 	echo "No puede preparse base de prueba";
 	exit 1;
@@ -18,6 +18,8 @@ if (test "$?" != "0") then {
 	echo "No pasaron pruebas";
 	exit 1;
 } fi;
+
+(cd spec/dummy; RAILS_ENV=test rake db:structure:dump)
 
 b=`git branch | grep "^*" | sed -e  "s/^* //g"`
 git status -s
