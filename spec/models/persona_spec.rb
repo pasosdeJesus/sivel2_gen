@@ -28,5 +28,13 @@ RSpec.describe Persona, :type => :model do
 		persona.destroy
 	end
 
+  it "valido sin documento" do
+		persona = FactoryGirl.build(:persona, tdocumento_id: nil, 
+                                numerodocumento: nil)
+		expect(persona).to be_valid
+		persona.destroy
+	end
+
+
 
 end
