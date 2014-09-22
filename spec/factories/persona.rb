@@ -11,7 +11,7 @@ FactoryGirl.define do
     id_departamento 1
     id_municipio 1
     id_clase 1
-    tipodocumento "CC"
+    tdocumento_id 1
     numerodocumento "10000000"
     id_pais 1
     nacionalde 1

@@ -16123,7 +16123,7 @@ INSERT INTO rangoedadac (id, nombre, limiteinferior, limitesuperior, fechacreaci
 INSERT INTO rangoedadac (id, nombre, limiteinferior, limitesuperior, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (3, 'De 18 a 25', 16, 25, '2014-02-11', NULL, '2014-03-07 19:19:09.515802', '2014-03-07 19:19:09.515802');
 INSERT INTO rangoedadac (id, nombre, limiteinferior, limitesuperior, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (4, 'De 26 a 45', 26, 45, '2014-02-11', NULL, '2014-03-07 19:19:09.527935', '2014-03-07 19:19:09.527935');
 INSERT INTO rangoedadac (id, nombre, limiteinferior, limitesuperior, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (5, 'De 46 a 60', 46, 60, '2014-02-11', NULL, '2014-03-07 19:19:09.539237', '2014-03-07 19:19:09.539237');
-INSERT INTO rangoedadac (id, nombre, limiteinferior, limitesuperior, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (6, '61 en adelante', 61, NULL, '2014-02-11', NULL, '2014-03-07 19:19:09.549437', '2014-03-07 19:19:09.549437');
+INSERT INTO rangoedadac (id, nombre, limiteinferior, limitesuperior, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (6, 'De 61 en adelante', 61, NULL, '2014-02-11', NULL, '2014-03-07 19:19:09.549437', '2014-03-07 19:19:09.549437');
 
 
 --
