@@ -88,6 +88,7 @@ class Ability
     can :buscar, Caso
     can :lista, Caso
     can :descarga_anexo, Anexo
+    can :descarga_anexoactividad, Anexoactividad
     can :nuevo, Ubicacion
     can :nuevo, Presponsable
     can :nuevo, Victima

@@ -39,21 +39,18 @@
               <%= f.input :hora %> <!--, as: :time, ampm: true -->
               <%= f.input :duracion %>
               <%= f.association :intervalo,
-                collection: Intervalo.where(
-                  fechadeshabilitacion: nil).order(:nombre).all,
+                collection: Intervalo.habilitados.order(:nombre).all,
                 label_method: :nombre,
                 value_method: :id 
               %>
               <%= f.association :region, 
-                collection: Region.where(
-                  fechadeshabilitacion: nil).order(:nombre).all,
+                collection: Region.habilitados.order(:nombre).all,
                 label: "Región",
                 label_method: :nombre, 
                 value_method: :id 
               %>
               <%= f.association :frontera, 
-                collection: Frontera.where(
-                  fechadeshabilitacion: nil).order(:nombre).all,
+                collection: Frontera.habilitados.order(:nombre).all,
                 label: "Frontera",
                 label_method: :nombre, 
                 value_method: :id 

@@ -1,14 +1,13 @@
 <%= simple_form_for @actividad, :html => { :class => 'form-horizontal' } do |f| %>
   <%= f.error_notification %>
   <%= f.association :oficina,
-    label: "Oficina",
     label_method: :nombre, 
     value_method: :id 
   %>
   <%= f.input :minutos %>
   <%= f.input :nombre %>
   <%= f.association :actividadareas, 
-	  label: "Áreas",
+    collection: Actividadarea.habilitados,
 	  label_method: :nombre, 
     value_method: :id 
   %>
@@ -46,14 +45,14 @@
   <%= f.input :observaciones %>
 
   <div class="anexos-div">
-    <!--%= f.simple_fields_for :anexoactividad do |a| %-->
-      <!--%= render 'anexoactividad_fields', :f => a %-->
-    <!--% end %-->
-    <!--div class="links"-->
-      <!--%= link_to_add_association 'Añadir Anexo', f, 
+    <%= f.simple_fields_for :anexoactividad do |a| %>
+      <%= render 'anexoactividad_fields', :f => a %>
+    <% end %>
+    <div class="links">
+      <%= link_to_add_association 'Añadir Anexo', f, 
         :anexoactividad, :class => 'btn-primary' 
-      %-->
-    <!--/div-->
+      %>
+    </div>
   </div> <!-- anexos-div -->
 
   <div class="form-actions">

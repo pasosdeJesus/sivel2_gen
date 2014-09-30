@@ -1,5 +1,7 @@
 # encoding: UTF-8
 class Categoria < ActiveRecord::Base
+  extend Basica
+
 	has_many :acto, foreign_key: "id_categoria", validate: true
 	has_many :actosjr, foreign_key: "id_categoria", validate: true
 	has_many :casosjr, foreign_key: "categoriaref", validate: true

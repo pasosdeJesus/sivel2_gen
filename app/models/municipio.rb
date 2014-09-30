@@ -1,5 +1,7 @@
 # encoding: UTF-8
 class Municipio < ActiveRecord::Base
+  extend Basica
+
 	has_many :clase, foreign_key: "id_municipio", validate: true
 	has_many :persona, foreign_key: "id_municipio", validate: true
 	has_many :ubicacion, foreign_key: "id_municipio", validate: true

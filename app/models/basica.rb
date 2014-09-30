@@ -1,5 +1,7 @@
 # encoding: UTF-8
-class Basica < ActiveRecord::Base
-  nombre = nil
-  id = nil
+
+module Basica
+  def habilitados
+    where(fechadeshabilitacion: nil)
+  end
 end

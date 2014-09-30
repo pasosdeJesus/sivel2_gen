@@ -1,5 +1,7 @@
 # encoding: UTF-8
 class Etiqueta < ActiveRecord::Base
+  extend Basica
+
 	has_many :caso_etiqueta, foreign_key: "id_etiqueta", dependent: :delete_all
 	has_many :caso, through: :caso_etiqueta
 

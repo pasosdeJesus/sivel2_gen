@@ -6,7 +6,7 @@ class ActividadesController < ApplicationController
   # GET /actividades
   # GET /actividades.json
   def index
-    @actividades = @actividades.paginate(:page => params[:pagina], per_page: 20)
+    @actividades = @actividades.order(fecha: :desc).paginate(:page => params[:pagina], per_page: 20)
   end
 
   # GET /actividades/1
@@ -77,7 +77,8 @@ class ActividadesController < ApplicationController
         :objetivo, :proyecto, :resultado, :fecha, :actividad, 
         :observaciones, :actividadarea_ids => [],
         :actividad_rangoedadac_attributes => 
-            [:id, :rangoedadac_id, :fl, :fr, :ml, :mr, :_destroy] 
+            [:id, :rangoedadac_id, :fl, :fr, :ml, :mr, :_destroy] ,
+        :anexoactividad_attributes => [:id, :descripcion, :adjunto, :_destroy]
       )
     end
 end

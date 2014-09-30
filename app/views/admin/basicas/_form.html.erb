@@ -10,51 +10,49 @@
         %>
       <% elsif atr == "id_pais" %>
         <%= f.association :pais,
-          collection: Pais.where(fechadeshabilitacion: nil).order(:nombre),
+          collection: Pais.habilitados.order(:nombre),
           label: "País",
           label_method: :nombre,
-          value_method: :id %>
+          value_method: :id 
+        %>
       <% elsif atr == "id_departamento" %>
         <%= f.association :departamento,
-      		collection: (Departamento.where(id_pais: f.object.id_pais, 
-                       fechadeshabilitacion: nil).order(:nombre)),
+          collection: (Departamento.habilitados.where(id_pais: 
+                f.object.id_pais).order(:nombre)),
           label: "Departamento",
           label_method: lambda {|t| t.nombre + " (" + 
             Pais.find(t.id_pais).nombre + ")"},
-          value_method: :id %>
+          value_method: :id 
+        %>
       <% elsif atr == "id_municipio" %>
         <%= f.association :municipio,
-					collection: (Municipio.where(id_pais: f.object.id_pais, 
-											id_departamento: f.object.id_departamento, 
-											fechadeshabilitacion: nil).order(:nombre)),
+          collection: (Municipio.habilitados.where(id_pais: f.object.id_pais, 
+                      id_departamento: f.object.id_departamento).order(:nombre)),
           label: "Municipio",
           label_method: :nombre,
           value_method: :id %>
       <% elsif atr == "id_tclase" %>
 				<%= f.association :tclase,
-					collection: (Tclase.where(fechadeshabilitacion: nil).order(:nombre)),
+					collection: (Tclase.habilitados.order(:nombre)),
           label: "Tipo de Clase",
           label_method: :nombre,
           value_method: :id %>
       <% elsif atr == "id_supracategoria" then %>
         <%= f.association :supracategoria,
-          collection: Supracategoria.where(
-            fechadeshabilitacion: nil).order(:nombre),
+          collection: Supracategoria.habilitados.order(:nombre),
             label: "Supracategoria",
             label_method: lambda {|t| t.nombre + " (" + 
               Tviolencia.find(t.id_tviolencia).nombre + ")"},
             value_method: :id %>
       <% elsif atr == "id_tviolencia" then %>
         <%= f.association :tviolencia,
-          collection: Tviolencia.where(
-            fechadeshabilitacion: nil).order(:nombre),
+          collection: Tviolencia.habilitados.order(:nombre),
           label: "Tipo de Violencia",
           label_method: :nombre,
           value_method: :id %>
       <% elsif atr == "id_pconsolidado" then %>
         <%= f.association :pconsolidado,
-          collection: Pconsolidad.where(
-            fechadeshabilitacion: nil).order(:nombre),
+          collection: Pconsolidad.habilitados.order(:nombre),
           label: "Consolidado",
           label_method: :nombre,
           value_method: :id %>

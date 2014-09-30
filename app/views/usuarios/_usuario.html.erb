@@ -17,7 +17,7 @@
   <%= f.input :nusuario %>
   <%= f.input :nombre %>
   <%= f.association :regionsjr, 
-		collection: Regionsjr.where("fechadeshabilitacion IS NULL AND id<>'1'").
+		collection: Regionsjr.habilitados.where("id<>'1'").
 			order(:nombre),
     label: "Oficina",
     label_method: :nombre,
