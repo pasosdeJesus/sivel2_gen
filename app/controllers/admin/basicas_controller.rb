@@ -8,7 +8,7 @@ module Admin
     # Despliega listado de registros
     def index
       c = clase.capitalize.constantize
-      @basica = c.order(:nombre).paginate(
+      @basica = c.order(camponombre).paginate(
         :page => params[:pagina], per_page: 20
       )
     end
@@ -89,6 +89,11 @@ module Admin
 			return 'F';
 		end
 
+    # Nombre del campo con nombre que identifica cada registro
+    def camponombre
+      return :nombre
+    end
+
     # Campos de la tabla
     def atributos_index
       ["id", "nombre", "fechacreacion", "fechadeshabilitacion"]
@@ -99,6 +104,6 @@ module Admin
       atributos_index - ["id"]
     end
 
-    helper_method :clase, :atributos_index, :atributos_form, :genclase
+    helper_method :clase, :atributos_index, :atributos_form, :genclase, :camponombre
   end
 end

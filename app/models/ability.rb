@@ -23,12 +23,14 @@ class Ability
     'categoria', 'clase', 
     'departamento', 
     'escolaridad', 'etiqueta', 'etnia', 
-    'frontera',
-    'iglesia', 
+    'filiacion', 'frontera',
+    'iglesia', 'intervalo',
     'municipio', 
-    'pais', 'presponsable', 'profesion', 
-    'rangoedad', 'rangoedadac', 'region', 'regionsjr',
-    'supracategoria', 
+    'organizacion',
+    'pais', 'pconsolidado', 'presponsable', 'profesion', 
+    'rangoedad', 'rangoedadac', 'regimensalud', 'region', 'regionsjr',
+    'sectorsocial', 'supracategoria', 
+    'vinculoestado', 
     'tclase', 'tdocumento', 'tsitio', 'tviolencia'
   ]
 
