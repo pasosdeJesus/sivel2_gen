@@ -2,7 +2,7 @@
   <div class="controls">
 
     <%= f.association :presponsable,
-      collection: (Presponsable.where(fechadeshabilitacion: nil).order(:nombre)),
+      collection: Presponsable.habilitados,
 	    label: "Presunto Responsable",
       label_method: :nombre,
       value_method: :id,

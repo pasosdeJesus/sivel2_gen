@@ -25,7 +25,7 @@ es:
         Actividadoficios: Actividades y Oficios
         Actividadoficio: Actividad u Oficio
       acto:
-        presponsable: Presunto Responsablex
+        presponsable: Presunto Responsable
       aslegal: 
         Aslegal: Asistencia Legal
         Aslegales: Asistencias Legales
@@ -100,6 +100,9 @@ es:
       pais:
         Pais: Pais
         Paises: Paises
+      pconsolidado:
+        Pconsolidado: Parámetro reporte consolidado
+        Pconsolidados: Parámetros reporte consolidado
       presponsable:
         Presponsable: Presunto Responsable
         Presponsables: Presuntos Responsables
@@ -119,12 +122,18 @@ es:
         Region: Región
         Regiones: Regiones
       rolfamilia:
+      regimensalud:
+        Regimensalud: Régimen Salud
+        Regimenessalud: Régimenes Salud
       regionsjr:
         Regionsjr: Oficina
         Regionessjr: Oficinas
       rolfamilia:
         Rolfamilia: Rol en familia
         Rolesfamilia: Roles en familia
+      sectorsocial:
+        Sectorsocial: Sector Social
+        Sectoressociales: Sectores Sociales
       statusmigratorio:
         Statusmigratorio: Status Migratorio
         Statusmigratorios: Status Migratorio
@@ -151,4 +160,7 @@ es:
         descripcion: Descripción
         encrypted_password: Clave
         created_at: Fecha Registro
+      vinculoestado:
+        Vinculoestado: Vínculo con el Estado
+        Vinculosestado: Vínculos con el Estado
 

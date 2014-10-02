@@ -14,43 +14,44 @@
   include_blank: false 
 %>
 <%= f.input :tdocumento_id,
-  collection: Tdocumento.where(fechadeshabilitacion: nil).order(:nombre).all,
+  collection: Tdocumento.habilitados,
   label: "Tipo de Documento",
   label_method: :nombre,
   value_method: :id 
 %>
 <%= f.input :numerodocumento, label: 'Número Documento'%>
 <%= f.association :nacional,
-  collection: Pais.all.where(fechadeshabilitacion: nil).order(:nombre).all,
+  collection: Pais.habilitados,
   label: "País de Nacionalidad",
   label_method: :nombre,
   value_method: :id 
 %>
 <%= f.association :pais,
-  collection: Pais.order(:nombre).all,
+  collection: Pais.habilitados,
   label: "País de Nacimiento",
   label_method: :nombre,
   value_method: :id 
 %>
 <%= f.association :departamento,
-  collection: (Departamento.order(:nombre).where(id_pais: f.object.id_pais)),
+  collection: (Departamento.habilitados.where(
+    id_pais: f.object.id_pais)),
   label: "Estado/Departamento",
   label_method: :nombre,
   value_method: :id 
 %>
 <%= f.association :municipio,
   collection: (
-    Municipio.where(
+    Municipio.habilitados.where(
       id_pais: f.object.id_pais, 
-      id_departamento: f.object.id_departamento).order(:nombre)),
+      id_departamento: f.object.id_departamento)),
   label: "Municipio",
   label_method: :nombre,
   value_method: :id 
 %>
 <%= f.association :clase,
-  collection: (Clase.where(id_pais: f.object.id_pais, 
+  collection: (Clase.habilitados.where(id_pais: f.object.id_pais, 
                            id_departamento: f.object.id_departamento, 
-                           id_municipio: f.object.id_municipio).order(:nombre)),
+                           id_municipio: f.object.id_municipio)),
   label: "Centro Poblado",
   label_method: :nombre,
   value_method: :id 

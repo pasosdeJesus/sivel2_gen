@@ -2,34 +2,35 @@
 	<%= render 'persona_fields', :f => p %>
 <% end %>
 <%= f.association :profesion,
-	collection: Profesion.all.order(:nombre),
+	collection: Profesion.habilitados,
 	include_blank: false,
 	label: "Profesión",
 	label_method: :nombre, 
 	value_method: :id 
 %>
 <%= f.association :rangoedad,
+	collection: Rangoedad.habilitados(:rango),
 	include_blank: false,
 	label: "Rango de Edad",
 	label_method: :rango, 
 	value_method: :id 
 %>
 <%= f.association :filiacion,
-	collection: Filiacion.all.order(:nombre),
+	collection: Filiacion.habilitados,
 	include_blank: false,
 	label: "Filiación",
 	label_method: :nombre, 
 	value_method: :id 
 %>
 <%= f.association :organizacion,
-	collection: Organizacion.all.order(:nombre),
+	collection: Organizacion.habilitados,
 	include_blank: false,
 	label: "Organización",
 	label_method: :nombre, 
 	value_method: :id 
 %>
 <%= f.association :vinculoestado,
-	collection: Vinculoestado.all.order(:nombre),
+	collection: Vinculoestado.habilitados,
 	include_blank: false,
 	label: "Vínculo con el Estado",
 	label_method: :nombre, 
@@ -37,14 +38,14 @@
   #wrapper_html: { style: "padding-bottom: 18px;" }
 %>
 <%= f.association :etnia,
-	collection: Etnia.all.order(:nombre),
+	collection: Etnia.habilitados,
 	include_blank: false,
 	label: "Etnia",
 	label_method: :nombre, 
 	value_method: :id 
 %>
 <%= f.association :iglesia,
-	collection: Iglesia.all.order(:nombre),
+	collection: Iglesia.habilitados,
 	include_blank: false,
 	label: "Religión/Iglesia",
 	label_method: :nombre, 

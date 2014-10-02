@@ -1,6 +1,5 @@
 <%= f.association :presponsable,
-  collection: Presponsable.from(
-    'caso_presponsable, presponsable').where(
+  collection: Presponsable.from('caso_presponsable, presponsable').where(
     'caso_presponsable.id_presponsable=presponsable.id 
       AND caso_presponsable.id_caso=?', @caso.id),
   wrapper_html: { style: "padding-bottom: 18px;" },

@@ -29,7 +29,7 @@
     %>
     <%= f.input :observaciones %>
     <%= f.association :etiqueta,
-			collection: Etiqueta.order(:nombre),
+			collection: Etiqueta.habilitados,
 	    label: "Etiqueta",
       label_method: :nombre,
       value_method: :id %>

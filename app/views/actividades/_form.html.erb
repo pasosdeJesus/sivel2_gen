@@ -1,6 +1,7 @@
 <%= simple_form_for @actividad, :html => { :class => 'form-horizontal' } do |f| %>
   <%= f.error_notification %>
   <%= f.association :oficina,
+    collection: Regionsjr.habilitados,
     label_method: :nombre, 
     value_method: :id 
   %>

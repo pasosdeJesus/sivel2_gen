@@ -1,11 +1,9 @@
 <article>
 <h1>Tablas Básicas</h1>
 <ul>
-  <% Ability::tablasbasicas.each do |t| %>
-    <% #puts t + " -> " + t.pluralize %>
-    <% k = t.capitalize.constantize %>
-    <% n = k.human_attribute_name(t.pluralize.capitalize) %>
-    <% l = send("admin_" + t.pluralize + "_path") %>
+  <% @ntablasor.each do |n|
+      l = @ntablas[n]
+  %>
     <li> <%= link_to n, l %> </li>
   <% end %>
 </ul>
