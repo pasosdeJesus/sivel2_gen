@@ -29,10 +29,10 @@ Rails.application.routes.draw do
   end
   resources :usuarios, path_names: { new: 'nuevo', edit: 'edita' } 
 
-  #get 'admin/actividadareas', to: 'actividadareas', as: :actividadareas_path
   namespace :admin do
+    puts Ability.tablasbasicas 
     Ability.tablasbasicas.each do |t|
-        resources t.pluralize.to_sym, path_names: { new: 'nueva', edit: 'edita' }
+      resources t.pluralize.to_sym, path_names: { new: 'nueva', edit: 'edita' }
     end
   end
 

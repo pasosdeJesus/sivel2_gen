@@ -45,7 +45,7 @@
 
   <%= f.input :observaciones %>
 
-  <div class="anexos-div">
+  <div class="anexos-div anexosdiv">
     <%= f.simple_fields_for :anexoactividad do |a| %>
       <%= render 'anexoactividad_fields', :f => a %>
     <% end %>

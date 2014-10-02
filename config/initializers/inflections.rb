@@ -22,7 +22,7 @@ ActiveSupport::Inflector.inflections do |inflect|
 	inflect.singular /^(.*d)es$/i, '\1'
 	inflect.plural /^(.*l)$/i, '\1es'
 	inflect.singular /^(.*l)es$/i, '\1'
-	inflect.plural /^(.*n)$/i, '\nes'
+	inflect.plural /^(.*n)$/i, '\1es'
 	inflect.singular /^(.*n)es$/i, '\1'
 	inflect.irregular 'actividad', 'actividades'
 	inflect.irregular 'clase', 'clases'
