@@ -15258,7 +15258,7 @@ INSERT INTO filiacion (id, nombre, fechacreacion, fechadeshabilitacion, created_
 INSERT INTO filiacion (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (2, 'CONSERVADOR', '2001-01-01', NULL, NULL, NULL);
 INSERT INTO filiacion (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (3, 'ALIANZAS TRADICIONALES', '2001-01-01', NULL, NULL, NULL);
 INSERT INTO filiacion (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (4, 'IZQUIERDA', '2001-01-01', NULL, NULL, NULL);
-INSERT INTO filiacion (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (5, 'ALIANZAS IZQUIERDA', '2001-01-01', NULL, NULL, '2014-10-02 10:29:59.481785');
+INSERT INTO filiacion (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (5, 'ALIANZAS IZQUIERDA', '2001-01-01', NULL, NULL, NULL);
 INSERT INTO filiacion (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (6, 'DERECHA', '2001-01-01', NULL, NULL, NULL);
 INSERT INTO filiacion (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (7, 'DESMOVILIZADOS', '2001-01-01', NULL, NULL, NULL);
 INSERT INTO filiacion (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (8, 'CIVICO POLITICOS ELECTORA', '2001-01-01', NULL, NULL, NULL);
@@ -15747,7 +15747,7 @@ INSERT INTO etnia (id, nombre, descripcion, fechacreacion, fechadeshabilitacion,
 INSERT INTO etnia (id, nombre, descripcion, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (19, 'CUBEO', '20 en http://www.mineducacion.gov.co/1621/articles-255690_archivo_xls_listado_etnias.xls ', '2011-04-29', NULL, NULL, NULL);
 INSERT INTO etnia (id, nombre, descripcion, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (2, 'MESTIZO', ' ', '2011-04-29', NULL, NULL, NULL);
 INSERT INTO etnia (id, nombre, descripcion, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (20, 'CUIBA', '21 en http://www.mineducacion.gov.co/1621/articles-255690_archivo_xls_listado_etnias.xls ', '2011-04-29', NULL, NULL, NULL);
-INSERT INTO etnia (id, nombre, descripcion, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (21, 'CHIMILA', ' ', '2011-04-29', NULL, NULL, NULL);
+INSERT INTO etnia (id, nombre, descripcion, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (21, 'CHIMILA', '14 en http://www.mineducacion.gov.co/1621/articles-255690_archivo_xls_listado_etnias.xls', '2011-04-29', NULL, NULL, NULL);
 INSERT INTO etnia (id, nombre, descripcion, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (22, 'DESANO', '23 en http://www.mineducacion.gov.co/1621/articles-255690_archivo_xls_listado_etnias.xls ', '2011-04-29', NULL, NULL, NULL);
 INSERT INTO etnia (id, nombre, descripcion, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (23, 'EMBERA', '25 en http://www.mineducacion.gov.co/1621/articles-255690_archivo_xls_listado_etnias.xls ', '2011-04-29', NULL, NULL, NULL);
 INSERT INTO etnia (id, nombre, descripcion, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (25, 'GUAMBIANO', '29 en http://www.mineducacion.gov.co/1621/articles-255690_archivo_xls_listado_etnias.xls ', '2011-04-29', NULL, NULL, NULL);
@@ -15796,7 +15796,6 @@ INSERT INTO etnia (id, nombre, descripcion, fechacreacion, fechadeshabilitacion,
 INSERT INTO etnia (id, nombre, descripcion, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (64, 'CABIYARI', '11 en http://www.mineducacion.gov.co/1621/articles-255690_archivo_xls_listado_etnias.xls', '2014-05-30', NULL, NULL, NULL);
 INSERT INTO etnia (id, nombre, descripcion, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (65, 'CARAMANTA', '84 en http://www.mineducacion.gov.co/1621/articles-255690_archivo_xls_listado_etnias.xls', '2014-05-30', NULL, NULL, NULL);
 INSERT INTO etnia (id, nombre, descripcion, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (66, 'CHAMI', '86 en http://www.mineducacion.gov.co/1621/articles-255690_archivo_xls_listado_etnias.xls', '2014-05-30', NULL, NULL, NULL);
-INSERT INTO etnia (id, nombre, descripcion, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (67, 'CHIMILA', '14 en http://www.mineducacion.gov.co/1621/articles-255690_archivo_xls_listado_etnias.xls', '2014-05-30', NULL, NULL, NULL);
 INSERT INTO etnia (id, nombre, descripcion, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (68, 'CHIRICOA', '15 en http://www.mineducacion.gov.co/1621/articles-255690_archivo_xls_listado_etnias.xls', '2014-05-30', NULL, NULL, NULL);
 INSERT INTO etnia (id, nombre, descripcion, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (69, 'COCONUCO', '17 en http://www.mineducacion.gov.co/1621/articles-255690_archivo_xls_listado_etnias.xls', '2014-05-30', NULL, NULL, NULL);
 INSERT INTO etnia (id, nombre, descripcion, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (7, 'ANDAKÍ', ' ', '2011-04-29', NULL, NULL, NULL);
@@ -15987,7 +15986,7 @@ INSERT INTO presponsable (id, nombre, papa, fechacreacion, fechadeshabilitacion,
 INSERT INTO presponsable (id, nombre, papa, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (13, 'CTI', 38, '2001-01-30', NULL, NULL, NULL);
 INSERT INTO presponsable (id, nombre, papa, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (14, 'PARAMILITARES', 39, '2001-01-30', NULL, NULL, NULL);
 INSERT INTO presponsable (id, nombre, papa, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (15, 'AUC', 14, '2001-01-30', NULL, NULL, NULL);
-INSERT INTO presponsable (id, nombre, papa, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (16, 'ACCU', 14, '2001-01-30', '2014-09-30', NULL, NULL);
+INSERT INTO presponsable (id, nombre, papa, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (16, 'ACCU', 14, '2001-01-30', NULL, NULL, NULL);
 INSERT INTO presponsable (id, nombre, papa, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (17, 'AUTODEFENSAS DE PUERTO BOYACA', 14, '2001-01-30', NULL, NULL, NULL);
 INSERT INTO presponsable (id, nombre, papa, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (18, 'AUTODEFENSAS DE RAMON ISAZA', 14, '2001-01-30', NULL, NULL, NULL);
 INSERT INTO presponsable (id, nombre, papa, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (19, 'AUTODEFENSAS DE LOS LLANOS ORIENTALES', 14, '2001-01-30', NULL, NULL, NULL);
@@ -16157,7 +16156,7 @@ SET search_path = public, pg_catalog;
 INSERT INTO region (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (10, 'EJE CAFETERO Y TOLIMA GRANDE', '2001-01-01', NULL, NULL, NULL);
 INSERT INTO region (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (11, 'EXTERIOR', '2001-01-01', NULL, NULL, NULL);
 INSERT INTO region (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (5, 'COSTA ATLANTICA', '2001-01-01', NULL, NULL, NULL);
-INSERT INTO region (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (6, 'ANTIOQUIA CHOCO SANT', '2001-01-01', NULL, NULL, '2014-09-30 12:58:11.481746');
+INSERT INTO region (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (6, 'ANTIOQUIA CHOCO SANT', '2001-01-01', NULL, NULL, NULL);
 INSERT INTO region (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (7, 'LLANOS', '2001-01-01', NULL, NULL, NULL);
 INSERT INTO region (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (8, 'CENTRO', '2001-01-01', NULL, NULL, NULL);
 INSERT INTO region (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (9, 'SUR OCCIDENTE', '2001-01-01', NULL, NULL, NULL);
