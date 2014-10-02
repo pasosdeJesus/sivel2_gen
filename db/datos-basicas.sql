@@ -260,7 +260,7 @@ INSERT INTO pais (id, nombre, nombreiso, latitud, longitud, alfa2, alfa3, codiso
 INSERT INTO pais (id, nombre, nombreiso, latitud, longitud, alfa2, alfa3, codiso, div1, div2, div3, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (388, 'JAMAICA', 'JAMAICA', NULL, NULL, 'JM', 'JAM', NULL, NULL, NULL, NULL, '2014-02-17', NULL, NULL, NULL);
 INSERT INTO pais (id, nombre, nombreiso, latitud, longitud, alfa2, alfa3, codiso, div1, div2, div3, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (392, 'JAPÓN', 'JAPON', NULL, NULL, 'JP', 'JPN', NULL, NULL, NULL, NULL, '2014-02-17', NULL, NULL, NULL);
 INSERT INTO pais (id, nombre, nombreiso, latitud, longitud, alfa2, alfa3, codiso, div1, div2, div3, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (398, 'KAZAJISTÁN', 'KAZAJISTAN', NULL, NULL, 'KZ', 'KAZ', NULL, NULL, NULL, NULL, '2014-02-17', NULL, NULL, NULL);
-INSERT INTO pais (id, nombre, nombreiso, latitud, longitud, alfa2, alfa3, codiso, div1, div2, div3, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (4, 'AFGANISTÁN', 'AFGANISTAN', NULL, NULL, 'AF', 'AFG', NULL, NULL, NULL, NULL, '2014-02-17', NULL, NULL, NULL);
+INSERT INTO pais (id, nombre, nombreiso, latitud, longitud, alfa2, alfa3, codiso, div1, div2, div3, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (4, 'AFGANISTÁN', 'AFGANISTAN', NULL, NULL, 'AF', 'AFG', NULL, '', '', '', '2014-02-17', NULL, NULL, NULL);
 INSERT INTO pais (id, nombre, nombreiso, latitud, longitud, alfa2, alfa3, codiso, div1, div2, div3, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (40, 'AUSTRIA', 'AUSTRIA', NULL, NULL, 'AT', 'AUT', NULL, NULL, NULL, NULL, '2014-02-17', NULL, NULL, NULL);
 INSERT INTO pais (id, nombre, nombreiso, latitud, longitud, alfa2, alfa3, codiso, div1, div2, div3, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (400, 'JORDANIA', 'JORDANIA', NULL, NULL, 'JO', 'JOR', NULL, NULL, NULL, NULL, '2014-02-17', NULL, NULL, NULL);
 INSERT INTO pais (id, nombre, nombreiso, latitud, longitud, alfa2, alfa3, codiso, div1, div2, div3, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (404, 'KENIA', 'KENIA', NULL, NULL, 'KE', 'KEN', NULL, NULL, NULL, NULL, '2014-02-17', NULL, NULL, NULL);
@@ -15258,7 +15258,7 @@ INSERT INTO filiacion (id, nombre, fechacreacion, fechadeshabilitacion, created_
 INSERT INTO filiacion (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (2, 'CONSERVADOR', '2001-01-01', NULL, NULL, NULL);
 INSERT INTO filiacion (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (3, 'ALIANZAS TRADICIONALES', '2001-01-01', NULL, NULL, NULL);
 INSERT INTO filiacion (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (4, 'IZQUIERDA', '2001-01-01', NULL, NULL, NULL);
-INSERT INTO filiacion (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (5, 'ALIANZAS IZQUIERDA', '2001-01-01', NULL, NULL, NULL);
+INSERT INTO filiacion (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (5, 'ALIANZAS IZQUIERDA', '2001-01-01', NULL, NULL, '2014-10-02 10:29:59.481785');
 INSERT INTO filiacion (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (6, 'DERECHA', '2001-01-01', NULL, NULL, NULL);
 INSERT INTO filiacion (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (7, 'DESMOVILIZADOS', '2001-01-01', NULL, NULL, NULL);
 INSERT INTO filiacion (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (8, 'CIVICO POLITICOS ELECTORA', '2001-01-01', NULL, NULL, NULL);
@@ -15987,7 +15987,7 @@ INSERT INTO presponsable (id, nombre, papa, fechacreacion, fechadeshabilitacion,
 INSERT INTO presponsable (id, nombre, papa, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (13, 'CTI', 38, '2001-01-30', NULL, NULL, NULL);
 INSERT INTO presponsable (id, nombre, papa, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (14, 'PARAMILITARES', 39, '2001-01-30', NULL, NULL, NULL);
 INSERT INTO presponsable (id, nombre, papa, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (15, 'AUC', 14, '2001-01-30', NULL, NULL, NULL);
-INSERT INTO presponsable (id, nombre, papa, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (16, 'ACCU', 14, '2001-01-30', NULL, NULL, NULL);
+INSERT INTO presponsable (id, nombre, papa, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (16, 'ACCU', 14, '2001-01-30', '2014-09-30', NULL, NULL);
 INSERT INTO presponsable (id, nombre, papa, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (17, 'AUTODEFENSAS DE PUERTO BOYACA', 14, '2001-01-30', NULL, NULL, NULL);
 INSERT INTO presponsable (id, nombre, papa, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (18, 'AUTODEFENSAS DE RAMON ISAZA', 14, '2001-01-30', NULL, NULL, NULL);
 INSERT INTO presponsable (id, nombre, papa, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (19, 'AUTODEFENSAS DE LOS LLANOS ORIENTALES', 14, '2001-01-30', NULL, NULL, NULL);
@@ -16118,12 +16118,12 @@ SET search_path = public, pg_catalog;
 -- Data for Name: rangoedadac; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-INSERT INTO rangoedadac (id, nombre, limiteinferior, limitesuperior, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (1, 'De 0 a 11', 0, 10, '2014-02-11', NULL, '2014-03-07 19:19:02.690768', '2014-03-07 19:19:02.690768');
-INSERT INTO rangoedadac (id, nombre, limiteinferior, limitesuperior, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (2, 'De 12 a 17', 0, 10, '2014-02-11', NULL, '2014-03-07 19:19:02.690768', '2014-03-07 19:19:02.690768');
-INSERT INTO rangoedadac (id, nombre, limiteinferior, limitesuperior, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (3, 'De 18 a 25', 16, 25, '2014-02-11', NULL, '2014-03-07 19:19:09.515802', '2014-03-07 19:19:09.515802');
-INSERT INTO rangoedadac (id, nombre, limiteinferior, limitesuperior, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (4, 'De 26 a 45', 26, 45, '2014-02-11', NULL, '2014-03-07 19:19:09.527935', '2014-03-07 19:19:09.527935');
-INSERT INTO rangoedadac (id, nombre, limiteinferior, limitesuperior, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (5, 'De 46 a 60', 46, 60, '2014-02-11', NULL, '2014-03-07 19:19:09.539237', '2014-03-07 19:19:09.539237');
-INSERT INTO rangoedadac (id, nombre, limiteinferior, limitesuperior, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (6, 'De 61 en adelante', 61, NULL, '2014-02-11', NULL, '2014-03-07 19:19:09.549437', '2014-03-07 19:19:09.549437');
+INSERT INTO rangoedadac (id, nombre, limiteinferior, limitesuperior, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (1, 'De 0 a 11', 0, 10, '2014-02-11', NULL, '2014-03-07 19:19:02.690768', NULL);
+INSERT INTO rangoedadac (id, nombre, limiteinferior, limitesuperior, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (2, 'De 12 a 17', 0, 10, '2014-02-11', NULL, '2014-03-07 19:19:02.690768', NULL);
+INSERT INTO rangoedadac (id, nombre, limiteinferior, limitesuperior, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (3, 'De 18 a 25', 16, 25, '2014-02-11', NULL, '2014-03-07 19:19:09.515802', NULL);
+INSERT INTO rangoedadac (id, nombre, limiteinferior, limitesuperior, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (4, 'De 26 a 45', 26, 45, '2014-02-11', NULL, '2014-03-07 19:19:09.527935', NULL);
+INSERT INTO rangoedadac (id, nombre, limiteinferior, limitesuperior, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (5, 'De 46 a 60', 46, 60, '2014-02-11', NULL, '2014-03-07 19:19:09.539237', NULL);
+INSERT INTO rangoedadac (id, nombre, limiteinferior, limitesuperior, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (6, 'De 61 en adelante', 61, NULL, '2014-02-11', NULL, '2014-03-07 19:19:09.549437', NULL);
 
 
 --
@@ -16157,7 +16157,7 @@ SET search_path = public, pg_catalog;
 INSERT INTO region (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (10, 'EJE CAFETERO Y TOLIMA GRANDE', '2001-01-01', NULL, NULL, NULL);
 INSERT INTO region (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (11, 'EXTERIOR', '2001-01-01', NULL, NULL, NULL);
 INSERT INTO region (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (5, 'COSTA ATLANTICA', '2001-01-01', NULL, NULL, NULL);
-INSERT INTO region (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (6, 'ANTIOQUIA CHOCO SANT', '2001-01-01', NULL, NULL, NULL);
+INSERT INTO region (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (6, 'ANTIOQUIA CHOCO SANT', '2001-01-01', NULL, NULL, '2014-09-30 12:58:11.481746');
 INSERT INTO region (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (7, 'LLANOS', '2001-01-01', NULL, NULL, NULL);
 INSERT INTO region (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (8, 'CENTRO', '2001-01-01', NULL, NULL, NULL);
 INSERT INTO region (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (9, 'SUR OCCIDENTE', '2001-01-01', NULL, NULL, NULL);
@@ -16209,25 +16209,25 @@ SET search_path = public, pg_catalog;
 -- Data for Name: tdocumento; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-INSERT INTO tdocumento (id, nombre, sigla, formatoregex, fechacreacion, fechadeshabilitacion) VALUES (1, 'CÉDULA DE CIUDADANÍA', 'CC', '[0-9]*', '2014-09-21', NULL);
-INSERT INTO tdocumento (id, nombre, sigla, formatoregex, fechacreacion, fechadeshabilitacion) VALUES (10, 'REGISTRO CIVIL', 'RC', '[0-9]*', '2014-09-21', NULL);
-INSERT INTO tdocumento (id, nombre, sigla, formatoregex, fechacreacion, fechadeshabilitacion) VALUES (11, 'SIN DOCUMENTO', 'SD', '[0-9]*', '2014-09-21', NULL);
-INSERT INTO tdocumento (id, nombre, sigla, formatoregex, fechacreacion, fechadeshabilitacion) VALUES (12, 'TARJETA DE IDENTIDAD', 'TI', '[0-9]*', '2014-09-21', NULL);
-INSERT INTO tdocumento (id, nombre, sigla, formatoregex, fechacreacion, fechadeshabilitacion) VALUES (2, 'CÉDULA DE IDENTIDAD', 'CI', '[0-9]*', '2014-09-21', NULL);
-INSERT INTO tdocumento (id, nombre, sigla, formatoregex, fechacreacion, fechadeshabilitacion) VALUES (3, 'CÉDULA DE RESIDENTE', 'CR', '[0-9]*', '2014-09-21', NULL);
-INSERT INTO tdocumento (id, nombre, sigla, formatoregex, fechacreacion, fechadeshabilitacion) VALUES (4, 'CÉDULA DE TRANSEUNTE', 'CT', '[0-9]*', '2014-09-21', NULL);
-INSERT INTO tdocumento (id, nombre, sigla, formatoregex, fechacreacion, fechadeshabilitacion) VALUES (5, 'CONTRASEÑA', 'CT', '[0-9]*', '2014-09-21', NULL);
-INSERT INTO tdocumento (id, nombre, sigla, formatoregex, fechacreacion, fechadeshabilitacion) VALUES (6, 'DOCUMENTO PROVISIONAL', 'DP', '[A-Z]-[-0-9]*', '2014-09-21', NULL);
-INSERT INTO tdocumento (id, nombre, sigla, formatoregex, fechacreacion, fechadeshabilitacion) VALUES (7, 'OTRO', 'OT', '', '2014-09-21', NULL);
-INSERT INTO tdocumento (id, nombre, sigla, formatoregex, fechacreacion, fechadeshabilitacion) VALUES (8, 'PARTIDA DE NACIMIENTO', 'PN', '[0-9]*', '2014-09-21', NULL);
-INSERT INTO tdocumento (id, nombre, sigla, formatoregex, fechacreacion, fechadeshabilitacion) VALUES (9, 'PASAPORTE', 'P', '[0-9]*', '2014-09-21', NULL);
+INSERT INTO tdocumento (id, nombre, sigla, formatoregex, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (1, 'CÉDULA DE CIUDADANÍA', 'CC', '[0-9]*', '2014-09-21', NULL, NULL, NULL);
+INSERT INTO tdocumento (id, nombre, sigla, formatoregex, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (10, 'REGISTRO CIVIL', 'RC', '[0-9]*', '2014-09-21', NULL, NULL, NULL);
+INSERT INTO tdocumento (id, nombre, sigla, formatoregex, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (11, 'SIN DOCUMENTO', 'SD', '[0-9]*', '2014-09-21', NULL, NULL, NULL);
+INSERT INTO tdocumento (id, nombre, sigla, formatoregex, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (12, 'TARJETA DE IDENTIDAD', 'TI', '[0-9]*', '2014-09-21', NULL, NULL, NULL);
+INSERT INTO tdocumento (id, nombre, sigla, formatoregex, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (2, 'CÉDULA DE IDENTIDAD', 'CI', '[0-9]*', '2014-09-21', NULL, NULL, NULL);
+INSERT INTO tdocumento (id, nombre, sigla, formatoregex, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (3, 'CÉDULA DE RESIDENTE', 'CR', '[0-9]*', '2014-09-21', NULL, NULL, NULL);
+INSERT INTO tdocumento (id, nombre, sigla, formatoregex, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (4, 'CÉDULA DE TRANSEUNTE', 'CT', '[0-9]*', '2014-09-21', NULL, NULL, NULL);
+INSERT INTO tdocumento (id, nombre, sigla, formatoregex, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (5, 'CONTRASEÑA', 'CT', '[0-9]*', '2014-09-21', NULL, NULL, NULL);
+INSERT INTO tdocumento (id, nombre, sigla, formatoregex, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (6, 'DOCUMENTO PROVISIONAL', 'DP', '[A-Z]-[-0-9]*', '2014-09-21', NULL, NULL, NULL);
+INSERT INTO tdocumento (id, nombre, sigla, formatoregex, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (7, 'OTRO', 'OT', '', '2014-09-21', NULL, NULL, NULL);
+INSERT INTO tdocumento (id, nombre, sigla, formatoregex, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (8, 'PARTIDA DE NACIMIENTO', 'PN', '[0-9]*', '2014-09-21', NULL, NULL, NULL);
+INSERT INTO tdocumento (id, nombre, sigla, formatoregex, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (9, 'PASAPORTE', 'P', '[0-9]*', '2014-09-21', NULL, NULL, NULL);
 
 
 --
 -- Name: tdocumento_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('tdocumento_id_seq', 12, true);
+SELECT pg_catalog.setval('tdocumento_id_seq', 100, true);
 
 
 --
