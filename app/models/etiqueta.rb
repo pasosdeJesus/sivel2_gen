@@ -1,4 +1,5 @@
 # encoding: UTF-8
+require 'basica'
 class Etiqueta < ActiveRecord::Base
   extend Basica
 

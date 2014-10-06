@@ -35,6 +35,7 @@ class ActividadesController < ApplicationController
         format.html { redirect_to @actividad, notice: 'Actividad creada.' }
         format.json { render action: 'show', status: :created, location: @actividad }
       else
+        #params[:actividad].delete(:anexoactividad_attributes)
         format.html { render action: 'new' }
         format.json { render json: @actividad.errors, status: :unprocessable_entity }
       end
