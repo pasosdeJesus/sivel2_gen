@@ -53,10 +53,12 @@ class UsuariosController < ApplicationController
       params[:usuario][:encrypted_password] = BCrypt::Password.create(
         params[:usuario][:encrypted_password],
         {:cost => Rails.application.config.devise.stretches})
+    else
+        params[:usuario].delete(:encrypted_password)
     end
     respond_to do |format|
       if @usuario.update(usuario_params)
-        format.html { redirect_to @usuario, notice: 'Usuario was successfully updated.' }
+        format.html { redirect_to @usuario, notice: 'Usuario actualizado con éxito.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
