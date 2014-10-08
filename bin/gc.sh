@@ -1,6 +1,8 @@
 #!/bin/sh
 # Hace prueba de regresión y envia a github
 
+bundle update
+bundle install
 grep "^ *gem *.debugger*" Gemfile > /dev/null 2> /dev/null
 if (test "$?" = "0") then {
 	echo "Gemfile incluye debugger que heroku no quiere"
