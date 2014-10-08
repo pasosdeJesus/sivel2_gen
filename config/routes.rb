@@ -30,7 +30,6 @@ Rails.application.routes.draw do
   resources :usuarios, path_names: { new: 'nuevo', edit: 'edita' } 
 
   namespace :admin do
-    puts Ability.tablasbasicas 
     Ability.tablasbasicas.each do |t|
       resources t.pluralize.to_sym, path_names: { new: 'nueva', edit: 'edita' }
     end
