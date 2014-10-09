@@ -94,6 +94,9 @@ es:
       maternidad:
         Maternidad: Estado Maternidad
         Maternidades: Estados Maternidad
+      motivosjr: 
+        Motivosjr: Servicio o Asesoria del SJR
+        Motivossjr: Servicios y Asesorias del SJR
       municipio:
         Municipio: Municipio
         Municipios: Municipios
@@ -109,6 +112,9 @@ es:
       profesion:
         Profesion: Profesión
         Profesiones: Profesiones
+      progestado:
+        Progestado: Programa o Respuesta  del Estado
+        Progsestado: Programas y Respuestas del Estado
       proteccion:
         Proteccion: Medida de Protección
         Protecciones: Medidas de Protección

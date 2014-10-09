@@ -1,7 +1,6 @@
 <%= simple_form_for @basica, 
   url: @basica.id.nil? ? (admin_basicas_path(@basica)) : 
-    admin_basica_path(@basica), 
-  html: { class: 'form-horizontal' } do |f| %>
+  admin_basica_path(@basica), defaults: { input_html: { class: 'span10' } } do |f| %>
     <% atributos_form.each do |atr|  %>
       <% if @basica.class.columns_hash[atr].type == :date then %>
         <%= f.input atr.to_sym,
@@ -54,6 +53,11 @@
         <%= f.association :pconsolidado,
           collection: Pconsolidad.habilitados,
           label: "Consolidado",
+          label_method: :nombre,
+          value_method: :id %>
+      <% elsif atr == "derecho_id" then %>
+        <%= f.association :derecho,
+          collection: Derecho.habilitados,
           label_method: :nombre,
           value_method: :id %>
       <% elsif atr == "tipocat" then %>

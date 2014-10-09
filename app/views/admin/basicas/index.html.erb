@@ -4,6 +4,12 @@
     model_class.human_attribute_name(model_class.model_name.to_s.pluralize) 
   %></h1>
 </div>
+<% ng = (!genclase.nil? && genclase == 'F') ? 'Nueva' : 'Nuevo' %>
+<% if @basica.size > 5 %>
+  <%= link_to t('.new', :default => [ng, t("helpers.links.new")]),
+    new_admin_basica_path(@basica), :class => 'btn btn-primary' 
+  %>
+<% end %>
 <table class="table table-striped">
   <thead>
     <tr>
@@ -18,7 +24,9 @@
     <% @basica.try(:each) do |basica| %>
       <tr>
         <% atributos_index.each do |atr| %>
-          <% if atr == "id_pais" then %>
+          <% if atr == "id" then %>
+            <td><%= link_to basica[atr], admin_basica_path(basica) %></td>
+          <% elsif atr == "id_pais" then %>
             <td><%= Pais.find(basica[atr]).nombre %></td>
           <% elsif atr == "id_departamento" then %>
             <td><%= Departamento.find(basica[atr]).nombre %></td>
@@ -34,6 +42,8 @@
             <td><%= Tviolencia.find(basica[atr]).nombre %></td>
           <% elsif atr == "id_pconsolidado" then %>
             <td><%= Pconsolidado.find(basica[atr]).nombre %></td>
+          <% elsif atr == "derecho_id" then %>
+            <td><%= Derecho.find(basica[atr]).nombre if basica[atr] %></td>
           <% elsif atr == "tipocat" then %>
             <td>
               <% h={C: "Colectivo", I: "Individual", O: "Otro"} %>
@@ -63,7 +73,6 @@
 </table>
 
 <%= will_paginate @basica, { param_name: :pagina }  %>
-<% ng = (!genclase.nil? && genclase == 'F') ? 'Nueva' : 'Nuevo' %>
 <%= link_to t('.new', :default => [ng, t("helpers.links.new")]),
   new_admin_basica_path(@basica),
   :class => 'btn btn-primary' 

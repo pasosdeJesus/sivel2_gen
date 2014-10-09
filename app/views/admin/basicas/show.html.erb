@@ -25,6 +25,8 @@
         <dd><%= Tviolencia.find(@basica[atr]).nombre%></dd>
       <% elsif atr == "id_pconsolidado" then %>
         <dd><%= Pconsolidado.find(@basica[atr]).nombre%></dd>
+      <% elsif atr == "derecho_id" then %>
+        <dd><%= Derecho.find(@basica[atr]).nombre%></dd>
       <% elsif atr == "tipocat" then %>
         <dd>
         <% h={C: "Colectivo", I: "Individual", O: "Otro"} %>
