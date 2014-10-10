@@ -3,6 +3,12 @@
   <h1><%=t '.title', 
     :default => model_class.model_name.human.pluralize.titleize %></h1>
 </div>
+<% if @actividades.size > 1 %>
+  <%= link_to t('.new', :default => t("helpers.links.new")),
+    new_caso_path,
+    :class => 'btn btn-primary' 
+  %>
+<% end %>
 <table class="table table-striped" border='1'>
   <thead>
     <tr>
