@@ -2,17 +2,21 @@
 <div class="page-header">
   <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
 </div>
-<% if @casos.size > 1 %>
+
+
+<div style="position: relative; height: 30px; border: 1px;">
+<% if @conscaso.size > 1 %>
   <%= link_to t('.new', :default => t("helpers.links.new")),
     new_caso_path,
     :class => 'btn btn-primary' 
   %>
 <% end %>
-<div class='busca'>
-  <!--% form_tag caso_busca_path, :method => 'get' do %-->
-    <!--%= text_field_tag :busca, params[:busca] %-->
-    <!--%= submit_tag "Buscar", :name => nil %-->
-  <!--% end %-->
+<div style="display: inline-block; position: absolute; right: 0px ">
+  <%= form_tag(casos_path, method: "get") do %>
+    <%= text_field_tag(:q) %>
+    <%= submit_tag("Filtrar") %>
+  <% end %>
+</div>
 </div>
 
 <table class="table table-striped">
@@ -21,23 +25,29 @@
       <th><%= Caso.human_attribute_name(:id) %></th>
       <th><%= Caso.human_attribute_name(:fecha) %></th>
       <th><%= Caso.human_attribute_name(:memo) %></th>
-      <th><%= Caso.human_attribute_name(:created_at) %></th>
+      <th><%= "Ubicaciones" %></th>
+      <th><%= "Víctimas" %></th>
+      <th><%= "P. Responsable" %></th>
+      <th><%= "Tipificación" %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
   <tbody>
-    <% @casos.try(:each) do |caso| %>
+    <% @conscaso.try(:each) do |caso| %>
       <tr>
-        <td><%= link_to caso.id, caso_path(caso) %></td>
+        <td><%= link_to caso.caso_id, caso_path(caso.caso_id) %></td>
         <td><%= caso.fecha %></td>
         <td><%= caso.memo %></td>
-	      <td><%= caso.created_at.to_date if !caso.created_at.nil?%></td>
+        <td><%= caso.ubicaciones %></td>
+        <td><%= caso.victimas %></td>
+        <td><%= caso.presponsables %></td>
+        <td><%= caso.tipificacion %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
-            edit_caso_path(caso), :class => 'btn btn-xs' 
+            edit_caso_path(caso.caso_id), :class => 'btn btn-xs' 
           %>
           <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-            caso_path(caso),
+            caso_path(caso.caso_id),
             :method => :delete,
             :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
             :class => 'btn btn-xs btn-danger' 
@@ -47,7 +57,7 @@
     <% end %>
   </tbody>
 </table>
-<%= will_paginate @casos, { param_name: :pagina }  %>
+<%= will_paginate @conscaso, { param_name: :pagina }  %>
 <%= link_to t('.new', :default => t("helpers.links.new")),
   new_caso_path,
   :class => 'btn btn-primary' 

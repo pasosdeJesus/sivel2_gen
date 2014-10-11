@@ -74,6 +74,8 @@ class Caso < ActiveRecord::Base
 	has_many :victimacolectiva, foreign_key: "id_caso", validate: true, 
     dependent: :destroy
 
+  has_one :conscaso, foreign_key: "caso_id"
+
 	belongs_to :intervalo, foreign_key: "id_intervalo", validate: true
 
 	validates_presence_of :fecha
