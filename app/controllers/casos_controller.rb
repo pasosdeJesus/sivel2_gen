@@ -6,40 +6,7 @@ class CasosController < ApplicationController
   # GET /casos
   # GET /casos.json
   def index
-    if !ActiveRecord::Base.connection.table_exists? 'conscaso'
-      ActiveRecord::Base.connection.execute("CREATE OR REPLACE VIEW conscaso1 AS
-        SELECT caso.id as caso_id, caso.fecha, caso.memo, 
-        ARRAY_TO_STRING(ARRAY(SELECT departamento.nombre ||  ' / ' || municipio.nombre 
-        FROM ubicacion LEFT JOIN departamento ON (
-        ubicacion.id_pais = departamento.id_pais
-        AND ubicacion.id_departamento = departamento.id)
-        LEFT JOIN municipio ON (ubicacion.id_pais=municipio.id_pais
-        AND ubicacion.id_departamento=municipio.id_departamento
-        AND ubicacion.id_municipio=municipio.id) WHERE ubicacion.id_caso=caso.id), ', ')
-        AS ubicaciones, 
-        ARRAY_TO_STRING(ARRAY(SELECT nombres || ' ' || apellidos FROM persona, 
-        victima WHERE persona.id=victima.id_persona AND victima.id_caso=caso.id), ', ')
-        AS victimas, 
-        ARRAY_TO_STRING(ARRAY(SELECT nombre FROM presponsable, caso_presponsable
-        WHERE presponsable.id=caso_presponsable.id_presponsable
-        AND caso_presponsable.id_caso=caso.id), ', ')
-        AS presponsables, 
-        ARRAY_TO_STRING(ARRAY(SELECT categoria.id_tviolencia || ':' || 
-        categoria.id_supracategoria || ':' || categoria.id || ' ' ||
-        categoria.nombre FROM categoria, acto
-        WHERE categoria.id=acto.id_categoria
-        AND acto.id_caso=caso.id), ', ')
-        AS tipificacion
-        FROM caso;")
-      ActiveRecord::Base.connection.execute("CREATE MATERIALIZED VIEW conscaso AS
-        SELECT caso_id, fecha, memo, ubicaciones, victimas, presponsables, tipificacion, 
-        to_tsvector('spanish', unaccent(caso_id || ' ' || replace(cast(fecha AS varchar), '-', ' ') 
-         || ' ' || memo || ' ' || ubicaciones || ' ' || victimas || ' ' || presponsables || ' ' || tipificacion)) as q
-        FROM conscaso1");
-      ActiveRecord::Base.connection.execute("CREATE INDEX busca_conscaso ON conscaso USING gin(q);")
-    else
-      ActiveRecord::Base.connection.execute('REFRESH MATERIALIZED VIEW conscaso')
-    end
+    Caso.refresca_conscaso
     q=params[:q]
     if (q && q.strip.length>0)
         @conscaso = Conscaso.where("q @@ plainto_tsquery('spanish', ?)", q)
