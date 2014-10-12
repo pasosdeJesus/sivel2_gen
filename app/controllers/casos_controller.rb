@@ -13,6 +13,7 @@ class CasosController < ApplicationController
     else
         @conscaso = Conscaso.all
     end
+    @numconscaso = @conscaso.size
     @conscaso = @conscaso.order(fecha: :desc).paginate(:page => params[:pagina], per_page: 20)
   end
 

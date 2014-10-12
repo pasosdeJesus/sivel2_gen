@@ -3,21 +3,27 @@
   <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
 </div>
 
-
-<div style="position: relative; height: 30px; border: 1px;">
-<% if @conscaso.size > 1 %>
-  <%= link_to t('.new', :default => t("helpers.links.new")),
-    new_caso_path,
-    :class => 'btn btn-primary' 
-  %>
-<% end %>
-<div style="display: inline-block; position: absolute; right: 0px ">
-  <%= form_tag(casos_path, method: "get") do %>
-    <%= text_field_tag(:q) %>
-    <%= submit_tag("Filtrar") %>
-  <% end %>
-</div>
-</div>
+<table width="100%">
+  <tr>
+    <td width="33%">
+      <% if @conscaso.size > 0 %>
+        <%= link_to t('.new', :default => t("helpers.links.new")),
+          new_caso_path,
+          :class => 'btn btn-primary' 
+        %>
+      <% end %>
+    </td>
+    <td style="width=33%;text-align: center">
+      Casos: <%= @numconscaso %>
+    </td>
+    <td style="text-align: right">
+      <%= form_tag(casos_path, method: "get") do %>
+        <%= text_field_tag(:q) %>
+        <%= submit_tag("Filtrar") %>
+      <% end %>
+    </td>
+  </tr>
+</table>
 
 <table class="table table-striped">
   <thead>
