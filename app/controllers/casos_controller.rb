@@ -9,7 +9,9 @@ class CasosController < ApplicationController
     Caso.refresca_conscaso
     q=params[:q]
     if (q && q.strip.length>0)
-        @conscaso = Conscaso.where("q @@ plainto_tsquery('spanish', ?)", q)
+        @conscaso = Conscaso.where(
+          "q @@ plainto_tsquery('spanish', unaccent(?))", q
+        )
     else
         @conscaso = Conscaso.all
     end
