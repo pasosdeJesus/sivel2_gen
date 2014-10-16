@@ -157,6 +157,8 @@ es:
         Tviolencia: Tipo de Violencia
         Tviolencias: Tipos de Violencia
         nomcorto: Nombre Corto
+      ubicacion:
+        Ubicacion: Ubicación
       usuario:
         nusuario: Usuario
         regionsjr: Oficina

@@ -36,7 +36,8 @@
 	    label_method: :nombre, 
       value_method: :id %>
     <%= f.input :id, as: :hidden %>
-    <%= link_to_remove_association "Eliminar Ubicación", f, 
+    <%= link_to_remove_association "Eliminar " + 
+        Ubicacion.human_attribute_name("Ubicacion"), f, 
       {:class => 'btn-danger', :'data-existing' => 'true'} %> 
   </div>
 </div>
