@@ -1,16 +1,19 @@
 <div class='control-group nested-fields'>
   <div class="controls">
-
     <%= f.association :presponsable,
       collection: Presponsable.habilitados,
-	    label: "Presunto Responsable",
+      label: Presponsable.human_attribute_name("Presponsable"),
       label_method: :nombre,
       value_method: :id,
+      wrapper_html: { style: "padding-bottom: 18px;" },
       input_html: { 'data-actualiza' => 'presponsable' }
     %>
     <%= f.input :bloque %>
     <%= f.input :frente %>
-    <%= f.input :brigada %>
+    <%= f.input :brigada,
+      label: "Brigada / Batallón / División",
+      wrapper_html: { style: "padding-bottom: 18px;" }
+    %>
     <%= f.input :otro %>
     <%= f.input :id, as: :hidden %>
     <%= link_to_remove_association "Eliminar " +

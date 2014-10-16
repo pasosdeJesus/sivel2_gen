@@ -1,5 +1,6 @@
 # encoding: UTF-8
 class HogarController < ApplicationController
+  authorize_resource class: false, except: [:index]
 
 	def tablasbasicas
 		authorize! :manage, :tablasbasicas
@@ -17,5 +18,8 @@ class HogarController < ApplicationController
 	end
 
   def index
+    if current_usuario
+        authorize! :contar, Caso
+    end
   end
 end

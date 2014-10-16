@@ -76,16 +76,23 @@ class Ability
 
   # Se definen habilidades con cancan
   def initialize(usuario)
-    # El primer argumento para can es la acción a la que se da permiso, el segundo es el recurso
-    # sobre el que puede realizar la acción, el tercero opcional es un diccionario de
-    # condiciones para filtrar más (e.g :publicado => true).
+    # El primer argumento para can es la acción a la que se da permiso, 
+    # el segundo es el recurso sobre el que puede realizar la acción, 
+    # el tercero opcional es un diccionario de condiciones para filtrar 
+    # más (e.g :publicado => true).
     #
-    # El primer argumento puede ser :manage para indicar toda acción, o grupos de 
-    # acciones como :read (incluye :show e :index), :create, :update y :destroy.
+    # El primer argumento puede ser :manage para indicar toda acción, 
+    # o grupos de acciones como :read (incluye :show e :index), 
+    # :create, :update y :destroy.
     #
-    # Si como segundo argumento usa :all se aplica a todo recurso, o puede ser una clase.
+    # Si como segundo argumento usa :all se aplica a todo recurso, 
+    # o puede ser una clase.
     # 
-    # Detalles en el wiki de cancan: https://github.com/ryanb/cancan/wiki/Defining-Abilities
+    # Detalles en el wiki de cancan: 
+    #   https://github.com/ryanb/cancan/wiki/Defining-Abilities
+    if !usuario || usuario.fechadeshabilitacion
+      return
+    end
     can :contar, Caso
     can :buscar, Caso
     can :lista, Caso
@@ -94,7 +101,7 @@ class Ability
     can :nuevo, Ubicacion
     can :nuevo, Presponsable
     can :nuevo, Victima
-    if !usuario.nil? && !usuario.rol.nil? then
+    if usuario && usuario.rol then
       case usuario.rol 
       when Ability::ROLANALI
         can :read, Caso
