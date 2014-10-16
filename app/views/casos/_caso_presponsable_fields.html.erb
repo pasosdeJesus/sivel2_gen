@@ -13,7 +13,9 @@
     <%= f.input :brigada %>
     <%= f.input :otro %>
     <%= f.input :id, as: :hidden %>
-    <%= link_to_remove_association "Eliminar Presunto Responsable", f, 
-      {:class => 'btn-danger', :'data-existing' => 'true'} %> 
+    <%= link_to_remove_association "Eliminar " +
+      Presponsable.human_attribute_name("Presponsable"), f, 
+      {:class => 'btn-danger', :'data-existing' => 'true'} 
+    %> 
   </div>
 </div>
