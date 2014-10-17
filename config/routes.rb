@@ -12,7 +12,6 @@ Rails.application.routes.draw do
   get "/casos/busca" => 'casos#busca'
   get "tablasbasicas" => 'hogar#tablasbasicas'
   get 'acercade' => 'hogar#acercade'
-  get 'contacto' => 'hogar#contacto'
   get "hogar" => 'hogar#index'
 
   resources :actividades, path_names: { new: 'nueva', edit: 'edita' }

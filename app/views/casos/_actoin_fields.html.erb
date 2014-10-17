@@ -9,7 +9,7 @@
 
 <%= f.association :categoria,
   collection: Categoria.habilitados.where(
-    "id_tviolencia<>'R'").order(:id_tviolencia, :id),
+    "id_tviolencia<>'R'").reorder(:id_tviolencia, :id),
   label: "Categoria",
   label_method: :nombre, 
   label_method: lambda {|t| t.id_tviolencia + t.id.to_s + ' ' + t.nombre },
