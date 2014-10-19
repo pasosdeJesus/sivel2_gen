@@ -1,6 +1,6 @@
 # encoding: UTF-8
 class Pais < ActiveRecord::Base
-  extend Basica
+  include Basica
 
 	has_many :clase, foreign_key: "id_pais", validate: true
 	has_many :municipio, foreign_key: "id_pais", validate: true

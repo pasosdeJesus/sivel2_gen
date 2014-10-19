@@ -1,6 +1,6 @@
 # encoding: UTF-8
 class Sectorsocial < ActiveRecord::Base
-  extend Basica
+  include Basica
 
 	has_many :comunidad_sectorsocial, foreign_key: "id_sectorsocial", 
     validate: true

@@ -1,6 +1,6 @@
 # encoding: UTF-8
 class Tsitio < ActiveRecord::Base
-  extend Basica
+  include Basica
 
 	has_many :ubicacion, foreign_key: "id_tsitio", validate: true
 

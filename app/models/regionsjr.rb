@@ -1,6 +1,6 @@
 # encoding: UTF-8
 class Regionsjr < ActiveRecord::Base
-  extend Basica
+  include Basica
 
   has_many :usuario
 

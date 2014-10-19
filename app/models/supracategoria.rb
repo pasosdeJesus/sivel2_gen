@@ -1,6 +1,6 @@
 # encoding: UTF-8
 class Supracategoria < ActiveRecord::Base
-  extend Basica
+  include Basica
 
 	has_many :categoria, foreign_key: "id_supracategoria", validate: true
 
