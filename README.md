@@ -30,23 +30,38 @@ Se han implementado algunas pruebas con RSpec a modelos y pruebas de regresión.
 * Instale gemas requeridas (como Rails 4.1) con:
 ``` sh
   cd spec/dummy
-  sudo bundle install
   bundle install
+```
+Aunque para minimizar descargas vale la pena instalar como gemas del
+sistema la mayoría de estas con:
+```sh
+  grep "^ *gem" Gemfile | sed -e "s/gem [\"']//g;s/[\"'].*//g" | xargs sudo NOKOGIRI_USE_SYSTEM_LIBRARIES make=gmake gem install
 ```
 * Cree usuario para PostgreSQL (recomendado sivel2 o el que especifique en config/database.yml) 
   y ponga la clave en .env por ejemplo
-CLAVE_SIVEL2=xyz
+```sh
+sudo su - _postgresql
+$ createuser -Upostgres -h/var/www/tmp -s sivel2
+$ psql -h/var/www/tmp -Upostgres
+psql (9.3.5)
+Type "help" for help.
+
+postgres=# ALTER USER sivel2 WITH password 'miclave';
+ALTER ROLE
+postgres=# \q
+$ exit
+```
 
 * Prepare base de prueba con:
 ``` sh
   cd spec/dummy
-  RAILS_ENV=test rake db:drop
-  RAILS_ENV=test rake db:setup
-  RAILS_ENV=test rake sivel2:indices
+  CLAVE_SIVEL2=miclave RAILS_ENV=test rake db:drop
+  CLAVE_SIVEL2=miclave RAILS_ENV=test rake db:setup
+  CLAVE_SIVEL2=miclave RAILS_ENV=test rake sivel2:indices
 ```
 * Ejecute las pruebas desde el directorio del motor con:
 ```sh
-  rspec
+  CLAVE_SIVEL2=miclave rspec
 ```
 
 ## Desarrollo
