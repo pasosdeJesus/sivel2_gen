@@ -54,7 +54,7 @@ class Ability
   def self.basicas_id_noauto
     @@basicas_id_noauto
   end
-  
+
   # Tablas no básicas pero que tienen índice
   @@nobasicas_indice = ['caso', 'persona', 'ubicacion', 'usuario']
 
@@ -62,7 +62,8 @@ class Ability
     @@nobasicas_indice
   end
 
-  # Tablas básicas que deben volcarse primero --por ser requeridas por otras básicas
+  # Tablas básicas que deben volcarse primero --por ser requeridas 
+  # por otras básicas
   @@tablasbasicas_prio = [
     "pconsolidado", "tviolencia", "supracategoria",
     "tclase", "pais", "departamento", "municipio", "clase",
@@ -121,6 +122,6 @@ class Ability
         end
       end
     end
-
   end
 end
+

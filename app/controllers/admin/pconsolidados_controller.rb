@@ -5,7 +5,7 @@ module Admin
     load_and_authorize_resource
 
     def clase 
-      "pconsolidado"
+      "Sivel2Gen::Pconsolidado"
     end
 
     def set_pconsolidado
