@@ -1,5 +1,5 @@
 # encoding: UTF-8
-module Sivel2GeN
+module Sivel2Gen
   class Victima < ActiveRecord::Base
     #has_many :antecedente_victima, foreign_key: [:id_persona, :id_caso], validate: true, dependent: :destroy
 

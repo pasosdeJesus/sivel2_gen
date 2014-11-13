@@ -11,18 +11,18 @@ namespace :sivel2 do
 		# Primero tablas basicas creadas en Rails
     tbn = Ability::basicas_seq_con_id
     tbn.each do |t|
-    	connection.execute("SELECT setval('#{t}_id_seq', MAX(id)) FROM 
-             (SELECT 100 as id UNION SELECT MAX(id) FROM #{t}) AS s;")
+    	connection.execute("SELECT setval('#{t[1]}_id_seq', MAX(id)) FROM 
+             (SELECT 100 as id UNION SELECT MAX(id) FROM #{t[1]}) AS s;")
 		end
 		# Despues otras tablas basicas pero excluyendo las que no tienen id autoincremental
     tb= (Ability::tablasbasicas - tbn) - Ability::basicas_id_noauto
     tb.each do |t|
-      connection.execute("SELECT setval('#{t}_seq', MAX(id)) FROM 
+      connection.execute("SELECT setval('#{t[1]}_seq', MAX(id)) FROM 
              (SELECT 100 as id UNION SELECT MAX(id) FROM #{t}) AS s;");
     end
     # Finalmente otras tablas no basicas pero con índices
     Ability::nobasicas_indice.each do |t|
-      connection.execute("SELECT setval('#{t}_seq', MAX(id)) FROM #{t}");
+      connection.execute("SELECT setval('#{t[1]}_seq', MAX(id)) FROM #{t[1]}");
     end
   end
 

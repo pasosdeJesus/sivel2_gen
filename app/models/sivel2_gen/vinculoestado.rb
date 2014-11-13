@@ -4,8 +4,8 @@ module Sivel2Gen
     include Basica
 
     has_many :comunidad_vinculoestado, foreign_key: "id_vinculoestado", 
-      validate: true, class_name 'Sivel2Gen::ComunidadVinculoestado'
+      validate: true, class_name: 'Sivel2Gen::ComunidadVinculoestado'
     has_many :victima, foreign_key: "id_vinculoestado", 
-      class_name 'Sivel2Gen::Victima'
+      class_name: 'Sivel2Gen::Victima'
   end
 end

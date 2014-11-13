@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # Rails (internacionalización)
-gem "rails", '~> 4.2.0.beta2'
+gem "rails", '~> 4.2.0.beta4'
 gem "rails-i18n"
 
 # Postgresql
@@ -70,7 +70,7 @@ group :development, :test do
   # Requerido por rake
   gem "thor"
 
-  # Acelera desarrollo ejecutando en fondo. https://github.com/jonleighton/spring
+  # Acelera ejecutando en fondo. https://github.com/jonleighton/spring
   gem "spring"
   
   # Pruebas con rspec
@@ -89,6 +89,12 @@ group :development, :test do
 
   # Depurar
   #gem 'debugger'
+  
+  gem 'byebug'
+  
+  # Consola irb en páginas con excepciones o usando <%= console %> en vistasA
+  gem 'web-console', '~> 2.0.0.beta4'
+
 end
 
 # Los siguientes son para pruebas y no tiene generadores requeridos en desarrollo

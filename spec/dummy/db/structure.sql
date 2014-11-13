@@ -29,7 +29,6 @@ SET search_path = public, pg_catalog;
 -- Name: es_co_utf_8; Type: COLLATION; Schema: public; Owner: -
 --
 
-DROP COLLATION IF EXISTS es_co_utf_8;
 CREATE COLLATION es_co_utf_8 (lc_collate = 'es_CO.UTF-8', lc_ctype = 'es_CO.UTF-8');
 
 
@@ -3578,7 +3577,7 @@ ALTER TABLE ONLY sivel2_gen_victimacolectiva
 -- PostgreSQL database dump complete
 --
 
-SET search_path TO "$user",public;
+SET search_path TO public, pg_catalog;
 
 INSERT INTO schema_migrations (version) VALUES ('20131128151014');
 

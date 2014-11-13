@@ -1,0 +1,24 @@
+<div class='control-group nested-fields'>
+  <div class="controls">
+    <%= f.association :presponsable,
+      collection: Sivel2Gen::Presponsable.habilitados,
+      label: Sivel2Gen::Presponsable.human_attribute_name("Presponsable"),
+      label_method: :nombre,
+      value_method: :id,
+      wrapper_html: { style: "padding-bottom: 18px;" },
+      input_html: { 'data-actualiza' => 'presponsable' }
+    %>
+    <%= f.input :bloque %>
+    <%= f.input :frente %>
+    <%= f.input :brigada,
+      label: "Brigada / Batallón / División",
+      wrapper_html: { style: "padding-bottom: 18px;" }
+    %>
+    <%= f.input :otro %>
+    <%= f.input :id, as: :hidden %>
+    <%= link_to_remove_association "Eliminar " +
+      Sivel2Gen::Presponsable.human_attribute_name("Presponsable"), f, 
+      {:class => 'btn-danger', :'data-existing' => 'true'} 
+    %> 
+  </div>
+</div>

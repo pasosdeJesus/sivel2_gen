@@ -80,7 +80,7 @@ module Sivel2Gen
     has_many :victimacolectiva, foreign_key: "id_caso", validate: true, 
       dependent: :destroy, class_name: 'Sivel2Gen::Victimacolectiva' 
 
-    has_one :conscaso, foreign_key: "caso_id"
+    has_one :sivel2_gen_conscaso, foreign_key: "caso_id"
 
     belongs_to :intervalo, foreign_key: "id_intervalo", 
       validate: true, class_name: 'Sivel2Gen::Intervalo'
@@ -96,16 +96,16 @@ module Sivel2Gen
     end
 
     def self.refresca_conscaso
-      if !ActiveRecord::Base.connection.table_exists? 'conscaso'
+      if !ActiveRecord::Base.connection.table_exists? 'sivel2_gen_conscaso'
         ActiveRecord::Base.connection.execute("CREATE OR REPLACE 
-        VIEW conscaso1 AS
+        VIEW sivel2_gen_conscaso1 AS
         SELECT caso.id as caso_id, caso.fecha, caso.memo, 
         ARRAY_TO_STRING(ARRAY(SELECT departamento.nombre ||  ' / ' 
         || municipio.nombre 
-        FROM ubicacion LEFT JOIN departamento ON (
+        FROM sivel2_gen_ubicacion AS ubicacion LEFT JOIN sivel2_gen_departamento AS departamento ON (
         ubicacion.id_pais = departamento.id_pais
         AND ubicacion.id_departamento = departamento.id)
-        LEFT JOIN municipio ON (ubicacion.id_pais=municipio.id_pais
+        LEFT JOIN sivel2_gen_municipio AS municipio ON (ubicacion.id_pais=municipio.id_pais
         AND ubicacion.id_departamento=municipio.id_departamento
         AND ubicacion.id_municipio=municipio.id) 
         WHERE ubicacion.id_caso=caso.id), ', ')
@@ -130,20 +130,20 @@ module Sivel2Gen
         AS tipificacion
         FROM sivel2_gen_caso AS caso;")
         ActiveRecord::Base.connection.execute(
-          "CREATE MATERIALIZED VIEW conscaso AS
+          "CREATE MATERIALIZED VIEW sivel2_gen_conscaso AS
         SELECT caso_id, fecha, memo, ubicaciones, victimas, 
         presponsables, tipificacion, 
         to_tsvector('spanish', unaccent(caso_id || ' ' || 
         replace(cast(fecha AS varchar), '-', ' ') 
         || ' ' || memo || ' ' || ubicaciones || ' ' || 
          victimas || ' ' || presponsables || ' ' || tipificacion)) as q
-        FROM conscaso1");
+        FROM sivel2_gen_conscaso1");
         ActiveRecord::Base.connection.execute(
-          "CREATE INDEX busca_conscaso ON conscaso USING gin(q);"
+          "CREATE INDEX busca_sivel2_gen_conscaso ON sivel2_gen_conscaso USING gin(q);"
         )
       else
         ActiveRecord::Base.connection.execute(
-          'REFRESH MATERIALIZED VIEW conscaso'
+          'REFRESH MATERIALIZED VIEW sivel2_gen_conscaso'
         )
       end
     end

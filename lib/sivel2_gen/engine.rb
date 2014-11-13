@@ -4,6 +4,7 @@ module Sivel2Gen
   class Engine < ::Rails::Engine
 
     isolate_namespace Sivel2Gen
+#    endpoint RackSivel2Gen
 
     config.generators do |g|
       g.test_framework      :rspec,        :fixture => false

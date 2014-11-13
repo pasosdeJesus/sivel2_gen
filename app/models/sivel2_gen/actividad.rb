@@ -7,7 +7,7 @@ module Sivel2Gen
     has_many :actividadareas_actividad, dependent: :delete_all,
       class_name: 'Sivel2Gen::ActividadareasActividad'
     has_many :actividadareas, through: :actividadareas_actividad,
-      class_name: 'Sivel2Gen::Actividadareas'
+      class_name: 'Sivel2Gen::Actividadarea'
     has_many :actividad_rangoedadac, foreign_key: "actividad_id", 
       dependent: :delete_all, class_name: 'Sivel2Gen::ActividadRangoedadac'
     has_many :rangoedadac, through: :actividad_rangoedadac,

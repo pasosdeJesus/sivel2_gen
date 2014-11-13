@@ -1,0 +1,25 @@
+<%= f.association :presponsable,
+  collection: Sivel2Gen::Presponsable.from('sivel2_gen_caso_presponsable, sivel2_gen_presponsable').where(
+    'sivel2_gen_caso_presponsable.id_presponsable=sivel2_gen_presponsable.id 
+      AND sivel2_gen_caso_presponsable.id_caso=?', @caso.id),
+  wrapper_html: { style: "padding-bottom: 18px;" },
+  label_method: :nombre,
+  value_method: :id 
+%>
+
+<%= f.association :categoria,
+  collection: Sivel2Gen::Categoria.habilitados.where(
+    "id_tviolencia<>'R'").reorder(:id_tviolencia, :id),
+  label: "Categoria",
+  label_method: lambda {|t| t.id_tviolencia + t.id.to_s + ' ' + t.nombre },
+  value_method: :id 
+%>
+
+<%= f.association :persona,
+  collection: Sivel2Gen::Persona.from('sivel2_gen_victima, sivel2_gen_persona').where(
+    'sivel2_gen_victima.id_persona=sivel2_gen_persona.id AND sivel2_gen_victima.id_caso=?', @caso.id),
+  label: "Víctima",
+  label_method: lambda {|t| t.nombres + ' ' + t.apellidos},
+  value_method: :id 
+%>
+

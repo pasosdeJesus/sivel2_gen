@@ -1,0 +1,62 @@
+<%= f.simple_fields_for :persona do |p| %>
+	<%= render 'persona_fields', :f => p %>
+<% end %>
+<%= f.association :profesion,
+	collection: Sivel2Gen::Profesion.habilitados,
+	include_blank: false,
+	label: "Profesión",
+	label_method: :nombre, 
+	value_method: :id 
+%>
+<%= f.association :rangoedad,
+	collection: Sivel2Gen::Rangoedad.habilitados(:rango),
+	include_blank: false,
+	label: "Rango de Edad",
+	label_method: :rango, 
+	value_method: :id 
+%>
+<%= f.association :filiacion,
+	collection: Sivel2Gen::Filiacion.habilitados,
+	include_blank: false,
+	label: "Filiación",
+	label_method: :nombre, 
+	value_method: :id 
+%>
+<%= f.association :organizacion,
+	collection: Sivel2Gen::Organizacion.habilitados,
+	include_blank: false,
+	label: "Organización",
+	label_method: :nombre, 
+	value_method: :id 
+%>
+<%= f.association :vinculoestado,
+	collection: Sivel2Gen::Vinculoestado.habilitados,
+	include_blank: false,
+	label: "Vínculo con el Estado",
+	label_method: :nombre, 
+	value_method: :id
+  #wrapper_html: { style: "padding-bottom: 18px;" }
+%>
+<%= f.association :etnia,
+	collection: Sivel2Gen::Etnia.habilitados,
+	include_blank: false,
+	label: "Etnia",
+	label_method: :nombre, 
+	value_method: :id 
+%>
+<%= f.association :iglesia,
+	collection: Sivel2Gen::Iglesia.habilitados,
+	include_blank: false,
+	label: "Religión/Iglesia",
+	label_method: :nombre, 
+	value_method: :id 
+%>
+<%= f.input(:orientacionsexual, collection: [
+						[:HETEROSEXUAL, :H], [:LESBIANA, :L], [:GAY, :G], 
+						[:BISEXUAL, :B], [:TRANSEXUAL, :T] 
+], 
+	label: "Orientación Sexual",
+	include_blank: false ) 
+%>
+<%= f.input :id, as: :hidden %>
+
