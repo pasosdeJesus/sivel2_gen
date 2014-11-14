@@ -11,18 +11,24 @@ namespace :sivel2 do
 		# Primero tablas basicas creadas en Rails
     tbn = Ability::basicas_seq_con_id
     tbn.each do |t|
-    	connection.execute("SELECT setval('#{t[1]}_id_seq', MAX(id)) FROM 
-             (SELECT 100 as id UNION SELECT MAX(id) FROM #{t[1]}) AS s;")
+    	connection.execute("
+      SELECT setval('#{Ability::tb_modelo t}_id_seq', MAX(id)) FROM 
+             (SELECT 100 as id UNION 
+             SELECT MAX(id) FROM #{Ability::tb_modelo t}) AS s;")
 		end
-		# Despues otras tablas basicas pero excluyendo las que no tienen id autoincremental
+		# Otras tablas basicas excluyendo las que no tienen id autoincremental
     tb= (Ability::tablasbasicas - tbn) - Ability::basicas_id_noauto
     tb.each do |t|
       connection.execute("SELECT setval('#{t[1]}_seq', MAX(id)) FROM 
-             (SELECT 100 as id UNION SELECT MAX(id) FROM #{t}) AS s;");
+             (SELECT 100 as id UNION 
+             SELECT MAX(id) FROM #{Ability::tb_modelo t}) AS s;");
     end
     # Finalmente otras tablas no basicas pero con índices
+    tb = Ability::nobasicas_indice 
     Ability::nobasicas_indice.each do |t|
-      connection.execute("SELECT setval('#{t[1]}_seq', MAX(id)) FROM #{t[1]}");
+      connection.execute("
+      SELECT setval('#{t[1]}_seq', MAX(id)) 
+                         FROM #{Ability::tb_modelo t}");
     end
   end
 
@@ -36,7 +42,8 @@ namespace :sivel2 do
     search_path = abcs[Rails.env]['schema_search_path']
     connection = ActiveRecord::Base.connection()
 		# Asegurasmo que primero se vuelcan superbasicas y otras en orden correcto
-    tb = Ability::tablasbasicas_prio + (Ability::tablasbasicas - Ability::tablasbasicas_prio);
+    tb = Ability::tablasbasicas_prio + 
+      (Ability::tablasbasicas - Ability::tablasbasicas_prio);
     unless search_path.blank?
       search_path = search_path.split(",").map{|search_path_part| 
         "--schema=#{Shellwords.escape(search_path_part.strip)}" 
@@ -53,9 +60,9 @@ namespace :sivel2 do
 
       " 
       tb.each do |t|
-        command = "pg_dump -i -a -x -O --column-inserts -t #{t}  #{search_path} #{Shellwords.escape(abcs[Rails.env]['database'])} | sed -e \"s/SET lock_timeout = 0;//g\" > #{archt}"
+        command = "pg_dump -i -a -x -O --column-inserts -t #{Ability::tb_modelo t}  #{search_path} #{Shellwords.escape(abcs[Rails.env]['database'])} | sed -e \"s/SET lock_timeout = 0;//g\" > #{archt}"
         puts command
-        raise "Error al volcar tabla #{t}" unless Kernel.system(command)
+        raise "Error al volcar tabla #{Ability::tb_modelo t}" unless Kernel.system(command)
         inserto = false
         ordeno = false
         porord = []
@@ -84,12 +91,12 @@ namespace :sivel2 do
       end
 
       f << "
-    ALTER TABLE ONLY categoria
+    ALTER TABLE ONLY sivel2_gen_categoria
       ADD CONSTRAINT categoria_contadaen_fkey FOREIGN KEY (contadaen) 
-      REFERENCES categoria(id); 
-    ALTER TABLE ONLY presponsable
+      REFERENCES sivel2_gen_categoria(id); 
+    ALTER TABLE ONLY sivel2_gen_presponsable
       ADD CONSTRAINT presponsable_papa_fkey FOREIGN KEY (papa) 
-      REFERENCES presponsable(id);
+      REFERENCES sivel2_gen_presponsable(id);
       " 
     }
   end

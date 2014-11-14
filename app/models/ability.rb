@@ -44,7 +44,11 @@ class Ability
   end
 
   # Tablas basicas cuya secuencia es de la forma tabla_id_seq  (convención rails)
-  @@basicas_seq_con_id = [ "actividadarea", "pais", "rangoedadac", "tdocumento" ]
+  @@basicas_seq_con_id = [ 
+    ['Sivel2Gen', 'actividadarea'], 
+    ['Sivel2Gen', 'pais'], ['Sivel2Gen', 'rangoedadac'], 
+    ['Sivel2Gen', 'tdocumento'] 
+  ]
 
   def self.basicas_seq_con_id
     @@basicas_seq_con_id
@@ -52,8 +56,10 @@ class Ability
 
   # Tablas básicas cuyo id no es autoincremental
   @@basicas_id_noauto = [ 
-    "categoria", "clase", "departamento", "municipio", 
-    "supracategoria", "tclase", "tviolencia" 
+    ['Sivel2Gen', 'categoria'], ['Sivel2Gen', 'clase'], 
+    ['Sivel2Gen', 'departamento'], ['Sivel2Gen', 'municipio'], 
+    ['Sivel2Gen', 'supracategoria'], ['Sivel2Gen', 'tclase'], 
+    ['Sivel2Gen', 'tviolencia'] 
   ]
 
   def self.basicas_id_noauto
@@ -61,7 +67,10 @@ class Ability
   end
 
   # Tablas no básicas pero que tienen índice
-  @@nobasicas_indice = ['caso', 'persona', 'ubicacion', 'usuario']
+  @@nobasicas_indice = [
+    ['Sivel2Gen', 'caso'], ['Sivel2Gen', 'persona'], 
+    ['Sivel2Gen', 'ubicacion'], ['', 'usuario']
+  ]
 
   def self.nobasicas_indice
     @@nobasicas_indice
@@ -83,6 +92,28 @@ class Ability
   def self.tablasbasicas_prio
     @@tablasbasicas_prio
   end
+
+  # Recibe una tabla básica como pareja [Modulo, clase] y retorna
+  # clase completa Modulo::Clase
+  def self.tb_clase(t)
+    if (t[0] != '') 
+        k = t[0] + '::' + t[1].capitalize
+    else
+        k = t[1].capitalize
+    end
+    k.constantize 
+  end
+
+  # Recibe una tabla básica como pareja [Modulo, clase] y retorna
+  # nombre de tabla modulo_clase
+  def self.tb_modelo(t)
+    if (t[0] != '') 
+      t[0].underscore.gsub(/\//, '_') + '_' + t[1]
+    else 
+      t[1]
+    end
+  end
+
 
   # Se definen habilidades con cancan
   def initialize(usuario)

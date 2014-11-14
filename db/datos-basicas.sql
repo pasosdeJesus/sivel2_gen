@@ -2,9 +2,9 @@
 
 
 
-    ALTER TABLE ONLY sivel2_gen_categoria
+    ALTER TABLE ONLY categoria
       DROP CONSTRAINT categoria_contadaen_fkey; 
-    ALTER TABLE ONLY sivel2_gen_presponsable
+    ALTER TABLE ONLY presponsable
       DROP CONSTRAINT presponsable_papa_fkey;
 
       --
@@ -21,7 +21,7 @@ SET client_min_messages = warning;
 SET search_path = public, pg_catalog;
 
 --
--- Data for Name: pconsolidado; Type: TABLE DATA; Schema: public; Owner: -
+-- Data for Name: sivel2_gen_pconsolidado; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 INSERT INTO sivel2_gen_pconsolidado (id, rotulo, tipoviolencia, clasificacion, peso, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (1, 'MUERTOS', 'DH', 'VIDA', 0, '2001-01-01', NULL, NULL, NULL);
@@ -69,7 +69,7 @@ SET client_min_messages = warning;
 SET search_path = public, pg_catalog;
 
 --
--- Data for Name: tviolencia; Type: TABLE DATA; Schema: public; Owner: -
+-- Data for Name: sivel2_gen_tviolencia; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 INSERT INTO sivel2_gen_tviolencia (id, nombre, nomcorto, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES ('A', 'VIOLACIONES A LOS DERECHOS HUMANOS', 'DH', '2000-07-24', NULL, NULL, NULL);
@@ -96,7 +96,7 @@ SET client_min_messages = warning;
 SET search_path = public, pg_catalog;
 
 --
--- Data for Name: supracategoria; Type: TABLE DATA; Schema: public; Owner: -
+-- Data for Name: sivel2_gen_supracategoria; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 INSERT INTO sivel2_gen_supracategoria (id, nombre, fechacreacion, fechadeshabilitacion, id_tviolencia, created_at, updated_at) VALUES (1, 'BÉLICAS', '2000-07-26', NULL, 'C', NULL, NULL);
@@ -128,7 +128,7 @@ SET client_min_messages = warning;
 SET search_path = public, pg_catalog;
 
 --
--- Data for Name: tclase; Type: TABLE DATA; Schema: public; Owner: -
+-- Data for Name: sivel2_gen_tclase; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 INSERT INTO sivel2_gen_tclase (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES ('C', 'CORREGIMIENTO', '2001-01-01', NULL, NULL, NULL);
@@ -165,7 +165,7 @@ SET client_min_messages = warning;
 SET search_path = public, pg_catalog;
 
 --
--- Data for Name: pais; Type: TABLE DATA; Schema: public; Owner: -
+-- Data for Name: sivel2_gen_pais; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 INSERT INTO sivel2_gen_pais (id, nombre, nombreiso, latitud, longitud, alfa2, alfa3, codiso, div1, div2, div3, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (10, 'ANTÁRTIDA', 'ANTARTIDA', NULL, NULL, 'AQ', 'ATA', NULL, NULL, NULL, NULL, '2014-02-17', NULL, NULL, NULL);
@@ -419,7 +419,7 @@ INSERT INTO sivel2_gen_pais (id, nombre, nombreiso, latitud, longitud, alfa2, al
 
 
 --
--- Name: pais_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+-- Name: sivel2_gen_pais_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
 SELECT pg_catalog.setval('sivel2_gen_pais_id_seq', 894, true);
@@ -443,7 +443,7 @@ SET client_min_messages = warning;
 SET search_path = public, pg_catalog;
 
 --
--- Data for Name: departamento; Type: TABLE DATA; Schema: public; Owner: -
+-- Data for Name: sivel2_gen_departamento; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 INSERT INTO sivel2_gen_departamento (id, nombre, latitud, longitud, fechacreacion, fechadeshabilitacion, created_at, updated_at, id_pais) VALUES (1, 'DISTRITO CAPITAL', NULL, NULL, '2014-03-03', NULL, NULL, NULL, 862);
@@ -525,7 +525,7 @@ SET client_min_messages = warning;
 SET search_path = public, pg_catalog;
 
 --
--- Data for Name: municipio; Type: TABLE DATA; Schema: public; Owner: -
+-- Data for Name: sivel2_gen_municipio; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 INSERT INTO sivel2_gen_municipio (id, nombre, id_departamento, latitud, longitud, fechacreacion, fechadeshabilitacion, created_at, updated_at, id_pais) VALUES (1, 'ACEVEDO', 15, NULL, NULL, '2014-03-03', NULL, NULL, NULL, 862);
@@ -2013,7 +2013,7 @@ SET client_min_messages = warning;
 SET search_path = public, pg_catalog;
 
 --
--- Data for Name: clase; Type: TABLE DATA; Schema: public; Owner: -
+-- Data for Name: sivel2_gen_clase; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 INSERT INTO sivel2_gen_clase (id, nombre, id_departamento, id_municipio, id_tclase, latitud, longitud, fechacreacion, fechadeshabilitacion, created_at, updated_at, id_pais) VALUES (0, 'ABEJALES', 20, 16, NULL, NULL, NULL, '2014-03-03', NULL, NULL, NULL, 862);
@@ -15217,7 +15217,7 @@ SET client_min_messages = warning;
 SET search_path = public, pg_catalog;
 
 --
--- Data for Name: intervalo; Type: TABLE DATA; Schema: public; Owner: -
+-- Data for Name: sivel2_gen_intervalo; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 INSERT INTO sivel2_gen_intervalo (id, nombre, rango, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (1, 'MADRUGADA', '00:00 A 05:59', '2001-01-01', NULL, NULL, NULL);
@@ -15245,7 +15245,7 @@ SET client_min_messages = warning;
 SET search_path = public, pg_catalog;
 
 --
--- Data for Name: filiacion; Type: TABLE DATA; Schema: public; Owner: -
+-- Data for Name: sivel2_gen_filiacion; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 INSERT INTO sivel2_gen_filiacion (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (1, 'LIBERAL', '2001-01-01', NULL, NULL, NULL);
@@ -15283,7 +15283,7 @@ SET client_min_messages = warning;
 SET search_path = public, pg_catalog;
 
 --
--- Data for Name: organizacion; Type: TABLE DATA; Schema: public; Owner: -
+-- Data for Name: sivel2_gen_organizacion; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 INSERT INTO sivel2_gen_organizacion (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (1, 'CAMPESINA', '2001-01-01', NULL, NULL, NULL);
@@ -15323,7 +15323,7 @@ SET client_min_messages = warning;
 SET search_path = public, pg_catalog;
 
 --
--- Data for Name: sectorsocial; Type: TABLE DATA; Schema: public; Owner: -
+-- Data for Name: sivel2_gen_sectorsocial; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 INSERT INTO sivel2_gen_sectorsocial (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (1, 'CAMPESINO', '2001-01-01', NULL, NULL, NULL);
@@ -15362,7 +15362,7 @@ SET client_min_messages = warning;
 SET search_path = public, pg_catalog;
 
 --
--- Data for Name: vinculoestado; Type: TABLE DATA; Schema: public; Owner: -
+-- Data for Name: sivel2_gen_vinculoestado; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 INSERT INTO sivel2_gen_vinculoestado (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (1, 'CONGRESO', '2001-01-01', NULL, NULL, NULL);
@@ -15425,7 +15425,7 @@ SET client_min_messages = warning;
 SET search_path = public, pg_catalog;
 
 --
--- Data for Name: regimensalud; Type: TABLE DATA; Schema: public; Owner: -
+-- Data for Name: sivel2_gen_regimensalud; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 INSERT INTO sivel2_gen_regimensalud (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (0, 'SIN INFORMACIÓN', '2013-05-16', NULL, NULL, NULL);
@@ -15452,7 +15452,7 @@ SET client_min_messages = warning;
 SET search_path = public, pg_catalog;
 
 --
--- Data for Name: actividadarea; Type: TABLE DATA; Schema: public; Owner: -
+-- Data for Name: sivel2_gen_actividadarea; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 INSERT INTO sivel2_gen_actividadarea (id, nombre, observaciones, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (1, 'PSICOSOCIAL', '', '2013-12-04', NULL, '2014-01-09 02:23:28.732636', '2014-03-07 18:43:00.812476');
@@ -15466,7 +15466,7 @@ INSERT INTO sivel2_gen_actividadarea (id, nombre, observaciones, fechacreacion, 
 
 
 --
--- Name: actividadarea_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+-- Name: sivel2_gen_actividadarea_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
 SELECT pg_catalog.setval('sivel2_gen_actividadarea_id_seq', 105, true);
@@ -15490,7 +15490,7 @@ SET client_min_messages = warning;
 SET search_path = public, pg_catalog;
 
 --
--- Data for Name: actividadoficio; Type: TABLE DATA; Schema: public; Owner: -
+-- Data for Name: sivel2_gen_actividadoficio; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 
@@ -15513,7 +15513,7 @@ SET client_min_messages = warning;
 SET search_path = public, pg_catalog;
 
 --
--- Data for Name: categoria; Type: TABLE DATA; Schema: public; Owner: -
+-- Data for Name: sivel2_gen_categoria; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_supracategoria, id_tviolencia, id_pconsolidado, contadaen, tipocat, created_at, updated_at) VALUES (10, 'EJECUCIÓN EXTRAJUDICIAL', '2001-07-26', NULL, 1, 'A', 1, 701, 'I', NULL, NULL);
@@ -15670,7 +15670,7 @@ SET client_min_messages = warning;
 SET search_path = public, pg_catalog;
 
 --
--- Data for Name: escolaridad; Type: TABLE DATA; Schema: public; Owner: -
+-- Data for Name: sivel2_gen_escolaridad; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 
@@ -15693,7 +15693,7 @@ SET client_min_messages = warning;
 SET search_path = public, pg_catalog;
 
 --
--- Data for Name: etiqueta; Type: TABLE DATA; Schema: public; Owner: -
+-- Data for Name: sivel2_gen_etiqueta; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 INSERT INTO sivel2_gen_etiqueta (id, nombre, observaciones, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (10, 'DIA_INEXACTO', 'El dia del caso es inexacto', '2001-01-01', NULL, NULL, NULL);
@@ -15720,7 +15720,7 @@ SET client_min_messages = warning;
 SET search_path = public, pg_catalog;
 
 --
--- Data for Name: etnia; Type: TABLE DATA; Schema: public; Owner: -
+-- Data for Name: sivel2_gen_etnia; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 INSERT INTO sivel2_gen_etnia (id, nombre, descripcion, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (1, 'SIN INFORMACIÓN', ' ', '2011-04-26', NULL, NULL, NULL);
@@ -15851,7 +15851,7 @@ SET client_min_messages = warning;
 SET search_path = public, pg_catalog;
 
 --
--- Data for Name: frontera; Type: TABLE DATA; Schema: public; Owner: -
+-- Data for Name: sivel2_gen_frontera; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 INSERT INTO sivel2_gen_frontera (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (1, 'Ecuador', '2001-01-01', NULL, NULL, NULL);
@@ -15879,7 +15879,7 @@ SET client_min_messages = warning;
 SET search_path = public, pg_catalog;
 
 --
--- Data for Name: iglesia; Type: TABLE DATA; Schema: public; Owner: -
+-- Data for Name: sivel2_gen_iglesia; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 INSERT INTO sivel2_gen_iglesia (id, nombre, descripcion, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (1, 'SIN INFORMACIÓN', '', '2011-04-26', NULL, NULL, NULL);
@@ -15972,7 +15972,7 @@ SET client_min_messages = warning;
 SET search_path = public, pg_catalog;
 
 --
--- Data for Name: presponsable; Type: TABLE DATA; Schema: public; Owner: -
+-- Data for Name: sivel2_gen_presponsable; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 INSERT INTO sivel2_gen_presponsable (id, nombre, papa, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (1, 'ESTADO COLOMBIANO', 39, '2001-01-30', NULL, NULL, NULL);
@@ -16039,7 +16039,7 @@ SET client_min_messages = warning;
 SET search_path = public, pg_catalog;
 
 --
--- Data for Name: profesion; Type: TABLE DATA; Schema: public; Owner: -
+-- Data for Name: sivel2_gen_profesion; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 INSERT INTO sivel2_gen_profesion (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (1, 'ABOGADO', '2001-01-01', NULL, NULL, NULL);
@@ -16085,7 +16085,7 @@ SET client_min_messages = warning;
 SET search_path = public, pg_catalog;
 
 --
--- Data for Name: rangoedad; Type: TABLE DATA; Schema: public; Owner: -
+-- Data for Name: sivel2_gen_rangoedad; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 INSERT INTO sivel2_gen_rangoedad (id, nombre, rango, limiteinferior, limitesuperior, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (1, 'R1', 'De 0 a 15 Años', 0, 15, '2001-03-23', NULL, NULL, NULL);
@@ -16114,7 +16114,7 @@ SET client_min_messages = warning;
 SET search_path = public, pg_catalog;
 
 --
--- Data for Name: rangoedadac; Type: TABLE DATA; Schema: public; Owner: -
+-- Data for Name: sivel2_gen_rangoedadac; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 INSERT INTO sivel2_gen_rangoedadac (id, nombre, limiteinferior, limitesuperior, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (1, 'De 0 a 11', 0, 10, '2014-02-11', NULL, '2014-03-07 19:19:02.690768', NULL);
@@ -16126,7 +16126,7 @@ INSERT INTO sivel2_gen_rangoedadac (id, nombre, limiteinferior, limitesuperior, 
 
 
 --
--- Name: rangoedadac_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+-- Name: sivel2_gen_rangoedadac_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
 SELECT pg_catalog.setval('sivel2_gen_rangoedadac_id_seq', 100, true);
@@ -16150,7 +16150,7 @@ SET client_min_messages = warning;
 SET search_path = public, pg_catalog;
 
 --
--- Data for Name: region; Type: TABLE DATA; Schema: public; Owner: -
+-- Data for Name: sivel2_gen_region; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 INSERT INTO sivel2_gen_region (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (10, 'EJE CAFETERO Y TOLIMA GRANDE', '2001-01-01', NULL, NULL, NULL);
@@ -16180,7 +16180,7 @@ SET client_min_messages = warning;
 SET search_path = public, pg_catalog;
 
 --
--- Data for Name: regionsjr; Type: TABLE DATA; Schema: public; Owner: -
+-- Data for Name: sivel2_gen_regionsjr; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 INSERT INTO sivel2_gen_regionsjr (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (1, 'SIN INFORMACIÓN', '2014-09-01', NULL, '2014-09-01 12:54:42.630253', '2014-09-03 10:40:11.967004');
@@ -16205,7 +16205,7 @@ SET client_min_messages = warning;
 SET search_path = public, pg_catalog;
 
 --
--- Data for Name: tdocumento; Type: TABLE DATA; Schema: public; Owner: -
+-- Data for Name: sivel2_gen_tdocumento; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 INSERT INTO sivel2_gen_tdocumento (id, nombre, sigla, formatoregex, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (1, 'CÉDULA DE CIUDADANÍA', 'CC', '[0-9]*', '2014-09-21', NULL, NULL, NULL);
@@ -16223,7 +16223,7 @@ INSERT INTO sivel2_gen_tdocumento (id, nombre, sigla, formatoregex, fechacreacio
 
 
 --
--- Name: tdocumento_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+-- Name: sivel2_gen_tdocumento_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
 SELECT pg_catalog.setval('sivel2_gen_tdocumento_id_seq', 100, true);
@@ -16247,7 +16247,7 @@ SET client_min_messages = warning;
 SET search_path = public, pg_catalog;
 
 --
--- Data for Name: tsitio; Type: TABLE DATA; Schema: public; Owner: -
+-- Data for Name: sivel2_gen_tsitio; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 INSERT INTO sivel2_gen_tsitio (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (1, 'SIN INFORMACION', '2001-01-01', NULL, NULL, NULL);

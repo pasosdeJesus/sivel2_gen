@@ -7,8 +7,7 @@ module Sivel2Gen
       @ntablas = {}
       Ability::tablasbasicas.each { |t|
         puts "t=#{t}"
-        k = t[0] + '::' + t[1].capitalize
-        k = k.constantize 
+        k = Ability::tb_clase(t)
         puts "k=#{k}"
         n = k.human_attribute_name(t[1].pluralize.capitalize) 
         puts "n=#{n}"

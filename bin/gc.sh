@@ -1,8 +1,8 @@
 #!/bin/sh
 # Hace prueba de regresión y envia a github
 
-bundle update
-bundle install
+NOKOGIRI_USE_SYSTEM_LIBRARIES=1 MAKE=gmake make=gmake bundle update
+NOKOGIRI_USE_SYSTEM_LIBRARIES=1 MAKE=gmake make=gmake bundle install
 grep "^ *gem *.debugger*" Gemfile > /dev/null 2> /dev/null
 if (test "$?" = "0") then {
 	echo "Gemfile incluye debugger que heroku no quiere"

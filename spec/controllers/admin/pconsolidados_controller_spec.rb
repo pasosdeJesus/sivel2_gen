@@ -1,8 +1,8 @@
+require "spec_helper"
 require "rails_helper"
-require "sivel2_gen/admin/pconsolidados_controller"
 
 module Sivel2Gen
-  RSpec.describe Admin::PconsolidadosController do
+  describe Admin::PconsolidadosController do
     render_views
     describe "index" do
       before(:each) do
@@ -11,11 +11,11 @@ module Sivel2Gen
         controller.stub(:current_user).and_return(u)
       end
       it "presenta plantilla de indice" do
-        get :index, use_route: :sivel2_gen
+        get :index, use_route: "sivel2_gen/admin"
         expect(response).to render_template("index")
       end
       it "presenta plantilla widgets/index" do
-        get :index, use_route: :sivel2_gen
+        get :index, use_route: "sivel2_gen/admin"
         expect(response).to render_template("admin/basicas/index")
       end
     end
