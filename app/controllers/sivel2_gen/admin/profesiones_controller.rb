@@ -3,10 +3,10 @@ module Sivel2Gen
   module Admin
     class ProfesionesController < BasicasController
       before_action :set_profesion, only: [:show, :edit, :update, :destroy]
-      load_and_authorize_resource
+      load_and_authorize_resource class: Sivel2Gen::Profesion
   
       def clase 
-        "profesion"
+        "Sivel2Gen::Profesion"
       end
   
       def set_profesion

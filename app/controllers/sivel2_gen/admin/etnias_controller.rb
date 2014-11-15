@@ -3,10 +3,10 @@ module Sivel2Gen
   module Admin
     class EtniasController < BasicasController
       before_action :set_etnia, only: [:show, :edit, :update, :destroy]
-      load_and_authorize_resource
+      load_and_authorize_resource class: Sivel2Gen::Etnia
   
       def clase 
-        "etnia"
+        "Sivel2Gen::Etnia"
       end
   
       def set_etnia

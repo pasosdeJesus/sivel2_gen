@@ -3,10 +3,10 @@ module Sivel2Gen
   module Admin
     class SupracategoriasController < BasicasController
       before_action :set_supracategoria, only: [:show, :edit, :update, :destroy]
-      load_and_authorize_resource
+      load_and_authorize_resource class: Sivel2Gen::Supracategoria
   
       def clase 
-        "supracategoria"
+        "Sivel2Gen::Supracategoria"
       end
   
       def set_supracategoria

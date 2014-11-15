@@ -9,55 +9,55 @@
         %>
       <% elsif atr == "id_pais" %>
         <%= f.association :pais,
-          collection: Pais.habilitados,
+          collection: Sivel2Gen::Pais.habilitados,
           label: "País",
           label_method: :nombre,
           value_method: :id 
         %>
       <% elsif atr == "id_departamento" %>
         <%= f.association :departamento,
-          collection: (Departamento.habilitados.where(id_pais: 
+          collection: (Sivel2Gen::Departamento.habilitados.where(id_pais: 
                 f.object.id_pais)),
           label: "Departamento",
           label_method: lambda {|t| t.nombre + " (" + 
-            Pais.find(t.id_pais).nombre + ")"},
+            Sivel2Gen::Pais.find(t.id_pais).nombre + ")"},
           value_method: :id 
         %>
       <% elsif atr == "id_municipio" %>
         <%= f.association :municipio,
-          collection: (Municipio.habilitados.where(id_pais: f.object.id_pais, 
+          collection: (Sivel2Gen::Municipio.habilitados.where(id_pais: f.object.id_pais, 
                       id_departamento: f.object.id_departamento)),
           label: "Municipio",
           label_method: :nombre,
           value_method: :id %>
       <% elsif atr == "id_tclase" %>
 				<%= f.association :tclase,
-					collection: (Tclase.habilitados),
+					collection: (Sivel2Gen::Tclase.habilitados),
           label: "Tipo de Clase",
           label_method: :nombre,
           value_method: :id %>
       <% elsif atr == "id_supracategoria" then %>
         <%= f.association :supracategoria,
-          collection: Supracategoria.habilitados,
+          collection: Sivel2Gen::Supracategoria.habilitados,
             label: "Supracategoria",
             label_method: lambda {|t| t.nombre + " (" + 
-              Tviolencia.find(t.id_tviolencia).nombre + ")"},
+              Sivel2Gen::Tviolencia.find(t.id_tviolencia).nombre + ")"},
             value_method: :id %>
       <% elsif atr == "id_tviolencia" then %>
         <%= f.association :tviolencia,
-          collection: Tviolencia.habilitados,
+          collection: Sivel2Gen::Tviolencia.habilitados,
           label: "Tipo de Violencia",
           label_method: :nombre,
           value_method: :id %>
       <% elsif atr == "id_pconsolidado" then %>
         <%= f.association :pconsolidado,
-          collection: Pconsolidad.habilitados,
+          collection: Sivel2Gen::Pconsolidad.habilitados,
           label: "Consolidado",
           label_method: :nombre,
           value_method: :id %>
       <% elsif atr == "derecho_id" then %>
         <%= f.association :derecho,
-          collection: Derecho.habilitados,
+          collection: Sivel2Gen::Derecho.habilitados,
           label_method: :nombre,
           value_method: :id %>
       <% elsif atr == "tipocat" then %>

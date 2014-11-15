@@ -4,13 +4,11 @@ module Sivel2Gen
     class BasicasController < ApplicationController
       include BasicasHelpers
       helper BasicasHelpers
-      load_and_authorize_resource
+      #load_and_authorize_resource debe hacerse en heredadas
 
       # Despliega listado de registros
       def index
-        puts "basicas index"
         c = clase.constantize
-        puts "c=" + c.to_s
         @basica = c.order(camponombre).paginate(
           :page => params[:pagina], per_page: 20
         )
@@ -34,7 +32,8 @@ module Sivel2Gen
 
       # Crea un registro a partir de información de formulario
       def create
-        c2 = clase.underscorize().gsub(/\//, '_')
+        #c2 = clase.underscore().gsub(/\//, '_')
+        c2 = clase.demodulize.underscore
         @basica = clase.constantize.new(send(c2 + '_params'))
         respond_to do |format|
           if @basica.save
@@ -60,7 +59,7 @@ module Sivel2Gen
       # Actualiza un registro con información recibida de formulario
       def update
         respond_to do |format|
-          c2 = clase.underscorize().gsub(/\//, '_')
+          c2 = clase.demodulize.underscore
           if @basica.update(send(c2 + "_params"))
             format.html { 
               redirect_to admin_basica_path(@basica), 
@@ -87,7 +86,7 @@ module Sivel2Gen
 
       # Nombre de la tabla básica
       def clase 
-        "BASICA_CAMBIAR"
+        "Sivel2Gen::BasicaCambiar"
       end
 
       # Genero del nombre (F - Femenino, M - Masculino)

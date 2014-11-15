@@ -6,11 +6,8 @@ module Sivel2Gen
       authorize! :manage, :tablasbasicas
       @ntablas = {}
       Ability::tablasbasicas.each { |t|
-        puts "t=#{t}"
         k = Ability::tb_clase(t)
-        puts "k=#{k}"
         n = k.human_attribute_name(t[1].pluralize.capitalize) 
-        puts "n=#{n}"
         @ntablas[n] = send("admin_" + t[1].pluralize + "_path")
         #puts "@ntablas[n]=#{@ntablas[n]}"
       } 

@@ -3,10 +3,10 @@ module Sivel2Gen
   module Admin
     class TclasesController < BasicasController
       before_action :set_tclase, only: [:show, :edit, :update, :destroy]
-      load_and_authorize_resource
+      load_and_authorize_resource class: Sivel2Gen::Tclase
   
       def clase 
-        "tclase"
+        "Sivel2Gen::Tclase"
       end
   
       def set_tclase

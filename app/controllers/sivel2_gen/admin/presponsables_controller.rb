@@ -3,10 +3,10 @@ module Sivel2Gen
   module Admin
     class PresponsablesController < BasicasController
       before_action :set_presponsable, only: [:show, :edit, :update, :destroy]
-      load_and_authorize_resource
+      load_and_authorize_resource class: Sivel2Gen::Presponsable
   
       def clase 
-        "presponsable"
+        "Sivel2Gen::Presponsable"
       end
   
       def set_presponsable

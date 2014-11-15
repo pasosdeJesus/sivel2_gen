@@ -3,10 +3,10 @@ module Sivel2Gen
   module Admin
     class EscolaridadesController < BasicasController
       before_action :set_escolaridad, only: [:show, :edit, :update, :destroy]
-      load_and_authorize_resource
+      load_and_authorize_resource class: Sivel2Gen::Escolaridad
   
       def clase 
-        "escolaridad"
+        "Sivel2Gen::Escolaridad"
       end
   
       def set_escolaridad

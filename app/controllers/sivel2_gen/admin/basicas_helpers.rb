@@ -8,12 +8,14 @@ module Sivel2Gen
       def nombreobj(o)
         r = ""
         if defined? o.name
-          r = o.name.downcase
+          #r = o.name.downcase
+          r = o.name.demodulize.underscore
         else
-          r = o.class.name.downcase
+          #r = o.class.name.underscore.gsub(/\//, '_')
+          r = o.class.name.demodulize.underscore
         end
-        if r == "activerecord::relation"
-          r = o.name.downcase
+        if r == "relation"
+          r = o.name.demodulize.underscore
         end
         return r
       end

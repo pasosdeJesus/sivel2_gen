@@ -31,7 +31,8 @@ Sivel2Gen::Engine.routes.draw do
 
   namespace :admin do
     Ability.tablasbasicas.each do |t|
-      resources t[1].pluralize.to_sym, 
+      c = t[1].pluralize
+      resources c.to_sym, 
         path_names: { new: 'nueva', edit: 'edita' }
     end
   end

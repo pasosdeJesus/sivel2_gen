@@ -3,10 +3,10 @@ module Sivel2Gen
   module Admin
     class FronterasController < BasicasController
       before_action :set_frontera, only: [:show, :edit, :update, :destroy]
-      load_and_authorize_resource
+      load_and_authorize_resource class: Sivel2Gen::Frontera
   
       def clase 
-        "frontera"
+        "Sivel2Gen::Frontera"
       end
   
       def set_frontera

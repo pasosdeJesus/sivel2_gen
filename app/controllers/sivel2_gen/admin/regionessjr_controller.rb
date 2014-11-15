@@ -3,10 +3,10 @@ module Sivel2Gen
   module Admin
     class RegionessjrController < BasicasController
       before_action :set_regionsjr, only: [:show, :edit, :update, :destroy]
-      load_and_authorize_resource
+      load_and_authorize_resource class: Sivel2Gen::Regionsjr
   
       def clase 
-        "regionsjr"
+        "Sivel2Gen::Regionsjr"
       end
   
       def set_regionsjr

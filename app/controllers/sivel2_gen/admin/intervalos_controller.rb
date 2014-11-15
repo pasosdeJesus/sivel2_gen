@@ -3,10 +3,10 @@ module Sivel2Gen
   module Admin
     class IntervalosController < BasicasController
       before_action :set_intervalo, only: [:show, :edit, :update, :destroy]
-      load_and_authorize_resource
+      load_and_authorize_resource class: Sivel2Gen::Intervalo
   
       def clase 
-        "intervalo"
+        "Sivel2Gen::Intervalo"
       end
   
       def set_intervalo

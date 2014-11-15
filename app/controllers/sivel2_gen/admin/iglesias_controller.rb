@@ -3,10 +3,10 @@ module Sivel2Gen
   module Admin
     class IglesiasController < BasicasController
       before_action :set_iglesia, only: [:show, :edit, :update, :destroy]
-      load_and_authorize_resource
+      load_and_authorize_resource class: Sivel2Gen::Iglesia
   
       def clase 
-        "iglesia"
+        "Sivel2Gen::Iglesia"
       end
   
       def set_iglesia

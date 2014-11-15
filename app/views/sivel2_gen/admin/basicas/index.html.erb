@@ -1,7 +1,7 @@
 <%- model_class = @basica -%>
 <div class="page-header">
   <h1><%=t '.title', :default => 
-    model_class.human_attribute_name(model_class.model_name.to_s.pluralize) 
+    model_class.human_attribute_name(model_class.model_name.to_s.demodulize.pluralize) 
   %></h1>
 </div>
 <% ng = (!genclase.nil? && genclase == 'F') ? 'Nueva' : 'Nuevo' %>
@@ -27,23 +27,23 @@
           <% if atr == "id" then %>
             <td><%= link_to basica[atr], admin_basica_path(basica) %></td>
           <% elsif atr == "id_pais" then %>
-            <td><%= Pais.find(basica[atr]).nombre %></td>
+            <td><%= Sivel2Gen::Pais.find(basica[atr]).nombre %></td>
           <% elsif atr == "id_departamento" then %>
-            <td><%= Departamento.find(basica[atr]).nombre %></td>
+            <td><%= Sivel2Gen::Departamento.find(basica[atr]).nombre %></td>
           <% elsif atr == "id_municipio" then %>
-            <td><%= Municipio.find(basica[atr]).nombre %></td>
+            <td><%= Sivel2Gen::Municipio.find(basica[atr]).nombre %></td>
           <% elsif atr == "id_tclase" then %>
             <td><%= basica[atr].nil? ?
-              "" : Tclase.find(basica[atr]).nombre
+              "" : Sivel2Gen::Tclase.find(basica[atr]).nombre
               %></td>
           <% elsif atr == "id_supracategoria" then %>
-            <td><%= Supracategoria.find(basica[atr]).nombre %></td>
+            <td><%= Sivel2Gen::Supracategoria.find(basica[atr]).nombre %></td>
           <% elsif atr == "id_tviolencia" then %>
-            <td><%= Tviolencia.find(basica[atr]).nombre %></td>
+            <td><%= Sivel2Gen::Tviolencia.find(basica[atr]).nombre %></td>
           <% elsif atr == "id_pconsolidado" then %>
-            <td><%= Pconsolidado.find(basica[atr]).nombre %></td>
+            <td><%= Sivel2Gen::Pconsolidado.find(basica[atr]).nombre %></td>
           <% elsif atr == "derecho_id" then %>
-            <td><%= Derecho.find(basica[atr]).nombre if basica[atr] %></td>
+            <td><%= Sivel2Gen::Derecho.find(basica[atr]).nombre if basica[atr] %></td>
           <% elsif atr == "tipocat" then %>
             <td>
               <% h={C: "Colectivo", I: "Individual", O: "Otro"} %>

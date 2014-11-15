@@ -3,10 +3,10 @@ module Sivel2Gen
   module Admin
     class ClasesController < BasicasController
       before_action :set_clase, only: [:show, :edit, :update, :destroy]
-      load_and_authorize_resource
+      load_and_authorize_resource class: Sivel2Gen::Clase
   
       def clase 
-        "clase"
+        "Sivel2Gen::Clase"
       end
   
       def set_clase

@@ -3,10 +3,10 @@ module Sivel2Gen
   module Admin
     class CategoriasController < BasicasController
       before_action :set_categoria, only: [:show, :edit, :update, :destroy]
-      load_and_authorize_resource
-  
+      load_and_authorize_resource class: Sivel2Gen::Categoria
+
       def clase 
-        "categoria"
+        "Sivel2Gen::Categoria"
       end
   
       def set_categoria

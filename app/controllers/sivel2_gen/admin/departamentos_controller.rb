@@ -3,10 +3,10 @@ module Sivel2Gen
   module Admin
     class DepartamentosController < BasicasController
       before_action :set_departamento, only: [:show, :edit, :update, :destroy]
-      load_and_authorize_resource
+      load_and_authorize_resource class: Sivel2Gen::Departamento
   
       def clase 
-        "departamento"
+        "Sivel2Gen::Departamento"
       end
   
       def set_departamento

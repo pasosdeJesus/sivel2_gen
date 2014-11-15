@@ -3,10 +3,10 @@ module Sivel2Gen
   module Admin
     class VinculosestadoController < BasicasController
       before_action :set_vinculoestado, only: [:show, :edit, :update, :destroy]
-      load_and_authorize_resource
+      load_and_authorize_resource class: Sivel2Gen::Vinculoestado
   
       def clase 
-        "vinculoestado"
+        "Sivel2Gen::Vinculoestado"
       end
   
       def set_vinculoestado

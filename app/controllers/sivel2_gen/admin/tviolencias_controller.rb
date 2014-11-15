@@ -3,10 +3,10 @@ module Sivel2Gen
   module Admin
     class TviolenciasController < BasicasController
       before_action :set_tviolencia, only: [:show, :edit, :update, :destroy]
-      load_and_authorize_resource
+      load_and_authorize_resource class: Sivel2Gen::Tviolencia
   
       def clase 
-        "tviolencia"
+        "Sivel2Gen::Tviolencia"
       end
   
       def set_tviolencia

@@ -1,7 +1,7 @@
 <%- model_class = @basica.class -%>
 <div class="page-header">
   <h1><%=t '.title', 
-    :default => model_class.human_attribute_name(model_class.model_name) 
+    :default => model_class.human_attribute_name(model_class.model_name.to_s.demodulize) 
     %></h1>
 </div>
 
@@ -10,23 +10,23 @@
     <% if !@basica[atr].nil? && @basica[atr].to_s.length > 0 %>
       <dt><strong><%= model_class.human_attribute_name(atr.to_sym) %>:</strong></dt>
       <% if atr == 'id_pais' then %>
-        <dd><%= Pais.find(@basica[atr]).nombre %></dd>
+        <dd><%= Sivel2Gen::Pais.find(@basica[atr]).nombre %></dd>
       <% elsif atr == 'id_departamento' then %>
-        <dd><%= Departamento.where(
+        <dd><%= Sivel2Gen::Departamento.where(
         id: @basica[atr], id_pais: @basica['id_pais']).first.nombre 
         %></dd>
       <% elsif atr == 'id_municipio' then %>
-        <dd><%= Municipio.find(@basica[atr]).nombre %></dd>
+        <dd><%= Sivel2Gen::Municipio.find(@basica[atr]).nombre %></dd>
       <% elsif atr == "id_tclase" then %>
-        <dd><%= Tclase.find(@basica[atr]).nombre%></dd>
+        <dd><%= Sivel2Gen::Tclase.find(@basica[atr]).nombre%></dd>
       <% elsif atr == "id_supracategoria" then %>
-        <dd><%= Supracategoria.find(@basica[atr]).nombre%></dd>
+        <dd><%= Sivel2Gen::Supracategoria.find(@basica[atr]).nombre%></dd>
       <% elsif atr == "id_tviolencia" then %>
-        <dd><%= Tviolencia.find(@basica[atr]).nombre%></dd>
+        <dd><%= Sivel2Gen::Tviolencia.find(@basica[atr]).nombre%></dd>
       <% elsif atr == "id_pconsolidado" then %>
-        <dd><%= Pconsolidado.find(@basica[atr]).nombre%></dd>
+        <dd><%= Sivel2Gen::Pconsolidado.find(@basica[atr]).nombre%></dd>
       <% elsif atr == "derecho_id" then %>
-        <dd><%= Derecho.find(@basica[atr]).nombre%></dd>
+        <dd><%= Sivel2Gen::Derecho.find(@basica[atr]).nombre%></dd>
       <% elsif atr == "tipocat" then %>
         <dd>
         <% h={C: "Colectivo", I: "Individual", O: "Otro"} %>

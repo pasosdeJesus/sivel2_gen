@@ -3,10 +3,10 @@ module Sivel2Gen
   module Admin
     class RangosedadacController < BasicasController
       before_action :set_rangoedadac, only: [:show, :edit, :update, :destroy]
-      load_and_authorize_resource
+      load_and_authorize_resource class: Sivel2Gen::Rangoedadac
   
       def clase 
-        "rangoedadac"
+        "Sivel2Gen::Rangoedadac"
       end
   
       def set_rangoedadac

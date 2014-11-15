@@ -3,10 +3,10 @@ module Sivel2Gen
   module Admin
     class RegimenessaludController < BasicasController
       before_action :set_regimensalud, only: [:show, :edit, :update, :destroy]
-      load_and_authorize_resource
+      load_and_authorize_resource class: Sivel2Gen::Regimensalud
   
       def clase 
-        "regimensalud"
+        "Sivel2Gen::Regimensalud"
       end
   
       def set_regimensalud

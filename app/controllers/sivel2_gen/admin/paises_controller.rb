@@ -3,10 +3,10 @@ module Sivel2Gen
   module Admin
     class PaisesController < BasicasController
       before_action :set_pais, only: [:show, :edit, :update, :destroy]
-      load_and_authorize_resource
+      load_and_authorize_resource class: Sivel2Gen::Pais
   
       def clase 
-        "pais"
+        "Sivel2Gen::Pais"
       end
   
       def set_pais

@@ -1,12 +1,12 @@
 # encoding: UTF-8
 module Sivel2Gen
   module Admin
-    class EtiquetasController < BasicasController
+    class EtiquetasController < BasicasController #ApplicationController 
       before_action :set_etiqueta, only: [:show, :edit, :update, :destroy]
-      load_and_authorize_resource
-  
+      load_and_authorize_resource class: Sivel2Gen::Etiqueta
+ 
       def clase 
-        "etiqueta"
+        "Sivel2Gen::Etiqueta"
       end
   
       def set_etiqueta
