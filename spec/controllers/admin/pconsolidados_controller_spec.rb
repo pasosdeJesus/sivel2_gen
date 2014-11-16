@@ -11,11 +11,11 @@ module Sivel2Gen
         controller.stub(:current_user).and_return(u)
       end
       it "presenta plantilla de indice" do
-        get :index, use_route: "sivel2_gen/admin"
+        get :index, use_route: "sivel2_gen"
         expect(response).to render_template("index")
       end
       it "presenta plantilla widgets/index" do
-        get :index, use_route: "sivel2_gen/admin"
+        get :index, use_route: "sivel2_gen"
         expect(response).to render_template("admin/basicas/index")
       end
     end
