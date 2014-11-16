@@ -88,12 +88,14 @@ group :development, :test do
   gem "launchy"
 
   # Depurar
-  #gem 'debugger'
-  
   gem 'byebug'
   
   # Consola irb en páginas con excepciones o usando <%= console %> en vistasA
   gem 'web-console', '~> 2.0.0.beta4'
+
+  # Para examinar errores, usar "rescue rspec" en lugar de "rspec"
+  gem 'pry-rescue'
+  gem 'pry-stack_explorer'
 
 end
 
