@@ -33,12 +33,12 @@ Se han implementado algunas pruebas con RSpec a modelos y pruebas de regresión.
   bundle install
 ```
 Aunque para minimizar descargas vale la pena instalar como gemas del
-sistema la mayoría de estas con:
+sistema la mayoría de estas, en adJ con:
 ```sh
   grep "^ *gem" Gemfile | sed -e "s/gem [\"']//g;s/[\"'].*//g" | xargs sudo NOKOGIRI_USE_SYSTEM_LIBRARIES make=gmake gem install
 ```
 * Cree usuario para PostgreSQL (recomendado sivel2 o el que especifique en config/database.yml) 
-  y ponga la clave en .env por ejemplo
+  y pongale una clave, por ejemplo en adJ
 ```sh
 sudo su - _postgresql
 $ createuser -Upostgres -h/var/www/tmp -s sivel2
@@ -51,7 +51,11 @@ ALTER ROLE
 postgres=# \q
 $ exit
 ```
-
+* Prepare spec/dummy/config/database.yml con los datos de la base que creo:
+```sh
+  cp spec/dummy/config/database.yml.plantilla spec/dummy/config/database.yml
+  $EDITOR spec/dummy/config/database.yml
+```
 * Prepare base de prueba con:
 ``` sh
   cd spec/dummy
