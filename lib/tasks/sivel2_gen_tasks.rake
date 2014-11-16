@@ -53,9 +53,9 @@ namespace :sivel2 do
 		filename = "db/datos-basicas.sql"
     File.open(filename, "w") { |f| f << "-- Volcado de tablas basicas\n\n
 
-    ALTER TABLE ONLY categoria
+    ALTER TABLE ONLY sivel2_gen_categoria
       DROP CONSTRAINT categoria_contadaen_fkey; 
-    ALTER TABLE ONLY presponsable
+    ALTER TABLE ONLY sivel2_gen_presponsable
       DROP CONSTRAINT presponsable_papa_fkey;
 
       " 
