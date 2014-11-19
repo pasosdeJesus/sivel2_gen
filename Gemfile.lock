@@ -269,7 +269,7 @@ DEPENDENCIES
   cancan
   cocoon!
   codeclimate-test-reporter
-  coffee-rails (~> 4.1.0)
+  coffee-rails
   devise
   devise-i18n
   factory_girl_rails (~> 4.0)
