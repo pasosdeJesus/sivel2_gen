@@ -1,6 +1,9 @@
 # encoding: UTF-8
-class Iglesia < ActiveRecord::Base
+module Sivel2Gen
+  class <%= nom_clase %> < ActiveRecord::Base
+    include Basica
 
-  validates :nombre, presence: true, allow_blank: false
-  validates :fechacreacion, presence: true, allow_blank: false
+    validates :nombre, presence: true, allow_blank: false
+    validates :fechacreacion, presence: true, allow_blank: false
+  end
 end

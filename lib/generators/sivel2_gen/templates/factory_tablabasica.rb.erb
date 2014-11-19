@@ -1,7 +1,7 @@
 # encoding: UTF-8
 
 FactoryGirl.define do
-  factory :<%= nom_arch %> do
+  factory :sivel2_gen_<%= nom_arch %>, class: 'Sivel2Gen::<%= nom_clase %>' do
 		id 1000 # Buscamos que no intefiera con existentes
     nombre "<%= nom_clase %>"
     fechacreacion "<%= Date.today %>"
