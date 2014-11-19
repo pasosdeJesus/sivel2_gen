@@ -1,7 +1,7 @@
 # encoding: UTF-8
 module Sivel2Gen
   class AnexosController < ApplicationController
-    load_and_authorize_resource
+    load_and_authorize_resource class: Sivel2Gen::Anexo
 
     def descarga_anexo
       if !params[:id].nil?

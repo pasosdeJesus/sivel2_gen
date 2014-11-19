@@ -2,7 +2,7 @@
 module Sivel2Gen
   class CasosController < ApplicationController
     before_action :set_caso, only: [:show, :edit, :update, :destroy]
-    load_and_authorize_resource
+    load_and_authorize_resource Sivel2Gen::Caso
 
     # GET /casos
     # GET /casos.json

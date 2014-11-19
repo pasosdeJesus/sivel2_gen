@@ -1,5 +1,4 @@
 # encoding: UTF-8
-require 'basica'
 module Sivel2Gen
   class Etiqueta < ActiveRecord::Base
     include Basica

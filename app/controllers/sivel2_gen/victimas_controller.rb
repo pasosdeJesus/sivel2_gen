@@ -2,7 +2,7 @@
 require 'date'
 module Sivel2Gen
   class VictimasController < ApplicationController
-    load_and_authorize_resource
+    load_and_authorize_resource class: Sivel2Gen::Victima
 
     # Crea un nuevo registro para el caso que recibe por parametro 
     # params[:caso_id].  Pone valores simples en los campos requeridos
