@@ -28,11 +28,11 @@
 
 <div class="form-actions">
   <%= link_to t('.back', :default => t("helpers.links.back")),
-              actividades_path, :class => 'btn'  %>
+              sivel2_gen.actividades_path, :class => 'btn'  %>
   <%= link_to t('.edit', :default => t("helpers.links.edit")),
-              edit_actividad_path(@actividad), :class => 'btn' %>
+              sivel2_gen.edit_actividad_path(@actividad), :class => 'btn' %>
   <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-              actividad_path(@actividad),
+              sivel2_gen.actividad_path(@actividad),
               :method => 'delete',
               :data => { :confirm => 
                 t('.confirm', :default => t("helpers.links.confirm", 

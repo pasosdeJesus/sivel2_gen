@@ -5,7 +5,7 @@
 </div>
 <% if @actividades.size > 1 %>
   <%= link_to t('.new', :default => t("helpers.links.new")),
-    new_caso_path,
+    sivel2_gen.new_caso_path,
     :class => 'btn btn-primary' 
   %>
 <% end %>
@@ -28,7 +28,7 @@
   <tbody>
     <% @actividades.try(:each) do |actividad| %>
       <tr>
-        <td><%= link_to actividad.id, actividad_path(actividad) %></td>
+        <td><%= link_to actividad.id, sivel2_gen.actividad_path(actividad) %></td>
         <td><%= actividad.oficina.nombre if !actividad.oficina.nil? %></td>
         <td><%= actividad.minutos %></td>
         <td><%= actividad.nombre %></td>
@@ -40,9 +40,9 @@
         <td><%= actividad.observaciones %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_actividad_path(actividad), :class => 'btn btn-xs' %>
+                      sivel2_gen.edit_actividad_path(actividad), :class => 'btn btn-xs' %>
           <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-                      actividad_path(actividad),
+                      sivel2_gen.actividad_path(actividad),
                       :method => :delete,
                       :data => { :confirm => t(
                         '.confirm', 
@@ -57,6 +57,6 @@
 
 <%= will_paginate @actividad, { param_name: :pagina }  %>
 <%= link_to t('.new', :default => 'Nueva'),
-  new_actividad_path,
+  sivel2_gen.new_actividad_path,
   :class => 'btn btn-primary' 
 %>
