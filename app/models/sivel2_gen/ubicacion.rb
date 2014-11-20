@@ -1,10 +1,10 @@
 # encoding: UTF-8
 module Sivel2Gen
   class Ubicacion < ActiveRecord::Base
-    has_many :expulsion, foreign_key: "id_expulsion", validate: true, 
-      class_name: "Sivel2Gen::Desplazamiento"
-    has_many :llegada,  validate: true, foreign_key: "id_llegada",
-      class_name: "Sivel2Gen::Desplazamiento"
+#    has_many :expulsion, foreign_key: "id_expulsion", validate: true, 
+#      class_name: "Sivel2Gen::Desplazamiento"
+#    has_many :llegada,  validate: true, foreign_key: "id_llegada",
+#      class_name: "Sivel2Gen::Desplazamiento"
 
     has_one :salidarefugio, validate: true, foreign_key: "id_salida",
       class_name: "Sivel2Gen::Casosjr"

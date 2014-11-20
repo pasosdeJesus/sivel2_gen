@@ -9,8 +9,8 @@ module Sivel2Gen
       class_name: 'Sivel2Gen::Persona'
     has_many :ubicacion, foreign_key: "id_municipio", validate: true, 
       class_name: 'Sivel2Gen::Ubicacion'
-    has_many :desplazamiento, foreign_key: "municipiodecl", validate: true, 
-      class_name: 'Sivel2Gen::Desplazamiento'
+#    has_many :desplazamiento, foreign_key: "municipiodecl", validate: true, 
+#      class_name: 'Sivel2Gen::Desplazamiento'
     has_many :victimasjr, foreign_key: "id_municipio", validate: true, 
       class_name: 'Sivel2Gen::Victimasjr'
 

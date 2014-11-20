@@ -17,7 +17,7 @@ module Sivel2Gen
     accepts_nested_attributes_for :anexo, allow_destroy: true, 
       reject_if: :all_blank
     has_many :antecedente_caso, foreign_key: "id_caso", validate: true, 
-      dependent: :destroy, class_name: 'Sivel2Gen::AntecedneteCaso'
+      dependent: :destroy, class_name: 'Sivel2Gen::AntecedenteCaso'
     has_many :antecedente_comunidad, foreign_key: "id_caso", validate: true, 
       dependent: :destroy, class_name: 'Sivel2Gen::AntecedenteComunidad'
     has_many :antecedente_victima, foreign_key: "id_caso", validate: true, 
@@ -67,10 +67,10 @@ module Sivel2Gen
       dependent: :destroy, class_name: 'Sivel2Gen::Ubicacion'
     accepts_nested_attributes_for :ubicacion, allow_destroy: true, 
       reject_if: :all_blank
-    has_many :desplazamiento, foreign_key: "id_caso", validate: true, 
-      dependent: :destroy, class_name: 'Sivel2Gen::Desplazamiento'
-    accepts_nested_attributes_for :desplazamiento , allow_destroy: true, 
-      reject_if: :all_blank
+#    has_many :desplazamiento, foreign_key: "id_caso", validate: true, 
+#      dependent: :destroy, class_name: 'Sivel2Gen::Desplazamiento'
+#    accepts_nested_attributes_for :desplazamiento , allow_destroy: true, 
+#      reject_if: :all_blank
     has_many :victima,  foreign_key: "id_caso", dependent: :destroy, 
       class_name: 'Sivel2Gen::Victima'
     has_many :persona, :through => :victima, class_name: 'Sivel2Gen::Persona'

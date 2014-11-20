@@ -15,8 +15,8 @@ module Sivel2Gen
       class_name: 'Sivel2Gen::Victima' 
     has_many :ubicacion, foreign_key: "id_pais", validate: true,
       class_name: 'Sivel2Gen::Ubicacion' 
-    has_many :desplazamiento, foreign_key: "paisdecl", validate: true,
-      class_name: 'Sivel2Gen::Desplazamiento' 
+#    has_many :desplazamiento, foreign_key: "paisdecl", validate: true,
+#      class_name: 'Sivel2Gen::Desplazamiento' 
     has_many :victimasjr, foreign_key: "id_pais", validate: true,
       class_name: 'Sivel2Gen::Victimasjr' 
 

@@ -2,7 +2,7 @@
 module Sivel2Gen
   class CasosController < ApplicationController
     before_action :set_caso, only: [:show, :edit, :update, :destroy]
-    load_and_authorize_resource Sivel2Gen::Caso
+    load_and_authorize_resource class: Sivel2Gen::Caso
 
     # GET /casos
     # GET /casos.json
@@ -27,6 +27,7 @@ module Sivel2Gen
 
     # GET /casos/new
     def new
+      byebug
       @caso.current_usuario = current_usuario
       @caso.fecha = DateTime.now.strftime('%Y-%m-%d')
       @caso.memo = ''

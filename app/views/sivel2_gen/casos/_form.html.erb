@@ -2,7 +2,9 @@
   <li><a href="usuarios/sign_in">Iniciar Sesión</a>
 <%- else  %>
   <article>
-  <%= simple_form_for @caso, :html => { :class => 'form-horizontal' } do |f| %>
+  <%= simple_form_for @caso, 
+    :url => sivel2_gen.casos_path(@caso).sub(/\./,"/"), 
+    :html => { :class => 'form-horizontal' } do |f| %>
     <div data-role="content" class="form-inputs">
       <div id="errores">
         <% if f.object.errors.any? %>
@@ -204,7 +206,7 @@
     <div class="form-actions">
       <%= f.button :submit, 'Guardar', :class => 'btn-primary' %>
       <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-        casos_path, :class => 'btn' 
+        sivel2_gen.casos_path, :class => 'btn' 
       %>
     </div>
   <% end %> <!-- simple_form_for @caso -->
