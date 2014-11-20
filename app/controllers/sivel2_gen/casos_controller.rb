@@ -118,6 +118,9 @@ module Sivel2Gen
     # DELETE /casos/1
     # DELETE /casos/1.json
     def destroy
+      if @caso.id
+        CasoUsuario.destroy_all(id_caso: @caso.id)
+      end
       @caso.destroy
       respond_to do |format|
         format.html { redirect_to casos_url }
