@@ -27,7 +27,6 @@ module Sivel2Gen
 
     # GET /casos/new
     def new
-      byebug
       @caso.current_usuario = current_usuario
       @caso.fecha = DateTime.now.strftime('%Y-%m-%d')
       @caso.memo = ''

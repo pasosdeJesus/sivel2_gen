@@ -50,6 +50,7 @@ module Sivel2Gen
     has_many :region, through: :caso_region, class_name: 'Sivel2Gen::Region'
     has_many :caso_usuario, foreign_key: "id_caso", validate: true, 
       dependent: :destroy, class_name: 'Sivel2Gen::CasoUsuario'
+    has_many :usuario, :through => :caso_usuario, class_name: 'Usuario'
 
     has_many :comunidad_filiacion, foreign_key: "id_caso", validate: true, 
       dependent: :destroy, class_name: 'Sivel2Gen::ComunidadFiliacion'
