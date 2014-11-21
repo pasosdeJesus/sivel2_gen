@@ -4,7 +4,6 @@ module Sivel2Gen
   class Engine < ::Rails::Engine
 
     isolate_namespace Sivel2Gen
-#    endpoint RackSivel2Gen
 
     config.generators do |g|
       g.test_framework      :rspec,        :fixture => false
@@ -20,6 +19,13 @@ module Sivel2Gen
         config.paths["db/migrate"].expanded.each do |expanded_path|
           app.config.paths["db/migrate"] << expanded_path
         end
+      end
+    end
+
+    # De http://guides.rubyonrails.org/engines.html
+    config.to_prepare do
+      Dir.glob(Rails.root + "app/decorators/**/*_decorator*.rb").each do |c|
+        require_dependency(c)
       end
     end
   end

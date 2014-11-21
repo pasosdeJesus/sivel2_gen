@@ -9,5 +9,9 @@ module Sivel2Gen
 
     validates :nombre, presence: true, allow_blank: false
     validates :fechacreacion, presence: true, allow_blank: false
+
+    def self.loco1
+      "loco1"
+    end
   end
 end
