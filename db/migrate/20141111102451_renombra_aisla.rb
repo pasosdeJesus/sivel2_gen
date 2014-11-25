@@ -44,7 +44,6 @@ class RenombraAisla < ActiveRecord::Migration
     rename_table :grupoper, :sivel2_gen_grupoper
     rename_table :iglesia, :sivel2_gen_iglesia
     rename_table :intervalo, :sivel2_gen_intervalo
-    rename_table :maternidad, :sivel2_gen_maternidad
     rename_table :municipio, :sivel2_gen_municipio
     rename_table :organizacion, :sivel2_gen_organizacion
     rename_table :pais, :sivel2_gen_pais

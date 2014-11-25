@@ -1,7 +1,7 @@
 # Read about factories at https://github.com/thoughtbot/factory_girl
 
 FactoryGirl.define do
-  factory :usuario do
+  factory :usuario, class: 'Usuario' do
     nusuario "admin"
     password "sjrven123"
     nombre "admin"

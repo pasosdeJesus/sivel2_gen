@@ -1,6 +1,6 @@
 <%- model_class = @basica -%>
 <div class="page-header">
-  <h1><%=t '.title', :default => 
+  <h1><%= t '.title', :default => 
     model_class.human_attribute_name(model_class.model_name.to_s.demodulize.pluralize) 
   %></h1>
 </div>

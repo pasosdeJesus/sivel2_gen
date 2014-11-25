@@ -38,7 +38,9 @@
   </head>
   <body>
 
-    <%= nav_bar :fixed => :top, :brand => Sivel2Gen.titulo, :responsive => true do %>
+    <%= nav_bar :fixed => :top, :brand => Sivel2Gen.titulo, 
+      brand_link: sivel2_gen.root_url, :responsive => true do 
+    %>
       <%= menu_group do %>
         <% if !current_usuario.nil? %>
           <%= menu_item "Casos", sivel2_gen.casos_path %>

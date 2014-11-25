@@ -158,7 +158,11 @@ module Sivel2Gen
           can :manage, Usuario
           can :manage, :tablasbasicas
           @@tablasbasicas.each do |t|
-            c = t[0] + '::' + t[1].capitalize
+            if (t[0] != "") 
+                c = t[0] + '::' + t[1].capitalize
+            else
+                c = t[1].capitalize
+            end
             c = c.constantize
             can :manage, c
           end

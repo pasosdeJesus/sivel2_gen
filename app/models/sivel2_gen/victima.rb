@@ -1,7 +1,8 @@
 # encoding: UTF-8
 module Sivel2Gen
   class Victima < ActiveRecord::Base
-    #has_many :antecedente_victima, foreign_key: [:id_persona, :id_caso], validate: true, dependent: :destroy
+    has_many :antecedente_victima, foreign_key: :id_victima, 
+      validate: true, dependent: :destroy
 
     # En el orden de esquema en base 
     belongs_to :caso, foreign_key: "id_caso", validate: true, 
@@ -25,7 +26,10 @@ module Sivel2Gen
       class_name: "Sivel2Gen::Sectorsocial"
     belongs_to :vinculoestado, foreign_key: "id_vinculoestado", validate: true, 
       class_name: "Sivel2Gen::Vinculoestado"
-    belongs_to :presponsable, foreign_key: "organizacionarmada", validate: true, 
-      class_name: "Sivel2Gen::Presponsable"
+    belongs_to :presponsable, foreign_key: "organizacionarmada", 
+      validate: true, class_name: "Sivel2Gen::Presponsable"
+
+    validates :caso, presence: true
+    validates :persona, presence: true
   end
 end

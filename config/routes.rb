@@ -31,9 +31,11 @@ Sivel2Gen::Engine.routes.draw do
 
   namespace :admin do
     Ability.tablasbasicas.each do |t|
-      c = t[1].pluralize
-      resources c.to_sym, 
-        path_names: { new: 'nueva', edit: 'edita' }
+      if (t[0] == "Sivel2Gen") 
+        c = t[1].pluralize
+        resources c.to_sym, 
+          path_names: { new: 'nueva', edit: 'edita' }
+      end
     end
   end
 

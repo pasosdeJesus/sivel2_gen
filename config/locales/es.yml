@@ -26,18 +26,6 @@ es:
         Actividadoficio: Actividad u Oficio
       "sivel2_gen/acto":
         presponsable: Presunto Responsable
-      "sivel2_gen/aslegal":
-        Aslegal: Asistencia Legal
-        Aslegales: Asistencias Legales
-      "sivel2_gen/aspsicosocial": 
-        Aspsicosocial: Asistencia Psicosocial
-        Aspsicosociales: Asistencias Psicosociales
-      "sivel2_gen/ayudaestado": 
-        Ayudaestado: Ayuda del Estado
-        Ayudasestado: Ayudas del Estado
-      "sivel2_gen/ayudasjr": 
-        Ayudasjr: Ayuda del SJR
-        Ayudassjr: Ayudas del SJR
       "sivel2_gen/actividad": 
         id: Identificación
         numero: Número
@@ -70,30 +58,15 @@ es:
       "sivel2_gen/clase":
         Clase: Centro Poblado
         Clases: Centros Poblados
-      "sivel2_gen/comosupo":
-        Comosupo: Como Supo del SJR
-        Comosupos: Como Supo del SJR
       "sivel2_gen/departamento":
         Departamento: Departamento/Estado
         Departamentos: Departamentos/Estados
-      "sivel2_gen/emprendimiento":
-        Emprendimiento: Emprendimiento
-        Emprendimientos: Emprendimientos
       "sivel2_gen/escolaridad":
         Escolaridad: Nivel de Escolaridad
         Escolaridades: Niveles de Escolaridad
-      "sivel2_gen/estadocivil":
-        Estadocivil: Estado Civil
-        Estadosciviles: Estado Civil
-      "sivel2_gen/idioma":
-        Idioma: Idioma
-        Idiomas: Idiomas
       "sivel2_gen/iglesia":
         Iglesia: Iglesia
         Iglesias: Iglesias
-      "sivel2_gen/maternidad":
-        Maternidad: Estado Maternidad
-        Maternidades: Estados Maternidad
       "sivel2_gen/motivosjr": 
         Motivosjr: Servicio o Asesoria del SJR
         Motivossjr: Servicios y Asesorias del SJR
