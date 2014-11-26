@@ -1,1 +1,0 @@
-../../../db/datos-basicas.sql
