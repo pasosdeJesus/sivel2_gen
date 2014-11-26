@@ -23,9 +23,8 @@ module Sivel2Gen
           belongs_to :tsitio, foreign_key: "id_tsitio", validate: true, 
             class_name: "Sivel2Gen::Tsitio" 
           belongs_to :caso, class_name: "Sivel2Gen::Caso", 
-            foreign_key: "id_caso", validate: true, 
+            foreign_key: "id_caso", validate: true
             
-
           validates_presence_of :pais
         end
       end

@@ -1,12 +1,10 @@
 # encoding: UTF-8
+
+
+require 'sivel2_gen/concerns/models/regionsjr'
+
 module Sivel2Gen
   class Regionsjr < ActiveRecord::Base
-    include Basica
-
-    has_many :actividad, class_name: 'Sivel2Gen::Actividad'
-    has_many :usuario
-
-    validates_presence_of :nombre
-    validates_presence_of :fechacreacion
+    include Sivel2Gen::Concerns::Models::Regionsjr
   end
 end

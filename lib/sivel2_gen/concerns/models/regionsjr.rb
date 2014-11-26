@@ -1,5 +1,5 @@
 # encoding: UTF-8
-#
+
 module Sivel2Gen
   module Concerns
     module Models
@@ -7,7 +7,7 @@ module Sivel2Gen
         extend ActiveSupport::Concern
         include Sivel2Gen::Basica
 
-        inclued do
+        included do
           has_many :actividad, class_name: 'Sivel2Gen::Actividad'
           has_many :usuario
 

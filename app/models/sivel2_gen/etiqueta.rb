@@ -1,17 +1,9 @@
 # encoding: UTF-8
+
+require 'sivel2_gen/concerns/models/etiqueta'
+
 module Sivel2Gen
   class Etiqueta < ActiveRecord::Base
-    include Basica
-
-    has_many :caso_etiqueta, foreign_key: "id_etiqueta", dependent: :delete_all,
-      class_name: 'Sivel2Gen::CasoEtiqueta'
-    has_many :caso, through: :caso_etiqueta, class_name: 'Sivel2Gen::Caso'
-
-    validates :nombre, presence: true, allow_blank: false
-    validates :fechacreacion, presence: true, allow_blank: false
-
-    def self.loco1
-      "loco1"
-    end
+        include Sivel2Gen::Concerns::Models::Etiqueta
   end
 end
