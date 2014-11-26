@@ -1,8 +1,9 @@
 # encoding: UTF-8
+
 module Sivel2Gen
   module Concerns
     module Models
-      module Estadocivil
+      module Maternidad
         extend ActiveSupport::Concern
 
         include Sivel2Gen::Basica

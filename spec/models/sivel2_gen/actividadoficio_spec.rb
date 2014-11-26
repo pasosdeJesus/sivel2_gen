@@ -16,10 +16,10 @@ module Sivel2Gen
       actividadoficio.destroy
     end
 
-    #it "existente" do
-    #	actividadoficio = Actividadoficio.where(id: 1).take
-    #	expect(actividadoficio.nombre).to eq("SIN INFORMACIÓN")
-    #end
+    it "existente" do
+    	actividadoficio = Actividadoficio.where(id: 0).take
+      expect(actividadoficio.nombre).to eq("SIN INFORMACIÓN")
+    end
 
   end
 end

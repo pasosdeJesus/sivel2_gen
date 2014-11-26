@@ -16,10 +16,10 @@ module Sivel2Gen
       escolaridad.destroy
     end
 
-    #it "existente" do
-    #	escolaridad = Sivel2Gen::Escolaridad.where(id: 1).take
-    #	expect(escolaridad.nombre).to eq("SIN INFORMACIÓN")
-    #end
+    it "existente" do
+    	escolaridad = Sivel2Gen::Escolaridad.where(id: 0).take
+      expect(escolaridad.nombre).to eq("SIN INFORMACIÓN")
+    end
 
   end
 end
