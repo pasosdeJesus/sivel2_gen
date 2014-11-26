@@ -1,4 +1,7 @@
-<%= simple_form_for @actividad, :url => sivel2_gen.actividades_path(@actividad).sub(/\./,"/"), :html => { :class => 'form-horizontal' } do |f| %>
+<%= simple_form_for @actividad, 
+  :url => sivel2_gen.actividades_path(@actividad).sub(/\./,"/"), 
+  :html => { :class => 'form-horizontal' } do |f| 
+%>
   <%= f.error_notification %>
   <%= f.association :oficina,
     collection: Sivel2Gen::Regionsjr.habilitados,
@@ -15,7 +18,8 @@
   <%= f.input :objetivo %>
   <%= f.input :proyecto %>
   <%= f.input :resultado, label: "Resultado" %>
-  <%= f.input :fecha, :input_html => { "data-behaviour" => "datepicker"}, 
+  <%= f.input :fecha, 
+    :input_html => { "data-behaviour" => "datepicker"}, 
     :as => :string 
   %>
   <table border=1>

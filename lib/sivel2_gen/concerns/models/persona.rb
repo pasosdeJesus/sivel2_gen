@@ -39,11 +39,9 @@ module Sivel2Gen
 
         def vformatonumdoc
           if (tdocumento && tdocumento.formatoregex != '' && 
-              !(numerodocumento =~ Regexp.new("^" + 
-                                              tdocumento.formatoregex + 
-                                              "$")))
-            errors.add(:numerodocumento, "No cumple expresion regular: " +
-                       tdocumento.formatoregex)
+              !(numerodocumento =~ Regexp.new("^#{tdocumento.formatoregex}$")))
+            errors.add(:numerodocumento, 
+                       "No cumple exp. regular: #{tdocumento.formatoregex}")
           end
         end
 
