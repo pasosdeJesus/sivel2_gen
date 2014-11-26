@@ -23,11 +23,14 @@ module Sivel2Gen
     end
 
     # De http://guides.rubyonrails.org/engines.html
-    config.to_prepare do
-      Dir.glob(Rails.root + "app/decorators/**/*_decorator*.rb").each do |c|
-        require_dependency(c)
-      end
-    end
+#    config.to_prepare do
+#      Dir.glob(Engine.root + "app/decorators/**/*_decorator*.rb").each do |c|
+#        require_dependency(c)
+#      end
+#      Dir.glob(Rails.root + "app/decorators/**/*_decorator*.rb").each do |c|
+#        require_dependency(c)
+#      end
+#    end
   end
 
   class << self
