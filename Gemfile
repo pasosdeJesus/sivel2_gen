@@ -8,7 +8,7 @@ gem "rails-i18n"
 gem "pg"
 
 # Maneja variables de ambiente (como claves y secretos) en .env
-gem "foreman"
+#gem "foreman"
 
 # API JSON facil. Ver: https://github.com/rails/jbuilder
 gem "jbuilder"
@@ -23,7 +23,7 @@ gem "uglifier", '>= 1.3.0'
 gem "coffee-rails"
 
 # jquery como librería JavaScript
-gem "jquery-rails"
+gem "jquery-rails", '~> 4.0.0'
 gem "jquery-ui-rails"
 gem "jquery-ui-bootstrap-rails", git: "https://github.com/kristianmandrup/jquery-ui-bootstrap-rails"
 
@@ -36,7 +36,7 @@ gem "bootstrap-datepicker-rails"
 gem "bootstrap-sass"
 
 # Formularios simples 
-gem "simple_form"
+gem "simple_form", '~> 3.1.0'
 
 # Formularios anidados (algunos con ajax)
 gem "cocoon", github: "vtamara/cocoon"
@@ -91,7 +91,7 @@ group :development, :test do
   gem 'byebug'
   
   # Consola irb en páginas con excepciones o usando <%= console %> en vistasA
-  gem 'web-console', '~> 2.0.0.beta4'
+  gem 'web-console', '~> 2.0.0'
 
   # Para examinar errores, usar "rescue rspec" en lugar de "rspec"
   gem 'pry-rescue'
