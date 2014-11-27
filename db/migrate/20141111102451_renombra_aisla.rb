@@ -54,7 +54,6 @@ class RenombraAisla < ActiveRecord::Migration
     rename_table :profesion, :sivel2_gen_profesion
     rename_table :rangoedad, :sivel2_gen_rangoedad
     rename_table :rangoedadac, :sivel2_gen_rangoedadac
-    rename_table :regimensalud, :sivel2_gen_regimensalud
     rename_table :region, :sivel2_gen_region
     rename_table :regionsjr, :sivel2_gen_regionsjr
     rename_table :sectorsocial, :sivel2_gen_sectorsocial

@@ -33,7 +33,6 @@ module Sivel2Gen
       ['Sivel2Gen', 'pais'], ['Sivel2Gen', 'pconsolidado'], 
       ['Sivel2Gen', 'presponsable'], ['Sivel2Gen', 'profesion'], 
       ['Sivel2Gen', 'rangoedad'], ['Sivel2Gen', 'rangoedadac'], 
-      ['Sivel2Gen', 'regimensalud'],
       ['Sivel2Gen', 'region'], ['Sivel2Gen', 'regionsjr'],
       ['Sivel2Gen', 'sectorsocial'], ['Sivel2Gen', 'supracategoria'], 
       ['Sivel2Gen', 'vinculoestado'], 
@@ -88,7 +87,7 @@ module Sivel2Gen
       ['Sivel2Gen', 'clase'],
       ['Sivel2Gen', 'intervalo'], ['Sivel2Gen', 'filiacion'], 
       ['Sivel2Gen', 'organizacion'], ['Sivel2Gen', 'sectorsocial'],
-      ['Sivel2Gen', 'vinculoestado'], ['Sivel2Gen', 'regimensalud']
+      ['Sivel2Gen', 'vinculoestado']
     ];
 
     def self.tablasbasicas_prio
