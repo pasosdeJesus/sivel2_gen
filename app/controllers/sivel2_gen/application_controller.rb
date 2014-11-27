@@ -13,7 +13,7 @@ module Sivel2Gen
     #protect_from_forgery with: :exception
 
     def current_ability
-      @current_ability ||= Ability.new(current_usuario)
+      @current_ability ||= ::Ability.new(current_usuario)
     end
 
     protected
