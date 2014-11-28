@@ -145,7 +145,7 @@ GEM
     pry-stack_explorer (0.4.9.1)
       binding_of_caller (>= 0.7)
       pry (>= 0.9.11)
-    rack (1.6.0.beta)
+    rack (1.6.0.beta2)
     rack-test (0.6.2)
       rack (>= 1.0)
     rails (4.2.0.beta4)
