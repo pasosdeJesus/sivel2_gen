@@ -127,14 +127,16 @@ module Sivel2Gen
         format.json { head :no_content }
       end
     end
+
     private
-    # Use callbacks to share common setup or constraints between actions.
+
+    # Configuración común o restricciones entre acciones
     def set_caso
       @caso = Caso.find(params[:id])
       @caso.current_usuario = current_usuario
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
+    # Lista blanca de parametros
     def caso_params
       params.require(:caso).permit(
         :q,
