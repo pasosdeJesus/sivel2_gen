@@ -1,24 +1,27 @@
 # encoding: UTF-8
-module Admin
-  class <%= nom_clase.pluralize %>Controller < BasicasController
-    before_action :set_<%= nom_arch %>, only: [:show, :edit, :update, :destroy]
-    load_and_authorize_resource
+module Sivel2Gen
+  module Admin
+    class <%= nom_clase.pluralize %>Controller < BasicasController
+      before_action :set_<%= nom_arch %>, 
+        only: [:show, :edit, :update, :destroy]
+      load_and_authorize_resource  class: Sivel2Gen::<%= nom_clase %>
 
-    def clase 
-      "<%= nom_arch %>"
+      def clase 
+        "Sivel2Gen::<%= nom_clase %>"
+      end
+
+      def set_<%= nom_arch %>
+        @basica = <%= nom_clase %>.find(params[:id])
+      end
+
+      def atributos_index
+        ["id", "nombre", "fechacreacion", "fechadeshabilitacion"]
+      end
+
+      def <%= nom_arch %>_params
+        params.require(:<%= nom_arch %>).permit( *(atributos_index - ["id"]))
+      end
+
     end
-
-    def set_<%= nom_arch %>
-      @basica = <%= nom_clase %>.find(params[:id])
-    end
-
-    def atributos_index
-      ["id", "nombre", "fechacreacion", "fechadeshabilitacion"]
-    end
-
-    def <%= nom_arch %>_params
-      params.require(:<%= nom_arch %>).permit( *(atributos_index - ["id"]))
-    end
-
   end
 end

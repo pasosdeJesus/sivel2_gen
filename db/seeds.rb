@@ -10,7 +10,7 @@
 
 connection = ActiveRecord::Base.connection();
 
-connection.execute(IO.read("db/datos-basicas.sql"));
+connection.execute(IO.read("../../db/datos-basicas.sql"));
 
 connection.execute("INSERT INTO usuario 
 	(nusuario, email, encrypted_password, password, 

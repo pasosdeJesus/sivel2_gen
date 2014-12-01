@@ -49,12 +49,12 @@ class UsuariosController < ApplicationController
   # PATCH/PUT /usuarios/1.json
   def update
     if (!params[:usuario][:encrypted_password].nil? &&
-       params[:usuario][:encrypted_password] != "")
+        params[:usuario][:encrypted_password] != "")
       params[:usuario][:encrypted_password] = BCrypt::Password.create(
         params[:usuario][:encrypted_password],
         {:cost => Rails.application.config.devise.stretches})
     else
-        params[:usuario].delete(:encrypted_password)
+      params[:usuario].delete(:encrypted_password)
     end
     respond_to do |format|
       if @usuario.update(usuario_params)
@@ -78,23 +78,23 @@ class UsuariosController < ApplicationController
   end
 
   private
-    # Configuración común
-    def set_usuario
-      @usuario = Usuario.find(params[:id])
-    	@usuario.current_usuario = current_usuario
-    end
+  # Configuración común
+  def set_usuario
+    @usuario = Usuario.find(params[:id])
+    @usuario.current_usuario = current_usuario
+  end
 
-    # Lista blanca de paramétros
-    def usuario_params
-      params.require(:usuario).permit(
-        :id, :nusuario, :password, 
-        :nombre, :descripcion, :regionsjr_id, 
-        :rol, :idioma, :email, :encrypted_password, 
-        :fechacreacion, :fechadeshabilitacion, :reset_password_token, 
-        :reset_password_sent_at, :remember_created_at, :sign_in_count, 
-        :current_sign_in_at, :last_sign_in_at, :current_sign_in_ip, 
-        :failed_attempts, :unlock_token, :locked_at,
-        :last_sign_in_ip, :etiqueta_ids => []
-      )
-    end
+  # Lista blanca de paramétros
+  def usuario_params
+    params.require(:usuario).permit(
+      :id, :nusuario, :password, 
+      :nombre, :descripcion, :regionsjr_id, 
+      :rol, :idioma, :email, :encrypted_password, 
+      :fechacreacion, :fechadeshabilitacion, :reset_password_token, 
+      :reset_password_sent_at, :remember_created_at, :sign_in_count, 
+      :current_sign_in_at, :last_sign_in_at, :current_sign_in_ip, 
+      :failed_attempts, :unlock_token, :locked_at,
+      :last_sign_in_ip, :etiqueta_ids => []
+    )
+  end
 end

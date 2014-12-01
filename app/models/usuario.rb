@@ -7,10 +7,13 @@ class Usuario < ActiveRecord::Base
   # :recoverable :registerable, :confirmable, :timeoutable and :omniauthable
   devise :database_authenticatable, :rememberable, :trackable, :lockable
 
-	has_many :caso_usuario, foreign_key: "id_usuario", validate: true
-	has_many :caso_etiqueta, foreign_key: "id_usuario", validate: true
+  has_many :caso_usuario, foreign_key: "id_usuario", validate: true,
+    class_name: 'Sivel2Gen::CasoUsuario'
+  has_many :caso_etiqueta, foreign_key: "id_usuario", validate: true,
+    class_name: 'Sivel2Gen::CasoEtiqueta'
 
-	belongs_to :regionsjr, foreign_key: "regionsjr_id", validate: true
+  belongs_to :regionsjr, foreign_key: "regionsjr_id", validate: true,
+    class_name: 'Sivel2Gen::Regionsjr'
 
   #http://stackoverflow.com/questions/1200568/using-rails-how-can-i-set-my-primary-key-to-not-be-an-integer-typed-column
   self.primary_key=:id
@@ -21,7 +24,7 @@ class Usuario < ActiveRecord::Base
   validates_uniqueness_of :nusuario, :case_sensitive => false
   validates_format_of :nusuario, :with  => /\A[a-zA-Z_0-9]+\z/
 
-  validates_presence_of :nusuario
+    validates_presence_of :nusuario
   validates_presence_of :idioma
   validates_presence_of :rol
   validates_presence_of :email
@@ -30,5 +33,5 @@ class Usuario < ActiveRecord::Base
 
   validates_presence_of   :encrypted_password, :on=>:create
   validates_confirmation_of   :encrypted_password, :on=>:create
-  
+
 end

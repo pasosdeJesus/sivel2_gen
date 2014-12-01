@@ -26,6 +26,8 @@ module Dummy
     # config.i18n.default_locale = :de
     config.active_record.schema_format = :sql
 
+    config.active_record.raise_in_transactional_callbacks = true
+
     FactoryGirl.definition_file_paths << Pathname.new("../factories")
     FactoryGirl.definition_file_paths.uniq!
     FactoryGirl.find_definitions

@@ -1,0 +1,41 @@
+<div class='control-group nested-fields'>
+  <div class="controls">
+    <div class="input string optional caso_caso_etiqueta_fecha">
+      <%= f.label :fecha, "Fecha", class: "select optional control-label" %>
+      <%= 
+        if !f.object.fecha.nil?
+          f.text_field :fecha, readonly: true
+        else
+          f.text_field :fecha, readonly: true, value: Time.now.strftime("%Y-%m-%d")
+        end
+      %>
+    </div>
+    <div class="input string optional caso_caso_etiqueta_id_usuario">
+      <%= f.label :id_usuario, "Usuario", class: "select optional control-label" %>
+      <%= 
+        if !f.object.id_usuario.nil?
+          text_field_tag 'nusuario', f.object.usuario.nusuario, readonly: true
+        else
+          text_field_tag 'nusuario', current_usuario.nusuario, readonly: true
+        end
+      %>
+    </div>
+    <%= 
+      if !f.object.id_usuario.nil?
+        f.input :id_usuario, as: :hidden, value: f.object.id_usuario
+      else
+        f.input :id_usuario, as: :hidden, value: current_usuario.id
+      end
+    %>
+    <%= f.input :observaciones %>
+    <%= f.association :etiqueta,
+      collection: Sivel2Gen::Etiqueta.habilitados,
+      label: "Etiqueta",
+      label_method: :nombre,
+      value_method: :id 
+    %>
+    <%= link_to_remove_association "Eliminar Etiqueta", f, 
+      :class => 'btn-danger' 
+    %> 
+  </div>
+</div>

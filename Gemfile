@@ -1,14 +1,17 @@
 source 'https://rubygems.org'
 
 # Rails (internacionalización)
-gem "rails", '~> 4.2.0.beta2'
+gem "rails", '~> 4.2.0.rc1'
 gem "rails-i18n"
+
+# Problemas con arel 6.0.0 al ejecutar rspec
+#gem "arel", '6.0.0.beta2'
 
 # Postgresql
 gem "pg"
 
 # Maneja variables de ambiente (como claves y secretos) en .env
-gem "foreman"
+#gem "foreman"
 
 # API JSON facil. Ver: https://github.com/rails/jbuilder
 gem "jbuilder"
@@ -20,10 +23,10 @@ gem "jbuilder"
 gem "uglifier", '>= 1.3.0'
 
 # CoffeeScript para recuersos .js.coffee y vistas
-gem "coffee-rails", '~> 4.1.0'
+gem "coffee-rails"
 
 # jquery como librería JavaScript
-gem "jquery-rails"
+gem "jquery-rails", '~> 4.0.0'
 gem "jquery-ui-rails"
 gem "jquery-ui-bootstrap-rails", git: "https://github.com/kristianmandrup/jquery-ui-bootstrap-rails"
 
@@ -36,7 +39,7 @@ gem "bootstrap-datepicker-rails"
 gem "bootstrap-sass"
 
 # Formularios simples 
-gem "simple_form"
+gem "simple_form", '~> 3.1.0'
 
 # Formularios anidados (algunos con ajax)
 gem "cocoon", github: "vtamara/cocoon"
@@ -70,7 +73,7 @@ group :development, :test do
   # Requerido por rake
   gem "thor"
 
-  # Acelera desarrollo ejecutando en fondo. https://github.com/jonleighton/spring
+  # Acelera ejecutando en fondo. https://github.com/jonleighton/spring
   gem "spring"
   
   # Pruebas con rspec
@@ -88,7 +91,15 @@ group :development, :test do
   gem "launchy"
 
   # Depurar
-  #gem 'debugger'
+  gem 'byebug'
+  
+  # Consola irb en páginas con excepciones o usando <%= console %> en vistasA
+  gem 'web-console', '~> 2.0.0'
+
+  # Para examinar errores, usar "rescue rspec" en lugar de "rspec"
+  gem 'pry-rescue'
+  gem 'pry-stack_explorer'
+
 end
 
 # Los siguientes son para pruebas y no tiene generadores requeridos en desarrollo

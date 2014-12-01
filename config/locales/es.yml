@@ -18,27 +18,15 @@ es:
     page_gap: "&hellip;"
   activerecord:
     attributes:
-      actividadarea: 
+      "sivel2_gen/actividadarea": 
         Actividadarea: Área de Actividad
         Actividadareas: Áreas de Actividades
-      actividadoficio: 
+      "sivel2_gen/actividadoficio":
         Actividadoficios: Actividades y Oficios
         Actividadoficio: Actividad u Oficio
-      acto:
+      "sivel2_gen/acto":
         presponsable: Presunto Responsable
-      aslegal: 
-        Aslegal: Asistencia Legal
-        Aslegales: Asistencias Legales
-      aspsicosocial: 
-        Aspsicosocial: Asistencia Psicosocial
-        Aspsicosociales: Asistencias Psicosociales
-      ayudaestado: 
-        Ayudaestado: Ayuda del Estado
-        Ayudasestado: Ayudas del Estado
-      ayudasjr: 
-        Ayudasjr: Ayuda del SJR
-        Ayudassjr: Ayudas del SJR
-      actividad: 
+      "sivel2_gen/actividad": 
         id: Identificación
         numero: Número
         minutos: Minutos
@@ -51,121 +39,105 @@ es:
         actividad:  Actividad
         observaciones: Observaciones
         created_at: Creado en
-      casosjr:
+      "sivel2_gen/casosjr":
         fecharec: F. Recepción
         regionsjr: Oficina
         contacto: Solicitante Principal
-      caso:
+      "sivel2_gen/caso":
         memo: Descripción
         created_at: F. Creación
         fecha: F. Hecho
-      categoria:
+      "sivel2_gen/categoria":
         Categoria: Categoria
         Categorias: Categorias
         tipocat: Tipo de Categoria
         contadaen: Contada en
-      causaref:
+      "sivel2_gen/causaref":
         Causaref: Causa de Refugio
         Causasref: Causas de Refugio
-      clase:
+      "sivel2_gen/clase":
         Clase: Centro Poblado
         Clases: Centros Poblados
-      comosupo:
-        Comosupo: Como Supo del SJR
-        Comosupos: Como Supo del SJR
-      departamento:
+      "sivel2_gen/departamento":
         Departamento: Departamento/Estado
         Departamentos: Departamentos/Estados
-      emprendimiento:
-        Emprendimiento: Emprendimiento
-        Emprendimientos: Emprendimientos
-      escolaridad:
+      "sivel2_gen/escolaridad":
         Escolaridad: Nivel de Escolaridad
         Escolaridades: Niveles de Escolaridad
-      estadocivil:
-        Estadocivil: Estado Civil
-        Estadosciviles: Estado Civil
-      idioma:
-        Idioma: Idioma
-        Idiomas: Idiomas
-      iglesia:
+      "sivel2_gen/iglesia":
         Iglesia: Iglesia
         Iglesias: Iglesias
-      maternidad:
-        Maternidad: Estado Maternidad
-        Maternidades: Estados Maternidad
-      motivosjr: 
+      "sivel2_gen/motivosjr": 
         Motivosjr: Servicio o Asesoria del SJR
         Motivossjr: Servicios y Asesorias del SJR
-      municipio:
+      "sivel2_gen/municipio":
         Municipio: Municipio
         Municipios: Municipios
-      pais:
+      "sivel2_gen/pais":
         Pais: Pais
         Paises: Paises
-      pconsolidado:
+      "sivel2_gen/pconsolidado":
         Pconsolidado: Parámetro reporte consolidado
         Pconsolidados: Parámetros reporte consolidado
-      presponsable:
+      "sivel2_gen/presponsable":
         Presponsable: Presunto Responsable
         Presponsables: Presuntos Responsables
-      profesion:
+      "sivel2_gen/profesion":
         Profesion: Profesión
         Profesiones: Profesiones
-      progestado:
+      "sivel2_gen/progestado":
         Progestado: Programa o Respuesta  del Estado
         Progsestado: Programas y Respuestas del Estado
-      proteccion:
+      "sivel2_gen/proteccion":
         Proteccion: Medida de Protección
         Protecciones: Medidas de Protección
-      rangoedadac:
+      "sivel2_gen/rangoedadac":
         Rangoedadac: Rango de Edad para Actividad
         Rangosedadac: Rangos de Edad para Actividades
-      rangoedad:
+      "sivel2_gen/rangoedad":
         Rangoedad: Rango de Edad
         Rangosedad: Rangos de Edad
-      region:
+      "sivel2_gen/region":
         Region: Región
         Regiones: Regiones
-      rolfamilia:
-      regimensalud:
+      "sivel2_gen/regimensalud":
         Regimensalud: Régimen Salud
         Regimenessalud: Régimenes Salud
-      regionsjr:
+      "sivel2_gen/regionsjr":
         Regionsjr: Oficina
         Regionessjr: Oficinas
-      rolfamilia:
+      "sivel2_gen/rolfamilia":
         Rolfamilia: Rol en familia
         Rolesfamilia: Roles en familia
-      sectorsocial:
+      "sivel2_gen/sectorsocial":
         Sectorsocial: Sector Social
         Sectoressociales: Sectores Sociales
-      supracategoria: 
+      "sivel2_gen/supracategoria": 
         Supracategoria: Supracategoria
         Supracategorias: Supracategorias
         id_tviolencia: Tipo de Violencia
-      tclase:
+      "sivel2_gen/tclase":
         Tclase: Tipo de Centro Poblado
         Tclases: Tipos de Centros Poblados
-      tdocumento:
+      "sivel2_gen/tdocumento":
         Tdocumento: Tipo de Documento
         Tdocumentos: Tipos de Documentos
-      tsitio: 
+      "sivel2_gen/tsitio": 
         Tsitio: Tipo de Sitios
         Tsitios: Tipos de Sitios
-      tviolencia: 
+      "sivel2_gen/tviolencia": 
         Tviolencia: Tipo de Violencia
         Tviolencias: Tipos de Violencia
         nomcorto: Nombre Corto
-      ubicacion:
+      "sivel2_gen/ubicacion":
         Ubicacion: Ubicación
-      usuario:
+      "sivel2_gen/usuario":
         nusuario: Usuario
         regionsjr: Oficina
         descripcion: Descripción
         encrypted_password: Clave
         created_at: Fecha Registro
-      vinculoestado:
+      "sivel2_gen/vinculoestado":
         Vinculoestado: Vínculo con el Estado
         Vinculosestado: Vínculos con el Estado
 
