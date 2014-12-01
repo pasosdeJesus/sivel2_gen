@@ -33,7 +33,9 @@ module Sivel2Gen
           validates :nombres, presence: true, allow_blank: false
           validates :apellidos, presence: true, allow_blank: false
           validates :sexo, presence: true
-
+          validates :anionac, numericality: {greater_than: 1900}
+          validates :mesnac, numericality: {greater_than: 0, less_than: 13}
+          validates :dianac, numericality: {greater_than: 0, less_than: 32}
           validate :vformatonumdoc
         end
 

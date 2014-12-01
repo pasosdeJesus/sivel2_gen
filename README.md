@@ -35,7 +35,7 @@ Se han implementado algunas pruebas con RSpec a modelos y pruebas de regresión.
 Aunque para minimizar descargas vale la pena instalar como gemas del
 sistema la mayoría de estas, en adJ con:
 ```sh
-  grep "^ *gem" Gemfile | sed -e "s/gem [\"']//g;s/[\"'].*//g" | xargs sudo NOKOGIRI_USE_SYSTEM_LIBRARIES make=gmake gem install
+  grep "^ *gem" Gemfile | sed -e "s/gem [\"']//g;s/[\"'].*//g" | xargs sudo NOKOGIRI_USE_SYSTEM_LIBRARIES=1 make=gmake gem install
 ```
 * Cree usuario para PostgreSQL (recomendado sivel2 o el que especifique en config/database.yml) 
   y pongale una clave, por ejemplo en adJ
