@@ -33,9 +33,10 @@ module Sivel2Gen
           validates :nombres, presence: true, allow_blank: false
           validates :apellidos, presence: true, allow_blank: false
           validates :sexo, presence: true
-          validates :anionac, numericality: {greater_than: 1900}
-          validates :mesnac, numericality: {greater_than: 0, less_than: 13}
-          validates :dianac, numericality: {greater_than: 0, less_than: 32}
+          validates :anionac, :numericality => {:allow_blank => true}
+          validates :mesnac, :numericality => {:allow_blank => true}
+          validates :dianac, :numericality => {:allow_blank => true}
+          validate :vfechanac
           validate :vformatonumdoc
         end
 
@@ -44,6 +45,27 @@ module Sivel2Gen
               !(numerodocumento =~ Regexp.new("^#{tdocumento.formatoregex}$")))
             errors.add(:numerodocumento, 
                        "No cumple exp. regular: #{tdocumento.formatoregex}")
+          end
+        end
+
+        def vfechanac
+          if (anionac && anionac<1900)
+            errors.add(:anionac, "Año debe ser mayor a 1900")
+          end
+          if (mesnac && (mesnac < 1 || mesnac > 12))
+            errors.add(:mesnac, "Mes debe estar entre 1 y 12")
+          end
+          if (dianac && dianac < 1)
+            errors.add(:mesnac, "Dia debe ser positivo")
+          end
+          if (dianac && dianac > 31)
+            errors.add(:mesnac, "Dia debe ser menor a 31")
+          elsif (dianac && mesnac && (mesnac == 4 || mesnac == 6 || 
+                                       mesnac == 9 || mesnac == 11) && 
+                                       dianac > 30)
+            errors.add(:mesnac, "Dia debe ser menor a 30")
+          elsif (dianac && mesnac && mesnac == 2 && dianac > 29)
+            errors.add(:mesnac, "Dia debe ser menor a 29")
           end
         end
 

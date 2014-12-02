@@ -29,7 +29,7 @@ module Sivel2Gen
 
     def index
       if current_usuario
-        authorize! :contar, Caso
+        authorize! :contar, Sivel2Gen::Caso
       end
     end
 
