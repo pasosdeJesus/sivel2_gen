@@ -7,7 +7,6 @@ module Sivel2Gen
     # Crea un nuevo registro para el caso que recibe por parametro 
     # params[:caso_id].  Pone valores simples en los campos requeridos
     def nuevo
-      byebug
       if !params[:caso_id].nil?
         @persona = Persona.new
         @victima = Victima.new

@@ -56,16 +56,16 @@ module Sivel2Gen
             errors.add(:mesnac, "Mes debe estar entre 1 y 12")
           end
           if (dianac && dianac < 1)
-            errors.add(:mesnac, "Dia debe ser positivo")
+            errors.add(:dianac, "Dia debe ser positivo")
           end
-          if (dianac && dianac > 31)
-            errors.add(:mesnac, "Dia debe ser menor a 31")
+          if (dianac && mesnac && mesnac == 2 && dianac > 29)
+            errors.add(:dianac, "Dia debe ser menor a 29")
           elsif (dianac && mesnac && (mesnac == 4 || mesnac == 6 || 
                                        mesnac == 9 || mesnac == 11) && 
                                        dianac > 30)
-            errors.add(:mesnac, "Dia debe ser menor a 30")
-          elsif (dianac && mesnac && mesnac == 2 && dianac > 29)
-            errors.add(:mesnac, "Dia debe ser menor a 29")
+            errors.add(:dianac, "Dia debe ser menor a 30")
+          elsif (dianac && dianac > 31)
+            errors.add(:dianac, "Dia debe ser menor a 31")
           end
         end
 
