@@ -60,7 +60,7 @@ GEM
       sass (~> 3.2)
     builder (3.2.2)
     camertron-eprun (1.1.0)
-    cancan (1.6.10)
+    cancancan (1.9.2)
     cldr-plurals-runtime-rb (1.0.0)
     climate_control (0.0.3)
       activesupport (>= 3.0)
@@ -254,7 +254,7 @@ DEPENDENCIES
   bcrypt
   bootstrap-datepicker-rails
   bootstrap-sass
-  cancan
+  cancancan
   cocoon!
   codeclimate-test-reporter
   coffee-rails

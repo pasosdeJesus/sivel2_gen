@@ -44,7 +44,7 @@ gem "cocoon", github: "vtamara/cocoon"
 # Autenticación y roles
 gem "devise"
 gem "devise-i18n"
-gem "cancan"
+gem "cancancan"
 gem "bcrypt"
 
 # Pagina listados
