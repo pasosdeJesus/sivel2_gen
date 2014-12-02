@@ -5,11 +5,11 @@ module Sivel2Gen
 
     def descarga_anexoactividad
       if !params[:id].nil?
-        @anexo = Anexoactividad.find(params[:id])
+        @anexo = Anexoactividad.find(params[:id].to_i)
         ruta = @anexo.adjunto_file_name
         if !ruta.nil?
           # Idea para evitar inyeccion de https://www.ruby-forum.com/topic/124471
-          n=sprintf(Sivel2Gen.ruta_anexos + "/act_%d_%s", @anexo.id.to_i, 
+          n=sprintf(Sivel2Gen.ruta_anexos + "/act_%d_%s", @anexo.id,
                     File.basename(ruta))
           logger.debug "Descargando #{n}"
           send_file n, x_sendfile: true
