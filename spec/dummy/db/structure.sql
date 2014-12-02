@@ -515,18 +515,6 @@ CREATE SEQUENCE rangoedad_seq
 
 
 --
--- Name: regimensalud_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE regimensalud_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
 -- Name: region_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
@@ -1580,21 +1568,6 @@ ALTER SEQUENCE sivel2_gen_rangoedadac_id_seq OWNED BY sivel2_gen_rangoedadac.id;
 
 
 --
--- Name: sivel2_gen_regimensalud; Type: TABLE; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE TABLE sivel2_gen_regimensalud (
-    id integer DEFAULT nextval('regimensalud_seq'::regclass) NOT NULL,
-    nombre character varying(50) NOT NULL,
-    fechacreacion date DEFAULT '2013-05-13'::date NOT NULL,
-    fechadeshabilitacion date,
-    created_at timestamp without time zone,
-    updated_at timestamp without time zone,
-    CONSTRAINT regimensalud_check CHECK (((fechadeshabilitacion IS NULL) OR (fechadeshabilitacion >= fechacreacion)))
-);
-
-
---
 -- Name: sivel2_gen_region; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -2452,14 +2425,6 @@ ALTER TABLE ONLY sivel2_gen_rangoedad
 
 ALTER TABLE ONLY sivel2_gen_rangoedadac
     ADD CONSTRAINT rangoedadac_pkey PRIMARY KEY (id);
-
-
---
--- Name: regimensalud_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
---
-
-ALTER TABLE ONLY sivel2_gen_regimensalud
-    ADD CONSTRAINT regimensalud_pkey PRIMARY KEY (id);
 
 
 --
