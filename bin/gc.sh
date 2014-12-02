@@ -1,13 +1,19 @@
 #!/bin/sh
 # Hace prueba de regresión y envia a github
 
-NOKOGIRI_USE_SYSTEM_LIBRARIES=1 MAKE=gmake make=gmake QMAKE=qmake4 bundle update
-NOKOGIRI_USE_SYSTEM_LIBRARIES=1 MAKE=gmake make=gmake QMAKE=qmake4 bundle install
 grep "^ *gem *.debugger*" Gemfile > /dev/null 2> /dev/null
 if (test "$?" = "0") then {
 	echo "Gemfile incluye debugger que heroku no quiere"
 	exit 1;
 } fi;
+grep "^ *gem *.byebug*" Gemfile > /dev/null 2> /dev/null
+if (test "$?" = "0") then {
+	echo "Gemfile incluye byebug que rbx de travis-ci no quiere"
+	exit 1;
+} fi;
+
+NOKOGIRI_USE_SYSTEM_LIBRARIES=1 MAKE=gmake make=gmake QMAKE=qmake4 bundle update
+NOKOGIRI_USE_SYSTEM_LIBRARIES=1 MAKE=gmake make=gmake QMAKE=qmake4 bundle install
 
 (cd spec/dummy; RAILS_ENV=test rake db:drop db:setup db:migrate sivel2:indices)
 if (test "$?" != "0") then {
