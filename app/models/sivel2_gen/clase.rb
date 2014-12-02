@@ -21,7 +21,5 @@ module Sivel2Gen
     validates :id_pais, presence: true
     validates :id_departamento, presence:true
     validates :id_municipio, presence:true
-    validates :nombre, presence: true, allow_blank: false
-    validates :fechacreacion, presence: true, allow_blank: false
   end
 end

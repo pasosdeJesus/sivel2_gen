@@ -25,7 +25,5 @@ module Sivel2Gen
     belongs_to :presponsable, foreign_key: "papa", validate: true, 
       class_name: 'Sivel2Gen::Presponsable'
 
-    validates :nombre, presence: true, allow_blank: false
-    validates :fechacreacion, presence: true, allow_blank: false
   end
 end

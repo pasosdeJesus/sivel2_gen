@@ -7,8 +7,5 @@ module Sivel2Gen
       class_name: 'Sivel2Gen::ActividadRangoedadac'
     has_many :actividad, :through => :actividad_rangoedadac,
       class_name: 'Sivel2Gen::Actividad'
-
-    validates :nombre, presence: true, allow_blank: false
-    validates :fechacreacion, presence: true, allow_blank: false
   end
 end

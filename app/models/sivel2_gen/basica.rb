@@ -8,6 +8,8 @@ module Sivel2Gen
       scope :habilitados, -> (campoord = "nombre") {
         where(fechadeshabilitacion: nil).order(campoord.to_sym)
       }
+      validates :nombre, presence: true, allow_blank: false
+      validates :fechacreacion, presence: true, allow_blank: false
     end
 
   end

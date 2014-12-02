@@ -21,7 +21,5 @@ module Sivel2Gen
 
     validates :id, presence: true  # Diseñados en el caso de SIVeL
     validates :id_pais, presence: true
-    validates :nombre, presence: true, allow_blank: false
-    validates :fechacreacion, presence: true, allow_blank: false
   end
 end

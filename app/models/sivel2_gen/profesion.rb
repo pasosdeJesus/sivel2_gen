@@ -7,8 +7,5 @@ module Sivel2Gen
       class_name: 'Sivel2Gen::ComunidadProfesion'
     has_many :victima, foreign_key: "id_profesion", validate: true, 
       class_name: 'Sivel2Gen::Victima'
-
-    validates :nombre, presence: true, allow_blank: false
-    validates :fechacreacion, presence: true, allow_blank: false
   end
 end
