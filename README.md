@@ -86,3 +86,13 @@ http://betterspecs.org/
 http://www.caliban.org/ruby/rubyguide.shtml
 https://hakiri.io/blog/ruby-security-tools-and-resources
 
+### Generación de datos de tablas básicas
+
+Una vez estén bien los datos de tablas básicas en base de datos de la
+la aplicación de  prueba spec/dummy:
+```sh
+cd spec/dummy
+RAILS_ENV=test rake sivel2:vuelcabasicas
+cp db/datos-basicas.sql ../../db/datos-basicas.sql
+```
+

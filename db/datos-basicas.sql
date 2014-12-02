@@ -15425,33 +15425,6 @@ SET client_min_messages = warning;
 SET search_path = public, pg_catalog;
 
 --
--- Data for Name: sivel2_gen_regimensalud; Type: TABLE DATA; Schema: public; Owner: -
---
-
-INSERT INTO sivel2_gen_regimensalud (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (0, 'SIN INFORMACIÓN', '2013-05-16', NULL, NULL, NULL);
-INSERT INTO sivel2_gen_regimensalud (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (1, 'SUBSIDIADO', '2013-05-16', NULL, NULL, NULL);
-INSERT INTO sivel2_gen_regimensalud (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (2, 'CONTRIBUTIVO', '2013-05-16', NULL, NULL, NULL);
-INSERT INTO sivel2_gen_regimensalud (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (3, 'NO AFILIADO/A', '2013-05-16', NULL, NULL, NULL);
-
-
---
--- PostgreSQL database dump complete
---
-
---
--- PostgreSQL database dump
---
-
-SET statement_timeout = 0;
-
-SET client_encoding = 'UTF8';
-SET standard_conforming_strings = on;
-SET check_function_bodies = false;
-SET client_min_messages = warning;
-
-SET search_path = public, pg_catalog;
-
---
 -- Data for Name: sivel2_gen_actividadarea; Type: TABLE DATA; Schema: public; Owner: -
 --
 
