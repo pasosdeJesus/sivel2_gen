@@ -50,7 +50,7 @@ module Sivel2Gen
 
         def vfechanac
           if (anionac && anionac<1900)
-            errors.add(:anionac, "Año debe ser mayor a 1900")
+            errors.add(:anionac, "Año debe ser mayor o igual a 1900")
           end
           if (mesnac && (mesnac < 1 || mesnac > 12))
             errors.add(:mesnac, "Mes debe estar entre 1 y 12")
@@ -59,13 +59,13 @@ module Sivel2Gen
             errors.add(:dianac, "Dia debe ser positivo")
           end
           if (dianac && mesnac && mesnac == 2 && dianac > 29)
-            errors.add(:dianac, "Dia debe ser menor a 29")
+            errors.add(:dianac, "Dia debe ser menor o igual a 29")
           elsif (dianac && mesnac && (mesnac == 4 || mesnac == 6 || 
                                        mesnac == 9 || mesnac == 11) && 
                                        dianac > 30)
-            errors.add(:dianac, "Dia debe ser menor a 30")
+            errors.add(:dianac, "Dia debe ser menor o igual a 30")
           elsif (dianac && dianac > 31)
-            errors.add(:dianac, "Dia debe ser menor a 31")
+            errors.add(:dianac, "Dia debe ser menor o igual a 31")
           end
         end
 
