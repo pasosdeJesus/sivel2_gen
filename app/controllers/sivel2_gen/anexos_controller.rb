@@ -5,7 +5,7 @@ module Sivel2Gen
 
     def descarga_anexo
       if !params[:id].nil?
-        @anexo = Anexo.find(params[:id])
+        @anexo = Anexo.find(params[:id].to_i)
         ruta = @anexo.adjunto_file_name
         if !ruta.nil?
           # Idea para evitar inyeccion de https://www.ruby-forum.com/topic/124471
