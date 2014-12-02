@@ -132,7 +132,7 @@ module Sivel2Gen
 
     # Configuración común o restricciones entre acciones
     def set_caso
-      @caso = Caso.find(params[:id])
+      @caso = Caso.find(params[:id].to_i)
       @caso.current_usuario = current_usuario
     end
 

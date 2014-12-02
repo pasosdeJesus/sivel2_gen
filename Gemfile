@@ -10,9 +10,6 @@ gem "rails-i18n"
 # Postgresql
 gem "pg"
 
-# Maneja variables de ambiente (como claves y secretos) en .env
-#gem "foreman"
-
 # API JSON facil. Ver: https://github.com/rails/jbuilder
 gem "jbuilder"
 
