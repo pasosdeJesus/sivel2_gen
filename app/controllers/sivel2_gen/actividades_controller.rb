@@ -11,11 +11,13 @@ module Sivel2Gen
     def index
       @actividades = Actividad.order(fecha: :desc).paginate(
         :page => params[:pagina], per_page: 20)
+      render "index", layout: "application"
     end
 
     # GET /actividades/1
     # GET /actividades/1.json
     def show
+      render layout: "application"
     end
 
     # GET /actividades/new
@@ -24,10 +26,12 @@ module Sivel2Gen
       @actividad.current_usuario = current_usuario
       @actividad.regionsjr_id = current_usuario.regionsjr_id.nil? ?  
         1 : current_usuario.regionsjr_id
+      render layout: "application"
     end
 
     # GET /actividades/1/edit
     def edit
+      render layout: "application"
     end
 
     # POST /actividades
@@ -42,7 +46,7 @@ module Sivel2Gen
             render action: 'show', status: :created, location: @actividad 
           }
         else
-          format.html { render action: 'new' }
+          format.html { render action: 'new', layout: 'application' }
           format.json { 
             render json: @actividad.errors, status: :unprocessable_entity 
           }
@@ -60,7 +64,7 @@ module Sivel2Gen
           }
           format.json { head :no_content }
         else
-          format.html { render action: 'edit' }
+          format.html { render action: 'edit', layout: 'application' }
           format.json { 
             render json: @actividad.errors, status: :unprocessable_entity 
           }

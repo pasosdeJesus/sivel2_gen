@@ -12,10 +12,12 @@ module Sivel2Gen
         @basica = c.order(camponombre).paginate(
           :page => params[:pagina], per_page: 20
         )
+        render layout: 'application'
       end
 
       # Despliega detalle de un registro
       def show
+        render layout: 'application'
       end
 
       # Presenta formulario para crear nuevo registro
@@ -23,11 +25,13 @@ module Sivel2Gen
         c = clase.constantize
         @basica = clase.constantize.new
         @basica.fechacreacion = DateTime.now.strftime('%Y-%m-%d')
+        render layout: 'application'
       end
 
       # Despliega formulario para editar un regisro
       def edit
         @basica = clase.constantize.find(params[:id])
+        render layout: 'application'
       end
 
       # Crea un registro a partir de información de formulario
@@ -42,15 +46,12 @@ module Sivel2Gen
               notice: clase + ' creada.' 
             }
             format.json { 
-              render action: 'show', 
-              status: :created, 
-              location: @basica
+              render action: 'show', status: :created, location: @basica
             }
           else
-            format.html { render action: 'new' }
+            format.html { render action: 'new', layout: 'application' }
             format.json { 
-              render json: @basica.errors, 
-              status: :unprocessable_entity 
+              render json: @basica.errors, status: :unprocessable_entity 
             }
           end
         end
@@ -67,7 +68,7 @@ module Sivel2Gen
             }
             format.json { head :no_content }
           else
-            format.html { render action: 'edit' }
+            format.html { render action: 'edit', layout: 'application' }
             format.json { 
               render json: @basica.errors, status: :unprocessable_entity 
             }

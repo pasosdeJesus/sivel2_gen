@@ -18,11 +18,13 @@ module Sivel2Gen
       end
       @numconscaso = @conscaso.size
       @conscaso = @conscaso.order(fecha: :desc).paginate(:page => params[:pagina], per_page: 20)
+      render layout: 'application'
     end
 
     # GET /casos/1
     # GET /casos/1.json
     def show
+      render layout: 'application'
     end
 
     # GET /casos/new
@@ -36,7 +38,7 @@ module Sivel2Gen
       cu.id_caso = @caso.id
       cu.fechainicio = DateTime.now.strftime('%Y-%m-%d')
       cu.save!
-      render action: 'edit'
+      render action: 'edit', layout: 'application'
     end
 
 
@@ -72,6 +74,7 @@ module Sivel2Gen
 
     # GET /casos/1/edit
     def edit
+      render layout: 'application'
     end
 
     # POST /casos
@@ -84,10 +87,15 @@ module Sivel2Gen
       respond_to do |format|
         if @caso.save
           format.html { redirect_to @caso, notice: 'Caso creado.' }
-          format.json { render action: 'show', status: :created, location: @caso }
+          format.json { 
+            render action: 'show', status: :created, location: @caso, 
+              layout: 'application' 
+          }
         else
-          format.html { render action: 'new' }
-          format.json { render json: @caso.errors, status: :unprocessable_entity }
+          format.html { render action: 'new', layout: 'application'  }
+          format.json { 
+            render json: @caso.errors, status: :unprocessable_entity 
+          }
         end
       end
     end
@@ -108,7 +116,7 @@ module Sivel2Gen
           format.json { head :no_content }
           format.js   { redirect_to @caso, notice: 'Caso actualizado.' }
         else
-          format.html { render action: 'edit' }
+          format.html { render action: 'edit', layout: 'application' }
           format.json { render json: @caso.errors, status: :unprocessable_entity }
           format.js   { render action: 'edit' }
         end

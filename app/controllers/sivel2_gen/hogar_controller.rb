@@ -25,15 +25,18 @@ module Sivel2Gen
           @ntablas[n] = r
       } 
       @ntablasor = @ntablas.keys.localize(:es).sort.to_a
+      render layout: 'application'
     end
 
     def index
       if current_usuario
         authorize! :contar, Sivel2Gen::Caso
       end
+      render layout: 'application'
     end
 
     def acercade
+      render layout: 'application'
     end
   end
 end
