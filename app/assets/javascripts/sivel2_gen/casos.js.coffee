@@ -175,13 +175,13 @@ $(document).on 'ready page:load',  ->
 
   
   # Envia formulario al presionar enlaces con clase fichacambia 
-  # con más de 20 segundos de diferencia entre un click y el siguiente
+  # con más de 5 segundos de diferencia entre un click y el siguiente
   $(document).on('click', 'a.fichacambia[href^="#"]', (e) ->
     tn = Date.now()
     d = -1
     if (root.tfichacambia) 
       d = (tn - root.tfichacambia)/1000
-    if (d == -1 || d>20) 
+    if (d == -1 || d>5) 
       f=$('form')
       a=f.attr('action')
       $.post(a, f.serialize())

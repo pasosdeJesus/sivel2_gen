@@ -1,0 +1,215 @@
+<%- if current_usuario.nil?  %>
+  <li><a href="usuarios/sign_in">Iniciar Sesión</a>
+<%- else  %>
+  <article>
+  <%= simple_form_for @caso, 
+    :url => sivel2_gen.casos_path(@caso).sub(/\./,"/"), 
+    :html => { :class => 'form-horizontal' } do |f| %>
+    <div data-role="content" class="form-inputs">
+      <div id="errores">
+        <% if f.object.errors.any? %>
+          <div id="error_explanation">
+            <div class="alert alert-error">
+              El formulario tiene <%= pluralize(f.object.errors.count, "error") %>.
+            </div>
+            <ul>
+              <% f.object.errors.full_messages.each do |msg| %>
+                <li>* <%= msg %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+      </div>
+      <div class="accordion" id="acordeon">
+
+        <div class="accordion-group">
+          <div class="accordion-heading">
+            <a class="accordion-toggle" data-toggle="collapse" href="#basicos">
+              Datos Básicos
+            </a>
+          </div>
+          <div id="basicos" class="accordion-body collapse in">
+            <div class="accordion-inner">
+
+              <%= f.input :id, label: "Código", readonly: true%>
+
+              <%= f.input :fecha, :input_html => { 
+                "data-behaviour" => "datepicker" },
+                :as => :string, :label => "Fecha del Hecho" 
+              %>
+              <%= f.input :titulo %>
+              <%= f.input :hora %> <!--, as: :time, ampm: true -->
+              <%= f.input :duracion %>
+              <%= f.association :intervalo,
+                collection: Sivel2Gen::Intervalo.habilitados,
+                label_method: :nombre,
+                value_method: :id 
+              %>
+              <%= f.association :region, 
+                collection: Sivel2Gen::Region.habilitados,
+                label: "Región",
+                label_method: :nombre, 
+                value_method: :id 
+              %>
+              <%= f.association :frontera, 
+                collection: Sivel2Gen::Frontera.habilitados,
+                label: "Frontera",
+                label_method: :nombre, 
+                value_method: :id 
+              %>
+            </div>
+          </div> 
+        </div> <! -- accordion-group  Datos basicos-->
+
+
+        <div class="accordion-group">
+          <div class="accordion-heading">
+            <a class="accordion-toggle" data-toggle="collapse" href="#ubicacion">
+              Ubicación
+            </a>
+          </div>
+          <div id="ubicacion" class="accordion-body collapse">
+            <div class="accordion-inner">
+              <%= f.simple_fields_for :ubicacion do |ubicacion| %>
+                <%= render 'ubicacion_fields', :f => ubicacion %>
+              <% end %>
+              <div class="links">
+                <%= link_to_add_association 'Añadir Ubicación', f, 
+                  :ubicacion, { :class => 'btn-primary',
+                    "data-ajax" => "/ubicaciones/nuevo", 
+                    "data-ajaxdata" => "caso_id" }
+                %>
+              </div>
+            </div>
+          </div>
+        </div> <! -- accordion-group Ubicacion -->
+
+        <div class="accordion-group">
+          <div class="accordion-heading">
+            <a class="accordion-toggle" data-toggle="collapse" href="#presponsable">
+              Presuntos Responsables
+            </a>
+          </div>
+          <div id="presponsable" class="accordion-body collapse">
+            <div class="accordion-inner">
+              <%= f.simple_fields_for :caso_presponsable do |caso_presponsable| %>
+                <%= render 'caso_presponsable_fields', 
+                  :f => caso_presponsable %>
+              <% end %>
+              <div class="links">
+                <%= link_to_add_association 'Añadir Presunto Responsable', f, 
+                  :caso_presponsable, {:class => 'btn-primary', 
+                    "data-ajax" => "/presponsables/nuevo", 
+                    "data-ajaxdata" => "caso_id"}
+                %>
+              </div>
+            </div>
+          </div>
+        </div> <! -- accordion-group Presuntos Responsable-->
+
+        <div class="accordion-group">
+          <div class="accordion-heading">
+            <a class="accordion-toggle" data-toggle="collapse" href="#victima">Víctimas</a>
+          </div>
+          <div id="victima" class="accordion-body collapse">
+            <div class="accordion-inner"> 
+              <%= f.simple_fields_for :victima do |victima| %>
+                <%= render 'victima_fields', :f => victima %>
+              <% end %>
+              <div class="links">
+                <%= link_to_add_association 'Añadir Víctima', f, :victima, 
+                  { :class => 'btn-primary',
+                  "data-ajax" => "/victimas/nuevo", 
+                  "data-ajaxdata" => "caso_id" } 
+                %>
+              </div>
+            </div>
+          </div>
+        </div> <! -- accordion-group Victima -->
+
+        <div class="accordion-group">
+          <div class="accordion-heading">
+            <a class="accordion-toggle" data-toggle="collapse" href="#actos">
+              Actos
+            </a>
+          </div>
+          <div id="actos" class="accordion-body collapse">
+            <div class="accordion-inner">
+              <%= f.simple_fields_for :acto do |a| %>
+                <%= render 'acto_fields', :f => a %>
+              <% end %>
+              <div class="links">
+                <%= link_to_add_association 'Añadir Acto', f, :acto, 
+                  :class => 'btn-primary' 
+                %>
+              </div>
+            </div>
+          </div>
+        </div> <! -- accordion-group Actos -->
+
+        <div class="accordion-group">
+          <div class="accordion-heading">
+            <a class="accordion-toggle" data-toggle="collapse" href="#descripcion"> 
+              Descripción
+            </a>
+          </div>
+          <div id="descripcion" class="accordion-body collapse">
+            <div class="accordion-inner">
+              <%= f.input :memo, label: 'Memo' %>
+            </div>
+          </div>
+        </div> <! -- accordion-group Descripción -->
+
+ 
+        <div class="accordion-group">
+          <div class="accordion-heading">
+            <a class="accordion-toggle" data-toggle="collapse" href="#anexo"> 
+              Anexos
+            </a>
+          </div>
+          <div id="anexo" class="accordion-body collapse">
+            <div class="accordion-inner">
+              <%= f.simple_fields_for :anexo do |anexo| %>
+                <%= render 'anexo_fields', :f => anexo %>
+              <% end %>
+              <div class="links">
+                <%= link_to_add_association 'Añadir Anexo', f, 
+                  :anexo, :class => 'btn-primary' 
+                %>
+              </div>
+            </div>
+          </div>
+        </div> <! -- accordion-group Anexos -->
+
+        <div class="accordion-group">
+          <div class="accordion-heading">
+            <a class="accordion-toggle" data-toggle="collapse" href="#etiquetas"> 
+              Etiquetas
+            </a>
+          </div>
+          <div id="etiquetas" class="accordion-body collapse">
+            <div class="accordion-inner">
+              <%= f.simple_fields_for :caso_etiqueta do |cetiqueta| %>
+                <%= render 'caso_etiqueta_fields', :f => cetiqueta %>
+              <% end %>
+              <div class="links">
+                <%= link_to_add_association 'Añadir Etiqueta', f, 
+                  :caso_etiqueta, :class => 'btn-primary' 
+                %>
+              </div>
+            </div>
+          </div>
+        </div> <! -- accordion-group Etiquetas -->
+
+      </div> <!-- accordion -->
+    </div> <!-- form-inputs -->
+    <div class="form-actions">
+      <%= f.button :submit, 'Guardar', :class => 'btn-primary' %>
+      <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+        sivel2_gen.casos_path, :class => 'btn' 
+      %>
+    </div>
+  <% end %> <!-- simple_form_for @caso -->
+  </article>
+<% end -%> <!-- else -->
+

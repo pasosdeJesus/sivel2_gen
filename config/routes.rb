@@ -10,9 +10,10 @@ Sivel2Gen::Engine.routes.draw do
   get '/casos/nuevavictima' => 'casos#nueva_victima'
   get '/casos/nuevopresponsable' => 'casos#nuevo_presponsable'
   get "/casos/busca" => 'casos#busca'
-  get "tablasbasicas" => 'hogar#tablasbasicas'
-  get 'acercade' => 'hogar#acercade'
-  get "hogar" => 'hogar#index'
+  get "/fichacasovertical" => 'hogar#fichacasovertical'
+  get "/tablasbasicas" => 'hogar#tablasbasicas'
+  get '/acercade' => 'hogar#acercade'
+  get "/hogar" => 'hogar#index'
 
   resources :actividades, path_names: { new: 'nueva', edit: 'edita' }
   resources :casos, path_names: { new: 'nuevo', edit: 'edita' }
