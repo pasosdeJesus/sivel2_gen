@@ -15254,7 +15254,7 @@ INSERT INTO sivel2_gen_filiacion (id, nombre, fechacreacion, fechadeshabilitacio
 INSERT INTO sivel2_gen_filiacion (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (12, 'COMUNISTA', '2001-01-01', NULL, NULL, NULL);
 INSERT INTO sivel2_gen_filiacion (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (13, 'POLO DEMOCRÁTICO', '2001-01-01', NULL, NULL, NULL);
 INSERT INTO sivel2_gen_filiacion (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (14, 'FRENTE SOCIAL Y POLÍTICO', '2001-01-01', NULL, NULL, NULL);
-INSERT INTO sivel2_gen_filiacion (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (15, 'MARCHA PATRIÓTICA', '2014-02-14', NULL, NULL, NULL);
+INSERT INTO sivel2_gen_filiacion (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (15, 'MOVIMIENTO POLÍTICO Y SOCIAL MARCHA PATRIÓTICA', '2014-02-14', NULL, NULL, NULL);
 INSERT INTO sivel2_gen_filiacion (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (2, 'CONSERVADOR', '2001-01-01', NULL, NULL, NULL);
 INSERT INTO sivel2_gen_filiacion (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (3, 'ALIANZAS TRADICIONALES', '2001-01-01', NULL, NULL, NULL);
 INSERT INTO sivel2_gen_filiacion (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (4, 'IZQUIERDA', '2001-01-01', NULL, NULL, NULL);
@@ -15475,7 +15475,7 @@ INSERT INTO sivel2_gen_actividadoficio (id, nombre, fechacreacion, fechadeshabil
 INSERT INTO sivel2_gen_actividadoficio (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (13, 'TRABAJADOR INFORMAL', '2013-05-16', NULL, NULL, NULL);
 INSERT INTO sivel2_gen_actividadoficio (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (14, 'TRABAJADOR/GESTOR COMUNITARIO', '2013-05-16', NULL, NULL, NULL);
 INSERT INTO sivel2_gen_actividadoficio (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (15, 'PESCADOR', '2013-05-16', NULL, NULL, NULL);
-INSERT INTO sivel2_gen_actividadoficio (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (16, 'TRABAJADOR DOMÉSTICO', '2013-05-16', NULL, NULL, NULL);
+INSERT INTO sivel2_gen_actividadoficio (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (16, 'TRABAJADOR DOMÉSTICO', '2013-05-16', NULL, NULL, NULL); 
 INSERT INTO sivel2_gen_actividadoficio (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (17, 'PIANGUERO', '2013-05-16', NULL, NULL, NULL);
 INSERT INTO sivel2_gen_actividadoficio (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (18, 'OTRO', '2013-05-16', NULL, NULL, NULL);
 INSERT INTO sivel2_gen_actividadoficio (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (19, 'CORTE Y COSTURA', '2014-03-10', NULL, NULL, NULL);
