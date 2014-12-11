@@ -172,5 +172,15 @@ $(document).on 'ready page:load',  ->
   # http://stackoverflow.com/questions/16777003/what-is-the-easiest-way-to-disable-enable-buttons-and-links-jquery-bootstrap
   #$('body').on('click', 'a.disabled', (e) -> 
   #  e.preventDefault() )
+
+  
+  # Envia formulario al presiones enlaces con clase fichacambia 
+  $(document).on('click', 'a.fichacambia[href^="#"]', (e) ->
+    f=$('form')
+    a=f.attr('action')
+    $.post(a, f.serialize())
+    e.preventDefault() 
+    return
+  )
  
   return
