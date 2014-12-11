@@ -38,7 +38,11 @@ module Sivel2Gen
       cu.id_caso = @caso.id
       cu.fechainicio = DateTime.now.strftime('%Y-%m-%d')
       cu.save!
-      render action: 'edit', layout: 'application'
+      if session[:capturacaso_acordeon]
+        render 'editv', layout: 'application'
+      else
+        render 'edit', layout: 'application'
+      end
     end
 
 
@@ -74,7 +78,11 @@ module Sivel2Gen
 
     # GET /casos/1/edit
     def edit
-      render layout: 'application'
+      if session[:capturacaso_acordeon]
+        render 'editv', layout: 'application'
+      else
+        render 'edit', layout: 'application'
+      end
     end
 
     # POST /casos
@@ -92,7 +100,9 @@ module Sivel2Gen
               layout: 'application' 
           }
         else
-          format.html { render action: 'new', layout: 'application'  }
+          format.html { 
+            render action: 'new', layout: 'application'  
+          }
           format.json { 
             render json: @caso.errors, status: :unprocessable_entity 
           }
@@ -116,7 +126,13 @@ module Sivel2Gen
           format.json { head :no_content }
           format.js   { redirect_to @caso, notice: 'Caso actualizado.' }
         else
-          format.html { render action: 'edit', layout: 'application' }
+          format.html { 
+            if session[:capturacaso_acordeon]
+              render 'editv', layout: 'application' 
+            else
+              render 'edit', layout: 'application' 
+            end
+          }
           format.json { render json: @caso.errors, status: :unprocessable_entity }
           format.js   { render action: 'edit' }
         end
