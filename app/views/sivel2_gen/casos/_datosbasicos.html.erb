@@ -1,0 +1,26 @@
+<%= f.input :id, label: "Código", readonly: true%>
+
+<%= f.input :fecha, :input_html => { 
+  "data-behaviour" => "datepicker" },
+  :as => :string, :label => "Fecha del Hecho" 
+%>
+<%= f.input :titulo %>
+<%= f.input :hora %> <!--, as: :time, ampm: true -->
+<%= f.input :duracion %>
+<%= f.association :intervalo,
+  collection: Sivel2Gen::Intervalo.habilitados,
+  label_method: :nombre,
+  value_method: :id 
+%>
+<%= f.association :region, 
+  collection: Sivel2Gen::Region.habilitados,
+  label: "Región",
+  label_method: :nombre, 
+  value_method: :id 
+%>
+<%= f.association :frontera, 
+  collection: Sivel2Gen::Frontera.habilitados,
+  label: "Frontera",
+  label_method: :nombre, 
+  value_method: :id 
+%>
