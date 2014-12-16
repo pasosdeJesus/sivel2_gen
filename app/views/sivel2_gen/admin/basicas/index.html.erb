@@ -43,7 +43,7 @@
           <% elsif atr == "id_pconsolidado" then %>
             <td><%= Sivel2Gen::Pconsolidado.find(basica[atr]).nombre %></td>
           <% elsif atr == "derecho_id" then %>
-            <td><%= Sivel2Gen::Derecho.find(basica[atr]).nombre if basica[atr] %></td>
+            <td><%= Sivel2Sjr::Derecho.find(basica[atr]).nombre if basica[atr] %></td>
           <% elsif atr == "tipocat" then %>
             <td>
               <% h={C: "Colectivo", I: "Individual", O: "Otro"} %>

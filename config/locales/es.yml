@@ -64,6 +64,9 @@ es:
       "sivel2_gen/escolaridad":
         Escolaridad: Nivel de Escolaridad
         Escolaridades: Niveles de Escolaridad
+      "sivel2_gen/estadocivil":
+        Estadocivil: Estado Civil
+        Estadosciviles: Estados Civiles
       "sivel2_gen/iglesia":
         Iglesia: Iglesia
         Iglesias: Iglesias
@@ -100,9 +103,6 @@ es:
       "sivel2_gen/region":
         Region: Región
         Regiones: Regiones
-      "sivel2_gen/regimensalud":
-        Regimensalud: Régimen Salud
-        Regimenessalud: Régimenes Salud
       "sivel2_gen/regionsjr":
         Regionsjr: Oficina
         Regionessjr: Oficinas
