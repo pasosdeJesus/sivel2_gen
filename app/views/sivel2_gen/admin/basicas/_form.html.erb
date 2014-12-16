@@ -57,7 +57,7 @@
           value_method: :id %>
       <% elsif atr == "derecho_id" then %>
         <%= f.association :derecho,
-          collection: Sivel2Gen::Derecho.habilitados,
+          collection: Sivel2Sjr::Derecho.habilitados,
           label_method: :nombre,
           value_method: :id %>
       <% elsif atr == "tipocat" then %>
