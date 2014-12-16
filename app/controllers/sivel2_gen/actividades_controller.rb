@@ -86,7 +86,9 @@ module Sivel2Gen
     private
 
     def set_actividad
-      @actividad = Actividad.find(params[:id].to_i)
+      @actividad = Actividad.find(
+        Sivel2Gen::Caso.connection.quote_string(params[:id]).to_i
+      )
       @actividad.current_usuario = current_usuario
     end
 
