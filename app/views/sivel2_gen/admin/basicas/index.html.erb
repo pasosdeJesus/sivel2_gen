@@ -15,7 +15,11 @@
     <tr>
       <!-- http://blog.crowdint.com/2013/08/22/rails-template-inheritance.html -->
       <% atributos_index.each do |atr| %>
+        <% if atr == {:derecho_ids => []} then %>
+          <th>Derechos</th>
+        <% else %>
           <th><%= model_class.human_attribute_name(atr) %></th>
+        <% end %>
       <% end %>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
@@ -44,6 +48,8 @@
             <td><%= Sivel2Gen::Pconsolidado.find(basica[atr]).nombre %></td>
           <% elsif atr == "derecho_id" then %>
             <td><%= Sivel2Sjr::Derecho.find(basica[atr]).nombre if basica[atr] %></td>
+          <% elsif atr == {:derecho_ids => []} then %>
+            <td><%= basica.derecho.map { |i| i.nombre} %></td>
           <% elsif atr == "tipocat" then %>
             <td>
               <% h={C: "Colectivo", I: "Individual", O: "Otro"} %>

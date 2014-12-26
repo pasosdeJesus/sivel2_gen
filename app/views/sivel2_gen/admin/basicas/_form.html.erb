@@ -2,7 +2,13 @@
   url: @basica.id.nil? ? (admin_basicas_path(@basica)) : 
   admin_basica_path(@basica), defaults: { input_html: { class: 'span10' } } do |f| %>
     <% atributos_form.each do |atr|  %>
-      <% if @basica.class.columns_hash[atr].type == :date then %>
+      <% if atr == {:derecho_ids => [] } %>
+        <%= f.association :derecho,
+          collection: Sivel2Sjr::Derecho.habilitados,
+          label_method: :nombre,
+          value_method: :id 
+        %>
+      <% elsif @basica.class.columns_hash[atr].type == :date then %>
         <%= f.input atr.to_sym,
           :input_html => { "data-behaviour" => "datepicker"}, 
           :as => :string 
