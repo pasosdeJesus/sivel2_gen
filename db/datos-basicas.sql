@@ -16241,7 +16241,6 @@ SET search_path = public, pg_catalog;
 --
 
 INSERT INTO sivel2_gen_regionsjr (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (1, 'SIN INFORMACIÓN', '2014-09-01', NULL, '2014-09-01 12:54:42.630253', '2014-09-03 10:40:11.967004');
-INSERT INTO sivel2_gen_regionsjr (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (2, 'OBSUR', '2014-09-09', NULL, '2014-09-09 18:53:04.476258', '2014-09-09 18:53:04.476258');
 
 
 --

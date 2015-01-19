@@ -100,7 +100,7 @@ module Sivel2Gen
     describe "PUT update" do
       describe "con parámetros válidos" do
         let(:new_attributes) {
-          { minutos: "90", nombre: "nombreact2", regionsjr_id: "2", 
+          { minutos: "90", nombre: "nombreact2", regionsjr_id: "1", 
             fecha: "2014-11-18", created_at: "2014-11-18" }
         }
 
@@ -108,7 +108,7 @@ module Sivel2Gen
           actividad = Actividad.create! valid_attributes
           put :update, {:id => actividad.to_param, :actividad => new_attributes}, valid_session
           actividad.reload
-          expect(actividad.regionsjr_id).to eq(2)
+          expect(actividad.regionsjr_id).to eq(1)
         end
 
         it "asigna la actividad requerida como @actividad" do
