@@ -6,6 +6,7 @@
 
 #//= require cocoon
 #//= require sivel2_gen/geo
+#//= require sivel2_gen/libcasos
 
 # Elimina secciones agregadas con cocoon listadas en elempe
 eliminaPendientes = (elempe) ->
@@ -28,42 +29,13 @@ $(document).on 'ready page:load',  ->
   )
 
   # En actos, lista de presuntos responsables se calcula
-  $(document).on('focusin', 'select[id^=caso_acto_attributes_][id$=id_presponsable]', (e) ->
-    #debugger
-    sel = $(this).val()
-    nh = ''
-    lcg = $('#presponsable .control-group[style!="display: none;"]')
-    lcg.each((k, v) ->
-      id = $(v).find('select[data-actualiza=presponsable]').val()
-      nh = nh + "<option value='" + id + "'"
-      if id == sel 
-        nh = nh + ' selected'
-      tx = $(v).find('select[data-actualiza=presponsable] option[value=' + id + ']').text()
-      nh = nh + ">" + tx + "</option>" )
-    $(this).html(nh)
+  $(document).on('focusin', 'select[id^=caso_acto_][id$=id_presponsable]', (e) ->
+    actualiza_presponsables($(this))
   )
 
   # En actos, lista de víctimas se cálcula
-  $(document).on('focusin', 'select[id^=caso_acto_attributes_][id$=id_persona]', (e) ->
-    sel = $(this).val()
-    nh = ''
-    c = $('#contacto')
-    lcg = c.add('#victima .control-group[style!="display: none;"]')
-    lcg.each((k, v) ->
-      # id: persona
-      # Nos gustaría 
-      # id = $(v).find('.caso_victima_persona_id input').val()
-      # pero como nombre de clase genera caso_victima_279_persona_id
-      id = $(v).find('div').filter( () -> this.attributes.class.value.match(/caso_victima[_0-9]*persona_id/)).find('input').val()
-      nh = nh + "<option value='" + id + "'"
-      if id == sel 
-        nh = nh + ' selected'
-      # texto: nombres apellidos
-      nom = $(v).find('div').filter( () -> this.attributes.class.value.match(/caso_victima[_0-9]*persona_nombres/)).find('input').val()
-      ap = $(v).find('div').filter( () -> this.attributes.class.value.match(/caso_victima[_0-9]*persona_apellidos/)).find('input').val()
-      tx = (nom + " " + ap).trim()
-      nh = nh + ">" + tx + "</option>" )
-    $(this).html(nh)
+  $(document).on('focusin', 'select[id^=caso_acto_][id$=id_persona]', (e) ->
+    actualiza_victimas($(this))
   )
 
   # Al cambiar país se recalcula lista de departamentos
@@ -185,8 +157,36 @@ $(document).on 'ready page:load',  ->
       f=$('form')
       a=f.attr('action')
       $.post(a, f.serialize())
+      actualiza_presponsables($('#caso_acto_id_presponsable'))
+      actualiza_victimas($('#caso_acto_id_persona'))
       root.tfichacambia = Date.now()
     return
   )
- 
+
+  # Agrega actos  
+  $(document).on('click', 'a.agregaractos[href^="#"]', (e) ->
+    e.preventDefault()
+    tn = Date.now()
+    d = -1
+    if (root.tagregaactos) 
+      d = (tn - root.tagregaactos)/1000
+    if (d == -1 || d>5) 
+      f=$('form')
+      a='/actos/agregar'
+      $.post(a, f.serialize())
+      root.tagregaactos= Date.now()
+    return
+  )
+
+  # Elimina acto
+  $(document).on('click', 'a.eliminaracto[href^="#"]', (e) ->
+    e.preventDefault()
+    f = $('form')
+    d = "id_acto=" + $(this).attr('data-eliminaracto')
+    a = '/actos/eliminar'
+    $.ajax(url: a, data: d, dataType: "script").fail( (jqXHR, texto) ->
+      alert("Error con ajax " + texto)
+    )
+  )
+
   return

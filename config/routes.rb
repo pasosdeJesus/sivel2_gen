@@ -1,5 +1,7 @@
 Sivel2Gen::Engine.routes.draw do
 
+  patch "/actos/agregar" => 'actos#agregar'
+  get "/actos/eliminar" => 'actos#eliminar'
   get '/anexoactividades/descarga_anexoactividad/:id' => 'anexoactividades#descarga_anexoactividad'
   get '/anexos/descarga_anexo/:id' => 'anexos#descarga_anexo'
   get '/ubicaciones/nuevo' => 'ubicaciones#nuevo'

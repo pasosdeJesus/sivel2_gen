@@ -20,6 +20,7 @@
           </div>
         <% end %>
       </div>
+
       <div role="tabpanel">
 
         <ul class="nav nav-tabs" role="tablist">
@@ -78,52 +79,45 @@
             </div>
           </div>
 
-         <div id="actos" role="tabpanel" class="tab-pane">
-           <%= f.simple_fields_for :acto do |a| %>
-             <%= render 'acto_fields', :f => a %>
-           <% end %>
-           <div class="links">
-             <%= link_to_add_association 'Añadir Acto', f, :acto, 
-               :class => 'btn-primary' 
-             %>
-           </div>
-         </div>
+          <div id="actos" role="tabpanel" class="tab-pane">
+            <%= render 'actos', :f => f %> 
+          </div>
 
-         <div id="descripcion" role="tabpanel" class="tab-pane">
+          <div id="descripcion" role="tabpanel" class="tab-pane">
             <%= render 'descripcion', :f => f %>
-         </div>
+          </div>
 
- 
-         <div id="anexos" role="tabpanel" class="tab-pane">
-           <%= f.simple_fields_for :anexo do |anexo| %>
-             <%= render 'anexo_fields', :f => anexo %>
-           <% end %>
-           <div class="links">
-             <%= link_to_add_association 'Añadir Anexo', f, 
-               :anexo, :class => 'btn-primary' 
-             %>
-           </div>
-         </div>
 
-         <div id="etiquetas" role="tabpanel" class="tab-pane">
-           <%= f.simple_fields_for :caso_etiqueta do |cetiqueta| %>
-             <%= render 'caso_etiqueta_fields', :f => cetiqueta %>
-           <% end %>
-           <div class="links">
-             <%= link_to_add_association 'Añadir Etiqueta', f, 
-               :caso_etiqueta, :class => 'btn-primary' 
-             %>
-           </div>
+          <div id="anexos" role="tabpanel" class="tab-pane">
+            <%= f.simple_fields_for :anexo do |anexo| %>
+              <%= render 'anexo_fields', :f => anexo %>
+            <% end %>
+            <div class="links">
+              <%= link_to_add_association 'Añadir Anexo', f, 
+                :anexo, :class => 'btn-primary' 
+              %>
+            </div>
+          </div>
+
+          <div id="etiquetas" role="tabpanel" class="tab-pane">
+            <%= f.simple_fields_for :caso_etiqueta do |cetiqueta| %>
+              <%= render 'caso_etiqueta_fields', :f => cetiqueta %>
+            <% end %>
+            <div class="links">
+              <%= link_to_add_association 'Añadir Etiqueta', f, 
+                :caso_etiqueta, :class => 'btn-primary' 
+              %>
+            </div>
+          </div>
+        </div> <!-- tab-content -->
+
+        <div class="form-actions" style="text-align: center">
+          <%= f.button :submit, 'Validar y Guardar', :class => 'btn-primary' %>
+          <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+            sivel2_gen.casos_path, :class => 'btn' 
+          %>
         </div>
-      </div> <!-- tab-content -->
-
-    <div class="form-actions" style="text-align: center">
-      <%= f.button :submit, 'Validar y Guardar', :class => 'btn-primary' %>
-      <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-        sivel2_gen.casos_path, :class => 'btn' 
-      %>
-    </div>
-  </div> <!-- tabpanel -->
+      </div> <!-- tabpanel -->
   <% end %> <!-- simple_form_for @caso -->
   </article>
 <% end -%> <!-- else -->
