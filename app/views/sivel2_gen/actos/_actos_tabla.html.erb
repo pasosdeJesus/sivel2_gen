@@ -1,0 +1,32 @@
+<table class="table table-striped" border='1'>
+  <thead>
+    <tr>
+      <th><%= @caso.acto.human_attribute_name(:presponsable) %></th>
+      <th><%= @caso.acto.human_attribute_name(:categoria) %></th>
+      <th><%= @caso.acto.human_attribute_name(:victima) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @caso.acto.try(:each) do |acto| %>
+      <tr>
+        <td><%= acto.presponsable.nombre %></td>
+        <td><%= acto.categoria.nombre %></td>
+        <td>
+          <%= acto.persona.nombres + ' ' + acto.persona.apellidos %>
+        </td>
+        <td>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+            '#',
+            :data => { 
+                :eliminaracto => "#{acto.id}",
+            },
+            :class => 'btn btn-xs btn-danger eliminaracto' 
+          %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+

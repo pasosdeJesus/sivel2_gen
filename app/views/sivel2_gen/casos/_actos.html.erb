@@ -1,0 +1,46 @@
+<div style="padding-bottom: 18px;" class="input select caso_acto_presponsable">
+  <label class="select required control-label" for="caso_acto_id_presponsable">
+    Presunto Responsable</label>
+  <%= 
+    p = options_from_collection_for_select(
+      Sivel2Gen::Presponsable.from('sivel2_gen_caso_presponsable, sivel2_gen_presponsable').where(
+        'sivel2_gen_caso_presponsable.id_presponsable=sivel2_gen_presponsable.id 
+      AND sivel2_gen_caso_presponsable.id_caso=?', @caso.id), "id", "nombre"
+    )
+    select_tag "caso_acto_id_presponsable", p, multiple: true
+  %>
+</div>
+<div style="padding-bottom: 18px;" class="input select caso_acto_categoria">
+  <label class="select required control-label" for="caso_acto_id_categoria">
+    Categoria</label>
+  <%= 
+    c = options_from_collection_for_select(
+      Sivel2Gen::Categoria.habilitados.reorder(:id_tviolencia, :id), 
+        "id", 
+        lambda {|t| t.id_tviolencia + t.id.to_s + ' ' + t.nombre }
+    )
+    select_tag "caso_acto_id_categoria", c, multiple: true
+  %>
+</div>
+<div style="padding-bottom: 18px;" class="input select caso_acto_persona">
+  <label class="select required control-label" for="caso_acto_id_persona">
+    Víctima</label>
+  <%= 
+    p = options_from_collection_for_select(
+      Sivel2Gen::Persona.from('sivel2_gen_victima, sivel2_gen_persona').where(
+        'sivel2_gen_victima.id_persona=sivel2_gen_persona.id AND sivel2_gen_victima.id_caso=?', @caso.id),
+        "id",
+        lambda {|t| t.nombres + ' ' + t.apellidos}
+    )
+    select_tag "caso_acto_id_persona", p, multiple: true
+  %>
+</div>
+
+<%= link_to 'Añadir Acto(s)',
+  '#',
+  :class => 'agregaractos btn btn-primary' 
+%>
+<div id="actos_tabla">
+  <%= render 'sivel2_gen/actos/actos_tabla'  %>
+</div>
+
