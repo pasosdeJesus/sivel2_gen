@@ -4,14 +4,14 @@
 #
 
 # Elimina secciones agregadas con cocoon listadas en elempe
-eliminaPendientes = (elempe) ->
+@eliminaPendientes = (elempe) ->
   for i, e of elempe
     l = e.find('.remove_fields')
     _cocoon_remove_fields(l)
 
 # Actualiza cuadro de selección con presuntos responsables
 # s es un select jquery
-actualiza_presponsables = (s) ->
+@actualiza_presponsables = (s) ->
   sel = s.val()
   nh = ''
   lcg = $('#presponsable .control-group[style!="display: none;"]')
@@ -28,15 +28,14 @@ actualiza_presponsables = (s) ->
 
 # Actualiza cuadro de selección con víctimas
 # s es un select jquery
-actualiza_victimas = (s) ->
+@actualiza_victimas = (s) ->
   sel =s.val()
   nh = ''
   c = $('#contacto')
   lcg = c.add('#victima .control-group[style!="display: none;"]')
   lcg.each((k, v) ->
     id = $(v).find('div').filter( () -> 
-    this.attributes.class.value.match(/caso_victima[_0-9]*persona_id/)).find(
-      'input').val()
+      this.attributes.class.value.match(/caso_victima[_0-9]*persona_id/)).find('input').val()
     nh = nh + "<option value='" + id + "'"
     if id == sel 
       nh = nh + ' selected'
@@ -53,7 +52,7 @@ actualiza_victimas = (s) ->
   
 # AUTOCOMPLETACIÓN PERSONA
 # Elije una persona en autocompletación
-selPersona = (label, id, id_victima, divcp) ->
+@selPersona = (label, id, id_victima, divcp) ->
   cs = id.split(";")
   id_persona = cs[0]
   pl = []

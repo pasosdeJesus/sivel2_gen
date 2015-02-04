@@ -8,15 +8,8 @@
 #//= require sivel2_gen/geo
 #//= require sivel2_gen/libcasos
 
-# Elimina secciones agregadas con cocoon listadas en elempe
-eliminaPendientes = (elempe) ->
-  for i, e of elempe
-    l = e.find('.remove_fields')
-    _cocoon_remove_fields(l)
-
 
 $(document).on 'ready page:load',  -> 
-
   root = exports ? this
 
   $(document).on('cocoon:after-insert', (e) ->
