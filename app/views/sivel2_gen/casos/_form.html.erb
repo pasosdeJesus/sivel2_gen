@@ -4,13 +4,15 @@
   <article>
   <%= simple_form_for @caso, 
     :url => sivel2_gen.casos_path(@caso).sub(/\./,"/"), 
-    :html => { :class => 'form-horizontal' } do |f| %>
+    :html => { :class => 'form-horizontal' } do |f| 
+  %>
     <div data-role="content" class="form-inputs">
       <div id="errores">
         <% if f.object.errors.any? %>
           <div id="error_explanation">
             <div class="alert alert-error">
-              El formulario tiene <%= pluralize(f.object.errors.count, "error") %>.
+              El formulario tiene 
+              <%= pluralize(f.object.errors.count, "error") %>.
             </div>
             <ul>
               <% f.object.errors.full_messages.each do |msg| %>
@@ -19,105 +21,77 @@
             </ul>
           </div>
         <% end %>
+        <%= f.error_notification %>
       </div>
 
       <div role="tabpanel">
-
         <ul class="nav nav-tabs" role="tablist">
-          <li role="presentation" class="active"><a href="#basicos" class="fichacambia" aria-controls="basicos" role="tab" data-toggle="tab">Datos Básicos</a></li>
-          <li role="presentation"><a href="#ubicacion" class="fichacambia" aria-controls="ubicacion" role="tab" data-toggle="tab">Ubicación</a></li>
-          <li role="presentation"><a href="#presponsable" class="fichacambia" aria-controls="presponsable" role="tab" data-toggle="tab">Presuntos Responsables</a></li>
-          <li role="presentation"><a href="#victima" class="fichacambia" aria-controls="victima" role="tab" data-toggle="tab">Víctimas</a></li>
-          <li role="presentation"><a href="#actos" class="fichacambia" aria-controls="actos" role="tab" data-toggle="tab">Actos</a></li>
-          <li role="presentation"><a href="#descripcion" class="fichacambia" aria-controls="descripcion" role="tab" data-toggle="tab">Descripción</a></li>
-          <li role="presentation"><a href="#anexos" class="fichacambia" aria-controls="anexos" role="tab" data-toggle="tab">Anexos</a></li>
-          <li role="presentation"><a href="#etiquetas" class="fichacambia" aria-controls="etiquetas" role="tab" data-toggle="tab">Etiquetas</a></li>
+          <li role="presentation" class="active"><a href="#basicos" 
+            class="fichacambia" aria-controls="basicos" role="tab" 
+            data-toggle="tab">Datos Básicos</a></li>
+          <li role="presentation"><a href="#ubicacion" class="fichacambia" 
+            aria-controls="ubicacion" role="tab" 
+            data-toggle="tab">Ubicación</a></li>
+          <li role="presentation"><a href="#presponsable" class="fichacambia" 
+            aria-controls="presponsable" role="tab" 
+            data-toggle="tab">Presuntos Responsables</a></li>
+          <li role="presentation"><a href="#victima" class="fichacambia" 
+            aria-controls="victima" role="tab" 
+            data-toggle="tab">Víctimas</a></li>
+          <li role="presentation"><a href="#actos" class="fichacambia" 
+            aria-controls="actos" role="tab" data-toggle="tab">Actos</a></li>
+          <li role="presentation"><a href="#descripcion" class="fichacambia" 
+            aria-controls="descripcion" role="tab" 
+            data-toggle="tab">Descripción</a></li>
+          <li role="presentation"><a href="#anexos" class="fichacambia" 
+            aria-controls="anexos" role="tab" data-toggle="tab">Anexos</a></li>
+          <li role="presentation"><a href="#etiquetas" class="fichacambia" 
+            aria-controls="etiquetas" role="tab" 
+            data-toggle="tab">Etiquetas</a></li>
         </ul>
         <div class="tab-content">
-          <div id="basicos" role="tabpanel" class="tab-pane active">
-            <%= render 'datosbasicos', :f => f %>
+          <div role="tabpanel" class="tab-pane active" id="basicos">
+            <%= render 'basicos', :f => f %>
           </div> 
 
-          <div id="ubicacion" role="tabpanel" class="tab-pane">
-            <%= f.simple_fields_for :ubicacion do |ubicacion| %>
-              <%= render 'ubicacion_fields', :f => ubicacion %>
-            <% end %>
-            <div class="links">
-              <%= link_to_add_association 'Añadir Ubicación', f, 
-                :ubicacion, { :class => 'btn-primary',
-                  "data-ajax" => "/ubicaciones/nuevo", 
-                  "data-ajaxdata" => "caso_id" }
-              %>
-            </div>
+          <div role="tabpanel" class="tab-pane" id="ubicacion">
+            <%= render 'ubicaciones', :f => f %>
           </div>
 
-          <div id="presponsable" role="tabpanel" class="tab-pane">
-            <%= f.simple_fields_for :caso_presponsable do |caso_presponsable| %>
-              <%= render 'caso_presponsable_fields', 
-                :f => caso_presponsable 
-              %>
-            <% end %>
-            <div class="links">
-              <%= link_to_add_association 'Añadir Presunto Responsable', f, 
-                :caso_presponsable, {:class => 'btn-primary', 
-                  "data-ajax" => "/presponsables/nuevo", 
-                  "data-ajaxdata" => "caso_id"}
-              %>
-            </div>
+          <div role="tabpanel" class="tab-pane" id="presponsable">
+            <%= render 'presponsables', :f => f %>
           </div>
 
-          <div id="victima" role="tabpanel" class="tab-pane">
-            <%= f.simple_fields_for :victima do |victima| %>
-              <%= render 'victima_fields', :f => victima %>
-            <% end %>
-            <div class="links">
-              <%= link_to_add_association 'Añadir Víctima', f, :victima, 
-                { :class => 'btn-primary',
-                  "data-ajax" => "/victimas/nuevo", 
-                  "data-ajaxdata" => "caso_id" } 
-              %>
-            </div>
+          <div role="tabpanel" class="tab-pane" id="victima">
+            <%= render 'victimas', :f => f %>
           </div>
 
-          <div id="actos" role="tabpanel" class="tab-pane">
+          <div role="tabpanel" class="tab-pane" id="actos">
             <%= render 'actos', :f => f %> 
           </div>
 
-          <div id="descripcion" role="tabpanel" class="tab-pane">
-            <%= render 'descripcion', :f => f %>
+          <div role="tabpanel" class="tab-pane" id="descripcion">
+            <%= render 'memo', :f => f %>
           </div>
 
-
-          <div id="anexos" role="tabpanel" class="tab-pane">
-            <%= f.simple_fields_for :anexo do |anexo| %>
-              <%= render 'anexo_fields', :f => anexo %>
-            <% end %>
-            <div class="links">
-              <%= link_to_add_association 'Añadir Anexo', f, 
-                :anexo, :class => 'btn-primary' 
-              %>
-            </div>
+          <div role="tabpanel" class="tab-pane" id="anexos">
+            <%= render 'anexos', :f => f %>
           </div>
 
-          <div id="etiquetas" role="tabpanel" class="tab-pane">
-            <%= f.simple_fields_for :caso_etiqueta do |cetiqueta| %>
-              <%= render 'caso_etiqueta_fields', :f => cetiqueta %>
-            <% end %>
-            <div class="links">
-              <%= link_to_add_association 'Añadir Etiqueta', f, 
-                :caso_etiqueta, :class => 'btn-primary' 
-              %>
-            </div>
+          <div role="tabpanel" class="tab-pane" id="etiquetas">
+            <%= render 'etiquetas', :f => f %>
           </div>
+
         </div> <!-- tab-content -->
-
-        <div class="form-actions" style="text-align: center">
-          <%= f.button :submit, 'Validar y Guardar', :class => 'btn-primary' %>
-          <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-            sivel2_gen.casos_path, :class => 'btn' 
-          %>
-        </div>
       </div> <!-- tabpanel -->
+    </div> <!-- form-inputs -->
+
+    <div class="form-actions" style="text-align: center">
+      <%= f.button :submit, 'Validar y Guardar', :class => 'btn-primary' %>
+      <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+        sivel2_gen.casos_path, :class => 'btn' 
+      %>
+    </div> <!-- form-action -->
   <% end %> <!-- simple_form_for @caso -->
   </article>
 <% end -%> <!-- else -->

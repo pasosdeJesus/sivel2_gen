@@ -1,0 +1,10 @@
+            <%= f.simple_fields_for :ubicacion do |ubicacion| %>
+              <%= render 'ubicacion_fields', :f => ubicacion %>
+            <% end %>
+            <div class="links">
+              <%= link_to_add_association 'Añadir Ubicación', f, 
+                :ubicacion, { :class => 'btn-primary',
+                  "data-ajax" => "/ubicaciones/nuevo", 
+                  "data-ajaxdata" => "caso_id" }
+              %>
+            </div>
