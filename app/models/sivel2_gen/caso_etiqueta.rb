@@ -10,5 +10,6 @@ module Sivel2Gen
     belongs_to :usuario, foreign_key: "id_usuario", validate: true
 
     validates_presence_of :fecha
+    validates_presence_of :id_etiqueta
   end
 end
