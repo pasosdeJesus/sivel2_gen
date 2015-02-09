@@ -26,6 +26,8 @@ module Sivel2Gen
             foreign_key: "id_caso", validate: true
             
           validates_presence_of :pais
+          validates_presence_of :id_tsitio
+          validates_presence_of :caso
         end
       end
     end
