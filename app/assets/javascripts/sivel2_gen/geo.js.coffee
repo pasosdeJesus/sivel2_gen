@@ -1,7 +1,7 @@
 # Completas campos con información geográfica que se carga con AJAX
 
 #  Completa departamento
-@llenaDepartamento = ($this) -> 
+@llena_departamento = ($this) -> 
   idpais=$this.attr('id')
   iddep=idpais.replace('id_pais', 'id_departamento')
   idmun=idpais.replace('id_pais', 'id_municipio')
@@ -41,7 +41,7 @@
 
 
 #  Completa municipio.
-@llenaMunicipio = ($this) -> 
+@llena_municipio = ($this) -> 
   iddep=$this.attr('id')
   idpais=iddep.replace('id_departamento', 'id_pais')
   idmun=iddep.replace('id_departamento', 'id_municipio')
@@ -79,7 +79,7 @@
 
 
 # Completa cuadro de selección para clase de acuerdo a depto y mcpio.
-@llenaClase = ($this) -> 
+@llena_clase = ($this) -> 
   iddep = "id_departamento"
   idcla = "id_clase"
   idmun = $this.attr('id')
