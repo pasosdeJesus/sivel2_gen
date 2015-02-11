@@ -48,7 +48,7 @@ module Sivel2Gen
 
 
     def lista
-      if !params[:tabla].nil?
+      if params[:tabla]
         r = nil
         if (params[:tabla] == "departamento" && params[:id_pais].to_i > 0)
           r = Departamento.where(fechadeshabilitacion: nil,

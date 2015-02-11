@@ -1,3 +1,5 @@
 
 valida:
-	coffee -o /tmp/ app/assets/javascripts/sivel2_gen/casos.js.coffee
+	for i in `find app/assets/javascripts/ -name "*coffee"`; do \
+	coffee -o /tmp/ $$i; \
+	done

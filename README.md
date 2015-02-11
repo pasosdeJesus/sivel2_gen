@@ -24,6 +24,7 @@ Roles: administrador y usuario
 * Recomendado sobre adJ 5.5 (que incluye todos los componentes mencionados).  
   Las siguientes instrucciones suponen que opera en este ambiente.
 
+
 ## Pruebas
 Se han implementado algunas pruebas con RSpec a modelos y pruebas de regresión.
 
@@ -54,21 +55,27 @@ $ exit
 * Prepare spec/dummy/config/database.yml con los datos de la base que creo:
 ```sh
   cp spec/dummy/config/database.yml.plantilla spec/dummy/config/database.yml
-  $EDITOR spec/dummy/config/database.yml
+  vim spec/dummy/config/database.yml
 ```
 * Prepare base de prueba con:
 ``` sh
   cd spec/dummy
-  CLAVE_SIVEL2=miclave RAILS_ENV=test rake db:drop
-  CLAVE_SIVEL2=miclave RAILS_ENV=test rake db:setup
-  CLAVE_SIVEL2=miclave RAILS_ENV=test rake sivel2:indices
+  RAILS_ENV=test rake db:drop
+  RAILS_ENV=test rake db:setup
+  RAILS_ENV=test rake sivel2:indices
 ```
 * Ejecute las pruebas desde el directorio del motor con:
 ```sh
-  CLAVE_SIVEL2=miclave rspec
+  rspec
 ```
 
 ## Desarrollo
+
+Si tiene instalado coffescript, podrá verificar sintaxis de archivos del 
+directorio app/assets/javascript/ con:
+```sh
+  make
+```
 
 ### Convenciones
 
