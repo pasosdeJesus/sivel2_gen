@@ -2,6 +2,10 @@
 # 
 # Por compartir entre motores que operen sobre sivel2_gen
 
+#//= require jquery-ui/autocomplete
+#//= require cocoon
+#//= require sivel2_gen/geo
+
 # Elimina secciones agregadas con cocoon listadas en elempe
 @elimina_pendientes = (elempe) ->
   for i, e of elempe

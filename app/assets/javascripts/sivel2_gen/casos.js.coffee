@@ -4,8 +4,6 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 #
 
-#//= require cocoon
-#//= require sivel2_gen/geo
 #//= require sivel2_gen/libcasos
 
 

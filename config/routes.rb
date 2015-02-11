@@ -2,20 +2,22 @@ Sivel2Gen::Engine.routes.draw do
 
   patch "/actos/agregar" => 'actos#agregar'
   get "/actos/eliminar" => 'actos#eliminar'
+  get '/acercade' => 'hogar#acercade'
   get '/anexoactividades/descarga_anexoactividad/:id' => 'anexoactividades#descarga_anexoactividad'
   get '/anexos/descarga_anexo/:id' => 'anexos#descarga_anexo'
-  get '/ubicaciones/nuevo' => 'ubicaciones#nuevo'
-  get '/victimas/nuevo' => 'victimas#nuevo'
-  get '/presponsables/nuevo' => 'presponsables#nuevo'
+  get "/casos/busca" => 'casos#busca'
   get '/casos/lista' => 'casos#lista'
   get '/casos/nuevaubicacion' => 'casos#nueva_ubicacion'
   get '/casos/nuevavictima' => 'casos#nueva_victima'
   get '/casos/nuevopresponsable' => 'casos#nuevo_presponsable'
-  get "/casos/busca" => 'casos#busca'
   get "/fichacasovertical" => 'hogar#fichacasovertical'
-  get "/tablasbasicas" => 'hogar#tablasbasicas'
-  get '/acercade' => 'hogar#acercade'
   get "/hogar" => 'hogar#index'
+  get "/personas" => 'personas#index'
+  get "/personas/remplazar" => 'personas#remplazar'
+  get '/presponsables/nuevo' => 'presponsables#nuevo'
+  get "/tablasbasicas" => 'hogar#tablasbasicas'
+  get '/ubicaciones/nuevo' => 'ubicaciones#nuevo'
+  get '/victimas/nuevo' => 'victimas#nuevo'
 
   resources :actividades, path_names: { new: 'nueva', edit: 'edita' }
   resources :casos, path_names: { new: 'nuevo', edit: 'edita' }
