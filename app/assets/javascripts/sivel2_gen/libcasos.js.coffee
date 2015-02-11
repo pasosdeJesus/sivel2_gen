@@ -100,8 +100,15 @@
   v = $("#" + cnom).data('autocompleta')
   if (v != 1 && v != "no") 
     $("#" + cnom).data('autocompleta', 1)
-    idvictima = s.parent().parent().parent().find('.caso_victima_id').find('input').val()
-    divcp = s.parent().parent().parent().find('.campos_persona')
+    ctrl = s.closest('.controls')
+    idvictima = ctrl.find('.caso_victima_id').find('input').val()
+    if (typeof idvictima == 'undefined')
+      alert('No se ubico .caso_victima_id')
+      return
+    divcp = ctrl.find('.campos_persona')
+    if (typeof divcp == 'undefined')
+      alert('No se ubico .campos_persona')
+      return
     $("#" + cnom).autocomplete({
       source: "/personas.json",
       minLength: 2,

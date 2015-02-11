@@ -30,5 +30,28 @@ module Sivel2Gen
         end
       end
     end
+
+    def update
+      if @caso.update(ubicacion_params)
+        respond_to do |format|
+          format.js { render text: @ubicacion.id.to_s }
+          format.json { render json: @ubicacion.id.to_s, status: :updated }
+          format.html { render inline: @ubicacion.id.to_s }
+        end
+      else
+        respond_to do |format|
+          format.html { render action: "error" }
+          format.json { render json: @ubicacion.errors, status: :unprocessable_entity }
+        end
+      end
+    end
+
+    def ubicacion_params
+      params.require(:ubicacion).permit(
+        :id, :id_pais, :id_departamento, :id_municipio, :id_clase, 
+        :lugar, :sitio, :latitud, :longitud, :id_tsitio, 
+        :_destroy
+      )
+    end
   end
 end
