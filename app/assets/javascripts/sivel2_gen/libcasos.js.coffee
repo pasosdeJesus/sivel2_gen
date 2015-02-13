@@ -13,6 +13,10 @@
     _cocoon_remove_fields(l)
   return
 
+@elimina_destruidos = () ->
+  $('input[id$=destroy][value=1]').closest('.control-group').remove()
+  return
+
 # Actualiza cuadro de selección con presuntos responsables
 # s es un select jquery
 @actualiza_presponsables = (s) ->
@@ -100,14 +104,13 @@
   v = $("#" + cnom).data('autocompleta')
   if (v != 1 && v != "no") 
     $("#" + cnom).data('autocompleta', 1)
-    ctrl = s.closest('.controls')
-    idvictima = ctrl.find('.caso_victima_id').find('input').val()
-    if (typeof idvictima == 'undefined')
-      alert('No se ubico .caso_victima_id')
-      return
-    divcp = ctrl.find('.campos_persona')
+    divcp = s.closest('.campos_persona')
     if (typeof divcp == 'undefined')
       alert('No se ubico .campos_persona')
+      return
+    idvictima = divcp.parent().find('.caso_victima_id').find('input').val()
+    if (typeof idvictima == 'undefined')
+      alert('No se ubico .caso_victima_id')
       return
     $("#" + cnom).autocomplete({
       source: "/personas.json",
@@ -292,23 +295,6 @@
   #  e.preventDefault() )
 
   
-  # Envia formulario al presionar enlaces con clase fichacambia 
-  # con más de 5 segundos de diferencia entre un click y el siguiente
-  $(document).on('click', 'a.fichacambia[href^="#"]', (e) ->
-    tn = Date.now()
-    d = -1
-    if (root.tfichacambia) 
-      d = (tn - root.tfichacambia)/1000
-    if (d == -1 || d>5) 
-      f=$('form')
-      a=f.attr('action')
-      $.post(a, f.serialize())
-      actualiza_presponsables($('#caso_acto_id_presponsable'))
-      actualiza_victimas($('#caso_acto_id_persona'))
-      root.tfichacambia = Date.now()
-    return
-  )
-
   return
 
 
