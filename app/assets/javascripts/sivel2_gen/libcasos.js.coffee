@@ -239,14 +239,15 @@
   )
  
   # En actos, lista de presuntos responsables se calcula
-  $(document).on('focusin', 'select[id^=caso_acto_][id$=id_presponsable]', (e) ->
-    actualiza_presponsables($(this))
-  )
+  # --inncesario por guardado autom.
+  #$(document).on('focusin', 'select[id^=caso_acto_][id$=id_presponsable]', (e) ->
+    #actualiza_presponsables($(this))
+  #)
 
-  # En actos, lista de víctimas se cálcula
-  $(document).on('focusin', 'select[id^=caso_acto_][id$=id_persona]', (e) ->
-    actualiza_victimas($(this))
-  )
+  # En actos, lista de víctimas se cálcula --inncesario por guardado autom.
+  #$(document).on('focusin', 'select[id^=caso_acto_][id$=id_persona]', (e) ->
+  #  actualiza_victimas($(this))
+  #)
 
   # Agrega actos  
   $(document).on('click', 'a.agregaractos[href^="#"]', (e) ->
