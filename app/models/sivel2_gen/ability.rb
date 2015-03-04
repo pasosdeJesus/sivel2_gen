@@ -152,10 +152,12 @@ module Sivel2Gen
           can :read, Sivel2Gen::Actividad
           can :new, Sivel2Gen::Actividad
           can [:update, :create, :destroy], Sivel2Gen::Actividad
+          can :manage, Sivel2Gen::Acto
         when Ability::ROLADMIN
           can :manage, Sivel2Gen::Caso
           can :manage, Sivel2Gen::Actividad
           can :manage, Usuario
+          can :manage, Sivel2Gen::Acto
           can :manage, :tablasbasicas
           @@tablasbasicas.each do |t|
             c = Ability.tb_clase(t)

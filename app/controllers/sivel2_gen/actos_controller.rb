@@ -3,7 +3,7 @@ require 'date'
 
 module Sivel2Gen
   class ActosController < ApplicationController
-    load_and_authorize_resource class: Sivel2Gen::Caso
+    load_and_authorize_resource class: Sivel2Gen::Acto
 
     # Crea nuevos actos procesando parámetros
     def agregar
@@ -31,6 +31,8 @@ module Sivel2Gen
             params[:caso_acto_id_persona].each do |cvic|
               vic = cvic.to_i
               @caso = Sivel2Gen::Caso.find(params[:caso][:id])
+              @caso.current_usuario = current_usuario
+              authorize! :update, @caso
               acto = Sivel2Gen::Acto.new(
                 id_presponsable: presp,
                 id_categoria: cat,
