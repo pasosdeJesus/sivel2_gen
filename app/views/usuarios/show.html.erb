@@ -13,7 +13,13 @@
     <dd><%= @usuario.descripcion %></dd>
   <% end %>
   <dt><strong><%= model_class.human_attribute_name(:rol) %>:</strong></dt>
-  <dd><%= Ability::ROLES[@usuario.rol-1][0] %></dd>
+  <dd><%= r=""
+    Ability::ROLES.each do |p| 
+      if p[1]==@usuario.rol
+        r=p[0] 
+      end 
+    end
+    r %></dd>
   <dt><strong><%= model_class.human_attribute_name(:idioma) %>:</strong></dt>
   <dd><%= @usuario.idioma %></dd>
   <dt><strong><%= model_class.human_attribute_name(:email) %>:</strong></dt>
