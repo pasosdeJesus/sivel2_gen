@@ -15261,7 +15261,7 @@ INSERT INTO sivel2_gen_filiacion (id, nombre, fechacreacion, fechadeshabilitacio
 INSERT INTO sivel2_gen_filiacion (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (5, 'ALIANZAS IZQUIERDA', '2001-01-01', NULL, NULL, NULL);
 INSERT INTO sivel2_gen_filiacion (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (6, 'DERECHA', '2001-01-01', NULL, NULL, NULL);
 INSERT INTO sivel2_gen_filiacion (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (7, 'DESMOVILIZADOS', '2001-01-01', NULL, NULL, NULL);
-INSERT INTO sivel2_gen_filiacion (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (8, 'CIVICO POLITICOS ELECTORA', '2001-01-01', NULL, NULL, NULL);
+INSERT INTO sivel2_gen_filiacion (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (8, 'CIVICO POLITICO ELECTORAL', '2001-01-01', NULL, NULL, NULL);
 INSERT INTO sivel2_gen_filiacion (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (9, 'OTRO', '2001-01-01', NULL, NULL, NULL);
 
 
@@ -16099,28 +16099,28 @@ SET search_path = public, pg_catalog;
 -- Data for Name: sivel2_gen_profesion; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-INSERT INTO sivel2_gen_profesion (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (1, 'ABOGADO', '2001-01-01', NULL, NULL, NULL);
-INSERT INTO sivel2_gen_profesion (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (10, 'RELIGIOSO', '2001-01-01', NULL, NULL, NULL);
-INSERT INTO sivel2_gen_profesion (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (101, 'AGRICULTOR', '2014-02-03', NULL, NULL, NULL);
-INSERT INTO sivel2_gen_profesion (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (11, 'INVESTIGADOR SOCIAL', '2001-01-01', NULL, NULL, NULL);
-INSERT INTO sivel2_gen_profesion (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (12, 'TECNOLOGO', '2001-01-01', NULL, NULL, NULL);
-INSERT INTO sivel2_gen_profesion (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (13, 'ANTROPOLOGO', '2001-01-01', NULL, NULL, NULL);
+INSERT INTO sivel2_gen_profesion (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (1, 'ABOGADO/A', '2001-01-01', NULL, NULL, NULL);
+INSERT INTO sivel2_gen_profesion (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (10, 'RELIGIOSO/A', '2001-01-01', NULL, NULL, NULL);
+INSERT INTO sivel2_gen_profesion (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (101, 'AGRICULTOR/A', '2014-02-03', NULL, NULL, NULL);
+INSERT INTO sivel2_gen_profesion (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (11, 'INVESTIGADOR/A SOCIAL', '2001-01-01', NULL, NULL, NULL);
+INSERT INTO sivel2_gen_profesion (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (12, 'TECNÓLOGO/A', '2001-01-01', NULL, NULL, NULL);
+INSERT INTO sivel2_gen_profesion (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (13, 'ANTROPÓLOGO/A', '2001-01-01', NULL, NULL, NULL);
 INSERT INTO sivel2_gen_profesion (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (14, 'ARTISTA', '2001-01-01', NULL, NULL, NULL);
 INSERT INTO sivel2_gen_profesion (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (15, 'ECONOMISTA', '2001-01-01', NULL, NULL, NULL);
-INSERT INTO sivel2_gen_profesion (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (16, 'CONTADOR PUBLICO', '2001-01-01', NULL, NULL, NULL);
-INSERT INTO sivel2_gen_profesion (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (17, 'ODONTOLOGO', '2001-01-01', NULL, NULL, NULL);
-INSERT INTO sivel2_gen_profesion (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (18, 'SOCIOLOGO', '2001-01-01', NULL, NULL, NULL);
-INSERT INTO sivel2_gen_profesion (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (19, 'TRABAJADOR SOCIAL', '2001-01-01', NULL, NULL, NULL);
-INSERT INTO sivel2_gen_profesion (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (2, 'EDUCADOR', '2001-01-01', NULL, NULL, NULL);
-INSERT INTO sivel2_gen_profesion (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (20, 'ADMINISTRADOR PUBLICO', '2001-01-01', NULL, NULL, NULL);
+INSERT INTO sivel2_gen_profesion (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (16, 'CONTADOR PÚBLICO/A', '2001-01-01', NULL, NULL, NULL);
+INSERT INTO sivel2_gen_profesion (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (17, 'ODONTÓLOGO/A', '2001-01-01', NULL, NULL, NULL);
+INSERT INTO sivel2_gen_profesion (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (18, 'SOCIÓLOGO/A', '2001-01-01', NULL, NULL, NULL);
+INSERT INTO sivel2_gen_profesion (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (19, 'TRABAJADOR/A SOCIAL', '2001-01-01', NULL, NULL, NULL);
+INSERT INTO sivel2_gen_profesion (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (2, 'EDUCADOR/A', '2001-01-01', NULL, NULL, NULL);
+INSERT INTO sivel2_gen_profesion (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (20, 'ADMINISTRADOR PUBLICO/A', '2001-01-01', NULL, NULL, NULL);
 INSERT INTO sivel2_gen_profesion (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (21, 'OTRO', '2001-01-01', NULL, NULL, NULL);
 INSERT INTO sivel2_gen_profesion (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (22, 'SIN INFORMACIÓN', '2001-01-01', NULL, NULL, NULL);
-INSERT INTO sivel2_gen_profesion (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (3, 'MEDICO', '2001-01-01', NULL, NULL, NULL);
-INSERT INTO sivel2_gen_profesion (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (4, 'ENFERMERO (A)', '2001-01-01', NULL, NULL, NULL);
+INSERT INTO sivel2_gen_profesion (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (3, 'MÉDICO/A', '2001-01-01', NULL, NULL, NULL);
+INSERT INTO sivel2_gen_profesion (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (4, 'ENFERMERO/A (A)', '2001-01-01', NULL, NULL, NULL);
 INSERT INTO sivel2_gen_profesion (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (5, 'PERIODISTA', '2001-01-01', NULL, NULL, NULL);
 INSERT INTO sivel2_gen_profesion (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (6, 'ESTUDIANTE', '2001-01-01', NULL, NULL, NULL);
-INSERT INTO sivel2_gen_profesion (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (7, 'DEFENSOR DE DDHH', '2001-01-01', NULL, NULL, NULL);
-INSERT INTO sivel2_gen_profesion (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (8, 'INGENIERO', '2001-01-01', NULL, NULL, NULL);
+INSERT INTO sivel2_gen_profesion (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (7, 'DEFENSOR/A DE DDHH', '2001-01-01', NULL, NULL, NULL);
+INSERT INTO sivel2_gen_profesion (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (8, 'INGENIERO/A', '2001-01-01', NULL, NULL, NULL);
 INSERT INTO sivel2_gen_profesion (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (9, 'SACERDOTE', '2001-01-01', NULL, NULL, NULL);
 
 

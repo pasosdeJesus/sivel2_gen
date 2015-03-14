@@ -61,7 +61,7 @@
   <%= f.association :departamento,
     collection: (Sivel2Gen::Departamento.habilitados.where(
       id_pais: f.object.id_pais)),
-    label: "Estado/Departamento",
+    label: "Estado/Departamento de Nacimiento",
     label_method: :nombre,
     value_method: :id 
   %>
@@ -69,7 +69,7 @@
     collection: ( Sivel2Gen::Municipio.habilitados.where(
         id_pais: f.object.id_pais, 
         id_departamento: f.object.id_departamento)),
-    label: "Municipio",
+    label: "Municipio de Nacimiento",
     label_method: :nombre,
     value_method: :id 
   %>
@@ -78,7 +78,7 @@
       id_pais: f.object.id_pais, 
       id_departamento: f.object.id_departamento, 
       id_municipio: f.object.id_municipio)),
-    label: "Centro Poblado",
+    label: "Centro Poblado de Nacimiento",
     label_method: :nombre,
     value_method: :id 
   %>
