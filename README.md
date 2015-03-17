@@ -21,7 +21,7 @@ Roles: administrador y usuario
 ### Requerimientos
 * Ruby version >= 2.1
 * PostgreSQL >= 9.3 con extensión unaccent disponible
-* Recomendado sobre adJ 5.5 (que incluye todos los componentes mencionados).  
+* Recomendado sobre adJ 5.5p2 (que incluye todos los componentes mencionados).  
   Las siguientes instrucciones suponen que opera en este ambiente.
 
 
