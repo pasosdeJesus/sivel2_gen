@@ -15,9 +15,6 @@ gem "pg"
 # API JSON facil. Ver: https://github.com/rails/jbuilder
 gem "jbuilder"
 
-# SCSS para hojas de estilo
-#gem "sass-rails", '~> 4.0.0.rc1'
-
 # Uglifier comprime recursos Javascript
 gem "uglifier", '>= 1.3.0'
 
@@ -35,7 +32,6 @@ gem "turbolinks"
 # Ambiente de CSS
 gem "twitter-bootstrap-rails", '~> 3.2.0'
 gem "bootstrap-datepicker-rails"
-gem "bootstrap-sass"
 
 # Formularios simples 
 gem "simple_form", '~> 3.1.0'
