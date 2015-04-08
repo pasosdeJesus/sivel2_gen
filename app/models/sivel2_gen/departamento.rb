@@ -3,6 +3,7 @@ module Sivel2Gen
   class Departamento < ActiveRecord::Base
     include Basica
 
+    self.primary_key = nil
     has_many :clase, foreign_key: "id_departamento", validate: true, 
       class_name: 'Sivel2Gen::Clase'
     has_many :municipio, foreign_key: "id_departamento", validate: true, 

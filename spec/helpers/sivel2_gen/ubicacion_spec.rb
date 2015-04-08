@@ -28,7 +28,8 @@ module Sivel2Gen
       context "con departamento" do
         let(:d) { Departamento.where(id_pais: 862, id: 1).take }
         before(:each) do
-          ubicacion.departamento = d
+          ubicacion.id_pais = 862
+          ubicacion.id_departamento= 1
         end
         it "nombre" do
           expect(formato_ubicacion(ubicacion)).to eq("VENEZUELA / DISTRITO CAPITAL")
@@ -39,7 +40,9 @@ module Sivel2Gen
                                      id_departamento: 1, id: 1).take
           }
           before(:each) do
-            ubicacion.municipio = m
+            ubicacion.id_pais = 862
+            ubicacion.id_departamento = 1
+            ubicacion.id_municipio = 1
           end
           it "nombre" do
             expect(formato_ubicacion(ubicacion)).to eq(
@@ -52,7 +55,10 @@ module Sivel2Gen
                                    id_departamento: 1, id_municipio: 1).take
             }
             before(:each) do
-              ubicacion.clase = c
+              ubicacion.id_pais = 862
+              ubicacion.id_departamento = 1
+              ubicacion.id_municipio = 1
+              ubicacion.id_clase = c.id
             end
             it "no incluye clase" do
               expect(formato_ubicacion(ubicacion, false)).to eq(
