@@ -53,7 +53,6 @@ module Sivel2Gen
 			['Sip', 'municipio'], 
       ['Sip', 'pais'], 
 			['Sivel2Gen', 'rangoedadac'], 
-      ['Sip', 'tclase'] ,
       ['Sip', 'tdocumento'],
       ['Sip', 'tsitio'] 
     ]
@@ -64,8 +63,9 @@ module Sivel2Gen
 
     # Tablas básicas cuyo id no es autoincremental
     @@basicas_id_noauto = [ 
+      ['Sivel2Gen', 'categoria'], 
       ['Sivel2Gen', 'supracategoria'], 
-			['Sivel2Gen', 'tclase'], 
+			['Sip', 'tclase'], 
       ['Sivel2Gen', 'tviolencia'] 
     ]
 
@@ -76,14 +76,23 @@ module Sivel2Gen
     # Tablas no básicas pero que tienen índice
     @@nobasicas_indice = [
       ['Sivel2Gen', 'caso'], 
-			['Sip', 'persona'], 
-      ['Sip', 'ubicacion'], 
-			['', 'usuario']
     ]
 
     def self.nobasicas_indice
       @@nobasicas_indice
     end
+
+		# Tablas no básicas pero que tienen índice con secuencia id_seq
+    @@nobasicas_indice_seq_con_id = [
+      ['Sip', 'persona'], 
+      ['Sip', 'ubicacion'], 
+			['', 'usuario']
+    ]
+
+    def self.nobasicas_indice_seq_con_id
+      @@nobasicas_indice_seq_con_id
+    end
+
 
     # Tablas básicas que deben volcarse primero --por ser requeridas 
     # por otras básicas

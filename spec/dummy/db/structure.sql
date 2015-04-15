@@ -530,6 +530,7 @@ CREATE TABLE sip_clase (
     updated_at timestamp without time zone,
     id_municipio integer,
     id integer DEFAULT nextval('sip_clase_id_seq'::regclass) NOT NULL,
+    id_clalocal integer,
     CONSTRAINT clase_check CHECK (((fechadeshabilitacion IS NULL) OR (fechadeshabilitacion >= fechacreacion)))
 );
 
