@@ -10,15 +10,15 @@
     <% if !@basica[atr].nil? && @basica[atr].to_s.length > 0 %>
       <dt><strong><%= model_class.human_attribute_name(atr.to_sym) %>:</strong></dt>
       <% if atr == 'id_pais' then %>
-        <dd><%= Sivel2Gen::Pais.find(@basica[atr]).nombre %></dd>
+        <dd><%= Sip::Pais.find(@basica[atr]).nombre %></dd>
       <% elsif atr == 'id_departamento' then %>
-        <dd><%= Sivel2Gen::Departamento.where(
+        <dd><%= Sip::Departamento.where(
         id: @basica[atr], id_pais: @basica['id_pais']).first.nombre 
         %></dd>
       <% elsif atr == 'id_municipio' then %>
-        <dd><%= Sivel2Gen::Municipio.find(@basica[atr]).nombre %></dd>
+        <dd><%= Sip::Municipio.find(@basica[atr]).nombre %></dd>
       <% elsif atr == "id_tclase" then %>
-        <dd><%= Sivel2Gen::Tclase.find(@basica[atr]).nombre%></dd>
+        <dd><%= Sip::Tclase.find(@basica[atr]).nombre%></dd>
       <% elsif atr == "id_supracategoria" then %>
         <dd><%= Sivel2Gen::Supracategoria.find(@basica[atr]).nombre%></dd>
       <% elsif atr == "id_tviolencia" then %>

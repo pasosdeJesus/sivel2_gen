@@ -29,7 +29,7 @@
     %>
     <%= f.input :observaciones %>
     <%= f.association :etiqueta,
-      collection: Sivel2Gen::Etiqueta.habilitados,
+      collection: Sip::Etiqueta.habilitados,
       label: "Etiqueta",
       label_method: :nombre,
       value_method: :id 

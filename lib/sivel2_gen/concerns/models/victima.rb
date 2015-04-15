@@ -22,7 +22,7 @@ module Sivel2Gen
           belongs_to :organizacion, foreign_key: "id_organizacion", 
             validate: true, class_name: "Sivel2Gen::Organizacion"
           belongs_to :persona, foreign_key: "id_persona", validate: true, 
-            class_name: "Sivel2Gen::Persona"
+            class_name: "Sip::Persona"
           accepts_nested_attributes_for :persona, reject_if: :all_blank
           belongs_to :profesion, foreign_key: "id_profesion", validate: true, 
             class_name: "Sivel2Gen::Profesion"

@@ -21,23 +21,23 @@ module Sivel2Gen
 
     @@tablasbasicas = [
       ['Sivel2Gen', 'actividadarea'], ['Sivel2Gen', 'actividadoficio'],  
-      ['Sivel2Gen', 'categoria'], ['Sivel2Gen', 'clase'], 
-      ['Sivel2Gen', 'departamento'], 
+      ['Sivel2Gen', 'categoria'], ['Sip', 'clase'], 
+      ['Sip', 'departamento'], 
       ['Sivel2Gen', 'escolaridad'], ['Sivel2Gen', 'estadocivil'], 
-      ['Sivel2Gen', 'etiqueta'], 
+      ['Sip', 'etiqueta'], 
       ['Sivel2Gen', 'etnia'], 
       ['Sivel2Gen', 'filiacion'], ['Sivel2Gen', 'frontera'],
       ['Sivel2Gen', 'iglesia'], ['Sivel2Gen', 'intervalo'],
-      ['Sivel2Gen', 'maternidad'], ['Sivel2Gen', 'municipio'], 
+      ['Sivel2Gen', 'maternidad'], ['Sip', 'municipio'], 
       ['Sivel2Gen', 'organizacion'],
-      ['Sivel2Gen', 'pais'], ['Sivel2Gen', 'pconsolidado'], 
+      ['Sip', 'pais'], ['Sivel2Gen', 'pconsolidado'], 
       ['Sivel2Gen', 'presponsable'], ['Sivel2Gen', 'profesion'], 
       ['Sivel2Gen', 'rangoedad'], ['Sivel2Gen', 'rangoedadac'], 
       ['Sivel2Gen', 'region'], ['Sivel2Gen', 'regionsjr'],
       ['Sivel2Gen', 'sectorsocial'], ['Sivel2Gen', 'supracategoria'], 
       ['Sivel2Gen', 'vinculoestado'], 
-      ['Sivel2Gen', 'tclase'], ['Sivel2Gen', 'tdocumento'], 
-      ['Sivel2Gen', 'tsitio'], ['Sivel2Gen', 'tviolencia']
+      ['Sip', 'tclase'], ['Sip', 'tdocumento'], 
+      ['Sip', 'tsitio'], ['Sivel2Gen', 'tviolencia']
     ]
 
     def self.tablasbasicas
@@ -47,8 +47,15 @@ module Sivel2Gen
     # Tablas basicas cuya secuencia es de la forma tabla_id_seq  (convención rails)
     @@basicas_seq_con_id = [ 
       ['Sivel2Gen', 'actividadarea'], 
-      ['Sivel2Gen', 'pais'], ['Sivel2Gen', 'rangoedadac'], 
-      ['Sivel2Gen', 'tdocumento'] 
+			['Sip', 'clase'], 
+      ['Sip', 'departamento'], 
+      ['Sip', 'etiqueta'], 
+			['Sip', 'municipio'], 
+      ['Sip', 'pais'], 
+			['Sivel2Gen', 'rangoedadac'], 
+      ['Sip', 'tclase'] ,
+      ['Sip', 'tdocumento'],
+      ['Sip', 'tsitio'] 
     ]
 
     def self.basicas_seq_con_id
@@ -57,9 +64,8 @@ module Sivel2Gen
 
     # Tablas básicas cuyo id no es autoincremental
     @@basicas_id_noauto = [ 
-      ['Sivel2Gen', 'categoria'], ['Sivel2Gen', 'clase'], 
-      ['Sivel2Gen', 'departamento'], ['Sivel2Gen', 'municipio'], 
-      ['Sivel2Gen', 'supracategoria'], ['Sivel2Gen', 'tclase'], 
+      ['Sivel2Gen', 'supracategoria'], 
+			['Sivel2Gen', 'tclase'], 
       ['Sivel2Gen', 'tviolencia'] 
     ]
 
@@ -69,8 +75,10 @@ module Sivel2Gen
 
     # Tablas no básicas pero que tienen índice
     @@nobasicas_indice = [
-      ['Sivel2Gen', 'caso'], ['Sivel2Gen', 'persona'], 
-      ['Sivel2Gen', 'ubicacion'], ['', 'usuario']
+      ['Sivel2Gen', 'caso'], 
+			['Sip', 'persona'], 
+      ['Sip', 'ubicacion'], 
+			['', 'usuario']
     ]
 
     def self.nobasicas_indice
@@ -80,13 +88,20 @@ module Sivel2Gen
     # Tablas básicas que deben volcarse primero --por ser requeridas 
     # por otras básicas
     @@tablasbasicas_prio = [
-      ['Sivel2Gen', 'pconsolidado'], ['Sivel2Gen', 'tviolencia'], 
+      ['Sivel2Gen', 'pconsolidado'], 
+			['Sivel2Gen', 'tviolencia'], 
       ['Sivel2Gen', 'supracategoria'],
-      ['Sivel2Gen', 'tclase'], ['Sivel2Gen', 'pais'], 
-      ['Sivel2Gen', 'departamento'], ['Sivel2Gen', 'municipio'], 
-      ['Sivel2Gen', 'clase'],
-      ['Sivel2Gen', 'intervalo'], ['Sivel2Gen', 'filiacion'], 
-      ['Sivel2Gen', 'organizacion'], ['Sivel2Gen', 'sectorsocial'],
+      ['Sip', 'tclase'], 
+			['Sip', 'pais'], 
+      ['Sip', 'departamento'], 
+			['Sip', 'municipio'], 
+      ['Sip', 'clase'],
+      ['Sip', 'tsitio'],
+      ['Sip', 'tdocumento'],
+      ['Sivel2Gen', 'intervalo'], 
+			['Sivel2Gen', 'filiacion'], 
+      ['Sivel2Gen', 'organizacion'], 
+			['Sivel2Gen', 'sectorsocial'],
       ['Sivel2Gen', 'vinculoestado']
     ];
 
@@ -140,7 +155,7 @@ module Sivel2Gen
       can :lista, Sivel2Gen::Caso
       can :descarga_anexo, Sivel2Gen::Anexo
       can :descarga_anexoactividad, Sivel2Gen::Anexoactividad
-      can :nuevo, Sivel2Gen::Ubicacion
+      can :nuevo, Sip::Ubicacion
       can :nuevo, Sivel2Gen::Presponsable
       can :nuevo, Sivel2Gen::Victima
       if usuario && usuario.rol then

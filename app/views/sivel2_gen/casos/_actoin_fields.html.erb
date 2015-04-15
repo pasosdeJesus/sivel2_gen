@@ -16,8 +16,8 @@
 %>
 
 <%= f.association :persona,
-  collection: Sivel2Gen::Persona.from('sivel2_gen_victima, sivel2_gen_persona').where(
-    'sivel2_gen_victima.id_persona=sivel2_gen_persona.id AND sivel2_gen_victima.id_caso=?', @caso.id),
+  collection: Sip::Persona.from('sivel2_gen_victima, sip_persona').where(
+    'sivel2_gen_victima.id_persona=sip_persona.id AND sivel2_gen_victima.id_caso=?', @caso.id),
   label: "Víctima",
   label_method: lambda {|t| t.nombres + ' ' + t.apellidos},
   value_method: :id 

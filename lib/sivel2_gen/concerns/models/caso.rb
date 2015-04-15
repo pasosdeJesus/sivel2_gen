@@ -70,7 +70,7 @@ module Sivel2Gen
           has_many :comunidad_vinculoestado, foreign_key: "id_caso", validate: true, 
             dependent: :destroy, class_name: 'Sivel2Gen::ComunidadVinculoestado'
           has_many :ubicacion, foreign_key: "id_caso", validate: true, 
-            dependent: :destroy, class_name: 'Sivel2Gen::Ubicacion'
+            dependent: :destroy, class_name: 'Sip::Ubicacion'
           accepts_nested_attributes_for :ubicacion, allow_destroy: true, 
             reject_if: :all_blank
           #    has_many :desplazamiento, foreign_key: "id_caso", validate: true, 
@@ -79,7 +79,7 @@ module Sivel2Gen
           #      reject_if: :all_blank
           has_many :victima,  foreign_key: "id_caso", dependent: :destroy, 
             class_name: 'Sivel2Gen::Victima'
-          has_many :persona, :through => :victima, class_name: 'Sivel2Gen::Persona'
+          has_many :persona, :through => :victima, class_name: 'Sip::Persona'
           accepts_nested_attributes_for :persona,  reject_if: :all_blank
           accepts_nested_attributes_for :victima, allow_destroy: true, 
             reject_if: :all_blank
@@ -104,16 +104,15 @@ module Sivel2Gen
         SELECT caso.id as caso_id, caso.fecha, caso.memo, 
         ARRAY_TO_STRING(ARRAY(SELECT departamento.nombre ||  ' / ' 
         || municipio.nombre 
-        FROM sivel2_gen_ubicacion AS ubicacion LEFT JOIN sivel2_gen_departamento AS departamento ON (
-        ubicacion.id_pais = departamento.id_pais
-        AND ubicacion.id_departamento = departamento.id)
-        LEFT JOIN sivel2_gen_municipio AS municipio ON (ubicacion.id_pais=municipio.id_pais
-        AND ubicacion.id_departamento=municipio.id_departamento
-        AND ubicacion.id_municipio=municipio.id) 
+        FROM sip_ubicacion AS ubicacion 
+					LEFT JOIN sip_departamento AS departamento 
+						ON (ubicacion.id_departamento = departamento.id)
+        	LEFT JOIN sip_municipio AS municipio 
+						ON (ubicacion.id_municipio=municipio.id)
         WHERE ubicacion.id_caso=caso.id), ', ')
         AS ubicaciones, 
         ARRAY_TO_STRING(ARRAY(SELECT nombres || ' ' || apellidos 
-        FROM sivel2_gen_persona AS persona, 
+        FROM sip_persona AS persona, 
         sivel2_gen_victima AS victima WHERE persona.id=victima.id_persona 
         AND victima.id_caso=caso.id), ', ')
         AS victimas, 
@@ -141,7 +140,8 @@ module Sivel2Gen
          victimas || ' ' || presponsables || ' ' || tipificacion)) as q
         FROM sivel2_gen_conscaso1");
         ActiveRecord::Base.connection.execute(
-          "CREATE INDEX busca_sivel2_gen_conscaso ON sivel2_gen_conscaso USING gin(q);"
+          "CREATE INDEX busca_sivel2_gen_conscaso 
+							ON sivel2_gen_conscaso USING gin(q);"
         )
             else
               ActiveRecord::Base.connection.execute(

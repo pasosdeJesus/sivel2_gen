@@ -58,6 +58,10 @@ gem "paperclip", "~> 4.1"
 gem "tzinfo"
 gem "tzinfo-data"
 
+# Motor estilo Pasos de Jesús
+#gem 'sip', github: 'pasosdeJesus/sip'
+gem 'sip', path: '../sip'
+
 group :doc do
   # Genera documentación en doc/api con bundle exec rake doc:rails
   gem "sdoc", require: false

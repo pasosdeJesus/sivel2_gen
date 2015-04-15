@@ -3,7 +3,7 @@ module Sivel2Gen
   class CasosController < ApplicationController
     before_action :set_caso, only: [:show, :edit, :update, :destroy]
     load_and_authorize_resource class: Sivel2Gen::Caso
-    helper UbicacionHelper
+    helper Sip::UbicacionHelper
 
     # GET /casos
     # GET /casos.json

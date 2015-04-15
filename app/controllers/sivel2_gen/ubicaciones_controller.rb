@@ -3,7 +3,7 @@ require 'date'
 
 module Sivel2Gen
   class UbicacionesController < ApplicationController
-    load_and_authorize_resource class: Sivel2Gen::Ubicacion
+    load_and_authorize_resource class: Sip::Ubicacion
 
     # Crea un nuevo registro para el caso que recibe por parametro 
     # params[:caso_id].  Pone valores simples en los campos requeridos

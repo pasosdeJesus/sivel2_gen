@@ -3,10 +3,10 @@ module Sivel2Gen
   module Admin
     class TsitiosController < BasicasController
       before_action :set_tsitio, only: [:show, :edit, :update, :destroy]
-      load_and_authorize_resource class: Sivel2Gen::Tsitio
+      load_and_authorize_resource class: Sip::Tsitio
 
       def clase 
-        "Sivel2Gen::Tsitio"
+        "Sip::Tsitio"
       end
 
       def set_tsitio

@@ -3,10 +3,10 @@ module Sivel2Gen
   module Admin
     class EtiquetasController < BasicasController #ApplicationController 
       before_action :set_etiqueta, only: [:show, :edit, :update, :destroy]
-      load_and_authorize_resource class: Sivel2Gen::Etiqueta
+      load_and_authorize_resource class: Sip::Etiqueta
  
       def clase 
-        "Sivel2Gen::Etiqueta"
+        "Sip::Etiqueta"
       end
   
       def set_etiqueta

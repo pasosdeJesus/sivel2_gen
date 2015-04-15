@@ -3,10 +3,10 @@ module Sivel2Gen
   module Admin
     class MunicipiosController < BasicasController
       before_action :set_municipio, only: [:show, :edit, :update, :destroy]
-      load_and_authorize_resource class: Sivel2Gen::Municipio
+      load_and_authorize_resource class: Sip::Municipio
   
       def clase 
-        "Sivel2Gen::Municipio"
+        "Sip::Municipio"
       end
   
       def set_municipio

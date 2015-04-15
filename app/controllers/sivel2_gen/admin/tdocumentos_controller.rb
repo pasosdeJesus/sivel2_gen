@@ -3,10 +3,10 @@ module Sivel2Gen
   module Admin
     class TdocumentosController < BasicasController
       before_action :set_tdocumento, only: [:show, :edit, :update, :destroy]
-      load_and_authorize_resource class: Sivel2Gen::Tdocumento
+      load_and_authorize_resource class: Sip::Tdocumento
   
       def clase 
-        "Sivel2Gen::Tdocumento"
+        "Sip::Tdocumento"
       end
   
       def set_tdocumento

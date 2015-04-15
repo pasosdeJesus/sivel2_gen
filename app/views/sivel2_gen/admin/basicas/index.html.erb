@@ -31,14 +31,14 @@
           <% if atr == "id" then %>
             <td><%= link_to basica[atr], admin_basica_path(basica) %></td>
           <% elsif atr == "id_pais" then %>
-            <td><%= Sivel2Gen::Pais.find(basica[atr]).nombre %></td>
+            <td><%= Sip::Pais.find(basica[atr]).nombre %></td>
           <% elsif atr == "id_departamento" then %>
-            <td><%= Sivel2Gen::Departamento.find(basica[atr]).nombre %></td>
+            <td><%= Sip::Departamento.find(basica[atr]).nombre %></td>
           <% elsif atr == "id_municipio" then %>
-            <td><%= Sivel2Gen::Municipio.find(basica[atr]).nombre %></td>
+            <td><%= Sip::Municipio.find(basica[atr]).nombre %></td>
           <% elsif atr == "id_tclase" then %>
             <td><%= basica[atr].nil? ?
-              "" : Sivel2Gen::Tclase.find(basica[atr]).nombre
+              "" : Sip::Tclase.find(basica[atr]).nombre
               %></td>
           <% elsif atr == "id_supracategoria" then %>
             <td><%= Sivel2Gen::Supracategoria.find(basica[atr]).nombre %></td>
