@@ -1,4 +1,13 @@
 GIT
+  remote: git://github.com/pasosdeJesus/sip.git
+  revision: aef321509ad0fe66675a37ddadf81b86a20b7ef0
+  specs:
+    sip (2.0.a4)
+      devise
+      jquery-rails
+      rails
+
+GIT
   remote: git://github.com/vtamara/cocoon.git
   revision: 836a331276ea1452d63325a6662483b9f1cb28be
   specs:
@@ -9,14 +18,6 @@ GIT
   revision: 944cf4164ea511a2977f91031cc7f69d3e06e6cb
   specs:
     jquery-ui-bootstrap-rails (0.1.1)
-      rails
-
-PATH
-  remote: ../sip
-  specs:
-    sip (2.0.a4)
-      devise
-      jquery-rails
       rails
 
 GEM
