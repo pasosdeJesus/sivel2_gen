@@ -9,7 +9,7 @@ module Sivel2Gen
     # params[:caso_id].  Pone valores simples en los campos requeridos
     def nuevo
       if !params[:caso_id].nil?
-        @ubicacion = Ubicacion.new
+        @ubicacion = Sip::Ubicacion.new
         @ubicacion.id_caso = params[:caso_id]
         @ubicacion.id_pais = 170
         if @ubicacion.save

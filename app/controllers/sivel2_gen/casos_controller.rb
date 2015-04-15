@@ -51,20 +51,19 @@ module Sivel2Gen
       if params[:tabla]
         r = nil
         if (params[:tabla] == "departamento" && params[:id_pais].to_i > 0)
-          r = Departamento.where(fechadeshabilitacion: nil,
+          r = Sip::Departamento.where(fechadeshabilitacion: nil,
                                  id_pais: params[:id_pais].to_i).order(:nombre)
         elsif (params[:tabla] == "municipio" && params[:id_pais].to_i > 0 && 
                params[:id_departamento].to_i > 0 )
-          r = Municipio.where(id_pais: params[:id_pais].to_i, 
-                              id_departamento: params[:id_departamento].to_i,
-                              fechadeshabilitacion: nil).order(:nombre)
+					r = Sip::Municipio.where(
+						id_departamento: params[:id_departamento].to_i,
+						fechadeshabilitacion: nil).order(:nombre)
         elsif (params[:tabla] == "clase" && params[:id_pais].to_i > 0 && 
                params[:id_departamento].to_i > 0 && 
                params[:id_municipio].to_i > 0)
-          r = Clase.where(id_pais: params[:id_pais].to_i, 
-                          id_departamento: params[:id_departamento].to_i, 
-                          id_municipio: params[:id_municipio].to_i,
-                          fechadeshabilitacion: nil).order(:nombre)
+					r = Sip::Clase.where( 
+						id_municipio: params[:id_municipio].to_i,
+						fechadeshabilitacion: nil).order(:nombre)
         end
         respond_to do |format|
           format.js { render json: r }

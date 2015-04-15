@@ -12,5 +12,6 @@ Rails.application.routes.draw do
       :as => 'registro_usuario'            
   end
   resources :usuarios, path_names: { new: 'nuevo', edit: 'edita' }  
-  mount Sivel2Gen::Engine, at: "sivel2_gen"
+  mount Sip::Engine, at: "/"
+  mount Sivel2Gen::Engine, at: "/"
 end
