@@ -11,5 +11,6 @@
  * file per style scope.
  *
  *= require_tree .
+ *= require sivel2_gen/application.css
  *= require_self
  */

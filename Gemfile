@@ -15,6 +15,8 @@ gem "pg"
 # API JSON facil. Ver: https://github.com/rails/jbuilder
 gem "jbuilder"
 
+gem "sass"
+
 # Uglifier comprime recursos Javascript
 gem "uglifier", '>= 1.3.0'
 

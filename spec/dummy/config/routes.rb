@@ -12,6 +12,7 @@ Rails.application.routes.draw do
       :as => 'registro_usuario'            
   end
   resources :usuarios, path_names: { new: 'nuevo', edit: 'edita' }  
+	root 'sivel2_gen/hogar#index'
   mount Sip::Engine, at: "/"
   mount Sivel2Gen::Engine, at: "/"
 end
