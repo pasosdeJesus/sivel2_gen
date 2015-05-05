@@ -20,7 +20,7 @@ module Sivel2Gen
     ]
 
     @@tablasbasicas = [
-      ['Sivel2Gen', 'actividadarea'], ['Sivel2Gen', 'actividadoficio'],  
+      ['Sivel2Gen', 'actividadoficio'],  
       ['Sivel2Gen', 'categoria'], ['Sip', 'clase'], 
       ['Sip', 'departamento'], 
       ['Sivel2Gen', 'escolaridad'], ['Sivel2Gen', 'estadocivil'], 
@@ -47,7 +47,6 @@ module Sivel2Gen
 
     # Tablas basicas cuya secuencia es de la forma tabla_id_seq  (convención rails)
     @@basicas_seq_con_id = [ 
-      ['Sivel2Gen', 'actividadarea'], 
 			['Sip', 'clase'], 
       ['Sip', 'departamento'], 
       ['Sip', 'etiqueta'], 
@@ -167,7 +166,6 @@ module Sivel2Gen
       can :buscar, Sivel2Gen::Caso
       can :lista, Sivel2Gen::Caso
       can :descarga_anexo, Sivel2Gen::Anexo
-      can :descarga_anexoactividad, Sivel2Gen::Anexoactividad
       can :nuevo, Sip::Ubicacion
       can :nuevo, Sivel2Gen::Presponsable
       can :nuevo, Sivel2Gen::Victima
@@ -177,14 +175,10 @@ module Sivel2Gen
           can :read, Sivel2Gen::Caso
           can :new, Sivel2Gen::Caso
           can [:update, :create, :destroy], Sivel2Gen::Caso
-          can :read, Sivel2Gen::Actividad
-          can :new, Sivel2Gen::Actividad
-          can [:update, :create, :destroy], Sivel2Gen::Actividad
           can :manage, Sivel2Gen::Acto
           can :manage, Sip::Persona
         when Ability::ROLADMIN
           can :manage, Sivel2Gen::Caso
-          can :manage, Sivel2Gen::Actividad
           can :manage, Usuario
           can :manage, Sivel2Gen::Acto
           can :manage, :tablasbasicas
