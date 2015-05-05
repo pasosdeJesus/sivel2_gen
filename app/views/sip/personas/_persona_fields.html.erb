@@ -33,7 +33,7 @@
       v.each do |vic|
         if @caso.id != vic.caso.id
       %>
-      <%= link_to vic.caso.id, vic.caso, target: "_blank" %> 
+      <%= link_to vic.caso.id, sivel2_gen.caso_path(vic.caso), target:"_blank" %> 
       <% 
         end
       end 

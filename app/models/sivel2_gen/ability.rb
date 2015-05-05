@@ -181,6 +181,7 @@ module Sivel2Gen
           can :new, Sivel2Gen::Actividad
           can [:update, :create, :destroy], Sivel2Gen::Actividad
           can :manage, Sivel2Gen::Acto
+          can :manage, Sip::Persona
         when Ability::ROLADMIN
           can :manage, Sivel2Gen::Caso
           can :manage, Sivel2Gen::Actividad

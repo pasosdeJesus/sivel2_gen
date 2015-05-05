@@ -1,9 +1,9 @@
 # encoding: UTF-8
 require 'date'
 
-module Sivel2Gen
+module Sip
   class PersonasController < ApplicationController
-    load_and_authorize_resource class: Sivel2Gen::Caso
+    load_and_authorize_resource class: Sip::Persona
 
     # Busca y lista persona(s)
     def index
@@ -53,7 +53,7 @@ module Sivel2Gen
     # Busca y lista persona(s)
     def remplazar
       @persona = Persona.find(params[:id_persona].to_i)
-      victima = Victima.find(params[:id_victima].to_i)
+      victima = Sivel2Gen::Victima.find(params[:id_victima].to_i)
       personaant = victima.persona
       @caso = victima.caso
       @caso.current_usuario = current_usuario
@@ -64,7 +64,7 @@ module Sivel2Gen
         personaant.destroy
       end
       respond_to do |format|
-        format.html { render('remplazar', layout: false) }
+        format.html { render('/sip/personas/remplazar', layout: false) }
       end
     end
   end
