@@ -11,7 +11,7 @@ RSpec.describe "sivel2_gen/actividades/show", :type => :view do
       :resultado => "Resultado",
       :observaciones => "Observaciones",
       :fecha => '2014-11-20',
-      :regionsjr_id => 1
+      :oficina_id => 1
     ))
   end
 

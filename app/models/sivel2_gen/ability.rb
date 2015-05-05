@@ -33,9 +33,10 @@ module Sivel2Gen
       ['Sip', 'pais'], ['Sivel2Gen', 'pconsolidado'], 
       ['Sivel2Gen', 'presponsable'], ['Sivel2Gen', 'profesion'], 
       ['Sivel2Gen', 'rangoedad'], ['Sivel2Gen', 'rangoedadac'], 
-      ['Sivel2Gen', 'region'], ['Sivel2Gen', 'regionsjr'],
+      ['Sivel2Gen', 'region'], ['Sip', 'oficina'],
       ['Sivel2Gen', 'sectorsocial'], ['Sivel2Gen', 'supracategoria'], 
       ['Sivel2Gen', 'vinculoestado'], 
+      ['Sip', 'trelacion'], 
       ['Sip', 'tclase'], ['Sip', 'tdocumento'], 
       ['Sip', 'tsitio'], ['Sivel2Gen', 'tviolencia']
     ]
@@ -51,9 +52,11 @@ module Sivel2Gen
       ['Sip', 'departamento'], 
       ['Sip', 'etiqueta'], 
 			['Sip', 'municipio'], 
+			['Sip', 'oficina'], 
       ['Sip', 'pais'], 
 			['Sivel2Gen', 'rangoedadac'], 
       ['Sip', 'tdocumento'],
+      ['Sip', 'trelacion'], 
       ['Sip', 'tsitio'] 
     ]
 
@@ -66,6 +69,7 @@ module Sivel2Gen
       ['Sivel2Gen', 'categoria'], 
       ['Sivel2Gen', 'supracategoria'], 
 			['Sip', 'tclase'], 
+			['Sip', 'trelacion'], 
       ['Sivel2Gen', 'tviolencia'] 
     ]
 

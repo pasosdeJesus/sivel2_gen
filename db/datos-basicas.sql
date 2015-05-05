@@ -1108,30 +1108,6 @@ INSERT INTO sivel2_gen_region (id, nombre, fechacreacion, fechadeshabilitacion, 
 -- PostgreSQL database dump complete
 --
 
---
--- PostgreSQL database dump
---
-
-SET statement_timeout = 0;
-
-SET client_encoding = 'UTF8';
-SET standard_conforming_strings = on;
-SET check_function_bodies = false;
-SET client_min_messages = warning;
-
-SET search_path = public, pg_catalog;
-
---
--- Data for Name: sivel2_gen_regionsjr; Type: TABLE DATA; Schema: public; Owner: -
---
-
-INSERT INTO sivel2_gen_regionsjr (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (1, 'SIN INFORMACIÓN', '2014-09-01', NULL, '2014-09-01 12:54:42.630253', '2014-09-03 10:40:11.967004');
-
-
---
--- PostgreSQL database dump complete
---
-
     ALTER TABLE ONLY sivel2_gen_categoria
       ADD CONSTRAINT categoria_contadaen_fkey FOREIGN KEY (contadaen) 
       REFERENCES sivel2_gen_categoria(id); 

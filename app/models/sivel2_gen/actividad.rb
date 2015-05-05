@@ -20,8 +20,8 @@ module Sivel2Gen
     accepts_nested_attributes_for :anexoactividad, allow_destroy: true, 
       reject_if: :all_blank
 
-    belongs_to :oficina, class_name: 'Sivel2Gen::Regionsjr', 
-      foreign_key: 'regionsjr_id', validate: true
+    belongs_to :oficina, class_name: 'Sip::Oficina', 
+      foreign_key: 'oficina_id', validate: true
 
     validates_presence_of :oficina
     validates_presence_of :nombre

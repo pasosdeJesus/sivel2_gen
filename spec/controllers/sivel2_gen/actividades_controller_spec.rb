@@ -17,12 +17,12 @@ module Sivel2Gen
     end
     # Atributos mínimos para crear una Actividad válida.
     let(:valid_attributes) {
-      { minutos: "45", nombre: "nombreact", regionsjr_id: "1", 
+      { minutos: "45", nombre: "nombreact", oficina_id: "1", 
         fecha: "2014-11-11", created_at: "2014-11-11" }
     }
 
     let(:invalid_attributes) {
-      { minutos: "45", nombre: "", regionsjr_id: "1", 
+      { minutos: "45", nombre: "", oficina_id: "1", 
         fecha: "2014-11-11", created_at: "2014-11-11" }
     }
 
@@ -100,7 +100,7 @@ module Sivel2Gen
     describe "PUT update" do
       describe "con parámetros válidos" do
         let(:new_attributes) {
-          { minutos: "90", nombre: "nombreact2", regionsjr_id: "1", 
+          { minutos: "90", nombre: "nombreact2", oficina_id: "1", 
             fecha: "2014-11-18", created_at: "2014-11-18" }
         }
 
@@ -108,7 +108,7 @@ module Sivel2Gen
           actividad = Actividad.create! valid_attributes
           put :update, {:id => actividad.to_param, :actividad => new_attributes}, valid_session
           actividad.reload
-          expect(actividad.regionsjr_id).to eq(1)
+          expect(actividad.oficina_id).to eq(1)
         end
 
         it "asigna la actividad requerida como @actividad" do

@@ -11,7 +11,7 @@ RSpec.describe "sivel2_gen/actividades/new", :type => :view do
       :resultado => "MyString",
       :observaciones => "MyString",
       :fecha => '2014-11-20',
-      :regionsjr_id => 1
+      :oficina_id => 1
     ))
   end
 
@@ -31,7 +31,7 @@ RSpec.describe "sivel2_gen/actividades/new", :type => :view do
       assert_select "input#actividad_resultado[name=?]", "actividad[resultado]"
 
       assert_select "input#actividad_observaciones[name=?]", "actividad[observaciones]"
-      assert_select "select#actividad_regionsjr_id[name=?]", "actividad[regionsjr_id]"
+      assert_select "select#actividad_oficina_id[name=?]", "actividad[oficina_id]"
     end
   end
 end

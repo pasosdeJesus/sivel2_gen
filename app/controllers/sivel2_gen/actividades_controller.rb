@@ -24,8 +24,8 @@ module Sivel2Gen
     def new
       @actividad = Actividad.new
       @actividad.current_usuario = current_usuario
-      @actividad.regionsjr_id = current_usuario.regionsjr_id.nil? ?  
-        1 : current_usuario.regionsjr_id
+      @actividad.oficina_id = current_usuario.oficina_id.nil? ?  
+        1 : current_usuario.oficina_id
       render layout: "application"
     end
 
@@ -95,7 +95,7 @@ module Sivel2Gen
     # No confiar parametros a Internet, sólo permitir lista blanca
     def actividad_params
       params.require(:actividad).permit(
-        :regionsjr_id, :minutos, :nombre, 
+        :oficina_id, :minutos, :nombre, 
         :objetivo, :proyecto, :resultado,
         :fecha, :actividad, :observaciones, 
         :actividadarea_ids => [],

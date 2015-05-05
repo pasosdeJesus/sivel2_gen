@@ -466,18 +466,6 @@ CREATE SEQUENCE region_seq
     CACHE 1;
 
 
---
--- Name: regionsjr_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE regionsjr_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
 SET default_tablespace = '';
 
 SET default_with_oids = false;
@@ -521,7 +509,7 @@ CREATE SEQUENCE sip_clase_id_seq
 
 CREATE TABLE sip_clase (
     nombre character varying(500) COLLATE public.es_co_utf_8 NOT NULL,
-    id_tclase character varying(10),
+    id_tclase character varying(10) DEFAULT 'CP'::character varying NOT NULL,
     latitud double precision,
     longitud double precision,
     fechacreacion date NOT NULL,
@@ -622,6 +610,34 @@ CREATE TABLE sip_municipio (
     id_departamento integer,
     id integer DEFAULT nextval('sip_municipio_id_seq'::regclass) NOT NULL,
     CONSTRAINT municipio_check CHECK (((fechadeshabilitacion IS NULL) OR (fechadeshabilitacion >= fechacreacion)))
+);
+
+
+--
+-- Name: sip_oficina_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE sip_oficina_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: sip_oficina; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE sip_oficina (
+    id integer DEFAULT nextval('sip_oficina_id_seq'::regclass) NOT NULL,
+    nombre character varying(50) NOT NULL,
+    fechacreacion date DEFAULT ('now'::text)::date NOT NULL,
+    fechadeshabilitacion date,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone,
+    observaciones character varying(5000),
+    CONSTRAINT regionsjr_check CHECK (((fechadeshabilitacion IS NULL) OR (fechadeshabilitacion >= fechacreacion)))
 );
 
 
@@ -862,7 +878,7 @@ CREATE TABLE sivel2_gen_actividad (
     observaciones character varying(5000),
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
-    regionsjr_id integer NOT NULL,
+    oficina_id integer NOT NULL,
     rangoedadac_id integer
 );
 
@@ -1710,21 +1726,6 @@ CREATE TABLE sivel2_gen_region (
 
 
 --
--- Name: sivel2_gen_regionsjr; Type: TABLE; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE TABLE sivel2_gen_regionsjr (
-    id integer DEFAULT nextval('regionsjr_seq'::regclass) NOT NULL,
-    nombre character varying(50) NOT NULL,
-    fechacreacion date DEFAULT ('now'::text)::date NOT NULL,
-    fechadeshabilitacion date,
-    created_at timestamp without time zone,
-    updated_at timestamp without time zone,
-    CONSTRAINT regionsjr_check CHECK (((fechadeshabilitacion IS NULL) OR (fechadeshabilitacion >= fechacreacion)))
-);
-
-
---
 -- Name: sivel2_gen_sectorsocial; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -1892,7 +1893,7 @@ CREATE TABLE usuario (
     last_sign_in_ip character varying(255),
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
-    regionsjr_id integer,
+    oficina_id integer,
     CONSTRAINT usuario_check CHECK (((fechadeshabilitacion IS NULL) OR (fechadeshabilitacion >= fechacreacion))),
     CONSTRAINT usuario_rol_check CHECK (((rol >= 1) AND (rol <= 6)))
 );
@@ -2415,7 +2416,7 @@ ALTER TABLE ONLY sivel2_gen_region
 -- Name: regionsjr_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
-ALTER TABLE ONLY sivel2_gen_regionsjr
+ALTER TABLE ONLY sip_oficina
     ADD CONSTRAINT regionsjr_pkey PRIMARY KEY (id);
 
 
@@ -2634,7 +2635,7 @@ CREATE UNIQUE INDEX index_usuario_on_email ON usuario USING btree (email);
 -- Name: index_usuario_on_regionsjr_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
-CREATE INDEX index_usuario_on_regionsjr_id ON usuario USING btree (regionsjr_id);
+CREATE INDEX index_usuario_on_regionsjr_id ON usuario USING btree (oficina_id);
 
 
 --
@@ -2663,7 +2664,7 @@ CREATE UNIQUE INDEX usuario_nusuario ON usuario USING btree (nusuario);
 --
 
 ALTER TABLE ONLY sivel2_gen_actividad
-    ADD CONSTRAINT actividad_regionsjr_id_fkey FOREIGN KEY (regionsjr_id) REFERENCES sivel2_gen_regionsjr(id);
+    ADD CONSTRAINT actividad_regionsjr_id_fkey FOREIGN KEY (oficina_id) REFERENCES sip_oficina(id);
 
 
 --
@@ -3663,4 +3664,10 @@ INSERT INTO schema_migrations (version) VALUES ('20150413160156');
 INSERT INTO schema_migrations (version) VALUES ('20150413160157');
 
 INSERT INTO schema_migrations (version) VALUES ('20150413160158');
+
+INSERT INTO schema_migrations (version) VALUES ('20150416074423');
+
+INSERT INTO schema_migrations (version) VALUES ('20150416090140');
+
+INSERT INTO schema_migrations (version) VALUES ('20150503120915');
 

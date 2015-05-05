@@ -4,7 +4,7 @@
 %>
   <%= f.error_notification %>
   <%= f.association :oficina,
-    collection: Sivel2Gen::Regionsjr.habilitados,
+    collection: Sip::Oficina.habilitados,
     label_method: :nombre, 
     value_method: :id 
   %>

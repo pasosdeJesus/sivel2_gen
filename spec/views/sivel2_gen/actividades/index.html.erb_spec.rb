@@ -12,7 +12,7 @@ RSpec.describe "sivel2_gen/actividades/index", :type => :view do
         :resultado => "Resultado",
         :observaciones => "Observaciones",
         :fecha => "2014-11-20",
-        :regionsjr_id => 2
+        :oficina_id => 2
       ),
       Sivel2Gen::Actividad.create!(
         :minutos => 1,
@@ -22,7 +22,7 @@ RSpec.describe "sivel2_gen/actividades/index", :type => :view do
         :resultado => "Resultado",
         :observaciones => "Observaciones",
         :fecha => "2014-11-20",
-        :regionsjr_id => 2
+        :oficina_id => 2
       )
     ])
   end

@@ -88,7 +88,7 @@ class UsuariosController < ApplicationController
   def usuario_params
     params.require(:usuario).permit(
       :id, :nusuario, :password, 
-      :nombre, :descripcion, :regionsjr_id, 
+      :nombre, :descripcion, :oficina_id, 
       :rol, :idioma, :email, :encrypted_password, 
       :fechacreacion, :fechadeshabilitacion, :reset_password_token, 
       :reset_password_sent_at, :remember_created_at, :sign_in_count, 
