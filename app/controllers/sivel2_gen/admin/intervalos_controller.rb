@@ -17,6 +17,11 @@ module Sivel2Gen
         'M'
       end
 
+      def atributos_index
+        ["id",  "nombre", "rango",
+         "fechacreacion", "fechadeshabilitacion"]
+      end
+      
       def intervalo_params
         params.require(:intervalo).permit(*atributos_form)
       end

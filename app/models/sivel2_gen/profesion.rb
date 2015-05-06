@@ -1,7 +1,7 @@
 # encoding: UTF-8
 module Sivel2Gen
   class Profesion < ActiveRecord::Base
-    include Basica
+    include Sip::Basica
 
     has_many :comunidad_profesion, foreign_key: "id_profesion", validate: true, 
       class_name: 'Sivel2Gen::ComunidadProfesion'

@@ -32,7 +32,7 @@ module Sivel2Gen
       ['Sivel2Gen', 'organizacion'],
       ['Sip', 'pais'], ['Sivel2Gen', 'pconsolidado'], 
       ['Sivel2Gen', 'presponsable'], ['Sivel2Gen', 'profesion'], 
-      ['Sivel2Gen', 'rangoedad'], ['Sivel2Gen', 'rangoedadac'], 
+      ['Sivel2Gen', 'rangoedad'],
       ['Sivel2Gen', 'region'], ['Sip', 'oficina'],
       ['Sivel2Gen', 'sectorsocial'], ['Sivel2Gen', 'supracategoria'], 
       ['Sivel2Gen', 'vinculoestado'], 
@@ -53,7 +53,6 @@ module Sivel2Gen
 			['Sip', 'municipio'], 
 			['Sip', 'oficina'], 
       ['Sip', 'pais'], 
-			['Sivel2Gen', 'rangoedadac'], 
       ['Sip', 'tdocumento'],
       ['Sip', 'trelacion'], 
       ['Sip', 'tsitio'] 

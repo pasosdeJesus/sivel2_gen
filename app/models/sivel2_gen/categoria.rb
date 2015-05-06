@@ -1,7 +1,7 @@
 # encoding: UTF-8
 module Sivel2Gen
   class Categoria < ActiveRecord::Base
-    include Basica
+    include Sip::Basica
 
     has_many :acto, foreign_key: "id_categoria", validate: true,
       class_name: 'Sivel2Gen::Acto'

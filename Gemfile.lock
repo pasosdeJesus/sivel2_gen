@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/pasosdeJesus/sip.git
-  revision: 372e36a4557b35ac3189dcaa671493e713d66b9e
+  revision: 49a65a8d4b99b3617553c15b8108b6cfa115a818
   specs:
     sip (2.0.a4)
       devise
@@ -117,7 +117,7 @@ GEM
     json (1.8.2)
     launchy (2.4.3)
       addressable (~> 2.3)
-    loofah (2.0.1)
+    loofah (2.0.2)
       nokogiri (>= 1.5.9)
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
@@ -139,7 +139,7 @@ GEM
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
       slop (~> 3.4)
-    pry-rescue (1.4.1)
+    pry-rescue (1.4.2)
       interception (>= 0.5)
       pry
     pry-stack_explorer (0.4.9.2)
