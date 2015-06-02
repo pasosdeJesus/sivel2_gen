@@ -6,8 +6,8 @@
 <dl class="dl-horizontal">
   <dt><strong><%= model_class.human_attribute_name(:nusuario) %>:</strong></dt>
   <dd><%= @usuario.nusuario %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:regionsjr) %>:</strong></dt>
-  <dd><%= if @usuario.regionsjr.nil? then "Nacional" else @usuario.regionsjr.nombre end %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:oficina) %>:</strong></dt>
+  <dd><%= if @usuario.oficina.nil? then "Nacional" else @usuario.oficina.nombre end %></dd>
   <% if !@usuario.descripcion.nil? && @usuario.descripcion.length > 0 then %>
     <dt><strong><%= model_class.human_attribute_name(:descripcion) %>:</strong></dt>
     <dd><%= @usuario.descripcion %></dd>

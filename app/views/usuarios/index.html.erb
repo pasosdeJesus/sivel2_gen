@@ -8,7 +8,7 @@
       <th><%= model_class.human_attribute_name(:id) %></th>
       <th><%= model_class.human_attribute_name(:nusuario) %></th>
       <th><%= model_class.human_attribute_name(:nombre) %></th>
-      <th><%= model_class.human_attribute_name(:regionsjr) %></th>
+      <th><%= model_class.human_attribute_name(:oficina) %></th>
       <th><%= model_class.human_attribute_name(:descripcion) %></th>
       <th><%= model_class.human_attribute_name(:rol) %></th>
       <th><%= model_class.human_attribute_name(:idioma) %></th>
@@ -23,7 +23,7 @@
         <td><%= link_to usuario.id, usuario_path(usuario) %></td>
         <td><%= usuario.nusuario %></td>
         <td><%= usuario.nombre %></td>
-        <td><%= usuario.regionsjr.nombre if !usuario.regionsjr.nil? %></td>
+        <td><%= usuario.oficina.nombre if !usuario.oficina.nil? %></td>
         <td><%= usuario.descripcion %></td>
         <!--td><!-- %= Ability::ROLES[usuario.rol-1][0] if usuario && usuario.rol %></td-->
         <td><%= Ability::ROLES[usuario.rol - 1][0] if usuario && usuario.rol && Ability::ROLES[usuario.rol-1] %></td>

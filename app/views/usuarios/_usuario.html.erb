@@ -16,7 +16,7 @@
   <%= f.input :id, label: "Código", readonly: true%>
   <%= f.input :nusuario %>
   <%= f.input :nombre %>
-  <%= f.association :regionsjr, 
+  <%= f.association :oficina, 
 		collection: Sip::Oficina.habilitados.where("id<>'1'"),
     label: "Oficina",
     label_method: :nombre,
