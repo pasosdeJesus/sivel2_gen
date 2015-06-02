@@ -519,6 +519,7 @@ CREATE TABLE sip_clase (
     id_municipio integer,
     id integer DEFAULT nextval('sip_clase_id_seq'::regclass) NOT NULL,
     id_clalocal integer,
+    observaciones character varying(5000),
     CONSTRAINT clase_check CHECK (((fechadeshabilitacion IS NULL) OR (fechadeshabilitacion >= fechacreacion)))
 );
 
@@ -550,6 +551,7 @@ CREATE TABLE sip_departamento (
     updated_at timestamp without time zone,
     id_pais integer NOT NULL,
     id integer DEFAULT nextval('sip_departamento_id_seq'::regclass) NOT NULL,
+    observaciones character varying(5000),
     CONSTRAINT departamento_check CHECK (((fechadeshabilitacion IS NULL) OR (fechadeshabilitacion >= fechacreacion)))
 );
 
@@ -583,6 +585,41 @@ CREATE TABLE sip_etiqueta (
 
 
 --
+-- Name: sip_fuenteprensa; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE sip_fuenteprensa (
+    id integer NOT NULL,
+    nombre character varying(500),
+    observaciones character varying(5000),
+    fechacreacion date,
+    fechadeshabilitacion date,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone,
+    tfuente character varying(25)
+);
+
+
+--
+-- Name: sip_fuenteprensa_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE sip_fuenteprensa_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: sip_fuenteprensa_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE sip_fuenteprensa_id_seq OWNED BY sip_fuenteprensa.id;
+
+
+--
 -- Name: sip_municipio_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
@@ -609,6 +646,7 @@ CREATE TABLE sip_municipio (
     updated_at timestamp without time zone,
     id_departamento integer,
     id integer DEFAULT nextval('sip_municipio_id_seq'::regclass) NOT NULL,
+    observaciones character varying(5000),
     CONSTRAINT municipio_check CHECK (((fechadeshabilitacion IS NULL) OR (fechadeshabilitacion >= fechacreacion)))
 );
 
@@ -660,7 +698,8 @@ CREATE TABLE sip_pais (
     fechacreacion date,
     fechadeshabilitacion date,
     created_at timestamp without time zone,
-    updated_at timestamp without time zone
+    updated_at timestamp without time zone,
+    observaciones character varying(5000)
 );
 
 
@@ -747,6 +786,7 @@ CREATE TABLE sip_tclase (
     fechadeshabilitacion date,
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
+    observaciones character varying(5000),
     CONSTRAINT tclase_check CHECK (((fechadeshabilitacion IS NULL) OR (fechadeshabilitacion >= fechacreacion)))
 );
 
@@ -763,7 +803,8 @@ CREATE TABLE sip_tdocumento (
     fechacreacion date NOT NULL,
     fechadeshabilitacion date,
     created_at timestamp without time zone,
-    updated_at timestamp without time zone
+    updated_at timestamp without time zone,
+    observaciones character varying(5000)
 );
 
 
@@ -826,6 +867,7 @@ CREATE TABLE sip_tsitio (
     fechadeshabilitacion date,
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
+    observaciones character varying(5000),
     CONSTRAINT tsitio_check CHECK (((fechadeshabilitacion IS NULL) OR (fechadeshabilitacion >= fechacreacion)))
 );
 
@@ -1015,6 +1057,7 @@ CREATE TABLE sivel2_gen_actividadoficio (
     fechadeshabilitacion date,
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
+    observaciones character varying(5000),
     CONSTRAINT actividadoficio_check CHECK (((fechadeshabilitacion IS NULL) OR (fechadeshabilitacion >= fechacreacion)))
 );
 
@@ -1331,6 +1374,7 @@ CREATE TABLE sivel2_gen_categoria (
     tipocat character(1) DEFAULT 'I'::bpchar,
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
+    observaciones character varying(5000),
     CONSTRAINT categoria_check CHECK (((fechadeshabilitacion IS NULL) OR (fechadeshabilitacion >= fechacreacion))),
     CONSTRAINT categoria_tipocat_check CHECK ((((tipocat = 'I'::bpchar) OR (tipocat = 'C'::bpchar)) OR (tipocat = 'O'::bpchar)))
 );
@@ -1440,6 +1484,7 @@ CREATE TABLE sivel2_gen_escolaridad (
     fechadeshabilitacion date,
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
+    observaciones character varying(5000),
     CONSTRAINT escolaridad_check CHECK (((fechadeshabilitacion IS NULL) OR (fechadeshabilitacion >= fechacreacion)))
 );
 
@@ -1455,6 +1500,7 @@ CREATE TABLE sivel2_gen_estadocivil (
     fechadeshabilitacion date,
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
+    observaciones character varying(5000),
     CONSTRAINT estadocivil_check CHECK (((fechadeshabilitacion IS NULL) OR (fechadeshabilitacion >= fechacreacion)))
 );
 
@@ -1471,6 +1517,7 @@ CREATE TABLE sivel2_gen_etnia (
     fechadeshabilitacion date,
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
+    observaciones character varying(5000),
     CONSTRAINT etnia_check CHECK (((fechadeshabilitacion IS NULL) OR (fechadeshabilitacion >= fechacreacion)))
 );
 
@@ -1529,6 +1576,7 @@ CREATE TABLE sivel2_gen_frontera (
     fechadeshabilitacion date,
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
+    observaciones character varying(5000),
     CONSTRAINT frontera_check CHECK (((fechadeshabilitacion IS NULL) OR (fechadeshabilitacion >= fechacreacion)))
 );
 
@@ -1558,6 +1606,7 @@ CREATE TABLE sivel2_gen_iglesia (
     fechadeshabilitacion date,
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
+    observaciones character varying(5000),
     CONSTRAINT iglesia_check CHECK (((fechadeshabilitacion IS NULL) OR (fechadeshabilitacion >= fechacreacion)))
 );
 
@@ -1589,6 +1638,7 @@ CREATE TABLE sivel2_gen_maternidad (
     fechadeshabilitacion date,
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
+    observaciones character varying(5000),
     CONSTRAINT maternidad_check CHECK (((fechadeshabilitacion IS NULL) OR (fechadeshabilitacion >= fechacreacion)))
 );
 
@@ -1638,6 +1688,7 @@ CREATE TABLE sivel2_gen_presponsable (
     fechadeshabilitacion date,
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
+    observaciones character varying(5000),
     CONSTRAINT presponsable_check CHECK (((fechadeshabilitacion IS NULL) OR (fechadeshabilitacion >= fechacreacion)))
 );
 
@@ -1653,6 +1704,7 @@ CREATE TABLE sivel2_gen_profesion (
     fechadeshabilitacion date,
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
+    observaciones character varying(5000),
     CONSTRAINT profesion_check CHECK (((fechadeshabilitacion IS NULL) OR (fechadeshabilitacion >= fechacreacion)))
 );
 
@@ -1671,6 +1723,7 @@ CREATE TABLE sivel2_gen_rangoedad (
     fechadeshabilitacion date,
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
+    observaciones character varying(5000),
     CONSTRAINT rangoedad_check CHECK (((fechadeshabilitacion IS NULL) OR (fechadeshabilitacion >= fechacreacion)))
 );
 
@@ -1721,6 +1774,7 @@ CREATE TABLE sivel2_gen_region (
     fechadeshabilitacion date,
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
+    observaciones character varying(5000),
     CONSTRAINT region_check CHECK (((fechadeshabilitacion IS NULL) OR (fechadeshabilitacion >= fechacreacion)))
 );
 
@@ -1752,6 +1806,7 @@ CREATE TABLE sivel2_gen_supracategoria (
     id_tviolencia character varying(1) NOT NULL,
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
+    observaciones character varying(5000),
     CONSTRAINT supracategoria_check CHECK (((fechadeshabilitacion IS NULL) OR (fechadeshabilitacion >= fechacreacion)))
 );
 
@@ -1768,6 +1823,7 @@ CREATE TABLE sivel2_gen_tviolencia (
     fechadeshabilitacion date,
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
+    observaciones character varying(5000),
     CONSTRAINT tviolencia_check CHECK (((fechadeshabilitacion IS NULL) OR (fechadeshabilitacion >= fechacreacion)))
 );
 
@@ -1914,6 +1970,13 @@ CREATE MATERIALIZED VIEW vvictimasoundexesp AS
     sivel2_gen_victima
   WHERE (sip_persona.id = sivel2_gen_victima.id_persona)
   WITH NO DATA;
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY sip_fuenteprensa ALTER COLUMN id SET DEFAULT nextval('sip_fuenteprensa_id_seq'::regclass);
 
 
 --
@@ -2466,6 +2529,14 @@ ALTER TABLE ONLY sip_departamento
 
 ALTER TABLE ONLY sip_departamento
     ADD CONSTRAINT sip_departamento_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: sip_fuenteprensa_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY sip_fuenteprensa
+    ADD CONSTRAINT sip_fuenteprensa_pkey PRIMARY KEY (id);
 
 
 --
@@ -3670,4 +3741,12 @@ INSERT INTO schema_migrations (version) VALUES ('20150416074423');
 INSERT INTO schema_migrations (version) VALUES ('20150416090140');
 
 INSERT INTO schema_migrations (version) VALUES ('20150503120915');
+
+INSERT INTO schema_migrations (version) VALUES ('20150510125926');
+
+INSERT INTO schema_migrations (version) VALUES ('20150521181918');
+
+INSERT INTO schema_migrations (version) VALUES ('20150602094513');
+
+INSERT INTO schema_migrations (version) VALUES ('20150602095241');
 
