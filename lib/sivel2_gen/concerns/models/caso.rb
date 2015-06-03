@@ -36,8 +36,8 @@ module Sivel2Gen
             dependent: :destroy, class_name: 'Sivel2Gen::CasoEtiqueta'
           accepts_nested_attributes_for :caso_etiqueta, allow_destroy: true, 
             reject_if: :all_blank
-          has_many :caso_ffrecuente, foreign_key: "id_caso", validate: true, 
-            dependent: :destroy, class_name: 'Sivel2Gen::CasoFfrecuente'
+          has_many :caso_fuenteprensa, foreign_key: "id_caso", validate: true, 
+            dependent: :destroy, class_name: 'Sivel2Gen::CasoFuenteprensa'
           has_many :caso_fotra, foreign_key: "id_caso", validate: true, 
             dependent: :destroy, class_name: 'Sivel2Gen::CasoFotra'
           has_many :caso_frontera, foreign_key: "id_caso", validate: true, 

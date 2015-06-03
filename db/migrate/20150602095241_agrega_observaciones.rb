@@ -14,5 +14,6 @@ class AgregaObservaciones < ActiveRecord::Migration
     add_column :sivel2_gen_presponsable, :observaciones, :string, limit: 5000
     add_column :sivel2_gen_etnia, :observaciones, :string, limit: 5000
     add_column :sivel2_gen_escolaridad, :observaciones, :string, limit: 5000
+    add_column :sivel2_gen_ffrecuente, :observaciones, :string, limit: 5000
   end
 end

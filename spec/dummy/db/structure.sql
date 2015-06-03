@@ -287,18 +287,6 @@ CREATE SEQUENCE etnia_seq
 
 
 --
--- Name: ffrecuente_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE ffrecuente_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
 -- Name: filiacion_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
@@ -585,22 +573,6 @@ CREATE TABLE sip_etiqueta (
 
 
 --
--- Name: sip_fuenteprensa; Type: TABLE; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE TABLE sip_fuenteprensa (
-    id integer NOT NULL,
-    nombre character varying(500),
-    observaciones character varying(5000),
-    fechacreacion date,
-    fechadeshabilitacion date,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone,
-    tfuente character varying(25)
-);
-
-
---
 -- Name: sip_fuenteprensa_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
@@ -613,10 +585,20 @@ CREATE SEQUENCE sip_fuenteprensa_id_seq
 
 
 --
--- Name: sip_fuenteprensa_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+-- Name: sip_fuenteprensa; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
-ALTER SEQUENCE sip_fuenteprensa_id_seq OWNED BY sip_fuenteprensa.id;
+CREATE TABLE sip_fuenteprensa (
+    id integer DEFAULT nextval('sip_fuenteprensa_id_seq'::regclass) NOT NULL,
+    nombre character varying(500) COLLATE public.es_co_utf_8 NOT NULL,
+    tfuente character varying(25),
+    fechacreacion date NOT NULL,
+    fechadeshabilitacion date,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone,
+    observaciones character varying(5000),
+    CONSTRAINT sip_fuenteprensa_check CHECK (((fechadeshabilitacion IS NULL) OR (fechadeshabilitacion >= fechacreacion)))
+);
 
 
 --
@@ -1101,7 +1083,7 @@ CREATE TABLE sivel2_gen_anexo (
     fecha date NOT NULL,
     descripcion character varying(1500) NOT NULL,
     archivo character varying(255),
-    id_ffrecuente integer,
+    fuenteprensa_id integer,
     fechaffrecuente date,
     id_fotra integer,
     created_at timestamp without time zone,
@@ -1270,22 +1252,6 @@ CREATE TABLE sivel2_gen_caso_etiqueta (
 
 
 --
--- Name: sivel2_gen_caso_ffrecuente; Type: TABLE; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE TABLE sivel2_gen_caso_ffrecuente (
-    fecha date NOT NULL,
-    ubicacion character varying(100),
-    clasificacion character varying(100),
-    ubicacionfisica character varying(100),
-    id_ffrecuente integer NOT NULL,
-    id_caso integer NOT NULL,
-    created_at timestamp without time zone,
-    updated_at timestamp without time zone
-);
-
-
---
 -- Name: sivel2_gen_caso_fotra; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -1307,6 +1273,22 @@ CREATE TABLE sivel2_gen_caso_fotra (
 
 CREATE TABLE sivel2_gen_caso_frontera (
     id_frontera integer NOT NULL,
+    id_caso integer NOT NULL,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+--
+-- Name: sivel2_gen_caso_fuenteprensa; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE sivel2_gen_caso_fuenteprensa (
+    fecha date NOT NULL,
+    ubicacion character varying(100),
+    clasificacion character varying(100),
+    ubicacionfisica character varying(100),
+    fuenteprensa_id integer NOT NULL,
     id_caso integer NOT NULL,
     created_at timestamp without time zone,
     updated_at timestamp without time zone
@@ -1620,22 +1602,6 @@ CREATE TABLE sivel2_gen_etnia (
     updated_at timestamp without time zone,
     observaciones character varying(5000),
     CONSTRAINT etnia_check CHECK (((fechadeshabilitacion IS NULL) OR (fechadeshabilitacion >= fechacreacion)))
-);
-
-
---
--- Name: sivel2_gen_ffrecuente; Type: TABLE; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE TABLE sivel2_gen_ffrecuente (
-    id integer DEFAULT nextval('ffrecuente_seq'::regclass) NOT NULL,
-    nombre character varying(500) COLLATE public.es_co_utf_8 NOT NULL,
-    tfuente character varying(25) NOT NULL,
-    fechacreacion date NOT NULL,
-    fechadeshabilitacion date,
-    created_at timestamp without time zone,
-    updated_at timestamp without time zone,
-    CONSTRAINT ffrecuente_check CHECK (((fechadeshabilitacion IS NULL) OR (fechadeshabilitacion >= fechacreacion)))
 );
 
 
@@ -2021,13 +1987,6 @@ CREATE MATERIALIZED VIEW vvictimasoundexesp AS
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY sip_fuenteprensa ALTER COLUMN id SET DEFAULT nextval('sip_fuenteprensa_id_seq'::regclass);
-
-
---
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
---
-
 ALTER TABLE ONLY sip_pais ALTER COLUMN id SET DEFAULT nextval('sip_pais_id_seq'::regclass);
 
 
@@ -2225,14 +2184,6 @@ ALTER TABLE ONLY sivel2_gen_caso_etiqueta
 
 
 --
--- Name: caso_ffrecuente_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
---
-
-ALTER TABLE ONLY sivel2_gen_caso_ffrecuente
-    ADD CONSTRAINT caso_ffrecuente_pkey PRIMARY KEY (fecha, id_ffrecuente, id_caso);
-
-
---
 -- Name: caso_fotra_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -2374,14 +2325,6 @@ ALTER TABLE ONLY sip_etiqueta
 
 ALTER TABLE ONLY sivel2_gen_etnia
     ADD CONSTRAINT etnia_pkey PRIMARY KEY (id);
-
-
---
--- Name: ffrecuente_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
---
-
-ALTER TABLE ONLY sivel2_gen_ffrecuente
-    ADD CONSTRAINT ffrecuente_pkey PRIMARY KEY (id);
 
 
 --
@@ -2606,6 +2549,14 @@ ALTER TABLE ONLY sip_municipio
 
 ALTER TABLE ONLY sip_municipio
     ADD CONSTRAINT sip_municipio_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: sivel2_gen_caso_fuenteprensa_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY sivel2_gen_caso_fuenteprensa
+    ADD CONSTRAINT sivel2_gen_caso_fuenteprensa_pkey PRIMARY KEY (fecha, fuenteprensa_id, id_caso);
 
 
 --
@@ -2863,19 +2814,19 @@ ALTER TABLE ONLY sivel2_gen_actocolectivo
 
 
 --
+-- Name: anexo_fuenteprensa_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY sivel2_gen_anexo
+    ADD CONSTRAINT anexo_fuenteprensa_id_fkey FOREIGN KEY (fuenteprensa_id) REFERENCES sip_fuenteprensa(id);
+
+
+--
 -- Name: anexo_id_caso_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY sivel2_gen_anexo
     ADD CONSTRAINT anexo_id_caso_fkey FOREIGN KEY (id_caso) REFERENCES sivel2_gen_caso(id);
-
-
---
--- Name: anexo_id_ffrecuente_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY sivel2_gen_anexo
-    ADD CONSTRAINT anexo_id_ffrecuente_fkey FOREIGN KEY (id_ffrecuente) REFERENCES sivel2_gen_ffrecuente(id);
 
 
 --
@@ -3052,22 +3003,6 @@ ALTER TABLE ONLY sivel2_gen_caso_etiqueta
 
 ALTER TABLE ONLY sivel2_gen_caso_etiqueta
     ADD CONSTRAINT caso_etiqueta_id_usuario_fkey FOREIGN KEY (id_usuario) REFERENCES usuario(id);
-
-
---
--- Name: caso_ffrecuente_id_caso_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY sivel2_gen_caso_ffrecuente
-    ADD CONSTRAINT caso_ffrecuente_id_caso_fkey FOREIGN KEY (id_caso) REFERENCES sivel2_gen_caso(id);
-
-
---
--- Name: caso_ffrecuente_id_ffrecuente_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY sivel2_gen_caso_ffrecuente
-    ADD CONSTRAINT caso_ffrecuente_id_ffrecuente_fkey FOREIGN KEY (id_ffrecuente) REFERENCES sivel2_gen_ffrecuente(id);
 
 
 --
@@ -3519,6 +3454,22 @@ ALTER TABLE ONLY sip_ubicacion
 
 
 --
+-- Name: sivel2_gen_caso_fuenteprensa_fuenteprensa_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY sivel2_gen_caso_fuenteprensa
+    ADD CONSTRAINT sivel2_gen_caso_fuenteprensa_fuenteprensa_id_fkey FOREIGN KEY (fuenteprensa_id) REFERENCES sip_fuenteprensa(id);
+
+
+--
+-- Name: sivel2_gen_caso_fuenteprensa_id_caso_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY sivel2_gen_caso_fuenteprensa
+    ADD CONSTRAINT sivel2_gen_caso_fuenteprensa_id_caso_fkey FOREIGN KEY (id_caso) REFERENCES sivel2_gen_caso(id);
+
+
+--
 -- Name: supracategoria_id_tviolencia_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -3801,4 +3752,6 @@ INSERT INTO schema_migrations (version) VALUES ('20150521181918');
 INSERT INTO schema_migrations (version) VALUES ('20150602094513');
 
 INSERT INTO schema_migrations (version) VALUES ('20150602095241');
+
+INSERT INTO schema_migrations (version) VALUES ('20150602104342');
 

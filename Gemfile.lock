@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/pasosdeJesus/sip.git
-  revision: 877a9fdc6ae2aed342fe57ea6e385df8c124038b
+  revision: 75871ee0f056f082eefa977f6be535c48ae2dc4d
   specs:
     sip (2.0.a6)
       devise
@@ -187,7 +187,7 @@ GEM
     rspec-mocks (3.2.1)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.2.0)
-    rspec-rails (3.2.1)
+    rspec-rails (3.2.2)
       actionpack (>= 3.0, < 4.3)
       activesupport (>= 3.0, < 4.3)
       railties (>= 3.0, < 4.3)
@@ -213,7 +213,7 @@ GEM
     spring (1.3.6)
     spring-commands-rspec (1.0.4)
       spring (>= 0.9.1)
-    sprockets (3.1.0)
+    sprockets (3.2.0)
       rack (~> 1.0)
     sprockets-rails (2.3.1)
       actionpack (>= 3.0)

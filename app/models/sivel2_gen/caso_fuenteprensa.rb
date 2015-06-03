@@ -1,9 +1,9 @@
 # encoding: UTF-8
 module Sivel2Gen
-  class CasoFfrecuente < ActiveRecord::Base
+  class CasoFuenteprensa < ActiveRecord::Base
     has_many :anexo, foreign_key: "id_anexo", validate: true, 
       class_name: 'Sivel2Gen::Anexo'
-    belongs_to :ffrecuente, foreign_key: "id_ffrecuente", validate: true, 
+    belongs_to :fuenteprensa, foreign_key: "fuenteprensa_id", validate: true, 
       class_name: 'Sivel2Gen::Ffrecuente'
     belongs_to :caso, foreign_key: "id_caso", validate: true, 
       class_name: 'Sivel2Gen::Caso'
