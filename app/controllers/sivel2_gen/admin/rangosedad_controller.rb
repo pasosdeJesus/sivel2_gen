@@ -1,7 +1,7 @@
 # encoding: UTF-8
 module Sivel2Gen
   module Admin
-    class RangosedadController < BasicasController
+    class RangosedadController < Sip::Admin::BasicasController
       before_action :set_rangoedad, only: [:show, :edit, :update, :destroy]
       load_and_authorize_resource class: Sivel2Gen::Rangoedad
   

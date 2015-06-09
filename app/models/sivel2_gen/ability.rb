@@ -10,36 +10,29 @@ module Sivel2Gen
     ROLANALI  = 5
     #ROLSIST   = 6
 
-    ROLES = [
-      ["Administrador", ROLADMIN],  # 1
-      ["", 0], # 2
-      ["", 0], # 3
-      ["", 0], # 4
-      ["Analista", ROLANALI], # 5
-      ["", 0] #6
-    ]
+    ROLES = Sip::Ability::ROLES
 
-    @@tablasbasicas = [
+    @@tablasbasicas = Sip::Ability::TABLAS_SIP + [
       ['Sivel2Gen', 'actividadoficio'],  
-      ['Sivel2Gen', 'categoria'], ['Sip', 'clase'], 
-      ['Sip', 'departamento'], 
-      ['Sivel2Gen', 'escolaridad'], ['Sivel2Gen', 'estadocivil'], 
-      ['Sip', 'etiqueta'], 
-      ['Sip', 'fuenteprensa'], 
+      ['Sivel2Gen', 'categoria'], 
+      ['Sivel2Gen', 'escolaridad'], 
+      ['Sivel2Gen', 'estadocivil'], 
       ['Sivel2Gen', 'etnia'], 
-      ['Sivel2Gen', 'filiacion'], ['Sivel2Gen', 'frontera'],
-      ['Sivel2Gen', 'iglesia'], ['Sivel2Gen', 'intervalo'],
-      ['Sivel2Gen', 'maternidad'], ['Sip', 'municipio'], 
+      ['Sivel2Gen', 'filiacion'], 
+      ['Sivel2Gen', 'frontera'],
+      ['Sivel2Gen', 'iglesia'], 
+      ['Sivel2Gen', 'intervalo'],
+      ['Sivel2Gen', 'maternidad'], 
       ['Sivel2Gen', 'organizacion'],
-      ['Sip', 'pais'], ['Sivel2Gen', 'pconsolidado'], 
-      ['Sivel2Gen', 'presponsable'], ['Sivel2Gen', 'profesion'], 
+      ['Sivel2Gen', 'pconsolidado'], 
+      ['Sivel2Gen', 'presponsable'], 
+      ['Sivel2Gen', 'profesion'], 
       ['Sivel2Gen', 'rangoedad'],
-      ['Sivel2Gen', 'region'], ['Sip', 'oficina'],
-      ['Sivel2Gen', 'sectorsocial'], ['Sivel2Gen', 'supracategoria'], 
+      ['Sivel2Gen', 'region'], 
+      ['Sivel2Gen', 'sectorsocial'], 
+      ['Sivel2Gen', 'supracategoria'], 
       ['Sivel2Gen', 'vinculoestado'], 
-      ['Sip', 'trelacion'], 
-      ['Sip', 'tclase'], ['Sip', 'tdocumento'], 
-      ['Sip', 'tsitio'], ['Sivel2Gen', 'tviolencia']
+      ['Sivel2Gen', 'tviolencia']
     ]
 
     def self.tablasbasicas
@@ -47,17 +40,8 @@ module Sivel2Gen
     end
 
     # Tablas basicas cuya secuencia es de la forma tabla_id_seq  (convención rails)
-    @@basicas_seq_con_id = [ 
-			['Sip', 'clase'], 
-      ['Sip', 'departamento'], 
-      ['Sip', 'etiqueta'], 
-      ['Sip', 'fuenteprensa'], 
-			['Sip', 'municipio'], 
-			['Sip', 'oficina'], 
-      ['Sip', 'pais'], 
-      ['Sip', 'tdocumento'],
-      ['Sip', 'trelacion'], 
-      ['Sip', 'tsitio'] 
+    @@basicas_seq_con_id = Sip::Ability::TABLAS_SIP_SEQID + [ 
+      ['Sivel2Gen', 'supracategoria']
     ]
 
     def self.basicas_seq_con_id
@@ -65,11 +49,8 @@ module Sivel2Gen
     end
 
     # Tablas básicas cuyo id no es autoincremental
-    @@basicas_id_noauto = [ 
+    @@basicas_id_noauto = Sip::Ability::TABLAS_ID_NOAUTO + [ 
       ['Sivel2Gen', 'categoria'], 
-      ['Sivel2Gen', 'supracategoria'], 
-			['Sip', 'tclase'], 
-			['Sip', 'trelacion'], 
       ['Sivel2Gen', 'tviolencia'] 
     ]
 
@@ -87,11 +68,7 @@ module Sivel2Gen
     end
 
 		# Tablas no básicas pero que tienen índice con secuencia id_seq
-    @@nobasicas_indice_seq_con_id = [
-      ['Sip', 'persona'], 
-      ['Sip', 'ubicacion'], 
-			['', 'usuario']
-    ]
+    @@nobasicas_indice_seq_con_id = Sip::Ability::NOBASICAS_INDSEQID
 
     def self.nobasicas_indice_seq_con_id
       @@nobasicas_indice_seq_con_id
@@ -100,17 +77,10 @@ module Sivel2Gen
 
     # Tablas básicas que deben volcarse primero --por ser requeridas 
     # por otras básicas
-    @@tablasbasicas_prio = [
+    @@tablasbasicas_prio = Sip::Ability::BASICAS_PRIO + [
       ['Sivel2Gen', 'pconsolidado'], 
 			['Sivel2Gen', 'tviolencia'], 
       ['Sivel2Gen', 'supracategoria'],
-      ['Sip', 'tclase'], 
-			['Sip', 'pais'], 
-      ['Sip', 'departamento'], 
-			['Sip', 'municipio'], 
-      ['Sip', 'clase'],
-      ['Sip', 'tsitio'],
-      ['Sip', 'tdocumento'],
       ['Sivel2Gen', 'intervalo'], 
 			['Sivel2Gen', 'filiacion'], 
       ['Sivel2Gen', 'organizacion'], 

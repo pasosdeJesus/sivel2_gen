@@ -1,7 +1,7 @@
 # encoding: UTF-8
 module Sivel2Gen
   module Admin
-    class FiliacionesController < BasicasController
+    class FiliacionesController < Sip::Admin::BasicasController
       before_action :set_filiacion, only: [:show, :edit, :update, :destroy]
       load_and_authorize_resource class: Sivel2Gen::Filiacion
   
