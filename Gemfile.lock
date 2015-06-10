@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/pasosdeJesus/sip.git
-  revision: 8b930cda19d613254f9030eb2478f7eb3f7b517b
+  revision: 1bf655851aebdf67adeaeb5d04a646371235b7b2
   specs:
     sip (2.0.a6)
       devise
@@ -83,6 +83,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.9.1.1)
+    colorize (0.7.7)
     debug_inspector (0.0.2)
     devise (3.5.1)
       bcrypt (~> 3.0)
@@ -259,6 +260,7 @@ DEPENDENCIES
   cocoon!
   codeclimate-test-reporter
   coffee-rails
+  colorize
   devise
   devise-i18n
   factory_girl_rails (~> 4.0)

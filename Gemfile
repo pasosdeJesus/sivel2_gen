@@ -9,6 +9,9 @@ gem "rails-i18n"
 # Problemas con arel 6.0.0 al ejecutar rspec
 #gem "arel", '6.0.0.beta2'
 
+# Colores en terminal
+gem "colorize"
+
 # Postgresql
 gem "pg"
 

@@ -122,11 +122,13 @@ module Sivel2Gen
         WHERE presponsable.id=caso_presponsable.id_presponsable
         AND caso_presponsable.id_caso=caso.id), ', ')
         AS presponsables, 
-        ARRAY_TO_STRING(ARRAY(SELECT categoria.id_tviolencia || ':' || 
-        categoria.id_supracategoria || ':' || categoria.id || ' ' ||
+        ARRAY_TO_STRING(ARRAY(SELECT supracategoria.id_tviolencia || ':' || 
+        categoria.supracategoria_id || ':' || categoria.id || ' ' ||
         categoria.nombre FROM sivel2_gen_categoria AS categoria, 
+        sivel2_gen_supracategoria AS supracategoria,
         sivel2_gen_acto AS acto
         WHERE categoria.id=acto.id_categoria
+        AND supracategoria.id=categoria.supracategoria_id
         AND acto.id_caso=caso.id), ', ')
         AS tipificacion
         FROM sivel2_gen_caso AS caso;")
