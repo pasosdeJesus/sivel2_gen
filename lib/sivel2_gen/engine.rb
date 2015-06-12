@@ -34,20 +34,8 @@ module Sivel2Gen
   end
 
   class << self
-    mattr_accessor :ruta_anexos
-    mattr_accessor :ruta_volcados
     mattr_accessor :titulo
-    mattr_accessor :actividadg1
-    mattr_accessor :actividadg2
-    mattr_accessor :actividadg3
-    mattr_accessor :actividadg4
-    self.ruta_anexos = "/var/www/resbase/anexos"
-    self.ruta_volcados = "/var/www/resbase/sivel2"
-    self.titulo = "Motor de SIveL generico " 
-    self.actividadg1 = "Mujeres organización"
-    self.actividadg2 = "Mujeres externas"
-    self.actividadg3 = "Hombres organización"
-    self.actividadg4 = "Hombres externos"
+    self.titulo = "Motor de SIVeL genérico " 
   end
 
   def self.setup(&block)

@@ -133,6 +133,7 @@ module Sivel2Gen
       if !usuario || usuario.fechadeshabilitacion
         return
       end
+      can :contar, Sip::Ubicacion
       can :contar, Sivel2Gen::Caso
       can :buscar, Sivel2Gen::Caso
       can :lista, Sivel2Gen::Caso
