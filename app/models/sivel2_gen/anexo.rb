@@ -11,7 +11,7 @@ module Sivel2Gen
     #  validate: true, class_name: 'Sivel2Gen::CasoFfrecuente'
 
     has_attached_file :adjunto, 
-      :path => Sivel2Gen.ruta_anexos + "/:id_:filename"
+      :path => Sip.ruta_anexos + "/:id_:filename"
     validates_attachment_content_type :adjunto, 
       :content_type => ['text/plain', /.*/]
     validates_attachment_presence :adjunto
