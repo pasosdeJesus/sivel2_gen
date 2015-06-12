@@ -3,7 +3,6 @@ Sivel2Gen::Engine.routes.draw do
   patch "/actos/agregar" => 'actos#agregar'
   get "/actos/eliminar" => 'actos#eliminar'
   get '/acercade' => 'hogar#acercade'
-  get '/anexoactividades/descarga_anexoactividad/:id' => 'anexoactividades#descarga_anexoactividad'
   get '/anexos/descarga_anexo/:id' => 'sivel2_gen/anexos#descarga_anexo'
   get "/casos/busca" => 'casos#busca'
   get '/casos/lista' => 'casos#lista'
@@ -19,7 +18,6 @@ Sivel2Gen::Engine.routes.draw do
   get '/ubicaciones/nuevo' => 'ubicaciones#nuevo'
   get '/victimas/nuevo' => 'victimas#nuevo'
 
-  resources :actividades, path_names: { new: 'nueva', edit: 'edita' }
   resources :casos, path_names: { new: 'nuevo', edit: 'edita' }
 
   devise_scope :usuario do

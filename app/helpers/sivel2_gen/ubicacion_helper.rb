@@ -1,4 +1,4 @@
-module Sip
+module Sivel2Gen
   module UbicacionHelper
 
     def formato_ubicacion u, con_clase = true
