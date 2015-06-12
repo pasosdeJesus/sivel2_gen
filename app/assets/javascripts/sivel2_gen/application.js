@@ -10,11 +10,7 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require jquery
-//= require jquery_ujs
-//= require bootstrap-datepicker
-//= require twitter/bootstrap
-//= require turbolinks
+//= require sip/application.js
 //= require sivel2_gen/geo
 //= require_tree .
 

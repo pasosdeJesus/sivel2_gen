@@ -37,6 +37,9 @@ class AgregaIdASupracategoria2 < ActiveRecord::Migration
       DROP VIEW IF EXISTS sivel2_gen_conscaso1;
     SQL
     execute <<-SQL
+      DROP VIEW IF EXISTS cons;
+    SQL
+    execute <<-SQL
       ALTER TABLE sivel2_gen_categoria DROP COLUMN id_tviolencia;
     SQL
     execute <<-SQL

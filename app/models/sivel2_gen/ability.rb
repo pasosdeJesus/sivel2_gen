@@ -12,7 +12,7 @@ module Sivel2Gen
 
     ROLES = Sip::Ability::ROLES
 
-    @@tablasbasicas = Sip::Ability::TABLAS_SIP + [
+    BASICAS = Sip::Ability::TABLAS_SIP + [
       ['Sivel2Gen', 'actividadoficio'],  
       ['Sivel2Gen', 'categoria'], 
       ['Sivel2Gen', 'escolaridad'], 
@@ -34,16 +34,16 @@ module Sivel2Gen
       ['Sivel2Gen', 'vinculoestado'], 
       ['Sivel2Gen', 'tviolencia']
     ]
-
+    @@tablasbasicas = BASICAS
     def self.tablasbasicas
       @@tablasbasicas
     end
 
     # Tablas basicas cuya secuencia es de la forma tabla_id_seq  (convención rails)
-    @@basicas_seq_con_id = Sip::Ability::TABLAS_SIP_SEQID + [ 
+    BASICAS_SEQID = Sip::Ability::TABLAS_SIP_SEQID + [ 
       ['Sivel2Gen', 'supracategoria']
     ]
-
+    @@basicas_seq_con_id = BASICAS_SEQID
     def self.basicas_seq_con_id
       @@basicas_seq_con_id
     end
@@ -59,10 +59,10 @@ module Sivel2Gen
     end
 
     # Tablas no básicas pero que tienen índice
-    @@nobasicas_indice = [
+    NOBASICAS_INDICE =  [
       ['Sivel2Gen', 'caso'], 
     ]
-
+    @@nobasicas_indice = NOBASICAS_INDICE
     def self.nobasicas_indice
       @@nobasicas_indice
     end
@@ -77,7 +77,7 @@ module Sivel2Gen
 
     # Tablas básicas que deben volcarse primero --por ser requeridas 
     # por otras básicas
-    @@tablasbasicas_prio = Sip::Ability::BASICAS_PRIO + [
+    BASICAS_PRIO = Sip::Ability::BASICAS_PRIO + [
       ['Sivel2Gen', 'pconsolidado'], 
 			['Sivel2Gen', 'tviolencia'], 
       ['Sivel2Gen', 'supracategoria'],
@@ -87,7 +87,7 @@ module Sivel2Gen
 			['Sivel2Gen', 'sectorsocial'],
       ['Sivel2Gen', 'vinculoestado']
     ];
-
+    @@tablasbasicas_prio = BASICAS_PRIO
     def self.tablasbasicas_prio
       @@tablasbasicas_prio
     end
