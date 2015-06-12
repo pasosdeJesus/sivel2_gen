@@ -1,0 +1,26 @@
+<%= simple_form_for @usuario, :html => { :class => 'form-horizontal' } do |f| %>
+
+  <%= render 'usuario', :f => f %>
+
+  <%= f.association :oficina, 
+    collection: Sip::Oficina.habilitados.where("id<>'1'"),
+    label: "Oficina",
+    label_method: :nombre,
+    value_method: :id,
+    include_blank: true
+  %>
+
+  <!-- %= f.association :etiqueta, 
+  collection: Sip::Etiqueta.habilitados.where(
+  "nombre LIKE 'COMPARTIR%'"),
+  label: "Etiquetas Compartir",
+  label_method: :nombre, 
+  value_method: :id 
+  %-->
+
+  <div class="form-actions">
+    <%= f.button :submit, :class => 'btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+      usuarios_path, :class => 'btn' %>
+  </div>
+<% end %>

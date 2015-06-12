@@ -25,7 +25,6 @@
         <td><%= usuario.nombre %></td>
         <td><%= usuario.oficina.nombre if !usuario.oficina.nil? %></td>
         <td><%= usuario.descripcion %></td>
-        <!--td><!-- %= Ability::ROLES[usuario.rol-1][0] if usuario && usuario.rol %></td-->
         <td><%= Ability::ROLES[usuario.rol - 1][0] if usuario && usuario.rol && Ability::ROLES[usuario.rol-1] %></td>
         <td><%= usuario.idioma %></td>
         <td><%= usuario.email %></td>
