@@ -2,9 +2,9 @@
 # 
 # Por compartir entre motores que operen sobre sivel2_gen
 
+#//= require sip/motor
 #//= require jquery-ui/autocomplete
 #//= require cocoon
-#//= require sivel2_gen/geo
 
 # Elimina secciones agregadas con cocoon listadas en elempe
 @elimina_pendientes = (elempe) ->
@@ -178,7 +178,7 @@
 # root es espacio para poner variables globales
 # nomactospe es nombre por dar a actos 
 #   (por ejemplo en sivel2_sjr es antecedentes/causas)
-@prepara_eventos_comunes = (root, nomactospe) ->
+@sivel2_gen_prepara_eventos_comunes = (root, nomactospe) ->
   # Formato de campos de fecha con datepicker
   $(document).on('cocoon:after-insert', (e) ->
     $('[data-behaviour~=datepicker]').datepicker({
@@ -298,4 +298,24 @@
   
   return
 
+@sivel2_gen_prepara_eventos_unicos = (root) ->
 
+  # Envia formulario al presionar enlaces con clase fichacambia 
+  # con más de 5 segundos de diferencia entre un click y el siguiente
+  $(document).on('click', 'a.fichacambia[href^="#"]', (e) ->
+    tn = Date.now()
+    d = -1
+    if (root.tfichacambia) 
+      d = (tn - root.tfichacambia)/1000
+    if (d == -1 || d>5) 
+      f=$('form')
+      a=f.attr('action')
+      $.post(a, f.serialize())
+      elimina_destruidos()
+      actualiza_presponsables($('#caso_acto_id_presponsable'))
+      actualiza_victimas($('#caso_acto_id_persona'))
+      root.tfichacambia = Date.now()
+    return
+  )
+
+  return

@@ -7,7 +7,7 @@ module Sivel2Gen
     
     # Busca y lista persona(s)
     def remplazar
-      @persona = Persona.find(params[:id_persona].to_i)
+      @persona = Sip::Persona.find(params[:id_persona].to_i)
       victima = Sivel2Gen::Victima.find(params[:id_victima].to_i)
       personaant = victima.persona
       @caso = victima.caso

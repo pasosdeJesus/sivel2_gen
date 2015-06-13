@@ -12,3 +12,4 @@
 //
 //= require sivel2_gen/application
 //= require_tree .
+
