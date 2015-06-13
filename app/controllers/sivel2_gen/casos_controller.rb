@@ -2,6 +2,7 @@
 module Sivel2Gen
   class CasosController < ApplicationController
     before_action :set_caso, only: [:show, :edit, :update, :destroy]
+    #byebug
     load_and_authorize_resource class: Sivel2Gen::Caso
     helper Sip::UbicacionHelper
 
