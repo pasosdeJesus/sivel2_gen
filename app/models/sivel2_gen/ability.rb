@@ -151,6 +151,7 @@ module Sivel2Gen
           can :manage, Sip::Persona
         when Ability::ROLADMIN
           can :manage, Sivel2Gen::Caso
+          can :manage, Sip::Persona
           can :manage, Usuario
           can :manage, Sivel2Gen::Acto
           can :manage, :tablasbasicas
