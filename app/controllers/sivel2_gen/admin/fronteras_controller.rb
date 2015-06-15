@@ -13,10 +13,6 @@ module Sivel2Gen
         @basica = Frontera.find(params[:id])
       end
   
-      def atributos_index
-        ["id", "nombre", "fechacreacion", "fechadeshabilitacion"]
-      end
-  
       def frontera_params
         params.require(:frontera).permit(*atributos_form)
       end

@@ -15,7 +15,7 @@ module Sivel2Gen
 
       def atributos_index
         ["id", "rotulo", "tipoviolencia", "clasificacion", "peso", 
-         "fechacreacion", "fechadeshabilitacion"]
+         "observaciones", "fechacreacion", "fechadeshabilitacion"]
       end
 
       def pconsolidado_params

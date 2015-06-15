@@ -14,7 +14,8 @@ module Sivel2Gen
       end
   
       def atributos_index
-        ["id", "nombre", "descripcion", "fechacreacion", "fechadeshabilitacion"]
+        ["id", "nombre", "descripcion", "observaciones",
+         "fechacreacion", "fechadeshabilitacion"]
       end
   
       def etnia_params

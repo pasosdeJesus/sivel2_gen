@@ -114,22 +114,10 @@ module Sivel2Gen
     end
 
 
-    # Se definen habilidades con cancan
+    # Ver documentacion de este metodo en app/models/ability de sip
     def initialize(usuario)
-      # El primer argumento para can es la acción a la que se da permiso, 
-      # el segundo es el recurso sobre el que puede realizar la acción, 
-      # el tercero opcional es un diccionario de condiciones para filtrar 
-      # más (e.g :publicado => true).
-      #
-      # El primer argumento puede ser :manage para indicar toda acción, 
-      # o grupos de acciones como :read (incluye :show e :index), 
-      # :create, :update y :destroy.
-      #
-      # Si como segundo argumento usa :all se aplica a todo recurso, 
-      # o puede ser una clase.
-      # 
-      # Detalles en el wiki de cancan: 
-      #   https://github.com/ryanb/cancan/wiki/Defining-Abilities
+      # Sin autenticación puede consultarse información geográfica 
+      can :read, [Sip::Pais, Sip::Departamento, Sip::Municipio, Sip::Clase]
       if !usuario || usuario.fechadeshabilitacion
         return
       end

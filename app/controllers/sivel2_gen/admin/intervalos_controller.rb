@@ -18,7 +18,7 @@ module Sivel2Gen
       end
 
       def atributos_index
-        ["id",  "nombre", "rango",
+        ["id",  "nombre", "rango", "observaciones",
          "fechacreacion", "fechadeshabilitacion"]
       end
       

@@ -13,10 +13,6 @@ module Sivel2Gen
         @basica = Actividadoficio.find(params[:id])
       end
   
-      def atributos_index
-        ["id", "nombre", "fechacreacion", "fechadeshabilitacion"]
-      end
-  
       def actividadoficio_params
         params.require(:actividadoficio).permit(*atributos_form)
       end

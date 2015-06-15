@@ -16,7 +16,8 @@ module Sivel2Gen
       def atributos_index
         [
           "id", "nombre", "supracategoria_id",
-          "contadaen", "tipocat", "fechacreacion", "fechadeshabilitacion"
+          "contadaen", "tipocat", "observaciones", 
+          "fechacreacion", "fechadeshabilitacion"
         ]
       end
   

@@ -13,10 +13,6 @@ module Sivel2Gen
         @basica = Region.find(params[:id])
       end
   
-      def atributos_index
-        ["id", "nombre", "fechacreacion", "fechadeshabilitacion"]
-      end
-  
       def region_params
         params.require(:region).permit(*atributos_form)
       end

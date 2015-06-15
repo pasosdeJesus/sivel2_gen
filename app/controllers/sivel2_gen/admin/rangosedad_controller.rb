@@ -15,7 +15,7 @@ module Sivel2Gen
   
       def atributos_index
         ["id", "nombre", "rango", "limiteinferior", "limitesuperior", 
-          "fechacreacion", "fechadeshabilitacion"]
+          "observaciones", "fechacreacion", "fechadeshabilitacion"]
       end
 
       def genclase
