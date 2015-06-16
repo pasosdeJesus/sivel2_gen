@@ -4,7 +4,7 @@ class UnificaAnexos < ActiveRecord::Migration
       INSERT INTO sip_anexo(id, descripcion, adjunto_file_name, 
         adjunto_content_type, adjunto_file_size, adjunto_updated_at,
         created_at, updated_at) 
-      (SELECT id, descripcion, adjunto_file_name,
+      (SELECT id+1000, descripcion, adjunto_file_name,
         adjunto_content_type, adjunto_file_size, adjunto_updated_at,
         created_at, updated_at FROM sivel2_gen_anexo_caso ORDER BY id) 
     SQL
@@ -16,7 +16,7 @@ class UnificaAnexos < ActiveRecord::Migration
     remove_column :sivel2_gen_anexo_caso, :adjunto_file_size
     remove_column :sivel2_gen_anexo_caso, :adjunto_updated_at
     execute <<-SQL
-      UPDATE sivel2_gen_anexo_caso SET id_anexo=id
+      UPDATE sivel2_gen_anexo_caso SET id_anexo=id+1000
     SQL
     execute <<-SQL
       ALTER TABLE sivel2_gen_anexo_caso ALTER COLUMN id_anexo SET NOT NULL
