@@ -275,6 +275,14 @@
     )
   )
 
+  # Activar datepicker en campos que lo requieren
+  $("input[data-behaviour='datepicker']").datepicker({
+    format: 'yyyy-mm-dd'
+    autoclose: true
+    todayHighlight: true
+    language: 'es'
+  })
+
   # Al cambiar fecha del hecho 
   # Método para detectar cambios en datepicker de
   # http://stackoverflow.com/questions/17009354/detect-change-to-selected-date-with-bootstrap-datepicker
