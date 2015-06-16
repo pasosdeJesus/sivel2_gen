@@ -13,9 +13,8 @@ module Sivel2Gen
     belongs_to :supracategoria, foreign_key: "supracategoria_id", 
       validate: true, class_name: 'Sivel2Gen::Supracategoria'
 
-    belongs_to :categoria, foreign_key: "contadaen", 
+    belongs_to :contadaen, foreign_key: "contadaen", 
       class_name: 'Sivel2Gen::Categoria'
-
 
     def presenta_nombre
       sup = Sivel2Gen::Supracategoria.find(self.supracategoria_id)
