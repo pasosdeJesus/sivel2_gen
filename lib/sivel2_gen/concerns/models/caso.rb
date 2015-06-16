@@ -17,10 +17,15 @@ module Sivel2Gen
             reject_if: :all_blank
           has_many :actocolectivo, foreign_key: "id_caso", validate: true, 
             dependent: :destroy, class_name: 'Sivel2Gen::Actocolectivo'
-          has_many :anexo, foreign_key: "id_caso", validate: true, 
-            dependent: :destroy, class_name: 'Sivel2Gen::Anexo'
-          accepts_nested_attributes_for :anexo, allow_destroy: true, 
+          has_many :anexo_caso, foreign_key: "id_caso", validate: true, 
+            dependent: :destroy, class_name: 'Sivel2Gen::AnexoCaso',
+            inverse_of: :caso
+          accepts_nested_attributes_for :anexo_caso, allow_destroy: true, 
             reject_if: :all_blank
+          has_many :sip_anexo, :through => :anexo_caso, 
+            class_name: 'Sip::Anexo'
+          accepts_nested_attributes_for :sip_anexo,  reject_if: :all_blank
+
           has_many :antecedente_caso, foreign_key: "id_caso", validate: true, 
             dependent: :destroy, class_name: 'Sivel2Gen::AntecedenteCaso'
           has_many :antecedente_comunidad, foreign_key: "id_caso", validate: true, 

@@ -3,7 +3,7 @@ Sivel2Gen::Engine.routes.draw do
   patch "/actos/agregar" => 'actos#agregar'
   get "/actos/eliminar" => 'actos#eliminar'
   get '/acercade' => 'hogar#acercade'
-  get '/anexos/descarga_anexo/:id' => 'anexos#descarga_anexo'
+  #get '/anexos/descarga_anexo/:id' => 'anexos#descarga_anexo'
   get "/casos/busca" => 'casos#busca'
   get '/casos/lista' => 'casos#lista'
   get '/casos/nuevaubicacion' => 'casos#nueva_ubicacion'
@@ -41,6 +41,4 @@ Sivel2Gen::Engine.routes.draw do
       end
     end
   end
-
-  root 'sip/hogar#index'
 end

@@ -125,7 +125,7 @@ module Sivel2Gen
       can :contar, Sivel2Gen::Caso
       can :buscar, Sivel2Gen::Caso
       can :lista, Sivel2Gen::Caso
-      can :descarga_anexo, Sivel2Gen::Anexo
+      can :descarga_anexo, Sip::Anexo
       can :nuevo, Sip::Ubicacion
       can :nuevo, Sivel2Gen::Presponsable
       can :nuevo, Sivel2Gen::Victima
