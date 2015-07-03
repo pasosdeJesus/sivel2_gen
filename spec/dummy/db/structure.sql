@@ -669,6 +669,36 @@ CREATE TABLE sip_municipio (
 
 
 --
+-- Name: sip_mundep_sinorden; Type: VIEW; Schema: public; Owner: -
+--
+
+CREATE VIEW sip_mundep_sinorden AS
+ SELECT ((sip_departamento.id_deplocal * 1000) + sip_municipio.id_munlocal) AS idlocal,
+    (((sip_municipio.nombre)::text || ' / '::text) || (sip_departamento.nombre)::text) AS nombre
+   FROM (sip_municipio
+     JOIN sip_departamento ON ((sip_municipio.id_departamento = sip_departamento.id)))
+  WHERE (sip_departamento.id_pais = 170)
+UNION
+ SELECT sip_departamento.id_deplocal AS idlocal,
+    sip_departamento.nombre
+   FROM sip_departamento
+  WHERE (sip_departamento.id_pais = 170);
+
+
+--
+-- Name: sip_mundep; Type: MATERIALIZED VIEW; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE MATERIALIZED VIEW sip_mundep AS
+ SELECT sip_mundep_sinorden.idlocal,
+    sip_mundep_sinorden.nombre,
+    to_tsvector('spanish'::regconfig, unaccent(sip_mundep_sinorden.nombre)) AS mundep
+   FROM sip_mundep_sinorden
+  ORDER BY (sip_mundep_sinorden.nombre COLLATE es_co_utf_8)
+  WITH NO DATA;
+
+
+--
 -- Name: sip_oficina_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
@@ -2786,6 +2816,13 @@ CREATE UNIQUE INDEX index_usuario_on_reset_password_token ON usuario USING btree
 
 
 --
+-- Name: sip_busca_mundep; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX sip_busca_mundep ON sip_mundep USING gin (mundep);
+
+
+--
 -- Name: unique_schema_migrations; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -3800,6 +3837,8 @@ INSERT INTO schema_migrations (version) VALUES ('20150503120915');
 INSERT INTO schema_migrations (version) VALUES ('20150510125926');
 
 INSERT INTO schema_migrations (version) VALUES ('20150521181918');
+
+INSERT INTO schema_migrations (version) VALUES ('20150528100944');
 
 INSERT INTO schema_migrations (version) VALUES ('20150602094513');
 
