@@ -1,6 +1,6 @@
 # encoding: UTF-8
 module Sivel2Gen
-  class Ability
+  class Ability < Sip::Ability
     include CanCan::Ability
 
     ROLADMIN  = 1
@@ -34,7 +34,30 @@ module Sivel2Gen
       ['Sivel2Gen', 'vinculoestado'], 
       ['Sivel2Gen', 'tviolencia']
     ]
-    @@tablasbasicas = BASICAS
+
+    @@tablasbasicas += [
+      ['Sivel2Gen', 'actividadoficio'],  
+      ['Sivel2Gen', 'categoria'], 
+      ['Sivel2Gen', 'escolaridad'], 
+      ['Sivel2Gen', 'estadocivil'], 
+      ['Sivel2Gen', 'etnia'], 
+      ['Sivel2Gen', 'filiacion'], 
+      ['Sivel2Gen', 'frontera'],
+      ['Sivel2Gen', 'iglesia'], 
+      ['Sivel2Gen', 'intervalo'],
+      ['Sivel2Gen', 'maternidad'], 
+      ['Sivel2Gen', 'organizacion'],
+      ['Sivel2Gen', 'pconsolidado'], 
+      ['Sivel2Gen', 'presponsable'], 
+      ['Sivel2Gen', 'profesion'], 
+      ['Sivel2Gen', 'rangoedad'],
+      ['Sivel2Gen', 'region'], 
+      ['Sivel2Gen', 'sectorsocial'], 
+      ['Sivel2Gen', 'supracategoria'], 
+      ['Sivel2Gen', 'vinculoestado'], 
+      ['Sivel2Gen', 'tviolencia']
+    ]
+
     def self.tablasbasicas
       @@tablasbasicas
     end
@@ -43,13 +66,16 @@ module Sivel2Gen
     BASICAS_SEQID = Sip::Ability::TABLAS_SIP_SEQID + [ 
       ['Sivel2Gen', 'supracategoria']
     ]
-    @@basicas_seq_con_id = BASICAS_SEQID
+    @@basicas_seq_con_id += [ 
+      ['Sivel2Gen', 'supracategoria']
+    ]
+
     def self.basicas_seq_con_id
       @@basicas_seq_con_id
     end
 
     # Tablas básicas cuyo id no es autoincremental
-    @@basicas_id_noauto = Sip::Ability::TABLAS_ID_NOAUTO + [ 
+    @@basicas_id_noauto += [ 
       ['Sivel2Gen', 'categoria'], 
       ['Sivel2Gen', 'tviolencia'] 
     ]
@@ -62,7 +88,7 @@ module Sivel2Gen
     NOBASICAS_INDICE =  [
       ['Sivel2Gen', 'caso'], 
     ]
-    @@nobasicas_indice = NOBASICAS_INDICE
+    @@nobasicas_indice += NOBASICAS_INDICE
     def self.nobasicas_indice
       @@nobasicas_indice
     end
@@ -87,7 +113,16 @@ module Sivel2Gen
 			['Sivel2Gen', 'sectorsocial'],
       ['Sivel2Gen', 'vinculoestado']
     ];
-    @@tablasbasicas_prio = BASICAS_PRIO
+    @@tablasbasicas_prio += [
+      ['Sivel2Gen', 'pconsolidado'], 
+			['Sivel2Gen', 'tviolencia'], 
+      ['Sivel2Gen', 'supracategoria'],
+      ['Sivel2Gen', 'intervalo'], 
+			['Sivel2Gen', 'filiacion'], 
+      ['Sivel2Gen', 'organizacion'], 
+			['Sivel2Gen', 'sectorsocial'],
+      ['Sivel2Gen', 'vinculoestado']
+    ];
     def self.tablasbasicas_prio
       @@tablasbasicas_prio
     end
