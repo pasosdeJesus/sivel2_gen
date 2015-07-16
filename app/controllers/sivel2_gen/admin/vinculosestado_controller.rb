@@ -12,7 +12,11 @@ module Sivel2Gen
       def set_vinculoestado
         @basica = Vinculoestado.find(params[:id])
       end
-  
+ 
+      def genclase
+        return 'M';
+      end
+ 
       def vinculoestado_params
         params.require(:vinculoestado).permit(*atributos_form)
       end
