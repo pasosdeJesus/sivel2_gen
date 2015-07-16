@@ -29,5 +29,7 @@ module Dummy
     FactoryGirl.definition_file_paths << Pathname.new("../factories")
     FactoryGirl.definition_file_paths.uniq!
     FactoryGirl.find_definitions
+
+    config.web_console.whitelisted_ips = '192.168.0.0/16'
   end
 end
