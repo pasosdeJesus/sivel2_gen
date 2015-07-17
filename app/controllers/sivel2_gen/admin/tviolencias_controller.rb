@@ -1,7 +1,7 @@
 # encoding: UTF-8
 module Sivel2Gen
   module Admin
-    class TviolenciasController < BasicasController
+    class TviolenciasController < Sip::Admin::BasicasController
       before_action :set_tviolencia, only: [:show, :edit, :update, :destroy]
       load_and_authorize_resource class: Sivel2Gen::Tviolencia
   
@@ -14,7 +14,8 @@ module Sivel2Gen
       end
   
       def atributos_index
-        ["id", "nombre", "nomcorto", "fechacreacion", "fechadeshabilitacion"]
+        ["id", "nombre", "nomcorto", "observaciones",
+         "fechacreacion", "fechadeshabilitacion"]
       end
       
       def atributos_form

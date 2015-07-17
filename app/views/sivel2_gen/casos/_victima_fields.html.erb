@@ -1,7 +1,7 @@
 <div class='control-group nested-fields'>
   <div class="controls">
     <% if f.object.persona.nil?
-        f.object.persona = Sivel2Gen::Persona.new
+        f.object.persona = Sip::Persona.new
        end %>
        
     <%= render 'contacto_fields', :f => f %>

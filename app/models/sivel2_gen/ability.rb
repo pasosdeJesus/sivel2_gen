@@ -1,6 +1,6 @@
 # encoding: UTF-8
 module Sivel2Gen
-  class Ability
+  class Ability < Sip::Ability
     include CanCan::Ability
 
     ROLADMIN  = 1
@@ -10,137 +10,78 @@ module Sivel2Gen
     ROLANALI  = 5
     #ROLSIST   = 6
 
-    ROLES = [
-      ["Administrador", ROLADMIN],  # 1
-      ["", 0], # 2
-      ["", 0], # 3
-      ["", 0], # 4
-      ["Analista", ROLANALI], # 5
-      ["", 0] #6
-    ]
+    ROLES = Sip::Ability::ROLES
 
-    @@tablasbasicas = [
-      ['Sivel2Gen', 'actividadarea'], ['Sivel2Gen', 'actividadoficio'],  
-      ['Sivel2Gen', 'categoria'], ['Sivel2Gen', 'clase'], 
-      ['Sivel2Gen', 'departamento'], 
-      ['Sivel2Gen', 'escolaridad'], ['Sivel2Gen', 'estadocivil'], 
-      ['Sivel2Gen', 'etiqueta'], 
+    BASICAS_PROPIAS = [
+      ['Sivel2Gen', 'actividadoficio'],  
+      ['Sivel2Gen', 'categoria'], 
+      ['Sivel2Gen', 'escolaridad'], 
+      ['Sivel2Gen', 'estadocivil'], 
       ['Sivel2Gen', 'etnia'], 
-      ['Sivel2Gen', 'filiacion'], ['Sivel2Gen', 'frontera'],
-      ['Sivel2Gen', 'iglesia'], ['Sivel2Gen', 'intervalo'],
-      ['Sivel2Gen', 'maternidad'], ['Sivel2Gen', 'municipio'], 
+      ['Sivel2Gen', 'filiacion'], 
+      ['Sivel2Gen', 'frontera'],
+      ['Sivel2Gen', 'iglesia'], 
+      ['Sivel2Gen', 'intervalo'],
+      ['Sivel2Gen', 'maternidad'], 
       ['Sivel2Gen', 'organizacion'],
-      ['Sivel2Gen', 'pais'], ['Sivel2Gen', 'pconsolidado'], 
-      ['Sivel2Gen', 'presponsable'], ['Sivel2Gen', 'profesion'], 
-      ['Sivel2Gen', 'rangoedad'], ['Sivel2Gen', 'rangoedadac'], 
-      ['Sivel2Gen', 'region'], ['Sivel2Gen', 'regionsjr'],
-      ['Sivel2Gen', 'sectorsocial'], ['Sivel2Gen', 'supracategoria'], 
+#      ['Sivel2Gen', 'pconsolidado'], 
+      ['Sivel2Gen', 'presponsable'], 
+      ['Sivel2Gen', 'profesion'], 
+      ['Sivel2Gen', 'rangoedad'],
+      ['Sivel2Gen', 'region'], 
+      ['Sivel2Gen', 'sectorsocial'], 
+      ['Sivel2Gen', 'supracategoria'], 
       ['Sivel2Gen', 'vinculoestado'], 
-      ['Sivel2Gen', 'tclase'], ['Sivel2Gen', 'tdocumento'], 
-      ['Sivel2Gen', 'tsitio'], ['Sivel2Gen', 'tviolencia']
+      ['Sivel2Gen', 'tviolencia']
     ]
 
-    def self.tablasbasicas
-      @@tablasbasicas
-    end
-
-    # Tablas basicas cuya secuencia es de la forma tabla_id_seq  (convención rails)
-    @@basicas_seq_con_id = [ 
-      ['Sivel2Gen', 'actividadarea'], 
-      ['Sivel2Gen', 'pais'], ['Sivel2Gen', 'rangoedadac'], 
-      ['Sivel2Gen', 'tdocumento'] 
-    ]
-
-    def self.basicas_seq_con_id
-      @@basicas_seq_con_id
-    end
+    @@tablasbasicas = Sip::Ability::BASICAS_PROPIAS + BASICAS_PROPIAS
 
     # Tablas básicas cuyo id no es autoincremental
-    @@basicas_id_noauto = [ 
-      ['Sivel2Gen', 'categoria'], ['Sivel2Gen', 'clase'], 
-      ['Sivel2Gen', 'departamento'], ['Sivel2Gen', 'municipio'], 
-      ['Sivel2Gen', 'supracategoria'], ['Sivel2Gen', 'tclase'], 
+    BASICAS_ID_NOAUTO = [
+      ['Sivel2Gen', 'categoria'], 
       ['Sivel2Gen', 'tviolencia'] 
     ]
 
-    def self.basicas_id_noauto
-      @@basicas_id_noauto
-    end
+    @@basicas_id_noauto = Sip::Ability::BASICAS_ID_NOAUTO + BASICAS_ID_NOAUTO 
 
     # Tablas no básicas pero que tienen índice
-    @@nobasicas_indice = [
-      ['Sivel2Gen', 'caso'], ['Sivel2Gen', 'persona'], 
-      ['Sivel2Gen', 'ubicacion'], ['', 'usuario']
+    NOBASICAS_INDSEQID =  [
+      ['Sivel2Gen', 'caso'], 
     ]
 
-    def self.nobasicas_indice
-      @@nobasicas_indice
-    end
+		# Tablas no básicas pero que tienen índice con secuencia id_seq
+    @@nobasicas_indice_seq_con_id = Sip::Ability::NOBASICAS_INDSEQID +
+      NOBASICAS_INDSEQID
 
     # Tablas básicas que deben volcarse primero --por ser requeridas 
     # por otras básicas
-    @@tablasbasicas_prio = [
-      ['Sivel2Gen', 'pconsolidado'], ['Sivel2Gen', 'tviolencia'], 
+    BASICAS_PRIO = [
+#      ['Sivel2Gen', 'pconsolidado'], 
+			['Sivel2Gen', 'tviolencia'], 
       ['Sivel2Gen', 'supracategoria'],
-      ['Sivel2Gen', 'tclase'], ['Sivel2Gen', 'pais'], 
-      ['Sivel2Gen', 'departamento'], ['Sivel2Gen', 'municipio'], 
-      ['Sivel2Gen', 'clase'],
-      ['Sivel2Gen', 'intervalo'], ['Sivel2Gen', 'filiacion'], 
-      ['Sivel2Gen', 'organizacion'], ['Sivel2Gen', 'sectorsocial'],
+      ['Sivel2Gen', 'intervalo'], 
+			['Sivel2Gen', 'filiacion'], 
+      ['Sivel2Gen', 'organizacion'], 
+			['Sivel2Gen', 'sectorsocial'],
       ['Sivel2Gen', 'vinculoestado']
     ];
-
-    def self.tablasbasicas_prio
-      @@tablasbasicas_prio
-    end
-
-    # Recibe una tabla básica como pareja [Modulo, clase] y retorna
-    # clase completa Modulo::Clase
-    def self.tb_clase(t)
-      if (t[0] != '') 
-        k = t[0] + '::' + t[1].capitalize
-      else
-        k = t[1].capitalize
-      end
-      k.constantize 
-    end
-
-    # Recibe una tabla básica como pareja [Modulo, clase] y retorna
-    # nombre de tabla modulo_clase
-    def self.tb_modelo(t)
-      if (t[0] != '') 
-        t[0].underscore.gsub(/\//, '_') + '_' + t[1]
-      else 
-        t[1]
-      end
-    end
+    @@tablasbasicas_prio = Sip::Ability::BASICAS_PRIO + BASICAS_PRIO
 
 
-    # Se definen habilidades con cancan
+    # Ver documentacion de este metodo en app/models/ability de sip
     def initialize(usuario)
-      # El primer argumento para can es la acción a la que se da permiso, 
-      # el segundo es el recurso sobre el que puede realizar la acción, 
-      # el tercero opcional es un diccionario de condiciones para filtrar 
-      # más (e.g :publicado => true).
-      #
-      # El primer argumento puede ser :manage para indicar toda acción, 
-      # o grupos de acciones como :read (incluye :show e :index), 
-      # :create, :update y :destroy.
-      #
-      # Si como segundo argumento usa :all se aplica a todo recurso, 
-      # o puede ser una clase.
-      # 
-      # Detalles en el wiki de cancan: 
-      #   https://github.com/ryanb/cancan/wiki/Defining-Abilities
+      # Sin autenticación puede consultarse información geográfica 
+      can :read, [Sip::Pais, Sip::Departamento, Sip::Municipio, Sip::Clase]
       if !usuario || usuario.fechadeshabilitacion
         return
       end
+      can :contar, Sip::Ubicacion
       can :contar, Sivel2Gen::Caso
       can :buscar, Sivel2Gen::Caso
       can :lista, Sivel2Gen::Caso
-      can :descarga_anexo, Sivel2Gen::Anexo
-      can :descarga_anexoactividad, Sivel2Gen::Anexoactividad
-      can :nuevo, Sivel2Gen::Ubicacion
+      can :descarga_anexo, Sip::Anexo
+      can :nuevo, Sip::Ubicacion
       can :nuevo, Sivel2Gen::Presponsable
       can :nuevo, Sivel2Gen::Victima
       if usuario && usuario.rol then
@@ -149,13 +90,11 @@ module Sivel2Gen
           can :read, Sivel2Gen::Caso
           can :new, Sivel2Gen::Caso
           can [:update, :create, :destroy], Sivel2Gen::Caso
-          can :read, Sivel2Gen::Actividad
-          can :new, Sivel2Gen::Actividad
-          can [:update, :create, :destroy], Sivel2Gen::Actividad
           can :manage, Sivel2Gen::Acto
+          can :manage, Sip::Persona
         when Ability::ROLADMIN
           can :manage, Sivel2Gen::Caso
-          can :manage, Sivel2Gen::Actividad
+          can :manage, Sip::Persona
           can :manage, Usuario
           can :manage, Sivel2Gen::Acto
           can :manage, :tablasbasicas
@@ -166,5 +105,6 @@ module Sivel2Gen
         end
       end
     end
-  end
-end
+
+  end # class
+end   # module

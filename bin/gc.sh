@@ -1,6 +1,12 @@
 #!/bin/sh
 # Hace prueba de regresión y envia a github
 
+
+grep "^ *gem *.sip.*, *path:" Gemfile > /dev/null 2> /dev/null
+if (test "$?" = "0") then {
+	echo "Gemfile incluye un sip cableado al sistema de archivos"
+	exit 1;
+} fi;
 grep "^ *gem *.debugger*" Gemfile > /dev/null 2> /dev/null
 if (test "$?" = "0") then {
 	echo "Gemfile incluye debugger que heroku no quiere"
@@ -14,12 +20,18 @@ if (test "$?" = "0") then {
 
 if (test "$SINAC" != "1") then {
 	NOKOGIRI_USE_SYSTEM_LIBRARIES=1 MAKE=gmake make=gmake QMAKE=qmake4 bundle update
+	if (test "$?" != "0") then {
+		exit 1;
+	} fi;
 } fi;
 if (test "$SININS" != "1") then {
 	NOKOGIRI_USE_SYSTEM_LIBRARIES=1 MAKE=gmake make=gmake QMAKE=qmake4 bundle install
+	if (test "$?" != "0") then {
+		exit 1;
+	} fi;
 } fi;
 
-(cd spec/dummy; RAILS_ENV=test rake db:drop db:setup db:migrate sivel2:indices)
+(cd spec/dummy; RAILS_ENV=test rake db:drop db:setup db:migrate sip:indices)
 if (test "$?" != "0") then {
 	echo "No puede preparse base de prueba";
 	exit 1;

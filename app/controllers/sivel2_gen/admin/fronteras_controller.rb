@@ -1,7 +1,7 @@
 # encoding: UTF-8
 module Sivel2Gen
   module Admin
-    class FronterasController < BasicasController
+    class FronterasController < Sip::Admin::BasicasController
       before_action :set_frontera, only: [:show, :edit, :update, :destroy]
       load_and_authorize_resource class: Sivel2Gen::Frontera
   
@@ -11,10 +11,6 @@ module Sivel2Gen
   
       def set_frontera
         @basica = Frontera.find(params[:id])
-      end
-  
-      def atributos_index
-        ["id", "nombre", "fechacreacion", "fechadeshabilitacion"]
       end
   
       def frontera_params

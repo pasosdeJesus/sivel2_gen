@@ -10,12 +10,15 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require jquery
-//= require jquery_ujs
-//= require bootstrap-datepicker
-//= require twitter/bootstrap
-//= require turbolinks
-//= require sivel2_gen/geo
+//= require sip/motor
+//= require sivel2_gen/motor
 //= require_tree .
 
+$(document).on('ready page:load', function() {
+	var root;
+	root = typeof exports !== "undefined" && exports !== null ? exports : this;
+	sip_prepara_eventos_comunes(root);
+	sivel2_gen_prepara_eventos_comunes(root);
+	sivel2_gen_prepara_eventos_unicos(root);
+});
 

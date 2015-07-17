@@ -20,7 +20,7 @@ module Dummy
 
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
-    # config.i18n.default_locale = :de
+    config.i18n.default_locale = :es
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
@@ -29,5 +29,7 @@ module Dummy
     FactoryGirl.definition_file_paths << Pathname.new("../factories")
     FactoryGirl.definition_file_paths.uniq!
     FactoryGirl.find_definitions
+
+    config.web_console.whitelisted_ips = '192.168.0.0/16'
   end
 end

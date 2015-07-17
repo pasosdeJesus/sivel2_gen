@@ -1,7 +1,7 @@
 # encoding: UTF-8
 module Sivel2Gen
   module Admin
-    class PresponsablesController < BasicasController
+    class PresponsablesController < Sip::Admin::BasicasController
       before_action :set_presponsable, only: [:show, :edit, :update, :destroy]
       load_and_authorize_resource class: Sivel2Gen::Presponsable
   

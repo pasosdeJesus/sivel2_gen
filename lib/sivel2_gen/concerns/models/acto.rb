@@ -9,7 +9,7 @@ module Sivel2Gen
           belongs_to :presponsable, class_name: 'Sivel2Gen::Presponsable',
             foreign_key: "id_presponsable", validate: true 
           accepts_nested_attributes_for :presponsable
-          belongs_to :persona, class_name: 'Sivel2Gen::Persona',
+          belongs_to :persona, class_name: 'Sip::Persona',
             foreign_key: "id_persona", validate: true
           belongs_to :caso, class_name: 'Sivel2Gen::Caso', 
             foreign_key: "id_caso", validate: true

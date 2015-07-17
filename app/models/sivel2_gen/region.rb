@@ -1,7 +1,7 @@
 # encoding: UTF-8
 module Sivel2Gen
   class Region < ActiveRecord::Base
-    include Basica
+    include Sip::Basica
 
     has_many :caso_region, foreign_key: "id_region", validate: true, 
       class_name: 'Sivel2Gen::CasoRegion'

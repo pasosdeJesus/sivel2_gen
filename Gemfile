@@ -3,17 +3,22 @@ source 'https://rubygems.org'
 #ruby "2.1.5"
 
 # Rails (internacionalización)
-gem "rails", '~> 4.2.1'
+gem "rails", '~> 4.2.3.rc1'
 gem "rails-i18n"
 
 # Problemas con arel 6.0.0 al ejecutar rspec
 #gem "arel", '6.0.0.beta2'
+
+# Colores en terminal
+gem "colorize"
 
 # Postgresql
 gem "pg"
 
 # API JSON facil. Ver: https://github.com/rails/jbuilder
 gem "jbuilder"
+
+gem "sass"
 
 # Uglifier comprime recursos Javascript
 gem "uglifier", '>= 1.3.0'
@@ -57,6 +62,10 @@ gem "paperclip", "~> 4.1"
 # Zonas horarias
 gem "tzinfo"
 gem "tzinfo-data"
+
+# Motor estilo Pasos de Jesús
+gem 'sip', github: 'pasosdeJesus/sip'
+#gem 'sip', path: '../sip'
 
 group :doc do
   # Genera documentación en doc/api con bundle exec rake doc:rails

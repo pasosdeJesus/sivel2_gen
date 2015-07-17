@@ -1,6 +1,7 @@
+# encoding: UTF-8
+
 Rails.application.routes.draw do
-  # The priority is based upon order of creation: first created -> highest priority.
-  # See how all your routes lay out with "rake routes".
+
   devise_scope :usuario do
     get 'sign_out' => 'devise/sessions#destroy'
   end
@@ -12,5 +13,8 @@ Rails.application.routes.draw do
       :as => 'registro_usuario'            
   end
   resources :usuarios, path_names: { new: 'nuevo', edit: 'edita' }  
-  mount Sivel2Gen::Engine, at: "sivel2_gen"
+
+	root 'sivel2_gen/hogar#index'
+  mount Sivel2Gen::Engine, at: "/", as: "sivel2_gen"
+  mount Sip::Engine, at: "/", as: "sip"
 end

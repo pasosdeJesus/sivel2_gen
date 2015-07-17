@@ -1,0 +1,49 @@
+<%- model_class = Usuario -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:nusuario) %></th>
+      <th><%= model_class.human_attribute_name(:nombre) %></th>
+      <th><%= model_class.human_attribute_name(:oficina) %></th>
+      <th><%= model_class.human_attribute_name(:descripcion) %></th>
+      <th><%= model_class.human_attribute_name(:rol) %></th>
+      <th><%= model_class.human_attribute_name(:idioma) %></th>
+      <th><%= model_class.human_attribute_name(:email) %></th>
+      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @usuarios.try(:each) do |usuario| %>
+      <tr>
+        <td><%= link_to usuario.id, usuario_path(usuario) %></td>
+        <td><%= usuario.nusuario %></td>
+        <td><%= usuario.nombre %></td>
+        <td><%= usuario.oficina.nombre if !usuario.oficina.nil? %></td>
+        <td><%= usuario.descripcion %></td>
+        <td><%= Ability::ROLES[usuario.rol - 1][0] if usuario && usuario.rol && Ability::ROLES[usuario.rol-1] %></td>
+        <td><%= usuario.idioma %></td>
+        <td><%= usuario.email %></td>
+        <td><%= usuario.created_at.strftime('%Y-%m-%d') %></td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_usuario_path(usuario), :class => 'btn btn-xs' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      usuario_path(usuario),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-xs btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= will_paginate @usuario, { param_name: :pagina }  %>
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_usuario_path,
+            :class => 'btn btn-primary' %>

@@ -1,7 +1,7 @@
 # encoding: UTF-8
 module Sivel2Gen
   module Admin
-    class SupracategoriasController < BasicasController
+    class SupracategoriasController < Sip::Admin::BasicasController
       before_action :set_supracategoria, only: [:show, :edit, :update, :destroy]
       load_and_authorize_resource class: Sivel2Gen::Supracategoria
   
@@ -14,7 +14,8 @@ module Sivel2Gen
       end
   
       def atributos_index
-        ["id", "nombre", "id_tviolencia", "fechacreacion", "fechadeshabilitacion"]
+        ["id", "nombre", "id_tviolencia", "codigo", 
+         "observaciones", "fechacreacion", "fechadeshabilitacion"]
       end
   
       def atributos_form

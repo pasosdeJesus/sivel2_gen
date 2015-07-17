@@ -1,7 +1,7 @@
 # encoding: UTF-8
 module Sivel2Gen
   module Admin
-    class IntervalosController < BasicasController
+    class IntervalosController < Sip::Admin::BasicasController
       before_action :set_intervalo, only: [:show, :edit, :update, :destroy]
       load_and_authorize_resource class: Sivel2Gen::Intervalo
   
@@ -17,6 +17,11 @@ module Sivel2Gen
         'M'
       end
 
+      def atributos_index
+        ["id",  "nombre", "rango", "observaciones",
+         "fechacreacion", "fechadeshabilitacion"]
+      end
+      
       def intervalo_params
         params.require(:intervalo).permit(*atributos_form)
       end

@@ -3,8 +3,7 @@ Sivel2Gen::Engine.routes.draw do
   patch "/actos/agregar" => 'actos#agregar'
   get "/actos/eliminar" => 'actos#eliminar'
   get '/acercade' => 'hogar#acercade'
-  get '/anexoactividades/descarga_anexoactividad/:id' => 'anexoactividades#descarga_anexoactividad'
-  get '/anexos/descarga_anexo/:id' => 'anexos#descarga_anexo'
+  #get '/anexos/descarga_anexo/:id' => 'anexos#descarga_anexo'
   get "/casos/busca" => 'casos#busca'
   get '/casos/lista' => 'casos#lista'
   get '/casos/nuevaubicacion' => 'casos#nueva_ubicacion'
@@ -19,7 +18,6 @@ Sivel2Gen::Engine.routes.draw do
   get '/ubicaciones/nuevo' => 'ubicaciones#nuevo'
   get '/victimas/nuevo' => 'victimas#nuevo'
 
-  resources :actividades, path_names: { new: 'nueva', edit: 'edita' }
   resources :casos, path_names: { new: 'nuevo', edit: 'edita' }
 
   devise_scope :usuario do
@@ -35,7 +33,7 @@ Sivel2Gen::Engine.routes.draw do
   resources :usuarios, path_names: { new: 'nuevo', edit: 'edita' } 
 
   namespace :admin do
-    Ability.tablasbasicas.each do |t|
+    ::Ability.tablasbasicas.each do |t|
       if (t[0] == "Sivel2Gen") 
         c = t[1].pluralize
         resources c.to_sym, 
@@ -43,6 +41,4 @@ Sivel2Gen::Engine.routes.draw do
       end
     end
   end
-
-  root 'hogar#index'
 end

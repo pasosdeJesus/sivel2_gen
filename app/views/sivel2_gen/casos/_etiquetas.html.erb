@@ -1,8 +1,8 @@
-            <%= f.simple_fields_for :caso_etiqueta do |cetiqueta| %>
-              <%= render 'caso_etiqueta_fields', :f => cetiqueta %>
-            <% end %>
-            <div class="links">
-              <%= link_to_add_association 'Añadir Etiqueta', f, 
-                :caso_etiqueta, :class => 'btn-primary' 
-              %>
-            </div>
+<%= f.simple_fields_for :caso_etiqueta do |cetiqueta| %>
+  <%= render 'caso_etiqueta_fields', :f => cetiqueta %>
+<% end %>
+<div class="links">
+  <%= link_to_add_association 'Añadir Etiqueta', f, 
+    :caso_etiqueta, :class => 'btn-primary' 
+  %>
+</div>

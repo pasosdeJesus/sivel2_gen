@@ -8,7 +8,7 @@ module Sivel2Gen
     # params[:caso_id].  Pone valores simples en los campos requeridos
     def nuevo
       if params[:caso_id]
-        @persona = Persona.new
+        @persona = Sip::Persona.new
         @victima = Victima.new
         @persona.nombres = 'N'
         @persona.apellidos = 'N'

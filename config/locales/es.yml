@@ -4,12 +4,12 @@ es:
     fechacreacion: Creación
     fechadeshabilitacion: Deshabilitación 
     formatoregex: Formato (exp. reg)
-    id_municipio: Municipio
-    id_departamento: Departamento/Estado
-    id_tclase: Tipo de Centro Poblado
-    id_pais: País
-    id_supracategoria: Supracategoria
-    id_tviolencia: Tipo de Violencia
+    municipio: Municipio
+    departamento: Departamento/Estado
+    tclase: Tipo de Centro Poblado
+    pais: País
+    supracategoria: Supracategoria
+    tviolencia: Tipo de Violencia
     limiteinferior: Límite Inferior
     limitesuperior: Límite Superior
   will_paginate:

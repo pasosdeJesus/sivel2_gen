@@ -1,7 +1,7 @@
 # encoding: UTF-8
 module Sivel2Gen
   class Filiacion < ActiveRecord::Base
-    include Basica
+    include Sip::Basica
 
     has_many :comunidad_filiacion, foreign_key: "id_filiacion", validate: true, 
       class_name: 'Sivel2Gen::ComunidadFiliacion'

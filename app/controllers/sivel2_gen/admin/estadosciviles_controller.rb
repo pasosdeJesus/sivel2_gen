@@ -1,7 +1,7 @@
 # encoding: UTF-8
 module Sivel2Gen
   module Admin
-    class EstadoscivilesController < Sivel2Gen::Admin::BasicasController
+    class EstadoscivilesController < Sip::Admin::BasicasController
       before_action :set_estadocivil, only: [:show, :edit, :update, :destroy]
       load_and_authorize_resource class: Sivel2Gen::Estadocivil
 
