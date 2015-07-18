@@ -1,6 +1,4 @@
-
-* Agregar nueva categoria, problema con contadaen
-* Error cuando se agrega un acto con victima NN y después se quiere autocompletar la víctima.
+* Verificar si aun hay error cuando se agrega un acto con victima NN y después se quiere autocompletar la víctima.
 
 Las tablas básicas que tengan relaciones has_many, no pueden borrarse 
 cuando hay objetos dependientes, puede ser mejor:
