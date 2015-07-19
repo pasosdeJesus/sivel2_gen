@@ -16,7 +16,7 @@ module Sivel2Gen
       else
         session[:capturacaso_acordeon] = true
       end
-      redirect_to root_path
+      redirect_to "/"
     end
 
   end
