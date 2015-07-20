@@ -5,6 +5,8 @@ module Sivel2Gen
     module Models
       module Categoria
         extend ActiveSupport::Concern
+
+        include Sip::Basica
         included do
 
           belongs_to :supracategoria, foreign_key: "supracategoria_id", 

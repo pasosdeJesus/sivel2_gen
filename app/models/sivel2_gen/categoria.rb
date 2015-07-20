@@ -1,6 +1,6 @@
 # encoding: UTF-8
 #
-require 'sivel2_gen/concerns/models/acto'
+require 'sivel2_gen/concerns/models/categoria'
 
 module Sivel2Gen
   class Categoria < ActiveRecord::Base
