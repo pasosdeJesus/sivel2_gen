@@ -1,9 +1,9 @@
 # encoding: UTF-8
+
+require 'sivel2_gen/concerns/models/actividadoficio'
+
 module Sivel2Gen
   class Actividadoficio < ActiveRecord::Base
-    include Sip::Basica
-
-    has_many :victimasjr, foreign_key: "id_actividadoficio", 
-      validate: true, class_name: 'Sivel2Gen::Victimasjr'
+    include Sivel2Gen::Concerns::Models::Actividadoficio
   end
 end

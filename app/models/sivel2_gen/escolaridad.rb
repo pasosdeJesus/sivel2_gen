@@ -1,9 +1,9 @@
 # encoding: UTF-8
+
+require 'sivel2_gen/concerns/models/escolaridad'
+
 module Sivel2Gen
   class Escolaridad < ActiveRecord::Base
-    include Sip::Basica
-
-    has_many :victimasjr, foreign_key: "id_escolaridad", 
-      validate: true, class_name: 'Sivel2Gen::Victimasjr'
+    include Sivel2Gen::Concerns::Models::Escolaridad
   end
 end
