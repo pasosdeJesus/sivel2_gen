@@ -2040,7 +2040,7 @@ CREATE TABLE usuario (
     updated_at timestamp without time zone,
     oficina_id integer,
     CONSTRAINT usuario_check CHECK (((fechadeshabilitacion IS NULL) OR (fechadeshabilitacion >= fechacreacion))),
-    CONSTRAINT usuario_rol_check CHECK (((rol >= 1) AND (rol <= 6)))
+    CONSTRAINT usuario_rol_check CHECK ((rol >= 1))
 );
 
 
@@ -3870,4 +3870,6 @@ INSERT INTO schema_migrations (version) VALUES ('20150710114451');
 INSERT INTO schema_migrations (version) VALUES ('20150716171420');
 
 INSERT INTO schema_migrations (version) VALUES ('20150716192356');
+
+INSERT INTO schema_migrations (version) VALUES ('20150717101243');
 
