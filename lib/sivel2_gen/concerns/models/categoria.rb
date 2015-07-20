@@ -19,8 +19,12 @@ module Sivel2Gen
             class_name: 'Sivel2Gen::Acto'
 
           validates :supracategoria, presence: true
+          validates :id, presence:true, uniqueness: true
 
           def presenta_nombre
+            if !self.supracategoria_id
+              return ""
+            end
             sup = Sivel2Gen::Supracategoria.find(self.supracategoria_id)
             self.nombre + " (" + sup.nombre + " / " + 
               Sivel2Gen::Tviolencia.find(sup.id_tviolencia).nombre + ")"
