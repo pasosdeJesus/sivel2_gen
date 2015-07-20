@@ -17,10 +17,8 @@ module Sivel2Gen
 
           has_many :acto, foreign_key: "id_categoria", validate: true,
             class_name: 'Sivel2Gen::Acto'
-#          has_many :actosjr, foreign_key: "id_categoria", validate: true,
-#            class_name: 'Sivel2Gen::Actosjr'
-#          has_many :casosjr, foreign_key: "categoriaref", validate: true,
-#            class_name: 'Sivel2Gen::Casosjr'
+
+          validates :supracategoria, presence: true
 
           def presenta_nombre
             sup = Sivel2Gen::Supracategoria.find(self.supracategoria_id)
