@@ -12,6 +12,9 @@ module Sivel2Gen
           belongs_to :sip_anexo, foreign_key: "id_anexo", validate: true, 
             class_name: "Sip::Anexo"
           accepts_nested_attributes_for :sip_anexo, reject_if: :all_blank
+          
+          belongs_to :sip_fuenteprensa, foreign_key: "fuenteprensa_id", validate: true, 
+            class_name: "Sip::Fuenteprensa"
 
           validates :caso, presence: true
           validates :sip_anexo, presence: true
