@@ -5,8 +5,6 @@ module Sivel2Gen
 
     has_many :supracategoria, foreign_key: "id_tviolencia", validate: true, 
       class_name: 'Sivel2Gen::Supracategoria'
-    has_many :categoria, foreign_key: "id_tviolencia", validate: true, 
-      class_name: 'Sivel2Gen::Categoria'
 
     validates :id, presence:true, length: { maximum: 1 }, 
       uniqueness: {case_sensitive: false}

@@ -13,6 +13,10 @@ module Sivel2Gen
         @basica = Sectorsocial.find(params[:id])
       end
   
+      def genclase
+        'M'
+      end
+
       def sectorsocial_params
         params.require(:sectorsocial).permit(*atributos_form)
       end

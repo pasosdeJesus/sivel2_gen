@@ -13,7 +13,7 @@ module Sivel2Gen
         @basica = Intervalo.find(params[:id])
       end
 
-      def gen_clase
+      def genclase
         'M'
       end
 
