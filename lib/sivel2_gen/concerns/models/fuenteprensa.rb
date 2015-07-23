@@ -11,7 +11,8 @@ module Sivel2Gen
 
         included do
           has_many :caso_fuenteprensa, foreign_key: "fuenteprensa_id", 
-            validate: true, dependent: :destroy, class_name: 'Sivel2Gen::CasoFuenteprensa'
+            validate: true, dependent: :destroy, 
+            class_name: 'Sivel2Gen::CasoFuenteprensa'
           has_many :anexocaso, foreign_key: "fuenteprensa_id", validate: true, 
             class_name: 'Sivel2Gen::AnexoCaso'
         end
