@@ -1,13 +1,14 @@
 <table class="table table-striped" border='1'>
   <thead>
     <tr>
-      <th><%= @caso.acto.human_attribute_name(:presponsable) %></th>
-      <th><%= @caso.acto.human_attribute_name(:categoria) %></th>
-      <th><%= @caso.acto.human_attribute_name(:victima) %></th>
+      <th><%= Sivel2Gen::Acto.human_attribute_name(:presponsable) %></th>
+      <th><%= Sivel2Gen::Acto.human_attribute_name(:categoria) %></th>
+      <th><%= Sivel2Gen::Acto.human_attribute_name(:victima) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
   <tbody>
+  <% if @caso && @caso.acto %>
     <% @caso.acto.try(:each) do |acto| %>
       <tr>
         <td><%= acto.presponsable.nombre %></td>
@@ -26,6 +27,7 @@
         </td>
       </tr>
     <% end %>
+  <% end %>
   </tbody>
 </table>
 

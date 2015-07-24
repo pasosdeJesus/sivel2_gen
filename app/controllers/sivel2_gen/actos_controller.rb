@@ -51,9 +51,11 @@ module Sivel2Gen
     end
 
     def eliminar
-      acto = Acto.find(params[:id_acto].to_i)
-      @caso = acto.caso
-      acto.destroy!
+      acto = Acto.where(id: params[:id_acto].to_i).take
+      if acto
+        @caso = acto.caso
+        acto.destroy!
+      end
       respond_to do |format|
         format.js { render 'refrescar' }
       end
