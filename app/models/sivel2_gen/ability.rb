@@ -24,7 +24,7 @@ module Sivel2Gen
       ['Sivel2Gen', 'intervalo'],
       ['Sivel2Gen', 'maternidad'], 
       ['Sivel2Gen', 'organizacion'],
-#      ['Sivel2Gen', 'pconsolidado'], 
+      ['Sivel2Gen', 'pconsolidado'], 
       ['Sivel2Gen', 'presponsable'], 
       ['Sivel2Gen', 'profesion'], 
       ['Sivel2Gen', 'rangoedad'],
@@ -57,7 +57,7 @@ module Sivel2Gen
     # Tablas básicas que deben volcarse primero --por ser requeridas 
     # por otras básicas
     BASICAS_PRIO = [
-#      ['Sivel2Gen', 'pconsolidado'], 
+      ['Sivel2Gen', 'pconsolidado'], 
 			['Sivel2Gen', 'tviolencia'], 
       ['Sivel2Gen', 'supracategoria'],
       ['Sivel2Gen', 'intervalo'], 
