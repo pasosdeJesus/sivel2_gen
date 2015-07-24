@@ -28,10 +28,11 @@ class AgregaIdASupracategoria1 < ActiveRecord::Migration
       UPDATE sivel2_gen_supracategoria SET id='8' WHERE codigo='3' AND id_tviolencia='A';
       UPDATE sivel2_gen_supracategoria SET id='9' WHERE codigo='3' AND id_tviolencia='D';
     SQL
-    puts "Si quedan supracategorias por numerar hágalo manualente:"
+    # Estrategia para otras introducidas
     execute <<-SQL
-      SELECT * from sivel2_gen_supracategoria WHERE id IS NULL;
+      UPDATE sivel2_gen_supracategoria SET id=codigo WHERE id IS NULL;
     SQL
+    puts "Si quedan supracategorias por numerar hágalo manualente:"
   end
   def down
     execute <<-SQL

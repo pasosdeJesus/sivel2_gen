@@ -1039,4 +1039,6 @@ INSERT INTO sivel2_gen_region (id, nombre, fechacreacion, fechadeshabilitacion, 
     ALTER TABLE ONLY sivel2_gen_presponsable
       ADD CONSTRAINT presponsable_papa_fkey FOREIGN KEY (papa) 
       REFERENCES sivel2_gen_presponsable(id);
-      
+     
+
+
