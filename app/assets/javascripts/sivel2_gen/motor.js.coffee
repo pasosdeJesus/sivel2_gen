@@ -6,6 +6,8 @@
 #//= require jquery-ui/autocomplete
 #//= require cocoon
 
+@sivel2_gen_procesa_eliminaracto = false
+
 # Elimina secciones agregadas con cocoon listadas en elempe
 @elimina_pendientes = (elempe) ->
   for i, e of elempe
@@ -267,12 +269,17 @@
   # Elimina acto
   $(document).on('click', 'a.eliminaracto[href^="#"]', (e) ->
     e.preventDefault()
-    f = $('form')
-    d = "id_acto=" + $(this).attr('data-eliminaracto')
-    a = '/actos/eliminar'
-    $.ajax(url: a, data: d, dataType: "script").fail( (jqXHR, texto) ->
-      alert("Error con ajax " + texto)
-    )
+    e.stopPropagation()
+    if (!@sivel2_gen_procesa_eliminaracto)
+      @sivel2_gen_procesa_eliminaracto = true
+      f = $('form')
+      d = "id_acto=" + $(this).attr('data-eliminaracto')
+      a = '/actos/eliminar'
+      $.ajax(url: a, data: d, dataType: "script").fail( (jqXHR, texto) ->
+        alert("Error con ajax " + texto)
+      ).done( (e) ->
+        @sivel2_gen_procesa_eliminaracto = false
+      )
   )
 
   # Activar datepicker en campos que lo requieren
