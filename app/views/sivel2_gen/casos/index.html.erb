@@ -3,67 +3,47 @@
   <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
 </div>
 
-<table width="100%">
-  <tr>
-    <td width="33%">
-      <% if @conscaso.size > 0 %>
-        <%= link_to t('.new', :default => t("helpers.links.new")),
-          sivel2_gen.new_caso_path,
-          :class => 'btn btn-primary' 
+<%= simple_form_for :filtro, { remote: true, url: sivel2_gen.casos_filtro_path } do |f| %>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-offset-0 col-md-1"> 
+        <% if @conscaso.size > 0 %>
+          <%= link_to t('.new', :default => t("helpers.links.new")),
+            sivel2_gen.new_caso_path,
+            :class => 'btn btn-primary' 
+          %>
+        <% end %>
+      </div>
+      <div class="col-md-offset-3 col-md-1"> 
+        Casos: <span id="numconscaso"><%= @numconscaso %></span>
+      </div>
+      <div class="col-md-offset-2 col-md-2"> 
+        <%= f.input :q,
+          label: false,
+          placeholder: 'Palabra completa por buscar'
         %>
-      <% end %>
-    </td>
-    <td style="width=33%;text-align: center">
-      Casos: <%= @numconscaso %>
-    </td>
-    <td style="text-align: right">
-      <%= form_tag(sivel2_gen.casos_path, method: "get") do %>
-        <%= text_field_tag(:q) %>
-        <%= submit_tag("Filtrar") %>
-      <% end %>
-    </td>
-  </tr>
-</table>
+      </div>
+      <div class="col-md-offset-0 col-md-1"> 
+        <%= f.button :submit, 'Filtrar', class: 'btn btn-default' %>
+      </div>
+      <div class="col-md-offset-0 col-md-1">
+        <a class="btn btn-default btn-xs" role="button" data-toggle="collapse" 
+          href="#filtro_avanzado" aria-expanded="false" 
+          aria-controls="filtro_avanzado" id="boton_filtro_avanzado"> 
+          Búsqueda Avanzada
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="collapse" id="filtro_avanzado">
+    <%= render 'filtro_avanzado' %>
+  </div>
+<% end %>
 
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th><%= Sivel2Gen::Caso.human_attribute_name(:id) %></th>
-      <th><%= Sivel2Gen::Caso.human_attribute_name(:fecha) %></th>
-      <th><%= Sivel2Gen::Caso.human_attribute_name(:memo) %></th>
-      <th><%= "Ubicaciones" %></th>
-      <th><%= "Víctimas" %></th>
-      <th><%= "P. Responsable" %></th>
-      <th><%= "Tipificación" %></th>
-      <th><%=t '.actions', :default => t("helpers.actions") %></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @conscaso.try(:each) do |caso| %>
-      <tr>
-        <td><%= link_to caso.caso_id, sivel2_gen.caso_path(caso.caso_id) %></td>
-        <td><%= caso.fecha %></td>
-        <td><%= caso.memo %></td>
-        <td><%= caso.ubicaciones %></td>
-        <td><%= caso.victimas %></td>
-        <td><%= caso.presponsables %></td>
-        <td><%= caso.tipificacion %></td>
-        <td>
-          <%= link_to t('.edit', :default => t("helpers.links.edit")),
-            sivel2_gen.edit_caso_path(caso.caso_id), :class => 'btn btn-xs' 
-          %>
-          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-            sivel2_gen.caso_path(caso.caso_id),
-            :method => :delete,
-            :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-            :class => 'btn btn-xs btn-danger' 
-          %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-<%= will_paginate @conscaso, { param_name: :pagina }  %>
+<div id="casos">
+  <%= render 'index_tabla' %>
+</div>
+
 <%= link_to t('.new', :default => t("helpers.links.new")),
   sivel2_gen.new_caso_path,
   :class => 'btn btn-primary' 

@@ -239,7 +239,14 @@
     elimina_pendientes(root.elempe);
     root.elempe = []
   )
- 
+
+  $(document).on('click', 'a#boton_filtro_avanzado', (e) ->
+    if $('#conscasos_q').is(':visible')
+      $('#conscasos_q').hide()
+    else
+      $('#conscasos_q').show()
+  )
+
   # En actos, lista de presuntos responsables se calcula
   # --inncesario por guardado autom.
   #$(document).on('focusin', 'select[id^=caso_acto_][id$=id_presponsable]', (e) ->
