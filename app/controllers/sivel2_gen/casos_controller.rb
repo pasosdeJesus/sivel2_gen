@@ -10,8 +10,9 @@ module Sivel2Gen
     # GET /casos.json
     def index
       Caso.refresca_conscaso
-      q=params[:q]
-      if (q && q.strip.length>0)
+      if (params && params[:filtro] && params[:filtro][:q] && 
+          params[:filtro][:q].length>0)
+        q = params[:filtro][:q].gsub("-", " ")
         @conscaso = Conscaso.where(
           "q @@ plainto_tsquery('spanish', unaccent(?))", q
         )
@@ -20,7 +21,10 @@ module Sivel2Gen
       end
       @numconscaso = @conscaso.size
       @conscaso = @conscaso.order(fecha: :desc).paginate(:page => params[:pagina], per_page: 20)
-      render layout: 'application'
+      respond_to do |format|
+        format.js { render 'sivel2_gen/casos/filtro' }
+        format.html { render layout: 'application' }
+      end
     end
 
     # GET /casos/1
