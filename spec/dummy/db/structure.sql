@@ -473,12 +473,12 @@ CREATE VIEW sip_mundep_sinorden AS
     (((sip_municipio.nombre)::text || ' / '::text) || (sip_departamento.nombre)::text) AS nombre
    FROM (sip_municipio
      JOIN sip_departamento ON ((sip_municipio.id_departamento = sip_departamento.id)))
-  WHERE (sip_departamento.id_pais = 170)
+  WHERE (((sip_departamento.id_pais = 170) AND (sip_municipio.fechadeshabilitacion IS NULL)) AND (sip_departamento.fechadeshabilitacion IS NULL))
 UNION
  SELECT sip_departamento.id_deplocal AS idlocal,
     sip_departamento.nombre
    FROM sip_departamento
-  WHERE (sip_departamento.id_pais = 170);
+  WHERE ((sip_departamento.id_pais = 170) AND (sip_departamento.fechadeshabilitacion IS NULL));
 
 
 --
@@ -3905,4 +3905,6 @@ INSERT INTO schema_migrations (version) VALUES ('20150717101243');
 INSERT INTO schema_migrations (version) VALUES ('20150724003736');
 
 INSERT INTO schema_migrations (version) VALUES ('20150803082520');
+
+INSERT INTO schema_migrations (version) VALUES ('20150809032138');
 
