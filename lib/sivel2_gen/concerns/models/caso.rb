@@ -11,8 +11,8 @@ module Sivel2Gen
           attr_accessor :current_usuario
 
           # Ordenados por foreign_key para facilitar comparar con esquema en base
-          has_many :acto, foreign_key: "id_caso", validate: true, dependent: :destroy,
-            class_name: 'Sivel2Gen::Acto'
+          has_many :acto, foreign_key: "id_caso", validate: true, 
+            dependent: :destroy, class_name: 'Sivel2Gen::Acto'
           accepts_nested_attributes_for :acto, allow_destroy: true, 
             reject_if: :all_blank
           has_many :actocolectivo, foreign_key: "id_caso", validate: true, 
@@ -28,8 +28,9 @@ module Sivel2Gen
 
           has_many :antecedente_caso, foreign_key: "id_caso", validate: true, 
             dependent: :destroy, class_name: 'Sivel2Gen::AntecedenteCaso'
-          has_many :antecedente_comunidad, foreign_key: "id_caso", validate: true, 
-            dependent: :destroy, class_name: 'Sivel2Gen::AntecedenteComunidad'
+          has_many :antecedente_comunidad, foreign_key: "id_caso", 
+            validate: true, dependent: :destroy, 
+            class_name: 'Sivel2Gen::AntecedenteComunidad'
           has_many :antecedente_victima, foreign_key: "id_caso", validate: true, 
             dependent: :destroy, class_name: 'Sivel2Gen::AntecedenteVictima'
           has_many :caso_categoria_presponsable, foreign_key: "id_caso", 
@@ -57,23 +58,27 @@ module Sivel2Gen
             allow_destroy: true, reject_if: :all_blank
           has_many :caso_region, foreign_key: "id_caso", validate: true, 
             dependent: :destroy, class_name: 'Sivel2Gen::CasoRegion'
-          has_many :region, through: :caso_region, class_name: 'Sivel2Gen::Region'
+          has_many :region, through: :caso_region, 
+            class_name: 'Sivel2Gen::Region'
           has_many :caso_usuario, foreign_key: "id_caso", validate: true, 
             class_name: 'Sivel2Gen::CasoUsuario', dependent: :delete_all
           has_many :usuario, :through => :caso_usuario, class_name: 'Usuario'
 
           has_many :comunidad_filiacion, foreign_key: "id_caso", validate: true, 
             dependent: :destroy, class_name: 'Sivel2Gen::ComunidadFiliacion'
-          has_many :comunidad_organizacion, foreign_key: "id_caso", validate: true, 
-            dependent: :destroy, class_name: 'Sivel2Gen::ComunidadOrganizacion'
+          has_many :comunidad_organizacion, foreign_key: "id_caso", 
+            validate: true, dependent: :destroy, 
+            class_name: 'Sivel2Gen::ComunidadOrganizacion'
           has_many :comunidad_profesion, foreign_key: "id_caso", validate: true, 
             dependent: :destroy, class_name: 'Sivel2Gen::ComunidadProfesion'
           has_many :comunidad_rangoedad, foreign_key: "id_caso", validate: true, 
             dependent: :destroy, class_name: 'Sivel2Gen::ComunidadRangoedad'
-          has_many :comunidad_sectorsocial, foreign_key: "id_caso", validate: true, 
-            dependent: :destroy, class_name: 'Sivel2Gen::ComunidadSectorsocial'
-          has_many :comunidad_vinculoestado, foreign_key: "id_caso", validate: true, 
-            dependent: :destroy, class_name: 'Sivel2Gen::ComunidadVinculoestado'
+          has_many :comunidad_sectorsocial, foreign_key: "id_caso", 
+            validate: true, dependent: :destroy, 
+            class_name: 'Sivel2Gen::ComunidadSectorsocial'
+          has_many :comunidad_vinculoestado, foreign_key: "id_caso", 
+            validate: true, dependent: :destroy, 
+            class_name: 'Sivel2Gen::ComunidadVinculoestado'
           has_many :ubicacion, foreign_key: "id_caso", validate: true, 
             dependent: :destroy, class_name: 'Sip::Ubicacion'
           accepts_nested_attributes_for :ubicacion, allow_destroy: true, 
@@ -99,6 +104,7 @@ module Sivel2Gen
           validates_presence_of :fecha
 
           validate :rol_usuario
+
         end
 
         module ClassMethods

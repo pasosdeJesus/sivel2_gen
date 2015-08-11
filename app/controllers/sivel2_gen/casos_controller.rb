@@ -10,6 +10,7 @@ module Sivel2Gen
     # GET /casos.json
     def index
       Caso.refresca_conscaso
+
       if (params && params[:filtro] && params[:filtro][:q] && 
           params[:filtro][:q].length>0)
         q = params[:filtro][:q].gsub("-", " ")
@@ -17,15 +18,36 @@ module Sivel2Gen
           "q @@ plainto_tsquery('spanish', unaccent(?))", q
         )
       else
+        #@conscaso = @filterrific.find.page(params[:reporte])
         @conscaso = Conscaso.all
+        for i in [:departamento_id, :municipio_id, :clase_id, 
+                  :fechaini, :fechafin, :presponsable_id, :categoria_id,
+                  :nombres, :apellidos, :sexo, :descripcion, 
+                  :etiqueta1, :etiqueta2, 
+                  :usuario_id, :fechaingini, :fechaingfin,
+                  :codigo
+        ] do
+          if (params[:reporte] && params[:reporte][i] && 
+              params[:reporte][i] != '') 
+            if @conscaso.respond_to?('filtro_' + i.to_s)
+              @conscaso = @conscaso.send('filtro_' + i.to_s, params[:reporte][i])
+            end
+          end
+        end
       end
+
       @numconscaso = @conscaso.size
-      @conscaso = @conscaso.order(fecha: :desc).paginate(:page => params[:pagina], per_page: 20)
+      @conscaso = @conscaso.paginate(:page => params[:pagina], per_page: 20)
       respond_to do |format|
         format.js { render 'sivel2_gen/casos/filtro' }
         format.html { render layout: 'application' }
       end
+    rescue ActiveRecord::RecordNotFound => e
+      # There is an issue with the persisted param_set. Reset it.
+      puts "Had to reset filterrific params: #{ e.message }"
+      redirect_to(reset_filterrific_url(format: :html)) and return
     end
+
 
     # GET /casos/1
     # GET /casos/1.json

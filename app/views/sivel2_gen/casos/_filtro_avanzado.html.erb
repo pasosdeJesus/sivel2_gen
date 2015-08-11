@@ -5,7 +5,7 @@
         Filtro
       </div>
       <div class="col-sm-offset-0 col-sm-1">Incluir</div>
-      <div class="col-sm-offset-0 col-sm-1">Orden</div>
+      <div class="col-sm-offset-0 col-sm-1">Ordenar por</div>
     </div>
  
     <div class="row filtro-fila" style="border: 1px solid lightgray">
@@ -13,8 +13,8 @@
         Ubicación
       </div>
       <div class="col-sm-offset-0 col-sm-3 col-md-3">
-        <%= f.input :departamento,
-          collection: Sip::Departamento.habilitados,
+        <%= f.input :departamento_id,
+          collection: Sip::Departamento.habilitados.where(id_pais: 170),
           label_method: :nombre,
           value_method: :id,
           label: false,
@@ -22,7 +22,7 @@
         %>
       </div>
       <div class="col-md-2">
-        <%= f.input :municipio,
+        <%= f.input :municipio_id,
           collection: Sip::Municipio.habilitados,
           label_method: :nombre,
           value_method: :id,
@@ -31,7 +31,7 @@
         %>
       </div>
       <div class="col-md-2">
-        <%= f.input :clase,
+        <%= f.input :clase_id,
           collection: Sip::Clase.habilitados,
           label_method: :nombre,
           value_method: :id,
@@ -60,7 +60,9 @@
           size: 10,
           label: false,
           placeholder: 'Inicial',
-          "data-behaviour" => "datepicker"
+          input_html: {
+            "data-behaviour": "datepicker"
+          }
         %>
       </div>
       <div class="col-sm-offset-0 col-sm-4 col-md-offset-1 col-md-3">
@@ -69,7 +71,9 @@
           size: 10,
           label: false,
           placeholder: 'Final',
-          "data-behaviour" => "datepicker"
+          input_html: {
+            "data-behaviour": "datepicker"
+          }
         %>
     </div>
       <div class="col-sm-offset-0 col-sm-1 text-center">
@@ -89,7 +93,7 @@
         Presunto Responsable  
       </div>
       <div class="col-sm-offset-0 col-sm-10 col-md-offset-0 col-md-7">
-        <%= f.input :presponsable,
+        <%= f.input :presponsable_id,
           collection: Sivel2Gen::Presponsable.habilitados,
           label_method: :nombre,
           value_method: :id,
@@ -112,9 +116,12 @@
        Violencia 
       </div>
       <div class="col-sm-offset-0 col-sm-10 col-md-offset-0 col-md-7">
-        <%= f.input :categoria,
-          collection: Sivel2Gen::Categoria.habilitados,
-          label_method: :nombre,
+        <%= f.input :categoria_id,
+          collection: Sivel2Gen::Categoria.habilitados.joins(:supracategoria).
+            reorder('sivel2_gen_supracategoria.id_tviolencia', :id),
+          label_method: lambda {|t| 
+            t.supracategoria.id_tviolencia + 
+                                t.id.to_s + ' ' + t.nombre},
           value_method: :id,
           label: false,
           include_blank: true
@@ -245,7 +252,7 @@
         Ingreso
       </div>
       <div class="col-sm-offset-0 col-sm-2">
-        <%= f.input :usuario,
+        <%= f.input :usuario_id,
           collection: ::Usuario.habilitados,
           label_method: :nombre,
           value_method: :id,
@@ -259,7 +266,9 @@
           size: 10,
           label: false,
           placeholder: 'Fecha Inicial',
-          "data-behaviour" => "datepicker"
+          input_html: {
+            "data-behaviour": "datepicker"
+          }
         %>
       </div>
       <div class="col-sm-2">
@@ -268,7 +277,9 @@
           size: 10,
           label: false,
           placeholder: 'Fecha Final',
-          "data-behaviour" => "datepicker"
+          input_html: {
+            "data-behaviour": "datepicker"
+          }
         %>
       </div>
     </div>
