@@ -12,6 +12,19 @@ module Sivel2Gen
     has_many :acto, through: :caso,
             class_name: 'Sivel2Gen::Acto'
 
+    has_many :victima, through: :caso,
+            class_name: 'Sivel2Gen::Victima'
+
+    has_many :persona, through: :victima,
+            class_name: 'Sip::Persona'
+
+    has_many :caso_etiqueta, through: :caso,
+            class_name: 'Sivel2Gen::CasoEtiqueta'
+
+    has_many :caso_usuario, through: :caso,
+            class_name: 'Sivel2Gen::CasoUsuario'
+
+
     scope :sorted_by, lambda { |sort_option|
       # extract the sort direction from the param value.
       direction = (sort_option =~ /desc$/) ? 'desc' : 'asc'
@@ -64,24 +77,62 @@ module Sivel2Gen
     }
 
     scope :filtro_descripcion, lambda { |d|
-      where('sivel2_gen_conscaso.memo LIKE \'%' + 
+      where('sivel2_gen_conscaso.memo ILIKE \'%' + 
             ActiveRecord::Base.connection.quote_string(d) + '%\'')
     }
 
-    scope :filtro_nombre, lambda { |d|
-      where('sip_persona.nombre LIKE \'%' + 
+    scope :filtro_nombres, lambda { |d|
+      where('sip_persona.nombres ILIKE \'%' + 
             ActiveRecord::Base.connection.quote_string(d) + '%\'').
       joins(:persona)
     }
 
-    scope :filtro_codigo, lambda { |c|
-      where('sivel2_gen_conscaso.id_caso = ?', c)
+    scope :filtro_apellidos, lambda { |d|
+      where('sip_persona.apellidos ILIKE \'%' + 
+            ActiveRecord::Base.connection.quote_string(d) + '%\'').
+      joins(:persona)
     }
 
+    scope :filtro_sexo, lambda { |s|
+      where('sip_persona.sexo = ?', s).
+      joins(:persona)
+    }
 
+    scope :filtro_rangoedad_id, lambda { |r|
+      where('sivel2_gen_victima.id_rangoedad= ?', r).
+      joins(:victima)
+    }
 
+    scope :filtro_etiqueta, lambda { |c, e|
+      if c 
+        where('caso_id IN (SELECT id_caso 
+                FROM sivel2_gen_caso_etiqueta
+                WHERE id_etiqueta = ?)', e)
+      else
+        where('caso_id NOT IN (SELECT id_caso 
+                FROM sivel2_gen_caso_etiqueta
+                WHERE id_etiqueta = ?)', e)
+      end
+    }
 
+    scope :filtro_usuario_id, lambda { |u|
+      where('sivel2_gen_caso_usuario.id_usuario = ?', u).
+        joins(:caso_usuario)
+    }
 
+    scope :filtro_fechaingini, lambda { |f|
+      where('sivel2_gen_caso_usuario.fechainicio >= ?', f).
+        joins(:caso_usuario)
+    }
+
+    scope :filtro_fechaingfin, lambda { |f|
+      where('sivel2_gen_caso_usuario.fechainicio <= ?', f).
+        joins(:caso_usuario)
+    }
+
+    scope :filtro_codigo, lambda { |c|
+      where(caso_id: c.split(' '))
+    }
 
   end
 end

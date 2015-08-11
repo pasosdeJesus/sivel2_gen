@@ -27,7 +27,8 @@
           label_method: :nombre,
           value_method: :id,
           label: false,
-          include_blank: "-- Municipio"
+          include_blank: "-- Municipio",
+          input_html: {disabled: :disabled }
         %>
       </div>
       <div class="col-md-2">
@@ -36,7 +37,8 @@
           label_method: :nombre,
           value_method: :id,
           label: false,
-          include_blank: "-- Clase"
+          include_blank: "-- Clase",
+          input_html: {disabled: :disabled }
         %>
       </div>
       <div class="col-sm-offset-0 col-sm-1 text-center">
@@ -149,23 +151,12 @@
           placeholder: 'Nombre(s)'
         %>
       </div>
-      <div class="col-sm-offset-0 col-sm-4 col-md-offset-0 col-md-3">
+      <div class="col-sm-offset-0 col-sm-4 col-md-offset-1 col-md-3">
         <%= f.input :apellidos,
           maxlength: 50, 
           size: 10,
           label: false,
           placeholder: 'Apellido(s)'
-        %>
-      </div>
-      <div class="col-sm-offset-0 col-sm-4 col-md-1">
-        <%= f.input :sexo, 
-          collection: [
-            ["SIN INFORMACIÓN", :S], 
-            ["FEMENINO", :F], 
-            ["MASCULINO", :M]
-          ], 
-          label: false,
-          include_blank: 'Sexo'
         %>
       </div>
       <div class="col-sm-offset-0 col-sm-1 text-center">
@@ -174,6 +165,36 @@
           label: false,
           input_html: { :checked => "checked" }
         %>
+      </div>
+      <div class="col-sm-offset-0 col-sm-1 text-center">
+      </div>
+    </div>
+    <div class="row filtro-fila">
+      <div class="col-sm-offset-0 col-sm-2 col-md-offset-1 col-md-1">
+      </div>
+
+      <div class="col-sm-offset-0 col-sm-4 col-md-3">
+        <%= f.input :sexo, 
+          collection: [
+            ["SIN INFORMACIÓN", :S], 
+            ["FEMENINO", :F], 
+            ["MASCULINO", :M]
+          ], 
+          label: false,
+          include_blank: '-- Sexo'
+        %>
+      </div>
+      <div class="col-sm-offset-0 col-sm-4 col-md-offset-1 col-md-3">
+        <%= f.input :rangoedad_id, 
+          collection: Sivel2Gen::Rangoedad.habilitados,
+          label: false,
+          label_method: :rango,
+          value_method: :id,
+          include_blank: '-- Rango de Edad'
+        %>
+
+      </div>
+      <div class="col-sm-offset-1 col-sm-1 col-md-offset-0 text-center">
       </div>
       <div class="col-sm-offset-0 col-sm-1 text-center">
       </div>
@@ -240,16 +261,11 @@
         %>
       </div>
       <div class="col-sm-offset-0 col-sm-1 text-center">
-        <%= f.input :inc_etiqueta, 
-          as: :boolean, 
-          label: false,
-          input_html: { :checked => "checked" }
-        %>
       </div>
     </div>
     <div class="row filtro-fila">
       <div class="col-sm-offset-0 col-sm-2 col-md-offset-1 col-md-1">
-        Ingreso
+        Ingreso a Sistema
       </div>
       <div class="col-sm-offset-0 col-sm-2">
         <%= f.input :usuario_id,
@@ -260,7 +276,7 @@
           include_blank: '-- Usuario'
         %>
       </div>
-      <div class="col-sm-2">
+      <div class="col-md-offset-1 col-sm-2">
         <%= f.input :fechaingini,
           maxlength: 10, 
           size: 10,
@@ -308,7 +324,7 @@
       <div class="col-sm-offset-0 col-sm-2 col-md-offset-1 col-md-1">
         Presentación  
       </div>
-      <div class="col-sm-offset-1 col-sm-2">
+      <div class="col-sm-offset-1 col-sm-1">
         <%= f.radio_button :dispresenta, :tabla %>
         <%= label :dispresenta_tabla, 'Tabla' %>
       </div>
@@ -323,6 +339,13 @@
       <div class="col-sm-2">
         <%= f.radio_button :dispresenta, :xrlat %>
         <%= label :dispresenta_xrlat, 'Relato XML' %>
+      </div>
+      <div class="col-sm-offset-1 col-sm-1">
+        <%= f.input :paginar, 
+          as: :boolean, 
+          label: 'Paginar',
+          input_html: { :checked => "checked" }
+        %>
       </div>
     </div>
   <% end %>

@@ -6,6 +6,33 @@ module Sivel2Gen
     load_and_authorize_resource class: Sivel2Gen::Caso
     helper Sip::UbicacionHelper
 
+    def filtro_avanzado(conscaso)
+      for i in [:departamento_id, :municipio_id, :clase_id, 
+                :fechaini, :fechafin, :presponsable_id, :categoria_id,
+                :nombres, :apellidos, :sexo, :rangoedad_id, :descripcion, 
+                :usuario_id, :fechaingini, :fechaingfin, :codigo
+      ] do
+        if params[:reporte] && params[:reporte][i] && 
+          params[:reporte][i] != '' && 
+          conscaso.respond_to?('filtro_' + i.to_s)
+          conscaso = conscaso.send('filtro_' + i.to_s, params[:reporte][i])
+        end
+      end
+
+      for i in [:etiqueta1, :etiqueta2] do
+        if params[:reporte] && params[:reporte][i] && 
+          params[:reporte][i] != ''  &&
+          conscaso.respond_to?('filtro_etiqueta')
+          op = 'con' + i.to_s
+          c = params[:reporte][op.to_sym] && 
+            params[:reporte][op.to_sym] == 'true'
+          conscaso = conscaso.send('filtro_etiqueta', c, params[:reporte][i])
+        end
+      end
+
+      return conscaso
+    end
+
     # GET /casos
     # GET /casos.json
     def index
@@ -18,22 +45,8 @@ module Sivel2Gen
           "q @@ plainto_tsquery('spanish', unaccent(?))", q
         )
       else
-        #@conscaso = @filterrific.find.page(params[:reporte])
         @conscaso = Conscaso.all
-        for i in [:departamento_id, :municipio_id, :clase_id, 
-                  :fechaini, :fechafin, :presponsable_id, :categoria_id,
-                  :nombres, :apellidos, :sexo, :descripcion, 
-                  :etiqueta1, :etiqueta2, 
-                  :usuario_id, :fechaingini, :fechaingfin,
-                  :codigo
-        ] do
-          if (params[:reporte] && params[:reporte][i] && 
-              params[:reporte][i] != '') 
-            if @conscaso.respond_to?('filtro_' + i.to_s)
-              @conscaso = @conscaso.send('filtro_' + i.to_s, params[:reporte][i])
-            end
-          end
-        end
+        @conscaso = filtro_avanzado (@conscaso)
       end
 
       @numconscaso = @conscaso.size
