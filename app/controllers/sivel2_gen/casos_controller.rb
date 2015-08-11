@@ -50,15 +50,14 @@ module Sivel2Gen
       end
 
       @numconscaso = @conscaso.size
-      @conscaso = @conscaso.paginate(:page => params[:pagina], per_page: 20)
+      @paginar = params && params[:filtro] && params[:filtro][:paginar] == true
+      if @paginar
+        @conscaso = @conscaso.paginate(:page => params[:pagina], per_page: 20)
+      end
       respond_to do |format|
         format.js { render 'sivel2_gen/casos/filtro' }
         format.html { render layout: 'application' }
       end
-    rescue ActiveRecord::RecordNotFound => e
-      # There is an issue with the persisted param_set. Reset it.
-      puts "Had to reset filterrific params: #{ e.message }"
-      redirect_to(reset_filterrific_url(format: :html)) and return
     end
 
 

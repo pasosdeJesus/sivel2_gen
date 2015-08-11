@@ -36,4 +36,6 @@
     <% end %>
   </tbody>
 </table>
-<%= will_paginate @conscaso, { param_name: :pagina }  %>
+<% if @paginar %>
+  <%= will_paginate @conscaso, { param_name: :pagina }  %>
+<% end %>
