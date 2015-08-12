@@ -42,7 +42,7 @@
         %>
       </div>
       <div class="col-sm-offset-0 col-sm-1 text-center">
-        <%= f.input :inc_ubicacion, 
+        <%= f.input :inc_ubicaciones, 
           as: :boolean, 
           label: false,
           input_html: { :checked => "checked" }
@@ -104,7 +104,7 @@
         %>
       </div>
       <div class="col-sm-offset-0 col-sm-1 text-center">
-        <%= f.input :inc_presp, 
+        <%= f.input :inc_presponsables, 
           as: :boolean, 
           label: false,
           input_html: { :checked => "checked" }
@@ -130,7 +130,7 @@
         %>
       </div>
       <div class="col-sm-offset-0 col-sm-1 text-center">
-        <%= f.input :inc_categoria, 
+        <%= f.input :inc_tipificacion, 
           as: :boolean, 
           label: false,
           input_html: { :checked => "checked" }
@@ -160,7 +160,7 @@
         %>
       </div>
       <div class="col-sm-offset-0 col-sm-1 text-center">
-        <%= f.input :inc_victima, 
+        <%= f.input :inc_victimas, 
           as: :boolean, 
           label: false,
           input_html: { :checked => "checked" }
@@ -215,7 +215,7 @@
           "id", "nombre") 
         %-->
       <div class="col-sm-offset-0 col-sm-1 text-center">
-        <%= f.input :inc_descripcion, 
+        <%= f.input :inc_memo, 
           as: :boolean, 
           label: false,
           input_html: { :checked => "checked" }
@@ -310,7 +310,7 @@
         %>
       </div>
       <div class="col-sm-offset-0 col-sm-1 text-center">
-        <%= f.input :inc_codigo, 
+        <%= f.input :inc_casoid,
           as: :boolean, 
           label: false,
           input_html: { :checked => "checked" }
@@ -325,7 +325,7 @@
         Presentación  
       </div>
       <div class="col-sm-offset-1 col-sm-1">
-        <%= f.radio_button :dispresenta, :tabla %>
+        <%= f.radio_button :dispresenta, :tabla, checked: true %>
         <%= label :dispresenta_tabla, 'Tabla' %>
       </div>
       <div class="col-sm-2">

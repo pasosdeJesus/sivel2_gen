@@ -47,6 +47,10 @@ es:
         memo: Descripción
         created_at: F. Creación
         fecha: F. Hecho
+        presponsables: P. Responsables
+        tipificacion: Tipificacion
+        victimas: Víctimas
+        casoid: Código
       "sivel2_gen/categoria":
         Categoria: Categoria
         Categorias: Categorias

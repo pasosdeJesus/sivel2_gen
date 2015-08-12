@@ -1,26 +1,36 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th><%= Sivel2Gen::Caso.human_attribute_name(:id) %></th>
-      <th><%= Sivel2Gen::Caso.human_attribute_name(:fecha) %></th>
-      <th><%= Sivel2Gen::Caso.human_attribute_name(:memo) %></th>
-      <th><%= "Ubicaciones" %></th>
-      <th><%= "Víctimas" %></th>
-      <th><%= "P. Responsable" %></th>
-      <th><%= "Tipificación" %></th>
+      <% for i in @incluir do %>
+        <th><%= Sivel2Gen::Caso.human_attribute_name(i.to_sym) %></th>
+      <% end %>
+      <!--th>< --%= Sivel2Gen::Caso.human_attribute_name(:fecha) % ></th-->
+      <!-- th>< %= Sivel2Gen::Caso.human_attribute_name(:memo) %></th-->
+      <!-- th><%= "Ubicaciones" %></th-->
+      <!--th><%= "Víctimas" %></th-->
+      <!--th><%= "P. Responsable" %></th-->
+      <!--th><%= "Tipificación" %></th-->
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
   <tbody>
     <% @conscaso.try(:each) do |caso| %>
       <tr>
-        <td><%= link_to caso.caso_id, sivel2_gen.caso_path(caso.caso_id) %></td>
-        <td><%= caso.fecha %></td>
-        <td><%= caso.memo %></td>
-        <td><%= caso.ubicaciones %></td>
-        <td><%= caso.victimas %></td>
-        <td><%= caso.presponsables %></td>
-        <td><%= caso.tipificacion %></td>
+        <% for i in @incluir do %>
+          <td>
+            <% if i == 'casoid' %>
+              <%= link_to caso.caso_id, sivel2_gen.caso_path(caso.caso_id) %>
+            <% else %>
+                <%= caso[i]%>
+            <% end %>
+          </td>
+        <% end %>
+        <!--td><%= link_to caso.caso_id, sivel2_gen.caso_path(caso.caso_id) %></td-->
+        <!--td><%= caso.memo %></td-->
+        <!--td><%= caso.ubicaciones %></td-->
+        <!--td><%= caso.victimas %></td-->
+        <!--td><%= caso.presponsables %></td-->
+        <!--td><%= caso.tipificacion %></td-->
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
             sivel2_gen.edit_caso_path(caso.caso_id), :class => 'btn btn-xs' 

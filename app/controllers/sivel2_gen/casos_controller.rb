@@ -35,6 +35,9 @@ module Sivel2Gen
     def index
       Caso.refresca_conscaso
 
+      @incluir = ['casoid', 'fecha', 'ubicaciones', 'presponsables', 
+                  'tipificacion', 'victimas', 'memo']
+      @campoord = 'ubicacion'
       @conscaso = Conscaso.all
       if params && params[:filtro]
         if params[:filtro][:q] && params[:filtro][:q].length>0
@@ -44,9 +47,18 @@ module Sivel2Gen
           )
         end
         @conscaso = filtro_avanzado @conscaso, params[:filtro]
+        if params[:filtro][:orden]
+         @campoord = params[:filtro][:orden]
+        end
+        nincluir = []
+        for i in @incluir do
+          s = 'inc_' + i
+          if params[:filtro][s.to_sym] && params[:filtro][s.to_sym] == '1'
+            nincluir.push(i)
+          end
+        end
+        @incluir = nincluir
       end
-      @campoord = params[:filtro] && params[:filtro][:orden] ? 
-        params[:filtro][:orden] : 'ubicacion'
       @conscaso = @conscaso.ordenar_por @campoord
       @numconscaso = @conscaso.size
       @paginar = !params || !params[:filtro] || 
