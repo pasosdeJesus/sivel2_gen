@@ -61,8 +61,8 @@ module Sivel2Gen
       end
       @conscaso = @conscaso.ordenar_por @campoord
       @numconscaso = @conscaso.size
-      @paginar = !params || !params[:filtro] || 
-        params[:filtro][:paginar] == false
+      @paginar = !params || !params[:filtro] || !params[:filtro][:paginar] ||
+        params[:filtro][:paginar] != '0'
       if @paginar
         @conscaso = @conscaso.paginate(page: params[:pagina], per_page: 20)
       end
