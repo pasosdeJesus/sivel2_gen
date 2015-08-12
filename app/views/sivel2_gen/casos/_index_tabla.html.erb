@@ -37,5 +37,8 @@
   </tbody>
 </table>
 <% if @paginar %>
-  <%= will_paginate @conscaso, { param_name: :pagina }  %>
+  <%= will_paginate @conscaso,  
+    param_name: :pagina, controller: 'sivel2_gen/casos', action: :index,
+    params: { controller: 'sivel2_gen/casos', action: :index }
+  %>
 <% end %>
