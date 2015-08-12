@@ -49,7 +49,7 @@
         %>
       </div>
       <div class="col-sm-offset-0 col-sm-1 text-center">
-        <%= f.radio_button(:orden, :ubicacion) %>
+        <%= f.radio_button :orden, :ubicacion, checked: true  %>
       </div>
     </div>
     <div class="row filtro-fila">
@@ -115,7 +115,7 @@
     </div>
     <div class="row filtro-fila">
       <div class="col-sm-offset-0 col-sm-2 col-md-offset-1 col-md-1">
-       Violencia 
+       Tipificación
       </div>
       <div class="col-sm-offset-0 col-sm-10 col-md-offset-0 col-md-7">
         <%= f.input :categoria_id,

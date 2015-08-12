@@ -45,6 +45,9 @@ module Sivel2Gen
         end
         @conscaso = filtro_avanzado @conscaso, params[:filtro]
       end
+      @campoord = params[:filtro] && params[:filtro][:orden] ? 
+        params[:filtro][:orden] : 'ubicacion'
+      @conscaso = @conscaso.ordenar_por @campoord
       @numconscaso = @conscaso.size
       @paginar = !params || !params[:filtro] || 
         params[:filtro][:paginar] == false

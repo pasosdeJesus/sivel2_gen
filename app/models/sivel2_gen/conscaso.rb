@@ -25,21 +25,24 @@ module Sivel2Gen
             class_name: 'Sivel2Gen::CasoUsuario'
 
 
-    scope :sorted_by, lambda { |sort_option|
+    scope :ordenar_por, lambda { |campo|
       # extract the sort direction from the param value.
-      direction = (sort_option =~ /desc$/) ? 'desc' : 'asc'
-      case sort_option.to_s
+      direction = (campo =~ /desc$/) ? 'desc' : 'asc'
+      case campo.to_s
+      when /^fechadesc/
+        order("sivel2_gen_conscaso.fecha desc")
       when /^fecha/
-        order("sivel2_gen_conscaso.fecha #{ direction }")
-      when /^name_/
-        order("LOWER(students.last_name) #{ direction }, LOWER(students.first_name) #{ direction }")
-      when /^country_name_/
-        # This sorts by a student's country name, so we need to include
-        # the country. We can't use JOIN since not all students might have
-        # a country.
-        order("LOWER(countries.name) #{ direction }").includes(:country)
+        order("sivel2_gen_conscaso.fecha asc")
+      when /^ubicaciondesc/
+        order("sivel2_gen_conscaso.ubicaciones desc")
+      when /^ubicacion/
+        order("sivel2_gen_conscaso.ubicaciones asc")
+      when /^codigodesc/
+        order("sivel2_gen_conscaso.caso_id desc")
+      when /^codigo/
+        order("sivel2_gen_conscaso.caso_id asc")
       else
-        raise(ArgumentError, "Ordenamiento invalido: #{ sort_option.inspect }")
+        raise(ArgumentError, "Ordenamiento invalido: #{ campo.inspect }")
       end
     }
 
