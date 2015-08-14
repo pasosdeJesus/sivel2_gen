@@ -33,7 +33,7 @@ module Sivel2Gen
     # GET /casos
     # GET /casos.json
     def index
-      Caso.refresca_conscaso
+      Conscaso.refresca_conscaso
 
       @incluir = ['casoid', 'fecha', 'ubicaciones', 'presponsables', 
                   'tipificacion', 'victimas', 'memo']

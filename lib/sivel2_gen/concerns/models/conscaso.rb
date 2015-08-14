@@ -1,0 +1,210 @@
+# encoding: UTF-8
+
+module Sivel2Gen
+  module Concerns
+    module Models
+      module Conscaso 
+        extend ActiveSupport::Concern
+
+        included do
+          belongs_to :caso, class_name: 'Sivel2Gen::Caso'
+
+          has_many :ubicacion, through: :caso,
+            class_name: 'Sip::Ubicacion'
+
+          has_many :caso_presponsable, through: :caso,
+            class_name: 'Sivel2Gen::CasoPresponsable'
+
+          has_many :acto, through: :caso,
+            class_name: 'Sivel2Gen::Acto'
+
+          has_many :victima, through: :caso,
+            class_name: 'Sivel2Gen::Victima'
+
+          has_many :persona, through: :victima,
+            class_name: 'Sip::Persona'
+
+          has_many :caso_etiqueta, through: :caso,
+            class_name: 'Sivel2Gen::CasoEtiqueta'
+
+          has_many :caso_usuario, through: :caso,
+            class_name: 'Sivel2Gen::CasoUsuario'
+
+
+          scope :ordenar_por, lambda { |campo|
+            # extract the sort direction from the param value.
+            direction = (campo =~ /desc$/) ? 'desc' : 'asc'
+            case campo.to_s
+            when /^fechadesc/
+              order("sivel2_gen_conscaso.fecha desc")
+            when /^fecha/
+              order("sivel2_gen_conscaso.fecha asc")
+            when /^ubicaciondesc/
+              order("sivel2_gen_conscaso.ubicaciones desc")
+            when /^ubicacion/
+              order("sivel2_gen_conscaso.ubicaciones asc")
+            when /^codigodesc/
+              order("sivel2_gen_conscaso.caso_id desc")
+            when /^codigo/
+              order("sivel2_gen_conscaso.caso_id asc")
+            else
+              raise(ArgumentError, "Ordenamiento invalido: #{ campo.inspect }")
+            end
+          }
+
+          scope :filtro_departamento_id, lambda { |id|
+            where('sip_ubicacion.id_departamento = ?', id).
+              joins(:ubicacion)
+          }
+
+          scope :filtro_municipio_id, lambda { |id|
+            where('sip_ubicacion.id_municipio = ?', id).
+              joins(:ubicacion)
+          }
+
+          scope :filtro_clase_id, lambda { |id|
+            where('sip_ubicacion.id_clase = ?', id).
+              joins(:ubicacion)
+          }
+
+          scope :filtro_fechaini, lambda { |fecha_ref|
+            where('sivel2_gen_conscaso.fecha >= ?', fecha_ref)
+          }
+
+          scope :filtro_fechafin, lambda { |fecha_ref|
+            where('sivel2_gen_conscaso.fecha <= ?', fecha_ref)
+          }
+
+          scope :filtro_presponsable_id, lambda { |id|
+            where('sivel2_gen_caso_presponsable.id_presponsable = ?', id).
+              joins(:caso_presponsable)
+          }
+
+          scope :filtro_categoria_id, lambda { |id|
+            where('sivel2_gen_acto.id_categoria = ?', id).
+              joins(:acto)
+          }
+
+          scope :filtro_descripcion, lambda { |d|
+            where('sivel2_gen_conscaso.memo ILIKE \'%' + 
+                  ActiveRecord::Base.connection.quote_string(d) + '%\'')
+          }
+
+          scope :filtro_nombres, lambda { |d|
+            where('sip_persona.nombres ILIKE \'%' + 
+                  ActiveRecord::Base.connection.quote_string(d) + '%\'').
+            joins(:persona)
+          }
+
+          scope :filtro_apellidos, lambda { |d|
+            where('sip_persona.apellidos ILIKE \'%' + 
+                  ActiveRecord::Base.connection.quote_string(d) + '%\'').
+            joins(:persona)
+          }
+
+          scope :filtro_sexo, lambda { |s|
+            where('sip_persona.sexo = ?', s).
+              joins(:persona)
+          }
+
+          scope :filtro_rangoedad_id, lambda { |r|
+            where('sivel2_gen_victima.id_rangoedad= ?', r).
+              joins(:victima)
+          }
+
+          scope :filtro_etiqueta, lambda { |c, e|
+            if c 
+              where('caso_id IN (SELECT id_caso 
+                FROM sivel2_gen_caso_etiqueta
+                WHERE id_etiqueta = ?)', e)
+            else
+              where('caso_id NOT IN (SELECT id_caso 
+                FROM sivel2_gen_caso_etiqueta
+                WHERE id_etiqueta = ?)', e)
+            end
+          }
+
+          scope :filtro_usuario_id, lambda { |u|
+            where('sivel2_gen_caso_usuario.id_usuario = ?', u).
+              joins(:caso_usuario)
+          }
+
+          scope :filtro_fechaingini, lambda { |f|
+            where('sivel2_gen_caso_usuario.fechainicio >= ?', f).
+              joins(:caso_usuario)
+          }
+
+          scope :filtro_fechaingfin, lambda { |f|
+            where('sivel2_gen_caso_usuario.fechainicio <= ?', f).
+              joins(:caso_usuario)
+          }
+
+          scope :filtro_codigo, lambda { |c|
+            where(caso_id: c.split(' '))
+          }
+
+        end
+
+        module ClassMethods
+
+          def refresca_conscaso
+            if !ActiveRecord::Base.connection.table_exists? 'sivel2_gen_conscaso'
+              ActiveRecord::Base.connection.execute("CREATE OR REPLACE 
+        VIEW sivel2_gen_conscaso1 AS
+        SELECT caso.id as caso_id, caso.fecha, caso.memo, 
+        ARRAY_TO_STRING(ARRAY(SELECT departamento.nombre ||  ' / ' 
+        || municipio.nombre 
+        FROM sip_ubicacion AS ubicacion 
+					LEFT JOIN sip_departamento AS departamento 
+						ON (ubicacion.id_departamento = departamento.id)
+        	LEFT JOIN sip_municipio AS municipio 
+						ON (ubicacion.id_municipio=municipio.id)
+        WHERE ubicacion.id_caso=caso.id), ', ')
+        AS ubicaciones, 
+        ARRAY_TO_STRING(ARRAY(SELECT nombres || ' ' || apellidos 
+        FROM sip_persona AS persona, 
+        sivel2_gen_victima AS victima WHERE persona.id=victima.id_persona 
+        AND victima.id_caso=caso.id), ', ')
+        AS victimas, 
+        ARRAY_TO_STRING(ARRAY(SELECT nombre 
+        FROM sivel2_gen_presponsable AS presponsable, 
+        sivel2_gen_caso_presponsable AS caso_presponsable
+        WHERE presponsable.id=caso_presponsable.id_presponsable
+        AND caso_presponsable.id_caso=caso.id), ', ')
+        AS presponsables, 
+        ARRAY_TO_STRING(ARRAY(SELECT supracategoria.id_tviolencia || ':' || 
+        categoria.supracategoria_id || ':' || categoria.id || ' ' ||
+        categoria.nombre FROM sivel2_gen_categoria AS categoria, 
+        sivel2_gen_supracategoria AS supracategoria,
+        sivel2_gen_acto AS acto
+        WHERE categoria.id=acto.id_categoria
+        AND supracategoria.id=categoria.supracategoria_id
+        AND acto.id_caso=caso.id), ', ')
+        AS tipificacion
+        FROM sivel2_gen_caso AS caso;")
+              ActiveRecord::Base.connection.execute(
+          "CREATE MATERIALIZED VIEW sivel2_gen_conscaso AS
+        SELECT caso_id, fecha, memo, ubicaciones, victimas, 
+        presponsables, tipificacion, 
+        to_tsvector('spanish', unaccent(caso_id || ' ' || 
+        replace(cast(fecha AS varchar), '-', ' ') 
+        || ' ' || memo || ' ' || ubicaciones || ' ' || 
+         victimas || ' ' || presponsables || ' ' || tipificacion)) as q
+        FROM sivel2_gen_conscaso1");
+              ActiveRecord::Base.connection.execute(
+          "CREATE INDEX busca_sivel2_gen_conscaso 
+							ON sivel2_gen_conscaso USING gin(q);"
+        )
+            else
+              ActiveRecord::Base.connection.execute(
+                'REFRESH MATERIALIZED VIEW sivel2_gen_conscaso'
+              )
+            end
+          end # def refresca_conscaso
+
+        end # module ClassMethods
+
+      end
+    end
+  end
+end

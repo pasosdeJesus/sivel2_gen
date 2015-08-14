@@ -108,60 +108,8 @@ module Sivel2Gen
         end
 
         module ClassMethods
-          def refresca_conscaso
-            if !ActiveRecord::Base.connection.table_exists? 'sivel2_gen_conscaso'
-              ActiveRecord::Base.connection.execute("CREATE OR REPLACE 
-        VIEW sivel2_gen_conscaso1 AS
-        SELECT caso.id as caso_id, caso.fecha, caso.memo, 
-        ARRAY_TO_STRING(ARRAY(SELECT departamento.nombre ||  ' / ' 
-        || municipio.nombre 
-        FROM sip_ubicacion AS ubicacion 
-					LEFT JOIN sip_departamento AS departamento 
-						ON (ubicacion.id_departamento = departamento.id)
-        	LEFT JOIN sip_municipio AS municipio 
-						ON (ubicacion.id_municipio=municipio.id)
-        WHERE ubicacion.id_caso=caso.id), ', ')
-        AS ubicaciones, 
-        ARRAY_TO_STRING(ARRAY(SELECT nombres || ' ' || apellidos 
-        FROM sip_persona AS persona, 
-        sivel2_gen_victima AS victima WHERE persona.id=victima.id_persona 
-        AND victima.id_caso=caso.id), ', ')
-        AS victimas, 
-        ARRAY_TO_STRING(ARRAY(SELECT nombre 
-        FROM sivel2_gen_presponsable AS presponsable, 
-        sivel2_gen_caso_presponsable AS caso_presponsable
-        WHERE presponsable.id=caso_presponsable.id_presponsable
-        AND caso_presponsable.id_caso=caso.id), ', ')
-        AS presponsables, 
-        ARRAY_TO_STRING(ARRAY(SELECT supracategoria.id_tviolencia || ':' || 
-        categoria.supracategoria_id || ':' || categoria.id || ' ' ||
-        categoria.nombre FROM sivel2_gen_categoria AS categoria, 
-        sivel2_gen_supracategoria AS supracategoria,
-        sivel2_gen_acto AS acto
-        WHERE categoria.id=acto.id_categoria
-        AND supracategoria.id=categoria.supracategoria_id
-        AND acto.id_caso=caso.id), ', ')
-        AS tipificacion
-        FROM sivel2_gen_caso AS caso;")
-        ActiveRecord::Base.connection.execute(
-          "CREATE MATERIALIZED VIEW sivel2_gen_conscaso AS
-        SELECT caso_id, fecha, memo, ubicaciones, victimas, 
-        presponsables, tipificacion, 
-        to_tsvector('spanish', unaccent(caso_id || ' ' || 
-        replace(cast(fecha AS varchar), '-', ' ') 
-        || ' ' || memo || ' ' || ubicaciones || ' ' || 
-         victimas || ' ' || presponsables || ' ' || tipificacion)) as q
-        FROM sivel2_gen_conscaso1");
-        ActiveRecord::Base.connection.execute(
-          "CREATE INDEX busca_sivel2_gen_conscaso 
-							ON sivel2_gen_conscaso USING gin(q);"
-        )
-            else
-              ActiveRecord::Base.connection.execute(
-                'REFRESH MATERIALIZED VIEW sivel2_gen_conscaso'
-              )
-            end
-          end
+
+
         end
 
 
