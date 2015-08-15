@@ -5,12 +5,16 @@ module Sivel2Gen
     load_and_authorize_resource class: Sivel2Gen::Caso
     helper Sip::UbicacionHelper
 
+    def campos_filtro1
+      [:departamento_id, :municipio_id, :clase_id, 
+       :fechaini, :fechafin, :presponsable_id, :categoria_id,
+       :nombres, :apellidos, :sexo, :rangoedad_id, :descripcion, 
+       :usuario_id, :fechaingini, :fechaingfin, :codigo
+      ]
+    end
+
     def filtro_avanzado(conscaso, params_filtro)
-      for i in [:departamento_id, :municipio_id, :clase_id, 
-                :fechaini, :fechafin, :presponsable_id, :categoria_id,
-                :nombres, :apellidos, :sexo, :rangoedad_id, :descripcion, 
-                :usuario_id, :fechaingini, :fechaingfin, :codigo
-      ] do
+      for i in campos_filtro1 do
         if params_filtro[i] && params_filtro[i] != '' && 
           conscaso.respond_to?('filtro_' + i.to_s)
           conscaso = conscaso.send('filtro_' + i.to_s, params_filtro[i])
