@@ -4,7 +4,9 @@
 </div>
 
 <%= simple_form_for :filtro, 
-  { remote: true, url: sivel2_gen.envia_casos_filtro_path } do |f| 
+  { remote: true, 
+    url: sivel2_gen.envia_casos_filtro_path, 
+    method: "get" } do |f| 
 %>
   <div class="container">
     <div class="row">
