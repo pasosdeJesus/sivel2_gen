@@ -60,10 +60,15 @@ module Sivel2Gen
             return conscaso
           end
 
+          def cortamemo
+            0
+          end
+
           # GET /casos
           # GET /casos.json
           def index
             Conscaso.refresca_conscaso
+            @cortamemo = cortamemo
 
             @incluir = incluir_inicial
             @campoord = campoord_inicial

@@ -14,8 +14,12 @@
           <td>
             <% if i == 'casoid' %>
               <%= link_to caso.caso_id, sivel2_gen.caso_path(caso.caso_id) %>
+            <% elsif i == 'memo' && @cortamemo > 0 && 
+              caso[i].size > @cortamemo 
+            %>
+              <%= caso[i].slice(0, @cortamemo) + ' ...' %>
             <% else %>
-                <%= caso[i]%>
+              <%= caso[i]%>
             <% end %>
           </td>
         <% end %>
