@@ -30,6 +30,13 @@ if (test "$SININS" != "1") then {
 		exit 1;
 	} fi;
 } fi;
+if (test "$SINMIG" != "1") then {
+	(cd spec/dummy; rake db:migrate sip:indices db:structure:dump)
+	if (test "$?" != "0") then {
+		exit 1;
+	} fi;
+} fi;
+
 
 (cd spec/dummy; RAILS_ENV=test rake db:drop db:setup db:migrate sip:indices)
 if (test "$?" != "0") then {
