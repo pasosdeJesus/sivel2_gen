@@ -2,7 +2,8 @@
   <%= render 'sivel2_gen/casos/anexo_caso_fields', :f => anexo %>
 <% end %>
 <div class="links">
-  <%= link_to_add_association 'Añadir Anexo', f, 
-    :anexo_caso, :class => 'btn-primary' 
+  <%= link_to_add_association 'Añadir Anexo', f, :anexo_caso, 
+     partial: 'sivel2_gen/casos/anexo_caso_fields',
+     :class => 'btn-primary' 
   %>
 </div>

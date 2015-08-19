@@ -6,11 +6,14 @@ module Sivel2Gen
       module CasosController
         extend ActiveSupport::Concern
 
+
         included do
           before_action :set_caso, only: [:show, :edit, :update, :destroy]
           load_and_authorize_resource class: Sivel2Gen::Caso
           helper Sip::UbicacionHelper
 
+          # Todos los campos por los que se puede filtrar hay un scope por cada uno
+          # en conscaso
           def campos_filtro1
             [:departamento_id, :municipio_id, :clase_id, 
               :fechaini, :fechafin, :presponsable_id, :categoria_id,
@@ -19,6 +22,18 @@ module Sivel2Gen
             ]
           end
 
+          # Todas las columnas que pueden presentarse
+          def incluir_inicial
+            ['casoid', 'fecha', 'ubicaciones', 'presponsables', 
+              'tipificacion', 'victimas', 'memo']
+          end
+
+          # Ordenamiento inicial por este campo
+          def campoord_inicial
+            'ubicacion'
+          end
+
+          # Filtro estándar
           def filtro_avanzado(conscaso, params_filtro)
             for i in campos_filtro1 do
               if params_filtro[i] && params_filtro[i] != '' && 
@@ -40,26 +55,35 @@ module Sivel2Gen
             return conscaso
           end
 
+          # Filtro particular por ejemplo para autenticar
+          def filtro_particular(conscaso, params_filtro)
+            return conscaso
+          end
+
           # GET /casos
           # GET /casos.json
           def index
             Conscaso.refresca_conscaso
 
-            @incluir = ['casoid', 'fecha', 'ubicaciones', 'presponsables', 
-              'tipificacion', 'victimas', 'memo']
-            @campoord = 'ubicacion'
-            @conscaso = Conscaso.all
+            @incluir = incluir_inicial
+            @campoord = campoord_inicial
+            @conscaso = Sivel2Gen::Conscaso.all
+
+            # Filtro
             if params && params[:filtro]
               if params[:filtro][:q] && params[:filtro][:q].length>0
+                # Simple
                 q = params[:filtro][:q].gsub("-", " ")
                 @conscaso = @conscaso.where(
                   "q @@ plainto_tsquery('spanish', unaccent(?))", q
                 )
               end
+              # Avanzado
               @conscaso = filtro_avanzado @conscaso, params[:filtro]
-              if params[:filtro][:orden]
-                @campoord = params[:filtro][:orden]
-              end
+              # Otros
+              @conscaso = filtro_particular @conscaso, params[:filtro]
+
+              # Columnas por incluir
               nincluir = []
               for i in @incluir do
                 s = 'inc_' + i
@@ -68,14 +92,25 @@ module Sivel2Gen
                 end
               end
               @incluir = nincluir
+
+              # Cambiar Ordenamiento
+              if params[:filtro][:orden]
+                @campoord = params[:filtro][:orden]
+              end
             end
+
+            # Ordenamiento
             @conscaso = @conscaso.ordenar_por @campoord
+
+            # Cuenta y Paginación
             @numconscaso = @conscaso.size
             @paginar = !params || !params[:filtro] || !params[:filtro][:paginar] ||
               params[:filtro][:paginar] != '0'
             if @paginar
               @conscaso = @conscaso.paginate(page: params[:pagina], per_page: 20)
             end
+
+            # Presentación
             respond_to do |format|
               format.html { render layout: 'application' }
               format.js { render 'sivel2_gen/casos/filtro' }
@@ -200,9 +235,10 @@ module Sivel2Gen
             end
           end
 
-          # DELETE /casos/1
-          # DELETE /casos/1.json
-          def destroy
+          # Tuve que crear el siguiente para llamarlo desde
+          # sivel2_sjr/concerns/controllers/casos_controllers pues no hay super 
+          # en módulos y no se logró con prepend u otra forma
+          def sivel2_gen_destroy
             if @caso.id
               CasoUsuario.destroy_all(id_caso: @caso.id)
             end
@@ -211,6 +247,12 @@ module Sivel2Gen
               format.html { redirect_to casos_url }
               format.json { head :no_content }
             end
+          end
+
+          # DELETE /casos/1
+          # DELETE /casos/1.json
+          def destroy
+            sivel2_gen_destroy
           end
 
           private
@@ -269,7 +311,9 @@ module Sivel2Gen
           end
         end
 
-
+        module ClassMethods
+        end
+            
       end
     end
   end
