@@ -270,7 +270,9 @@
       <div class="col-sm-offset-0 col-sm-2">
         <%= f.input :usuario_id,
           collection: ::Usuario.habilitados,
-          label_method: :nombre,
+          label_method: lambda {|t| (t.nombre ? t.nombre : '') + ' - ' + 
+            t.nusuario
+        },
           value_method: :id,
           label: false,
           include_blank: '-- Usuario'
