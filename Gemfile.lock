@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/pasosdeJesus/sip.git
-  revision: 4602e830e81d6067f06115c1d49a809b5b5f7c31
+  revision: 353c66bf55af1fa4490119e31807909c80290a67
   specs:
     sip (2.0.a6)
       devise
@@ -240,7 +240,7 @@ GEM
       thread_safe (~> 0.1)
     tzinfo-data (1.2015.6)
       tzinfo (>= 1.0.0)
-    uglifier (2.7.1)
+    uglifier (2.7.2)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
     warden (1.2.3)
@@ -294,3 +294,6 @@ DEPENDENCIES
   uglifier (>= 1.3.0)
   web-console
   will_paginate
+
+BUNDLED WITH
+   1.10.5
