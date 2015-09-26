@@ -203,7 +203,7 @@ GEM
     sdoc (0.4.1)
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
-    simple_form (3.1.1)
+    simple_form (3.2.0)
       actionpack (~> 4.0)
       activemodel (~> 4.0)
     simplecov (0.10.0)
@@ -280,7 +280,7 @@ DEPENDENCIES
   rspec-rails
   sass
   sdoc
-  simple_form (~> 3.1.0)
+  simple_form
   sip!
   spork (~> 1.0rc)
   spring

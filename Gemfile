@@ -39,7 +39,7 @@ gem "twitter-bootstrap-rails", '~> 3.2.0'
 gem "bootstrap-datepicker-rails"
 
 # Formularios simples 
-gem "simple_form", '~> 3.1.0'
+gem "simple_form"
 
 # Formularios anidados (algunos con ajax)
 gem "cocoon", github: "vtamara/cocoon"
