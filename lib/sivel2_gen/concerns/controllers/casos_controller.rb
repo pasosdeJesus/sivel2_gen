@@ -12,8 +12,8 @@ module Sivel2Gen
           load_and_authorize_resource class: Sivel2Gen::Caso
           helper Sip::UbicacionHelper
 
-          # Todos los campos por los que se puede filtrar hay un scope por cada uno
-          # en conscaso
+          # Todos los campos por los que se puede filtrar tienen un 
+          # scope conscaso
           def campos_filtro1
             [:departamento_id, :municipio_id, :clase_id, 
               :fechaini, :fechafin, :presponsable_id, :categoria_id,
@@ -87,7 +87,7 @@ module Sivel2Gen
               @conscaso = filtro_avanzado @conscaso, params[:filtro]
               # Otros
               @conscaso = filtro_particular @conscaso, params[:filtro]
-
+              #puts @conscaso.to_sql; byebug
               # Columnas por incluir
               nincluir = []
               for i in @incluir do

@@ -53,18 +53,21 @@ module Sivel2Gen
           }
 
           scope :filtro_departamento_id, lambda { |id|
-            where('sip_ubicacion.id_departamento = ?', id).
-              joins(:ubicacion)
+            where('caso_id IN (SELECT id_caso
+                    FROM sip_ubicacion
+                    WHERE sip_ubicacion.id_departamento = ?)', id)
           }
 
           scope :filtro_municipio_id, lambda { |id|
-            where('sip_ubicacion.id_municipio = ?', id).
-              joins(:ubicacion)
+            where('caso_id IN (SELECT id_caso
+                    FROM sip_ubicacion
+                    WHERE sip_ubicacion.id_municipio = ?)', id)
           }
 
           scope :filtro_clase_id, lambda { |id|
-            where('sip_ubicacion.id_clase = ?', id).
-              joins(:ubicacion)
+            where('caso_id IN (SELECT id_caso
+                    FROM sip_ubicacion
+                    WHERE sip_ubicacion.id_clase = ?)', id)
           }
 
           scope :filtro_fechaini, lambda { |fecha_ref|
@@ -76,13 +79,17 @@ module Sivel2Gen
           }
 
           scope :filtro_presponsable_id, lambda { |id|
-            where('sivel2_gen_caso_presponsable.id_presponsable = ?', id).
-              joins(:caso_presponsable)
+            where('caso_id IN (SELECT id_caso
+                    FROM sivel2_gen_caso_presponsable
+                    WHERE sivel2_gen_caso_presponsable.id_presponsable = ?)', 
+                    id)
           }
 
           scope :filtro_categoria_id, lambda { |id|
-            where('sivel2_gen_acto.id_categoria = ?', id).
-              joins(:acto)
+            where('caso_id IN (SELECT id_caso
+                    FROM sivel2_gen_acto 
+                    WHERE sivel2_gen_acto.id_categoria = ?)', 
+                    id)
           }
 
           scope :filtro_descripcion, lambda { |d|
@@ -91,25 +98,32 @@ module Sivel2Gen
           }
 
           scope :filtro_nombres, lambda { |d|
-            where('sip_persona.nombres ILIKE \'%' + 
-                  ActiveRecord::Base.connection.quote_string(d) + '%\'').
-            joins(:persona)
+            where('caso_id IN (SELECT id_caso
+                    FROM sivel2_gen_victima INNER JOIN sip_persona
+                    ON sivel2_gen_victima.id_persona=sip_persona.id
+                    WHERE sip_persona.nombres ILIKE \'%' + 
+                    ActiveRecord::Base.connection.quote_string(d) + '%\')')
           }
 
           scope :filtro_apellidos, lambda { |d|
-            where('sip_persona.apellidos ILIKE \'%' + 
-                  ActiveRecord::Base.connection.quote_string(d) + '%\'').
-            joins(:persona)
+            where('caso_id IN (SELECT id_caso
+                    FROM sivel2_gen_victima INNER JOIN sip_persona
+                    ON sivel2_gen_victima.id_persona=sip_persona.id
+                    WHERE sip_persona.apellidos ILIKE \'%' + 
+                    ActiveRecord::Base.connection.quote_string(d) + '%\')')
           }
 
           scope :filtro_sexo, lambda { |s|
-            where('sip_persona.sexo = ?', s).
-              joins(:persona)
+            where('caso_id IN (SELECT id_caso
+                    FROM sivel2_gen_victima INNER JOIN sip_persona
+                    ON sivel2_gen_victima.id_persona=sip_persona.id
+                    WHERE sip_persona.sexo=?)', s)
           }
 
           scope :filtro_rangoedad_id, lambda { |r|
-            where('sivel2_gen_victima.id_rangoedad= ?', r).
-              joins(:victima)
+            where('caso_id IN (SELECT id_caso
+                    FROM sivel2_gen_victima 
+                    WHERE sivel2_gen_victima.id_rangoedad = ?)', r)
           }
 
           scope :filtro_etiqueta, lambda { |c, e|
@@ -125,18 +139,21 @@ module Sivel2Gen
           }
 
           scope :filtro_usuario_id, lambda { |u|
-            where('sivel2_gen_caso_usuario.id_usuario = ?', u).
-              joins(:caso_usuario)
+            where('caso_id IN (SELECT id_caso
+                    FROM sivel2_gen_caso_usuario
+                    WHERE sivel2_gen_caso_usuario.id_usuario = ?)', u)
           }
 
           scope :filtro_fechaingini, lambda { |f|
-            where('sivel2_gen_caso_usuario.fechainicio >= ?', f).
-              joins(:caso_usuario)
+            where('caso_id IN (SELECT id
+                    FROM sivel2_gen_caso
+                    WHERE created_at >= ?)', f)
           }
 
           scope :filtro_fechaingfin, lambda { |f|
-            where('sivel2_gen_caso_usuario.fechainicio <= ?', f).
-              joins(:caso_usuario)
+            where('caso_id IN (SELECT id
+                    FROM sivel2_gen_caso
+                    WHERE created_at <= ?)', f)
           }
 
           scope :filtro_codigo, lambda { |c|
