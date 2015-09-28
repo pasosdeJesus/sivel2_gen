@@ -347,7 +347,7 @@ INSERT INTO sivel2_gen_actividadoficio (id, nombre, fechacreacion, fechadeshabil
 INSERT INTO sivel2_gen_actividadoficio (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at, observaciones) VALUES (14, 'TRABAJADOR/GESTOR COMUNITARIO', '2013-05-16', NULL, NULL, NULL, NULL);
 INSERT INTO sivel2_gen_actividadoficio (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at, observaciones) VALUES (15, 'PESCADOR', '2013-05-16', NULL, NULL, NULL, NULL);
 INSERT INTO sivel2_gen_actividadoficio (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at, observaciones) VALUES (16, 'TRABAJADOR DOMÉSTICO', '2013-05-16', NULL, NULL, NULL, NULL);
-INSERT INTO sivel2_gen_actividadoficio (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at, observaciones) VALUES (17, 'PIANGUERO', '2013-05-16', NULL, NULL, NULL, NULL);
+INSERT INTO sivel2_gen_actividadoficio (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at, observaciones) VALUES (17, 'PIANGÜERO', '2013-05-16', NULL, NULL, NULL, NULL);
 INSERT INTO sivel2_gen_actividadoficio (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at, observaciones) VALUES (18, 'OTRO', '2013-05-16', NULL, NULL, NULL, NULL);
 INSERT INTO sivel2_gen_actividadoficio (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at, observaciones) VALUES (19, 'CORTE Y COSTURA', '2014-03-10', NULL, NULL, NULL, NULL);
 INSERT INTO sivel2_gen_actividadoficio (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at, observaciones) VALUES (2, 'ALBAÑIL', '2013-05-16', NULL, NULL, NULL, NULL);
