@@ -10,7 +10,7 @@ module Sivel2Gen
       uniqueness: {case_sensitive: false}
 
     def id=(val)
-      self[:id] = val.upcase.squish
+      self[:id] = val ? val.upcase.squish : nil
     end
 
   end
