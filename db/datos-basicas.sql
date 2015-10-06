@@ -545,6 +545,12 @@ INSERT INTO sivel2_gen_escolaridad (id, nombre, fechacreacion, fechadeshabilitac
 INSERT INTO sivel2_gen_escolaridad (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at, observaciones) VALUES (3, 'SECUNDARIA', '2013-05-16', NULL, NULL, NULL, NULL);
 INSERT INTO sivel2_gen_escolaridad (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at, observaciones) VALUES (4, 'TÉCNICO', '2013-05-16', NULL, NULL, NULL, NULL);
 INSERT INTO sivel2_gen_escolaridad (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at, observaciones) VALUES (5, 'PROFESIONAL', '2013-05-16', NULL, NULL, NULL, NULL);
+INSERT INTO sivel2_gen_escolaridad (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at, observaciones) VALUES (6, 'NINGUNO', '2015-10-06', NULL, NULL, NULL, NULL); --101
+INSERT INTO sivel2_gen_escolaridad (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at, observaciones) VALUES (7, 'ANALFABETA', '2015-10-06', NULL, NULL, NULL, NULL); --102
+INSERT INTO sivel2_gen_escolaridad (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at, observaciones) VALUES (8, 'PRIMARIA INCOMPLETA', '2015-10-06', NULL, NULL, NULL, NULL); --103
+INSERT INTO sivel2_gen_escolaridad (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at, observaciones) VALUES (9, 'SECUNDARIA INCOMPLETA', '2015-10-06', NULL, NULL, NULL, NULL); --105
+INSERT INTO sivel2_gen_escolaridad (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at, observaciones) VALUES (10, 'TÉCNICO INCOMPLETO', '2015-10-06', NULL, NULL, NULL, NULL); --106
+INSERT INTO sivel2_gen_escolaridad (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at, observaciones) VALUES (11, 'PROFESIONAL INCOMPLETO', '2015-10-06', NULL, NULL, NULL, NULL); --104
 
 
 --
