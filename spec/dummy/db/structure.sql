@@ -281,7 +281,7 @@ CREATE TABLE schema_migrations (
 
 CREATE TABLE sip_anexo (
     id integer NOT NULL,
-    descripcion character varying(1500) NOT NULL,
+    descripcion character varying(1500) COLLATE public.es_co_utf_8 NOT NULL,
     adjunto_file_name character varying(255),
     adjunto_content_type character varying(255),
     adjunto_file_size integer,
@@ -338,7 +338,7 @@ CREATE TABLE sip_clase (
     id_municipio integer,
     id integer DEFAULT nextval('sip_clase_id_seq'::regclass) NOT NULL,
     id_clalocal integer,
-    observaciones character varying(5000),
+    observaciones character varying(5000) COLLATE public.es_co_utf_8,
     CONSTRAINT clase_check CHECK (((fechadeshabilitacion IS NULL) OR (fechadeshabilitacion >= fechacreacion)))
 );
 
@@ -370,7 +370,7 @@ CREATE TABLE sip_departamento (
     updated_at timestamp without time zone,
     id_pais integer NOT NULL,
     id integer DEFAULT nextval('sip_departamento_id_seq'::regclass) NOT NULL,
-    observaciones character varying(5000),
+    observaciones character varying(5000) COLLATE public.es_co_utf_8,
     CONSTRAINT departamento_check CHECK (((fechadeshabilitacion IS NULL) OR (fechadeshabilitacion >= fechacreacion)))
 );
 
@@ -394,7 +394,7 @@ CREATE SEQUENCE sip_etiqueta_id_seq
 CREATE TABLE sip_etiqueta (
     id integer DEFAULT nextval('sip_etiqueta_id_seq'::regclass) NOT NULL,
     nombre character varying(500) COLLATE public.es_co_utf_8 NOT NULL,
-    observaciones character varying(500),
+    observaciones character varying(5000) COLLATE public.es_co_utf_8,
     fechacreacion date DEFAULT ('now'::text)::date NOT NULL,
     fechadeshabilitacion date,
     created_at timestamp without time zone,
@@ -427,7 +427,7 @@ CREATE TABLE sip_fuenteprensa (
     fechadeshabilitacion date,
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
-    observaciones character varying(5000),
+    observaciones character varying(5000) COLLATE public.es_co_utf_8,
     CONSTRAINT sip_fuenteprensa_check CHECK (((fechadeshabilitacion IS NULL) OR (fechadeshabilitacion >= fechacreacion)))
 );
 
@@ -459,7 +459,7 @@ CREATE TABLE sip_municipio (
     updated_at timestamp without time zone,
     id_departamento integer,
     id integer DEFAULT nextval('sip_municipio_id_seq'::regclass) NOT NULL,
-    observaciones character varying(5000),
+    observaciones character varying(5000) COLLATE public.es_co_utf_8,
     CONSTRAINT municipio_check CHECK (((fechadeshabilitacion IS NULL) OR (fechadeshabilitacion >= fechacreacion)))
 );
 
@@ -512,12 +512,12 @@ CREATE SEQUENCE sip_oficina_id_seq
 
 CREATE TABLE sip_oficina (
     id integer DEFAULT nextval('sip_oficina_id_seq'::regclass) NOT NULL,
-    nombre character varying(50) NOT NULL,
+    nombre character varying(500) COLLATE public.es_co_utf_8 NOT NULL,
     fechacreacion date DEFAULT ('now'::text)::date NOT NULL,
     fechadeshabilitacion date,
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
-    observaciones character varying(5000),
+    observaciones character varying(5000) COLLATE public.es_co_utf_8,
     CONSTRAINT regionsjr_check CHECK (((fechadeshabilitacion IS NULL) OR (fechadeshabilitacion >= fechacreacion)))
 );
 
@@ -528,7 +528,7 @@ CREATE TABLE sip_oficina (
 
 CREATE TABLE sip_pais (
     id integer NOT NULL,
-    nombre character varying(200),
+    nombre character varying(200) COLLATE public.es_co_utf_8,
     nombreiso character varying(200),
     latitud double precision,
     longitud double precision,
@@ -542,7 +542,7 @@ CREATE TABLE sip_pais (
     fechadeshabilitacion date,
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
-    observaciones character varying(5000)
+    observaciones character varying(5000) COLLATE public.es_co_utf_8
 );
 
 
@@ -624,7 +624,7 @@ CREATE TABLE sip_persona_trelacion (
     persona1 integer NOT NULL,
     persona2 integer NOT NULL,
     id_trelacion character(2) DEFAULT 'SI'::bpchar NOT NULL,
-    observaciones character varying(200),
+    observaciones character varying(5000) COLLATE public.es_co_utf_8,
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
     id integer DEFAULT nextval('sip_persona_trelacion_id_seq'::regclass) NOT NULL
@@ -642,7 +642,7 @@ CREATE TABLE sip_tclase (
     fechadeshabilitacion date,
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
-    observaciones character varying(5000),
+    observaciones character varying(5000) COLLATE public.es_co_utf_8,
     CONSTRAINT tclase_check CHECK (((fechadeshabilitacion IS NULL) OR (fechadeshabilitacion >= fechacreacion)))
 );
 
@@ -653,14 +653,14 @@ CREATE TABLE sip_tclase (
 
 CREATE TABLE sip_tdocumento (
     id integer NOT NULL,
-    nombre character varying(500) NOT NULL,
+    nombre character varying(500) COLLATE public.es_co_utf_8 NOT NULL,
     sigla character varying(100),
     formatoregex character varying(500),
     fechacreacion date NOT NULL,
     fechadeshabilitacion date,
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
-    observaciones character varying(5000)
+    observaciones character varying(5000) COLLATE public.es_co_utf_8
 );
 
 
@@ -690,7 +690,7 @@ ALTER SEQUENCE sip_tdocumento_id_seq OWNED BY sip_tdocumento.id;
 CREATE TABLE sip_trelacion (
     id character(2) NOT NULL,
     nombre character varying(500) COLLATE public.es_co_utf_8 NOT NULL,
-    observaciones character varying(200),
+    observaciones character varying(5000) COLLATE public.es_co_utf_8,
     fechacreacion date NOT NULL,
     fechadeshabilitacion date,
     inverso character varying(2),
@@ -723,7 +723,7 @@ CREATE TABLE sip_tsitio (
     fechadeshabilitacion date,
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
-    observaciones character varying(5000),
+    observaciones character varying(5000) COLLATE public.es_co_utf_8,
     CONSTRAINT tsitio_check CHECK (((fechadeshabilitacion IS NULL) OR (fechadeshabilitacion >= fechacreacion)))
 );
 
@@ -3911,4 +3911,6 @@ INSERT INTO schema_migrations (version) VALUES ('20150809032138');
 INSERT INTO schema_migrations (version) VALUES ('20150826000000');
 
 INSERT INTO schema_migrations (version) VALUES ('20151006105402');
+
+INSERT INTO schema_migrations (version) VALUES ('20151020203421');
 

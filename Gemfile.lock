@@ -1,8 +1,8 @@
 GIT
   remote: git://github.com/pasosdeJesus/sip.git
-  revision: 50e093fa2c962898cc1f47042a293e599fb30a79
+  revision: a13a875b1ba74a526ac3dc353b2a2f4dca513605
   specs:
-    sip (2.0.a6)
+    sip (2.0.a7)
       devise
       jquery-rails
       rails
@@ -138,7 +138,7 @@ GEM
       mime-types
       mimemagic (= 0.3.0)
     pg (0.18.3)
-    pry (0.10.2)
+    pry (0.10.3)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
       slop (~> 3.4)
