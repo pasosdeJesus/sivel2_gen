@@ -68,7 +68,6 @@ module Sivel2Gen
     ];
     @@tablasbasicas_prio = Sip::Ability::BASICAS_PRIO + BASICAS_PRIO
 
-
     # Ver documentacion de este metodo en app/models/ability de sip
     def initialize(usuario)
       # Sin autenticación puede consultarse información geográfica 
