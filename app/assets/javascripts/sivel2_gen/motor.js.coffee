@@ -78,7 +78,8 @@
   
 # AUTOCOMPLETACIÓN PERSONA
 # Elije una persona en autocompletación
-@autocompleta_persona = (label, id, id_victima, divcp) ->
+@autocompleta_persona = (label, id, id_victima, divcp, root) ->
+  sip_arregla_puntomontaje(root)
   cs = id.split(";")
   id_persona = cs[0]
   pl = []
@@ -90,7 +91,7 @@
   # pl[1] cnom, pl[2] es cape, pl[3] es cdoc
   d = "id_victima=" + id_victima
   d += "&id_persona=" + id_persona
-  a = '/personas/remplazar'
+  a = root.puntomontaje + 'personas/remplazar'
   $.ajax(url: a, data: d, dataType: "html").fail( (jqXHR, texto) ->
     alert("Error con ajax " + texto)
   ).done( (e, r) ->
@@ -101,7 +102,8 @@
 
 # Busca persona por nombre, apellido o identificación
 # s es objeto con foco donde se busca persona
-@busca_persona_nombre = (s) ->
+@busca_persona_nombre = (s, root) ->
+  sip_arregla_puntomontaje(root)
   cnom = s.attr('id')
   v = $("#" + cnom).data('autocompleta')
   if (v != 1 && v != "no") 
@@ -115,11 +117,11 @@
       alert('No se ubico .caso_victima_id')
       return
     $("#" + cnom).autocomplete({
-      source: "/personas.json",
+      source: root.puntomontaje + "personas.json",
       minLength: 2,
       select: ( event, ui ) -> 
         if (ui.item) 
-          autocompleta_persona(ui.item.value, ui.item.id, idvictima, divcp)
+          autocompleta_persona(ui.item.value, ui.item.id, idvictima, divcp, root)
           event.stopPropagation()
           event.preventDefault()
     })
@@ -181,6 +183,14 @@
 # nomactospe es nombre por dar a actos 
 #   (por ejemplo en sivel2_sjr es antecedentes/causas)
 @sivel2_gen_prepara_eventos_comunes = (root, nomactospe) ->
+  
+  # root.putomontaje lo pudo poner sip_prepara_eventos_comunes
+  if typeof root.puntomontaje == 'undefined'
+    root.puntomontaje = '/'
+ 
+  if root.puntomontaje[root.puntomontaje.length - 1] != '/'
+    root.puntomontaje = root.puntomontaje + '/'
+
   # Formato de campos de fecha con datepicker
   $(document).on('cocoon:after-insert', (e) ->
     $('[data-behaviour~=datepicker]').datepicker({
@@ -195,12 +205,12 @@
   $(document).on('focusin', 
   'input[id^=caso_victima_attributes][id$=persona_attributes_nombres]', 
   (e) ->
-    busca_persona_nombre($(this))
+    busca_persona_nombre($(this), root)
   )
 
   # Al cambiar país se recalcula lista de departamentos
   $(document).on('change', 'select[id^=caso_][id$=id_pais]', (e) ->
-    llena_departamento($(this))
+    llena_departamento($(this), root)
     # Exprimentando actualizar a medida que se modifica:
     idfu = $(this).attr('id').replace('_id_pais', '_id');
     idu = $('#' + idfu).val();
@@ -210,12 +220,12 @@
 
   # Al cambiar departamento se recalcula lista de municipios
   $(document).on('change', 'select[id^=caso_][id$=id_departamento]', (e) ->
-    llena_municipio($(this))
+    llena_municipio($(this), root)
   )
 
   # Al cambiar municipio se recalcula lista de centros poblados
   $(document).on('change', 'select[id^=caso_][id$=id_municipio]', (e) ->
-    llena_clase($(this))
+    llena_clase($(this), root)
   )
 
   # Tras eliminar presponsable, eliminar dependientes
@@ -267,7 +277,7 @@
       d = (tn - root.tagregaactos)/1000
     if (d == -1 || d>5) 
       f=$('form')
-      a='/actos/agregar'
+      a = root.puntomontaje + 'actos/agregar'
       $.post(a, f.serialize())
       root.tagregaactos= Date.now()
     return
@@ -281,7 +291,7 @@
       @sivel2_gen_procesa_eliminaracto = true
       f = $('form')
       d = "id_acto=" + $(this).attr('data-eliminaracto')
-      a = '/actos/eliminar'
+      a = root.puntomontaje + 'actos/eliminar'
       $.ajax(url: a, data: d, dataType: "script").fail( (jqXHR, texto) ->
         alert("Error con ajax " + texto)
       ).done( (e) ->
