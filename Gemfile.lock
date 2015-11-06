@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/pasosdeJesus/sip.git
-  revision: 650e0f9686fbe5159683126fc01a212b4088b8c6
+  revision: 236b7a61cff5058a62cc88d5631b03cb747c2e95
   specs:
     sip (2.0.a7)
       devise
@@ -63,7 +63,7 @@ GEM
     bcrypt (3.1.10)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
-    bootstrap-datepicker-rails (1.4.0)
+    bootstrap-datepicker-rails (1.5.0)
       railties (>= 3.0)
     builder (3.2.2)
     camertron-eprun (1.1.0)
@@ -180,6 +180,7 @@ GEM
       thor (>= 0.18.1, < 2.0)
     rake (10.4.2)
     rdoc (4.2.0)
+      json (~> 1.4)
     responders (2.1.0)
       railties (>= 4.2.0, < 5)
     rspec-core (3.3.2)
