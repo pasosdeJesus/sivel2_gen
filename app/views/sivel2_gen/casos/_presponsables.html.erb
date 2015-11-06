@@ -5,8 +5,10 @@
             <% end %>
             <div class="links">
               <%= link_to_add_association 'Añadir Presunto Responsable', f, 
-                :caso_presponsable, {:class => 'btn-primary', 
-                  "data-ajax" => "/presponsables/nuevo", 
-                  "data-ajaxdata" => "caso_id"}
-              %>
+                :caso_presponsable, {
+                :class => 'btn-primary', 
+                "data-ajax" => Rails.configuration.relative_url_root + 
+                "/presponsables/nuevo", 
+                "data-ajaxdata" => "caso_id"
+              } %>
             </div>
