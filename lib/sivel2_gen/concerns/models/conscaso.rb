@@ -176,27 +176,27 @@ module Sivel2Gen
 						ON (ubicacion.id_departamento = departamento.id)
         	LEFT JOIN sip_municipio AS municipio 
 						ON (ubicacion.id_municipio=municipio.id)
-        WHERE ubicacion.id_caso=caso.id), ', ')
+          WHERE ubicacion.id_caso=caso.id), ', ')
         AS ubicaciones, 
         ARRAY_TO_STRING(ARRAY(SELECT nombres || ' ' || apellidos 
-        FROM sip_persona AS persona, 
-        sivel2_gen_victima AS victima WHERE persona.id=victima.id_persona 
-        AND victima.id_caso=caso.id), ', ')
+          FROM sip_persona AS persona, 
+          sivel2_gen_victima AS victima WHERE persona.id=victima.id_persona 
+          AND victima.id_caso=caso.id), ', ')
         AS victimas, 
         ARRAY_TO_STRING(ARRAY(SELECT nombre 
-        FROM sivel2_gen_presponsable AS presponsable, 
-        sivel2_gen_caso_presponsable AS caso_presponsable
-        WHERE presponsable.id=caso_presponsable.id_presponsable
-        AND caso_presponsable.id_caso=caso.id), ', ')
+          FROM sivel2_gen_presponsable AS presponsable, 
+          sivel2_gen_caso_presponsable AS caso_presponsable
+          WHERE presponsable.id=caso_presponsable.id_presponsable
+          AND caso_presponsable.id_caso=caso.id), ', ')
         AS presponsables, 
         ARRAY_TO_STRING(ARRAY(SELECT supracategoria.id_tviolencia || ':' || 
-        categoria.supracategoria_id || ':' || categoria.id || ' ' ||
-        categoria.nombre FROM sivel2_gen_categoria AS categoria, 
-        sivel2_gen_supracategoria AS supracategoria,
-        sivel2_gen_acto AS acto
-        WHERE categoria.id=acto.id_categoria
-        AND supracategoria.id=categoria.supracategoria_id
-        AND acto.id_caso=caso.id), ', ')
+          categoria.supracategoria_id || ':' || categoria.id || ' ' ||
+          categoria.nombre FROM sivel2_gen_categoria AS categoria, 
+          sivel2_gen_supracategoria AS supracategoria,
+          sivel2_gen_acto AS acto
+          WHERE categoria.id=acto.id_categoria
+          AND supracategoria.id=categoria.supracategoria_id
+          AND acto.id_caso=caso.id), ', ')
         AS tipificacion
         FROM sivel2_gen_caso AS caso;")
               ActiveRecord::Base.connection.execute(

@@ -85,8 +85,6 @@ module Sivel2Gen
               end
               # Avanzado
               @conscaso = filtro_avanzado @conscaso, params[:filtro]
-              # Otros
-              @conscaso = filtro_particular @conscaso, params[:filtro]
               #puts @conscaso.to_sql; byebug
               # Columnas por incluir
               nincluir = []
@@ -97,11 +95,13 @@ module Sivel2Gen
                 end
               end
               @incluir = nincluir
-
               # Cambiar Ordenamiento
               if params[:filtro][:orden]
                 @campoord = params[:filtro][:orden]
               end
+              # Otros (puede cambiar consulta, @incluir o @campoord)
+              @conscaso = filtro_particular @conscaso, params[:filtro]
+              #puts @conscaso.to_sql; byebug
             end
 
             # Ordenamiento
