@@ -7,8 +7,8 @@
               <%= link_to_add_association 'Añadir Presunto Responsable', f, 
                 :caso_presponsable, {
                 :class => 'btn-primary', 
-                "data-ajax" => Rails.configuration.relative_url_root + 
-                "/presponsables/nuevo", 
+                "data-ajax" => File.join(Rails.configuration.relative_url_root, 
+                                         "presponsables/nuevo"),
                 "data-ajaxdata" => "caso_id"
               } %>
             </div>

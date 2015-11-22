@@ -4,8 +4,10 @@
 <div class="links">
         <%= link_to_add_association 'Añadir Víctima', f, :victima, { 
                 :class => 'btn-primary',
-                "data-ajax" => Rails.configuration.relative_url_root + 
-                "/victimas/nuevo", 
+                "data-ajax" => File.join(
+                        Rails.configuration.relative_url_root,
+                        "victimas/nuevo"
+                ), 
                 "data-ajaxdata" => "caso_id" } 
         %>
 </div>
