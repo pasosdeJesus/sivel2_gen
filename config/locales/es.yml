@@ -52,7 +52,8 @@ es:
         victimas: Víctimas
         casoid: Código
       "sivel2_gen/caso_fuenteprensa":
-        ubicacion: Ubicación
+        fuenteprensa: Fuente
+        ubicacion: Ubicación en Prensa
         clasificacion: Clasificación
         ubicacionfisica: Ubicación Física
         anexo_caso: Anexo
