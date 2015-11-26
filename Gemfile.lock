@@ -1,11 +1,23 @@
 GIT
   remote: git://github.com/pasosdeJesus/sip.git
-  revision: 51f6ab9ff0ce9dd9dad9a47f344975f79c05709d
+  revision: cf49f141d8efd38ebf268eaf52ca4ffbe8753a6a
   specs:
     sip (2.0.a7)
+      bootstrap-datepicker-rails
+      cancancan
+      colorize
       devise
+      devise-i18n
       jquery-rails
+      jquery-ui-bootstrap-rails
+      jquery-ui-rails
+      paperclip
       rails
+      rails-i18n
+      simple_form
+      twitter-bootstrap-rails
+      twitter_cldr
+      will_paginate
 
 GIT
   remote: git://github.com/vtamara/cocoon.git
@@ -66,6 +78,7 @@ GEM
     bootstrap-datepicker-rails (1.5.0)
       railties (>= 3.0)
     builder (3.2.2)
+    byebug (8.2.0)
     camertron-eprun (1.1.0)
     cancancan (1.13.1)
     cldr-plurals-runtime-rb (1.0.1)
@@ -258,6 +271,7 @@ PLATFORMS
 DEPENDENCIES
   bcrypt
   bootstrap-datepicker-rails
+  byebug
   cancancan
   cocoon!
   codeclimate-test-reporter
