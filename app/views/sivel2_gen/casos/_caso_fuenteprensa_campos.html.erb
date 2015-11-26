@@ -1,0 +1,36 @@
+<div class='control-group nested-fields'>
+  <div class="controls">
+    <%  
+        f.object = Sivel2Gen::CasoFuenteprensa.new if !f.object
+    %>
+
+    <%= f.input :fecha, 
+      :input_html => { "data-behaviour" => "datepicker" },
+      :as => :string, :label => "Fecha" 
+    %>
+
+    <%= f.association :fuenteprensa,
+      collection: Sip::Fuenteprensa.habilitados,
+      label_method: :nombre,
+      value_method: :id 
+    %>
+
+    <%= f.input :ubicacion %>
+
+    <%= f.input :clasificacion %>
+
+    <%= f.input :ubicacionfisica %>
+
+    <%= f.association :anexo_caso,
+      collection: Sivel2Gen::AnexoCaso.where(id_caso: f.object.id_caso),
+      label_method: lambda { |t| t.sip_anexo.adjunto_file_name },
+      value_method: :id_anexo
+    %>
+
+    <%= f.input :id, as: :hidden %>
+
+    <%= link_to_remove_association "Eliminar Fuente Frecuente", f, 
+      :class => 'btn-danger' 
+    %> 
+  </div>
+</div>

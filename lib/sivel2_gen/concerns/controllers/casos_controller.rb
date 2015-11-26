@@ -290,7 +290,12 @@ module Sivel2Gen
               :lugar, :sitio, :latitud, :longitud, :id_tsitio, 
               :_destroy
             ],
-              :caso_presponsable_attributes => [
+            :caso_fuenteprensa_attributes => [
+                :id, :fecha, :fuenteprensa_id, :ubicacion, 
+                :clasificacion, :ubicacionfisica, :anexo_caso_id, 
+                :_destroy
+            ],
+            :caso_presponsable_attributes => [
                 :id, :id_presponsable, :tipo, 
                 :bloque, :frente, :brigada, :batallon, :division, :otro, :_destroy
             ],

@@ -1,11 +1,9 @@
 # encoding: UTF-8
+
+require 'sivel2_gen/concerns/models/caso_fuenteprensa'
+
 module Sivel2Gen
   class CasoFuenteprensa < ActiveRecord::Base
-    has_many :anexo, foreign_key: "id_anexo", validate: true, 
-      class_name: 'Sivel2Gen::Anexo'
-    belongs_to :fuenteprensa, foreign_key: "fuenteprensa_id", validate: true, 
-      class_name: 'Sip::Fuenteprensa'
-    belongs_to :caso, foreign_key: "id_caso", validate: true, 
-      class_name: 'Sivel2Gen::Caso'
+    include Sivel2Gen::Concerns::Models::CasoFuenteprensa
   end
 end

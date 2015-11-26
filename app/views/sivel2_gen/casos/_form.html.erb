@@ -32,6 +32,9 @@
           <li role="presentation"><a href="#ubicacion" class="fichacambia" 
             aria-controls="ubicacion" role="tab" 
             data-toggle="tab">Ubicación</a></li>
+          <li role="presentation"><a href="#fuenteprensa" class="fichacambia" 
+            aria-controls="fuenteprensa" role="tab" 
+            data-toggle="tab">Fuente Frecuente</a></li>
           <li role="presentation"><a href="#presponsable" class="fichacambia" 
             aria-controls="presponsable" role="tab" 
             data-toggle="tab">Presuntos Responsables</a></li>
@@ -56,6 +59,10 @@
 
           <div role="tabpanel" class="tab-pane" id="ubicacion">
             <%= render 'ubicaciones', :f => f %>
+          </div>
+
+          <div role="tabpanel" class="tab-pane" id="fuenteprensa">
+            <%= render 'fuentesprensa', :f => f %>
           </div>
 
           <div role="tabpanel" class="tab-pane" id="presponsable">
