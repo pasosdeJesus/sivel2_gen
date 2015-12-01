@@ -290,6 +290,11 @@ module Sivel2Gen
               :lugar, :sitio, :latitud, :longitud, :id_tsitio, 
               :_destroy
             ],
+            :caso_fotra_attributes => [
+                :id, :fecha, :nombre, :anotacion, 
+                :tfuente, :ubicacionfisica, :anexo_caso_id, 
+                :_destroy
+            ],
             :caso_fuenteprensa_attributes => [
                 :id, :fecha, :fuenteprensa_id, :ubicacion, 
                 :clasificacion, :ubicacionfisica, :anexo_caso_id, 

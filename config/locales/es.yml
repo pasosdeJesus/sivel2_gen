@@ -51,6 +51,10 @@ es:
         tipificacion: Tipificacion
         victimas: Víctimas
         casoid: Código
+      "sivel2_gen/caso_fotra":
+        anotacion: Anotación
+        ubicacionfisica: Ubicación Física
+        anexo_caso: Anexo
       "sivel2_gen/caso_fuenteprensa":
         fuenteprensa: Fuente
         ubicacion: Ubicación en Prensa

@@ -52,11 +52,23 @@
         <div class="accordion-group">
           <div class="accordion-heading">
             <a class="accordion-toggle fichacambia" data-toggle="collapse" 
-              href="#fuenteprensa">Fuente Frecuente</a>
+              href="#fuenteprensa">Fuentes Frecuentes</a>
           </div>
           <div id="fuenteprensa" class="accordion-body collapse">
             <div class="accordion-inner">
               <%= render 'fuentesprensa', :f => f %>
+            </div>
+          </div>
+        </div> <! -- accordion-group Fuente Prensa-->
+
+        <div class="accordion-group">
+          <div class="accordion-heading">
+            <a class="accordion-toggle fichacambia" data-toggle="collapse" 
+              href="#fotra">Otras Fuentes</a>
+          </div>
+          <div id="fotra" class="accordion-body collapse">
+            <div class="accordion-inner">
+              <%= render 'fotras', :f => f %>
             </div>
           </div>
         </div> <! -- accordion-group Fuente Prensa-->

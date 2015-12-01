@@ -29,7 +29,7 @@ class IdFuenteprensa < ActiveRecord::Migration
         SET anexo_caso_id=sivel2_gen_anexo_caso.id
           FROM sivel2_gen_anexo_caso
         WHERE sivel2_gen_caso_fuenteprensa.id_caso=sivel2_gen_anexo_caso.id_caso
-        AND sivel2_gen_caso_fuenteprensa.fecha=sivel2_gen_anexo_caso.fecha
+        AND sivel2_gen_caso_fuenteprensa.fecha=sivel2_gen_anexo_caso.fechaffrecuente
         AND sivel2_gen_caso_fuenteprensa.fuenteprensa_id=
           sivel2_gen_anexo_caso.fuenteprensa_id;
     SQL
@@ -53,8 +53,7 @@ class IdFuenteprensa < ActiveRecord::Migration
   def down
     execute <<-SQL
       UPDATE sivel2_gen_anexo_caso
-        SET id_caso=sivel2_gen_caso_fuenteprensa.id_caso,
-          fecha=sivel2_gen_caso_fuenteprensa.fecha,
+        SET fechaffrecuente=sivel2_gen_caso_euenteprensa.fecha,
           fuenteprensa_id = sivel2_gen_caso_fuenteprensa.fuenteprensa_id
         FROM sivel2_gen_caso_fuenteprensa
         WHERE sivel2_gen_anexo_caso.id = sivel2_gen_caso_fuenteprensa.anexo_caso_id;

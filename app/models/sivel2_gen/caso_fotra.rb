@@ -1,9 +1,9 @@
 # encoding: UTF-8
+
+require 'sivel2_gen/concerns/models/caso_fotra'
+
 module Sivel2Gen
   class CasoFotra < ActiveRecord::Base
-    belongs_to :caso, foreign_key: "id_caso", validate: true, 
-      class_name: 'Sivel2Gen::Caso'
-    belongs_to :fotra, foreign_key: "id_fotra", validate: true,
-      class_name: 'Sivel2Gen::Fotra'
+    include Sivel2Gen::Concerns::Models::CasoFotra
   end
 end
