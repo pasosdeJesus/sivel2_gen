@@ -16,7 +16,7 @@ module Sivel2Gen
       else
         session[:capturacaso_acordeon] = true
       end
-      redirect_to "/"
+      redirect_to Rails.configuration.relative_url_root
     end
 
   end
