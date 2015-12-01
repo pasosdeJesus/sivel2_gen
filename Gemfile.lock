@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/pasosdeJesus/sip.git
-  revision: 3b66db324abfeec0090cdaeea1e8307c90e48b80
+  revision: 88a9f63163385660fb83d3a54fd5354716e329ee
   specs:
     sip (2.0.a7)
       bootstrap-datepicker-rails
@@ -192,6 +192,7 @@ GEM
       thor (>= 0.18.1, < 2.0)
     rake (10.4.2)
     rdoc (4.2.0)
+      json (~> 1.4)
     responders (2.1.0)
       railties (>= 4.2.0, < 5)
     rspec-core (3.4.1)

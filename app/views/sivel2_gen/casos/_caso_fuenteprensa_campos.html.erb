@@ -24,7 +24,7 @@
     <%= f.association :anexo_caso,
       collection: Sivel2Gen::AnexoCaso.where(id_caso: f.object.id_caso),
       label_method: lambda { |t| t.sip_anexo.adjunto_file_name },
-      value_method: :id_anexo
+      value_method: :id
     %>
 
     <%= f.input :id, as: :hidden %>
