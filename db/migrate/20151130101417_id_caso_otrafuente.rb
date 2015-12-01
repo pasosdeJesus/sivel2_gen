@@ -1,10 +1,6 @@
 class IdCasoOtrafuente < ActiveRecord::Migration
   def up
     execute <<-SQL
-      ALTER TABLE sivel2_gen_caso_fotra 
-        ALTER COLUMN id_fotra DROP NOT NULL;
-    SQL
-    execute <<-SQL
       CREATE SEQUENCE sivel2_gen_caso_fotra_seq;
     SQL
     execute <<-SQL
@@ -24,6 +20,10 @@ class IdCasoOtrafuente < ActiveRecord::Migration
     execute <<-SQL
       ALTER TABLE sivel2_gen_caso_fotra ADD CONSTRAINT 
         sivel2_gen_caso_fotra_pkey PRIMARY KEY (id);
+    SQL
+    execute <<-SQL
+      ALTER TABLE sivel2_gen_caso_fotra 
+        ALTER COLUMN id_fotra DROP NOT NULL;
     SQL
     execute <<-SQL
       ALTER TABLE sivel2_gen_caso_fotra ADD COLUMN
