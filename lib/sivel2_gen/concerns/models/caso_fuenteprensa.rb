@@ -24,7 +24,7 @@ module Sivel2Gen
           validate :fuente_tras_caso
           def fuente_tras_caso
             errors.add(:fecha, 'No puede ser anterior a la del caso') if
-              fecha < caso.fecha
+              caso && fecha && fecha < caso.fecha
           end
 
         end
