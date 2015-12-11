@@ -1,0 +1,36 @@
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <% @enctabla.try(:each) do |enc| %>
+        <th><%= CGI.escapeHTML(enc) %></th>
+      <% end %>
+    </tr>
+  </thead>
+  <tbody>
+    <% @tot=[]; @cuerpotabla.try(:each) do |fila| %>
+      <tr>
+        <% i=0; fila.try(:each) do |campo| %>
+          <% if @coltotales.include? i
+               if @tot[i] 
+                 @tot[i] += campo[1].to_i
+               else 
+                 @tot[i] = campo[1].to_i
+               end 
+             end
+             i += 1
+          %>
+          <td><%= CGI.escapeHTML(campo[1]) if campo[1] %></td>
+        <% end %>
+      </tr>
+    <% end %>
+    <% i=0; @enctabla.try(:each) do |enc| %>
+      <th>
+        <%= if @coltotales.include? i
+              @tot[i]
+            end
+        %>
+      </th>
+      <% i += 1 %>
+    <% end %>
+  </tbody>
+</table>
