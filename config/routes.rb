@@ -22,7 +22,7 @@ Sivel2Gen::Engine.routes.draw do
   get '/casos/filtro' => 'casos#index', as: :casos_filtro
   post '/casos/filtro' => 'casos#index', as: :envia_casos_filtro
 
-  get "/conteos/personas" => 'conteos#personas'
+  get "/conteos/personas" => 'conteos#personas', as: :conteos_personas
 
   resources :casos, path_names: { new: 'nuevo', edit: 'edita' }
 

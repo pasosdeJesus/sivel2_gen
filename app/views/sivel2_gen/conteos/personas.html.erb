@@ -1,5 +1,5 @@
 <div class="page-header">
-  <h1><%=t '.title', :default => "Personas atendidas" %></h1>
+  <h1><%=t '.title', :default => "Demografía Víctimas" %></h1>
 </div>
 
 <div sytle="text-align: right">
@@ -24,7 +24,7 @@
       "data-contarautomatico" => ""
     %>
     <br>
-    Última expulsión:
+    Incluir Ubicación del Caso:
     <%= check_box_tag 'departamento', 1, false, "data-contarautomatico" => "" %>
     Departamento,
     <%= check_box_tag 'municipio', 1, false, "data-contarautomatico" => "" %> 
@@ -34,5 +34,5 @@
 </div>
 
 <div id="resultado">
-  <%= render 'resultado_tabla' %>
+  <%= render 'sivel2_gen/conteos/resultado_tabla' %>
 </div> <!-- id: resultado -->
