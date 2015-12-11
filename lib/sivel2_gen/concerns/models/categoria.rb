@@ -31,7 +31,7 @@ module Sivel2Gen
           end
 
           def presenta(atr)
-            clf = clase_llave_foranea(atr)
+            #clf = clase_llave_foranea(atr)
             if (atr.to_s == "tipocat")
               h={C: "Colectivo", I: "Individual", O: "Otro"}
               return h[self[atr.to_s].to_sym]

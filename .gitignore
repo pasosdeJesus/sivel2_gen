@@ -30,5 +30,4 @@ spec/dummy/.sass-cache
 spec/dummy/db/datos-basicas.sql
 tmp/
 herram/
-
-
+spec/dummy/.byebug_history  

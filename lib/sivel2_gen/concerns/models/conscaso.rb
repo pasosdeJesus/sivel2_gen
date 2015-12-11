@@ -33,7 +33,7 @@ module Sivel2Gen
 
           scope :ordenar_por, lambda { |campo|
             # extract the sort direction from the param value.
-            direction = (campo =~ /desc$/) ? 'desc' : 'asc'
+            # direction = (campo =~ /desc$/) ? 'desc' : 'asc'
             case campo.to_s
             when /^fechadesc/
               order("sivel2_gen_conscaso.fecha desc")

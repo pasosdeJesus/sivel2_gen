@@ -3,6 +3,6 @@ class Actualizarol < ActiveRecord::Migration
     execute <<-SQL
       ALTER TABLE usuario DROP CONSTRAINT usuario_rol_check;
       ALTER TABLE usuario ADD CONSTRAINT usuario_rol_check CHECK (rol>=1 and rol<=6);
-SQL
-      end
+    SQL
+  end
 end

@@ -8,12 +8,11 @@ RSpec.describe "sivel2_gen/casos/new", :type => :view do
     @request.env["devise.mapping"] = Devise.mappings[:usuario]
     controller.stub(:current_usuario).and_return(current_usuario)
     current_usuario.save!
-    ncaso = assign(:caso, Sivel2Gen::Caso.create!(
+    assign(:caso, Sivel2Gen::Caso.create!(
       fecha: "2014-11-05",
       memo: "",
       created_at: "2014-11-20"
     ))
-    caso_id = ncaso.id 
   end
 
   after(:each) do
