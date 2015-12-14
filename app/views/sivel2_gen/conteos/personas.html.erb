@@ -1,37 +1,82 @@
 <div class="page-header">
-  <h1><%=t '.title', :default => "Demografía Víctimas" %></h1>
+  <h1><%=t '.title', :default => @titulo_personas %></h1>
 </div>
 
-<div sytle="text-align: right">
-  <%= form_tag(conteos_personas_path, method: "get", remote: true) do %>
-    Caso entre:
-    <%= text_field_tag 'fechaini', @fechaini, maxlength: 10, size: 12, 
-      "data-behaviour" => "datepicker", "data-contarautomatico" => "" 
-    %>
-    -
-    <%= text_field_tag 'fechafin', @fechafin, maxlength: 10, size: 12, 
-      "data-behaviour" => "datepicker", "data-contarautomatico" => "" 
-    %>
-    <br>
-    Según:
-    <%= select_tag "segun", 
-      options_for_select(
-        ["", "ETNIA", "FILIACIÓN", 
-         "MES CASO", "ORGANIZACIÓN", "PROFESIÓN", 
-         "RANGO DE EDAD", "SECTOR SOCIAL", "SEXO", 
-         "VÍNCULO CON EL ESTADO" ]
-      ),
-      "data-contarautomatico" => ""
-    %>
-    <br>
-    Incluir Ubicación del Caso:
-    <%= check_box_tag 'departamento', 1, false, "data-contarautomatico" => "" %>
-    Departamento,
-    <%= check_box_tag 'municipio', 1, false, "data-contarautomatico" => "" %> 
-    Municipio<br>
-    <%= submit_tag("Contar") %>
-  <% end %>
-</div>
+<%= simple_form_for :filtro, 
+  { remote: true, 
+    url: conteos_personas_path,
+    method: "get" } do |f| 
+%>
+  <div class="container">
+    <div class="row filtro-fila">
+      <div class="col-sm-offset-0 col-sm-2 col-md-offset-1 col-md-1">
+        <%= @titulo_personas_fecha %>
+      </div>
+      <div class="col-sm-offset-0 col-sm-4">
+        <%= f.input :fechaini,
+          maxlength: 10, 
+          size: 10,
+          label: false,
+          placeholder: 'Inicial',
+          input_html: {
+          "data-behaviour" => "datepicker"
+          }
+        %>
+      </div>
+      <div class="col-sm-offset-1 col-sm-4">
+        <%= f.input :fechafin,
+          maxlength: 10, 
+          size: 10,
+          label: false,
+          placeholder: 'Final',
+          input_html: {
+          "data-behaviour" => "datepicker"
+          }
+        %>
+      </div>
+    </div>
+    <div class="row filtro-fila">
+      <div class="col-sm-offset-0 col-sm-2 col-md-offset-1 col-md-1">
+        Según:
+      </div>
+      <div class="col-sm-4">
+        <%= f.input :segun,
+          collection: @opsegun,
+          label: false,
+          include_blank: false,
+          input_html: { "data-contarautomatico" => "" }
+        %>
+      </div>
+      <%= render 'sivel2_gen/conteos/personas_mitad_filtro' %>
+    </div>
+    <div class="row filtro-fila">
+      <div class="col-sm-offset-0 col-sm-2 col-md-offset-1 col-md-1">
+        Última expulsión:
+      </div>
+      <div class="col-sm-4">
+        <%= f.input :departamento, 
+          as: :boolean, 
+          label: 'Departamento'
+          #input_html: { :checked => "checked" }
+        %>
+      </div>
+      <div class="col-sm-1">
+      </div>
+      <div class="col-sm-4">
+        <%= f.input :municipio, 
+          as: :boolean, 
+          label: 'Municipio'
+          #input_html: { :checked => "checked" }
+        %>
+      </div>
+    </div>
+    <div class="row filtro-fila">
+      <div class="col-md-offset-5 col-md-2">
+        <%= f.button :submit, 'Filtrar', class: 'btn btn-default' %>
+      </div>
+    </div>
+  </div>
+<% end %>
 
 <div id="resultado">
   <%= render 'sivel2_gen/conteos/resultado_tabla' %>

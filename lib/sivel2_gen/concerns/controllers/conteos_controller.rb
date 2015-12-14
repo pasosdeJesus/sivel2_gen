@@ -65,11 +65,36 @@ module Sivel2Gen
             w += " " + n + opcmp + v
           end
 
-          def param_escapa(p)
-            params[p] ? Sivel2Gen::Caso.connection.quote_string(params[p]) : ''
+          def cadena_escapa(c)
+            Sivel2Gen::Caso.connection.quote_string(c)
           end
 
-           
+          def param_escapa(p)
+            if (p.is_a? String) || (p.is_a? Symbol) then
+              params[p] ? cadena_escapa(params[p]) : ''
+            elsif (p.is_a? Array) && p.length == 1 then
+              params[p[0]] ? cadena_escapa(params[p[0]]) : ''
+            elsif (p.is_a? Array) && p.length > 1 && params[p[0]] then
+              n = params[p[0]]
+              i = 1
+              while i < (p.length - 2) do
+                if n[p[i]] then
+                  n = n[p[i]]
+                else
+                  return ''
+                end
+                i += 1
+              end
+              if n[p[i]] then
+                return cadena_escapa(n[p[i]])
+              else
+                return ''
+              end
+            else
+              return ''
+            end
+          end
+
           @pDepartamento = ''
           @pMunicipio = ''
           @pSegun = ''
@@ -82,9 +107,17 @@ module Sivel2Gen
             'cben2';
           end
 
-          # Llena variables de clase relacionads con filtros
-          # prefijo p
+          # Llena variables de clase: @opsegun, @titulo_personas,
+          # @titulo_personas_fecha y otras nuevas relacionads con filtros
+          # (prefijo p)
           def personas_filtros_especializados
+            @opsegun =  ["", "ETNIA", "FILIACIÓN", 
+                         "MES CASO", "ORGANIZACIÓN", "PROFESIÓN", 
+                         "RANGO DE EDAD", "SECTOR SOCIAL", "SEXO", 
+                         "VÍNCULO CON EL ESTADO" 
+            ]
+            @titulo_personas = 'Demografía de Víctimas'
+            @titulo_personas_fecha = 'Fecha del Caso'
           end
 
           # Restringe con base en @fechaini
@@ -242,9 +275,10 @@ module Sivel2Gen
 
           def personas
             authorize! :contar, Sivel2Gen::Caso
-            @pSegun = param_escapa('segun')
-            @pMunicipio = param_escapa('municipio')
-            @pDepartamento = param_escapa('departamento')
+
+            @pSegun = param_escapa([:filtro, 'segun'])
+            @pMunicipio = param_escapa([:filtro, 'municipio'])
+            @pDepartamento = param_escapa([:filtro, 'departamento'])
             personas_filtros_especializados()
 
             # La estrategia es 
@@ -260,13 +294,17 @@ module Sivel2Gen
             where1 = '';
             @fechaini = '';
             @fechafin = '';
-            if (params[:fechaini] && params[:fechaini] != "") 
-              pfechaini = DateTime.strptime(params[:fechaini], '%Y-%m-%d')
+            if (params[:filtro]['fechaini'] && params[:filtro]['fechaini'] != "") 
+              pfechaini = DateTime.strptime(
+                params[:filtro]['fechaini'], '%Y-%m-%d'
+              )
               @fechaini = pfechaini.strftime('%Y-%m-%d')
               where1 = personas_fecha_inicial(where1)
             end
-            if (params[:fechafin] && params[:fechafin] != "") 
-              pfechafin = DateTime.strptime(params[:fechafin], '%Y-%m-%d')
+            if (params[:filtro]['fechafin'] && params[:filtro]['fechafin'] != "") 
+              pfechafin = DateTime.strptime(
+                params[:filtro]['fechafin'], '%Y-%m-%d'
+              )
               @fechafin = pfechafin.strftime('%Y-%m-%d')
               where1 = personas_fecha_final(where1)
             end
@@ -335,7 +373,7 @@ module Sivel2Gen
             end
 
             respond_to do |format|
-              format.html { render 'sivel2_gen/conteos/personas' }
+              format.html { render 'sivel2_gen/conteos/personas', layout: 'application' }
               format.json { head :no_content }
               format.js   { render 'sivel2_gen/conteos/resultado' }
             end

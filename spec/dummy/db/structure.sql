@@ -302,7 +302,7 @@ CREATE VIEW cben1 AS
     victima.id_vinculoestado
    FROM sivel2_gen_caso caso,
     sivel2_gen_victima victima
-  WHERE (caso.id = victima.id_caso);
+  WHERE (((caso.fecha >= '2014-12-09'::date) AND (caso.fecha <= '2015-01-01'::date)) AND (caso.id = victima.id_caso));
 
 
 --
