@@ -77,11 +77,6 @@ group :development do
   # Requerido por rake
   gem "thor"
   
-  # Pruebas con rspec
-  gem 'spring-commands-rspec'
-  gem 'rspec-rails'
-
-
   # Depurar
   #gem 'byebug'
   
@@ -95,7 +90,12 @@ group :test do
   # Acelera ejecutando en fondo. https://github.com/jonleighton/spring
   gem "spring"
 
+  # Pruebas con rspec
+  gem 'spring-commands-rspec'
+  gem 'rspec-rails'
+
   # Un proceso para cada prueba -- acelera
+
   gem 'spork', '~> 1.0rc'
 
   # Envia resultados de pruebas desde travis a codeclimate
