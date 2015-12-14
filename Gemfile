@@ -73,19 +73,33 @@ group :doc do
 end
 
 # Los siguientes son para desarrollo o para pruebas con generadores
-group :development, :test do
+group :development do
   # Requerido por rake
   gem "thor"
-
-  # Acelera ejecutando en fondo. https://github.com/jonleighton/spring
-  gem "spring"
   
   # Pruebas con rspec
   gem 'spring-commands-rspec'
   gem 'rspec-rails'
 
+
+  # Depurar
+  #gem 'byebug'
+  
+  # Consola irb en páginas con excepciones o usando <%= console %> en vistasA
+  gem 'web-console'
+
+end
+
+# Los siguientes son para pruebas y no tiene generadores requeridos en desarrollo
+group :test do
+  # Acelera ejecutando en fondo. https://github.com/jonleighton/spring
+  gem "spring"
+
   # Un proceso para cada prueba -- acelera
   gem 'spork', '~> 1.0rc'
+
+  # Envia resultados de pruebas desde travis a codeclimate
+  gem "codeclimate-test-reporter", require: nil
 
   # Maneja datos de prueba
   gem "factory_girl_rails", "~> 4.0", group: [:development, :test]
@@ -94,21 +108,10 @@ group :development, :test do
   # Lanza programas para examinar resultados
   gem "launchy"
 
-  # Depurar
-  #gem 'byebug'
-  
-  # Consola irb en páginas con excepciones o usando <%= console %> en vistasA
-  gem 'web-console'
 
   # Para examinar errores, usar "rescue rspec" en lugar de "rspec"
   gem 'pry-rescue'
   gem 'pry-stack_explorer'
 
-end
-
-# Los siguientes son para pruebas y no tiene generadores requeridos en desarrollo
-group :test do
-  # Envia resultados de pruebas desde travis a codeclimate
-  gem "codeclimate-test-reporter", require: nil
 end
 
