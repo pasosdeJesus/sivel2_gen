@@ -294,14 +294,16 @@ module Sivel2Gen
             where1 = '';
             @fechaini = '';
             @fechafin = '';
-            if (params[:filtro]['fechaini'] && params[:filtro]['fechaini'] != "") 
+            if (params[:filtro] && params[:filtro]['fechaini'] && 
+                params[:filtro]['fechaini'] != "") 
               pfechaini = DateTime.strptime(
                 params[:filtro]['fechaini'], '%Y-%m-%d'
               )
               @fechaini = pfechaini.strftime('%Y-%m-%d')
               where1 = personas_fecha_inicial(where1)
             end
-            if (params[:filtro]['fechafin'] && params[:filtro]['fechafin'] != "") 
+            if (params[:filtro] && params[:filtro]['fechafin'] && 
+                params[:filtro]['fechafin'] != "") 
               pfechafin = DateTime.strptime(
                 params[:filtro]['fechafin'], '%Y-%m-%d'
               )

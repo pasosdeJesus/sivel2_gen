@@ -47,7 +47,9 @@
           input_html: { "data-contarautomatico" => "" }
         %>
       </div>
-      <%= render 'sivel2_gen/conteos/personas_mitad_filtro' %>
+      <%= render partial: 'sivel2_gen/conteos/personas_mitad_filtro', 
+        locals: {f: f} 
+      %>
     </div>
     <div class="row filtro-fila">
       <div class="col-sm-offset-0 col-sm-2 col-md-offset-1 col-md-1">
