@@ -60,7 +60,8 @@
       <div class="col-sm-4">
         <%= f.input :departamento, 
           as: :boolean, 
-          label: 'Departamento'
+          boolean_style: :nested,
+          inline_label: 'Departamento'
           #input_html: { :checked => "checked" }
         %>
       </div>
@@ -69,7 +70,8 @@
       <div class="col-sm-4">
         <%= f.input :municipio, 
           as: :boolean, 
-          label: 'Municipio'
+          boolean_style: :nested,
+          inline_label: 'Municipio'
           #input_html: { :checked => "checked" }
         %>
       </div>
