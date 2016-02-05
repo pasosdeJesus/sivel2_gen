@@ -27,7 +27,7 @@ gem "uglifier", '>= 1.3.0'
 gem "coffee-rails"
 
 # jquery como librería JavaScript
-gem "jquery-rails", '~> 4.0.0'
+gem "jquery-rails"
 gem "jquery-ui-rails"
 gem "jquery-ui-bootstrap-rails", git: "https://github.com/kristianmandrup/jquery-ui-bootstrap-rails"
 
