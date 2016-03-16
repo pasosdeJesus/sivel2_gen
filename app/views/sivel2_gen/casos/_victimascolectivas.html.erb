@@ -1,0 +1,15 @@
+<%= f.simple_fields_for :victimacolectiva do |vc| %>
+  <%= render 'victimacolectiva_campos', :f => vc %>
+<% end %>
+<div class="links">
+  <%= link_to_add_association 'Añadir Víctima Colectiva', f, 
+    :victimacolectiva, 
+    partial: 'victimacolectiva_campos',
+    class: 'btn-primary',
+    "data-ajax": File.join(
+      Rails.configuration.relative_url_root,
+      "victimascolectivas/nuevo"
+    ), 
+    "data-ajaxdata" => "caso_id" 
+  %>
+</div>

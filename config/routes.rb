@@ -14,10 +14,12 @@ Sivel2Gen::Engine.routes.draw do
   get "/hogar" => 'hogar#index'
   get "/personas" => 'personas#index'
   get "/personas/remplazar" => 'personas#remplazar'
+  get "/grupoper/remplazar" => 'grupoper#remplazar'
   get '/presponsables/nuevo' => 'presponsables#nuevo'
   get "/tablasbasicas" => 'hogar#tablasbasicas'
   get '/ubicaciones/nuevo' => 'ubicaciones#nuevo'
   get '/victimas/nuevo' => 'victimas#nuevo'
+  get '/victimascolectivas/nuevo' => 'victimascolectivas#nuevo'
 
   get '/casos/filtro' => 'casos#index', as: :casos_filtro
   post '/casos/filtro' => 'casos#index', as: :envia_casos_filtro

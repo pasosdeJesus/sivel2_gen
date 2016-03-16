@@ -154,4 +154,7 @@ es:
       "sivel2_gen/vinculoestado":
         Vinculoestado: Vínculo con el Estado
         Vinculosestado: Vínculos con el Estado
+      "sivel2_gen/victimacolectiva":
+        personasaprox: Número aproximado de personas
+        presponsable: Organización armada
 

@@ -1,0 +1,35 @@
+<div class='campos_grupoper'>
+  <%= f.input :id, as: :hidden %>
+  <% 
+    ph = 'N'
+    ac = {'data-autocompleta' => 'no' }
+    #debugger
+     if (!f.object.nombre || f.object.nombre == 'N' || f.object.nombre == '')
+       ph = 'Buscar'
+       ac = { }
+     end
+  %>
+  <%= f.input :nombre, placeholder: ph,
+    value_method: lambda {|t| '' if t.nombre == 'N'},
+    :input_html => ac
+  %>
+  <%= f.input :anotaciones %>
+  <div class="input string">
+    <label class="string control-label">Casos en los que aparece: </label>
+    <% 
+      r = ""
+      sep = ""
+      v = Sivel2Gen::Victimacolectiva.where(id_grupoper: f.object.id).order(:id_grupoper)
+      v.each do |vic|
+        if @caso.id != vic.caso.id
+      %>
+        <%= 
+          link_to vic.caso.id, sivel2_gen.caso_path(vic.caso), target:"_blank" 
+        %> 
+      <% 
+        end
+      end 
+    %>
+  </div>
+</div>
+

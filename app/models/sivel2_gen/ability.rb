@@ -48,6 +48,7 @@ module Sivel2Gen
     # Tablas no básicas pero que tienen índice
     NOBASICAS_INDSEQID =  [
       ['Sivel2Gen', 'caso'], 
+      ['Sivel2Gen', 'grupoper'], 
     ]
 
 		# Tablas no básicas pero que tienen índice con secuencia id_seq
@@ -95,6 +96,7 @@ module Sivel2Gen
       can :nuevo, Sip::Ubicacion
       can :nuevo, Sivel2Gen::Presponsable
       can :nuevo, Sivel2Gen::Victima
+      can :nuevo, Sivel2Gen::Victimacolectiva
       if usuario && usuario.rol then
         case usuario.rol 
         when Ability::ROLANALI

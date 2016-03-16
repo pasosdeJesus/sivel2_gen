@@ -78,7 +78,7 @@ group :development do
   gem "thor"
   
   # Depurar
-  #gem 'byebug'
+  gem 'byebug'
   
   # Consola irb en páginas con excepciones o usando <%= console %> en vistasA
   gem 'web-console'

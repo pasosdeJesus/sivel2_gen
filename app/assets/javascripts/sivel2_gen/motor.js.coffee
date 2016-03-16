@@ -127,6 +127,57 @@
     })
   return
 
+# Elije una persona en autocompletación
+@autocompleta_grupoper = (label, id, id_victimac, divcp, root) ->
+  sip_arregla_puntomontaje(root)
+  cs = id.split(";")
+  id_grupoper = cs[0]
+  pl = []
+  ini = 0
+  for i in [0..cs.length] by 1
+     t = parseInt(cs[i])
+     pl[i] = label.substring(ini, ini + t)
+     ini = ini + t + 1
+  # pl[1] cnom
+  d = "id_victimac=" + id_victimac
+  d += "&id_grupoper=" + id_grupoper
+  a = root.puntomontaje + 'grupoper/remplazar'
+  $.ajax(url: a, data: d, dataType: "html").fail( (jqXHR, texto) ->
+    alert("Error con ajax " + texto)
+  ).done( (e, r) ->
+    divcp.html(e)
+    return
+  )
+  return
+
+# Busca un grupo de personas por nombre
+# s es objeto con foco donde se busca 
+@busca_grupoper_nombre = (s, root) ->
+  sip_arregla_puntomontaje(root)
+  cnom = s.attr('id')
+  v = $("#" + cnom).data('autocompleta')
+  if (v != 1 && v != "no") 
+    $("#" + cnom).data('autocompleta', 1)
+    divcp = s.closest('.campos_grupoper')
+    if (typeof divcp == 'undefined')
+      alert('No se ubico .campos_grupoper')
+      return
+    idvictimac = divcp.parent().find('.caso_victimacolectiva_id').find('input').val()
+    if (typeof idvictimac == 'undefined')
+      alert('No se ubico .caso_victimacolectiva_id')
+      return
+    $("#" + cnom).autocomplete({
+      source: root.puntomontaje + "gruposper.json",
+      minLength: 2,
+      select: ( event, ui ) -> 
+        if (ui.item) 
+          autocompleta_grupoper(ui.item.value, ui.item.id, idvictima, divcp, root)
+          event.stopPropagation()
+          event.preventDefault()
+    })
+  return
+
+
 # Confirma antes de eliminar P. Responsable
 @confirma_elim_dep_presponsable = (root, papa, nomelempe) ->
   # Ingresa 2 veces, evitando duplicar
@@ -225,6 +276,14 @@ enviaFormularioContar= (root) ->
   (e) ->
     busca_persona_nombre($(this), root)
   )
+
+  # En victimas colectivas permite autocompletar nombre
+  $(document).on('focusin', 
+  'input[id^=caso_victimacolectiva_attributes][id$=grupoper_attributes_nombre]', 
+  (e) ->
+    busca_grupoper_nombre($(this), root)
+  )
+
 
   # Al cambiar país se recalcula lista de departamentos
   $(document).on('change', 'select[id^=caso_][id$=id_pais]', (e) ->

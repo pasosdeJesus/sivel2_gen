@@ -36,7 +36,7 @@ Rails.application.configure do
   # Raises helpful error messages.
   config.assets.raise_runtime_errors = true
 
-  config.web_console.whitelisted_ips = '192.168.0.0/16'
+  config.web_console.whitelisted_ips = ['192.168.0.0/16', '186.29.238.215']
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true

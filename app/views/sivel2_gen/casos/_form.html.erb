@@ -44,6 +44,9 @@
           <li role="presentation"><a href="#victima" class="fichacambia" 
             aria-controls="victima" role="tab" 
             data-toggle="tab">Víctimas</a></li>
+          <li role="presentation"><a href="#victimacolectiva" class="fichacambia" 
+            aria-controls="victimacolectiva" role="tab" 
+            data-toggle="tab">Víctimas Colectivas</a></li>
           <li role="presentation"><a href="#actos" class="fichacambia" 
             aria-controls="actos" role="tab" data-toggle="tab">Actos</a></li>
           <li role="presentation"><a href="#descripcion" class="fichacambia" 
@@ -78,6 +81,10 @@
 
           <div role="tabpanel" class="tab-pane" id="victima">
             <%= render 'victimas', :f => f %>
+          </div>
+
+          <div role="tabpanel" class="tab-pane" id="victimacolectiva">
+            <%= render 'victimascolectivas', :f => f %>
           </div>
 
           <div role="tabpanel" class="tab-pane" id="actos">

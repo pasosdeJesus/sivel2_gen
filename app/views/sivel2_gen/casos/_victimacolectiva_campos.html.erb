@@ -1,0 +1,12 @@
+<div class='control-group nested-fields'>
+  <div class="controls">
+    <% if !f.object.grupoper
+         f.object.grupoper = Sivel2Gen::Grupoper.new
+    end %>
+       
+    <%= render 'colectivo_campos', :f => f %>
+
+    <%= link_to_remove_association "Eliminar Víctima Colectiva", f, 
+      {:class => 'btn-danger', :'data-existing' => 'true'} %> 
+  </div>
+</div>

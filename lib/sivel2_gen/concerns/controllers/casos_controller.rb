@@ -283,8 +283,21 @@ module Sivel2Gen
                   :id, :nombres, :apellidos, :anionac, :mesnac, :dianac, 
                   :id_pais, :id_departamento, :id_municipio, :id_clase, 
                   :nacionalde, :numerodocumento, :sexo, :tdocumento_id
-            ],
-            ], 
+                ],
+              ], 
+              :victimacolectiva_attributes => [
+                :id, :personasaprox, :organizacionarmada,
+                :_destroy, 
+                :grupoper_attributes => [
+                  :id, :nombre, :anotaciones
+                ],
+                :rangoedad_ids => [],
+                :filiacion_ids => [],
+                :organizacion_ids => [],
+                :sectorsocial_ids => [],
+                :profesion_ids => [],
+                :vinculoestado_ids => []
+              ],
             :ubicacion_attributes => [
               :id, :id_pais, :id_departamento, :id_municipio, :id_clase, 
               :lugar, :sitio, :latitud, :longitud, :id_tsitio, 

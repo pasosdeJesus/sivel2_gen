@@ -31,6 +31,7 @@ ActiveSupport::Inflector.inflections do |inflect|
 	inflect.irregular 'error', 'errores'
 	inflect.irregular 'etnia', 'etnias'
 	inflect.irregular 'filiacion', 'filiaciones'
+	inflect.irregular 'fuenteprensa', 'fuentesprensa'
 	inflect.irregular 'organizacion', 'organizaciones'
 	inflect.irregular 'presponsable', 'presponsables'
 	inflect.irregular 'profesion', 'profesiones'
@@ -42,5 +43,5 @@ ActiveSupport::Inflector.inflections do |inflect|
 	inflect.irregular 'sectorsocial', 'sectoressociales'
 	inflect.irregular 'ubicacion', 'ubicaciones'
 	inflect.irregular 'vinculoestado', 'vinculosestado'
-	inflect.irregular 'fuenteprensa', 'fuentesprensa'
+	inflect.irregular 'victimacolectiva', 'victimascolectivas'
 end
