@@ -3,7 +3,7 @@ require 'date'
 
 module Sivel2Gen
   class GruposperController 
-    load_and_authorize_resource class: Sivel2Gen::Grupoper
+    #load_and_authorize_resource class: Sivel2Gen::Grupoper
     
     # Busca y lista grupo(s) de persona
     def remplazar
