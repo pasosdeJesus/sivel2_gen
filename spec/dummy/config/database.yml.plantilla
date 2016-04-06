@@ -4,7 +4,7 @@ default: &default
   pool: 5
   username: sivel2
   password: <%= ENV['CLAVE_SIVEL2'] %>
-  host: /var/www/tmp
+  host: /var/www/var/run/postgresql
 
 development:
   <<: *default
