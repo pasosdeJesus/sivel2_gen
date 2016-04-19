@@ -18,4 +18,9 @@ Pero lo primero requiere intervención clase a clase que lo requiera,
 ver por ejemplo en motor sivel2_sjr 
 app/controllers/sivel2_sjr/ayudasjr_controller.rb
 
+IDEAS
 
+* Validar categorias por ejemplo así:
+- Supracategoria A implica Presunto resposanble es del polo estatal
+- Mutuamente exclusivas A10 con , A20, A30, B40,...
+- Mutuamente exclusivas A20 con A10..D701

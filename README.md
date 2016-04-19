@@ -20,13 +20,19 @@ Roles: administrador y usuario
 ## Uso
 
 ### Requerimientos
-* Ruby version >= 2.1
-* PostgreSQL >= 9.3 con extensión unaccent disponible
-* Recomendado sobre adJ 5.5p2 (que incluye todos los componentes mencionados).  
-  Las siguientes instrucciones suponen que opera en este ambiente.
 
+* Ruby version >= 2.3
+* Ruby on Rails 4.2.x
+* PostgreSQL >= 9.4 con extensión unaccent disponible
+* Recomendado sobre adJ 5.8 (que incluye todos los componentes mencionados) usando
+  bundler con doas, ver [http://dhobsd.pasosdejesus.org/bundler-doas.html].  
+
+Estas instrucciones suponen que opera en este ambiente, puedes ver más sobre
+la instalación de Ruby on Rails en adJ en 
+[http://dhobsd.pasosdejesus.org/Ruby_on_Rails_en_OpenBSD.html]
 
 ## Pruebas
+
 Se han implementado algunas pruebas con RSpec a modelos y pruebas de regresión.
 
 * Instale gemas requeridas (como Rails 4.2) con:
