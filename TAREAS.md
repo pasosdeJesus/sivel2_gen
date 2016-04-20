@@ -24,3 +24,11 @@ IDEAS
 - Supracategoria A implica Presunto resposanble es del polo estatal
 - Mutuamente exclusivas A10 con , A20, A30, B40,...
 - Mutuamente exclusivas A20 con A10..D701
+
+* Poner cotejación en espanol en campos nombre, observaciones de tablas
+  básicas y en otras con textos en español, ver en 
+  db/migrate/20151020203421_agrega_cotejacion.rb
+
+* Eliminar tabla fotra pues ahora se incluyó todo en caso_fotra
+* Eliminar campos relacionados con fuentes de anexo_caso pues se pasaron a
+  caso_fuenteprensa y caso_fotra
