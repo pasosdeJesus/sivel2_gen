@@ -2,8 +2,8 @@ default: &default
   adapter: postgresql
   encoding: unicode
   pool: 5
-  username: sivel2
-  password: <%= ENV['CLAVE_SIVEL2'] %>
+  username: sipdes
+  password: aquilaclave
   host: /var/www/var/run/postgresql
 
 development:
