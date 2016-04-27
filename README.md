@@ -6,9 +6,9 @@
 * [Diseño](#diseño)
 * [Uso](#uso)
 * [Pruebas](#pruebas)
-* [Desarrollo](#pruebas)
+* [Desarrollo](#desarrollo)
 
-Este es un motor de SIVeL 2 que podrá incluir en su desarrollo personalizado.
+Este es un motor de SIVeL 2 que podrás incluir en tu desarrollo personalizado.
 
 ## Diseño
 
@@ -21,7 +21,7 @@ y editar casos.
 
 ## Uso
 
-### Requerimientos
+### Requerimientos tecnológicos
 
 Ver <https://github.com/pasosdeJesus/sip/wiki/Requerimientos>
 
@@ -33,7 +33,7 @@ Este motor incluye una aplicación mínima de prueba cuya configuración
 es como la descrita en:
 <https://github.com/pasosdeJesus/sip/wiki/Aplicaci%C3%B3n-de-prueba>
 
-Si ya habías lanzado la aplicación de prueba del motor sip, podrás utilizar
+Si ya habías lanzado la aplicación de prueba del motor **sip**, podrás utilizar
 el mismo usuario y basta que configures la clave 
 en ```spec/dummy/config/database.yml```
 
@@ -44,9 +44,11 @@ Si pudiste ver la aplicación de prueba en un navegador, las siguientes
 instrucciones aplican:
 https://github.com/pasosdeJesus/sip/wiki/Pruebas-de-Regresi%C3%B3n
 
-## Convenciones de Desarrollo
+## Desarrollo
 
-Consultas en
+### Convenciones de Desarrollo
+
+Consultalas en
 https://github.com/pasosdeJesus/sip/wiki/Convenciones
 
 ### Generación de datos de tablas básicas
