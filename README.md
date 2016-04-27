@@ -34,8 +34,8 @@ es como la descrita en:
 <https://github.com/pasosdeJesus/sip/wiki/Aplicaci%C3%B3n-de-prueba>
 
 Si ya habías lanzado la aplicación de prueba del motor sip, podrás utilizar
-el mismo usuario y basta que configures la clave en 
-```spec/dummy/config/database.yml```
+el mismo usuario y basta que configures la clave 
+en ```spec/dummy/config/database.yml```
 
 ### Pruebas de regresión
 
