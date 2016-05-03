@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/pasosdeJesus/sip.git
-  revision: f9943d10a2e3967c48504320a002e3ef5bf98e6d
+  revision: d12068285d2fca2c6735ed192136c0dfd9a76727
   specs:
     sip (2.0.a7)
       bootstrap-datepicker-rails
@@ -97,9 +97,9 @@ GEM
     coffee-script-source (1.10.0)
     colorize (0.7.7)
     commonjs (0.2.7)
-    concurrent-ruby (1.0.1)
+    concurrent-ruby (1.0.2)
     debug_inspector (0.0.2)
-    devise (4.0.1)
+    devise (4.1.0)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
       railties (>= 4.1.0, < 5.1)
@@ -203,7 +203,7 @@ GEM
     rake (11.1.2)
     rdoc (4.2.2)
       json (~> 1.4)
-    responders (2.1.2)
+    responders (2.2.0)
       railties (>= 4.2.0, < 5.1)
     rspec-core (3.4.4)
       rspec-support (~> 3.4.0)
