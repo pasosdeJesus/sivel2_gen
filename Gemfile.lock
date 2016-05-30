@@ -78,7 +78,6 @@ GEM
     bootstrap-datepicker-rails (1.6.1.1)
       railties (>= 3.0)
     builder (3.2.2)
-    byebug (9.0.5)
     camertron-eprun (1.1.0)
     cancancan (1.14.0)
     cldr-plurals-runtime-rb (1.0.1)
@@ -120,7 +119,7 @@ GEM
       activesupport (>= 4.1.0)
     i18n (0.7.0)
     interception (0.5)
-    jbuilder (2.4.1)
+    jbuilder (2.5.0)
       activesupport (>= 3.0.0, < 5.1)
       multi_json (~> 1.2)
     jquery-rails (4.1.1)
@@ -282,7 +281,6 @@ PLATFORMS
 DEPENDENCIES
   bcrypt
   bootstrap-datepicker-rails
-  byebug
   cancancan
   cocoon!
   codeclimate-test-reporter
