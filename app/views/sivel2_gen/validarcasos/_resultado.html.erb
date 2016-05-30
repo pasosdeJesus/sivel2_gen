@@ -1,0 +1,33 @@
+<% @validaciones.try(:each) do |tabla| %>
+  <h3><%= CGI.escapeHTML(tabla[:titulo]) %>: <%= tabla[:cuerpo].count %></h3>
+  <% if tabla[:cuerpo].count > 0 %>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <% tabla[:encabezado].try(:each) do |enc| %>
+            <th><%= CGI.escapeHTML(enc) %></th>
+          <% end %>
+        </tr>
+      </thead>
+      <tbody>
+        <% tabla[:cuerpo].try(:each) do |fila| %>
+          <tr>
+            <% fila.try(:each) do |campo| %>
+              <td>
+                <% if campo[0] == 'id' %>
+                  <%= link_to(campo[1], sivel2_gen.caso_path(campo[1])) if 
+                  campo[1] %>
+              <% else %>
+                <%= CGI.escapeHTML(campo[1]) if campo[1] %>
+              <% end %>
+              </td>
+            <% end %>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
+<% end %>
+
+
+
