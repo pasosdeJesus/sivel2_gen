@@ -12,14 +12,16 @@
       <tbody>
         <% tabla[:cuerpo].try(:each) do |fila| %>
           <tr>
-            <% fila.try(:each) do |campo| %>
+            <% i=0; fila.try(:each) do |campo| %>
               <td>
-                <% if campo[0] == 'id' %>
-                  <%= link_to(campo[1], sivel2_gen.caso_path(campo[1])) if 
-                  campo[1] %>
+                <% if i == 0 %>
+                  <%= link_to(
+                    campo[1].to_i, 
+                    sivel2_gen.edit_caso_path(campo[1].to_i)) if campo[1] %>
               <% else %>
                 <%= CGI.escapeHTML(campo[1]) if campo[1] %>
               <% end %>
+              <% i += 1 %>
               </td>
             <% end %>
           </tr>
