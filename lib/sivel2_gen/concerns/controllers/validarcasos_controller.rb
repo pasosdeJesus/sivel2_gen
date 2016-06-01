@@ -19,9 +19,9 @@ module Sivel2Gen
             }
           end
 
-          def ini_filtro(cfecha = 'fecha')
-            casos = Sivel2Gen::Caso.all.order(cfecha)
-            if (params[:validar] && params[:validar][:fechaini] && params[:validar][:fechaini] != '')
+          def filtro_fechas(casos, cfecha = 'fecha')
+            if (params[:validar] && params[:validar][:fechaini] && 
+                params[:validar][:fechaini] != '')
               pfi = params[:buscar][:fechaini]
               if Rails.application.config.x.formato_fecha == 'dd-mm-yyyy'
                 pfid = Date.strptime(pfi, '%d-%m-%Y')
@@ -30,7 +30,8 @@ module Sivel2Gen
               end
               casos = casos.where("#{cfecha} >= ?", pfid.strftime('%Y-%m-%d'))
             end
-            if(params[:validar] && params[:validar][:fechafin] && params[:validar][:fechafin] != '')
+            if(params[:validar] && params[:validar][:fechafin] && 
+               params[:validar][:fechafin] != '')
               pff = params[:validar][:fechafin]
               if Rails.application.config.x.formato_fecha == 'dd-mm-yyyy'
                 pffd = Date.strptime(pff, '%d-%m-%Y')
@@ -39,6 +40,12 @@ module Sivel2Gen
               end
               casos = casos.where("#{cfecha} <= ?", pffd.strftime('%Y-%m-%d'))
             end
+           return casos 
+          end
+
+          def ini_filtro
+            casos = Sivel2Gen::Caso.all.order(:fecha)
+            casos = filtro_fechas(casos)
             return casos
           end
 
@@ -49,6 +56,7 @@ module Sivel2Gen
           end
 
           def validar
+            @rango_fechas = 'Fecha del hecho'
             @titulo_validarcasos = 'Reporte de Validaciones'
             @validaciones = []
             valida_sinmemo
