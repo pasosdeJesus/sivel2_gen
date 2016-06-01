@@ -26,7 +26,7 @@
     <div class="container">
       <div class="row filtro-fila">
         <div class="col-sm-offset-0 col-sm-2 col-md-offset-1 col-md-1">
-          Rango de Fechas
+          <%= @rango_fechas %>
         </div>
         <div class="col-sm-offset-0 col-sm-4">
           <%= f.input :fechaini,
@@ -36,6 +36,8 @@
             placeholder: 'Inicial',
             input_html: {
               "data-behaviour" => "datepicker",
+              value: params[:validarcaso] ? 
+                params[:validarcaso][:fechaini] : ''
             }
           %>
         </div>
@@ -47,10 +49,14 @@
             placeholder: 'Final',
             input_html: {
               "data-behaviour" => "datepicker",
+              value: params[:validarcaso] ? 
+                params[:validarcaso][:fechafin] : ''
             }
           %>
         </div>
       </div> <!-- filtro-fila -->
+
+      <%= render 'restofiltro', {f: f} %>
 
       <div class="row filtro-fila">
         <div class="col-md-offset-5 col-md-2">

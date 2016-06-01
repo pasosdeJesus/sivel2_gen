@@ -26,6 +26,7 @@ Sivel2Gen::Engine.routes.draw do
 
   get "/conteos/personas" => 'conteos#personas', as: :conteos_personas
   get "/validarcasos" => 'validarcasos#validar', as: :validarcasos
+  post "/validarcasos" => 'validarcasos#validar', as: :envia_validarcasos
 
   resources :casos, path_names: { new: 'nuevo', edit: 'edita' }
 
