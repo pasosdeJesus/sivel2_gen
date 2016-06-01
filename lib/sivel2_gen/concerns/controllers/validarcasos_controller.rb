@@ -55,8 +55,12 @@ module Sivel2Gen
                                 "TRIM(#{cmemo})='' OR #{cmemo} IS NULL")
           end
 
-          def validar_interno
+          def validar_sivel2_gen
             valida_sinmemo
+          end
+
+          def validar_interno
+            validar_sivel2_gen
           end
 
           def validar
