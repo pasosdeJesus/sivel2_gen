@@ -19,10 +19,10 @@
               <li>* <%= msg %></li>
             <% end %>
           </ul>
-        </div>
+        </div> <!-- error-explanation -->
       <% end %>
       <%= f.error_notification %>
-    </div>
+    </div> <!-- errores -->
     <div class="container">
       <div class="row filtro-fila">
         <div class="col-sm-offset-0 col-sm-2 col-md-offset-1 col-md-1">
@@ -54,7 +54,7 @@
             }
           %>
         </div>
-      </div> <!-- filtro-fila -->
+      </div> <!-- row -->
 
       <%= render 'restofiltro', {f: f} %>
 
@@ -62,7 +62,7 @@
         <div class="col-md-offset-5 col-md-2">
           <%= f.button :submit, 'Filtrar', class: 'btn btn-default' %>
         </div>
-      </div> <!-- class: filtro-fila -->
+      </div> <!-- class: row -->
 
     </div>  <!-- class:container -->
   </div> <!-- class:form-inputs -->

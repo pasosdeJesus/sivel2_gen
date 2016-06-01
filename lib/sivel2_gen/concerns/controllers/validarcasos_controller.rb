@@ -55,11 +55,25 @@ module Sivel2Gen
                                 "TRIM(#{cmemo})='' OR #{cmemo} IS NULL")
           end
 
+          def validar_interno
+            valida_sinmemo
+          end
+
           def validar
             @rango_fechas = 'Fecha del hecho'
             @titulo_validarcasos = 'Reporte de Validaciones'
             @validaciones = []
-            valida_sinmemo
+
+            validar_interno
+
+            respond_to do |format|
+              format.html { 
+                render 'sivel2_gen/validarcasos/validar', 
+                layout: 'application' 
+              }
+              format.json { head :no_content }
+              format.js   { head :no_content }
+            end
           end # def validar
           
           def validarcasos_params
