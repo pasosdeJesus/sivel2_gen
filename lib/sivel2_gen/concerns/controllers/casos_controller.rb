@@ -82,26 +82,27 @@ module Sivel2Gen
                 @conscaso = @conscaso.where(
                   "q @@ plainto_tsquery('spanish', unaccent(?))", q
                 )
-              end
-              # Avanzado
-              @conscaso = filtro_avanzado @conscaso, params[:filtro]
-              #puts @conscaso.to_sql; byebug
-              # Columnas por incluir
-              nincluir = []
-              for i in @incluir do
-                s = 'inc_' + i
-                if params[:filtro][s.to_sym] && params[:filtro][s.to_sym] == '1'
-                  nincluir.push(i)
+              else
+                # Avanzado
+                @conscaso = filtro_avanzado @conscaso, params[:filtro]
+                #puts @conscaso.to_sql; byebug
+                # Columnas por incluir
+                nincluir = []
+                for i in @incluir do
+                  s = 'inc_' + i
+                  if params[:filtro][s.to_sym] && params[:filtro][s.to_sym] == '1'
+                    nincluir.push(i)
+                  end
                 end
+                @incluir = nincluir
+                # Cambiar Ordenamiento
+                if params[:filtro][:orden]
+                  @campoord = params[:filtro][:orden]
+                end
+                # Otros (puede cambiar consulta, @incluir o @campoord)
+                @conscaso = filtro_particular @conscaso, params[:filtro]
+                #puts @conscaso.to_sql; byebug
               end
-              @incluir = nincluir
-              # Cambiar Ordenamiento
-              if params[:filtro][:orden]
-                @campoord = params[:filtro][:orden]
-              end
-              # Otros (puede cambiar consulta, @incluir o @campoord)
-              @conscaso = filtro_particular @conscaso, params[:filtro]
-              #puts @conscaso.to_sql; byebug
             end
 
             # Ordenamiento
