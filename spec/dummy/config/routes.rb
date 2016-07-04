@@ -12,6 +12,7 @@ Rails.application.routes.draw do
       ruta = File.join(Rails.configuration.relative_url_root, 
                        'usuarios/sign_in')
       post ruta, to: 'devise/sessions#create'
+      get  ruta, to: 'devise/sessions#new'
     end
   end
 
