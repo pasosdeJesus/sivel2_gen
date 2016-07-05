@@ -2,23 +2,42 @@
   <div class="controls">
     <%= f.association :presponsable,
       collection: Sivel2Gen::Presponsable.habilitados,
-      label: Sivel2Gen::Presponsable.human_attribute_name("Presponsable"),
       label_method: :nombre,
       value_method: :id,
-      wrapper_html: { style: "padding-bottom: 18px;" },
-      input_html: { 'data-actualiza' => 'presponsable' }
+      input_html: { 
+        'data-actualiza' => 'presponsable',
+        "data-toggle" => 'tooltip',
+        "title" => 'Registre por lo menos un presunto responsable. Para agregar pulse el botón "Añadir" de la parte inferior'
+      }
     %>
-    <%= f.input :bloque %>
-    <%= f.input :frente %>
+    <%= f.input :bloque,
+      input_html: {
+        "data-toggle" => 'tooltip',
+        "title" => 'En el caso de grupos paramilitares'
+       }
+    %>
+    <%= f.input :frente,
+      input_html: {
+        "data-toggle" => 'tooltip',
+        "title" => 'En el caso de grupos guerilleros'
+      } 
+    %>
     <%= f.input :brigada,
-      label: "Brigada / Batallón / División",
-      wrapper_html: { style: "padding-bottom: 18px;" }
+      input_html: {
+        "data-toggle" => 'tooltip',
+        "title" => 'En el caso de ejército'
+      } 
     %>
-    <%= f.input :otro %>
+    <%= f.input :otro,
+      input_html: {
+        "data-toggle" => 'tooltip',
+        "title" => 'Por ejemplo para incluir responsables individuales'
+      }
+    %>
     <%= f.input :id, as: :hidden %>
     <%= link_to_remove_association "Eliminar " +
-      Sivel2Gen::Presponsable.human_attribute_name("Presponsable"), f, 
-      {:class => 'btn-danger', :'data-existing' => 'true'} 
+      Sivel2Gen::Presponsable.human_attribute_name(:presponsable), f, 
+      {class: 'btn-danger', 'data-existing': 'true'} 
     %> 
   </div>
 </div>

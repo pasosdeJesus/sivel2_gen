@@ -30,7 +30,6 @@
     <%= f.input :observaciones %>
     <%= f.association :etiqueta,
       collection: Sip::Etiqueta.habilitados,
-      label: "Etiqueta",
       label_method: :nombre,
       value_method: :id 
     %>

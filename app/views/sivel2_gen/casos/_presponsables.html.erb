@@ -1,14 +1,18 @@
-            <%= f.simple_fields_for :caso_presponsable do |caso_presponsable| %>
-              <%= render 'caso_presponsable_fields', 
-                :f => caso_presponsable 
-              %>
-            <% end %>
-            <div class="links">
-              <%= link_to_add_association 'Añadir Presunto Responsable', f, 
-                :caso_presponsable, {
-                :class => 'btn-primary', 
-                "data-ajax" => File.join(Rails.configuration.relative_url_root, 
-                                         "presponsables/nuevo"),
-                "data-ajaxdata" => "caso_id"
-              } %>
-            </div>
+<%= f.simple_fields_for :caso_presponsable do |caso_presponsable| %>
+  <%= render 'sivel2_gen/casos/caso_presponsable_fields', 
+    f:  caso_presponsable 
+  %>
+<% end %>
+<div class="links">
+  <%= link_to_add_association 'Añadir ' + 
+    Sivel2Gen::Presponsable.human_attribute_name(:presponsable), f, 
+    :caso_presponsable, 
+    {
+      partial: 'sivel2_gen/casos/caso_presponsable_fields',
+      class: 'btn-primary', 
+      "data-ajax" => File.join(Rails.configuration.relative_url_root, 
+                             "presponsables/nuevo"),
+      "data-ajaxdata" => "caso_id"
+    } 
+  %>
+</div>

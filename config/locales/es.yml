@@ -51,6 +51,8 @@ es:
         tipificacion: Tipificacion
         victimas: Víctimas
         casoid: Código
+      "sivel2_gen/caso_etiqueta":
+        etiqueta: Etiqueta 
       "sivel2_gen/caso_fotra":
         anotacion: Anotación
         ubicacionfisica: Ubicación Física
@@ -61,6 +63,9 @@ es:
         clasificacion: Clasificación
         ubicacionfisica: Ubicación Física
         anexo_caso: Anexo
+      "sivel2_gen/caso_presponsable":
+        presponsable: Presunto responsable
+        brigada: Brigada / Batallón / División
       "sivel2_gen/categoria":
         Categoria: Categoria
         Categorias: Categorias
@@ -97,8 +102,9 @@ es:
         Pconsolidado: Parámetro reporte consolidado
         Pconsolidados: Parámetros reporte consolidado
       "sivel2_gen/presponsable":
-        Presponsable: Presunto Responsable
-        Presponsables: Presuntos Responsables
+        Presponsable: Presunto responsable
+        presponsable: presunto responsable
+        Presponsables: Presuntos responsables
       "sivel2_gen/profesion":
         Profesion: Profesión
         Profesiones: Profesiones
