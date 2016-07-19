@@ -246,7 +246,7 @@ module Sivel2Gen
           # en módulos y no se logró con prepend u otra forma
           def sivel2_gen_destroy
             if @caso.id
-              CasoUsuario.destroy_all(id_caso: @caso.id)
+              CasoUsuario.where(id_caso: @caso.id).destroy_all
             end
             @caso.destroy
             respond_to do |format|

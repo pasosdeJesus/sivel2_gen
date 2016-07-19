@@ -19,7 +19,7 @@
              end
              i += 1
           %>
-          <td><%= CGI.escapeHTML(campo[1]) if campo[1] %></td>
+          <td><%= CGI.escapeHTML(campo[1].to_s) if campo[1] %></td>
         <% end %>
       </tr>
     <% end %>

@@ -165,7 +165,7 @@ module Sivel2Gen
         module ClassMethods
 
           def refresca_conscaso
-            if !ActiveRecord::Base.connection.table_exists? 'sivel2_gen_conscaso'
+            if !ActiveRecord::Base.connection.data_source_exists? 'sivel2_gen_conscaso'
               ActiveRecord::Base.connection.execute("CREATE OR REPLACE 
         VIEW sivel2_gen_conscaso1 AS
         SELECT caso.id as caso_id, caso.fecha, caso.memo, 

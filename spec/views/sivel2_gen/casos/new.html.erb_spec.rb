@@ -5,6 +5,7 @@ RSpec.describe "sivel2_gen/casos/new", :type => :view do
   let(:current_usuario) { build(:usuario) }
   let(:caso_id) { -1 }
   before(:each) do
+    skip
     @request.env["devise.mapping"] = Devise.mappings[:usuario]
     controller.stub(:current_usuario).and_return(current_usuario)
     current_usuario.save!

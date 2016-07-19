@@ -3,8 +3,10 @@ source 'https://rubygems.org'
 #ruby "2.1.5"
 
 # Rails (internacionalización)
-gem "rails", '~> 4.2.3.rc1'
+gem "rails", '~> 5.0.0'
 gem "rails-i18n"
+
+gem 'puma', '~> 3.0' 
 
 # Problemas con arel 6.0.0 al ejecutar rspec
 #gem "arel", '6.0.0.beta2'
@@ -64,7 +66,7 @@ gem "tzinfo"
 gem "tzinfo-data"
 
 # Motor estilo Pasos de Jesús
-gem 'sip', github: 'pasosdeJesus/sip'
+gem 'sip', github: 'pasosdeJesus/sip', branch: 'rails5'
 #gem 'sip', path: '../sip'
 
 group :doc do
@@ -89,6 +91,8 @@ end
 group :test do
   # Acelera ejecutando en fondo. https://github.com/jonleighton/spring
   gem "spring"
+
+  gem 'rails-controller-testing'
 
   # Pruebas con rspec
   gem 'spring-commands-rspec'

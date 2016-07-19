@@ -4,6 +4,7 @@ require 'rails_helper'
 RSpec.describe "sivel2_gen/casos/edit", :type => :view do
   let(:current_usuario) { build(:usuario) }
   before(:each) do
+    skip
     @request.env["devise.mapping"] = Devise.mappings[:usuario]
     controller.stub(:current_usuario).and_return(current_usuario)
     current_usuario.save!

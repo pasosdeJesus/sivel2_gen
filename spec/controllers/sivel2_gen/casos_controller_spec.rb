@@ -34,7 +34,8 @@ module Sivel2Gen
     describe "GET index" do
       it "asigna todas los casos como @casos" do
         caso = Caso.create!(valid_attributes)
-        get :index, {}, valid_session
+        #get :index, {}, valid_session
+        get :index, params: {}, session: valid_session
         expect(assigns(:casos)).to eq([caso])
       end
     end
@@ -42,14 +43,15 @@ module Sivel2Gen
     describe "GET show" do
       it "asigna el caso requerida como @caso" do
         caso = Caso.create! valid_attributes
-        get :show, {:id => caso.to_param}, valid_session
+        #get :show, params: {:id => caso.to_param}, valid_session
+        get :show, params: {:id => caso.to_param}, session: valid_session
         expect(assigns(:caso)).to eq(caso)
       end
     end
 
 #    describe "GET new" do
 #      it "asigna un nuevo caso como @caso" do
-#        get :new, {}, valid_session
+#        get :new, params: {}, session: valid_session
 #        expect(assigns(:caso)).to be_a_new(Caso)
 #      end
 #    end
@@ -57,7 +59,8 @@ module Sivel2Gen
     describe "GET edit" do
       it "asigna el caso requerida como @caso" do
         caso = Caso.create! valid_attributes
-        get :edit, {:id => caso.to_param}, valid_session
+        #get :edit, params: {:id => caso.to_param}, valid_session
+        get :edit, params: {:id => caso.to_param}, session: valid_session
         expect(assigns(:caso)).to eq(caso)
       end
     end
@@ -66,30 +69,30 @@ module Sivel2Gen
       describe "con parámetros validos" do
 #        it "crea una Caso" do
 #          expect {
-#            post :create, {:caso => valid_attributes}, valid_session
+#            post :create, params: {:caso => valid_attributes}, session: valid_session
 #          }.to change(Caso, :count).by(1)
 #        end
 
 #       it "asigna el caso recien creado como @caso" do
-#  post :create, {:caso => valid_attributes}, valid_session
+#  post :create, params: {:caso => valid_attributes}, session: valid_session
 #          expect(assigns(:caso)).to be_a(Caso)
 #          expect(assigns(:caso)).to be_persisted
 #        end
 
 #        it "redirige a el caso creado" do
-#          post :create, {:caso => valid_attributes}, valid_session
+#          post :create, params: {:caso => valid_attributes}, session: valid_session
 #          expect(response).to redirect_to(Caso.last)
 #        end
       end
 
       describe "con parámetros invalidos" do
         it "assigns a newly created but unsaved caso as @caso" do
-          post :create, {:caso => invalid_attributes}, valid_session
+          post :create, params: {:caso => invalid_attributes}, session: valid_session
           expect(assigns(:caso)).to be_a_new(Caso)
         end
 
         it "vuelve a presentar la plantilla 'nueva'" do
-          post :create, {:caso => invalid_attributes}, valid_session
+          post :create, params: {:caso => invalid_attributes}, session: valid_session
           expect(response).to render_template("new")
         end
       end
@@ -103,20 +106,20 @@ module Sivel2Gen
 
         it "actualiza el caso requerida" do
           caso = Caso.create! valid_attributes
-          put :update, {:id => caso.to_param, :caso => new_attributes}, valid_session
+          put :update, params: {:id => caso.to_param, :caso => new_attributes}, session: valid_session
           caso.reload
           expect(caso.memo).to eq("memo2")
         end
 
         it "asigna el caso requerida como @caso" do
           caso = Caso.create! valid_attributes
-          put :update, {:id => caso.to_param, :caso => valid_attributes}, valid_session
+          put :update, params: {:id => caso.to_param, :caso => valid_attributes}, session: valid_session
           expect(assigns(:caso)).to eq(caso)
         end
 
         it "redirige a el caso" do
           caso = Caso.create! valid_attributes
-          put :update, {:id => caso.to_param, :caso => valid_attributes}, valid_session
+          put :update, params: {:id => caso.to_param, :caso => valid_attributes}, session: valid_session
           expect(response).to redirect_to(caso)
         end
       end
@@ -124,13 +127,13 @@ module Sivel2Gen
       describe "con parametros inválidos" do
         it "asinga el caso como @caso" do
           caso = Caso.create! valid_attributes
-          put :update, {:id => caso.to_param, :caso => invalid_attributes}, valid_session
+          put :update, params: {:id => caso.to_param, :caso => invalid_attributes}, session: valid_session
           expect(assigns(:caso)).to eq(caso)
         end
 
         it "vuelve a presentar la plantilla 'editar'" do
           caso = Caso.create! valid_attributes
-          put :update, {:id => caso.to_param, :caso => invalid_attributes}, valid_session
+          put :update, params: {:id => caso.to_param, :caso => invalid_attributes}, session: valid_session
           expect(response).to render_template("edit")
         end
       end
@@ -140,13 +143,13 @@ module Sivel2Gen
       it "elimina el caso requerida" do
         caso = Caso.create! valid_attributes
         expect {
-          delete :destroy, {:id => caso.to_param}, valid_session
+          delete :destroy, params: {:id => caso.to_param}, session: valid_session
         }.to change(Caso, :count).by(-1)
       end
 
       it "redirige a la lista de casos" do
         caso = Caso.create! valid_attributes
-        delete :destroy, {:id => caso.to_param}, valid_session
+        delete :destroy, params: {:id => caso.to_param}, session: valid_session
         expect(response).to redirect_to(casos_url)
       end
     end
