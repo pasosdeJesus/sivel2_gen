@@ -5,7 +5,7 @@ es:
     fechadeshabilitacion: Deshabilitación 
     formatoregex: Formato (exp. reg)
     municipio: Municipio
-    departamento: Departamento/Estado
+    departamento: Departamento/Estado/Cantón
     tclase: Tipo de Centro Poblado
     pais: País
     supracategoria: Supracategoria
@@ -128,7 +128,7 @@ es:
         Regionessjr: Oficinas
       "sivel2_gen/resagresion":
         Resagresion: Resultado de acción bélica
-        Regionessjr: Resultados de acciones bélicas
+        Resagresiones: Resultados de acciones bélicas
       "sivel2_gen/rolfamilia":
         Rolfamilia: Rol en familia
         Rolesfamilia: Roles en familia

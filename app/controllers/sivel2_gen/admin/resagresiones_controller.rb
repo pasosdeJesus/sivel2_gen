@@ -23,7 +23,7 @@ module Sivel2Gen
       end
   
       def genclase
-        'F'
+        'M'
       end
   
       def resagresion_params
