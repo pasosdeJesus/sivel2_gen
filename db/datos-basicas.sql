@@ -1034,6 +1034,15 @@ INSERT INTO sivel2_gen_region (id, nombre, fechacreacion, fechadeshabilitacion, 
 
 
 --
+-- Data for Name: sivel2_gen_resagresion; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+INSERT INTO sivel2_gen_resagresion (id, nombre, observaciones, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (1, 'MUERTO', NULL, '2001-01-01', NULL, '2016-07-19 00:00:00', '2016-07-19 00:00:00');
+INSERT INTO sivel2_gen_resagresion (id, nombre, observaciones, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (2, 'HERIDO', NULL, '2001-01-01', NULL, '2016-07-19 00:00:00', '2016-07-19 00:00:00');
+INSERT INTO sivel2_gen_resagresion (id, nombre, observaciones, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (3, 'PRIVADO DE LA LIBERTAD', NULL, '2001-01-01', NULL, '2016-07-19 00:00:00', '2016-07-19 00:00:00');
+
+
+--
 -- PostgreSQL database dump complete
 --
 
@@ -1043,4 +1052,5 @@ INSERT INTO sivel2_gen_region (id, nombre, fechacreacion, fechadeshabilitacion, 
     ALTER TABLE ONLY sivel2_gen_presponsable
       ADD CONSTRAINT presponsable_papa_fkey FOREIGN KEY (papa) 
       REFERENCES sivel2_gen_presponsable(id);
-     
+
+

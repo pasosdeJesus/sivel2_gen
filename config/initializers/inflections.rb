@@ -39,6 +39,7 @@ ActiveSupport::Inflector.inflections do |inflect|
 	inflect.irregular 'rangoedadac', 'rangosedadac'
 	inflect.irregular 'regimensalud', 'regimenessalud'
 	inflect.irregular 'region', 'regiones'
+	inflect.irregular 'resagresion', 'resagresiones'
 	inflect.irregular 'rolfamilia', 'rolesfamilia'
 	inflect.irregular 'sectorsocial', 'sectoressociales'
 	inflect.irregular 'ubicacion', 'ubicaciones'

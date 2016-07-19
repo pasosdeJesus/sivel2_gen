@@ -126,6 +126,9 @@ es:
       "sivel2_gen/regionsjr":
         Regionsjr: Oficina
         Regionessjr: Oficinas
+      "sivel2_gen/resagresion":
+        Resagresion: Resultado de acción bélica
+        Regionessjr: Resultados de acciones bélicas
       "sivel2_gen/rolfamilia":
         Rolfamilia: Rol en familia
         Rolesfamilia: Roles en familia

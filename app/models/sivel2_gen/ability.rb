@@ -29,6 +29,7 @@ module Sivel2Gen
       ['Sivel2Gen', 'profesion'], 
       ['Sivel2Gen', 'rangoedad'],
       ['Sivel2Gen', 'region'], 
+      ['Sivel2Gen', 'resagresion'], 
       ['Sivel2Gen', 'sectorsocial'], 
       ['Sivel2Gen', 'supracategoria'], 
       ['Sivel2Gen', 'vinculoestado'], 
