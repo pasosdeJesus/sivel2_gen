@@ -1,16 +1,14 @@
 GIT
   remote: git://github.com/pasosdeJesus/sip.git
-  revision: 69d74b19db8e9c62e61b37f41792aaa5e3bed59a
-  branch: rails5
+  revision: 4866a571b1ff4a4725e59c3117864ee908edece8
   specs:
-    sip (2.0.a7)
+    sip (2.0.b1)
       bootstrap-datepicker-rails
       cancancan
       colorize
       devise
       devise-i18n
       jquery-rails
-      jquery-ui-bootstrap-rails
       jquery-ui-rails
       paperclip
       rails
@@ -74,7 +72,7 @@ GEM
       minitest (~> 5.1)
       tzinfo (~> 1.1)
     addressable (2.4.0)
-    arel (7.0.0)
+    arel (7.1.0)
     bcrypt (3.1.11)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
@@ -122,7 +120,7 @@ GEM
       activesupport (>= 4.1.0)
     i18n (0.7.0)
     interception (0.5)
-    jbuilder (2.5.0)
+    jbuilder (2.6.0)
       activesupport (>= 3.0.0, < 5.1)
       multi_json (~> 1.2)
     jquery-rails (4.1.1)
@@ -149,7 +147,7 @@ GEM
     mime-types (3.1)
       mime-types-data (~> 3.2015)
     mime-types-data (3.2016.0521)
-    mimemagic (0.3.0)
+    mimemagic (0.3.1)
     mini_portile2 (2.1.0)
     minitest (5.9.0)
     multi_json (1.12.1)
@@ -158,12 +156,12 @@ GEM
       mini_portile2 (~> 2.1.0)
       pkg-config (~> 1.1.7)
     orm_adapter (0.5.0)
-    paperclip (4.3.7)
-      activemodel (>= 3.2.0)
-      activesupport (>= 3.2.0)
+    paperclip (5.0.0)
+      activemodel (>= 4.2.0)
+      activesupport (>= 4.2.0)
       cocaine (~> 0.5.5)
       mime-types
-      mimemagic (= 0.3.0)
+      mimemagic (~> 0.3.0)
     pg (0.18.4)
     pkg-config (1.1.7)
     pry (0.10.4)
@@ -176,7 +174,7 @@ GEM
     pry-stack_explorer (0.4.9.2)
       binding_of_caller (>= 0.7)
       pry (>= 0.9.11)
-    puma (3.5.0)
+    puma (3.5.2)
     rack (2.0.1)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -245,7 +243,7 @@ GEM
       simplecov-html (~> 0.10.0)
     simplecov-html (0.10.0)
     slop (3.6.0)
-    spork (1.0.0rc4)
+    spork (0.9.2)
     spring (1.7.2)
     spring-commands-rspec (1.0.4)
       spring (>= 0.9.1)
@@ -259,8 +257,9 @@ GEM
     thor (0.19.1)
     thread_safe (0.3.5)
     tilt (2.0.5)
-    turbolinks (2.5.3)
-      coffee-rails
+    turbolinks (5.0.0)
+      turbolinks-source (~> 5)
+    turbolinks-source (5.0.0)
     twitter-bootstrap-rails (3.2.2)
       actionpack (>= 3.1)
       execjs (>= 2.2.2, >= 2.2)
@@ -301,13 +300,13 @@ DEPENDENCIES
   colorize
   devise
   devise-i18n
-  factory_girl_rails (~> 4.0)
+  factory_girl_rails
   jbuilder
   jquery-rails
   jquery-ui-bootstrap-rails!
   jquery-ui-rails
   launchy
-  paperclip (~> 4.1)
+  paperclip
   pg
   pry-rescue
   pry-stack_explorer
@@ -320,12 +319,12 @@ DEPENDENCIES
   sdoc
   simple_form
   sip!
-  spork (~> 1.0rc)
+  spork
   spring
   spring-commands-rspec
   thor
-  turbolinks (= 2.5.3)
-  twitter-bootstrap-rails (~> 3.2.0)
+  turbolinks
+  twitter-bootstrap-rails
   twitter_cldr
   tzinfo
   tzinfo-data
