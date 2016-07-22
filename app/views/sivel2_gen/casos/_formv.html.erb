@@ -11,11 +11,12 @@
         <% if f.object.errors.any? %>
           <div id="error_explanation">
             <div class="alert alert-error">
-              El formulario tiene <%= pluralize(f.object.errors.count, "error") %>.
+              El formulario tiene 
+              <%= pluralize(f.object.errors.count, "error") %>.
             </div>
             <ul>
               <% f.object.errors.full_messages.each do |msg| %>
-                <li>* <%= msg %></li>
+                <li><%= msg %></li>
               <% end %>
             </ul>
           </div>
