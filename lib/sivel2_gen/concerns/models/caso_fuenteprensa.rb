@@ -21,6 +21,10 @@ module Sivel2Gen
           validates :clasificacion, length: { maximum: 100 } 
           validates :ubicacionfisica, length: { maximum: 100 } 
 
+          validates :fecha, uniqueness: { scope: [
+            :ubicacion, :clasificacion, :ubicacionfisica, :fuenteprensa_id
+          ] }
+
           validate :fuente_tras_caso
           def fuente_tras_caso
             errors.add(:fecha, 'No puede ser anterior a la del caso') if

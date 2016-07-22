@@ -1,22 +1,26 @@
 
 es:
   attributes:
+    departamento: Departamento/Estado/Cantón
     fechacreacion: Creación
     fechadeshabilitacion: Deshabilitación 
     formatoregex: Formato (exp. reg)
-    municipio: Municipio
-    departamento: Departamento/Estado/Cantón
-    tclase: Tipo de Centro Poblado
-    pais: País
-    supracategoria: Supracategoria
-    tviolencia: Tipo de Violencia
     limiteinferior: Límite Inferior
     limitesuperior: Límite Superior
+    municipio: Municipio
+    pais: País
+    supracategoria: Supracategoria
+    tclase: Tipo de Centro Poblado
+    tviolencia: Tipo de Violencia
   will_paginate:
     previous_label: "&#8592; Anterior"
     next_label: "&#8594; Siguiente"
     page_gap: "&hellip;"
   activerecord:
+    models:
+      "sivel2_gen/caso_fotra": 
+        one: Otra fuente
+        other: Otras fuentes
     attributes:
       "sivel2_gen/actividadarea": 
         Actividadarea: Área de Actividad
@@ -54,9 +58,10 @@ es:
       "sivel2_gen/caso_etiqueta":
         etiqueta: Etiqueta 
       "sivel2_gen/caso_fotra":
-        anotacion: Anotación
-        ubicacionfisica: Ubicación Física
         anexo_caso: Anexo
+        anotacion: Anotación
+        nombre: Nombre
+        ubicacionfisica: Ubicación Física
       "sivel2_gen/caso_fuenteprensa":
         fuenteprensa: Fuente
         ubicacion: Ubicación en Prensa
