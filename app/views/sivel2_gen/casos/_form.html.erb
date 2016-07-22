@@ -7,22 +7,8 @@
     :html => { :class => 'form-horizontal' } do |f| 
   %>
     <div data-role="content" class="form-inputs">
-      <div id="errores">
-        <% if f.object.errors.any? %>
-          <div id="error_explanation">
-            <div class="alert alert-error">
-              El formulario tiene 
-              <%= pluralize(f.object.errors.count, "error") %>.
-            </div>
-            <ul>
-              <% f.object.errors.full_messages.each do |msg| %>
-                <li><%= msg %></li>
-              <% end %>
-            </ul>
-          </div>
-        <% end %>
-        <%= f.error_notification %>
-      </div>
+
+      <%= render partial: 'sip/hogar/errores', locals: { f: f } %>
 
       <div role="tabpanel">
         <ul class="nav nav-tabs" role="tablist">
