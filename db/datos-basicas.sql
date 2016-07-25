@@ -369,6 +369,49 @@ INSERT INTO sivel2_gen_actividadoficio (id, nombre, fechacreacion, fechadeshabil
 -- PostgreSQL database dump
 --
 
+-- Dumped from database version 9.5.3
+-- Dumped by pg_dump version 9.5.3
+
+SET statement_timeout = 0;
+
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+SET row_security = off;
+
+SET search_path = public, pg_catalog;
+
+--
+-- Data for Name: sivel2_gen_antecedente; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+INSERT INTO sivel2_gen_antecedente (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (1, 'AMENAZA', '2001-01-29', NULL, NULL, NULL);
+INSERT INTO sivel2_gen_antecedente (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (10, 'SEGUIMIENTO', '2001-01-29', NULL, NULL, NULL);
+INSERT INTO sivel2_gen_antecedente (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (11, 'SEÑALAMIENTO', '2001-01-29', NULL, NULL, NULL);
+INSERT INTO sivel2_gen_antecedente (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (12, 'TORTURA', '2001-01-29', NULL, NULL, NULL);
+INSERT INTO sivel2_gen_antecedente (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (13, 'OTRO', '2001-01-29', NULL, NULL, NULL);
+INSERT INTO sivel2_gen_antecedente (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (14, 'SIN INFORMACIÓN', '2001-01-29', NULL, NULL, NULL);
+INSERT INTO sivel2_gen_antecedente (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (15, 'PILLAJE', '2006-08-18', NULL, NULL, NULL);
+INSERT INTO sivel2_gen_antecedente (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (16, 'MASACRE', '2006-08-18', NULL, NULL, NULL);
+INSERT INTO sivel2_gen_antecedente (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (2, 'ATENTADO', '2001-01-29', NULL, NULL, NULL);
+INSERT INTO sivel2_gen_antecedente (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (3, 'DETENCION', '2001-01-29', NULL, NULL, NULL);
+INSERT INTO sivel2_gen_antecedente (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (4, 'AMNISTIA - INDULTO', '2001-01-29', NULL, NULL, NULL);
+INSERT INTO sivel2_gen_antecedente (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (5, 'EXILIO', '2001-01-29', NULL, NULL, NULL);
+INSERT INTO sivel2_gen_antecedente (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (6, 'ALLANAMIENTO', '2001-01-29', NULL, NULL, NULL);
+INSERT INTO sivel2_gen_antecedente (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (7, 'DESAPARICION', '2001-01-29', NULL, NULL, NULL);
+INSERT INTO sivel2_gen_antecedente (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (8, 'SECUESTRO', '2001-01-29', NULL, NULL, NULL);
+INSERT INTO sivel2_gen_antecedente (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (9, 'DESPLAZAMIENTO', '2001-01-29', NULL, NULL, NULL);
+
+
+--
+-- PostgreSQL database dump complete
+--
+
+--
+-- PostgreSQL database dump
+--
+
 SET statement_timeout = 0;
 
 SET client_encoding = 'UTF8';
