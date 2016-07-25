@@ -79,6 +79,7 @@ GEM
     bootstrap-datepicker-rails (1.6.1.1)
       railties (>= 3.0)
     builder (3.2.2)
+    byebug (9.0.5)
     camertron-eprun (1.1.0)
     cancancan (1.15.0)
     cldr-plurals-runtime-rb (1.0.1)
@@ -174,7 +175,7 @@ GEM
     pry-stack_explorer (0.4.9.2)
       binding_of_caller (>= 0.7)
       pry (>= 0.9.11)
-    puma (3.5.2)
+    puma (3.6.0)
     rack (2.0.1)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -292,6 +293,7 @@ PLATFORMS
 DEPENDENCIES
   bcrypt
   bootstrap-datepicker-rails
+  byebug
   cancancan
   cocoon!
   codeclimate-test-reporter

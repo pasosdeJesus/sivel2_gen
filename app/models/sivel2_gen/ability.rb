@@ -14,6 +14,7 @@ module Sivel2Gen
 
     BASICAS_PROPIAS = [
       ['Sivel2Gen', 'actividadoficio'],  
+      ['Sivel2Gen', 'antecedente'],  
       ['Sivel2Gen', 'categoria'], 
       ['Sivel2Gen', 'escolaridad'], 
       ['Sivel2Gen', 'estadocivil'], 
@@ -98,6 +99,7 @@ module Sivel2Gen
       can :nuevo, Sivel2Gen::Presponsable
       can :nuevo, Sivel2Gen::Victima
       can :nuevo, Sivel2Gen::Victimacolectiva
+      can :nuevo, Sivel2Gen::Combatiente
       if usuario && usuario.rol then
         case usuario.rol 
         when Ability::ROLANALI

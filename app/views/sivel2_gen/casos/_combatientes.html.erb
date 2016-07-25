@@ -1,0 +1,15 @@
+<%= f.simple_fields_for :combatiente do |vc| %>
+  <%= render 'combatiente_campos', f: vc %>
+<% end %>
+<div class="links">
+  <%= link_to_add_association 'Añadir Combatiente', f, 
+    :combatiente, 
+    partial: 'combatiente_campos',
+    class: 'btn-primary',
+    "data-ajax": File.join(
+      Rails.configuration.relative_url_root,
+      "combatientes/nuevo"
+    ), 
+    "data-ajaxdata" => "caso_id" 
+  %>
+</div>

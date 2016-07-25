@@ -1,11 +1,9 @@
 # encoding: UTF-8
+
+require 'sivel2_gen/concerns/models/profesion'
+
 module Sivel2Gen
   class Profesion < ActiveRecord::Base
-    include Sip::Basica
-
-    has_many :profesion_victimacolectiva, foreign_key: "id_profesion", 
-            validate: true, class_name: 'Sivel2Gen::ProfesionVictimacolectiva'
-    has_many :victima, foreign_key: "id_profesion", validate: true, 
-      class_name: 'Sivel2Gen::Victima'
+    include Sivel2Gen::Concerns::Models::Profesion
   end
 end

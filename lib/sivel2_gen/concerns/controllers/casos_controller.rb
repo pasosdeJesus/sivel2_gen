@@ -278,7 +278,9 @@ module Sivel2Gen
               :bienes, :id_intervalo, :memo, 
               :victima_attributes => [
                 :id, :id_persona, :id_profesion, :id_rangoedad, :id_etnia, 
-                :id_filiacion, :id_organizacion, :id_vinculoestado, :anotaciones,
+                :id_filiacion, :id_organizacion, :id_vinculoestado, 
+                :id_sectorsocial,
+                :anotaciones,
                 :id_iglesia, :orientacionsexual, :_destroy, 
                 :persona_attributes => [
                   :id, :nombres, :apellidos, :anionac, :mesnac, :dianac, 
@@ -298,6 +300,13 @@ module Sivel2Gen
                 :sectorsocial_ids => [],
                 :profesion_ids => [],
                 :vinculoestado_ids => []
+              ],
+              :combatiente_attributes => [
+                :id, :nombre, :alias, :edad, :sexo, :id_rangoedad, 
+                :id_sectorsocial, :id_vinculoestado, :id_filiacion, 
+                :id_profesion, :id_organizacion, :organizacionarmada,
+                :id_resagresion, :_destroy, 
+                :antecedente_ids => []
               ],
             :ubicacion_attributes => [
               :id, :id_pais, :id_departamento, :id_municipio, :id_clase, 

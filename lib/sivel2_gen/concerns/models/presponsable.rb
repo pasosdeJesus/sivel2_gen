@@ -25,6 +25,8 @@ module Sivel2Gen
             class_name: 'Sivel2Gen::Victima'
           has_many :victimacolectiva, foreign_key: "organizacionarmada", 
             validate: true, class_name: 'Sivel2Gen::Victimacolectiva'
+          has_many :combatiente, foreign_key: "organizacionarmada", 
+            validate: true, class_name: 'Sivel2Gen::Combatiente'
 
           belongs_to :presponsable, foreign_key: "papa", validate: true, 
             class_name: 'Sivel2Gen::Presponsable'

@@ -89,6 +89,10 @@ module Sivel2Gen
           accepts_nested_attributes_for :grupoper,  reject_if: :all_blank
           accepts_nested_attributes_for :victimacolectiva, allow_destroy: true, 
             reject_if: :all_blank
+          has_many :combatiente, foreign_key: "id_caso", validate: true, 
+            dependent: :destroy, class_name: 'Sivel2Gen::Combatiente' 
+          accepts_nested_attributes_for :combatiente, allow_destroy: true, 
+            reject_if: :all_blank
 
           has_one :sivel2_gen_conscaso, foreign_key: "caso_id"
 
