@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/pasosdeJesus/sip.git
-  revision: f62942405f76cd94f72282619758f463e440b71d
+  revision: 8e0aad78cfa8c7dc2259a0acfd4b149b48050943
   specs:
     sip (2.0.b1)
       bootstrap-datepicker-rails
@@ -147,7 +147,7 @@ GEM
     mime-types (3.1)
       mime-types-data (~> 3.2015)
     mime-types-data (3.2016.0521)
-    mimemagic (0.3.1)
+    mimemagic (0.3.2)
     mini_portile2 (2.1.0)
     minitest (5.9.0)
     multi_json (1.12.1)
