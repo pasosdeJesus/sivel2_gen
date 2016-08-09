@@ -860,147 +860,6 @@ CREATE TABLE sip_tsitio (
 
 
 --
--- Name: sivel2_gen_actividad; Type: TABLE; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE TABLE sivel2_gen_actividad (
-    id integer NOT NULL,
-    minutos integer,
-    nombre character varying(500),
-    objetivo character varying(500),
-    proyecto character varying(500),
-    resultado character varying(500),
-    fecha date,
-    observaciones character varying(5000),
-    created_at timestamp without time zone,
-    updated_at timestamp without time zone,
-    oficina_id integer NOT NULL,
-    rangoedadac_id integer
-);
-
-
---
--- Name: sivel2_gen_actividad_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE sivel2_gen_actividad_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: sivel2_gen_actividad_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE sivel2_gen_actividad_id_seq OWNED BY sivel2_gen_actividad.id;
-
-
---
--- Name: sivel2_gen_actividad_rangoedadac; Type: TABLE; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE TABLE sivel2_gen_actividad_rangoedadac (
-    id integer NOT NULL,
-    actividad_id integer,
-    rangoedadac_id integer,
-    ml integer,
-    mr integer,
-    fl integer,
-    fr integer,
-    created_at timestamp without time zone,
-    updated_at timestamp without time zone
-);
-
-
---
--- Name: sivel2_gen_actividad_rangoedadac_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE sivel2_gen_actividad_rangoedadac_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: sivel2_gen_actividad_rangoedadac_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE sivel2_gen_actividad_rangoedadac_id_seq OWNED BY sivel2_gen_actividad_rangoedadac.id;
-
-
---
--- Name: sivel2_gen_actividadarea; Type: TABLE; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE TABLE sivel2_gen_actividadarea (
-    id integer NOT NULL,
-    nombre character varying(500),
-    observaciones character varying(5000),
-    fechacreacion date DEFAULT ('now'::text)::date,
-    fechadeshabilitacion date,
-    created_at timestamp without time zone,
-    updated_at timestamp without time zone
-);
-
-
---
--- Name: sivel2_gen_actividadarea_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE sivel2_gen_actividadarea_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: sivel2_gen_actividadarea_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE sivel2_gen_actividadarea_id_seq OWNED BY sivel2_gen_actividadarea.id;
-
-
---
--- Name: sivel2_gen_actividadareas_actividad; Type: TABLE; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE TABLE sivel2_gen_actividadareas_actividad (
-    id integer NOT NULL,
-    actividad_id integer,
-    actividadarea_id integer,
-    created_at timestamp without time zone,
-    updated_at timestamp without time zone
-);
-
-
---
--- Name: sivel2_gen_actividadareas_actividad_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE sivel2_gen_actividadareas_actividad_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: sivel2_gen_actividadareas_actividad_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE sivel2_gen_actividadareas_actividad_id_seq OWNED BY sivel2_gen_actividadareas_actividad.id;
-
-
---
 -- Name: sivel2_gen_actividadoficio_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
@@ -1072,42 +931,6 @@ CREATE TABLE sivel2_gen_anexo_caso (
     updated_at timestamp without time zone,
     id_anexo integer NOT NULL
 );
-
-
---
--- Name: sivel2_gen_anexoactividad; Type: TABLE; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE TABLE sivel2_gen_anexoactividad (
-    id integer NOT NULL,
-    actividad_id integer,
-    descripcion character varying(1500),
-    adjunto_file_name character varying(255),
-    adjunto_content_type character varying(255),
-    adjunto_file_size integer,
-    adjunto_updated_at timestamp without time zone,
-    created_at timestamp without time zone,
-    updated_at timestamp without time zone
-);
-
-
---
--- Name: sivel2_gen_anexoactividad_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE sivel2_gen_anexoactividad_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: sivel2_gen_anexoactividad_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE sivel2_gen_anexoactividad_id_seq OWNED BY sivel2_gen_anexoactividad.id;
 
 
 --
@@ -1962,41 +1785,6 @@ CREATE TABLE sivel2_gen_rangoedad_victimacolectiva (
 
 
 --
--- Name: sivel2_gen_rangoedadac; Type: TABLE; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE TABLE sivel2_gen_rangoedadac (
-    id integer NOT NULL,
-    nombre character varying(255),
-    limiteinferior integer,
-    limitesuperior integer,
-    fechacreacion date,
-    fechadeshabilitacion date,
-    created_at timestamp without time zone,
-    updated_at timestamp without time zone
-);
-
-
---
--- Name: sivel2_gen_rangoedadac_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE sivel2_gen_rangoedadac_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: sivel2_gen_rangoedadac_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE sivel2_gen_rangoedadac_id_seq OWNED BY sivel2_gen_rangoedadac.id;
-
-
---
 -- Name: sivel2_gen_region_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
@@ -2271,41 +2059,6 @@ ALTER TABLE ONLY sip_tdocumento ALTER COLUMN id SET DEFAULT nextval('sip_tdocume
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY sivel2_gen_actividad ALTER COLUMN id SET DEFAULT nextval('sivel2_gen_actividad_id_seq'::regclass);
-
-
---
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY sivel2_gen_actividad_rangoedadac ALTER COLUMN id SET DEFAULT nextval('sivel2_gen_actividad_rangoedadac_id_seq'::regclass);
-
-
---
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY sivel2_gen_actividadarea ALTER COLUMN id SET DEFAULT nextval('sivel2_gen_actividadarea_id_seq'::regclass);
-
-
---
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY sivel2_gen_actividadareas_actividad ALTER COLUMN id SET DEFAULT nextval('sivel2_gen_actividadareas_actividad_id_seq'::regclass);
-
-
---
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY sivel2_gen_anexoactividad ALTER COLUMN id SET DEFAULT nextval('sivel2_gen_anexoactividad_id_seq'::regclass);
-
-
---
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
---
-
 ALTER TABLE ONLY sivel2_gen_combatiente ALTER COLUMN id SET DEFAULT nextval('sivel2_gen_combatiente_id_seq'::regclass);
 
 
@@ -2313,46 +2066,7 @@ ALTER TABLE ONLY sivel2_gen_combatiente ALTER COLUMN id SET DEFAULT nextval('siv
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY sivel2_gen_rangoedadac ALTER COLUMN id SET DEFAULT nextval('sivel2_gen_rangoedadac_id_seq'::regclass);
-
-
---
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
---
-
 ALTER TABLE ONLY sivel2_gen_resagresion ALTER COLUMN id SET DEFAULT nextval('sivel2_gen_resagresion_id_seq'::regclass);
-
-
---
--- Name: actividad_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
---
-
-ALTER TABLE ONLY sivel2_gen_actividad
-    ADD CONSTRAINT actividad_pkey PRIMARY KEY (id);
-
-
---
--- Name: actividad_rangoedadac_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
---
-
-ALTER TABLE ONLY sivel2_gen_actividad_rangoedadac
-    ADD CONSTRAINT actividad_rangoedadac_pkey PRIMARY KEY (id);
-
-
---
--- Name: actividadarea_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
---
-
-ALTER TABLE ONLY sivel2_gen_actividadarea
-    ADD CONSTRAINT actividadarea_pkey PRIMARY KEY (id);
-
-
---
--- Name: actividadareas_actividad_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
---
-
-ALTER TABLE ONLY sivel2_gen_actividadareas_actividad
-    ADD CONSTRAINT actividadareas_actividad_pkey PRIMARY KEY (id);
 
 
 --
@@ -2401,14 +2115,6 @@ ALTER TABLE ONLY sivel2_gen_actocolectivo
 
 ALTER TABLE ONLY sivel2_gen_anexo_caso
     ADD CONSTRAINT anexo_pkey PRIMARY KEY (id);
-
-
---
--- Name: anexoactividad_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
---
-
-ALTER TABLE ONLY sivel2_gen_anexoactividad
-    ADD CONSTRAINT anexoactividad_pkey PRIMARY KEY (id);
 
 
 --
@@ -2665,14 +2371,6 @@ ALTER TABLE ONLY sivel2_gen_profesion
 
 ALTER TABLE ONLY sivel2_gen_rangoedad
     ADD CONSTRAINT rangoedad_pkey PRIMARY KEY (id);
-
-
---
--- Name: rangoedadac_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
---
-
-ALTER TABLE ONLY sivel2_gen_rangoedadac
-    ADD CONSTRAINT rangoedadac_pkey PRIMARY KEY (id);
 
 
 --
@@ -3003,34 +2701,6 @@ CREATE INDEX busca_sivel2_gen_conscaso ON sivel2_gen_conscaso USING gin (q);
 
 
 --
--- Name: index_sivel2_gen_actividad_on_rangoedadac_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE INDEX index_sivel2_gen_actividad_on_rangoedadac_id ON sivel2_gen_actividad USING btree (rangoedadac_id);
-
-
---
--- Name: index_sivel2_gen_actividad_rangoedadac_on_actividad_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE INDEX index_sivel2_gen_actividad_rangoedadac_on_actividad_id ON sivel2_gen_actividad_rangoedadac USING btree (actividad_id);
-
-
---
--- Name: index_sivel2_gen_actividad_rangoedadac_on_rangoedadac_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE INDEX index_sivel2_gen_actividad_rangoedadac_on_rangoedadac_id ON sivel2_gen_actividad_rangoedadac USING btree (rangoedadac_id);
-
-
---
--- Name: index_sivel2_gen_anexoactividad_on_actividad_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE INDEX index_sivel2_gen_anexoactividad_on_actividad_id ON sivel2_gen_anexoactividad USING btree (actividad_id);
-
-
---
 -- Name: index_sivel2_gen_antecedente_combatiente_on_id_antecedente; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -3084,14 +2754,6 @@ CREATE UNIQUE INDEX unique_schema_migrations ON schema_migrations USING btree (v
 --
 
 CREATE UNIQUE INDEX usuario_nusuario ON usuario USING btree (nusuario);
-
-
---
--- Name: actividad_regionsjr_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY sivel2_gen_actividad
-    ADD CONSTRAINT actividad_regionsjr_id_fkey FOREIGN KEY (oficina_id) REFERENCES sip_oficina(id);
 
 
 --
@@ -3948,6 +3610,6 @@ ALTER TABLE ONLY sivel2_gen_victimacolectiva
 
 SET search_path TO "$user",public;
 
-INSERT INTO schema_migrations (version) VALUES ('20131128151014'), ('20131204135932'), ('20131204140000'), ('20131204143718'), ('20131204183530'), ('20131206081531'), ('20131210221541'), ('20131220103409'), ('20131223175141'), ('20140117212555'), ('20140129151136'), ('20140207102709'), ('20140207102739'), ('20140211162355'), ('20140211164659'), ('20140211172443'), ('20140313012209'), ('20140514142421'), ('20140518120059'), ('20140527110223'), ('20140528043115'), ('20140613044320'), ('20140704035033'), ('20140804194616'), ('20140804200235'), ('20140804202100'), ('20140804202101'), ('20140804202958'), ('20140804210000'), ('20140815111351'), ('20140815111352'), ('20140815121224'), ('20140815123542'), ('20140815124157'), ('20140815124606'), ('20140827142659'), ('20140901105741'), ('20140901106000'), ('20140909165233'), ('20140918115412'), ('20140922102737'), ('20140922110956'), ('20141002140242'), ('20141111102451'), ('20141111203313'), ('20141126085907'), ('20150313153722'), ('20150317084737'), ('20150413000000'), ('20150413160156'), ('20150413160157'), ('20150413160158'), ('20150413160159'), ('20150416074423'), ('20150416090140'), ('20150503120915'), ('20150510125926'), ('20150521181918'), ('20150528100944'), ('20150602094513'), ('20150602095241'), ('20150602104342'), ('20150609094809'), ('20150609094810'), ('20150609094820'), ('20150616095023'), ('20150616100351'), ('20150616100551'), ('20150707164448'), ('20150710114451'), ('20150716171420'), ('20150716192356'), ('20150717101243'), ('20150724003736'), ('20150803082520'), ('20150809032138'), ('20150826000000'), ('20151006105402'), ('20151020203421'), ('20151124110943'), ('20151127102425'), ('20151130101417'), ('20160316093659'), ('20160316094627'), ('20160316100620'), ('20160316100621'), ('20160316100622'), ('20160316100623'), ('20160316100624'), ('20160316100625'), ('20160316100626'), ('20160519195544'), ('20160719195853'), ('20160719214520'), ('20160724160049'), ('20160724164110'), ('20160725123242'), ('20160725125929'), ('20160725131347');
+INSERT INTO schema_migrations (version) VALUES ('20131128151014'), ('20131204135932'), ('20131204140000'), ('20131204143718'), ('20131204183530'), ('20131206081531'), ('20131210221541'), ('20131220103409'), ('20131223175141'), ('20140117212555'), ('20140129151136'), ('20140207102709'), ('20140207102739'), ('20140211162355'), ('20140211164659'), ('20140211172443'), ('20140313012209'), ('20140514142421'), ('20140518120059'), ('20140527110223'), ('20140528043115'), ('20140613044320'), ('20140704035033'), ('20140804194616'), ('20140804200235'), ('20140804202100'), ('20140804202101'), ('20140804202958'), ('20140804210000'), ('20140815111351'), ('20140815111352'), ('20140815121224'), ('20140815123542'), ('20140815124157'), ('20140815124606'), ('20140827142659'), ('20140901105741'), ('20140901106000'), ('20140909165233'), ('20140918115412'), ('20140922102737'), ('20140922110956'), ('20141002140242'), ('20141111102451'), ('20141111203313'), ('20141126085907'), ('20150313153722'), ('20150317084737'), ('20150413000000'), ('20150413160156'), ('20150413160157'), ('20150413160158'), ('20150413160159'), ('20150416074423'), ('20150416090140'), ('20150503120915'), ('20150505084914'), ('20150510125926'), ('20150521181918'), ('20150528100944'), ('20150602094513'), ('20150602095241'), ('20150602104342'), ('20150609094809'), ('20150609094810'), ('20150609094820'), ('20150616095023'), ('20150616100351'), ('20150616100551'), ('20150707164448'), ('20150710114451'), ('20150716171420'), ('20150716192356'), ('20150717101243'), ('20150724003736'), ('20150803082520'), ('20150809032138'), ('20150826000000'), ('20151006105402'), ('20151020203421'), ('20151124110943'), ('20151127102425'), ('20151130101417'), ('20160316093659'), ('20160316094627'), ('20160316100620'), ('20160316100621'), ('20160316100622'), ('20160316100623'), ('20160316100624'), ('20160316100625'), ('20160316100626'), ('20160519195544'), ('20160719195853'), ('20160719214520'), ('20160724160049'), ('20160724164110'), ('20160725123242'), ('20160725125929'), ('20160725131347');
 
 
