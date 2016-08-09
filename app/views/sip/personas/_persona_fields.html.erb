@@ -40,7 +40,7 @@
     %>
 </div>
 
-  <%= fvictima.input :edad, as: :string %>
+  <%= fvictima.input :edad, as: :integer %>
 
   <% @anios = *(1900..Date.today.year) %>
   <%= f.input :anionac, 
@@ -65,7 +65,7 @@
   <% @dias = *(1..31) %>
   <%= f.input :dianac, collection: @dias %>
 
-  <%= fvictima.input :edadactual, as: :string %>
+  <%= fvictima.input :edadactual, as: :integer %>
 
   <%= f.input :sexo, collection: [["SIN INFORMACIÓN", :S], 
     ["FEMENINO", :F], ["MASCULINO", :M]], 
