@@ -481,7 +481,7 @@ enviaFormularioContar= (root) ->
     prefIdVic = $(this).attr('id').slice(0, -27)
     prefIdPer = $(this).attr('id').slice(0, -8)
     ponerVariablesEdad(root)
-    if (@anionac == '') 
+    if (anionac == '') 
       limpiarFechaNac(prefIdPer, prefIdVic);
     else 
       $('[id=' + prefIdVic + '_edad]').val(
