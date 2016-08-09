@@ -179,13 +179,23 @@
 @ponerVariablesEdad = (root) ->
     if typeof root.campo_fecha_ref_edad == 'undefined'
       root.campo_fecha_ref_edad = 'caso_fecha'
-    fechac = $('[id=' +  root.campo_fecha_ref_edad + ']').val()
-    root.aniocaso = fechac.slice(0,4)
-    root.mescaso = fechac.slice(5,7)
-    root.diacaso = fechac.slice(8,10)
-    root.anioactual = +$('#anioactual').val()
-    root.mesactual = +$('#mesactual').val()
-    root.diaactual = +$('#diaactual').val()
+    fechac = $('[id=' +  root.campo_fecha_ref_edad + ']')
+    if (fechac.length >0) 
+      fechac = fechac.val()
+      root.aniocaso = fechac.slice(0,4)
+      root.mescaso = fechac.slice(5,7)
+      root.diacaso = fechac.slice(8,10)
+      root.anioactual = +$('#anioactual').val()
+      root.mesactual = +$('#mesactual').val()
+      root.diaactual = +$('#diaactual').val()
+    else
+      root.aniocaso = 0
+      root.mescaso = 0
+      root.diacaso = 0
+      d = new Date()
+      root.anioactual = d.getFullYear()
+      root.mesactual = d.getMonth() + 1
+      root.diaactual = d.getDate()
 
 # Pone en blanco fecha de nacimiento y edades
 @limpiarFechaNac = (prefIdPer,prefIdVic) ->
@@ -467,10 +477,7 @@ enviaFormularioContar= (root) ->
   })
 
   # Variables para calcular edad y rango
-  root.aniocaso = 0
-  root.mescaso = 0
-  root.diacaso = 0
-  root.anioactual = 0
+  ponerVariablesEdad(root)
   root.mesactual = 0
   root.diaactual = 0
 
