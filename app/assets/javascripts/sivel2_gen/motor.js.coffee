@@ -177,7 +177,9 @@
   return
 
 @ponerVariablesEdad = (root) ->
-    fechac = $('[id=caso_fecha]').val()
+    if typeof root.campo_fecha_ref_edad == 'undefined'
+      root.campo_fecha_ref_edad = 'caso_fecha'
+    fechac = $('[id=' +  root.campo_fecha_ref_edad + ']').val()
     root.aniocaso = fechac.slice(0,4)
     root.mescaso = fechac.slice(5,7)
     root.diacaso = fechac.slice(8,10)
