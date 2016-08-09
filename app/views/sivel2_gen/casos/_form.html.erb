@@ -10,6 +10,19 @@
 
       <%= render partial: 'sip/hogar/errores', locals: { f: f } %>
 
+      <input type='hidden' id='anioactual' value='<%= Date.today.year %>'/>
+      <input type='hidden' id='mesactual' value='<%= Date.today.month %>'/>
+      <input type='hidden' id='diaactual' value='<%= Date.today.day %>'/>
+      <input type='hidden' id='rangoedad_cant' value='<%= Sivel2Gen::Rangoedad.count %>'>
+      <% nredad= 0 %>
+      <% Sivel2Gen::Rangoedad.all.each do |r| %>
+        <input type='hidden' id='rangoedad_d_<%= nredad =%>'
+                             value='<%= r.id %>'
+                             data-inf='<%= r.limiteinferior %>'
+                             data-sup='<%= r.limitesuperior %>'>
+        <% nredad += 1 %>
+      <% end %>
+
       <div role="tabpanel">
         <ul class="nav nav-tabs" role="tablist">
           <li role="presentation" class="active"><a href="#basicos" 

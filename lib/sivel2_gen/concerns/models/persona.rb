@@ -10,6 +10,7 @@ module Sivel2Gen
         include Sip::Concerns::Models::Persona
 
         included do
+
           has_many :acto, foreign_key: "id_persona", validate: true,
             class_name: "Sivel2Gen::Acto"
           has_many :antecedente_victima, foreign_key: "id_persona", 
