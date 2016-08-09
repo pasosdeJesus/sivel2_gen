@@ -472,7 +472,8 @@ enviaFormularioContar= (root) ->
   root.mesactual = 0
   root.diaactual = 0
 
-  $('[id^=caso_victima_attributes][id$=persona_attributes_anionac]').on('change', (event) ->
+  $(document).on('change', 
+  '[id^=caso_victima_attributes][id$=persona_attributes_anionac]', (event) ->
     root =  exports ? window
     anionac = $(this).val();
     prefIdVic = $(this).attr('id').slice(0, -27)
@@ -489,7 +490,8 @@ enviaFormularioContar= (root) ->
     ponerRangoEdad(prefIdVic);
   );
 
-  $("[id^=caso_victima_attributes][id$=persona_attributes_mesnac]").on('change', (event) ->
+  $(document).on('change', 
+  "[id^=caso_victima_attributes][id$=persona_attributes_mesnac]", (event) ->
     root =  exports ? window
     prefIdVic = $(this).attr('id').slice(0, -26)
     prefIdPer = $(this).attr('id').slice(0, -7)
@@ -501,7 +503,8 @@ enviaFormularioContar= (root) ->
     ponerRangoEdad(prefIdVic);
   )
 
-  $("[id^=caso_victima_attributes][id$=persona_attributes_dianac]").on('change', (event) ->
+  $(document).on('change', 
+  "[id^=caso_victima_attributes][id$=persona_attributes_dianac]", (event) ->
     root =  exports ? window
     prefIdVic = $(this).attr('id').slice(0, -26)
     prefIdPer = $(this).attr('id').slice(0, -7)
@@ -513,7 +516,8 @@ enviaFormularioContar= (root) ->
     ponerRangoEdad(prefIdVic);
   )
 
-  $("[id^=caso_victima_attributes][id$=_edad]").on('change', (event) ->
+  $(document).on('change', 
+  "[id^=caso_victima_attributes][id$=_edad]", (event) ->
     root =  exports ? window
     edad = $(this).val();
     prefIdVic = $(this).attr('id').slice(0, -5)
@@ -531,7 +535,8 @@ enviaFormularioContar= (root) ->
     ponerRangoEdad(prefIdVic);
   )
 
-  $("[id^=caso_victima_attributes][id$=_edadactual]").on('change', (event) ->
+  $(document).on('change', 
+  "[id^=caso_victima_attributes][id$=_edadactual]", (event) ->
     root =  exports ? window
     edadactual = $(this).val();
     prefIdVic = $(this).attr('id').slice(0, -11)
@@ -569,6 +574,9 @@ enviaFormularioContar= (root) ->
   #$('body').on('click', 'a.disabled', (e) -> 
   #  e.preventDefault() )
 
+  # Obligar cálculo de edades al cargar 
+  $('[id^=caso_victima_attributes][id$=persona_attributes_anionac]').change()
+
   return
 
 @sivel2_gen_prepara_eventos_unicos = (root) ->
@@ -592,12 +600,8 @@ enviaFormularioContar= (root) ->
 
     return
   )
-  $('[id^=caso_victima_attributes][id$=persona_attributes_anionac]').change()
 
   return
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://coffeescript.org/
 
 
 
