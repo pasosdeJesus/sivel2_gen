@@ -204,6 +204,7 @@
   $("[id=" + prefIdPer+ "_dianac]").val('')
   $("[id=" + prefIdVic + "_edad]").val('')
   $("[id=" + prefIdVic + "_edadactual]").val('')
+  $("[id=" + prefIdVic + "_id_rangoedad]").prop('disabled', false)
 
 # Retorna cantidad de años entre la fecha de nacimiento y
 # la fecha del hecho.
@@ -231,27 +232,28 @@
 # Establece rango de edad
 @ponerRangoEdad = (prefId) ->
   edad = $("[id=" + prefId + "_edad]").val()
-  cantr = $('#rangoedad_cant').val()
-  sin = -1
-  res = -1
-  for i in [0..cantr-1] 
-    inf = +$('#rangoedad_d_' + i).data('inf')
-    sup = +$('#rangoedad_d_' + i).data('sup')
-    if (inf == -1) 
-      sin = i
-    else if (edad != '' && inf <= edad && edad <= sup) 
-      res = i
- 
-  if (res == -1)
-    res = sin
-
-  resid = $('#rangoedad_d_' + res).val()
-  r = $("[id=" + prefId + "_id_rangoedad]")
-  r.val(resid)
   if (edad == '') 
-    r.prop('readonly', false)
+    r.prop('disabled', false)
   else 
-    r.prop('readonly', true)
+    cantr = $('#rangoedad_cant').val()
+    sin = -1
+    res = -1
+    for i in [0..cantr-1] 
+      inf = +$('#rangoedad_d_' + i).data('inf')
+      sup = +$('#rangoedad_d_' + i).data('sup')
+      if (inf == -1) 
+        sin = i
+      else if (edad != '' && inf <= edad && edad <= sup) 
+        res = i
+   
+    if (res == -1)
+      res = sin
+  
+    resid = $('#rangoedad_d_' + res).val()
+    r = $("[id=" + prefId + "_id_rangoedad]")
+    r.val(resid)
+    r.prop('disabled', true)
+
   return
 
 # Confirma antes de eliminar P. Responsable
@@ -562,6 +564,11 @@ enviaFormularioContar= (root) ->
         edadDeFechaNac(prefIdPer, root.aniocaso, root.mescaso, root.diacaso))
 
     ponerRangoEdad(prefIdVic);
+  )
+
+  # Habilitar rangos de edad deshabilitados cuando se pone edad o año
+  $(document).on('submit', 'form', (event) ->
+    $("[id$=_id_rangoedad]").prop('disabled', false)
   )
 
   # Al cambiar fecha del hecho 
