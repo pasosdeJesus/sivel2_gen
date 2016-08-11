@@ -8,9 +8,13 @@ module Sivel2Gen
 
         included do
 
-          def validacion_estandar(casos, titulo, where, atr = [:id, :fecha, :nusuario],
-                                  encabezado = ['Código', 'Fecha del Hecho', 'Usuario'])
-            res = casos.joins('INNER JOIN sivel2_gen_iniciador ON sivel2_gen_iniciador.id_caso=id').where(where).select(atr)
+          def validacion_estandar(casos, titulo, where, 
+                                  atr = [:id, :fecha, :nusuario],
+                                  encabezado = [
+                                    'Código', 'Fecha del Hecho', 'Usuario'])
+            res = casos.joins('INNER JOIN sivel2_gen_iniciador 
+                              ON sivel2_gen_iniciador.id_caso=id').
+                              where(where).select(atr)
             arr = ActiveRecord::Base.connection.select_all(res.to_sql)
             @validaciones << { 
               titulo: titulo,

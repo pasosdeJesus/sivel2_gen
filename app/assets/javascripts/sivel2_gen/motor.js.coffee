@@ -232,6 +232,7 @@
 # Establece rango de edad
 @ponerRangoEdad = (prefId) ->
   edad = $("[id=" + prefId + "_edad]").val()
+  r = $("[id=" + prefId + "_id_rangoedad]")
   if (edad == '') 
     r.prop('disabled', false)
   else 
@@ -250,7 +251,6 @@
       res = sin
   
     resid = $('#rangoedad_d_' + res).val()
-    r = $("[id=" + prefId + "_id_rangoedad]")
     r.val(resid)
     r.prop('disabled', true)
 
