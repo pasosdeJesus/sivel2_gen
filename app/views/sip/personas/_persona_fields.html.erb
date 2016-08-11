@@ -38,14 +38,23 @@
         end
       end 
     %>
-</div>
+  </div>
 
-  <%= fvictima.input :edad, as: :integer %>
 
-  <% @anios = *(1900..Date.today.year) %>
-  <%= f.input :anionac, 
-    collection: @anios 
-  %>
+  <div class="row">
+    <div class="col-sm-4">
+      <% @anios = *(1900..Date.today.year) %>
+      <%= f.input :anionac, 
+        collection: @anios 
+      %>
+    </div>
+    <div class="col-sm-4">
+      <%= fvictima.input :edad, as: :integer %>
+    </div>
+    <div class="col-sm-4">
+      <%= fvictima.input :edadactual, as: :integer %>
+    </div>
+  </div>
   <% @meses = [
     ["ENERO", 1], 
     ["FEBRERO", 2], 
@@ -65,7 +74,6 @@
   <% @dias = *(1..31) %>
   <%= f.input :dianac, collection: @dias %>
 
-  <%= fvictima.input :edadactual, as: :integer %>
 
   <%= f.input :sexo, collection: [["SIN INFORMACIÓN", :S], 
     ["FEMENINO", :F], ["MASCULINO", :M]], 
