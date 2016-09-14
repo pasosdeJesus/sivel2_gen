@@ -1,6 +1,13 @@
 GIT
-  remote: git://github.com/pasosdeJesus/sip.git
-  revision: 838d79c5dd182210ac0ae1c045c48d6b270367c9
+  remote: https://github.com/kristianmandrup/jquery-ui-bootstrap-rails
+  revision: 944cf4164ea511a2977f91031cc7f69d3e06e6cb
+  specs:
+    jquery-ui-bootstrap-rails (0.1.1)
+      rails
+
+GIT
+  remote: https://github.com/pasosdeJesus/sip.git
+  revision: d95a7242675737d16262f35077863ed1c142657e
   specs:
     sip (2.0.b1)
       bootstrap-datepicker-rails
@@ -19,17 +26,10 @@ GIT
       will_paginate
 
 GIT
-  remote: git://github.com/vtamara/cocoon.git
+  remote: https://github.com/vtamara/cocoon.git
   revision: 20f8f3bab2fee21309c57b586f5fab9921ac0894
   specs:
     cocoon (1.2.6)
-
-GIT
-  remote: https://github.com/kristianmandrup/jquery-ui-bootstrap-rails
-  revision: 944cf4164ea511a2977f91031cc7f69d3e06e6cb
-  specs:
-    jquery-ui-bootstrap-rails (0.1.1)
-      rails
 
 GEM
   remote: https://rubygems.org/
@@ -72,7 +72,7 @@ GEM
       minitest (~> 5.1)
       tzinfo (~> 1.1)
     addressable (2.4.0)
-    arel (7.1.1)
+    arel (7.1.2)
     bcrypt (3.1.11)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
@@ -332,4 +332,4 @@ DEPENDENCIES
   will_paginate
 
 BUNDLED WITH
-   1.12.5
+   1.13.0
