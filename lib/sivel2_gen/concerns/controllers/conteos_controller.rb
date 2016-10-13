@@ -8,6 +8,8 @@ module Sivel2Gen
 
         included do
 
+          include Sip::FormatoFechaHelper
+
           ##
           # Agrega una nueva tabla al listado $t
           #
@@ -296,18 +298,12 @@ module Sivel2Gen
             @fechafin = '';
             if (params[:filtro] && params[:filtro]['fechaini'] && 
                 params[:filtro]['fechaini'] != "") 
-              pfechaini = DateTime.strptime(
-                params[:filtro]['fechaini'], '%Y-%m-%d'
-              )
-              @fechaini = pfechaini.strftime('%Y-%m-%d')
+              @fechaini = fecha_local_estandar(params[:filtro]['fechaini'])
               where1 = personas_fecha_inicial(where1)
             end
             if (params[:filtro] && params[:filtro]['fechafin'] && 
                 params[:filtro]['fechafin'] != "") 
-              pfechafin = DateTime.strptime(
-                params[:filtro]['fechafin'], '%Y-%m-%d'
-              )
-              @fechafin = pfechafin.strftime('%Y-%m-%d')
+              @fechafin = fecha_local_estandar(params[:filtro]['fechafin'])
               where1 = personas_fecha_final(where1)
             end
             que1 = 'caso.id AS id_caso, victima.id_persona AS id_persona,
@@ -382,6 +378,32 @@ module Sivel2Gen
           end # def personas
           
         end
+
+#        def cgv
+#            authorize! :contar, Sivel2Gen::Caso
+#
+#            where1 = '';
+#            @fechaini = '';
+#            @fechafin = '';
+#            if (params[:filtro] && params[:filtro]['fechaini'] && 
+#                params[:filtro]['fechaini'] != "") 
+#              pfechaini = DateTime.strptime(
+#                params[:filtro]['fechaini'], '%Y-%m-%d'
+#              )
+#              @fechaini = pfechaini.strftime('%Y-%m-%d')
+#              where1 = personas_fecha_inicial(where1)
+#            end
+#            if (params[:filtro] && params[:filtro]['fechafin'] && 
+#                params[:filtro]['fechafin'] != "") 
+#              pfechafin = DateTime.strptime(
+#                params[:filtro]['fechafin'], '%Y-%m-%d'
+#              )
+#              @fechafin = pfechafin.strftime('%Y-%m-%d')
+#              where1 = personas_fecha_final(where1)
+#            end
+#
+#
+#        end
 
       end
     end
