@@ -1,0 +1,20 @@
+
+<% @tablader.try(:each) do |der| %>
+  <h2><%= CGI.escapeHTML(der[:titulo]) %></h2>
+  <% der[:tablas].try(:each) do |tabla| %>
+    <h3><%= CGI.escapeHTML(tabla[:titulo]) %></h3>
+    <table class="table table-striped">
+      <tbody>
+        <% tabla[:cuerpo].try(:each) do |fila| %>
+          <tr>
+            <% fila.try(:each) do |campo| %>
+              <td><%= CGI.escapeHTML(campo.to_s) if campo %></td>
+            <% end %>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
+<% end %>
+
+

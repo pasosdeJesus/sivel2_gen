@@ -1,0 +1,50 @@
+<div class="page-header">
+  <h1><%=t '.title', :default => "Consolidado General de Víctimas" %></h1>
+</div>
+
+<%= simple_form_for :filtro, 
+  { remote: true, 
+    url: conteos_genvic_path,
+    method: "get" } do |f| 
+%>
+  <div class="container">
+    <div class="row filtro-fila">
+      <div class="col-sm-offset-0 col-sm-2 col-md-offset-1 col-md-1">
+        <%= @titulo_personas_fecha %>
+      </div>
+      <div class="col-sm-offset-0 col-sm-4">
+        <%= f.input :fechaini,
+          maxlength: 10, 
+          size: 10,
+          label: false,
+          placeholder: 'Inicial',
+          input_html: {
+            "data-behaviour" => "datepicker",
+            "data-contarautomatico" => ""
+          }
+        %>
+      </div>
+      <div class="col-sm-offset-1 col-sm-4">
+        <%= f.input :fechafin,
+          maxlength: 10, 
+          size: 10,
+          label: false,
+          placeholder: 'Final',
+          input_html: {
+            "data-behaviour" => "datepicker",
+            "data-contarautomatico" => ""
+          }
+        %>
+      </div>
+    </div>
+    <div class="row filtro-fila">
+      <div class="col-md-offset-5 col-md-2">
+        <%= f.button :submit, 'Filtrar', class: 'btn btn-default' %>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<div id="resultado">
+  <%= render 'sivel2_gen/conteos/genvic_tabla' %>
+</div> <!-- id: resultado -->

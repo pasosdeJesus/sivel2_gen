@@ -379,31 +379,158 @@ module Sivel2Gen
           
         end
 
-#        def cgv
-#            authorize! :contar, Sivel2Gen::Caso
-#
-#            where1 = '';
-#            @fechaini = '';
-#            @fechafin = '';
-#            if (params[:filtro] && params[:filtro]['fechaini'] && 
-#                params[:filtro]['fechaini'] != "") 
-#              pfechaini = DateTime.strptime(
-#                params[:filtro]['fechaini'], '%Y-%m-%d'
-#              )
-#              @fechaini = pfechaini.strftime('%Y-%m-%d')
-#              where1 = personas_fecha_inicial(where1)
-#            end
-#            if (params[:filtro] && params[:filtro]['fechafin'] && 
-#                params[:filtro]['fechafin'] != "") 
-#              pfechafin = DateTime.strptime(
-#                params[:filtro]['fechafin'], '%Y-%m-%d'
-#              )
-#              @fechafin = pfechafin.strftime('%Y-%m-%d')
-#              where1 = personas_fecha_final(where1)
-#            end
-#
-#
-#        end
+        def cuenta_actos(cat, where)
+          w = where
+          w = consulta_and_sinap(w, "sivel2_gen_caso.id", 
+                                 "sivel2_gen_acto.id_caso");
+          w = consulta_and(w, "sivel2_gen_acto.id_categoria", cat.to_i);
+          q = "SELECT count(*) FROM (SELECT DISTINCT sivel2_gen_acto.id_caso, 
+            sivel2_gen_acto.id_persona, sivel2_gen_acto.id_categoria 
+            FROM sivel2_gen_caso, sivel2_gen_acto
+            WHERE #{w}) AS subcuentaactos;";
+          r = ActiveRecord::Base.connection.select_all(q)
+          return r[0]["count"];
+        end
+
+        def genvic_tabla(titulo, filas, tittotales, where1)
+          cuerpo = []
+          tot = 0;
+          filas.each do |f|
+            s = 0;
+            f["cat"].each do |c|
+              mult = 1;
+              if (c < 0)
+                mult = -1;
+                c = -c;
+              end
+              s += mult * cuenta_actos(c, where1);
+            end
+            cuerpo << [f["titulo"], s.to_s]
+            tot += s
+          end
+          cuerpo << [tittotales, tot]
+          return { 
+            titulo: titulo, 
+            cuerpo: cuerpo
+          }
+        end
+
+        def genvic
+            authorize! :contar, Sivel2Gen::Caso
+
+            where1 = '';
+            @fechaini = '';
+            @fechafin = '';
+            if (params[:filtro] && params[:filtro]['fechaini'] && 
+                params[:filtro]['fechaini'] != "") 
+              @fechaini = fecha_local_estandar(params[:filtro]['fechaini'])
+              where1 = personas_fecha_inicial(where1)
+            end
+            if (params[:filtro] && params[:filtro]['fechafin'] && 
+                params[:filtro]['fechafin'] != "") 
+              @fechafin = fecha_local_estandar(params[:filtro]['fechafin'])
+              where1 = personas_fecha_final(where1)
+            end
+            @tablader = [
+              { 
+                titulo: 'DERECHO A LA VIDA',
+                tablas: [
+                  genvic_tabla(
+                    '', 
+                    [
+                      {"cat" => [20, 30],
+                       "titulo" => "Víctimas de Ejecución Extrajudicial por Abuso de Autoridad e Intolerancia Social por agentes directos o indirectos del Estado (Violaciones a los Derechos Humanos)"},
+                      {"cat" => [10],
+                       "titulo" => "Víctimas registradas simultáneamente como Ejecuciones Extrajudiciales perpetradas por agentes directos o indirectos del Estado por móviles de Persecución Política (Violaciones a los Derechos Humanos) y como Homicidios Intencionales de personas protegidas (Infracciones al Derecho Internacional Humanitario)."},
+                      {"cat" => [701, -10, 97, 703, 87],
+                       "titulo" => "Víctimas de Homicidio Intencional de Persona Protegida (excepto casos de Violaciones a Derechos Humanos) o Civiles Muertos por uso de Métodos y Medios Ilícitos de guerra o Civiles Muertos en Acciones Bélicas o en Ataques a Bienes Civiles."},
+                      {"cat" => [40, 50],
+                       "titulo" => "Víctimas de Asesinatos por Móviles Político-Sociales sin autor determinado"}
+                    ], "Total víctimas que perdieron la vida", where1
+                  )
+                ]
+              }, 
+              {
+                titulo: 'INTEGRIDAD',
+                tablas: [
+                  genvic_tabla(
+                    'HERIDOS', 
+                    [
+                      {"cat" => [23, 33],
+                       "titulo" => "Víctimas de Ejecución Extrajudicial por Abuso de Autoridad e Intolerancia Social por agentes directos o indirectos del Estado (Violaciones a los Derechos Humanos)"},
+                      {"cat" => [13],
+                       "titulo" => "Víctimas registradas simultáneamente como Heridas por agentes directos o indirectos del Estado por móviles de Persecución Política (Violaciones a los Derechos Humanos) y como Heridas Intencionales de personas protegidas (Infracciones al Derecho Internacional Humanitario)."},
+                      {"cat" => [702, -13, 98, 704, 88],
+                       "titulo" => "Víctimas de Herida Intencional de Persona Protegida (excepto casos de Violación a Derechos Humanos) o Civiles Heridos por uso de Métodos y Medios Ilícitos de guerra o Civiles Heridos en Acciones Bélicas o en Ataques a Bienes Civiles."}
+                    ], "Total víctimas heridas", where1
+                  ),
+                  genvic_tabla(
+                    'AMENAZAS', 
+                    [
+                      {"cat" => [25, 35],
+                       "titulo" => "Víctimas de Amenaza por Abuso de Autoridad e Intolerancia Social por agentes directos o indirectos del Estado (Violaciones a los Derechos Humanos)."},
+                    {"cat" => [15],
+                     "titulo" => "Víctimas registradas simultáneamente como Amenazadas por agentes directos o indirectos del Estado por móviles de Persecución Política (Violaciones a los Derechos Humanos) y como víctimas de Amenazas que constituyen Infracciones al Derecho Internacional Humanitario por parte de agentes directos o indirectos del Estado."},
+                    {"cat" => [73, -15],
+                     "titulo" => "Víctimas de Amenaza como Infracciones al Derecho Internacional Humanitario por parte de la insurgencia o combatientes."}
+                    ], "Total víctimas de amenazas", where1
+                  ),
+                  genvic_tabla(
+                    'TORTURA', 
+                    [
+                      {"cat" => [22, 36],
+                       "titulo" => "Víctimas de Tortura por Abuso de Autoridad e Intolerancia Social por agentes directos o indirectos del Estado (Violaciones a los Derechos Humanos)."},
+                      {"cat" => [12],
+                       "titulo" => "Víctimas registradas simultáneamente como Torturadas por agentes directos o indirectos del Estado por móviles de Persecución Política (Violaciones a los Derechos Humanos) y como víctimas de Tortura que constituye Infracción al Derecho Internacional Humanitario por parte de agentes directos o indirectos del Estado."},
+                      {"cat" => [72, -12],
+                       "titulo" => "Víctimas de Tortura como Infracciones al Derecho Internacional Humanitario por parte de la insurgencia o combatientes."}
+                    ], "Total víctimas de tortura", where1
+                  ),
+                  genvic_tabla(
+                    'ATENTADOS', 
+                    [
+                      {"cat" => [16, 26, 37],
+                       "titulo" => "Víctimas de Atentados por Persecución Política, Abuso de Autoridad o Intolerancia Social por agentes directos o indirectos del Estado (Violaciones a los Derechos Humanos)."}
+                    ], "Total víctimas de atentados", where1
+                  ),
+                  genvic_tabla(
+                    'VIOLENCIA SEXUAL', 
+                    [
+                      {"cat" => [29, 39],
+                       "titulo" => "Víctimas de Violencia Sexual por móvil de Abuso de Autoridad o Intolerancia Social, perpetrada por agentes directos o indirectos del Estado (Violaciones a los Derechos Humanos)."},
+                      {"cat" => [19],
+                       "titulo" => "Casos registrados simultáneamente como víctimas de Violencia Sexual por agentes directos o indirectos del Estado por móviles de Persecución Política (Violaciones a los Derechos Humanos) y como casos que constituyen al mismo tiempo infracciones al Derecho Internacional Humanitario."},
+                      {"cat" => [77, -19],
+                       "titulo" => "Casos de Violencia Sexual que constituyen infracciones al Derecho Internacional Humanitario por parte de la insurgencia o combatientes."}
+                    ], "Total víctimas de violencia sexual", where1
+                  )
+                ]
+              }, 
+              {
+                titulo: 'DERECHO A LA LIBERTAD',
+                tablas: [
+                  genvic_tabla(
+                    'HERIDOS', 
+                    [
+                      {"cat" => [11],
+                       "titulo" => "Víctimas de Desaparición por móviles de Persecución Política por parte de agentes directos o indirectos del Estado (Violaciones a los Derechos Humanos)."},
+                      {"cat" => [14, 24],
+                       "titulo" => "Víctimas de Detención Arbitraria por móviles de Persecución Política o Abuso de Autoridad por parte de agentes directos e indirectos del Estado (Violaciones a los Derechos Humanos)."}
+                    ], "Total víctimas de violación del derecho a la libertad",
+                    where1
+                  )
+                ]
+              }
+            ]
+
+            respond_to do |format|
+              format.html { render 'sivel2_gen/conteos/genvic', 
+                            layout: 'application' }
+              format.json { head :no_content }
+              format.js   { render 'sivel2_gen/conteos/genvic' }
+            end
+          end # def personas
+ 
 
       end
     end
