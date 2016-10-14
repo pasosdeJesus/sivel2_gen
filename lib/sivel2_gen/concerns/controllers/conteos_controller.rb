@@ -389,6 +389,7 @@ module Sivel2Gen
             FROM sivel2_gen_caso, sivel2_gen_acto
             WHERE #{w}) AS subcuentaactos;";
           r = ActiveRecord::Base.connection.select_all(q)
+          #byebug
           return r[0]["count"];
         end
 
