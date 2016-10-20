@@ -7,7 +7,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sip.git
-  revision: 1f27ad93c696e957eeb30918523fab01c75bd4eb
+  revision: 966848fbfc2253ed5e8bdebf567bd21ac9a5183f
   specs:
     sip (2.0.b1)
       bootstrap-datepicker-rails
@@ -263,9 +263,9 @@ GEM
       execjs (>= 2.2.2, >= 2.2)
       less-rails (>= 2.5.0)
       railties (>= 3.1)
-    twitter_cldr (3.5.0)
+    twitter_cldr (3.6.0)
       camertron-eprun
-      cldr-plurals-runtime-rb (~> 1.0.0)
+      cldr-plurals-runtime-rb (~> 1.0)
       tzinfo
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
