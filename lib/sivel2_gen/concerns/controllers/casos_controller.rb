@@ -64,6 +64,10 @@ module Sivel2Gen
             0
           end
 
+
+          def inicializa_index
+          end
+
           # GET /casos
           # GET /casos.json
           def index
@@ -73,6 +77,8 @@ module Sivel2Gen
             @incluir = incluir_inicial
             @campoord = campoord_inicial
             @conscaso = Sivel2Gen::Conscaso.all
+
+            inicializa_index
 
             # Filtro
             if params && params[:filtro]
@@ -115,14 +121,16 @@ module Sivel2Gen
             if @paginar
               @conscaso = @conscaso.paginate(page: params[:pagina], per_page: 20)
             end
+            presenta_index
+          end
 
+          def presenta_index
             # Presentación
             respond_to do |format|
               format.html { render layout: 'application' }
               format.js { render 'sivel2_gen/casos/filtro' }
             end
           end
-
 
           # GET /casos/1
           # GET /casos/1.json
