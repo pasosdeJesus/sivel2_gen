@@ -66,6 +66,9 @@ module Sivel2Gen
 
 
           def inicializa_index
+            @plantillas = Heb412Gen::Plantillahcm.where(
+              vista: 'Listado de casos').select('nombremenu, id').map { 
+                |c| [c.nombremenu, c.id] }
           end
 
           # GET /casos
@@ -127,7 +130,19 @@ module Sivel2Gen
           def presenta_index
             # Presentación
             respond_to do |format|
-              format.html { render layout: 'application' }
+              format.html { 
+                if params[:filtro] && 
+                  params[:idplantilla].to_i > 0 &&
+                  !Heb412Gen::Plantillahcm.find(
+                    params[:idplantilla]).nil?
+                  pl = Heb412Gen::Plantillahcm.find(
+                    params[:idplantilla])
+                  n = Heb412Gen::PlantillahcmController.llena_plantilla_multiple_fd(pl, @conscaso)
+                  send_file n, x_sendfile: true
+                else
+                  render layout: 'application' 
+                end
+              }
               format.js { render 'sivel2_gen/casos/filtro' }
             end
           end

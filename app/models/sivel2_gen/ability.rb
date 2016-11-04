@@ -83,6 +83,16 @@ module Sivel2Gen
     end
 
 
+    @@acciones_plantillas = {'Listado de casos' => { 
+      campos: Sivel2Gen::Conscaso.column_names,
+      controlador: 'Sivel2Gen::CasosController#index',
+      unregistro: false }
+    }
+
+    def self.acciones_plantillas
+      @@acciones_plantillas
+    end
+
     # Ver documentacion de este metodo en app/models/ability de sip
     def initialize(usuario)
       # Sin autenticación puede consultarse información geográfica 
@@ -113,6 +123,7 @@ module Sivel2Gen
           can :manage, Sip::Persona
           can :manage, Usuario
           can :manage, Sivel2Gen::Acto
+          can :manage, Heb412Gen::Doc
           can :manage, :tablasbasicas
           @@tablasbasicas.each do |t|
             c = Ability.tb_clase(t)

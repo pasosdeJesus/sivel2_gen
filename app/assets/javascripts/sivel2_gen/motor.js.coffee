@@ -7,6 +7,22 @@
 
 @sivel2_gen_procesa_eliminaracto = false
 
+
+# Pone parametros de formulario en enlace para generar plantilla
+@sivel2_gen_completa_generarp = (elema) ->
+  #debugger
+  nplantilla = parseInt($('#filtro_dispresenta').val())
+  if nplantilla > 0 
+    f = $("form[action='/casos/filtro']")
+    d = f.serialize()
+    d += '&commit=Enviar'
+    root =  window;
+    sip_arregla_puntomontaje(root)
+    e = root.puntomontaje + 'casos/genera/' + nplantilla + '?' + d
+    $(elema).attr('href', e)
+  else 
+    return false
+
 # Elimina secciones agregadas con cocoon listadas en elempe
 @elimina_pendientes = (elempe) ->
   for i, e of elempe

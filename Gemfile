@@ -21,6 +21,10 @@ gem "pg"
 gem "jbuilder"
 
 gem "sass"
+gem 'chosen'
+gem 'font-awesome-rails'
+
+gem "rspreadsheet"
 
 # Uglifier comprime recursos Javascript
 gem "uglifier", '>= 1.3.0'
@@ -68,6 +72,10 @@ gem "tzinfo-data"
 # Motor estilo Pasos de Jesús
 gem 'sip', git: 'https://github.com/pasosdeJesus/sip.git'
 #gem 'sip', path: '../sip'
+
+# Motor de nube y plantillas
+gem 'heb412_gen', git: 'https://github.com/pasosdeJesus/heb412_gen.git'
+#gem 'heb412_gen', path: '../heb412_gen'
 
 group :doc do
   # Genera documentación en doc/api con bundle exec rake doc:rails
