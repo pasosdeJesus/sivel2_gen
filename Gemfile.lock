@@ -7,7 +7,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/heb412_gen.git
-  revision: b4e512735b56506d4e89d8dc2fc3827cff66c544
+  revision: 79ffb76e0ce5554c72755833b0fcca59dc738cf3
   specs:
     heb412_gen (1.0.a1)
       rails
@@ -15,7 +15,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sip.git
-  revision: 762547c5c3013e667b82b219e6cc0b1812e88761
+  revision: 6acf8ab9cb2a9c60863d92418ebb15ef98eaf361
   specs:
     sip (2.0.b1)
       bootstrap-datepicker-rails
@@ -79,7 +79,8 @@ GEM
       i18n (~> 0.7)
       minitest (~> 5.1)
       tzinfo (~> 1.1)
-    addressable (2.4.0)
+    addressable (2.5.0)
+      public_suffix (~> 2.0, >= 2.0.2)
     andand (1.3.3)
     arel (7.1.4)
     bcrypt (3.1.11)
@@ -96,8 +97,6 @@ GEM
       activesupport (>= 3.0)
     cocaine (0.5.8)
       climate_control (>= 0.0.3, < 1.0)
-    codeclimate-test-reporter (0.6.0)
-      simplecov (>= 0.7.1, < 1.0.0)
     coderay (1.1.1)
     coffee-rails (4.2.1)
       coffee-script (>= 2.2.0)
@@ -118,7 +117,6 @@ GEM
       warden (~> 1.2.3)
     devise-i18n (1.1.1)
     diff-lcs (1.2.5)
-    docile (1.1.5)
     erubis (2.7.0)
     execjs (2.7.0)
     factory_girl (4.7.0)
@@ -185,6 +183,7 @@ GEM
     pry-stack_explorer (0.4.9.2)
       binding_of_caller (>= 0.7)
       pry (>= 0.9.11)
+    public_suffix (2.0.4)
     puma (3.6.0)
     rack (2.0.1)
     rack-test (0.6.3)
@@ -220,8 +219,7 @@ GEM
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
     rake (11.3.0)
-    rdoc (4.2.2)
-      json (~> 1.4)
+    rdoc (4.3.0)
     responders (2.3.0)
       railties (>= 4.2.0, < 5.1)
     rspec-core (3.5.4)
@@ -253,11 +251,6 @@ GEM
     simple_form (3.3.1)
       actionpack (> 4, < 5.1)
       activemodel (> 4, < 5.1)
-    simplecov (0.12.0)
-      docile (~> 1.1.0)
-      json (>= 1.8, < 3)
-      simplecov-html (~> 0.10.0)
-    simplecov-html (0.10.0)
     slop (3.6.0)
     spork (0.9.2)
     spring (2.0.0)
@@ -312,7 +305,6 @@ DEPENDENCIES
   cancancan
   chosen
   cocoon!
-  codeclimate-test-reporter
   coffee-rails
   colorize
   devise

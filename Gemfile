@@ -111,7 +111,7 @@ group :test do
   gem 'spork'#, '~> 1.0rc'
 
   # Envia resultados de pruebas desde travis a codeclimate
-  gem "codeclimate-test-reporter", require: nil
+  #gem "codeclimate-test-reporter", require: nil
 
   # Maneja datos de prueba
   gem "factory_girl_rails", group: [:development, :test]#, "~> 4.0"

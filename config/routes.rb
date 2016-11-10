@@ -14,7 +14,7 @@ Sivel2Gen::Engine.routes.draw do
   get "/fichacasovertical" => 'hogar#fichacasovertical'
   get "/hogar" => 'hogar#index'
   get "/personas" => 'personas#index'
-  get "/personas/remplazar" => 'personas#remplazar'
+  get "/personas/remplazar" => 'sivel2_gen/personas#remplazar'
   get "/grupoper/remplazar" => 'grupoper#remplazar'
   get '/presponsables/nuevo' => 'presponsables#nuevo'
   get "/tablasbasicas" => 'hogar#tablasbasicas'
