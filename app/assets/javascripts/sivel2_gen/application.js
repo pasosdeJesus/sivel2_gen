@@ -16,7 +16,8 @@
 
 $(document).on('turbolinks:load ready', function() {
 	var root;
-    	root =  typeof exports != 'undefined' ? exports : window;
+	root = typeof exports !== "undefined" && exports !== null ? 
+		exports : window;
 	sip_prepara_eventos_comunes(root);
 	sivel2_gen_prepara_eventos_comunes(root);
 	sivel2_gen_prepara_eventos_unicos(root);
