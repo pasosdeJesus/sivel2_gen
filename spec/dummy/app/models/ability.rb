@@ -2,7 +2,7 @@
 
 class Ability  < Sivel2Gen::Ability
 
-  # Ver documentacion de este metodo en app/models/ability de sip
+  # Establece autorizaciones con CanCanCan
   def initialize(usuario = nil)
     # Sin autenticación puede consultarse información geográfica 
     can :read, [Sip::Pais, Sip::Departamento, Sip::Municipio, Sip::Clase]
