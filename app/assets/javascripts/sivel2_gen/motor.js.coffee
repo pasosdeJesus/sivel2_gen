@@ -13,7 +13,7 @@
   #debugger
   nplantilla = parseInt($('#filtro_dispresenta').val())
   if nplantilla > 0 
-    f = $("form[action='/casos/filtro']")
+    f = $("form[action$='/casos/filtro']")
     d = f.serialize()
     d += '&commit=Enviar'
     root =  window;
