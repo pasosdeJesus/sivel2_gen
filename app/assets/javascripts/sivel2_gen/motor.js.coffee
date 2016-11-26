@@ -1,12 +1,27 @@
 # vim: set expandtab tabstop=2 shiftwidth=2 fileencoding=utf-8:
 # 
-# Por compartir entre motores que operen sobre sivel2_gen
-
+# Por compartir entre motores que operen sobre sivel2_gen 
 #//= require sip/motor
 #//= require jquery-ui/autocomplete
 #//= require cocoon
 
 @sivel2_gen_procesa_eliminaracto = false
+
+
+# Pone parametros de formulario en enlace para generar plantilla
+@sivel2_gen_completa_generarp = (elema) ->
+  #debugger
+  nplantilla = parseInt($('#filtro_dispresenta').val())
+  if nplantilla > 0 
+    f = $("form[action$='/casos/filtro']")
+    d = f.serialize()
+    d += '&commit=Enviar'
+    root =  window;
+    sip_arregla_puntomontaje(root)
+    e = root.puntomontaje + 'casos/genera/' + nplantilla + '?' + d
+    $(elema).attr('href', e)
+  else 
+    return false
 
 # Elimina secciones agregadas con cocoon listadas en elempe
 @elimina_pendientes = (elempe) ->
@@ -177,6 +192,85 @@
     })
   return
 
+@ponerVariablesEdad = (root) ->
+    if typeof root.campo_fecha_ref_edad == 'undefined'
+      root.campo_fecha_ref_edad = 'caso_fecha'
+    fechac = $('[id=' +  root.campo_fecha_ref_edad + ']')
+    if (fechac.length >0) 
+      fechac = fechac.val()
+      root.aniocaso = fechac.slice(0,4)
+      root.mescaso = fechac.slice(5,7)
+      root.diacaso = fechac.slice(8,10)
+      root.anioactual = +$('#anioactual').val()
+      root.mesactual = +$('#mesactual').val()
+      root.diaactual = +$('#diaactual').val()
+    else
+      root.aniocaso = 0
+      root.mescaso = 0
+      root.diacaso = 0
+      d = new Date()
+      root.anioactual = d.getFullYear()
+      root.mesactual = d.getMonth() + 1
+      root.diaactual = d.getDate()
+
+# Pone en blanco fecha de nacimiento y edades
+@limpiarFechaNac = (prefIdPer,prefIdVic) ->
+  $("[id=" + prefIdPer+ "_anionac]").val('')
+  $("[id=" + prefIdPer+ "_mesnac]").val('')
+  $("[id=" + prefIdPer+ "_dianac]").val('')
+  $("[id=" + prefIdVic + "_edad]").val('')
+  $("[id=" + prefIdVic + "_edadactual]").val('')
+  $("[id=" + prefIdVic + "_id_rangoedad]").prop('disabled', false)
+
+# Retorna cantidad de años entre la fecha de nacimiento y
+# la fecha del hecho.
+@edadDeFechaNac = (prefId, anioref, mesref, diaref) ->
+  anionac= +$("[id=" + prefId + "_anionac]").val();
+  mesnac= +$("[id=" + prefId + "_mesnac]").val();
+  dianac= +$("[id=" + prefId + "_dianac]").val();
+  #alert("OJO edad_de_fechanac anionac=" + anionac + ", anioref=" + anioref+ ", mesnac=" + mesnac + ", mesref=" + mesref+ ", dianac=" + dianac + ", diaref=" + diaref);
+  if anionac == ''
+    return -1
+
+  na = anioref - anionac
+
+  if typeof mesnac != 'undefined' && mesnac != '' && mesnac > 0 &&
+  typeof mesref != 'undefined' && mesref!= '' && mesref > 0 &&
+  mesnac >= mesref
+    if mesnac > mesref || (dianac != undefined && dianac != '' && 
+    dianac > 0 && diaref != undefined && diaref!= '' && 
+    diaref > 0 && dianac > diaref)
+      na--
+
+  return na;
+
+
+# Establece rango de edad
+@ponerRangoEdad = (prefId) ->
+  edad = $("[id=" + prefId + "_edad]").val()
+  r = $("[id=" + prefId + "_id_rangoedad]")
+  if (edad == '') 
+    r.prop('disabled', false)
+  else 
+    cantr = $('#rangoedad_cant').val()
+    sin = -1
+    res = -1
+    for i in [0..cantr-1] 
+      inf = +$('#rangoedad_d_' + i).data('inf')
+      sup = +$('#rangoedad_d_' + i).data('sup')
+      if (inf == -1) 
+        sin = i
+      else if (edad != '' && inf <= edad && edad <= sup) 
+        res = i
+   
+    if (res == -1)
+      res = sin
+  
+    resid = $('#rangoedad_d_' + res).val()
+    r.val(resid)
+    r.prop('disabled', true)
+
+  return
 
 # Confirma antes de eliminar P. Responsable
 @confirma_elim_dep_presponsable = (root, papa, nomelempe) ->
@@ -400,6 +494,99 @@ enviaFormularioContar= (root) ->
     language: 'es'
   })
 
+  # Variables para calcular edad y rango
+  ponerVariablesEdad(root)
+  root.mesactual = 0
+  root.diaactual = 0
+
+  $(document).on('change', 
+  '[id^=caso_victima_attributes][id$=persona_attributes_anionac]', (event) ->
+    root =  exports ? window
+    anionac = $(this).val();
+    prefIdVic = $(this).attr('id').slice(0, -27)
+    prefIdPer = $(this).attr('id').slice(0, -8)
+    ponerVariablesEdad(root)
+    if (anionac == '') 
+      limpiarFechaNac(prefIdPer, prefIdVic);
+    else 
+      $('[id=' + prefIdVic + '_edad]').val(
+        edadDeFechaNac(prefIdPer, root.aniocaso, root.mescaso, root.diacaso))
+      $('[id=' + prefIdVic + '_edadactual]').val(
+        edadDeFechaNac(prefIdPer, root.anioactual, root.mesactual, root.diaactual))
+    
+    ponerRangoEdad(prefIdVic);
+  );
+
+  $(document).on('change', 
+  "[id^=caso_victima_attributes][id$=persona_attributes_mesnac]", (event) ->
+    root =  exports ? window
+    prefIdVic = $(this).attr('id').slice(0, -26)
+    prefIdPer = $(this).attr('id').slice(0, -7)
+    ponerVariablesEdad(root)
+    $('[id=' + prefIdVic + '_edad]').val(
+      edadDeFechaNac(prefIdPer, root.aniocaso, root.mescaso, root.diacaso))
+    $('[id=' + prefIdVic + '_edadactual]').val(
+      edadDeFechaNac(prefIdPer, root.anioactual, root.mesactual, root.diaactual))
+    ponerRangoEdad(prefIdVic);
+  )
+
+  $(document).on('change', 
+  "[id^=caso_victima_attributes][id$=persona_attributes_dianac]", (event) ->
+    root =  exports ? window
+    prefIdVic = $(this).attr('id').slice(0, -26)
+    prefIdPer = $(this).attr('id').slice(0, -7)
+    ponerVariablesEdad(root)
+    $('[id=' + prefIdVic + '_edad]').val(
+      edadDeFechaNac(prefIdPer, root.aniocaso, root.mescaso, root.diacaso))
+    $('[id=' + prefIdVic + '_edadactual]').val(
+      edadDeFechaNac(prefIdPer, root.anioactual, root.mesactual, root.diaactual))
+    ponerRangoEdad(prefIdVic);
+  )
+
+  $(document).on('change', 
+  "[id^=caso_victima_attributes][id$=_edad]", (event) ->
+    root =  exports ? window
+    edad = $(this).val();
+    prefIdVic = $(this).attr('id').slice(0, -5)
+    prefIdPer = prefIdVic + '_persona_attributes'
+    ponerVariablesEdad(root)
+    if (edad == '') 
+      limpiarFechaNac(prefIdPer, prefIdVic);
+    else
+      $("[id=" + prefIdPer + "_anionac]").val((+root.aniocaso) - (+edad));
+      $("[id=" + prefIdPer + "_mesnac]").val('');
+      $("[id=" + prefIdPer + "_dianac]").val('');
+      $('[id=' + prefIdVic + '_edadactual]').val(
+        edadDeFechaNac(prefIdPer, root.anioactual, root.mesactual, root.diaactual))
+
+    ponerRangoEdad(prefIdVic);
+  )
+
+  $(document).on('change', 
+  "[id^=caso_victima_attributes][id$=_edadactual]", (event) ->
+    root =  exports ? window
+    edadactual = $(this).val();
+    prefIdVic = $(this).attr('id').slice(0, -11)
+    prefIdPer = prefIdVic + '_persona_attributes'
+    ponerVariablesEdad(root)
+    if (edadactual == '')
+      limpiarFechaNac(prefIdPer, prefIdVic);
+    else
+      $("[id=" + prefIdPer + "_anionac]").val((+root.anioactual) - 
+      (+edadactual));
+      $("[id=" + prefIdPer + "_mesnac]").val('');
+      $("[id=" + prefIdPer + "_dianac]").val('');
+      $('[id=' + prefIdVic + '_edad]').val(
+        edadDeFechaNac(prefIdPer, root.aniocaso, root.mescaso, root.diacaso))
+
+    ponerRangoEdad(prefIdVic);
+  )
+
+  # Habilitar rangos de edad deshabilitados cuando se pone edad o año
+  $(document).on('submit', 'form', (event) ->
+    $("[id$=_id_rangoedad]").prop('disabled', false)
+  )
+
   # Al cambiar fecha del hecho 
   # Método para detectar cambios en datepicker de
   # http://stackoverflow.com/questions/17009354/detect-change-to-selected-date-with-bootstrap-datepicker
@@ -409,9 +596,8 @@ enviaFormularioContar= (root) ->
     todayHighlight: true
     language: 'es'
   }).on('changeDate', (ev) ->
-  #  $("article").css("cursor", "wait")
-  #  $(this).parents("form").submit() 
-  #  $("article").css("cursor", "default") 
+    #  Cambiar edades
+    $('[id^=caso_victima_attributes][id$=persona_attributes_anionac]').change()
   )
 
 
@@ -420,7 +606,9 @@ enviaFormularioContar= (root) ->
   #$('body').on('click', 'a.disabled', (e) -> 
   #  e.preventDefault() )
 
-  
+  # Obligar cálculo de edades al cargar 
+  $('[id^=caso_victima_attributes][id$=persona_attributes_anionac]').change()
+
   return
 
 @sivel2_gen_prepara_eventos_unicos = (root) ->
@@ -441,13 +629,11 @@ enviaFormularioContar= (root) ->
       actualiza_presponsables($('#caso_acto_id_presponsable'))
       actualiza_victimas($('#caso_acto_id_persona'))
       root.tfichacambia = Date.now()
+
     return
   )
 
   return
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://coffeescript.org/
 
 
 

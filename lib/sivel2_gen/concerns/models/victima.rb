@@ -7,6 +7,10 @@ module Sivel2Gen
         extend ActiveSupport::Concern
 
         included do
+
+          attr_accessor :edad
+          attr_accessor :edadactual
+
           has_many :antecedente_victima, foreign_key: :id_victima, 
             validate: true, dependent: :destroy
 

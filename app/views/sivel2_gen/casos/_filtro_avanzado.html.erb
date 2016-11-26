@@ -326,21 +326,24 @@
       <div class="col-sm-offset-0 col-sm-2 col-md-offset-1 col-md-1">
         Presentación  
       </div>
-      <div class="col-sm-offset-1 col-sm-1">
-        <%= f.radio_button :dispresenta, :tabla, checked: true %>
-        <%= label :dispresenta_tabla, 'Tabla' %>
+      <div class="col-sm-offset-1 col-sm-5">
+        <% oppres = [['Tabla', 'tabla']]
+          if @plantillas
+            oppres += @plantillas
+          end 
+        %>
+        <%= f.input :dispresenta,
+          collection: oppres,
+          label: false,
+          include_blank: false
+        %>
       </div>
       <div class="col-sm-2">
-        <!--%= f.radio_button :dispresenta, :revista %-->
-        <!--%= label :dispresenta_revista, 'Rep. Revista' %-->
-      </div>
-      <div class="col-sm-2">
-        <!--%= f.radio_button :dispresenta, :general %-->
-        <!--%= label :dispresenta_general, 'Rep. General' %-->
-      </div>
-      <div class="col-sm-2">
-        <!--%= f.radio_button :dispresenta, :xrlat %-->
-        <!--%= label :dispresenta_xrlat, 'Relato XML' %-->
+        <%= link_to t('Generar'), 
+          '#',
+          class: 'btn', 
+          target: '_blank', 
+          onclick: 'sivel2_gen_completa_generarp(this)' %>
       </div>
       <div class="col-sm-offset-1 col-sm-1">
         <%= f.input :paginar, 

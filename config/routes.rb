@@ -14,7 +14,7 @@ Sivel2Gen::Engine.routes.draw do
   get "/fichacasovertical" => 'hogar#fichacasovertical'
   get "/hogar" => 'hogar#index'
   get "/personas" => 'personas#index'
-  get "/personas/remplazar" => 'personas#remplazar'
+  get "/personas/remplazar" => 'sivel2_gen/personas#remplazar'
   get "/grupoper/remplazar" => 'grupoper#remplazar'
   get '/presponsables/nuevo' => 'presponsables#nuevo'
   get "/tablasbasicas" => 'hogar#tablasbasicas'
@@ -25,14 +25,18 @@ Sivel2Gen::Engine.routes.draw do
   get '/casos/filtro' => 'casos#index', as: :casos_filtro
   post '/casos/filtro' => 'casos#index', as: :envia_casos_filtro
 
+  get '/casos/genera/:idplantilla' => 'casos#index', as: :casos_genera
+
   get "/conteos/personas" => 'conteos#personas', as: :conteos_personas
+  get "/conteos/genvic" => 'conteos#genvic', as: :conteos_genvic
   get "/validarcasos" => 'validarcasos#validar', as: :validarcasos
   post "/validarcasos" => 'validarcasos#validar', as: :envia_validarcasos
 
   resources :casos, path_names: { new: 'nuevo', edit: 'edita' }
 
   namespace :admin do
-    ::Ability.tablasbasicas.each do |t|
+    ab=::Ability.new
+    ab.tablasbasicas.each do |t|
       if (t[0] == "Sivel2Gen") 
         c = t[1].pluralize
         resources c.to_sym, 

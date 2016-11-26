@@ -1,5 +1,5 @@
 <%= f.simple_fields_for :persona do |p| %>
-  <%= render 'sip/personas/persona_fields', :f => p %>
+  <%= render 'sip/personas/persona_fields', f: p, fvictima: f  %>
 <% end %>
 <%= f.association :profesion,
 	collection: Sivel2Gen::Profesion.habilitados,
@@ -20,22 +20,33 @@
 	include_blank: false,
 	label: "Filiación",
 	label_method: :nombre, 
-	value_method: :id 
+  value_method: :id,
+  input_html: {
+    "data-toggle" => 'tooltip',
+    "title" => 'Partido o filiación política en el momento del hecho' 
+  }
 %>
 <%= f.association :organizacion,
 	collection: Sivel2Gen::Organizacion.habilitados,
 	include_blank: false,
 	label: "Organización",
 	label_method: :nombre, 
-	value_method: :id 
+  value_method: :id,
+  input_html: {
+    "data-toggle" => 'tooltip',
+    "title" => 'Organización a la que pertenecía en el momento del hecho'
+  }
 %>
 <%= f.association :vinculoestado,
 	collection: Sivel2Gen::Vinculoestado.habilitados,
 	include_blank: false,
 	label: "Vínculo con el Estado",
 	label_method: :nombre, 
-	value_method: :id
-  #wrapper_html: { style: "padding-bottom: 18px;" }
+  value_method: :id,
+  input_html: {
+    "data-toggle" => 'tooltip',
+    "title" => 'Registre si la persona era funcionaria pública en el momento del hecho'
+  }
 %>
 <%= f.association :etnia,
 	collection: Sivel2Gen::Etnia.habilitados,

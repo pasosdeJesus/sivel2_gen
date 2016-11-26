@@ -19,7 +19,7 @@
                     campo[1].to_i, 
                     sivel2_gen.edit_caso_path(campo[1].to_i)) if campo[1] %>
                 <% else %>
-                  <%= CGI.escapeHTML(campo[1]) if campo[1] %>
+                  <%= CGI.escapeHTML(campo[1].to_s) if campo[1] %>
                 <% end %>
                 <% i += 1 %>
               </td>

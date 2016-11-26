@@ -8,9 +8,10 @@ module Sivel2Gen
 
         include Sip::Basica
         included do
+          Nombresunicos=false
 
           belongs_to :supracategoria, foreign_key: "supracategoria_id", 
-            validate: true, class_name: 'Sivel2Gen::Supracategoria'
+             class_name: 'Sivel2Gen::Supracategoria', validate: true
 
           belongs_to :contada, foreign_key: "contadaen", 
             class_name: 'Sivel2Gen::Categoria'

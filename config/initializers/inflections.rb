@@ -25,6 +25,7 @@ ActiveSupport::Inflector.inflections do |inflect|
 	inflect.plural(/^(.*n)$/i, '\1es')
 	inflect.singular(/^(.*n)es$/i, '\1')
 	inflect.irregular 'actividad', 'actividades'
+	inflect.irregular 'categoria', 'categorias'
 	inflect.irregular 'clase', 'clases'
 	inflect.irregular 'estadocivil', 'estadosciviles'
 	inflect.irregular 'etiqueta', 'etiquetas'

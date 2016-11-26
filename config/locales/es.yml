@@ -22,6 +22,10 @@ es:
         one: Otra fuente
         other: Otras fuentes
     attributes:
+      "sip/persona":
+        dianac: Día de nacimiento
+        mesnac: Mes de nacimiento
+        anionac: Año de nacimiento
       "sivel2_gen/actividadarea": 
         Actividadarea: Área de Actividad
         Actividadareas: Áreas de Actividades
@@ -168,6 +172,9 @@ es:
       "sivel2_gen/vinculoestado":
         Vinculoestado: Vínculo con el Estado
         Vinculosestado: Vínculos con el Estado
+      "sivel2_gen/victima":
+        edad: Edad en fecha del hecho
+        edadactual: Edad/aniversario actual
       "sivel2_gen/victimacolectiva":
         personasaprox: Número aproximado de personas
         presponsable: Organización armada

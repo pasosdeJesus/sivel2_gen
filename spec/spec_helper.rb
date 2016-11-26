@@ -46,8 +46,8 @@ end
 # These instructions should self-destruct in 10 seconds.  If they don't, feel
 # free to delete them.
 
-require "codeclimate-test-reporter"
-CodeClimate::TestReporter.start
+#require "codeclimate-test-reporter"
+#CodeClimate::TestReporter.start
 require File.expand_path("../dummy/config/environment.rb",  __FILE__)
 require 'rspec/rails'
 require 'factory_girl_rails'

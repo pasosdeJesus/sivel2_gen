@@ -21,6 +21,10 @@ gem "pg"
 gem "jbuilder"
 
 gem "sass"
+gem 'chosen'
+gem 'font-awesome-rails'
+
+gem "rspreadsheet"
 
 # Uglifier comprime recursos Javascript
 gem "uglifier", '>= 1.3.0'
@@ -43,7 +47,7 @@ gem "bootstrap-datepicker-rails"
 gem "simple_form"
 
 # Formularios anidados (algunos con ajax)
-gem "cocoon", github: "vtamara/cocoon"
+gem "cocoon", git: 'https://github.com/vtamara/cocoon.git'
 
 # Autenticación y roles
 gem "devise"
@@ -65,8 +69,12 @@ gem "tzinfo"
 gem "tzinfo-data"
 
 # Motor estilo Pasos de Jesús
-gem 'sip', github: 'pasosdeJesus/sip'
+gem 'sip', git: 'https://github.com/pasosdeJesus/sip.git'
 #gem 'sip', path: '../sip'
+
+# Motor de nube y plantillas
+gem 'heb412_gen', git: 'https://github.com/pasosdeJesus/heb412_gen.git'
+#gem 'heb412_gen', path: '../heb412_gen'
 
 group :doc do
   # Genera documentación en doc/api con bundle exec rake doc:rails
@@ -102,7 +110,7 @@ group :test do
   gem 'spork'#, '~> 1.0rc'
 
   # Envia resultados de pruebas desde travis a codeclimate
-  gem "codeclimate-test-reporter", require: nil
+  #gem "codeclimate-test-reporter", require: nil
 
   # Maneja datos de prueba
   gem "factory_girl_rails", group: [:development, :test]#, "~> 4.0"
