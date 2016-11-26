@@ -1,11 +1,4 @@
 GIT
-  remote: https://github.com/kristianmandrup/jquery-ui-bootstrap-rails
-  revision: 944cf4164ea511a2977f91031cc7f69d3e06e6cb
-  specs:
-    jquery-ui-bootstrap-rails (0.1.1)
-      rails
-
-GIT
   remote: https://github.com/pasosdeJesus/heb412_gen.git
   revision: 4e3c878510919900c3402a1f0e05fe7ce3f4aeee
   specs:

@@ -120,8 +120,8 @@ module Sivel2Gen
             # Cuenta y Paginación
             @numconscaso = @conscaso.size
             @paginar = !params || !params[:filtro] || !params[:filtro][:paginar] ||
-              params[:filtro][:paginar] != '0'
-            if @paginar
+              params[:filtro][:paginar] != '0' 
+            if @paginar && params[:idplantilla].nil?
               @conscaso = @conscaso.paginate(page: params[:pagina], per_page: 20)
             end
             presenta_index
