@@ -2,7 +2,7 @@
 # 
 # Por compartir entre motores que operen sobre sivel2_gen 
 #//= require sip/motor
-#//= require jquery-ui/autocomplete
+#//= require jquery-ui/widgets/autocomplete
 #//= require cocoon
 
 @sivel2_gen_procesa_eliminaracto = false
