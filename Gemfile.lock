@@ -1,12 +1,12 @@
 GIT
   remote: https://github.com/pasosdeJesus/heb412_gen.git
-  revision: 1f9ef3545ebf6d0fda3c6c1c74ed302b8617289c
+  revision: 80dd80ee2e6de54c564c29fffb706a325825a9cd
   specs:
     heb412_gen (1.0.a1)
 
 GIT
   remote: https://github.com/pasosdeJesus/sip.git
-  revision: e560fba3016201e0f7fffbbbc554702bbd05eddb
+  revision: bf5519bbb905cb0ddf7170fff6689c2629a78725
   specs:
     sip (2.0.b1)
       bootstrap-datepicker-rails
@@ -115,7 +115,7 @@ GEM
     factory_girl_rails (4.7.0)
       factory_girl (~> 4.7.0)
       railties (>= 3.0.0)
-    font-awesome-rails (4.7.0.0)
+    font-awesome-rails (4.7.0.1)
       railties (>= 3.2, < 5.1)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
