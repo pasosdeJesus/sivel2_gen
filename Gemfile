@@ -68,6 +68,9 @@ gem "paperclip"#, "~> 4.1"
 gem "tzinfo"
 gem "tzinfo-data"
 
+# Mientras solucionan https://github.com/sparklemotion/nokogiri/issues/1569
+gem 'nokogiri', '1.6.8.1' 
+
 # Motor estilo Pasos de Jesús
 gem 'sip', git: 'https://github.com/pasosdeJesus/sip.git'
 #gem 'sip', path: '../sip'
@@ -75,11 +78,6 @@ gem 'sip', git: 'https://github.com/pasosdeJesus/sip.git'
 # Motor de nube y plantillas
 gem 'heb412_gen', git: 'https://github.com/pasosdeJesus/heb412_gen.git'
 #gem 'heb412_gen', path: '../heb412_gen'
-
-group :doc do
-  # Genera documentación en doc/api con bundle exec rake doc:rails
-  gem "sdoc", require: false
-end
 
 # Los siguientes son para desarrollo o para pruebas con generadores
 group :development do
