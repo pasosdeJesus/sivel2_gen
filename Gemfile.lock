@@ -6,7 +6,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sip.git
-  revision: 9f961c730dd70aef8d0f233015667b498b97d5cf
+  revision: 333937a24631a61e6ad94ad4121bb75c156f3391
   specs:
     sip (2.0.b1)
       bootstrap-datepicker-rails
@@ -173,7 +173,7 @@ GEM
     pry-stack_explorer (0.4.9.2)
       binding_of_caller (>= 0.7)
       pry (>= 0.9.11)
-    public_suffix (2.0.4)
+    public_suffix (2.0.5)
     puma (3.6.2)
     rack (2.0.1)
     rack-test (0.6.3)
