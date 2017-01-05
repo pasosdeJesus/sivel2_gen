@@ -68,9 +68,6 @@ gem "paperclip"#, "~> 4.1"
 gem "tzinfo"
 gem "tzinfo-data"
 
-# Mientras solucionan https://github.com/sparklemotion/nokogiri/issues/1569
-gem 'nokogiri', '1.6.8.1' 
-
 # Motor estilo Pasos de Jesús
 gem 'sip', git: 'https://github.com/pasosdeJesus/sip.git'
 #gem 'sip', path: '../sip'
