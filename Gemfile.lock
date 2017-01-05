@@ -1,12 +1,12 @@
 GIT
   remote: https://github.com/pasosdeJesus/heb412_gen.git
-  revision: f96b3565c9416ba1921d759648dc7b38a0d533ad
+  revision: aeb1e70bf1f8280e6f975858e728720182f2c085
   specs:
     heb412_gen (1.0.a1)
 
 GIT
   remote: https://github.com/pasosdeJesus/sip.git
-  revision: 333937a24631a61e6ad94ad4121bb75c156f3391
+  revision: 667db057ee07ad374b81a848a8c650af941d14de
   specs:
     sip (2.0.b1)
       bootstrap-datepicker-rails
@@ -153,7 +153,7 @@ GEM
     minitest (5.10.1)
     multi_json (1.12.1)
     nio4r (1.2.1)
-    nokogiri (1.6.8.1)
+    nokogiri (1.7.0.1)
       mini_portile2 (~> 2.1.0)
     orm_adapter (0.5.0)
     paperclip (5.1.0)
@@ -302,7 +302,6 @@ DEPENDENCIES
   jquery-rails
   jquery-ui-rails
   launchy
-  nokogiri (= 1.6.8.1)
   paperclip
   pg
   pry-rescue
