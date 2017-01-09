@@ -6,9 +6,9 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sip.git
-  revision: 667db057ee07ad374b81a848a8c650af941d14de
+  revision: 6f0b3a0af766620370047cce170c5f7c5635c010
   specs:
-    sip (2.0.b1)
+    sip (2.0.b2)
       bootstrap-datepicker-rails
       cancancan
       colorize
@@ -84,8 +84,7 @@ GEM
     cancancan (1.15.0)
     chosen (0.0.4)
     cldr-plurals-runtime-rb (1.0.1)
-    climate_control (0.0.3)
-      activesupport (>= 3.0)
+    climate_control (0.1.0)
     cocaine (0.5.8)
       climate_control (>= 0.0.3, < 1.0)
     coderay (1.1.1)
@@ -234,7 +233,7 @@ GEM
       rubyzip (~> 1.1)
     rubyzip (1.2.0)
     sass (3.4.23)
-    simple_form (3.3.1)
+    simple_form (3.4.0)
       actionpack (> 4, < 5.1)
       activemodel (> 4, < 5.1)
     slop (3.6.0)
