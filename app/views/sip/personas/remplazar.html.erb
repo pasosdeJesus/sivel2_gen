@@ -1,6 +1,11 @@
 <%- model_class = Sip::Persona %>
 <%= 
-  simple_fields_for @persona, :html => { :class => 'form-horizontal' } do |f|
-    render('sip/personas/persona_fields', {:f => f }) 
+  simple_fields_for @victima, 
+    :html => { :class => 'form-horizontal' } do |fvictima|
+    simple_fields_for @persona, 
+      :html => { :class => 'form-horizontal' } do |f|
+      render('sip/personas/persona_fields', {
+        f: f, fvictima: fvictima }) 
+    end
   end
 %>
