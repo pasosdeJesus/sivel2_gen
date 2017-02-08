@@ -21,6 +21,10 @@ module Sivel2Gen
           validates :clasificacion, length: { maximum: 100 } 
           validates :ubicacionfisica, length: { maximum: 100 } 
 
+          validates :fuenteprensa_id, uniqueness: { scope: [
+            :id_caso, :fecha
+          ] }
+
           validates :fecha, uniqueness: { scope: [
             :ubicacion, :clasificacion, :ubicacionfisica, :fuenteprensa_id
           ] }
