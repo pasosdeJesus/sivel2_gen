@@ -100,6 +100,13 @@ module Sivel2Gen
             validate: true, class_name: 'Sivel2Gen::Intervalo'
 
           validates_presence_of :fecha
+          validates :titulo, length: { maximum: 50 }
+          validates :hora, length: { maximum: 10 }
+          validates :duracion, length: { maximum: 10 }
+          validates :grconfiabilidad, length: { maximum: 5 }
+          validates :gresclarecimiento, length: { maximum: 5 }
+          validates :grimpunidad, length: { maximum: 5 }
+          validates :grinformacion, length: { maximum: 5 }
 
           validate :rol_usuario
 
