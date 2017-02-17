@@ -341,6 +341,23 @@ enviaFormularioContar= (root) ->
   root.dant = d 
   return
 
+# Envía datos de la ficha del caso para guardar 
+@enviarFichaCaso = ->
+  f=$('form')
+  a=f.attr('action')
+  $.post(a, f.serialize())
+  elimina_destruidos()
+  actualiza_presponsables($('#caso_acto_id_presponsable'))
+  actualiza_victimas($('#caso_acto_id_persona'))
+
+@sivel2_idTemp60 = -1
+
+@sivel2_enviarFichaCasoCada60 = ->
+    @sivel2_idTemp60 = window.setInterval(@enviarFichaCaso, 60000)
+
+@sivel2_detenerEnviarCada60 = ->
+    window.clearInterval(@sivel2_idTemp60)
+
 
 # root es espacio para poner variables globales
 # nomactospe es nombre por dar a actos 
@@ -622,12 +639,7 @@ enviaFormularioContar= (root) ->
     if (root.tfichacambia) 
       d = (tn - root.tfichacambia)/1000
     if (d == -1 || d>5) 
-      f=$('form')
-      a=f.attr('action')
-      $.post(a, f.serialize())
-      elimina_destruidos()
-      actualiza_presponsables($('#caso_acto_id_presponsable'))
-      actualiza_victimas($('#caso_acto_id_persona'))
+      enviarFichaCaso()
       root.tfichacambia = Date.now()
 
     return

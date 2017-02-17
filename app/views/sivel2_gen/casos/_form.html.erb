@@ -2,9 +2,14 @@
   <li><a href="usuarios/sign_in">Iniciar Sesión</a>
 <%- else  %>
   <article>
+  <script>
+    $(document).ready(function() {
+      window.sivel2_enviarFichaCasoCada60()  ;
+    });
+  </script>
   <%= simple_form_for @caso, 
-    :url => sivel2_gen.casos_path(@caso).sub(/\./,"/"), 
-    :html => { :class => 'form-horizontal' } do |f| 
+    url: sivel2_gen.casos_path(@caso).sub(/\./,"/"), 
+    html: { class: 'form-horizontal' } do |f| 
   %>
     <div data-role="content" class="form-inputs">
 
@@ -52,51 +57,51 @@
         </ul>
         <div class="tab-content">
           <div role="tabpanel" class="tab-pane active" id="basicos">
-            <%= render 'basicos', :f => f %>
+            <%= render 'basicos', f: f %>
           </div> 
 
           <div role="tabpanel" class="tab-pane" id="ubicacion">
-            <%= render 'ubicaciones', :f => f %>
+            <%= render 'ubicaciones', f: f %>
           </div>
 
           <div role="tabpanel" class="tab-pane" id="fuenteprensa">
-            <%= render 'fuentesprensa', :f => f %>
+            <%= render 'fuentesprensa', f: f %>
           </div>
 
           <div role="tabpanel" class="tab-pane" id="fotra">
-            <%= render 'fotras', :f => f %>
+            <%= render 'fotras', f: f %>
           </div>
 
           <div role="tabpanel" class="tab-pane" id="presponsable">
-            <%= render 'presponsables', :f => f %>
+            <%= render 'presponsables', f: f %>
           </div>
 
           <div role="tabpanel" class="tab-pane" id="victima">
-            <%= render 'victimas', :f => f %>
+            <%= render 'victimas', f: f %>
           </div>
 
           <div role="tabpanel" class="tab-pane" id="victimacolectiva">
-            <%= render 'victimascolectivas', :f => f %>
+            <%= render 'victimascolectivas', f: f %>
           </div>
 
           <div role="tabpanel" class="tab-pane" id="combatiente">
-            <%= render 'combatientes', :f => f %>
+            <%= render 'combatientes', f: f %>
           </div>
 
           <div role="tabpanel" class="tab-pane" id="actos">
-            <%= render 'actos', :f => f %> 
+            <%= render 'actos', f: f %> 
           </div>
 
           <div role="tabpanel" class="tab-pane" id="descripcion">
-            <%= render 'memo', :f => f %>
+            <%= render 'memo', f: f %>
           </div>
 
           <div role="tabpanel" class="tab-pane" id="anexos">
-            <%= render 'sivel2_gen/casos/anexos', :f => f %>
+            <%= render 'sivel2_gen/casos/anexos', f: f %>
           </div>
 
           <div role="tabpanel" class="tab-pane" id="etiquetas">
-            <%= render 'etiquetas', :f => f %>
+            <%= render 'etiquetas', f: f %>
           </div>
 
         </div> <!-- tab-content -->
@@ -104,9 +109,12 @@
     </div> <!-- form-inputs -->
 
     <div class="form-actions" style="text-align: center">
-      <%= f.button :submit, 'Validar y Guardar', :class => 'btn-primary' %>
-      <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-        sivel2_gen.casos_path, :class => 'btn' 
+      <%= f.button :submit, 'Validar y Guardar', {
+        class: 'btn-primary',
+        onclick: 'window.sivel2_detenerEnviarCada60()'
+      } %>
+      <%= link_to t('.cancel', default: t("helpers.links.cancel")),
+        sivel2_gen.casos_path, class: 'btn' 
       %>
     </div> <!-- form-action -->
   <% end %> <!-- simple_form_for @caso -->
