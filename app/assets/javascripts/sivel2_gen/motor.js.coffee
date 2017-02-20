@@ -11,7 +11,11 @@
 # Pone parametros de formulario en enlace para generar plantilla
 @sivel2_gen_completa_generarp = (elema) ->
   #debugger
-  nplantilla = parseInt($('#filtro_dispresenta').val())
+  if ($('#filtro_disgenera').length > 0) 
+    nplantilla = parseInt($('#filtro_disgenera').val())
+  else
+    nplantilla = parseInt($('#filtro_dispresenta').val())
+
   if nplantilla > 0 
     f = $("form[action$='/casos/filtro']")
     d = f.serialize()
