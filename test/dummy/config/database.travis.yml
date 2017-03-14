@@ -6,15 +6,15 @@ default: &default
 
 development:
   <<: *default
-  database: cor1440gen_des
+  database: sivel2gen_des
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: cor1440gen_pru
+  database: sivel2gen_pru
 
 production:
   <<: *default
-  database: cor1440gen
+  database: sivel2gen
