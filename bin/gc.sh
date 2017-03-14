@@ -31,14 +31,14 @@ if (test "$SININS" != "1") then {
 	} fi;
 } fi;
 if (test "$SINMIG" != "1") then {
-	(cd spec/dummy; bundle exec rake db:migrate sip:indices db:structure:dump)
+	(cd test/dummy; bundle exec rake db:migrate sip:indices db:structure:dump)
 	if (test "$?" != "0") then {
 		exit 1;
 	} fi;
 } fi;
 
 
-(cd spec/dummy; RAILS_ENV=test bundle exec rake db:drop db:setup db:migrate sip:indices)
+(cd test/dummy; RAILS_ENV=test bundle exec rake db:drop db:setup db:migrate sip:indices)
 if (test "$?" != "0") then {
 	echo "No puede preparse base de prueba";
 	exit 1;
@@ -50,7 +50,7 @@ if (test "$?" != "0") then {
 	exit 1;
 } fi;
 
-(cd spec/dummy; RAILS_ENV=test bundle exec rake db:structure:dump)
+(cd test/dummy; RAILS_ENV=test bundle exec rake db:structure:dump)
 
 b=`git branch | grep "^*" | sed -e  "s/^* //g"`
 git status -s
