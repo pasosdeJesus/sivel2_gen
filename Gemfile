@@ -95,6 +95,8 @@ group :test do
   # Acelera ejecutando en fondo. https://github.com/jonleighton/spring
   gem "spring"
 
+  gem 'byebug'
+
   gem "connection_pool"
   gem "minitest-reporters"
 
