@@ -17,11 +17,7 @@ module Sivel2Gen
       e=categoria.errors.full_messages.inject("") do |memo,e|
         memo + e + ". "
       end
-      if e != ''
-        puts "e=#{e}"
-      end
-      assert categoria.valid?
-      categoria.destroy
+      assert categoria.valid?, e
     end
 
     test "no valido" do
