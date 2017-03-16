@@ -95,6 +95,10 @@ group :test do
   # Acelera ejecutando en fondo. https://github.com/jonleighton/spring
   gem "spring"
 
+  gem 'simplecov'
+  # Envia resultados de pruebas desde travis a codeclimate
+  gem "codeclimate-test-reporter"
+
   #gem 'byebug'
 
   gem "connection_pool"

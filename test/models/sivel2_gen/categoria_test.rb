@@ -17,6 +17,7 @@ module Sivel2Gen
       e=categoria.errors.full_messages.inject("") do |memo,e|
         memo + e + ". "
       end
+      Rails.logger.info "e=#{e}"
       assert categoria.valid?, e
     end
 
