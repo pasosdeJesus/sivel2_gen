@@ -34,3 +34,4 @@ test/dummy/.byebug_history
 test/dummy/public/heb412/
 *_test.rb.copia
 .byebug_history
+coverage
