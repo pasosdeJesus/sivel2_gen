@@ -248,14 +248,8 @@
 
   return na;
 
-
-# Establece rango de edad
-@ponerRangoEdad = (prefId) ->
-  edad = $("[id=" + prefId + "_edad]").val()
-  r = $("[id=" + prefId + "_id_rangoedad]")
-  if (edad == '') 
-    r.prop('disabled', false)
-  else 
+# Utiliza campos escondidos para calcular el rango al cual corresponde una edad
+@buscarRangoEdad = (edad) ->
     cantr = $('#rangoedad_cant').val()
     sin = -1
     res = -1
@@ -271,6 +265,18 @@
       res = sin
   
     resid = $('#rangoedad_d_' + res).val()
+    return resid
+
+
+
+# Establece rango de edad
+@ponerRangoEdad = (prefId) ->
+  edad = $("[id=" + prefId + "_edad]").val()
+  r = $("[id=" + prefId + "_id_rangoedad]")
+  if (edad == '') 
+    r.prop('disabled', false)
+  else 
+    resid = buscarRangoEdad(edad)
     r.val(resid)
     r.prop('disabled', true)
 
