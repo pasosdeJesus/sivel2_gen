@@ -25,7 +25,7 @@ module Sivel2Gen
     }
 
     test "index: asigna todas los casos como @casos" do
-      caso = Caso.create! PRUEBA_CASOV
+      Caso.create! PRUEBA_CASOV
       get casos_path
       assert_response :success
       #puts @response.body
