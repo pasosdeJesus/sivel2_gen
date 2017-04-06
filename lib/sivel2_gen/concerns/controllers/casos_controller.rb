@@ -67,7 +67,7 @@ module Sivel2Gen
 
           def inicializa_index
             @plantillas = Heb412Gen::Plantillahcm.where(
-              vista: 'Listado de casos').select('nombremenu, id').map { 
+              vista: 'Caso').select('nombremenu, id').map { 
                 |c| [c.nombremenu, c.id] }
           end
 

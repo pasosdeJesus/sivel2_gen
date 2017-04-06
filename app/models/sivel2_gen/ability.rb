@@ -86,12 +86,17 @@ module Sivel2Gen
       'organizacion'
     end
 
-    def acciones_plantillas
-      {'Listado de casos' => { 
+
+    CAMPOS_PLANTILLAS_PROPIAS = {
+      'Caso': { 
         campos: Sivel2Gen::Conscaso.column_names,
-        controlador: 'Sivel2Gen::CasosController#index',
-        unregistro: false }
+        controlador: 'Sivel2Gen::CasosController'
       }
+    }
+
+    def campos_plantillas 
+      Heb412Gen::Ability::CAMPOS_PLANTILLAS_PROPIAS.
+        clone.merge(CAMPOS_PLANTILLAS_PROPIAS)
     end
 
 
