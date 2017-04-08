@@ -119,10 +119,12 @@ module Sivel2Gen
 
             # Cuenta y Paginación
             @numconscaso = @conscaso.size
-            @paginar = !params || !params[:filtro] || !params[:filtro][:paginar] ||
+            @paginar = !params || !params[:filtro] || 
+              !params[:filtro][:paginar] ||
               params[:filtro][:paginar] != '0' 
             if @paginar && params[:idplantilla].nil?
-              @conscaso = @conscaso.paginate(page: params[:pagina], per_page: 20)
+              @conscaso = @conscaso.paginate(
+                page: params[:pagina], per_page: 20)
             end
             presenta_index
           end
@@ -130,19 +132,27 @@ module Sivel2Gen
           def presenta_index
             # Presentación
             respond_to do |format|
-              format.html { 
-                if params[:filtro] && 
-                  params[:idplantilla].to_i > 0 &&
-                  !Heb412Gen::Plantillahcm.find(
-                    params[:idplantilla]).nil?
-                  pl = Heb412Gen::Plantillahcm.find(
-                    params[:idplantilla])
-                  n = Heb412Gen::PlantillahcmController.llena_plantilla_multiple_fd(pl, @conscaso)
-                  send_file n, x_sendfile: true
-                else
-                  render layout: 'application' 
+              format.ods { 
+                if params[:filtro].nil? || params[:idplantilla].nil? 
+                  head :no_content 
+                elsif params[:idplantilla].to_i <= 0
+                  head :no_content 
+                elsif Heb412Gen::Plantillahcm.where(
+                  id: params[:idplantilla].to_i).take.nil?
+                  head :no_content 
                 end
+
+                pl = Heb412Gen::Plantillahcm.find(
+                  params[:idplantilla])
+                n = Heb412Gen::PlantillahcmController.
+                  llena_plantilla_multiple_fd(pl, @conscaso)
+                send_file n, x_sendfile: true
               }
+
+              format.html { 
+                render layout: 'application' 
+              }
+
               format.js { render 'sivel2_gen/casos/filtro' }
             end
           end

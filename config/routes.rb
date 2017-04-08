@@ -25,8 +25,6 @@ Sivel2Gen::Engine.routes.draw do
   get '/casos/filtro' => 'casos#index', as: :casos_filtro
   post '/casos/filtro' => 'casos#index', as: :envia_casos_filtro
 
-  get '/casos/genera/:idplantilla' => 'casos#index', as: :casos_genera
-
   get "/conteos/personas" => 'conteos#personas', as: :conteos_personas
   get "/conteos/genvic" => 'conteos#genvic', as: :conteos_genvic
   get "/validarcasos" => 'validarcasos#validar', as: :validarcasos

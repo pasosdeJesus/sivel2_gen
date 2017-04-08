@@ -1,12 +1,16 @@
 GIT
   remote: https://github.com/pasosdeJesus/heb412_gen.git
-  revision: 7b9d22215194121f002e2e1766635a6012908805
+  revision: 23b357f5a50e1914e5de57375310099d5a607c11
   specs:
     heb412_gen (1.0.a1)
+      chosen-rails
+      font-awesome-rails
+      rspreadsheet
+      sip
 
 GIT
   remote: https://github.com/pasosdeJesus/sip.git
-  revision: 428ea70b45ef22b7df22a11f2a9db0825a2f59fb
+  revision: 00967958139d941860280d70ba1a334690b8f8e9
   specs:
     sip (2.0.b2)
       bootstrap-datepicker-rails
@@ -85,6 +89,10 @@ GEM
     camertron-eprun (1.1.1)
     cancancan (1.16.0)
     chosen (0.0.4)
+    chosen-rails (1.5.2)
+      coffee-rails (>= 3.2)
+      railties (>= 3.0)
+      sass-rails (>= 3.2)
     cldr-plurals-runtime-rb (1.0.1)
     climate_control (0.1.0)
     cocaine (0.5.8)
@@ -223,6 +231,12 @@ GEM
     ruby-progressbar (1.8.1)
     rubyzip (1.2.1)
     sass (3.4.23)
+    sass-rails (5.0.6)
+      railties (>= 4.0.0, < 6)
+      sass (~> 3.1)
+      sprockets (>= 2.8, < 4.0)
+      sprockets-rails (>= 2.0, < 4.0)
+      tilt (>= 1.1, < 3)
     simple_form (3.4.0)
       actionpack (> 4, < 5.1)
       activemodel (> 4, < 5.1)
