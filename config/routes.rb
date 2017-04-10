@@ -22,9 +22,6 @@ Sivel2Gen::Engine.routes.draw do
   get '/victimas/nuevo' => 'victimas#nuevo'
   get '/victimascolectivas/nuevo' => 'victimascolectivas#nuevo'
 
-  get '/casos/filtro' => 'casos#index', as: :casos_filtro
-  post '/casos/filtro' => 'casos#index', as: :envia_casos_filtro
-
   get "/conteos/personas" => 'conteos#personas', as: :conteos_personas
   get "/conteos/genvic" => 'conteos#genvic', as: :conteos_genvic
   get "/validarcasos" => 'validarcasos#validar', as: :validarcasos
