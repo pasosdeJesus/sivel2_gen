@@ -75,7 +75,7 @@ module Sivel2Gen
       ['Sivel2Gen', 'vinculoestado']
     ];
     def tablasbasicas_prio 
-      Sip::Ability::BASICAS_PRIO + BASICAS_PRIO
+      Sip::Ability::BASICAS_PRIO + BASICAS_PRIO - [['Sip', 'grupo']]
     end
 
     def derechos

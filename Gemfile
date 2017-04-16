@@ -14,6 +14,7 @@ gem 'puma', '~> 3.0'
 # Colores en terminal
 gem "colorize"
 
+
 # Postgresql
 gem "pg"
 
@@ -21,7 +22,6 @@ gem "pg"
 gem "jbuilder"
 
 gem "sass"
-gem 'chosen'
 gem 'font-awesome-rails'
 
 gem 'libxml-ruby', '2.8.0' #https://github.com/xml4r/libxml-ruby/issues/127
@@ -29,6 +29,8 @@ gem "rspreadsheet"
 
 # Uglifier comprime recursos Javascript
 gem "uglifier", '>= 1.3.0'
+
+gem "chosen-rails"
 
 # CoffeeScript para recuersos .js.coffee y vistas
 gem "coffee-rails"
@@ -82,15 +84,17 @@ group :development do
   # Requerido por rake
   gem "thor"
   
-  # Depurar
-  #gem 'byebug'
   
   # Consola irb en páginas con excepciones o usando <%= console %> en vistasA
   gem 'web-console'
 
 end
 
-# Los siguientes son para pruebas y no tiene generadores requeridos en desarrollo
+group :test, :development do
+  # Depurar
+  #gem 'byebug'
+end
+
 group :test do
   # Acelera ejecutando en fondo. https://github.com/jonleighton/spring
   gem "spring"
@@ -98,8 +102,6 @@ group :test do
   gem 'simplecov'
   # Envia resultados de pruebas desde travis a codeclimate
   gem "codeclimate-test-reporter"
-
-  #gem 'byebug'
 
   gem "connection_pool"
   gem "minitest-reporters"
