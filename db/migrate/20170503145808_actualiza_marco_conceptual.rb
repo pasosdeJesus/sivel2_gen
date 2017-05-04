@@ -1,5 +1,8 @@
 class ActualizaMarcoConceptual < ActiveRecord::Migration[5.0]
   def up
+    if Gem::Specification.find_all_by_name('sivel2_sjr').length > 0
+      return true
+    end
     execute <<-SQL
     -- A y B 
     UPDATE sivel2_gen_categoria SET nombre='LESIÓN FÍSICA' WHERE id in ('13', '23', '33', '43', '53'); -- HERIDO->LESIÓN FÍSICA
@@ -129,6 +132,9 @@ class ActualizaMarcoConceptual < ActiveRecord::Migration[5.0]
     SQL
   end
   def down
+    if Gem::Specification.find_all_by_name('sivel2_sjr').length > 0
+      return true
+    end
     puts "OJO incompleta"
     execute <<-SQL
     -- A
