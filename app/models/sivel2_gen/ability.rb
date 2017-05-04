@@ -89,7 +89,8 @@ module Sivel2Gen
 
     CAMPOS_PLANTILLAS_PROPIAS = {
       'Caso': { 
-        campos: Sivel2Gen::Conscaso.column_names,
+        campos: Sivel2Gen::Conscaso.respond_to?(:column_names) ?
+          Sivel2Gen::Conscaso.respond_to?(:column_names) : [],
         controlador: 'Sivel2Gen::CasosController'
       }
     }
