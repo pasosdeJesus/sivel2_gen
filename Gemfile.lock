@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/pasosdeJesus/heb412_gen.git
-  revision: e84ced0579827b3e8db3b44fbe00ff7d04595a05
+  revision: 57baedae3ca869115ef3c0968b03cf03b6c4ee1e
   specs:
     heb412_gen (1.0.a1)
       chosen-rails
@@ -10,7 +10,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sip.git
-  revision: 84da85e89fb2a346edd26df9e44a2184f5c927bf
+  revision: ea79ff2bbe5ca48c71ddca38b063f4559ace950f
   specs:
     sip (2.0.b3)
       bootstrap-datepicker-rails
@@ -225,9 +225,8 @@ GEM
     responders (2.4.0)
       actionpack (>= 4.2.0, < 5.3)
       railties (>= 4.2.0, < 5.3)
-    rspreadsheet (0.4.4)
+    rspreadsheet (0.4.5)
       andand (~> 1.3)
-      libxml-ruby (= 2.8)
       rubyzip (~> 1.1)
     ruby-progressbar (1.8.1)
     rubyzip (1.2.1)
