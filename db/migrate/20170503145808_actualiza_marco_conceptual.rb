@@ -10,6 +10,7 @@ class ActualizaMarcoConceptual < ActiveRecord::Migration[5.0]
     -- A 
     UPDATE sivel2_gen_categoria SET nombre='DESAPARICIÓN FORZADA' WHERE id in ('11', '21', '302'); -- Añadida FORZADA
 
+    DELETE FROM sivel2_gen_categoria WHERE id IN ('17', '76');
     INSERT INTO sivel2_gen_categoria (id, nombre, supracategoria_id, tipocat)
       VALUES ('17', 'COLECTIVO LESIONADO', '1', 'C');
     INSERT INTO sivel2_gen_categoria (id, nombre, supracategoria_id, tipocat)
@@ -135,7 +136,6 @@ class ActualizaMarcoConceptual < ActiveRecord::Migration[5.0]
     if Gem::Specification.find_all_by_name('sivel2_sjr').length > 0
       return true
     end
-    puts "OJO incompleta"
     execute <<-SQL
     -- A
     DELETE FROM sivel2_gen_categoria WHERE id IN (

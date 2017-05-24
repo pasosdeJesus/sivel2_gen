@@ -4,7 +4,7 @@ class RenombraAisla < ActiveRecord::Migration
     rename_table :actividad_rangoedadac, :sivel2_gen_actividad_rangoedadac
     rename_table :actividadarea, :sivel2_gen_actividadarea
     rename_table :actividadareas_actividad, :sivel2_gen_actividadareas_actividad
-    rename_table :actividadoficio, :sivel2_gen_actividadoficio
+    #rename_table :actividadoficio, :sivel2_gen_actividadoficio
     rename_table :acto, :sivel2_gen_acto
     rename_table :actocolectivo, :sivel2_gen_actocolectivo
     rename_table :anexo, :sivel2_gen_anexo
@@ -33,8 +33,8 @@ class RenombraAisla < ActiveRecord::Migration
     rename_table :comunidad_vinculoestado, :sivel2_gen_comunidad_vinculoestado
     rename_table :contexto, :sivel2_gen_contexto
     rename_table :departamento, :sivel2_gen_departamento
-    rename_table :escolaridad, :sivel2_gen_escolaridad
-    rename_table :estadocivil, :sivel2_gen_estadocivil
+    #rename_table :escolaridad, :sivel2_gen_escolaridad
+    #rename_table :estadocivil, :sivel2_gen_estadocivil
     rename_table :etiqueta, :sivel2_gen_etiqueta
     rename_table :etnia, :sivel2_gen_etnia
     rename_table :ffrecuente, :sivel2_gen_ffrecuente
@@ -45,7 +45,7 @@ class RenombraAisla < ActiveRecord::Migration
     rename_table :iglesia, :sivel2_gen_iglesia
     rename_table :intervalo, :sivel2_gen_intervalo
     rename_table :municipio, :sivel2_gen_municipio
-    rename_table :maternidad, :sivel2_gen_maternidad
+    #rename_table :maternidad, :sivel2_gen_maternidad
     rename_table :organizacion, :sivel2_gen_organizacion
     rename_table :pais, :sivel2_gen_pais
     rename_table :pconsolidado, :sivel2_gen_pconsolidado

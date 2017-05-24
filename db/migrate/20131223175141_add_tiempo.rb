@@ -1,15 +1,15 @@
 class AddTiempo < ActiveRecord::Migration
   def change
-	  add_column :acreditacion, :created_at, :datetime 
-	  add_column :acreditacion, :updated_at, :datetime
-	  add_column :actividadoficio, :created_at, :datetime 
-	  add_column :actividadoficio, :updated_at, :datetime
+	  #add_column :acreditacion, :created_at, :datetime 
+	  #add_column :acreditacion, :updated_at, :datetime
+	  #add_column :actividadoficio, :created_at, :datetime 
+	  #add_column :actividadoficio, :updated_at, :datetime
 	  add_column :acto, :created_at, :datetime 
 	  add_column :acto, :updated_at, :datetime
 	  add_column :actocolectivo, :created_at, :datetime 
 	  add_column :actocolectivo, :updated_at, :datetime
-	  add_column :actosjr, :created_at, :datetime 
-	  add_column :actosjr, :updated_at, :datetime
+	  #add_column :actosjr, :created_at, :datetime 
+	  #add_column :actosjr, :updated_at, :datetime
 	  add_column :actualizacionbase, :created_at, :datetime 
 	  add_column :actualizacionbase, :updated_at, :datetime
 	  add_column :anexo, :created_at, :datetime 
@@ -22,14 +22,14 @@ class AddTiempo < ActiveRecord::Migration
 	  add_column :antecedente_comunidad, :updated_at, :datetime
 	  add_column :antecedente_victima, :created_at, :datetime 
 	  add_column :antecedente_victima, :updated_at, :datetime
-	  add_column :ayudaestado, :created_at, :datetime 
-	  add_column :ayudaestado, :updated_at, :datetime
-	  add_column :ayudaestado_respuesta, :created_at, :datetime 
-	  add_column :ayudaestado_respuesta, :updated_at, :datetime
-	  add_column :ayudasjr, :created_at, :datetime 
-	  add_column :ayudasjr, :updated_at, :datetime
-	  add_column :ayudasjr_respuesta, :created_at, :datetime 
-	  add_column :ayudasjr_respuesta, :updated_at, :datetime
+	  #add_column :ayudaestado, :created_at, :datetime 
+	  #add_column :ayudaestado, :updated_at, :datetime
+	  #add_column :ayudaestado_respuesta, :created_at, :datetime 
+	  #add_column :ayudaestado_respuesta, :updated_at, :datetime
+	  #add_column :ayudasjr, :created_at, :datetime 
+	  #add_column :ayudasjr, :updated_at, :datetime
+	  #add_column :ayudasjr_respuesta, :created_at, :datetime 
+	  #add_column :ayudasjr_respuesta, :updated_at, :datetime
 	  add_column :caso_categoria_presponsable, :created_at, :datetime 
 	  add_column :caso_categoria_presponsable, :updated_at, :datetime
 	  add_column :caso_contexto, :created_at, :datetime 
@@ -42,20 +42,20 @@ class AddTiempo < ActiveRecord::Migration
 	  add_column :caso_fotra, :updated_at, :datetime
 	  add_column :caso_frontera, :created_at, :datetime 
 	  add_column :caso_frontera, :updated_at, :datetime
-	  add_column :caso_usuario, :created_at, :datetime 
-	  add_column :caso_usuario, :updated_at, :datetime
 	  add_column :caso_presponsable, :created_at, :datetime 
 	  add_column :caso_presponsable, :updated_at, :datetime
 	  add_column :caso_region, :created_at, :datetime 
 	  add_column :caso_region, :updated_at, :datetime
-	  add_column :casosjr, :created_at, :datetime 
-	  add_column :casosjr, :updated_at, :datetime
+	  add_column :caso_usuario, :created_at, :datetime 
+	  add_column :caso_usuario, :updated_at, :datetime
+	  #add_column :casosjr, :created_at, :datetime 
+	  #add_column :casosjr, :updated_at, :datetime
 	  add_column :categoria, :created_at, :datetime 
 	  add_column :categoria, :updated_at, :datetime
 	  add_column :clase, :created_at, :datetime 
 	  add_column :clase, :updated_at, :datetime
-	  add_column :clasifdesp, :created_at, :datetime 
-	  add_column :clasifdesp, :updated_at, :datetime
+	  #add_column :clasifdesp, :created_at, :datetime 
+	  #add_column :clasifdesp, :updated_at, :datetime
 	  add_column :comunidad_filiacion, :created_at, :datetime 
 	  add_column :comunidad_filiacion, :updated_at, :datetime
 	  add_column :comunidad_organizacion, :created_at, :datetime 
@@ -70,20 +70,20 @@ class AddTiempo < ActiveRecord::Migration
 	  add_column :comunidad_vinculoestado, :updated_at, :datetime
 	  add_column :contexto, :created_at, :datetime 
 	  add_column :contexto, :updated_at, :datetime
-	  add_column :declaroante, :created_at, :datetime 
-	  add_column :declaroante, :updated_at, :datetime
+	  #add_column :declaroante, :created_at, :datetime 
+	  #add_column :declaroante, :updated_at, :datetime
 	  add_column :departamento, :created_at, :datetime 
 	  add_column :departamento, :updated_at, :datetime
-	  add_column :derecho, :created_at, :datetime 
-	  add_column :derecho, :updated_at, :datetime
-	  add_column :derecho_respuesta, :created_at, :datetime 
-	  add_column :derecho_respuesta, :updated_at, :datetime
-	  add_column :desplazamiento, :created_at, :datetime 
-	  add_column :desplazamiento, :updated_at, :datetime
-	  add_column :escolaridad, :created_at, :datetime 
-	  add_column :escolaridad, :updated_at, :datetime
-	  add_column :estadocivil, :created_at, :datetime 
-	  add_column :estadocivil, :updated_at, :datetime
+	  #add_column :derecho, :created_at, :datetime 
+	  #add_column :derecho, :updated_at, :datetime
+	  #add_column :derecho_respuesta, :created_at, :datetime 
+	  #add_column :derecho_respuesta, :updated_at, :datetime
+	  #add_column :desplazamiento, :created_at, :datetime 
+	  #add_column :desplazamiento, :updated_at, :datetime
+	  #add_column :escolaridad, :created_at, :datetime 
+	  #add_column :escolaridad, :updated_at, :datetime
+	  #add_column :estadocivil, :created_at, :datetime 
+	  #add_column :estadocivil, :updated_at, :datetime
 	  add_column :etiqueta, :created_at, :datetime 
 	  add_column :etiqueta, :updated_at, :datetime
 	  add_column :etnia, :created_at, :datetime 
@@ -100,22 +100,22 @@ class AddTiempo < ActiveRecord::Migration
 	  add_column :grupoper, :updated_at, :datetime
 	  add_column :iglesia, :created_at, :datetime 
 	  add_column :iglesia, :updated_at, :datetime
-	  add_column :inclusion, :created_at, :datetime 
-	  add_column :inclusion, :updated_at, :datetime
-	  add_column :instanciader, :created_at, :datetime 
-	  add_column :instanciader, :updated_at, :datetime
-	  add_column :maternidad, :created_at, :datetime 
-	  add_column :maternidad, :updated_at, :datetime
-	  add_column :mecanismoder, :created_at, :datetime 
-	  add_column :mecanismoder, :updated_at, :datetime
-	  add_column :modalidadtierra, :created_at, :datetime 
-	  add_column :modalidadtierra, :updated_at, :datetime
-	  add_column :motivoconsulta, :created_at, :datetime 
-	  add_column :motivoconsulta, :updated_at, :datetime
-	  add_column :motivosjr, :created_at, :datetime 
-	  add_column :motivosjr, :updated_at, :datetime
-	  add_column :motivosjr_respuesta, :created_at, :datetime 
-	  add_column :motivosjr_respuesta, :updated_at, :datetime
+	  #add_column :inclusion, :created_at, :datetime 
+	  #add_column :inclusion, :updated_at, :datetime
+	  #add_column :instanciader, :created_at, :datetime 
+	  #add_column :instanciader, :updated_at, :datetime
+	  #add_column :maternidad, :created_at, :datetime 
+	  #add_column :maternidad, :updated_at, :datetime
+	  #add_column :mecanismoder, :created_at, :datetime 
+	  #add_column :mecanismoder, :updated_at, :datetime
+	  #add_column :modalidadtierra, :created_at, :datetime 
+	  #add_column :modalidadtierra, :updated_at, :datetime
+	  #add_column :motivoconsulta, :created_at, :datetime 
+	  #add_column :motivoconsulta, :updated_at, :datetime
+	  #add_column :motivosjr, :created_at, :datetime 
+	  #add_column :motivosjr, :updated_at, :datetime
+	  #add_column :motivosjr_respuesta, :created_at, :datetime 
+	  #add_column :motivosjr_respuesta, :updated_at, :datetime
 	  add_column :municipio, :created_at, :datetime 
 	  add_column :municipio, :updated_at, :datetime
 	  add_column :organizacion, :created_at, :datetime 
@@ -126,38 +126,38 @@ class AddTiempo < ActiveRecord::Migration
 	  add_column :persona, :updated_at, :datetime
 	  add_column :persona_trelacion, :created_at, :datetime 
 	  add_column :persona_trelacion, :updated_at, :datetime
-	  add_column :personadesea, :created_at, :datetime 
-	  add_column :personadesea, :updated_at, :datetime
+	  #add_column :personadesea, :created_at, :datetime 
+	  #add_column :personadesea, :updated_at, :datetime
 	  add_column :presponsable, :created_at, :datetime 
 	  add_column :presponsable, :updated_at, :datetime
 	  add_column :profesion, :created_at, :datetime 
 	  add_column :profesion, :updated_at, :datetime
-	  add_column :progestado, :created_at, :datetime 
-	  add_column :progestado, :updated_at, :datetime
-	  add_column :progestado_respuesta, :created_at, :datetime 
-	  add_column :progestado_respuesta, :updated_at, :datetime
-	  add_column :regimensalud, :created_at, :datetime 
-	  add_column :regimensalud, :updated_at, :datetime
+	  #add_column :progestado, :created_at, :datetime 
+	  #add_column :progestado, :updated_at, :datetime
+	  #add_column :progestado_respuesta, :created_at, :datetime 
+	  #add_column :progestado_respuesta, :updated_at, :datetime
+	  #add_column :regimensalud, :created_at, :datetime 
+	  #add_column :regimensalud, :updated_at, :datetime
 	  add_column :region, :created_at, :datetime 
 	  add_column :region, :updated_at, :datetime
 	  add_column :regionsjr, :created_at, :datetime 
 	  add_column :regionsjr, :updated_at, :datetime
 	  add_column :resagresion, :created_at, :datetime 
 	  add_column :resagresion, :updated_at, :datetime
-	  add_column :respuesta, :created_at, :datetime 
-	  add_column :respuesta, :updated_at, :datetime
-	  add_column :rolfamilia, :created_at, :datetime 
-	  add_column :rolfamilia, :updated_at, :datetime
-	  add_column :schema_migrations, :created_at, :datetime 
-	  add_column :schema_migrations, :updated_at, :datetime
+	  #add_column :respuesta, :created_at, :datetime 
+	  #add_column :respuesta, :updated_at, :datetime
+	  #add_column :rolfamilia, :created_at, :datetime 
+	  #add_column :rolfamilia, :updated_at, :datetime
+	  #add_column :schema_migrations, :created_at, :datetime 
+	  #add_column :schema_migrations, :updated_at, :datetime
 	  add_column :sectorsocial, :created_at, :datetime 
 	  add_column :sectorsocial, :updated_at, :datetime
 	  add_column :supracategoria, :created_at, :datetime 
 	  add_column :supracategoria, :updated_at, :datetime
 	  add_column :tclase, :created_at, :datetime 
 	  add_column :tclase, :updated_at, :datetime
-	  add_column :tipodesp, :created_at, :datetime 
-	  add_column :tipodesp, :updated_at, :datetime
+	  #add_column :tipodesp, :created_at, :datetime 
+	  #add_column :tipodesp, :updated_at, :datetime
 	  add_column :trelacion, :created_at, :datetime 
 	  add_column :trelacion, :updated_at, :datetime
 	  add_column :tsitio, :created_at, :datetime 
@@ -170,8 +170,8 @@ class AddTiempo < ActiveRecord::Migration
 	  add_column :victima, :updated_at, :datetime
 	  add_column :victimacolectiva, :created_at, :datetime 
 	  add_column :victimacolectiva, :updated_at, :datetime
-	  add_column :victimasjr, :created_at, :datetime 
-	  add_column :victimasjr, :updated_at, :datetime
+	  #add_column :victimasjr, :created_at, :datetime 
+	  #add_column :victimasjr, :updated_at, :datetime
 	  add_column :vinculoestado, :created_at, :datetime 
 	  add_column :vinculoestado, :updated_at, :datetime
   end
