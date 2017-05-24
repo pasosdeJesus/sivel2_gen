@@ -9,6 +9,10 @@ class AgregaIdVictimacolectiva < ActiveRecord::Migration
       DROP CONSTRAINT IF EXISTS victimacolectiva_pkey CASCADE;
    SQL
    execute <<-SQL
+    ALTER TABLE sivel2_gen_victimacolectiva 
+      DROP CONSTRAINT IF EXISTS victima_colectiva_pkey CASCADE;
+   SQL
+   execute <<-SQL
     ALTER TABLE sivel2_gen_victimacolectiva ADD UNIQUE(id_caso, id_grupoper);
    SQL
    execute <<-SQL

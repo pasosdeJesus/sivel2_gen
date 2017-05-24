@@ -25,32 +25,74 @@ class RenombraFuenteprensa < ActiveRecord::Migration
         RENAME COLUMN id_ffrecuente TO fuenteprensa_id
     SQL
     execute <<-SQL
-      ALTER INDEX caso_ffrecuente_pkey 
+      ALTER INDEX IF EXISTS caso_ffrecuente_pkey 
+        RENAME TO sivel2_gen_caso_fuenteprensa_pkey
+    SQL
+    execute <<-SQL
+      ALTER INDEX IF EXISTS escrito_caso_pkey 
         RENAME TO sivel2_gen_caso_fuenteprensa_pkey
     SQL
     execute <<-SQL
       ALTER TABLE sivel2_gen_caso_fuenteprensa
-        RENAME CONSTRAINT caso_ffrecuente_id_caso_fkey 
-        TO sivel2_gen_caso_fuenteprensa_id_caso_fkey;
+        DROP CONSTRAINT IF EXISTS caso_ffrecuente_id_caso_fkey;
+    SQL
+    execute <<-SQL
+      ALTER TABLE sivel2_gen_caso_fuenteprensa
+        DROP CONSTRAINT IF EXISTS escrito_caso_id_caso_fkey;
+    SQL
+
+    execute <<-SQL
+      ALTER TABLE sivel2_gen_caso_fuenteprensa
+        ADD CONSTRAINT sivel2_gen_caso_fuenteprensa_id_caso_fkey 
+        FOREIGN KEY (id_caso) REFERENCES sivel2_gen_caso(id);
     SQL
      execute <<-SQL
       ALTER TABLE sivel2_gen_caso_fuenteprensa
-        RENAME CONSTRAINT caso_ffrecuente_id_ffrecuente_fkey 
-        TO sivel2_gen_caso_fuenteprensa_fuenteprensa_id_fkey;
+        DROP CONSTRAINT IF EXISTS caso_ffrecuente_id_ffrecuente_fkey ;
+    SQL
+     execute <<-SQL
+      ALTER TABLE sivel2_gen_caso_fuenteprensa
+        DROP CONSTRAINT IF EXISTS escrito_caso_id_prensa_fkey ;
+    SQL
+     execute <<-SQL
+      ALTER TABLE sivel2_gen_caso_fuenteprensa
+        ADD CONSTRAINT sivel2_gen_caso_fuenteprensa_fuenteprensa_id_fkey
+        FOREIGN KEY (fuenteprensa_id) REFERENCES sip_fuenteprensa(id);
     SQL
     execute <<-SQL
-      ALTER INDEX ffrecuente_pkey
+      ALTER INDEX IF EXISTS ffrecuente_pkey
+        RENAME TO  sip_fuenteprensa_pkey
+    SQL
+    execute <<-SQL
+      ALTER INDEX IF EXISTS prensa_pkey
         RENAME TO  sip_fuenteprensa_pkey
     SQL
     execute <<-SQL
       ALTER TABLE sip_fuenteprensa
-        RENAME CONSTRAINT ffrecuente_check
-        TO sip_fuenteprensa_check
+        DROP CONSTRAINT IF EXISTS ffrecuente_check
+    SQL
+    execute <<-SQL
+      ALTER TABLE sip_fuenteprensa
+        DROP CONSTRAINT IF EXISTS prensa_check
+    SQL
+    execute <<-SQL
+      ALTER TABLE sip_fuenteprensa
+        ADD CONSTRAINT sip_fuenteprensa_check
+        CHECK (fechadeshabilitacion IS NULL OR 
+          fechadeshabilitacion >= fechacreacion)
     SQL
     execute <<-SQL
       ALTER TABLE sivel2_gen_anexo
-        RENAME CONSTRAINT anexo_id_ffrecuente_fkey
-        TO anexo_fuenteprensa_id_fkey
+        DROP CONSTRAINT IF EXISTS anexo_id_ffrecuente_fkey;
+    SQL
+    execute <<-SQL
+      ALTER TABLE sivel2_gen_anexo
+        DROP CONSTRAINT IF EXISTS anexo_id_prensa_fkey;
+    SQL
+    execute <<-SQL
+      ALTER TABLE sivel2_gen_anexo
+        ADD CONSTRAINT anexo_fuenteprensa_id_fkey
+        FOREIGN KEY (fuenteprensa_id) REFERENCES sip_fuenteprensa(id);
     SQL
     execute <<-SQL
       ALTER TABLE sip_fuenteprensa

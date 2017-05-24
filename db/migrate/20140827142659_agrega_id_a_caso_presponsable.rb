@@ -4,8 +4,8 @@ class AgregaIdACasoPresponsable < ActiveRecord::Migration
     execute "CREATE SEQUENCE caso_presponsable_seq;"
     execute "ALTER TABLE caso_presponsable ALTER COLUMN id 
         SET DEFAULT(nextval('caso_presponsable_seq'));"
-    execute "ALTER TABLE ONLY caso_categoria_presponsable
-    DROP CONSTRAINT caso_categoria_presponsable_id_fkey "
+    execute "ALTER TABLE ONLY caso_categoria_presponsable DROP CONSTRAINT 
+        IF EXISTS caso_categoria_presponsable_id_fkey "
 
     execute "UPDATE caso_presponsable SET
         id = id_caso*10 + id WHERE id<10;"
@@ -22,7 +22,9 @@ class AgregaIdACasoPresponsable < ActiveRecord::Migration
         id_caso_presponsable = id_caso*10 + id WHERE id<10;"
     execute "ALTER TABLE caso_categoria_presponsable DROP COLUMN id;"
     execute "ALTER TABLE caso_presponsable 
-        DROP CONSTRAINT caso_presponsable_pkey;"
+        DROP CONSTRAINT IF EXISTS caso_presponsable_pkey;"
+    execute "ALTER TABLE caso_presponsable 
+        DROP CONSTRAINT IF EXISTS presuntos_responsables_caso_pkey;"
     execute "ALTER TABLE caso_presponsable ADD PRIMARY KEY (id);"
 
   end

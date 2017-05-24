@@ -18,6 +18,10 @@ class IdCasoOtrafuente < ActiveRecord::Migration
         id INTEGER NOT NULL DEFAULT(nextval('sivel2_gen_caso_fotra_seq'));
     SQL
     execute <<-SQL
+      ALTER TABLE sivel2_gen_caso_fotra 
+        DROP CONSTRAINT IF EXISTS fuente_directa_caso_pkey;
+    SQL
+    execute <<-SQL
       ALTER TABLE sivel2_gen_caso_fotra ADD CONSTRAINT 
         sivel2_gen_caso_fotra_pkey PRIMARY KEY (id);
     SQL
