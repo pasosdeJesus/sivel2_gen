@@ -59,6 +59,7 @@ es:
         presponsables: P. Responsables
         tipificacion: Tipificacion
         victimas: Víctimas
+        region: Región
       "sivel2_gen/caso_etiqueta":
         etiqueta: Etiqueta 
       "sivel2_gen/caso_fotra":
