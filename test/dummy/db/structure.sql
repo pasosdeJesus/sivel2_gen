@@ -1558,6 +1558,7 @@ CREATE TABLE sivel2_gen_contexto (
     fechadeshabilitacion date,
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
+    observaciones character varying(5000),
     CONSTRAINT contexto_check CHECK (((fechadeshabilitacion IS NULL) OR (fechadeshabilitacion >= fechacreacion)))
 );
 
@@ -4094,6 +4095,8 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20170414035328'),
 ('20170503145808'),
 ('20170526084502'),
-('20170526100040');
+('20170526100040'),
+('20170526124219'),
+('20170526131129');
 
 

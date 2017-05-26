@@ -1,0 +1,12 @@
+si
+<%= f.association :contexto, 
+  collection: Sivel2Gen::Contexto.habilitados,
+  label_method: :nombre, 
+  value_method: :id 
+%>
+<%= f.association :antecedente, 
+  collection: Sivel2Gen::Antecedente.habilitados,
+  label_method: :nombre, 
+  value_method: :id 
+%>
+<%= f.input :bienes%>

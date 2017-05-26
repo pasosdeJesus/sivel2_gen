@@ -378,6 +378,8 @@ module Sivel2Gen
             ],
               :region_ids => [],
               :frontera_ids => [],
+              :contexto_ids => [],
+              :antecedente_ids => [],
             )
           end
         end

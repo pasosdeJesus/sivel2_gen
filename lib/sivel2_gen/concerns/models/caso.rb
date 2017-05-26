@@ -28,11 +28,15 @@ module Sivel2Gen
 
           has_many :antecedente_caso, foreign_key: "id_caso", validate: true, 
             dependent: :destroy, class_name: 'Sivel2Gen::AntecedenteCaso'
+          has_many :antecedente, through: :antecedente_caso, 
+            class_name: 'Sivel2Gen::Antecedente'
           has_many :caso_categoria_presponsable, foreign_key: "id_caso", 
             validate: true, dependent: :destroy, 
             class_name: 'Sivel2Gen::CasoCategoriaPresponsable'
           has_many :caso_contexto, foreign_key: "id_caso", validate: true, 
             dependent: :destroy, class_name: 'Sivel2Gen::CasoContexto'
+          has_many :contexto, through: :caso_contexto, 
+            class_name: 'Sivel2Gen::Contexto'
           has_many :caso_etiqueta, foreign_key: "id_caso", validate: true, 
             dependent: :destroy, class_name: 'Sivel2Gen::CasoEtiqueta'
           accepts_nested_attributes_for :caso_etiqueta, allow_destroy: true, 

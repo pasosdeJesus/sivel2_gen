@@ -14,13 +14,11 @@
 %>
 <%= f.association :region, 
   collection: Sivel2Gen::Region.habilitados,
-  label: "Región",
   label_method: :nombre, 
   value_method: :id 
 %>
 <%= f.association :frontera, 
   collection: Sivel2Gen::Frontera.habilitados,
-  label: "Frontera",
   label_method: :nombre, 
   value_method: :id 
 %>
