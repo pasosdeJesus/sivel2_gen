@@ -18,7 +18,6 @@
 <%= f.association :filiacion,
 	collection: Sivel2Gen::Filiacion.habilitados,
 	include_blank: false,
-	label: "Filiación",
 	label_method: :nombre, 
   value_method: :id,
   input_html: {
@@ -26,6 +25,17 @@
     "title" => 'Partido o filiación política en el momento del hecho' 
   }
 %>
+<%= f.association :sectorsocial,
+	collection: Sivel2Gen::Sectorsocial.habilitados,
+	include_blank: false,
+	label_method: :nombre, 
+  value_method: :id,
+  input_html: {
+    "data-toggle" => 'tooltip',
+    "title" => 'Sector social al que pertenecía en el momento del hecho' 
+  }
+%>
+
 <%= f.association :organizacion,
 	collection: Sivel2Gen::Organizacion.habilitados,
 	include_blank: false,
