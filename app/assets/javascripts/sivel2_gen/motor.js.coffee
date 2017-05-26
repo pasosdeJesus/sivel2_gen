@@ -6,6 +6,7 @@
 #//= require cocoon
 
 @sivel2_gen_procesa_eliminaracto = false
+@sivel2_gen_procesa_eliminaractocolectivo = false
 
 # Elimina secciones agregadas con cocoon listadas en elempe
 @elimina_pendientes = (elempe) ->
@@ -70,6 +71,37 @@
         this.attributes.class.value.match(/persona_apellidos/)
       ).find('input').val()
     tx = (nom + " " + ap).trim()
+    nh = nh + ">" + tx + "</option>" 
+  )
+  s.html(nh)
+  return
+ 
+# Actualiza cuadro de selección con víctimas
+# s es un select jquery
+@actualiza_gruposper = (s) ->
+  sel =s.val()
+  nh = ''
+  lcg = $('#victimacolectiva .control-group[style!="display: none;"]')
+  lcg.each((k, v) ->
+    id = $(v).find('div').filter( () -> 
+      this.attributes.class.value.match(/caso_victimacolectiva[_0-9]*grupoper_id/)
+    ).find('input').val()
+    if (typeof id == 'undefined')
+      id = $(v).find('div').filter( () -> 
+        this.attributes.class.value.match(/grupoper_id/)
+      ).find('input').val()
+    nh = nh + "<option value='" + id + "'"
+    if id == sel 
+      nh = nh + ' selected'
+    # texto: nombre
+    nom = $(v).find('div').filter( () -> 
+      this.attributes.class.value.match(/caso_victimacolectiva[_0-9]*grupoper_nombre/)
+    ).find('input').val()
+    if (typeof nom == 'undefined')
+      nom = $(v).find('div').filter( () -> 
+        this.attributes.class.value.match(/grupoper_nombre/)
+      ).find('input').val()
+    tx = nom.trim()
     nh = nh + ">" + tx + "</option>" 
   )
   s.html(nh)
@@ -338,7 +370,9 @@ enviaFormularioContar= (root) ->
   $.post(a, f.serialize())
   elimina_destruidos()
   actualiza_presponsables($('#caso_acto_id_presponsable'))
+  actualiza_presponsables($('#caso_actocolectivo_id_presponsable'))
   actualiza_victimas($('#caso_acto_id_persona'))
+  actualiza_gruposper($('#caso_actocolectivo_id_grupoper'))
 
 @sivel2_idTemp60 = -1
 
@@ -435,17 +469,6 @@ enviaFormularioContar= (root) ->
       $('#conscasos_q').show()
   )
 
-  # En actos, lista de presuntos responsables se calcula
-  # --inncesario por guardado autom.
-  #$(document).on('focusin', 'select[id^=caso_acto_][id$=id_presponsable]', (e) ->
-    #actualiza_presponsables($(this))
-  #)
-
-  # En actos, lista de víctimas se cálcula --inncesario por guardado autom.
-  #$(document).on('focusin', 'select[id^=caso_acto_][id$=id_persona]', (e) ->
-  #  actualiza_victimas($(this))
-  #)
-
   # Agrega actos  
   $(document).on('click', 'a.agregaractos[href^="#"]', (e) ->
     e.preventDefault()
@@ -476,6 +499,38 @@ enviaFormularioContar= (root) ->
         @sivel2_gen_procesa_eliminaracto = false
       )
   )
+
+  # Agrega actoscolectivos  
+  $(document).on('click', 'a.agregaractoscolectivos[href^="#"]', (e) ->
+    e.preventDefault()
+    tn = Date.now()
+    d = -1
+    if (root.tagregaactoscolectivos) 
+      d = (tn - root.tagregaactoscolectivos)/1000
+    if (d == -1 || d>5) 
+      f=$('form')
+      a = root.puntomontaje + 'actoscolectivos/agregar'
+      $.post(a, f.serialize())
+      root.tagregaactoscolectivos= Date.now()
+    return
+  )
+
+  # Elimina actocolectivo
+  $(document).on('click', 'a.eliminaractocolectivo[href^="#"]', (e) ->
+    e.preventDefault()
+    e.stopPropagation()
+    if (!@sivel2_gen_procesa_eliminaractocolectivo)
+      @sivel2_gen_procesa_eliminaractocolectivo = true
+      f = $('form')
+      d = "id_actocolectivo=" + $(this).attr('data-eliminaractocolectivo')
+      a = root.puntomontaje + 'actoscolectivos/eliminar'
+      $.ajax(url: a, data: d, dataType: "script").fail( (jqXHR, texto) ->
+        alert("Error con ajax " + texto)
+      ).done( (e) ->
+        @sivel2_gen_procesa_eliminaractocolectivo = false
+      )
+  )
+
 
   # Contar automático
 

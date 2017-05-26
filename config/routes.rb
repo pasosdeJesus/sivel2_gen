@@ -4,6 +4,8 @@ Sivel2Gen::Engine.routes.draw do
 
   patch "/actos/agregar" => 'actos#agregar'
   get "/actos/eliminar" => 'actos#eliminar'
+  patch "/actoscolectivos/agregar" => 'actoscolectivos#agregar'
+  get "/actoscolectivos/eliminar" => 'actoscolectivos#eliminar'
   get '/acercade' => 'hogar#acercade'
   get "/casos/busca" => 'casos#busca'
   get '/casos/lista' => 'casos#lista'

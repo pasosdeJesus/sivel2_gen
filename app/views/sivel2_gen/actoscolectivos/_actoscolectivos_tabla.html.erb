@@ -1,0 +1,34 @@
+<table class="table table-striped" border='1'>
+  <thead>
+    <tr>
+      <th><%= Sivel2Gen::Actocolectivo.human_attribute_name(:presponsable) %></th>
+      <th><%= Sivel2Gen::Actocolectivo.human_attribute_name(:categoria) %></th>
+      <th><%= Sivel2Gen::Actocolectivo.human_attribute_name(:victimacolectiva) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+  <% if @caso && @caso.actocolectivo %>
+    <% @caso.actocolectivo.try(:each) do |actocolectivo| %>
+      <tr>
+        <td><%= actocolectivo.presponsable.nombre %></td>
+        <td><%= actocolectivo.categoria.nombre %></td>
+        <td>
+          <%= actocolectivo.grupoper.nombre %>
+        </td>
+        <td>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+            '#',
+            :data => { 
+                :eliminaractocolectivo => "#{actocolectivo.id}",
+            },
+            :class => 'btn btn-xs btn-danger eliminaractocolectivo' 
+          %>
+        </td>
+      </tr>
+    <% end %>
+  <% end %>
+  </tbody>
+</table>
+
+
