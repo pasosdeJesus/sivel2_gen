@@ -464,18 +464,6 @@ CREATE VIEW cben2 AS
 
 
 --
--- Name: contexto_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE contexto_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
 -- Name: fotra_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
@@ -1548,11 +1536,23 @@ CREATE MATERIALIZED VIEW sivel2_gen_conscaso AS
 
 
 --
+-- Name: sivel2_gen_contexto_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE sivel2_gen_contexto_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
 -- Name: sivel2_gen_contexto; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE sivel2_gen_contexto (
-    id integer DEFAULT nextval('contexto_seq'::regclass) NOT NULL,
+    id integer DEFAULT nextval('sivel2_gen_contexto_id_seq'::regclass) NOT NULL,
     nombre character varying(500) COLLATE public.es_co_utf_8 NOT NULL,
     fechacreacion date NOT NULL,
     fechadeshabilitacion date,
