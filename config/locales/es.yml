@@ -52,13 +52,13 @@ es:
         regionsjr: Oficina
         contacto: Solicitante Principal
       "sivel2_gen/caso":
-        memo: Descripción
+        casoid: Código
         created_at: F. Creación
         fecha: F. Hecho
+        memo: Descripción
         presponsables: P. Responsables
         tipificacion: Tipificacion
         victimas: Víctimas
-        casoid: Código
       "sivel2_gen/caso_etiqueta":
         etiqueta: Etiqueta 
       "sivel2_gen/caso_fotra":
@@ -175,6 +175,9 @@ es:
       "sivel2_gen/victima":
         edad: Edad en fecha del hecho
         edadactual: Edad/aniversario actual
+        sectorsocial: Sector social
+        vinculoestado: Vínculo con el Estado
+        filiacion: Filiación política
       "sivel2_gen/victimacolectiva":
         personasaprox: Número aproximado de personas
         presponsable: Organización armada
