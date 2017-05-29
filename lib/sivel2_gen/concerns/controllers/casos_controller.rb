@@ -307,19 +307,30 @@ module Sivel2Gen
             params.require(:caso).permit(
               :q,
               :id, :titulo, :fecha, :hora, :duracion,  
-              :grconfiabilidad, :gresclarecimiento, :grimpunidad, :grinformacion, 
+              :grconfiabilidad, :gresclarecimiento, :grimpunidad, 
+              :grinformacion, 
               :bienes, :id_intervalo, :memo, 
               :victima_attributes => [
-                :id, :id_persona, :id_profesion, :id_rangoedad, :id_etnia, 
-                :id_filiacion, :id_organizacion, :id_vinculoestado, 
-                :id_sectorsocial,
                 :anotaciones,
-                :id_iglesia, :orientacionsexual, :_destroy, 
+                :id, 
+                :id_etnia,  
+                :id_filiacion,
+                :id_iglesia,
+                :id_organizacion, 
+                :id_persona, 
+                :id_profesion, 
+                :id_rangoedad,
+                :id_sectorsocial,
+                :id_vinculoestado, 
+                :organizacionarmada, 
+                :orientacionsexual, 
+                :_destroy, 
                 :persona_attributes => [
                   :id, :nombres, :apellidos, :anionac, :mesnac, :dianac, 
                   :id_pais, :id_departamento, :id_municipio, :id_clase, 
                   :nacionalde, :numerodocumento, :sexo, :tdocumento_id
                 ],
+                :antecedente_ids => []
               ], 
               :victimacolectiva_attributes => [
                 :id, :personasaprox, :organizacionarmada,

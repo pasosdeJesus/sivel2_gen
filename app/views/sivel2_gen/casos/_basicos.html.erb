@@ -1,8 +1,8 @@
-<%= f.input :id, label: "Código", readonly: true%>
+<%= f.input :id, readonly: true%>
 
 <%= f.input :fecha, :input_html => { 
   "data-behaviour" => "datepicker" },
-  :as => :string, :label => "Fecha del Hecho" 
+  :as => :string
 %>
 <%= f.input :titulo %>
 <%= f.input :hora %> <!--, as: :time, ampm: true -->

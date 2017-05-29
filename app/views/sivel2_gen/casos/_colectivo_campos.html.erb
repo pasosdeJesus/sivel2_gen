@@ -11,10 +11,10 @@
   value_method: :id 
 %>
 <%= f.association :rangoedad,
-collection: Sivel2Gen::Rangoedad.habilitados(:rango),
-include_blank: false,
-label_method: :rango, 
-value_method: :id 
+  collection: Sivel2Gen::Rangoedad.habilitados(:rango),
+  include_blank: false,
+  label_method: :rango, 
+  value_method: :id 
 %>
 <%= f.association :filiacion,
   collection: Sivel2Gen::Filiacion.habilitados,

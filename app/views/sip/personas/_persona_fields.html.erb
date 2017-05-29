@@ -19,11 +19,10 @@
   %>
   <%= f.input :tdocumento_id,
     collection: Sip::Tdocumento.habilitados,
-    label: "Tipo de Documento",
     label_method: :nombre,
     value_method: :id 
   %>
-  <%= f.input :numerodocumento, label: 'Número Documento'%>
+  <%= f.input :numerodocumento %>
   <div class="input string">
     <label class="string control-label">Casos en los que aparece: </label>
     <% 
@@ -79,36 +78,26 @@
     ["FEMENINO", :F], ["MASCULINO", :M]], 
     include_blank: false 
   %>
-  <%= f.association :nacional,
-    collection: Sip::Pais.habilitados,
-    label: "País de Nacionalidad",
-    label_method: :nombre,
-    value_method: :id 
-  %>
   <%= f.association :pais,
     collection: Sip::Pais.habilitados,
-    label: "País de Nacimiento",
     label_method: :nombre,
     value_method: :id 
   %>
   <%= f.association :departamento,
     collection: (Sip::Departamento.habilitados.where(
       id_pais: f.object.id_pais)),
-    label: "Estado/Departamento de Nacimiento",
     label_method: :nombre,
     value_method: :id 
   %>
   <%= f.association :municipio,
     collection: ( Sip::Municipio.habilitados.where(
         id_departamento: f.object.id_departamento)),
-    label: "Municipio de Nacimiento",
     label_method: :nombre,
     value_method: :id 
   %>
   <%= f.association :clase,
     collection: (Sip::Clase.habilitados.where(
       id_municipio: f.object.id_municipio)),
-    label: "Centro Poblado de Nacimiento",
     label_method: :nombre,
     value_method: :id 
   %>

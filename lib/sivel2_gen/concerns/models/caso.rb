@@ -109,8 +109,8 @@ module Sivel2Gen
           validates :duracion, length: { maximum: 10 }
           validates :grconfiabilidad, length: { maximum: 5 }
           validates :gresclarecimiento, length: { maximum: 5 }
-          validates :grimpunidad, length: { maximum: 5 }
-          validates :grinformacion, length: { maximum: 5 }
+          validates :grimpunidad, length: { maximum: 8 }
+          validates :grinformacion, length: { maximum: 8 }
 
           validate :rol_usuario
 

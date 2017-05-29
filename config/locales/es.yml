@@ -23,9 +23,15 @@ es:
         other: Otras fuentes
     attributes:
       "sip/persona":
+        anionac: Año de nacimiento
+        clase: Centro poblado de nacimiento
+        departamento: Estado/Departamento de nacimiento
         dianac: Día de nacimiento
         mesnac: Mes de nacimiento
-        anionac: Año de nacimiento
+        municipio: Municipio de nacimiento
+        numerodocumento: Número de documento
+        pais: País de Nacimiento
+        tdocumento_id: Tipo de documento
       "sivel2_gen/actividadarea": 
         Actividadarea: Área de Actividad
         Actividadareas: Áreas de Actividades
@@ -47,19 +53,26 @@ es:
         actividad:  Actividad
         observaciones: Observaciones
         created_at: Creado en
+      "sivel2_gen/caso":
+        casoid: Código
+        created_at: F. Creación
+        duracion: Duración
+        fecha: Fecha
+        grconfiabilidad: Gr. Confiabilidad Fuente
+        gresclarecimiento: Gr. Esclarecimiento
+        grimpunidad: Gr. Impunidad
+        grinformacion: Gr. Información
+        id: Código
+        memo: Descripción
+        presponsables: P. Responsables
+        tipificacion: Tipificacion
+        titulo: Título
+        victimas: Víctimas
+        region: Región
       "sivel2_gen/casosjr":
         fecharec: F. Recepción
         regionsjr: Oficina
         contacto: Solicitante Principal
-      "sivel2_gen/caso":
-        casoid: Código
-        created_at: F. Creación
-        fecha: F. Hecho
-        memo: Descripción
-        presponsables: P. Responsables
-        tipificacion: Tipificacion
-        victimas: Víctimas
-        region: Región
       "sivel2_gen/caso_etiqueta":
         etiqueta: Etiqueta 
       "sivel2_gen/caso_fotra":
@@ -75,7 +88,9 @@ es:
         anexo_caso: Anexo
       "sivel2_gen/caso_presponsable":
         presponsable: Presunto responsable
-        brigada: Brigada / Batallón / División
+        division: División
+        brigada: Brigada
+        batallon: Batallón
       "sivel2_gen/categoria":
         Categoria: Categoria
         Categorias: Categorias
@@ -87,6 +102,16 @@ es:
       "sivel2_gen/clase":
         Clase: Centro Poblado
         Clases: Centros Poblados
+      "sivel2_gen/combatiente":
+        antecedente: Antecedentes
+        filiacion: Filiación
+        organizacion: Organización
+        presponsable: Organización armada
+        profesion: Profesión
+        rangoedad: Rango de edad
+        resagresion: Resultado de la agresión
+        sectorsocial: Sector social
+        vinculoestado: Vínculo con el Estado
       "sivel2_gen/departamento":
         Departamento: Departamento/Estado
         Departamentos: Departamentos/Estados
@@ -174,12 +199,26 @@ es:
         Vinculoestado: Vínculo con el Estado
         Vinculosestado: Vínculos con el Estado
       "sivel2_gen/victima":
+        antecedente_victima: Antecedentes
         edad: Edad en fecha del hecho
         edadactual: Edad/aniversario actual
+        etnia: Etnia
+        filiacion: Filiación política
+        iglesia: Religión/Iglesia
+        organizacion: Organización
+        orientacionsexual: Orientación sexual
+        presponsable: Organización armada de la víctima
+        profesion: Profesión
+        rangoedad: Rango de edad
         sectorsocial: Sector social
         vinculoestado: Vínculo con el Estado
-        filiacion: Filiación política
       "sivel2_gen/victimacolectiva":
+        filiacion: Filiaciones políticas
+        organizacion: Organizaciones sociales
         personasaprox: Número aproximado de personas
         presponsable: Organización armada
+        profesion: Profesiones
+        rangoedad: Rangos de edades
+        sectorsocial: Sectores sociales
+        vinculoestado: Vínculos con el Estado
 

@@ -4,14 +4,12 @@
 <%= f.association :profesion,
 	collection: Sivel2Gen::Profesion.habilitados,
 	include_blank: false,
-	label: "Profesión",
 	label_method: :nombre, 
 	value_method: :id 
 %>
 <%= f.association :rangoedad,
 	collection: Sivel2Gen::Rangoedad.habilitados(:rango),
 	include_blank: false,
-	label: "Rango de Edad",
 	label_method: :rango, 
 	value_method: :id 
 %>
@@ -39,7 +37,6 @@
 <%= f.association :organizacion,
 	collection: Sivel2Gen::Organizacion.habilitados,
 	include_blank: false,
-	label: "Organización",
 	label_method: :nombre, 
   value_method: :id,
   input_html: {
@@ -50,7 +47,6 @@
 <%= f.association :vinculoestado,
 	collection: Sivel2Gen::Vinculoestado.habilitados,
 	include_blank: false,
-	label: "Vínculo con el Estado",
 	label_method: :nombre, 
   value_method: :id,
   input_html: {
@@ -58,17 +54,27 @@
     "title" => 'Registre si la persona era funcionaria pública en el momento del hecho'
   }
 %>
+<%= f.association :presponsable,
+	collection: Sivel2Gen::Presponsable.habilitados,
+	include_blank: false,
+	label_method: :nombre, 
+  value_method: :id,
+  input_html: {
+    "data-toggle" => 'tooltip',
+    "title" => 'Registre si la persona hacía parte de una organización armada en el momento del hecho',
+    "value" => f.object.organizacionarmada || 35
+  }
+%>
+
 <%= f.association :etnia,
 	collection: Sivel2Gen::Etnia.habilitados,
 	include_blank: false,
-	label: "Etnia",
 	label_method: :nombre, 
 	value_method: :id 
 %>
 <%= f.association :iglesia,
 	collection: Sivel2Gen::Iglesia.habilitados,
 	include_blank: false,
-	label: "Religión/Iglesia",
 	label_method: :nombre, 
 	value_method: :id 
 %>
@@ -76,8 +82,15 @@
 						[:HETEROSEXUAL, :H], [:LESBIANA, :L], [:GAY, :G], 
 						[:BISEXUAL, :B], [:TRANSEXUAL, :T], ["SIN INFORMACIÓN", :S] 
 ], 
-	label: "Orientación Sexual",
 	include_blank: false ) 
 %>
+<%= f.input :anotaciones %>
+<%= f.association :antecedente,
+  collection: Sivel2Gen::Antecedente.habilitados,
+  label_method: :nombre, 
+  value_method: :id,
+  include_blank: false
+%>
+
 <%= f.input :id, as: :hidden %>
 

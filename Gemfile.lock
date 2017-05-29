@@ -10,7 +10,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sip.git
-  revision: 3fb693b2a4d46b063f945a31c44be73b8fd9911d
+  revision: d4d95412e40e27b950c83678e60670f9e8804f16
   specs:
     sip (2.0.b3)
       bootstrap-datepicker-rails
@@ -88,6 +88,7 @@ GEM
     bootstrap-datepicker-rails (1.6.4.1)
       railties (>= 3.0)
     builder (3.2.3)
+    byebug (9.0.6)
     camertron-eprun (1.1.1)
     cancancan (2.0.0)
     chosen-rails (1.5.2)
@@ -166,7 +167,7 @@ GEM
       minitest (>= 5.0)
       ruby-progressbar
     multi_json (1.12.1)
-    nio4r (2.0.0)
+    nio4r (2.1.0)
     nokogiri (1.7.2)
       mini_portile2 (~> 2.1.0)
     orm_adapter (0.5.0)
@@ -295,6 +296,7 @@ PLATFORMS
 DEPENDENCIES
   bcrypt
   bootstrap-datepicker-rails
+  byebug
   cancancan
   chosen-rails
   cocoon!

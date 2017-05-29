@@ -2,15 +2,16 @@
   <div class="controls">
     <%= f.association :pais,
       collection: Sip::Pais.where(fechadeshabilitacion: nil).order(:nombre),
-      label: "País",
       label_method: :nombre,
-      value_method: :id 
+      value_method: :id,
+      input_html: {
+        value: f.object.id_pais ? f.object.id_pais : 170
+      }
     %>
     <%= f.association :departamento,
 			collection: (Sip::Departamento.where(
 				id_pais: f.object.id_pais, 
 				fechadeshabilitacion: nil).order(:nombre)),
-      label: "Estado/Departamento",
       label_method: :nombre,
       value_method: :id 
     %>
@@ -18,7 +19,6 @@
 			collection: (Sip::Municipio.where(
 				id_departamento: f.object.id_departamento,
 				fechadeshabilitacion: nil).order(:nombre)),
-      label: "Municipio",
       label_method: :nombre,
       value_method: :id 
     %>
@@ -26,7 +26,6 @@
 			collection: (Sip::Clase.where(
 				id_municipio: f.object.id_municipio,
 				fechadeshabilitacion: nil).order(:nombre)),
-			label: "Centro Poblado",
       label_method: :nombre,
       value_method: :id 
     %>
@@ -37,7 +36,6 @@
 		<%= f.association :tsitio,
 			collection: Sip::Tsitio.where(
 				fechadeshabilitacion: nil).order(:nombre),
-			label: "Tipo de Sitio",
 			label_method: :nombre, 
 			value_method: :id,
 			include_blank: false
