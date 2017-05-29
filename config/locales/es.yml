@@ -11,6 +11,7 @@ es:
     pais: País
     supracategoria: Supracategoria
     tclase: Tipo de Centro Poblado
+    tsitio: Tipo de sitio
     tviolencia: Tipo de Violencia
   will_paginate:
     previous_label: "&#8592; Anterior"
@@ -18,6 +19,9 @@ es:
     page_gap: "&hellip;"
   activerecord:
     models:
+      "sip/ubicacion":
+        Ubicacion: Ubicación
+        tsitio: Tipo de sitio
       "sivel2_gen/caso_fotra": 
         one: Otra fuente
         other: Otras fuentes
@@ -187,8 +191,6 @@ es:
         Tviolencia: Tipo de Violencia
         Tviolencias: Tipos de Violencia
         nomcorto: Nombre Corto
-      "sivel2_gen/ubicacion":
-        Ubicacion: Ubicación
       "sivel2_gen/usuario":
         nusuario: Usuario
         regionsjr: Oficina
@@ -199,7 +201,7 @@ es:
         Vinculoestado: Vínculo con el Estado
         Vinculosestado: Vínculos con el Estado
       "sivel2_gen/victima":
-        antecedente_victima: Antecedentes
+        antecedente_caso: Antecedentes
         edad: Edad en fecha del hecho
         edadactual: Edad/aniversario actual
         etnia: Etnia

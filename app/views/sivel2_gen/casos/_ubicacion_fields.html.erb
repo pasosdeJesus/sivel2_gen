@@ -31,8 +31,8 @@
     %>
 	  <%= f.input :lugar %>
 		<%= f.input :sitio %>
-		<%= f.input :latitud%>
-		<%= f.input :longitud%>
+		<%= f.input :latitud %>
+		<%= f.input :longitud %>
 		<%= f.association :tsitio,
 			collection: Sip::Tsitio.where(
 				fechadeshabilitacion: nil).order(:nombre),
