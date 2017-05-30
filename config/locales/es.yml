@@ -34,7 +34,7 @@ es:
         mesnac: Mes de nacimiento
         municipio: Municipio de nacimiento
         numerodocumento: Número de documento
-        pais: País de Nacimiento
+        pais: País de nacimiento
         tdocumento_id: Tipo de documento
       "sivel2_gen/actividadarea": 
         Actividadarea: Área de Actividad
@@ -61,7 +61,7 @@ es:
         casoid: Código
         created_at: F. Creación
         duracion: Duración
-        fecha: Fecha
+        fecha: Fecha del hecho
         grconfiabilidad: Gr. Confiabilidad Fuente
         gresclarecimiento: Gr. Esclarecimiento
         grimpunidad: Gr. Impunidad
