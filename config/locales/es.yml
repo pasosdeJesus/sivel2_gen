@@ -11,7 +11,6 @@ es:
     pais: País
     supracategoria: Supracategoria
     tclase: Tipo de Centro Poblado
-    tsitio: Tipo de sitio
     tviolencia: Tipo de Violencia
   will_paginate:
     previous_label: "&#8592; Anterior"
@@ -19,13 +18,12 @@ es:
     page_gap: "&hellip;"
   activerecord:
     models:
-      "sip/ubicacion":
-        Ubicacion: Ubicación
-        tsitio: Tipo de sitio
       "sivel2_gen/caso_fotra": 
         one: Otra fuente
         other: Otras fuentes
     attributes:
+      "sip/ubicacion":
+        tsitio: Tipo de sitio
       "sip/persona":
         anionac: Año de nacimiento
         clase: Centro poblado de nacimiento
