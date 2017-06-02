@@ -6,9 +6,11 @@ class AgregaIdACasoPresponsable < ActiveRecord::Migration
         SET DEFAULT(nextval('caso_presponsable_seq'));"
     execute "ALTER TABLE ONLY caso_categoria_presponsable DROP CONSTRAINT 
         IF EXISTS caso_categoria_presponsable_id_fkey "
+    execute "ALTER TABLE ONLY caso_categoria_presponsable DROP CONSTRAINT 
+        IF EXISTS categoria_p_responsable_caso_id_fkey"
 
     execute "UPDATE caso_presponsable SET
-        id = id_caso*10 + id WHERE id<10;"
+        id = id_caso*1000 + id_presponsable*10 + id WHERE id<10;"
     execute "ALTER TABLE caso_presponsable ADD UNIQUE(id);"
     execute "SELECT setval('caso_presponsable_seq', MAX(id)) 
         FROM (SELECT 10 as id UNION SELECT MAX(id) 
@@ -19,7 +21,7 @@ class AgregaIdACasoPresponsable < ActiveRecord::Migration
         ADD COLUMN id_caso_presponsable INTEGER 
           REFERENCES caso_presponsable(id);"
     execute "UPDATE caso_categoria_presponsable SET
-        id_caso_presponsable = id_caso*10 + id WHERE id<10;"
+        id_caso_presponsable = id_caso*1000 + id_presponsable*10 + id WHERE id<10;"
     execute "ALTER TABLE caso_categoria_presponsable DROP COLUMN id;"
     execute "ALTER TABLE caso_presponsable 
         DROP CONSTRAINT IF EXISTS caso_presponsable_pkey;"
