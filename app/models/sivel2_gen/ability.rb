@@ -89,16 +89,18 @@ module Sivel2Gen
 
 
     CAMPOS_PLANTILLAS_PROPIAS = {
-      'Caso': { 
+      'Caso' => { 
         campos: Sivel2Gen::Conscaso.respond_to?(:column_names) ?
-          Sivel2Gen::Conscaso.respond_to?(:column_names) : [],
+          Sivel2Gen::Conscaso.column_names : [],
         controlador: 'Sivel2Gen::CasosController'
       }
     }
 
     def campos_plantillas 
-      Heb412Gen::Ability::CAMPOS_PLANTILLAS_PROPIAS.
+      n = Heb412Gen::Ability::CAMPOS_PLANTILLAS_PROPIAS.
         clone.merge(CAMPOS_PLANTILLAS_PROPIAS)
+      #byebug
+      return n
     end
 
 
