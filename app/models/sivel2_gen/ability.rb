@@ -88,9 +88,11 @@ module Sivel2Gen
     end
 
 
+    #byebug
     CAMPOS_PLANTILLAS_PROPIAS = {
       'Caso' => { 
-        campos: Sivel2Gen::Conscaso.respond_to?(:column_names) ?
+        campos: ActiveRecord::Base.connection.data_source_exists?(
+          'sivel2_gen_conscaso') ?
           Sivel2Gen::Conscaso.column_names : [],
         controlador: 'Sivel2Gen::CasosController'
       }
