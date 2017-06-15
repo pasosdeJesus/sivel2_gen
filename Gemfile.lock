@@ -148,7 +148,7 @@ GEM
       less (~> 2.6.0)
       sprockets (> 2, < 4)
       tilt
-    libxml-ruby (2.8.0)
+    libxml-ruby (3.0.0)
     loofah (2.0.3)
       nokogiri (>= 1.5.9)
     mail (2.6.6)
@@ -310,7 +310,7 @@ DEPENDENCIES
   jquery-rails
   jquery-ui-rails
   launchy
-  libxml-ruby (= 2.8.0)
+  libxml-ruby
   minitest-reporters
   paperclip
   pg
