@@ -3,7 +3,7 @@ require 'date'
 
 module Sivel2Gen
   class FuentesprensaController < ApplicationController
-    load_and_authorize_resource class: Sip::Fuenteprensa
+    load_and_authorize_resource class: Sivel2Gen::Caso
     
     # Responde a requerimiento AJAX generado por cocoon creando una
     # nueva fuente de prensa para el caso que recibe por parametro 
