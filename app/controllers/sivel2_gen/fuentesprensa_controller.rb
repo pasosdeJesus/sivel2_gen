@@ -16,7 +16,7 @@ module Sivel2Gen
         @fprensa.fecha = Date.today
         if @fprensa.save
           respond_to do |format|
-            format.js { render text: @fpresna.id.to_s }
+            format.js { render text: @fprensa.id.to_s }
             format.json { render json: @fprensa.id.to_s, status: :created }
             format.html { render inline: @fprensa.id.to_s }
           end
