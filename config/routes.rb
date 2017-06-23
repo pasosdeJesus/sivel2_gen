@@ -13,21 +13,22 @@ Sivel2Gen::Engine.routes.draw do
   get '/casos/nuevavictima' => 'casos#nueva_victima'
   get '/casos/nuevopresponsable' => 'casos#nuevo_presponsable'
   get '/combatientes/nuevo' => 'combatientes#nuevo'
+  get "/conteos/personas" => 'conteos#personas', as: :conteos_personas
+  get "/conteos/genvic" => 'conteos#genvic', as: :conteos_genvic
   get "/fichacasovertical" => 'hogar#fichacasovertical'
+  get "/fuentesprensa/nuevo", 'fuentesprensa#nuevo'
+  get "/grupoper/remplazar" => 'grupoper#remplazar'
   get "/hogar" => 'hogar#index'
   get "/personas" => 'personas#index'
   get "/personas/remplazar" => 'personas#remplazar'
-  get "/grupoper/remplazar" => 'grupoper#remplazar'
   get '/presponsables/nuevo' => 'presponsables#nuevo'
   get "/tablasbasicas" => 'hogar#tablasbasicas'
   get '/ubicaciones/nuevo' => 'ubicaciones#nuevo'
+  get "/validarcasos" => 'validarcasos#validar', as: :validarcasos
+  post "/validarcasos" => 'validarcasos#validar', as: :envia_validarcasos
   get '/victimas/nuevo' => 'victimas#nuevo'
   get '/victimascolectivas/nuevo' => 'victimascolectivas#nuevo'
 
-  get "/conteos/personas" => 'conteos#personas', as: :conteos_personas
-  get "/conteos/genvic" => 'conteos#genvic', as: :conteos_genvic
-  get "/validarcasos" => 'validarcasos#validar', as: :validarcasos
-  post "/validarcasos" => 'validarcasos#validar', as: :envia_validarcasos
 
   resources :casos, path_names: { new: 'nuevo', edit: 'edita' }
 

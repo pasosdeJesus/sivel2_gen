@@ -1,4 +1,6 @@
 # encoding: UTF-8
+require 'date'
+
 module Sip
   module Admin
     class FuentesprensaController < Sip::Admin::BasicasController
@@ -25,6 +27,6 @@ module Sip
         params.require(:fuenteprensa).permit(*atributos_form)
       end
 
-    end
-  end
-end
+    end # class FuentesprensaController
+  end # module Admin
+end # module Sip

@@ -47,11 +47,11 @@ module Sivel2Gen
           accepts_nested_attributes_for :caso_fotra, allow_destroy: true, 
             reject_if: :all_blank
           has_many :fotra, through: :caso_fotra, class_name: 'Sip::Fotra'
-          has_many :caso_fuenteprensa, foreign_key: "id_caso", validate: true, 
-            dependent: :destroy, class_name: 'Sivel2Gen::CasoFuenteprensa',
-            inverse_of: :caso
-          accepts_nested_attributes_for :caso_fuenteprensa, allow_destroy: true, 
-            reject_if: :all_blank
+          has_many :caso_fuenteprensa, foreign_key: "id_caso", 
+            validate: true, dependent: :destroy, 
+            class_name: 'Sivel2Gen::CasoFuenteprensa', inverse_of: :caso
+          accepts_nested_attributes_for :caso_fuenteprensa, 
+            allow_destroy: true, reject_if: :all_blank
           has_many :fuenteprensa, through: :caso_fuenteprensa, 
             class_name: 'Sip::Fuenteprensa'
           has_many :caso_frontera, foreign_key: "id_caso", validate: true, 
