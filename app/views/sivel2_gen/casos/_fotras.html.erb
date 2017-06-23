@@ -3,7 +3,11 @@
 <% end %>
 <div class="links">
   <%= link_to_add_association 'Añadir Otra Fuente', f, :caso_fotra, 
-     partial: 'sivel2_gen/casos/caso_fotra_campos',
-     :class => 'btn-primary' 
+    { partial: 'sivel2_gen/casos/caso_fotra_campos',
+      class: 'btn-primary' ,
+      "data-ajax" => File.join(Rails.configuration.relative_url_root, 
+                               "casofotras/nuevo"),
+      "data-ajaxdata" => "caso_id"
+    }
   %>
 </div>
