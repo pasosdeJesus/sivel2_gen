@@ -33,5 +33,5 @@ module Sivel2Gen
       end
     end # def nuevo
 
-    end # class FuentesprensaController
+  end # class FuentesprensaController
 end # module Sivel2Gen

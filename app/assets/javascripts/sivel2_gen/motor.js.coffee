@@ -365,9 +365,7 @@ enviaFormularioContar= (root) ->
 
 # Envía datos de la ficha del caso para guardar 
 @enviarFichaCaso = ->
-  f=$('form')
-  a=f.attr('action')
-  $.post(a, f.serialize())
+  sip_enviarautomatico_formulario($('form'), 'POST', 'json', false)
   elimina_destruidos()
   actualiza_presponsables($('#caso_acto_id_presponsable'))
   actualiza_presponsables($('#caso_actocolectivo_id_presponsable'))
@@ -670,6 +668,11 @@ enviaFormularioContar= (root) ->
 
   # Obligar cálculo de edades al cargar 
   $('[id^=caso_victima_attributes][id$=persona_attributes_anionac]').change()
+
+  $(document).on('turbolinks:click', (event) ->
+    if (event.target.getAttribute('href').charAt(0) == '#') 
+      return event.preventDefault()
+  ) 
 
   return
 

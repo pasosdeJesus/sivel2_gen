@@ -1,19 +1,12 @@
 source 'https://rubygems.org'
 
-#ruby "2.1.5"
-
 # Rails (internacionalización)
 gem "rails", '~> 5.1.0'
 gem "rails-i18n"
-
 gem 'puma', '~> 3.0' 
-
-# Problemas con arel 6.0.0 al ejecutar rspec
-#gem "arel", '6.0.0.beta2'
 
 # Colores en terminal
 gem "colorize"
-
 
 # Postgresql
 gem "pg"
@@ -24,7 +17,7 @@ gem "jbuilder"
 gem "sass"
 gem 'font-awesome-rails'
 
-gem 'libxml-ruby'#, '2.8.0' #https://github.com/xml4r/libxml-ruby/issues/127
+gem 'libxml-ruby'#
 gem "rspreadsheet"
 
 # Uglifier comprime recursos Javascript
@@ -39,8 +32,8 @@ gem "coffee-rails"
 gem "jquery-rails"
 gem "jquery-ui-rails"
 
-# Seguir enlaces más rápido. Ver: https://github.com/rails/turbolinks
-gem "turbolinks", '2.5.3'
+# Seguir enlaces y redirecciones más rápidas. Ver: https://github.com/rails/turbolinks
+gem "turbolinks"
 
 # Ambiente de CSS
 gem "twitter-bootstrap-rails"#, '~> 3.2.0'
@@ -84,10 +77,8 @@ group :development do
   # Requerido por rake
   gem "thor"
   
-  
   # Consola irb en páginas con excepciones o usando <%= console %> en vistasA
   gem 'web-console'
-
 end
 
 group :test, :development do
@@ -119,10 +110,8 @@ group :test do
   # Lanza programas para examinar resultados
   gem "launchy"
 
-
   # Para examinar errores, usar "rescue rspec" en lugar de "rspec"
   gem 'pry-rescue'
   gem 'pry-stack_explorer'
-
 end
 

@@ -257,19 +257,25 @@ module Sivel2Gen
                 end
               end
               if @caso.update(caso_params)
+                #if request.params[:enviarFichaCaso] == '1'
+                #  head :no_content
+                #  return
+                #end
                 format.html { redirect_to @caso, notice: 'Caso actualizado.' }
                 format.json { head :no_content }
-                format.js   { redirect_to @caso, notice: 'Caso actualizado.' }
+                format.js   { head :no_content }
               else
                 format.html { 
                   if session[:capturacaso_acordeon]
-                    render 'editv', layout: 'application' 
+                    render 'editv', layout: 'application'
                   else
-                    render 'edit', layout: 'application' 
+                    render 'edit', layout: 'application'
                   end
                 }
-                format.json { render json: @caso.errors, status: :unprocessable_entity }
-                format.js   { render action: 'edit' }
+                format.json { render json: @caso.errors, 
+                              status: :unprocessable_entity }
+                format.js   { render json: @caso.errors, 
+                              status: :unprocessable_entity }
               end
             end
           end

@@ -14,12 +14,12 @@ module Sivel2Gen
 
     test "valido" do
       categoria = Categoria.create PRUEBA_CATEGORIA
-      e=categoria.errors.full_messages.inject("") do |memo,e|
+      ce=categoria.errors.full_messages.inject("") do |memo,e|
         memo + e + ". "
       end
-      Rails.logger.info "e=#{e}"
+      Rails.logger.info "ce=#{ce}"
       if !ENV['TRAVIS']
-        assert categoria.valid?, e
+        assert categoria.valid?, ce
       end
     end
 
