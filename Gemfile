@@ -91,8 +91,6 @@ group :test do
   gem "spring"
 
   gem 'simplecov'
-  # Envia resultados de pruebas desde travis a codeclimate
-  gem "codeclimate-test-reporter"
 
   gem "connection_pool"
   gem "minitest-reporters"
