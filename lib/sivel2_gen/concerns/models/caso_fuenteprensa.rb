@@ -25,9 +25,10 @@ module Sivel2Gen
             :id_caso, :fecha
           ] }
 
-          validates :fecha, uniqueness: { scope: [
-            :ubicacion, :clasificacion, :ubicacionfisica, :fuenteprensa_id
-          ] }
+          #validates :fecha, uniqueness: { scope: [
+          #  :id_caso, :fuenteprensa_id, :ubicacion, :clasificacion, 
+          #  :ubicacionfisica
+          #] }
 
           def saltar_fuente_tras_caso?
             false
