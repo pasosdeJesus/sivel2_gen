@@ -74,7 +74,9 @@ module Sivel2Gen
           # GET /casos
           # GET /casos.json
           def index
-            Conscaso.refresca_conscaso
+            if !ActiveRecord::Base.connection.data_source_exists? 'sivel2_gen_consexpcaso'
+              Conscaso.refresca_conscaso
+            end
             @cortamemo = cortamemo
 
             @incluir = incluir_inicial
@@ -133,6 +135,8 @@ module Sivel2Gen
             # Presentación
             respond_to do |format|
               format.ods { 
+                #byebug
+                Consexpcaso.crea_consexpcaso(@conscaso)
                 if params[:filtro].nil? || params[:idplantilla].nil? 
                   head :no_content 
                 elsif params[:idplantilla].to_i <= 0
@@ -141,11 +145,12 @@ module Sivel2Gen
                   id: params[:idplantilla].to_i).take.nil?
                   head :no_content 
                 end
+                @consexpcaso = Consexpcaso.all
 
                 pl = Heb412Gen::Plantillahcm.find(
                   params[:idplantilla])
                 n = Heb412Gen::PlantillahcmController.
-                  llena_plantilla_multiple_fd(pl, @conscaso)
+                  llena_plantilla_multiple_fd(pl, @consexpcaso)
                 send_file n, x_sendfile: true
               }
 
@@ -243,6 +248,7 @@ module Sivel2Gen
                 }
               end
             end
+            Conscaso.refresca_conscaso
           end
 
           # PATCH/PUT /casos/1
@@ -278,6 +284,7 @@ module Sivel2Gen
                               status: :unprocessable_entity }
               end
             end
+            Conscaso.refresca_conscaso
           end
 
           # Tuve que crear el siguiente para llamarlo desde
@@ -292,6 +299,7 @@ module Sivel2Gen
               format.html { redirect_to casos_url }
               format.json { head :no_content }
             end
+            Conscaso.refresca_conscaso
           end
 
           # DELETE /casos/1
