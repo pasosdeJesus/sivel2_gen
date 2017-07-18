@@ -25,10 +25,13 @@ module Sivel2Gen
     }
 
     test "index: asigna todas los casos como @casos" do
+      #byebug
+      Sivel2Gen::Conscaso.refresca_conscaso
       Caso.create! PRUEBA_CASOV
+      Sivel2Gen::Conscaso.refresca_conscaso
       get casos_path
       assert_response :success
-      #puts @response.body
+      puts @response.body
       assert_select "tr>td", text: '2014-11-19'
     end
 
