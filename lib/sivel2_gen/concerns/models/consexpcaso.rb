@@ -53,6 +53,9 @@ module Sivel2Gen
           end
 
           def crea_consexpcaso(conscaso)
+            if !ActiveRecord::Base.connection.data_source_exists? 'sivel2_gen_conscaso'
+              Sivel2Gen::Conscaso.refresca_conscaso
+            end
             if ActiveRecord::Base.connection.data_source_exists? 'sivel2_gen_consexpcaso'
               ActiveRecord::Base.connection.execute(
                 "DROP MATERIALIZED VIEW sivel2_gen_consexpcaso;")

@@ -87,8 +87,8 @@ module Sivel2Gen
       'organizacion'
     end
 
+    Sivel2Gen::Consexpcaso.crea_consexpcaso(nil)
 
-    #byebug
     CAMPOS_PLANTILLAS_PROPIAS = {
       'Caso' => { 
         campos: ActiveRecord::Base.connection.data_source_exists?(
