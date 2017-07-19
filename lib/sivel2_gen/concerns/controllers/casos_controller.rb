@@ -74,8 +74,6 @@ module Sivel2Gen
           # GET /casos
           # GET /casos.json
           def index
-
-	    byebug
 	    begin
        		conscasocount = Conscaso.count
 	    rescue
