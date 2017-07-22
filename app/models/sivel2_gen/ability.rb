@@ -87,7 +87,9 @@ module Sivel2Gen
       'organizacion'
     end
 
-    Sivel2Gen::Consexpcaso.crea_consexpcaso(nil)
+    if ActiveRecord::Base.connection.data_source_exists?('sivel2_gen_caso')
+    	Sivel2Gen::Consexpcaso.crea_consexpcaso(nil)
+    end
 
     CAMPOS_PLANTILLAS_PROPIAS = {
       'Caso' => { 
