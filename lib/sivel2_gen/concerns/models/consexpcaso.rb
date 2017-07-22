@@ -62,7 +62,7 @@ module Sivel2Gen
             end
             w = "WHERE TRUE=FALSE"
             if conscaso && conscaso.count > 0
-              w = "WHERE caso_id IN (#{conscaso.select(:caso_id).to_sql})"
+              w = "WHERE conscaso.caso_id IN (#{conscaso.select(:caso_id).to_sql})"
             end
             ActiveRecord::Base.connection.execute("CREATE 
               MATERIALIZED VIEW sivel2_gen_consexpcaso AS
