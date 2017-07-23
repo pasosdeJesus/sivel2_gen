@@ -34,22 +34,25 @@ module Sivel2Gen
           scope :ordenar_por, lambda { |campo|
             # extract the sort direction from the param value.
             # direction = (campo =~ /desc$/) ? 'desc' : 'asc'
+            critord = ""
             case campo.to_s
             when /^fechadesc/
-              order("sivel2_gen_conscaso.fecha desc")
+              critord = "sivel2_gen_conscaso.fecha desc"
             when /^fecha/
-              order("sivel2_gen_conscaso.fecha asc")
+              critord = "sivel2_gen_conscaso.fecha asc"
             when /^ubicaciondesc/
-              order("sivel2_gen_conscaso.ubicaciones desc")
+              critord = "sivel2_gen_conscaso.ubicaciones desc"
             when /^ubicacion/
-              order("sivel2_gen_conscaso.ubicaciones asc")
+              critord = "sivel2_gen_conscaso.ubicaciones asc"
             when /^codigodesc/
-              order("sivel2_gen_conscaso.caso_id desc")
+              critord = "sivel2_gen_conscaso.caso_id desc"
             when /^codigo/
-              order("sivel2_gen_conscaso.caso_id asc")
+              critord = "sivel2_gen_conscaso.caso_id asc"
             else
               raise(ArgumentError, "Ordenamiento invalido: #{ campo.inspect }")
             end
+            critord += ", sivel2_gen_conscaso.caso_id"
+            order(critord)
           }
 
           scope :filtro_departamento_id, lambda { |id|

@@ -74,11 +74,11 @@ module Sivel2Gen
           # GET /casos
           # GET /casos.json
           def index
-	    begin
-       		conscasocount = Conscaso.count
-	    rescue
-       		Conscaso.refresca_conscaso
-	    end
+            begin
+              conscasocount = Conscaso.count
+            rescue
+              Conscaso.refresca_conscaso
+            end
             if !ActiveRecord::Base.connection.data_source_exists? 'sivel2_gen_consexpcaso'
               Consexpcaso.crea_consexpcaso
             end
