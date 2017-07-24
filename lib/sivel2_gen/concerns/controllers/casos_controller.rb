@@ -70,6 +70,12 @@ module Sivel2Gen
               vista: 'Caso').select('nombremenu, id').map { 
                 |c| [c.nombremenu, c.id] }
           end
+       
+          # Valida que el usuario pueda generar la plantilla idplant 
+          def valida_plantilla(current_usuario, idplant)
+            true
+          end
+
 
           # GET /casos
           # GET /casos.json
@@ -148,6 +154,9 @@ module Sivel2Gen
                   head :no_content 
                 elsif Heb412Gen::Plantillahcm.where(
                   id: params[:idplantilla].to_i).take.nil?
+                  head :no_content 
+                elsif !valida_plantilla(current_usuario, 
+                                        params[:idplantilla].to_i)
                   head :no_content 
                 end
                 @consexpcaso = Consexpcaso.all
