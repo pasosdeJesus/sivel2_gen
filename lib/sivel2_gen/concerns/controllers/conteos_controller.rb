@@ -44,7 +44,7 @@ module Sivel2Gen
             if (w != "") 
               w += " #{con}"
             end
-            w += " " + n + opcmp + Sivel2Gen::Caso.sanitize(v)
+            w += " " + n + opcmp + Sivel2Gen::Caso.connection.quote(v)
           end
 
 
