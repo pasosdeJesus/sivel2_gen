@@ -96,7 +96,8 @@ module Sivel2Gen
         campos: ActiveRecord::Base.connection.data_source_exists?(
           'sivel2_gen_consexpcaso') ?
           Sivel2Gen::Consexpcaso.column_names : [],
-        controlador: 'Sivel2Gen::CasosController'
+        controlador: 'Sivel2Gen::CasosController',
+        ruta: '/casos'
       }
     }
 
