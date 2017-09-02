@@ -1,4 +1,4 @@
-class EliminaChequeo < ActiveRecord::Migration[4.0]
+class EliminaChequeo < ActiveRecord::Migration[4.2]
   def change
         execute <<-SQL
       ALTER TABLE acto DROP CONSTRAINT IF EXISTS acto_id_persona_fkey1;

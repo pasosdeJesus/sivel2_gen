@@ -1,4 +1,4 @@
-class AddNacionaldeToPersona < ActiveRecord::Migration[4.1]
+class AddNacionaldeToPersona < ActiveRecord::Migration[4.2]
   def change
 		add_column :persona, :nacionalde, :integer
     reversible do |dir|

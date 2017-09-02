@@ -1,4 +1,4 @@
-class EtniaSinDuplicado < ActiveRecord::Migration[4.1]
+class EtniaSinDuplicado < ActiveRecord::Migration[4.2]
   def up
     execute <<-SQL
     UPDATE victima SET id_etnia='21' WHERE id_etnia='67';

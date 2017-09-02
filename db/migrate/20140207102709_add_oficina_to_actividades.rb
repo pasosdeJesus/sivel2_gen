@@ -1,4 +1,4 @@
-class AddOficinaToActividades < ActiveRecord::Migration[4.0]
+class AddOficinaToActividades < ActiveRecord::Migration[4.2]
   def change
     add_reference :actividad, :regionsjr
     execute <<-SQL

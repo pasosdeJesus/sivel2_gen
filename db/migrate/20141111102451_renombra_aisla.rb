@@ -1,4 +1,4 @@
-class RenombraAisla < ActiveRecord::Migration[4.1]
+class RenombraAisla < ActiveRecord::Migration[4.2]
   def change
     rename_table :actividad, :sivel2_gen_actividad
     rename_table :actividad_rangoedadac, :sivel2_gen_actividad_rangoedadac

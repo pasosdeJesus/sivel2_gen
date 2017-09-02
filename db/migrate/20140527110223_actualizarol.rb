@@ -1,4 +1,4 @@
-class Actualizarol < ActiveRecord::Migration[4.1]
+class Actualizarol < ActiveRecord::Migration[4.2]
   def change
     execute <<-SQL
       ALTER TABLE usuario DROP CONSTRAINT IF EXISTS usuario_rol_check;

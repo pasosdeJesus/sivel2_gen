@@ -1,4 +1,4 @@
-class AddCreatedAtToCaso < ActiveRecord::Migration[4.0]
+class AddCreatedAtToCaso < ActiveRecord::Migration[4.2]
   def up 
     add_column :caso, :created_at, :datetime
     add_column :caso, :updated_at, :datetime

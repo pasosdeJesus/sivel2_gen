@@ -1,4 +1,4 @@
-class CreaRegionsjr < ActiveRecord::Migration[4.0]
+class CreaRegionsjr < ActiveRecord::Migration[4.2]
   def change
     create_table :regionsjr do |t|
       t.string :nombre, limit: 500

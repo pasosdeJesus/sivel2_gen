@@ -1,4 +1,4 @@
-class CreateActividad < ActiveRecord::Migration[4.0]
+class CreateActividad < ActiveRecord::Migration[4.2]
   def change
     create_table :actividad do |t|
       t.integer :numero

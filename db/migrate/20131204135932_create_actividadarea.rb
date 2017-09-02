@@ -1,4 +1,4 @@
-class CreateActividadarea < ActiveRecord::Migration[4.0]
+class CreateActividadarea < ActiveRecord::Migration[4.2]
   def change
     create_table :actividadarea do |t|
       t.string :nombre, limit: 500

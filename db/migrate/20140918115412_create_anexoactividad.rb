@@ -1,4 +1,4 @@
-class CreateAnexoactividad < ActiveRecord::Migration[4.1]
+class CreateAnexoactividad < ActiveRecord::Migration[4.2]
   def change
     create_table :anexoactividad do |t|
       t.references :actividad, index: true

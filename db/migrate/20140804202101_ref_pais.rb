@@ -1,4 +1,4 @@
-class RefPais < ActiveRecord::Migration[4.1]
+class RefPais < ActiveRecord::Migration[4.2]
   def up
     execute <<-SQL
       ALTER TABLE departamento ADD COLUMN id_pais INTEGER REFERENCES pais;

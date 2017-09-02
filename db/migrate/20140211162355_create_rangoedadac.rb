@@ -1,4 +1,4 @@
-class CreateRangoedadac < ActiveRecord::Migration[4.0]
+class CreateRangoedadac < ActiveRecord::Migration[4.2]
   def change
     create_table :rangoedadac do |t|
       t.string :nombre

@@ -1,4 +1,4 @@
-class CambiaTdocumento < ActiveRecord::Migration[4.1]
+class CambiaTdocumento < ActiveRecord::Migration[4.2]
   def up
     execute "ALTER TABLE persona ADD COLUMN tdocumento_id INTEGER REFERENCES tdocumento(id)"
     execute "UPDATE persona SET tdocumento_id=tdocumento.id FROM tdocumento WHERE tdocumento.sigla=persona.tipodocumento"

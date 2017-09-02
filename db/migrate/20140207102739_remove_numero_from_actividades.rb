@@ -1,4 +1,4 @@
-class RemoveNumeroFromActividades < ActiveRecord::Migration[4.0]
+class RemoveNumeroFromActividades < ActiveRecord::Migration[4.2]
   def change
     remove_column :actividad, :numero, :integer
   end

@@ -1,4 +1,4 @@
-class CreatePais < ActiveRecord::Migration[4.1]
+class CreatePais < ActiveRecord::Migration[4.2]
   def change
     create_table :pais do |t|
       t.string :nombre, limit: 200

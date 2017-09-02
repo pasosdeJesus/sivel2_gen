@@ -1,4 +1,4 @@
-class AgregaIdACasoEtiqueta < ActiveRecord::Migration[4.1]
+class AgregaIdACasoEtiqueta < ActiveRecord::Migration[4.2]
   def up
    execute <<-SQL
      CREATE SEQUENCE caso_etiqueta_seq;
