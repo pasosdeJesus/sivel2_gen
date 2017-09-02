@@ -53,6 +53,9 @@ module Sivel2Gen
           end
 
           def crea_consexpcaso(conscaso)
+            if ARGV.include?("db:migrate")
+              return
+            end
             if !ActiveRecord::Base.connection.data_source_exists? 'sivel2_gen_conscaso'
               Sivel2Gen::Conscaso.refresca_conscaso
             end
