@@ -1,4 +1,4 @@
-class RenombraFuenteprensa < ActiveRecord::Migration
+class RenombraFuenteprensa < ActiveRecord::Migration[4.2]
   def up
     #execute <<-SQL
     #  DROP SEQUENCE sip_fuenteprensa_id_seq;

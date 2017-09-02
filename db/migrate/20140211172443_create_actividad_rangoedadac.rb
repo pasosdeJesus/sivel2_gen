@@ -1,4 +1,4 @@
-class CreateActividadRangoedadac < ActiveRecord::Migration
+class CreateActividadRangoedadac < ActiveRecord::Migration[4.0]
   def change
     create_table :actividad_rangoedadac do |t|
       t.references :actividad, index: true

@@ -1,4 +1,4 @@
-class CreaSipAnexos < ActiveRecord::Migration
+class CreaSipAnexos < ActiveRecord::Migration[4.2]
   def up
     if !table_exists? :sip_anexo
       create_table :sip_anexo do |t|

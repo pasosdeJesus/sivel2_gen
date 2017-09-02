@@ -1,4 +1,4 @@
-class Fechacreacion < ActiveRecord::Migration
+class Fechacreacion < ActiveRecord::Migration[4.1]
 
   TABLASBASICAS = [:actividadarea, #ayudaestado, 
     :departamento, :municipio, #:actividadoficio, :ayudasjr, 

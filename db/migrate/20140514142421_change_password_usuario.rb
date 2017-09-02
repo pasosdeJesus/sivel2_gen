@@ -1,4 +1,4 @@
-class ChangePasswordUsuario < ActiveRecord::Migration
+class ChangePasswordUsuario < ActiveRecord::Migration[4.0]
   def change
     change_column_default(:usuario, :password, '')
     execute <<-SQL

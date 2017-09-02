@@ -1,4 +1,4 @@
-class IdFuenteprensa < ActiveRecord::Migration
+class IdFuenteprensa < ActiveRecord::Migration[4.2]
   def up
     execute <<-SQL
       CREATE SEQUENCE sivel2_gen_caso_fuenteprensa_seq;

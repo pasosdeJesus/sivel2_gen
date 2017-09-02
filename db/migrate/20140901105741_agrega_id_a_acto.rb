@@ -1,4 +1,4 @@
-class AgregaIdAActo < ActiveRecord::Migration
+class AgregaIdAActo < ActiveRecord::Migration[4.1]
   def up
    execute <<-SQL
      CREATE SEQUENCE acto_seq;

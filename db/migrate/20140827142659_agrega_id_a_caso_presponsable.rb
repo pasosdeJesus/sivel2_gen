@@ -1,4 +1,4 @@
-class AgregaIdACasoPresponsable < ActiveRecord::Migration
+class AgregaIdACasoPresponsable < ActiveRecord::Migration[4.1]
   def change
 
     execute "CREATE SEQUENCE caso_presponsable_seq;"

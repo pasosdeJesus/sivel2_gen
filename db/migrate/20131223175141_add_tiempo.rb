@@ -1,4 +1,4 @@
-class AddTiempo < ActiveRecord::Migration
+class AddTiempo < ActiveRecord::Migration[4.0]
   def change
 	  #add_column :acreditacion, :created_at, :datetime 
 	  #add_column :acreditacion, :updated_at, :datetime

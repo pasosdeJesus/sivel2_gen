@@ -1,4 +1,4 @@
-class AgregaObservaciones < ActiveRecord::Migration
+class AgregaObservaciones < ActiveRecord::Migration[4.2]
   def change
     add_column :sivel2_gen_frontera, :observaciones, :string, limit: 5000
     add_column :sivel2_gen_categoria, :observaciones, :string, limit: 5000

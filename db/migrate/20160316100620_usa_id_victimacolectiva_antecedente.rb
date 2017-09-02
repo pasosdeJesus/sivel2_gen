@@ -1,4 +1,4 @@
-class UsaIdVictimacolectivaAntecedente < ActiveRecord::Migration
+class UsaIdVictimacolectivaAntecedente < ActiveRecord::Migration[4.2]
   def up
    execute <<-SQL
      ALTER TABLE sivel2_gen_antecedente_comunidad 

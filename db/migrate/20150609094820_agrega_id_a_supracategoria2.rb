@@ -1,4 +1,4 @@
-class AgregaIdASupracategoria2 < ActiveRecord::Migration
+class AgregaIdASupracategoria2 < ActiveRecord::Migration[4.2]
   def up
    execute <<-SQL
      CREATE SEQUENCE sivel2_gen_supracategoria_id_seq;

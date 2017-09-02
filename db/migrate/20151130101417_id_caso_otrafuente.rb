@@ -1,4 +1,4 @@
-class IdCasoOtrafuente < ActiveRecord::Migration
+class IdCasoOtrafuente < ActiveRecord::Migration[4.2]
   def up
     execute <<-SQL
       CREATE SEQUENCE sivel2_gen_caso_fotra_seq;

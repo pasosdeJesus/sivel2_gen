@@ -1,4 +1,4 @@
-class UnificaAnexos < ActiveRecord::Migration
+class UnificaAnexos < ActiveRecord::Migration[4.2]
   def up
     execute <<-SQL
       INSERT INTO sip_anexo(id, descripcion, adjunto_file_name, 

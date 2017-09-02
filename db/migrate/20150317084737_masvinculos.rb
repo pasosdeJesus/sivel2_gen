@@ -1,4 +1,4 @@
-class Masvinculos < ActiveRecord::Migration
+class Masvinculos < ActiveRecord::Migration[4.2]
   def up
     execute <<-SQL
 INSERT INTO sivel2_gen_vinculoestado (id, nombre, fechacreacion, created_at) VALUES (42, 'FUERZAS MILITARES', '2015-03-17', '2015-03-17');

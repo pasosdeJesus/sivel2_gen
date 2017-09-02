@@ -1,4 +1,4 @@
-class AgregaIdVictima < ActiveRecord::Migration
+class AgregaIdVictima < ActiveRecord::Migration[4.1]
   def up
    execute <<-SQL
      CREATE SEQUENCE victima_seq;

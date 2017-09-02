@@ -1,4 +1,4 @@
-class RenombraGrupoperSeq < ActiveRecord::Migration
+class RenombraGrupoperSeq < ActiveRecord::Migration[4.2]
   def up
     execute <<-SQL
       ALTER SEQUENCE grupoper_seq RENAME TO sivel2_gen_grupoper_id_seq;

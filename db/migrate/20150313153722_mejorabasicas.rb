@@ -1,4 +1,4 @@
-class Mejorabasicas < ActiveRecord::Migration
+class Mejorabasicas < ActiveRecord::Migration[4.2]
   def up
     execute <<-SQL
     UPDATE sivel2_gen_filiacion SET nombre='CÍVICO POLÍTICA ELECTORAL' where nombre LIKE 'CIVICO%' AND id='8';

@@ -1,4 +1,4 @@
-class AgregaIdASupracategoria1 < ActiveRecord::Migration
+class AgregaIdASupracategoria1 < ActiveRecord::Migration[4.2]
   def up
     execute <<-SQL
       ALTER TABLE sivel2_gen_supracategoria

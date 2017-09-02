@@ -1,4 +1,4 @@
-class AddAdjuntoToAnexo < ActiveRecord::Migration
+class AddAdjuntoToAnexo < ActiveRecord::Migration[4.0]
   def self.up
     add_attachment :anexo, :adjunto
   end

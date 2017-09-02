@@ -1,4 +1,4 @@
-class UsaIdVictimacolectivaProfesion < ActiveRecord::Migration
+class UsaIdVictimacolectivaProfesion < ActiveRecord::Migration[4.2]
   def up
    execute <<-SQL
      ALTER TABLE sivel2_gen_comunidad_profesion 
