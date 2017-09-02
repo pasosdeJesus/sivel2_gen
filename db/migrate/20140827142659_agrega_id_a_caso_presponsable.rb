@@ -10,7 +10,7 @@ class AgregaIdACasoPresponsable < ActiveRecord::Migration[4.2]
         IF EXISTS categoria_p_responsable_caso_id_fkey"
 
     execute "UPDATE caso_presponsable SET
-        id = id_caso*10000 + id_presponsable*100 + id WHERE id<10;"
+        id = id_caso*10000 + id_presponsable*10 + id WHERE id<10;"
     execute "ALTER TABLE caso_presponsable ADD UNIQUE(id);"
     execute "SELECT setval('caso_presponsable_seq', MAX(id)) 
         FROM (SELECT 10 as id UNION SELECT MAX(id) 
