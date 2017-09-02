@@ -3,6 +3,10 @@ class ActualizaMarcoConceptual < ActiveRecord::Migration[5.0]
     if Gem::Specification.find_all_by_name('sivel2_sjr').length > 0
       return true
     end
+    # Ya actualizado
+    if Sivel2Gen::Categoria.where('id IN (27,34,141,241,341,402,502,76,705,714,715,716,717,718,710,711,712,713,905)').count == 19
+      return true
+    end
     execute <<-SQL
     -- A y B 
     UPDATE sivel2_gen_categoria SET nombre='LESIÓN FÍSICA' WHERE id in ('13', '23', '33', '43', '53'); -- HERIDO->LESIÓN FÍSICA
