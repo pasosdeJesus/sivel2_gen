@@ -21,7 +21,7 @@ class AgregaIdACasoPresponsable < ActiveRecord::Migration[4.2]
         ADD COLUMN id_caso_presponsable INTEGER 
           REFERENCES caso_presponsable(id);"
     execute "UPDATE caso_categoria_presponsable SET
-        id_caso_presponsable = id_caso*1000 + id_presponsable*10 + id WHERE id<10;"
+        id_caso_presponsable = id_caso*10000 + id_presponsable*10 + id WHERE id<10;"
     execute "ALTER TABLE caso_categoria_presponsable DROP COLUMN id;"
     execute "ALTER TABLE caso_presponsable 
         DROP CONSTRAINT IF EXISTS caso_presponsable_pkey;"
