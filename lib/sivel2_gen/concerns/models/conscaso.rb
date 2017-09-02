@@ -168,6 +168,9 @@ module Sivel2Gen
         module ClassMethods
 
           def refresca_conscaso
+            if ARGV.include?("db:migrate")
+              return
+            end
             if !ActiveRecord::Base.connection.data_source_exists? 'sivel2_gen_conscaso'
               ActiveRecord::Base.connection.execute("CREATE OR REPLACE 
         VIEW sivel2_gen_conscaso1 AS
