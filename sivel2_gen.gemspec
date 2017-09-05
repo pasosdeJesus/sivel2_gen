@@ -1,5 +1,5 @@
-$:.push File.expand_path("../lib", __FILE__)
 # encoding: UTF-8
+$:.push File.expand_path("../lib", __FILE__)
 
 # Maintain your gem's version:
 require "sivel2_gen/version"
