@@ -39,7 +39,9 @@ module Sivel2Gen
     ]
 
     def tablasbasicas 
-      Sip::Ability::BASICAS_PROPIAS + BASICAS_PROPIAS
+      r = (Sip::Ability::BASICAS_PROPIAS - [['Sip', 'oficina']]) + 
+        BASICAS_PROPIAS
+      return r
     end
 
     # Tablas básicas cuyo id no es autoincremental
