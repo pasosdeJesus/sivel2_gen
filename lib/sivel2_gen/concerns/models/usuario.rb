@@ -8,9 +8,9 @@ module Sivel2Gen
       module Usuario
         extend ActiveSupport::Concern
 
-        include Sip::Concerns::Models::Usuario
-
         included do
+          include Sip::Concerns::Models::Usuario
+
           has_many :caso_usuario, foreign_key: "id_usuario", validate: true,
             class_name: 'Sivel2Gen::CasoUsuario'
           
