@@ -39,6 +39,8 @@ module Sivel2Gen
             class_name: 'Sivel2Gen::Contexto'
           has_many :caso_etiqueta, foreign_key: "id_caso", validate: true, 
             dependent: :destroy, class_name: 'Sivel2Gen::CasoEtiqueta'
+          has_many :etiqueta, through: :caso_etiqueta, 
+            class_name: 'Sip::Etiqueta'
           accepts_nested_attributes_for :caso_etiqueta, allow_destroy: true, 
             reject_if: :all_blank
           has_many :caso_fotra, foreign_key: "id_caso", validate: true, 
