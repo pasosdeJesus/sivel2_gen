@@ -14,7 +14,7 @@ module Sivel2Gen
 
     test "al pedir indice presenta plantilla de indice" do
       get admin_vinculosestado_url
-      assert_template "admin/basicas/index"
+      assert_template "sip/modelos/index"
     end
   end
 end
