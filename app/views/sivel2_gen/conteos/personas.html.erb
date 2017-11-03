@@ -9,10 +9,10 @@
 %>
   <div class="container">
     <div class="row filtro-fila">
-      <div class="col-sm-offset-0 col-sm-2 col-md-offset-1 col-md-1">
+      <div class="col-sm-offset-0 col-sm-3 col-md-offset-1 col-md-1">
         <%= @titulo_personas_fecha %>
       </div>
-      <div class="col-sm-offset-0 col-sm-4">
+      <div class="col-sm-offset-0 col-sm-3">
         <%= f.input :fechaini,
           maxlength: 10, 
           size: 10,
@@ -24,7 +24,7 @@
           }
         %>
       </div>
-      <div class="col-sm-offset-1 col-sm-4">
+      <div class="col-sm-offset-0 col-sm-3">
         <%= f.input :fechafin,
           maxlength: 10, 
           size: 10,
@@ -35,13 +35,16 @@
             "data-contarautomatico" => ""
           }
         %>
-      </div>
+    </div>
+      <%= render partial: 'sivel2_gen/conteos/personas_mitad_filtro', 
+        locals: {f: f} 
+      %>
     </div>
     <div class="row filtro-fila">
-      <div class="col-sm-offset-0 col-sm-2 col-md-offset-1 col-md-1">
-        Según:
+      <div class="col-sm-offset-0 col-sm-3 col-md-offset-1 col-md-1">
+        Desagregar por:
       </div>
-      <div class="col-sm-4">
+      <div class="col-sm-3">
         <%= f.input :segun,
           collection: @opsegun,
           label: false,
@@ -49,30 +52,21 @@
           input_html: { "data-contarautomatico" => "" }
         %>
       </div>
-      <%= render partial: 'sivel2_gen/conteos/personas_mitad_filtro', 
-        locals: {f: f} 
-      %>
-    </div>
-    <div class="row filtro-fila">
-      <div class="col-sm-offset-0 col-sm-2 col-md-offset-1 col-md-1">
-        Ubicación:
-      </div>
-      <div class="col-sm-4">
+      <div class="col-sm-3">
         <%= f.input :departamento, 
           as: :boolean, 
           boolean_style: :nested,
-          inline_label: 'Departamento'
-          #input_html: { :checked => "checked" }
+          inline_label: 'Departamento',
+          input_html: { style: 'margin-left: 15px',
+                        'data-contarautomatico' => '' }
         %>
       </div>
-      <div class="col-sm-1">
-      </div>
-      <div class="col-sm-4">
+      <div class="col-sm-3">
         <%= f.input :municipio, 
           as: :boolean, 
           boolean_style: :nested,
-          inline_label: 'Municipio'
-          #input_html: { :checked => "checked" }
+          inline_label: 'Municipio',
+          input_html: { 'data-contarautomatico' => '' }
         %>
       </div>
     </div>
