@@ -10,14 +10,14 @@
   <div class="container">
     <div class="row filtro-fila">
       <div class="col-sm-offset-0 col-sm-3 col-md-offset-1 col-md-1">
-        <%= @titulo_personas_fecha %>
+        Filtrar por:
       </div>
       <div class="col-sm-offset-0 col-sm-3">
         <%= f.input :fechaini,
           maxlength: 10, 
           size: 10,
           label: false,
-          placeholder: 'Inicial',
+          placeholder: 'Fecha Inicial',
           input_html: {
             "data-behaviour" => "datepicker",
             "data-contarautomatico" => ""
@@ -29,7 +29,7 @@
           maxlength: 10, 
           size: 10,
           label: false,
-          placeholder: 'Final',
+          placeholder: 'Fecha Final',
           input_html: {
             "data-behaviour" => "datepicker",
             "data-contarautomatico" => ""
@@ -72,7 +72,7 @@
     </div>
     <div class="row filtro-fila">
       <div class="col-md-offset-5 col-md-2">
-        <%= f.button :submit, 'Filtrar', class: 'btn btn-default' %>
+        <%= f.button :submit, 'Contar', class: 'btn btn-default' %>
       </div>
     </div>
   </div>
