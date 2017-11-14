@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/pasosdeJesus/heb412_gen.git
-  revision: 3af430698c3501116bc5cc04723e61a74c4a720f
+  revision: 27cf2466136ee7e4f0dbf5efb042eca6b0deb2d0
   specs:
     heb412_gen (1.0.a1)
       chosen-rails
@@ -349,4 +349,4 @@ DEPENDENCIES
   will_paginate
 
 BUNDLED WITH
-   1.15.4
+   1.16.0
