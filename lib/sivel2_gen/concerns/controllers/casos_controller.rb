@@ -402,7 +402,9 @@ module Sivel2Gen
             ],
             :caso_presponsable_attributes => [
                 :id, :id_presponsable, :tipo, 
-                :bloque, :frente, :brigada, :batallon, :division, :otro, :_destroy
+                :bloque, :frente, :brigada, :batallon, :division, :otro, 
+                :_destroy,
+                :categoria_ids => []
             ],
               :acto_attributes => [
                 :id, :id_presponsable, :id_categoria, 

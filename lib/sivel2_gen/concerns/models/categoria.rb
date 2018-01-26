@@ -19,6 +19,11 @@ module Sivel2Gen
           has_many :acto, foreign_key: "id_categoria", validate: true,
             class_name: 'Sivel2Gen::Acto'
 
+          has_many :caso_categoria_presponsable, foreign_key: 'id_categoria',
+            validate: true, class_name: 'Sivel2Gen::CasoCategoriaPresponsable'
+          has_many :caso_presponsable, through: :caso_categoria_presponsable,
+            class_name: 'Sivel2Gen::CasoPresponsable'
+
           validates :supracategoria, presence: true
           validates :id, presence:true, uniqueness: true
 

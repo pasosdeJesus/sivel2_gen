@@ -6,5 +6,11 @@ module Sivel2Gen
     belongs_to :presponsable, foreign_key: "id_presponsable", validate: true, 
       class_name: 'Sivel2Gen::Presponsable'
     accepts_nested_attributes_for :presponsable, :reject_if => :all_blank
+    
+    has_many :caso_categoria_presponsable, foreign_key: :id_caso_presponsable,
+      dependent: :destroy, validate: true
+    has_many :categoria, through: :caso_categoria_presponsable,
+      class_name: 'Sivel2Gen::Categoria'
+ 
   end
 end
