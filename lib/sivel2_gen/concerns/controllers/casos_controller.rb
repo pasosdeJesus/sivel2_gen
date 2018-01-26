@@ -69,6 +69,7 @@ module Sivel2Gen
             @plantillas = Heb412Gen::Plantillahcm.where(
               vista: 'Caso').select('nombremenu, id').map { 
                 |c| [c.nombremenu, c.id] }
+            @plantillas += [['Reporte Revista HTML', 'reprevista.html']]
           end
        
           # Valida que el usuario pueda generar la plantilla idplant 
@@ -169,7 +170,11 @@ module Sivel2Gen
               }
 
               format.html { 
-                render layout: 'application' 
+                if (params['idplantilla']) 
+                  render params['idplantilla'], layout: nil
+                else
+                  render layout: 'application' 
+                end
               }
 
               format.js { render 'sivel2_gen/casos/filtro' }

@@ -9,7 +9,7 @@ gem 'puma', '~> 3.0'
 gem "colorize"
 
 # Postgresql
-gem "pg"
+gem "pg", '~> 0.21'
 
 # API JSON facil. Ver: https://github.com/rails/jbuilder
 gem "jbuilder"
@@ -24,6 +24,8 @@ gem "rspreadsheet"
 gem "uglifier", '>= 1.3.0'
 
 gem "chosen-rails"
+
+gem 'redcarpet'
 
 # CoffeeScript para recuersos .js.coffee y vistas
 gem "coffee-rails"
