@@ -30,9 +30,6 @@ module Sivel2Gen
             dependent: :destroy, class_name: 'Sivel2Gen::AntecedenteCaso'
           has_many :antecedente, through: :antecedente_caso, 
             class_name: 'Sivel2Gen::Antecedente'
-          has_many :caso_categoria_presponsable, foreign_key: "id_caso", 
-            validate: true, dependent: :destroy, 
-            class_name: 'Sivel2Gen::CasoCategoriaPresponsable'
           has_many :caso_contexto, foreign_key: "id_caso", validate: true, 
             dependent: :destroy, class_name: 'Sivel2Gen::CasoContexto'
           has_many :contexto, through: :caso_contexto, 
