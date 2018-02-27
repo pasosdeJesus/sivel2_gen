@@ -1,5 +1,6 @@
 -- Volcado de tablas basicas
 
+-- Antes deshabilitamos integridad en unos casos
     ALTER TABLE ONLY sivel2_gen_categoria
       DROP CONSTRAINT categoria_contadaen_fkey; 
     ALTER TABLE ONLY sivel2_gen_presponsable
@@ -9,12 +10,17 @@
 -- PostgreSQL database dump
 --
 
+-- Dumped from database version 10.1
+-- Dumped by pg_dump version 10.1
+
 SET statement_timeout = 0;
 
+SET idle_in_transaction_session_timeout = 0;
 SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
 SET check_function_bodies = false;
 SET client_min_messages = warning;
+SET row_security = off;
 
 SET search_path = public, pg_catalog;
 
@@ -57,12 +63,17 @@ INSERT INTO sivel2_gen_pconsolidado (id, rotulo, tipoviolencia, clasificacion, p
 -- PostgreSQL database dump
 --
 
+-- Dumped from database version 10.1
+-- Dumped by pg_dump version 10.1
+
 SET statement_timeout = 0;
 
+SET idle_in_transaction_session_timeout = 0;
 SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
 SET check_function_bodies = false;
 SET client_min_messages = warning;
+SET row_security = off;
 
 SET search_path = public, pg_catalog;
 
@@ -84,12 +95,17 @@ INSERT INTO sivel2_gen_tviolencia (id, nombre, nomcorto, fechacreacion, fechades
 -- PostgreSQL database dump
 --
 
+-- Dumped from database version 10.1
+-- Dumped by pg_dump version 10.1
+
 SET statement_timeout = 0;
 
+SET idle_in_transaction_session_timeout = 0;
 SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
 SET check_function_bodies = false;
 SET client_min_messages = warning;
+SET row_security = off;
 
 SET search_path = public, pg_catalog;
 
@@ -102,10 +118,10 @@ INSERT INTO sivel2_gen_supracategoria (codigo, nombre, fechacreacion, fechadesha
 INSERT INTO sivel2_gen_supracategoria (codigo, nombre, fechacreacion, fechadeshabilitacion, id_tviolencia, created_at, updated_at, observaciones, id) VALUES (1, 'PERSECUCIÓN POLÍTICA', '2000-07-26', NULL, 'B', NULL, NULL, NULL, 2);
 INSERT INTO sivel2_gen_supracategoria (codigo, nombre, fechacreacion, fechadeshabilitacion, id_tviolencia, created_at, updated_at, observaciones, id) VALUES (1, 'PERSONAS', '2000-07-26', NULL, 'D', NULL, NULL, NULL, 4);
 INSERT INTO sivel2_gen_supracategoria (codigo, nombre, fechacreacion, fechadeshabilitacion, id_tviolencia, created_at, updated_at, observaciones, id) VALUES (2, 'ABUSO DE AUTORIDAD', '2000-07-26', NULL, 'A', NULL, NULL, NULL, 5);
-INSERT INTO sivel2_gen_supracategoria (codigo, nombre, fechacreacion, fechadeshabilitacion, id_tviolencia, created_at, updated_at, observaciones, id) VALUES (2, 'BIENES', '2000-07-26', NULL, 'D', NULL, NULL, NULL, 7);
 INSERT INTO sivel2_gen_supracategoria (codigo, nombre, fechacreacion, fechadeshabilitacion, id_tviolencia, created_at, updated_at, observaciones, id) VALUES (2, 'INTOLERANCIA SOCIAL', '2000-07-26', NULL, 'B', NULL, NULL, NULL, 6);
+INSERT INTO sivel2_gen_supracategoria (codigo, nombre, fechacreacion, fechadeshabilitacion, id_tviolencia, created_at, updated_at, observaciones, id) VALUES (2, 'OBJETIVOS, MÉTODOS Y MÉDIOS ILÍCITOS', '2000-07-26', NULL, 'D', NULL, NULL, NULL, 7);
 INSERT INTO sivel2_gen_supracategoria (codigo, nombre, fechacreacion, fechadeshabilitacion, id_tviolencia, created_at, updated_at, observaciones, id) VALUES (3, 'INTOLERANCIA SOCIAL', '2000-07-26', NULL, 'A', NULL, NULL, NULL, 8);
-INSERT INTO sivel2_gen_supracategoria (codigo, nombre, fechacreacion, fechadeshabilitacion, id_tviolencia, created_at, updated_at, observaciones, id) VALUES (3, 'MÉTODOS', '2000-07-26', NULL, 'D', NULL, NULL, NULL, 9);
+INSERT INTO sivel2_gen_supracategoria (codigo, nombre, fechacreacion, fechadeshabilitacion, id_tviolencia, created_at, updated_at, observaciones, id) VALUES (3, 'MÉTODOS', '2000-07-26', '2017-05-03', 'D', NULL, NULL, NULL, 9);
 
 
 --
@@ -116,12 +132,17 @@ INSERT INTO sivel2_gen_supracategoria (codigo, nombre, fechacreacion, fechadesha
 -- PostgreSQL database dump
 --
 
+-- Dumped from database version 10.1
+-- Dumped by pg_dump version 10.1
+
 SET statement_timeout = 0;
 
+SET idle_in_transaction_session_timeout = 0;
 SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
 SET check_function_bodies = false;
 SET client_min_messages = warning;
+SET row_security = off;
 
 SET search_path = public, pg_catalog;
 
@@ -144,12 +165,17 @@ INSERT INTO sivel2_gen_intervalo (id, nombre, rango, fechacreacion, fechadeshabi
 -- PostgreSQL database dump
 --
 
+-- Dumped from database version 10.1
+-- Dumped by pg_dump version 10.1
+
 SET statement_timeout = 0;
 
+SET idle_in_transaction_session_timeout = 0;
 SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
 SET check_function_bodies = false;
 SET client_min_messages = warning;
+SET row_security = off;
 
 SET search_path = public, pg_catalog;
 
@@ -182,12 +208,17 @@ INSERT INTO sivel2_gen_filiacion (id, nombre, fechacreacion, fechadeshabilitacio
 -- PostgreSQL database dump
 --
 
+-- Dumped from database version 10.1
+-- Dumped by pg_dump version 10.1
+
 SET statement_timeout = 0;
 
+SET idle_in_transaction_session_timeout = 0;
 SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
 SET check_function_bodies = false;
 SET client_min_messages = warning;
+SET row_security = off;
 
 SET search_path = public, pg_catalog;
 
@@ -222,12 +253,17 @@ INSERT INTO sivel2_gen_organizacion (id, nombre, fechacreacion, fechadeshabilita
 -- PostgreSQL database dump
 --
 
+-- Dumped from database version 10.1
+-- Dumped by pg_dump version 10.1
+
 SET statement_timeout = 0;
 
+SET idle_in_transaction_session_timeout = 0;
 SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
 SET check_function_bodies = false;
 SET client_min_messages = warning;
+SET row_security = off;
 
 SET search_path = public, pg_catalog;
 
@@ -261,12 +297,17 @@ INSERT INTO sivel2_gen_sectorsocial (id, nombre, fechacreacion, fechadeshabilita
 -- PostgreSQL database dump
 --
 
+-- Dumped from database version 10.1
+-- Dumped by pg_dump version 10.1
+
 SET statement_timeout = 0;
 
+SET idle_in_transaction_session_timeout = 0;
 SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
 SET check_function_bodies = false;
 SET client_min_messages = warning;
+SET row_security = off;
 
 SET search_path = public, pg_catalog;
 
@@ -324,12 +365,17 @@ INSERT INTO sivel2_gen_vinculoestado (id, nombre, fechacreacion, fechadeshabilit
 -- PostgreSQL database dump
 --
 
+-- Dumped from database version 10.1
+-- Dumped by pg_dump version 10.1
+
 SET statement_timeout = 0;
 
+SET idle_in_transaction_session_timeout = 0;
 SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
 SET check_function_bodies = false;
 SET client_min_messages = warning;
+SET row_security = off;
 
 SET search_path = public, pg_catalog;
 
@@ -338,7 +384,7 @@ SET search_path = public, pg_catalog;
 --
 
 INSERT INTO sivel2_gen_actividadoficio (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at, observaciones) VALUES (0, 'SIN INFORMACIÓN', '2013-05-16', NULL, NULL, NULL, NULL);
-INSERT INTO sivel2_gen_actividadoficio (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at, observaciones) VALUES (1, 'AGRICULATOR/A', '2013-05-16', NULL, NULL, NULL, NULL);
+INSERT INTO sivel2_gen_actividadoficio (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at, observaciones) VALUES (1, 'AGRICULTOR/A', '2013-05-16', NULL, NULL, '2017-05-29 16:47:34.922925', '');
 INSERT INTO sivel2_gen_actividadoficio (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at, observaciones) VALUES (10, 'MINERO', '2013-05-16', NULL, NULL, NULL, NULL);
 INSERT INTO sivel2_gen_actividadoficio (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at, observaciones) VALUES (102, 'COCINERO/A', '2014-07-28', NULL, '2014-07-28 15:17:02.95474', '2014-07-28 15:17:39.312986', NULL);
 INSERT INTO sivel2_gen_actividadoficio (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at, observaciones) VALUES (11, 'LIDER COMUNITARIO', '2013-05-16', NULL, NULL, NULL, NULL);
@@ -369,15 +415,17 @@ INSERT INTO sivel2_gen_actividadoficio (id, nombre, fechacreacion, fechadeshabil
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 9.5.3
--- Dumped by pg_dump version 9.5.3
+-- Dumped from database version 10.1
+-- Dumped by pg_dump version 10.1
 
 SET statement_timeout = 0;
 
+SET idle_in_transaction_session_timeout = 0;
 SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
 SET check_function_bodies = false;
 SET client_min_messages = warning;
+SET row_security = off;
 
 SET search_path = public, pg_catalog;
 
@@ -385,22 +433,22 @@ SET search_path = public, pg_catalog;
 -- Data for Name: sivel2_gen_antecedente; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-INSERT INTO sivel2_gen_antecedente (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (1, 'AMENAZA', '2001-01-29', NULL, NULL, NULL);
-INSERT INTO sivel2_gen_antecedente (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (10, 'SEGUIMIENTO', '2001-01-29', NULL, NULL, NULL);
-INSERT INTO sivel2_gen_antecedente (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (11, 'SEÑALAMIENTO', '2001-01-29', NULL, NULL, NULL);
-INSERT INTO sivel2_gen_antecedente (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (12, 'TORTURA', '2001-01-29', NULL, NULL, NULL);
-INSERT INTO sivel2_gen_antecedente (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (13, 'OTRO', '2001-01-29', NULL, NULL, NULL);
-INSERT INTO sivel2_gen_antecedente (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (14, 'SIN INFORMACIÓN', '2001-01-29', NULL, NULL, NULL);
-INSERT INTO sivel2_gen_antecedente (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (15, 'PILLAJE', '2006-08-18', NULL, NULL, NULL);
-INSERT INTO sivel2_gen_antecedente (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (16, 'MASACRE', '2006-08-18', NULL, NULL, NULL);
-INSERT INTO sivel2_gen_antecedente (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (2, 'ATENTADO', '2001-01-29', NULL, NULL, NULL);
-INSERT INTO sivel2_gen_antecedente (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (3, 'DETENCION', '2001-01-29', NULL, NULL, NULL);
-INSERT INTO sivel2_gen_antecedente (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (4, 'AMNISTIA - INDULTO', '2001-01-29', NULL, NULL, NULL);
-INSERT INTO sivel2_gen_antecedente (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (5, 'EXILIO', '2001-01-29', NULL, NULL, NULL);
-INSERT INTO sivel2_gen_antecedente (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (6, 'ALLANAMIENTO', '2001-01-29', NULL, NULL, NULL);
-INSERT INTO sivel2_gen_antecedente (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (7, 'DESAPARICION', '2001-01-29', NULL, NULL, NULL);
-INSERT INTO sivel2_gen_antecedente (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (8, 'SECUESTRO', '2001-01-29', NULL, NULL, NULL);
-INSERT INTO sivel2_gen_antecedente (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (9, 'DESPLAZAMIENTO', '2001-01-29', NULL, NULL, NULL);
+INSERT INTO sivel2_gen_antecedente (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at, observaciones) VALUES (1, 'AMENAZA', '2001-01-29', NULL, NULL, NULL, NULL);
+INSERT INTO sivel2_gen_antecedente (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at, observaciones) VALUES (10, 'SEGUIMIENTO', '2001-01-29', NULL, NULL, NULL, NULL);
+INSERT INTO sivel2_gen_antecedente (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at, observaciones) VALUES (11, 'SEÑALAMIENTO', '2001-01-29', NULL, NULL, NULL, NULL);
+INSERT INTO sivel2_gen_antecedente (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at, observaciones) VALUES (12, 'TORTURA', '2001-01-29', NULL, NULL, NULL, NULL);
+INSERT INTO sivel2_gen_antecedente (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at, observaciones) VALUES (13, 'OTRO', '2001-01-29', NULL, NULL, NULL, NULL);
+INSERT INTO sivel2_gen_antecedente (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at, observaciones) VALUES (14, 'SIN INFORMACIÓN', '2001-01-29', NULL, NULL, NULL, NULL);
+INSERT INTO sivel2_gen_antecedente (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at, observaciones) VALUES (15, 'PILLAJE', '2006-08-18', NULL, NULL, NULL, NULL);
+INSERT INTO sivel2_gen_antecedente (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at, observaciones) VALUES (16, 'MASACRE', '2006-08-18', NULL, NULL, NULL, NULL);
+INSERT INTO sivel2_gen_antecedente (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at, observaciones) VALUES (2, 'ATENTADO', '2001-01-29', NULL, NULL, NULL, NULL);
+INSERT INTO sivel2_gen_antecedente (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at, observaciones) VALUES (3, 'DETENCION', '2001-01-29', NULL, NULL, NULL, NULL);
+INSERT INTO sivel2_gen_antecedente (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at, observaciones) VALUES (4, 'AMNISTIA - INDULTO', '2001-01-29', NULL, NULL, NULL, NULL);
+INSERT INTO sivel2_gen_antecedente (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at, observaciones) VALUES (5, 'EXILIO', '2001-01-29', NULL, NULL, NULL, NULL);
+INSERT INTO sivel2_gen_antecedente (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at, observaciones) VALUES (6, 'ALLANAMIENTO', '2001-01-29', NULL, NULL, NULL, NULL);
+INSERT INTO sivel2_gen_antecedente (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at, observaciones) VALUES (7, 'DESAPARICION', '2001-01-29', NULL, NULL, NULL, NULL);
+INSERT INTO sivel2_gen_antecedente (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at, observaciones) VALUES (8, 'SECUESTRO', '2001-01-29', NULL, NULL, NULL, NULL);
+INSERT INTO sivel2_gen_antecedente (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at, observaciones) VALUES (9, 'DESPLAZAMIENTO', '2001-01-29', NULL, NULL, NULL, NULL);
 
 
 --
@@ -411,12 +459,17 @@ INSERT INTO sivel2_gen_antecedente (id, nombre, fechacreacion, fechadeshabilitac
 -- PostgreSQL database dump
 --
 
+-- Dumped from database version 10.1
+-- Dumped by pg_dump version 10.1
+
 SET statement_timeout = 0;
 
+SET idle_in_transaction_session_timeout = 0;
 SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
 SET check_function_bodies = false;
 SET client_min_messages = warning;
+SET row_security = off;
 
 SET search_path = public, pg_catalog;
 
@@ -426,57 +479,66 @@ SET search_path = public, pg_catalog;
 
 INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (10, 'EJECUCIÓN EXTRAJUDICIAL', '2001-07-26', NULL, 1, 701, 'I', NULL, NULL, NULL, 1);
 INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (101, 'DEPORTACIÓN', '2001-05-23', NULL, NULL, NULL, 'I', NULL, NULL, NULL, 1);
-INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (102, 'COLECTIVO DESPLAZADO', '2001-07-11', NULL, NULL, 903, 'C', NULL, NULL, NULL, 1);
-INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (104, 'CONFINAMIENTO COMO REPRESALIA O CASTIGO COLECTIVO', '2008-10-17', NULL, 25, 906, 'C', NULL, NULL, NULL, 1);
-INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (11, 'DESAPARICIÓN', '2001-07-26', NULL, 17, NULL, 'I', NULL, NULL, NULL, 1);
+INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (102, 'DESPLAZAMIENTO FORZADO', '2001-07-11', NULL, NULL, 903, 'C', NULL, NULL, NULL, 1);
+INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (104, 'CONFINAMIENTO COLECTIVO', '2008-10-17', NULL, 25, 906, 'C', NULL, NULL, NULL, 1);
+INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (11, 'DESAPARICIÓN FORZADA', '2001-07-26', NULL, 17, NULL, 'I', NULL, NULL, NULL, 1);
 INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (12, 'TORTURA', '2001-07-26', NULL, 4, 72, 'I', NULL, NULL, NULL, 1);
-INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (13, 'HERIDO', '2000-08-09', NULL, 5, 702, 'I', NULL, NULL, NULL, 1);
+INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (13, 'LESIÓN FÍSICA', '2000-08-09', NULL, 5, 702, 'I', NULL, NULL, NULL, 1);
 INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (14, 'DETENCIÓN ARBITRARIA', '2001-08-09', NULL, 18, NULL, 'I', NULL, NULL, NULL, 1);
+INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (141, 'JUDICIALIZACIÓN ARBITRARIA', '2017-05-04', NULL, NULL, NULL, 'I', NULL, NULL, NULL, 1);
 INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (15, 'AMENAZA', '2000-08-09', NULL, 7, 73, 'I', NULL, NULL, NULL, 1);
 INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (16, 'ATENTADO', '2000-08-09', NULL, 6, NULL, 'I', NULL, NULL, NULL, 1);
+INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (17, 'COLECTIVO LESIONADO', '2017-05-04', NULL, NULL, NULL, 'C', NULL, NULL, NULL, 1);
 INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (18, 'COLECTIVO AMENAZADO', '2000-08-09', NULL, NULL, 706, 'C', NULL, NULL, NULL, 1);
 INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (19, 'VIOLENCIA SEXUAL', '2000-08-09', NULL, 8, 77, 'I', NULL, NULL, NULL, 1);
-INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (191, 'V.S. - VIOLACIÓN', '2008-10-20', NULL, 8, 771, 'I', NULL, NULL, NULL, 1);
-INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (192, 'V.S. - EMBARAZO FORZADO', '2008-10-20', NULL, 8, 772, 'I', NULL, NULL, NULL, 1);
-INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (193, 'V.S. - PROSTITUCIÓN FORZADA', '2008-10-20', NULL, 8, 773, 'I', NULL, NULL, NULL, 1);
-INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (194, 'V.S. - ESTERILIZACIÓN FORZADA', '2008-10-20', NULL, 8, 774, 'I', NULL, NULL, NULL, 1);
-INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (195, 'V.S. - ESCLAVITUD SEXUAL', '2008-10-20', NULL, 8, 775, 'I', NULL, NULL, NULL, 1);
-INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (196, 'V.S. - ABUSO SEXUAL', '2008-10-20', NULL, NULL, 776, 'I', NULL, NULL, NULL, 1);
-INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (197, 'V.S. - ABORTO FORZADO', '2010-04-17', NULL, 12, 777, 'I', NULL, NULL, NULL, 1);
+INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (191, 'VIOLACION', '2008-10-20', NULL, 8, 771, 'I', NULL, NULL, NULL, 1);
+INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (192, 'EMBARAZO FORZADO', '2008-10-20', NULL, 8, 772, 'I', NULL, NULL, NULL, 1);
+INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (193, 'PROSTITUCIÓN FORZADA', '2008-10-20', NULL, 8, 773, 'I', NULL, NULL, NULL, 1);
+INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (194, 'ESTERILIZACIÓN FORZADA', '2008-10-20', NULL, 8, 774, 'I', NULL, NULL, NULL, 1);
+INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (195, 'ESCLAVITUD SEXUAL', '2008-10-20', NULL, 8, 775, 'I', NULL, NULL, NULL, 1);
+INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (196, 'ABUSO SEXUAL', '2008-10-20', NULL, NULL, 776, 'I', NULL, NULL, NULL, 1);
+INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (197, 'ABORTO FORZADO', '2010-04-17', NULL, 12, 777, 'I', NULL, NULL, NULL, 1);
 INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (20, 'EJECUCIÓN EXTRAJUDICIAL', '2001-07-26', NULL, 1, NULL, 'I', NULL, NULL, NULL, 5);
-INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (21, 'DESAPARICIÓN', '2001-08-09', NULL, 17, NULL, 'I', NULL, NULL, NULL, 5);
+INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (21, 'DESAPARICIÓN FORZADA', '2001-08-09', NULL, 17, NULL, 'I', NULL, NULL, NULL, 5);
 INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (22, 'TORTURA', '2000-08-09', NULL, 4, NULL, 'I', NULL, NULL, NULL, 5);
-INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (23, 'HERIDO', '2000-08-09', NULL, 5, NULL, 'I', NULL, NULL, NULL, 5);
+INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (23, 'LESIÓN FÍSICA', '2000-08-09', NULL, 5, NULL, 'I', NULL, NULL, NULL, 5);
+INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (231, 'COLECTIVO LESIONADO', '2017-05-04', NULL, NULL, NULL, 'C', NULL, NULL, NULL, 5);
 INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (24, 'DETENCIÓN ARBITRARIA', '2001-08-09', NULL, 18, NULL, 'I', NULL, NULL, NULL, 5);
+INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (241, 'JUDICIALIZACIÓN ARBITRARIA', '2017-05-04', NULL, NULL, NULL, 'I', NULL, NULL, NULL, 5);
 INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (25, 'AMENAZA', '2000-08-09', NULL, 7, NULL, 'I', NULL, NULL, NULL, 5);
 INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (26, 'ATENTADO', '2000-08-09', NULL, 6, NULL, 'I', NULL, NULL, NULL, 5);
+INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (27, 'DESPLAZAMIENTO FORZADO', '2017-05-04', NULL, NULL, NULL, 'C', NULL, NULL, NULL, 5);
 INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (28, 'COLECTIVO AMENAZADO', '2000-08-09', NULL, NULL, NULL, 'C', NULL, NULL, NULL, 5);
 INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (29, 'VIOLENCIA SEXUAL', '2000-08-09', NULL, 8, NULL, 'I', NULL, NULL, NULL, 5);
-INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (291, 'V.S. - VIOLACIÓN', '2008-10-20', NULL, 8, NULL, 'I', NULL, NULL, NULL, 5);
-INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (292, 'V.S. - EMBARAZO FORZADO', '2008-10-20', NULL, 8, NULL, 'I', NULL, NULL, NULL, 5);
-INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (293, 'V.S. - PROSTITUCIÓN FORZADA', '2008-10-20', NULL, 8, NULL, 'I', NULL, NULL, NULL, 5);
-INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (294, 'V.S. - ESTERILIZACIÓN FORZADA', '2008-10-20', NULL, 8, NULL, 'I', NULL, NULL, NULL, 5);
-INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (295, 'V.S. - ESCLAVITUD SEXUAL', '2008-10-20', NULL, 8, NULL, 'I', NULL, NULL, NULL, 5);
-INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (296, 'V.S. - ABUSO SEXUAL', '2008-10-20', NULL, NULL, NULL, 'I', NULL, NULL, NULL, 5);
-INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (297, 'V.S. - ABORTO FORZADO', '2010-04-17', NULL, NULL, NULL, 'I', NULL, NULL, NULL, 5);
+INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (291, 'VIOLACION', '2008-10-20', NULL, 8, NULL, 'I', NULL, NULL, NULL, 5);
+INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (292, 'EMBARAZO FORZADO', '2008-10-20', NULL, 8, NULL, 'I', NULL, NULL, NULL, 5);
+INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (293, 'PROSTITUCIÓN FORZADA', '2008-10-20', NULL, 8, NULL, 'I', NULL, NULL, NULL, 5);
+INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (294, 'ESTERILIZACIÓN FORZADA', '2008-10-20', NULL, 8, NULL, 'I', NULL, NULL, NULL, 5);
+INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (295, 'ESCLAVITUD SEXUAL', '2008-10-20', NULL, 8, NULL, 'I', NULL, NULL, NULL, 5);
+INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (296, 'ABUSO SEXUAL', '2008-10-20', NULL, NULL, NULL, 'I', NULL, NULL, NULL, 5);
+INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (297, 'ABORTO FORZADO', '2010-04-17', NULL, NULL, NULL, 'I', NULL, NULL, NULL, 5);
 INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (30, 'EJECUCIÓN EXTRAJUDICIAL', '2001-08-09', NULL, 1, NULL, 'I', NULL, NULL, NULL, 8);
 INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (301, 'DETENCIÓN ARBITRARIA', '2001-05-23', NULL, 18, NULL, 'I', NULL, NULL, NULL, 8);
-INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (302, 'DESAPARICIÓN', '2001-05-23', NULL, 17, NULL, 'I', NULL, NULL, NULL, 8);
-INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (33, 'HERIDO', '2000-08-09', NULL, 5, NULL, 'I', NULL, NULL, NULL, 8);
+INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (302, 'DESAPARICIÓN FORZADA', '2001-05-23', NULL, 17, NULL, 'I', NULL, NULL, NULL, 8);
+INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (33, 'LESIÓN FÍSICA', '2000-08-09', NULL, 5, NULL, 'I', NULL, NULL, NULL, 8);
+INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (331, 'COLECTIVO LESIONADO', '2017-05-04', NULL, NULL, NULL, 'C', NULL, NULL, NULL, 8);
+INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (34, 'DESPLAZAMIENTO FORZADO', '2017-05-04', NULL, NULL, NULL, 'C', NULL, NULL, NULL, 8);
+INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (341, 'JUDICIALIZACIÓN ARBITRARIA', '2017-05-04', NULL, NULL, NULL, 'I', NULL, NULL, NULL, 8);
 INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (35, 'AMENAZA', '2000-08-09', NULL, 7, NULL, 'I', NULL, NULL, NULL, 8);
 INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (36, 'TORTURA', '2000-08-09', NULL, 4, NULL, 'I', NULL, NULL, NULL, 8);
 INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (37, 'ATENTADO', '2000-08-09', NULL, 6, NULL, 'I', NULL, NULL, NULL, 8);
 INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (38, 'COLECTIVO AMENAZADO', '2000-08-09', NULL, NULL, NULL, 'C', NULL, NULL, NULL, 8);
 INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (39, 'VIOLENCIA SEXUAL', '2000-08-09', NULL, 8, NULL, 'I', NULL, NULL, NULL, 8);
-INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (391, 'V.S. - VIOLACIÓN', '2008-10-20', NULL, 8, NULL, 'I', NULL, NULL, NULL, 8);
-INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (392, 'V.S. - EMBARAZO FORZADO', '2008-10-20', NULL, 8, NULL, 'I', NULL, NULL, NULL, 8);
-INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (393, 'V.S. - PROSTITUCIÓN FORZADA', '2008-10-20', NULL, 8, NULL, 'I', NULL, NULL, NULL, 8);
-INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (394, 'V.S. - ESTERILIZACIÓN FORZADA', '2008-10-20', NULL, 8, NULL, 'I', NULL, NULL, NULL, 8);
-INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (395, 'V.S. - ESCLAVITUD SEXUAL', '2008-10-20', NULL, 8, NULL, 'I', NULL, NULL, NULL, 8);
-INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (396, 'V.S. - ABUSO SEXUAL', '2008-10-20', NULL, 8, NULL, 'I', NULL, NULL, NULL, 8);
-INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (397, 'V.S. - ABORTO FORZADO', '2010-04-17', NULL, 8, NULL, 'I', NULL, NULL, NULL, 8);
+INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (391, 'VIOLACION', '2008-10-20', NULL, 8, NULL, 'I', NULL, NULL, NULL, 8);
+INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (392, 'EMBARAZO FORZADO', '2008-10-20', NULL, 8, NULL, 'I', NULL, NULL, NULL, 8);
+INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (393, 'PROSTITUCIÓN FORZADA', '2008-10-20', NULL, 8, NULL, 'I', NULL, NULL, NULL, 8);
+INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (394, 'ESTERILIZACIÓN FORZADA', '2008-10-20', NULL, 8, NULL, 'I', NULL, NULL, NULL, 8);
+INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (395, 'ESCLAVITUD SEXUAL', '2008-10-20', NULL, 8, NULL, 'I', NULL, NULL, NULL, 8);
+INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (396, 'ABUSO SEXUAL', '2008-10-20', NULL, 8, NULL, 'I', NULL, NULL, NULL, 8);
+INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (397, 'ABORTO FORZADO', '2010-04-17', NULL, 8, NULL, 'I', NULL, NULL, NULL, 8);
 INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (40, 'ASESINATO', '2000-08-09', NULL, 3, NULL, 'I', NULL, NULL, NULL, 2);
 INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (401, 'COLECTIVO DESPLAZADO', '2001-05-23', NULL, NULL, NULL, 'C', NULL, NULL, NULL, 2);
+INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (402, 'COLECTIVO LESIONADO', '2017-05-04', NULL, NULL, NULL, 'C', NULL, NULL, NULL, 2);
 INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (41, 'SECUESTRO', '2000-08-09', NULL, 23, NULL, 'I', NULL, NULL, NULL, 2);
 INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (420, 'VIOLENCIA SEXUAL', '2010-04-17', NULL, NULL, NULL, 'I', NULL, NULL, NULL, 2);
 INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (421, 'VIOLACIÓN', '2010-04-17', NULL, NULL, NULL, 'I', NULL, NULL, NULL, 2);
@@ -486,7 +548,7 @@ INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacio
 INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (425, 'ESCLAVITUD SEXUAL', '2010-04-17', NULL, NULL, NULL, 'I', NULL, NULL, NULL, 2);
 INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (426, 'ABUSO SEXUAL', '2010-04-17', NULL, NULL, NULL, 'I', NULL, NULL, NULL, 2);
 INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (427, 'ABORTO FORZADO', '2010-04-17', NULL, NULL, NULL, 'I', NULL, NULL, NULL, 2);
-INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (43, 'HERIDO', '2000-07-26', NULL, 14, NULL, 'I', NULL, NULL, NULL, 2);
+INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (43, 'LESIÓN FÍSICA', '2000-07-26', NULL, 14, NULL, 'I', NULL, NULL, NULL, 2);
 INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (45, 'AMENAZA', '2000-08-09', NULL, 16, NULL, 'I', NULL, NULL, NULL, 2);
 INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (46, 'ATENTADO', '2000-08-09', NULL, 15, NULL, 'I', NULL, NULL, NULL, 2);
 INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (47, 'TORTURA', '2000-08-09', NULL, 13, NULL, 'I', NULL, NULL, NULL, 2);
@@ -494,6 +556,7 @@ INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacio
 INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (49, 'COLECTIVO AMENAZADO', '2000-08-09', NULL, NULL, NULL, 'C', NULL, NULL, NULL, 2);
 INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (50, 'ASESINATO', '2000-08-09', NULL, 3, NULL, 'I', NULL, NULL, NULL, 6);
 INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (501, 'COLECTIVO DESPLAZADO', '2001-05-23', NULL, NULL, NULL, 'C', NULL, NULL, NULL, 6);
+INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (502, 'COLECTIVO LESIONADO', '2017-05-04', NULL, NULL, NULL, 'C', NULL, NULL, NULL, 6);
 INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (520, 'VIOLENCIA SEXUAL', '2011-07-07', NULL, 12, NULL, 'I', NULL, NULL, NULL, 6);
 INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (521, 'VIOLACIÓN', '2011-07-07', NULL, 12, NULL, 'I', NULL, NULL, NULL, 6);
 INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (522, 'EMBARAZO FORZADO', '2011-07-07', NULL, 12, NULL, 'I', NULL, NULL, NULL, 6);
@@ -502,32 +565,43 @@ INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacio
 INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (525, 'ESCLAVITUD SEXUAL', '2011-07-07', NULL, 12, NULL, 'I', NULL, NULL, NULL, 6);
 INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (526, 'ABUSO SEXUAL', '2011-07-07', NULL, 12, NULL, 'I', NULL, NULL, NULL, 6);
 INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (527, 'ABORTO FORZADO', '2011-07-07', NULL, 12, NULL, 'I', NULL, NULL, NULL, 6);
-INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (53, 'HERIDO', '2000-08-09', NULL, 14, NULL, 'I', NULL, NULL, NULL, 6);
+INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (53, 'LESIÓN FÍSICA', '2000-08-09', NULL, 14, NULL, 'I', NULL, NULL, NULL, 6);
 INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (55, 'AMENAZA', '2000-08-09', NULL, 16, NULL, 'I', NULL, NULL, NULL, 6);
 INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (56, 'TORTURA', '2000-08-09', NULL, 13, NULL, 'I', NULL, NULL, NULL, 6);
 INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (57, 'ATENTADO', '2000-08-09', NULL, 15, NULL, 'I', NULL, NULL, NULL, 6);
-INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (58, 'DESAPARICIÓN', '2001-08-09', NULL, 22, NULL, 'I', NULL, NULL, NULL, 6);
+INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (58, 'RAPTO', '2001-08-09', NULL, 22, NULL, 'I', NULL, NULL, NULL, 6);
 INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (59, 'COLECTIVO AMENAZADO', '2000-08-09', NULL, NULL, NULL, 'C', NULL, NULL, NULL, 6);
 INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (62, 'COMBATE', '2000-07-26', NULL, NULL, NULL, 'O', NULL, NULL, NULL, 3);
 INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (63, 'EMBOSCADA', '2000-08-09', NULL, NULL, NULL, 'O', NULL, NULL, NULL, 3);
 INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (64, 'CAMPO MINADO', '2001-08-09', NULL, NULL, NULL, 'I', NULL, NULL, NULL, 3);
-INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (65, 'BOMBARDEOS / AMETRALLAMIENTO', '2001-08-09', NULL, NULL, NULL, 'I', NULL, NULL, NULL, 3);
+INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (65, 'AMETRALLAMIENTO Y/O BOMBARDEO', '2001-08-09', NULL, NULL, NULL, 'I', NULL, NULL, NULL, 3);
 INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (66, 'BLOQUEO DE VÍAS', '2001-08-09', NULL, NULL, NULL, 'O', NULL, NULL, NULL, 3);
-INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (67, 'ATAQUE A OBJETIVOS MILITARES', '2000-08-09', NULL, NULL, NULL, 'O', NULL, NULL, NULL, 3);
+INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (67, 'ATAQUE A OBJETIVO MILITAR', '2000-08-09', NULL, NULL, NULL, 'O', NULL, NULL, NULL, 3);
 INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (68, 'INCURSIÓN', '2001-08-09', NULL, NULL, NULL, 'O', NULL, NULL, NULL, 3);
 INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (69, 'SABOTAJE', '2000-08-09', NULL, NULL, NULL, 'O', NULL, NULL, NULL, 3);
-INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (701, 'HOMICIDIO INTENCIONAL PERSONA PROTEGIDA', '2000-08-09', NULL, 2, NULL, 'I', NULL, NULL, NULL, 4);
-INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (702, 'HERIDO INTENCIONAL PERSONA PROTEGIDA', '2000-08-09', NULL, 10, NULL, 'I', NULL, NULL, NULL, 4);
-INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (703, 'CIVIL MUERTO EN ACCIONES BÉLICAS', '2000-08-09', NULL, 2, NULL, 'I', NULL, NULL, NULL, 4);
-INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (704, 'CIVIL HERIDO EN ACCIONES BÉLICAS', '2000-08-09', NULL, 10, NULL, 'I', NULL, NULL, NULL, 4);
+INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (701, 'HOMICIDIO INTENCIONAL DE PERSONA PROTEGIDA ', '2000-08-09', NULL, 2, NULL, 'I', NULL, NULL, NULL, 4);
+INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (702, 'LESIÓN A PERSONA PROTEGIDA', '2000-08-09', NULL, 10, NULL, 'I', NULL, NULL, NULL, 4);
+INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (703, 'CIVIL MUERTO EN ACCIÓN BÉLICA', '2000-08-09', NULL, 2, NULL, 'I', NULL, NULL, NULL, 4);
+INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (704, 'LESIÓN A CIVILES EN ACCIÓN BÉLICA', '2000-08-09', NULL, 10, NULL, 'I', NULL, NULL, NULL, 4);
+INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (705, 'COLECTIVO LESIONADO POR INFRACCIONES AL DIHC', '2017-05-04', NULL, NULL, NULL, 'C', NULL, NULL, NULL, 4);
 INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (706, 'COLECTIVO AMENAZADO', '2000-08-09', NULL, NULL, NULL, 'C', NULL, NULL, NULL, 4);
-INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (707, 'INFRACCIÓN CONTRA MISIÓN MEDICA', '2001-07-11', NULL, NULL, NULL, 'O', NULL, NULL, NULL, 9);
-INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (708, 'INFRACCIÓN CONTRA MISIÓN RELIGIOSA', '2001-07-11', NULL, NULL, NULL, 'O', NULL, NULL, NULL, 9);
-INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (709, 'INFRACCIÓN CONTRA MISIÓN HUMANITARIA', '2001-07-11', NULL, NULL, NULL, 'O', NULL, NULL, NULL, 9);
+INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (707, 'MISIÓN MÉDICA O SANITARIA', '2001-07-11', NULL, NULL, NULL, 'O', NULL, NULL, NULL, 7);
+INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (708, 'MISIÓN RELIGIOSA', '2001-07-11', NULL, NULL, NULL, 'O', NULL, NULL, NULL, 7);
+INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (709, 'MISIÓN HUMANITARIA', '2001-07-11', NULL, NULL, NULL, 'O', NULL, NULL, NULL, 7);
+INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (710, 'MISIONES DE PAZ', '2017-05-04', NULL, NULL, NULL, 'O', NULL, NULL, NULL, 7);
+INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (711, 'MISIÓN INFORMATIVA', '2017-05-04', NULL, NULL, NULL, 'O', NULL, NULL, NULL, 7);
+INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (712, 'ZONAS HUMANITARIAS', '2017-05-04', NULL, NULL, NULL, 'O', NULL, NULL, NULL, 7);
+INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (713, 'CONVERSACIONES DE PAZ', '2017-05-04', NULL, NULL, NULL, 'O', NULL, NULL, NULL, 7);
+INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (714, 'ESCLAVITUD Y TRABAJOS FORZADOS', '2017-05-04', NULL, NULL, NULL, 'I', NULL, NULL, NULL, 4);
+INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (715, 'JUDICIALIZACIÓN ARBITRARIA', '2017-05-04', NULL, NULL, NULL, 'I', NULL, NULL, NULL, 4);
+INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (716, 'NEGACIÓN DE DERECHOS A PRISIONERO DE GUERRA', '2017-05-04', NULL, NULL, NULL, 'I', NULL, NULL, NULL, 4);
+INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (717, 'NEGACIÓN DE ATENCIÓN A PERSONA VULNERABLE', '2017-05-04', NULL, NULL, NULL, 'I', NULL, NULL, NULL, 4);
+INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (718, 'PROFANACIÓN Y OCULTAMIENTO DE CADÁVERES', '2017-05-04', NULL, NULL, NULL, 'I', NULL, NULL, NULL, 4);
 INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (72, 'TORTURA', '2000-08-09', NULL, 9, NULL, 'I', NULL, NULL, NULL, 4);
 INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (73, 'AMENAZA', '2000-08-09', NULL, 11, NULL, 'I', NULL, NULL, NULL, 4);
-INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (74, 'TOMA DE REHÉN', '2001-08-09', NULL, 21, NULL, 'I', NULL, NULL, NULL, 4);
+INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (74, 'TOMA DE REHENES', '2001-08-09', NULL, 21, NULL, 'I', NULL, NULL, NULL, 4);
 INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (75, 'RECLUTAMIENTO DE MENORES', '2000-08-09', NULL, 20, NULL, 'I', NULL, NULL, NULL, 4);
+INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (76, 'DESAPARICIÓN FORZADA', '2017-05-04', NULL, NULL, NULL, 'I', NULL, NULL, NULL, 4);
 INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (77, 'VIOLENCIA SEXUAL', '2000-08-09', NULL, 12, NULL, 'I', NULL, NULL, NULL, 4);
 INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (771, 'VIOLACIÓN', '2008-10-20', NULL, 12, NULL, 'I', NULL, NULL, NULL, 4);
 INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (772, 'EMBARAZO FORZADO', '2008-10-20', NULL, 12, NULL, 'I', NULL, NULL, NULL, 4);
@@ -536,28 +610,31 @@ INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacio
 INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (775, 'ESCLAVITUD SEXUAL', '2008-10-20', NULL, 12, NULL, 'I', NULL, NULL, NULL, 4);
 INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (776, 'ABUSO SEXUAL', '2008-10-20', NULL, 12, NULL, 'I', NULL, NULL, NULL, 4);
 INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (777, 'ABORTO FORZADO', '2010-04-17', NULL, 12, NULL, 'I', NULL, NULL, NULL, 4);
-INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (78, 'ESCUDO', '2000-08-09', NULL, 19, NULL, 'I', NULL, NULL, NULL, 4);
+INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (78, 'ESCUDO INDIVIDUAL', '2000-08-09', NULL, 19, NULL, 'I', NULL, NULL, NULL, 4);
 INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (79, 'DESAPARICIÓN', '2002-07-23', '2002-07-23', NULL, NULL, 'I', NULL, NULL, NULL, 4);
 INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (80, 'BIENES CIVILES', '2000-08-09', NULL, NULL, NULL, 'O', NULL, NULL, NULL, 7);
-INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (801, 'ATAQUE A OBRAS / INSTALACIONES QUE CONT. FUERZAS PELIGROSAS', '2001-07-26', NULL, NULL, NULL, 'O', NULL, NULL, NULL, 7);
-INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (84, 'INFRACCIÓN CONTRA EL MEDIO AMBIENTE', '2001-08-09', NULL, NULL, NULL, 'O', NULL, NULL, NULL, 7);
-INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (85, 'INFRACCIÓN CONTRA BIENES CULTURALES Y RELIGIOSOS', '2001-08-09', NULL, NULL, NULL, 'O', NULL, NULL, NULL, 7);
-INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (86, 'BIENES INDISPENSABLES PARA LA SUPERV. DE LA POB.', '2001-08-09', NULL, NULL, NULL, 'O', NULL, NULL, NULL, 7);
-INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (87, 'MUERTO EN ATAQUE A BIENES CIVILES', '2001-08-09', NULL, 2, NULL, 'I', NULL, NULL, NULL, 4);
-INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (88, 'HERIDO EN ATAQUE A BIENES CIVILES', '2001-08-09', NULL, 10, NULL, 'I', NULL, NULL, NULL, 4);
-INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (89, 'INFRACCIÓN CONTRA LA ESTRUCTURA VIAL', '2001-08-09', NULL, NULL, NULL, 'O', NULL, NULL, NULL, 7);
-INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (90, 'AMETRALLAMIENTO Y/O BOMBARDEO INDISCRIMINADO', '2000-08-09', NULL, NULL, NULL, 'O', NULL, NULL, NULL, 9);
-INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (902, 'DESPLAZAMIENTO FORZADO COLECTIVO', '2001-07-11', NULL, NULL, NULL, 'O', NULL, NULL, NULL, 9);
-INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (903, 'COLECTIVO DESPLAZADO', '2001-07-11', NULL, NULL, NULL, 'C', NULL, NULL, NULL, 4);
-INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (904, 'ESCUDO', '2001-07-11', NULL, NULL, NULL, 'C', NULL, NULL, NULL, 4);
-INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (906, 'CONFINAMIENTO COMO REPRESALIA O CASTIGO COLECTIVO', '2008-10-21', NULL, NULL, NULL, 'C', NULL, NULL, NULL, 4);
-INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (91, 'PERFIDIA', '2000-08-09', NULL, NULL, NULL, 'O', NULL, NULL, NULL, 9);
-INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (910, 'ENFRENTAMIENTO - INTERNO', '2006-07-12', NULL, NULL, NULL, 'I', NULL, NULL, NULL, 3);
-INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (92, 'ARMA PROHIBIDA', '2001-08-09', NULL, NULL, NULL, 'O', NULL, NULL, NULL, 9);
-INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (93, 'MINA ILÍCITA / ARMA TRAMPA', '2001-08-09', NULL, NULL, NULL, 'O', NULL, NULL, NULL, 9);
-INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (95, 'PILLAJE', '2000-08-09', NULL, NULL, NULL, 'O', NULL, NULL, NULL, 9);
-INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (97, 'MUERTO POR MÉTODOS Y MEDIOS ILÍCITOS', '2001-08-09', NULL, 2, NULL, 'I', NULL, NULL, NULL, 4);
-INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (98, 'HERIDO POR MÉTODOS Y MEDIOS ILÍCITOS', '2001-08-09', NULL, 10, NULL, 'I', NULL, NULL, NULL, 4);
+INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (801, 'ATAQUE A OBRAS E INST. QUE CONT. FUERZAS PELIGR.', '2001-07-26', NULL, NULL, NULL, 'O', NULL, NULL, NULL, 7);
+INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (84, 'MEDIO AMBIENTE', '2001-08-09', NULL, NULL, NULL, 'O', NULL, NULL, NULL, 7);
+INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (85, 'BIENES CULTURALES Y RELIGIOSOS', '2001-08-09', NULL, NULL, NULL, 'O', NULL, NULL, NULL, 7);
+INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (86, 'HAMBRE COMO MÉTODO DE GUERRA', '2001-08-09', NULL, NULL, NULL, 'O', NULL, NULL, NULL, 7);
+INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (87, 'MUERTO POR ATAQUE A BIENES CIVILES', '2001-08-09', NULL, 2, NULL, 'I', NULL, NULL, NULL, 4);
+INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (88, 'LESIÓN POR ATAQUE A BIENES CIVILES', '2001-08-09', NULL, 10, NULL, 'I', NULL, NULL, NULL, 4);
+INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (89, 'ESTRUCTURA VIAL', '2001-08-09', NULL, NULL, NULL, 'O', NULL, NULL, NULL, 7);
+INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (90, 'ATAQUE INDISCRIMINADO', '2000-08-09', NULL, NULL, NULL, 'O', NULL, NULL, NULL, 7);
+INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (902, 'DESPLAZAMIENTO FORZADO', '2001-07-11', NULL, NULL, NULL, 'O', NULL, NULL, NULL, 7);
+INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (903, 'DESPLAZAMIENTO FORZADO', '2001-07-11', NULL, NULL, NULL, 'C', NULL, NULL, NULL, 4);
+INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (904, 'COLECTIVO ESCUDO', '2001-07-11', NULL, NULL, NULL, 'C', NULL, NULL, NULL, 4);
+INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (905, 'GUERRA SIN CUARTEL', '2017-05-04', NULL, NULL, NULL, 'O', NULL, NULL, NULL, 7);
+INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (906, 'CONFINAMIENTO COLECTIVO', '2008-10-21', NULL, NULL, NULL, 'C', NULL, NULL, NULL, 4);
+INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (91, 'PERFIDIA', '2000-08-09', NULL, NULL, NULL, 'O', NULL, NULL, NULL, 7);
+INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (910, 'ENFRENTAMIENTO - INTERNO', '2006-07-12', '2017-05-03', NULL, NULL, 'I', NULL, NULL, NULL, 3);
+INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (916, 'NEGACIÓN DE DERECHOS A PRISIONEROS DE GUERRA', '2018-02-24', NULL, NULL, NULL, 'C', NULL, NULL, NULL, 1);
+INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (917, 'NEGACIÓN DE ATENCIÓN A PERSONAS VULNERABLES', '2018-02-24', NULL, NULL, NULL, 'C', NULL, NULL, NULL, 1);
+INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (92, 'ARMAS ABSOLUTAMENTE PROHIBIDAS', '2001-08-09', NULL, NULL, NULL, 'O', NULL, NULL, NULL, 7);
+INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (93, 'EMPLEO ILÍCITO DE ARMAS DE USO RESTRINGIDO', '2001-08-09', NULL, NULL, NULL, 'O', NULL, NULL, NULL, 7);
+INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (95, 'PILLAJE', '2000-08-09', NULL, NULL, NULL, 'O', NULL, NULL, NULL, 7);
+INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (97, 'MUERTO POR OBJETIVOS, MÉTODOS Y MEDIOS ILÍCITOS', '2001-08-09', NULL, 2, NULL, 'I', NULL, NULL, NULL, 4);
+INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacion, id_pconsolidado, contadaen, tipocat, created_at, updated_at, observaciones, supracategoria_id) VALUES (98, 'LESIÓN POR OBJETIVOS, MÉTODOS Y MEDIOS ILÍCITOS', '2001-08-09', NULL, 10, NULL, 'I', NULL, NULL, NULL, 4);
 
 
 --
@@ -565,52 +642,79 @@ INSERT INTO sivel2_gen_categoria (id, nombre, fechacreacion, fechadeshabilitacio
 --
 
 --
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 10.1
+-- Dumped by pg_dump version 10.1
+
+SET statement_timeout = 0;
+
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+SET row_security = off;
+
+SET search_path = public, pg_catalog;
+
+--
 -- Data for Name: sivel2_gen_contexto; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-INSERT INTO sivel2_gen_contexto (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (1, 'MILITARIZACIÓN', '2001-01-29', NULL, NULL, NULL);
-INSERT INTO sivel2_gen_contexto (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (2, 'PARAMILITARIZACIÓN', '2001-01-29', NULL, NULL, NULL);
-INSERT INTO sivel2_gen_contexto (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (3, 'PRESENCIA GUERRILLERA', '2001-01-29', NULL, NULL, NULL);
-INSERT INTO sivel2_gen_contexto (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (4, 'PRESENCIA DE MILICIAS', '2001-01-29', NULL, NULL, NULL);
-INSERT INTO sivel2_gen_contexto (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (5, 'ACCIONES BÉLICAS', '2001-01-29', NULL, NULL, NULL);
-INSERT INTO sivel2_gen_contexto (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (6, 'PARO CÍVICO', '2001-01-29', NULL, NULL, NULL);
-INSERT INTO sivel2_gen_contexto (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (7, 'MANIFESTACIONES', '2001-01-29', NULL, NULL, NULL);
-INSERT INTO sivel2_gen_contexto (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (8, 'PROTESTA', '2001-01-29', NULL, NULL, NULL);
-INSERT INTO sivel2_gen_contexto (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (9, 'OCUPACIONES', '2001-01-29', NULL, NULL, NULL);
-INSERT INTO sivel2_gen_contexto (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (27, 'ZONAS DE REHAB. Y CONSOL', '2003-03-12', NULL, NULL, NULL);
-INSERT INTO sivel2_gen_contexto (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (28, 'CONFLICTO ARMADO', '2004-02-18', NULL, NULL, NULL);
-INSERT INTO sivel2_gen_contexto (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (10, 'PARO AGRARIO', '2001-01-29', NULL, NULL, NULL);
-INSERT INTO sivel2_gen_contexto (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (11, 'MARCHA CAMPESINA', '2001-01-29', NULL, NULL, NULL);
-INSERT INTO sivel2_gen_contexto (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (12, 'TOMA DE TIERRAS', '2001-01-29', NULL, NULL, NULL);
-INSERT INTO sivel2_gen_contexto (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (13, 'ENCLAVES ECONÓMICOS', '2001-01-29', NULL, NULL, NULL);
-INSERT INTO sivel2_gen_contexto (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (14, 'CULTIVOS DE USO ILÍCITO', '2001-01-29', NULL, NULL, NULL);
-INSERT INTO sivel2_gen_contexto (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (15, 'CONFLICTOS LABORALES', '2001-01-29', NULL, NULL, NULL);
-INSERT INTO sivel2_gen_contexto (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (16, 'CONFLICTOS ESTUDIANTILES', '2001-01-29', NULL, NULL, NULL);
-INSERT INTO sivel2_gen_contexto (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (17, 'PROBL. ÉTNICA (NEG.E IN.)', '2001-01-29', NULL, NULL, NULL);
-INSERT INTO sivel2_gen_contexto (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (18, 'PROBLEMÁTICA FRONTERIZA', '2001-01-29', NULL, NULL, NULL);
-INSERT INTO sivel2_gen_contexto (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (19, 'PROBLEMÁTICA AMBIENTAL', '2001-01-29', NULL, NULL, NULL);
-INSERT INTO sivel2_gen_contexto (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (20, 'PROBLEMÁTICA CARCELARIA', '2001-01-29', NULL, NULL, NULL);
-INSERT INTO sivel2_gen_contexto (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (21, 'DESALOJOS', '2001-01-29', NULL, NULL, NULL);
-INSERT INTO sivel2_gen_contexto (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (22, 'PROCESOS DE PAZ O DIÁLOGO', '2001-01-29', NULL, NULL, NULL);
-INSERT INTO sivel2_gen_contexto (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (23, 'PROCESOS ELECTORALES', '2001-01-29', NULL, NULL, NULL);
-INSERT INTO sivel2_gen_contexto (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (24, 'CAMPAÑAS DE INTOLERANCIA', '2001-01-29', NULL, NULL, NULL);
-INSERT INTO sivel2_gen_contexto (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (25, 'PERSECUSIÓN A ORGANIZACION', '2001-01-29', NULL, NULL, NULL);
-INSERT INTO sivel2_gen_contexto (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (26, 'OTROS', '2001-01-29', NULL, NULL, NULL);
-INSERT INTO sivel2_gen_contexto (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (29, 'FALSO POSITIVO', '2010-01-29', NULL, NULL, NULL);
-INSERT INTO sivel2_gen_contexto (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (30, 'INTOLERANCIA SOCIAL', '2011-04-26', NULL, NULL, NULL);
-INSERT INTO sivel2_gen_contexto (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (31, 'SEGURIDAD INFORMÁTICA', '2011-04-28', NULL, NULL, NULL);
+INSERT INTO sivel2_gen_contexto (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at, observaciones) VALUES (1, 'MILITARIZACIÓN', '2001-01-29', NULL, NULL, NULL, NULL);
+INSERT INTO sivel2_gen_contexto (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at, observaciones) VALUES (10, 'PARO AGRARIO', '2001-01-29', NULL, NULL, NULL, NULL);
+INSERT INTO sivel2_gen_contexto (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at, observaciones) VALUES (11, 'MARCHA CAMPESINA', '2001-01-29', NULL, NULL, NULL, NULL);
+INSERT INTO sivel2_gen_contexto (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at, observaciones) VALUES (12, 'TOMA DE TIERRAS', '2001-01-29', NULL, NULL, NULL, NULL);
+INSERT INTO sivel2_gen_contexto (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at, observaciones) VALUES (13, 'ENCLAVES ECONÓMICOS', '2001-01-29', NULL, NULL, NULL, NULL);
+INSERT INTO sivel2_gen_contexto (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at, observaciones) VALUES (14, 'CULTIVOS DE USO ILÍCITO', '2001-01-29', NULL, NULL, NULL, NULL);
+INSERT INTO sivel2_gen_contexto (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at, observaciones) VALUES (15, 'CONFLICTOS LABORALES', '2001-01-29', NULL, NULL, NULL, NULL);
+INSERT INTO sivel2_gen_contexto (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at, observaciones) VALUES (16, 'CONFLICTOS ESTUDIANTILES', '2001-01-29', NULL, NULL, NULL, NULL);
+INSERT INTO sivel2_gen_contexto (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at, observaciones) VALUES (17, 'PROBL. ÉTNICA (NEG.E IN.)', '2001-01-29', NULL, NULL, NULL, NULL);
+INSERT INTO sivel2_gen_contexto (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at, observaciones) VALUES (18, 'PROBLEMÁTICA FRONTERIZA', '2001-01-29', NULL, NULL, NULL, NULL);
+INSERT INTO sivel2_gen_contexto (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at, observaciones) VALUES (19, 'PROBLEMÁTICA AMBIENTAL', '2001-01-29', NULL, NULL, NULL, NULL);
+INSERT INTO sivel2_gen_contexto (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at, observaciones) VALUES (2, 'PARAMILITARIZACIÓN', '2001-01-29', NULL, NULL, NULL, NULL);
+INSERT INTO sivel2_gen_contexto (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at, observaciones) VALUES (20, 'PROBLEMÁTICA CARCELARIA', '2001-01-29', NULL, NULL, NULL, NULL);
+INSERT INTO sivel2_gen_contexto (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at, observaciones) VALUES (21, 'DESALOJOS', '2001-01-29', NULL, NULL, NULL, NULL);
+INSERT INTO sivel2_gen_contexto (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at, observaciones) VALUES (22, 'PROCESOS DE PAZ O DIÁLOGO', '2001-01-29', NULL, NULL, NULL, NULL);
+INSERT INTO sivel2_gen_contexto (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at, observaciones) VALUES (23, 'PROCESOS ELECTORALES', '2001-01-29', NULL, NULL, NULL, NULL);
+INSERT INTO sivel2_gen_contexto (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at, observaciones) VALUES (24, 'CAMPAÑAS DE INTOLERANCIA', '2001-01-29', NULL, NULL, NULL, NULL);
+INSERT INTO sivel2_gen_contexto (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at, observaciones) VALUES (25, 'PERSECUSIÓN A ORGANIZACION', '2001-01-29', NULL, NULL, NULL, NULL);
+INSERT INTO sivel2_gen_contexto (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at, observaciones) VALUES (26, 'OTROS', '2001-01-29', NULL, NULL, NULL, NULL);
+INSERT INTO sivel2_gen_contexto (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at, observaciones) VALUES (27, 'ZONAS DE REHAB. Y CONSOL', '2003-03-12', NULL, NULL, NULL, NULL);
+INSERT INTO sivel2_gen_contexto (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at, observaciones) VALUES (28, 'CONFLICTO ARMADO', '2004-02-18', NULL, NULL, NULL, NULL);
+INSERT INTO sivel2_gen_contexto (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at, observaciones) VALUES (29, 'FALSO POSITIVO', '2010-01-29', NULL, NULL, NULL, NULL);
+INSERT INTO sivel2_gen_contexto (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at, observaciones) VALUES (3, 'PRESENCIA GUERRILLERA', '2001-01-29', NULL, NULL, NULL, NULL);
+INSERT INTO sivel2_gen_contexto (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at, observaciones) VALUES (30, 'INTOLERANCIA SOCIAL', '2011-04-26', NULL, NULL, NULL, NULL);
+INSERT INTO sivel2_gen_contexto (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at, observaciones) VALUES (31, 'SEGURIDAD INFORMÁTICA', '2011-04-28', NULL, NULL, NULL, NULL);
+INSERT INTO sivel2_gen_contexto (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at, observaciones) VALUES (4, 'PRESENCIA DE MILICIAS', '2001-01-29', NULL, NULL, NULL, NULL);
+INSERT INTO sivel2_gen_contexto (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at, observaciones) VALUES (5, 'ACCIONES BÉLICAS', '2001-01-29', NULL, NULL, NULL, NULL);
+INSERT INTO sivel2_gen_contexto (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at, observaciones) VALUES (6, 'PARO CÍVICO', '2001-01-29', NULL, NULL, NULL, NULL);
+INSERT INTO sivel2_gen_contexto (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at, observaciones) VALUES (7, 'MANIFESTACIONES', '2001-01-29', NULL, NULL, NULL, NULL);
+INSERT INTO sivel2_gen_contexto (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at, observaciones) VALUES (8, 'PROTESTA', '2001-01-29', NULL, NULL, NULL, NULL);
+INSERT INTO sivel2_gen_contexto (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at, observaciones) VALUES (9, 'OCUPACIONES', '2001-01-29', NULL, NULL, NULL, NULL);
 
+
+--
+-- PostgreSQL database dump complete
+--
 
 --
 -- PostgreSQL database dump
 --
 
+-- Dumped from database version 10.1
+-- Dumped by pg_dump version 10.1
+
 SET statement_timeout = 0;
 
+SET idle_in_transaction_session_timeout = 0;
 SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
 SET check_function_bodies = false;
 SET client_min_messages = warning;
+SET row_security = off;
 
 SET search_path = public, pg_catalog;
 
@@ -620,16 +724,16 @@ SET search_path = public, pg_catalog;
 
 INSERT INTO sivel2_gen_escolaridad (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at, observaciones) VALUES (0, 'SIN INFORMACIÓN', '2013-05-16', NULL, NULL, NULL, NULL);
 INSERT INTO sivel2_gen_escolaridad (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at, observaciones) VALUES (1, 'PREESCOLAR', '2013-05-16', NULL, NULL, NULL, NULL);
+INSERT INTO sivel2_gen_escolaridad (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at, observaciones) VALUES (10, 'TÉCNICO INCOMPLETO', '2015-10-06', NULL, NULL, NULL, NULL);
+INSERT INTO sivel2_gen_escolaridad (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at, observaciones) VALUES (11, 'PROFESIONAL INCOMPLETO', '2015-10-06', NULL, NULL, NULL, NULL);
 INSERT INTO sivel2_gen_escolaridad (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at, observaciones) VALUES (2, 'PRIMARIA', '2013-05-16', NULL, NULL, NULL, NULL);
 INSERT INTO sivel2_gen_escolaridad (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at, observaciones) VALUES (3, 'SECUNDARIA', '2013-05-16', NULL, NULL, NULL, NULL);
 INSERT INTO sivel2_gen_escolaridad (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at, observaciones) VALUES (4, 'TÉCNICO', '2013-05-16', NULL, NULL, NULL, NULL);
 INSERT INTO sivel2_gen_escolaridad (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at, observaciones) VALUES (5, 'PROFESIONAL', '2013-05-16', NULL, NULL, NULL, NULL);
-INSERT INTO sivel2_gen_escolaridad (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at, observaciones) VALUES (6, 'NINGUNO', '2015-10-06', NULL, NULL, NULL, NULL); --101
-INSERT INTO sivel2_gen_escolaridad (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at, observaciones) VALUES (7, 'ANALFABETA', '2015-10-06', NULL, NULL, NULL, NULL); --102
-INSERT INTO sivel2_gen_escolaridad (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at, observaciones) VALUES (8, 'PRIMARIA INCOMPLETA', '2015-10-06', NULL, NULL, NULL, NULL); --103
-INSERT INTO sivel2_gen_escolaridad (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at, observaciones) VALUES (9, 'SECUNDARIA INCOMPLETA', '2015-10-06', NULL, NULL, NULL, NULL); --105
-INSERT INTO sivel2_gen_escolaridad (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at, observaciones) VALUES (10, 'TÉCNICO INCOMPLETO', '2015-10-06', NULL, NULL, NULL, NULL); --106
-INSERT INTO sivel2_gen_escolaridad (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at, observaciones) VALUES (11, 'PROFESIONAL INCOMPLETO', '2015-10-06', NULL, NULL, NULL, NULL); --104
+INSERT INTO sivel2_gen_escolaridad (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at, observaciones) VALUES (6, 'NINGUNO', '2015-10-06', NULL, NULL, NULL, NULL);
+INSERT INTO sivel2_gen_escolaridad (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at, observaciones) VALUES (7, 'ANALFABETA', '2015-10-06', NULL, NULL, NULL, NULL);
+INSERT INTO sivel2_gen_escolaridad (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at, observaciones) VALUES (8, 'PRIMARIA INCOMPLETA', '2015-10-06', NULL, NULL, NULL, NULL);
+INSERT INTO sivel2_gen_escolaridad (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at, observaciones) VALUES (9, 'SECUNDARIA INCOMPLETA', '2015-10-06', NULL, NULL, NULL, NULL);
 
 
 --
@@ -640,12 +744,17 @@ INSERT INTO sivel2_gen_escolaridad (id, nombre, fechacreacion, fechadeshabilitac
 -- PostgreSQL database dump
 --
 
+-- Dumped from database version 10.1
+-- Dumped by pg_dump version 10.1
+
 SET statement_timeout = 0;
 
+SET idle_in_transaction_session_timeout = 0;
 SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
 SET check_function_bodies = false;
 SET client_min_messages = warning;
+SET row_security = off;
 
 SET search_path = public, pg_catalog;
 
@@ -670,12 +779,17 @@ INSERT INTO sivel2_gen_estadocivil (id, nombre, fechacreacion, fechadeshabilitac
 -- PostgreSQL database dump
 --
 
+-- Dumped from database version 10.1
+-- Dumped by pg_dump version 10.1
+
 SET statement_timeout = 0;
 
+SET idle_in_transaction_session_timeout = 0;
 SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
 SET check_function_bodies = false;
 SET client_min_messages = warning;
+SET row_security = off;
 
 SET search_path = public, pg_catalog;
 
@@ -801,12 +915,17 @@ INSERT INTO sivel2_gen_etnia (id, nombre, descripcion, fechacreacion, fechadesha
 -- PostgreSQL database dump
 --
 
+-- Dumped from database version 10.1
+-- Dumped by pg_dump version 10.1
+
 SET statement_timeout = 0;
 
+SET idle_in_transaction_session_timeout = 0;
 SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
 SET check_function_bodies = false;
 SET client_min_messages = warning;
+SET row_security = off;
 
 SET search_path = public, pg_catalog;
 
@@ -829,12 +948,17 @@ INSERT INTO sivel2_gen_frontera (id, nombre, fechacreacion, fechadeshabilitacion
 -- PostgreSQL database dump
 --
 
+-- Dumped from database version 10.1
+-- Dumped by pg_dump version 10.1
+
 SET statement_timeout = 0;
 
+SET idle_in_transaction_session_timeout = 0;
 SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
 SET check_function_bodies = false;
 SET client_min_messages = warning;
+SET row_security = off;
 
 SET search_path = public, pg_catalog;
 
@@ -922,12 +1046,17 @@ INSERT INTO sivel2_gen_iglesia (id, nombre, descripcion, fechacreacion, fechades
 -- PostgreSQL database dump
 --
 
+-- Dumped from database version 10.1
+-- Dumped by pg_dump version 10.1
+
 SET statement_timeout = 0;
 
+SET idle_in_transaction_session_timeout = 0;
 SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
 SET check_function_bodies = false;
 SET client_min_messages = warning;
+SET row_security = off;
 
 SET search_path = public, pg_catalog;
 
@@ -948,12 +1077,17 @@ INSERT INTO sivel2_gen_maternidad (id, nombre, fechacreacion, fechadeshabilitaci
 -- PostgreSQL database dump
 --
 
+-- Dumped from database version 10.1
+-- Dumped by pg_dump version 10.1
+
 SET statement_timeout = 0;
 
+SET idle_in_transaction_session_timeout = 0;
 SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
 SET check_function_bodies = false;
 SET client_min_messages = warning;
+SET row_security = off;
 
 SET search_path = public, pg_catalog;
 
@@ -1015,12 +1149,17 @@ INSERT INTO sivel2_gen_presponsable (id, nombre, papa, fechacreacion, fechadesha
 -- PostgreSQL database dump
 --
 
+-- Dumped from database version 10.1
+-- Dumped by pg_dump version 10.1
+
 SET statement_timeout = 0;
 
+SET idle_in_transaction_session_timeout = 0;
 SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
 SET check_function_bodies = false;
 SET client_min_messages = warning;
+SET row_security = off;
 
 SET search_path = public, pg_catalog;
 
@@ -1061,12 +1200,17 @@ INSERT INTO sivel2_gen_profesion (id, nombre, fechacreacion, fechadeshabilitacio
 -- PostgreSQL database dump
 --
 
+-- Dumped from database version 10.1
+-- Dumped by pg_dump version 10.1
+
 SET statement_timeout = 0;
 
+SET idle_in_transaction_session_timeout = 0;
 SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
 SET check_function_bodies = false;
 SET client_min_messages = warning;
+SET row_security = off;
 
 SET search_path = public, pg_catalog;
 
@@ -1090,12 +1234,17 @@ INSERT INTO sivel2_gen_rangoedad (id, nombre, rango, limiteinferior, limitesuper
 -- PostgreSQL database dump
 --
 
+-- Dumped from database version 10.1
+-- Dumped by pg_dump version 10.1
+
 SET statement_timeout = 0;
 
+SET idle_in_transaction_session_timeout = 0;
 SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
 SET check_function_bodies = false;
 SET client_min_messages = warning;
+SET row_security = off;
 
 SET search_path = public, pg_catalog;
 
@@ -1113,6 +1262,28 @@ INSERT INTO sivel2_gen_region (id, nombre, fechacreacion, fechadeshabilitacion, 
 
 
 --
+-- PostgreSQL database dump complete
+--
+
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 10.1
+-- Dumped by pg_dump version 10.1
+
+SET statement_timeout = 0;
+
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+SET row_security = off;
+
+SET search_path = public, pg_catalog;
+
+--
 -- Data for Name: sivel2_gen_resagresion; Type: TABLE DATA; Schema: public; Owner: -
 --
 
@@ -1122,14 +1293,20 @@ INSERT INTO sivel2_gen_resagresion (id, nombre, observaciones, fechacreacion, fe
 
 
 --
+-- Name: sivel2_gen_resagresion_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('sivel2_gen_resagresion_id_seq', 101, true);
+
+
+--
 -- PostgreSQL database dump complete
 --
 
+-- Volvemos a habilitar integridad
     ALTER TABLE ONLY sivel2_gen_categoria
-      ADD CONSTRAINT categoria_contadaen_fkey FOREIGN KEY (contadaen) 
-      REFERENCES sivel2_gen_categoria(id); 
+      DROP CONSTRAINT categoria_contadaen_fkey; 
     ALTER TABLE ONLY sivel2_gen_presponsable
-      ADD CONSTRAINT presponsable_papa_fkey FOREIGN KEY (papa) 
-      REFERENCES sivel2_gen_presponsable(id);
+      DROP CONSTRAINT presponsable_papa_fkey;
 
 
