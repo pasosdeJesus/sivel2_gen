@@ -190,6 +190,7 @@ module Sivel2Gen
                 fd = cons_a_fd(@consexpcaso)
                 GeneraodsJob.perform_later(params[:idplantilla], fd, narch)
                 redirect_to rutaurl, format: 'html'
+                return
 #                pl = Heb412Gen::Plantillahcm.find(
 #                  params[:idplantilla])
 #                n = Heb412Gen::PlantillahcmController.
