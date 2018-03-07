@@ -24,6 +24,12 @@ module Dummy
 
     config.active_record.schema_format = :sql
 
+    config.active_job.queue_adapter = 
+      ActiveJob::QueueAdapters::AsyncAdapter.new \
+      min_threads: 1,
+      max_threads: 2 * Concurrent.processor_count,
+      idletime: 600.seconds
+
     config.x.heb412_ruta = Rails.root.join('public', 'heb412')
    
   end

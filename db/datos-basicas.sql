@@ -2,9 +2,9 @@
 
 -- Antes deshabilitamos integridad en unos casos
     ALTER TABLE ONLY sivel2_gen_categoria
-      DROP CONSTRAINT categoria_contadaen_fkey; 
+      DROP CONSTRAINT IF EXISTS categoria_contadaen_fkey; 
     ALTER TABLE ONLY sivel2_gen_presponsable
-      DROP CONSTRAINT presponsable_papa_fkey;
+      DROP CONSTRAINT IF EXISTS presponsable_papa_fkey;
 
 --
 -- PostgreSQL database dump
