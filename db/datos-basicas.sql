@@ -1,10 +1,10 @@
 -- Volcado de tablas basicas
 
 -- Antes deshabilitamos integridad en unos casos
-    ALTER TABLE ONLY sivel2_gen_categoria
-      DROP CONSTRAINT IF EXISTS categoria_contadaen_fkey; 
-    ALTER TABLE ONLY sivel2_gen_presponsable
-      DROP CONSTRAINT IF EXISTS presponsable_papa_fkey;
+ALTER TABLE ONLY sivel2_gen_categoria
+  DROP CONSTRAINT IF EXISTS categoria_contadaen_fkey; 
+ALTER TABLE ONLY sivel2_gen_presponsable
+  DROP CONSTRAINT IF EXISTS presponsable_papa_fkey;
 
 --
 -- PostgreSQL database dump
@@ -1304,9 +1304,10 @@ SELECT pg_catalog.setval('sivel2_gen_resagresion_id_seq', 101, true);
 --
 
 -- Volvemos a habilitar integridad
-    ALTER TABLE ONLY sivel2_gen_categoria
-      DROP CONSTRAINT categoria_contadaen_fkey; 
-    ALTER TABLE ONLY sivel2_gen_presponsable
-      DROP CONSTRAINT presponsable_papa_fkey;
 
-
+ALTER TABLE ONLY sivel2_gen_categoria
+  ADD CONSTRAINT categoria_contadaen_fkey FOREIGN KEY (contadaen) 
+  REFERENCES sivel2_gen_categoria(id); 
+ALTER TABLE ONLY sivel2_gen_presponsable
+  ADD CONSTRAINT presponsable_papa_fkey FOREIGN KEY (papa) 
+  REFERENCES sivel2_gen_presponsable(id);

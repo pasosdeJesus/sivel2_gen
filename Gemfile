@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # Rails (internacionalización)
-gem "rails", '~> 5.2.0.rc1'
+gem "rails", '5.1.4' #'~> 5.1.4'
 gem "rails-i18n"
 gem 'puma'#, '~> 3.0' 
 
@@ -9,7 +9,7 @@ gem 'puma'#, '~> 3.0'
 gem "colorize"
 
 # Postgresql
-gem "pg"#, '~> 0.21'
+gem "pg", '~> 0.21'
 
 # API JSON facil. Ver: https://github.com/rails/jbuilder
 gem "jbuilder"
