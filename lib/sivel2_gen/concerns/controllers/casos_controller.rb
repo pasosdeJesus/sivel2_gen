@@ -183,7 +183,7 @@ module Sivel2Gen
                                   "-" + DateTime.now.strftime('%Y%m%d%H%M%S')).to_s
                 narch = File.join(Rails.application.config.x.heb412_ruta, rarch)
                 puts "narch=#{narch}"
-                FileUtils.touch(narch + '.ods-generando')
+                FileUtils.touch(narch + '.ods-0')
                 flash[:notice] = "Se programó la generación del archivo #{rarch}.ods, por favor refresque hasta verlo generado"
 
                 rutaurl = File.join(heb412_gen.sisini_path, '/generados').to_s
