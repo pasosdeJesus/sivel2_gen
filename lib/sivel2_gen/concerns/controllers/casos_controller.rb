@@ -159,7 +159,6 @@ module Sivel2Gen
 
           def presenta_index
             # Presentación
-                  byebug
             respond_to do |format|
               format.ods { 
                 #byebug
