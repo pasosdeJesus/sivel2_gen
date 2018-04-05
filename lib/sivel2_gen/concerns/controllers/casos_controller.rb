@@ -159,6 +159,7 @@ module Sivel2Gen
 
           def presenta_index
             # Presentación
+                  byebug
             respond_to do |format|
               format.ods { 
                 #byebug
@@ -177,7 +178,7 @@ module Sivel2Gen
                 @consexpcaso = Consexpcaso.all
 
                
-                pl = Heb412Gen::Plantillahcm.find(params[:idplantilla]) 
+                pl = Heb412Gen::Plantillahcm.find(params[:idplantilla].to_i) 
                 rarch = File.join('/generados/',
                                   File.basename(pl.ruta, '.ods').to_s +
                                   "-" + DateTime.now.strftime('%Y%m%d%H%M%S')).to_s
@@ -200,7 +201,9 @@ module Sivel2Gen
 
               format.html { 
                 if (params['idplantilla']) 
-                  render params['idplantilla'], layout: nil
+                  redirect_back fallback_location: root_path,
+                      flash: { error: "Falta completar implementación, acotando params['idplantilla'] para que no abra cualquier cosa. Gracias brakeman" }
+                  #render params['idplantilla'], layout: nil
                 else
                   render layout: 'application' 
                 end
