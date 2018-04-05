@@ -1,0 +1,5 @@
+    <%= f.association :categoria, 
+      collection: Sivel2Gen::Categoria.habilitados.where(tipocat: 'O'),
+      label_method: :nombre, 
+      value_method: :id 
+    %>

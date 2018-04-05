@@ -46,11 +46,8 @@
         "title" => 'Por ejemplo para incluir responsables individuales'
       }
     %>
-    <%= f.association :categoria, 
-      collection: Sivel2Gen::Categoria.habilitados.where(tipocat: 'O'),
-      label_method: :nombre, 
-      value_method: :id 
-    %>
+    
+    <%= render 'sivel2_gen/casos/caso_presponsable_compf', f:  f %>
     <%= f.input :id, as: :hidden %>
     <%= link_to_remove_association "Eliminar " +
       Sivel2Gen::Presponsable.human_attribute_name(:presponsable), f, 
