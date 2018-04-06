@@ -8,18 +8,24 @@
     </tr>
   </thead>
   <tbody>
-    <% @conscaso.try(:each) do |caso| %>
+    <% if @usa_consexpcaso %>
+      <% cons = @consexpcaso %>
+    <% else %>
+      <% cons = @conscaso %>
+    <% end %>
+
+    <% cons.try(:each) do |caso| %>
       <tr>
         <% for i in @incluir do %>
           <td>
             <% if i == 'casoid' %>
               <%= link_to caso.caso_id, sivel2_gen.caso_path(caso.caso_id) %>
-            <% elsif i == 'memo' && @cortamemo > 0 && 
-              caso[i].size > @cortamemo 
+            <% elsif i == 'memo' && @cortamemo > 0 && caso[i] &&
+              caso[i].length > @cortamemo 
             %>
               <%= caso[i].slice(0, @cortamemo) + ' ...' %>
             <% else %>
-              <%= caso[i]%>
+              <%= caso[i] if caso[i] %>
             <% end %>
           </td>
         <% end %>
@@ -38,6 +44,6 @@
     <% end %>
   </tbody>
 </table>
-<% if @paginar %>
-  <%= pagina @conscaso,  { param_name: :pagina} %>
+<% if @paginar && defined?(cons.total_pages) %>
+  <%= pagina cons,  { param_name: :pagina} %>
 <% end %>

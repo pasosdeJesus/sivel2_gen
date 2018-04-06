@@ -86,7 +86,8 @@ module Sivel2Gen
             rescue
               Conscaso.refresca_conscaso
             end
-            if !ActiveRecord::Base.connection.data_source_exists? 'sivel2_gen_consexpcaso'
+            if !ActiveRecord::Base.connection.data_source_exists?(
+              'sivel2_gen_consexpcaso')
               Consexpcaso.crea_consexpcaso
             end
             @cortamemo = cortamemo
@@ -129,16 +130,28 @@ module Sivel2Gen
             end
 
             # Ordenamiento
-            @conscaso = @conscaso.ordenar_por @campoord
+            if defined? @conscaso.ordenar_por
+              @conscaso = @conscaso.ordenar_por @campoord
+            end
 
             # Cuenta y Paginación
             @numconscaso = @conscaso.size
             @paginar = !params || !params[:filtro] || 
               !params[:filtro][:paginar] ||
               params[:filtro][:paginar] != '0' 
-            if @paginar && params[:idplantilla].nil?
+            if @paginar && params[:idplantilla].nil? && defined?(@conscaso.paginate)
               @conscaso = @conscaso.paginate(
                 page: params[:pagina], per_page: 20)
+            else
+              @paginar = false
+            end
+            if @usa_consexpcaso
+              if @paginar && params[:idplantilla].nil? && defined?(@consexpcaso.paginate)
+                @consexpcaso = @consexpcaso.paginate(
+                  page: params[:pagina], per_page: 20)
+              else
+                @paginar = false
+              end
             end
             presenta_index
           end
@@ -208,7 +221,9 @@ module Sivel2Gen
                 end
               }
 
-              format.js { render 'sivel2_gen/casos/filtro' }
+              format.js { 
+                render 'sivel2_gen/casos/filtro'
+              }
             end
           end
 
