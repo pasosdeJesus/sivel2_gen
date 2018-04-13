@@ -13,12 +13,9 @@
 
     <%= f.input :anotacion %>
 
-    <%= f.input(:tfuente, collection: [
-      'Directa', 'Indirecta'
-    ], 
-    label: "Tipo de Fuente",
-    include_blank: false ) 
-    %>
+    <%= f.input(:tfuente, collection: [ 'Directa', 'Indirecta' ], 
+                label: "Tipo de Fuente",
+                include_blank: false ) %>
   
     <%= f.input :ubicacionfisica %>
 
