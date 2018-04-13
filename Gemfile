@@ -1,8 +1,11 @@
 source 'https://rubygems.org'
 
 # Rails (internacionalización)
-gem "rails", '~> 5.1.4'
+gem "rails", '~> 5.2.0'
 gem "rails-i18n"
+
+gem 'bootsnap', '>=1.1.0', require: false
+
 gem 'puma'#, '~> 3.0' 
 
 # Colores en terminal
@@ -64,14 +67,13 @@ gem "paperclip"#, "~> 4.1"
 
 # Zonas horarias
 gem "tzinfo"
-gem "tzinfo-data"
 
 # Motor estilo Pasos de Jesús
-gem 'sip', git: 'https://github.com/pasosdeJesus/sip.git'
+gem 'sip', git: 'https://github.com/pasosdeJesus/sip.git', branch: 'rails5.2'
 #gem 'sip', path: '../sip'
 
 # Motor de nube y plantillas
-gem 'heb412_gen', git: 'https://github.com/pasosdeJesus/heb412_gen.git'
+gem 'heb412_gen', git: 'https://github.com/pasosdeJesus/heb412_gen.git', branch: 'rails5.2'
 #gem 'heb412_gen', path: '../heb412_gen'
 
 # Los siguientes son para desarrollo o para pruebas con generadores
