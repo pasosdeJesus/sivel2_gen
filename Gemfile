@@ -53,6 +53,7 @@ gem "simple_form"
 
 # Formularios anidados (algunos con ajax)
 gem "cocoon", git: 'https://github.com/vtamara/cocoon.git', branch: 'new_id_with_ajax'
+#gem 'cocoon', path: '../cocoon'
 
 # Autenticación y roles
 gem "devise"
