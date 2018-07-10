@@ -37,8 +37,14 @@ class RenombraAisla < ActiveRecord::Migration[4.2]
     #rename_table :estadocivil, :sivel2_gen_estadocivil
     rename_table :etiqueta, :sivel2_gen_etiqueta
     rename_table :etnia, :sivel2_gen_etnia
+    execute <<-SQL
+    ALTER INDEX IF EXISTS prensa_pkey RENAME TO ffrecuente_pkey;
+    SQL
     rename_table :ffrecuente, :sivel2_gen_ffrecuente
     rename_table :filiacion, :sivel2_gen_filiacion
+    execute <<-SQL
+    ALTER INDEX IF EXISTS fuente_directa_pkey RENAME TO fotra_pkey;
+    SQL
     rename_table :fotra, :sivel2_gen_fotra
     rename_table :frontera, :sivel2_gen_frontera
     rename_table :grupoper, :sivel2_gen_grupoper
@@ -48,25 +54,43 @@ class RenombraAisla < ActiveRecord::Migration[4.2]
     #rename_table :maternidad, :sivel2_gen_maternidad
     rename_table :organizacion, :sivel2_gen_organizacion
     rename_table :pais, :sivel2_gen_pais
+    execute <<-SQL
+    ALTER INDEX IF EXISTS parametros_reporte_consolidado_pkey RENAME TO pconsolidado_pkey;
+    SQL
     rename_table :pconsolidado, :sivel2_gen_pconsolidado
     rename_table :persona, :sivel2_gen_persona
     rename_table :persona_trelacion, :sivel2_gen_persona_trelacion
+    execute <<-SQL
+    ALTER INDEX IF EXISTS presuntos_responsables_pkey RENAME TO presponsable_pkey;
+    SQL
     rename_table :presponsable, :sivel2_gen_presponsable
     rename_table :profesion, :sivel2_gen_profesion
+    execute <<-SQL
+    ALTER INDEX IF EXISTS rango_edad_pkey RENAME TO rangoedad_pkey;
+    SQL
     rename_table :rangoedad, :sivel2_gen_rangoedad
     rename_table :rangoedadac, :sivel2_gen_rangoedadac
     rename_table :region, :sivel2_gen_region
     rename_table :regionsjr, :sivel2_gen_regionsjr
+    execute <<-SQL
+    ALTER INDEX IF EXISTS sector_social_pkey RENAME TO sectorsocial_pkey;
+    SQL
     rename_table :sectorsocial, :sivel2_gen_sectorsocial
     rename_table :supracategoria, :sivel2_gen_supracategoria
     rename_table :tclase, :sivel2_gen_tclase
     rename_table :tdocumento, :sivel2_gen_tdocumento
     rename_table :trelacion, :sivel2_gen_trelacion
+    execute <<-SQL
+    ALTER INDEX IF EXISTS tipo_sitio_pkey RENAME TO tsitio_pkey;
+    SQL
     rename_table :tsitio, :sivel2_gen_tsitio
     rename_table :tviolencia, :sivel2_gen_tviolencia
     rename_table :ubicacion, :sivel2_gen_ubicacion
     rename_table :victima, :sivel2_gen_victima
     rename_table :victimacolectiva, :sivel2_gen_victimacolectiva
+    execute <<-SQL
+    ALTER INDEX IF EXISTS vinculo_estado_pkey RENAME TO vinculoestado_pkey;
+    SQL
     rename_table :vinculoestado, :sivel2_gen_vinculoestado
   end
 end
