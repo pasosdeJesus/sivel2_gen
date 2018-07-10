@@ -3,10 +3,6 @@ module Sivel2Gen
   class CasoCategoriaPresponsable < ActiveRecord::Base
     belongs_to :categoria, foreign_key: "id_categoria", validate: true, 
       class_name: 'Sivel2Gen::Categoria'
-    belongs_to :caso, foreign_key: "id_caso", validate: true, 
-      class_name: 'Sivel2Gen::Caso'
-    belongs_to :presponsable, foreign_key: "id_presponsable", validate: true, 
-      class_name: 'Sivel2Gen::Presponsable'
     belongs_to :caso_presponsable, foreign_key: "id_caso_presponsable", 
       validate: true, class_name: 'Sivel2Gen::CasoPresponsable'
   end
