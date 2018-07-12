@@ -45,11 +45,14 @@
         <%= f.input :inc_ubicaciones, 
           as: :boolean, 
           label: false,
-          input_html: { :checked => "checked" }
+          input_html: { checked: 'checked' }
         %>
       </div>
       <div class="col-sm-offset-0 col-sm-1 text-center">
-        <%= f.radio_button :orden, :ubicacion, checked: true  %>
+        A <%= f.radio_button :orden, :ubicacion, 
+          checked: @campoord == 'ubicacion' %>
+        D <%= f.radio_button :orden, :ubicaciondesc, 
+          checked: @campoord == 'ubicaciondesc' %>
       </div>
     </div>
     <div class="row filtro-fila">
@@ -78,15 +81,18 @@
           }
         %>
     </div>
-      <div class="col-sm-offset-0 col-sm-1 text-center">
+    <div class="col-sm-offset-0 col-sm-1 text-center">
         <%= f.input :inc_fecha, 
           as: :boolean, 
           label: false,
-          input_html: { :checked => "checked" }
+          input_html: {checked: 'checked'}
         %>
       </div>
       <div class="col-sm-offset-0 col-sm-1 text-center">
-        <%= f.radio_button(:orden, :fecha) %>
+        A <%= f.radio_button(:orden, :fecha, 
+                             checked: @campoord == 'fecha' ) %>
+        D <%= f.radio_button(:orden, :fechadesc, 
+                             checked: @campoord == 'fechadesc' ) %>
       </div>
     </div>
 
@@ -133,7 +139,7 @@
         <%= f.input :inc_tipificacion, 
           as: :boolean, 
           label: false,
-          input_html: { :checked => "checked" }
+          input_html: {checked: 'checked'}
         %>
       </div>
       <div class="col-sm-offset-0 col-sm-1 text-center">
@@ -215,7 +221,7 @@
           "id", "nombre") 
         %-->
       <div class="col-sm-offset-0 col-sm-1 text-center">
-        <%= f.input :departamento, 
+        <%= f.input :inc_memo, 
           as: :boolean, 
           label: false,
           input_html: { :checked => "checked" }
@@ -319,7 +325,10 @@
         %>
       </div>
       <div class="col-sm-offset-0 col-sm-1 text-center">
-        <%= f.radio_button(:orden, :codigo) %>
+        A <%= f.radio_button(:orden, :codigo, 
+                             checked: @campoord == 'codigo') %>
+        D <%= f.radio_button(:orden, :codigodesc, 
+                             checked: @campoord == 'codigodesc') %>
       </div>
     </div>
 
