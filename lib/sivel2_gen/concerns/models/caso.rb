@@ -53,8 +53,8 @@ module Sivel2Gen
             allow_destroy: true, reject_if: :all_blank
           has_many :fuenteprensa, through: :caso_fuenteprensa, 
             class_name: 'Sip::Fuenteprensa'
-          has_many :caso_frontera, foreign_key: "id_caso", validate: true, 
-            dependent: :destroy, class_name: 'Sivel2Gen::CasoFrontera'
+          has_many :caso_frontera, foreign_key: "id_caso",
+            dependent: :delete_all, class_name: 'Sivel2Gen::CasoFrontera'
           has_many :frontera, through: :caso_frontera, 
             class_name: 'Sivel2Gen::Frontera'
           has_many :caso_presponsable, foreign_key: "id_caso", validate: true, 

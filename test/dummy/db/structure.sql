@@ -2494,14 +2494,6 @@ ALTER TABLE ONLY sivel2_gen_caso_etiqueta
 
 
 --
--- Name: sivel2_gen_caso_frontera caso_frontera_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY sivel2_gen_caso_frontera
-    ADD CONSTRAINT caso_frontera_pkey PRIMARY KEY (id_frontera, id_caso);
-
-
---
 -- Name: sivel2_gen_caso caso_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -4155,6 +4147,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20180427194732'),
 ('20180509111948'),
 ('20180717134314'),
-('20180717135811');
+('20180717135811'),
+('20180718094829');
 
 
