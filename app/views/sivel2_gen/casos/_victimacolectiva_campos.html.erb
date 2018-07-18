@@ -1,7 +1,7 @@
 <div class='control-group nested-fields'>
   <div class="controls">
     <% if !f.object.grupoper
-         f.object.grupoper = Sivel2Gen::Grupoper.new
+         f.object.grupoper = Sip::Grupoper.new
     end %>
        
     <%= render 'colectivo_campos', :f => f %>

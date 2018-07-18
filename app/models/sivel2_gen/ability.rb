@@ -56,8 +56,7 @@ module Sivel2Gen
 
     # Tablas no básicas pero que tienen índice
     NOBASICAS_INDSEQID =  [
-      ['Sivel2Gen', 'caso'], 
-      ['Sivel2Gen', 'grupoper'], 
+      ['Sivel2Gen', 'caso']
     ]
 
 		# Tablas no básicas pero que tienen índice con secuencia id_seq

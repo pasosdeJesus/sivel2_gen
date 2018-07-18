@@ -127,9 +127,9 @@
           Víctima Colectiva</label>
         <%= 
           p = options_from_collection_for_select(
-            Sivel2Gen::Grupoper.from(
-              'sivel2_gen_victimacolectiva, sivel2_gen_grupoper').where(
-                'sivel2_gen_victimacolectiva.id_grupoper=sivel2_gen_grupoper.id 
+            Sip::Grupoper.from(
+              'sivel2_gen_victimacolectiva, sip_grupoper').where(
+                'sivel2_gen_victimacolectiva.id_grupoper=sip_grupoper.id 
                  AND sivel2_gen_victimacolectiva.id_caso=?', @caso.id),
                  "id",
                  lambda {|t| t.nombre}

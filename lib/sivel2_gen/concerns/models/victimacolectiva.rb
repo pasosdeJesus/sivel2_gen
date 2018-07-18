@@ -53,7 +53,7 @@ module Sivel2Gen
 
           # En el orden de esquema en base 
           belongs_to :grupoper, foreign_key: "id_grupoper", validate: true, 
-            class_name: "Sivel2Gen::Grupoper"
+            class_name: "Sip::Grupoper"
           accepts_nested_attributes_for :grupoper, reject_if: :all_blank
           belongs_to :caso, foreign_key: "id_caso", validate: true, 
             class_name: "Sivel2Gen::Caso"

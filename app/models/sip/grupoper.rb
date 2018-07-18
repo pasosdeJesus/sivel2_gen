@@ -2,7 +2,7 @@
 
 require 'sivel2_gen/concerns/models/grupoper'
 
-module Sivel2Gen
+module Sip
   class Grupoper < ActiveRecord::Base
     include Sivel2Gen::Concerns::Models::Grupoper
   end

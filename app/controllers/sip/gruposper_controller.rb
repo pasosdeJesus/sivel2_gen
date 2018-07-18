@@ -1,13 +1,13 @@
 # encoding: UTF-8
 require 'date'
 
-module Sivel2Gen
+module Sip
   class GruposperController 
-    #load_and_authorize_resource class: Sivel2Gen::Grupoper
+    #load_and_authorize_resource class: Sip::Grupoper
     
     # Busca y lista grupo(s) de persona
     def remplazar
-      @grupoper = Sivel2Gen::Grupoper.find(params[:id_grupoper].to_i)
+      @grupoper = Sip::Grupoper.find(params[:id_grupoper].to_i)
       victimac = Sivel2Gen::Victimacolectiva.find(params[:id_victimacolectiva].to_i)
       grupoperant = victimac.grupoper
       @caso = victimac.caso

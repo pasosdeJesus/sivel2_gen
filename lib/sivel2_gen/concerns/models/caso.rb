@@ -88,7 +88,7 @@ module Sivel2Gen
           has_many :victimacolectiva, foreign_key: "id_caso", validate: true, 
             dependent: :destroy, class_name: 'Sivel2Gen::Victimacolectiva' 
           has_many :grupoper, :through => :victimacolectiva, 
-            class_name: 'Sivel2Gen::Grupoper'
+            class_name: 'Sip::Grupoper'
           accepts_nested_attributes_for :grupoper,  reject_if: :all_blank
           accepts_nested_attributes_for :victimacolectiva, allow_destroy: true, 
             reject_if: :all_blank
