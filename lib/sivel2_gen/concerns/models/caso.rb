@@ -63,8 +63,8 @@ module Sivel2Gen
             class_name: 'Sivel2Gen::Presponsable'
           accepts_nested_attributes_for :caso_presponsable, 
             allow_destroy: true, reject_if: :all_blank
-          has_many :caso_region, foreign_key: "id_caso", validate: true, 
-            dependent: :destroy, class_name: 'Sivel2Gen::CasoRegion'
+          has_many :caso_region, foreign_key: "id_caso", 
+            dependent: :delete_all, class_name: 'Sivel2Gen::CasoRegion'
           has_many :region, through: :caso_region, 
             class_name: 'Sivel2Gen::Region'
           has_many :caso_usuario, foreign_key: "id_caso", validate: true, 
