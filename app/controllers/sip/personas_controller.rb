@@ -1,11 +1,12 @@
 # encoding: UTF-8
 require 'date'
+require 'sip/concerns/controllers/personas_controller' 
 
-module Sivel2Gen
-  class PersonasController < Sip::PersonasController
+module Sip
+  class PersonasController < ApplicationController
+    include Sip::Concerns::Controllers::PersonasController
     load_and_authorize_resource class: Sip::Persona
-    
-    # Busca y lista persona(s)
+   
     def remplazar
       @persona = Sip::Persona.find(params[:id_persona].to_i)
       @victima = Sivel2Gen::Victima.find(params[:id_victima].to_i)
@@ -22,5 +23,6 @@ module Sivel2Gen
         format.html { render('/sip/personas/remplazar', layout: false) }
       end
     end
+
   end
 end

@@ -1,10 +1,8 @@
 <div class='campos_persona'>
-  <!-- %= f.input :id, readonly: true %-->
   <%= f.input :id, as: :hidden %>
   <% 
     ph = 'N'
     ac = {'data-autocompleta' => 'no' }
-    #debugger
      if (!f.object.nombres || f.object.nombres == 'N' || f.object.nombres == '')
        ph = 'Buscar'
        ac = { }

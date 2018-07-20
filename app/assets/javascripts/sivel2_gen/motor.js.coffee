@@ -161,18 +161,17 @@
 # Elije una persona en autocompletación
 @autocompleta_grupoper = (label, id, id_victimac, divcp, root) ->
   sip_arregla_puntomontaje(root)
-  cs = id.split(";")
-  id_grupoper = cs[0]
-  pl = []
-  ini = 0
-  for i in [0..cs.length] by 1
-     t = parseInt(cs[i])
-     pl[i] = label.substring(ini, ini + t)
-     ini = ini + t + 1
+  id_grupoper = id
+#  pl = []
+#  ini = 0
+#  for i in [0..cs.length] by 1
+#     t = parseInt(cs[i])
+#     pl[i] = label.substring(ini, ini + t)
+#     ini = ini + t + 1
   # pl[1] cnom
-  d = "id_victimac=" + id_victimac
+  d = "id_victimacolectiva=" + id_victimac
   d += "&id_grupoper=" + id_grupoper
-  a = root.puntomontaje + 'grupoper/remplazar'
+  a = root.puntomontaje + 'gruposper/remplazar'
   $.ajax(url: a, data: d, dataType: "html").fail( (jqXHR, texto) ->
     alert("Error con ajax " + texto)
   ).done( (e, r) ->
@@ -202,7 +201,7 @@
       minLength: 2,
       select: ( event, ui ) -> 
         if (ui.item) 
-          autocompleta_grupoper(ui.item.value, ui.item.id, idvictima, divcp, root)
+          autocompleta_grupoper(ui.item.value, ui.item.id, idvictimac, divcp, root)
           event.stopPropagation()
           event.preventDefault()
     })
@@ -385,7 +384,6 @@ enviaFormularioContar= (root) ->
 # nomactospe es nombre por dar a actos 
 #   (por ejemplo en sivel2_sjr es antecedentes/causas)
 @sivel2_gen_prepara_eventos_comunes = (root, nomactospe) ->
-  
   # root.putomontaje lo pudo poner sip_prepara_eventos_comunes
   if typeof root.puntomontaje == 'undefined'
     root.puntomontaje = '/'

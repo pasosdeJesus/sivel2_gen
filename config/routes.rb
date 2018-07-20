@@ -18,10 +18,7 @@ Sivel2Gen::Engine.routes.draw do
   get "/conteos/genvic" => 'conteos#genvic', as: :conteos_genvic
   get "/fichacasovertical" => 'hogar#fichacasovertical'
   get "/fuentesprensa/nuevo", 'fuentesprensa#nuevo'
-  get "/grupoper/remplazar" => 'grupoper#remplazar'
   get "/hogar" => 'hogar#index'
-  get "/personas" => 'personas#index'
-  get "/personas/remplazar" => 'personas#remplazar'
   get '/presponsables/nuevo' => 'presponsables#nuevo'
   get "/tablasbasicas" => 'hogar#tablasbasicas'
   get '/ubicaciones/nuevo' => 'ubicaciones#nuevo'

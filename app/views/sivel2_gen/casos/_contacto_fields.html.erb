@@ -1,5 +1,6 @@
 <%= f.simple_fields_for :persona do |p| %>
-  <%= render 'sip/personas/persona_fields', f: p, fvictima: f  %>
+  <%= render partial: 'sip/personas/persona_fields', 
+    locals: {f: p, fvictima: f}  %>
 <% end %>
 <%= f.association :profesion,
 	collection: Sivel2Gen::Profesion.habilitados,
