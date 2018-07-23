@@ -1,6 +1,7 @@
 <%= f.input :id, as: :hidden %>
 <%= f.simple_fields_for :grupoper do |g| %>
-  <%= render 'sip/gruposper/grupoper_campos', :f => g %>
+  <%= render partial: 'sip/gruposper/grupoper_campos', 
+    locals: {f: g, fvictimacolectiva: f} %>
 <% end %>
 
 <%= f.input :personasaprox %>

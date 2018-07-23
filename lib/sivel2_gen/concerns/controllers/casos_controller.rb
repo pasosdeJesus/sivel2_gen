@@ -318,7 +318,7 @@ module Sivel2Gen
 
           # PATCH/PUT /casos/1
           # PATCH/PUT /casos/1.json
-          def update
+          def update_gen
             respond_to do |format|
               if (!params[:caso][:caso_etiqueta_attributes].nil?)
                 params[:caso][:caso_etiqueta_attributes].each  do |k,v|
@@ -352,6 +352,10 @@ module Sivel2Gen
             Conscaso.refresca_conscaso
           end
 
+          def update
+            update_gen
+          end
+
           # Tuve que crear el siguiente para llamarlo desde
           # sivel2_sjr/concerns/controllers/casos_controllers pues no hay super 
           # en módulos y no se logró con prepend u otra forma
@@ -381,10 +385,8 @@ module Sivel2Gen
             @caso.current_usuario = current_usuario
           end
 
-          # Lista blanca de parametros
-          def caso_params
-            params.require(:caso).permit(
-              :q,
+          def lista_params
+            [ :q,
               :id, :titulo, :fecha, :hora, :duracion,  
               :grconfiabilidad, :gresclarecimiento, :grimpunidad, 
               :grinformacion, 
@@ -472,7 +474,12 @@ module Sivel2Gen
               :frontera_ids => [],
               :contexto_ids => [],
               :antecedente_ids => [],
-            )
+            ]
+          end
+
+          # Lista blanca de parametros
+          def caso_params
+            params.require(:caso).permit(lista_params)
           end
         end
 
