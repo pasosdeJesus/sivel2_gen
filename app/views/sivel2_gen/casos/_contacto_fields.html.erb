@@ -2,6 +2,9 @@
   <%= render partial: 'sip/personas/persona_fields', 
     locals: {f: p, fvictima: f}  %>
 <% end %>
+
+<%= render partial: 'contacto_complemento_1', locals: {f: f} %>
+
 <%= f.association :profesion,
 	collection: Sivel2Gen::Profesion.habilitados,
 	include_blank: false,
