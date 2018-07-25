@@ -10,16 +10,13 @@
   %>
   <%= f.input :nombres, placeholder: ph,
     value_method: lambda {|t| '' if t.nombres == 'N'},
-    :input_html => ac
-  %>
+    :input_html => ac %>
   <%= f.input :apellidos, placeholder: 'N',
-  	value_method: lambda {|t| '' if t.apellidos == 'N'}
-  %>
+  	value_method: lambda {|t| '' if t.apellidos == 'N'} %>
   <%= f.input :tdocumento_id,
     collection: Sip::Tdocumento.habilitados,
     label_method: :nombre,
-    value_method: :id 
-  %>
+    value_method: :id %>
   <%= f.input :numerodocumento %>
   <div class="input string">
     <label class="string control-label">Casos en los que aparece: </label>
@@ -42,8 +39,7 @@
     <div class="col-sm-4">
       <% @anios = *(1900..Date.today.year) %>
       <%= f.input :anionac, 
-        collection: @anios 
-      %>
+        collection: @anios %>
     </div>
     <div class="col-sm-4">
       <%= fvictima.input :edad, as: :integer %>
@@ -66,37 +62,32 @@
     ["NOVIEMBRE", 11], 
     ["DICIEMBRE", 12]] %>
   <%= f.input :mesnac, 
-    collection: @meses
-  %>
+    collection: @meses %>
   <% @dias = *(1..31) %>
   <%= f.input :dianac, collection: @dias %>
 
 
   <%= f.input :sexo, collection: [["SIN INFORMACIÓN", :S], 
     ["FEMENINO", :F], ["MASCULINO", :M]], 
-    include_blank: false 
-  %>
+    include_blank: false %>
   <%= f.association :pais,
     collection: Sip::Pais.habilitados,
     label_method: :nombre,
-    value_method: :id 
-  %>
+    value_method: :id %>
   <%= f.association :departamento,
     collection: (Sip::Departamento.habilitados.where(
       id_pais: f.object.id_pais)),
     label_method: :nombre,
-    value_method: :id 
-  %>
+    value_method: :id %>
   <%= f.association :municipio,
     collection: ( Sip::Municipio.habilitados.where(
         id_departamento: f.object.id_departamento)),
     label_method: :nombre,
-    value_method: :id 
-  %>
+    value_method: :id %>
   <%= f.association :clase,
     collection: (Sip::Clase.habilitados.where(
       id_municipio: f.object.id_municipio)),
     label_method: :nombre,
-    value_method: :id 
-  %>
+    value_method: :id %>
+
 </div>
