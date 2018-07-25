@@ -11,7 +11,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sip.git
-  revision: 26c96c331272794299f800a95e99e0466352418c
+  revision: 95b3211aaacddd43b24889f48d7043ea3b3b7540
   branch: sip_grupoper
   specs:
     sip (2.0.b5)
@@ -198,7 +198,7 @@ GEM
     mini_mime (1.0.0)
     mini_portile2 (2.3.0)
     minitest (5.11.3)
-    minitest-reporters (1.3.0)
+    minitest-reporters (1.3.1)
       ansi
       builder
       minitest (>= 5.0)
