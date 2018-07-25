@@ -703,6 +703,39 @@ ALTER SEQUENCE public.sip_actorsocial_id_seq OWNED BY public.sip_actorsocial.id;
 
 
 --
+-- Name: sip_actorsocial_persona; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.sip_actorsocial_persona (
+    id bigint NOT NULL,
+    persona_id integer NOT NULL,
+    actorsocial_id integer,
+    perfilactorsocial_id integer,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: sip_actorsocial_persona_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.sip_actorsocial_persona_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: sip_actorsocial_persona_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.sip_actorsocial_persona_id_seq OWNED BY public.sip_actorsocial_persona.id;
+
+
+--
 -- Name: sip_anexo; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -962,6 +995,40 @@ CREATE SEQUENCE public.sip_pais_id_seq
 --
 
 ALTER SEQUENCE public.sip_pais_id_seq OWNED BY public.sip_pais.id;
+
+
+--
+-- Name: sip_perfilactorsocial; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.sip_perfilactorsocial (
+    id bigint NOT NULL,
+    nombre character varying(500) NOT NULL,
+    observaciones character varying(5000),
+    fechacreacion date NOT NULL,
+    fechadeshabilitacion date,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: sip_perfilactorsocial_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.sip_perfilactorsocial_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: sip_perfilactorsocial_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.sip_perfilactorsocial_id_seq OWNED BY public.sip_perfilactorsocial.id;
 
 
 --
@@ -2441,6 +2508,13 @@ ALTER TABLE ONLY public.sip_actorsocial ALTER COLUMN id SET DEFAULT nextval('pub
 
 
 --
+-- Name: sip_actorsocial_persona id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.sip_actorsocial_persona ALTER COLUMN id SET DEFAULT nextval('public.sip_actorsocial_persona_id_seq'::regclass);
+
+
+--
 -- Name: sip_anexo id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -2459,6 +2533,13 @@ ALTER TABLE ONLY public.sip_grupo ALTER COLUMN id SET DEFAULT nextval('public.si
 --
 
 ALTER TABLE ONLY public.sip_pais ALTER COLUMN id SET DEFAULT nextval('public.sip_pais_id_seq'::regclass);
+
+
+--
+-- Name: sip_perfilactorsocial id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.sip_perfilactorsocial ALTER COLUMN id SET DEFAULT nextval('public.sip_perfilactorsocial_id_seq'::regclass);
 
 
 --
@@ -2818,6 +2899,14 @@ ALTER TABLE ONLY public.sivel2_gen_sectorsocial
 
 
 --
+-- Name: sip_actorsocial_persona sip_actorsocial_persona_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.sip_actorsocial_persona
+    ADD CONSTRAINT sip_actorsocial_persona_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: sip_actorsocial sip_actorsocial_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -2919,6 +3008,14 @@ ALTER TABLE ONLY public.sip_municipio
 
 ALTER TABLE ONLY public.sip_municipio
     ADD CONSTRAINT sip_municipio_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: sip_perfilactorsocial sip_perfilactorsocial_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.sip_perfilactorsocial
+    ADD CONSTRAINT sip_perfilactorsocial_pkey PRIMARY KEY (id);
 
 
 --
@@ -3646,6 +3743,14 @@ ALTER TABLE ONLY public.heb412_gen_doc
 
 
 --
+-- Name: sip_actorsocial_persona fk_rails_4672f6cbcd; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.sip_actorsocial_persona
+    ADD CONSTRAINT fk_rails_4672f6cbcd FOREIGN KEY (persona_id) REFERENCES public.sip_persona(id);
+
+
+--
 -- Name: sip_actorsocial fk_rails_5b21e3a2af; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -3675,6 +3780,14 @@ ALTER TABLE ONLY public.sip_grupo_usuario
 
 ALTER TABLE ONLY public.sip_actorsocial
     ADD CONSTRAINT fk_rails_7bc2a60574 FOREIGN KEY (pais_id) REFERENCES public.sip_pais(id);
+
+
+--
+-- Name: sip_actorsocial_persona fk_rails_7c335482f6; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.sip_actorsocial_persona
+    ADD CONSTRAINT fk_rails_7c335482f6 FOREIGN KEY (actorsocial_id) REFERENCES public.sip_actorsocial(id);
 
 
 --
@@ -4273,6 +4386,8 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20180718094829'),
 ('20180719015902'),
 ('20180720140443'),
-('20180720171842');
+('20180720171842'),
+('20180724135332'),
+('20180724202353');
 
 
