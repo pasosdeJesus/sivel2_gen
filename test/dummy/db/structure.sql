@@ -2635,14 +2635,6 @@ ALTER TABLE ONLY public.ar_internal_metadata
 
 
 --
--- Name: sivel2_gen_caso_contexto caso_contexto_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.sivel2_gen_caso_contexto
-    ADD CONSTRAINT caso_contexto_pkey PRIMARY KEY (id_caso, id_contexto);
-
-
---
 -- Name: sivel2_gen_caso_etiqueta caso_etiqueta_id_key; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -4388,6 +4380,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20180720140443'),
 ('20180720171842'),
 ('20180724135332'),
-('20180724202353');
+('20180724202353'),
+('20180726213123');
 
 

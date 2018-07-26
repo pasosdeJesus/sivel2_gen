@@ -9,7 +9,7 @@ module Sivel2Gen
         include Sip::Basica
         included do
           has_many :caso_contexto, foreign_key: "id_contexto", 
-            validate: true, class_name: 'Sivel2Gen::CasoContexto'
+            class_name: 'Sivel2Gen::CasoContexto'
           has_many :caso, through: :caso_contexto, 
             class_name: 'Sivel2Gen::Contexto'
         end
