@@ -2611,14 +2611,6 @@ ALTER TABLE ONLY public.sivel2_gen_anexo_caso
 
 
 --
--- Name: sivel2_gen_antecedente_caso antecedente_caso_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.sivel2_gen_antecedente_caso
-    ADD CONSTRAINT antecedente_caso_pkey PRIMARY KEY (id_antecedente, id_caso);
-
-
---
 -- Name: sivel2_gen_antecedente antecedente_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -4381,6 +4373,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20180720171842'),
 ('20180724135332'),
 ('20180724202353'),
-('20180726213123');
+('20180726213123'),
+('20180726234755');
 
 

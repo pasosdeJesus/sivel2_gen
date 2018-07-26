@@ -26,8 +26,8 @@ module Sivel2Gen
             class_name: 'Sip::Anexo'
           accepts_nested_attributes_for :sip_anexo,  reject_if: :all_blank
 
-          has_many :antecedente_caso, foreign_key: "id_caso", validate: true, 
-            dependent: :destroy, class_name: 'Sivel2Gen::AntecedenteCaso'
+          has_many :antecedente_caso, foreign_key: "id_caso", 
+            dependent: :delete_all, class_name: 'Sivel2Gen::AntecedenteCaso'
           has_many :antecedente, through: :antecedente_caso, 
             class_name: 'Sivel2Gen::Antecedente'
           has_many :caso_contexto, foreign_key: "id_caso", 
