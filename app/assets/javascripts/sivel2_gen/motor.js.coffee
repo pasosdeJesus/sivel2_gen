@@ -175,7 +175,12 @@
   $.ajax(url: a, data: d, dataType: "html").fail( (jqXHR, texto) ->
     alert("Error con ajax " + texto)
   ).done( (e, r) ->
-    divcp.html(e)
+    remp = e
+    # Remplazamos la parte minima necesaria
+    if $(e).find('.campos_grupoper').length == 1
+      remp = $(e).find('.campos_grupoper').html()
+
+    divcp.html(remp)
     return
   )
   return
