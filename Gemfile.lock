@@ -11,7 +11,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sip.git
-  revision: 781a5bc52e5ee66d4de67d2a6bde6488b9fb4281
+  revision: 6b2199170d1ba11da018e39050a6dd2df3520dae
   branch: sip_grupoper
   specs:
     sip (2.0.b5)
@@ -209,7 +209,7 @@ GEM
     nokogiri (1.8.4)
       mini_portile2 (~> 2.3.0)
     orm_adapter (0.5.0)
-    paperclip (6.0.0)
+    paperclip (6.1.0)
       activemodel (>= 4.2.0)
       activesupport (>= 4.2.0)
       mime-types
