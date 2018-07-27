@@ -12,10 +12,10 @@ module Sivel2Gen
           has_many :antecedente_caso, foreign_key: "id_antecedente", 
             class_name: 'Sivel2Gen::AntecedenteCaso'
           has_many :antecedente_victimacolectiva, 
-            foreign_key: "id_antecedente", validate: true, 
+            foreign_key: "id_antecedente", 
             class_name: 'Sivel2Gen::AntecedenteVictimacolectiva'
           has_many :antecedente_victima, foreign_key: "id_antecedente", 
-            validate: true, class_name: 'Sivel2Gen::AntecedenteVictima'
+            class_name: 'Sivel2Gen::AntecedenteVictima'
           has_many :antecedente_combatiente, 
             foreign_key: "id_antecedente", validate: true, 
             class_name: 'Sivel2Gen::AntecedenteCombatiente'
