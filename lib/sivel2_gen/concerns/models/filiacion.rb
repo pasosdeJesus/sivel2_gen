@@ -11,7 +11,6 @@ module Sivel2Gen
                 self.table_name = "sivel2_gen_filiacion"
                 has_many :filiacion_victimacolectiva, 
                         foreign_key: "id_filiacion", 
-                        validate: true, 
                         class_name: 'Sivel2Gen::FiliacionVictimacolectiva'
                 has_many :victima, foreign_key: "id_filiacion", 
                         class_name: 'Sivel2Gen::Victima'

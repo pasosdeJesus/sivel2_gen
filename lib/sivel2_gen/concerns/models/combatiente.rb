@@ -11,7 +11,7 @@ module Sivel2Gen
           has_many :antecedente_combatiente, 
             foreign_key: :id_combatiente, 
             class_name: "Sivel2Gen::AntecedenteCombatiente",
-            validate: true, dependent: :destroy
+            dependent: :delete_all
           has_many :antecedente, through: :antecedente_combatiente, 
             class_name: 'Sivel2Gen::Antecedente'
 

@@ -11,43 +11,43 @@ module Sivel2Gen
           has_many :antecedente_victimacolectiva, 
             foreign_key: :victimacolectiva_id, 
             class_name: "Sivel2Gen::AntecedenteVictimacolectiva",
-            validate: true, dependent: :destroy
+            validate: true, dependent: :delete_all
           has_many :antecedente, through: :antecedente_victimacolectiva, 
             class_name: 'Sivel2Gen::Antecedente'
           has_many :filiacion_victimacolectiva, 
             foreign_key: :victimacolectiva_id, 
             class_name: "Sivel2Gen::FiliacionVictimacolectiva",
-            validate: true, dependent: :destroy
+            dependent: :delete_all
           has_many :filiacion, through: :filiacion_victimacolectiva, 
             class_name: 'Sivel2Gen::Filiacion'
           has_many :organizacion_victimacolectiva, 
             foreign_key: :victimacolectiva_id, 
             class_name: "Sivel2Gen::OrganizacionVictimacolectiva",
-            validate: true, dependent: :destroy
+            dependent: :delete_all
           has_many :organizacion, through: :organizacion_victimacolectiva, 
             class_name: 'Sivel2Gen::Organizacion'
           has_many :profesion_victimacolectiva, 
             foreign_key: :victimacolectiva_id, 
             class_name: "Sivel2Gen::ProfesionVictimacolectiva",
-            validate: true, dependent: :destroy
+            dependent: :delete_all
           has_many :profesion, through: :profesion_victimacolectiva, 
             class_name: 'Sivel2Gen::Profesion'
           has_many :rangoedad_victimacolectiva, 
             foreign_key: :victimacolectiva_id, 
             class_name: "Sivel2Gen::RangoedadVictimacolectiva",
-            validate: true, dependent: :destroy
+            dependent: :delete_all
           has_many :rangoedad, through: :rangoedad_victimacolectiva, 
             class_name: 'Sivel2Gen::Rangoedad'
           has_many :sectorsocial_victimacolectiva, 
             foreign_key: :victimacolectiva_id, 
             class_name: "Sivel2Gen::SectorsocialVictimacolectiva",
-            validate: true, dependent: :destroy
+            validate: true, dependent: :delete_all
           has_many :sectorsocial, through: :sectorsocial_victimacolectiva, 
             class_name: 'Sivel2Gen::Sectorsocial'
           has_many :victimacolectiva_vinculoestado, 
             foreign_key: :victimacolectiva_id, 
             class_name: "Sivel2Gen::VictimacolectivaVinculoestado",
-            validate: true, dependent: :destroy
+            validate: true, dependent: :delete_all
           has_many :vinculoestado, through: :victimacolectiva_vinculoestado, 
             class_name: 'Sivel2Gen::Vinculoestado'
 
