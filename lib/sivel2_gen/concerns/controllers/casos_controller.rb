@@ -82,7 +82,7 @@ module Sivel2Gen
           # GET /casos.json
           def index
             begin
-              conscasocount = Conscaso.count
+              @conscasocount = Conscaso.count
             rescue
               Conscaso.refresca_conscaso
             end
@@ -386,11 +386,108 @@ module Sivel2Gen
           end
 
           def lista_params
-            [ :q,
-              :id, :titulo, :fecha, :hora, :duracion,  
-              :grconfiabilidad, :gresclarecimiento, :grimpunidad, 
+            [ 
+              :bienes, 
+              :duracion,  
+              :fecha, 
+              :grconfiabilidad, 
+              :gresclarecimiento, 
+              :grimpunidad, 
               :grinformacion, 
-              :bienes, :id_intervalo, :memo, 
+              :hora, 
+              :id, 
+              :id_intervalo, 
+              :memo, 
+              :q,
+              :titulo, 
+              :acto_attributes => [
+                :id, :id_presponsable, :id_categoria, 
+                :id_persona, :_destroy
+              ],
+              :anexo_caso_attributes => [
+                :id, 
+                :id_caso,
+                :fecha,
+                :_destroy,
+                :sip_anexo_attributes => [
+                  :id, :descripcion, :adjunto, :_destroy
+                ]
+              ],
+              :antecedente_ids => [],
+              :caso_etiqueta_attributes => [
+                :fecha, 
+                :id, 
+                :id_etiqueta, 
+                :id_usuario, 
+                :observaciones, 
+                :_destroy
+              ],
+              :caso_fotra_attributes => [
+                :anexo_caso_id, 
+                :anotacion, 
+                :fecha, 
+                :id, 
+                :nombre, 
+                :tfuente, 
+                :ubicacionfisica, 
+                :_destroy
+              ],
+              :caso_fuenteprensa_attributes => [
+                :anexo_caso_id, 
+                :clasificacion, 
+                :fecha, 
+                :fuenteprensa_id, 
+                :id, 
+                :ubicacion, 
+                :ubicacionfisica, 
+                :_destroy
+              ],
+              :caso_presponsable_attributes => [
+                :batallon,
+                :bloque, 
+                :brigada, 
+                :division, 
+                :frente, 
+                :id, 
+                :id_presponsable, 
+                :otro, 
+                :tipo, 
+                :_destroy,
+                :categoria_ids => []
+              ],
+              :combatiente_attributes => [
+                :alias, 
+                :edad, 
+                :id, 
+                :id_filiacion, 
+                :id_organizacion, 
+                :id_profesion, 
+                :id_rangoedad, 
+                :id_resagresion, 
+                :id_sectorsocial, 
+                :id_vinculoestado, 
+                :nombre, 
+                :organizacionarmada,
+                :sexo, 
+                :_destroy, 
+                :antecedente_ids => []
+              ],
+              :contexto_ids => [],
+              :frontera_ids => [],
+              :region_ids => [],
+              :ubicacion_attributes => [
+                :id, 
+                :id_clase, 
+                :id_departamento, 
+                :id_municipio, 
+		:id_pais, 
+                :id_tsitio, 
+                :latitud, 
+                :longitud, 
+                :lugar, 
+                :sitio, 
+                :_destroy
+              ],
               :victima_attributes => [
                 :anotaciones,
                 :id, 
@@ -406,74 +503,41 @@ module Sivel2Gen
                 :organizacionarmada, 
                 :orientacionsexual, 
                 :_destroy, 
+                :antecedente_ids => [],
                 :persona_attributes => [
-                  :id, :nombres, :apellidos, :anionac, :mesnac, :dianac, 
-                  :id_pais, :id_departamento, :id_municipio, :id_clase, 
-                  :nacionalde, :numerodocumento, :sexo, :tdocumento_id
+                  :anionac, 
+                  :apellidos, 
+                  :dianac, 
+                  :id, 
+                  :id_pais, 
+                  :id_departamento, 
+                  :id_municipio, 
+                  :id_clase, 
+                  :mesnac, 
+                  :nombres, 
+                  :nacionalde, 
+                  :numerodocumento, 
+                  :sexo, 
+                  :tdocumento_id
                 ],
-                :antecedente_ids => []
               ], 
               :victimacolectiva_attributes => [
-                :id, :personasaprox, :organizacionarmada,
+                :id, 
+                :organizacionarmada,
+                :personasaprox, 
                 :_destroy, 
-                :grupoper_attributes => [
-                  :id, :nombre, :anotaciones
-                ],
-                :rangoedad_ids => [],
                 :filiacion_ids => [],
+                :grupoper_attributes => [
+                  :anotaciones,
+                  :id, 
+                  :nombre, 
+                ],
                 :organizacion_ids => [],
-                :sectorsocial_ids => [],
                 :profesion_ids => [],
+                :rangoedad_ids => [],
+              :sectorsocial_ids => [],
                 :vinculoestado_ids => []
               ],
-              :combatiente_attributes => [
-                :id, :nombre, :alias, :edad, :sexo, :id_rangoedad, 
-                :id_sectorsocial, :id_vinculoestado, :id_filiacion, 
-                :id_profesion, :id_organizacion, :organizacionarmada,
-                :id_resagresion, :_destroy, 
-                :antecedente_ids => []
-              ],
-            :ubicacion_attributes => [
-              :id, :id_pais, :id_departamento, :id_municipio, :id_clase, 
-              :lugar, :sitio, :latitud, :longitud, :id_tsitio, 
-              :_destroy
-            ],
-            :caso_fotra_attributes => [
-                :id, :fecha, :nombre, :anotacion, 
-                :tfuente, :ubicacionfisica, :anexo_caso_id, 
-                :_destroy
-            ],
-            :caso_fuenteprensa_attributes => [
-                :id, :fecha, :fuenteprensa_id, :ubicacion, 
-                :clasificacion, :ubicacionfisica, :anexo_caso_id, 
-                :_destroy
-            ],
-            :caso_presponsable_attributes => [
-                :id, :id_presponsable, :tipo, 
-                :bloque, :frente, :brigada, :batallon, :division, :otro, 
-                :_destroy,
-                :categoria_ids => []
-            ],
-              :acto_attributes => [
-                :id, :id_presponsable, :id_categoria, 
-                :id_persona, :_destroy
-            ],
-              :anexo_caso_attributes => [
-                :id, 
-                :id_caso,
-                :fecha,
-                :_destroy,
-                :sip_anexo_attributes => [
-                  :id, :descripcion, :adjunto, :_destroy
-            ]
-            ],
-              :caso_etiqueta_attributes => [
-                :id, :id_usuario, :fecha, :id_etiqueta, :observaciones, :_destroy
-            ],
-              :region_ids => [],
-              :frontera_ids => [],
-              :contexto_ids => [],
-              :antecedente_ids => [],
             ]
           end
 
