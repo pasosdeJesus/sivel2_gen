@@ -490,6 +490,7 @@ module Sivel2Gen
               ],
               :victima_attributes => [
                 :anotaciones,
+                :hijos,
                 :id, 
                 :id_etnia,  
                 :id_filiacion,
