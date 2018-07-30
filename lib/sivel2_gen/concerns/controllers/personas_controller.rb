@@ -23,16 +23,17 @@ module Sivel2Gen
           def remplazar
             @persona = Sip::Persona.find(params[:id_persona].to_i)
             @victima = Sivel2Gen::Victima.find(params[:id_victima].to_i)
-            personaant = @victima.persona
+            @personaant = @victima.persona
             @caso = @victima.caso
             @caso.current_usuario = current_usuario
             @victima.persona = @persona
             remplazar_antes_salvar_v
             @victima.save!
-            if (personaant.nombres == 'N' && personaant.apellidos == 'N') ||
-              (personaant.nombres == '' && personaant.apellidos == '')
+            if (@personaant.nombres == 'N' && 
+                @personaant.apellidos == 'N') ||
+              (@personaant.nombres == '' && @personaant.apellidos == '')
               remplazar_antes_destruir_p()
-              personaant.destroy
+              @personaant.destroy
             end
             respond_to do |format|
               format.html { render('/sip/personas/remplazar', layout: false) }
