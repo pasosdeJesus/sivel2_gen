@@ -127,6 +127,7 @@
     alert("Error con ajax " + texto)
   ).done( (e, r) ->
     divcp.html(e)
+    $(document).trigger("sip:autocompleto_persona", [id_victima, id_persona])
     return
   )
   return
@@ -181,6 +182,7 @@
       remp = $(e).find('.campos_grupoper').html()
 
     divcp.html(remp)
+    $(document).trigger("sip:autocompleto_grupoper", [id_victimac, id_grupoper])
     return
   )
   return
