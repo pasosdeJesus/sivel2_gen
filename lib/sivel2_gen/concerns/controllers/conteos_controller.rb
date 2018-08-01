@@ -116,7 +116,8 @@ module Sivel2Gen
             @opsegun =  ["", "ETNIA", "FILIACIÓN", 
                          "MES CASO", "ORGANIZACIÓN", "PROFESIÓN", 
                          "RANGO DE EDAD", "SECTOR SOCIAL", "SEXO", 
-                         "VÍNCULO CON EL ESTADO" 
+                         Sivel2Gen::Victima.human_attribute_name(:vinculoestado).upcase
+#                         "VÍNCULO CON EL ESTADO" 
             ]
             @titulo_personas = 'Demografía de Víctimas'
             @titulo_personas_fecha = 'Fecha del Caso'
@@ -205,9 +206,9 @@ module Sivel2Gen
                 que1, que3, tablas3, where3
               )
 
-            when 'VÍNCULO CON EL ESTADO'
+            when Sivel2Gen::Victima.human_attribute_name(:vinculoestado).upcase
               que1, que3, tablas3, where3 = personas_segun_tipico(
-                'vinculoestado', 'Vínculo con el Estado', 
+                'vinculoestado', Sivel2Gen::Victima.human_attribute_name(:vinculoestado),
                 que1, que3, tablas3, where3
               )
 
