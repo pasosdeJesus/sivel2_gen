@@ -1,0 +1,23 @@
+<%- model_class = Sivel2Gen::Caso %>
+<%= simple_form_for @caso, 
+  url: sivel2_gen.casos_path(@caso).sub(/\./,"/"),
+  :html => { :class => 'form-horizontal' } do |c| %>
+  <%= c.simple_fields_for :victimacolectiva, @victimacolectiva do |vc| %> 
+    <%= vc.simple_fields_for :grupoper do |g| %>
+
+      <% s = render partial: 'sip/gruposper/grupoper_campos', 
+        locals: { f: g, fvictimacolectiva: vc }  %>
+      <% # se genera con victimacolectiva_attributes_0 pero lo
+      # generado por cocoon afortunadamente usa el id de la víctima
+      # asi que la cambiamos %>
+      <% s.gsub!(
+        'victimacolectiva_attributes_0', 
+        'victimacolectiva_attributes_' + @victimacolectiva.id.to_s ) %>
+      <% s.gsub!(
+        'victimacolectiva_attributes][0]', 
+        'victimacolectiva_attributes][' + @victimacolectiva.id.to_s +
+        ']') %>
+      <%= s.html_safe %>
+    <% end %>
+  <% end %>
+<% end %>

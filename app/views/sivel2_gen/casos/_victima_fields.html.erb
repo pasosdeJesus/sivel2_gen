@@ -4,7 +4,7 @@
            <% f.object.persona = Sip::Persona.new %>
     <% end %>
       
-    <%= render partial: 'contacto_fields', locals: {f: f} %>
+    <%= render partial: 'contacto_campos', locals: {f: f} %>
 
     <%= link_to_remove_association(
       "Eliminar Víctima", f, 

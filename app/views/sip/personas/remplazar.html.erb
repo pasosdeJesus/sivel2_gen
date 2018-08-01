@@ -1,9 +1,22 @@
-<%- model_class = Sip::Persona %>
-<%= simple_fields_for @victima, 
-  :html => { :class => 'form-horizontal' } do |fvictima| %>
-  <%= simple_fields_for @persona, 
-    :html => { :class => 'form-horizontal' } do |f| %>
-    <%= render(partial: 'sip/personas/persona_fields', 
-               locals: { f: f, fvictima: fvictima }) %>
+<%- model_class = Sivel2Gen::Caso %>
+<%= simple_form_for @caso, 
+  url: sivel2_gen.casos_path(@caso).sub(/\./,"/"),
+  :html => { :class => 'form-horizontal' } do |c| %>
+  <%= c.simple_fields_for :victima, @victima do |v| %> 
+    <%= v.simple_fields_for :persona do |p| %>
+
+      <% s = render partial: 'sip/personas/persona_campos', 
+        locals: { f: p, fvictima: v }  %>
+      <% # se genera con victima_attributes_0 pero lo
+         # generado por cocoon usa el id de la víctima
+         # asi que la cambiamos %>
+      <% s.gsub!(
+        'victima_attributes_0', 
+        'victima_attributes_' + @victima.id.to_s ) %>
+      <% s.gsub!(
+        'victima_attributes][0]', 
+        'victima_attributes][' + @victima.id.to_s + ']') %>
+      <%= s.html_safe %>
+    <% end %>
   <% end %>
 <% end %>
