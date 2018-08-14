@@ -12,7 +12,7 @@ module Sivel2Gen
           attr_accessor :edadactual
 
           has_many :antecedente_victima, foreign_key: :id_victima, 
-             dependent: :delete_all,
+            dependent: :delete_all,
             class_name: 'Sivel2Gen::AntecedenteVictima'
           has_many :antecedente, through: :antecedente_victima, 
             class_name: 'Sivel2Gen::Antecedente'
