@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/pasosdeJesus/heb412_gen.git
-  revision: e083a3f1c294e1d18be8c3ac4ba3aa88377aec88
+  revision: d931824e10891d20236c18152e594f8a523413c5
   specs:
     heb412_gen (1.0.a1)
       chosen-rails
@@ -11,7 +11,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sip.git
-  revision: 4fa4b7891d9c7e004aef80c9aa8811b097aaee63
+  revision: 209b5a1f9bfac21ec2e4c59cfabeb9afd39a011e
   branch: sip_grupoper
   specs:
     sip (2.0.b5)
