@@ -1,9 +1,9 @@
 source 'https://rubygems.org'
 
 # Rails (internacionalización)
-#gem "rails", '~> 5.2.0'
+gem "rails", '~> 5.2.1'
 # Resuelve problema con minitest y rails 5.2.0
-gem "rails", '~> 5.2.0', git: 'https://github.com/rails/rails.git', ref: '4887f97bd8a8859294ad02ccea20d83a94ec0812'
+#gem "rails", '~> 5.2.0', git: 'https://github.com/rails/rails.git', ref: '4887f97bd8a8859294ad02ccea20d83a94ec0812'
 
 
 gem "rails-i18n"
@@ -74,7 +74,7 @@ gem "paperclip"#, "~> 4.1"
 gem "tzinfo"
 
 # Motor estilo Pasos de Jesús
-gem 'sip', git: 'https://github.com/pasosdeJesus/sip.git', branch: 'sip_grupoper'
+gem 'sip', git: 'https://github.com/pasosdeJesus/sip.git'
 #gem 'sip', path: '../sip'
 
 # Motor de nube y plantillas
