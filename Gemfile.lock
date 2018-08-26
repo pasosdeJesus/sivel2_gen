@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/pasosdeJesus/heb412_gen.git
-  revision: d931824e10891d20236c18152e594f8a523413c5
+  revision: a340a706049b6d29ec1eca8170565e75a62aceb9
   specs:
     heb412_gen (1.0.a1)
       chosen-rails
@@ -11,7 +11,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sip.git
-  revision: b8a7ccf10785e69bd53090aa2afa783b71bac074
+  revision: e1f7a0b76990d89f05be940f13b735e11dabaa80
   specs:
     sip (2.0.b5)
       bootstrap-datepicker-rails
@@ -189,7 +189,7 @@ GEM
       mime-types
       mimemagic (~> 0.3.0)
       terrapin (~> 0.6.0)
-    pg (1.0.0)
+    pg (1.1.0)
     pry (0.11.3)
       coderay (~> 1.1.0)
       method_source (~> 0.9.0)
