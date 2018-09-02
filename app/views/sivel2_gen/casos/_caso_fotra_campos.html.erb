@@ -4,26 +4,39 @@
         f.object = Sivel2Gen::CasoFotra.new if !f.object
     %>
 
-    <%= f.input :fecha, 
-      :input_html => { "data-behaviour" => "datepicker" },
-      :as => :string, :label => "Fecha" 
-    %>
+    <div class="row">
+      <div class="col-md-6">
+        <%= f.input :fecha, 
+          :input_html => { "data-behaviour" => "datepicker" },
+          :as => :string, :label => "Fecha" %>
+      </div>
+      <div class="col-md-6">
+        <%= f.input :nombre %>
+      </div>
+    </div>
 
-    <%= f.input :nombre %>
-
-    <%= f.input :anotacion %>
-
-    <%= f.input(:tfuente, collection: [ 'Directa', 'Indirecta' ], 
-                label: "Tipo de Fuente",
-                include_blank: false ) %>
+    <div class="row">
+      <div class="col-md-6">
+        <%= f.input :anotacion %>
+      </div>
+      <div class="col-md-6">
+        <%= f.input(:tfuente, collection: [ 'Directa', 'Indirecta' ], 
+                    label: "Tipo de Fuente",
+                    include_blank: false ) %>
+      </div>
+    </div>
   
-    <%= f.input :ubicacionfisica %>
-
-    <%= f.association :anexo_caso,
-      collection: Sivel2Gen::AnexoCaso.where(id_caso: f.object.id_caso),
-      label_method: lambda { |t| t.sip_anexo.adjunto_file_name },
-      value_method: :id
-    %>
+    <div class="row">
+      <div class="col-md-6">
+        <%= f.input :ubicacionfisica %>
+      </div>
+      <div class="col-md-6">
+        <%= f.association :anexo_caso,
+          collection: Sivel2Gen::AnexoCaso.where(id_caso: f.object.id_caso),
+          label_method: lambda { |t| t.sip_anexo.adjunto_file_name },
+          value_method: :id %>
+      </div>
+    </div>
 
     <%= f.input :id, as: :hidden %>
 

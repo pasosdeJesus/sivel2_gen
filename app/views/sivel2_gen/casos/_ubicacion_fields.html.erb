@@ -1,45 +1,70 @@
 <div class='control-group nested-fields'>
   <div class="controls">
-    <%= f.association :pais,
-      collection: Sip::Pais.where(fechadeshabilitacion: nil).order(:nombre),
-      label_method: :nombre,
-      value_method: :id,
-      input_html: {
-        value: f.object.id_pais ? f.object.id_pais : 170
-      }
-    %>
-    <%= f.association :departamento,
-			collection: (Sip::Departamento.where(
-				id_pais: f.object.id_pais, 
-				fechadeshabilitacion: nil).order(:nombre)),
-      label_method: :nombre,
-      value_method: :id 
-    %>
-    <%= f.association :municipio,
-			collection: (Sip::Municipio.where(
-				id_departamento: f.object.id_departamento,
-				fechadeshabilitacion: nil).order(:nombre)),
-      label_method: :nombre,
-      value_method: :id 
-    %>
-    <%= f.association :clase,
-			collection: (Sip::Clase.where(
-				id_municipio: f.object.id_municipio,
-				fechadeshabilitacion: nil).order(:nombre)),
-      label_method: :nombre,
-      value_method: :id 
-    %>
-	  <%= f.input :lugar %>
-		<%= f.input :sitio %>
-		<%= f.input :latitud %>
-		<%= f.input :longitud %>
-		<%= f.association :tsitio,
-			collection: Sip::Tsitio.where(
-				fechadeshabilitacion: nil).order(:nombre),
-			label_method: :nombre, 
-			value_method: :id,
-			include_blank: false
-		%>
+
+    <div class="row">
+      <div class="col-md-6">
+        <%= f.association :pais,
+          collection: Sip::Pais.where(fechadeshabilitacion: nil).order(:nombre),
+          label_method: :nombre,
+          value_method: :id,
+          input_html: {
+            value: f.object.id_pais ? f.object.id_pais : 170
+          } %>
+      </div>
+      <div class="col-md-6">
+        <%= f.association :departamento,
+          collection: (Sip::Departamento.where(
+            id_pais: f.object.id_pais, 
+            fechadeshabilitacion: nil).order(:nombre)),
+          label_method: :nombre,
+          value_method: :id %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <%= f.association :municipio,
+          collection: (Sip::Municipio.where(
+            id_departamento: f.object.id_departamento,
+            fechadeshabilitacion: nil).order(:nombre)),
+          label_method: :nombre,
+          value_method: :id %>
+      </div>
+      <div class="col-md-6">
+        <%= f.association :clase,
+          collection: (Sip::Clase.where(
+            id_municipio: f.object.id_municipio,
+            fechadeshabilitacion: nil).order(:nombre)),
+          label_method: :nombre,
+          value_method: :id %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <%= f.input :lugar %>
+      </div>
+      <div class="col-md-6">
+        <%= f.input :sitio %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-4">
+        <%= f.association :tsitio,
+          collection: Sip::Tsitio.where(
+            fechadeshabilitacion: nil).order(:nombre),
+          label_method: :nombre, 
+          value_method: :id,
+          include_blank: false %>
+      </div>
+      <div class="col-md-4">
+        <%= f.input :latitud %>
+      </div>
+      <div class="col-md-4">
+        <%= f.input :longitud %>
+      </div>
+    </div>
 		<%= f.input :id, as: :hidden %>
 		<%= link_to_remove_association "Eliminar " + 
 				Sip::Ubicacion.human_attribute_name("Ubicacion"), f, 

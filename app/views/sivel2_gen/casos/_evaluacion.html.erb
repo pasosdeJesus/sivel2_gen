@@ -1,17 +1,25 @@
-<%= f.input :grconfiabilidad,
-  collection: [:Alta, :Media, :Baja],
-  include_blank: true
-%>
+<div class="row">
+  <div class="col-md-6">
+    <%= f.input :grconfiabilidad,
+      collection: [:Alta, :Media, :Baja],
+      include_blank: true %>
+  </div>
+  <div class="col-md-6">
+    <%= f.input :gresclarecimiento,
+      collection: [:Alto, :Medio, :Bajo],
+      include_blank: true %>
+  </div>
+</div>
 
-<%= f.input :gresclarecimiento,
-  collection: [:Alto, :Medio, :Bajo],
-  include_blank: true
-%>
-<%= f.input :grimpunidad,
-  collection: [:Nula, :Parcial, :Total],
-  include_blank: true
-%>
-<%= f.input :grinformacion,
-  collection: [:Parcial, :Total],
-  include_blank: true
-%>
+<div class="row">
+  <div class="col-md-6">
+    <%= f.input :grimpunidad,
+      collection: [:Nula, :Parcial, :Total],
+      include_blank: true %>
+  </div>
+  <div class="col-md-6">
+    <%= f.input :grinformacion,
+      collection: [:Parcial, :Total],
+      include_blank: true %>
+  </div>
+</div>

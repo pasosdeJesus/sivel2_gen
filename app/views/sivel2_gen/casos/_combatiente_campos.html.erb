@@ -3,80 +3,101 @@
     
     <%= f.input :id, as: :hidden %>
 
-    <%= f.input :nombre %>
+    <div class="row">
+      <div class="col-md-6">
+        <%= f.input :nombre %>
+      </div>
+      <div class="col-md-6">
+        <%= f.input :alias %>
+      </div>
+    </div>
 
-    <%= f.input :alias %>
+    <div class="row">
+      <div class="col-md-4">
+        <%= f.input :edad %>
+      </div>
+      <div class="col-md-4">
+        <%= f.input :sexo, 
+          collection: [["SIN INFORMACIÓN", :S], 
+                       ["FEMENINO", :F], ["MASCULINO", :M]], 
+          include_blank: false %>
+      </div>
+      <div class="col-md-4">
+        <%= f.association :rangoedad,
+          collection: Sivel2Gen::Rangoedad.habilitados(:rango),
+          include_blank: false,
+          label_method: :rango, 
+          value_method: :id %>
+       </div>
+    </div>
 
-    <%= f.input :edad %>
+    <div class="row">
+      <div class="col-md-6">
+        <%= f.association :sectorsocial,
+          collection: Sivel2Gen::Sectorsocial.habilitados,
+          include_blank: false,
+          label_method: :nombre, 
+          value_method: :id %>
+      </div>
+      <div class="col-md-6">
+        <%= f.association :vinculoestado,
+          collection: Sivel2Gen::Vinculoestado.habilitados,
+          include_blank: false,
+          label_method: :nombre, 
+          value_method: :id %>
+        </div>
+    </div>
 
-    <%= f.input :sexo, collection: [["SIN INFORMACIÓN", :S], 
-      ["FEMENINO", :F], ["MASCULINO", :M]], 
-      include_blank: false 
-    %>
+    <div class="row">
+      <div class="col-md-6">
+        <%= f.association :filiacion,
+          collection: Sivel2Gen::Filiacion.habilitados,
+          include_blank: false,
+          label_method: :nombre, 
+          value_method: :id %>
+      </div>
+      <div class="col-md-6">
+        <%= f.association :profesion,
+          collection: Sivel2Gen::Profesion.habilitados,
+          include_blank: false,
+          label_method: :nombre, 
+          value_method: :id %>
+         </div>
+    </div>
 
-    <%= f.association :rangoedad,
-      collection: Sivel2Gen::Rangoedad.habilitados(:rango),
-      include_blank: false,
-      label_method: :rango, 
-      value_method: :id 
-    %>
-  
-    <%= f.association :sectorsocial,
-      collection: Sivel2Gen::Sectorsocial.habilitados,
-      include_blank: false,
-      label_method: :nombre, 
-      value_method: :id
-    %>
-  
-    <%= f.association :vinculoestado,
-      collection: Sivel2Gen::Vinculoestado.habilitados,
-      include_blank: false,
-      label_method: :nombre, 
-      value_method: :id
-    %>
-  
-    <%= f.association :filiacion,
-      collection: Sivel2Gen::Filiacion.habilitados,
-      include_blank: false,
-      label_method: :nombre, 
-      value_method: :id 
-    %>
+    <div class="row">
+      <div class="col-md-6">
+        <%= f.association :organizacion,
+          collection: Sivel2Gen::Organizacion.habilitados,
+          include_blank: false,
+          label_method: :nombre, 
+          value_method: :id %>
+      </div>
+      <div class="col-md-6">
+        <%= f.association :presponsable,
+          collection: Sivel2Gen::Presponsable.habilitados,
+          include_blank: false,
+          label_method: :nombre, 
+          value_method: :id %>
+        </div>
+    </div>
 
-    <%= f.association :profesion,
-      collection: Sivel2Gen::Profesion.habilitados,
-      include_blank: false,
-      label_method: :nombre, 
-      value_method: :id 
-    %>
-    
-    <%= f.association :organizacion,
-      collection: Sivel2Gen::Organizacion.habilitados,
-      include_blank: false,
-      label_method: :nombre, 
-      value_method: :id 
-    %>
-
-    <%= f.association :presponsable,
-      collection: Sivel2Gen::Presponsable.habilitados,
-      include_blank: false,
-      label_method: :nombre, 
-      value_method: :id 
-    %>
-  
-    <%= f.association :resagresion,
-      collection: Sivel2Gen::Resagresion.habilitados,
-      include_blank: false,
-      label_method: :nombre, 
-      value_method: :id 
-    %>
-
-    <%= f.association :antecedente,
-      collection: Sivel2Gen::Antecedente.habilitados,
-      include_blank: false,
-      label_method: :nombre, 
-      value_method: :id 
-    %>
-
+    <div class="row">
+      <div class="col-md-6">
+        <%= f.association :resagresion,
+          collection: Sivel2Gen::Resagresion.habilitados,
+          include_blank: false,
+          label_method: :nombre, 
+          value_method: :id %>
+      </div>
+      <div class="col-md-6">
+        <%= f.association :antecedente,
+        collection: Sivel2Gen::Antecedente.habilitados,
+        include_blank: false,
+        label_method: :nombre, 
+        value_method: :id %>
+       </div>
+    </div>
 
     <%= link_to_remove_association "Eliminar Combatiente", f, 
       {:class => 'btn-danger', :'data-existing' => 'true'} 

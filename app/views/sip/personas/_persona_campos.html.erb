@@ -7,17 +7,31 @@
        ph = 'Buscar'
        ac = { }
      end
-  %>
-  <%= f.input :nombres, placeholder: ph,
-    value_method: lambda {|t| '' if t.nombres == 'N'},
-    :input_html => ac %>
-  <%= f.input :apellidos, placeholder: 'N',
-  	value_method: lambda {|t| '' if t.apellidos == 'N'} %>
-  <%= f.input :tdocumento_id,
-    collection: Sip::Tdocumento.habilitados,
-    label_method: :nombre,
-    value_method: :id %>
-  <%= f.input :numerodocumento %>
+   %>
+  <div class="row">
+    <div class="col-md-6">
+      <%= f.input :nombres, placeholder: ph,
+        value_method: lambda {|t| '' if t.nombres == 'N'},
+        :input_html => ac %>
+    </div>
+    <div class="col-md-6">
+      <%= f.input :apellidos, placeholder: 'N',
+        value_method: lambda {|t| '' if t.apellidos == 'N'} %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <%= f.input :tdocumento_id,
+        collection: Sip::Tdocumento.habilitados,
+        label_method: :nombre,
+        value_method: :id %>
+    </div>
+    <div class="col-md-6">
+      <%= f.input :numerodocumento %>
+    </div>
+  </div>
+
   <div class="input string">
     <label class="string control-label">Casos en los que aparece: </label>
     <% 
@@ -48,6 +62,7 @@
       <%= fvictima.input :edadactual, as: :integer %>
     </div>
   </div>
+
   <% @meses = [
     ["ENERO", 1], 
     ["FEBRERO", 2], 
@@ -61,33 +76,53 @@
     ["OCTUBRE", 10], 
     ["NOVIEMBRE", 11], 
     ["DICIEMBRE", 12]] %>
-  <%= f.input :mesnac, 
-    collection: @meses %>
   <% @dias = *(1..31) %>
-  <%= f.input :dianac, collection: @dias %>
 
+  <div class="row">
+    <div class="col-md-4">
+      <%= f.input :mesnac, collection: @meses %>
+    </div>
+    <div class="col-md-4">
+      <%= f.input :dianac, collection: @dias %>
+    </div>
+    <div class="col-md-4">
+      <%= f.input :sexo, 
+        collection: [["SIN INFORMACIÓN", :S], 
+                     ["FEMENINO", :F], ["MASCULINO", :M]], 
+        include_blank: false %>
+    </div>
+  </div>
 
-  <%= f.input :sexo, collection: [["SIN INFORMACIÓN", :S], 
-    ["FEMENINO", :F], ["MASCULINO", :M]], 
-    include_blank: false %>
-  <%= f.association :pais,
-    collection: Sip::Pais.habilitados,
-    label_method: :nombre,
-    value_method: :id %>
-  <%= f.association :departamento,
-    collection: (Sip::Departamento.habilitados.where(
-      id_pais: f.object.id_pais)),
-    label_method: :nombre,
-    value_method: :id %>
-  <%= f.association :municipio,
-    collection: ( Sip::Municipio.habilitados.where(
-        id_departamento: f.object.id_departamento)),
-    label_method: :nombre,
-    value_method: :id %>
-  <%= f.association :clase,
-    collection: (Sip::Clase.habilitados.where(
-      id_municipio: f.object.id_municipio)),
-    label_method: :nombre,
-    value_method: :id %>
+  <div class="row">
+    <div class="col-md-6">
+      <%= f.association :pais,
+        collection: Sip::Pais.habilitados,
+        label_method: :nombre,
+        value_method: :id %>
+    </div>
+    <div class="col-md-6">
+      <%= f.association :departamento,
+        collection: (Sip::Departamento.habilitados.where(
+          id_pais: f.object.id_pais)),
+          label_method: :nombre,
+          value_method: :id %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <%= f.association :municipio, 
+        collection: (Sip::Municipio.habilitados.
+                     where(id_departamento: f.object.id_departamento)), 
+        label_method: :nombre, value_method: :id %>
+    </div>
+    <div class="col-md-6">
+      <%= f.association :clase,
+        collection: (Sip::Clase.habilitados.where(
+          id_municipio: f.object.id_municipio)),
+          label_method: :nombre,
+          value_method: :id %>
+    </div>
+  </div>
 
 </div>

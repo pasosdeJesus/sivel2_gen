@@ -1,5 +1,5 @@
 <%= f.simple_fields_for :caso_presponsable do |caso_presponsable| %>
-  <%= render 'sivel2_gen/casos/caso_presponsable_fields', 
+  <%= render 'sivel2_gen/casos/caso_presponsable_campos', 
     f:  caso_presponsable 
   %>
 <% end %>
@@ -8,7 +8,7 @@
     Sivel2Gen::Presponsable.human_attribute_name(:presponsable), f, 
     :caso_presponsable, 
     {
-      partial: 'sivel2_gen/casos/caso_presponsable_fields',
+      partial: 'sivel2_gen/casos/caso_presponsable_campos',
       class: 'btn-primary', 
       "data-ajax" => File.join(Rails.configuration.relative_url_root, 
                              "presponsables/nuevo"),

@@ -19,7 +19,8 @@
     <% 
       r = ""
       sep = ""
-      v = Sivel2Gen::Victimacolectiva.where(id_grupoper: f.object.id).order(:id_grupoper)
+      v = Sivel2Gen::Victimacolectiva.where(id_grupoper: f.object.id).
+        order(:id_grupoper)
       v.each do |vic|
         if @caso.id != vic.caso.id
       %>

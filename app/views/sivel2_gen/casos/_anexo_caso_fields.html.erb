@@ -2,14 +2,39 @@
   <div class="controls">
     <%  f.object.sip_anexo = Sip::Anexo.new if !f.object.sip_anexo %>
 
-    <%= f.input :fecha, 
-        :input_html => { "data-behaviour" => "datepicker" },
-        :as => :string, :label => "Fecha" 
-    %>
     <%= f.simple_fields_for :sip_anexo do |a| %>
-      <%= render 'sip/anexos/anexo_campos', a: a %>
-    <% end %> 
+      
+      <div class="row">
+        <div class="col-md-6">
+          <%= f.input :fecha, 
+            :input_html => { "data-behaviour" => "datepicker" },
+            :as => :string, :label => "Fecha" %>
+        </div>
 
+        <div class="col-md-6">
+          <% if !a.object || !a.object.adjunto_file_name || !a.object.id %>
+            <%= a.input :adjunto, as: :file, label: 'Archivo' %>
+          <% else %>
+            <div class="sip_anexo_adjunto">
+              <label for="sip_anexo_attributes_<%=a.object.id%>_adjunto">
+                Archivo
+              </label>
+              <a id="sip_anexo_attributes_<%=a.object.id%>_adjunto" 
+                 href="<%= sip.descarga_anexo_path(a.object.id) %>" 
+                 style="text-decoration:none" 
+                 data-turbolinks='false'>
+                 <%= a.object.adjunto_file_name %>
+              </a>
+            </div>
+          <% end %>
+        </div>
+
+      </div>
+    
+      <%= a.input :descripcion %>
+
+      <%= a.input :id, as: :hidden %>
+    <% end %> <!-- f.simple_fields_for :sip_anexo -->
     <%= link_to_remove_association "Eliminar Anexo", f, 
       :class => 'btn-danger' 
     %> 

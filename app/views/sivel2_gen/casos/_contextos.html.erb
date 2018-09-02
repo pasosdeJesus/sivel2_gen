@@ -1,11 +1,17 @@
-<%= f.association :contexto, 
-  collection: Sivel2Gen::Contexto.habilitados,
-  label_method: :nombre, 
-  value_method: :id 
-%>
-<%= f.association :antecedente, 
-  collection: Sivel2Gen::Antecedente.habilitados,
-  label_method: :nombre, 
-  value_method: :id 
-%>
+
+<div class="row">
+  <div class="col-md-6">
+    <%= f.association :contexto, 
+      collection: Sivel2Gen::Contexto.habilitados,
+      label_method: :nombre, 
+      value_method: :id %>
+  </div>
+  <div class="col-md-6">
+    <%= f.association :antecedente, 
+      collection: Sivel2Gen::Antecedente.habilitados,
+      label_method: :nombre, 
+      value_method: :id %>
+  </div>
+</div>
+
 <%= f.input :bienes%>
