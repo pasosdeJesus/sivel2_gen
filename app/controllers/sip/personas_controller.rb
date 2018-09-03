@@ -1,10 +1,10 @@
 # encoding: UTF-8
 require 'date'
-require 'sip/concerns/controllers/personas_controller' 
+require 'svel2_gen/concerns/controllers/personas_controller' 
 
 module Sip
   class PersonasController < ApplicationController
-    include Sip::Concerns::Controllers::PersonasController
+    include Sivel2Gen::Concerns::Controllers::PersonasController
     load_and_authorize_resource class: Sip::Persona
    
     def remplazar
