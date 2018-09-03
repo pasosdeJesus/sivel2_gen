@@ -24,6 +24,7 @@ es:
     attributes:
       "sip/ubicacion":
         tsitio: Tipo de sitio
+        clase: Centro poblado
       "sip/persona":
         anionac: Año de nacimiento
         clase: Centro poblado de nacimiento
@@ -56,15 +57,17 @@ es:
         observaciones: Observaciones
         created_at: Creado en
       "sivel2_gen/caso":
+        bienes: Bienes afectados
         casoid: Código
         created_at: F. Creación
         duracion: Duración
         fecha: Fecha del hecho
+        fecha_localizada: Fecha del hecho
         grconfiabilidad: Gr. Confiabilidad Fuente
         gresclarecimiento: Gr. Esclarecimiento
         grimpunidad: Gr. Impunidad
         grinformacion: Gr. Información
-        id: Código
+        id: Caso No.
         memo: Descripción
         presponsables: P. Responsables
         tipificacion: Tipificacion

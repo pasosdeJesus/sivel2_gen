@@ -7,6 +7,9 @@ module Sivel2Gen
         extend ActiveSupport::Concern
 
         included do
+          include Sip::Localizacion
+          include Sip::FormatoFechaHelper
+
           @current_usuario = nil
           attr_accessor :current_usuario
 
@@ -101,6 +104,8 @@ module Sivel2Gen
 
           belongs_to :intervalo, foreign_key: "id_intervalo", 
             validate: true, class_name: 'Sivel2Gen::Intervalo'
+
+          campofecha_localizado :fecha
 
           validates_presence_of :fecha
           validates :titulo, length: { maximum: 50 }

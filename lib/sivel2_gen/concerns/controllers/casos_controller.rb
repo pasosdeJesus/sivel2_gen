@@ -390,6 +390,7 @@ module Sivel2Gen
               :bienes, 
               :duracion,  
               :fecha, 
+              :fecha_localizada, 
               :grconfiabilidad, 
               :gresclarecimiento, 
               :grimpunidad, 
@@ -408,6 +409,7 @@ module Sivel2Gen
                 :id, 
                 :id_caso,
                 :fecha,
+                :fecha_localizada, 
                 :_destroy,
                 :sip_anexo_attributes => [
                   :id, :descripcion, :adjunto, :_destroy
@@ -416,6 +418,7 @@ module Sivel2Gen
               :antecedente_ids => [],
               :caso_etiqueta_attributes => [
                 :fecha, 
+                :fecha_localizada, 
                 :id, 
                 :id_etiqueta, 
                 :id_usuario, 
@@ -426,6 +429,7 @@ module Sivel2Gen
                 :anexo_caso_id, 
                 :anotacion, 
                 :fecha, 
+                :fecha_localizada, 
                 :id, 
                 :nombre, 
                 :tfuente, 
@@ -436,6 +440,7 @@ module Sivel2Gen
                 :anexo_caso_id, 
                 :clasificacion, 
                 :fecha, 
+                :fecha_localizada, 
                 :fuenteprensa_id, 
                 :id, 
                 :ubicacion, 

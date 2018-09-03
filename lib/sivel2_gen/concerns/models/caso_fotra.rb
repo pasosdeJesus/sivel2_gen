@@ -7,11 +7,17 @@ module Sivel2Gen
         extend ActiveSupport::Concern
 
         included do
+          include Sip::Localizacion
+          include Sip::FormatoFechaHelper
+
           belongs_to :caso, class_name: "Sivel2Gen::Caso", 
             foreign_key: "id_caso", validate: true
           belongs_to :anexo_caso, class_name: "Sivel2Gen::AnexoCaso", 
             foreign_key: "anexo_caso_id"
-            
+          
+
+          campofecha_localizado :fecha
+
           validates :fecha, presence: true
           validates :caso, presence: true
           validates :nombre, presence: true
