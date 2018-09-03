@@ -239,6 +239,7 @@ module Sivel2Gen
             @caso.fecha = DateTime.now.strftime('%Y-%m-%d')
             @caso.memo = ''
             @caso.save!
+            @formulario_sin_titulo = true
             cu = CasoUsuario.new
             cu.id_usuario = current_usuario.id
             cu.id_caso = @caso.id
