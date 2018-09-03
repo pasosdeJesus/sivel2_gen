@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/pasosdeJesus/heb412_gen.git
-  revision: 65846d02d5be0704015fffd062cf39db4fd2164c
+  revision: ed68c963fdbce0c49963bbf4d3f5babac118a650
   branch: vista_listado
   specs:
     heb412_gen (1.0.a1)
@@ -12,7 +12,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sip.git
-  revision: 7788d19c50337604c5f23c838947ef5bcb67c84c
+  revision: 3c93615802fdaf5152728fa4916ab4e7763d7902
   specs:
     sip (2.0.b5)
       bootstrap-datepicker-rails
@@ -301,7 +301,7 @@ GEM
       execjs (>= 0.3.0, < 3)
     warden (1.2.7)
       rack (>= 1.0)
-    web-console (3.6.2)
+    web-console (3.7.0)
       actionview (>= 5.0)
       activemodel (>= 5.0)
       bindex (>= 0.4.0)
