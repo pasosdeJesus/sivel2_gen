@@ -12,7 +12,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sip.git
-  revision: 3c93615802fdaf5152728fa4916ab4e7763d7902
+  revision: 3697228c69b6447b01e9bc35e564984a284872bb
   specs:
     sip (2.0.b5)
       bootstrap-datepicker-rails
@@ -173,7 +173,7 @@ GEM
     mini_mime (1.0.1)
     mini_portile2 (2.3.0)
     minitest (5.11.3)
-    minitest-reporters (1.3.3)
+    minitest-reporters (1.3.4)
       ansi
       builder
       minitest (>= 5.0)
