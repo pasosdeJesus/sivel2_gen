@@ -1,0 +1,16 @@
+<div class="row">
+  <div class="col-md-6">
+    <%= f.association :region, 
+      collection: Sivel2Gen::Region.habilitados,
+      label_method: :nombre, 
+      input_html: { class: 'chosen-select' },
+      value_method: :id %>
+  </div>
+  <div class="col-md-6">
+    <%= f.association :frontera, 
+      collection: Sivel2Gen::Frontera.habilitados,
+      label_method: :nombre, 
+      input_html: { class: 'chosen-select' },
+      value_method: :id %>
+  </div>
+</div>
