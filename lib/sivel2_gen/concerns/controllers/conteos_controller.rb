@@ -113,7 +113,7 @@ module Sivel2Gen
           # @titulo_personas_fecha y otras nuevas relacionads con filtros
           # (prefijo p)
           def personas_filtros_especializados
-            @opsegun =  ["", "ETNIA", "FILIACIÓN", 
+            @opsegun =  ["", "AÑO DE NACIMIENTO", "ETNIA", "FILIACIÓN", 
                          "MES CASO", "ORGANIZACIÓN", "PROFESIÓN", 
                          "RANGO DE EDAD", "SECTOR SOCIAL", "SEXO", 
                          Sivel2Gen::Victima.human_attribute_name(:vinculoestado).upcase
@@ -164,6 +164,13 @@ module Sivel2Gen
             when ''
               que1 = agrega_tabla(que1, 'cast(\'total\' as text) as total')
               que3 << ["", ""]
+
+            when 'AÑO DE NACIMIENTO'
+              que1 = agrega_tabla(que1, 'persona.anionac AS anionac')
+              tablas1 = agrega_tabla(tablas1, 'sip_persona AS persona')
+              where1 = consulta_and_sinap(
+                where1, "persona.id", "victima.id_persona")
+              que3 << ["anionac", "Año de Nacimiento"]
 
             when 'ETNIA'
               que1, que3, tablas3, where3 = personas_segun_tipico(
