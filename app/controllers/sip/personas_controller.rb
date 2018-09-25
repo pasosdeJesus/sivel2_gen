@@ -1,6 +1,6 @@
 # encoding: UTF-8
 require 'date'
-require 'svel2_gen/concerns/controllers/personas_controller' 
+require 'sivel2_gen/concerns/controllers/personas_controller' 
 
 module Sip
   class PersonasController < ApplicationController
