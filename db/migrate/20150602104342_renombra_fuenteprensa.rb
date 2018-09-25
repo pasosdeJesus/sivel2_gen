@@ -4,7 +4,7 @@ class RenombraFuenteprensa < ActiveRecord::Migration[4.2]
     #  DROP SEQUENCE sip_fuenteprensa_id_seq;
     #SQL
     execute <<-SQL
-      DROP TABLE sip_fuenteprensa;
+      DROP TABLE IF EXISTS sip_fuenteprensa CASCADE;
     SQL
     execute <<-SQL
       ALTER SEQUENCE ffrecuente_seq RENAME TO sip_fuenteprensa_id_seq; 
