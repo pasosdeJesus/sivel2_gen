@@ -74,7 +74,7 @@ gem "paperclip"#, "~> 4.1"
 gem "tzinfo"
 
 # Motor estilo Pasos de Jesús
-gem 'sip', git: 'https://github.com/pasosdeJesus/sip.git'
+gem 'sip', git: 'https://github.com/pasosdeJesus/sip.git', branch: :persona_sipmodelo
 #gem 'sip', path: '../sip'
 
 # Motor de nube y plantillas
