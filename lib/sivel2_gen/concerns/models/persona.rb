@@ -7,9 +7,9 @@ module Sivel2Gen
     module Models
       module Persona
         extend ActiveSupport::Concern
-        include Sip::Concerns::Models::Persona
 
         included do
+          include Sip::Concerns::Models::Persona
 
           has_many :acto, foreign_key: "id_persona", validate: true,
             class_name: "Sivel2Gen::Acto"
@@ -18,6 +18,7 @@ module Sivel2Gen
           has_many :victima, foreign_key: "id_persona", validate: true,
             class_name: "Sivel2Gen::Victima"
           has_many :casos, :through => :victimas
+
         end
 
       end
