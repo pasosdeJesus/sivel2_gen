@@ -6,6 +6,9 @@ module Sivel2Gen
       module Victima
         extend ActiveSupport::Concern
 
+        include Sip::Modelo 
+        include Sip::Localizacion
+
         included do
 
           attr_accessor :edad
@@ -44,6 +47,38 @@ module Sivel2Gen
 
           validates :caso, presence: true
           validates :persona, presence: true
+
+          def sivel2_gen_victima_presenta(atr)
+            presenta_gen(atr)
+          end
+
+          def presenta(atr)
+            case atr.to_s
+            when 'fecha_caso_localizada'
+              self.caso ? self.caso.fecha_localizada : ''
+            when 'presponsables_caso'
+              r = ''
+              if self.caso && self.caso.presponsable
+                r = self.caso.presponsable.inject("") { |memo, pr|
+                  (memo == '' ? '' : '; ') + pr.id
+                }
+              end
+              r
+            when 'ubicacion_caso'
+              r = ''
+              if self.caso && self.caso.ubicacion 
+                r += self.caso.ubicacion.departamento ?
+                  self.caso.ubicacion.departamento.nombre : ''
+                r += ' - '
+                r += self.caso.ubicacion.municipio ?
+                  self.caso.ubicacion.municipio.nombre : ''
+              end
+              r
+            else
+              sivel2_gen_victima_presenta(atr)
+            end
+          end
+
         end
       end
     end

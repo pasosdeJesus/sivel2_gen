@@ -19,6 +19,15 @@ module Sivel2Gen
             class_name: "Sivel2Gen::Victima"
           has_many :casos, :through => :victimas
 
+          def sivel2_gen_presenta(atr)
+            sip_presenta(atr)
+          end
+
+          def presenta(atr)
+            sivel2_gen_presenta(atr)
+          end
+
+
         end
 
       end

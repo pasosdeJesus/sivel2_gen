@@ -11,7 +11,6 @@ module Sivel2Gen
 
         included do
           include Sip::Concerns::Controllers::PersonasController
-          load_and_authorize_resource class: Sip::Persona
 
           def remplazar_antes_destruir_p
           end 

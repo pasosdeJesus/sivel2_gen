@@ -24,6 +24,7 @@ Sivel2Gen::Engine.routes.draw do
   get '/ubicaciones/nuevo' => 'ubicaciones#nuevo'
   get "/validarcasos" => 'validarcasos#validar', as: :validarcasos
   post "/validarcasos" => 'validarcasos#validar', as: :envia_validarcasos
+  get '/victimas' => 'victimas#index', as: :victimas
   get '/victimas/nuevo' => 'victimas#nuevo'
   get '/victimascolectivas/nuevo' => 'victimascolectivas#nuevo'
 
