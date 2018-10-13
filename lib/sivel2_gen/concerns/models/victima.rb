@@ -52,28 +52,34 @@ module Sivel2Gen
             presenta_gen(atr)
           end
 
+          def presponsables_caso
+            r = ''
+            if self.caso && self.caso.presponsable
+              r = self.caso.presponsable.inject("") { |memo, pr|
+                (memo == '' ? '' : '; ') + pr.id.to_s
+              }
+            end
+            r
+          end
+
+          def ubicacion_caso
+            r = ''
+            if self.caso && self.caso.ubicacion && self.caso.ubicacion.count>0
+              r += self.caso.ubicacion[0].departamento ?
+                self.caso.ubicacion[0].departamento.nombre : ''
+              r += ' - '
+              r += self.caso.ubicacion[0].municipio ?
+                self.caso.ubicacion[0].municipio.nombre : ''
+            end
+            r
+          end
+
           def presenta(atr)
             case atr.to_s
             when 'fecha_caso_localizada'
               self.caso ? self.caso.fecha_localizada : ''
-            when 'presponsables_caso'
-              r = ''
-              if self.caso && self.caso.presponsable
-                r = self.caso.presponsable.inject("") { |memo, pr|
-                  (memo == '' ? '' : '; ') + pr.id
-                }
-              end
-              r
-            when 'ubicacion_caso'
-              r = ''
-              if self.caso && self.caso.ubicacion 
-                r += self.caso.ubicacion.departamento ?
-                  self.caso.ubicacion.departamento.nombre : ''
-                r += ' - '
-                r += self.caso.ubicacion.municipio ?
-                  self.caso.ubicacion.municipio.nombre : ''
-              end
-              r
+            when 'nombre'
+              self.persona ? self.persona.presenta_nombre : ''
             else
               sivel2_gen_victima_presenta(atr)
             end

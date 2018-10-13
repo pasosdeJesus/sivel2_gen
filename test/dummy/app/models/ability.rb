@@ -22,23 +22,34 @@ class Ability  < Sivel2Gen::Ability
     if usuario && usuario.rol then
       case usuario.rol 
       when Ability::ROLANALI
+        can :manage, Sip::Persona
+
+        can :read, Heb412Gen::Doc
+        can :read, Heb412Gen::Plantilladoc
+        can :read, Heb412Gen::Plantillahcm
+        can :read, Heb412Gen::Plantillahcr
+
+        can :manage, Sivel2Gen::Acto
+        can :manage, Sivel2Gen::Actocolectivo
         can :read, Sivel2Gen::Caso
         can :new, Sivel2Gen::Caso
         can :nuevo, Sivel2Gen::Caso
         can [:update, :create, :destroy], Sivel2Gen::Caso
-        can :manage, Sip::Persona
-        can :manage, Sivel2Gen::Acto
-        can :manage, Sivel2Gen::Actocolectivo
-        can :read, Heb412Gen::Doc
-        can :read, Heb412Gen::Plantillahcm
+        can :read, Sivel2Gen::Victima
       when Ability::ROLADMIN
-        can :manage, Sivel2Gen::Caso
+        can :manage, Heb412Gen::Doc
+        can :manage, Heb412Gen::Plantilladoc
+        can :manage, Heb412Gen::Plantillahcm
+        can :manage, Heb412Gen::Plantillahcr
+        
         can :manage, Sip::Persona
-        can :manage, Usuario
+
         can :manage, Sivel2Gen::Acto
         can :manage, Sivel2Gen::Actocolectivo
-        can :manage, Heb412Gen::Doc
-        can :manage, Heb412Gen::Plantillahcm
+        can :manage, Sivel2Gen::Caso
+        can :read, Sivel2Gen::Victima
+
+        can :manage, Usuario
         can :manage, :tablasbasicas
         tablasbasicas.each do |t|
           c = Ability.tb_clase(t)
