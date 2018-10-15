@@ -26,7 +26,8 @@ module Sivel2Gen
               :id_caso,
               :fecha_caso_localizada,
               :ubicacion_caso,
-              :nombre
+              :nombre,
+              :pconsolidado,
             ] +
             [ :presponsables_caso ]
           end
@@ -35,6 +36,12 @@ module Sivel2Gen
             if c == nil
               c = Sivel2Gen::Victima.all
             end
+            @pconsolidado = Sivel2Gen::Pconsolidado.
+              where(fechadeshabilitacion: nil).order(:peso, :rotulo).map { |r|
+              [r.id, r.rotulo, Sivel2Gen::Categoria.
+               where(id_pconsolidado: r.id).map(&:id)]
+            }
+            @casos = Sivel2Gen::Caso.all
             super(c)
           end
 
