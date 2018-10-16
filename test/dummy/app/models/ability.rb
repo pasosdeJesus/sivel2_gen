@@ -17,18 +17,19 @@ class Ability  < Sivel2Gen::Ability
     can :contar, Sivel2Gen::Caso
     can :buscar, Sivel2Gen::Caso
     can :lista, Sivel2Gen::Caso
+
     can :nuevo, Sivel2Gen::Presponsable
     can :nuevo, Sivel2Gen::Victima
     can :nuevo, Sivel2Gen::Victimacolectiva
-    can :nuevo, Sivel2Gen::Combatiente
     if usuario && usuario.rol then
       case usuario.rol 
       when Ability::ROLANALI
-
         can :read, Heb412Gen::Doc
         can :read, Heb412Gen::Plantilladoc
         can :read, Heb412Gen::Plantillahcm
         can :read, Heb412Gen::Plantillahcr
+        
+        can :manage, Sip::Persona
 
         can :manage, Sip::Actorsocial
         can :manage, Sip::Persona
