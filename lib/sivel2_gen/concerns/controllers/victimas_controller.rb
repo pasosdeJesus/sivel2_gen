@@ -37,7 +37,7 @@ module Sivel2Gen
               @c = Sivel2Gen::Victima.all
             end
             @pconsolidado = Sivel2Gen::Pconsolidado.
-              where(fechadeshabilitacion: nil).order(:peso, :rotulo).map { |r|
+              where(fechadeshabilitacion: nil).order(:peso).map { |r|
               [r.id, r.rotulo, Sivel2Gen::Categoria.
                where(id_pconsolidado: r.id).map(&:id)]
             }

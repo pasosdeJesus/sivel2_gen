@@ -1,11 +1,8 @@
 <% atributos_index.each do |atr| %>
   <% if atr.to_s == 'pconsolidado' %>
-    <% #byebug %>
     <% @pconsolidado.each do |p| %>
       <% id = p[0]; rotulo = p[1]; cat = p[2] %>
-      <th> 
-        <%= rotulo %>
-      </th>
+      <th><%= rotulo %></th>
     <% end %>
   <% else %>
     <th><%= Sivel2Gen::Victima.human_attribute_name(atr) %></th>
