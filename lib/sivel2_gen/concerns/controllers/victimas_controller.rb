@@ -22,26 +22,25 @@ module Sivel2Gen
           end
 
           def atributos_index
-            [
+            r = [
               :id_caso,
               :fecha_caso_localizada,
-              :ubicacion_caso,
+              :ubicacion_casos,
               :nombre,
               :pconsolidado,
-            ] +
-            [ :presponsables_caso ]
+              :presponsables_caso
+            ]
           end
 
           def index(c = nil)
             if c == nil
-              c = Sivel2Gen::Victima.all
+              @c = Sivel2Gen::Victima.all
             end
             @pconsolidado = Sivel2Gen::Pconsolidado.
               where(fechadeshabilitacion: nil).order(:peso, :rotulo).map { |r|
               [r.id, r.rotulo, Sivel2Gen::Categoria.
                where(id_pconsolidado: r.id).map(&:id)]
             }
-            @casos = Sivel2Gen::Caso.all
             super(c)
           end
 

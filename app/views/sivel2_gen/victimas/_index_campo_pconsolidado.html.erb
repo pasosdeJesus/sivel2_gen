@@ -1,0 +1,9 @@
+<% @pconsolidado.each do |p| %>
+  <% id = p[0]; rotulo = p[1]; cat = p[2] %>
+  <td> 
+    <% if registro.caso.acto.where(id_categoria: cat, 
+                                    id_persona: registro.id).count > 0 %>
+      X
+    <% end %>
+  </td>
+<% end %>
