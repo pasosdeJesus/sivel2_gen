@@ -14,8 +14,20 @@ module Sivel2Gen
       end
 
       def atributos_index
-        ["id", "rotulo", "tipoviolencia", "clasificacion", "peso", 
-         "observaciones", "fechacreacion", "fechadeshabilitacion"]
+        ["id", 
+         "rotulo", 
+         "tipoviolencia", 
+         "clasificacion", 
+         "peso", 
+         "observaciones", 
+         "categoria_ids",
+         "fechacreacion", 
+         "fechadeshabilitacion"
+        ]
+      end
+
+      def index_reordenar(c)
+        c.reorder(:id)
       end
 
       def pconsolidado_params

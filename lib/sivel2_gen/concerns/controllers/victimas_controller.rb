@@ -32,9 +32,13 @@ module Sivel2Gen
             ]
           end
 
+          def index_reordenar(c)
+            c.reorder(:id)
+          end
+
           def index(c = nil)
             if c == nil
-              @c = Sivel2Gen::Victima.all
+              c = Sivel2Gen::Victima.all
             end
             @pconsolidado = Sivel2Gen::Pconsolidado.
               where(fechadeshabilitacion: nil).order(:id).map { |r|

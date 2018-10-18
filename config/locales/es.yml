@@ -140,8 +140,9 @@ es:
         Pais: Pais
         Paises: Paises
       "sivel2_gen/pconsolidado":
-        Pconsolidado: Parámetro reporte consolidado
-        Pconsolidados: Parámetros reporte consolidado
+        Pconsolidado: Rótulo para el reporte de víctimas
+        Pconsolidados: Rótulos para el reporte de víctimas
+        categoria_ids: Categorias
       "sivel2_gen/presponsable":
         Presponsable: Presunto responsable
         presponsable: presunto responsable

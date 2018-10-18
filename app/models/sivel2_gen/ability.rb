@@ -26,7 +26,7 @@ module Sivel2Gen
       ['Sivel2Gen', 'intervalo'],
       ['Sivel2Gen', 'maternidad'], 
       ['Sivel2Gen', 'organizacion'],
-      #['Sivel2Gen', 'pconsolidado'], 
+      ['Sivel2Gen', 'pconsolidado'], 
       ['Sivel2Gen', 'presponsable'], 
       ['Sivel2Gen', 'profesion'], 
       ['Sivel2Gen', 'rangoedad'],
