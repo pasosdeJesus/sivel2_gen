@@ -116,7 +116,6 @@ module Sivel2Gen
           validates :grimpunidad, length: { maximum: 8 }
           validates :grinformacion, length: { maximum: 8 }
 
-          validate :rol_usuario
 
         end
 
@@ -125,13 +124,6 @@ module Sivel2Gen
 
         end
 
-
-        def rol_usuario
-          if (current_usuario && current_usuario.rol != Ability::ROLADMIN &&
-              current_usuario.rol != Ability::ROLANALI) 
-            errors.add(:id, "Rol de usuario no apropiado para editar")
-          end
-        end
 
       end
     end
