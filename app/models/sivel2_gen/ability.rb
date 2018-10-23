@@ -99,7 +99,20 @@ module Sivel2Gen
           Sivel2Gen::Consexpcaso.column_names : [],
         controlador: 'Sivel2Gen::CasosController',
         ruta: '/casos'
+      },
+      'Victima' => { 
+        campos: ActiveRecord::Base.connection.data_source_exists?(
+          'sivel2_gen_victima') ?
+          (Sivel2Gen::Victima.column_names + [
+            :fecha_caso_localizada,
+            :nombre,
+            :presponsables_caso,
+            :ubicacion_caso,
+          ]) : [],
+        controlador: 'Sivel2Gen::CasosController',
+        ruta: '/casos'
       }
+
     }
 
     def campos_plantillas 

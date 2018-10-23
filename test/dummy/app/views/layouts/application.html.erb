@@ -24,9 +24,17 @@
     <% if !current_usuario.nil? %>
       <%= drop_down "Documentos" do %>
         <%= menu_item "Nube", heb412_gen.sisini_path %>
-        <% if can? :manage, Heb412Gen::Doc %>
-          <%= menu_item "Definir plantilla hoja de calculo m.", 
-            heb412_gen.new_plantillahcm_path %>
+        <% if can? :manage, ::Heb412Gen::Plantillahcm %>
+          <%= menu_item "Plantillas para listado en hojas de calculo",
+            heb412_gen.plantillashcm_path %>
+        <% end %>
+        <% if can? :manage, ::Heb412Gen::Plantillahcr %>
+          <%= menu_item "Plantillas para un registro en hoja de calculo",
+            heb412_gen.plantillashcr_path %>
+        <% end %>
+        <% if can? :manage, ::Heb412Gen::Plantilladoc %>
+          <%= menu_item "Plantillas para un registro en documento",
+            heb412_gen.plantillasdoc_path %>
         <% end %>
       <% end %>
       <%= drop_down "Administrar" do %>
