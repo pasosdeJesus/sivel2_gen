@@ -216,7 +216,7 @@
 
 @ponerVariablesEdad = (root) ->
     if typeof root.campo_fecha_ref_edad == 'undefined'
-      root.campo_fecha_ref_edad = 'caso_fecha'
+      root.campo_fecha_ref_edad = 'caso_fecha_localizada'
     fechac = $('[id=' +  root.campo_fecha_ref_edad + ']')
     if (fechac.length >0) 
       fechac = fechac.val()
