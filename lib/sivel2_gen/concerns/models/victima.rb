@@ -52,6 +52,26 @@ module Sivel2Gen
             presenta_gen(atr)
           end
 
+          ## AUXILIARES PARA PRESENTAR INFORMACIÓN
+          
+          def departamento_caso
+            r = ''
+            if self.caso && self.caso.ubicacion && self.caso.ubicacion.count>0
+              r += self.caso.ubicacion[0].departamento ?
+                self.caso.ubicacion[0].departamento.nombre : ''
+            end
+            r
+          end
+
+          def municipio_caso
+            r = ''
+            if self.caso && self.caso.ubicacion && self.caso.ubicacion.count>0
+              r += self.caso.ubicacion[0].municipio ?
+                self.caso.ubicacion[0].municipio.nombre : ''
+            end
+            r
+          end
+
           def presponsables_caso
             r = ''
             if self.caso && self.caso.presponsable
@@ -73,6 +93,19 @@ module Sivel2Gen
             end
             r
           end
+
+          def trimestre_caso
+            r = ''
+            if self.caso 
+              f = self.caso.fecha
+              r = f.year.to_s
+              r += '-'
+              t = f.month/4
+              t = t.to_i.to_s
+              r += t
+            end
+          end
+
 
           def presenta(atr)
             case atr.to_s
@@ -98,6 +131,8 @@ module Sivel2Gen
               else
                 ""
               end
+            when 'sexo'
+              self.persona ? self.persona.sexo : ''
             else
               sivel2_gen_victima_presenta(atr)
             end

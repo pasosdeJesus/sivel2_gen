@@ -104,6 +104,11 @@ module Sivel2Gen
         campos: ActiveRecord::Base.connection.data_source_exists?(
           'sivel2_gen_victima') ?
           (Sivel2Gen::Victima.column_names + [
+            :departamento_caso,
+            :fecha_caso_localizada,
+            :municipio_caso,
+            :nombre,
+            :presponsables_caso,
             :rot1,
             :rot2,
             :rot3,
@@ -135,9 +140,8 @@ module Sivel2Gen
             :rot29,
             :rot30,
             :rot31,
-            :fecha_caso_localizada,
-            :nombre,
-            :presponsables_caso,
+            :sexo,
+            :trimestre_caso,
             :ubicacion_caso,
           ]) : [],
         controlador: 'Sivel2Gen::CasosController',
