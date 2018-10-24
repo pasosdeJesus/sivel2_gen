@@ -25,20 +25,20 @@ module Sivel2Gen
             r = [
               :id_caso,
               :fecha_caso_localizada,
-              :ubicacion_casos,
+              :ubicacion_caso,
               :nombre,
               :pconsolidado,
               :presponsables_caso
             ]
           end
 
-          def index_reordenar(c)
+          def self.index_reordenar(c)
             c.reorder(:id)
           end
 
           def index(c = nil)
             if c == nil
-              c = Sivel2Gen::Victima.all
+              c = Sivel2Gen::Victima.all.order(:id)
             end
             @pconsolidado = Sivel2Gen::Pconsolidado.
               where(fechadeshabilitacion: nil).order(:id).map { |r|
@@ -93,6 +93,10 @@ module Sivel2Gen
           def set_victima
             @victima = Sivel2Gen::Victima.find(params[:id])
             @registro = @victima
+          end
+
+          def vistas_manejadas
+            ['Victima']
           end
 
         end # included

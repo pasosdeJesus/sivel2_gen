@@ -56,7 +56,7 @@ module Sivel2Gen
             r = ''
             if self.caso && self.caso.presponsable
               r = self.caso.presponsable.inject("") { |memo, pr|
-                (memo == '' ? '' : '; ') + pr.id.to_s
+                (memo == '' ? '' : memo + '; ') + pr.id.to_s
               }
             end
             r
@@ -80,6 +80,24 @@ module Sivel2Gen
               self.caso ? self.caso.fecha_localizada : ''
             when 'nombre'
               self.persona ? self.persona.presenta_nombre : ''
+            when /rot[0-9]+/
+              num=atr.to_s[3..-1].to_i
+              if @pconsolidado.nil?
+                @pconsolidado = Sivel2Gen::Pconsolidado.
+                  where(fechadeshabilitacion: nil).order(:id).map { |r|
+                  [r.id, r.rotulo, Sivel2Gen::Categoria.
+                   where(id_pconsolidado: r.id).map(&:id)]
+                }
+              end
+              return "" if num == 0 || num >= @pconsolidado.count
+              p = @pconsolidado[num-1]
+              cat = p[2]
+              if self.caso.acto.where(id_categoria: cat, 
+                                    id_persona: self.persona.id).count > 0
+                "X"
+              else
+                ""
+              end
             else
               sivel2_gen_victima_presenta(atr)
             end
