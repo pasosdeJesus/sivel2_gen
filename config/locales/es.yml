@@ -205,17 +205,22 @@ es:
         Vinculosestado: Vínculos con el Estado
       "sivel2_gen/victima":
         antecedente_caso: Antecedentes
+        caso_id: Id. Caso
         edad: Edad en fecha del hecho
         edadactual: Edad/aniversario actual
         etnia: Etnia
+        fecha_caso_localizada: Fecha
         filiacion: Filiación política
         iglesia: Religión/Iglesia
+        nombre: Víctima
         organizacion: Organización
         orientacionsexual: Orientación sexual
         presponsable: Organización armada de la víctima
         profesion: Profesión
         rangoedad: Rango de edad
         sectorsocial: Sector social
+        ubicacion_caso: Ubicación
+        filiacion: Filiación política
         vinculoestado: Vínculo con el Estado
       "sivel2_gen/victimacolectiva":
         filiacion: Filiaciones políticas

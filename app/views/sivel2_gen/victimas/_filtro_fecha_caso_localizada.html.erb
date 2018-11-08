@@ -1,0 +1,20 @@
+<%= f.input :busfecha_caso_localizadaini,
+  label: false,
+  input_html: {
+    value: Sip::ModeloHelper.poromision(params, :busfecha_caso_localizadaini),
+    type: "date",
+    "data-enviarautomatico" => "",
+    placeholder: 'Inicial',
+  },
+  :as => :string %> -
+ <%= f.input :busfecha_caso_localizadafin,
+  label: false,
+  input_html: {
+    value: Sip::ModeloHelper.poromision(params, :busfecha_caso_localizadafin),
+    type: "date",
+    "data-enviarautomatico" => "",
+    placeholder: 'Final',
+  },
+  :as => :string %> 
+ 
+

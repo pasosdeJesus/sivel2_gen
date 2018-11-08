@@ -138,6 +138,35 @@ module Sivel2Gen
             end
           end
 
+          scope :filtro_fecha_caso_localizadaini, lambda { |f|
+            # En realidad no llega localizada
+            joins(:caso).where('sivel2_gen_caso.fecha>=?', f)
+          }
+
+          scope :filtro_fecha_caso_localizadafin, lambda { |f|
+            # En realidad no llega localizada
+            joins(:caso).where('sivel2_gen_caso.fecha<=?', f)
+          }
+
+          scope :filtro_id_caso, lambda { |i|
+            where(id_caso: i)
+          }
+
+          scope :filtro_ubicacion_caso, lambda { |u|
+            joins('JOIN sip_ubicacion ON sivel2_gen_victima.id_caso=sip_ubicacion.id_caso').
+              joins('LEFT JOIN sip_departamento ON sip_ubicacion.id_departamento=sip_departamento.id').
+              joins('LEFT JOIN sip_municipio ON sip_ubicacion.id_municipio=sip_municipio.id').
+              where("(sip_departamento.nombre || ' - ' || sip_municipio.nombre)" +
+                    " ILIKE '%' || ? || '%'", u)
+          }
+          
+          scope :filtro_nombre, lambda { |n|
+            joins(:persona).
+              where("(sip_persona.nombres || ' ' || sip_persona.apellidos) " +
+                    " ILIKE '%' || ? || '%'", n)
+          }
+
+
         end
       end
     end

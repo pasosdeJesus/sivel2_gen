@@ -1,0 +1,6 @@
+<%= f.input :busid_caso,
+  label: false,
+  input_html: {
+    value: Sip::ModeloHelper.poromision(params, :busid_caso)
+  }
+%>

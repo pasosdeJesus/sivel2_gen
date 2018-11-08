@@ -116,7 +116,6 @@ module Sivel2Gen
           validates :grimpunidad, length: { maximum: 8 }
           validates :grinformacion, length: { maximum: 8 }
 
-
         end
 
         module ClassMethods
