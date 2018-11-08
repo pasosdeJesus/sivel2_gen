@@ -156,14 +156,16 @@ module Sivel2Gen
             joins('JOIN sip_ubicacion ON sivel2_gen_victima.id_caso=sip_ubicacion.id_caso').
               joins('LEFT JOIN sip_departamento ON sip_ubicacion.id_departamento=sip_departamento.id').
               joins('LEFT JOIN sip_municipio ON sip_ubicacion.id_municipio=sip_municipio.id').
-              where("(sip_departamento.nombre || ' - ' || sip_municipio.nombre)" +
-                    " ILIKE '%' || ? || '%'", u)
+              where("(unaccent(sip_departamento.nombre) || ' - ' || " +
+                "unaccent(sip_municipio.nombre))" +
+                    " ILIKE '%' || unaccent(?) || '%'", u)
           }
           
           scope :filtro_nombre, lambda { |n|
             joins(:persona).
-              where("(sip_persona.nombres || ' ' || sip_persona.apellidos) " +
-                    " ILIKE '%' || ? || '%'", n)
+              where("(unaccent(sip_persona.nombres) || ' ' || " +
+                    " unaccent(sip_persona.apellidos)) " +
+                    " ILIKE '%' || unaccent(?) || '%'", n)
           }
 
 
