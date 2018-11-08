@@ -12,5 +12,8 @@ module Sivel2Gen
     has_many :categoria, through: :caso_categoria_presponsable,
       class_name: 'Sivel2Gen::Categoria'
  
+    validates :id_presponsable, presence: true
+    validates :id_caso, presence: true
+
   end
 end
