@@ -140,8 +140,8 @@ es:
         Pais: Pais
         Paises: Paises
       "sivel2_gen/pconsolidado":
-        Pconsolidado: Rótulo para el reporte de víctimas
-        Pconsolidados: Rótulos para el reporte de víctimas
+        Pconsolidado: Rótulo para el listado de víctimas y casos
+        Pconsolidados: Rótulos para el listado de víctimas y casos
         categoria_ids: Categorias
       "sivel2_gen/presponsable":
         Presponsable: Presunto responsable

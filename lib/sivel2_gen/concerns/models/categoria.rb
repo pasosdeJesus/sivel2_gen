@@ -26,6 +26,7 @@ module Sivel2Gen
 
           validates :supracategoria, presence: true
           validates :id, presence:true, uniqueness: true
+          validates :tipocat, length: { maximum: 1 }
 
           def presenta_nombre
             if !self.supracategoria_id

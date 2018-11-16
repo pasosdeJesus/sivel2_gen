@@ -17,7 +17,7 @@ module Sivel2Gen
         [
           "id", "nombre", "supracategoria_id",
           "contadaen", "tipocat", "observaciones", 
-          "fechacreacion", "fechadeshabilitacion"
+          "fechacreacion_localizada", "habilitado"
         ]
       end
   

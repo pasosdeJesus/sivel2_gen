@@ -21,8 +21,8 @@ module Sivel2Gen
          "peso", 
          "observaciones", 
          "categoria_ids",
-         "fechacreacion", 
-         "fechadeshabilitacion"
+         "fechacreacion_localizada", 
+         "habilitado"
         ]
       end
 

@@ -32,9 +32,10 @@ module Sivel2Gen
             ]
           end
 
-          def self.index_reordenar(c)
+          def index_reordenar(c)
             c.reorder(:id)
           end
+
 
           def index(c = nil)
             if c == nil

@@ -15,7 +15,7 @@ module Sivel2Gen
   
       def atributos_index
         ["id", "nombre", "nomcorto", "observaciones",
-         "fechacreacion", "fechadeshabilitacion"]
+         "fechacreacion_localizada", "habilitado"]
       end
       
       def atributos_form
