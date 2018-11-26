@@ -366,7 +366,7 @@ module Sivel2Gen
             end
             @caso.destroy
             respond_to do |format|
-              format.html { redirect_to casos_url }
+              format.html { redirect_to casos_path }
               format.json { head :no_content }
             end
             Conscaso.refresca_conscaso

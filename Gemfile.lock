@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/pasosdeJesus/heb412_gen.git
-  revision: 7a394ccafb43c69ae2bbabca36de4e4576349e61
+  revision: 93ebbb0d8ba49d79ba20c61b11df8fda2865ba50
   specs:
     heb412_gen (1.0.a1)
       chosen-rails
@@ -259,7 +259,7 @@ GEM
       sprockets (>= 2.8, < 4.0)
       sprockets-rails (>= 2.0, < 4.0)
       tilt (>= 1.1, < 3)
-    simple_form (4.0.1)
+    simple_form (4.1.0)
       actionpack (>= 5.0)
       activemodel (>= 5.0)
     simplecov (0.16.1)
