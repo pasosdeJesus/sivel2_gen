@@ -3,7 +3,9 @@ es:
   attributes:
     departamento: Departamento/Estado/Cantón
     fechacreacion: Creación
+    fechacreacion_localizada: Creación
     fechadeshabilitacion: Deshabilitación 
+    fechadeshabilitacion_localizada: Deshabilitación 
     formatoregex: Formato (exp. reg)
     limiteinferior: Límite Inferior
     limitesuperior: Límite Superior
@@ -100,9 +102,11 @@ es:
       "sivel2_gen/categoria":
         Categoria: Categoria
         Categorias: Categorias
-        tipocat: Tipo de Categoria
         contadaen: Contada en
+        fechacreacion_localizada: Creación
+        fechadeshabilitacion_localizada: Deshabilitación
         pconsolidado: Columna en listado de víctimas y casos
+        tipocat: Tipo de Categoria
       "sivel2_gen/causaref":
         Causaref: Causa de Refugio
         Causasref: Causas de Refugio
@@ -143,7 +147,12 @@ es:
       "sivel2_gen/pconsolidado":
         Pconsolidado: Rótulo para el listado de víctimas y casos
         Pconsolidados: Rótulos para el listado de víctimas y casos
-        categoria_ids: Categorias
+        categoria_ids: Categorías
+        fechacreacion_localizada: Creación
+        fechadeshabilitacion_localizada: Deshabilitación
+        tipoviolencia: Tipo de violencia
+        clasificacion: Clasificación
+        categoria: Categorías
       "sivel2_gen/presponsable":
         Presponsable: Presunto responsable
         presponsable: presunto responsable
