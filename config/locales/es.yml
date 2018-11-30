@@ -102,6 +102,7 @@ es:
         Categorias: Categorias
         tipocat: Tipo de Categoria
         contadaen: Contada en
+        pconsolidado: Columna en listado de víctimas y casos
       "sivel2_gen/causaref":
         Causaref: Causa de Refugio
         Causasref: Causas de Refugio

@@ -15,7 +15,7 @@ module Sivel2Gen
 
       def atributos_index
         ["id", 
-         "rotulo", 
+         "nombre", 
          "tipoviolencia", 
          "clasificacion", 
          "peso", 
@@ -26,6 +26,14 @@ module Sivel2Gen
         ]
       end
 
+      # Campos que se presentar en formulario
+      def atributos_form
+        atributos_show - 
+          ["id", :id, 'created_at', :created_at, 'updated_at', :updated_at,
+           'categoria_ids', :categoria_ids] +
+          [ 'categoria_ids' => [] ]
+      end
+
       def index_reordenar(c)
         c.reorder(:id)
       end
@@ -34,9 +42,6 @@ module Sivel2Gen
         params.require(:pconsolidado).permit(*atributos_form)
       end
 
-      def camponombre
-        :rotulo
-      end
     end
   end
 end

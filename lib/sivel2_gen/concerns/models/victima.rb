@@ -118,7 +118,7 @@ module Sivel2Gen
               if @pconsolidado.nil?
                 @pconsolidado = Sivel2Gen::Pconsolidado.
                   where(fechadeshabilitacion: nil).order(:id).map { |r|
-                  [r.id, r.rotulo, Sivel2Gen::Categoria.
+                  [r.id, r.nombre, Sivel2Gen::Categoria.
                    where(id_pconsolidado: r.id).map(&:id)]
                 }
               end
