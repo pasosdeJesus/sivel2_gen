@@ -15,14 +15,20 @@ module Sivel2Gen
   
       def atributos_index
         [
-          "id", "nombre", "supracategoria_id",
-          "contadaen", "tipocat", "observaciones", 
-          "fechacreacion_localizada", "habilitado"
+          :id, 
+          :nombre, 
+          :supracategoria_id,
+          :contadaen, 
+          :tipocat, 
+          :id_pconsolidado, 
+          :observaciones, 
+          :fechacreacion_localizada, 
+          :habilitado
         ]
       end
   
       def atributos_form
-        atributos_index
+        atributos_show
       end
   
       def categoria_params
