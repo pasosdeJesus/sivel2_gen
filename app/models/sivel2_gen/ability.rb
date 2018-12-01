@@ -108,6 +108,7 @@ module Sivel2Gen
             :fecha_caso_localizada,
             :municipio_caso,
             :nombre,
+            :profesion,
             :presponsables_caso,
             :rot1,
             :rot2,
