@@ -34,13 +34,13 @@ module Sivel2Gen
           end
 
           def self.index_reordenar(c)
-            c.reorder(:id_caso, :id)
+            c.reorder([:id_caso, :id])
           end
 
 
           def index(c = nil)
             if c == nil
-              c = Sivel2Gen::Victima.all.order(:id_caso, :id)
+              c = Sivel2Gen::Victima.all.order([:id_caso, :id])
             end
             @pconsolidado = Sivel2Gen::Pconsolidado.
               where(fechadeshabilitacion: nil).order(:id).map { |r|
