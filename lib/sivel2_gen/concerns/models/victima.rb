@@ -48,9 +48,7 @@ module Sivel2Gen
           validates :caso, presence: true
           validates :persona, presence: true
 
-          def sivel2_gen_victima_presenta(atr)
-            presenta_gen(atr)
-          end
+
 
           ## AUXILIARES PARA PRESENTAR INFORMACIÓN
           
@@ -76,7 +74,7 @@ module Sivel2Gen
             r = ''
             if self.caso && self.caso.presponsable
               r = self.caso.presponsable.inject("") { |memo, pr|
-                (memo == '' ? '' : memo + '; ') + pr.id.to_s
+                (memo == '' ? '' : memo + '; ') + pr.nombre
               }
             end
             r
@@ -106,13 +104,14 @@ module Sivel2Gen
             end
           end
 
-
-          def presenta(atr)
+          def sivel2_gen_victima_presenta(atr)
             case atr.to_s
             when 'fecha_caso_localizada'
               self.caso ? self.caso.fecha_localizada : ''
             when 'nombre'
               self.persona ? self.persona.presenta_nombre : ''
+            when 'profesion'
+              self.profesion ? self.profesion.presenta_nombre : ''
             when /rot[0-9]+/
               num=atr.to_s[3..-1].to_i
               if @pconsolidado.nil?
@@ -127,15 +126,19 @@ module Sivel2Gen
               cat = p[2]
               if self.caso.acto.where(id_categoria: cat, 
                                     id_persona: self.persona.id).count > 0
-                "X"
+                1
               else
                 ""
               end
             when 'sexo'
               self.persona ? self.persona.sexo : ''
             else
-              sivel2_gen_victima_presenta(atr)
+              presenta_gen(atr)
             end
+          end
+
+          def presenta(atr)
+            sivel2_gen_victima_presenta(atr)
           end
 
           scope :filtro_fecha_caso_localizadaini, lambda { |f|
