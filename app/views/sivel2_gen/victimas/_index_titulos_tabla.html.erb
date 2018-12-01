@@ -4,6 +4,7 @@
       <% id = p[0]; rotulo = p[1]; cat = p[2] %>
       <th><%= rotulo %></th>
     <% end %>
+    <%= render partial: 'index_titulos_pconsolidado_complemento' %>
   <% else %>
     <th><%= Sivel2Gen::Victima.human_attribute_name(atr) %></th>
   <%end %>
