@@ -29,14 +29,23 @@ module Sivel2Gen
             class_name: 'Sip::Anexo'
           accepts_nested_attributes_for :sip_anexo,  reject_if: :all_blank
 
-          has_many :antecedente_caso, foreign_key: "id_caso", 
-            dependent: :delete_all, class_name: 'Sivel2Gen::AntecedenteCaso'
+          has_many :antecedente_caso, 
+            foreign_key: "id_caso", 
+            dependent: :delete_all, 
+            class_name: 'Sivel2Gen::AntecedenteCaso'
           has_many :antecedente, through: :antecedente_caso, 
             class_name: 'Sivel2Gen::Antecedente'
-          has_many :caso_contexto, foreign_key: "id_caso", 
-            dependent: :delete_all, class_name: 'Sivel2Gen::CasoContexto'
-          has_many :contexto, through: :caso_contexto, 
-            class_name: 'Sivel2Gen::Contexto'
+
+          has_and_belongs_to_many :contexto,
+            foreign_key: "id_caso", 
+            class_name: 'Sivel2Gen::Contexto',
+            association_foreign_key: 'id_contexto',
+            join_table: 'sivel2_gen_caso_contexto'
+
+#          has_many :caso_contexto, foreign_key: "id_caso", 
+#            dependent: :delete_all, class_name: 'Sivel2Gen::CasoContexto'
+#          has_many :contexto, through: :caso_contexto, 
+#            class_name: 'Sivel2Gen::Contexto'
           has_many :caso_etiqueta, foreign_key: "id_caso", validate: true, 
             dependent: :destroy, class_name: 'Sivel2Gen::CasoEtiqueta'
           has_many :etiqueta, through: :caso_etiqueta, 
@@ -48,7 +57,8 @@ module Sivel2Gen
             inverse_of: :caso
           accepts_nested_attributes_for :caso_fotra, allow_destroy: true, 
             reject_if: :all_blank
-          has_many :fotra, through: :caso_fotra, class_name: 'Sip::Fotra'
+          #has_many :fotra, through: :caso_fotra, class_name: 'Sip::Fotra'
+          #
           has_many :caso_fuenteprensa, foreign_key: "id_caso", 
             validate: true, dependent: :destroy, 
             class_name: 'Sivel2Gen::CasoFuenteprensa', inverse_of: :caso
@@ -56,20 +66,27 @@ module Sivel2Gen
             allow_destroy: true, reject_if: :all_blank
           has_many :fuenteprensa, through: :caso_fuenteprensa, 
             class_name: 'Sip::Fuenteprensa'
-          has_many :caso_frontera, foreign_key: "id_caso",
-            dependent: :delete_all, class_name: 'Sivel2Gen::CasoFrontera'
-          has_many :frontera, through: :caso_frontera, 
-            class_name: 'Sivel2Gen::Frontera'
-          has_many :caso_presponsable, foreign_key: "id_caso", validate: true, 
+
+          has_and_belongs_to_many :frontera, 
+            class_name: 'Sivel2Gen::Frontera',
+            foreign_key: "id_caso",
+            association_foreign_key: 'id_frontera',
+            join_table: 'sivel2_gen_caso_frontera'
+
+          has_many :caso_presponsable, foreign_key: "id_caso", 
+            validate: true, 
             dependent: :destroy, class_name: 'Sivel2Gen::CasoPresponsable'
           has_many :presponsable, through: :caso_presponsable, 
             class_name: 'Sivel2Gen::Presponsable'
           accepts_nested_attributes_for :caso_presponsable, 
             allow_destroy: true, reject_if: :all_blank
-          has_many :caso_region, foreign_key: "id_caso", 
-            dependent: :delete_all, class_name: 'Sivel2Gen::CasoRegion'
-          has_many :region, through: :caso_region, 
-            class_name: 'Sivel2Gen::Region'
+
+          has_and_belongs_to_many :region, 
+            foreign_key: "id_caso", 
+            class_name: 'Sivel2Gen::Region',
+            association_foreign_key: 'id_region',
+            join_table: 'sivel2_gen_caso_region'
+
           has_many :caso_usuario, foreign_key: "id_caso", validate: true, 
             class_name: 'Sivel2Gen::CasoUsuario', dependent: :delete_all
           has_many :usuario, :through => :caso_usuario, class_name: 'Usuario'
@@ -78,23 +95,23 @@ module Sivel2Gen
             dependent: :destroy, class_name: 'Sip::Ubicacion'
           accepts_nested_attributes_for :ubicacion, allow_destroy: true, 
             reject_if: :all_blank
-          #    has_many :desplazamiento, foreign_key: "id_caso", validate: true, 
-          #      dependent: :destroy, class_name: 'Sivel2Gen::Desplazamiento'
-          #    accepts_nested_attributes_for :desplazamiento , allow_destroy: true, 
-          #      reject_if: :all_blank
+
           has_many :victima,  foreign_key: "id_caso", dependent: :destroy, 
             class_name: 'Sivel2Gen::Victima'
           has_many :persona, :through => :victima, class_name: 'Sip::Persona'
           accepts_nested_attributes_for :persona,  reject_if: :all_blank
           accepts_nested_attributes_for :victima, allow_destroy: true, 
             reject_if: :all_blank
+
           has_many :victimacolectiva, foreign_key: "id_caso", validate: true, 
             dependent: :destroy, class_name: 'Sivel2Gen::Victimacolectiva' 
           has_many :grupoper, :through => :victimacolectiva, 
             class_name: 'Sip::Grupoper'
           accepts_nested_attributes_for :grupoper,  reject_if: :all_blank
-          accepts_nested_attributes_for :victimacolectiva, allow_destroy: true, 
+          accepts_nested_attributes_for :victimacolectiva, 
+            allow_destroy: true, 
             reject_if: :all_blank
+
           has_many :combatiente, foreign_key: "id_caso", validate: true, 
             dependent: :destroy, class_name: 'Sivel2Gen::Combatiente' 
           accepts_nested_attributes_for :combatiente, allow_destroy: true, 

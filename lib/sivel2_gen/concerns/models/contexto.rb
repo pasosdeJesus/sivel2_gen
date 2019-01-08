@@ -8,10 +8,12 @@ module Sivel2Gen
 
         include Sip::Basica
         included do
-          has_many :caso_contexto, foreign_key: "id_contexto", 
-            class_name: 'Sivel2Gen::CasoContexto'
-          has_many :caso, through: :caso_contexto, 
-            class_name: 'Sivel2Gen::Contexto'
+          has_and_belongs_to_many :caso, 
+            class_name: 'Sivel2Gen::Caso',
+            foreign_key: "id_contexto", 
+            association_foreign_key: 'id_caso',
+            join_table: 'sivel2_gen_caso_contexto'
+
         end
       end
     end

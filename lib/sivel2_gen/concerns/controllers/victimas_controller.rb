@@ -30,6 +30,7 @@ module Sivel2Gen
               :pconsolidado,
               :presponsables_caso
             ]
+            r
           end
 
           def self.index_reordenar(c)

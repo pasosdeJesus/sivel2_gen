@@ -8,12 +8,11 @@ module Sivel2Gen
 
         included do
           self.table_name = 'sivel2_gen_combatiente'
-          has_many :antecedente_combatiente, 
+          has_and_belongs_to_many :antecedente,
             foreign_key: :id_combatiente, 
-            class_name: "Sivel2Gen::AntecedenteCombatiente",
-            dependent: :delete_all
-          has_many :antecedente, through: :antecedente_combatiente, 
-            class_name: 'Sivel2Gen::Antecedente'
+            class_name: 'Sivel2Gen::Antecedente',
+            association_foreign_key: 'id_antecedente',
+            join_table: 'sivel2_gen_antecedente_combatiente'
 
           # En el orden de esquema en base 
           belongs_to :resagresion, foreign_key: "id_resagresion", 
