@@ -98,11 +98,8 @@
     %>
   </div>
   <div class="col-md-6">
-    <%= f.input :orientacionsexual, 
-      collection: [
-        [:HETEROSEXUAL, :H], [:LESBIANA, :L], [:GAY, :G], 
-        [:BISEXUAL, :B], [:TRANSEXUAL, :T], ["SIN INFORMACIÓN", :S]], 
-      include_blank: false %>
+    <%= render partial: 'sivel2_gen/victimas/campo_orientacionsexual',
+      locals: {f: f} %>
   </div>
 </div>
 

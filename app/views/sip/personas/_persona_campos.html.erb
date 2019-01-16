@@ -86,10 +86,7 @@
       <%= f.input :dianac, collection: @dias %>
     </div>
     <div class="col-md-4">
-      <%= f.input :sexo, 
-        collection: [["SIN INFORMACIÓN", :S], 
-                     ["FEMENINO", :F], ["MASCULINO", :M]], 
-        include_blank: false %>
+      <%= render partial: 'sip/personas/campo_sexo', locals: {f: f} %>
     </div>
   </div>
 
