@@ -3,16 +3,15 @@
 <% i = 0 %>
 <% @pconsolidado.each do |p| %>
   <% id = p[0]; rotulo = p[1]; cat = p[2] %>
-    <% if registro.id_caso == 7 %>
-      <% #byebug %>
-    <% end %>
-    <% if registro.caso.acto.where(id_categoria: cat, 
-                                    id_persona: registro.persona.id).count > 0 %>
-      X
-    <% end %>
-    <% i+= 1 %>
-    <% if i < total %>
-      </td><td>
-    <%end %>
+  <% if registro.caso.acto.where(
+      id_categoria: cat, id_persona: registro.persona.id).count > 0 %>
+      1
+  <% end %>
+  <% i+= 1 %>
+  <% if i < total %>
+    </td><td>
+  <%end %>
 <% end %>
+<%= render partial: 'index_campo_pconsolidado_complemento', 
+    locals: {registro: registro} %>
 <!-- El </td> final esta en index.html -->

@@ -214,18 +214,26 @@
     })
   return
 
+
 @ponerVariablesEdad = (root) ->
     if typeof root.campo_fecha_ref_edad == 'undefined'
       root.campo_fecha_ref_edad = 'caso_fecha_localizada'
-      fechac = $('[id=' +  root.campo_fecha_ref_edad + ']')
-      if (fechac.length == 0) 
-        root.campo_fecha_ref_edad = 'caso_fecha'
+    fechac = $('[id=' +  root.campo_fecha_ref_edad + ']')
+    if (fechac.length == 0) 
+      root.campo_fecha_ref_edad = 'caso_fecha_localizada'
+    fechac = $('[id=' +  root.campo_fecha_ref_edad + ']')
+    if (fechac.length == 0) 
+      root.campo_fecha_ref_edad = 'caso_fecha'
     fechac = $('[id=' +  root.campo_fecha_ref_edad + ']')
     if (fechac.length >0) 
-      fechac = fechac.val()
-      root.aniocaso = fechac.slice(0,4)
-      root.mescaso = fechac.slice(5,7)
-      root.diacaso = fechac.slice(8,10)
+      vp = []
+      if root.campo_fecha_ref_edad.endsWith('_localizada')
+        vp = @sip_partes_fecha_localizada(fechac.val(), root.formato_fecha)
+      else
+        vp = @sip_partes_fecha_localizada(fechac.val(), 'yyyy-mm-dd')
+      root.aniocaso = vp[0]
+      root.mescaso = vp[1]
+      root.diacaso = vp[2]
       root.anioactual = +$('#anioactual').val()
       root.mesactual = +$('#mesactual').val()
       root.diaactual = +$('#diaactual').val()

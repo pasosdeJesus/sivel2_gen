@@ -10,11 +10,13 @@ module Sivel2Gen
         included do
           Nombresunicos=false
 
+          belongs_to :contada, foreign_key: "contadaen", 
+            class_name: 'Sivel2Gen::Categoria'
+          belongs_to :pconsolidado, foreign_key: "id_pconsolidado", 
+            class_name: 'Sivel2Gen::Pconsolidado'
           belongs_to :supracategoria, foreign_key: "supracategoria_id", 
              class_name: 'Sivel2Gen::Supracategoria', validate: true
 
-          belongs_to :contada, foreign_key: "contadaen", 
-            class_name: 'Sivel2Gen::Categoria'
 
           has_many :acto, foreign_key: "id_categoria", validate: true,
             class_name: 'Sivel2Gen::Acto'
@@ -26,6 +28,7 @@ module Sivel2Gen
 
           validates :supracategoria, presence: true
           validates :id, presence:true, uniqueness: true
+          validates :tipocat, length: { maximum: 1 }
 
           def presenta_nombre
             if !self.supracategoria_id

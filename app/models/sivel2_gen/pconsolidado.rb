@@ -3,17 +3,12 @@ module Sivel2Gen
   class Pconsolidado < ActiveRecord::Base
     include Sip::Basica
 
+    Nombresunicos=false
     has_many :categoria, foreign_key: "id_pconsolidado", validate: true, 
       class_name: 'Sivel2Gen::Categoria'
 
-    def categoria_ids
-      self.categoria.inject("") { |memo, m|
-        (memo == "" ? "" : memo + ", ") + m.id.to_s
-      }
-    end
-
     def presenta_nombre
-      self.rotulo
+      self.id.to_s + " - " + self.nombre
     end
   end
 end

@@ -34,16 +34,17 @@ module Sivel2Gen
           end
 
           def self.index_reordenar(c)
-            c.reorder(:id)
+            c.reorder([:id_caso, :id])
           end
+
 
           def index(c = nil)
             if c == nil
-              c = Sivel2Gen::Victima.all.order(:id)
+              c = Sivel2Gen::Victima.all.order([:id_caso, :id])
             end
             @pconsolidado = Sivel2Gen::Pconsolidado.
               where(fechadeshabilitacion: nil).order(:id).map { |r|
-              [r.id, r.rotulo, Sivel2Gen::Categoria.
+              [r.id, r.nombre, Sivel2Gen::Categoria.
                where(id_pconsolidado: r.id).map(&:id)]
             }
             super(c)

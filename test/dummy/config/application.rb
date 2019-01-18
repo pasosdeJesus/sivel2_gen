@@ -31,6 +31,9 @@ module Dummy
       idletime: 600.seconds
 
     config.x.heb412_ruta = Rails.root.join('public', 'heb412')
-   
+
+    config.relative_url_root = '/sivel2'
+    config.assets.prefix = '/sivel2/assets/'
+
   end
 end

@@ -5,6 +5,8 @@ gem "rails", '~> 5.2.1'
 
 gem "rails-i18n"
 
+gem 'bigdecimal'
+
 gem 'bootsnap', '>=1.1.0', require: false
 
 gem 'puma'#, '~> 3.0' 
