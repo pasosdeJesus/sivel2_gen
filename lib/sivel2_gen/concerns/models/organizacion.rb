@@ -8,14 +8,20 @@ module Sivel2Gen
 
         include Sip::Basica
         included do
-           has_many :organizacion_victimacolectiva, 
-                   foreign_key: "id_organizacion", 
+           has_and_belongs_to_many :victimacolectiva, 
+                   class_name: 'Sivel2Gen::Victimacolectiva',
+                   foreign_key: 'id_organizacion', 
                    validate: true, 
-                   class_name: 'Sivel2Gen::OrganizacionVictimacolectiva' 
-           has_many :victima, foreign_key: "id_organizacion", 
-                   class_name: 'Sivel2Gen::Victima' 
-           has_many :combatiente, class_name: 'Sivel2Gen::Combatiente',
-                   foreign_key: "id_organizacion" 
+                   association_foreign_key: 'id_victimacolectiva',
+                   join_table: 'sivel2_gen_organizacion_victimacolectiva' 
+
+           has_many :victima, 
+             foreign_key: 'id_organizacion', 
+             class_name: 'Sivel2Gen::Victima' 
+
+           has_many :combatiente, 
+             class_name: 'Sivel2Gen::Combatiente',
+             foreign_key: 'id_organizacion' 
         end
       end
     end

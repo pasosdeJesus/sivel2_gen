@@ -14,11 +14,12 @@ module Sivel2Gen
           attr_accessor :edad
           attr_accessor :edadactual
 
-          has_many :antecedente_victima, foreign_key: :id_victima, 
-            dependent: :delete_all,
-            class_name: 'Sivel2Gen::AntecedenteVictima'
-          has_many :antecedente, through: :antecedente_victima, 
-            class_name: 'Sivel2Gen::Antecedente'
+            
+          has_and_belongs_to_many :antecedente, 
+            class_name: 'Sivel2Gen::Antecedente',
+            foreign_key: :id_victima, 
+            association_foreign_key: 'id_antecedente',
+            join_table: 'sivel2_gen_antecedente_victima'
 
           # En el orden de esquema en base 
           belongs_to :caso, foreign_key: "id_caso", validate: true, 
