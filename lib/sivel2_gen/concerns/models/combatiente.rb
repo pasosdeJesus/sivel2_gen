@@ -9,10 +9,10 @@ module Sivel2Gen
         included do
           self.table_name = 'sivel2_gen_combatiente'
             
-          has_and_belongs_to_many :antecedente, 
+          has_and_belongs_to_many :antecedente,
             class_name: 'Sivel2Gen::Antecedente',
             foreign_key: :id_combatiente, 
-            association_foreign_key: 'id_antecedente',
+            association_foreign_key: :id_antecedente,
             join_table: 'sivel2_gen_antecedente_combatiente'
 
           # En el orden de esquema en base 

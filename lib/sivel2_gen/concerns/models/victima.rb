@@ -14,7 +14,6 @@ module Sivel2Gen
           attr_accessor :edad
           attr_accessor :edadactual
 
-            
           has_and_belongs_to_many :antecedente, 
             class_name: 'Sivel2Gen::Antecedente',
             foreign_key: :id_victima, 

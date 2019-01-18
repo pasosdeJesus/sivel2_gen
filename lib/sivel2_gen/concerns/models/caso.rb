@@ -31,15 +31,15 @@ module Sivel2Gen
 
           has_and_belongs_to_many :antecedente, 
             class_name: 'Sivel2Gen::Antecedente',
-            foreign_key: 'id_caso', 
-            association_foreign_key: 'id_antecedente',
+            foreign_key: :id_caso, 
+            association_foreign_key: :id_antecedente,
             join_table: 'sivel2_gen_antecedente_caso'
 
           has_and_belongs_to_many :contexto, 
             class_name: 'Sivel2Gen::Contexto',
-            foreign_key: 'id_caso', 
-            association_foreign_key: 'id_contexto',
-            join_table: 'Sivel2Gen::CasoContexto'
+            foreign_key: :id_caso, 
+            association_foreign_key: :id_contexto,
+            join_table: 'sivel2_gen_caso_contexto'
 
           has_many :caso_etiqueta, foreign_key: "id_caso", validate: true, 
             dependent: :destroy, class_name: 'Sivel2Gen::CasoEtiqueta'
@@ -63,21 +63,21 @@ module Sivel2Gen
           has_many :fuenteprensa, through: :caso_fuenteprensa, 
             class_name: 'Sip::Fuenteprensa'
 
-            
           has_and_belongs_to_many :frontera, 
             class_name: 'Sivel2Gen::Frontera',
             foreign_key: 'id_caso',
             association_foreign_key: 'id_frontera',
             join_table: 'sivel2_gen_caso_frontera'
 
-          has_many :caso_presponsable, foreign_key: "id_caso", validate: true, 
-            dependent: :destroy, class_name: 'Sivel2Gen::CasoPresponsable'
+          has_many :caso_presponsable, foreign_key: "id_caso", 
+            validate: true, 
+            dependent: :destroy, 
+            class_name: 'Sivel2Gen::CasoPresponsable'
           has_many :presponsable, through: :caso_presponsable, 
             class_name: 'Sivel2Gen::Presponsable'
           accepts_nested_attributes_for :caso_presponsable, 
             allow_destroy: true, reject_if: :all_blank
 
-            
           has_and_belongs_to_many :region, 
             class_name: 'Sivel2Gen::Region',
             foreign_key: 'id_caso', 
@@ -105,7 +105,8 @@ module Sivel2Gen
           has_many :grupoper, :through => :victimacolectiva, 
             class_name: 'Sip::Grupoper'
           accepts_nested_attributes_for :grupoper,  reject_if: :all_blank
-          accepts_nested_attributes_for :victimacolectiva, allow_destroy: true, 
+          accepts_nested_attributes_for :victimacolectiva, 
+            allow_destroy: true, 
             reject_if: :all_blank
 
           has_many :combatiente, foreign_key: "id_caso", validate: true, 

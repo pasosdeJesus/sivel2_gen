@@ -28,7 +28,7 @@ module Sivel2Gen
             association_foreign_key: 'id_organizacion',
             join_table: 'sivel2_gen_organizacion_victimacolectiva'
 
-          has_and_belongs_to_many :profesion, 
+          has_and_belongs_to_many :profesion,
             class_name: 'Sivel2Gen::Profesion',
             foreign_key: :victimacolectiva_id, 
             association_foreign_key: :id_profesion,
@@ -47,11 +47,11 @@ module Sivel2Gen
             association_foreign_key: :id_sectorsocial,
             join_table: 'sivel2_gen_sectorsocial_victimacolectiva'
 
-          has_many :vinculoestado, 
+          has_and_belongs_to_many :vinculoestado,
             class_name: 'Sivel2Gen::Vinculoestado',
             foreign_key: :victimacolectiva_id, 
-            validate: true, 
-            association_foreign_key: 'id_vinculoestado',
+            validate: true,
+            association_foreign_key: :id_vinculoestado,
             join_table: 'sivel2_gen_victimacolectiva_vinculoestado'
 
           # En el orden de esquema en base 
