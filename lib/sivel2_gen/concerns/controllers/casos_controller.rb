@@ -69,7 +69,7 @@ module Sivel2Gen
             @plantillas = Heb412Gen::Plantillahcm.where(
               vista: 'Caso').select('nombremenu, id').map { 
                 |c| [c.nombremenu, c.id] }
-            #@plantillas += [['Reporte Revista HTML', 'reprevista.html']]
+            @plantillas += [['Reporte Revista HTML', 'reprevista.html']]
           end
        
           # Valida que el usuario pueda generar la plantilla idplant 
@@ -213,9 +213,15 @@ module Sivel2Gen
 
               format.html { 
                 if (params['idplantilla']) 
-                  redirect_back fallback_location: root_path,
-                      flash: { error: "Falta completar implementación, acotando params['idplantilla'] para que no abra cualquier cosa. Gracias brakeman" }
-                  #render params['idplantilla'], layout: nil
+                  #byebug
+                  case params['idplantilla']
+                  when 'reprevista'
+                    render params['idplantilla'], layout: nil
+                  else
+                    redirect_back fallback_location: 
+                      config.relative_url_root,
+                      flash: { error: "Plantilla desconocida" }
+                  end
                 else
                   render layout: 'application' 
                 end

@@ -43,6 +43,28 @@
         <% c = @markdown.render(caso.memo).html_safe %>
         <%= c %>
       </p>
+      <p>
+      Presuntos Responsables:
+      <% if caso.caso_presponsable then %>
+        <% caso.caso_presponsable.each do |cpr| %>
+          <br/><%= cpr.presponsable.nombre %>
+        <% end %>
+      <% end %>
+      </p>
+      <p>
+      Actos de violencia:
+      <table border=1>
+        <tr><th>Presunto Responsable</th><th>Categoria de violencia</th><th>Víctima</th></tr>
+        <% if caso.acto then %>
+          <% caso.acto.each do |a| %>
+            <tr>
+              <td><%= a.presponsable.nombre %></td>
+              <td><%= a.categoria.nombre %></td>
+              <td><%= a.persona.presenta_nombre %></td>
+            </tr>
+          <% end %>
+        <% end %>
+      </table>
     <% end %>
   </body>
 </html>
