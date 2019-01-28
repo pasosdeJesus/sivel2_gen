@@ -175,8 +175,8 @@ module Sivel2Gen
               ActiveRecord::Base.connection.execute("CREATE OR REPLACE 
         VIEW sivel2_gen_conscaso1 AS
         SELECT caso.id as caso_id, caso.fecha, caso.memo, 
-        ARRAY_TO_STRING(ARRAY(SELECT departamento.nombre ||  ' / ' 
-        || municipio.nombre 
+        ARRAY_TO_STRING(ARRAY(SELECT COALESCE(departamento.nombre, '') ||  
+        ' / ' || COALESCE(municipio.nombre, '')
         FROM sip_ubicacion AS ubicacion 
 					LEFT JOIN sip_departamento AS departamento 
 						ON (ubicacion.id_departamento = departamento.id)
