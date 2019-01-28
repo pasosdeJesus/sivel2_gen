@@ -91,7 +91,7 @@ end
 
 group :test, :development do
   # Depurar
-  gem 'byebug'
+  #gem 'byebug'
 end
 
 group :test do
