@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/pasosdeJesus/heb412_gen.git
-  revision: 11b5ba236af659586abc5d8f7e24f595d59a485a
+  revision: d15cd0e3755d4d30a899150f4b4764ad4026c787
   specs:
     heb412_gen (1.0.a1)
       chosen-rails
@@ -11,7 +11,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sip.git
-  revision: 0bf71402370e6597d21ddee96decbe427fcbf6c5
+  revision: 2d6244d58c43ea1cbcc56539d05822e097d714b4
   specs:
     sip (2.0.b5)
       bootstrap-datepicker-rails
@@ -119,13 +119,13 @@ GEM
     connection_pool (2.2.2)
     crass (1.0.4)
     debug_inspector (0.0.3)
-    devise (4.5.0)
+    devise (4.6.0)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
       railties (>= 4.1.0, < 6.0)
       responders
       warden (~> 1.2.3)
-    devise-i18n (1.7.1)
+    devise-i18n (1.7.2)
       devise (>= 4.5)
     docile (1.3.1)
     erubi (1.8.0)
