@@ -9,8 +9,10 @@ class Ability  < Sivel2Gen::Ability
     if !usuario || usuario.fechadeshabilitacion
       return
     end
-    can :descarga_anexo, Sip::Anexo
     can :read, Sip::Actorsocial
+
+    can :descarga_anexo, Sip::Anexo
+
     can :contar, Sip::Ubicacion
     can :nuevo, Sip::Ubicacion
     
@@ -18,8 +20,12 @@ class Ability  < Sivel2Gen::Ability
     can :buscar, Sivel2Gen::Caso
     can :lista, Sivel2Gen::Caso
 
+    can :nuevo, Sivel2Gen::Combatiente
+
     can :nuevo, Sivel2Gen::Presponsable
+
     can :nuevo, Sivel2Gen::Victima
+
     can :nuevo, Sivel2Gen::Victimacolectiva
     if usuario && usuario.rol then
       case usuario.rol 
