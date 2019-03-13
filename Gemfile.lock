@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/pasosdeJesus/heb412_gen.git
-  revision: 119aba9f0abb63b63a1560e405e62e3bceb660d0
+  revision: f8a6cef99c44892b2e7e02ac6321806a9b66bc72
   specs:
     heb412_gen (1.0.a1)
       chosen-rails
@@ -11,7 +11,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sip.git
-  revision: d79bc2c4c779ae8c79f77b5f0bbaa08e74c0caa3
+  revision: f3f455ddb06bb42bf89527a45bc19cddfea031d3
   specs:
     sip (2.0.b5)
       bootstrap-datepicker-rails
@@ -115,7 +115,7 @@ GEM
     coffee-script-source (1.12.2)
     colorize (0.8.1)
     commonjs (0.2.7)
-    concurrent-ruby (1.1.4)
+    concurrent-ruby (1.1.5)
     connection_pool (2.2.2)
     crass (1.0.4)
     debug_inspector (0.0.3)
@@ -178,7 +178,7 @@ GEM
       builder
       minitest (>= 5.0)
       ruby-progressbar
-    msgpack (1.2.7)
+    msgpack (1.2.9)
     multi_json (1.13.1)
     nio4r (2.3.1)
     nokogiri (1.10.1)
