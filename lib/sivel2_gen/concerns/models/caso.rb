@@ -7,6 +7,7 @@ module Sivel2Gen
         extend ActiveSupport::Concern
 
         included do
+          include Sip::Modelo
           include Sip::Localizacion
           include Sip::FormatoFechaHelper
 
@@ -18,8 +19,10 @@ module Sivel2Gen
             dependent: :destroy, class_name: 'Sivel2Gen::Acto'
           accepts_nested_attributes_for :acto, allow_destroy: true, 
             reject_if: :all_blank
+
           has_many :actocolectivo, foreign_key: "id_caso", validate: true, 
             dependent: :destroy, class_name: 'Sivel2Gen::Actocolectivo'
+
           has_many :anexo_caso, foreign_key: "id_caso", validate: true, 
             dependent: :destroy, class_name: 'Sivel2Gen::AnexoCaso',
             inverse_of: :caso
