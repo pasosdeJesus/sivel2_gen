@@ -61,7 +61,7 @@ module Sivel2Gen
             end
             if ActiveRecord::Base.connection.data_source_exists? 'sivel2_gen_consexpcaso'
               ActiveRecord::Base.connection.execute(
-                "DROP MATERIALIZED VIEW sivel2_gen_consexpcaso;")
+                "DROP MATERIALIZED VIEW IF EXISTS sivel2_gen_consexpcaso;")
             end
             w = "WHERE TRUE=FALSE"
             if conscaso && conscaso.count > 0
