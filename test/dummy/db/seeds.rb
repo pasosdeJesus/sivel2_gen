@@ -7,7 +7,7 @@ Sip::carga_semillas_sql(conexion, '../..', :cambios)
 Sip::carga_semillas_sql(conexion, '../..', :datos)
 
 # usuario sivel2 con clave sivel2
-conexion.execute("INSERT INTO usuario 
+conexion.execute("INSERT INTO public.usuario 
 	(nusuario, email, encrypted_password, password, 
   fechacreacion, created_at, updated_at, rol) 
 	VALUES ('sivel2', 'sivel2@localhost', 
