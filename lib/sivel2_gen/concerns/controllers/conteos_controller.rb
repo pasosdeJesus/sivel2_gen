@@ -102,11 +102,11 @@ module Sivel2Gen
           @pSegun = ''
 
           def personas_cons1 
-            'cben1'
+            'public.cben1'
           end
 
           def personas_cons2
-            'cben2';
+            'public.cben2';
           end
 
           # Llena variables de clase: @opsegun, @titulo_personas,
@@ -151,7 +151,7 @@ module Sivel2Gen
             que1 = agrega_tabla(
               que1, "victima.id_#{tabla} AS id_#{tabla}")
             tablas3 = agrega_tabla(
-              tablas3, "sivel2_gen_#{tabla} AS #{tabla}")
+              tablas3, "public.sivel2_gen_#{tabla} AS #{tabla}")
             where3 = consulta_and_sinap(
               where3, "id_#{tabla}", "#{tabla}.id")
             que3 << ["#{tabla}.nombre", nomtabla]
@@ -167,7 +167,7 @@ module Sivel2Gen
 
             when 'AÑO DE NACIMIENTO'
               que1 = agrega_tabla(que1, 'persona.anionac AS anionac')
-              tablas1 = agrega_tabla(tablas1, 'sip_persona AS persona')
+              tablas1 = agrega_tabla(tablas1, 'public.sip_persona AS persona')
               where1 = consulta_and_sinap(
                 where1, "persona.id", "victima.id_persona")
               que3 << ["anionac", "Año de Nacimiento"]
@@ -221,7 +221,7 @@ module Sivel2Gen
 
             when 'SEXO'
               que1 = agrega_tabla(que1, 'persona.sexo AS sexo')
-              tablas1 = agrega_tabla(tablas1, 'sip_persona AS persona')
+              tablas1 = agrega_tabla(tablas1, 'public.sip_persona AS persona')
               where1 = consulta_and_sinap(
                 where1, "persona.id", "victima.id_persona")
               que3 << ["sexo", "Sexo"]
@@ -316,7 +316,7 @@ module Sivel2Gen
             end
             que1 = 'caso.id AS id_caso, victima.id_persona AS id_persona,
             1 AS npersona'
-            tablas1 = 'sivel2_gen_caso AS caso, sivel2_gen_victima AS victima'
+            tablas1 = 'public.sivel2_gen_caso AS caso, public.sivel2_gen_victima AS victima'
             where1 = consulta_and_sinap(where1, "caso.id", "victima.id_caso")
 
             # Para la consulta final emplear arreglo que3, que tendrá parejas
@@ -394,7 +394,7 @@ module Sivel2Gen
           w = consulta_and(w, "sivel2_gen_acto.id_categoria", cat.to_i);
           q = "SELECT count(*) FROM (SELECT DISTINCT sivel2_gen_acto.id_caso, 
             sivel2_gen_acto.id_persona, sivel2_gen_acto.id_categoria 
-            FROM sivel2_gen_caso, sivel2_gen_acto
+            FROM public.sivel2_gen_caso, public.sivel2_gen_acto
             WHERE #{w}) AS subcuentaactos;";
           r = ActiveRecord::Base.connection.select_all(q)
           #byebug

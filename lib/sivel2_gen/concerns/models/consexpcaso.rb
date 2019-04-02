@@ -47,8 +47,8 @@ module Sivel2Gen
               caso.id_intervalo,
               caso.created_at,
               caso.updated_at
-              FROM sivel2_gen_conscaso AS conscaso
-              JOIN sivel2_gen_caso AS caso ON caso.id=conscaso.caso_id
+              FROM public.sivel2_gen_conscaso AS conscaso
+              JOIN public.sivel2_gen_caso AS caso ON caso.id=conscaso.caso_id
               "
           end
 
