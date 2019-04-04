@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/pasosdeJesus/heb412_gen.git
-  revision: af9434b91e0564424205c643cbe9cecf32c873f2
+  revision: a05f7b145cf4f609ba7c77f917eb7a2f8936537e
   specs:
     heb412_gen (1.0.a1)
       chosen-rails
@@ -11,7 +11,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sip.git
-  revision: 8e4af452d54e787a24bd5468d7f6c69b22077678
+  revision: c62a32e6143f134a7cb829677559ef097948b1fa
   specs:
     sip (2.0.b5)
       bootstrap-datepicker-rails
@@ -98,7 +98,7 @@ GEM
       railties (>= 3.0)
     builder (3.2.3)
     camertron-eprun (1.1.1)
-    cancancan (2.3.0)
+    cancancan (3.0.0)
     chosen-rails (1.8.7)
       coffee-rails (>= 3.2)
       railties (>= 3.0)
@@ -249,7 +249,7 @@ GEM
       rubyzip (~> 1.1)
     ruby-progressbar (1.10.0)
     rubyzip (1.2.2)
-    sass (3.7.3)
+    sass (3.7.4)
       sass-listen (~> 4.0.0)
     sass-listen (4.0.0)
       rb-fsevent (~> 0.9, >= 0.9.4)
