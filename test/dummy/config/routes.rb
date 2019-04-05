@@ -2,7 +2,7 @@
 
 Rails.application.routes.draw do
 
-  scope '/sivel2/' do 
+  scope '/sivel2' do
     devise_scope :usuario do
       get 'sign_out' => 'devise/sessions#destroy', as: 'sign_out'
 
@@ -11,7 +11,7 @@ Rails.application.routes.draw do
       # /puntomontaje/puntomontaje/usuarios/sign_in )
       if (Rails.configuration.relative_url_root != '/') 
         ruta = File.join(Rails.configuration.relative_url_root, 
-                         'usuarios/sign_in')
+                       'usuarios/sign_in')
         post ruta, to: 'devise/sessions#create'
         get  ruta, to: 'devise/sessions#new'
       end
