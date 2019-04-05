@@ -3,7 +3,7 @@
 require 'sivel2_gen/concerns/controllers/casos_controller'
 
 module Sivel2Gen
-  class CasosController < ApplicationController
+  class CasosController < Heb412Gen::ModelosController #ApplicationController
 
     include Sivel2Gen::Concerns::Controllers::CasosController
 

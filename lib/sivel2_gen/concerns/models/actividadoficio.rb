@@ -8,8 +8,6 @@ module Sivel2Gen
 
         include Sip::Basica
         included do
-          #has_many :victimasjr, foreign_key: "id_actividadoficio", 
-          #  validate: true, class_name: 'Sivel2Gen::Victimasjr'
         end
 
       end

@@ -1,7 +1,7 @@
 language: ruby
 
 rvm:
-        - 2.4.0
+        - 2.6.1
 
 addons:
         postgresql: '9.6'
@@ -24,6 +24,9 @@ before_install:
         - sudo /etc/init.d/postgresql start 9.6
         - cd test/dummy
         - psql -c 'CREATE DATABASE sivel2gen_pru;' -U postgres
+        - gem install bundler
+        - gem update --system
+        - bundle update --bundler
         - bundle install
         - cp config/database.travis.yml config/database.yml
         - cp db/structure.sql db/structure.sql.copia # travis no soporta PostreSQL 10

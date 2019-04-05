@@ -181,11 +181,7 @@
 
       <div class="col-sm-offset-0 col-sm-4 col-md-3">
         <%= f.input :sexo, 
-          collection: [
-            ["SIN INFORMACIÓN", :S], 
-            ["FEMENINO", :F], 
-            ["MASCULINO", :M]
-          ], 
+          collection: Sip::Persona::OPCIONES_SEXO,
           label: false,
           include_blank: '-- Sexo'
         %>

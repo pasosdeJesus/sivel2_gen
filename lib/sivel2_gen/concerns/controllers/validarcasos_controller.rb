@@ -12,7 +12,7 @@ module Sivel2Gen
                                   atr = [:id, :fecha, :nusuario],
                                   encabezado = [
                                     'Código', 'Fecha del Hecho', 'Usuario'])
-            res = casos.joins('INNER JOIN sivel2_gen_iniciador 
+            res = casos.joins('INNER JOIN public.sivel2_gen_iniciador 
                               ON sivel2_gen_iniciador.id_caso=id').
                               where(where).select(atr)
             arr = ActiveRecord::Base.connection.select_all(res.to_sql)
@@ -65,15 +65,15 @@ module Sivel2Gen
 
           def crear_vista_iniciador
             ActiveRecord::Base.connection.execute("
-       CREATE OR REPLACE VIEW sivel2_gen_iniciador AS (
+       CREATE OR REPLACE VIEW public.sivel2_gen_iniciador AS (
          SELECT s3.id_caso, s3.fechainicio, s3.id_usuario, usuario.nusuario 
-         FROM usuario, (SELECT s2.id_caso,
+         FROM public.usuario, (SELECT s2.id_caso,
             s2.fechainicio,
             min(s2.id_usuario) AS id_usuario
-           FROM sivel2_gen_caso_usuario s2,
+           FROM public.sivel2_gen_caso_usuario s2,
             ( SELECT f1.id_caso,
                     min(f1.fechainicio) AS m
-                   FROM sivel2_gen_caso_usuario f1
+                   FROM public.sivel2_gen_caso_usuario f1
                   GROUP BY f1.id_caso) c
           WHERE s2.id_caso = c.id_caso 
             AND s2.fechainicio = c.m

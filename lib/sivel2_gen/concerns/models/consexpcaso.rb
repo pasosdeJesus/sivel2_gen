@@ -47,8 +47,8 @@ module Sivel2Gen
               caso.id_intervalo,
               caso.created_at,
               caso.updated_at
-              FROM sivel2_gen_conscaso AS conscaso
-              JOIN sivel2_gen_caso AS caso ON caso.id=conscaso.caso_id
+              FROM public.sivel2_gen_conscaso AS conscaso
+              JOIN public.sivel2_gen_caso AS caso ON caso.id=conscaso.caso_id
               "
           end
 
@@ -61,7 +61,7 @@ module Sivel2Gen
             end
             if ActiveRecord::Base.connection.data_source_exists? 'sivel2_gen_consexpcaso'
               ActiveRecord::Base.connection.execute(
-                "DROP MATERIALIZED VIEW sivel2_gen_consexpcaso;")
+                "DROP MATERIALIZED VIEW IF EXISTS sivel2_gen_consexpcaso;")
             end
             w = "WHERE TRUE=FALSE"
             if conscaso && conscaso.count > 0

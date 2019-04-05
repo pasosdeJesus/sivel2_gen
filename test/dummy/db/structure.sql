@@ -783,7 +783,8 @@ CREATE TABLE public.sip_actorsocial (
     pais_id integer,
     web character varying(500),
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    fechadeshabilitacion date
 );
 
 
@@ -1766,7 +1767,7 @@ CREATE VIEW public.sivel2_gen_conscaso1 AS
  SELECT caso.id AS caso_id,
     caso.fecha,
     caso.memo,
-    array_to_string(ARRAY( SELECT (((departamento.nombre)::text || ' / '::text) || (municipio.nombre)::text)
+    array_to_string(ARRAY( SELECT (((COALESCE(departamento.nombre, ''::character varying))::text || ' / '::text) || (COALESCE(municipio.nombre, ''::character varying))::text)
            FROM ((public.sip_ubicacion ubicacion
              LEFT JOIN public.sip_departamento departamento ON ((ubicacion.id_departamento = departamento.id)))
              LEFT JOIN public.sip_municipio municipio ON ((ubicacion.id_municipio = municipio.id)))
@@ -4233,14 +4234,6 @@ ALTER TABLE ONLY public.sivel2_gen_supracategoria
 
 
 --
--- Name: sip_trelacion trelacion_inverso_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.sip_trelacion
-    ADD CONSTRAINT trelacion_inverso_fkey FOREIGN KEY (inverso) REFERENCES public.sip_trelacion(id);
-
-
---
 -- Name: sip_ubicacion ubicacion_id_caso_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -4537,6 +4530,10 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20181018003945'),
 ('20181130112320'),
 ('20190109125417'),
-('20190110191802');
+('20190110191802'),
+('20190128032125'),
+('20190308195346'),
+('20190331111015'),
+('20190401175521');
 
 

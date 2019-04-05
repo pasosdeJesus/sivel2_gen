@@ -57,19 +57,19 @@ module Sivel2Gen
 
           scope :filtro_departamento_id, lambda { |id|
             where('caso_id IN (SELECT id_caso
-                    FROM sip_ubicacion
+                    FROM public.sip_ubicacion
                     WHERE sip_ubicacion.id_departamento = ?)', id)
           }
 
           scope :filtro_municipio_id, lambda { |id|
             where('caso_id IN (SELECT id_caso
-                    FROM sip_ubicacion
+                    FROM public.sip_ubicacion
                     WHERE sip_ubicacion.id_municipio = ?)', id)
           }
 
           scope :filtro_clase_id, lambda { |id|
             where('caso_id IN (SELECT id_caso
-                    FROM sip_ubicacion
+                    FROM public.sip_ubicacion
                     WHERE sip_ubicacion.id_clase = ?)', id)
           }
 
@@ -83,14 +83,14 @@ module Sivel2Gen
 
           scope :filtro_presponsable_id, lambda { |id|
             where('caso_id IN (SELECT id_caso
-                    FROM sivel2_gen_caso_presponsable
+                    FROM public.sivel2_gen_caso_presponsable
                     WHERE sivel2_gen_caso_presponsable.id_presponsable = ?)', 
                     id)
           }
 
           scope :filtro_categoria_id, lambda { |id|
             where('caso_id IN (SELECT id_caso
-                    FROM sivel2_gen_acto 
+                    FROM public.sivel2_gen_acto 
                     WHERE sivel2_gen_acto.id_categoria = ?)', 
                     id)
           }
@@ -102,7 +102,8 @@ module Sivel2Gen
 
           scope :filtro_nombres, lambda { |d|
             where('caso_id IN (SELECT id_caso
-                    FROM sivel2_gen_victima INNER JOIN sip_persona
+                    FROM public.sivel2_gen_victima 
+                    INNER JOIN public.sip_persona
                     ON sivel2_gen_victima.id_persona=sip_persona.id
                     WHERE sip_persona.nombres ILIKE \'%' + 
                     ActiveRecord::Base.connection.quote_string(d) + '%\')')
@@ -110,7 +111,8 @@ module Sivel2Gen
 
           scope :filtro_apellidos, lambda { |d|
             where('caso_id IN (SELECT id_caso
-                    FROM sivel2_gen_victima INNER JOIN sip_persona
+                    FROM public.sivel2_gen_victima 
+                    INNER JOIN public.sip_persona
                     ON sivel2_gen_victima.id_persona=sip_persona.id
                     WHERE sip_persona.apellidos ILIKE \'%' + 
                     ActiveRecord::Base.connection.quote_string(d) + '%\')')
@@ -118,45 +120,46 @@ module Sivel2Gen
 
           scope :filtro_sexo, lambda { |s|
             where('caso_id IN (SELECT id_caso
-                    FROM sivel2_gen_victima INNER JOIN sip_persona
+                    FROM public.sivel2_gen_victima 
+                    INNER JOIN public.sip_persona
                     ON sivel2_gen_victima.id_persona=sip_persona.id
                     WHERE sip_persona.sexo=?)', s)
           }
 
           scope :filtro_rangoedad_id, lambda { |r|
             where('caso_id IN (SELECT id_caso
-                    FROM sivel2_gen_victima 
+                    FROM public.sivel2_gen_victima 
                     WHERE sivel2_gen_victima.id_rangoedad = ?)', r)
           }
 
           scope :filtro_etiqueta, lambda { |c, e|
             if c 
               where('caso_id IN (SELECT id_caso 
-                FROM sivel2_gen_caso_etiqueta
+                FROM public.sivel2_gen_caso_etiqueta
                 WHERE id_etiqueta = ?)', e)
             else
               where('caso_id NOT IN (SELECT id_caso 
-                FROM sivel2_gen_caso_etiqueta
+                FROM public.sivel2_gen_caso_etiqueta
                 WHERE id_etiqueta = ?)', e)
             end
           }
 
           scope :filtro_usuario_id, lambda { |u|
             where('caso_id IN (SELECT id_caso
-                    FROM sivel2_gen_caso_usuario
+                    FROM public.sivel2_gen_caso_usuario
                     WHERE sivel2_gen_caso_usuario.id_usuario = ?)', u)
           }
 
           scope :filtro_fechaingini, lambda { |f|
             where('caso_id IN (SELECT id
-                    FROM sivel2_gen_caso
+                    FROM public.sivel2_gen_caso
                     WHERE created_at >= ?)', f)
           }
 
           scope :filtro_fechaingfin, lambda { |f|
-            where('caso_id IN (SELECT id
-                    FROM sivel2_gen_caso
-                    WHERE created_at <= ?)', f)
+            where('caso_id IN (SELECT id FROM public.sivel2_gen_caso
+              WHERE created_at <= ?)', f)
+
           }
 
           scope :filtro_codigo, lambda { |c|
@@ -175,36 +178,37 @@ module Sivel2Gen
               ActiveRecord::Base.connection.execute("CREATE OR REPLACE 
         VIEW sivel2_gen_conscaso1 AS
         SELECT caso.id as caso_id, caso.fecha, caso.memo, 
-        ARRAY_TO_STRING(ARRAY(SELECT departamento.nombre ||  ' / ' 
-        || municipio.nombre 
-        FROM sip_ubicacion AS ubicacion 
-					LEFT JOIN sip_departamento AS departamento 
+        ARRAY_TO_STRING(ARRAY(SELECT COALESCE(departamento.nombre, '') ||  
+        ' / ' || COALESCE(municipio.nombre, '')
+        FROM public.sip_ubicacion AS ubicacion 
+					LEFT JOIN public.sip_departamento AS departamento 
 						ON (ubicacion.id_departamento = departamento.id)
-        	LEFT JOIN sip_municipio AS municipio 
+        	LEFT JOIN public.sip_municipio AS municipio 
 						ON (ubicacion.id_municipio=municipio.id)
           WHERE ubicacion.id_caso=caso.id), ', ')
         AS ubicaciones, 
         ARRAY_TO_STRING(ARRAY(SELECT nombres || ' ' || apellidos 
-          FROM sip_persona AS persona, 
-          sivel2_gen_victima AS victima WHERE persona.id=victima.id_persona 
+          FROM public.sip_persona AS persona, 
+          public.sivel2_gen_victima AS victima 
+          WHERE persona.id=victima.id_persona 
           AND victima.id_caso=caso.id), ', ')
         AS victimas, 
         ARRAY_TO_STRING(ARRAY(SELECT nombre 
-          FROM sivel2_gen_presponsable AS presponsable, 
-          sivel2_gen_caso_presponsable AS caso_presponsable
+          FROM public.sivel2_gen_presponsable AS presponsable, 
+          public.sivel2_gen_caso_presponsable AS caso_presponsable
           WHERE presponsable.id=caso_presponsable.id_presponsable
           AND caso_presponsable.id_caso=caso.id), ', ')
         AS presponsables, 
         ARRAY_TO_STRING(ARRAY(SELECT supracategoria.id_tviolencia || ':' || 
           categoria.supracategoria_id || ':' || categoria.id || ' ' ||
-          categoria.nombre FROM sivel2_gen_categoria AS categoria, 
-          sivel2_gen_supracategoria AS supracategoria,
-          sivel2_gen_acto AS acto
+          categoria.nombre FROM public.sivel2_gen_categoria AS categoria, 
+          public.sivel2_gen_supracategoria AS supracategoria,
+          public.sivel2_gen_acto AS acto
           WHERE categoria.id=acto.id_categoria
           AND supracategoria.id=categoria.supracategoria_id
           AND acto.id_caso=caso.id), ', ')
         AS tipificacion
-        FROM sivel2_gen_caso AS caso;")
+        FROM public.sivel2_gen_caso AS caso;")
               ActiveRecord::Base.connection.execute(
           "CREATE MATERIALIZED VIEW sivel2_gen_conscaso AS
         SELECT caso_id, fecha, memo, ubicaciones, victimas, 
@@ -213,7 +217,7 @@ module Sivel2Gen
         replace(cast(fecha AS varchar), '-', ' ') 
         || ' ' || memo || ' ' || ubicaciones || ' ' || 
          victimas || ' ' || presponsables || ' ' || tipificacion)) as q
-        FROM sivel2_gen_conscaso1");
+        FROM public.sivel2_gen_conscaso1");
               ActiveRecord::Base.connection.execute(
           "CREATE INDEX busca_sivel2_gen_conscaso 
 							ON sivel2_gen_conscaso USING gin(q);"
