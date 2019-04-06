@@ -34,6 +34,10 @@ module Sivel2Gen
 
         module ClassMethods
 
+          def interpreta_ordenar_por(ordenar_por)
+            ordenar_por
+          end
+
           def consulta_consexpcaso 
             "SELECT conscaso.*,
               caso.titulo,
@@ -52,7 +56,7 @@ module Sivel2Gen
               "
           end
 
-          def crea_consexpcaso(conscaso)
+          def crea_consexpcaso(conscaso, ordenar_por = nil)
             if ARGV.include?("db:migrate")
               return
             end
@@ -66,6 +70,9 @@ module Sivel2Gen
             w = "WHERE TRUE=FALSE"
             if conscaso && conscaso.count > 0
               w = "WHERE conscaso.caso_id IN (#{conscaso.select(:caso_id).to_sql})"
+            end
+            if ordenar_por
+              w += ' ORDER BY ' + self.interpreta_ordenar_por(ordenar_por)
             end
             ActiveRecord::Base.connection.execute("CREATE 
               MATERIALIZED VIEW sivel2_gen_consexpcaso AS
