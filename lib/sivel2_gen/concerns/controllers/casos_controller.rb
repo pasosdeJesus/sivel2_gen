@@ -37,6 +37,7 @@ module Sivel2Gen
           def filtro_avanzado(conscaso, params_filtro)
             for i in campos_filtro1 do
               if params_filtro[i] && params_filtro[i] != '' && 
+                params_filtro[i] != ['']
                 conscaso.respond_to?('filtro_' + i.to_s)
                 conscaso = conscaso.send('filtro_' + i.to_s, params_filtro[i])
               end
@@ -171,11 +172,12 @@ module Sivel2Gen
 
 
           def presenta_index
+
             # Presentación
             respond_to do |format|
               format.ods { 
                 #byebug
-                Consexpcaso.crea_consexpcaso(@conscaso)
+                Consexpcaso.crea_consexpcaso(@conscaso, @campoord)
                 if params[:filtro].nil? || params[:idplantilla].nil? 
                   head :no_content 
                 elsif params[:idplantilla].to_i <= 0
@@ -188,7 +190,6 @@ module Sivel2Gen
                   head :no_content 
                 end
                 @consexpcaso = Consexpcaso.all
-
                
                 pl = Heb412Gen::Plantillahcm.find(params[:idplantilla].to_i) 
                 rarch = File.join('/generados/',
@@ -225,10 +226,12 @@ module Sivel2Gen
                 else
                   render layout: 'application' 
                 end
+                return
               }
 
               format.js { 
                 render 'sivel2_gen/casos/filtro'
+                return
               }
             end
           end
