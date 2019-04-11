@@ -28,7 +28,10 @@
         value_method: :id %>
     </div>
     <div class="col-md-6">
-      <%= f.input :numerodocumento %>
+      <%= f.input :numerodocumento,
+        input_html: { 'data-toggle' => 'tooltip',
+          title: 'Si el tipo de documento es cédula de ciudadania teclee solo digitos'
+      } %>
     </div>
   </div>
 
