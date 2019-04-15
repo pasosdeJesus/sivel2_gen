@@ -11,7 +11,7 @@
     :url => sivel2_gen.casos_path(@caso).sub(/\./,"/"), 
     :html => { :class => 'form-horizontal' } do |f| 
   %>
-    <div data-role="content" class="form-inputs">
+    <div data-role="content" class="form-inputs"  style="background: #730E15">
 
       <%= render partial: 'sip/hogar/errores', locals: { f: f } %>
       <%= render partial: 'sivel2_gen/casos/datos_interjs', locals: { f: f } %>

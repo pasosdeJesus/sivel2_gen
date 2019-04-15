@@ -1,0 +1,7 @@
+<div id="nuevo" style="background: #730E15" >
+  <%- model_class = Sivel2Gen::Caso -%>
+  <div>
+    <h1 ><%=t '.title', :default => [:'helpers.titles.new', 'New %{mod}'], :model => model_class.model_name.human.titleize %></h1>
+  </div>
+  <%= render :partial => 'form' %>
+</div>
