@@ -12,6 +12,77 @@ module Sivel2Gen
           load_and_authorize_resource class: Sivel2Gen::Caso
           helper Sip::UbicacionHelper
 
+
+          def clase
+            'Sivel2Gen::Caso'
+          end
+
+          def genclase
+            'M'
+          end
+
+          def atributos_show
+            [
+              # basicos
+              :id,
+              :fecha,
+              :titulo,
+              :hora,
+              :duracion,
+              :intervalo,
+              :region,
+              :frontera,
+
+              # ubicacion
+              :ubicaciones,
+
+              # fuentes frec.
+              :fuentesfrecuentes,
+
+              # otras fuentes
+              :otrasfuentes,
+
+              # contexto
+              :contexto,
+              :antecedente,
+              :bienes,
+
+              # p. responsables
+              :presponsables,
+
+              # victimas
+              :victimas,
+
+              #colectivas
+              :victimascolectivas,
+
+              #combatientes
+              :combatientes,
+
+              #actos
+              :actos,
+
+              #descripcion
+              :memo ,
+
+              #anexos
+              :anexos,
+
+              #etiquetas
+              :etiquetas,
+
+              #evaluacion
+              :grconfiabilidad, 
+              :gresclarecimiento, 
+              :grimpunidad, 
+              :grinformacion, 
+
+              # Otras
+              :created_at,
+              :updated_at
+            ]
+          end
+
           # Todos los campos por los que se puede filtrar tienen un 
           # scope conscaso
           def campos_filtro1
@@ -234,12 +305,6 @@ module Sivel2Gen
                 return
               }
             end
-          end
-
-          # GET /casos/1
-          # GET /casos/1.json
-          def show
-            render layout: 'application'
           end
 
           # GET /casos/new

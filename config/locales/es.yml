@@ -65,16 +65,19 @@ es:
         duracion: Duración
         fecha: Fecha del hecho
         fecha_localizada: Fecha del hecho
+        fuentesfrecuentes: Fuentes frecuentes
         grconfiabilidad: Gr. Confiabilidad Fuente
         gresclarecimiento: Gr. Esclarecimiento
         grimpunidad: Gr. Impunidad
         grinformacion: Gr. Información
         id: Caso No.
         memo: Descripción
+        otrasfuentes: Otras fuentes
         presponsables: P. Responsables
         tipificacion: Tipificacion
         titulo: Título
         victimas: Víctimas
+        victimascolectivas: Víctimas colectivas
         region: Región
       "sivel2_gen/casosjr":
         fecharec: F. Recepción
