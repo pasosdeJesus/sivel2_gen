@@ -3,8 +3,13 @@
 
     <div class="row">
       <div class="col-md-12">
+        <% col1 = Sivel2Gen::Presponsable.habilitados.map(&:id) %>
+        <% col2 = [] %>
+        <% col2 = f.object.caso.presponsable_ids if f.object.caso %>
+        <% col = Sivel2Gen::Presponsable.where(id: col1 | col2).
+          order(:nombre) %>
         <%= f.association :presponsable,
-          collection: Sivel2Gen::Presponsable.habilitados,
+          collection: col,
           label_method: :nombre,
           value_method: :id,
           input_html: { 
