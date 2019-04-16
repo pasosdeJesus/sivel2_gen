@@ -1,0 +1,31 @@
+# encoding: UTF-8
+
+module Sivel2Gen
+  module Concerns
+    module Models
+      module CasoEtiqueta
+        extend ActiveSupport::Concern
+
+        included do
+          include Sip::Localizacion
+          include Sip::FormatoFechaHelper
+
+          self.table_name = 'sivel2_gen_caso_etiqueta'
+
+          belongs_to :caso, foreign_key: "id_caso", validate: true, 
+            class_name: 'Sivel2Gen::Caso', inverse_of: :caso_etiqueta
+          belongs_to :etiqueta, foreign_key: "id_etiqueta", validate: true,
+            class_name: 'Sip::Etiqueta'
+          belongs_to :usuario, foreign_key: "id_usuario", validate: true
+
+          campofecha_localizado :fecha
+
+          validates_presence_of :fecha
+          validates_presence_of :id_etiqueta
+
+        end # included
+
+      end
+    end
+  end
+end

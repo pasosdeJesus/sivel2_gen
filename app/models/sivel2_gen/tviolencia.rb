@@ -1,17 +1,9 @@
 # encoding: UTF-8
+
+require 'sivel2_gen/concerns/models/tviolencia'
+
 module Sivel2Gen
   class Tviolencia < ActiveRecord::Base
-    include Sip::Basica
-
-    has_many :supracategoria, foreign_key: "id_tviolencia", validate: true, 
-      class_name: 'Sivel2Gen::Supracategoria'
-
-    validates :id, presence:true, length: { maximum: 1 }, 
-      uniqueness: {case_sensitive: false}
-
-    def id=(val)
-      self[:id] = val ? val.upcase.squish : nil
-    end
-
+    include Sivel2Gen::Concerns::Models::Tviolencia
   end
 end
