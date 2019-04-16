@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/pasosdeJesus/heb412_gen.git
-  revision: a05f7b145cf4f609ba7c77f917eb7a2f8936537e
+  revision: c5a9aba28f1798088fa818e3784a6ee97195774b
   specs:
     heb412_gen (1.0.a1)
       chosen-rails
@@ -11,7 +11,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sip.git
-  revision: cd422178141b96a1cdf2251944a832c27923ec35
+  revision: 3190b3193807b3a1b2b4aa64e4c9789e9658372c
   specs:
     sip (2.0.b5)
       bootstrap-datepicker-rails
@@ -89,16 +89,17 @@ GEM
     arel (9.0.0)
     bcrypt (3.1.12)
     bigdecimal (1.4.3)
-    bindex (0.6.0)
+    bindex (0.7.0)
     binding_of_caller (0.8.0)
       debug_inspector (>= 0.0.1)
-    bootsnap (1.4.2)
+    bootsnap (1.4.3)
       msgpack (~> 1.0)
     bootstrap-datepicker-rails (1.8.0.1)
       railties (>= 3.0)
     builder (3.2.3)
+    byebug (11.0.1)
     camertron-eprun (1.1.1)
-    cancancan (3.0.0)
+    cancancan (3.0.1)
     chosen-rails (1.8.7)
       coffee-rails (>= 3.2)
       railties (>= 3.0)
@@ -319,6 +320,7 @@ DEPENDENCIES
   bigdecimal
   bootsnap (>= 1.1.0)
   bootstrap-datepicker-rails
+  byebug
   cancancan
   chosen-rails
   cocoon!
