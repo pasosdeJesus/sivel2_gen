@@ -25,7 +25,7 @@ module Sivel2Gen
 
     test "existente" do
       profesion = Sivel2Gen::Profesion.where(id: 22).take
-      assert_equal profesion.nombre, "SIN INFORMACIÓN"
+      assert_equal profesion.nombre, "DEFENSOR DE DERECHOS HUMANOS"
     end
 
   end
