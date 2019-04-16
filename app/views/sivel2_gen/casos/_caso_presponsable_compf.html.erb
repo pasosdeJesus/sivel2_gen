@@ -1,5 +1,15 @@
-    <%= f.association :categoria, 
-      collection: Sivel2Gen::Categoria.habilitados.where(tipocat: 'O'),
-      label_method: :nombre, 
-      value_method: :id 
-    %>
+<% col1 = Sivel2Gen::Categoria.habilitados.where(tipocat: 'O').map(&:id) %>
+<% col2 = [] %>
+<% col2 = f.object.categoria_ids if f.object.categoria %>
+<% col = Sivel2Gen::Categoria.where(id: col1 | col2).joins(:supracategoria).order(['sivel2_gen_supracategoria.id_tviolencia', 'sivel2_gen_categoria.id']) %>
+<%= f.association :categoria, 
+  collection: col,
+  label_method: lambda { 
+    |c| c.supracategoria.id_tviolencia + c.id.to_s + ' ' + c.nombre },
+  value_method: :id,
+  input_html: { 
+    class: 'chosen-select', 
+    'data-toggle' => 'tooltip',
+    title: 'Categorias de violencia sin víctima particular'
+} %>
+
