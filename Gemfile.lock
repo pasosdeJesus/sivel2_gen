@@ -10,14 +10,8 @@ GIT
       sip
 
 GIT
-  remote: https://github.com/vtamara/cocoon.git
-  revision: 088c8d9dcce7f51cf3a968398047eaac7a37718b
-  branch: new_id_with_ajax
-  specs:
-    cocoon (1.2.11)
-
-PATH
-  remote: ../sip
+  remote: https://github.com/pasosdeJesus/sip.git
+  revision: 01265ec73f8d07548dbecd2b364a1b18cc69a23e
   specs:
     sip (2.0.b5)
       bootstrap-datepicker-rails
@@ -36,6 +30,13 @@ PATH
       twitter-bootstrap-rails
       twitter_cldr
       will_paginate
+
+GIT
+  remote: https://github.com/vtamara/cocoon.git
+  revision: 088c8d9dcce7f51cf3a968398047eaac7a37718b
+  branch: new_id_with_ajax
+  specs:
+    cocoon (1.2.11)
 
 GEM
   remote: https://rubygems.org/
