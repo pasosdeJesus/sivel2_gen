@@ -9,7 +9,7 @@
 * [Pruebas](#pruebas)
 * [Desarrollo](#desarrollo)
 
-Este es un motor de SIVeL 2 que podrás incluir en tu desarrollo personalizado.
+Este es un motor de SIVeL 2 con la funcionalidad central de este: manejo de casos de violencia socio política
 
 ## Diseño
 
@@ -22,9 +22,9 @@ y editar casos.
 
 ## Uso
 
-### Requerimientos tecnológicos
+### Requisitos tecnológicos
 
-Ver <https://github.com/pasosdeJesus/sip/wiki/Requerimientos>
+Ver <https://github.com/pasosdeJesus/sip/blob/master/doc/requisitos.md>
 
 ## Pruebas
 
@@ -32,11 +32,11 @@ Ver <https://github.com/pasosdeJesus/sip/wiki/Requerimientos>
 
 Este motor incluye una aplicación mínima de prueba cuya configuración
 es como la descrita en:
-<https://github.com/pasosdeJesus/sip/wiki/Aplicaci%C3%B3n-de-prueba>
+<https://github.com/pasosdeJesus/sip/blob/master/doc/aplicacion-de-prueba.md>
 
 Si ya habías lanzado la aplicación de prueba del motor **sip**, podrás utilizar
 el mismo usuario y basta que configures la clave 
-en ```spec/dummy/config/database.yml```
+en ```test/dummy/config/database.yml```
 
 ### Pruebas de regresión
 
