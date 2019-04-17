@@ -38,27 +38,27 @@ Si ya habías lanzado la aplicación de prueba del motor **sip**, podrás utiliz
 el mismo usuario y basta que configures la clave 
 en ```test/dummy/config/database.yml```
 
-### Pruebas de regresión
+### Pruebas con minitest
 
-Se han implementado algunas pruebas con RSpec a modelos y pruebas de regresión.
+Se han implementado algunas pruebas con `minitest` a modelos y  controladores.
 Si pudiste ver la aplicación de prueba en un navegador, las siguientes 
 instrucciones aplican:
-https://github.com/pasosdeJesus/sip/wiki/Pruebas-de-Regresi%C3%B3n
+<https://github.com/pasosdeJesus/sip/blob/master/doc/pruebas-con-minitest.md>
 
 ## Desarrollo
 
 ### Convenciones de Desarrollo
 
 Consultalas en
-https://github.com/pasosdeJesus/sip/wiki/Convenciones
+<https://github.com/pasosdeJesus/sip/blob/master/doc/convenciones.md>
 
 ### Generación de datos de tablas básicas
 
 Una vez estén bien los datos de tablas básicas en base de datos de la
-la aplicación de  prueba ```spec/dummy```:
+la aplicación de  prueba, modo desarrollo de ```test/dummy```:
 ```sh
-cd spec/dummy
-RAILS_ENV=test rake sivel2:vuelcabasicas
+cd test/dummy
+bin/rails sivel2:vuelcabasicas
 cp db/datos-basicas.sql ../../db/datos-basicas.sql
 ```
 
