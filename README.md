@@ -9,24 +9,29 @@
 * [Pruebas](#pruebas)
 * [Desarrollo](#desarrollo)
 
-Este es un motor de SIVeL 2 con la funcionalidad central de este: manejo de casos de violencia socio política
+Este es un motor de SIVeL 2 con la funcionalidad central de este: manejo de casos de violencia socio política.
+
+Es para desarrolladores. Si estás interesado en desplegar la aplicación SIVeL mejor revisa:
+<https://github.com/pasosdeJesus/sivel2>
 
 ## Diseño
 
-Puede ver el diseño y prototipo en la rama dis2 de SIVeL 1.2:
+Mira más sobre la arquitectura actual en:
+<https://github.com/pasosdeJesus/sivel2/wiki>
+
+Respecto a la funcionalidad un diseño histórico y prototipo inicial de la 
+versión 2 está disponible la rama dis2 de SIVeL 1.2:
 <https://github.com/pasosdeJesus/SIVeL/tree/dis2>
 
 Control de Acceso: 2 roles administrador y usuario.  El administrador puede 
 editar tablas básicas y gestionar usuarios.   El analista puede crear 
 y editar casos.
 
-## Uso
+## Pruebas
 
 ### Requisitos tecnológicos
 
 Ver <https://github.com/pasosdeJesus/sip/blob/master/doc/requisitos.md>
-
-## Pruebas
 
 ### Aplicación de prueba
 
