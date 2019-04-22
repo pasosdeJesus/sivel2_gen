@@ -10,8 +10,7 @@ Es para desarrolladores. Si estás interesado en desplegar la aplicación SIVeL 
 
 ## Requerimientos
 Los manejamos mediante 3 proyectos en github:
-- [Funcionalidad completa de SIVeL 1.2
-](https://github.com/pasosdeJesus/sivel2_gen/projects/1)
+- [Funcionalidad completa de SIVeL 1.2 pero más estructurada](https://github.com/pasosdeJesus/sivel2_gen/projects/1)
 - [Mejorar usabilidad](https://github.com/pasosdeJesus/sivel2_gen/projects/2)
 - [Nueva funcionalidad para investigadores](https://github.com/pasosdeJesus/sivel2_gen/projects/3)
 
