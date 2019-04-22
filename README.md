@@ -8,6 +8,13 @@ Este es un motor de SIVeL 2 con la funcionalidad central de este: manejo de caso
 Es para desarrolladores. Si estás interesado en desplegar la aplicación SIVeL mejor revisa:
 <https://github.com/pasosdeJesus/sivel2>
 
+## Requerimientos
+Los manejamos mediante 3 proyectos en github:
+- [Funcionalidad completa de SIVeL 1.2
+](https://github.com/pasosdeJesus/sivel2_gen/projects/1)
+- [Mejorar usabilidad](https://github.com/pasosdeJesus/sivel2_gen/projects/2)
+- [Nueva funcionalidad para investigadores](https://github.com/pasosdeJesus/sivel2_gen/projects/3)
+
 ## Diseño
 
 Mira más sobre la arquitectura actual en:
