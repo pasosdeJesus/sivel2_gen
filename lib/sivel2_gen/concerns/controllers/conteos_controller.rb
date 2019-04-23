@@ -387,6 +387,141 @@ module Sivel2Gen
           
         end
 
+
+        def victimizaciones
+          authorize! :contar, Sivel2Gen::Caso
+
+          pFini = param_escapa([:filtro, 'fechaini'])
+          pFfin = param_escapa([:filtro, 'fechafin'])
+
+          @opsegun =  ["", 
+            "ACTOS PRESUNTOS RESPONSABLES", 
+            "FILIACIÓN", 
+            "MES CASO", 
+            "ORGANIZACIÓN SOCIAL", 
+            "PROFESIÓN", 
+            "RANGO DE EDAD", 
+            "SECTOR SOCIAL", 
+            "SEXO"
+          ]
+
+          pContar='victimizaciones'
+          #if (pContar == '') 
+          #  pContar = pContarDef
+          #end
+
+          tcons1 = 'cvt1'
+          # La estrategia es 
+          # 1. Agrupar en la vista tcons1 respuesta con lo que se contará 
+          #    restringiendo por filtros con códigos 
+          # 2. Contar derechos/respuestas personas_cons1, cambiar códigos
+          #    por información por desplegar
+
+          # Para la vista personas_cons1 emplear que1, tablas1 y where1
+          que1 = 'DISTINCT id_caso, id_persona, id_categoria, 
+            supracategoria.id_tviolencia AS id_tviolencia, 
+            categoria.nombre AS categoria'
+          tablas1 = ' public.sivel2_gen_acto AS acto JOIN ' +
+            'public.sivel2_gen_caso AS caso ON acto.id_caso=caso.id ' +
+            'JOIN public.sivel2_gen_categoria AS categoria ' + 
+            ' ON acto.id_categoria=categoria.id ' +
+            'JOIN public.sivel2_gen_supracategoria AS supracategoria ' + 
+            ' ON categoria.supracategoria_id=supracategoria.id '
+          where1 = ''
+
+          # Para la consulta final emplear arreglo que3, que tendrá parejas
+          # (campo, titulo por presentar en tabla)
+          que3 = []
+          tablas3 = tcons1
+          where3 = ''
+
+          if (pFini != '') 
+            pfechaini = DateTime.strptime(pFini, '%Y-%m-%d')
+            @fechaini = pfechaini.strftime('%Y-%m-%d')
+            where1 = consulta_and(
+              where1, "caso.fecha", @fechaini, ">="
+            )
+          end
+          if (pFfin != '') 
+            pfechafin = DateTime.strptime(pFfin, '%Y-%m-%d')
+            @fechafin = pfechafin.strftime('%Y-%m-%d')
+            where1 = consulta_and(
+              where1, "caso.fecha", @fechafin, "<="
+            )
+          end
+
+          #tablas1 = agrega_tabla(tablas1, "public.sivel2_sjr_#{trel} AS #{trel}")
+          #tablas3 = agrega_tabla(tablas3, "public.sivel2_sjr_#{pContar} AS #{pContar}")
+          #where3 = consulta_and_sinap(where3, idrel, "#{pContar}.id")
+          #que3 << ["#{pContar}.nombre", @pque[pContar]]
+          que3 << ["id_tviolencia", 'T. Violencia']
+          que3 << ["id_categoria", 'Id. Categoria']
+          que3 << ["categoria", 'Categoria']
+        #when 'remision'
+        #  que1 = agrega_tabla(
+        #    que1, "(CASE WHEN remision IS NOT NULL AND TRIM(remision)<>'' 
+        #          THEN 'SI' ELSE 'NO' END) AS remitido"
+        #  )
+        #  que3 << ["remitido",  @pque[pContar]]
+        #else
+        #  puts "opción desconocida #{pContar}"
+        # end
+
+          ActiveRecord::Base.connection.execute "DROP VIEW  IF EXISTS #{tcons1}"
+          # Filtrar 
+          q1="CREATE VIEW #{tcons1} AS 
+          SELECT #{que1}
+          FROM #{tablas1} #{where1} "
+          puts "q1 es #{q1}"
+          ActiveRecord::Base.connection.execute q1
+
+          puts que3
+          # Generamos 1,2,3 ...n para GROUP BY
+          gb = sep = ""
+          qc = ""
+          i = 1
+          que3.each do |t|
+            if (t[1] != "") 
+              gb += sep + i.to_s
+              qc += t[0] + ", "
+              sep = ", "
+              i += 1
+            end
+          end
+
+          @coltotales = [i-1, i]
+          if (gb != "") 
+            gb ="GROUP BY #{gb}" #ORDER BY #{i} DESC"
+          end
+          gb += " ORDER BY id_categoria"
+          que3 << ["", "Victimizaciones"]
+          twhere3 = where3 == "" ? "" : "WHERE " + where3
+          q3 = "SELECT #{qc}
+              COUNT(cast(#{tcons1}.id_caso as text))
+              FROM #{tablas3}
+              #{twhere3}
+              #{gb} 
+          "
+	#q3 = "SELECT COUNT(*) FROM #{tcons1}"
+          puts "q3=#{q3}"
+          @cuerpotabla = ActiveRecord::Base.connection.select_all(q3)
+
+          @enctabla = []
+          que3.each do |t|
+            if (t[1] != "") 
+              @enctabla << CGI.escapeHTML(t[1])
+            end
+          end
+
+          respond_to do |format|
+            format.html { }
+            format.json { head :no_content }
+            format.js   { render 'sivel2_gen/conteos/resultado' }
+          end
+        end # def respuesta
+
+
+
         def cuenta_actos(cat, where)
           w = where
           w = consulta_and_sinap(w, "sivel2_gen_caso.id", 
