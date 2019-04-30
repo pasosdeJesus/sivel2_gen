@@ -493,7 +493,7 @@ module Sivel2Gen
             que1 += ', ubicacion.id_departamento' +
               ', departamento.nombre AS departamento_nombre'
             tablas1 += ' LEFT JOIN sip_ubicacion AS ubicacion ON' +
-              ' ubicacion.id_caso=caso.id' +
+              ' caso.ubicacion_id = ubicacion.id' +
               ' LEFT JOIN sip_departamento AS departamento ON ' +
               ' ubicacion.id_departamento=departamento.id'
           end
