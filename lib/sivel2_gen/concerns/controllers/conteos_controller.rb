@@ -391,8 +391,17 @@ module Sivel2Gen
         def victimizaciones
           authorize! :contar, Sivel2Gen::Caso
 
+          # Filtros
           pFini = param_escapa([:filtro, 'fechaini'])
           pFfin = param_escapa([:filtro, 'fechafin'])
+          pTviolencia = param_escapa([:filtro, 'tviolencia_id'])
+          pEtiqueta1 = param_escapa([:filtro, 'etiqueta1'])
+          pEtiqueta2 = param_escapa([:filtro, 'etiqueta2'])
+          pSegun = param_escapa([:filtro, 'segun'])
+
+          # Desagregar
+          pMunicipio = param_escapa([:filtro, 'municipio'])
+          pDepartamento = param_escapa([:filtro, 'departamento'])
 
           @opsegun =  ["", 
             "ACTOS PRESUNTOS RESPONSABLES", 
@@ -410,15 +419,16 @@ module Sivel2Gen
           #  pContar = pContarDef
           #end
 
+          #byebug
           tcons1 = 'cvt1'
           # La estrategia es 
           # 1. Agrupar en la vista tcons1 respuesta con lo que se contará 
-          #    restringiendo por filtros con códigos 
-          # 2. Contar derechos/respuestas personas_cons1, cambiar códigos
+          #    con máxima desagregación restringiendo por filtros con códigos 
+          # 2. Contar derechos/respuestas tcons1, cambiar códigos
           #    por información por desplegar
 
-          # Para la vista personas_cons1 emplear que1, tablas1 y where1
-          que1 = 'DISTINCT id_caso, id_persona, id_categoria, 
+          # Para la vista tcons1 emplear que1, tablas1 y where1
+          que1 = 'DISTINCT acto.id_caso, acto.id_persona, acto.id_categoria, 
             supracategoria.id_tviolencia AS id_tviolencia, 
             categoria.nombre AS categoria'
           tablas1 = ' public.sivel2_gen_acto AS acto JOIN ' +
@@ -426,7 +436,12 @@ module Sivel2Gen
             'JOIN public.sivel2_gen_categoria AS categoria ' + 
             ' ON acto.id_categoria=categoria.id ' +
             'JOIN public.sivel2_gen_supracategoria AS supracategoria ' + 
-            ' ON categoria.supracategoria_id=supracategoria.id '
+            ' ON categoria.supracategoria_id=supracategoria.id ' +
+            'JOIN public.sivel2_gen_victima AS victima ' + 
+            ' ON victima.id_persona=acto.id_persona AND ' +
+            ' victima.id_caso=caso.id ' +
+            'JOIN public.sip_persona AS persona ' + 
+            ' ON persona.id=acto.id_persona'
           where1 = ''
 
           # Para la consulta final emplear arreglo que3, que tendrá parejas
@@ -449,24 +464,100 @@ module Sivel2Gen
               where1, "caso.fecha", @fechafin, "<="
             )
           end
+          if (pTviolencia != '') 
+            where1 = consulta_and(
+              where1, "id_tviolencia", pTviolencia[0], "="
+            )
+          end
+          if (pEtiqueta1 != '' || pEtiqueta2 != '')
+            tablas1 += ' JOIN sivel2_gen_caso_etiqueta AS caso_etiqueta ON' +
+              ' caso.id=caso_etiqueta.id_caso' 
+            if (pEtiqueta1 != '') 
+              where1 = consulta_and(
+               where1, "caso_etiqueta.id_etiqueta", pEtiqueta1, "="
+            )
+            end
+            if (pEtiqueta2 != '') 
+              where1 = consulta_and(
+               where1, "caso_etiqueta.id_etiqueta", pEtiqueta2, "="
+              )
+            end
+          end
 
-          #tablas1 = agrega_tabla(tablas1, "public.sivel2_sjr_#{trel} AS #{trel}")
-          #tablas3 = agrega_tabla(tablas3, "public.sivel2_sjr_#{pContar} AS #{pContar}")
-          #where3 = consulta_and_sinap(where3, idrel, "#{pContar}.id")
-          #que3 << ["#{pContar}.nombre", @pque[pContar]]
           que3 << ["id_tviolencia", 'T. Violencia']
           que3 << ["id_categoria", 'Id. Categoria']
           que3 << ["categoria", 'Categoria']
-        #when 'remision'
-        #  que1 = agrega_tabla(
-        #    que1, "(CASE WHEN remision IS NOT NULL AND TRIM(remision)<>'' 
-        #          THEN 'SI' ELSE 'NO' END) AS remitido"
-        #  )
-        #  que3 << ["remitido",  @pque[pContar]]
-        #else
-        #  puts "opción desconocida #{pContar}"
-        # end
 
+          if (pDepartamento.to_i == 1 || pMunicipio.to_i == 1) 
+            que3 << ["departamento_nombre", "Departamento"]
+            que1 += ', ubicacion.id_departamento' +
+              ', departamento.nombre AS departamento_nombre'
+            tablas1 += ' LEFT JOIN sip_ubicacion AS ubicacion ON' +
+              ' ubicacion.id_caso=caso.id' +
+              ' LEFT JOIN sip_departamento AS departamento ON ' +
+              ' ubicacion.id_departamento=departamento.id'
+          end
+
+          if (pMunicipio.to_i == 1) 
+            que3 << ["municipio_nombre", "Municipio"]
+            que1 += ', ubicacion.id_municipio' +
+              ', municipio.nombre AS municipio_nombre'
+            tablas1 += ' LEFT JOIN sip_municipio AS municipio ON ' +
+              ' ubicacion.id_municipio=municipio.id'
+          end
+
+          if pSegun && pSegun != ''
+            case pSegun
+            when "ACTOS PRESUNTOS RESPONSABLES"
+            que3 << ["presponsable_nombre", "P. Responsable"]
+            que1 += ', presponsable.id, presponsable.nombre AS presponsable_nombre' 
+            tablas1 += ' LEFT JOIN sivel2_gen_presponsable AS presponsable ON ' +
+              ' acto.id_presponsable=presponsable.id'
+
+            when "FILIACIÓN"
+            que3 << ["filiacion_nombre", "Filiacion"]
+            que1 += ', filiacion.id, filiacion.nombre AS filiacion_nombre' 
+            tablas1 += ' LEFT JOIN public.sivel2_gen_filiacion AS filiacion ON ' +
+              ' victima.id_filiacion=filiacion.id'
+
+            when "MES CASO"
+            when "ORGANIZACIÓN SOCIAL"
+              que3 << ["organizacion_nombre", "Organización"]
+              que1 += ', organizacion.id, organizacion.nombre AS organizacion_nombre' 
+              tablas1 += ' LEFT JOIN public.sivel2_gen_organizacion AS organizacion ON ' +
+                ' victima.id_organizacion=organizacion.id'
+
+            when "PROFESIÓN"
+              que3 << ["profesion_nombre", "Profesión"]
+              que1 += ', profesion.id, profesion.nombre AS profesion_nombre' 
+              tablas1 += ' LEFT JOIN public.sivel2_gen_profesion AS profesion ON ' +
+                ' victima.id_profesion=profesion.id'
+
+
+            when "RANGO DE EDAD"
+              que3 << ["rangoedad_rango", "Rango de edad"]
+              que1 += ', rangoedad.id, rangoedad.rango AS rangoedad_rango' 
+              tablas1 += ' LEFT JOIN public.sivel2_gen_rangoedad AS rangoedad ON ' +
+                ' victima.id_rangoedad=rangoedad.id'
+
+            when "SECTOR SOCIAL"
+              que3 << ["sectorsocial_nombre", "Sector social"]
+              que1 += ', sectorsocial.id, sectorsocial.nombre AS sectorsocial_nombre' 
+              tablas1 += ' LEFT JOIN public.sivel2_gen_sectorsocial AS sectorsocial ON ' +
+                ' victima.id_sectorsocial=sectorsocial.id'
+
+            when "SEXO"
+              que3 << ["sexo", "Sexo"]
+              que1 += ', persona.sexo AS sexo' 
+              tablas1 += ' LEFT JOIN public.sivel2_gen_profesion AS profesion ON ' +
+                ' victima.id_profesion=profesion.id'
+            end
+          end
+
+
+          if where1 != ''
+            where1 = "WHERE #{where1}"
+          end
           ActiveRecord::Base.connection.execute "DROP VIEW  IF EXISTS #{tcons1}"
           # Filtrar 
           q1="CREATE VIEW #{tcons1} AS 
@@ -475,8 +566,24 @@ module Sivel2Gen
           puts "q1 es #{q1}"
           ActiveRecord::Base.connection.execute q1
 
+
+#          "CREATE VIEW #{tcons2} AS SELECT #{tcons1}.*,
+#            ubicacion.id_departamento, departamento.nombre AS departamento_nombre, 
+#            ubicacion.id_municipio, municipio.nombre AS municipio_nombre, 
+#            ubicacion.id_clase, clase.nombre AS clase_nombre
+#            FROM
+#            #{tcons1} LEFT JOIN sip_ubicacion AS ubicacion ON
+#              (#{tcons1}.id_caso = ubicacion.id_caso) 
+#            LEFT JOIN sip_departamento AS departamento ON 
+#              (ubicacion.id_departamento=departamento.id) 
+#            LEFT JOIN sip_municipio AS municipio ON 
+#              (ubicacion.id_municipio=municipio.id)
+#            LEFT JOIN sip_clase AS clase ON 
+#              (ubicacion.id_clase=clase.id)"
+#
+#
           puts que3
-          # Generamos 1,2,3 ...n para GROUP BY
+#          # Generamos 1,2,3 ...n para GROUP BY
           gb = sep = ""
           qc = ""
           i = 1
@@ -514,11 +621,11 @@ module Sivel2Gen
           end
 
           respond_to do |format|
-            format.html { }
+            format.html { render 'victimizaciones', layout: 'application'}
             format.json { head :no_content }
             format.js   { render 'sivel2_gen/conteos/resultado' }
           end
-        end # def respuesta
+        end # def victimizaciones
 
 
 
