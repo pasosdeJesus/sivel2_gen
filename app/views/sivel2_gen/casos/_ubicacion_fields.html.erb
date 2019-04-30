@@ -41,11 +41,18 @@
     </div>
 
     <div class="row">
-      <div class="col-md-6">
+      <div class="col-md-5">
         <%= f.input :lugar %>
       </div>
-      <div class="col-md-6">
+      <div class="col-md-5">
         <%= f.input :sitio %>
+      </div>
+      <div class="col-md-2">
+        <%= f.input :principal, 
+          as: :boolean, 
+          #label: false,
+          input_html: { }
+        %>
       </div>
     </div>
 

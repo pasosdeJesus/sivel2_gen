@@ -565,6 +565,7 @@ module Sivel2Gen
                 :latitud, 
                 :longitud, 
                 :lugar, 
+                :principal,
                 :sitio, 
                 :_destroy
               ],

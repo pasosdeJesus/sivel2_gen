@@ -17,6 +17,24 @@ module Sivel2Gen
 
           belongs_to :caso, class_name: "Sivel2Gen::Caso", 
             foreign_key: "id_caso", validate: true
+
+          attr_accessor :principal
+
+          def principal
+            self.id && self.caso && (self.caso.ubicacion_id == self.id ||
+                                     self.caso.ubicacion_id.nil?)
+          end
+
+          def principal=(v)
+            if self.id && self.caso
+              if v.to_i == 1
+                self.caso.update_attribute('ubicacion_id', self.id)
+              elsif self.caso.ubicacion_id == self.id
+                self.caso.update_attribute('ubicacion_id', nil)
+              end
+            end
+          end
+
             
           validates_presence_of :caso
         end

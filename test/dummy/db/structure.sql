@@ -231,7 +231,8 @@ CREATE TABLE public.sivel2_gen_caso (
     bienes text,
     id_intervalo integer DEFAULT 5,
     created_at timestamp without time zone,
-    updated_at timestamp without time zone
+    updated_at timestamp without time zone,
+    ubicacion_id integer
 );
 
 
@@ -282,7 +283,7 @@ CREATE VIEW public.cben1 AS
  SELECT caso.id AS id_caso,
     victima.id_persona,
     1 AS npersona,
-    victima.id_sectorsocial
+    'total'::text AS total
    FROM public.sivel2_gen_caso caso,
     public.sivel2_gen_victima victima
   WHERE (caso.id = victima.id_caso);
@@ -426,7 +427,7 @@ CREATE VIEW public.cben2 AS
  SELECT cben1.id_caso,
     cben1.id_persona,
     cben1.npersona,
-    cben1.id_sectorsocial,
+    cben1.total,
     ubicacion.id_departamento,
     departamento.nombre AS departamento_nombre,
     ubicacion.id_municipio,
@@ -438,7 +439,7 @@ CREATE VIEW public.cben2 AS
      LEFT JOIN public.sip_departamento departamento ON ((ubicacion.id_departamento = departamento.id)))
      LEFT JOIN public.sip_municipio municipio ON ((ubicacion.id_municipio = municipio.id)))
      LEFT JOIN public.sip_clase clase ON ((ubicacion.id_clase = clase.id)))
-  GROUP BY cben1.id_caso, cben1.id_persona, cben1.npersona, cben1.id_sectorsocial, ubicacion.id_departamento, departamento.nombre, ubicacion.id_municipio, municipio.nombre, ubicacion.id_clase, clase.nombre;
+  GROUP BY cben1.id_caso, cben1.id_persona, cben1.npersona, cben1.total, ubicacion.id_departamento, departamento.nombre, ubicacion.id_municipio, municipio.nombre, ubicacion.id_clase, clase.nombre;
 
 
 --
@@ -516,11 +517,19 @@ CREATE VIEW public.cvt1 AS
     acto.id_persona,
     acto.id_categoria,
     supracategoria.id_tviolencia,
-    categoria.nombre AS categoria
-   FROM (((public.sivel2_gen_acto acto
+    categoria.nombre AS categoria,
+    ubicacion.id_departamento,
+    departamento.nombre AS departamento_nombre,
+    ubicacion.id_municipio,
+    municipio.nombre AS municipio_nombre
+   FROM ((((((public.sivel2_gen_acto acto
      JOIN public.sivel2_gen_caso caso ON ((acto.id_caso = caso.id)))
      JOIN public.sivel2_gen_categoria categoria ON ((acto.id_categoria = categoria.id)))
-     JOIN public.sivel2_gen_supracategoria supracategoria ON ((categoria.supracategoria_id = supracategoria.id)));
+     JOIN public.sivel2_gen_supracategoria supracategoria ON ((categoria.supracategoria_id = supracategoria.id)))
+     LEFT JOIN public.sip_ubicacion ubicacion ON ((ubicacion.id_caso = caso.id)))
+     LEFT JOIN public.sip_departamento departamento ON ((ubicacion.id_departamento = departamento.id)))
+     LEFT JOIN public.sip_municipio municipio ON ((ubicacion.id_municipio = municipio.id)))
+  WHERE ((supracategoria.id_tviolencia)::text = 'A'::text);
 
 
 --
@@ -3891,6 +3900,14 @@ ALTER TABLE ONLY public.sip_actorsocial_persona
 
 
 --
+-- Name: sivel2_gen_caso fk_rails_850036942a; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.sivel2_gen_caso
+    ADD CONSTRAINT fk_rails_850036942a FOREIGN KEY (ubicacion_id) REFERENCES public.sip_ubicacion(id);
+
+
+--
 -- Name: sip_grupo_usuario fk_rails_8d24f7c1c0; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -4536,6 +4553,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20190308195346'),
 ('20190331111015'),
 ('20190401175521'),
-('20190418011743');
+('20190418011743'),
+('20190430112229');
 
 
