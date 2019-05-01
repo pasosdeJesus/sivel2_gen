@@ -14,6 +14,9 @@ module Sivel2Gen
             class_name: "Sivel2Gen::Casosjr"
           has_one :llegadarefugio, foreign_key: "id_llegada", validate: true, 
             class_name: "Sivel2Gen::Casosjr"
+          has_many :principalde, foreign_key: "ubicacion_id", 
+            validate: false, dependent: :nullify, 
+            class_name: "Sivel2Gen::Caso"
 
           belongs_to :caso, class_name: "Sivel2Gen::Caso", 
             foreign_key: "id_caso", validate: true
