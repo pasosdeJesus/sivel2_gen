@@ -521,6 +521,11 @@ module Sivel2Gen
               ' victima.id_filiacion=filiacion.id'
 
             when "MES CASO"
+              que3 << ["mes_anio", "Mes"]
+              que1 += ", TO_CHAR(EXTRACT(YEAR FROM caso.fecha), '0000') || " +
+                " '-' || TO_CHAR(EXTRACT(MONTH FROM caso.fecha),'00') " +
+                "AS mes_anio" 
+
             when "ORGANIZACIÓN SOCIAL"
               que3 << ["organizacion_nombre", "Organización"]
               que1 += ', organizacion.id, organizacion.nombre AS organizacion_nombre' 
