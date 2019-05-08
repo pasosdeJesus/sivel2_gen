@@ -85,7 +85,11 @@ class RenombraAisla < ActiveRecord::Migration[4.2]
     SQL
     rename_table :tsitio, :sivel2_gen_tsitio
     rename_table :tviolencia, :sivel2_gen_tviolencia
-    rename_table :ubicacion, :sivel2_gen_ubicacion
+    execute <<-SQL
+    ALTER TABLE ubicacion RENAME TO sivel2_gen_ubicacion;
+    ALTER INDEX IF EXISTS ubicacion_pkey RENAME TO sivel2_gen_ubicacion_pkey;
+    ALTER INDEX IF EXISTS ubicacion2_pkey RENAME TO sivel2_gen_ubicacion_pkey;
+    SQL
     rename_table :victima, :sivel2_gen_victima
     rename_table :victimacolectiva, :sivel2_gen_victimacolectiva
     execute <<-SQL

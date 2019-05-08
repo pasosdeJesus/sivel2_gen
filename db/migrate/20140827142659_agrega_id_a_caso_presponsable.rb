@@ -8,6 +8,8 @@ class AgregaIdACasoPresponsable < ActiveRecord::Migration[4.2]
         IF EXISTS caso_categoria_presponsable_id_fkey "
     execute "ALTER TABLE ONLY caso_categoria_presponsable DROP CONSTRAINT 
         IF EXISTS categoria_p_responsable_caso_id_fkey"
+    execute "ALTER TABLE ONLY caso_categoria_presponsable DROP CONSTRAINT 
+        IF EXISTS \"$6\""
 
     execute "UPDATE caso_presponsable SET
         id = id_caso*10000 + id_presponsable*10 + id WHERE id<10;"
