@@ -34,24 +34,7 @@ module Sivel2Gen
           scope :ordenar_por, lambda { |campo|
             # extract the sort direction from the param value.
             # direction = (campo =~ /desc$/) ? 'desc' : 'asc'
-            critord = ""
-            case campo.to_s
-            when /^fechadesc/
-              critord = "sivel2_gen_conscaso.fecha desc"
-            when /^fecha/
-              critord = "sivel2_gen_conscaso.fecha asc"
-            when /^ubicaciondesc/
-              critord = "sivel2_gen_conscaso.ubicaciones desc"
-            when /^ubicacion/
-              critord = "sivel2_gen_conscaso.ubicaciones asc"
-            when /^codigodesc/
-              critord = "sivel2_gen_conscaso.caso_id desc"
-            when /^codigo/
-              critord = "sivel2_gen_conscaso.caso_id asc"
-            else
-              raise(ArgumentError, "Ordenamiento invalido: #{ campo.inspect }")
-            end
-            critord += ", sivel2_gen_conscaso.caso_id"
+            critord = self.interpreta_ordenar_por(campo.to_s)
             order(critord)
           }
 
@@ -228,6 +211,28 @@ module Sivel2Gen
               )
             end
           end # def refresca_conscaso
+
+          def interpreta_ordenar_por(campo)
+            critord = ""
+            case campo.to_s
+            when /^fechadesc/
+              critord = "sivel2_gen_conscaso.fecha desc"
+            when /^fecha/
+              critord = "sivel2_gen_conscaso.fecha asc"
+            when /^ubicaciondesc/
+              critord = "sivel2_gen_conscaso.ubicaciones desc"
+            when /^ubicacion/
+              critord = "sivel2_gen_conscaso.ubicaciones asc"
+            when /^codigodesc/
+              critord = "sivel2_gen_conscaso.caso_id desc"
+            when /^codigo/
+              critord = "sivel2_gen_conscaso.caso_id asc"
+            else
+              raise(ArgumentError, "Ordenamiento invalido: #{ campo.inspect }")
+            end
+            critord += ", sivel2_gen_conscaso.caso_id"
+            return critord
+          end
 
         end # module ClassMethods
 

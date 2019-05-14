@@ -34,8 +34,26 @@ module Sivel2Gen
 
         module ClassMethods
 
-          def interpreta_ordenar_por(ordenar_por)
-            ordenar_por
+          def interpreta_ordenar_por(campo)
+            critord = ""
+            case campo.to_s
+            when /^fechadesc/
+              critord = "conscaso.fecha desc"
+            when /^fecha/
+              critord = "conscaso.fecha asc"
+            when /^ubicaciondesc/
+              critord = "conscaso.ubicaciones desc"
+            when /^ubicacion/
+              critord = "conscaso.ubicaciones asc"
+            when /^codigodesc/
+              critord = "conscaso.caso_id desc"
+            when /^codigo/
+              critord = "conscaso.caso_id asc"
+            else
+              raise(ArgumentError, "Ordenamiento invalido: #{ campo.inspect }")
+            end
+            critord += ", conscaso.caso_id"
+            return critord
           end
 
           def consulta_consexpcaso 
