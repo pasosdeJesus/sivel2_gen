@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # Rails (internacionalización)
-gem "rails", '~> 5.2.1'
+gem "rails", '~> 6.0.0.rc1'
 
 gem "rails-i18n"
 
@@ -29,7 +29,7 @@ gem "rspreadsheet"
 # Uglifier comprime recursos Javascript
 gem "uglifier"#, '>= 1.3.0'
 
-gem "chosen-rails"
+gem 'chosen-rails', git: "https://github.com/vtamara/chosen-rails.git", branch: 'several-fixes'
 
 gem 'redcarpet'
 
@@ -73,11 +73,11 @@ gem "paperclip"#, "~> 4.1"
 gem "tzinfo"
 
 # Motor estilo Pasos de Jesús
-gem 'sip', git: 'https://github.com/pasosdeJesus/sip.git'
+gem 'sip', git: 'https://github.com/pasosdeJesus/sip.git', branch: :rails6
 #gem 'sip', path: '../sip'
 
 # Motor de nube y plantillas
-gem 'heb412_gen', git: 'https://github.com/pasosdeJesus/heb412_gen.git'
+gem 'heb412_gen', git: 'https://github.com/pasosdeJesus/heb412_gen.git', branch: :rails6 
 #gem 'heb412_gen', path: '../heb412_gen'
 
 # Los siguientes son para desarrollo o para pruebas con generadores
