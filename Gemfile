@@ -85,6 +85,9 @@ group :development do
   # Requerido por rake
   gem "thor"
   
+  # Para generar modelo entidad asociación 
+  gem 'rails-erd'
+
   # Consola irb en páginas con excepciones o usando <%= console %> en vistasA
   gem 'web-console'
 end
