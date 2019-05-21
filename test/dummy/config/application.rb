@@ -34,6 +34,7 @@ module Dummy
 
     config.relative_url_root = '/sivel2'
     config.assets.prefix = '/sivel2/assets/'
+    config.hosts << ENV['CONFIG_HOSTS']
 
   end
 end
