@@ -94,7 +94,9 @@ gem 'heb412_gen', git: 'https://github.com/pasosdeJesus/heb412_gen.git', branch:
 
 group  :development, :test do
   # Depurar
-  #gem 'byebug', platforms [:mri, :mingw, :x64_mingw]
+  #gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'simplecov'
+  gem 'rails-controller-testing'
 end
 
 

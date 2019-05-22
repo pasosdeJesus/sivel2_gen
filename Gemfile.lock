@@ -139,6 +139,7 @@ GEM
       warden (~> 1.2.3)
     devise-i18n (1.8.0)
       devise (>= 4.6)
+    docile (1.3.1)
     erubi (1.8.0)
     execjs (2.7.0)
     ffi (1.11.1)
@@ -156,6 +157,7 @@ GEM
       thor (>= 0.14, < 2.0)
     jquery-ui-rails (6.0.1)
       railties (>= 3.2.16)
+    json (2.2.0)
     less (2.6.0)
       commonjs (~> 0.2.7)
     less-rails (4.0.0)
@@ -223,6 +225,10 @@ GEM
       bundler (>= 1.3.0)
       railties (= 6.0.0.rc1)
       sprockets-rails (>= 2.0.0)
+    rails-controller-testing (1.0.4)
+      actionpack (>= 5.0.1.x)
+      actionview (>= 5.0.1.x)
+      activesupport (>= 5.0.1.x)
     rails-dom-testing (2.0.3)
       activesupport (>= 4.2.0)
       nokogiri (>= 1.6)
@@ -263,6 +269,11 @@ GEM
     simple_form (4.1.0)
       actionpack (>= 5.0)
       activemodel (>= 5.0)
+    simplecov (0.16.1)
+      docile (~> 1.1)
+      json (>= 1.8, < 3)
+      simplecov-html (~> 0.10.0)
+    simplecov-html (0.10.2)
     spring (2.0.2)
       activesupport (>= 4.2)
     sprockets (3.7.2)
@@ -339,11 +350,13 @@ DEPENDENCIES
   prawnto_2
   puma
   rails (~> 6.0.0.rc1)
+  rails-controller-testing
   rails-i18n
   redcarpet
   rspreadsheet
   sass-rails
   simple_form
+  simplecov
   sip!
   spring
   turbolinks
