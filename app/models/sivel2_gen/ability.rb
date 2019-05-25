@@ -68,23 +68,21 @@ module Sivel2Gen
     # por otras básicas
     BASICAS_PRIO = [
       ['Sivel2Gen', 'pconsolidado'], 
-			['Sivel2Gen', 'tviolencia'], 
+      ['Sivel2Gen', 'tviolencia'], 
       ['Sivel2Gen', 'supracategoria'],
       ['Sivel2Gen', 'intervalo'], 
-			['Sivel2Gen', 'filiacion'], 
+      ['Sivel2Gen', 'filiacion'], 
       ['Sivel2Gen', 'organizacion'], 
-			['Sivel2Gen', 'sectorsocial'],
+      ['Sivel2Gen', 'sectorsocial'],
       ['Sivel2Gen', 'vinculoestado']
     ];
-    def tablasbasicas_prio 
+    def tablasbasicas_prio
       Sip::Ability::BASICAS_PRIO + BASICAS_PRIO - [['Sip', 'grupo']]
     end
-
-    def derechos
-      "Dominio público de acuerdo a la legislación colombiana"
+    def self.derechos
+      "Dominio público de acuerdo a la legislación colomana"
     end
-
-    def organizacion_responsable
+    def self.organizacion_responsable
       'organizacion'
     end
 
