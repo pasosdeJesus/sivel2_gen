@@ -1,76 +1,88 @@
 source 'https://rubygems.org'
+git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-# Rails (internacionalización)
-gem "rails", '~> 5.2.1'
+ruby '2.6.2'
 
-gem "rails-i18n"
+# Rails con internacionalización
+gem 'rails', '~> 6.0.0.rc1'
+gem 'rails-i18n'
 
-gem 'bigdecimal'
+# Postgresql
+gem 'pg'#, '~> 0.21'
+
+# Servidor de aplicaciones
+gem 'puma'
+
+# Colores en terminal
+gem 'colorize'
+
+# Hojas de estilo con SCSS
+gem 'sass-rails'
+
+# posibilidad de manejar módulos en Javascript https://github.com/rails/webpacker
+gem 'webpacker'
+
+# Seguir enlaces y redirecciones más rápido. Ver: https://github.com/rails/turbolinks
+gem 'turbolinks'
+
+# API JSON facil. Ver: https://github.com/rails/jbuilder
+gem 'jbuilder'
 
 gem 'bootsnap', '>=1.1.0', require: false
 
-gem 'puma'#, '~> 3.0' 
-
-# Colores en terminal
-gem "colorize"
-
-# Postgresql
-gem "pg"#, '~> 0.21'
-
-# API JSON facil. Ver: https://github.com/rails/jbuilder
-gem "jbuilder"
-
-gem "sass"
+# Bootstrap y FontAwesome
+gem 'twitter-bootstrap-rails'
 gem 'font-awesome-rails'
+gem 'bootstrap-datepicker-rails'
 
-gem 'libxml-ruby'#
-gem "rspreadsheet"
-
-# Uglifier comprime recursos Javascript
-gem "uglifier"#, '>= 1.3.0'
-
-gem "chosen-rails"
-
-gem 'redcarpet'
 
 # CoffeeScript para recuersos .js.coffee y vistas
-gem "coffee-rails"
+gem 'coffee-rails'
+
+# Uglifier comprime recursos Javascript
+gem 'uglifier'
+
+gem 'chosen-rails', git: 'https://github.com/vtamara/chosen-rails.git', branch: 'several-fixes'
 
 # jquery como librería JavaScript
-gem "jquery-rails"
-gem "jquery-ui-rails"
+gem 'jquery-rails'
+gem 'jquery-ui-rails'
 
-# Seguir enlaces y redirecciones más rápidas. Ver: https://github.com/rails/turbolinks
-gem "turbolinks"
+gem 'odf-report'
+gem 'redcarpet'
+gem 'libxml-ruby'#
+gem 'rspreadsheet'
 
-# Ambiente de CSS
-gem "twitter-bootstrap-rails"#, '~> 3.2.0'
-gem "bootstrap-datepicker-rails"
 
 # Formularios simples 
-gem "simple_form"
+gem 'simple_form'
 
 # Formularios anidados (algunos con ajax)
-gem "cocoon", git: 'https://github.com/vtamara/cocoon.git', branch: 'new_id_with_ajax'
+gem 'cocoon', git: 'https://github.com/vtamara/cocoon.git', branch: 'new_id_with_ajax'
 #gem 'cocoon', path: '../cocoon'
 
 # Autenticación y roles
-gem "devise"
-gem "devise-i18n"
-gem "cancancan"
-gem "bcrypt"
+gem 'devise'
+gem 'devise-i18n'
+gem 'cancancan'
+gem 'bcrypt'
 
-# Pagina listados
-gem "will_paginate"
+# Listados en páginas
+gem 'will_paginate'
 
 # ICU con CLDR
 gem 'twitter_cldr'
- 
+
 # Maneja adjuntos
-gem "paperclip"#, "~> 4.1"
+gem 'paperclip'
+
+# Generación de PDF
+gem 'prawn'
+gem 'prawnto_2',  :require => 'prawnto'
+gem 'prawn-table'
 
 # Zonas horarias
-gem "tzinfo"
+gem 'tzinfo'
 
 # Motor estilo Pasos de Jesús
 gem 'sip', git: 'https://github.com/pasosdeJesus/sip.git'
@@ -92,35 +104,9 @@ group :development do
   gem 'web-console'
 end
 
-group :test, :development do
+group  :development, :test do
   # Depurar
-  #gem 'byebug'
-end
-
-group :test do
-  # Acelera ejecutando en fondo. https://github.com/jonleighton/spring
-  gem "spring"
-
+  #gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'simplecov'
-
-  gem "connection_pool"
-  gem "minitest-reporters"
-
-  gem 'rails-controller-testing'
-
-  # Un proceso para cada prueba -- acelera
-
-  gem 'spork'#, '~> 1.0rc'
-
-  # Envia resultados de pruebas desde travis a codeclimate
-  #gem "codeclimate-test-reporter", require: nil
-
-  # https://www.relishapp.com/womply/rails-style-guide/docs/developing-rails-applications/bundler
-  # Lanza programas para examinar resultados
-  gem "launchy"
-
-  # Para examinar errores, usar "rescue rspec" en lugar de "rspec"
-  gem 'pry-rescue'
-  gem 'pry-stack_explorer'
+  #gem 'rails-controller-testing'
 end
-

@@ -79,7 +79,7 @@ module Sivel2Gen
         }
       }
       caso.reload
-      assert_equal caso.memo, "memo2"
+      assert_equal "memo2", caso.memo
     end
 
     test "update: asigna el caso requerida como @caso" do
