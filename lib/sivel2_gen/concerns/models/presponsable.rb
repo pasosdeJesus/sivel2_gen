@@ -18,17 +18,21 @@ module Sivel2Gen
             class_name: 'Sivel2Gen::CasoCategoriaPresponsable'
           has_many :caso, through: :caso_presponsable, 
             class_name: 'Sivel2Gen::Caso'
-          has_many :presponsable, foreign_key: "papa", validate: true, 
+          has_many :presponsable, foreign_key: "papa", validate: false, 
             class_name: 'Sivel2Gen::Presponsable'
-          has_many :victima, foreign_key: "organizacionarmada", validate: true, 
+          has_many :victima, foreign_key: "organizacionarmada", 
+            validate: true, 
             class_name: 'Sivel2Gen::Victima'
           has_many :victimacolectiva, foreign_key: "organizacionarmada", 
             validate: true, class_name: 'Sivel2Gen::Victimacolectiva'
           has_many :combatiente, foreign_key: "organizacionarmada", 
             validate: true, class_name: 'Sivel2Gen::Combatiente'
 
-          belongs_to :presponsable, foreign_key: "papa", validate: true, 
-            class_name: 'Sivel2Gen::Presponsable'
+          # En Rails6 dejar el siguiente da errr al crear un 
+          # presunto responsable con campo papa en nil:
+          # En 'Presponsable' debe existir 'presunto responsable'
+          #belongs_to :presponsable, foreign_key: "papa", validate: false, 
+          #  class_name: 'Sivel2Gen::Presponsable':
 
         end
 

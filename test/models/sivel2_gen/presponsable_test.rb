@@ -13,6 +13,7 @@ module Sivel2Gen
 
     test "valido" do
       presponsable = Presponsable.create PRUEBA_PRESPONSABLE
+      #byebug
       assert presponsable.valid?
       presponsable.destroy
     end
