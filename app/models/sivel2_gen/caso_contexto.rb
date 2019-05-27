@@ -1,4 +1,5 @@
 # encoding: UTF-8
+
 module Sivel2Gen
   class CasoContexto < ActiveRecord::Base
     belongs_to :caso, foreign_key: "id_caso", 

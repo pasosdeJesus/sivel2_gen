@@ -61,7 +61,8 @@ module Sivel2Gen
           belongs_to :caso, foreign_key: "id_caso", validate: true, 
             class_name: "Sivel2Gen::Caso"
           belongs_to :presponsable, foreign_key: "organizacionarmada", 
-            validate: true, class_name: "Sivel2Gen::Presponsable"
+            validate: true, class_name: "Sivel2Gen::Presponsable",
+            optional: true
 
           validates :caso, presence: true
           validates :grupoper, presence: true

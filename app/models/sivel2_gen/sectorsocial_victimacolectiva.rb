@@ -1,4 +1,5 @@
 # encoding: UTF-8
+
 module Sivel2Gen
   class SectorsocialVictimacolectiva < ActiveRecord::Base
     belongs_to :sectorsocial, foreign_key: "id_sectorsocial", 

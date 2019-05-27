@@ -28,11 +28,8 @@ module Sivel2Gen
           has_many :combatiente, foreign_key: "organizacionarmada", 
             validate: true, class_name: 'Sivel2Gen::Combatiente'
 
-          # En Rails6 dejar el siguiente da errr al crear un 
-          # presunto responsable con campo papa en nil:
-          # En 'Presponsable' debe existir 'presunto responsable'
-          #belongs_to :presponsable, foreign_key: "papa", validate: false, 
-          #  class_name: 'Sivel2Gen::Presponsable':
+          belongs_to :presponsable, foreign_key: "papa", validate: false, 
+            class_name: 'Sivel2Gen::Presponsable', optional: true
 
         end
 

@@ -25,6 +25,7 @@ module Sip
       ubicacion = Ubicacion.new PRUEBA_UBICACION
       ubicacion.pais = pais
       ubicacion.caso = caso
+      byebug
 
       assert ubicacion.valid?
       ubicacion.destroy

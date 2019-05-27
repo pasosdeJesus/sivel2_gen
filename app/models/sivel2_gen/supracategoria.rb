@@ -1,4 +1,5 @@
 # encoding: UTF-8
+
 module Sivel2Gen
   class Supracategoria < ActiveRecord::Base
     include Sip::Basica

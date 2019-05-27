@@ -8,8 +8,8 @@ module Sivel2Gen
 
         include Sip::Basica
         included do
-                has_many :combatiente, foreign_key: "id_resagresion", 
-                  validate: true, class_name: 'Sivel2Gen::Combatiente'
+          has_many :combatiente, foreign_key: "id_resagresion", 
+            validate: true, class_name: 'Sivel2Gen::Combatiente'
         end
 
       end

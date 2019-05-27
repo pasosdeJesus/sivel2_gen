@@ -120,7 +120,7 @@ module Sivel2Gen
           has_one :sivel2_gen_conscaso, foreign_key: "caso_id"
 
           belongs_to :intervalo, foreign_key: "id_intervalo", 
-            validate: true, class_name: 'Sivel2Gen::Intervalo'
+            validate: true, class_name: 'Sivel2Gen::Intervalo', optional: true
 
           campofecha_localizado :fecha
 

@@ -1,4 +1,5 @@
 # encoding: UTF-8
+
 module Sivel2Gen
   class CasoUsuario < ActiveRecord::Base
     belongs_to :usuario, foreign_key: "id_usuario", validate: true,

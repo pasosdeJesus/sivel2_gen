@@ -17,23 +17,28 @@ module Sivel2Gen
 
           # En el orden de esquema en base 
           belongs_to :resagresion, foreign_key: "id_resagresion", 
-            validate: true, class_name: "Sivel2Gen::Resagresion"
+            validate: true, class_name: "Sivel2Gen::Resagresion",
+            optional: true
           belongs_to :profesion, foreign_key: "id_profesion", validate: true, 
-            class_name: "Sivel2Gen::Profesion"
+            class_name: "Sivel2Gen::Profesion", optional: true
           belongs_to :rangoedad, foreign_key: "id_rangoedad", validate: true, 
-            class_name: "Sivel2Gen::Rangoedad"
+            class_name: "Sivel2Gen::Rangoedad", optional: true
           belongs_to :filiacion, foreign_key: "id_filiacion", 
-            validate: true, class_name: "Sivel2Gen::Filiacion"
+            validate: true, class_name: "Sivel2Gen::Filiacion", optional: true
           belongs_to :sectorsocial, foreign_key: "id_sectorsocial", 
-            validate: true, class_name: "Sivel2Gen::Sectorsocial"
+            validate: true, class_name: "Sivel2Gen::Sectorsocial", 
+            optional: true
           belongs_to :organizacion, foreign_key: "id_organizacion", 
-            validate: true, class_name: "Sivel2Gen::Organizacion"
+            validate: true, class_name: "Sivel2Gen::Organizacion", 
+            optional: true
           belongs_to :vinculoestado, foreign_key: "id_vinculoestado", 
-            validate: true, class_name: "Sivel2Gen::Vinculoestado"
+            validate: true, class_name: "Sivel2Gen::Vinculoestado", 
+            optional: true
           belongs_to :caso, foreign_key: "id_caso", validate: true, 
             class_name: "Sivel2Gen::Caso"
           belongs_to :presponsable, foreign_key: "organizacionarmada", 
-            validate: true, class_name: "Sivel2Gen::Presponsable"
+            validate: true, class_name: "Sivel2Gen::Presponsable", 
+            optional: true
 
           validates :caso, presence: true
           validates :nombre, presence: true

@@ -16,7 +16,7 @@ module Sivel2Gen
           belongs_to :fuenteprensa, class_name: "Sip::Fuenteprensa", 
             foreign_key: "fuenteprensa_id", validate: true
           belongs_to :anexo_caso, class_name: "Sivel2Gen::AnexoCaso", 
-            foreign_key: "anexo_caso_id"
+            foreign_key: "anexo_caso_id", optional: true
            
           campofecha_localizado :fecha
           validates_presence_of :fecha

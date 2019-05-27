@@ -1,4 +1,5 @@
 # encoding: UTF-8
+
 module Sivel2Gen
   class ProfesionVictimacolectiva < ActiveRecord::Base
     belongs_to :profesion, foreign_key: "id_profesion", validate: true, 

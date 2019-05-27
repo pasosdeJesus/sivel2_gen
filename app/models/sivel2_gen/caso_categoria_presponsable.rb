@@ -1,4 +1,5 @@
 # encoding: UTF-8
+
 module Sivel2Gen
   class CasoCategoriaPresponsable < ActiveRecord::Base
     belongs_to :categoria, foreign_key: "id_categoria", validate: true, 

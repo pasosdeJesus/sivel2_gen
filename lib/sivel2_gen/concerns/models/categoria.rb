@@ -11,9 +11,9 @@ module Sivel2Gen
           Nombresunicos=false
 
           belongs_to :contada, foreign_key: "contadaen", 
-            class_name: 'Sivel2Gen::Categoria'
+            class_name: 'Sivel2Gen::Categoria', optional: true
           belongs_to :pconsolidado, foreign_key: "id_pconsolidado", 
-            class_name: 'Sivel2Gen::Pconsolidado'
+            class_name: 'Sivel2Gen::Pconsolidado', optional: true
           belongs_to :supracategoria, foreign_key: "supracategoria_id", 
              class_name: 'Sivel2Gen::Supracategoria', validate: true
 

@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/pasosdeJesus/heb412_gen.git
-  revision: d88fcee7067dacff69a8ac4d7357688176e0686b
+  revision: 90078a77ccf48aea25e107fd5494297f975150fb
   specs:
     heb412_gen (1.0.b6)
       chosen-rails
@@ -11,7 +11,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sip.git
-  revision: ea75f35ad09ab2434f43b28bff626a33e18614a6
+  revision: c42f4b6128c4e2f7889ea7c7c8767210d4d8b76d
   specs:
     sip (2.0.b6)
       bootstrap-datepicker-rails
@@ -371,9 +371,6 @@ DEPENDENCIES
   web-console
   webpacker
   will_paginate
-
-RUBY VERSION
-   ruby 2.6.2p47
 
 BUNDLED WITH
    2.0.1
