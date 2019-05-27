@@ -36,7 +36,7 @@ before_install:
         - cd ../..
 
 script: 
-        - bundle exec rails test -b
+        - CONFIG_HOSTS=www.example.com bundle exec rails test -b
 
 after_script:
         - ./cc-test-reporter after-build -t simplecov --exit-code $TRAVIS_TEST_RESULT
