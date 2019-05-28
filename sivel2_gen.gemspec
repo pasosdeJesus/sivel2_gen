@@ -16,7 +16,7 @@ Gem::Specification.new do |s|
   s.license     = "Dominio Público de acuerdo a legislación colombiana"
 
   s.files = Dir["{app,config,db,lib}/**/*", "LICENCIA.md", "Rakefile", "README.md"]
-  s.test_files = Dir["spec/**/*"]
+  s.test_files = Dir["test/**/*"]
 
   s.add_dependency "jquery-rails"
 
