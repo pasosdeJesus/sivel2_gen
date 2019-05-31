@@ -54,12 +54,12 @@ module Sivel2Gen
             return casos
           end
 
-          def valida_sinmemo(cini, cmemo = 'memo')
+          def valida_sin_memo(cini, cmemo = 'memo')
             validacion_estandar(cini, 'Casos sin memo', 
                                 "TRIM(#{cmemo})='' OR #{cmemo} IS NULL")
           end
 
-          def valida_fechaotrafuente(c)
+          def valida_fecha_otra_fuente(c)
             c = c.joins('INNER JOIN public.sivel2_gen_caso_fotra
                   ON sivel2_gen_caso_fotra.id_caso=sivel2_gen_caso.id')
             validacion_estandar(
@@ -68,7 +68,7 @@ module Sivel2Gen
             )
           end
 
-          def valida_fechafuentefrecuente(c)
+          def valida_fecha_fuente_frecuente(c)
             c = c.joins('INNER JOIN public.sivel2_gen_caso_fuenteprensa
                   ON sivel2_gen_caso_fuenteprensa.id_caso=sivel2_gen_caso.id')
             validacion_estandar(
@@ -77,7 +77,7 @@ module Sivel2Gen
             )
           end
 
-          def valida_fechausuarioantes(c)
+          def valida_fecha_analista_antes(c)
             c = c.joins('INNER JOIN (SELECT c.id, min(cu.fechainicio) 
               FROM sivel2_gen_caso_usuario AS cu, sivel2_gen_caso AS c 
               WHERE c.id=cu.id_caso GROUP BY c.id ORDER BY c.id) AS mf
@@ -88,7 +88,7 @@ module Sivel2Gen
             )
           end
 
-          def valida_casosinanalista(c)
+          def valida_casos_sin_analista(c)
             res = c.where('NOT EXISTS (SELECT id_caso 
               FROM sivel2_gen_caso_usuario 
               WHERE id_caso=sivel2_gen_caso.id)').
@@ -101,7 +101,7 @@ module Sivel2Gen
             }
           end
 
-          def valida_sinubicacionprincipal(c)
+          def valida_sin_ubicacion_principal(c)
             validacion_estandar(
               c, 'Casos sin ubicación principal', 
               'ubicacion_id IS NULL'
@@ -109,11 +109,11 @@ module Sivel2Gen
 
           end
 
-          def valida_categoriasindividuales(c)
+          def valida_categorias_individuales(c)
             c = c.joins('INNER JOIN sivel2_gen_acto 
               ON sivel2_gen_acto.id_caso=sivel2_gen_caso.id').
-              c.joins('INNER JOIN sivel2_gen_categoria
-              ON sivel2_gen_categoria.id_caso=sivel2_gen_acto.categoria_id')
+              joins('INNER JOIN sivel2_gen_categoria
+              ON sivel2_gen_categoria.id=sivel2_gen_acto.id_categoria')
             validacion_estandar(
               c, 'Casos con acto individual con categoria colectiva', 
               'sivel2_gen_categoria.tipocat <> \'I\''
@@ -121,15 +121,90 @@ module Sivel2Gen
 
           end
 
+          def valida_categorias_colectivas(c)
+            c = c.joins('INNER JOIN sivel2_gen_actocolectivo
+              ON sivel2_gen_actocolectivo.id_caso=sivel2_gen_caso.id').
+              joins('INNER JOIN sivel2_gen_categoria
+              ON sivel2_gen_categoria.id=sivel2_gen_actocolectivo.id_categoria')
+            validacion_estandar(
+              c, 'Casos con acto colectivo con categoria individual', 
+              'sivel2_gen_categoria.tipocat <> \'C\''
+            )
+          end
+
+          def valida_victima_individual_sin_acto(c)
+            c = c.joins('INNER JOIN sivel2_gen_victima 
+              ON sivel2_gen_victima.id_caso=sivel2_gen_caso.id').
+              joins('INNER JOIN sip_persona
+              ON sivel2_gen_victima.id_persona=sip_persona.id')
+            validacion_estandar(
+              c, 'Víctima individual sin acto', 
+              'NOT EXISTS (SELECT id_persona FROM sivel2_gen_acto 
+              WHERE id_persona=sip_persona.id)')
+          end
+
+           def valida_victima_colectiva_sin_acto(c)
+            c = c.joins('INNER JOIN sivel2_gen_victimacolectiva
+              ON sivel2_gen_victimacolectiva.id_caso=sivel2_gen_caso.id').
+              joins('INNER JOIN sip_grupoper
+              ON sivel2_gen_victimacolectiva.id_grupoper=sip_grupoper.id')
+            validacion_estandar(
+              c, 'Víctima individual sin acto', 
+              'NOT EXISTS (SELECT id_grupoper FROM sivel2_gen_actocolectivo
+              WHERE id_grupoper=sip_grupoper.id)')
+          end
+
+           def valida_nombres_victimas_cortos(c)
+            c = c.joins('INNER JOIN sivel2_gen_victima
+              ON sivel2_gen_victima.id_caso=sivel2_gen_caso.id').
+              joins('INNER JOIN sip_persona
+              ON sivel2_gen_victima.id_persona=sip_persona.id')
+            validacion_estandar(
+              c, 'Nombres de víctimas individuales muy cortos', 
+              'length(sip_persona.nombres) <= 2 
+              AND sip_persona.nombres <> \'N\''
+            )
+          end
+
+           def valida_apellidos_victimas_cortos(c)
+            c = c.joins('INNER JOIN sivel2_gen_victima
+              ON sivel2_gen_victima.id_caso=sivel2_gen_caso.id').
+              joins('INNER JOIN sip_persona
+              ON sivel2_gen_victima.id_persona=sip_persona.id')
+            validacion_estandar(
+              c, 'Apellidos de víctimas individuales muy cortos', 
+              'length(sip_persona.apellidos) <= 2 
+              AND sip_persona.apellidos <> \'N\''
+            )
+          end
+
+          def valida_nombres_victimas_colectivas_cortos(c)
+            c = c.joins('INNER JOIN sivel2_gen_victimacolectiva
+              ON sivel2_gen_victimacolectiva.id_caso=sivel2_gen_caso.id').
+              joins('INNER JOIN sip_grupoper
+              ON sivel2_gen_victimacolectiva.id_grupoper=sip_grupoper.id')
+            validacion_estandar(
+              c, 'Nombres de víctimas colectivas muy cortos', 
+              'LENGTH(sip_grupoper.nombre) <= 2'
+            )
+          end
+
 
           def validar_sivel2_gen
             c = ini_filtro
-            valida_sinmemo(c)
-            valida_fechaotrafuente(c)
-            valida_fechafuentefrecuente(c)
-            valida_fechausuarioantes(c)
-            valida_casosinanalista(c)
-            valida_sinubicacionprincipal(c)
+            valida_sin_memo(c)
+            valida_fecha_otra_fuente(c)
+            valida_fecha_fuente_frecuente(c)
+            valida_fecha_analista_antes(c)
+            valida_casos_sin_analista(c)
+            valida_sin_ubicacion_principal(c)
+            valida_categorias_individuales(c)
+            valida_categorias_colectivas(c)
+            valida_victima_individual_sin_acto(c)
+            valida_victima_colectiva_sin_acto(c)
+            valida_nombres_victimas_cortos(c)
+            valida_apellidos_victimas_cortos(c)
+            valida_nombres_victimas_colectivas_cortos(c)
           end
 
           def crear_vista_iniciador
