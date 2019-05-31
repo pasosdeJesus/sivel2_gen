@@ -1,0 +1,73 @@
+<div class="page-header">
+  <h1><%=t '.title', :default => @titulo %></h1>
+</div>
+
+<%= simple_form_for Sivel2Gen::Buscarrepetido.new, 
+  :url => sivel2_gen.buscarrepetidos_path,
+  :html => { :class => 'form-horizontal' } do |f| 
+%>
+  <div data-role="content" class="form-inputs">
+    <div id="errores">
+      <% if f.object.errors.any? %>
+        <div id="error_explanation">
+          <div class="alert alert-error">
+            El formulario tiene 
+            <%= pluralize(f.object.errors.count, "error") %>.
+          </div>
+          <ul>
+            <% f.object.errors.full_messages.each do |msg| %>
+              <li>* <%= msg %></li>
+            <% end %>
+          </ul>
+        </div> <!-- error-explanation -->
+      <% end %>
+      <%= f.error_notification %>
+    </div> <!-- errores -->
+    <div class="container">
+      <div class="row filtro-fila">
+        <div class="col-sm-offset-0 col-sm-2 col-md-offset-1 col-md-1">
+          <%= @rango_fechas %>
+        </div>
+        <div class="col-sm-offset-0 col-sm-4">
+          <%= f.input :fechaini,
+            maxlength: 10, 
+            size: 10,
+            label: false,
+            placeholder: 'Inicial',
+            input_html: {
+              "data-behaviour" => "datepicker",
+              value: params[:validarcaso] ? 
+                params[:validarcaso][:fechaini] : ''
+            }
+          %>
+        </div>
+        <div class="col-sm-offset-1 col-sm-4">
+          <%= f.input :fechafin,
+            maxlength: 10, 
+            size: 10,
+            label: false,
+            placeholder: 'Final',
+            input_html: {
+              "data-behaviour" => "datepicker",
+              value: params[:validarcaso] ? 
+                params[:validarcaso][:fechafin] : ''
+            }
+          %>
+        </div>
+      </div> <!-- row -->
+
+      <%= render 'restofiltro', {f: f} %>
+
+      <div class="row filtro-fila">
+        <div class="col-md-offset-5 col-md-2">
+          <%= f.button :submit, 'Filtrar', class: 'btn btn-default' %>
+        </div>
+      </div> <!-- class: row -->
+
+    </div>  <!-- class:container -->
+  </div> <!-- class:form-inputs -->
+<% end %>
+
+<div id="resultado">
+  <%= render 'sivel2_gen/buscarrepetidos/resultado' %>
+</div> <!-- id: resultado -->
