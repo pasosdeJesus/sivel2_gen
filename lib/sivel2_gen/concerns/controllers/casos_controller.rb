@@ -9,7 +9,7 @@ module Sivel2Gen
 
         included do
           before_action :set_caso, only: [:show, :edit, :update, :destroy]
-          load_and_authorize_resource class: Sivel2Gen::Caso
+          load_and_authorize_resource class: Sivel2Gen::Caso, except: [:index]
           helper Sip::UbicacionHelper
 
 
@@ -153,6 +153,9 @@ module Sivel2Gen
           # GET /casos
           # GET /casos.json
           def index
+            if !Rails.application.config.x.sivel2_consulta_web_publica
+              authorize! :index, Sivel2Gen::Caso
+            end
             begin
               @conscasocount = Conscaso.count
             rescue
