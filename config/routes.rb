@@ -7,6 +7,8 @@ Sivel2Gen::Engine.routes.draw do
   patch "/actoscolectivos/agregar" => 'actoscolectivos#agregar'
   get "/actoscolectivos/eliminar" => 'actoscolectivos#eliminar'
   get '/acercade' => 'hogar#acercade'
+  get "/buscarrepetidos" => 'buscarrepetidos#reportar', as: :buscarrepetidos
+  post "/buscarrepetidos" => 'buscarrepetidos#reportar', as: :envia_buscarrepetidos
   get "/casofotras/nuevo", 'casofotras#nuevo'
   get "/casos/busca" => 'casos#busca'
   get '/casos/lista' => 'casos#lista'
