@@ -11,10 +11,11 @@ module Sivel2Gen
           def validacion_estandar(casos, titulo, where, 
                                   atr = [:id, :fecha, :nusuario],
                                   encabezado = [
-                                    'Código', 'Fecha del Hecho', 'Usuario'])
+                                    'Código', 'Fecha del Hecho', 'Usuario'],
+                                 ordenapor = 'fecha')
             res = casos.joins('INNER JOIN public.sivel2_gen_iniciador 
-                              ON sivel2_gen_iniciador.id_caso=id').
-                              where(where).select(atr)
+                              ON sivel2_gen_iniciador.id_caso=sivel2_gen_caso.id').
+                              where(where).order(ordenapor).select(atr)
             arr = ActiveRecord::Base.connection.select_all(res.to_sql)
             @validaciones << { 
               titulo: titulo,
@@ -53,14 +54,82 @@ module Sivel2Gen
             return casos
           end
 
-          def valida_sinmemo(cmemo = 'memo')
-            sinmemo = ini_filtro
-            validacion_estandar(sinmemo, 'Casos sin memo', 
+          def valida_sinmemo(cini, cmemo = 'memo')
+            validacion_estandar(cini, 'Casos sin memo', 
                                 "TRIM(#{cmemo})='' OR #{cmemo} IS NULL")
           end
 
+          def valida_fechaotrafuente(c)
+            c = c.joins('INNER JOIN public.sivel2_gen_caso_fotra
+                  ON sivel2_gen_caso_fotra.id_caso=sivel2_gen_caso.id')
+            validacion_estandar(
+              c, 'Casos con fecha de otra fuente anterior a la del caso', 
+              'sivel2_gen_caso_fotra.fecha < sivel2_gen_caso.fecha'
+            )
+          end
+
+          def valida_fechafuentefrecuente(c)
+            c = c.joins('INNER JOIN public.sivel2_gen_caso_fuenteprensa
+                  ON sivel2_gen_caso_fuenteprensa.id_caso=sivel2_gen_caso.id')
+            validacion_estandar(
+              c, 'Casos con fecha de fuente frecuente anterior a la del caso', 
+              'sivel2_gen_caso_fuenteprensa.fecha < sivel2_gen_caso.fecha'
+            )
+          end
+
+          def valida_fechausuarioantes(c)
+            c = c.joins('INNER JOIN (SELECT c.id, min(cu.fechainicio) 
+              FROM sivel2_gen_caso_usuario AS cu, sivel2_gen_caso AS c 
+              WHERE c.id=cu.id_caso GROUP BY c.id ORDER BY c.id) AS mf
+              ON sivel2_gen_caso.id=mf.id')
+            validacion_estandar(
+              c, 'Casos con fecha de analista anterior a la del caso', 
+              'mf.min < sivel2_gen_caso.fecha'
+            )
+          end
+
+          def valida_casosinanalista(c)
+            res = c.where('NOT EXISTS (SELECT id_caso 
+              FROM sivel2_gen_caso_usuario 
+              WHERE id_caso=sivel2_gen_caso.id)').
+              order('sivel2_gen_caso.fecha').select([:id, :fecha])
+            arr = ActiveRecord::Base.connection.select_all(res.to_sql)
+            @validaciones << { 
+              titulo: 'Casos sin analista',
+              encabezado: ['Código', 'Fecha del Hecho'],
+              cuerpo: arr 
+            }
+          end
+
+          def valida_sinubicacionprincipal(c)
+            validacion_estandar(
+              c, 'Casos sin ubicación principal', 
+              'ubicacion_id IS NULL'
+            )
+
+          end
+
+          def valida_categoriasindividuales(c)
+            c = c.joins('INNER JOIN sivel2_gen_acto 
+              ON sivel2_gen_acto.id_caso=sivel2_gen_caso.id').
+              c.joins('INNER JOIN sivel2_gen_categoria
+              ON sivel2_gen_categoria.id_caso=sivel2_gen_acto.categoria_id')
+            validacion_estandar(
+              c, 'Casos con acto individual con categoria colectiva', 
+              'sivel2_gen_categoria.tipocat <> \'I\''
+            )
+
+          end
+
+
           def validar_sivel2_gen
-            valida_sinmemo
+            c = ini_filtro
+            valida_sinmemo(c)
+            valida_fechaotrafuente(c)
+            valida_fechafuentefrecuente(c)
+            valida_fechausuarioantes(c)
+            valida_casosinanalista(c)
+            valida_sinubicacionprincipal(c)
           end
 
           def crear_vista_iniciador
