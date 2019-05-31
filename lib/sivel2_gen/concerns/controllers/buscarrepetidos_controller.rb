@@ -14,7 +14,31 @@ module Sivel2Gen
             @titulo = 'Reporte de Repetidos'
             @repetidos = []
 
-            rf="AND c1.fecha>='2010-05-01' AND c2.fecha>='2010-05-01'"
+            rf=""
+
+            if (params[:buscarrepetido] && 
+                params[:buscarrepetido][:fechaini] && 
+                params[:buscarrepetido][:fechaini] != '')
+              pfi = params[:buscarrepetido][:fechaini]
+              if Rails.application.config.x.formato_fecha == 'dd-mm-yyyy'
+                pfid = Date.strptime(pfi, '%d-%m-%Y')
+              else
+                pfid = Date.strptime(pfi, '%Y-%m-%d')
+              end
+              rf += " AND c1.fecha >= #{pfid.strftime('%Y-%m-%d')}" +
+                " AND c2.fecha >= #{pfid.strftime('%Y-%m-%d')}" 
+            end
+            if(params[:buscarrepetido] && params[:buscarrepetido][:fechafin] && 
+               params[:buscarrepetido][:fechafin] != '')
+              pff = params[:buscarrepetido][:fechafin]
+              if Rails.application.config.x.formato_fecha == 'dd-mm-yyyy'
+                pffd = Date.strptime(pff, '%d-%m-%Y')
+              else
+                pffd = Date.strptime(pff, '%Y-%m-%d')
+              end
+              rf += " AND c1.fecha <= #{pfid.strftime('%Y-%m-%d')}" +
+                " AND c2.fecha <= #{pfid.strftime('%Y-%m-%d')}" 
+            end
             res = Sivel2Gen::Caso.connection.select_all("
               SELECT DISTINCT gr 
               FROM (SELECT id, ARRAY(SELECT id FROM sivel2_gen_caso AS c2 
