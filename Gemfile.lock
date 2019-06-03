@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/pasosdeJesus/heb412_gen.git
-  revision: b898f59243fdfdac4f7e910ee256288e13527fe1
+  revision: 72feec5a6c59d1353908c6f13752bf9c37fe718b
   specs:
     heb412_gen (1.0.b6)
       chosen-rails
@@ -11,7 +11,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sip.git
-  revision: f0e277f70d570a5d990f847289f846c11c5c04f8
+  revision: 04494bda14eeab306031bcbd23f117029a0bae37
   specs:
     sip (2.0.b6)
       bootstrap-datepicker-rails
@@ -119,6 +119,7 @@ GEM
     choice (0.2.0)
     cldr-plurals-runtime-rb (1.0.1)
     climate_control (0.2.0)
+    coderay (1.1.2)
     coffee-rails (5.0.0)
       coffee-script (>= 2.2.0)
       railties (>= 5.2.0)
@@ -203,6 +204,9 @@ GEM
     prawnto_2 (0.3.0)
       prawn (>= 1.0.0)
       rails (>= 3.2)
+    pry (0.12.2)
+      coderay (~> 1.1.0)
+      method_source (~> 0.9.0)
     puma (3.12.1)
     rack (2.0.7)
     rack-proxy (0.6.5)
@@ -255,7 +259,7 @@ GEM
     responders (2.4.1)
       actionpack (>= 4.2.0, < 6.0)
       railties (>= 4.2.0, < 6.0)
-    rspreadsheet (0.4.8)
+    rspreadsheet (0.4.9)
       andand (~> 1.3)
       rubyzip (~> 1.1)
     ruby-graphviz (1.2.4)
@@ -315,7 +319,7 @@ GEM
       activemodel (>= 6.0.0.a)
       bindex (>= 0.4.0)
       railties (>= 6.0.0.a)
-    webpacker (4.0.6)
+    webpacker (4.0.7)
       activesupport (>= 4.2)
       rack-proxy (>= 0.6.1)
       railties (>= 4.2)
@@ -351,6 +355,7 @@ DEPENDENCIES
   prawn
   prawn-table
   prawnto_2
+  pry
   puma
   rails (~> 6.0.0.rc1)
   rails-controller-testing
