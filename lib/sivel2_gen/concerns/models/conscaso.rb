@@ -57,11 +57,17 @@ module Sivel2Gen
           }
 
           scope :filtro_fechaini, lambda { |fecha_ref|
-            where('sivel2_gen_conscaso.fecha >= ?', fecha_ref)
+            where('sivel2_gen_conscaso.fecha >= ?', 
+                  Sip::FormatoFechaHelper.
+                  fecha_local_estandar(fecha_ref)
+                 )
           }
 
           scope :filtro_fechafin, lambda { |fecha_ref|
-            where('sivel2_gen_conscaso.fecha <= ?', fecha_ref)
+            where('sivel2_gen_conscaso.fecha <= ?', 
+                   Sip::FormatoFechaHelper.
+                  fecha_local_estandar(fecha_ref)
+                 )
           }
 
           scope :filtro_presponsable_id, lambda { |id|
@@ -136,12 +142,16 @@ module Sivel2Gen
           scope :filtro_fechaingini, lambda { |f|
             where('caso_id IN (SELECT id
                     FROM public.sivel2_gen_caso
-                    WHERE created_at >= ?)', f)
+                    WHERE created_at >= ?)', 
+                  Sip::FormatoFechaHelper.fecha_local_estandar(f)
+                 )
           }
 
           scope :filtro_fechaingfin, lambda { |f|
             where('caso_id IN (SELECT id FROM public.sivel2_gen_caso
-              WHERE created_at <= ?)', f)
+              WHERE created_at <= ?)',
+              Sip::FormatoFechaHelper.fecha_local_estandar(f)
+                 )
 
           }
 
