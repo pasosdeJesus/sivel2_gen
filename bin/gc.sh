@@ -1,18 +1,27 @@
+
 #!/bin/sh
-# Hace prueba de regresión y envia a github
+# Revisa errore comunes, ejecuta pruebas de regresión y del sistema y envia a github 
 
+function cableado {
+	for n in $*; do 
+		echo "Revisando $n"
+		grep "^ *gem *.${n}.*, *path:" Gemfile > /dev/null 2> /dev/null
+		if (test "$?" = "0") then {
+			echo "Gemfile incluye un ${n} cableado al sistema de archivos"
+			exit 1;
+		} fi;
+	done
+}
 
-grep "^ *gem.*sip.*,.*path:" Gemfile > /dev/null 2> /dev/null
+d=`grep "gem.*pasosdeJesus" Gemfile | sed -e "s/gem ['\"]//g;s/['\"].*//g"`
+cableado $d
+
+grep "^ *gem *.debugger*" Gemfile > /dev/null 2> /dev/null
 if (test "$?" = "0") then {
-	echo "Gemfile incluye un sip cableado al sistema de archivos"
+	echo "Gemfile incluye debugger"
 	exit 1;
 } fi;
-grep "^ *gem.*debugger" Gemfile > /dev/null 2> /dev/null
-if (test "$?" = "0") then {
-	echo "Gemfile incluye debugger que heroku no quiere"
-	exit 1;
-} fi;
-grep "^ *gem.*byebug" Gemfile > /dev/null 2> /dev/null
+grep "^ *gem *.byebug*" Gemfile > /dev/null 2> /dev/null
 if (test "$?" = "0") then {
 	echo "Gemfile incluye byebug que rbx de travis-ci no quiere"
 	exit 1;
@@ -23,34 +32,39 @@ if (test "$SINAC" != "1") then {
 	if (test "$?" != "0") then {
 		exit 1;
 	} fi;
+	(cd test/dummy; CXX=c++ yarn upgrade)
+	if (test "$?" != "0") then {
+		exit 1;
+	} fi;
 } fi;
+
 if (test "$SININS" != "1") then {
 	NOKOGIRI_USE_SYSTEM_LIBRARIES=1 MAKE=gmake make=gmake QMAKE=qmake4 bundle install
 	if (test "$?" != "0") then {
 		exit 1;
 	} fi;
 } fi;
+
 if (test "$SINMIG" != "1") then {
-	(cd test/dummy; bundle exec rake db:migrate sip:indices db:structure:dump)
+	(cd test/dummy; bin/rails db:migrate sip:indices db:structure:dump)
 	if (test "$?" != "0") then {
 		exit 1;
 	} fi;
 } fi;
 
-
-(cd test/dummy; RAILS_ENV=test bundle exec rake db:drop db:setup db:migrate sip:indices)
+(cd test/dummy; RAILS_ENV=test bin/rails db:drop db:setup; RAILS_ENV=test bin/rails db:migrate sip:indices)
 if (test "$?" != "0") then {
 	echo "No puede preparse base de prueba";
 	exit 1;
 } fi;
 
-CONFIG_HOSTS=www.example.com bin/rails test 
+CONFIG_HOSTS=www.example.com bin/rails test
 if (test "$?" != "0") then {
-	echo "No pasaron pruebas";
+	echo "No pasaron pruebas de regresion";
 	exit 1;
 } fi;
 
-(cd test/dummy; RAILS_ENV=test bundle exec rake db:structure:dump)
+(cd test/dummy; RAILS_ENV=test bin/rails db:structure:dump)
 
 b=`git branch | grep "^*" | sed -e  "s/^* //g"`
 git status -s
@@ -63,3 +77,4 @@ if (test "$?" != "0") then {
 	echo "No pudo subirse el cambio a github";
 	exit 1;
 } fi;
+
