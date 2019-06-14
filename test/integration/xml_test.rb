@@ -2,6 +2,7 @@
 
 require_relative '../test_helper'
 require 'nokogiri'
+require 'open-uri'
 
 module Sivel2Gen
   class CasosControllerTest < ActionDispatch::IntegrationTest
@@ -36,17 +37,17 @@ module Sivel2Gen
        get caso_path(caso)
        puts caso_path(caso)
        assert :success
-
-       url_xml= caso_path(caso)+ ".xml"
+       
+       url_xml= caso_url(caso)+'.xml'
        get url_xml
        puts url_xml
-       assert :success
-
-      
-       DTD_PATH = "http://www.w3.org/TR/html4/loose.dtd"
+       DTD_PATH = 'http://www.w3.org/TR/html4/loose.dtd'
        XML_PATH = url_xml
-       doc = Nokogiri::HTML(open(XML_PATH))
-      # xml = File.read(XML_PATH)
+       #doc = Nokogiri::XML(open('http://sincodh.pasosdejesus.org/relatos/nyn144900.xrlat').read)
+
+       doc = Nokogiri::XML(open(XML_PATH).read)
+       #doc = File.open(XML_PATH) { |f| Nokogiri::XML(f) }
+       # xml = File.read(XML_PATH)
       # options = Nokogiri::XML::ParseOptions::DTDVALID
       # doc = Nokogiri::XML::Document.parse(xml, nil, nil, options)
       # puts doc.external_subset.validate(doc)
