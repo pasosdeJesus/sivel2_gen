@@ -45,9 +45,7 @@
 	    xml.observaciones(vc.antecedente.map(&:nombre).join(";"), {tipo: 'antecedente'}) if vc.antecedente[0]
 	    xml.observaciones(vc.filiacion.map(&:nombre).join(";"), {tipo: 'filiacion'}) if vc.filiacion[0]
 	    xml.observaciones(vc.organizacion.map(&:nombre).join(";"), {tipo: 'organizacion'}) if vc.organizacion[0]
-	    xml.observaciones(vc.profesion.map(&:nombre).join(";"), {tipo: 'profesion'}) if vc.profesion[0]
-	    xml.observaciones(vc.rangoedad.map(&:nombre).join(";"), {tipo: 'rangoedad'}) if vc.rangoedad[0]
-	    xml.observaciones(vc.sectorsocial.map(&:nombre).join(";"), {tipo: 'sectorsocial'}) if vc.sectorsocial[0]
+	    .observaciones(vc.sectorsocial.map(&:nombre).join(";"), {tipo: 'sectorsocial'}) if vc.sectorsocial[0]
 	    xml.observaciones(vc.vinculoestado.map(&:nombre).join(";"), {tipo: 'vinculoestado'}) if vc.vinculoestado[0]
            end
         end
@@ -86,13 +84,16 @@
         xml.comment! "Ubicacion"
         xml.fecha @caso['fecha']      
         xml.hora @caso['hora']
-        xml.duracion @caso['duracion'] 	
-  	xml.departamento @caso['departamento']
-  	xml.municipio @caso['municipio']
-  	xml.centro_poblado @caso['centro_poblado']
-  	xml.longitud @caso['longitud']
-  	xml.latitud @caso['latitud']
-
+        xml.duracion @caso['duracion']
+	@caso.ubicacion.each do |ub|
+          xml.ubicacion do	
+       	xml.departamento ub.departamento.nombre
+        xml.municipio ub.municipio.nombre
+	xml.centro_poblado ub.clase.nombre
+	xml.longitud ub.longitud
+	xml.latitud ub.latitud
+	  end
+        end
   	xml.comment! "Acto contra victima individual"
   	@caso.acto.each do |ac|
             xml.acto do
