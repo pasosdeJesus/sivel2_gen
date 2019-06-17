@@ -35,7 +35,7 @@ module Sivel2Gen
 
     PRUEBA_UBICACION= {
       id_tsitio: 1,
-      id_pais: 286,
+      id_pais: 862,
       id_departamento: 15,
       id_municipio: 610,
       created_at: "2014-11-06"
@@ -49,43 +49,47 @@ module Sivel2Gen
 
     test "genera xml de un caso con datos basicos" do
         caso= Sivel2Gen::Caso.create! PRUEBA_CASO_BASICOS 
-        get caso_path(caso)
-        puts caso_path(caso)
+	get caso_path(caso)+".xml"
 	assert :success
+	puts caso_path(caso)+".xml"
+        puts @response.body
+        file= guarda_xml(@response.body)	
+       	docu = File.read(file)
+        verifica_dtd(docu)		
         caso.destroy 
     end 
 
     test "Genera xml con 2 ubicaciones" do
       
-       caso= Sivel2Gen::Caso.create! PRUEBA_CASOV
-       pais= Sip::Pais.find(862)
+       caso= Sivel2Gen::Caso.create! PRUEBA_CASO_BASICOS
        ubicacion = Sip::Ubicacion.new PRUEBA_UBICACION
+       pais = Sip::Pais.find(862) 
+       departamento = Sip::Departamento.find(15)
+       municipio = Sip::Municipio.find(610)
        ubicacion.pais = pais
-       ubicacion.caso = caso
-       
+       ubicacion.departamento= departamento
+       ubicacion.municipio = municipio
+       #caso.ubicacion = ubicacion  
        get caso_path(caso)+".xml"
-       
-       #assert_equal 200, status
-           
-       url_xml= caso_path(caso)+".xml"
-        #s = ActionController.new.render_to_string :file => url_xml
-      # File.open('fixed.xml','w'){|f| f.write s}
-     #  render :text => s
-         assert :success
-      # get url_xml
-      # puts url_xml
-      # DTD_PATH = 'http://www.w3.org/TR/html4/loose.dtd'
-      # XML_PATH = url_xml
-      # doc = Nokogiri::XML(open(url_xml).read)
-
-      # doc = Nokogiri::XML(open(XML_PATH).read)
-      #doc = File.open(XML_PATH) { |f| Nokogiri::XML(f) }
-      # xml = File.read(XML_PATH)
-      # options = Nokogiri::XML::ParseOptions::DTDVALID
-      # doc = Nokogiri::XML::Document.parse(xml, nil, nil, options)
-      # puts doc.external_subset.validate(doc)
+       assert :success
+       puts @response.body
        caso.destroy
       end
+
+      def guarda_xml(docu) 
+	  
+       file = File.new("relatos.xml", "wb")
+       file.write(docu)
+       file.close
+       return file  
+      end
+
+      def verifica_dtd(docu)
+	options = Nokogiri::XML::ParseOptions::DTDVALID
+        doc = Nokogiri::XML::Document.parse(docu, nil, nil, options)
+        puts doc.external_subset.validate(doc)
+      end	      
+
     end 
 end
 

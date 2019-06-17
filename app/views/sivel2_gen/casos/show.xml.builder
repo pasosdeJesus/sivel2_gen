@@ -1,14 +1,12 @@
 	
    xml.instruct!
-   #xml.doc.create_internal_subset(
-    #    'html',"-//W3C//DTD HTML 4.01 Transitional//EN", "http://sincodh.pasosdejesus.org/relatos/relatos-097.dtd"
-   #)
+   xml.declare! :DOCTYPE, :relatos, :SYSTEM, 'http://sincodh.pasosdejesus.org/relatos/relatos-097.dtd'
    xml.relatos do
      xml.relato do
        xml.organizacion_responsable Sivel2Gen::Ability.organizacion_responsable
        xml.derechos Sivel2Gen::Ability.derechos
        xml.id_relato @caso ['id']
-       #xml.forma_compartir
+       xml.forma_compartir
        xml.titulo @caso ['titulo']
        xml.hechos @caso['memo']
 
@@ -41,7 +39,6 @@
 	    ['personasaprox','organizacionarmada'].each do |ob|
 	      xml.observaciones(vc[ob], {tipo: ob}) if vc[ob]
 	    end
-	
 	    xml.observaciones(vc.antecedente.map(&:nombre).join(";"), {tipo: 'antecedente'}) if vc.antecedente[0]
 	    xml.observaciones(vc.filiacion.map(&:nombre).join(";"), {tipo: 'filiacion'}) if vc.filiacion[0]
 	    xml.observaciones(vc.organizacion.map(&:nombre).join(";"), {tipo: 'organizacion'}) if vc.organizacion[0]
@@ -68,12 +65,20 @@
         end
 
         xml.comment! "Presuntos responsables individual"
+        xml.presunto_responsable_individual do
+	   xml.id_persona
+	   xml.id_grupo
+	   xml.alias
+	   xml.observaciones
+        end
 
         xml.comment! "Presuntos responsables grupo"
         @caso.caso_presponsable.each do |cpr|
           xml.grupo do
 	    xml.id_grupo cpr.presponsable.id
-	    xml.nombre cpr.presponsable.nombre
+	    xml.nombre_grupo cpr.presponsable.nombre
+	    xml.sigla
+	    xml.subgrupo_de
 	    ['batallon', 'brigada', 'bloque', 'frente', 'division', 'otro', 'tipo'].each do |ob|
               xml.observaciones(cpr[ob], {tipo: ob}) if cpr[ob]
 	    end
