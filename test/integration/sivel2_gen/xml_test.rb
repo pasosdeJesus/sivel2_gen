@@ -35,9 +35,9 @@ module Sivel2Gen
 
     PRUEBA_UBICACION= {
       id_tsitio: 1,
-      id_pais: 862,
-      id_departamento: 15,
-      id_municipio: 610,
+      id_pais: 170,
+      id_departamento: 17,
+      id_municipio: 1152,
       created_at: "2014-11-06"
     }
 
@@ -59,25 +59,24 @@ module Sivel2Gen
         caso.destroy 
     end 
 
-    test "Genera xml con 2 ubicaciones" do
-      
-       caso= Sivel2Gen::Caso.create! PRUEBA_CASO_BASICOS
-       ubicacion = Sip::Ubicacion.new PRUEBA_UBICACION
-       pais = Sip::Pais.find(862) 
-       departamento = Sip::Departamento.find(15)
-       municipio = Sip::Municipio.find(610)
-       ubicacion.pais = pais
-       ubicacion.departamento= departamento
-       ubicacion.municipio = municipio
-       #caso.ubicacion = ubicacion  
-       get caso_path(caso)+".xml"
-       assert :success
+    test "Genera xml con 2 ubicaciones" do   
+       caso= Sivel2Gen::Caso.create! PRUEBA_CASO_BASICOS      
+       ubicacion1= Sip::Ubicacion.create(id_pais:170, id_caso:caso.id, id_tsitio: 1, id_departamento: 17, id_municipio: 1152, created_at: "2014-11-06")
+       ubicacion2= Sip::Ubicacion.create(id_pais:170, id_caso:caso.id, id_tsitio: 1, id_departamento: 47, id_municipio: 881, created_at: "2014-11-06")
+       ubicacion1.id_caso= caso.id
+       ubicacion2.id_caso = caso.id
+       caso.ubicacion_id= [ubicacion1.id, ubicacion2.id]
+              
+       #get caso_path(caso)+".xml"
        puts @response.body
+       ubicacion1.destroy
+       ubicacion2.destroy
        caso.destroy
-      end
+    end
 
-      def guarda_xml(docu) 
-	  
+    test "Valida caso con 2 victimas" do
+    end
+      def guarda_xml(docu)	  
        file = File.new("relatos.xml", "wb")
        file.write(docu)
        file.close
@@ -88,6 +87,7 @@ module Sivel2Gen
 	options = Nokogiri::XML::ParseOptions::DTDVALID
         doc = Nokogiri::XML::Document.parse(docu, nil, nil, options)
         puts doc.external_subset.validate(doc)
+	assert_empty doc.external_subset.validate(doc)
       end	      
 
     end 

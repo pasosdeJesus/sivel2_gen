@@ -32,21 +32,23 @@
 
        xml.comment! "Victima Colectiva"
 
-       xml.grupo do
-         @caso.victimacolectiva.each do |vc|
+	  @caso.victimacolectiva.each do |vc|	      
+	    xml.grupo do
             xml.id_grupo vc.grupoper.id
-            xml.nombre_grupo vc.grupoper.nombre
+	    xml.nombre_grupo vc.grupoper.nombre
 	    ['personasaprox','organizacionarmada'].each do |ob|
-	      xml.observaciones(vc[ob], {tipo: ob}) if vc[ob]
+	     xml.observaciones(vc[ob], {tipo: ob}) if vc[ob]
 	    end
 	    xml.observaciones(vc.antecedente.map(&:nombre).join(";"), {tipo: 'antecedente'}) if vc.antecedente[0]
 	    xml.observaciones(vc.filiacion.map(&:nombre).join(";"), {tipo: 'filiacion'}) if vc.filiacion[0]
 	    xml.observaciones(vc.organizacion.map(&:nombre).join(";"), {tipo: 'organizacion'}) if vc.organizacion[0]
-	    .observaciones(vc.sectorsocial.map(&:nombre).join(";"), {tipo: 'sectorsocial'}) if vc.sectorsocial[0]
+	    xml.observaciones(vc.profesion.map(&:nombre).join(";"), {tipo: 'profesion'}) if vc.profesion[0]
+	    xml.observaciones(vc.rangoedad.map(&:nombre).join(";"), {tipo: 'rangoedad'}) if vc.rangoedad[0]
+	    xml.observaciones(vc.sectorsocial.map(&:nombre).join(";"), {tipo: 'sectorsocial'}) if vc.sectorsocial[0]
 	    xml.observaciones(vc.vinculoestado.map(&:nombre).join(";"), {tipo: 'vinculoestado'}) if vc.vinculoestado[0]
-           end
-        end
-
+	    end
+	 end
+	
         xml.comment! "Victima"
         @caso.victima.each do |v|
            xml.victima do
@@ -90,15 +92,16 @@
         xml.fecha @caso['fecha']      
         xml.hora @caso['hora']
         xml.duracion @caso['duracion']
+	
 	@caso.ubicacion.each do |ub|
-          xml.ubicacion do	
-       	xml.departamento ub.departamento.nombre
-        xml.municipio ub.municipio.nombre
-	xml.centro_poblado ub.clase.nombre
-	xml.longitud ub.longitud
-	xml.latitud ub.latitud
-	  end
-        end
+          #xml.ubicacion do	
+		  xml.departamento ub.departamento.nombre
+		  xml.centro_poblado ub.clase.nombre
+		  xml.longitud ub.longitud 
+		  xml.latitud ub.latitud 
+	  #end
+       
+	end
   	xml.comment! "Acto contra victima individual"
   	@caso.acto.each do |ac|
             xml.acto do
