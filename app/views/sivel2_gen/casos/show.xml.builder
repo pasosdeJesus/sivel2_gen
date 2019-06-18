@@ -1,6 +1,13 @@
 	
    xml.instruct!
-   xml.declare! :DOCTYPE, :relatos, :SYSTEM, 'http://sincodh.pasosdejesus.org/relatos/relatos-097.dtd'
+   if ENV['RAILS_ENV'] == 'test'
+	# Sacar directorio actual
+	rdtd = '/home/lcruz/sivel2_gen/' + 'test/dummy/public/relatos-097.dtd'
+   else
+        rdtd = 'http://sincodh.pasosdejesus.org/relatos/relatos-097.dtd'
+   end
+ 
+   xml.declare! :DOCTYPE, :relatos, :SYSTEM, rdtd
    xml.relatos do
      xml.relato do
        xml.organizacion_responsable Sivel2Gen::Ability.organizacion_responsable
@@ -92,18 +99,14 @@
         xml.fecha @caso['fecha']      
         xml.hora @caso['hora']
         xml.duracion @caso['duracion']
-        
-	@caso.ubicacion.each do |ub|
-        if @caso.ubicacion	
-          #xml.ubicacion do	
-		xml.departamento ub.departamento.nombre if ub.departamento
-		xml.municipio ub.municipio.nombre if ub.municipio
-		xml.centro_poblado ub.clase.nombre if ub.clase
-		xml.longitud ub.longitud  if ub.longitud
-		xml.latitud ub.latitud  if ub.latitud
-	  #end
-       
-	end
+      
+	if @caso.ubicacion_id
+	  ub = Sip::Ubicacion.find(@caso.ubicacion_id)	
+	  xml.departamento ub.departamento.nombre if ub.departamento
+	  xml.municipio ub.municipio.nombre if ub.municipio
+	  xml.centro_poblado ub.clase.nombre if ub.clase
+	  xml.longitud ub.longitud  if ub.longitud
+	  xml.latitud ub.latitud  if ub.latitud
 	end
   	xml.comment! "Acto contra victima individual"
   	@caso.acto.each do |ac|
