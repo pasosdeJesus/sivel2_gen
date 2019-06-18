@@ -92,15 +92,18 @@
         xml.fecha @caso['fecha']      
         xml.hora @caso['hora']
         xml.duracion @caso['duracion']
-	
+        
 	@caso.ubicacion.each do |ub|
+        if @caso.ubicacion	
           #xml.ubicacion do	
-		  xml.departamento ub.departamento.nombre
-		  xml.centro_poblado ub.clase.nombre
-		  xml.longitud ub.longitud 
-		  xml.latitud ub.latitud 
+		xml.departamento ub.departamento.nombre if ub.departamento
+		xml.municipio ub.municipio.nombre if ub.municipio
+		xml.centro_poblado ub.clase.nombre if ub.clase
+		xml.longitud ub.longitud  if ub.longitud
+		xml.latitud ub.latitud  if ub.latitud
 	  #end
        
+	end
 	end
   	xml.comment! "Acto contra victima individual"
   	@caso.acto.each do |ac|
