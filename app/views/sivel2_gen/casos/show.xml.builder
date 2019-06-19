@@ -1,19 +1,19 @@
 	
    xml.instruct!
    if ENV['RAILS_ENV'] == 'test'
-	# Sacar directorio actual
-	rdtd = '/home/lcruz/sivel2_gen/' + 'test/dummy/public/relatos-097.dtd'
+        ruta= Dir.pwd
+	rdtd = ruta + '/test/dummy/public/relatos-097.dtd'
    else
         rdtd = 'http://sincodh.pasosdejesus.org/relatos/relatos-097.dtd'
    end
- 
+   
    xml.declare! :DOCTYPE, :relatos, :SYSTEM, rdtd
-   xml.relatos do
+    xml.relatos do
      xml.relato do
        xml.organizacion_responsable Sivel2Gen::Ability.organizacion_responsable
        xml.derechos Sivel2Gen::Ability.derechos
        xml.id_relato @caso ['id']
-       xml.forma_compartir
+       xml.forma_compartir 
        xml.titulo @caso ['titulo']
        xml.hechos @caso['memo']
 
