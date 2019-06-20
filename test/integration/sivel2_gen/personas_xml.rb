@@ -42,6 +42,7 @@ module Sivel2Gen
    }
    
    PRUEBA_PROFESION= {
+        id: 1000,
 	nombre: "Profesion",
         fechacreacion: "2014-09-09",
         created_at: "2014-09-09"
@@ -56,14 +57,23 @@ module Sivel2Gen
     	fechacreacion: "2014-09-09",
     	created_at: "2014-09-09"
     }
+
+    PRUEBA_SECTORSOCIAL={
+        id: 1000,
+        nombre: "Pruebaumpleado",
+        fechacreacion: "2014-09-09"
+    }
+    
     
     test "Valida caso con 1 victima" do
        caso= Sivel2Gen::Caso.create! PRUEBA_CASO_BASICOS      
        persona=  Sip::Persona.create! PRUEBA_PERSONA
        rangoedad= Sivel2Gen::Rangoedad.create! PRUEBA_RANGOEDAD
-       victima= Sivel2Gen::Victima.create(id_caso: caso.id, id_persona: persona.id, id_rangoedad: rangoedad.id, id_etnia: 105)    
+       profesion= Sivel2Gen::Profesion.create! PRUEBA_PROFESION
+       sectorsocial= Sivel2Gen::Sectorsocial.create! PRUEBA_SECTORSOCIAL
+       victima= Sivel2Gen::Victima.create(id_caso: caso.id, id_persona: persona.id, id_rangoedad: rangoedad.id, id_etnia: 105, id_profesion: profesion.id, id_sectorsocial: sectorsocial.id)    
        get caso_path(caso)+".xml"
-       #puts @response.body
+      # puts @response.body
        file= guarda_xml(@response.body)	
        docu = File.read(file)
        verifica_dtd(docu)		
@@ -77,9 +87,11 @@ module Sivel2Gen
        caso= Sivel2Gen::Caso.create! PRUEBA_CASO_BASICOS      
        persona1=  Sip::Persona.create! PRUEBA_PERSONA
        persona2=  Sip::Persona.create! PRUEBA_PERSONA
+       profesion= Sivel2Gen::Profesion.create! PRUEBA_PROFESION
+       sectorsocial= Sivel2Gen::Sectorsocial.create! PRUEBA_SECTORSOCIAL
        rangoedad= Sivel2Gen::Rangoedad.create! PRUEBA_RANGOEDAD
-       victima1= Sivel2Gen::Victima.create(id_caso: caso.id, id_persona: persona1.id, id_rangoedad: rangoedad.id, id_etnia: 105)    
-       victima2= Sivel2Gen::Victima.create(id_caso: caso.id, id_persona: persona2.id, id_rangoedad: rangoedad.id, id_etnia: 105)    
+       victima1= Sivel2Gen::Victima.create(id_caso: caso.id, id_persona: persona1.id, id_rangoedad: rangoedad.id, id_etnia: 105, id_sectorsocial: sectorsocial.id, id_profesion: profesion.id)    
+       victima2= Sivel2Gen::Victima.create(id_caso: caso.id, id_persona: persona2.id, id_rangoedad: rangoedad.id, id_etnia: 105, id_sectorsocial: sectorsocial.id, id_profesion: profesion.id)    
        get caso_path(caso)+".xml"
        #puts @response.body
        file= guarda_xml(@response.body)	
@@ -92,12 +104,13 @@ module Sivel2Gen
        victima1.destroy
        victima2.destroy
    end 
+   
    test "valida caso con 1 victima colectima" do
         caso=Sivel2Gen::Caso.create! PRUEBA_CASO_BASICOS
         grupoper= Sip::Grupoper.create(nombre: "Nombre de grupo", anotaciones: "Anotaciones de ejemplo", created_at: "2014-09-09")
         victimacolectiva= Sivel2Gen::Victimacolectiva.create(id_grupoper: grupoper.id, id_caso: caso.id, personasaprox: 5, organizacionarmada:5)
          get caso_path(caso)+".xml"
-         #puts @response.body
+        # puts @response.body
          file= guarda_xml(@response.body)	
          docu = File.read(file)
          verifica_dtd(docu)		
@@ -123,12 +136,13 @@ module Sivel2Gen
          grupoper2.destroy
          caso.destroy
    end 
+   
    test "valida con 1 presunto responsable" do 
          caso= Sivel2Gen::Caso.create! PRUEBA_CASO_BASICOS      
-         presponsable= Sivel2Gen::Presponsable.create(nombre:"Nombre de grupo", papa: 1) 
+         presponsable= Sivel2Gen::Presponsable.create(id:1000, nombre:"Nombre de grupo", fechacreacion: "2014-09-09", created_at: "2014-09-09") 
          casopresponsable= Sivel2Gen::CasoPresponsable.create(id_caso: caso.id, id_presponsable: presponsable.id, bloque: "Bloque", frente:"Frente", brigada: "Brigada")
          get caso_path(caso)+".xml"
-         puts @response.body
+        # puts @response.body
          file= guarda_xml(@response.body)
          docu = File.read(file)
          verifica_dtd(docu)		

@@ -18,6 +18,7 @@
        xml.hechos @caso['memo']
 
        xml.comment! "Personas"
+       if @caso.victima 
        @caso.victima.each do |v|
           xml.persona do
             xml.id_persona v.persona.id
@@ -36,7 +37,7 @@
             xml.observaciones(v.persona.clase.nombre, {tipo: 'centro_poblado'}) if v.persona.clase
           end
        end
-
+      end
        xml.comment! "Victima Colectiva"
 
 	  @caso.victimacolectiva.each do |vc|	      
@@ -73,15 +74,8 @@
            end
         end
 
-        xml.comment! "Presuntos responsables individual"
-        xml.presunto_responsable_individual do
-	   xml.id_persona
-	   xml.id_grupo
-	   xml.alias
-	   xml.observaciones
-        end
-
         xml.comment! "Presuntos responsables grupo"
+        if @caso.caso_presponsable
         @caso.caso_presponsable.each do |cpr|
           xml.grupo do
 	    xml.id_grupo cpr.presponsable.id
@@ -94,6 +88,12 @@
           # xml.observaciones(cpr.categoria[nombre], {tipo: ob})
           end
         end
+        end
+
+        xml.comment! "Presuntos responsables individual"
+        xml.presunto_responsable_individual do
+	   xml.id_persona
+	end
 
         xml.comment! "Ubicacion"
         xml.fecha @caso['fecha']      
@@ -109,13 +109,15 @@
 	  xml.latitud ub.latitud  if ub.latitud
 	end
   	xml.comment! "Acto contra victima individual"
-  	@caso.acto.each do |ac|
+        if @caso.acto  
+         @caso.acto.each do |ac|
             xml.acto do
-	       xml.agresion ac.categoria.pconsolidado.clasificacion
+              xml.agresion ac.categoria.pconsolidado.clasificacion
 	       xml.agresion_particular ac.categoria.nombre
 	       xml.id_victima_individual ac.persona.id
 	       xml.id_presunto_grupo_responsable ac.presponsable.id
             end
+        end
         end
 
   	xml.comment! "Actos contra victimas colectivas"
