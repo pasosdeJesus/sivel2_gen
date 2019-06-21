@@ -172,41 +172,45 @@ module Sivel2Gen
             when 'presponsables'
               caso_presponsable.inject('') { 
                 |memo, pr| 
-                r = (memo == '' ? '' : memo + ".   ")
-                r += pr.presponsable.nombre 
-                sigp = ' ('
-                if pr.bloque
-                  r += sigp + pr.bloque
-                  sigp = ', '
+                r = ''
+                if pr 
+                  r = (memo == '' ? '' : memo + ".   ")
+                  r += pr.presponsable.nombre 
+                  sigp = ' ('
+                  if pr.bloque
+                    r += sigp + pr.bloque
+                    sigp = ', '
+                  end
+                  if pr.frente
+                    r += sigp + pr.frente
+                    sigp = ', '
+                  end
+                  if pr.division
+                    r += sigp + pr.division
+                    sigp = ', '
+                  end
+                  if pr.brigada
+                    r += sigp + pr.brigada
+                    sigp = ', '
+                  end
+                  if pr.batallon
+                    r += sigp + pr.batallon
+                    sigp = ', '
+                  end
+                  if pr.otro
+                    r += sigp + pr.otro
+                    sigp = ', '
+                  end
+                  r += sigp == ', ' ? ')' : ''
+                  if pr.categoria && pr.categoria.count > 0
+                    r += ' '
+                    r += pr.categoria.inject('') { |memo, c|
+                      (memo == '' ? '' : memo + ', ') + 
+                        c.supracategoria.id_tviolencia + c.id.to_s
+                    }
+                  end
                 end
-                if pr.frente
-                  r += sigp + pr.frente
-                  sigp = ', '
-                end
-                if pr.division
-                  r += sigp + pr.division
-                  sigp = ', '
-                end
-                if pr.brigada
-                  r += sigp + pr.brigada
-                  sigp = ', '
-                end
-                if pr.batallon
-                  r += sigp + pr.batallon
-                  sigp = ', '
-                end
-                if pr.otro
-                  r += sigp + pr.otro
-                  sigp = ', '
-                end
-                r += sigp == ', ' ? ')' : ''
-                if pr.categoria && pr.categoria.count > 0
-                  r += ' '
-                  r += pr.categoria.inject('') { |memo, c|
-                    (memo == '' ? '' : memo + ', ') + 
-                      c.supracategoria.id_tviolencia + c.id.to_s
-                  }
-                end
+                r
               }
  
             when 'ubicaciones'
