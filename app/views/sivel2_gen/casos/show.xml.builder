@@ -57,36 +57,36 @@
 	    end
 	 end
 	
-        xml.comment! "Victima"
-        @caso.victima.each do |v|
-           xml.victima do
-	      xml.id_persona v.persona.id
-	      xml.ocupacion v.profesion.nombre
-	      xml.sector_condicion v.sectorsocial.nombre
-	      xml.iglesia v.iglesia.nombre
-	      xml.organizacion v.organizacion.nombre
-	      ['hijos','organizacionarmada', 'orientacionsexual', 'anotaciones'].each do |ob|
-	        xml.observaciones(v[ob], {tipo: ob}) if v[ob]
-	      end
-	      xml.observaciones(v.filiacion.nombre, {tipo: 'filiacion'}) if v.filiacion
-	      xml.observaciones(v.rangoedad.nombre, {tipo: 'rangoedad'}) if v.rangoedad
-	      xml.observaciones(v.vinculoestado.nombre, {tipo: 'vinculoestado'}) if v.vinculoestado
-           end
-        end
-
         xml.comment! "Presuntos responsables grupo"
         if @caso.caso_presponsable
         @caso.caso_presponsable.each do |cpr|
           xml.grupo do
 	    xml.id_grupo cpr.presponsable.id
 	    xml.nombre_grupo cpr.presponsable.nombre
-	    xml.sigla
-	    xml.subgrupo_de
 	    ['batallon', 'brigada', 'bloque', 'frente', 'division', 'otro', 'tipo'].each do |ob|
               xml.observaciones(cpr[ob], {tipo: ob}) if cpr[ob]
 	    end
           # xml.observaciones(cpr.categoria[nombre], {tipo: ob})
           end
+        end
+        end
+
+        xml.comment! "Victima"
+        if @caso.victima
+        @caso.victima.each do |v|
+           xml.victima do
+             xml.id_persona v.persona.id if v.persona
+             xml.ocupacion v.profesion.nombre if v.profesion
+             xml.sector_condicion v.sectorsocial.nombre if v.sectorsocial
+              xml.iglesia v.iglesia.nombre if v.iglesia
+	      xml.organizacion v.organizacion.nombre
+	      xml.observaciones(v.filiacion.nombre, {tipo: 'filiacion'}) if v.filiacion
+	      xml.observaciones(v.vinculoestado.nombre, {tipo: 'vinculoestado'}) if v.vinculoestado
+	      ['hijos','organizacionarmada', 'orientacionsexual', 'anotaciones'].each do |ob|
+	        xml.observaciones(v[ob], {tipo: ob}) if v[ob]
+	      end
+	      xml.observaciones(v.rangoedad.nombre, {tipo: 'rangoedad'}) if v.rangoedad
+           end
         end
         end
 

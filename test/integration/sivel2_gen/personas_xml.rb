@@ -73,7 +73,7 @@ module Sivel2Gen
        sectorsocial= Sivel2Gen::Sectorsocial.create! PRUEBA_SECTORSOCIAL
        victima= Sivel2Gen::Victima.create(id_caso: caso.id, id_persona: persona.id, id_rangoedad: rangoedad.id, id_etnia: 105, id_profesion: profesion.id, id_sectorsocial: sectorsocial.id)    
        get caso_path(caso)+".xml"
-      # puts @response.body
+       puts @response.body
        file= guarda_xml(@response.body)	
        docu = File.read(file)
        verifica_dtd(docu)		
