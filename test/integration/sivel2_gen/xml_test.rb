@@ -32,6 +32,7 @@ module Sivel2Gen
     }
     
     PRUEBA_UBICACION= {
+      id: 1400,
       id_tsitio: 1,
       id_pais: 170,
       id_departamento: 17,
@@ -40,16 +41,15 @@ module Sivel2Gen
     }
 
     test "caso valido" do
-       caso= Sivel2Gen::Caso.create! PRUEBA_CASOV
-       assert caso.valid?
-       caso.destroy 
+      caso= Sivel2Gen::Caso.create! PRUEBA_CASOV
+      assert caso.valid?
+      caso.destroy 
     end
 
     test "genera xml de un caso con datos basicos" do
         caso= Sivel2Gen::Caso.create! PRUEBA_CASO_BASICOS 
 	get caso_path(caso)+".xml"
 	assert :success
-	puts caso_path(caso)+".xml"
         puts @response.body
         file= guarda_xml(@response.body)	
        	docu = File.read(file)
@@ -58,11 +58,11 @@ module Sivel2Gen
     end 
 
     test "genera xml del caso y su ubicacion" do   
-       caso= Sivel2Gen::Caso.create! PRUEBA_CASO_BASICOS      
-       ubicacion= Sip::Ubicacion.create(id_pais:170, id_caso:caso.id, id_tsitio: 1, id_departamento: 17, id_municipio: 1152, created_at: "2014-11-06")
-       ubicacion.id_caso= caso.id
-       caso.ubicacion_id= ubicacion.id
-              
+       caso= Sivel2Gen::Caso.create! PRUEBA_CASO_BASICOS 
+       ubicacion= Sip::Ubicacion.create PRUEBA_UBICACION
+       byebug
+       caso.ubicacion_id = ubicacion.id
+       byebug
        get caso_path(caso)+".xml"
        puts @response.body
        file= guarda_xml(@response.body)	

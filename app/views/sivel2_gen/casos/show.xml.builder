@@ -17,15 +17,15 @@
        xml.titulo @caso ['titulo']
        xml.hechos @caso['memo']
 
-       xml.comment! "Personas"
+       xml.comment! "Victimas personas individuales"
        if @caso.victima 
        @caso.victima.each do |v|
           xml.persona do
             xml.id_persona v.persona.id
             xml.nombre v.persona.nombres
             xml.apellido v.persona.apellidos
-            xml.cc v.persona.numerodocumento
-            xml.fecha_nacimiento v.persona.anionac,"/", v.persona.mesnac,"/", v.persona.dianac
+            xml.cc v.persona.numerodocumento if v.persona.numerodocumento
+            xml.fecha_nacimiento v.persona.anionac,"-", v.persona.mesnac,"-", v.persona.dianac
             xml.sexo v.persona.sexo
             ['nacionalde', 'tdocumento'].each do |ob|
 	      xml.observaciones(v.persona[ob], {tipo: ob}) if v.persona[ob]
@@ -38,7 +38,7 @@
           end
        end
       end
-       xml.comment! "Victima Colectiva"
+       xml.comment! "Grupos victimizados"
 
 	  @caso.victimacolectiva.each do |vc|	      
 	    xml.grupo do
@@ -57,13 +57,13 @@
 	    end
 	 end
 	
-        xml.comment! "Presuntos responsables grupo"
+        xml.comment! "Presuntos responsables"
         if @caso.caso_presponsable
         @caso.caso_presponsable.each do |cpr|
           xml.grupo do
 	    xml.id_grupo cpr.presponsable.id
 	    xml.nombre_grupo cpr.presponsable.nombre
-	    ['batallon', 'brigada', 'bloque', 'frente', 'division', 'otro', 'tipo'].each do |ob|
+	    ['batallon', 'brigada', 'bloque', 'frente', 'division', 'otro'].each do |ob|
               xml.observaciones(cpr[ob], {tipo: ob}) if cpr[ob]
 	    end
           # xml.observaciones(cpr.categoria[nombre], {tipo: ob})
@@ -71,7 +71,7 @@
         end
         end
 
-        xml.comment! "Victima"
+        xml.comment! "Victima Individual"
         if @caso.victima
         @caso.victima.each do |v|
            xml.victima do
@@ -82,7 +82,7 @@
 	      xml.organizacion v.organizacion.nombre
 	      xml.observaciones(v.filiacion.nombre, {tipo: 'filiacion'}) if v.filiacion
 	      xml.observaciones(v.vinculoestado.nombre, {tipo: 'vinculoestado'}) if v.vinculoestado
-	      ['hijos','organizacionarmada', 'orientacionsexual', 'anotaciones'].each do |ob|
+	      ['hijos','organizacionarmada', 'anotaciones'].each do |ob|
 	        xml.observaciones(v[ob], {tipo: ob}) if v[ob]
 	      end
 	      xml.observaciones(v.rangoedad.nombre, {tipo: 'rangoedad'}) if v.rangoedad
@@ -91,24 +91,22 @@
         end
 
         xml.comment! "Presuntos responsables individual"
-        xml.presunto_responsable_individual do
-	   xml.id_persona
-	end
-
+      
         xml.comment! "Ubicacion"
         xml.fecha @caso['fecha']      
         xml.hora @caso['hora']
         xml.duracion @caso['duracion']
       
-	if @caso.ubicacion_id
-	  ub = Sip::Ubicacion.find(@caso.ubicacion_id)	
-	  xml.departamento ub.departamento.nombre if ub.departamento
-	  xml.municipio ub.municipio.nombre if ub.municipio
-	  xml.centro_poblado ub.clase.nombre if ub.clase
-	  xml.longitud ub.longitud  if ub.longitud
-	  xml.latitud ub.latitud  if ub.latitud
-	end
-  	xml.comment! "Acto contra victima individual"
+        if @caso.ubicacion_id
+          ub = Sip::Ubicacion.find(@caso.ubicacion_id)      
+           xml.departamento ub.departamento.nombre if ub.departamento
+           xml.municipio ub.municipio.nombre if ub.municipio
+           xml.centro_poblado ub.clase.nombre if ub.clase
+           xml.longitud ub.longitud  if ub.longitud
+           xml.latitud ub.latitud  if ub.latitud
+        end
+
+        xml.comment! "Acto contra victima individual"
         if @caso.acto  
          @caso.acto.each do |ac|
             xml.acto do
@@ -128,16 +126,33 @@
 	     xml.id_presunto_grupo_responsable acol.presponsable.id
 	   end
   	end
-  	xml.contexto @caso['Contexto']
+        
+        
 
   	#OTROS
   	xml.comment! "Otros" 	
-  	['grconfiabilidad', 'gresclarecimiento', 'grimpunidad', 'grinformacion', 'id_intervalo', 'bienes'].each do |c|
+  	['grconfiabilidad', 'gresclarecimiento', 'grimpunidad', 'grinformacion', 'bienes'].each do |c|
              xml.observaciones(@caso[c], {tipo: c}) if @caso[c]
   	end
-  	xml.observaciones(@caso.intervalo.nombre, {tipo: 'intervalo'}) if @caso.intervalo
-  	xml.observaciones(@caso['tsitio'], {tipo: 'tsitio'}) if @caso['tsitio']
-   end
+       
+        xml.observaciones(@caso.intervalo.nombre, {tipo: 'intervalo'}) if @caso.intervalo.nombre
+        xml.observaciones(@caso.region.map(&:nombre).join(";"), {tipo: 'region'}) if @caso.region
+      
+       
+        @caso.ubicacion.each do |ubcaso|
+          xml.observaciones(ubcaso.sitio, {tipo: 'sitio'}) if ubcaso.sitio
+          xml.observaciones(ubcaso.lugar, {tipo: 'lugar'}) if ubcaso.lugar
+          xml.observaciones(ubcaso.tsitio.nombre, {tipo: 'tsitio'}) if ubcaso.tsitio
+        end
+        
+        @caso.contexto.each do |con|
+          xml.observaciones(con.nombre, {tipo: 'contexto'}) if con
+        end
+       
+       
+        
+        end
+
    end
 
 

@@ -81,10 +81,10 @@ module Sivel2Gen
       Sip::Ability::BASICAS_PRIO + BASICAS_PRIO - [['Sip', 'grupo']]
     end
     def self.derechos
-      "Dominio público de acuerdo a la legislación colomana"
+      "Creative Commons Atribución 2.5 Colombia. http://creativecommons.org/licenses/by/2.5/co/"
     end
     def self.organizacion_responsable
-      'organizacion'
+      'Banco de datos del CINEP'
     end
 
     if ActiveRecord::Base.connection.data_source_exists?('sivel2_gen_caso')
