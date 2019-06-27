@@ -3,6 +3,7 @@
 require 'test_helper'
 require 'nokogiri'
 require 'open-uri'
+require 'compare-xml'
 
 module Sivel2Gen
   class PersonasXml < ActionDispatch::IntegrationTest
@@ -19,7 +20,7 @@ module Sivel2Gen
     PRUEBA_CASO_BASICOS = {
       id: 158409,
       fecha: "2018-01-01", 
-      memo: "En la vereda El Papayo, zona rural de Buenaventura, se registró una explosión que dejó un menor muerto y otros tres heridos. Los cuatro menores se desplazaban en una pequeña canoa hacia uno de los extremos del río Yurumanguí y resultaron gravemente heridos, luego de que encontraron en la orilla, un artefacto que les explotó al manipularlo. Según el padre de uno de los menores, Serapio Mosquera, &quot;son niños de una sola familia, yo estaba en la casa cuando ellos se fueron, luego escuchamos la explosión&quot;. Mosquera afirmó que &quot;uno de los niños, de siete años, murió, lo íbamos a traer para Buenaventura pero no alcanzamos, lo dejamos allá porque ya para qué lo traíamos&quot;. Uno de los menores que resultó con heridas leves fue dejado en la zona, mientras que en una embarcación, trasladaron a dos de los niños heridos, ambos de 12 años de edad. &quot;Uno de los menores fue dado de alta, pero él otro está bajo pronóstico reservado, tiene heridas muy graves en el abdomen&quot; explicó Marta Isabel Valencia, directora médica de la Clínica Santa Sofía de Buenaventura. Los médicos adelantan las gestiones para trasladar al menor a una clínica de mayor complejidad en Cali. El comandante de la Policía de Buenaventura, coronel Jorge Cabra, dijo que &quot;conformamos un equipo de trabajo con la Infantería de Marina, la Sijin, pero no se encontró ningún elemento que nos confirmara la versión de la persona que trajo a los menores a la clínica, la comunidad tampoco entrega mayor información sobre el hecho&quot;.", 
+      memo: "En la vereda El Papayo, zona rural de Buenaventura, se registró una explosión que dejó un menor muerto y otros tres heridos. Los cuatro menores se desplazaban en una pequeña canoa hacia uno de los extremos del río Yurumanguí y resultaron gravemente heridos, luego de que encontraron en la orilla, un artefacto que les explotó al manipularlo. Según el padre de uno de los menores, Serapio Mosquera, son niños de una sola familia, yo estaba en la casa cuando ellos se fueron, luego escuchamos la explosión. Mosquera afirmó que uno de los niños, de siete años, murió, lo íbamos a traer para Buenaventura pero no alcanzamos, lo dejamos allá porque ya para qué lo traíamos. Uno de los menores que resultó con heridas leves fue dejado en la zona, mientras que en una embarcación, trasladaron a dos de los niños heridos, ambos de 12 años de edad. Uno de los menores fue dado de alta, pero él otro está bajo pronóstico reservado, tiene heridas muy graves en el abdomen explicó Marta Isabel Valencia, directora médica de la Clínica Santa Sofía de Buenaventura. Los médicos adelantan las gestiones para trasladar al menor a una clínica de mayor complejidad en Cali. El comandante de la Policía de Buenaventura, coronel Jorge Cabra, dijo que conformamos un equipo de trabajo con la Infantería de Marina, la Sijin, pero no se encontró ningún elemento que nos confirmara la versión de la persona que trajo a los menores a la clínica, la comunidad tampoco entrega mayor información sobre el hecho.", 
       created_at: "2014-11-11", 
       titulo: "NIÑOS AFECTADOS POR EXPLOSIÓN DE GRANADA",
      
@@ -80,7 +81,7 @@ module Sivel2Gen
       
     test "Valida caso con 1 victima" do
        caso= Sivel2Gen::Caso.create! PRUEBA_CASO_BASICOS
-       ubicaso = Sip::Ubicacion.create(lugar: "VEREDA EL PAPAYO", sitio: "UNO DE LOS EXTREMOS DEL RÍO YURUMANGUÍ EN LA RIVERA DEL RÍO", id_caso: caso.id, id_tsitio:3 , id_pais: 170, id_departamento: 17, id_municipio: 1152, id_clase: 2604, created_at: "2019-01-01", )
+       ubicaso = Sip::Ubicacion.create(lugar: "VEREDA EL PAPAYO", sitio: "UNO DE LOS EXTREMOS DEL RÍO YURUMANGUÍ EN LA RIVERA DEL RÍO", id_caso: caso.id, id_tsitio:3 , id_pais: 170, id_departamento: 47, id_municipio: 86, id_clase: 11737, created_at: "2019-01-01", longitud: -77.0697417935442, latitud: 3.89381723858445)
        caso.ubicacion_id= ubicaso.id      
        
        persona1=  Sip::Persona.create! PRUEBA_PERSONA1
@@ -113,12 +114,15 @@ module Sivel2Gen
        casoreg1= Sivel2Gen::CasoRegion.create(id_caso: caso.id, id_region: region1.id, created_at: "2014-09-09")
        casoreg2= Sivel2Gen::CasoRegion.create(id_caso: caso.id, id_region: region2.id, created_at: "2014-09-09")
       
-       byebug
+       
        get caso_path(caso)+".xml"
+       
+       d12= "test/dummy/public/relatos_ref.xrlat"
        puts @response.body
        file= guarda_xml(@response.body)	
        docu = File.read(file)
        verifica_dtd(docu)	
+       compara(docu,d12)
 
        ubicaso.destroy
        caso.destroy
@@ -134,7 +138,7 @@ module Sivel2Gen
     end
      
    def guarda_xml(docu)	  
-       file = File.new("relatos.xml", "wb")
+     file = File.new("test/dummy/public/relatos.xml", "wb")
        file.write(docu)
        file.close
        return file  
@@ -146,6 +150,13 @@ module Sivel2Gen
         puts doc.external_subset.validate(doc)
 	assert_empty doc.external_subset.validate(doc)
    end	      
+
+   def compara(doc2, doc12)
+     doc1 = Nokogiri::XML(doc2)
+     doc2 = Nokogiri::XML(open(doc12))
+     puts CompareXML.equivalent?(doc1, doc2, {ignore_comments: false, verbose: true}) 
+     assert_empty CompareXML.equivalent?(doc1, doc2, {ignore_comments: false, verbose: true}) 
+   end  
 
     end 
 end

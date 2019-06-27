@@ -129,6 +129,8 @@ GEM
     coffee-script-source (1.12.2)
     colorize (0.8.1)
     commonjs (0.2.7)
+    compare-xml (0.5.2)
+      nokogiri (~> 1.6)
     concurrent-ruby (1.1.5)
     crass (1.0.4)
     devise (4.6.2)
@@ -341,6 +343,7 @@ DEPENDENCIES
   cocoon!
   coffee-rails
   colorize
+  compare-xml (~> 0.5.2)
   devise
   devise-i18n
   font-awesome-rails
@@ -349,6 +352,7 @@ DEPENDENCIES
   jquery-rails
   jquery-ui-rails
   libxml-ruby
+  nokogiri (~> 1.6, >= 1.6.8)
   odf-report
   paperclip
   pg

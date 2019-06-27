@@ -58,17 +58,17 @@ module Sivel2Gen
     end 
 
     test "genera xml del caso y su ubicacion" do   
-       caso= Sivel2Gen::Caso.create! PRUEBA_CASO_BASICOS 
-       ubicacion= Sip::Ubicacion.create PRUEBA_UBICACION
-       byebug
-       caso.ubicacion_id = ubicacion.id
-       byebug
+       caso= Sivel2Gen::Caso.create PRUEBA_CASO_BASICOS 
+      # ubicacion= Sip::Ubicacion.create PRUEBA_UBICACION
+       ubicacion1= Sip::Ubicacion.create(id_pais:170, id_caso:caso.id, id_tsitio: 1, id_departamento: 17, id_municipio: 1152, created_at: "2014-11-06")
+      # caso.ubicacion_id = ubicacion.id
+       caso.ubicacion_id= [ubicacion1.id]
        get caso_path(caso)+".xml"
        puts @response.body
        file= guarda_xml(@response.body)	
        docu = File.read(file)
        verifica_dtd(docu)		
-       ubicacion.destroy
+       ubicacion1.destroy
        caso.destroy
     end
 

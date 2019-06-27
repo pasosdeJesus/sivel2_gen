@@ -152,7 +152,7 @@ module Sivel2Gen
    end
 
    def guarda_xml(docu)	  
-       file = File.new("relatos.xml", "wb")
+       file = File.new("test/dummy/public/relatos.xrlat", "wb")
        file.write(docu)
        file.close
        return file  

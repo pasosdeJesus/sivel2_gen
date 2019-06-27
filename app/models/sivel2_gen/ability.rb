@@ -84,7 +84,7 @@ module Sivel2Gen
       "Creative Commons Atribución 2.5 Colombia. http://creativecommons.org/licenses/by/2.5/co/"
     end
     def self.organizacion_responsable
-      'Banco de datos del CINEP'
+      'Banco de Datos del CINEP'
     end
 
     if ActiveRecord::Base.connection.data_source_exists?('sivel2_gen_caso')
