@@ -245,4 +245,6 @@ es:
         sectorsocial: Sectores sociales
         vinculoestado: Vínculos con el Estado
       "sivel2_gen/visual":
-        r_nav_ini: Componente rojo del color del degrade inicial de la barra de navegación
+        r_nav_ini: Componente rojo inicial degrade nav
+        g_nav_ini: Componente verde inicial degrade nav
+        b_nav_ini: Componente azul inicial degrade nav
