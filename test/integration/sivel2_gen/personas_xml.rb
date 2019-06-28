@@ -65,7 +65,7 @@ module Sivel2Gen
     }
     
     
-    test "Valida caso con 1 victima" do
+    test 'Valida caso con 1 victima' do
        caso= Sivel2Gen::Caso.create! PRUEBA_CASO_BASICOS      
        persona=  Sip::Persona.create! PRUEBA_PERSONA
        rangoedad= Sivel2Gen::Rangoedad.create! PRUEBA_RANGOEDAD
@@ -83,7 +83,7 @@ module Sivel2Gen
        victima.destroy 
     end
      
-   test "valida caso con 2 victimas" do
+   test 'valida caso con 2 victimas' do
        caso= Sivel2Gen::Caso.create! PRUEBA_CASO_BASICOS      
        persona1=  Sip::Persona.create! PRUEBA_PERSONA
        persona2=  Sip::Persona.create! PRUEBA_PERSONA
@@ -105,7 +105,7 @@ module Sivel2Gen
        victima2.destroy
    end 
    
-   test "valida caso con 1 victima colectima" do
+   test 'valida caso con 1 victima colectiva' do
         caso=Sivel2Gen::Caso.create! PRUEBA_CASO_BASICOS
         grupoper= Sip::Grupoper.create(nombre: "Nombre de grupo", anotaciones: "Anotaciones de ejemplo", created_at: "2014-09-09")
         victimacolectiva= Sivel2Gen::Victimacolectiva.create(id_grupoper: grupoper.id, id_caso: caso.id, personasaprox: 5, organizacionarmada:5)
@@ -119,7 +119,7 @@ module Sivel2Gen
         caso.destroy
    end 
    
-   test "valida caso con 2 victima colectivas" do
+   test 'valida caso con 2 victima colectivas' do
         caso=Sivel2Gen::Caso.create! PRUEBA_CASO_BASICOS
         grupoper1= Sip::Grupoper.create(nombre: "Nombre de grupo", anotaciones: "Anotaciones de ejemplo", created_at: "2014-09-09")
         grupoper2= Sip::Grupoper.create(nombre: "Nombre de grupo", anotaciones: "Anotaciones de ejemplo", created_at: "2014-09-09")
@@ -137,7 +137,7 @@ module Sivel2Gen
          caso.destroy
    end 
    
-   test "valida con 1 presunto responsable" do 
+   test 'valida con 1 presunto responsable' do 
          caso= Sivel2Gen::Caso.create! PRUEBA_CASO_BASICOS      
          presponsable= Sivel2Gen::Presponsable.create(id:1000, nombre:"Nombre de grupo", fechacreacion: "2014-09-09", created_at: "2014-09-09") 
          casopresponsable= Sivel2Gen::CasoPresponsable.create(id_caso: caso.id, id_presponsable: presponsable.id, bloque: "Bloque", frente:"Frente", brigada: "Brigada")
@@ -167,8 +167,3 @@ module Sivel2Gen
 
     end 
 end
-
-
-
-
-

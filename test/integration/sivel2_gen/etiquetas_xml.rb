@@ -62,25 +62,23 @@ module Sivel2Gen
          nacionalde: 170      
     }
 
-    test "Valida caso con una etiqueta" do 
-      caso= Sivel2Gen::Caso.create! PRUEBA_CASO_BASICOS
-      etiqueta= Sip::Etiqueta.create(id:1000, nombre: "Etiqueta", fechacreacion: "2014-09-09", created_at: "2014-09-09")
-      casoetiqueta= Sivel2Gen::CasoEtiqueta.create(id:1000, id_caso: caso.id, id_etiqueta: etiqueta.id, id_usuario: @current_usuario.id, fecha: "2014-09-09", created_at: "2014-09-09")
+    test 'Valida caso con una etiqueta' do 
+       caso= Sivel2Gen::Caso.create! PRUEBA_CASO_BASICOS
+       etiqueta= Sip::Etiqueta.create(id:1000, nombre: "Etiqueta", fechacreacion: "2014-09-09", created_at: "2014-09-09")
+       casoetiqueta= Sivel2Gen::CasoEtiqueta.create(id:1000, id_caso: caso.id, id_etiqueta: etiqueta.id, id_usuario: @current_usuario.id, fecha: "2014-09-09", created_at: "2014-09-09")
 
        get caso_path(caso)+'.xml'
-       
        puts @response.body
        file= guarda_xml(@response.body)	
        docu = File.read(file)
        verifica_dtd(docu)		
-      
        caso.destroy
        etiqueta.destroy
        casoetiqueta.destroy      
     end
     
    def guarda_xml(docu)	  
-       file = File.new("relatos.xml", "wb")
+       file = File.new('test/dummy/public/relatos.xml', 'wb')
        file.write(docu)
        file.close
        return file  
@@ -92,11 +90,5 @@ module Sivel2Gen
         puts doc.external_subset.validate(doc)
 	assert_empty doc.external_subset.validate(doc)
    end	      
-
-    end 
+ end 
 end
-
-
-
-
-

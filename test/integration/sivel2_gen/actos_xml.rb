@@ -56,7 +56,7 @@ module Sivel2Gen
          nacionalde: 170      
     }
 
-    test "Valida caso con acto individual" do 
+    test 'Valida caso con acto individual' do 
        caso= Sivel2Gen::Caso.create! PRUEBA_CASO_BASICOS
        pconsolidado= Sivel2Gen::Pconsolidado.find(17)
        categoria= Sivel2Gen::Categoria.find(15)
@@ -69,31 +69,22 @@ module Sivel2Gen
        file= guarda_xml(@response.body)	
        docu = File.read(file)
        verifica_dtd(docu)		
-      
-            
        acto.destroy
        caso.destroy
-             
     end
     
-    test "valida caso con 1 acto colectivo" do 
+    test 'valida caso con 1 acto colectivo' do 
        caso= Sivel2Gen::Caso.create! PRUEBA_CASO_BASICOS      
-        grupoper= Sip::Grupoper.create(nombre: "Nombre de grupo", anotaciones: "Anotaciones de ejemplo", created_at: "2014-09-09")
-        presponsable= Sivel2Gen::Presponsable.find(104)
-       
+       grupoper= Sip::Grupoper.create(nombre: "Nombre de grupo", anotaciones: "Anotaciones de ejemplo", created_at: "2014-09-09")
+       presponsable= Sivel2Gen::Presponsable.find(104)
        pconsolidado= Sivel2Gen::Pconsolidado.find(17)
        categoria= Sivel2Gen::Categoria.find(15)
        actocolectivo= Sivel2Gen::Actocolectivo.create(id_presponsable: presponsable.id , id_categoria: categoria.id , id_grupoper: grupoper.id, id_caso: caso.id, created_at: "2014-04-17")
        get caso_path(caso)+".xml"
        puts @response.body
-      
-      
        caso.destroy
        grupoper.destroy
-
-
        actocolectivo.destroy
-
     end
 
    def guarda_xml(docu)	  
@@ -104,16 +95,10 @@ module Sivel2Gen
    end
 
    def verifica_dtd(docu)
-	options = Nokogiri::XML::ParseOptions::DTDVALID
-        doc = Nokogiri::XML::Document.parse(docu, nil, nil, options)
-        puts doc.external_subset.validate(doc)
-	assert_empty doc.external_subset.validate(doc)
+       options = Nokogiri::XML::ParseOptions::DTDVALID
+       doc = Nokogiri::XML::Document.parse(docu, nil, nil, options)
+       puts doc.external_subset.validate(doc)
+       assert_empty doc.external_subset.validate(doc)
    end	      
-
-    end 
+ end 
 end
-
-
-
-
-

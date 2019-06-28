@@ -79,19 +79,17 @@ module Sivel2Gen
     }
     
       
-    test "Valida caso con 1 victima" do
+    test 'Valida caso con 1 victima' do
        caso= Sivel2Gen::Caso.create! PRUEBA_CASO_BASICOS
        ubicaso = Sip::Ubicacion.create(lugar: "VEREDA EL PAPAYO", sitio: "UNO DE LOS EXTREMOS DEL RÍO YURUMANGUÍ EN LA RIVERA DEL RÍO", id_caso: caso.id, id_tsitio:3 , id_pais: 170, id_departamento: 47, id_municipio: 86, id_clase: 11737, created_at: "2019-01-01", longitud: -77.0697417935442, latitud: 3.89381723858445)
        caso.ubicacion_id= ubicaso.id      
-       
        persona1=  Sip::Persona.create! PRUEBA_PERSONA1
        persona2=  Sip::Persona.create! PRUEBA_PERSONA2
        persona3=  Sip::Persona.create! PRUEBA_PERSONA3
        rangoedad= Sivel2Gen::Rangoedad.create! PRUEBA_RANGOEDAD
        profesion= Sivel2Gen::Profesion.create! PRUEBA_PROFESION
        sectorsocial= Sivel2Gen::Sectorsocial.create! PRUEBA_SECTORSOCIAL
-       victima1= Sivel2Gen::Victima.create(id_caso: caso.id, id_persona: persona1.id, id_etnia: nil, id_iglesia: nil, id_rangoedad: rangoedad.id)    
-       victima2= Sivel2Gen::Victima.create(id_caso: caso.id, id_persona: persona2.id, id_rangoedad: rangoedad.id, id_etnia: nil, id_iglesia:nil, orientacionsexual: "S")    
+       victima1= Sivel2Gen::Victima.create(id_caso: caso.id, id_persona: persona1.id, id_etnia: nil, id_iglesia: nil, id_rangoedad: rangoedad.id)          victima2= Sivel2Gen::Victima.create(id_caso: caso.id, id_persona: persona2.id, id_rangoedad: rangoedad.id, id_etnia: nil, id_iglesia:nil, orientacionsexual: "S")    
        victima3= Sivel2Gen::Victima.create(id_caso: caso.id, id_persona: persona3.id, id_rangoedad: rangoedad.id, id_etnia: nil, id_iglesia:nil, orientacionsexual: "S")    
        presponsable= Sivel2Gen::Presponsable.find(37) 
        casopresponsable= Sivel2Gen::CasoPresponsable.create(id_caso: caso.id, id_presponsable: presponsable.id, tipo: 1)
@@ -106,9 +104,7 @@ module Sivel2Gen
        intervalo= Sivel2Gen::Intervalo.find(2)
        caso.id_intervalo= intervalo.id 
        contexto= Sivel2Gen::Contexto.find(28)
-      
        casocon = Sivel2Gen::CasoContexto.create(id_caso: caso.id, id_contexto: contexto.id, created_at: "2014-09-09")
-      
        region1 = Sivel2Gen::Region.find(9)
        region2 = Sivel2Gen::Region.find(5)
        casoreg1= Sivel2Gen::CasoRegion.create(id_caso: caso.id, id_region: region1.id, created_at: "2014-09-09")
@@ -116,14 +112,12 @@ module Sivel2Gen
       
        
        get caso_path(caso)+".xml"
-       
        d12= "test/dummy/public/relatos_ref.xrlat"
        puts @response.body
        file= guarda_xml(@response.body)	
        docu = File.read(file)
        verifica_dtd(docu)	
        compara(docu,d12)
-
        ubicaso.destroy
        caso.destroy
        persona1.destroy
@@ -138,7 +132,7 @@ module Sivel2Gen
     end
      
    def guarda_xml(docu)	  
-     file = File.new("test/dummy/public/relatos.xrlat", "wb")
+     file = File.new('test/dummy/public/relatos.xrlat', 'wb')
        file.write(docu)
        file.close
        return file  
@@ -152,16 +146,10 @@ module Sivel2Gen
    end	      
 
    def compara(doc2, doc12)
-     doc1 = Nokogiri::XML(doc2)
-     doc2 = Nokogiri::XML(open(doc12))
-     puts CompareXML.equivalent?(doc1, doc2, {ignore_comments: false, verbose: true}) 
-     assert_empty CompareXML.equivalent?(doc1, doc2, {ignore_comments: false, verbose: true}) 
+        doc1 = Nokogiri::XML(doc2)
+        doc2 = Nokogiri::XML(open(doc12))
+        puts CompareXML.equivalent?(doc1, doc2, {ignore_comments: false, verbose: true}) 
+        assert_empty CompareXML.equivalent?(doc1, doc2, {ignore_comments: false, verbose: true}) 
    end  
-
-    end 
+ end 
 end
-
-
-
-
-
