@@ -48,7 +48,7 @@ module Sivel2Gen
 
     test "genera xml de un caso con datos basicos" do
         caso= Sivel2Gen::Caso.create! PRUEBA_CASO_BASICOS 
-	get caso_path(caso)+".xml"
+	get caso_path(caso) + '.xml'
 	assert :success
         puts @response.body
         file= guarda_xml(@response.body)	
@@ -63,7 +63,7 @@ module Sivel2Gen
        ubicacion1= Sip::Ubicacion.create(id_pais:170, id_caso:caso.id, id_tsitio: 1, id_departamento: 17, id_municipio: 1152, created_at: "2014-11-06")
       # caso.ubicacion_id = ubicacion.id
        caso.ubicacion_id= [ubicacion1.id]
-       get caso_path(caso)+".xml"
+       get caso_path(caso) + '.xml'
        puts @response.body
        file= guarda_xml(@response.body)	
        docu = File.read(file)
@@ -73,23 +73,16 @@ module Sivel2Gen
     end
 
     def guarda_xml(docu)	  
-      file = File.new("test/dummy/public/relatos.xrlat", "wb")
-       file.write(docu)
-       file.close
-       return file  
+      file = File.new('test/dummy/public/relatos.xrlat', 'wb')
+      file.write(docu)
+      file.close
+      return file
     end
-
     def verifica_dtd(docu)
-	options = Nokogiri::XML::ParseOptions::DTDVALID
-        doc = Nokogiri::XML::Document.parse(docu, nil, nil, options)
-        puts doc.external_subset.validate(doc)
-	assert_empty doc.external_subset.validate(doc)
-    end	      
-
-    end 
+      options = Nokogiri::XML::ParseOptions::DTDVALID
+      doc = Nokogiri::XML::Document.parse(docu, nil, nil, options)
+      puts doc.external_subset.validate(doc)
+      assert_empty doc.external_subset.validate(doc)
+    end
+ end 
 end
-
-
-
-
-
