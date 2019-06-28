@@ -4,7 +4,21 @@
   Use Font Awesome icons (default)
   To use Glyphicons sprites instead of Font Awesome, replace with "require twitter-bootstrap-static/sprites"
   =require font-awesome
-  */
+ */
+
+        <%= tema= Sivel2Gen::Visual.find(1) %>
+        <%= ri= tema.r_nav_ini %> 
+        <%= gi= tema.g_nav_ini %> 
+        <%= bi= tema.b_nav_ini %> 
+        <%= rf= tema.r_nav_fin %> 
+        <%= gf= tema.g_nav_fin %> 
+        <%= bf= tema.b_nav_fin %> 
+        <%= rfu= tema.r_nav_fuente %> 
+        <%= gfu= tema.g_nav_fuente %> 
+        <%= bfu= tema.b_nav_fuente %> 
+        <%= rlib= tema.r_list_back %> 
+        <%= glib= tema.g_list_back %> 
+        <%= blib= tema.b_list_back %> 
 .form-horizontal .control-label {
 	padding-right: 20px;
 }
@@ -31,13 +45,19 @@
 
 .navbar-brand {
 	padding: 10px 10px;
-	height: auto;
+        height: auto;
 }
 
+.navbar-default .navbar-nav>li>a {
+        color: rgb(<%=rfu%>,<%=gfu%>,<%=bfu%>);
+}
+.navbar-default .navbar-brand {
+        color: rgb(<%=rfu%>,<%=gfu%>,<%=bfu%>);
+}
 .navbar {
-	min-height: 30px;
-	background-image: linear-gradient(rgb(255, 255, 255), rgb(242, 242, 242));
-	background-repeat: repeat-x;
+        min-height: 30px;
+        background-image: linear-gradient(rgb(<%=ri%>,<%=gi%>,<%=bi%>), rgb(<%=rf%>,<%=gf%>,<%=bf%>));
+        background-repeat: repeat-x;
 	margin-bottom: 5px;
 }
 
@@ -74,4 +94,7 @@
 
 .boolean {
 	height: inherit;
+      }
+.table-striped>tbody>tr:nth-child(odd) {
+        background-color: rgb(<%=rlib%>,<%=glib%>,<%=blib%>, 0.25);
 } 

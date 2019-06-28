@@ -248,3 +248,12 @@ es:
         r_nav_ini: Componente rojo inicial degrade nav
         g_nav_ini: Componente verde inicial degrade nav
         b_nav_ini: Componente azul inicial degrade nav
+        r_nav_fin: Comp. rojo final degrade barra nav
+        g_nav_fin: Comp. verde final degrade barra nav
+        b_nav_fin: Comp. azul final degrade barra nav
+        r_nav_fuente: Comp. rojo de fuente de barra
+        g_nav_fuente: Comp. verde de fuente de barra
+        b_nav_fuente: Comp. azul de fuente de barra
+        r_list_back: Comp. rojo fondo de lista
+        g_list_back: Comp. verde fondo de lista
+        b_list_back: Comp. azul fondo de lista
