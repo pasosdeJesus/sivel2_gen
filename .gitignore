@@ -38,3 +38,5 @@ coverage
 .bundle
 test/dummy/archivos/
 test/dummy/node_modules/
+test/dummy/bin/c.sh
+bin/c.sh
