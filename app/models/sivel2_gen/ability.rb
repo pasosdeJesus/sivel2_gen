@@ -35,8 +35,7 @@ module Sivel2Gen
       ['Sivel2Gen', 'sectorsocial'],
       ['Sivel2Gen', 'supracategoria'],
       ['Sivel2Gen', 'tviolencia'],
-      ['Sivel2Gen', 'vinculoestado'],
-      ['Sivel2Gen', 'visual']
+      ['Sivel2Gen', 'vinculoestado']
     ]
 
     def tablasbasicas
