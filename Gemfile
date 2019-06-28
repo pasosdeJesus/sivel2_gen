@@ -32,7 +32,7 @@ gem 'bootsnap', '>=1.1.0', require: false
 gem 'twitter-bootstrap-rails'
 gem 'font-awesome-rails'
 gem 'bootstrap-datepicker-rails'
-
+gem 'pick-a-color-rails'
 
 # CoffeeScript para recuersos .js.coffee y vistas
 gem 'coffee-rails'
@@ -100,6 +100,9 @@ group :development do
 
   # Consola irb en páginas con excepciones o usando <%= console %> en vistasA
   gem 'web-console'
+  # para validar xml
+  gem 'nokogiri', '~> 1.6', '>= 1.6.8'
+  gem 'compare-xml', '~> 0.5.2'
 end
 
 group  :development, :test do
