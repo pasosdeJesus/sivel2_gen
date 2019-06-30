@@ -374,11 +374,13 @@ DEPENDENCIES
   rails-i18n
   redcarpet
   rspreadsheet
+  sass (~> 3.7, >= 3.7.4)
   sass-rails
   simple_form
   simplecov
   sip!
   thor
+  tiny-color-rails
   turbolinks
   twitter-bootstrap-rails
   twitter_cldr

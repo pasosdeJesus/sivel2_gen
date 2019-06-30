@@ -14,8 +14,12 @@
 //= require heb412_gen/motor
 //= require sivel2_gen/motor
 //= require_tree .
+//= require pick-a-color.min
+//= require tinycolor-min
+
 
 $(document).on('turbolinks:load ready', function() {
+        $(".pick-a-color").pickAColor();
 	var root;
 	root = typeof exports !== "undefined" && exports !== null ? 
 		exports : window;
@@ -41,4 +45,3 @@ $(document).on('turbolinks:load ready', function() {
 	//		Turbolinks.Controller.prototype.nodeIsVisitableOld(elem);
 	//}; 
 });
-

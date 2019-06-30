@@ -16,7 +16,7 @@ gem 'colorize'
 
 # Hojas de estilo con SCSS
 gem 'sass-rails'
-
+gem 'sass', '~> 3.7', '>= 3.7.4'
 # posibilidad de manejar módulos en Javascript https://github.com/rails/webpacker
 gem 'webpacker'
 
@@ -33,6 +33,7 @@ gem 'twitter-bootstrap-rails'
 gem 'font-awesome-rails'
 gem 'bootstrap-datepicker-rails'
 gem 'pick-a-color-rails'
+gem 'tiny-color-rails'
 
 # CoffeeScript para recuersos .js.coffee y vistas
 gem 'coffee-rails'
