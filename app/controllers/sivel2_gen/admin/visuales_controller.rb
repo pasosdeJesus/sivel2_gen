@@ -3,11 +3,11 @@
 module Sivel2Gen
   module Admin
     class VisualesController < Sip::Admin::BasicasController
-      before_action :set_visual, 
+      before_action :set_visual,
         only: [:show, :edit, :update, :destroy]
       load_and_authorize_resource  class: Sivel2Gen::Visual
 
-      def clase 
+      def clase
         "Sivel2Gen::Visual"
       end
 
@@ -17,14 +17,14 @@ module Sivel2Gen
 
       def atributos_index
         [
-          :id, 
-          :nombre, 
+          :id,
+          :nombre,
           :nav_ini,
           :nav_fin,
           :nav_fuente,
           :list_back,
-          :observaciones, 
-          :fechacreacion_localizada, 
+          :observaciones,
+          :fechacreacion_localizada,
           :habilitado
         ]
       end
