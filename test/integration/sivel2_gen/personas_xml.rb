@@ -23,7 +23,7 @@ module Sivel2Gen
       hora: '6 pm',
       duracion: '1 hora'
     }
- 
+
     PRUEBA_PERSONA = {
       nombres: 'Nombres'.freeze,
       apellidos: 'Apellidos'.freeze,
@@ -38,29 +38,29 @@ module Sivel2Gen
       tdocumento_id: 1,
       numerodocumento: '10000000'.freeze,
       nacionalde: 170
-   }
- 
-   PRUEBA_PROFESION = {
-        id: 1000,
-        nombre: 'Profesion'.freeze,
-        fechacreacion: '2014-09-09'.freeze,
-        created_at: '2014-09-09'.freeze
+    }
+
+    PRUEBA_PROFESION = {
+      id: 1000,
+      nombre: 'Profesion',
+      fechacreacion: '2014-09-09',
+      created_at: '2014-09-09'
     }
 
     PRUEBA_RANGOEDAD = {
-    	id: 1000,
-        nombre: 'Rangoedad'.freeze,
-        rango: '1-2'.freeze,
-        limiteinferior: 1,
-        limitesuperior: 2,
-        fechacreacion: '2014-09-09'.freeze,
-        created_at: '2014-09-09'.freeze
+      id: 1000,
+      nombre: 'Rangoedad'.freeze,
+      rango: '1-2'.freeze,
+      limiteinferior: 1,
+      limitesuperior: 2,
+      fechacreacion: '2014-09-09'.freeze,
+      created_at: '2014-09-09'.freeze
     }
 
     PRUEBA_SECTORSOCIAL = {
-        id: 1000,
-        nombre: 'Pruebaumpleado'.freeze,
-        fechacreacion: '2014-09-09'.freeze
+      id: 1000,
+      nombre: 'Pruebaumpleado'.freeze,
+      fechacreacion: '2014-09-09'.freeze
     }
 
     test 'Valida caso con 1 victima' do
