@@ -28,7 +28,7 @@ module Sivel2Gen
       nombre: 'n',
       fechacreacion: '2014-08-05',
       fechadeshabilitacion: nil
-     }
+    }
 
     PRUEBA_PRESPONSABLE = {
       id: 1000,

@@ -61,12 +61,12 @@ module Sivel2Gen
 
     PRUEBA_RANGOEDAD = {
       id: 1000,
-      nombre: 'De 0 a 15 Años'.freeze,
-      rango: '1-2'.freeze,
+      nombre: 'De 0 a 15 Años',
+      rango: '1-2',
       limiteinferior: 1,
       limitesuperior: 2,
-      fechacreacion: '2014-09-09'.freeze,
-      created_at: '2014-09-09'.freeze
+      fechacreacion: '2014-09-09',
+      created_at: '2014-09-09'
     }
 
     PRUEBA_SECTORSOCIAL = {
@@ -211,18 +211,8 @@ module Sivel2Gen
     def compara(doc2, doc12)
       doc1 = Nokogiri::XML(doc2)
       doc2 = Nokogiri::XML(open(doc12))
-      puts CompareXML.equivalent?(doc1, doc2,
-        {
-        ignore_comments: false,
-        verbose: true
-        }
-      )
-      assert_empty CompareXML.equivalent?(doc1, doc2,
-        {
-        ignore_comments: false,
-        verbose: true
-        }
-      )
+      puts CompareXML.equivalent?(doc1, doc2, {ignore_comments: false, verbose: true})
+      assert_empty CompareXML.equivalent?(doc1, doc2, {ignore_comments: false, verbose: true})
     end
   end
 end
