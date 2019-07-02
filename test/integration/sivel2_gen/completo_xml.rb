@@ -26,37 +26,37 @@ module Sivel2Gen
  
     PRUEBA_PERSONA1 = {
       id: 249236,
-      nombres: 'N'.freeze,
-      apellidos: 'N'.freeze,
+      nombres: 'N',
+      apellidos: 'N',
       anionac: 2006,
-      mesnac: '06'.freeze,
-      dianac: '15'.freeze,
-      sexo: 'S'.freeze
+      mesnac: '06',
+      dianac: '15',
+      sexo: 'S'
     }
     PRUEBA_PERSONA2 = {
       id: 249237,
-      nombres: 'N'.freeze,
-      apellidos: 'N'.freeze,
+      nombres: 'N',
+      apellidos: 'N',
       anionac: 2006,
-      mesnac: '06'.freeze,
-      dianac: '15'.freeze,
-      sexo: 'S'.freeze,
+      mesnac: '06',
+      dianac: '15',
+      sexo: 'S'
     }
     PRUEBA_PERSONA3 = {
       id: 249238,
-      nombres: 'N'.freeze,
-      apellidos: 'N'.freeze,
+      nombres: 'N',
+      apellidos: 'N',
       anionac: 2011,
-      mesnac: '06'.freeze,
-      dianac: '15'.freeze,
-      sexo: 'S'.freeze,
+      mesnac: '06',
+      dianac: '15',
+      sexo: 'S'
     }
 
     PRUEBA_PROFESION = {
       id: 1000,
-      nombre: 'Profesion'.freeze,
-      fechacreacion: '2014-09-09'.freeze,
-      created_at: '2014-09-09'.freeze
+      nombre: 'Profesion',
+      fechacreacion: '2014-09-09',
+      created_at: '2014-09-09'
     }
 
     PRUEBA_RANGOEDAD = {
@@ -211,8 +211,8 @@ module Sivel2Gen
     def compara(doc2, doc12)
       doc1 = Nokogiri::XML(doc2)
       doc2 = Nokogiri::XML(open(doc12))
-      puts CompareXML.equivalent?(doc1, doc2, {ignore_comments: false, verbose: true})
-      assert_empty CompareXML.equivalent?(doc1, doc2, {ignore_comments: false, verbose: true})
+      puts CompareXML.equivalent?(doc1, doc2, { ignore_comments: false, verbose: true })
+      assert_empty CompareXML.equivalent?(doc1, doc2, { ignore_comments: false, verbose: true })
     end
   end
 end
