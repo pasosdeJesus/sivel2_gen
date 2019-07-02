@@ -1,58 +1,58 @@
-# encoding: UTF-8
+# frozen_string_literal:true
 
 require 'test_helper'
 require 'nokogiri'
 require 'open-uri'
 
 module Sivel2Gen
- class ActosXml < ActionDispatch::IntegrationTest
+  class ActosXml < ActionDispatch::IntegrationTest
     include Devise::Test::IntegrationHelpers
     include Engine.routes.url_helpers
 
     setup do
       @current_usuario = ::Usuario.create(PRUEBA_USUARIO)
       sign_in @current_usuario
-      @routes= Engine.routes
+      @routes = Engine.routes
     end
 
     PRUEBA_CASO_BASICOS = {
-      fecha: '2014-11-19',
-      memo: '',
-      created_at: '2014-11-11',
-      titulo: 'Caso de prueba con datos basicos',
-      hora: '6 pm',
-      duracion: '1 hora'
+      fecha: '2014-11-19'.freeze,
+      memo: ''.freeze,
+      created_at: '2014-11-11'.freeze,
+      titulo: 'Caso de prueba con datos basicos'.freeze,
+      hora: '6 pm'.freeze,
+      duracion: '1 hora'.freeze
     }
-   
+ 
     PRUEBA_PRESPONSABLE = {
         id: 1000,
-        nombre: 'presunto',
+        nombre: 'presunto'.freeze,
         papa: 1000,
-    	fechacreacion: '2014-09-09',
-    	created_at: '2014-09-09'
+        fechacreacion: '2014-09-09'.freeze,
+        created_at: '2014-09-09'.freeze
     }
 
     PRUEBA_TVIOLENCIA = {
-        id: 'S',
-        nombre: 'VIOLENCIA POLÍTICO SOCIAL',
-        nomcorto: 'nombrec',
-        fechacreacion: '2014-09-09',
-        created_at: '2014-09-09'
+      id: 'S'.freeze,
+      nombre: 'VIOLENCIA POLÍTICO SOCIAL'.freeze,
+      nomcorto: 'nombrec'.freeze,
+      fechacreacion: '2014-09-09'.freeze,
+      created_at: '2014-09-09'.freeze
     }
-    
+ 
     PRUEBA_PERSONA = {
-         nombres: 'Nombres',
-         apellidos: 'Apellidos',
-         anionac: 1974,
-         mesnac: 1,
-         dianac: 1,
-         sexo: 'F',
-         id_pais: 170,
-         id_departamento: 15,
-         id_municipio: 610,
-         tdocumento_id: 1,
-         numerodocumento: '10000000',
-         nacionalde: 170
+      nombres: 'Nombres'.freeze,
+      apellidos: 'Apellidos'.freeze,
+      anionac: 1974,
+      mesnac: 1,
+      dianac: 1,
+      sexo: 'F'.freeze,
+      id_pais: 170,
+      id_departamento: 15,
+      id_municipio: 610,
+      tdocumento_id: 1,
+      numerodocumento: '10000000'.freeze,
+      nacionalde: 170
     }
 
     test 'Valida caso con acto individual' do
@@ -61,7 +61,14 @@ module Sivel2Gen
       categoria = Sivel2Gen::Categoria.find(15)
       presponsable = Sivel2Gen::Presponsable.find(104)
       persona = Sip::Persona.create! PRUEBA_PERSONA
-      acto = Sivel2Gen::Acto.create(id:1000, id_presponsable: presponsable.id, id_categoria: categoria.id, id_persona: persona.id, id_caso: caso.id, created_at: "2014-09-09")
+      acto = Sivel2Gen::Acto.create(
+        id: 1000,
+        id_presponsable: presponsable.id,
+        id_categoria: categoria.id,
+        id_persona: persona.id,
+        id_caso: caso.id,
+        created_at: '2014-09-09'.freeze
+      )
       get caso_path(caso)+'.xml'
       puts @response.body
       file = guarda_xml(@response.body)
@@ -73,11 +80,21 @@ module Sivel2Gen
     
     test 'valida caso con 1 acto colectivo' do
       caso = Sivel2Gen::Caso.create! PRUEBA_CASO_BASICOS
-      grupoper = Sip::Grupoper.create(nombre: "Nombre de grupo", anotaciones: "Anotaciones de ejemplo", created_at: "2014-09-09")
+      grupoper = Sip::Grupoper.create(
+        nombre: 'Nombre de grupo'.freeze,
+        anotaciones: 'Anotaciones de ejemplo'.freeze,
+        created_at: '2014-09-09'.freeze
+      )
       presponsable = Sivel2Gen::Presponsable.find(104)
       pconsolidado = Sivel2Gen::Pconsolidado.find(17)
       categoria = Sivel2Gen::Categoria.find(15)
-      actocolectivo = Sivel2Gen::Actocolectivo.create(id_presponsable: presponsable.id , id_categoria: categoria.id , id_grupoper: grupoper.id, id_caso: caso.id, created_at: "2014-04-17")
+      actocolectivo = Sivel2Gen::Actocolectivo.create(
+        id_presponsable: presponsable.id ,
+        id_categoria: categoria.id ,
+        id_grupoper: grupoper.id,
+        id_caso: caso.id,
+        created_at: '2014-04-17'.freeze
+      )
       get caso_path(caso)+".xml"
       puts @response.body
       caso.destroy
@@ -86,10 +103,10 @@ module Sivel2Gen
     end
 
    def guarda_xml(docu)
-     file = File.new("test/dummy/public/relatos.xrlat", "wb")
+     file = File.new('test/dummy/public/relatos.xrlat', 'wb')
      file.write(docu)
      file.close
-     return file
+     file
    end
 
    def verifica_dtd(docu)

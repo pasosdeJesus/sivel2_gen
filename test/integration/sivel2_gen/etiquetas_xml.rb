@@ -1,71 +1,83 @@
-# encoding: UTF-8
+# frozen_string_literal:true
 
 require 'test_helper'
 require 'nokogiri'
 require 'open-uri'
 
 module Sivel2Gen
- class EtiquetasXml < ActionDispatch::IntegrationTest
-	  
+  class EtiquetasXml < ActionDispatch::IntegrationTest
+
     include Devise::Test::IntegrationHelpers
     include Engine.routes.url_helpers
 
     setup do
       @current_usuario = ::Usuario.create(PRUEBA_USUARIO)
       sign_in @current_usuario
-      @routes= Engine.routes
+      @routes = Engine.routes
     end
 
     PRUEBA_CASO_BASICOS = {
-      fecha: '2014-11-19',
-      memo: '',
-      created_at: '2014-11-11',
-      titulo: 'Caso de prueba con datos basicos',
-      hora: '6 pm',
-      duracion: '1 hora'
+      fecha: '2014-11-19'.freeze,
+      memo: ''.freeze,
+      created_at: '2014-11-11'.freeze,
+      titulo: 'Caso de prueba con datos basicos'.freeze,
+      hora: '6 pm'.freeze,
+      duracion: '1 hora'.freeze
     }
-   
+ 
      PRUEBA_ETIQUETA = {
-      nombre: 'n',
-      fechacreacion: '2014-08-05',
-      fechadeshabilitacion: nil
+       nombre: 'n'.freeze,
+       fechacreacion: '2014-08-05'.freeze,
+       fechadeshabilitacion: nil
      }
 
     PRUEBA_PRESPONSABLE ={
         id: 1000,
-        nombre: 'presunto',
+        nombre: 'presunto'.freeze,
         papa: 1000,
-    	fechacreacion: '2014-09-09',
-    	created_at: '2014-09-09'
+        fechacreacion: '2014-09-09'.freeze,
+        created_at: '2014-09-09'.freeze
     }
 
     PRUEBA_TVIOLENCIA = {
-        id: 'S',
-        nombre: 'VIOLENCIA POLÍTICO SOCIAL',
-        nomcorto: 'nombrec',
-        fechacreacion: '2014-09-09',
-        created_at: '2014-09-09'
+      id: 'S'.freeze,
+      nombre: 'VIOLENCIA POLÍTICO SOCIAL'.freeze,
+      nomcorto: 'nombrec'.freeze,
+      fechacreacion: '2014-09-09'.freeze,
+      created_at: '2014-09-09'.freeze
     }
-    
+ 
     PRUEBA_PERSONA = {
-         nombres: 'Nombres',
-         apellidos: 'Apellidos',
-         anionac: 1974,
-         mesnac: 1,
-         dianac: 1,
-         sexo: 'F',
-         id_pais: 170,
-         id_departamento: 15,
-         id_municipio: 610,
-         tdocumento_id: 1,
-         numerodocumento: '10000000',
-         nacionalde: 170
+      nombres: 'Nombres'.freeze,
+      apellidos: 'Apellidos'.freeze,
+      anionac: 1974,
+      mesnac: 1,
+      dianac: 1,
+      sexo: 'F'.freeze,
+      id_pais: 170,
+      id_departamento: 15,
+      id_municipio: 610,
+      tdocumento_id: 1,
+      numerodocumento: '10000000'.freeze,
+      nacionalde: 170
     }
 
     test 'Valida caso con una etiqueta' do
       caso = Sivel2Gen::Caso.create! PRUEBA_CASO_BASICOS
-      etiqueta = Sip::Etiqueta.create(id:1000, nombre: 'Etiqueta', fechacreacion: '2014-09-09', created_at: '2014-09-09')
-      casoetiqueta = Sivel2Gen::CasoEtiqueta.create(id:1000, id_caso: caso.id, id_etiqueta: etiqueta.id, id_usuario: @current_usuario.id, fecha: '2014-09-09', created_at: '2014-09-09')
+      etiqueta = Sip::Etiqueta.create(
+        id: 1000,
+        nombre: 'Etiqueta'.freeze,
+        fechacreacion: '2014-09-09'.freeze,
+        created_at: '2014-09-09'.freeze
+      )
+      casoetiqueta = Sivel2Gen::CasoEtiqueta.create(
+        id: 1000,
+        id_caso: caso.id,
+        id_etiqueta: etiqueta.id,
+        id_usuario: @current_usuario.id,
+        fecha: '2014-09-09'.freeze,
+        created_at: '2014-09-09'.freeze
+      )
       get caso_path(caso)+'.xml'
       puts @response.body
       file = guarda_xml(@response.body)
@@ -75,12 +87,12 @@ module Sivel2Gen
       etiqueta.destroy
       casoetiqueta.destroy
     end
-    
+ 
    def guarda_xml(docu)
-     file = File.new('test/dummy/public/relatos.xml', 'wb')
+     file = File.new('test/dummy/public/relatos.xrlat', 'wb')
      file.write(docu)
      file.close
-     return file
+     file
    end
 
    def verifica_dtd(docu)

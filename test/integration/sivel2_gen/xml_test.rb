@@ -1,43 +1,33 @@
-# encoding: UTF-8
-
+# frozen_string_literal:true
 require 'test_helper'
 require 'nokogiri'
 require 'open-uri'
 
 module Sivel2Gen
- class XmlTest < ActionDispatch::IntegrationTest
-	  
+  class XmlTest < ActionDispatch::IntegrationTest
+
     include Devise::Test::IntegrationHelpers
     include Engine.routes.url_helpers
 
     setup do
       @current_usuario = ::Usuario.create(PRUEBA_USUARIO)
       sign_in @current_usuario
-      @routes= Engine.routes
+      @routes = Engine.routes
     end
 
     PRUEBA_CASOV = {
-      fecha: '2014-11-19',
-      memo: '',
-      created_at: '2014-11-11'
+      fecha: '2014-11-19'.freeze,
+      memo: ''.freeze,
+      created_at: '2014-11-11'.freeze
     }
 
     PRUEBA_CASO_BASICOS = {
-      fecha: '2014-11-19',
-      memo: '',
-      created_at: '2014-11-11',
-      titulo: 'Caso de prueba con datos basicos',
-      hora: '6 pm',
-      duracion: '1 hora'
-    }
-    
-    PRUEBA_UBICACION= {
-      id: 1400,
-      id_tsitio: 1,
-      id_pais: 170,
-      id_departamento: 17,
-      id_municipio: 1152,
-      created_at: '2014-11-06'
+      fecha: '2014-11-19'.freeze,
+      memo: ''.freeze,
+      created_at: '2014-11-11'.freeze,
+      titulo: 'Caso de prueba con datos basicos'.freeze,
+      hora: '6 pm'.freeze,
+      duracion: '1 hora'.freeze
     }
 
     test 'caso valido' do
@@ -57,8 +47,15 @@ module Sivel2Gen
       caso.destroy
     end
     test 'genera xml del caso y su ubicacion' do
-      caso= Sivel2Gen::Caso.create PRUEBA_CASO_BASICOS
-      ubicacion1= Sip::Ubicacion.create(id_pais:170, id_caso:caso.id, id_tsitio: 1, id_departamento: 17, id_municipio: 1152, created_at: '2014-11-06')
+      caso = Sivel2Gen::Caso.create PRUEBA_CASO_BASICOS
+      ubicacion1 = Sip::Ubicacion.create(
+        id_pais: 170,
+        id_caso: caso.id,
+        id_tsitio: 1,
+        id_departamento: 17,
+        id_municipio: 1152,
+        created_at: '2014-11-06'
+      )
       caso.ubicacion_id = [ubicacion1.id]
       get caso_path(caso) + '.xml'
       puts @response.body
@@ -73,7 +70,7 @@ module Sivel2Gen
       file = File.new('test/dummy/public/relatos.xrlat', 'wb')
       file.write(docu)
       file.close
-      return file
+      file
     end
     def verifica_dtd(docu)
       options = Nokogiri::XML::ParseOptions::DTDVALID
