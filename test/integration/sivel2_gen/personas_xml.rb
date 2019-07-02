@@ -62,10 +62,10 @@ module Sivel2Gen
         nombre: 'Pruebaumpleado'.freeze,
         fechacreacion: '2014-09-09'.freeze
     }
- 
+
     test 'Valida caso con 1 victima' do
       caso = Sivel2Gen::Caso.create! PRUEBA_CASO_BASICOS
-      persona =  Sip::Persona.create! PRUEBA_PERSONA
+      persona = Sip::Persona.create! PRUEBA_PERSONA
       rangoedad = Sivel2Gen::Rangoedad.create! PRUEBA_RANGOEDAD
       profesion = Sivel2Gen::Profesion.create! PRUEBA_PROFESION
       sectorsocial = Sivel2Gen::Sectorsocial.create! PRUEBA_SECTORSOCIAL
@@ -87,7 +87,7 @@ module Sivel2Gen
       rangoedad.destroy
       victima.destroy
     end
- 
+
     test 'valida caso con 2 victimas' do
       caso = Sivel2Gen::Caso.create! PRUEBA_CASO_BASICOS
       persona1 =  Sip::Persona.create! PRUEBA_PERSONA
@@ -123,7 +123,7 @@ module Sivel2Gen
       victima1.destroy
       victima2.destroy
     end
- 
+
     test 'valida caso con 1 victima colectiva' do
       caso = Sivel2Gen::Caso.create! PRUEBA_CASO_BASICOS
       grupoper = Sip::Grupoper.create(
@@ -146,27 +146,31 @@ module Sivel2Gen
       grupoper.destroy
       caso.destroy
     end
- 
+
     test 'valida caso con 2 victimas colectivas' do
       caso = Sivel2Gen::Caso.create! PRUEBA_CASO_BASICOS
       grupoper1 = Sip::Grupoper.create(
         nombre: 'Nombre de grupo',
         anotaciones: 'Anotaciones de ejemplo',
-        created_at: '2014-09-09')
+        created_at: '2014-09-09'
+      )
       grupoper2 = Sip::Grupoper.create(
         nombre: 'Nombre de grupo',
         anotaciones: 'Anotaciones de ejemplo',
-        created_at: '2014-09-09')
+        created_at: '2014-09-09'
+      )
       victimacolectiva1 = Sivel2Gen::Victimacolectiva.create(
         id_grupoper: grupoper1.id,
         id_caso: caso.id,
         personasaprox: 5,
-        organizacionarmada: 5)
+        organizacionarmada: 5
+      )
       victimacolectiva2 = Sivel2Gen::Victimacolectiva.create(
         id_grupoper: grupoper2.id,
         id_caso: caso.id,
         personasaprox: 5,
-        organizacionarmada: 5)
+        organizacionarmada: 5
+      )
       get caso_path(caso) + '.xml'
       file = guarda_xml(@response.body)
       docu = File.read(file)
@@ -177,7 +181,7 @@ module Sivel2Gen
       grupoper2.destroy
       caso.destroy
     end
- 
+
     test 'valida con 1 presunto responsable' do
       caso = Sivel2Gen::Caso.create! PRUEBA_CASO_BASICOS
       presponsable = Sivel2Gen::Presponsable.create(
