@@ -25,54 +25,54 @@ module Sivel2Gen
     }
  
     PRUEBA_PERSONA1 = {
-        id: 249236,
-        nombres: 'N'.freeze,
-        apellidos: 'N'.freeze,
-        anionac: 2006,
-        mesnac: '06'.freeze,
-        dianac: '15'.freeze,
-        sexo: 'S'.freeze
+      id: 249236,
+      nombres: 'N'.freeze,
+      apellidos: 'N'.freeze,
+      anionac: 2006,
+      mesnac: '06'.freeze,
+      dianac: '15'.freeze,
+      sexo: 'S'.freeze
     }
     PRUEBA_PERSONA2 = {
-        id: 249237,
-        nombres: 'N'.freeze,
-        apellidos: 'N'.freeze,
-        anionac: 2006,
-        mesnac: '06'.freeze,
-        dianac: '15'.freeze,
-        sexo: 'S'.freeze,
+      id: 249237,
+      nombres: 'N'.freeze,
+      apellidos: 'N'.freeze,
+      anionac: 2006,
+      mesnac: '06'.freeze,
+      dianac: '15'.freeze,
+      sexo: 'S'.freeze,
     }
     PRUEBA_PERSONA3 = {
-        id: 249238,
-        nombres: 'N'.freeze,
-        apellidos: 'N'.freeze,
-        anionac: 2011,
-        mesnac: '06'.freeze,
-        dianac: '15'.freeze,
-        sexo: 'S'.freeze,
+      id: 249238,
+      nombres: 'N'.freeze,
+      apellidos: 'N'.freeze,
+      anionac: 2011,
+      mesnac: '06'.freeze,
+      dianac: '15'.freeze,
+      sexo: 'S'.freeze,
     }
 
     PRUEBA_PROFESION = {
-        id: 1000,
-        nombre: 'Profesion'.freeze,
-        fechacreacion: '2014-09-09'.freeze,
-        created_at: '2014-09-09'.freeze
+      id: 1000,
+      nombre: 'Profesion'.freeze,
+      fechacreacion: '2014-09-09'.freeze,
+      created_at: '2014-09-09'.freeze
     }
 
     PRUEBA_RANGOEDAD = {
-    	id: 1000,
-        nombre: 'De 0 a 15 Años'.freeze,
-        rango: '1-2'.freeze,
-    	limiteinferior: 1,
-    	limitesuperior: 2,
-        fechacreacion: '2014-09-09'.freeze,
-        created_at: '2014-09-09'.freeze
+      id: 1000,
+      nombre: 'De 0 a 15 Años'.freeze,
+      rango: '1-2'.freeze,
+      limiteinferior: 1,
+      limitesuperior: 2,
+      fechacreacion: '2014-09-09'.freeze,
+      created_at: '2014-09-09'.freeze
     }
 
     PRUEBA_SECTORSOCIAL = {
-        id: 1000,
-        nombre: 'Pruebaumpleado'.freeze,
-        fechacreacion: '2014-09-09'.freeze
+      id: 1000,
+      nombre: 'Pruebaempleado',
+      fechacreacion: '2014-09-09'
     }
 
     test 'Valida caso de prueba como uno de sivel12' do
@@ -85,8 +85,8 @@ module Sivel2Gen
         id_pais: 170,
         id_departamento: 47,
         id_municipio: 86,
-        id_clase: 11737,
-        created_at: '2019-01-01'.freeze,
+        id_clase: 11_737,
+        created_at: '2019-01-01',
         longitud: -77.0697417935442,
         latitud: 3.89381723858445
       )
@@ -109,7 +109,7 @@ module Sivel2Gen
         id_persona: persona2.id,
         id_rangoedad: rangoedad.id,
         id_etnia: nil,
-        id_iglesia:nil,
+        id_iglesia: nil,
         orientacionsexual: 'S'
       )
       victima3 = Sivel2Gen::Victima.create(
@@ -118,7 +118,8 @@ module Sivel2Gen
         id_rangoedad: rangoedad.id,
         id_etnia: nil,
         id_iglesia: nil,
-        orientacionsexual: 'S')
+        orientacionsexual: 'S'
+      )
       presponsable = Sivel2Gen::Presponsable.find(37)
       casopresponsable = Sivel2Gen::CasoPresponsable.create(
         id_caso: caso.id,
@@ -134,21 +135,21 @@ module Sivel2Gen
         id_categoria: categoria1.id,
         id_persona: persona1.id,
         id_caso: caso.id,
-        created_at: '2019-01-01'.freeze
+        created_at: '2019-01-01'
       )
       acto2 = Sivel2Gen::Acto.create(
         id_presponsable: presponsable.id,
         id_categoria: categoria2.id,
         id_persona: persona2.id,
         id_caso: caso.id,
-        created_at: '2019-01-01'.freeze
+        created_at: '2019-01-01'
       )
       acto3 = Sivel2Gen::Acto.create(
         id_presponsable: presponsable.id,
         id_categoria: categoria2.id,
         id_persona: persona3.id,
         id_caso: caso.id,
-        created_at: '2019-01-01'.freeze
+        created_at: '2019-01-01'
       )
       intervalo = Sivel2Gen::Intervalo.find(2)
       caso.id_intervalo = intervalo.id
@@ -156,18 +157,19 @@ module Sivel2Gen
       casocon = Sivel2Gen::CasoContexto.create(
         id_caso: caso.id,
         id_contexto: contexto.id,
-        created_at: '2014-09-09'.freeze
+        created_at: '2014-09-09'
       )
       region1 = Sivel2Gen::Region.find(9)
       region2 = Sivel2Gen::Region.find(5)
       casoreg1 = Sivel2Gen::CasoRegion.create(
         id_caso: caso.id,
         id_region: region1.id,
-        created_at: '2014-09-09')
+        created_at: '2014-09-09'
+      )
       casoreg2 = Sivel2Gen::CasoRegion.create(
         id_caso: caso.id,
         id_region: region2.id,
-        created_at: '2014-09-09'.freeze
+        created_at: '2014-09-09'
       )
       get caso_path(caso) + '.xml'
       d12 = 'test/dummy/public/relatos_ref.xrlat'
@@ -178,6 +180,9 @@ module Sivel2Gen
       compara(docu, d12)
       ubicaso.destroy
       caso.destroy
+      acto1.destroy
+      acto2.destroy
+      acto3.destroy
       persona1.destroy
       persona2.destroy
       persona3.destroy
@@ -206,17 +211,13 @@ module Sivel2Gen
     def compara(doc2, doc12)
       doc1 = Nokogiri::XML(doc2)
       doc2 = Nokogiri::XML(open(doc12))
-      puts CompareXML.equivalent?(
-        doc1,
-        doc2,
+      puts CompareXML.equivalent?(doc1, doc2,
         {
         ignore_comments: false,
         verbose: true
         }
       )
-      assert_empty CompareXML.equivalent?(
-        doc1,
-        doc2,
+      assert_empty CompareXML.equivalent?(doc1, doc2,
         {
         ignore_comments: false,
         verbose: true
