@@ -23,7 +23,7 @@ module Sivel2Gen
       hora: '6 pm',
       duracion: '1 hora'
     }
- 
+
     PRUEBA_PRESPONSABLE = {
         id: 1000,
         nombre: 'presunto'.freeze,
@@ -39,7 +39,7 @@ module Sivel2Gen
       fechacreacion: '2014-09-09'.freeze,
       created_at: '2014-09-09'.freeze
     }
- 
+
     PRUEBA_PERSONA = {
       nombres: 'Nombres'.freeze,
       apellidos: 'Apellidos'.freeze,
@@ -51,7 +51,7 @@ module Sivel2Gen
       id_departamento: 15,
       id_municipio: 610,
       tdocumento_id: 1,
-      numerodocumento: '10000000'.freeze,
+      numerodocumento: '10000000',
       nacionalde: 170
     }
 
@@ -67,9 +67,9 @@ module Sivel2Gen
         id_categoria: categoria.id,
         id_persona: persona.id,
         id_caso: caso.id,
-        created_at: '2014-09-09'.freeze
+        created_at: '2014-09-09'
       )
-      get caso_path(caso)+'.xml'
+      get caso_path(caso) + '.xml'
       puts @response.body
       file = guarda_xml(@response.body)
       docu = File.read(file)
@@ -77,25 +77,24 @@ module Sivel2Gen
       acto.destroy
       caso.destroy
     end
-    
+
     test 'valida caso con 1 acto colectivo' do
       caso = Sivel2Gen::Caso.create! PRUEBA_CASO_BASICOS
       grupoper = Sip::Grupoper.create(
-        nombre: 'Nombre de grupo'.freeze,
-        anotaciones: 'Anotaciones de ejemplo'.freeze,
-        created_at: '2014-09-09'.freeze
+        nombre: 'Nombre de grupo',
+        anotaciones: 'Anotaciones de ejemplo',
+        created_at: '2014-09-09'
       )
       presponsable = Sivel2Gen::Presponsable.find(104)
-      pconsolidado = Sivel2Gen::Pconsolidado.find(17)
       categoria = Sivel2Gen::Categoria.find(15)
       actocolectivo = Sivel2Gen::Actocolectivo.create(
-        id_presponsable: presponsable.id ,
-        id_categoria: categoria.id ,
+        id_presponsable: presponsable.id,
+        id_categoria: categoria.id,
         id_grupoper: grupoper.id,
         id_caso: caso.id,
-        created_at: '2014-04-17'.freeze
+        created_at: '2014-04-17'
       )
-      get caso_path(caso)+".xml"
+      get caso_path(caso) + '.xml'
       puts @response.body
       caso.destroy
       grupoper.destroy
