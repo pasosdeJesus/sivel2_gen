@@ -32,7 +32,7 @@ module Sivel2Gen
         mesnac: '06'.freeze,
         dianac: '15'.freeze,
         sexo: 'S'.freeze
-     }
+    }
     PRUEBA_PERSONA2 = {
         id: 249237,
         nombres: 'N'.freeze,
@@ -41,7 +41,7 @@ module Sivel2Gen
         mesnac: '06'.freeze,
         dianac: '15'.freeze,
         sexo: 'S'.freeze,
-     }
+    }
     PRUEBA_PERSONA3 = {
         id: 249238,
         nombres: 'N'.freeze,
@@ -50,8 +50,8 @@ module Sivel2Gen
         mesnac: '06'.freeze,
         dianac: '15'.freeze,
         sexo: 'S'.freeze,
-     }
- 
+    }
+
     PRUEBA_PROFESION = {
         id: 1000,
         nombre: 'Profesion'.freeze,
@@ -74,7 +74,7 @@ module Sivel2Gen
         nombre: 'Pruebaumpleado'.freeze,
         fechacreacion: '2014-09-09'.freeze
     }
- 
+
     test 'Valida caso de prueba como uno de sivel12' do
       caso = Sivel2Gen::Caso.create! PRUEBA_CASO_BASICOS
       ubicaso = Sip::Ubicacion.create(
@@ -175,7 +175,7 @@ module Sivel2Gen
       file = guarda_xml(@response.body)
       docu = File.read(file)
       verifica_dtd(docu)
-      compara(docu,d12)
+      compara(docu, d12)
       ubicaso.destroy
       caso.destroy
       persona1.destroy
@@ -188,7 +188,7 @@ module Sivel2Gen
       victima2.destroy
       victima3.destroy
     end
- 
+
     def guarda_xml(docu)
       file = File.new('test/dummy/public/relatos.xrlat', 'wb')
       file.write(docu)
@@ -206,14 +206,22 @@ module Sivel2Gen
     def compara(doc2, doc12)
       doc1 = Nokogiri::XML(doc2)
       doc2 = Nokogiri::XML(open(doc12))
-      puts CompareXML.equivalent?(doc1, doc2, {
+      puts CompareXML.equivalent?(
+        doc1,
+        doc2,
+        {
         ignore_comments: false,
         verbose: true
-      })
-      assert_empty CompareXML.equivalent?(doc1, doc2, {
+        }
+      )
+      assert_empty CompareXML.equivalent?(
+        doc1,
+        doc2,
+        {
         ignore_comments: false,
         verbose: true
-      })
+        }
+      )
     end
   end
 end

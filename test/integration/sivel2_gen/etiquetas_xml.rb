@@ -24,18 +24,18 @@ module Sivel2Gen
       duracion: '1 hora'
     }
 
-     PRUEBA_ETIQUETA = {
-       nombre: 'n',
-       fechacreacion: '2014-08-05',
-       fechadeshabilitacion: nil
+    PRUEBA_ETIQUETA = {
+      nombre: 'n',
+      fechacreacion: '2014-08-05',
+      fechadeshabilitacion: nil
      }
 
-    PRUEBA_PRESPONSABLE ={
-        id: 1000,
-        nombre: 'presunto',
-        papa: 1000,
-        fechacreacion: '2014-09-09',
-        created_at: '2014-09-09'
+    PRUEBA_PRESPONSABLE = {
+      id: 1000,
+      nombre: 'presunto',
+      papa: 1000,
+      fechacreacion: '2014-09-09',
+      created_at: '2014-09-09'
     }
 
     PRUEBA_TVIOLENCIA = {
