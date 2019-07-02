@@ -17,15 +17,15 @@ module Sivel2Gen
     end
 
     PRUEBA_CASO_BASICOS = {
-      id: 158409,
+      id: 158_409,
       fecha: '2018-01-01',
       memo: 'En la vereda El Papayo, zona rural de Buenaventura, se registró una explosión que dejó un menor muerto y otros tres heridos. Los cuatro menores se desplazaban en una pequeña canoa hacia uno de los extremos del río Yurumanguí y resultaron gravemente heridos, luego de que encontraron en la orilla, un artefacto que les explotó al manipularlo. Según el padre de uno de los menores, Serapio Mosquera, son niños de una sola familia, yo estaba en la casa cuando ellos se fueron, luego escuchamos la explosión. Mosquera afirmó que uno de los niños, de siete años, murió, lo íbamos a traer para Buenaventura pero no alcanzamos, lo dejamos allá porque ya para qué lo traíamos. Uno de los menores que resultó con heridas leves fue dejado en la zona, mientras que en una embarcación, trasladaron a dos de los niños heridos, ambos de 12 años de edad. Uno de los menores fue dado de alta, pero él otro está bajo pronóstico reservado, tiene heridas muy graves en el abdomen explicó Marta Isabel Valencia, directora médica de la Clínica Santa Sofía de Buenaventura. Los médicos adelantan las gestiones para trasladar al menor a una clínica de mayor complejidad en Cali. El comandante de la Policía de Buenaventura, coronel Jorge Cabra, dijo que conformamos un equipo de trabajo con la Infantería de Marina, la Sijin, pero no se encontró ningún elemento que nos confirmara la versión de la persona que trajo a los menores a la clínica, la comunidad tampoco entrega mayor información sobre el hecho.',
       created_at: '2014-11-11',
-      titulo: 'NIÑOS AFECTADOS POR EXPLOSIÓN DE GRANADA',
+      titulo: 'NIÑOS AFECTADOS POR EXPLOSIÓN DE GRANADA'
     }
  
     PRUEBA_PERSONA1 = {
-      id: 249236,
+      id: 249_236,
       nombres: 'N',
       apellidos: 'N',
       anionac: 2006,
@@ -34,7 +34,7 @@ module Sivel2Gen
       sexo: 'S'
     }
     PRUEBA_PERSONA2 = {
-      id: 249237,
+      id: 249_237,
       nombres: 'N',
       apellidos: 'N',
       anionac: 2006,
@@ -43,7 +43,7 @@ module Sivel2Gen
       sexo: 'S'
     }
     PRUEBA_PERSONA3 = {
-      id: 249238,
+      id: 249_238,
       nombres: 'N',
       apellidos: 'N',
       anionac: 2011,
@@ -211,8 +211,8 @@ module Sivel2Gen
     def compara(doc2, doc12)
       doc1 = Nokogiri::XML(doc2)
       doc2 = Nokogiri::XML(open(doc12))
-      puts CompareXML.equivalent?(doc1, doc2, { ignore_comments: false, verbose: true })
-      assert_empty CompareXML.equivalent?(doc1, doc2, { ignore_comments: false, verbose: true })
+      puts CompareXML.equivalent?(doc1, doc2, ignore_comments: false, verbose: true)
+      assert_empty CompareXML.equivalent?(doc1, doc2, ignore_comments: false, verbose: true)
     end
   end
 end
