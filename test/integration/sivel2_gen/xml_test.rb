@@ -1,11 +1,11 @@
 # frozen_string_literal:true
+
 require 'test_helper'
 require 'nokogiri'
 require 'open-uri'
 
 module Sivel2Gen
   class XmlTest < ActionDispatch::IntegrationTest
-
     include Devise::Test::IntegrationHelpers
     include Engine.routes.url_helpers
 
@@ -16,18 +16,18 @@ module Sivel2Gen
     end
 
     PRUEBA_CASOV = {
-      fecha: '2014-11-19'.freeze,
-      memo: ''.freeze,
-      created_at: '2014-11-11'.freeze
+      fecha: '2014-11-19',
+      memo: '',
+      created_at: '2014-11-11'
     }
 
     PRUEBA_CASO_BASICOS = {
-      fecha: '2014-11-19'.freeze,
-      memo: ''.freeze,
-      created_at: '2014-11-11'.freeze,
-      titulo: 'Caso de prueba con datos basicos'.freeze,
-      hora: '6 pm'.freeze,
-      duracion: '1 hora'.freeze
+      fecha: '2014-11-19',
+      memo: '',
+      created_at: '2014-11-11',
+      titulo: 'Caso de prueba con datos basicos',
+      hora: '6 pm',
+      duracion: '1 hora'
     }
 
     test 'caso valido' do
@@ -78,5 +78,5 @@ module Sivel2Gen
       puts doc.external_subset.validate(doc)
       assert_empty doc.external_subset.validate(doc)
     end
- end 
+  end 
 end
