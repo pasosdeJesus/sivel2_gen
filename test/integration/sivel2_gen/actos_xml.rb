@@ -25,28 +25,28 @@ module Sivel2Gen
     }
 
     PRUEBA_PRESPONSABLE = {
-        id: 1000,
-        nombre: 'presunto'.freeze,
-        papa: 1000,
-        fechacreacion: '2014-09-09'.freeze,
-        created_at: '2014-09-09'.freeze
+      id: 1000,
+      nombre: 'presunto',
+      papa: 1000,
+      fechacreacion: '2014-09-09',
+      created_at: '2014-09-09'
     }
 
     PRUEBA_TVIOLENCIA = {
-      id: 'S'.freeze,
-      nombre: 'VIOLENCIA POLÍTICO SOCIAL'.freeze,
-      nomcorto: 'nombrec'.freeze,
-      fechacreacion: '2014-09-09'.freeze,
-      created_at: '2014-09-09'.freeze
+      id: 'S',
+      nombre: 'VIOLENCIA POLÍTICO SOCIAL',
+      nomcorto: 'nombrec',
+      fechacreacion: '2014-09-09',
+      created_at: '2014-09-09'
     }
 
     PRUEBA_PERSONA = {
-      nombres: 'Nombres'.freeze,
-      apellidos: 'Apellidos'.freeze,
+      nombres: 'Nombres',
+      apellidos: 'Apellidos',
       anionac: 1974,
       mesnac: 1,
       dianac: 1,
-      sexo: 'F'.freeze,
+      sexo: 'F',
       id_pais: 170,
       id_departamento: 15,
       id_municipio: 610,
