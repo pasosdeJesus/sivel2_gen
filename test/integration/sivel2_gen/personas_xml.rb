@@ -63,7 +63,6 @@ module Sivel2Gen
         fechacreacion: '2014-09-09'.freeze
     }
  
- 
     test 'Valida caso con 1 victima' do
       caso = Sivel2Gen::Caso.create! PRUEBA_CASO_BASICOS
       persona =  Sip::Persona.create! PRUEBA_PERSONA
@@ -78,7 +77,7 @@ module Sivel2Gen
         id_profesion: profesion.id,
         id_sectorsocial: sectorsocial.id
       )
-      get caso_path(caso)+".xml"
+      get caso_path(caso) + '.xml'
       puts @response.body
       file = guarda_xml(@response.body)
       docu = File.read(file)
@@ -124,13 +123,13 @@ module Sivel2Gen
       victima1.destroy
       victima2.destroy
     end
-    
+ 
     test 'valida caso con 1 victima colectiva' do
       caso = Sivel2Gen::Caso.create! PRUEBA_CASO_BASICOS
       grupoper = Sip::Grupoper.create(
-        nombre: 'Nombre de grupo'.freeze,
-        anotaciones: 'Anotaciones de ejemplo'.freeze,
-        created_at: '2014-09-09'.freeze
+        nombre: 'Nombre de grupo',
+        anotaciones: 'Anotaciones de ejemplo',
+        created_at: '2014-09-09'
       )
       victimacolectiva = Sivel2Gen::Victimacolectiva.create(
         id_grupoper: grupoper.id,
@@ -148,32 +147,27 @@ module Sivel2Gen
       caso.destroy
     end
  
-    test 'valida caso con 2 victima colectivas' do
+    test 'valida caso con 2 victimas colectivas' do
       caso = Sivel2Gen::Caso.create! PRUEBA_CASO_BASICOS
       grupoper1 = Sip::Grupoper.create(
-        nombre: 'Nombre de grupo'.freeze,
-        anotaciones: 'Anotaciones de ejemplo'.freeze,
-        created_at: '2014-09-09'.freeze
-      )
+        nombre: 'Nombre de grupo',
+        anotaciones: 'Anotaciones de ejemplo',
+        created_at: '2014-09-09')
       grupoper2 = Sip::Grupoper.create(
-        nombre: 'Nombre de grupo'.freeze,
-        anotaciones: 'Anotaciones de ejemplo'.freeze,
-        created_at: '2014-09-09'.freeze
-      )
+        nombre: 'Nombre de grupo',
+        anotaciones: 'Anotaciones de ejemplo',
+        created_at: '2014-09-09')
       victimacolectiva1 = Sivel2Gen::Victimacolectiva.create(
         id_grupoper: grupoper1.id,
         id_caso: caso.id,
         personasaprox: 5,
-        organizacionarmada: 5
-      )
+        organizacionarmada: 5)
       victimacolectiva2 = Sivel2Gen::Victimacolectiva.create(
         id_grupoper: grupoper2.id,
         id_caso: caso.id,
         personasaprox: 5,
-        organizacionarmada: 5
-      )
-      get caso_path(caso)+".xml"
-      # puts @response.body
+        organizacionarmada: 5)
+      get caso_path(caso) + '.xml'
       file = guarda_xml(@response.body)
       docu = File.read(file)
       verifica_dtd(docu)
@@ -183,14 +177,14 @@ module Sivel2Gen
       grupoper2.destroy
       caso.destroy
     end
-    
+ 
     test 'valida con 1 presunto responsable' do
       caso = Sivel2Gen::Caso.create! PRUEBA_CASO_BASICOS
       presponsable = Sivel2Gen::Presponsable.create(
         id: 1000,
-        nombre: 'Nombre de grupo'.freeze,
-        fechacreacion: '2014-09-09'.freeze,
-        created_at: '2014-09-09'.freeze
+        nombre: 'Nombre de grupo',
+        fechacreacion: '2014-09-09',
+        created_at: '2014-09-09'
       )
       casopresponsable = Sivel2Gen::CasoPresponsable.create(
         id_caso: caso.id,
@@ -199,7 +193,7 @@ module Sivel2Gen
         frente: 'Frente',
         brigada: 'Brigada'
       )
-      get caso_path(caso)+".xml"
+      get caso_path(caso) + '.xml'
       # puts @response.body
       file = guarda_xml(@response.body)
       docu = File.read(file)
@@ -210,7 +204,7 @@ module Sivel2Gen
     end
 
     def guarda_xml(docu)
-      file = File.new("test/dummy/public/relatos.xrlat", "wb")
+      file = File.new('test/dummy/public/relatos.xrlat', 'wb')
       file.write(docu)
       file.close
       file
