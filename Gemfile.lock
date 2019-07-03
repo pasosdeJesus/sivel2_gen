@@ -362,8 +362,8 @@ DEPENDENCIES
   jquery-rails
   jquery-ui-rails
   libxml-ruby
-  nokogiri (~> 1.6, >= 1.6.8)
   mr519_gen!
+  nokogiri (~> 1.6, >= 1.6.8)
   odf-report
   paperclip
   pg

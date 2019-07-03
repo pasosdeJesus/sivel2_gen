@@ -6,7 +6,7 @@ require 'open-uri'
 require 'compare-xml'
 
 module Sivel2Gen
-  class PersonasXml < ActionDispatch::IntegrationTest
+  class PersonasXml < PruebaIntegracion
     include Devise::Test::IntegrationHelpers
     include Engine.routes.url_helpers
 
@@ -33,6 +33,7 @@ module Sivel2Gen
       dianac: '15',
       sexo: 'S'
     }
+
     PRUEBA_PERSONA2 = {
       id: 249_237,
       nombres: 'N',
@@ -42,6 +43,7 @@ module Sivel2Gen
       dianac: '15',
       sexo: 'S'
     }
+
     PRUEBA_PERSONA3 = {
       id: 249_238,
       nombres: 'N',
@@ -194,25 +196,15 @@ module Sivel2Gen
       victima3.destroy
     end
 
-    def guarda_xml(docu)
-      file = File.new('test/dummy/public/relatos.xrlat', 'wb')
-      file.write(docu)
-      file.close
-      file
-    end
-
-    def verifica_dtd(docu)
-      options = Nokogiri::XML::ParseOptions::DTDVALID
-      doc = Nokogiri::XML::Document.parse(docu, nil, nil, options)
-      puts doc.external_subset.validate(doc)
-      assert_empty doc.external_subset.validate(doc)
-    end
-
     def compara(doc2, doc12)
       doc1 = Nokogiri::XML(doc2)
       doc2 = Nokogiri::XML(open(doc12))
-      puts CompareXML.equivalent?(doc1, doc2, ignore_comments: false, verbose: true)
-      assert_empty CompareXML.equivalent?(doc1, doc2, ignore_comments: false, verbose: true)
+      puts CompareXML.equivalent?(
+        doc1, doc2, ignore_comments: false, verbose: true
+      )
+      assert_empty CompareXML.equivalent?(
+        doc1, doc2, ignore_comments: false, verbose: true
+      )
     end
   end
 end

@@ -5,7 +5,7 @@ require 'nokogiri'
 require 'open-uri'
 
 module Sivel2Gen
-  class XmlTest < ActionDispatch::IntegrationTest
+  class PruebaXml < PruebaIntegracion 
     include Devise::Test::IntegrationHelpers
     include Engine.routes.url_helpers
 
@@ -46,6 +46,7 @@ module Sivel2Gen
       verifica_dtd(docu)
       caso.destroy
     end
+
     test 'genera xml del caso y su ubicacion' do
       caso = Sivel2Gen::Caso.create PRUEBA_CASO_BASICOS
       ubicacion1 = Sip::Ubicacion.create(
@@ -66,17 +67,5 @@ module Sivel2Gen
       caso.destroy
     end
 
-    def guarda_xml(docu)
-      file = File.new('test/dummy/public/relatos.xrlat', 'wb')
-      file.write(docu)
-      file.close
-      file
-    end
-    def verifica_dtd(docu)
-      options = Nokogiri::XML::ParseOptions::DTDVALID
-      doc = Nokogiri::XML::Document.parse(docu, nil, nil, options)
-      puts doc.external_subset.validate(doc)
-      assert_empty doc.external_subset.validate(doc)
-    end
   end 
 end

@@ -5,7 +5,7 @@ require 'nokogiri'
 require 'open-uri'
 
 module Sivel2Gen
-  class ActosXml < ActionDispatch::IntegrationTest
+  class ActosXml < PruebaIntegracion 
     include Devise::Test::IntegrationHelpers
     include Engine.routes.url_helpers
 
@@ -101,18 +101,5 @@ module Sivel2Gen
       actocolectivo.destroy
     end
 
-    def guarda_xml(docu)
-      file = File.new('test/dummy/public/relatos.xrlat', 'wb')
-      file.write(docu)
-      file.close
-      file
-    end
-
-    def verifica_dtd(docu)
-      options = Nokogiri::XML::ParseOptions::DTDVALID
-      doc = Nokogiri::XML::Document.parse(docu, nil, nil, options)
-      puts doc.external_subset.validate(doc)
-      assert_empty doc.external_subset.validate(doc)
-    end
   end
 end

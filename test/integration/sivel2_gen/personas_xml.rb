@@ -5,7 +5,7 @@ require 'nokogiri'
 require 'open-uri'
 
 module Sivel2Gen
-  class PersonasXml < ActionDispatch::IntegrationTest
+  class PersonasXml < PruebaIntegracion
     include Devise::Test::IntegrationHelpers
     include Engine.routes.url_helpers
 
@@ -25,8 +25,8 @@ module Sivel2Gen
     }
 
     PRUEBA_PERSONA = {
-      nombres: 'Nombres'.freeze,
-      apellidos: 'Apellidos'.freeze,
+      nombres: 'Nombres',
+      apellidos: 'Apellidos',
       anionac: 1974,
       mesnac: 1,
       dianac: 1,
@@ -36,7 +36,7 @@ module Sivel2Gen
       id_municipio: 1152,
       id_clase: 2626,
       tdocumento_id: 1,
-      numerodocumento: '10000000'.freeze,
+      numerodocumento: '10000000',
       nacionalde: 170
     }
 
@@ -49,18 +49,18 @@ module Sivel2Gen
 
     PRUEBA_RANGOEDAD = {
       id: 1000,
-      nombre: 'Rangoedad'.freeze,
-      rango: '1-2'.freeze,
+      nombre: 'Rangoedad',
+      rango: '1-2',
       limiteinferior: 1,
       limitesuperior: 2,
-      fechacreacion: '2014-09-09'.freeze,
-      created_at: '2014-09-09'.freeze
+      fechacreacion: '2014-09-09',
+      created_at: '2014-09-09'
     }
 
     PRUEBA_SECTORSOCIAL = {
       id: 1000,
-      nombre: 'Pruebaumpleado'.freeze,
-      fechacreacion: '2014-09-09'.freeze
+      nombre: 'Pruebaumpleado',
+      fechacreacion: '2014-09-09'
     }
 
     test 'Valida caso con 1 victima' do
@@ -207,18 +207,5 @@ module Sivel2Gen
       casopresponsable.destroy
     end
 
-    def guarda_xml(docu)
-      file = File.new('test/dummy/public/relatos.xrlat', 'wb')
-      file.write(docu)
-      file.close
-      file
-    end
-
-    def verifica_dtd(docu)
-      options = Nokogiri::XML::ParseOptions::DTDVALID
-      doc = Nokogiri::XML::Document.parse(docu, nil, nil, options)
-      puts doc.external_subset.validate(doc)
-      assert_empty doc.external_subset.validate(doc)
-    end
   end
 end
