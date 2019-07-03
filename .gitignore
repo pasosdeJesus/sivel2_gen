@@ -37,3 +37,5 @@ test/dummy/public/heb412/
 coverage
 .bundle
 test/dummy/archivos/
+test/dummy/node_modules/
+bin/c.sh

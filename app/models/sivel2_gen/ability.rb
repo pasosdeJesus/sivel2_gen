@@ -34,8 +34,8 @@ module Sivel2Gen
       ['Sivel2Gen', 'resagresion'],
       ['Sivel2Gen', 'sectorsocial'],
       ['Sivel2Gen', 'supracategoria'],
-      ['Sivel2Gen', 'vinculoestado'],
-      ['Sivel2Gen', 'tviolencia']
+      ['Sivel2Gen', 'tviolencia'],
+      ['Sivel2Gen', 'vinculoestado']
     ]
 
     def tablasbasicas
@@ -59,7 +59,7 @@ module Sivel2Gen
       ['Sivel2Gen', 'caso']
     ]
 
-		# Tablas no básicas pero que tienen índice con secuencia id_seq
+    # Tablas no básicas pero que tienen índice con secuencia id_seq
     def nobasicas_indice_seq_con_id
       Sip::Ability::NOBASICAS_INDSEQID + NOBASICAS_INDSEQID
     end
@@ -80,10 +80,10 @@ module Sivel2Gen
       Sip::Ability::BASICAS_PRIO + BASICAS_PRIO - [['Sip', 'grupo']]
     end
     def self.derechos
-      "Dominio público de acuerdo a la legislación colomana"
+      'Creative Commons Atribución 2.5 Colombia. http://creativecommons.org/licenses/by/2.5/co/'
     end
     def self.organizacion_responsable
-      'organizacion'
+      'Banco de Datos del CINEP'
     end
 
     if ActiveRecord::Base.connection.data_source_exists?('sivel2_gen_caso')

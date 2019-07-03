@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE relatos SYSTEM "/home/lcruz/sivel2_gen/test/dummy/public/relatos-097.dtd">
+<relatos>
+  <relato>
+      <organizacion_responsable>Banco de Datos del CINEP</organizacion_responsable>
+      <derechos>Creative Commons Atribución 2.5 Colombia. http://creativecommons.org/licenses/by/2.5/co/</derechos>
+      <id_relato>158409</id_relato>
+      <forma_compartir>publico</forma_compartir>
+      <titulo>NIÑOS AFECTADOS POR EXPLOSIÓN DE GRANADA</titulo>
+      <hechos>En la vereda El Papayo, zona rural de Buenaventura, se registró una explosión que dejó un menor muerto y otros tres heridos. Los cuatro menores se desplazaban en una pequeña canoa hacia uno de los extremos del río Yurumanguí y resultaron gravemente heridos, luego de que encontraron en la orilla, un artefacto que les explotó al manipularlo. Según el padre de uno de los menores, Serapio Mosquera, son niños de una sola familia, yo estaba en la casa cuando ellos se fueron, luego escuchamos la explosión. Mosquera afirmó que uno de los niños, de siete años, murió, lo íbamos a traer para Buenaventura pero no alcanzamos, lo dejamos allá porque ya para qué lo traíamos. Uno de los menores que resultó con heridas leves fue dejado en la zona, mientras que en una embarcación, trasladaron a dos de los niños heridos, ambos de 12 años de edad. Uno de los menores fue dado de alta, pero él otro está bajo pronóstico reservado, tiene heridas muy graves en el abdomen explicó Marta Isabel Valencia, directora médica de la Clínica Santa Sofía de Buenaventura. Los médicos adelantan las gestiones para trasladar al menor a una clínica de mayor complejidad en Cali. El comandante de la Policía de Buenaventura, coronel Jorge Cabra, dijo que conformamos un equipo de trabajo con la Infantería de Marina, la Sijin, pero no se encontró ningún elemento que nos confirmara la versión de la persona que trajo a los menores a la clínica, la comunidad tampoco entrega mayor información sobre el hecho.</hechos>
+      <!-- Victimas personas individuales -->
+      <persona>
+         <id_persona>249236</id_persona>
+         <nombre>N</nombre>
+         <apellido>N</apellido>
+         <fecha_nacimiento>2006-06-15</fecha_nacimiento>
+         <sexo>S</sexo>
+         </persona>
+      <persona>
+         <id_persona>249237</id_persona>
+         <nombre>N</nombre>
+         <apellido>N</apellido>
+         <fecha_nacimiento>2006-06-15</fecha_nacimiento>
+         <sexo>S</sexo>
+      </persona>
+      <persona>
+         <id_persona>249238</id_persona>
+         <nombre>N</nombre>
+         <apellido>N</apellido>
+         <fecha_nacimiento>2011-06-15</fecha_nacimiento>
+         <sexo>S</sexo>
+      </persona>
+    <!-- Grupos victimizados -->
+    <!-- Presuntos responsables -->
+      <grupo>
+         <id_grupo>37</id_grupo>
+         <nombre_grupo>COMBATIENTES</nombre_grupo>
+      </grupo>
+    <!-- Victima Individual -->
+      <victima>
+         <id_persona>249236</id_persona>
+         <ocupacion>SIN INFORMACIÓN</ocupacion>
+         <sector_condicion>SIN INFORMACIÓN</sector_condicion>
+         <organizacion>SIN INFORMACIÓN</organizacion>
+         <observaciones tipo="filiacion">SIN INFORMACIÓN</observaciones>
+         <observaciones tipo="vinculoestado">SIN INFORMACIÓN</observaciones>
+         <observaciones tipo="organizacion_armada">35</observaciones>
+         <observaciones tipo="rangoedad">DE 0 A 15 AÑOS</observaciones>
+     </victima>
+     <victima>
+         <id_persona>249237</id_persona>
+         <ocupacion>SIN INFORMACIÓN</ocupacion>
+         <sector_condicion>SIN INFORMACIÓN</sector_condicion>
+         <organizacion>SIN INFORMACIÓN</organizacion>
+         <observaciones tipo="filiacion">SIN INFORMACIÓN</observaciones>
+         <observaciones tipo="vinculoestado">SIN INFORMACIÓN</observaciones>
+         <observaciones tipo="organizacion_armada">35</observaciones>
+         <observaciones tipo="rangoedad">DE 0 A 15 AÑOS</observaciones>
+    </victima>
+    <victima>
+         <id_persona>249238</id_persona>
+         <ocupacion>SIN INFORMACIÓN</ocupacion>
+         <sector_condicion>SIN INFORMACIÓN</sector_condicion>
+         <organizacion>SIN INFORMACIÓN</organizacion>
+         <observaciones tipo="filiacion">SIN INFORMACIÓN</observaciones>
+         <observaciones tipo="vinculoestado">SIN INFORMACIÓN</observaciones>
+         <observaciones tipo="organizacion_armada">35</observaciones>
+         <observaciones tipo="rangoedad">DE 0 A 15 AÑOS</observaciones>
+    </victima>
+   <!-- Presuntos responsables individuales -->
+   <!-- Ubicacion -->
+    <fecha>2018-01-01</fecha>
+    <departamento>VALLE DEL CAUCA</departamento>
+    <municipio>BUENAVENTURA</municipio>
+    <centro_poblado>SAN JOSÉ</centro_poblado>
+    <longitud>-77.0697417935442</longitud>
+    <latitud>3.89381723858445</latitud>
+   <!-- Actos con Victimas Individuales -->
+    <acto>
+      <agresion>VIDA</agresion>
+      <agresion_particular>MUERTO POR OBJETIVOS, MÉTODOS Y MEDIOS ILÍCITOS </agresion_particular>
+      <id_victima_individual>249236</id_victima_individual>
+      <id_presunto_grupo_responsable>37</id_presunto_grupo_responsable>
+      </acto>
+    <acto>
+      <agresion>INTEGRIDAD</agresion>
+      <agresion_particular>LESIÓN POR OBJETIVOS, MÉTODOS Y MEDIOS ILÍCITOS </agresion_particular>
+      <id_victima_individual>249237</id_victima_individual>
+      <id_presunto_grupo_responsable>37</id_presunto_grupo_responsable>
+    </acto>
+    <acto>
+      <agresion>INTEGRIDAD</agresion>
+      <agresion_particular>LESIÓN POR OBJETIVOS, MÉTODOS Y MEDIOS ILÍCITOS </agresion_particular>
+      <id_victima_individual>249238</id_victima_individual>
+      <id_presunto_grupo_responsable>37</id_presunto_grupo_responsable>
+    </acto>
+   <!-- Actos con Victimas Colectivas -->
+   <!-- Otros -->
+    <observaciones tipo="intervalo">SIN INFORMACIÓN</observaciones>
+    <observaciones tipo="region">COSTA ATLANTICA; SUR OCCIDENTE</observaciones>
+    <observaciones tipo="sitio">UNO DE LOS EXTREMOS DEL RÍO YURUMANGUÍ EN LA RIVERA DEL RÍO</observaciones>
+    <observaciones tipo="lugar">VEREDA EL PAPAYO</observaciones>
+    <observaciones tipo="tsitio">RURAL</observaciones>
+    <observaciones tipo="contexto">CONFLICTO ARMADO</observaciones>
+  </relato>
+</relatos>

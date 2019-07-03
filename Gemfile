@@ -104,6 +104,9 @@ group :development do
 
   # Consola irb en páginas con excepciones o usando <%= console %> en vistasA
   gem 'web-console'
+  # para validar xml
+  gem 'compare-xml', '~> 0.5.2'
+  gem 'nokogiri', '~> 1.6', '>= 1.6.8'
 end
 
 group  :development, :test do
