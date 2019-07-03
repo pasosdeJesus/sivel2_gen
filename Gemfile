@@ -15,8 +15,8 @@ gem 'puma'
 gem 'colorize'
 
 # Hojas de estilo con SCSS
-gem 'sass-rails'
 gem 'sass', '~> 3.7', '>= 3.7.4'
+gem 'sass-rails'
 # posibilidad de manejar módulos en Javascript https://github.com/rails/webpacker
 gem 'webpacker'
 
@@ -102,8 +102,8 @@ group :development do
   # Consola irb en páginas con excepciones o usando <%= console %> en vistasA
   gem 'web-console'
   # para validar xml
-  gem 'nokogiri', '~> 1.6', '>= 1.6.8'
   gem 'compare-xml', '~> 0.5.2'
+  gem 'nokogiri', '~> 1.6', '>= 1.6.8'
 end
 
 group  :development, :test do

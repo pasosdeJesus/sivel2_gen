@@ -1,14 +1,13 @@
-# encoding: UTF-8
+# frozen_string_literal: true
 
 module Sivel2Gen
   module Admin
     class VisualesController < Sip::Admin::BasicasController
-      before_action :set_visual,
-        only: [:show, :edit, :update, :destroy]
+      before_action :set_visual, only: [:show, :edit, :update, :destroy]
       load_and_authorize_resource  class: Sivel2Gen::Visual
 
       def clase
-        "Sivel2Gen::Visual"
+        'Sivel2Gen::Visual'
       end
 
       def set_visual
