@@ -1,17 +1,26 @@
 GIT
   remote: https://github.com/pasosdeJesus/heb412_gen.git
-  revision: 39e8a25f335b3f4801da81fa69da1bae1a8fee5c
+  revision: 53bbd16375b950b5533fd8b064030fe2abcb2e0c
   specs:
     heb412_gen (1.0.b6)
       chosen-rails
       font-awesome-rails
+      mr519_gen
       redcarpet
       rspreadsheet
       sip
 
 GIT
+  remote: https://github.com/pasosdeJesus/mr519_gen.git
+  revision: ef86c268f6ab96777b79c13228ea08fc5993c229
+  specs:
+    mr519_gen (0.2.0)
+      rails (~> 6.0.0.rc1, >= 6.0.0.rc1)
+      sip
+
+GIT
   remote: https://github.com/pasosdeJesus/sip.git
-  revision: 7cf22f9e6f15fe3cb93242259a26683e3c1256f0
+  revision: 8c29d7314517b1ce79cb0ca1dd23699ca2922df3
   specs:
     sip (2.0.b6)
       bootstrap-datepicker-rails
@@ -207,7 +216,8 @@ GEM
     pry (0.12.2)
       coderay (~> 1.1.0)
       method_source (~> 0.9.0)
-    puma (3.12.1)
+    puma (4.0.0)
+      nio4r (~> 2.0)
     rack (2.0.7)
     rack-proxy (0.6.5)
       rack
@@ -278,7 +288,7 @@ GEM
     simple_form (4.1.0)
       actionpack (>= 5.0)
       activemodel (>= 5.0)
-    simplecov (0.16.1)
+    simplecov (0.17.0)
       docile (~> 1.1)
       json (>= 1.8, < 3)
       simplecov-html (~> 0.10.0)
@@ -327,7 +337,7 @@ GEM
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.4)
     will_paginate (3.1.7)
-    zeitwerk (2.1.6)
+    zeitwerk (2.1.8)
 
 PLATFORMS
   ruby
@@ -349,6 +359,7 @@ DEPENDENCIES
   jquery-rails
   jquery-ui-rails
   libxml-ruby
+  mr519_gen!
   odf-report
   paperclip
   pg
