@@ -19,8 +19,7 @@
 
 
 $(document).on('turbolinks:load ready', function() {
-        $(".pick-a-color").pickAColor();
-	var root;
+       	var root;
 	root = typeof exports !== "undefined" && exports !== null ? 
 		exports : window;
 	sip_prepara_eventos_comunes(root, null, false);

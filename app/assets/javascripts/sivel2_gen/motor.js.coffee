@@ -402,6 +402,8 @@ enviaFormularioContar= (root) ->
 # nomactospe es nombre por dar a actos 
 #   (por ejemplo en sivel2_sjr es antecedentes/causas)
 @sivel2_gen_prepara_eventos_comunes = (root, nomactospe) ->
+  #Permite desplegar paleta de colores para estilos
+  $(".pick-a-color").pickAColor();
   # root.putomontaje lo pudo poner sip_prepara_eventos_comunes
   if typeof root.puntomontaje == 'undefined'
     root.puntomontaje = '/'
