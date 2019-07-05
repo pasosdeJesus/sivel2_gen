@@ -6,7 +6,7 @@ class CreateVisual < ActiveRecord::Migration[6.0]
       t.string :nav_ini
       t.string :nav_fin
       t.string :nav_fuente
-      t.string :list_back
+      t.string :fondo_lista
       t.date :fechacreacion, null: false
       t.date :fechadeshabilitacion
       t.timestamp :created_at, null: false

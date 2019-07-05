@@ -5,12 +5,18 @@
   To use Glyphicons sprites instead of Font Awesome, replace with "require twitter-bootstrap-static/sprites"
   =require font-awesome
  */
-
-<%=tema= Sivel2Gen::Visual.find(1)%>
-<%=barrai = '#' + tema.nav_ini%>
-<%=barraf = '#' + tema.nav_fin%>
-<%=barrafu = '#' + tema.nav_fuente%>
-<%=listafondo = '#' + tema.list_back%>
+<% if Sivel2Gen::Visual.count.zero? %>
+  <%=barrai = '#266DD3'%>
+  <%=barraf = '#266DD3'%>
+  <%=barrafu = '#FFFFFF'%>
+  <%=listafondo = '#266DD350'%>
+<% else %>
+  <%=tema= Sivel2Gen::Visual.find(1)%>
+  <%=barrai = '#' + tema.nav_ini%>
+  <%=barraf = '#' + tema.nav_fin%>
+  <%=barrafu = '#' + tema.nav_fuente%>
+  <%=listafondo = '#' + tema.fondo_lista%>
+<% end %>  
 
 .form-horizontal .control-label {
 	padding-right: 20px;

@@ -245,7 +245,7 @@ es:
         sectorsocial: Sectores sociales
         vinculoestado: Vínculos con el Estado
       "sivel2_gen/visual":
-        nav_ini: Color inicial
-        nav_fin: Color final
-        nav_fuente: Color de fuente
-        list_back: Color de fondo para listas
+        nav_ini: Color inicial de barra de navegación
+        nav_fin: Color final de barra de navegación
+        nav_fuente: Color de fuente de barra de navegación
+        fondo_lista: Color de fondo para listas

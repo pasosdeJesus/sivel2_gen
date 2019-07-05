@@ -2543,7 +2543,7 @@ CREATE TABLE public.sivel2_gen_visual (
     nav_ini character varying,
     nav_fin character varying,
     nav_fuente character varying,
-    list_back character varying,
+    fondo_lista character varying,
     fechacreacion date NOT NULL,
     fechadeshabilitacion date,
     created_at timestamp without time zone NOT NULL,

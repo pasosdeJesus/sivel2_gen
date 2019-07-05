@@ -21,7 +21,7 @@ module Sivel2Gen
           :nav_ini,
           :nav_fin,
           :nav_fuente,
-          :list_back,
+          :fondo_lista,
           :observaciones,
           :fechacreacion_localizada,
           :habilitado

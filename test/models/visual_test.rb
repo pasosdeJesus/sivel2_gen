@@ -1,4 +1,4 @@
-# encoding: UTF-8
+# frozen_string_literal: true
 
 require 'test_helper'
 
@@ -8,7 +8,7 @@ class VisualTest < ActiveSupport::TestCase
     nombre: "Visual",
     fechacreacion: "2019-06-18",
     created_at: "2019-06-18"
-  }
+  }.freeze
 
   test "valido" do
     Visual = ::Visual.create(
