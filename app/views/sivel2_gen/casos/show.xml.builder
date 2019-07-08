@@ -1,10 +1,9 @@
 	
    xml.instruct!
    if ENV['RAILS_ENV'] == 'test'
-        ruta= Dir.pwd
-	rdtd = ruta + '/test/dummy/public/relatos-097.dtd'
+     rdtd = 'test/dummy/public/relatos-097.dtd'
    else
-        rdtd = 'http://sincodh.pasosdejesus.org/relatos/relatos-097.dtd'
+     rdtd = 'http://sincodh.pasosdejesus.org/relatos/relatos-097.dtd'
    end
    
    xml.declare! :DOCTYPE, :relatos, :SYSTEM, rdtd
