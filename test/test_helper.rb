@@ -23,6 +23,24 @@ PRUEBA_USUARIO = {
   oficina_id: nil
 }
 
+class PruebaIntegracion < ActionDispatch::IntegrationTest
+
+    def guarda_xml(docu)
+      file = File.new('test/dummy/tmp/relatos.xrlat', 'wb')
+      file.write(docu)
+      file.close
+      file
+    end
+
+    def verifica_dtd(docu)
+      options = Nokogiri::XML::ParseOptions::DTDVALID
+      doc = Nokogiri::XML::Document.parse(docu, nil, nil, options)
+      puts doc.external_subset.validate(doc)
+      assert_empty doc.external_subset.validate(doc)
+    end
+
+end
+
 class ActiveSupport::TestCase
   # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
   fixtures :all

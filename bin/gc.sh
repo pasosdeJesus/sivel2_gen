@@ -13,7 +13,7 @@ function cableado {
 	done
 }
 
-d=`grep "gem.*pasosdeJesus" Gemfile | sed -e "s/gem ['\"]//g;s/['\"].*//g"`
+d=`grep "gem.*pasosdeJesus" Gemfile | sed -e "s/.*gem ['\"]//g;s/['\"].*//g"`
 cableado $d
 
 grep "^ *gem *.debugger*" Gemfile > /dev/null 2> /dev/null
@@ -63,6 +63,14 @@ if (test "$?" != "0") then {
 	echo "No pasaron pruebas de regresion";
 	exit 1;
 } fi;
+
+for i in test/integration/*rb; do 
+	CONFIG_HOSTS=www.example.com bin/rails test $i; 
+	if (test "$?" != "0") then {
+		echo "No paso prueba de intregacion $i";
+		exit 1;
+	} fi;
+done;
 
 (cd test/dummy; RAILS_ENV=test bin/rails db:structure:dump)
 
