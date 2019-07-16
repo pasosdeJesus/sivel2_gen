@@ -1,6 +1,7 @@
 GIT
   remote: https://github.com/pasosdeJesus/heb412_gen.git
-  revision: dc7f7f68f668dbf988f1ef87f51128e2477a6975
+  revision: 62e91c163f4c7ad319aec8458c831559606742c8
+  branch: temas
   specs:
     heb412_gen (1.0.b6)
       chosen-rails
@@ -12,7 +13,8 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/mr519_gen.git
-  revision: cfd26b89ab12af424e9f59f3365f0e73844e9de3
+  revision: 44735034a866326df25ef651814e98b6cc48b4cf
+  branch: temas
   specs:
     mr519_gen (0.2.0)
       rails (~> 6.0.0.rc1, >= 6.0.0.rc1)
@@ -20,7 +22,8 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sip.git
-  revision: 6a7f927fde50807da9389f7f9fb3d80e78f585e4
+  revision: 53ac6cc5bbf8a605d11b6c2633c142e7df837faa
+  branch: temas
   specs:
     sip (2.0.b6)
       bootstrap-datepicker-rails
@@ -117,7 +120,7 @@ GEM
       zeitwerk (~> 2.1, >= 2.1.4)
     andand (1.3.3)
     bcrypt (3.1.13)
-    bindex (0.7.0)
+    bindex (0.8.1)
     bootsnap (1.4.4)
       msgpack (~> 1.0)
     bootstrap-datepicker-rails (1.8.0.1)
@@ -207,6 +210,10 @@ GEM
       terrapin (~> 0.6.0)
     pdf-core (0.7.0)
     pg (1.1.4)
+    pick-a-color-rails (0.0.1)
+      jquery-rails
+      railties (>= 3.0)
+      tiny-color-rails
     prawn (2.2.2)
       pdf-core (~> 0.7.0)
       ttfunk (~> 1.5)
@@ -218,7 +225,7 @@ GEM
     pry (0.12.2)
       coderay (~> 1.1.0)
       method_source (~> 0.9.0)
-    puma (4.0.0)
+    puma (4.0.1)
       nio4r (~> 2.0)
     rack (2.0.7)
     rack-proxy (0.6.5)
@@ -307,6 +314,8 @@ GEM
     thor (0.20.3)
     thread_safe (0.3.6)
     tilt (2.0.9)
+    tiny-color-rails (0.0.2)
+      railties (>= 3.0)
     ttfunk (1.5.1)
     turbolinks (5.2.0)
       turbolinks-source (~> 5.2)
@@ -367,6 +376,7 @@ DEPENDENCIES
   odf-report
   paperclip
   pg
+  pick-a-color-rails
   prawn
   prawn-table
   prawnto_2
@@ -383,6 +393,7 @@ DEPENDENCIES
   simplecov
   sip!
   thor
+  tiny-color-rails
   turbolinks
   twitter-bootstrap-rails
   twitter_cldr
