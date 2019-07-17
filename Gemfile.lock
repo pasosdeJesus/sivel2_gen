@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/pasosdeJesus/heb412_gen.git
-  revision: 50f8620c641746fde1ee99f3862cc017d8313bf6
+  revision: 0d3aa9611e797c6441b930c0a92851469f31962a
   specs:
     heb412_gen (1.0.b6)
       chosen-rails
@@ -20,7 +20,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sip.git
-  revision: 1c0790c8944815d8f5cddcf96579177fd03bb70d
+  revision: d4f9c932c91990455535d06609782bd182cbb76c
   specs:
     sip (2.0.b6)
       bootstrap-datepicker-rails
