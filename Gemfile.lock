@@ -1,7 +1,6 @@
 GIT
   remote: https://github.com/pasosdeJesus/heb412_gen.git
-  revision: 62e91c163f4c7ad319aec8458c831559606742c8
-  branch: temas
+  revision: 50f8620c641746fde1ee99f3862cc017d8313bf6
   specs:
     heb412_gen (1.0.b6)
       chosen-rails
@@ -13,8 +12,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/mr519_gen.git
-  revision: 44735034a866326df25ef651814e98b6cc48b4cf
-  branch: temas
+  revision: 2fc3980594dfb364950a10638eecf55604e0becc
   specs:
     mr519_gen (0.2.0)
       rails (~> 6.0.0.rc1, >= 6.0.0.rc1)
@@ -22,8 +20,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sip.git
-  revision: 53ac6cc5bbf8a605d11b6c2633c142e7df837faa
-  branch: temas
+  revision: 1c0790c8944815d8f5cddcf96579177fd03bb70d
   specs:
     sip (2.0.b6)
       bootstrap-datepicker-rails
@@ -348,7 +345,7 @@ GEM
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.4)
     will_paginate (3.1.7)
-    zeitwerk (2.1.8)
+    zeitwerk (2.1.9)
 
 PLATFORMS
   ruby
