@@ -1,6 +1,6 @@
 json.set! @caso.id do 
-json.latitudi "eje"
-json.longitud "eje"
-json.titulo "eje"
-json.hora "eje"
+json.latitud @caso.ubicacion.latitud
+json.longitud @caso.ubicacion.longitud
+json.titulo @caso.titulo
+json.hora @caso.hora
 end
