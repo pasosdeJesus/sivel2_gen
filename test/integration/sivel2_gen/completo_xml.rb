@@ -11,8 +11,6 @@ module Sivel2Gen
     include Engine.routes.url_helpers
 
     setup do
-      @current_usuario = ::Usuario.create(PRUEBA_USUARIO)
-      sign_in @current_usuario
       @routes = Engine.routes
     end
 

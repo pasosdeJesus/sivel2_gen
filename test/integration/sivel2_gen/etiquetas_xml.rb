@@ -11,7 +11,6 @@ module Sivel2Gen
 
     setup do
       @current_usuario = ::Usuario.create(PRUEBA_USUARIO)
-      sign_in @current_usuario
       @routes = Engine.routes
     end
 
