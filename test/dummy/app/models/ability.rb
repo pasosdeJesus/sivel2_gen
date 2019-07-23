@@ -6,9 +6,24 @@ class Ability  < Sivel2Gen::Ability
   def initialize(usuario = nil)
     # Sin autenticación puede consultarse información geográfica 
     can :read, [Sip::Pais, Sip::Departamento, Sip::Municipio, Sip::Clase]
+
+    # La consulta web es publica dependiendo de 
+    # Rails.application.config.x.sivel2_consulta_web_publica  
+    can :buscar, Sivel2Gen::Caso
+    can :contar, Sivel2Gen::Caso
+    can :lista, Sivel2Gen::Caso
+   
+    # API público 
+    # Mostrar un caso con casos/101
+    # Mostrar un caso con casos/101.xml
+    # Mostrar un caso con casos/101.xrlat
+    can :show, Sivel2Gen::Caso
+
     if !usuario || usuario.fechadeshabilitacion
       return
     end
+
+    # Los siguientes son para todo autenticado
     can :read, Sip::Actorsocial
 
     can :descarga_anexo, Sip::Anexo
@@ -16,12 +31,6 @@ class Ability  < Sivel2Gen::Ability
     can :contar, Sip::Ubicacion
     can :nuevo, Sip::Ubicacion
    
-    # La consulta web es publica dependiendo de 
-    # Rails.application.config.x.sivel2_consulta_web_publica  
-    can :buscar, Sivel2Gen::Caso
-    can :contar, Sivel2Gen::Caso
-    can :lista, Sivel2Gen::Caso
-
     can :nuevo, Sivel2Gen::Combatiente
 
     can :nuevo, Sivel2Gen::Presponsable

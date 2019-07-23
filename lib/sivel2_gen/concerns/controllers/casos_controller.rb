@@ -9,7 +9,8 @@ module Sivel2Gen
 
         included do
           before_action :set_caso, only: [:show, :edit, :update, :destroy]
-          load_and_authorize_resource class: Sivel2Gen::Caso, except: [:index]
+          load_and_authorize_resource class: Sivel2Gen::Caso, 
+            except: [:index, :show]
           helper Sip::UbicacionHelper
 
 
@@ -463,9 +464,10 @@ module Sivel2Gen
             if @registro.respond_to?('current_usuario=')
               @registro.current_usuario = current_usuario
             end
-            if cannot? :show, @registro
+            if cannot?(:show, Sivel2Gen::Caso) && cannot?(:show, @registro)
               # Supone alias por omision de https://github.com/CanCanCommunity/cancancan/blob/develop/lib/cancan/ability/actions.rb
               authorize! :read, @registro
+              return
             end
             show_plantillas
 
