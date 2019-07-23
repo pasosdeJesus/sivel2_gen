@@ -468,8 +468,22 @@ module Sivel2Gen
               authorize! :read, @registro
             end
             show_plantillas
-            render layout: 'application', locals: { caso: @caso }
+
+            respond_to do |format|
+              format.html { 
+                render layout: 'application', locals: { caso: @caso }
+              }
+              format.xrlat {
+                xml = render_to_string  action: 'show.xml', locals: { caso: @caso }
+                send_data xml, :type=>"text/xml"
+              }
+              format.xml {
+                render 'show.xml', locals: { caso: @caso }
+              }
+            end
+
           end
+
           # DELETE /casos/1
           # DELETE /casos/1.json
           def destroy
