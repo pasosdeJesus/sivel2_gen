@@ -143,7 +143,7 @@ module Sivel2Gen
                 |c| [c.nombremenu, c.id] }
             @plantillas += [
               ['Reporte Revista HTML', 'reprevista.html'],
-              ['Reporte Revista Xrlat', 'reprevista.xrlat']
+              ['Exportar a XRLAT (XML)', 'reprevista.xrlat']
             ]
           end
        
