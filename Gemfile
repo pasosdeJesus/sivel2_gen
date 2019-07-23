@@ -51,6 +51,9 @@ gem 'redcarpet'
 gem 'libxml-ruby'#
 gem 'rspreadsheet'
 
+# Facilita elegir colores en tema
+gem 'pick-a-color-rails'
+gem 'tiny-color-rails'
 
 # Formularios simples 
 gem 'simple_form'
