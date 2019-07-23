@@ -7,7 +7,12 @@ end
 
 xml.declare! :DOCTYPE, :relatos, :SYSTEM, rdtd
 xml.relatos do
-  xml << render(:partial => 'sivel2_gen/casos/caso.xrlat', :locals => { :caso => caso} ).gsub(/^/, '     ')
 
+  @conscaso.try(:each) do |conscaso|
+    caso= conscaso.caso
+    xml << render(:partial => 'sivel2_gen/casos/caso.xrlat', :locals => { :caso => caso} ).gsub(/^/, '     ')
+
+  end
 end
+
 

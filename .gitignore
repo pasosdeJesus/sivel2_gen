@@ -39,3 +39,4 @@ coverage
 test/dummy/archivos/
 test/dummy/node_modules/
 bin/c.sh
+test/dummy/bin/c.sh
