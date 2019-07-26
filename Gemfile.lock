@@ -1,16 +1,4 @@
 GIT
-  remote: https://github.com/pasosdeJesus/heb412_gen.git
-  revision: b2eb4b6f1a6a182e2c44cab2e7cef7e3e876e969
-  specs:
-    heb412_gen (1.0.b6)
-      chosen-rails
-      font-awesome-rails
-      mr519_gen
-      redcarpet
-      rspreadsheet
-      sip
-
-GIT
   remote: https://github.com/pasosdeJesus/mr519_gen.git
   revision: 2177ec45f4f3e35f7c59fb5db03ebb9be649347e
   specs:
@@ -56,6 +44,17 @@ GIT
   branch: new_id_with_ajax
   specs:
     cocoon (1.2.11)
+
+PATH
+  remote: ../heb412_gen
+  specs:
+    heb412_gen (1.0.b6)
+      chosen-rails
+      font-awesome-rails
+      mr519_gen
+      redcarpet
+      rspreadsheet
+      sip
 
 GEM
   remote: https://rubygems.org/
@@ -123,6 +122,7 @@ GEM
     bootstrap-datepicker-rails (1.8.0.1)
       railties (>= 3.0)
     builder (3.2.3)
+    byebug (11.0.1)
     camertron-eprun (1.1.1)
     cancancan (3.0.1)
     choice (0.2.0)
@@ -354,6 +354,7 @@ DEPENDENCIES
   bcrypt
   bootsnap (>= 1.1.0)
   bootstrap-datepicker-rails
+  byebug
   cancancan
   chosen-rails!
   cocoon!

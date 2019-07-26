@@ -144,7 +144,8 @@ module Sivel2Gen
                 |c| [c.nombremenu, c.id] }
             @plantillas += [
               ['Reporte Revista HTML', 'reprevista.html'],
-              ['Exportar a XRLAT( XML)', 'reprevista.xrlat']
+              ['Exportar a XRLAT( XML)', 'reprevista.xrlat'],
+              ['Reporte JSON', 'reprevista.json']
             ]
           end
        
@@ -312,6 +313,10 @@ module Sivel2Gen
                 return
               }
 
+              format.json {
+                render 'reprevista.json'
+                return
+              }
               format.xrlat {
                 render 'reprevista.xrlat'
                 return
@@ -474,6 +479,9 @@ module Sivel2Gen
             respond_to do |format|
               format.html { 
                 render layout: 'application', locals: { caso: @caso }
+              }
+              format.json {
+                render 'show.json', locals: { caso: @caso }
               }
               format.xrlat {
                 xml = render_to_string  action: 'show.xml', locals: { caso: @caso }
