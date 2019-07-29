@@ -1,6 +1,18 @@
 GIT
+  remote: https://github.com/pasosdeJesus/heb412_gen.git
+  revision: a50289c220992a42db84b9c6020b7900825ceb7a
+  specs:
+    heb412_gen (1.0.b6)
+      chosen-rails
+      font-awesome-rails
+      mr519_gen
+      redcarpet
+      rspreadsheet
+      sip
+
+GIT
   remote: https://github.com/pasosdeJesus/mr519_gen.git
-  revision: 2177ec45f4f3e35f7c59fb5db03ebb9be649347e
+  revision: 32b0ea2dfc779c0e6d1fcbd1beb1ffd071233d30
   specs:
     mr519_gen (0.2.0)
       rails (~> 6.0.0.rc1, >= 6.0.0.rc1)
@@ -8,7 +20,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sip.git
-  revision: 774a7862619d928c74ae58cf6b26316382fd9d1c
+  revision: 751012a3f07ea740c986ba9542036f5e857b25b6
   specs:
     sip (2.0.b6)
       bootstrap-datepicker-rails
@@ -44,17 +56,6 @@ GIT
   branch: new_id_with_ajax
   specs:
     cocoon (1.2.11)
-
-PATH
-  remote: ../heb412_gen
-  specs:
-    heb412_gen (1.0.b6)
-      chosen-rails
-      font-awesome-rails
-      mr519_gen
-      redcarpet
-      rspreadsheet
-      sip
 
 GEM
   remote: https://rubygems.org/
@@ -122,7 +123,6 @@ GEM
     bootstrap-datepicker-rails (1.8.0.1)
       railties (>= 3.0)
     builder (3.2.3)
-    byebug (11.0.1)
     camertron-eprun (1.1.1)
     cancancan (3.0.1)
     choice (0.2.0)
@@ -271,7 +271,7 @@ GEM
     rb-fsevent (0.10.3)
     rb-inotify (0.10.0)
       ffi (~> 1.0)
-    redcarpet (3.4.0)
+    redcarpet (3.5.0)
     responders (3.0.0)
       actionpack (>= 5.0)
       railties (>= 5.0)
@@ -354,7 +354,6 @@ DEPENDENCIES
   bcrypt
   bootsnap (>= 1.1.0)
   bootstrap-datepicker-rails
-  byebug
   cancancan
   chosen-rails!
   cocoon!
@@ -402,4 +401,4 @@ DEPENDENCIES
   will_paginate
 
 BUNDLED WITH
-   2.0.1
+   2.0.2

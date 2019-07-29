@@ -15,7 +15,6 @@ Sivel2Gen::Engine.routes.draw do
   get '/casos/nuevaubicacion' => 'casos#nueva_ubicacion'
   get '/casos/nuevavictima' => 'casos#nueva_victima'
   get '/casos/nuevopresponsable' => 'casos#nuevo_presponsable'
-  get '/casos/basicos' => 'casos#repbasicos'
   get '/combatientes/nuevo' => 'combatientes#nuevo'
   get "/conteos/genvic" => 'conteos#genvic', as: :conteos_genvic
   get "/conteos/personas" => 'conteos#personas', as: :conteos_personas
