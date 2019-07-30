@@ -1,1 +1,3 @@
-json.extract! @caso, :id, :titulo, :fecha, :hora, :duracion, :memo, :grconfiabilidad, :gresclarecimiento, :grimpunidad, :grinformacion, :bienes, :id_intervalo, :created_at, :updated_at
+# frozen_string_literal: true
+
+json.partial! 'sivel2_gen/casos/caso'
