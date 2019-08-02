@@ -85,6 +85,9 @@ gem 'prawn-table'
 # Zonas horarias
 gem 'tzinfo'
 
+# Google Maps
+gem 'gmaps4rails'
+
 # Motor estilo Pasos de Jesús
 gem 'sip', git: 'https://github.com/pasosdeJesus/sip.git'
 #gem 'sip', path: '../sip'
@@ -114,7 +117,7 @@ end
 
 group  :development, :test do
   # Depurar
-  # gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'simplecov'
   gem 'rails-controller-testing'
   gem 'pry'

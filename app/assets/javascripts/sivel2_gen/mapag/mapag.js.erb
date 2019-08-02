@@ -1,0 +1,190 @@
+var map = null;
+var mc = null;
+var markersClusterer= []
+var bounds; 
+var mcOptions = {gridSize: 40, maxZoom: 10, imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'}; //Configuracion de MarkerClusterer
+
+function showLoader() {
+    $('#loader').show();
+}
+
+function hideLoader() {
+    $('#loader').hide();
+}
+
+function showAll(){
+  map.fitBounds(bounds);
+  map.setCenter(bounds.getCenter());
+  var bListener = 
+    google.maps.event.addListener(map, 'bounds_changed', function(event) {
+      if(this.getZoom() > 13){
+        this.setZoom(13);
+      }
+    });
+  setTimeout(function(){google.maps.event.removeListener(bListener)}, 2000);
+}
+
+function initialize() {
+  var mapOptions = {
+    zoom: 7,
+    mapTypeControl: true,
+    largeMapControl: true, 
+    scaleControl: true,
+    overviewMapControl: true,
+    center: {lat: 8.3190, lng: -72.4487},
+    mapTypeId: google.maps.MapTypeId.HYBRID
+  }
+  map = new google.maps.Map(
+    document.getElementById('map_canvas'), 
+    mapOptions);
+  
+  window.setTimeout(addCases, 0);
+}
+
+function downloadUrl(url, callback) {
+  var request = window.ActiveXobject ?
+    new ActiveXObject('Microsoft.XMLHTTP') : new XMLHttpRequest;
+  request.onreadystatechange = function() {
+    if (request.readyState == 4) {
+      callback(request);
+    }
+  };
+  request.open('GET', url, true);
+  request.send(null);
+}
+
+function addCases(refresh) {
+
+  bounds = new google.maps.LatLngBounds();
+
+  var desde = $('#inputDesde').val();
+  var hasta = $('#inputHasta').val();
+  var departamento = $('#departamento').val();
+  var prresp = $('#presponsable').val();
+  var tvio = $('#tvio').val();
+   
+  var requestUrl = '/sivel2/casos.json?utf8=' + '&filtro[fechaini]=' + desde + '&filtro[fechafin]=' + hasta;
+  if (departamento != undefined && departamento != 0){
+    requestUrl += '&filtro[departamento_id]=' + departamento;
+  }
+  if (prresp != undefined && prresp != 0){
+    requestUrl += '&filtro[presponsable_id]=' + prresp;
+  }
+  if (tvio != undefined && tvio != 0){
+    requestUrl += '&filtro[categoria_id]=' + tvio;
+  }
+  if (refresh == true) {
+    markersClusterer.length = 0;
+    mc.clearMarkers();
+  };
+  console.log(requestUrl);
+  showLoader();
+  downloadUrl(requestUrl, function(req) {
+    data = req.responseText;
+  console.log(data);
+    if (data == null || data.substr(0, 1) != '{'){
+     hideLoader();
+     $('#nrcasos').html("0");
+      window.alert("El URL" + requestUrl + "no retorno informacion JSON.\n\n" + data);
+      return;
+    }
+    var o = jQuery.parseJSON(data);
+    var numResult = 0;
+    for(var codigo in o) {
+      numResult++;
+      var lat = o[codigo].latitud;
+      var lng = o[codigo].longitud;
+      var titulo= o[codigo].titulo;
+      var fecha = o[codigo].fecha;
+   
+     if (lat != null || lng != null){
+      var point = new google.maps.LatLng(parseFloat(lat),
+        parseFloat(lng));
+      var title = fecha + ": " + titulo;
+      var marker = createMarker(point, codigo, title);
+      markersClusterer.push(marker);
+      }
+     
+    }
+  $('#nrcasos').html('(<strong>' + numResult + '</strong> casos mostrados)');
+  mc = new MarkerClusterer(map, markersClusterer, mcOptions)
+    showAll()
+    hideLoader();
+  });
+}
+
+function createMarker(point, codigo, title) {
+
+    var image = new google.maps.MarkerImage("https://cdn3.iconfinder.com/data/icons/map-markers-2/512/marker_2-512.png",
+   
+    new google.maps.Size(20,20),
+    new google.maps.Point(10,5),
+    new google.maps.Point(9,9));
+
+  var marker = new google.maps.Marker({
+    map: map,
+    position: point,
+//    icon: image, 
+    title: title,
+  });
+ bounds.extend(point);
+
+  google.maps.event.addListener(marker, 'click', function() {
+    showLoader();
+    requestUrl = "/sivel2/casos" + codigo + ".json";  
+    downloadUrl(requestUrl, function(req) {
+      data = req.responseText;
+
+      var descripcionCont = '<div class="infowindowcont"><h3>' 
+        + titulo + '</h3>' + hechos + '</div>';
+
+      var hechosCont = '<div class="infowindowcont"><table>';
+      hechosCont += (fecha != "") ? '<tr><td>Fecha:</td><td>' 
+        + fecha + '</td></tr>' : '';
+      hechosCont += (hora != "") ? '<tr><td>Hora:</td><td>' 
+        + hora + '</td></tr>' : '';
+      hechosCont += (departamento != "") ? 
+        '<tr><td>Departamento:</td><td>' 
+        + departamento + '</td></tr>' : '';
+      hechosCont += (municipio != "") ? 
+        '<tr><td>Municipio:</td><td>' 
+        + municipio + '</td></tr>' : '';
+      hechosCont += (centro_poblado != "") ? 
+        '<tr><td>Centro Poblado:</td><td>' 
+        + centro_poblado + '</td></tr>' : '';
+      hechosCont += (codigo != "") ? 
+        '<tr><td>Codigo:</td><td>' 
+        + codigo + '</td></tr>' : '';
+      hechosCont += '</table></div>';
+
+      var victimasCont = '<div class="infowindowcont"><table>'
+        + '<tr><td>Victimas:</td><td>';
+      for(var cv in victimas) {
+        var victima = victimas[cv];
+        victimasCont += (victima != "") ? victima 
+          + '<br />' : 'SIN INFORMACIÓN';
+      }
+
+      victimasCont += '</td></tr><tr>'
+        + '<td>Presuntos Responsables:</td><td>';
+      for(var cp in prresp) {
+        var prrespel = prresp[cp];
+        victimasCont += (prrespel != "") ? prrespel 
+          + '<br />' : 'SIN INFORMACIÓN';
+      }
+      victimasCont += '</td></tr></table>';
+      info = new InfoBubble({
+        maxWidth: 400,
+      });
+      info.addTab('Descripción', descripcionCont);
+      info.addTab('Datos', hechosCont);
+      info.addTab('Víctimas', victimasCont);
+      info.open(map, marker);
+
+      hideLoader();
+
+    });
+
+  });
+  return marker;
+}

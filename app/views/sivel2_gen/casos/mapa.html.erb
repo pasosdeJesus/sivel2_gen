@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv = "content-type" content="text/html; charset=utf8"/>
+    <title>Mapa de violaciones a los derechos humanos e infracciones al
+      derecho internacional humanitario</title>
+
+    <!-- Elementos de interfaz -->
+    <% stylesheet_link_tag "stylesheets/sivel2_gen/mapa.css" %>
+    <link rel="stylesheet" media="screen" type="text/css"
+                                          href="https://cdn.rawgit.com/pasosdeJesus/js/master/www.eyecon.ro_Stefan_Petre/datepicker.css" />
+    <script type="text/javascript"
+            src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js">
+    </script>
+    <script type="text/javascript"
+            src="https://cdn.rawgit.com/pasosdeJesus/js/master/www.eyecon.ro_Stefan_Petre/datepicker.js">
+    </script>
+    <script type="text/javascript"
+            src="https://cdn.rawgit.com/pasosdeJesus/js/master/www.eyecon.ro_Stefan_Petre/eye.js">
+    </script>
+    <script type="text/javascript"
+      src="https://cdn.rawgit.com/pasosdeJesus/js/master/www.eyecon.ro_Stefan_Petre/utils.js">
+    <script src= "https://github.com/googlemaps/js-info-bubble/blob/gh-pages/src/infobubble.js">
+    </script>
+    <!-- script type = "text/javascript"
+      src = "modulos/mapag/js/datepicker_mapa.js"></script -->
+    <!-- Mapas -->
+  </head>
+  <body>
+  
+    <div id="container">
+      <div id="map_canvas"></div>
+      <% javascript_include_tag "javascript/sivel2_gen/mapag/mapag.js.erb" %>
+  <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js">
+        </script>
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDVATZz-dHXuzNkySAo1O2VQ30ixzhwf7w&language=es&region=CO&callback=initialize">
+    </script>
+     <div id="settings_canvas">
+        <div id="loader" style="display:none;"></div>
+        <form name="settings" onsubmit="addCases(true); return false;">
+          <input name="num" type="hidden" value="200" />
+          <div class="settings_box" id="settings_box1">
+            <h3>Fecha</h3>
+            <div class="settings_element">
+              <div class="left">Desde:</div>
+              <div class="right">
+                <input type="text" name="desde" class="inputDesde"
+                                                id="inputDesde"
+                                                value=""
+                                                size="11" style="float:right;" />
+              </div>
+              <div class="clear"></div>
+            </div>
+            <div class="settings_element">
+              <div class="left">Hasta:</div>
+              <div class="right">
+                <input type="text" name="hasta" class="inputHasta"
+                                                id="inputHasta"
+                                                value=""
+                                                size="11" style="float:right;" />
+              </div>
+              <div class="clear"></div>
+            </div>
+          </div>
+          <div class="settings_box" id="settings_box2">
+            <h3>Localización</h3>
+            <div class="settings_element">
+              <div class="left">Dep:</div>
+              <div class="right">
+                  <select name="departamento" id="departamento"
+                                            style="width:140px;">
+                  <option value="0">Mostrar todos</option>
+                  <option value="">-----------------------</option>
+                  <%= options_for_select(Sip::Departamento.habilitados.where(id_pais: 170).all.collect { |d| [d.nombre, d.id ] })
+                  %> 
+                </select>
+              </div>
+            </div>
+            <div class="clear"></div>
+          </div>
+          <div class="settings_box" id="settings_box3">
+            <h3>Otros Filtros</h3>
+            <div class="settings_element">
+              <div class="left">P. Resp:</div>
+              <div class="right">
+                <select name="prresp" id="prresp" style="width:150px;">
+                  <option value="0">Mostrar todos</option>
+                  <option value="">-----------------------</option>
+                  <%= options_for_select(Sivel2Gen::Presponsable.all.collect { |d| [d.nombre, d.id ] }) %>
+                </select>
+              </div>
+            </div>
+            <div class="settings_element">
+              <div class="left">Violencia:</div>
+               <div class="right">
+                 <select name="tvio" id="tvio" style="width:150px;">
+                   <option value="0">Mostrar todos</option>
+                   <option value="">-----------------------</option>
+                   <%= options_for_select(Sivel2Gen::Categoria.all.collect { |d| [d.nombre, d.id ] })%>
+                 </select>
+              </div>
+            </div>
+
+            <div class="settings_element">
+              <div class="left">Etiqueta:</div>
+              <div class="right">
+                <select name="etiqueta" id="etiqueta" style="width:150px;">
+                  <option value="0">Mostrar todos</option>
+                
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="clear"></div>
+          <div class="submit_box">
+            <input type="button" class="button" value="Filtrar casos"
+            onclick="addCases(true); return false;"/>
+            <span id="nrcasos" class="nrcasos"></span>
+          </div>
+        </form>
+      </div>
+
+    </div>
+    
+  </body>
+
+</html>
