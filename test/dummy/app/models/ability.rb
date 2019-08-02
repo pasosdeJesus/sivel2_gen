@@ -8,16 +8,20 @@ class Ability  < Sivel2Gen::Ability
     can :read, [Sip::Pais, Sip::Departamento, Sip::Municipio, Sip::Clase]
 
     # La consulta web es publica dependiendo de 
-    # Rails.application.config.x.sivel2_consulta_web_publica  
-    can :buscar, Sivel2Gen::Caso
-    can :contar, Sivel2Gen::Caso
-    can :lista, Sivel2Gen::Caso
+    if Rails.application.config.x.sivel2_consulta_web_publica  
+      can :buscar, Sivel2Gen::Caso
+      can :contar, Sivel2Gen::Caso
+      can :lista, Sivel2Gen::Caso
    
-    # API público 
-    # Mostrar un caso con casos/101
-    # Mostrar un caso con casos/101.xml
-    # Mostrar un caso con casos/101.xrlat
-    can :show, Sivel2Gen::Caso
+      # API público 
+      # Mostrar un caso con casos/101
+      # Mostrar un caso en XML - HTML con casos/101.xml
+      # Mostrar un caso en XML para descarga casos/101.xrlat
+      can :show, Sivel2Gen::Caso
+
+      #Mostrar hasta 4000 casos
+      can :index4000, Sivel2Gen::Caso
+    end
 
     if !usuario || usuario.fechadeshabilitacion
       return
