@@ -145,7 +145,7 @@ module Sivel2Gen
             @plantillas += [
               ['Reporte Revista HTML', 'reprevista.html'],
               ['Exportar a XRLAT( XML)', 'reprevista.xrlat'],
-              ['Reporte JSON', 'reprevista.json']
+              ['Exportar a JSON', 'reprevista.json']
             ]
           end
        
