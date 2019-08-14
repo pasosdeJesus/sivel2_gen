@@ -6,6 +6,6 @@ json.set! caso.id do
     json.latitud lat
     json.longitud lon
   end
-json.titulo caso.titulo
-json.fecha caso.fecha
+  json.titulo caso.titulo
+  json.fecha caso.fecha
 end

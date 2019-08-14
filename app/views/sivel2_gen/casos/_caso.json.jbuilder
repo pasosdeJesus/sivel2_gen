@@ -17,12 +17,12 @@ json.caso do
   end
   json.presponsables do
     @caso.presponsable.each do |pr|
-      json.set! pr.id, pr.nombre if (pr.id && pr.nombre)
+      json.set! pr.id, pr.nombre if pr.id && pr.nombre
     end
   end
-  json.victimas do 
+  json.victimas do
     @caso.victima.each do |v|
     json.set! v.persona.id, v.persona.nombres + ' ' + v.persona.apellidos
-    end  
+    end
   end
 end
