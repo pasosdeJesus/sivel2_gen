@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/pasosdeJesus/heb412_gen.git
-  revision: 82ba6a2f9a829cf03d85e1b784d4abd4cbf80a80
+  revision: 951bd482a122f43737970f9e779734a00f0c1573
   specs:
     heb412_gen (1.0.b6)
       chosen-rails
@@ -12,7 +12,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/mr519_gen.git
-  revision: a247f6404dae09cf8e41b48ae9b2ee6dccc12adb
+  revision: 4408c4cbabf981b83370e45c23103324e45f0ae8
   specs:
     mr519_gen (0.2.0)
       rails (~> 6.0.0.rc1, >= 6.0.0.rc1)
@@ -20,7 +20,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sip.git
-  revision: 72d5507db91ca1e700a8459a18cf10658642751d
+  revision: 133e85eeff1e5ae8e807abbe3c81f51bb0f68608
   specs:
     sip (2.0.b6)
       bootstrap-datepicker-rails
@@ -193,7 +193,7 @@ GEM
     minitest (5.11.3)
     msgpack (1.3.1)
     nio4r (2.4.0)
-    nokogiri (1.10.3)
+    nokogiri (1.10.4)
       mini_portile2 (~> 2.4.0)
     odf-report (0.6.0)
       nokogiri (>= 1.5.0)
@@ -222,7 +222,7 @@ GEM
     pry (0.12.2)
       coderay (~> 1.1.0)
       method_source (~> 0.9.0)
-    puma (4.0.1)
+    puma (4.1.0)
       nio4r (~> 2.0)
     rack (2.0.7)
     rack-proxy (0.6.5)
@@ -256,7 +256,7 @@ GEM
       activesupport (>= 4.2)
       choice (~> 0.2.0)
       ruby-graphviz (~> 1.2)
-    rails-html-sanitizer (1.1.0)
+    rails-html-sanitizer (1.2.0)
       loofah (~> 2.2, >= 2.2.2)
     rails-i18n (5.1.3)
       i18n (>= 0.7, < 2)
