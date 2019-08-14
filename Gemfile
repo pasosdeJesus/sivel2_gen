@@ -43,16 +43,16 @@ gem 'uglifier'
 gem 'chosen-rails', git: 'https://github.com/vtamara/chosen-rails.git', branch: 'several-fixes'
 
 # jquery como librería JavaScript
-gem 'jquery-rails'
+gem 'jquery-rails', '>= 4.3.5'
 gem 'jquery-ui-rails'
 
-gem 'odf-report'
+gem 'odf-report', '>= 0.6.0'
 gem 'redcarpet'
 gem 'libxml-ruby'#
 gem 'rspreadsheet'
 
 # Facilita elegir colores en tema
-gem 'pick-a-color-rails'
+gem 'pick-a-color-rails', '>= 0.0.1'
 gem 'tiny-color-rails'
 
 # Formularios simples 
@@ -109,7 +109,7 @@ group :development do
   gem 'web-console'
   # para validar xml
   gem 'compare-xml', '~> 0.5.2'
-  gem 'nokogiri', '~> 1.6', '>= 1.6.8'
+  gem 'nokogiri', '~> 1.10', '>= 1.10.4'
 end
 
 group  :development, :test do
