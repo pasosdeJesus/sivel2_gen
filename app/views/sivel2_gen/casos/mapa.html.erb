@@ -20,8 +20,7 @@
     </script>
     <script type="text/javascript"
       src="https://cdn.rawgit.com/pasosdeJesus/js/master/www.eyecon.ro_Stefan_Petre/utils.js">
-    <script src= "https://github.com/googlemaps/js-info-bubble/blob/gh-pages/src/infobubble.js">
-    </script>
+
     <!-- script type = "text/javascript"
       src = "modulos/mapag/js/datepicker_mapa.js"></script -->
     <!-- Mapas -->
@@ -32,10 +31,18 @@
       <div id="map_canvas"></div>
       <% javascript_include_tag "javascript/sivel2_gen/mapag/mapag.js.erb" %>
   <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js">
-        </script>
+  </script>
     <script async defer
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDVATZz-dHXuzNkySAo1O2VQ30ixzhwf7w&language=es&region=CO&callback=initialize">
     </script>
+  <!--  <script>
+    var script = '<script src="https://github.com/googlemaps/js-info-bubble/blob/gh-pages/src/infobubble';
+      if (document.location.search.indexOf('compiled') !== -1) {
+                                            script += '-compiled';
+                                          }
+                                          script += '.js"><' + '/script>';
+                                          document.write(script);
+    </script> -->
      <div id="settings_canvas">
         <div id="loader" style="display:none;"></div>
         <form name="settings" onsubmit="addCases(true); return false;">

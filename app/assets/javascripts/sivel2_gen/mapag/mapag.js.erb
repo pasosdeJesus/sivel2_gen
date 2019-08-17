@@ -131,9 +131,29 @@ function createMarker(point, codigo, title) {
 
   google.maps.event.addListener(marker, 'click', function() {
     showLoader();
-    requestUrl = "/sivel2/casos" + codigo + ".json";  
+    requestUrl = "/sivel2/casos/" + codigo + ".json";  
     downloadUrl(requestUrl, function(req) {
       data = req.responseText;
+
+      //window.alert(data);
+      if (data == null || data.substr(0, 1) != '{') {
+        hideLoader();
+        window.alert("El URL " + requestUrl 
+          + " no retorno detalles del caso\n " + data);
+        return;
+      }
+      var o = jQuery.parseJSON(data);
+
+      var id = o["caso"].id;
+      var titulo = o["caso"].titulo; 
+      var hechos = o["caso"].hechos; 
+      var fecha = o["caso"].fecha; 
+      var hora = o["caso"].hora; 
+      var departamento = o["caso"].departamento; 
+      var municipio = o["caso"].municipio; 
+      var centro_poblado = o["caso"].centro_poblado;
+      var victimas = o["caso"].victimas;
+      var prresp = o["caso"].presponsables;
 
       var descripcionCont = '<div class="infowindowcont"><h3>' 
         + titulo + '</h3>' + hechos + '</div>';
@@ -173,12 +193,15 @@ function createMarker(point, codigo, title) {
           + '<br />' : 'SIN INFORMACIÓN';
       }
       victimasCont += '</td></tr></table>';
-      info = new InfoBubble({
-        maxWidth: 400,
-      });
-      info.addTab('Descripción', descripcionCont);
-      info.addTab('Datos', hechosCont);
-      info.addTab('Víctimas', victimasCont);
+        var prueba= "hola" 
+
+
+        var info = new google.maps.InfoWindow({
+              content: prueba
+            });
+     // info.addTab('Descripción', descripcionCont);
+     // info.addTab('Datos', hechosCont);
+     // info.addTab('Víctimas', victimasCont);
       info.open(map, marker);
 
       hideLoader();

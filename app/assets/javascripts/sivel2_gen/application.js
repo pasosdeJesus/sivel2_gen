@@ -13,7 +13,6 @@
 //= require sip/motor
 //= require heb412_gen/motor
 //= require sivel2_gen/motor
-//= require gmaps/google
 //= require_tree .
 
 $(document).on('turbolinks:load ready', function() {
