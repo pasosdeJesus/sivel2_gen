@@ -6,9 +6,10 @@
       derecho internacional humanitario</title>
 
     <!-- Elementos de interfaz -->
-    <% stylesheet_link_tag "stylesheets/sivel2_gen/mapa.css" %>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" media="screen" type="text/css"
                                           href="https://cdn.rawgit.com/pasosdeJesus/js/master/www.eyecon.ro_Stefan_Petre/datepicker.css" />
+    <% stylesheet_link_tag "stylesheets/sivel2_gen/mapa.css" %>
     <script type="text/javascript"
             src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js">
     </script>
@@ -26,29 +27,23 @@
     <!-- Mapas -->
   </head>
   <body>
-  
+
     <div id="container">
       <div id="map_canvas"></div>
       <% javascript_include_tag "javascript/sivel2_gen/mapag/mapag.js.erb" %>
-  <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js">
-  </script>
-    <script async defer
-            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDVATZz-dHXuzNkySAo1O2VQ30ixzhwf7w&language=es&region=CO&callback=initialize">
-    </script>
-  <!--  <script>
-    var script = '<script src="https://github.com/googlemaps/js-info-bubble/blob/gh-pages/src/infobubble';
-      if (document.location.search.indexOf('compiled') !== -1) {
-                                            script += '-compiled';
-                                          }
-                                          script += '.js"><' + '/script>';
-                                          document.write(script);
-    </script> -->
-     <div id="settings_canvas">
-        <div id="loader" style="display:none;"></div>
+      <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js">
+      </script>
+      <script async defer
+              src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDVATZz-dHXuzNkySAo1O2VQ30ixzhwf7w&language=es&region=CO&callback=initialize">
+      </script>
+      <div id="settings_canvas">
+        <div id="loader" class="spinner-border text-primary" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
         <form name="settings" onsubmit="addCases(true); return false;">
           <input name="num" type="hidden" value="200" />
           <div class="settings_box" id="settings_box1">
-            <h3>Fecha</h3>
+            <h5>Fecha</h5>
             <div class="settings_element">
               <div class="left">Desde:</div>
               <div class="right">
@@ -71,23 +66,23 @@
             </div>
           </div>
           <div class="settings_box" id="settings_box2">
-            <h3>Localización</h3>
+            <h5>Localización</h5>
             <div class="settings_element">
               <div class="left">Dep:</div>
               <div class="right">
-                  <select name="departamento" id="departamento"
+                <select name="departamento" id="departamento"
                                             style="width:140px;">
                   <option value="0">Mostrar todos</option>
                   <option value="">-----------------------</option>
                   <%= options_for_select(Sip::Departamento.habilitados.where(id_pais: 170).all.collect { |d| [d.nombre, d.id ] })
-                  %> 
-                </select>
+                %> 
+              </select>
               </div>
             </div>
             <div class="clear"></div>
           </div>
           <div class="settings_box" id="settings_box3">
-            <h3>Otros Filtros</h3>
+            <h5>Otros Filtros</h5>
             <div class="settings_element">
               <div class="left">P. Resp:</div>
               <div class="right">
@@ -100,12 +95,12 @@
             </div>
             <div class="settings_element">
               <div class="left">Violencia:</div>
-               <div class="right">
-                 <select name="tvio" id="tvio" style="width:150px;">
-                   <option value="0">Mostrar todos</option>
-                   <option value="">-----------------------</option>
-                   <%= options_for_select(Sivel2Gen::Categoria.all.collect { |d| [d.nombre, d.id ] })%>
-                 </select>
+              <div class="right">
+                <select name="tvio" id="tvio" style="width:150px;">
+                  <option value="0">Mostrar todos</option>
+                  <option value="">-----------------------</option>
+                  <%= options_for_select(Sivel2Gen::Categoria.all.collect { |d| [d.nombre, d.id ] })%>
+                </select>
               </div>
             </div>
 
@@ -114,7 +109,7 @@
               <div class="right">
                 <select name="etiqueta" id="etiqueta" style="width:150px;">
                   <option value="0">Mostrar todos</option>
-                
+
                 </select>
               </div>
             </div>
@@ -123,14 +118,16 @@
           <div class="clear"></div>
           <div class="submit_box">
             <input type="button" class="button" value="Filtrar casos"
-            onclick="addCases(true); return false;"/>
+                                                onclick="addCases(true); return false;"/>
             <span id="nrcasos" class="nrcasos"></span>
           </div>
         </form>
       </div>
 
     </div>
-    
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   </body>
 
 </html>

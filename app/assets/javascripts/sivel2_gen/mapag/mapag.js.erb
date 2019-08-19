@@ -155,8 +155,8 @@ function createMarker(point, codigo, title) {
       var victimas = o["caso"].victimas;
       var prresp = o["caso"].presponsables;
 
-      var descripcionCont = '<div class="infowindowcont"><h3>' 
-        + titulo + '</h3>' + hechos + '</div>';
+      var descripcionCont = '<div class="infowindowcont"><div>' 
+        + '<h3>' + titulo + '</h3>' + '</div>' + '<div>' + hechos + '</div></div>';
 
       var hechosCont = '<div class="infowindowcont"><table>';
       hechosCont += (fecha != "") ? '<tr><td>Fecha:</td><td>' 
@@ -193,16 +193,30 @@ function createMarker(point, codigo, title) {
           + '<br />' : 'SIN INFORMACIÓN';
       }
       victimasCont += '</td></tr></table>';
-        var prueba= "hola" 
-
+      var datosInfowindow= '<div id="infow">'
+      +'<ul class="nav nav-tabs" id="myTab" role="tablist">'
+        + '<li class="nav-item"><a class="nav-link active" id="infodes-tab" data-toggle="tab" href="#infodes" role="tab" aria-controls="infodes" aria-selected="true">Descripción</a></li>'
+        +'<li class="nav-item"><a class="nav-link" id="infodatos-tab" data-toggle="tab" href="#infodatos" role="tab" aria-controls="infodatos" aria-selected="false">Datos</a></li>'
+        +'<li class="nav-item"><a class="nav-link" id="infovictima-tab" data-toggle="tab" href="#infovictima" role="tab" aria-controls="infovictima" aria-selected="false">Víctimas</a></li>'
+      +'</ul>'
+      +'<div class="tab-content" id="myTabContent">'
+        +'<div class="tab-pane fade show active" id="infodes" role="tabpanel" aria-labelledby="infodes-tab">'+ descripcionCont  +'</div>'
+        +'<div class="tab-pane fade" id="infodatos" role="tabpanel" aria-labelledby="infodatos-tab">'+ hechosCont +'</div>'
+        +'<div class="tab-pane fade" id="infovictima" role="tabpanel" aria-labelledby="infovctima-tab">'+ victimasCont +'</div>'
+      +'</div>'
+      +'</div>'
 
         var info = new google.maps.InfoWindow({
-              content: prueba
+              content: datosInfowindow
             });
-     // info.addTab('Descripción', descripcionCont);
-     // info.addTab('Datos', hechosCont);
-     // info.addTab('Víctimas', victimasCont);
       info.open(map, marker);
+        //cerrar infowindow cuando hagan clic fuera de él 
+      $(document).on("click",function(e) {
+        var container = $("#infow");
+        if (!container.is(e.target) && container.has(e.target).length === 0) { 
+          info.close();
+        }
+      });
 
       hideLoader();
 

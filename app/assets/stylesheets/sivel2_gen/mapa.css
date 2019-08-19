@@ -15,7 +15,7 @@ td { vertical-align: top; }
 
 #map_canvas { width: 600px; height: 450px }
 form { display: inline; }
-.infowindowcont { font-family: Arial; font-size: 13px; line-height: 15px; }
+.infowindowcont { font-size: 15px; line-height: 15px; }
 
 h3 { margin: 0 0 7px 0; font-size: 12px; }
 .settings_box { float: left; margin-right: 20px; }
@@ -39,4 +39,4 @@ input { height: 14px; margin: padding: 2px; }
 .button { background: #A61C1F; color: #fff; border: padding: 0 2px; border-color: #4d0305; height: auto; font-weight: bold; cursor: pointer; }
 .nrcasos { margin-left: 38px; }
 
-#loader { position: absolute; right: 10px; top: 10px; width: 32px; height: 32px; background: url("https://media2.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif?cid=790b76119f03407fcc701da12bc2c8cd6b7a927f2ed7710f&rid=giphy.gif") no-repeat; }
+#loader { position: absolute; right: 10px; top: 10px; width: 32px; height: 32px; }
