@@ -1,30 +1,12 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta http-equiv = "content-type" content="text/html; charset=utf8"/>
     <title>Mapa de violaciones a los derechos humanos e infracciones al
       derecho internacional humanitario</title>
-
-    <!-- Elementos de interfaz -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" media="screen" type="text/css"
-                                          href="https://cdn.rawgit.com/pasosdeJesus/js/master/www.eyecon.ro_Stefan_Petre/datepicker.css" />
     <% stylesheet_link_tag "stylesheets/sivel2_gen/mapa.css" %>
     <script type="text/javascript"
             src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js">
     </script>
-    <script type="text/javascript"
-            src="https://cdn.rawgit.com/pasosdeJesus/js/master/www.eyecon.ro_Stefan_Petre/datepicker.js">
-    </script>
-    <script type="text/javascript"
-            src="https://cdn.rawgit.com/pasosdeJesus/js/master/www.eyecon.ro_Stefan_Petre/eye.js">
-    </script>
-    <script type="text/javascript"
-      src="https://cdn.rawgit.com/pasosdeJesus/js/master/www.eyecon.ro_Stefan_Petre/utils.js">
-
-    <!-- script type = "text/javascript"
-      src = "modulos/mapag/js/datepicker_mapa.js"></script -->
-    <!-- Mapas -->
   </head>
   <body>
     <div class= "page-header">
@@ -32,12 +14,6 @@
     </div>  
     <div id="container">
       <div id="map_canvas"></div>
-      <% javascript_include_tag "javascript/sivel2_gen/mapag/mapag.js.erb" %>
-      <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js">
-      </script>
-      <script async defer
-              src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDVATZz-dHXuzNkySAo1O2VQ30ixzhwf7w&language=es&region=CO&callback=initialize">
-      </script>
       <div id="settings_canvas">
         <div id="loader" class="spinner-border text-primary" role="status">
           <span class="sr-only">Loading...</span>
@@ -127,9 +103,16 @@
       </div>
 
     </div>
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <% javascript_include_tag "javascript/sivel2_gen/mapag/mapag.js.erb" %>
+    <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js">
+    </script>
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDVATZz-dHXuzNkySAo1O2VQ30ixzhwf7w&language=es&region=CO&callback=initialize">
+    </script>
+
   </body>
 
 </html>
