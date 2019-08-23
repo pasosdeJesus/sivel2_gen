@@ -12,6 +12,7 @@ Sivel2Gen::Engine.routes.draw do
   get "/casofotras/nuevo", 'casofotras#nuevo'
   get "/casos/busca" => 'casos#busca'
   get '/casos/lista' => 'casos#lista'
+  get '/casos/mapa' => 'casos#mapa'
   get '/casos/nuevaubicacion' => 'casos#nueva_ubicacion'
   get '/casos/nuevavictima' => 'casos#nueva_victima'
   get '/casos/nuevopresponsable' => 'casos#nuevo_presponsable'

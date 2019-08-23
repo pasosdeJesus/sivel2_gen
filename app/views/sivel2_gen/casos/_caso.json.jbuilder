@@ -15,11 +15,14 @@ json.caso do
     json.municipio Sip::Municipio.find(mun).nombre if mun
     json.centro_poblado Sip::Clase.find(cen).nombre if cen
   end
-  json.presponsables @caso.presponsable.each do |pr|
-    json.id pr.id if pr.id
-    json.nombre pr.nombre if pr.nombre
+  json.presponsables do
+    @caso.presponsable.each do |pr|
+      json.set! pr.id, pr.nombre if pr.id && pr.nombre
+    end
   end
-  json.victimas @caso.victima.each do |v|
+  json.victimas do
+    @caso.victima.each do |v|
     json.set! v.persona.id, v.persona.nombres + ' ' + v.persona.apellidos
+    end
   end
 end

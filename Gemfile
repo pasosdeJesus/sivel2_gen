@@ -33,7 +33,6 @@ gem 'twitter-bootstrap-rails'
 gem 'font-awesome-rails'
 gem 'bootstrap-datepicker-rails'
 
-
 # CoffeeScript para recuersos .js.coffee y vistas
 gem 'coffee-rails'
 
