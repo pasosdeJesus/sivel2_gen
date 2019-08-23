@@ -2,14 +2,14 @@ var map = null;
 var mc = null;
 var markersClusterer= []
 var bounds; 
-var mcOptions = {gridSize: 40, maxZoom: 10, imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'}; //Configuracion de MarkerClusterer
+var mcOptions = {gridSize: 40, maxZoom: 10, imagePath: 'https://raw.githubusercontent.com/googlemaps/v3-utility-library/master/markerclusterer/images/m'}; //Configuracion de MarkerClusterer
 
 function showLoader() {
-    $('#loader').show();
+  $('#loader').show();
 }
 
 function hideLoader() {
-    $('#loader').hide();
+  $('#loader').hide();
 }
 
 function showAll(){
@@ -37,7 +37,7 @@ function initialize() {
   map = new google.maps.Map(
     document.getElementById('map_canvas'), 
     mapOptions);
-  
+
   window.setTimeout(addCases, 0);
 }
 
@@ -62,7 +62,7 @@ function addCases(refresh) {
   var departamento = $('#departamento').val();
   var prresp = $('#presponsable').val();
   var tvio = $('#tvio').val();
-   
+
   var requestUrl = '/sivel2/casos.json?utf8=' + '&filtro[fechaini]=' + desde + '&filtro[fechafin]=' + hasta;
   if (departamento != undefined && departamento != 0){
     requestUrl += '&filtro[departamento_id]=' + departamento;
@@ -77,14 +77,12 @@ function addCases(refresh) {
     markersClusterer.length = 0;
     mc.clearMarkers();
   };
-  console.log(requestUrl);
   showLoader();
   downloadUrl(requestUrl, function(req) {
     data = req.responseText;
-  console.log(data);
     if (data == null || data.substr(0, 1) != '{'){
-     hideLoader();
-     $('#nrcasos').html("0");
+      hideLoader();
+      $('#nrcasos').html("0");
       window.alert("El URL" + requestUrl + "no retorno informacion JSON.\n\n" + data);
       return;
     }
@@ -96,18 +94,18 @@ function addCases(refresh) {
       var lng = o[codigo].longitud;
       var titulo= o[codigo].titulo;
       var fecha = o[codigo].fecha;
-   
-     if (lat != null || lng != null){
-      var point = new google.maps.LatLng(parseFloat(lat),
-        parseFloat(lng));
-      var title = fecha + ": " + titulo;
-      var marker = createMarker(point, codigo, title);
-      markersClusterer.push(marker);
+
+      if (lat != null || lng != null){
+        var point = new google.maps.LatLng(parseFloat(lat),
+          parseFloat(lng));
+        var title = fecha + ": " + titulo;
+        var marker = createMarker(point, codigo, title);
+        markersClusterer.push(marker);
       }
-     
+
     }
-  $('#nrcasos').html('(<strong>' + numResult + '</strong> casos mostrados)');
-  mc = new MarkerClusterer(map, markersClusterer, mcOptions)
+    $('#nrcasos').html('(<strong>' + numResult + '</strong> casos mostrados)');
+    mc = new MarkerClusterer(map, markersClusterer, mcOptions)
     showAll()
     hideLoader();
   });
@@ -115,19 +113,13 @@ function addCases(refresh) {
 
 function createMarker(point, codigo, title) {
 
-    var image = new google.maps.MarkerImage("https://cdn3.iconfinder.com/data/icons/map-markers-2/512/marker_2-512.png",
-   
-    new google.maps.Size(20,20),
-    new google.maps.Point(10,5),
-    new google.maps.Point(9,9));
-
   var marker = new google.maps.Marker({
     map: map,
     position: point,
-//    icon: image, 
+    icon: '<%= asset_path('icon.png') %>',
     title: title,
   });
- bounds.extend(point);
+  bounds.extend(point);
 
   google.maps.event.addListener(marker, 'click', function() {
     showLoader();
@@ -194,23 +186,23 @@ function createMarker(point, codigo, title) {
       }
       victimasCont += '</td></tr></table>';
       var datosInfowindow= '<div id="infow">'
-      +'<ul class="nav nav-tabs" id="myTab" role="tablist">'
+        +'<ul class="nav nav-tabs" id="myTab" role="tablist">'
         + '<li class="nav-item"><a class="nav-link active" id="infodes-tab" data-toggle="tab" href="#infodes" role="tab" aria-controls="infodes" aria-selected="true">Descripción</a></li>'
         +'<li class="nav-item"><a class="nav-link" id="infodatos-tab" data-toggle="tab" href="#infodatos" role="tab" aria-controls="infodatos" aria-selected="false">Datos</a></li>'
         +'<li class="nav-item"><a class="nav-link" id="infovictima-tab" data-toggle="tab" href="#infovictima" role="tab" aria-controls="infovictima" aria-selected="false">Víctimas</a></li>'
-      +'</ul>'
-      +'<div class="tab-content" id="myTabContent">'
+        +'</ul>'
+        +'<div class="tab-content" id="myTabContent">'
         +'<div class="tab-pane fade show active" id="infodes" role="tabpanel" aria-labelledby="infodes-tab">'+ descripcionCont  +'</div>'
         +'<div class="tab-pane fade" id="infodatos" role="tabpanel" aria-labelledby="infodatos-tab">'+ hechosCont +'</div>'
         +'<div class="tab-pane fade" id="infovictima" role="tabpanel" aria-labelledby="infovctima-tab">'+ victimasCont +'</div>'
-      +'</div>'
-      +'</div>'
+        +'</div>'
+        +'</div>'
 
-        var info = new google.maps.InfoWindow({
-              content: datosInfowindow
-            });
+      var info = new google.maps.InfoWindow({
+        content: datosInfowindow
+      });
       info.open(map, marker);
-        //cerrar infowindow cuando hagan clic fuera de él 
+      //cerrar infowindow cuando hagan clic fuera de él 
       $(document).on("click",function(e) {
         var container = $("#infow");
         if (!container.is(e.target) && container.has(e.target).length === 0) { 

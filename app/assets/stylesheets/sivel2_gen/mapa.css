@@ -1,42 +1,16 @@
-/**
- *  * Estilo para mapa
- *  *
- *  * @author    Luca Urech <lucaurech@yahoo.de> 
- *  * @copyright 2011 Dominio público. Sin garantías.
- *  * @license   https://www.pasosdejesus.org/dominio_publico_colombia.html Dominio Público. Sin garantías.
- *  * @version   $$
- *  */
-
 html { margin: 0; padding: 0; }
-body { font: 11px Geneva, Arial, sans-serif; margin: 0; padding: 0; }
-td { vertical-align: top; }
-
-#container { width: 600px;  background-color: #cfe3d5; }
-
-#map_canvas { width: 600px; height: 450px }
-form { display: inline; }
+.body_map { font: 12px Geneva, Arial, sans-serif; margin: 0; padding: 0;}
+#container_map { width: 700px;  background-color: #cfe3d5; }
+#map_canvas { width: 700px; height: 450px }
 .infowindowcont { font-size: 15px; line-height: 15px; }
-
-h3 { margin: 0 0 7px 0; font-size: 12px; }
-.settings_box { float: left; margin-right: 20px; }
-* html .settings_box { margin-right: 20px; }
-
-#settings_canvas { position: relative; width: 570px; padding: 8px 15px; }
+#settings_canvas { position: relative; padding: 8px 15px; }
 * html #settings_canvas { padding-right: 0; }
-* html #settings_box1 { width: 110px; }
-* html #settings_box2 { width: 220px; }
-* html #settings_box3 { }
-.submit_box { margin-top: 5px; }
-.settings_element { height: 23px; }
-.left { float: left; margin: 2px 4px 0 0; }
-.right { float: right; }
+
 .clear { clear: both; }
 
-
-input, select { border: 1px solid #7380ab; font: 11px Geneva, Arial, sans-serif; background-color: #cfd7f3; }
-select { height: 17px; }
-input { height: 14px; margin: padding: 2px; }
+.input_map, .select_map { border: 1px solid #7380ab; font: 11px Geneva, Arial, sans-serif; background-color: #cfd7f3; }
+.select_map { height: 17px; }
+.input_map { height: 14px; margin: padding: 2px; }
 .button { background: #A61C1F; color: #fff; border: padding: 0 2px; border-color: #4d0305; height: auto; font-weight: bold; cursor: pointer; }
-.nrcasos { margin-left: 38px; }
-
 #loader { position: absolute; right: 10px; top: 10px; width: 32px; height: 32px; }
+.breadcrumb{ display: none; }
