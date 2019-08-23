@@ -2,10 +2,10 @@
 
 json.caso do
   json.id @caso.id
-  json.titulo @caso.titulo
-  json.hechos @caso.memo
-  json.fecha @caso.fecha
-  json.hora @caso.hora
+  json.titulo @caso.titulo if @caso.titulo
+  json.hechos @caso.memo if @caso.memo
+  json.fecha @caso.fecha if @caso.fecha
+  json.hora @caso.hora if @caso.hora
   if @caso.ubicacion_id
     ub = Sip::Ubicacion.find(@caso.ubicacion_id)
     dep = ub.id_departamento
