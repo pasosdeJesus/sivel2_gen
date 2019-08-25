@@ -35,8 +35,8 @@ h3 { margin: 0 0 7px 0; font-size: 12px; }
 
 input, select { border: 1px solid #7380ab; font: 11px Geneva, Arial, sans-serif; background-color: #cfd7f3; }
 select { height: 17px; }
-input { height: 14px; margin: padding: 2px; }
-.button { background: #A61C1F; color: #fff; border: padding: 0 2px; border-color: #4d0305; height: auto; font-weight: bold; cursor: pointer; }
+input { height: 14px; padding: 2px; }
+.button { background: #A61C1F; color: #fff; padding: 0 2px; border-color: #4d0305; height: auto; font-weight: bold; cursor: pointer; }
 .nrcasos { margin-left: 38px; }
 
 #loader { position: absolute; right: 10px; top: 10px; width: 32px; height: 32px; }
