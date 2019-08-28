@@ -1,3 +1,12 @@
+/**
+ *  * Estilo para mapa
+ *  *
+ *  * @author    Luca Urech <lucaurech@yahoo.de> 
+ *  * @copyright 2011 Dominio público. Sin garantías.
+ *  * @license   https://www.pasosdejesus.org/dominio_publico_colombia.html Dominio Público. Sin garantías.
+ *  * @version   $$
+ *  */
+
 html { margin: 0; padding: 0; }
 .body_map { font: 12px Geneva, Arial, sans-serif; margin: 0; padding: 0;}
 #container_map { width: 700px;  background-color: #cfe3d5; }
