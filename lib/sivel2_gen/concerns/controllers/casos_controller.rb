@@ -372,10 +372,10 @@ module Sivel2Gen
               format.html { render inline: 'No' }
             end
           end
-          
+
           # GET casos/mapa
           def mapa
-              render 'mapa', layout: 'application'
+            render 'mapa', layout: 'application'
           end
 
           # GET /casos/1/edit
