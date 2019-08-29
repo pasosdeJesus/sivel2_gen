@@ -373,6 +373,11 @@ module Sivel2Gen
             end
           end
 
+          # GET casos/mapa
+          def mapa
+            render 'mapa', layout: 'application'
+          end
+
           # GET /casos/1/edit
           def edit
             if session[:capturacaso_acordeon]
