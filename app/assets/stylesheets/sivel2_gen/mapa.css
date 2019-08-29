@@ -21,4 +21,5 @@ html { margin: 0; padding: 0; }
 .select_map { height: 17px; }
 .input_map { height: 14px; margin: padding: 2px; }
 .button { background: #A61C1F; color: #fff; border: padding: 0 2px; border-color: #4d0305; height: auto; font-weight: bold; cursor: pointer; }
+
 #loader { position: absolute; right: 10px; top: 10px; width: 32px; height: 32px; }
