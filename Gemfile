@@ -109,6 +109,8 @@ group :development do
   # para validar xml
   gem 'compare-xml', '~> 0.5.2'
   gem 'nokogiri', '~> 1.6', '>= 1.6.8'
+  # para validar json
+  gem 'json'
 end
 
 group  :development, :test do
