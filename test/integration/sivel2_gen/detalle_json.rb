@@ -121,8 +121,14 @@ module Sivel2Gen
       casoreg1 = Sivel2Gen::CasoRegion.create(
         id_caso: caso.id,
         id_region: region1.id,
-        created_at: '2014-09-09'
       )
+      frontera1= Sivel2Gen::Frontera.find(1)
+      Sivel2Gen::CasoFrontera.create(
+        id_frontera: frontera1.id,
+        id_caso: caso.id,
+      )
+      Sivel2Gen::Conscaso.refresca_conscaso
+      byebug
       get caso_path(caso) + '.json'
       puts @response.body
       file = guarda_json(@response.body)

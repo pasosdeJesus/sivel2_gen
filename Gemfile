@@ -110,12 +110,12 @@ group :development do
   gem 'compare-xml', '~> 0.5.2'
   gem 'nokogiri', '~> 1.6', '>= 1.6.8'
   # para validar json
-  gem 'json'
+  # gem 'json'
 end
 
 group  :development, :test do
   # Depurar
-  # gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'simplecov'
   gem 'rails-controller-testing'
   gem 'pry'
