@@ -128,7 +128,6 @@ module Sivel2Gen
         id_caso: caso.id,
       )
       Sivel2Gen::Conscaso.refresca_conscaso
-      byebug
       get caso_path(caso) + '.json'
       puts @response.body
       file = guarda_json(@response.body)
@@ -140,7 +139,10 @@ module Sivel2Gen
             "titulo": "",
             "hechos":"Paramilitares hirieron con arma de fuego a Kevin Enrique Umaña Morantes, de 18 años de edad, mientras se desplazaba por una calle del barrio Nueva Esperanza, Comuna 5. Según la fuente: “El hecho se presentó el 10 de julio, hacia las 6:00 de la mañana, cuando Umaña Morantes, era perseguido por dos sujetos a bordo de una motocicleta, al percatarse del hecho se refugió una vivienda a donde ingresaron los agresores y le propinaron dos impactos de arma de fuego. La zona tiene presencia de grupos posdesmovilización que se disputan el control territorial”.",
             "fecha": "2018-01-01",
-            "presponsables": 
+            "departamento": "VALLE DEL CAUCA",
+            "municipio": "BUENAVENTURA",
+            "centro_poblado": "SAN JOSÉ",
+            "presponsables":
               {
                 "14":"PARAMILITARES"
               },

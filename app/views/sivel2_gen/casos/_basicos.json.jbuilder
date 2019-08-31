@@ -1,10 +1,9 @@
 json.set! caso.id do
-  if caso.ubicacion_id
-    ub = Sip::Ubicacion.find(caso.ubicacion_id)
-    lat = ub.latitud
-    lon = ub.longitud
-    json.latitud lat
-    json.longitud lon
+  caso.ubicacion.each do |ub|
+    if caso.ubicacion
+      json.latitud ub.latitud if ub.latitud
+      json.longitud ub.longitud if ub.longitud
+    end
   end
   json.titulo caso.titulo
   json.fecha caso.fecha
