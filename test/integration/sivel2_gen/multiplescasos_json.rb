@@ -100,9 +100,9 @@ module Sivel2Gen
 EOS
       puts d12
       # get casos_path + '.json'
-      get '/sivel2/casos.json?utf8=&' +
-        'filtro[fechaini]=2019-08-30&' +
-        'filtro[fechafin]=2019-08-30'
+      get '/sivel2/casos.json?utf8=&' \
+          'filtro[fechaini]=2019-08-30&' \
+          'filtro[fechafin]=2019-08-30'
       puts @response.body
       file = guarda_json(@response.body)
       docu = JSON.parse(File.read(file))

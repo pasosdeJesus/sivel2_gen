@@ -33,7 +33,6 @@ module Sivel2Gen
       sexo: 'M'
     }
 
-
     PRUEBA_PROFESION = {
       id: 1000,
       nombre: 'Profesion',
@@ -120,19 +119,19 @@ module Sivel2Gen
       region1 = Sivel2Gen::Region.find(6)
       casoreg1 = Sivel2Gen::CasoRegion.create(
         id_caso: caso.id,
-        id_region: region1.id,
+        id_region: region1.id
       )
       frontera1= Sivel2Gen::Frontera.find(1)
       Sivel2Gen::CasoFrontera.create(
         id_frontera: frontera1.id,
-        id_caso: caso.id,
+        id_caso: caso.id
       )
       Sivel2Gen::Conscaso.refresca_conscaso
       get caso_path(caso) + '.json'
       puts @response.body
       file = guarda_json(@response.body)
       docu = JSON.parse(File.read(file))
-      d12 = JSON.parse(<<eos)
+      d12 = JSON.parse(<<EOS)
       {"caso": 
         {
             "id":155265,
@@ -152,7 +151,7 @@ module Sivel2Gen
               }
          }
       }
-eos
+EOS
       puts d12
       compara(docu, d12)
       ubicaso.destroy
