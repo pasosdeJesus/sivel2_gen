@@ -36,7 +36,6 @@ module Sivel2Gen
       duracion: '2 horas'
     }
 
-
     test 'crea dos casos y genera reporte json' do
       Sivel2Gen::Conscaso.refresca_conscaso
       caso1 = Sivel2Gen::Caso.create PRUEBA_CASO_BASICOS1
@@ -52,24 +51,20 @@ module Sivel2Gen
         created_at: '2014-11-06'
       )
       caso1.ubicacion_id = ubicacion1.id
-
-      frontera1= Sivel2Gen::Frontera.find(1)
+      frontera1 = Sivel2Gen::Frontera.find(1)
       Sivel2Gen::CasoFrontera.create(
         id_frontera: frontera1.id,
         id_caso: caso1.id,
         created_at: '2014-11-06',
         updated_at: '2014-11-06'
       )
-      Sivel2Gen::Conscaso.refresca_conscaso
-
-      region1= Sivel2Gen::Region.find(9)
+      region1 = Sivel2Gen::Region.find(9)
       Sivel2Gen::CasoRegion.create(
         id_region: region1.id,
         id_caso: caso1.id,
         created_at: '2014-11-06',
-        updated_at: '2014-11-06' 
+        updated_at: '2014-11-06'
       )
-
       caso2 = Sivel2Gen::Caso.create PRUEBA_CASO_BASICOS2
       ubicacion2 = Sip::Ubicacion.create(
         longitud: 77.3847,
@@ -82,8 +77,7 @@ module Sivel2Gen
         created_at: '2014-11-06'
       )
       caso2.ubicacion_id = ubicacion2.id
-
-      frontera2= Sivel2Gen::Frontera.find(1)
+      frontera2 = Sivel2Gen::Frontera.find(1)
       Sivel2Gen::CasoFrontera.create(
         id_frontera: frontera2.id,
         id_caso: caso2.id,
@@ -91,25 +85,26 @@ module Sivel2Gen
         updated_at: '2014-11-06'
       )
       Sivel2Gen::Conscaso.refresca_conscaso
-
-      region2= Sivel2Gen::Region.find(9)
+      region2 = Sivel2Gen::Region.find(9)
       Sivel2Gen::CasoRegion.create(
         id_region: region2.id,
         id_caso: caso2.id,
         created_at: '2014-11-06',
-        updated_at: '2014-11-06' 
+        updated_at: '2014-11-06'
       )
 
-      d12 = JSON.parse(<<eos)
+      d12 = JSON.parse(<<EOS)
      {"1122":{"latitud":23.2342,"longitud":87.3423,"titulo":"Caso de prueba 1 con datos basicos", "fecha":"2019-08-30"},
-     "2222":{"latitud":3.3483,"longitud":77.3847,"titulo":"Caso de prueba 2 con datos basicos", "fecha":"2019-08-30"}} 
+     "2222":{"latitud":3.3483,"longitud":77.3847,"titulo":"Caso de prueba 2 con datos basicos", "fecha":"2019-08-30"}}
 
-eos
+EOS
       puts d12
-      #get casos_path + '.json'
-      get '/sivel2/casos.json?utf8=&filtro[fechaini]=2019-08-30&filtro[fechafin]=2019-08-30'
+      # get casos_path + '.json'
+      get '/sivel2/casos.json?utf8=&' +
+        'filtro[fechaini]=2019-08-30&' +
+        'filtro[fechafin]=2019-08-30'
       puts @response.body
-      file= guarda_json(@response.body)
+      file = guarda_json(@response.body)
       docu = JSON.parse(File.read(file))
       compara(docu, d12)
       ubicacion1.destroy
@@ -119,8 +114,8 @@ eos
     end
 
     def compara(json_ob, json_es)
-      assert(JsonUtilities.compare_json(json_ob,json_es), "Fallas en la comparación")
+      assert(JsonUtilities.compare_json(json_ob, json_es), 
+             'Fallas en la comparación json')
     end
-
-  end 
+  end
 end
