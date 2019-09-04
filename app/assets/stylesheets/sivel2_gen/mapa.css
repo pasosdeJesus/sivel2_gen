@@ -18,7 +18,7 @@
   background-color: #cfe3d5;
 }
 
-#map_canvas { 
+#map_canvas, #map_osm { 
   width: 100%; 
   height: 450px 
 }
