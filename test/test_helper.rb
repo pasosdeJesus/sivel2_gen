@@ -32,6 +32,13 @@ class PruebaIntegracion < ActionDispatch::IntegrationTest
       file
     end
 
+    def guarda_json(docu)
+      file = File.new('test/dummy/tmp/relatos.json', 'wb')
+      file.write(docu)
+      file.close
+      file
+    end
+
     def verifica_dtd(docu)
       options = Nokogiri::XML::ParseOptions::DTDVALID
       doc = Nokogiri::XML::Document.parse(docu, nil, nil, options)
