@@ -62,7 +62,10 @@ function addCases(refresh) {
   var prresp = $('#presponsable').val();
   var tvio = $('#tvio').val();
 
-  var requestUrl = '/sivel2/casos.json?utf8=' + '&filtro[fechaini]=' + desde + '&filtro[fechafin]=' + hasta;
+  var root = window
+  sip_arregla_puntomontaje(root)
+  var ruta = root.puntomontaje + 'casos.json'
+  var requestUrl = ruta + '?utf8=' + '&filtro[fechaini]=' + desde + '&filtro[fechafin]=' + hasta;
   if (departamento != undefined && departamento != 0){
     requestUrl += '&filtro[departamento_id]=' + departamento;
   }
@@ -122,7 +125,10 @@ function createMarker(point, codigo, title) {
 
   google.maps.event.addListener(marker, 'click', function() {
     showLoader();
-    requestUrl = "/sivel2/casos/" + codigo + ".json";  
+    var root = window
+    sip_arregla_puntomontaje(root)
+    var ruta = root.puntomontaje + 'casos/'
+    var requestUrl = ruta + codigo + ".json";  
     downloadUrl(requestUrl, function(req) {
       data = req.responseText;
 
