@@ -374,8 +374,8 @@ module Sivel2Gen
           end
 
           # GET casos/mapa
-          def mapa
-            render 'mapa', layout: 'application'
+          def mapagm
+            render 'mapagm', layout: 'application'
           end
 
           # GET /casos/1/edit
