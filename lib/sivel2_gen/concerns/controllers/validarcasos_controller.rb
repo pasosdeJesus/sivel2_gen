@@ -24,7 +24,7 @@ module Sivel2Gen
             }
           end
 
-          def filtro_fechas(casos, cfecha = 'fecha')
+          def filtro_fechas(casos, cfecha = 'sivel2_gen_caso.fecha')
             if (params[:validarcaso] && params[:validarcaso][:fechaini] && 
                 params[:validarcaso][:fechaini] != '')
               pfi = params[:validarcaso][:fechaini]
