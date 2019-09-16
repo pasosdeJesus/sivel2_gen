@@ -148,7 +148,10 @@ module Sivel2Gen
               ['Exportar a JSON', 'reprevista.json']
             ]
           end
-       
+      
+         def vistas_manejadas
+            return ['Caso']
+         end 
           # Valida que el usuario pueda generar la plantilla idplant 
           def valida_plantilla(current_usuario, idplant)
             true
@@ -236,26 +239,15 @@ module Sivel2Gen
             presenta_index
           end
 
-          # Deserializa para enviar a ActivJobs
-          def cons_a_fd(cons)
-            l =[]
-            cons.each do |r|
-                f = {}
-                r.class.columns.map(&:name).each do |c|
-                  f[c] = r[c].to_s
-                end
-                l << f
-            end
-            return l
+          def self.index_reordenar(registros)
+            registros.reorder([:caso_id])
           end
 
 
           def presenta_index
-
             # Presentación
             respond_to do |format|
               format.ods { 
-                #byebug
                 Consexpcaso.crea_consexpcaso(@conscaso, @campoord)
                 if params[:filtro].nil? || params[:idplantilla].nil? 
                   head :no_content 
@@ -269,26 +261,8 @@ module Sivel2Gen
                   head :no_content 
                 end
                 @consexpcaso = Consexpcaso.all
-               
-                pl = Heb412Gen::Plantillahcm.find(params[:idplantilla].to_i) 
-                rarch = File.join('/generados/',
-                                  File.basename(pl.ruta, '.ods').to_s +
-                                  "-" + DateTime.now.strftime('%Y%m%d%H%M%S')).to_s
-                narch = File.join(Rails.application.config.x.heb412_ruta, rarch)
-                puts "narch=#{narch}"
-                FileUtils.touch(narch + '.ods-0')
-                flash[:notice] = "Se programó la generación del archivo #{rarch}.ods, por favor refresque hasta verlo generado"
-
-                rutaurl = File.join(heb412_gen.sisini_path, '/generados').to_s
-                fd = cons_a_fd(@consexpcaso)
-                GeneraodsJob.perform_later(params[:idplantilla], fd, narch)
-                redirect_to rutaurl, format: 'html'
-                return
-#                pl = Heb412Gen::Plantillahcm.find(
-#                  params[:idplantilla])
-#                n = Heb412Gen::PlantillahcmController.
-#                  llena_plantilla_multiple_fd(pl, @consexpcaso)
-#                send_file n, x_sendfile: true
+                @registros = @consexpcaso
+                return 
               }
 
               format.html { 
