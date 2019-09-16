@@ -243,28 +243,37 @@ module Sivel2Gen
             registros.reorder([:caso_id])
           end
 
+          def gen_formato(formato)
+            Consexpcaso.crea_consexpcaso(@conscaso, @campoord)
+            if params[:filtro].nil? || params[:idplantilla].nil? 
+              head :no_content 
+            elsif params[:idplantilla].to_i <= 0
+              head :no_content 
+            elsif Heb412Gen::Plantillahcm.where(
+              id: params[:idplantilla].to_i).take.nil?
+              head :no_content 
+            elsif !valida_plantilla(current_usuario, 
+                                    params[:idplantilla].to_i)
+              head :no_content 
+            end
+            @consexpcaso = Consexpcaso.all
+            @registros = @consexpcaso
+            programa_generacion_listado(params, formato, :caso_id)
+          end
+
 
           def presenta_index
             # Presentación
             respond_to do |format|
               format.ods { 
-                Consexpcaso.crea_consexpcaso(@conscaso, @campoord)
-                if params[:filtro].nil? || params[:idplantilla].nil? 
-                  head :no_content 
-                elsif params[:idplantilla].to_i <= 0
-                  head :no_content 
-                elsif Heb412Gen::Plantillahcm.where(
-                  id: params[:idplantilla].to_i).take.nil?
-                  head :no_content 
-                elsif !valida_plantilla(current_usuario, 
-                                        params[:idplantilla].to_i)
-                  head :no_content 
-                end
-                @consexpcaso = Consexpcaso.all
-                @registros = @consexpcaso
+                gen_formato('.ods')
                 return 
               }
-
+              if request.format.symbol == 'ods'.to_sym
+                # No funciona el anterior
+                gen_formato('.ods')
+                return
+              end
               format.html { 
                 if (params['idplantilla']) 
                   #byebug
