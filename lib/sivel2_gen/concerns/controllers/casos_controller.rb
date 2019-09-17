@@ -361,8 +361,12 @@ module Sivel2Gen
             render 'mapagm', layout: 'application'
           end
 
+          def self.asegura_camposdinamicos(caso, current_usuario_id)
+          end
+
           # GET /casos/1/edit
           def edit
+            self.class.asegura_camposdinamicos(@registro, current_usuario.id)
             if session[:capturacaso_acordeon]
               render 'editv', layout: 'application'
             else
