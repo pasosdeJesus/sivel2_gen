@@ -13,12 +13,15 @@ module Sivel2Gen
           include Sip::Concerns::Controllers::PersonasController
 
           def remplazar_antes_destruir_p
+            true
           end 
 
           def remplazar_antes_salvar_v
+            true
           end 
 
           def remplazar_despues_salvar_v
+            true
           end 
 
           def remplazar
@@ -28,13 +31,19 @@ module Sivel2Gen
             @caso = @victima.caso
             @caso.current_usuario = current_usuario
             @victima.persona = @persona
-            remplazar_antes_salvar_v
+            if !remplazar_antes_salvar_v
+              return
+            end
             @victima.save!
-            remplazar_despues_salvar_v
+            if !remplazar_despues_salvar_v
+              return
+            end
             if (@personaant.nombres == 'N' && 
                 @personaant.apellidos == 'N') ||
               (@personaant.nombres == '' && @personaant.apellidos == '')
-              remplazar_antes_destruir_p()
+              if !remplazar_antes_destruir_p
+                return
+              end
               @personaant.destroy
             end
             respond_to do |format|

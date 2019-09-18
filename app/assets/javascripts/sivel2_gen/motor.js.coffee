@@ -124,7 +124,7 @@
   d += "&id_persona=" + id_persona
   a = root.puntomontaje + 'personas/remplazar'
   $.ajax(url: a, data: d, dataType: "html").fail( (jqXHR, texto) ->
-    alert("Error con ajax " + texto)
+    alert("Error: " + jqXHR.responseText)
   ).done( (e, r) ->
     divcp.html(e)
     $(document).trigger("sip:autocompleto_persona", [id_victima, id_persona])
@@ -174,7 +174,7 @@
   d += "&id_grupoper=" + id_grupoper
   a = root.puntomontaje + 'gruposper/remplazar'
   $.ajax(url: a, data: d, dataType: "html").fail( (jqXHR, texto) ->
-    alert("Error con ajax " + texto)
+    alert("Error: " + jqXHR.responseText)
   ).done( (e, r) ->
     remp = e
     # Remplazamos la parte minima necesaria
@@ -375,7 +375,7 @@ enviaFormularioContar= (root) ->
   # simultaneas de la vista. Evitamos enviar lo mismo.
   if (!root.dant || root.dant != d)
     $.ajax(url: a, data: d, dataType: "script").fail( (jqXHR, texto) ->
-      alert("Error con ajax " + texto)
+      alert("Error: " + jqXHR.responseText)
     )
   root.dant = d 
   return
@@ -508,7 +508,7 @@ enviaFormularioContar= (root) ->
       d = "id_acto=" + $(this).attr('data-eliminaracto')
       a = root.puntomontaje + 'actos/eliminar'
       $.ajax(url: a, data: d, dataType: "script").fail( (jqXHR, texto) ->
-        alert("Error con ajax " + texto)
+        alert("Error: " + jqXHR.responseText)
       ).done( (e) ->
         @sivel2_gen_procesa_eliminaracto = false
       )
@@ -539,7 +539,7 @@ enviaFormularioContar= (root) ->
       d = "id_actocolectivo=" + $(this).attr('data-eliminaractocolectivo')
       a = root.puntomontaje + 'actoscolectivos/eliminar'
       $.ajax(url: a, data: d, dataType: "script").fail( (jqXHR, texto) ->
-        alert("Error con ajax " + texto)
+        alert("Error: " + jqXHR.responseText)
       ).done( (e) ->
         @sivel2_gen_procesa_eliminaractocolectivo = false
       )
