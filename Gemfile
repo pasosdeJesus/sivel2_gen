@@ -94,7 +94,7 @@ gem 'mr519_gen', git: 'https://github.com/pasosdeJesus/mr519_gen.git'
 
 # Motor de nube y plantillas
 gem 'heb412_gen', git: 'https://github.com/pasosdeJesus/heb412_gen.git'
-# gem 'heb412_gen', path: '../heb412_gen'
+#gem 'heb412_gen', path: '../heb412_gen'
 
 # Los siguientes son para desarrollo o para pruebas con generadores
 group :development do
@@ -113,7 +113,7 @@ end
 
 group  :development, :test do
   # Depurar
-  # gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  #gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'simplecov'
   gem 'rails-controller-testing'
   gem 'pry'
