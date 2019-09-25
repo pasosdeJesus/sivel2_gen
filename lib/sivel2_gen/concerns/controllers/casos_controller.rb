@@ -152,6 +152,7 @@ module Sivel2Gen
          def vistas_manejadas
             return ['Caso']
          end 
+
           # Valida que el usuario pueda generar la plantilla idplant 
           def valida_plantilla(current_usuario, idplant)
             true
@@ -307,8 +308,7 @@ module Sivel2Gen
             end
           end
 
-          # GET /casos/new
-          def new
+          def new_sivel2_gen
             @caso.current_usuario = current_usuario
             @caso.fecha = DateTime.now.strftime('%Y-%m-%d')
             @caso.memo = ''
@@ -319,13 +319,13 @@ module Sivel2Gen
             cu.id_caso = @caso.id
             cu.fechainicio = DateTime.now.strftime('%Y-%m-%d')
             cu.save!
-            if session[:capturacaso_acordeon]
-              render 'editv', layout: 'application'
-            else
-              render 'edit', layout: 'application'
-            end
           end
 
+          # GET /casos/new
+          def new
+            new_sivel2_gen
+            redirect_to sivel2_gen.edit_caso_path(@registro)
+          end
 
           def lista
             if params[:tabla]
@@ -456,7 +456,7 @@ module Sivel2Gen
           end
 
           # Despliega detalle de un registro
-          def show
+          def show_sivel2_gen
             @caso = @registro = clase.constantize.find(params[:id])
             if @registro.respond_to?('current_usuario=')
               @registro.current_usuario = current_usuario
@@ -482,10 +482,19 @@ module Sivel2Gen
               format.xml {
                 render 'show.xml', locals: { caso: @caso }
               }
+              format.odt {
+                fichaimp
+              }
+              format.pdf {
+                fichapdf
+              }
             end
 
           end
 
+          def show
+            show_sivel2_gen
+          end
           # DELETE /casos/1
           # DELETE /casos/1.json
           def destroy

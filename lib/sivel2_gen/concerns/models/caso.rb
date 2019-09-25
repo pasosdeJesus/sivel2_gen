@@ -407,7 +407,7 @@ module Sivel2Gen
                 |memo, ce| 
                 r = (memo == '' ? '' : memo + '.   ')
                 r += ce.etiqueta.nombre
-                r += ' - ' + ce.usuario.nusuario
+                r += ' - ' + ce.usuario.nusuario if ce.usuario
                 r += ' - ' + ce.fecha_localizada
                 r += ' - ' + ce.observaciones
                 r
