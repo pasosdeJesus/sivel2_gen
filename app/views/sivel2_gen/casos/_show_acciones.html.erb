@@ -1,0 +1,59 @@
+<%= simple_form_for :genera, 
+      { url: modelo_path(@registro) , method: 'get' } do |f| %>
+  <div class="row">
+    <div class="col-sm-3">
+      <%= link_to t('.back', :default => t("helpers.links.back")),
+        modelos_path(@registro), :class => 'btn'  %>
+      <% if can?(:edit, @registro) %>
+         <%= link_to t('.edit', :default => t("helpers.links.edit")),
+           edit_modelo_path(@registro), :class => 'btn' %>
+      <% end %>
+    </div>
+
+    <% rutamas = clase.pluralize.underscore + '/show_mas_acciones' %>
+    <% if lookup_context.find_all( rutamas, [], true).any? %>
+      <% # Hay un parcial %>
+      <%= render partial: rutamas %>
+    <% else %>
+      <div class="col-sm-3">
+        <% if can?(:read, @registro) && @plantillas && @plantillas.count > 0 %>
+           <% oppres = @plantillas ? @plantillas : [['','']] %>
+           <%= f.input :plantilla_id, collection: oppres, 
+             label: false, include_blank: false %>
+        <% end %>
+      </div>
+      <div class="col-sm-3">
+        <% if can?(:read, @registro) && @plantillas && @plantillas.count > 0 %>
+          <%= link_to t('.imprimir', :default => 'Generar documento'),  
+            '#', class: 'btn', 
+            onclick: "heb412_gen_completa_generarp(this, " +
+            "\'#genera_plantilla_id\', null, " +
+            "\'#{modelo_path(@registro)}\', \'odt\')" %>
+          <%= link_to t('.pdf', :default => 'Generar PDF'),
+            '#', class: 'btn', 
+            onclick: "heb412_gen_completa_generarp(this, " +
+            "\'#genera_plantilla_id\', null, " +
+            "\'#{modelo_path(@registro)}\', \'odt\')" %>
+        <% end %>
+      </div>
+    <% end %>
+
+    <div class="col-sm-3">
+      <% if can?(:destroy, @registro) %>
+        <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+          modelo_path(@registro),
+          :method => 'delete',
+          :data => { 
+            :confirm => 
+            t('.confirm', :default => 
+              t("helpers.links.confirm", 
+                :default => 'Are you sure?'
+               )
+             )
+          },
+          :class => 'btn btn-danger' %>
+      <% end %>
+    </div>
+  </div> <!-- row -->
+
+<% end %>
