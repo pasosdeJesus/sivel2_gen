@@ -170,10 +170,10 @@ module Sivel2Gen
             rescue
               Conscaso.refresca_conscaso
             end
-            if !ActiveRecord::Base.connection.data_source_exists?(
-              'sivel2_gen_consexpcaso')
-              Consexpcaso.crea_consexpcaso
-            end
+            #if !ActiveRecord::Base.connection.data_source_exists?(
+            #  'sivel2_gen_consexpcaso')
+            #  Consexpcaso.crea_consexpcaso
+            #end
             @cortamemo = cortamemo
 
             @incluir = incluir_inicial
@@ -229,14 +229,14 @@ module Sivel2Gen
             else
               @paginar = false
             end
-            if @usa_consexpcaso
-              if @paginar && params[:idplantilla].nil? && defined?(@consexpcaso.paginate)
-                @consexpcaso = @consexpcaso.paginate(
-                  page: params[:pagina], per_page: 20)
-              else
-                @paginar = false
-              end
-            end
+            #if @usa_consexpcaso
+            #  if @paginar && params[:idplantilla].nil? && defined?(@consexpcaso.paginate)
+            #    @consexpcaso = @consexpcaso.paginate(
+            #      page: params[:pagina], per_page: 20)
+            #  else
+            #    @paginar = false
+            #  end
+            #end
             presenta_index
           end
 
@@ -319,12 +319,13 @@ module Sivel2Gen
             cu.id_caso = @caso.id
             cu.fechainicio = DateTime.now.strftime('%Y-%m-%d')
             cu.save!
+            @registro = @caso
           end
 
           # GET /casos/new
           def new
             new_sivel2_gen
-            redirect_to sivel2_gen.edit_caso_path(@registro)
+            redirect_to edit_caso_path(@registro)
           end
 
           def lista
@@ -505,7 +506,7 @@ module Sivel2Gen
 
           # Configuración común o restricciones entre acciones
           def set_caso
-            @caso = Caso.find(params[:id].to_i)
+            @registro = @caso = Caso.find(params[:id].to_i)
             @caso.current_usuario = current_usuario
           end
 
