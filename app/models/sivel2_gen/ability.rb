@@ -86,15 +86,16 @@ module Sivel2Gen
       'Banco de Datos del CINEP'
     end
 
-    if ActiveRecord::Base.connection.data_source_exists?('sivel2_gen_caso')
-    	Sivel2Gen::Consexpcaso.crea_consexpcaso(nil)
-    end
+    #if ActiveRecord::Base.connection.data_source_exists?('sivel2_gen_caso')
+    #	Sivel2Gen::Consexpcaso.crea_consexpcaso(nil)
+    #end
 
     CAMPOS_PLANTILLAS_PROPIAS = {
       'Caso' => {
-        campos: ActiveRecord::Base.connection.data_source_exists?(
-          'sivel2_gen_consexpcaso') ?
-          Sivel2Gen::Consexpcaso.column_names : [],
+        campos: #ActiveRecord::Base.connection.data_source_exists?(
+          #'sivel2_gen_consexpcaso') ?
+          #Sivel2Gen::Consexpcaso.column_names : 
+        Sivel2Gen::Caso.column_names,
         controlador: 'Sivel2Gen::CasosController',
         ruta: '/casos'
       },
