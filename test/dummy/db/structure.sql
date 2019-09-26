@@ -2424,6 +2424,18 @@ CREATE TABLE public.sivel2_gen_anexo_caso (
 );
 
 
+--
+-- Name: sivel2_gen_antecedente_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.sivel2_gen_antecedente_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
 SET default_with_oids = true;
 
 --
@@ -2431,7 +2443,7 @@ SET default_with_oids = true;
 --
 
 CREATE TABLE public.sivel2_gen_antecedente (
-    id integer DEFAULT nextval(('antecedente_seq'::text)::regclass) NOT NULL,
+    id integer DEFAULT nextval('public.sivel2_gen_antecedente_id_seq'::regclass) NOT NULL,
     fechacreacion date NOT NULL,
     fechadeshabilitacion date,
     nombre character varying(500) COLLATE public.es_co_utf_8,
@@ -2464,18 +2476,6 @@ CREATE TABLE public.sivel2_gen_antecedente_combatiente (
     id_antecedente integer,
     id_combatiente integer
 );
-
-
---
--- Name: sivel2_gen_antecedente_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public.sivel2_gen_antecedente_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
 
 
 SET default_with_oids = true;
@@ -5431,14 +5431,6 @@ ALTER TABLE ONLY public.sivel2_gen_categoria
 
 
 --
--- Name: sivel2_gen_categoria categoria_contadaen_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.sivel2_gen_categoria
-    ADD CONSTRAINT categoria_contadaen_fkey FOREIGN KEY (contadaen) REFERENCES public.sivel2_gen_categoria(id);
-
-
---
 -- Name: categoria_personal categoria_personal_id_categoria_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -5956,14 +5948,6 @@ ALTER TABLE ONLY public.sip_persona
 
 ALTER TABLE ONLY public.sip_persona
     ADD CONSTRAINT persona_tdocumento_id_fkey FOREIGN KEY (tdocumento_id) REFERENCES public.sip_tdocumento(id);
-
-
---
--- Name: sivel2_gen_presponsable presponsable_papa_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.sivel2_gen_presponsable
-    ADD CONSTRAINT presponsable_papa_fkey FOREIGN KEY (papa) REFERENCES public.sivel2_gen_presponsable(id);
 
 
 --
@@ -6505,6 +6489,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20190924112646'),
 ('20190926104116'),
 ('20190926104551'),
-('20190926133640');
+('20190926133640'),
+('20190926143845');
 
 

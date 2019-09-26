@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/pasosdeJesus/heb412_gen.git
-  revision: 288adee5dfc527d38e11b017510b617904be8531
+  revision: 50cb21fe0ac24faaecae97c9e545f00c290f2693
   specs:
     heb412_gen (1.0.b6)
       chosen-rails
@@ -20,7 +20,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sip.git
-  revision: 021f4ae51ce33b62cf2c58374100a9a64c39030e
+  revision: fff621177cc34589f0b6eba352c3c5a42b8a70c5
   specs:
     sip (2.0.b6)
       bootstrap-datepicker-rails
@@ -56,6 +56,25 @@ GIT
   branch: new_id_with_ajax
   specs:
     cocoon (1.2.11)
+
+GIT
+  remote: https://github.com/vtamara/odf-report.git
+  revision: d656a1d6e4aa85615bb7db12af950c2414acafba
+  branch: rubyzip-1.3
+  specs:
+    odf-report (0.6.1)
+      nokogiri (>= 1.5.0)
+      rubyzip (>= 1.3.0)
+
+GIT
+  remote: https://github.com/vtamara/rspreadsheet.git
+  revision: 48db333d356a051dabb5baf7a05b61137312461f
+  branch: rubyzip-1.3
+  specs:
+    rspreadsheet (0.5.3)
+      andand (>= 1.3)
+      libxml-ruby (>= 3.0)
+      rubyzip (>= 1.3)
 
 GEM
   remote: https://rubygems.org/
@@ -195,9 +214,6 @@ GEM
     nio4r (2.5.2)
     nokogiri (1.10.4)
       mini_portile2 (~> 2.4.0)
-    odf-report (0.6.0)
-      nokogiri (>= 1.5.0)
-      rubyzip (~> 1.2.0)
     orm_adapter (0.5.0)
     paperclip (6.1.0)
       activemodel (>= 4.2.0)
@@ -272,11 +288,8 @@ GEM
     responders (3.0.0)
       actionpack (>= 5.0)
       railties (>= 5.0)
-    rspreadsheet (0.5.1)
-      andand (~> 1.3)
-      rubyzip (~> 1.1)
     ruby-graphviz (1.2.4)
-    rubyzip (1.2.4)
+    rubyzip (2.0.0)
     sass-rails (6.0.0)
       sassc-rails (~> 2.1, >= 2.1.1)
     sassc (2.2.1)
@@ -366,7 +379,7 @@ DEPENDENCIES
   libxml-ruby
   mr519_gen!
   nokogiri (~> 1.6, >= 1.6.8)
-  odf-report
+  odf-report!
   paperclip
   pg
   pick-a-color-rails
@@ -380,7 +393,8 @@ DEPENDENCIES
   rails-erd
   rails-i18n
   redcarpet
-  rspreadsheet
+  rspreadsheet!
+  rubyzip (>= 2.0)
   sass-rails
   simple_form
   simplecov
