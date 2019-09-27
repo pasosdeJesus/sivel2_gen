@@ -51,7 +51,11 @@ module Sivel2Gen
 
     test "new: asigna un nuevo caso como @caso" do
       get new_caso_url
-      assert_response :success
+      assert_response :redirect
+      @response.redirect_url =~ /casos\/([0-9]*)\/edita/
+      ncaso = $~[1].to_i
+      assert_redirected_to controller: "casos", action: :edit, id: ncaso
+      follow_redirect!
       assert_select 'form' do
         verifica_formulario
       end
