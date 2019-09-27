@@ -8,7 +8,8 @@ module Sip
     PRUEBA_ETIQUETA= {
       nombre:"n",
       fechacreacion:"2014-08-05",
-      fechadeshabilitacion:nil
+      observaciones: '',
+      fechadeshabilitacion: nil
     }
 
     test "valido" do
