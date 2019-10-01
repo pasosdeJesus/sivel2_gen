@@ -52,7 +52,7 @@ if (test "$SINMIG" != "1") then {
 	} fi;
 } fi;
 
-(cd test/dummy; RAILS_ENV=test bin/rails db:drop db:setup; RAILS_ENV=test bin/rails db:migrate sip:indices)
+(cd test/dummy; RAILS_ENV=test bin/rails db:drop db:create db:setup db:migrate sip:indices; echo "####BASE DE PRUEBA CREADA"; read)
 if (test "$?" != "0") then {
 	echo "No puede preparse base de prueba";
 	exit 1;
