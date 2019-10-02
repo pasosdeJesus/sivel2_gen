@@ -3,7 +3,7 @@
 ENV['RAILS_ENV'] ||= 'test'
 
 require 'simplecov'
-SimpleCov.start
+SimpleCov.start 'rails'
 require_relative 'dummy/config/environment'
 require 'rails/test_help'
 
@@ -49,8 +49,11 @@ class PruebaIntegracion < ActionDispatch::IntegrationTest
 end
 
 class ActiveSupport::TestCase
-  # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
   fixtures :all
 
-  # Add more helper methods to be used by all tests here...
+  
+  protected
+  def load_seeds
+    load "#{Rails.root}/db/seeds.rb"
+  end
 end

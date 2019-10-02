@@ -92,10 +92,26 @@ module Sivel2Gen
 
     CAMPOS_PLANTILLAS_PROPIAS = {
       'Caso' => {
-        campos: #ActiveRecord::Base.connection.data_source_exists?(
-          #'sivel2_gen_consexpcaso') ?
-          #Sivel2Gen::Consexpcaso.column_names : 
-        Sivel2Gen::Caso.column_names,
+        campos: [
+          :caso_id,
+          :fecha,
+          :memo,
+          :ubicaciones,
+          :victimas,
+          :presponsables,
+          :tipificacion,
+          :titulo,
+          :hora,
+          :duracion,
+          :grconfiabilidad,
+          :gresclarecimiento,
+          :grimpunidad,
+          :grinformacion,
+          :bienes,
+          :id_intervalo,
+          :created_at,
+          :updated_at
+        ],
         controlador: 'Sivel2Gen::CasosController',
         ruta: '/casos'
       },

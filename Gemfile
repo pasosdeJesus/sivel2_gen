@@ -31,9 +31,9 @@ gem 'devise' # Autenticación
 
 gem 'devise-i18n'
 
-# Motor de nube y plantillas
+
 gem 'heb412_gen', git: 'https://github.com/pasosdeJesus/heb412_gen.git'
-#gem 'heb412_gen', path: '../heb412_gen'
+   #path: '../heb412_gen' # Motor de nube y plantillas
 
 gem 'libxml-ruby' # Genera ODS
 
