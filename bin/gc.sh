@@ -14,7 +14,7 @@ function cableado {
 }
 
 d=`grep "gem.*pasosdeJesus" Gemfile | sed -e "s/.*gem ['\"]//g;s/['\"].*//g"`
-cableado $d
+#cableado $d
 
 grep "^ *gem *.debugger*" Gemfile > /dev/null 2> /dev/null
 if (test "$?" = "0") then {
@@ -58,7 +58,7 @@ if (test "$?" != "0") then {
 	exit 1;
 } fi;
 
-CONFIG_HOSTS=www.example.com bin/rails test
+RAILS_ENV=test CONFIG_HOSTS=www.example.com bin/rails test
 if (test "$?" != "0") then {
 	echo "No pasaron pruebas de regresion";
 	exit 1;

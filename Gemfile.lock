@@ -1,32 +1,22 @@
 GIT
+  remote: https://github.com/pasosdeJesus/heb412_gen.git
+  revision: aefb9e8f43282bf6d04562bea3eadb357f73559d
+  specs:
+    heb412_gen (1.0.b6)
+      chosen-rails
+      font-awesome-rails
+      mr519_gen
+      redcarpet
+      rspreadsheet
+      sip
+
+GIT
   remote: https://github.com/pasosdeJesus/mr519_gen.git
   revision: 3a530bb89ca36e7f6b0fdf23b35c5ab9019d9e90
   specs:
     mr519_gen (0.2.0)
       rails (~> 6.0.0.rc1, >= 6.0.0.rc1)
       sip
-
-GIT
-  remote: https://github.com/pasosdeJesus/sip.git
-  revision: 17f3af95a93852e577920144bddf2305af678c2f
-  specs:
-    sip (2.0.b6)
-      bootstrap-datepicker-rails
-      cancancan
-      chosen-rails
-      colorize
-      devise
-      devise-i18n
-      jquery-rails
-      jquery-ui-rails
-      minitest
-      paperclip
-      rails
-      rails-i18n
-      simple_form
-      twitter-bootstrap-rails
-      twitter_cldr
-      will_paginate
 
 GIT
   remote: https://github.com/vtamara/chosen-rails.git
@@ -55,15 +45,25 @@ GIT
       rubyzip (>= 1.3.0)
 
 PATH
-  remote: ../heb412_gen
+  remote: ../sip
   specs:
-    heb412_gen (1.0.b6)
+    sip (2.0.b6)
+      bootstrap-datepicker-rails
+      cancancan
       chosen-rails
-      font-awesome-rails
-      mr519_gen
-      redcarpet
-      rspreadsheet
-      sip
+      colorize
+      devise
+      devise-i18n
+      jquery-rails
+      jquery-ui-rails
+      minitest
+      paperclip
+      rails
+      rails-i18n
+      simple_form
+      twitter-bootstrap-rails
+      twitter_cldr
+      will_paginate
 
 GEM
   remote: https://rubygems.org/
@@ -130,6 +130,7 @@ GEM
     bootstrap-datepicker-rails (1.8.0.1)
       railties (>= 3.0)
     builder (3.2.3)
+    byebug (11.0.1)
     camertron-eprun (1.1.1)
     cancancan (3.0.1)
     choice (0.2.0)
@@ -345,6 +346,7 @@ DEPENDENCIES
   bcrypt
   bootsnap (>= 1.1.0)
   bootstrap-datepicker-rails
+  byebug
   cancancan
   chosen-rails!
   cocoon!
