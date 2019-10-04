@@ -25,7 +25,7 @@
           <%= f.label :id_usuario, "Usuario", 
             class: "select optional control-label" %>
           <%= 
-            if !f.object.id_usuario.nil?
+            if !f.object.usuario.nil?
               text_field_tag 'nusuario', f.object.usuario.nusuario, readonly: true
             else
               text_field_tag 'nusuario', current_usuario.nusuario, readonly: true
