@@ -36,8 +36,8 @@ module Sivel2Gen
               else
                 pffd = Date.strptime(pff, '%Y-%m-%d')
               end
-              rf += " AND c1.fecha <= #{pfid.strftime('%Y-%m-%d')}" +
-                " AND c2.fecha <= #{pfid.strftime('%Y-%m-%d')}" 
+              rf += " AND c1.fecha <= #{pffd.strftime('%Y-%m-%d')}" +
+                " AND c2.fecha <= #{pffd.strftime('%Y-%m-%d')}" 
             end
             res = Sivel2Gen::Caso.connection.select_all("
               SELECT DISTINCT gr 
