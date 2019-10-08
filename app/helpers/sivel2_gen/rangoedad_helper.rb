@@ -27,7 +27,8 @@ module Sivel2Gen
 
       return na
     end
-  
+    module_function :edad_de_fechanac_fecha
+
 
     # @parama modelorango es nombre de modelo con rangos e.g 
     #   Sivel2Gen::Rangoead o Cor1440Gen::Rangoedadac
@@ -58,6 +59,43 @@ module Sivel2Gen
       end
       return ret
     end
+    module_function :buscar_rango_edad
+
+    # Calcula matriz con poblacion de un caso por sexo y rangos de edad 
+    # @param caso_id # Caso
+    # @param (anio,mes,dia) Fecha de referencia para calculo de edades
+    # @param modelorango Modelo con rangos de edades por usar
+    # @param rangoedad Incrementa este hash/matriz que tiene [sexo][rango]
+    # @param totsexo Incrementa este hash con llaves 'S' 'M' y 'F'
+    # @return true sii puede calcular poblacion por sexo y rangos de edad
+    def poblacion_por_rangos(caso_id, anio, mes, dia, modelorango, rangoedad, totsexo)
+      caso = Sivel2Gen::Caso.where(id: caso_id)
+      if caso.count < 1 
+        return false
+      end
+
+      caso.take.victima.joins(
+        'JOIN sip_persona ON sip_persona.id=sivel2_gen_victima.id_persona').
+        each do |v|
+        re = Sivel2Gen::RangoedadHelper.buscar_rango_edad(
+          Sivel2Gen::RangoedadHelper.edad_de_fechanac_fecha(
+            v.persona.anionac, v.persona.mesnac, v.persona.dianac,
+            anio, mes, dia), modelorango)
+        if rangoedad[v.persona.sexo][re] && 
+            rangoedad[v.persona.sexo][re]
+          rangoedad[v.persona.sexo][re] += 1
+        elsif rangoedad[v.persona.sexo]
+          rangoedad[v.persona.sexo][re] = 1
+        else
+          rangoedad[v.persona.sexo] = {}
+          rangoedad[v.persona.sexo][re] = 1
+        end
+        totsexo[v.persona.sexo] = totsexo[v.persona.sexo] ? 
+          totsexo[v.persona.sexo] + 1 : 1
+      end
+      return true
+    end 
+    module_function :poblacion_por_rangos
 
   end
 end

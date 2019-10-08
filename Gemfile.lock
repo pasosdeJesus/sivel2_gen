@@ -288,7 +288,7 @@ GEM
       sprockets (> 3.0)
       sprockets-rails
       tilt
-    simple_form (5.0.0)
+    simple_form (5.0.1)
       actionpack (>= 5.0)
       activemodel (>= 5.0)
     simplecov (0.17.1)
