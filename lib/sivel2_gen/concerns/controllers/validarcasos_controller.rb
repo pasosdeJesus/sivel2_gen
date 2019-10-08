@@ -143,7 +143,7 @@ module Sivel2Gen
               WHERE id_persona=sip_persona.id)')
           end
 
-           def valida_victima_colectiva_sin_acto(c)
+          def valida_victima_colectiva_sin_acto(c)
             c = c.joins('INNER JOIN sivel2_gen_victimacolectiva
               ON sivel2_gen_victimacolectiva.id_caso=sivel2_gen_caso.id').
               joins('INNER JOIN sip_grupoper
@@ -154,7 +154,7 @@ module Sivel2Gen
               WHERE id_grupoper=sip_grupoper.id)')
           end
 
-           def valida_nombres_victimas_cortos(c)
+          def valida_nombres_victimas_cortos(c)
             c = c.joins('INNER JOIN sivel2_gen_victima
               ON sivel2_gen_victima.id_caso=sivel2_gen_caso.id').
               joins('INNER JOIN sip_persona
@@ -166,7 +166,7 @@ module Sivel2Gen
             )
           end
 
-           def valida_apellidos_victimas_cortos(c)
+          def valida_apellidos_victimas_cortos(c)
             c = c.joins('INNER JOIN sivel2_gen_victima
               ON sivel2_gen_victima.id_caso=sivel2_gen_caso.id').
               joins('INNER JOIN sip_persona

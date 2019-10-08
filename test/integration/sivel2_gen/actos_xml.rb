@@ -55,7 +55,6 @@ module Sivel2Gen
 
     test 'Valida caso con acto individual' do
       caso = Sivel2Gen::Caso.create! PRUEBA_CASO_BASICOS
-      pconsolidado = Sivel2Gen::Pconsolidado.find(17)
       categoria = Sivel2Gen::Categoria.find(15)
       presponsable = Sivel2Gen::Presponsable.find(104)
       persona = Sip::Persona.create! PRUEBA_PERSONA

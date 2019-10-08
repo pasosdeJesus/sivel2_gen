@@ -121,13 +121,11 @@ module Sivel2Gen
         orientacionsexual: 'S'
       )
       presponsable = Sivel2Gen::Presponsable.find(37)
-      casopresponsable = Sivel2Gen::CasoPresponsable.create(
+      Sivel2Gen::CasoPresponsable.create(
         id_caso: caso.id,
         id_presponsable: presponsable.id,
         tipo: 1
       )
-      pconsolidado1 = Sivel2Gen::Pconsolidado.find(1)
-      pconsolidado1 = Sivel2Gen::Pconsolidado.find(5)
       categoria1 = Sivel2Gen::Categoria.find(97)
       categoria2 = Sivel2Gen::Categoria.find(98)
       acto1 = Sivel2Gen::Acto.create(
@@ -154,19 +152,19 @@ module Sivel2Gen
       intervalo = Sivel2Gen::Intervalo.find(2)
       caso.id_intervalo = intervalo.id
       contexto = Sivel2Gen::Contexto.find(28)
-      casocon = Sivel2Gen::CasoContexto.create(
+      Sivel2Gen::CasoContexto.create(
         id_caso: caso.id,
         id_contexto: contexto.id,
         created_at: '2014-09-09'
       )
       region1 = Sivel2Gen::Region.find(9)
       region2 = Sivel2Gen::Region.find(5)
-      casoreg1 = Sivel2Gen::CasoRegion.create(
+      Sivel2Gen::CasoRegion.create(
         id_caso: caso.id,
         id_region: region1.id,
         created_at: '2014-09-09'
       )
-      casoreg2 = Sivel2Gen::CasoRegion.create(
+      Sivel2Gen::CasoRegion.create(
         id_caso: caso.id,
         id_region: region2.id,
         created_at: '2014-09-09'

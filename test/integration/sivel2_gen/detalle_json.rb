@@ -85,14 +85,12 @@ module Sivel2Gen
       )
 
       presponsable = Sivel2Gen::Presponsable.find(14)
-      casopresponsable = Sivel2Gen::CasoPresponsable.create(
+      Sivel2Gen::CasoPresponsable.create(
         id_caso: caso.id,
         id_presponsable: presponsable.id,
         tipo: 1
       )
-      pconsolidado1 = Sivel2Gen::Pconsolidado.find(5)
       categoria1 = Sivel2Gen::Categoria.find(13)
-      pconsolidado2 = Sivel2Gen::Pconsolidado.find(10)
       categoria2 = Sivel2Gen::Categoria.find(702)
       acto1 = Sivel2Gen::Acto.create(
         id_presponsable: presponsable.id,
@@ -111,13 +109,13 @@ module Sivel2Gen
       intervalo = Sivel2Gen::Intervalo.find(2)
       caso.id_intervalo = intervalo.id
       contexto = Sivel2Gen::Contexto.find(28)
-      casocon = Sivel2Gen::CasoContexto.create(
+      Sivel2Gen::CasoContexto.create(
         id_caso: caso.id,
         id_contexto: contexto.id,
         created_at: '2014-09-09'
       )
       region1 = Sivel2Gen::Region.find(6)
-      casoreg1 = Sivel2Gen::CasoRegion.create(
+      Sivel2Gen::CasoRegion.create(
         id_caso: caso.id,
         id_region: region1.id
       )

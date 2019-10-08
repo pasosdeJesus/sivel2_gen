@@ -414,7 +414,7 @@ module Sivel2Gen
             "SEXO"
           ]
 
-          pContar='victimizaciones'
+          #pContar='victimizaciones'
           #if (pContar == '') 
           #  pContar = pContarDef
           #end
