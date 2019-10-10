@@ -18,7 +18,7 @@ Google tiene disponible una API de google maps para que los desarrolladores pued
 
 En la imagen a continuación se presenta el despliegue final obtenido con Google Maps.
 
-![Google maps](https://github.com/alejocruzrcc/sivel2_gen/blob/docmapa/doc/imagengm.png)
+![Google maps](https://github.com/pasosdeJesus/sivel2_gen/blob/docmapa/doc/imagengm.png)
 
 ## Open Street Maps 
 
@@ -32,4 +32,4 @@ Osm (Open Street Maps) es otro servicio GIS para desplegar mapas (https://leafle
 
 La imagen a continuación muestra el resultado final de este desarrollo: 
 
-![Open Street Maps](https://github.com/alejocruzrcc/sivel2_gen/blob/docmapa/doc/imagenosm.png)
+![Open Street Maps](https://github.com/pasosdeJesus/sivel2_gen/blob/docmapa/doc/imagenosm.png)
