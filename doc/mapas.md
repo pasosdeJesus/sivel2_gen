@@ -1,12 +1,23 @@
-# Reporte de Casos en Mapas
+# Visualización de casos sobre mapas web
 
-La visualización de los casos a través de un sistema GIS está disponible en la plataforma con el fin de interactuar con la información de los casos geográficamente. Con los mapas se han aprovechado recursos y servicios como controles, capasy además de implementarse un filtro de búsqueda de Casos. Han sido seleccionadas dos tecnologías para el despliegue de mapas: Google Maps y Open Street Maps.
+SIVeL 2 provee visualización de los casos y parte de su información sobre mapas web de Google Maps, OpenStreetMap y Mapbox.  Estas visualizaciones cuentan con controles típicos de esos tipos de mapas (e.g acercar, alejar), acumulados (clusters) de casos que se desagrupan a media que se acerca, un filtro de búsqueda sobre los casos y sobre Open Street Map posibilidad de importar pequeñas capas GeoJSON.
 
-El siguiente enlace, contiene un diagrama que explica partes implicadas en OpenStreetMap (o MapBox o Google Maps)
+Como se explica en https://ircama.github.io/osm-carto-tutorials/osm-rendering-process/ tanto editar información geográfica como visualizarla son procesos complejos que se realizan en varios niveles.  
 
-https://ircama.github.io/osm-carto-tutorials/osm-rendering-process/
+En el caso de visualización de una mapa web con baldosas (tile map) pueden resumirse a los siguientes (que se han vuelto practicamente estándar en el web https://en.wikipedia.org/wiki/Tiled_web_map):
+* A nivel de servidor: 
+  * La información geográfica con nombres y coordenadas se mantiene en una base de datos (PostgreSQL con PostGIS en el caso de OpenStreetMap)
+  * Mediante un programa (mapnik en el caso de OpenStreetMap), esta información se transforma en una capa base conformada por baldosas (tiles) que son imagenes de 256x256 de acuerdo a: (1) nivel de acercamiento o zoom, (2) coordenadadas X y Y en sistema Web Mercator (i.e latitudes entre -180 y 180 y longitudes entre -85.05 y 85.05), (3) estilo de colores, texturas, símbolos, tipografía y ubicación de textos.
+  * Pueden generarse otras capas de baldosas por sobreponer a la capa base de manera análoga (sólo que emplean color transparente donde se debe presentar capa base).
+* A nivel de cliente en el navegador
+  * Se emplea un API o librería Javascript para descargar y sobreponer las baldosas de capa base y superpuestas de acuerdo al nivel de acercamiento y ubicación elegidas por el usuario.
+  * De acuerdo a posibilidades de la libría se sobreponen otras capas a nivel de cliente o se agregan marcadores o acumulados 
+  * El navegador presenta el mapa al usuario y le permite interactuar.
+  
+Por su filosofia de fuentes abiertas y por no requerir llaves de autenticación, SIVeL 2 emplea por omisión visualización sobre OpenStreetMap. 
 
-A continuación se presenta el desarrollo de cada mapa más detallado.
+A continuación describimos más detalle de los mapas web con los que se ha implementado visualización de casos.
+
 
 ## Google Maps
 
