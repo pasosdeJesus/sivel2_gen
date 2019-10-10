@@ -37,6 +37,14 @@ La siguiente imagen ilustra esta implementación:
 
 ![Open Street Maps](https://github.com/pasosdeJesus/sivel2_gen/raw/master/doc/imagenosm.png)
 
+
+## Mapbox
+
+Dado que el desarrollador de Leaflet, se unió a la compañia MapBox, es similar a OpenStreetMap, aunque:
+1. Provee baldosas con diversos estilos, algunos se ven más agradables que OpenStreetMap
+2. Al igual que GoogleMaps, requiere que el usuario se registre y genere una llave, con lo cual Mapbox podrá tarificar y cobrar cuando el nivel de consultas se alto --para pocas consultas el servicio es gratuito.
+
+
 ## Google Maps
 
 La API de Google Maps se documenta en https://developers.google.com/maps/documentation/javascript/tutorial?hl=es . Requiere que quien visualiza los mapas se registre y genere una llave (key), que se empleará para autenticar las peticiones de baldosas y así poder tarificar y realizar cobros de acuerdo al nivel de consulta  --para pocas consultas el servicio es gratuito.  
@@ -46,9 +54,8 @@ La implementación en SIVeL 2 (heredada de la implementación en SIVeL 1) se com
 3. Se usa la librería MarkerClusterer para visualizar acumulados (clusters) de gran numero de casos que esan cercanos entre sí, aunque los casos individuales se presentan con marcadores (ícono de bandera).
 4. Al pulsar sobre un marcador (casos) se despliega como ayuda emergente una ventana con 3 pestañas con la información del caso. 
 
-En la imagen a continuación se presenta el despliegue final obtenido con Google Maps.
+La siguiente imagen ilustra esta implementación:
 
 ![Google maps](https://github.com/pasosdeJesus/sivel2_gen/raw/master/doc/imagengm.png)
-
 
 
