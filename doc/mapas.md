@@ -32,4 +32,4 @@ Osm (Open Street Maps) es otro servicio GIS para desplegar mapas (https://leafle
 
 La imagen a continuación muestra el resultado final de este desarrollo: 
 
-![Open Street Maps](https://github.com/pasosdeJesus/sivel2_gen/blob/docmapa/doc/imagenosm.png)
+![Open Street Maps](https://github.com/pasosdeJesus/sivel2_gen/raw/master/doc/imagenosm.png)
