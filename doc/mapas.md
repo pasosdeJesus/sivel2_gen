@@ -19,7 +19,7 @@ Por su filosofia de fuentes abiertas, su caracter colaborativo y por no requerir
 A continuación describimos más detalle de los mapas web con los que se ha implementado visualización de casos.
 
 
-## Open Street Maps 
+## Open Street Map
 
 Open Street Map (OSM) es un proyecto que provee: (1) datos geográficos abiertos, (2) posibilidad de editar los mapas mediante diversas herramientas, con un proceso editorial semajante a wikipedia y (3) una red de distribución de contenidos para las baldosas que no requiere registro, llaves, ni pagos para niveles de consulta bajos.
 Las dos librerías más populares para desplegar las baldosas de OpenStreetMap son Leaflet y OpenLayers.
