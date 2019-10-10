@@ -40,12 +40,14 @@ La siguiente imagen ilustra esta implementación:
 
 ## Mapbox
 
-Dado que el desarrollador de Leaflet, se unió a la compañia MapBox, es similar a OpenStreetMap, aunque:
-1. Provee baldosas con diversos estilos, algunos se ven más agradables que OpenStreetMap
-2. Al igual que GoogleMaps, requiere que el usuario se registre y genere una llave, con lo cual Mapbox podrá tarificar y cobrar cuando el nivel de consultas se alto --para pocas consultas el servicio es gratuito.
+Se trata de un servicio comercial que emplea la información geográfica de OpenStreetMap y a nivel de cliente la librería Leaflet (cuyo desarrollo financia).  La implementación en SIVeL 2 fue similar a la de OpenStreetMap, con estas diferencias:
+1. Mapbox provee baldosas con diversos estilos, algunos se ven más agradables que OpenStreetMap
+2. Requiere que el usuario se registre y genere una llave, con lo cual Mapbox podrá tarificar y cobrar cuando el nivel de consultas se alto --para pocas consultas el servicio es gratuito.
 
 
 ## Google Maps
+
+Es un servicio comercial que emplea información privativa satelital y de mapas.  Para alimentar información geográfica emplea vehículos alrededor del mundo que registran en detalle carreteras, calles en ciudades y fotografías, también recibe contribuciones de voluntarios (pero se convierte en información privada de Google).
 
 La API de Google Maps se documenta en https://developers.google.com/maps/documentation/javascript/tutorial?hl=es . Requiere que quien visualiza los mapas se registre y genere una llave (key), que se empleará para autenticar las peticiones de baldosas y así poder tarificar y realizar cobros de acuerdo al nivel de consulta  --para pocas consultas el servicio es gratuito.  
 La implementación en SIVeL 2 (heredada de la implementación en SIVeL 1) se compone de:
@@ -57,5 +59,3 @@ La implementación en SIVeL 2 (heredada de la implementación en SIVeL 1) se com
 La siguiente imagen ilustra esta implementación:
 
 ![Google maps](https://github.com/pasosdeJesus/sivel2_gen/raw/master/doc/imagengm.png)
-
-
