@@ -35,7 +35,7 @@ El mapa de SIVeL 2 se ha implementado con Leaflet, cuya documentación está en 
 
 La siguiente imagen ilustra esta implementación: 
 
-![Open Street Maps](https://github.com/pasosdeJesus/sivel2_gen/raw/master/doc/imagenosm.png)
+![Open Street Maps](https://github.com/pasosdeJesus/sivel2_gen/raw/master/doc/img/imagenosm.png)
 
 
 ## Mapbox
@@ -44,6 +44,9 @@ Se trata de un servicio comercial que emplea la información geográfica de Open
 1. Mapbox provee baldosas con diversos estilos, algunos se ven más agradables que OpenStreetMap
 2. Requiere que el usuario se registre y genere una llave, con lo cual Mapbox podrá tarificar y cobrar cuando el nivel de consultas se alto --para pocas consultas el servicio es gratuito.
 
+La siguiente imagen ilustra esta implementación:
+
+![Mapbox](https://github.com/pasosdeJesus/sivel2_gen/raw/master/doc/img/mapa_mapbox.png)
 
 ## Google Maps
 
@@ -58,4 +61,4 @@ La implementación en SIVeL 2 (heredada de la implementación en SIVeL 1) se com
 
 La siguiente imagen ilustra esta implementación:
 
-![Google maps](https://github.com/pasosdeJesus/sivel2_gen/raw/master/doc/imagengm.png)
+![Google maps](https://github.com/pasosdeJesus/sivel2_gen/raw/master/doc/img/imagengm.png)
