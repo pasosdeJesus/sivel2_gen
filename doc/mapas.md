@@ -4,7 +4,7 @@ SIVeL 2 provee visualización de los casos y parte de su información sobre mapa
 
 Como se explica en https://ircama.github.io/osm-carto-tutorials/osm-rendering-process/ tanto editar información geográfica como visualizarla son procesos complejos que se realizan en varios niveles.  
 
-En el caso de visualización de una mapa web con baldosas (tile map) pueden resumirse en los siguientes (que se han vuelto practicamente estándar en el web https://en.wikipedia.org/wiki/Tiled_web_map):
+En el caso de visualización de una mapa web con baldosas (tile map), los siguientes niveles son prácticamente estándar https://en.wikipedia.org/wiki/Tiled_web_map:
 * A nivel de servidor: 
   * La información geográfica con nombres y coordenadas se mantiene en una base de datos (PostgreSQL con PostGIS en el caso de OpenStreetMap)
   * Mediante un programa (mapnik en el caso de OpenStreetMap), esta información se transforma en una capa base conformada por baldosas (tiles) que son imagenes de 256x256 de acuerdo a: (1) nivel de acercamiento o zoom, (2) coordenadadas X y Y en sistema Web Mercator (i.e latitudes entre -180 y 180 y longitudes entre -85.05 y 85.05), (3) estilo de colores, texturas, símbolos, tipografía y ubicación de textos.
