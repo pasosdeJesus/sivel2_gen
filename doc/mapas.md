@@ -18,7 +18,7 @@ Google tiene disponible una API de google maps para que los desarrolladores pued
 
 En la imagen a continuación se presenta el despliegue final obtenido con Google Maps.
 
-![Google maps](https://github.com/pasosdeJesus/sivel2_gen/blob/docmapa/doc/imagengm.png)
+![Google maps](https://github.com/pasosdeJesus/sivel2_gen/raw/master/doc/imagengm.png)
 
 ## Open Street Maps 
 
