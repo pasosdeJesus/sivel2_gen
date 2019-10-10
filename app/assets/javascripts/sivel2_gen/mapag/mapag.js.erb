@@ -3,7 +3,6 @@ var mc = null;
 var markersClusterer= []
 var bounds; 
 var mcOptions = {gridSize: 40, maxZoom: 10, imagePath: 'https://raw.githubusercontent.com/googlemaps/v3-utility-library/master/markerclusterer/images/m'}; //Configuracion de MarkerClusterer
-
 function showLoader() {
   $('#loader').show();
 }
@@ -118,7 +117,7 @@ function createMarker(point, codigo, title) {
   var marker = new google.maps.Marker({
     map: map,
     position: point,
-    icon: '<%= asset_path('icon.png') %>',
+    icon: '<%= asset_path('icono_bandera.png') %>',
     title: title,
   });
   bounds.extend(point);
