@@ -43,7 +43,8 @@ La siguiente imagen ilustra esta implementación:
 
 Se trata de un servicio comercial que emplea la información geográfica de OpenStreetMap y a nivel de cliente la librería Leaflet (cuyo desarrollo financia).  La implementación en SIVeL 2 fue similar a la de OpenStreetMap, con estas diferencias:
 1. Mapbox provee baldosas con diversos estilos, algunos se ven más agradables que OpenStreetMap
-2. Requiere que el usuario se registre y genere una llave, con lo cual Mapbox podrá tarificar y cobrar cuando el nivel de consultas se alto --para pocas consultas el servicio es gratuito.
+2. Provee un buscador de sitios geográficos 
+3. Requiere que el usuario se registre y genere una llave, con lo cual Mapbox podrá tarificar y cobrar cuando el nivel de consultas se alto --para pocas consultas el servicio es gratuito.
 
 La siguiente imagen ilustra esta implementación:
 
