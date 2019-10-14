@@ -66,9 +66,13 @@ module Sivel2Gen
     # @param (anio,mes,dia) Fecha de referencia para calculo de edades
     # @param modelorango Modelo con rangos de edades por usar
     # @param rangoedad Incrementa este hash/matriz que tiene [sexo][rango]
-    # @param totsexo Incrementa este hash con llaves 'S' 'M' y 'F'
+    #   tipicamente funciona llamadora lo inicia con
+    #   rangoedad = {'S' => {}, 'M' => {}, 'F' => {}}
+    # @param totsexo Incrementa este hash con llaves 'S' 'M' y 'F',
+    #   tipicamente función llamador lo inicia con:
+    #   totsexo ={}
     # @return true sii puede calcular poblacion por sexo y rangos de edad
-    def poblacion_por_rangos(caso_id, anio, mes, dia, modelorango, rangoedad, totsexo)
+    def poblacion_por_sexo_rango(caso_id, anio, mes, dia, modelorango, rangoedad, totsexo)
       caso = Sivel2Gen::Caso.where(id: caso_id)
       if caso.count < 1 
         return false
@@ -81,21 +85,47 @@ module Sivel2Gen
           Sivel2Gen::RangoedadHelper.edad_de_fechanac_fecha(
             v.persona.anionac, v.persona.mesnac, v.persona.dianac,
             anio, mes, dia), modelorango)
-        if rangoedad[v.persona.sexo][re] && 
-            rangoedad[v.persona.sexo][re]
-          rangoedad[v.persona.sexo][re] += 1
-        elsif rangoedad[v.persona.sexo]
-          rangoedad[v.persona.sexo][re] = 1
-        else
+        if !rangoedad[v.persona.sexo]
           rangoedad[v.persona.sexo] = {}
-          rangoedad[v.persona.sexo][re] = 1
         end
+        if !rangoedad[v.persona.sexo][re]
+          rangoedad[v.persona.sexo][re] = 0
+        end
+        rangoedad[v.persona.sexo][re] += 1
         totsexo[v.persona.sexo] = totsexo[v.persona.sexo] ? 
           totsexo[v.persona.sexo] + 1 : 1
       end
       return true
     end 
-    module_function :poblacion_por_rangos
+    module_function :poblacion_por_sexo_rango
+
+    def poblacion_por_rango_sexo(caso_id, anio, mes, dia, modelorango, 
+                                 rangoedadsexo, totsexo)
+      caso = Sivel2Gen::Caso.where(id: caso_id)
+      if caso.count < 1 
+        return false
+      end
+
+      caso.take.victima.joins(
+        'JOIN sip_persona ON sip_persona.id=sivel2_gen_victima.id_persona').
+        each do |v|
+        re = Sivel2Gen::RangoedadHelper.buscar_rango_edad(
+          Sivel2Gen::RangoedadHelper.edad_de_fechanac_fecha(
+            v.persona.anionac, v.persona.mesnac, v.persona.dianac,
+            anio, mes, dia), modelorango)
+        if !rangoedadsexo[re]
+          rangoedadsexo[re] = {}
+        end
+        if !rangoedadsexo[re][v.persona.sexo]
+          rangoedadsexo[re][v.persona.sexo] = 0
+        end
+        rangoedadsexo[re][v.persona.sexo] += 1
+        totsexo[v.persona.sexo] = totsexo[v.persona.sexo] ? 
+          totsexo[v.persona.sexo] + 1 : 1
+      end
+      return true
+    end
+    module_function :poblacion_por_rango_sexo
 
   end
 end
