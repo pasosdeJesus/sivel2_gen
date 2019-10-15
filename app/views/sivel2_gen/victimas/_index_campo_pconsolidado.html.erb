@@ -3,7 +3,7 @@
 <% i = 0 %>
 <% @pconsolidado.each do |p| %>
   <% id = p[0]; rotulo = p[1]; cat = p[2] %>
-  <% if registro.caso.acto.where(
+  <% if registro && registro.caso && registro.caso.acto.where(
       id_categoria: cat, id_persona: registro.persona.id).count > 0 %>
       1
   <% end %>
