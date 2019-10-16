@@ -4,8 +4,10 @@ class Catpresp < ActiveRecord::Migration[5.1]
       :id_tviolencia
     remove_column :sivel2_gen_caso_categoria_presponsable, 
       :id_supracategoria
-    remove_column :sivel2_gen_caso_categoria_presponsable, 
-      :id_caso
+    execute <<-SQL
+      ALTER TABLE sivel2_gen_caso_categoria_presponsable
+        DROP COLUMN id_caso CASCADE;
+    SQL
     remove_column :sivel2_gen_caso_categoria_presponsable, 
       :id_presponsable
   end
