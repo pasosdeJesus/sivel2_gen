@@ -47,8 +47,8 @@ module Sivel2Gen
       else
         idsin = -1
       end
-      c = t.where('limiteinferior  <= ?', edad).
-        where('? <= limitesuperior', edad)
+      c = t.where('(limiteinferior IS NULL) OR (limiteinferior  <= ?)', edad).
+        where('(limitesuperior IS NULL) OR (? <= limitesuperior)', edad)
       ret = idsin
       if c.count == 0
         puts "No se encontró edad #{edad} en tabla #{modelorango}"
