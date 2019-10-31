@@ -16,3 +16,9 @@
 // const imagePath = (name) => images(name, true)
 
 console.log('Hello World from Webpacker')
+
+var $ = require("jquery");
+import "popper.js"
+import "bootstrap"
+import "bootstrap/js/dist/dropdown"
+

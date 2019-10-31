@@ -6,8 +6,6 @@ gem 'bcrypt'
 
 gem 'bootsnap', '>=1.1.0', require: false
 
-gem 'bootstrap-datepicker-rails'
-
 gem 'cancancan'# Roles
 
 gem 'chosen-rails', git: 'https://github.com/vtamara/chosen-rails.git', branch: 'several-fixes'
@@ -67,8 +65,6 @@ gem 'tiny-color-rails'
 
 gem 'turbolinks' # Enlaces y redirecciones rápido.
 
-gem 'twitter-bootstrap-rails' 
-
 gem 'twitter_cldr' # ICU con CLDR
 
 gem 'tzinfo' # Zonas horarias
@@ -86,15 +82,15 @@ gem 'will_paginate' # Listados en páginas
 # bien vistas
 
 gem 'sip', # Motor generico
-  git: 'https://github.com/pasosdeJesus/sip.git'
+  git: 'https://github.com/pasosdeJesus/sip.git', branch: :bs4
 #gem 'sip', path: '../sip'
 
 gem 'mr519_gen', # Motor de gestion de formularios y encuestas
-  git: 'https://github.com/pasosdeJesus/mr519_gen.git'
+  git: 'https://github.com/pasosdeJesus/mr519_gen.git', branch: :bs4
 #gem 'mr519_gen', path: '../mr519_gen'
 
 gem 'heb412_gen',  # Motor de nube y llenado de plantillas
-  git: 'https://github.com/pasosdeJesus/heb412_gen.git'
+  git: 'https://github.com/pasosdeJesus/heb412_gen.git', branch: :bs4
 #gem 'heb412_gen', path: '../heb412_gen'
 
 

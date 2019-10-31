@@ -2,10 +2,10 @@
 
 # Version of your assets, change this if you want to expire all your assets.
 Rails.application.config.assets.version = '1.0'
-Rails.application.config.assets.precompile += 
-  %w(*.png *.jpg *.jpeg *.gif \
-     vendor/bootstrap/*.js vendor/bootstrap/*.css \
-     vendor/bootstrap/**/*.js vendor/bootstrap/**/*.css)
+
+Rails.application.config.assets.paths << Rails.root.join('node_modules')
+
+Rails.application.config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif)
 # Add additional assets to the asset load path.
 # Rails.application.config.assets.paths << Emoji.images_path
 
