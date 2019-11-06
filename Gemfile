@@ -8,22 +8,12 @@ gem 'bootsnap', '>=1.1.0', require: false
 
 gem 'cancancan'# Roles
 
-gem 'chosen-rails', git: 'https://github.com/vtamara/chosen-rails.git', branch: 'several-fixes'
-
 gem 'cocoon', git: 'https://github.com/vtamara/cocoon.git', 
   branch: 'new_id_with_ajax'# Formularios anidados (algunos con ajax)
 
 gem 'coffee-rails' # CoffeeScript para recuersos .js.coffee y vistas
 
-gem 'colorize' # Colores en terminal
-
-gem 'font-awesome-rails'
-
 gem 'jbuilder' # API JSON facil. Ver: https://github.com/rails/jbuilder
-
-gem 'jquery-rails'# jquery como librería JavaScript
-
-gem 'jquery-ui-rails'
 
 gem 'devise' # Autenticación 
 
@@ -57,19 +47,15 @@ gem 'rspreadsheet'
 
 gem 'rubyzip', '>= 2.0'
 
-gem 'sass-rails' # Hojas de estilo con SCSS
+gem 'sassc-rails' # Hojas de estilo con SCSS
 
 gem 'simple_form' # Formularios simples 
 
 gem 'tiny-color-rails'
 
-gem 'turbolinks' # Enlaces y redirecciones rápido.
-
 gem 'twitter_cldr' # ICU con CLDR
 
 gem 'tzinfo' # Zonas horarias
-
-gem 'uglifier' # Uglifier comprime recursos Javascript
 
 gem 'webpacker' # módulos en Javascript https://github.com/rails/webpacker
 
@@ -82,7 +68,7 @@ gem 'will_paginate' # Listados en páginas
 
 gem 'sip', # Motor generico
   git: 'https://github.com/pasosdeJesus/sip.git', branch: :bs4
-#gem 'sip', path: '../sip'
+  #path: '../sip'
 
 gem 'mr519_gen', # Motor de gestion de formularios y encuestas
   git: 'https://github.com/pasosdeJesus/mr519_gen.git', branch: :bs4
@@ -110,6 +96,8 @@ group  :development, :test do
 
   #gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   
+  gem 'colorize' # Colores en terminal
+
   gem 'rails-controller-testing'
 
   gem 'simplecov'
