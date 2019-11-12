@@ -9,10 +9,10 @@
 %>
   <div class="container">
     <div class="row filtro-fila">
-      <div class="col-sm-offset-0 col-sm-2 col-md-offset-1 col-md-1">
+      <div class="offset-sm-0 col-sm-2 offset-md-1 col-md-1">
         <%= @titulo_personas_fecha %>
       </div>
-      <div class="col-sm-offset-0 col-sm-4">
+      <div class="offset-sm-0 col-sm-4">
         <%= f.input :fechaini,
           maxlength: 10, 
           size: 10,
@@ -24,7 +24,7 @@
           }
         %>
       </div>
-      <div class="col-sm-offset-1 col-sm-4">
+      <div class="offset-sm-1 col-sm-4">
         <%= f.input :fechafin,
           maxlength: 10, 
           size: 10,
@@ -38,7 +38,7 @@
       </div>
     </div>
     <div class="row filtro-fila">
-      <div class="col-md-offset-5 col-md-2">
+      <div class="offset-md-5 col-md-2">
         <%= f.button :submit, 'Filtrar', class: 'btn btn-default' %>
       </div>
     </div>

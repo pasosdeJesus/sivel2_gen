@@ -10,7 +10,7 @@
 %>
   <div class="container">
     <div class="row">
-      <div class="col-md-offset-0 col-md-1"> 
+      <div class="offset-md-0 col-md-1"> 
         <% if @conscaso.size > 0 %>
           <%= link_to t('.new', :default => t("helpers.links.new")),
             sivel2_gen.new_caso_path,
@@ -18,26 +18,26 @@
           %>
         <% end %>
       </div>
-      <div class="col-md-offset-3 col-md-1"> 
+      <div class="offset-md-3 col-md-1"> 
         Casos: <span id="numconscaso"><%= @conscaso.count %></span>
       </div>
-      <div class="col-md-offset-2 col-md-2"> 
+      <div class="offset-md-2 col-md-2"> 
         <%= f.input :q,
           label: false,
           placeholder: 'Palabra completa por buscar'
         %>
       </div>
-      <div class="col-md-offset-0 col-md-1"> 
+      <div class="offset-md-0 col-md-1"> 
         <%= f.button :submit, 'Filtrar', class: 'btn btn-default' %>
       </div>
-      <div class="col-md-offset-0 col-md-1">
+      <div class="offset-md-0 col-md-1">
         <a class="btn btn-default btn-xs" role="button" data-toggle="collapse" 
           href="#filtro_avanzado" aria-expanded="false" 
           aria-controls="filtro_avanzado" id="boton_filtro_avanzado"> 
           Búsqueda Avanzada
         </a>
         <button class="btn btn-default btn-xs" type="reset">
-          Limpiar Filtro
+          Limpiar
         </button>
 
       </div>

@@ -19,103 +19,103 @@
 
       <div role="tabpanel">
         <ul class="nav nav-tabs" role="tablist">
-          <li role="presentation" class="active"><a href="#basicos" 
-            class="fichacambia" aria-controls="basicos" role="tab" 
+           <li role="presentation" class="nav-item active"><a href="#basicos" 
+            class="nav-link nav-link fichacambia" aria-controls="basicos" role="tab" 
             data-toggle="tab">Datos Básicos</a></li>
-          <li role="presentation"><a href="#ubicacion" class="fichacambia" 
+          <li role="presentation" class='nav-item'><a href="#ubicacion" class="nav-link fichacambia" 
             aria-controls="ubicacion" role="tab" 
             data-toggle="tab">Ubicación</a></li>
-          <li role="presentation"><a href="#fuenteprensa" class="fichacambia" 
+          <li role="presentation" class='nav-item'><a href="#fuenteprensa" class="nav-link fichacambia" 
             aria-controls="fuenteprensa" role="tab" 
             data-toggle="tab">Fuentes Frecuentes</a></li>
-          <li role="presentation"><a href="#fotra" class="fichacambia" 
+          <li role="presentation" class='nav-item'><a href="#fotra" class="nav-link fichacambia" 
             aria-controls="fotra" role="tab" 
             data-toggle="tab">Otras Fuentes</a></li>
-          <li role="presentation"><a href="#contexto" class="fichacambia" 
+          <li role="presentation" class='nav-item'><a href="#contexto" class="nav-link fichacambia" 
             aria-controls="contexto" role="tab" 
             data-toggle="tab">Contexto</a></li>
-          <li role="presentation"><a href="#presponsable" class="fichacambia" 
+          <li role="presentation" class='nav-item'><a href="#presponsable" class="nav-link fichacambia" 
             aria-controls="presponsable" role="tab" 
             data-toggle="tab">Presuntos Responsables</a></li>
-          <li role="presentation"><a href="#victima" class="fichacambia" 
+          <li role="presentation" class='nav-item'><a href="#victima" class="nav-link fichacambia" 
             aria-controls="victima" role="tab" 
             data-toggle="tab">Víctimas</a></li>
-          <li role="presentation"><a href="#victimacolectiva" class="fichacambia"
+          <li role="presentation" class='nav-item'><a href="#victimacolectiva" class="nav-link fichacambia"
             aria-controls="victimacolectiva" role="tab" 
             data-toggle="tab">Víctimas Colectivas</a></li>
-          <li role="presentation"><a href="#combatiente" class="fichacambia" 
+          <li role="presentation" class='nav-item'><a href="#combatiente" class="nav-link fichacambia" 
             aria-controls="combatiente" role="tab" 
             data-toggle="tab">Combatientes</a></li>
 
-          <li role="presentation"><a href="#actos" class="fichacambia" 
+          <li role="presentation" class='nav-item'><a href="#actos" class="nav-link fichacambia" 
             aria-controls="actos" role="tab" data-toggle="tab">Actos</a></li>
-          <li role="presentation"><a href="#descripcion" class="fichacambia" 
+          <li role="presentation" class='nav-item'><a href="#descripcion" class="nav-link fichacambia" 
             aria-controls="descripcion" role="tab" 
             data-toggle="tab">Descripción</a></li>
-          <li role="presentation"><a href="#anexos" class="fichacambia" 
+          <li role="presentation" class='nav-item'><a href="#anexos" class="nav-link fichacambia" 
             aria-controls="anexos" role="tab" data-toggle="tab">Anexos</a></li>
-          <li role="presentation"><a href="#etiquetas" class="fichacambia" 
+          <li role="presentation" class='nav-item'><a href="#etiquetas" class="nav-link fichacambia" 
             aria-controls="etiquetas" role="tab" 
             data-toggle="tab">Etiquetas</a></li>
-          <li role="presentation"><a href="#evaluacion" class="fichacambia" 
+          <li role="presentation" class='nav-item'><a href="#evaluacion" class="fichacambia nav-link" 
             aria-controls="evaluacion" role="tab" 
             data-toggle="tab">Evaluación</a></li>
 
         </ul>
         <div class="tab-content">
-          <div role="tabpanel" class="tab-pane active" id="basicos">
+          <div role="tabpanel" class="tab-pane fade show active" id="basicos">
             <%= render 'basicos', f: f %>
           </div> 
 
-          <div role="tabpanel" class="tab-pane" id="ubicacion">
+          <div role="tabpanel" class="tab-pane fade" id="ubicacion">
             <%= render 'ubicaciones', f: f %>
           </div>
 
-          <div role="tabpanel" class="tab-pane" id="fuenteprensa">
+          <div role="tabpanel" class="tab-pane fade" id="fuenteprensa">
             <%= render 'fuentesprensa', f: f %>
           </div>
 
-          <div role="tabpanel" class="tab-pane" id="fotra">
+          <div role="tabpanel" class="tab-pane fade" id="fotra">
             <%= render 'fotras', f: f %>
           </div>
 
-          <div role="tabpanel" class="tab-pane" id="contexto">
+          <div role="tabpanel" class="tab-pane fade" id="contexto">
             <%= render 'contextos', f: f %>
           </div>
 
-          <div role="tabpanel" class="tab-pane" id="presponsable">
+          <div role="tabpanel" class="tab-pane fade" id="presponsable">
             <%= render 'presponsables', f: f %>
           </div>
 
-          <div role="tabpanel" class="tab-pane" id="victima">
+          <div role="tabpanel" class="tab-pane fade" id="victima">
             <%= render 'victimas', f: f %>
           </div>
 
-          <div role="tabpanel" class="tab-pane" id="victimacolectiva">
+          <div role="tabpanel" class="tab-pane fade" id="victimacolectiva">
             <%= render 'victimascolectivas', f: f %>
           </div>
 
-          <div role="tabpanel" class="tab-pane" id="combatiente">
+          <div role="tabpanel" class="tab-pane fade" id="combatiente">
             <%= render 'combatientes', f: f %>
           </div>
 
-          <div role="tabpanel" class="tab-pane" id="actos">
+          <div role="tabpanel" class="tab-pane fade" id="actos">
             <%= render 'actos', f: f %> 
           </div>
 
-          <div role="tabpanel" class="tab-pane" id="descripcion">
+          <div role="tabpanel" class="tab-pane fade" id="descripcion">
             <%= render 'memo', f: f %>
           </div>
 
-          <div role="tabpanel" class="tab-pane" id="anexos">
+          <div role="tabpanel" class="tab-pane fade" id="anexos">
             <%= render 'sivel2_gen/casos/anexos', f: f %>
           </div>
 
-          <div role="tabpanel" class="tab-pane" id="etiquetas">
+          <div role="tabpanel" class="tab-pane fade" id="etiquetas">
             <%= render 'etiquetas', f: f %>
           </div>
 
-          <div role="tabpanel" class="tab-pane" id="evaluacion">
+          <div role="tabpanel" class="tab-pane fade" id="evaluacion">
             <%= render 'evaluacion', f: f %>
           </div>
 

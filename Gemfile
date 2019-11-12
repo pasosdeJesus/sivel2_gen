@@ -27,8 +27,6 @@ gem 'paperclip'# Maneja adjuntos
 
 gem 'pg' # Postgresql
 
-gem 'pick-a-color-rails' # Facilita elegir colores en tema
-
 gem 'prawn' # Generación de PDF
 
 gem 'prawnto_2',  :require => 'prawnto'
@@ -50,8 +48,6 @@ gem 'rubyzip', '>= 2.0'
 gem 'sassc-rails' # Hojas de estilo con SCSS
 
 gem 'simple_form' # Formularios simples 
-
-gem 'tiny-color-rails'
 
 gem 'twitter_cldr' # ICU con CLDR
 

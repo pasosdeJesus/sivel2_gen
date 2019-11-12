@@ -64,3 +64,9 @@
 .boolean {
 	height: inherit;
 } 
+
+.tabpanel {
+  margin-bottom: 2rem;
+}
+
+
