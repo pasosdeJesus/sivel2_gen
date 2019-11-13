@@ -47,7 +47,9 @@ module Sivel2Gen
               @personaant.destroy
             end
             respond_to do |format|
-              format.html { render('/sip/personas/remplazar', layout: false) }
+              format.html { 
+                render('/sip/personas/remplazar', layout: false) 
+              }
             end
           end
 
