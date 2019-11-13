@@ -24,6 +24,9 @@ require('turbolinks').start()   // Acelera carga de paginas
 //require('channels')           // ActiveChannel
 
 
+var L = require('leaflet');
+var mc= require('leaflet.markercluster');
+
 import {$, jQuery} from 'jquery';
 import 'popper.js'              // Dialogos emergentes usados por bootstrap
 import 'bootstrap'              // Maquetacion y elementos de diseño
@@ -34,4 +37,3 @@ import 'jquery-ui'
 import 'jquery-ui/ui/widgets/autocomplete'
 import 'pick-a-color'
 import tinycolor from 'tinycolor2'
-

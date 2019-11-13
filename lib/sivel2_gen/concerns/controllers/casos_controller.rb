@@ -361,6 +361,11 @@ module Sivel2Gen
           def mapagm
             render 'mapagm', layout: 'application'
           end
+         
+          # GET casos/mapaosm
+          def mapaosm
+            render 'mapaosm', layout: 'application'
+          end
 
           def self.asegura_camposdinamicos(caso, current_usuario_id)
           end
