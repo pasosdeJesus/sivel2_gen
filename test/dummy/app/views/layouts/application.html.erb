@@ -25,9 +25,8 @@
           sivel2_gen.conteos_genvic_path, desplegable: true %>
       <% end %>
       <%= despliega_abajo "Mapas" do %>
-        <%= opcion_menu "Casos sobre Google Maps", sivel2_gen.casos_mapagm_path,
-          desplegable: true %>
-        <%= opcion_menu "Casos sobre Open Street Maps", sivel2_gen.casos_mapaosm_path, desplegable: true %>
+        <%= opcion_menu "Casos sobre Open Street Maps", 
+          sivel2_gen.casos_mapaosm_path, desplegable: true %>
       <% end %> 
     <% end %>
   <% end %>
@@ -56,13 +55,15 @@
         <%= opcion_menu "Clave", main_app.editar_registro_usuario_path,
             desplegable: true %>
         <% if session[:capturacaso_acordeon] %>
-           <%= opcion_menu 'Ficha caso vertical ✓', '/fichacasovertical',
-             desplegable: true, id: 'fichacasovertical' 
-           %>
+          <%= opcion_menu 'Ficha caso vertical ✓', 
+            sivel2_gen.fichacasovertical_path,
+            desplegable: true, id: 'fichacasovertical' 
+          %>
         <% else %>
-           <%= opcion_menu 'Ficha caso vertical', '/fichacasovertical',
-             desplegable: true, id: 'fichacasovertical' 
-           %>
+          <%= opcion_menu 'Ficha caso vertical', 
+            sivel2_gen.fichacasovertical_path,
+            desplegable: true, id: 'fichacasovertical' 
+          %>
         <% end %>
         <% if current_usuario.rol == Ability::ROLADMIN %>
           <%= opcion_menu "Usuarios", main_app.usuarios_path,

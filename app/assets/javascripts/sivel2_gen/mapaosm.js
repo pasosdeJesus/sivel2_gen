@@ -3,71 +3,82 @@
 // Financiado por CINEP/PPP con recursos de la Universidad de Sheffield
 // Cedido al dominio publico de acuerdo a la legislacion colombiana
 
-var marker= [];
-var markers= null;
-var bounds; 
+var markers;
+var mapa;
+var osmBaldosas;
+var controlCapas;
 
-//borrar clase container y ocultar footer
-$('.page-header').remove();
-$('.container').addClass('divcontenido');
-$('#div_contenido').css({'position': 'relative'});
-$('#div_contenido').removeClass("container");
-$('.divcontenido').removeClass("container");
-$('.divcontenido').removeClass("master-container");
-$('#div_contenido').addClass("container-fluid");
-$('#pie_pagina').css({'display': 'none'});
+function presentar_mapaosm() {
 
-//creacion de mapa y sus capas
-var osmBaldosas = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-  attribution: '&copy; Contribuyentes de <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-});
+  //borrar clase container y ocultar footer
+  $('.page-header').remove();
+  $('.container').addClass('divcontenido');
+  $('#div_contenido').css({'position': 'relative'});
+  $('#div_contenido').removeClass("container");
+  $('.divcontenido').removeClass("container");
+  $('.divcontenido').removeClass("master-container");
+  $('#div_contenido').addClass("container-fluid");
+  $('#pie_pagina').css({'display': 'none'});
 
-var filtro = L.control({position: 'topleft'});
-filtro.onAdd = function (mapa) {
-  this._div = L.DomUtil.get('filtroOsm');
-  return this._div;
-};
+  //creacion de mapa y sus capas
+  osmBaldosas = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; Contribuyentes de <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+  });
 
-var descargamapaBtn = L.control({position:'bottomleft'});
-descargamapaBtn.onAdd = function (mapa){
-  this._div = L.DomUtil.get('descargaMapa');
-  return this._div;
-};
+  var filtro = L.control({position: 'topleft'});
+  filtro.onAdd = function (mapa) {
+    this._div = L.DomUtil.get('filtroOsm');
+    return this._div;
+  };
 
-var agregaCapaBtn = L.control({position: 'bottomleft'});
-agregaCapaBtn.onAdd = function (mapa) {
-  this._div = L.DomUtil.get('agregaCapa');
-  return this._div;
-};
+  var descargamapaBtn = L.control({position:'bottomleft'});
+  descargamapaBtn.onAdd = function (mapa){
+    this._div = L.DomUtil.get('descargaMapa');
+    return this._div;
+  };
 
-var capasBase= {
-//  "Mapbox" : mapboxTiles,
-  "OpenStreetMap" : osmBaldosas,
-  "Satelite (ArcGIS)": L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}'),
-  "Oscuro (CartoDB)" : L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png')
+  var agregaCapaBtn = L.control({position: 'bottomleft'});
+  agregaCapaBtn.onAdd = function (mapa) {
+    this._div = L.DomUtil.get('agregaCapa');
+    return this._div;
+  };
 
-};
-var capasSuperpuestas= {
-  "Transporte (OpenPtmap)" : L.tileLayer('http://www.openptmap.org/tiles/{z}/{x}/{y}.png'),
-};
-var controlCapas = L.control.layers(capasBase, capasSuperpuestas, {position: 'topleft'});
+  var capasBase= {
+    //  "Mapbox" : mapboxTiles,
+    "OpenStreetMap" : osmBaldosas,
+    "Satelite (ArcGIS)": L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}'),
+    "Oscuro (CartoDB)" : L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png')
 
-// var mapa = L.mapbox.map('mapa_osm', null, {zoomControl: false, minZoom: 2})
-var mapa = L.map('mapa_osm', {zoomControl: false, minZoom: 2})
-//  .addLayer(mapboxTiles)
-  .addLayer(osmBaldosas)
-  .addControl(filtro)
-  .addControl(L.control.zoom({position:'topleft'}))
-  .setView([4.6682, -74.071], 6)
-//  .addControl(L.mapbox.geocoderControl('mapbox.places'))
-  .addControl(controlCapas)
-  .addControl(agregaCapaBtn)
-  .addControl(descargamapaBtn);
-L.control.scale({imperial: false}).addTo(mapa);
+  };
+  var capasSuperpuestas= {
+    "Transporte (OpenPtmap)" : L.tileLayer('http://www.openptmap.org/tiles/{z}/{x}/{y}.png'),
+  };
+  controlCapas = L.control.layers(capasBase, capasSuperpuestas, {position: 'topleft'});
 
-//Crea los clusers de casos y agrega casos
-markers = L.markerClusterGroup();
-window.setTimeout(agregarCasosOsm, 0);
+  // mapa = L.mapbox.map('mapa_osm', null, {zoomControl: false, minZoom: 2})
+  mapa = L.map('mapa_osm', {zoomControl: false, minZoom: 2})
+  //  .addLayer(mapboxTiles)
+    .addLayer(osmBaldosas)
+    .addControl(filtro)
+    .addControl(L.control.zoom({position:'topleft'}))
+    .setView([4.6682, -74.071], 6)
+  //  .addControl(L.mapbox.geocoderControl('mapbox.places'))
+    .addControl(controlCapas)
+    .addControl(agregaCapaBtn)
+    .addControl(descargamapaBtn);
+  L.control.scale({imperial: false}).addTo(mapa);
+
+  //Crea los clusers de casos y agrega casos
+  markers = L.markerClusterGroup();
+  window.setTimeout(agregarCasosOsm, 0);
+
+  // Cierra el info al hacer zoom in/out
+  mapa.on('zoom', function() {
+    if (info != undefined) {
+      info.remove(mapa);
+    }
+  });
+}
 
 function mostrarCargador() {
   $('#cargador').show();
@@ -282,13 +293,6 @@ $(document).on('click','#closeBtn', function() {
 $(document).on('click','#btnCerrarAgCapa', function() {
   if (agregaCapaDiv != undefined) {
     agregaCapaDiv.remove(mapa);
-  }
-});
-
-// Cierra el info al hacer zoom in/out
-mapa.on('zoom', function() {
-  if (info != undefined) {
-    info.remove(mapa);
   }
 });
 
