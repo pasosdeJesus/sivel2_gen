@@ -364,6 +364,8 @@ module Sivel2Gen
          
           # GET casos/mapaosm
           def mapaosm
+	    @fechadesde = Sip::FormatoFechaHelper.inicio_semestre(Date.today - 182)
+	    @fechahasta = Sip::FormatoFechaHelper.fin_semestre(Date.today - 182)
             render 'mapaosm', layout: 'application'
           end
 
