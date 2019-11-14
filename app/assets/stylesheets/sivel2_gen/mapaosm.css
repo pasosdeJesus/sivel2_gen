@@ -3,20 +3,21 @@
    Financiado por CINEP/PPP con recursos de la Universidad de Sheffield
    Cedido al dominio publico de acuerdo a la legislacion colombiana */
 
-
-/* Crear nuevas clases para los siguientes para que no entren en conflicto con
-   ya existentes
-
-.navbar{
+.navbarosm{
   margin-bottom: 0px;
 }
-.card-body{
+.cardosm{
+  border: 0px;
+}
+.cardbodyosm{
+  padding: 0.5rem;
   background-color: #202040;
 }
-.custom-select, .form-control, h3{
+.select_mapaOsm, .inputsubir{
   color: #FFF;
+  margin-bottom: 1rem;
   font-size: 0.8rem;
-} */
+}
 
 .info, .agregaCapaDiv{
   width: 400px;
@@ -44,7 +45,6 @@
   width: 100vw;
   margin-left: 0px;
   margin-top: 0px;
-  padding: 5px 5px 5px 5px;
   z-index:2;
   color: #FFF;
 }
