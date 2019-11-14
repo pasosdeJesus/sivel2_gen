@@ -14,6 +14,7 @@
 //= require heb412_gen/motor
 //= require sivel2_gen/motor
 //= require_tree .
+//= require sivel2_gen/mapaosm
 
 document.addEventListener('turbolinks:load', function() {
 	var root;

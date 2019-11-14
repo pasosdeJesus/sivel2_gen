@@ -361,6 +361,13 @@ module Sivel2Gen
           def mapagm
             render 'mapagm', layout: 'application'
           end
+         
+          # GET casos/mapaosm
+          def mapaosm
+	    @fechadesde = Sip::FormatoFechaHelper.inicio_semestre(Date.today - 182)
+	    @fechahasta = Sip::FormatoFechaHelper.fin_semestre(Date.today - 182)
+            render 'mapaosm', layout: 'application'
+          end
 
           def self.asegura_camposdinamicos(caso, current_usuario_id)
           end

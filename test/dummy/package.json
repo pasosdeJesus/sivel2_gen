@@ -9,6 +9,8 @@
     "expose-loader": "^0.7.5",
     "jquery": "^3.4.1",
     "jquery-ui": "^1.12.1",
+    "leaflet": "^1.5.1",
+    "leaflet.markercluster": "^1.4.1",
     "pick-a-color": "^1.2.3",
     "popper.js": "^1.16.0",
     "tinycolor2": "^1.4.1",
