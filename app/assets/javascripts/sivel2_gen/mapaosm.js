@@ -11,6 +11,9 @@ var controlCapas;
 function presentar_mapaosm() {
 
   //borrar clase container y ocultar footer
+  $('.navbar').addClass('navbarosm');
+  $('.card-body').addClass('cardbodyosm');
+  $('.card').addClass('cardosm');
   $('.page-header').remove();
   $('.container').addClass('divcontenido');
   $('#div_contenido').css({'position': 'relative'});
@@ -273,7 +276,7 @@ function capa(des, hec, vic){
       '<li class="nav-item"><a class="nav-link" id="infovictima-tab" data-toggle="tab" href="#infovictima" role="tab" aria-controls="infovictima" aria-selected="false">Víctimas</a></li>'+
       '</ul>'+
       '<div class="tab-content" id="myTabContent">'+
-      '<div class="tab-pane fade active in panel-infomapa" id="infodes" role="tabpanel" aria-labelledby="infodes-tab">'+ des +'</div>'+
+      '<div class="tab-pane fade show active in panel-infomapa" id="infodes" role="tabpanel" aria-labelledby="infodes-tab">'+ des +'</div>'+
       '<div class="tab-pane fade panel-infomapa" id="infodatos" role="tabpanel" aria-labelledby="infodatos-tab">'+ hec +'</div>'+
       '<div class="tab-pane fade panel-infomapa" id="infovictima" role="tabpanel" aria-labelledby="infovctima-tab">'+ vic +'</div>'+
       '</div>'+
@@ -346,11 +349,11 @@ function agregarCapa(){
   };
 
   agregaCapaDiv.updateAgregaCapaDiv = function () {
-    this._div.innerHTML = '<div class="card border-primary mb-3"> <div class="card-body"><button type="button" id="btnCerrarAgCapa" class="close" aria-label="Close">'+ 
+    this._div.innerHTML = '<div class="card border-primary"> <div class="card-body"><button type="button" id="btnCerrarAgCapa" class="close" aria-label="Close">'+ 
       '<span aria-hidden="true">&times;</span></button>'+
-      '<h3>Agregar capa al mapa</h3>' +
-      '<input id="nombreCapaNueva" class="form-group form-control" type="text" placeholder="Nombre de la Capa">'+
-      '<div class="form-group custom-file"><input id="archivoGeo" type="file" class="custom-file-input" id="customFileLang" lang="es"><label class="custom-file-label" for="customFileLang">Seleccionar archivo GeoJSON</label></div>' +
+      '<h5>Agregar capa al mapa</h5>' +
+      '<input id="nombreCapaNueva" class="form-group form-control inputsubir" type="text" placeholder="Nombre de la Capa">'+
+      '<div class="form-group custom-file inputsubir"><input id="archivoGeo" type="file" class="custom-file-input" id="customFileLang" lang="es"><label class="custom-file-label" for="customFileLang">Seleccionar archivo GeoJSON</label></div>' +
       '<button id="subirCapa" class="form-group btn btn-primary">Subir</button></div></div>';
   };
   agregaCapaDiv.addTo(mapa);

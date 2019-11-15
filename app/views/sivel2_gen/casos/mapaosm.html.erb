@@ -18,7 +18,7 @@
   </script>
   <script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v1.0.0/leaflet.markercluster.js'></script>
   <div id="filtroOsm">
-    <div class="card border-primary mb-3">
+    <div class="card border-primary">
       <div class="card-body">
         <h4 class="card-title">Filtrar Casos</h4>
         <form name="settings" onsubmit="agregarCasosOsm(true); return false;">
@@ -28,7 +28,7 @@
               <div class="settings_element">
                 <div>Fecha:</div>
                 <div>
-                  <input type="text" name="desde" class="input_mapaOsm form-control"
+                  <input type="text" name="desde" class="input_mapaOsm form-control select_mapaOsm"
                                                   placeholder= "Desde"
                                                   id="inputDesde"
                                                   data-behaviour="datepicker"
@@ -36,7 +36,7 @@
                                                   size="11"/>
                 </div>
                 <div>
-                  <input type="text" name="hasta" class="input_mapaOsm form-control"
+                  <input type="text" name="hasta" class="input_mapaOsm form-control select_mapaOsm"
                                                   placeholder= "Hasta"
                                                   id="inputHasta"
                                                   data-behaviour="datepicker"
