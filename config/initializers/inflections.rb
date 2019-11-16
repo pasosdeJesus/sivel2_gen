@@ -15,15 +15,6 @@
 #   inflect.acronym 'RESTful'
 # end
 ActiveSupport::Inflector.inflections do |inflect|
-	inflect.plural(/^(.*s)$/i, '\1es')
-	inflect.singular(/^(.*s)es$/i, '\1')
-	inflect.plural(/^(.*a)$/i, '\1s')
-	inflect.plural(/^(.*d)$/i, '\1es')
-	inflect.singular(/^(.*d)es$/i, '\1')
-	inflect.plural(/^(.*l)$/i, '\1es')
-	inflect.singular(/^(.*l)es$/i, '\1')
-	inflect.plural(/^(.*n)$/i, '\1es')
-	inflect.singular(/^(.*n)es$/i, '\1')
 	inflect.irregular 'actividad', 'actividades'
 	inflect.irregular 'categoria', 'categorias'
 	inflect.irregular 'clase', 'clases'
