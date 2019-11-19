@@ -56,14 +56,6 @@
   z-index:1; 
 }
 
-#cargador { 
-  position: absolute; 
-  right: 10px; 
-  top: 10px; 
-  width: 32px; 
-  height: 32px; 
-}
-
 .select_mapaOsm { 
   background-color: #266DD3;
 }

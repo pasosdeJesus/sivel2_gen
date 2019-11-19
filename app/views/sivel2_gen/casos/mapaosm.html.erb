@@ -5,13 +5,13 @@
     // Financiado por CINEP/PPP con recursos de la Universidad de Sheffield
     // Cedido al dominio publico de acuerdo a la legislacion colombiana -->
 
-    <!-- script src='https://api.mapbox.com/mapbox.js/v3.2.0/mapbox.js'></script--> 
-  <!--link href='https://api.mapbox.com/mapbox.js/v3.2.0/mapbox.css' rel='stylesheet' /-->
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css"
-                         integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
-                         crossorigin=""/>
-  <link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v1.0.0/MarkerCluster.css' rel='stylesheet' />
-  <link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v1.0.0/MarkerCluster.Default.css' rel='stylesheet' />
+    <script src='https://api.mapbox.com/mapbox.js/v3.2.0/mapbox.js'></script> 
+    <link href='https://api.mapbox.com/mapbox.js/v3.2.0/mapbox.css' rel='stylesheet'/>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css"
+                           integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+                           crossorigin=""/>
+    <link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v1.0.0/MarkerCluster.css' rel='stylesheet' />
+    <link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v1.0.0/MarkerCluster.Default.css' rel='stylesheet' />
 </head>
 <body>
   <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js">
@@ -93,8 +93,11 @@
                 </div>
                 <div class="col-sm-6">
                   <button id="agregarCasosOsm" type="button" class="btn">Filtrar</button>
+                  <div id="cargador" class="spinner-border text-light" role="status">
+                    <span class="sr-only">Loading...</span>
+                  </div>
+
                 </div>
-                <img id='cargador'  src='<%= asset_path('spinnern.gif') %>'>
               </div>
             </div>
           </div>
