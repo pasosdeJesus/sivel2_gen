@@ -119,46 +119,62 @@ function agregarCasosOsm() {
   var root = window;
   sip_arregla_puntomontaje(root);
   var ruta = root.puntomontaje + 'casos.json';
-  //  var requestUrl = ruta + '?utf8=' + '&filtro[fechaini]=' + desde + '&filtro[fechafin]=' + hasta;
-  var requestUrl = ruta + '?filtro[q]=&filtro[fechaini]='+ desde +'&filtro[fechafin]='+ hasta +'&filtro[disgenera]=reprevista.json&idplantilla=reprevista&commit=Enviar';
+  fechainicial = Date.parse(desde);
+  fechafinal = Date.parse(hasta);
+  const hoy = new Date();
+  const maniana = new Date(hoy);
+  maniana.setDate(maniana.getDate() + 1);
+  if ( +fechainicial <= +maniana && +fechafinal <= +maniana){
+    if ( +fechainicial <= +fechafinal){
+      var requestUrl = ruta + '?filtro[q]=&filtro[fechaini]='+ desde +'&filtro[fechafin]='+ hasta +'&filtro[disgenera]=reprevista.json&idplantilla=reprevista&commit=Enviar';
 
-  if (departamento != undefined && departamento != 0){
-    requestUrl += '&filtro[departamento_id]=' + departamento;
-  }
-  if (prresp != undefined && prresp != 0){
-    requestUrl += '&filtro[presponsable_id]=' + prresp;
-  }
-  if (tvio != undefined && tvio != 0){
-    requestUrl += '&filtro[categoria_id]=' + tvio;
-  }
-  mostrarCargador();
-  downloadUrl(requestUrl, function(req) {
-    var data = req.responseText;
-    if (data == null || data.substr(0, 1) != '{'){
-      ocultarCargador();
-      $('#nrcasos').html("0");
-      window.alert("El URL" + requestUrl + "no retorno informacion JSON.\n\n" + data);
-      return;
-    }
-    var o = jQuery.parseJSON(data);
-    var numResult = 0;
-    for(var codigo in o) {
-      var lat = o[codigo].latitud;
-      var lng = o[codigo].longitud;
-      var titulo= o[codigo].titulo;
-      var fecha = o[codigo].fecha;
-      if (lat != null || lng != null){
-        numResult++;
-        var point= new L.LatLng(parseFloat(lat), parseFloat(lng));
-        var title = fecha + ": " + titulo;
-
-        marcadoresCreados = createMarker(point, codigo, title);
-        actualizaGeoJson(marcadoresCreados);
+      if (departamento != undefined && departamento != 0){
+        requestUrl += '&filtro[departamento_id]=' + departamento;
       }
+      if (prresp != undefined && prresp != 0){
+        requestUrl += '&filtro[presponsable_id]=' + prresp;
+      }
+      if (tvio != undefined && tvio != 0){
+        requestUrl += '&filtro[categoria_id]=' + tvio;
+      }
+      mostrarCargador();
+      downloadUrl(requestUrl, function(req) {
+        var data = req.responseText;
+        if (data == null || data.substr(0, 1) != '{'){
+          ocultarCargador();
+          $('#nrcasos').html("0");
+          window.alert("El URL" + requestUrl + "no retorno informacion JSON.\n\n" + data);
+          return;
+        }
+        var o = jQuery.parseJSON(data);
+        var numResult = 0;
+        for(var codigo in o) {
+          var lat = o[codigo].latitud;
+          var lng = o[codigo].longitud;
+          var titulo= o[codigo].titulo;
+          var fecha = o[codigo].fecha;
+          if (lat != null || lng != null){
+            numResult++;
+            var point= new L.LatLng(parseFloat(lat), parseFloat(lng));
+            var title = fecha + ": " + titulo;
+
+            marcadoresCreados = createMarker(point, codigo, title);
+            actualizaGeoJson(marcadoresCreados);
+          }
+        }
+        $('#nrcasos').html(numResult + ' Casos mostrados!');
+        ocultarCargador();
+      });
     }
-    $('#nrcasos').html(numResult + ' Casos mostrados!');
-    ocultarCargador();
-  });
+    else{
+      alert("La fecha Final debe ser mas antigua que la inicial");
+      window.location.reload();
+    } 
+  }
+  else{
+    alert("La fecha Final e Inicial debe existir");
+    window.location.reload();
+  } 
 }
 
 function actualizaGeoJson(datosMarcadores){
