@@ -4,19 +4,13 @@
     // Desarrollado por Luis Alejandro Cruz luisalejo@unicauca.edu.co
     // Financiado por CINEP/PPP con recursos de la Universidad de Sheffield
     // Cedido al dominio publico de acuerdo a la legislacion colombiana -->
-
-    <script src='https://api.mapbox.com/mapbox.js/v3.2.0/mapbox.js'></script> 
-    <link href='https://api.mapbox.com/mapbox.js/v3.2.0/mapbox.css' rel='stylesheet'/>
+    <link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v1.0.0/MarkerCluster.Default.css' rel='stylesheet' />
+    <link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v1.0.0/MarkerCluster.css' rel='stylesheet' />
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css"
                            integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
                            crossorigin=""/>
-    <link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v1.0.0/MarkerCluster.css' rel='stylesheet' />
-    <link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v1.0.0/MarkerCluster.Default.css' rel='stylesheet' />
 </head>
 <body>
-  <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js">
-  </script>
-  <script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v1.0.0/leaflet.markercluster.js'></script>
   <div id="filtroOsm">
     <div class="card border-primary">
       <div class="card-body">
@@ -112,8 +106,7 @@
     <button id="descargarMapa" type="button" class="btn btn-primary btn-sm"><a id= "enlaceDescarga">Descargar capa de casos</a></button>
   </div>
   <div id="mapa_osm"></div>
-
-  <script>
-    presentar_mapaosm()
-  </script>
 </body>
+<script>
+  presentar_mapaosm()
+</script>
