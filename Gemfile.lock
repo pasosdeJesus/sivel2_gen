@@ -1,9 +1,10 @@
 GIT
   remote: https://github.com/pasosdeJesus/heb412_gen.git
-  revision: 48611954c0b8c8820d102652ee7ef58630f4c8f0
-  branch: bs4
+  revision: 94bdd978eac7df790a864bc746e1880b134ad02a
   specs:
     heb412_gen (1.0.b6)
+      chosen-rails
+      font-awesome-rails
       mr519_gen
       redcarpet
       rspreadsheet
@@ -11,8 +12,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/mr519_gen.git
-  revision: 2f71e19fddf66a3dcc7797604a018a028a524dc1
-  branch: bs4
+  revision: edf83c22a608a4b850ce7833db7d167e9bf55570
   specs:
     mr519_gen (0.2.0)
       rails (~> 6.0.0.rc1, >= 6.0.0.rc1)
@@ -20,8 +20,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sip.git
-  revision: 93f7cf6930b72e5a1db54e0c1370ab6f245ba590
-  branch: bs4
+  revision: 5d018c7206397bb19d0a361af04e45254911c9b5
   specs:
     sip (2.0.b7)
       cancancan
@@ -140,6 +139,8 @@ GEM
     erubi (1.9.0)
     execjs (2.7.0)
     ffi (1.11.2)
+    font-awesome-rails (4.7.0.5)
+      railties (>= 3.2, < 6.1)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
     i18n (1.7.0)
