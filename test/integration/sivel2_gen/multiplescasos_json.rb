@@ -17,7 +17,7 @@ module Sivel2Gen
     end
 
     PRUEBA_CASO_BASICOS1 = {
-      id: 1122,
+      id: 1140,
       fecha: '2019-08-30',
       memo: '',
       created_at: '2019-08-30',
