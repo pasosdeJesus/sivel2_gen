@@ -1,10 +1,8 @@
 GIT
   remote: https://github.com/pasosdeJesus/heb412_gen.git
-  revision: 94bdd978eac7df790a864bc746e1880b134ad02a
+  revision: a9db9071b45c6077a56030d7225ebbb1aec7835e
   specs:
     heb412_gen (1.0.b6)
-      chosen-rails
-      font-awesome-rails
       mr519_gen
       redcarpet
       rspreadsheet
@@ -139,8 +137,6 @@ GEM
     erubi (1.9.0)
     execjs (2.7.0)
     ffi (1.11.2)
-    font-awesome-rails (4.7.0.5)
-      railties (>= 3.2, < 6.1)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
     i18n (1.7.0)
