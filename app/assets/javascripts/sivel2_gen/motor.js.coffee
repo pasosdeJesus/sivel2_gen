@@ -424,6 +424,7 @@ enviaFormularioContar= (root) ->
       todayHighlight: true
       language: 'es'
     })
+    $('.chosen-select').chosen()
   )
 
   # En victimas permite autocompletar nombres
