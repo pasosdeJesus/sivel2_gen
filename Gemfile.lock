@@ -186,7 +186,7 @@ GEM
     prawnto_2 (0.3.0)
       prawn (>= 1.0.0)
       rails (>= 3.2)
-    puma (4.3.0)
+    puma (4.3.1)
       nio4r (~> 2.0)
     rack (2.0.7)
     rack-proxy (0.6.5)
@@ -312,7 +312,7 @@ DEPENDENCIES
   prawn
   prawn-table
   prawnto_2
-  puma
+  puma (>= 4.3.1)
   rails (~> 6.0.0.rc1)
   rails-controller-testing
   rails-erd
@@ -331,4 +331,4 @@ DEPENDENCIES
   will_paginate
 
 BUNDLED WITH
-   2.0.2
+   1.17.3
