@@ -1963,7 +1963,22 @@ CREATE TABLE public.sip_tema (
     fechacreacion date NOT NULL,
     fechadeshabilitacion date,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    btn_primario_fondo_ini character varying(127),
+    btn_primario_fondo_fin character varying(127),
+    btn_primario_fuente character varying(127),
+    btn_peligro_fondo_ini character varying(127),
+    btn_peligro_fondo_fin character varying(127),
+    btn_peligro_fuente character varying(127),
+    btn_accion_fondo_ini character varying(127),
+    btn_accion_fondo_fin character varying(127),
+    btn_accion_fuente character varying(127),
+    alerta_exito_fondo character varying(127),
+    alerta_exito_fuente character varying(127),
+    alerta_problema_fondo character varying(127),
+    alerta_problema_fuente character varying(127),
+    fondo character varying(127),
+    color_fuente character varying(127)
 );
 
 
@@ -5919,6 +5934,9 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20190926133640'),
 ('20190926143845'),
 ('20191012042159'),
-('20191016100031');
+('20191016100031'),
+('20191205200007'),
+('20191205202150'),
+('20191205204511');
 
 
