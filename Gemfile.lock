@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/pasosdeJesus/heb412_gen.git
-  revision: 9500449f775b65e0cd6556306de04c0fca4c2e4f
+  revision: a734572473d3728c5bea98bd45baad109bf47b21
   specs:
     heb412_gen (1.0.b6)
       mr519_gen
@@ -10,7 +10,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/mr519_gen.git
-  revision: 35cbb78b9aa5919d1265faede56ca50b2f4d00c0
+  revision: 7c58ec3bd80a1da4c4857e11cd4bb8d3b78657da
   specs:
     mr519_gen (0.2.0)
       rails (~> 6.0.0.rc1, >= 6.0.0.rc1)
@@ -18,7 +18,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sip.git
-  revision: 762f2c712b4d7fad4a413b8217a547e2026fb0e0
+  revision: dcf52c2332dab979fb94977c0720c2f40293918d
   specs:
     sip (2.0.b7)
       cancancan
@@ -155,7 +155,7 @@ GEM
     marcel (0.3.3)
       mimemagic (~> 0.3.2)
     method_source (0.9.2)
-    mime-types (3.3)
+    mime-types (3.3.1)
       mime-types-data (~> 3.2015)
     mime-types-data (3.2019.1009)
     mimemagic (0.3.3)
@@ -177,7 +177,7 @@ GEM
       mimemagic (~> 0.3.0)
       terrapin (~> 0.6.0)
     pdf-core (0.7.0)
-    pg (1.2.0)
+    pg (1.2.1)
     prawn (2.2.2)
       pdf-core (~> 0.7.0)
       ttfunk (~> 1.5)
