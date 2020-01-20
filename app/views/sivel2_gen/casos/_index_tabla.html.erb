@@ -31,15 +31,17 @@
           </td>
         <% end %>
         <td>
-          <%= link_to t('.edit', :default => t("helpers.links.edit")),
-            sivel2_gen.edit_caso_path(caso.caso_id), :class => 'btn btn-sm' 
+          <% if current_usuario %>
+            <%= link_to t('.edit', :default => t("helpers.links.edit")),
+              sivel2_gen.edit_caso_path(caso.caso_id), :class => 'btn btn-sm'
+            %>
+            <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+               sivel2_gen.caso_path(caso.caso_id),
+               :method => :delete,
+               :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Está seguro(a)?')) },
+               :class => 'btn btn-sm btn-danger' 
           %>
-          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-            sivel2_gen.caso_path(caso.caso_id),
-            :method => :delete,
-            :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Está seguro(a)?')) },
-            :class => 'btn btn-sm btn-danger' 
-          %>
+          <% end %>
         </td>
       </tr>
     <% end %>
