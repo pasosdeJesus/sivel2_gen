@@ -226,6 +226,7 @@
       <div class="offset-sm-0 col-sm-1 text-center">
       </div>
     </div>
+    <% if current_usuario %>
     <div class="row filtro-fila">
       <div class="offset-sm-0 col-sm-2 offset-md-1 col-md-1">
         Etiqueta
@@ -265,6 +266,8 @@
       <div class="offset-sm-0 col-sm-1 text-center">
       </div>
     </div>
+    <% end %>
+    <% if current_usuario %>
     <div class="row filtro-fila">
       <div class="offset-sm-0 col-sm-2 offset-md-1 col-md-1">
         Ingreso a Sistema
@@ -303,7 +306,9 @@
         %>
       </div>
     </div>
-   <div class="row filtro-fila">
+    <% end %>
+    <% if current_usuario %>
+    <div class="row filtro-fila">
       <div class="offset-sm-0 col-sm-2 offset-md-1 col-md-1">
        Código(s) 
       </div>
@@ -327,16 +332,17 @@
                              checked: @campoord == 'codigodesc') %>
       </div>
     </div>
-
+    <% end %>
+    <% if current_usuario %>
     <div class="row filtro-fila">
       <div class="offset-sm-0 col-sm-2 offset-md-1 col-md-1">
         Presentación  
       </div>
-      <div class="offset-sm-1 col-sm-4">
+      <div class="offset-sm-0 col-sm-2 offset-md-0 col-md-7">
       </div>
-      <div class="col-sm-3">
+      <div class="col-sm-2">
       </div>
-      <div class="offset-sm-1 col-sm-1">
+      <div class="col-sm-1">
         <%= f.input :paginar, 
           as: :boolean, 
           label: 'Paginar',
@@ -344,7 +350,9 @@
         %>
       </div>
     </div> <!-- row -->
-    <% if @plantillas %>
+    <% end %>
+    <% if current_usuario %>
+      <% if @plantillas %>
       <div class="row filtro-fila">
         <div class="offset-sm-0 col-sm-2 offset-md-1 col-md-1">
           Generar Plantilla
@@ -367,6 +375,7 @@
         <div class="col-sm-3">
         </div>
       </div> <!-- row -->
+      <% end %>
     <% end %> 
 
   <!--% end %-->
