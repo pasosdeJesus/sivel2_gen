@@ -124,16 +124,31 @@
        Tipificación
       </div>
       <div class="offset-sm-0 col-sm-10 offset-md-0 col-md-7">
-        <%= f.input :categoria_id,
-          collection: Sivel2Gen::Categoria.habilitados.joins(:supracategoria).
+        <% if current_usuario %>
+          <%= f.input :categoria_id,
+            collection: Sivel2Gen::Categoria.habilitados.joins(:supracategoria).
             reorder('sivel2_gen_supracategoria.id_tviolencia', :id),
-          label_method: lambda {|t| 
+            label_method: lambda {|t| 
             t.supracategoria.id_tviolencia + 
-                                t.id.to_s + ' ' + t.nombre},
-          value_method: :id,
-          label: false,
-          include_blank: true
+              t.id.to_s + ' ' + t.nombre},
+              value_method: :id,
+              :include_hidden => false,
+              input_html: { :class => "chosen-select", multiple: true },
+              label: false
         %>
+        <% else %>
+          <%= f.input :categoria_id,
+            collection: Sivel2Gen::Categoria.habilitados.joins(:supracategoria).
+            reorder('sivel2_gen_supracategoria.id_tviolencia', :id),
+            label_method: lambda {|t| 
+            t.supracategoria.id_tviolencia + 
+              t.id.to_s + ' ' + t.nombre},
+              value_method: :id,
+              label: false,
+              include_blank: true
+        %>
+        <% end %>  
+
       </div>
       <div class="offset-sm-0 col-sm-1 text-center">
         <%= f.input :inc_tipificacion, 
