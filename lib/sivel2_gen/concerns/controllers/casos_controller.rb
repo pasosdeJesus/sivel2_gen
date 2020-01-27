@@ -272,17 +272,17 @@ module Sivel2Gen
             # Presentación
             respond_to do |format|
               if @conscaso.count <= 2000 || current_usuario
-                format.ods { 
+                format.ods {
                   gen_formato('.ods')
-                  return 
+                  return
                 }
                 if request.format.symbol == 'ods'.to_sym
                   # No funciona el anterior
                   gen_formato('.ods')
                   return
                 end
-                format.html { 
-                  if (params['idplantilla']) 
+                format.html {
+                  if (params['idplantilla'])
                     #byebug
                     case params['idplantilla']
                     when 'reprevista'
@@ -293,12 +293,12 @@ module Sivel2Gen
                         flash: { error: "Plantilla desconocida" }
                     end
                   else
-                    render layout: 'application' 
+                    render layout: 'application'
                   end
                   return
                 }
 
-                format.js { 
+                format.js {
                   render 'sivel2_gen/casos/filtro'
                   return
                 }
@@ -313,24 +313,24 @@ module Sivel2Gen
                   return
                 }
               else
-                format.html { 
+                format.html {
                   if (params['idplantilla']) 
                     case params['idplantilla']
                     when 'reprevista'
                       error_plantilla_no_autenticado
                     end
                   else
-                    render layout: 'application' 
+                    render layout: 'application'
                   end
                   return
                 }
 
-                format.ods { 
+                format.ods {
                   error_plantilla_no_autenticado
                   return
                 }
 
-                format.js { 
+                format.js {
                   error_plantilla_no_autenticado
                   return
                 }
