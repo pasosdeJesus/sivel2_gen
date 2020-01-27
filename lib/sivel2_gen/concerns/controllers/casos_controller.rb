@@ -261,11 +261,12 @@ module Sivel2Gen
             @registros = @consexpcaso
             programa_generacion_listado(params, formato, :caso_id)
           end
-          
+
           def error_plantilla_no_autenticado
-            redirect_back fallback_location: 
-            config.relative_url_root,
-            flash: { error: "La generación de este reporte permite máximo 2000 registros. Puede suscribirse a SIVeL Pro si requiere más" }
+            redirect_back fallback_location: config.relative_url_root,
+            flash: { error: 
+            'La generación de este reporte permite máximo 2000 registros.' +
+            ' Puede suscribirse a SIVeL Pro si requiere más' }
           end
 
           def presenta_index
