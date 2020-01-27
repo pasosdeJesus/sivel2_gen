@@ -261,50 +261,89 @@ module Sivel2Gen
             @registros = @consexpcaso
             programa_generacion_listado(params, formato, :caso_id)
           end
-
+          
+          def error_plantilla_no_autenticado
+            redirect_back fallback_location: 
+            config.relative_url_root,
+            flash: { error: "La generación de este reporte permite máximo 2000 registros. Puede suscribirse a SIVeL Pro si requiere más" }
+          end
 
           def presenta_index
             # Presentación
             respond_to do |format|
-              format.ods { 
-                gen_formato('.ods')
-                return 
-              }
-              if request.format.symbol == 'ods'.to_sym
-                # No funciona el anterior
-                gen_formato('.ods')
-                return
-              end
-              format.html { 
-                if (params['idplantilla']) 
-                  #byebug
-                  case params['idplantilla']
-                  when 'reprevista'
-                    render params['idplantilla'], layout: nil
-                  else
-                    redirect_back fallback_location: 
-                      config.relative_url_root,
-                      flash: { error: "Plantilla desconocida" }
-                  end
-                else
-                  render layout: 'application' 
+              if @conscaso.count <= 2000 || current_usuario
+                format.ods { 
+                  gen_formato('.ods')
+                  return 
+                }
+                if request.format.symbol == 'ods'.to_sym
+                  # No funciona el anterior
+                  gen_formato('.ods')
+                  return
                 end
-                return
-              }
+                format.html { 
+                  if (params['idplantilla']) 
+                    #byebug
+                    case params['idplantilla']
+                    when 'reprevista'
+                      render params['idplantilla'], layout: nil
+                    else
+                      redirect_back fallback_location: 
+                        config.relative_url_root,
+                        flash: { error: "Plantilla desconocida" }
+                    end
+                  else
+                    render layout: 'application' 
+                  end
+                  return
+                }
 
-              format.js { 
-                render 'sivel2_gen/casos/filtro'
-                return
-              }
+                format.js { 
+                  render 'sivel2_gen/casos/filtro'
+                  return
+                }
 
-              format.json {
-                render 'reprevista.json'
-                return
-              }
-              format.xrlat {
-                render 'reprevista.xrlat'
-                return
-              }
+                format.json {
+                  render 'reprevista.json'
+                  return
+                }
+
+                format.xrlat {
+                  render 'reprevista.xrlat'
+                  return
+                }
+              else
+                format.html { 
+                  if (params['idplantilla']) 
+                    case params['idplantilla']
+                    when 'reprevista'
+                      error_plantilla_no_autenticado
+                    end
+                  else
+                    render layout: 'application' 
+                  end
+                  return
+                }
+
+                format.ods { 
+                  error_plantilla_no_autenticado
+                  return
+                }
+
+                format.js { 
+                  error_plantilla_no_autenticado
+                  return
+                }
+
+                format.json {
+                  error_plantilla_no_autenticado
+                  return
+                }
+                format.xrlat {
+                  error_plantilla_no_autenticado
+                  return
+                }
+              end
             end
           end
 
