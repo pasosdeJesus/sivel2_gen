@@ -31,10 +31,12 @@
           </td>
         <% end %>
         <td>
-          <% if current_usuario %>
+          <% if can? :edit, caso %>
             <%= link_to t('.edit', :default => t("helpers.links.edit")),
               sivel2_gen.edit_caso_path(caso.caso_id), :class => 'btn btn-sm'
             %>
+          <% end %>
+          <% if can? :destroy, caso %>
             <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
                sivel2_gen.caso_path(caso.caso_id),
                :method => :delete,
