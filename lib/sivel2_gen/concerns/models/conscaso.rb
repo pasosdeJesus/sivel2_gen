@@ -78,10 +78,17 @@ module Sivel2Gen
           }
 
           scope :filtro_categoria_id, lambda { |id|
-            where('caso_id IN (SELECT id_caso
-                    FROM public.sivel2_gen_acto 
-                    WHERE sivel2_gen_acto.id_categoria = ?)', 
+            if id.is_a? Array
+              where('caso_id IN (SELECT id_caso
+                    FROM public.sivel2_gen_acto
+                    WHERE sivel2_gen_acto.id_categoria IN (?))',
                     id)
+            else
+              where('caso_id IN (SELECT id_caso
+                    FROM public.sivel2_gen_acto
+                    WHERE sivel2_gen_acto.id_categoria = ?)',
+                    id)
+            end
           }
 
           scope :filtro_descripcion, lambda { |d|
