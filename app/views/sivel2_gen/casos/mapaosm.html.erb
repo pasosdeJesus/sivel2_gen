@@ -37,7 +37,7 @@
             <div class="settings_element">
               <div>Departamento:</div>
               <div>
-                <select name="departamento" class="select_mapaOsm custom-select"
+                <select name="departamento" class="select_mapaOsm form-control"
                   id="departamento" style="width:140px;">
                   <option value="0">Mostrar todos</option>
                   <option value="">-----------------------</option>
@@ -51,7 +51,7 @@
             <div class="settings_element">
               <div>P. Responsable:</div>
               <div>
-                <select name="prresp" class="select_mapaOsm custom-select" id="presponsable" style="width:150px;">
+                <select name="prresp" class="select_mapaOsm form-control" id="presponsable" style="width:150px;">
                   <option value="0">Mostrar todos</option>
                   <option value="">-----------------------</option>
                   <%= options_for_select(Sivel2Gen::Presponsable.all.collect { |d| [d.nombre, d.id ] }) %>
@@ -63,7 +63,7 @@
             <div class="settings_element">
               <div>Violencia:</div>
               <div>
-                <select name="tvio" class="select_mapaOsm custom-select" id="tvio" style="width:150px;">
+                <select name="tvio" class="select_mapaOsm form-control" id="tvio" style="width:150px;">
                   <option value="0">Mostrar todos</option>
                   <option value="">-----------------------</option>
                   <%= options_for_select(Sivel2Gen::Categoria.all.collect { |d| [d.nombre, d.id ] })%>
@@ -79,7 +79,7 @@
                 </div>
               </div>
               <div class="col-sm-6">
-                <button id="agregarCasosOsm" type="button" class="btn">Filtrar</button>
+                <button id="agregarCasosOsm" type="button" class="btn btn-primary">Filtrar</button>
                 <div id="cargador" class="spinner-border text-light" role="status">
                   <span class="sr-only">Loading...</span>
                 </div>
