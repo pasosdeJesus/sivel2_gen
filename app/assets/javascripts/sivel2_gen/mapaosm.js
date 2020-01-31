@@ -117,7 +117,9 @@ function agregarCasosOsm() {
   var prresp = $('#presponsable').val();
   var tvio = $('#tvio').val();
   var root = window;
-  sip_arregla_puntomontaje(root);
+  if (typeof root.puntomontaje === 'undefined') {
+    root.puntomontaje = '/sivel2/';
+    }
   var ruta = root.puntomontaje + 'casos.json';
   fechainicial = Date.parse(desde);
   fechafinal = Date.parse(hasta);
@@ -126,7 +128,7 @@ function agregarCasosOsm() {
   maniana.setDate(maniana.getDate() + 1);
   if ( +fechainicial <= +maniana && +fechafinal <= +maniana){
     if ( +fechainicial <= +fechafinal){
-      var requestUrl = ruta + '?filtro[q]=&filtro[fechaini]='+ desde +'&filtro[fechafin]='+ hasta +'&filtro[disgenera]=reprevista.json&idplantilla=reprevista&commit=Enviar';
+      var requestUrl = ruta + '?filtro[q]=&filtro[fechaini]='+ desde +'&filtro[fechafin]='+ hasta
 
       if (departamento != undefined && departamento != 0){
         requestUrl += '&filtro[departamento_id]=' + departamento;
@@ -137,6 +139,7 @@ function agregarCasosOsm() {
       if (tvio != undefined && tvio != 0){
         requestUrl += '&filtro[categoria_id]=' + tvio;
       }
+      requestUrl += '&filtro[disgenera]=reprevista.json&idplantilla=reprevista&commit=Enviar'
       mostrarCargador();
       downloadUrl(requestUrl, function(req) {
         var data = req.responseText;
