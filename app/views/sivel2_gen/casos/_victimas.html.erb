@@ -13,3 +13,14 @@
     "data-ajaxdata" => "caso_id" } 
   %>
 </div>
+<div class="links">
+  <%= link_to_add_association 'Añadir Familiar de Víctima', f, :victima, { 
+    partial: 'sivel2_gen/casos/familiar_campos',
+    class: 'btn-primary',
+    "data-ajax" => File.join(
+      Rails.configuration.relative_url_root,
+      "victimas/nuevo"
+    ), 
+    "data-ajaxdata" => "caso_id" } 
+  %>
+</div>

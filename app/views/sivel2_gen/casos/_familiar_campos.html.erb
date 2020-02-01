@@ -1,0 +1,40 @@
+<div class='control-group nested-fields'>
+  <div class="controls">
+
+    <% if f.object.persona_trelacion.nil? %>
+      <% f.object.persona_trelacion = Sip::PersonaTrelacion.new %>
+    <% end %>
+    
+    <% byebug %>
+    <%= f.simple_fields_for :persona_trelacion do |fp| %>
+      <label class="select required control-label" >
+        Víctima</label>
+      <%=
+        p = options_from_collection_for_select(
+          Sip::Persona.from('sivel2_gen_victima, sip_persona').where(
+            'sivel2_gen_victima.id_persona=sip_persona.id 
+            AND sivel2_gen_victima.id_caso=?', @caso.id),
+            "id",
+            lambda {|t| t.nombres + ' ' + t.apellidos}
+        ) %>
+      <% fp.association :persona1,
+        collection: p,
+        label_method: :nombre,
+        value_method: :id,
+        "data-toggle" => 'tooltip',
+        "title" => 'Seleccione la víctima.' %>
+      
+      <% fp.association :id_trelacion,
+        collection: Sip::Trelacion.all %>
+    <% end %>
+
+    <% if f.object.persona.nil? %>
+           <% f.object.persona = Sip::Persona.new %>
+    <% end %>
+    <%= render partial: 'contacto_campos', locals: {f: f} %>
+
+    <%= link_to_remove_association(
+      "Eliminar Familiar", f, 
+      {:class => 'btn-danger', :'data-existing' => 'true'}) %> 
+  </div>
+</div>
