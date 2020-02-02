@@ -5,8 +5,7 @@
       <% f.object.persona_trelacion = Sip::PersonaTrelacion.new %>
     <% end %>
     
-    <% byebug %>
-    <%= f.simple_fields_for :persona_trelacion do |fp| %>
+    <%= simple_form_for :persona_trelacion, url: sip.personas_trelacion_path do |fp| %>
       <label class="select required control-label" >
         Víctima</label>
       <%=
@@ -17,14 +16,12 @@
             "id",
             lambda {|t| t.nombres + ' ' + t.apellidos}
         ) %>
-      <% fp.association :persona1,
+      <% fp.input :persona1,
         collection: p,
-        label_method: :nombre,
-        value_method: :id,
         "data-toggle" => 'tooltip',
         "title" => 'Seleccione la víctima.' %>
       
-      <% fp.association :id_trelacion,
+      <% fp.input :id_trelacion,
         collection: Sip::Trelacion.all %>
     <% end %>
 
