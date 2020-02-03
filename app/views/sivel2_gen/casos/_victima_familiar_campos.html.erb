@@ -1,0 +1,44 @@
+<% return if !f.object %>
+<tr class='nested-fileds'>
+    <% if f.object.persona1.nil? %>
+      <% f.object.persona1 = Sip::Persona.new %>
+    <% end %>
+    <%= f.simple_fields_for :persona_trelacion1 do |p| %>
+      <td>
+        <%= p.input :nombres,
+          value_method: lambda {|t| '' if t.nombres == 'N'},
+          label: false %>
+      </td>
+      <td>
+        <%= p.input :apellidos, label: false %>
+      </td>
+      <td>
+        <%= p.input :tdocumento_id,
+          collection: Sip::Tdocumento.habilitados,
+          label_method: :sigla,
+          value_method: :id ,
+          label: false,
+          input_html: { style: 'width: 5em' }
+        %>
+      </td>
+      <td>
+        <%= p.input :numerodocumento, 
+          label: false,
+          input_html: {
+          title: 'Si el tipo de documento es cédula de ciudadania teclee solo digitos'}
+        %>
+      </td>
+      <td>
+        <%= f.input :id_trelacion, 
+          collection: Sip::Trelacion.habilitados,
+          label_method: :nombre,
+          value_method: :id,
+          label: false %>
+      </td>
+    <% end %>
+      <td>
+    <%= link_to_remove_association(
+      "Eliminar", f, 
+      {:class => 'btn-danger', :'data-existing' => 'true'}) %> 
+      </td>
+</tr>
