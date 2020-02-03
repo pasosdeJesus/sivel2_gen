@@ -7,7 +7,9 @@
           collection: Sip::Pais.where(fechadeshabilitacion: nil).order(:nombre),
           label_method: :nombre,
           value_method: :id,
-          value: f.object.id_pais ? f.object.id_pais : 170 %>
+          input_html: {
+            value: f.object.id_pais ? f.object.id_pais : 170
+          } %>
       </div>
       <div class="col-md-6">
         <%= f.association :departamento,
