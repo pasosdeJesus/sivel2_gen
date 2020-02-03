@@ -339,7 +339,7 @@ module Sivel2Gen
                 }
 
                 format.js {
-                  error_plantilla_no_autenticado
+                  render 'sivel2_gen/casos/filtro'
                   return
                 }
 

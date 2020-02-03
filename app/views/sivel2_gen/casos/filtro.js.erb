@@ -1,2 +1,10 @@
 $("#numconscaso").html("<%= @numconscaso %>");
-$("#casos").html("<%= escape_javascript(render('sivel2_gen/casos/index_tabla')) %>");
+<%if @numconscaso <= 2000 || current_usuario %>
+    $("#casos").html("<%= escape_javascript(render('sivel2_gen/casos/index_tabla')) %>")
+<% else %>
+    $("#casos").html('<div id="" class="alert alert-danger">'+
+      '<h4><strong>La consulta pública permite máximo 2000 registros.'+
+      ' Puede suscribirse a SIVeL Pro si requiere más</strong></h4>'+
+      ' <p>Puede usar el filtro de búsqueda avanzada para obteneri'+
+      ' menos registros</p></div>')
+<% end %>
