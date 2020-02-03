@@ -157,6 +157,16 @@ module Sivel2Gen
           scope :filtro_id_caso, lambda { |i|
             where(id_caso: i)
           }
+          #u = @pconsolidado[0][2.count]
+          scope :filtro_rot1, lambda { |r|
+            case r
+            when 'TODOS'
+              joins('JOIN sivel2_gen_acto ON sivel2_gen_victima.id_caso = sivel2_gen_acto.id_caso').
+                joins('LEFT JOIN sivel2_gen_categoria ON sivel2_gen_acto.id_categoria  = sivel2_gen_categoria.id')
+            when 'SI'
+            when 'NO'
+            end
+          }
 
           scope :filtro_ubicacion_caso, lambda { |u|
             joins('JOIN sip_ubicacion ON sivel2_gen_victima.id_caso=sip_ubicacion.id_caso').
