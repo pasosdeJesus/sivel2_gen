@@ -1,20 +1,33 @@
 
 <% @tablader.try(:each) do |der| %>
-  <h2><%= CGI.escapeHTML(der[:titulo]) %></h2>
+  <div style="margin-top: 5em">
+  <center><h2><%= CGI.escapeHTML(der[:titulo]) %></h2></center>
   <% der[:tablas].try(:each) do |tabla| %>
     <h3><%= CGI.escapeHTML(tabla[:titulo]) %></h3>
     <table class="table table-striped">
       <tbody>
+        <% tfil = tabla[:cuerpo].count %>
+        <% filac = 1 %>
         <% tabla[:cuerpo].try(:each) do |fila| %>
           <tr>
             <% fila.try(:each) do |campo| %>
-              <td><%= CGI.escapeHTML(campo.to_s) if campo %></td>
+              <td>
+                <% if filac == tfil %>
+                  <strong>
+                <% end %>
+                <%= CGI.escapeHTML(campo.to_s) if campo %>
+                <% if filac == tfil %>
+                  </strong>
+                <% end %>
+              </td>
             <% end %>
           </tr>
+          <% filac += 1 %>
         <% end %>
       </tbody>
     </table>
   <% end %>
+  </div>
 <% end %>
 
 

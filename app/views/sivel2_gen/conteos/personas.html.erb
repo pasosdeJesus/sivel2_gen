@@ -81,3 +81,23 @@
 <div id="resultado">
   <%= render 'sivel2_gen/conteos/resultado_tabla' %>
 </div> <!-- id: resultado -->
+
+<footer>
+  <ul>
+    <li>En este conteo están víctimas de casos que tienen una ubicación
+      principal. </li>
+    <% csinu = Sivel2Gen::Caso.where(ubicacion_id: nil).count %>
+    <% vsinu = Sivel2Gen::Victima.joins(:caso).
+    where('sivel2_gen_caso.ubicacion_id IS NULL').count %>
+    <% if vsinu > 0 %>
+      <li> No se incluyen <%= vsinu %> víctimas de <%= csinu %> casos sin 
+        ubicación principal.</li>
+    <% end %>
+    <% pnvi = Sip::Persona.where(
+      'id NOT IN (SELECT id_persona FROM sivel2_gen_victima)').count %>
+    <% if pnvi > 0 %>
+      <li> No se incluyen  <%= pnvi %> personas que no aparecen como 
+        víctimas (pueden ser familiares o desvinculadas de casos).</li>
+    <% end %>
+    </li>
+</footer>

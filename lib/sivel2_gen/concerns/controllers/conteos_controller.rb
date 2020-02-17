@@ -258,8 +258,10 @@ module Sivel2Gen
             ubicacion.id_municipio, municipio.nombre AS municipio_nombre, 
             ubicacion.id_clase, clase.nombre AS clase_nombre
             FROM
-            #{personas_cons1} LEFT JOIN sip_ubicacion AS ubicacion ON
-              (#{personas_cons1}.id_caso = ubicacion.id_caso) 
+            #{personas_cons1} JOIN sivel2_gen_caso AS caso ON
+              (#{personas_cons1}.id_caso = caso.id) 
+            LEFT JOIN sip_ubicacion AS ubicacion ON
+              (caso.ubicacion_id = ubicacion.id) 
             LEFT JOIN sip_departamento AS departamento ON 
               (ubicacion.id_departamento=departamento.id) 
             LEFT JOIN sip_municipio AS municipio ON 
@@ -767,7 +769,7 @@ module Sivel2Gen
               titulo: 'DERECHO A LA LIBERTAD',
               tablas: [
                 genvic_tabla(
-                  'HERIDOS', 
+                  '', 
                   [
                     {"cat" => [11],
                      "titulo" => "Víctimas de Desaparición por móviles de Persecución Política por parte de agentes directos o indirectos del Estado (Violaciones a los Derechos Humanos)."},
