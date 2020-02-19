@@ -1,9 +1,9 @@
 <% return if !f.object %>
 <tr class='nested-fileds'>
-    <% if f.object.persona1.nil? %>
-      <% f.object.persona1 = Sip::Persona.new %>
+    <% if f.object.personados.nil? %>
+      <% f.object.personados = Sip::Persona.new %>
     <% end %>
-    <%= f.simple_fields_for :persona_trelacion1 do |p| %>
+    <%= f.simple_fields_for :personados do |p| %>
       <td>
         <%= p.input :nombres,
           value_method: lambda {|t| '' if t.nombres == 'N'},
@@ -29,7 +29,7 @@
         %>
       </td>
       <td>
-        <%= f.input :id_trelacion, 
+        <%= f.input :trelacion, 
           collection: Sip::Trelacion.habilitados,
           label_method: :nombre,
           value_method: :id,

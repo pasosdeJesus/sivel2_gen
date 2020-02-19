@@ -30,11 +30,12 @@
                   </tr>
                 </thead>
                 <tbody id="victima_familiares">
-                  <% simple_form_for :persona, url: sip.persona_path do |f|%>
                     <%= f.simple_fields_for :persona_trelacion do |pt| %>
-                      <%= render 'victima_familiar_campos', f: pt%>
+                      <%= render 'victima_familiar_campos', locals: {f: pt} %>
+                      <% if pt.object.personauno.nil? %>
+                        <% pt.object.personauno = f.object.persona %>
+                      <% end %>
                     <% end %>
-                  <% end %>
                 </tbody>
               </table>
               <div class="links">

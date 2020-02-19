@@ -706,6 +706,16 @@ module Sivel2Gen
                   :sexo, 
                   :tdocumento_id
                 ],
+                :persona_trelacion_attributes => [
+                  :id_trelacion,
+                  :_destroy, 
+                  :personados_attributes => [
+                    :nombres, 
+                    :apellidos,
+                    :tdocumento_id,
+                    :numerodocumento],
+                    
+                ]
               ], 
               :victimacolectiva_attributes => [
                 :id, 
