@@ -185,7 +185,7 @@ module Sivel2Gen
             when 'MES CASO'
               que1 = agrega_tabla(
                 que1, "extract(year from fecha) || '-' " +
-                "|| lpad(cast(extract(month from fecha) as text), 2, " +
+                "|| lpad(cast(extract(month from fecha) as text), 2 , " +
                 "cast('0' as text)) as mes")
               que3 << ["mes", "Mes"]
 
@@ -268,7 +268,7 @@ module Sivel2Gen
               (ubicacion.id_municipio=municipio.id)
             LEFT JOIN sip_clase AS clase ON 
               (ubicacion.id_clase=clase.id)
-            GROUP BY 1,2,3,4,5,6,7,8,9,10", que3, tablas3, where3]
+            GROUP BY 1,2,3,4,5,6,7,8,9,10,11", que3, tablas3, where3]
           end
 
           # Genera q3 y llena @coltotales
@@ -316,9 +316,15 @@ module Sivel2Gen
               @fechafin = fecha_local_estandar(params[:filtro]['fechafin'])
               where1 = personas_fecha_final(where1)
             end
-            que1 = 'caso.id AS id_caso, victima.id_persona AS id_persona,
-            1 AS npersona'
-            tablas1 = 'public.sivel2_gen_caso AS caso, public.sivel2_gen_victima AS victima'
+            que1 = 'caso.id AS id_caso, subv.id_victima AS id_victima, ' +
+              'subv.id_persona AS id_persona, 1 AS npersona'
+            tablas1 = 'public.sivel2_gen_caso AS caso, ' +
+              'public.sivel2_gen_victima AS victima, ' +
+              '(SELECT id_persona, ' +
+              ' MAX(id) AS id_victima' +
+              ' FROM sivel2_gen_victima GROUP BY 1) AS subv '
+              
+            where1 = consulta_and_sinap(where1, "subv.id_victima", "victima.id")
             where1 = consulta_and_sinap(where1, "caso.id", "victima.id_caso")
 
             # Para la consulta final emplear arreglo que3, que tendrá parejas
@@ -344,6 +350,8 @@ module Sivel2Gen
               SELECT #{que1}
               FROM #{tablas1} #{where1}
             "
+#            q1 += 'GROUP BY '
+#            q1 += (3..que1.split(',').count).to_a.join(', ')
             puts "OJO q1 es #{q1}<hr>"
             ActiveRecord::Base.connection.execute q1
 
