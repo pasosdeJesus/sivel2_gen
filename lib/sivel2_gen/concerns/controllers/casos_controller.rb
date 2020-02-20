@@ -707,11 +707,13 @@ module Sivel2Gen
                   :tdocumento_id
                 ],
                 :persona_trelacion_attributes => [
+                  :id,
                   :id_trelacion,
                   :_destroy, 
                   :personados_attributes => [
                     :nombres, 
                     :apellidos,
+                    :sexo,
                     :tdocumento_id,
                     :numerodocumento],
                     

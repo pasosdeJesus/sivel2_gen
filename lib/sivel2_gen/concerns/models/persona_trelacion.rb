@@ -17,6 +17,8 @@ module Sivel2Gen
           belongs_to :trelacion, foreign_key: "id_trelacion", validate: true, 
             class_name: 'Sip::Trelacion'
 
+          accepts_nested_attributes_for :personados, reject_if: :all_blank
+          accepts_nested_attributes_for :trelacion, reject_if: :all_blank
           validates :personauno, presence: true
           validates :personados, presence: true
           validates :trelacion, presence: true

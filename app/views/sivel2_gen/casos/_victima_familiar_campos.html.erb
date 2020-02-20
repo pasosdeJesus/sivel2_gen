@@ -13,6 +13,12 @@
         <%= p.input :apellidos, label: false %>
       </td>
       <td>
+        <%= p.input :sexo, 
+          collection: ::Sip::Persona::OPCIONES_SEXO,
+          include_blank: false,
+          label: false %>
+      </td>
+      <td>
         <%= p.input :tdocumento_id,
           collection: Sip::Tdocumento.habilitados,
           label_method: :sigla,
@@ -22,14 +28,20 @@
         %>
       </td>
       <td>
-        <%= p.input :numerodocumento, 
-          label: false,
-          input_html: {
-          title: 'Si el tipo de documento es cédula de ciudadania teclee solo digitos'}
-        %>
+        <%= p.input :id, as: :hidden %>
+        <% ph = 'N'
+        ac = {'data-autocompleta' => 'no',
+               style: 'width: 9em' }
+        if (!p.object.numerodocumento || p.object.numerodocumento == 'N' || p.object.numerodocumento == '')
+          ph = 'Buscar'
+          ac = { style: 'width: 9em' }
+        end %>
+        <%= p.input :numerodocumento, placeholder: ph, 
+          input_html: ac,
+          label: false %>
       </td>
       <td>
-        <%= f.input :trelacion, 
+        <%= f.input :id_trelacion, 
           collection: Sip::Trelacion.habilitados,
           label_method: :nombre,
           value_method: :id,
