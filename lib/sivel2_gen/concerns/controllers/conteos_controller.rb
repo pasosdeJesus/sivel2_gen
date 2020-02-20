@@ -285,6 +285,21 @@ module Sivel2Gen
             return q3
           end
 
+
+          def personas_inicializa1(where1)
+            que1 = 'caso.id AS id_caso, subv.id_victima AS id_victima, ' +
+              'subv.id_persona AS id_persona, 1 AS npersona'
+            tablas1 = 'public.sivel2_gen_caso AS caso, ' +
+              'public.sivel2_gen_victima AS victima, ' +
+              '(SELECT id_persona, ' +
+              ' MAX(id) AS id_victima' +
+              ' FROM sivel2_gen_victima GROUP BY 1) AS subv '
+            where1 = consulta_and_sinap(where1, "subv.id_victima", "victima.id")
+            where1 = consulta_and_sinap(where1, "caso.id", "victima.id_caso")
+            return que1, tablas1, where1
+          end
+
+
           def personas
             authorize! :contar, Sivel2Gen::Caso
 
@@ -316,16 +331,8 @@ module Sivel2Gen
               @fechafin = fecha_local_estandar(params[:filtro]['fechafin'])
               where1 = personas_fecha_final(where1)
             end
-            que1 = 'caso.id AS id_caso, subv.id_victima AS id_victima, ' +
-              'subv.id_persona AS id_persona, 1 AS npersona'
-            tablas1 = 'public.sivel2_gen_caso AS caso, ' +
-              'public.sivel2_gen_victima AS victima, ' +
-              '(SELECT id_persona, ' +
-              ' MAX(id) AS id_victima' +
-              ' FROM sivel2_gen_victima GROUP BY 1) AS subv '
-              
-            where1 = consulta_and_sinap(where1, "subv.id_victima", "victima.id")
-            where1 = consulta_and_sinap(where1, "caso.id", "victima.id_caso")
+
+            que1, tablas1, where1 = personas_inicializa1(where1)
 
             # Para la consulta final emplear arreglo que3, que tendrá parejas
             # (campo, titulo por presentar en tabla)
