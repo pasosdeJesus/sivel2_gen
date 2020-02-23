@@ -1,17 +1,15 @@
+<!-- Ya viene un <td> abierto de index.html -->
 <% @pconsolidado.each do |p| %>
-  <td>
-    <% campo = "bus#{p[1]}" %>
-    <%= f.input campo,
-      collection: ['Todos', 'Si', 'No'],
-      label: false,
-      selected: Sip::ModeloHelper.poromision(params, :bushabilitado),
-      input_html: {
-        class: 'chosen-select',
-        'data-enviarautomatico' => '',
-        value: params && params[:filtro] && params[:filtro][:habilitado] ? 
-        params[:filtro][:habilitado] : 'Todos'
-      },
-      include_blank: false
-    %>
-</td>
+  <% campo = "bus#{p[1]}" %>
+  <%= f.input campo,
+    collection: ['Todos', 'Si', 'No'],
+    label: false,
+    input_html: {
+      class: 'chosen-select',
+      'data-enviarautomatico' => '',
+      value: Sip::ModeloHelper.poromision(params, campo)
+    },
+    include_blank: false
+  %>
+  </td><td>
 <% end %>
