@@ -1,0 +1,17 @@
+<% @pconsolidado.each do |p| %>
+  <td>
+    <% campo = "bus#{p[1]}" %>
+    <%= f.input campo,
+      collection: ['Todos', 'Si', 'No'],
+      label: false,
+      selected: Sip::ModeloHelper.poromision(params, :bushabilitado),
+      input_html: {
+        class: 'chosen-select',
+        'data-enviarautomatico' => '',
+        value: params && params[:filtro] && params[:filtro][:habilitado] ? 
+        params[:filtro][:habilitado] : 'Todos'
+      },
+      include_blank: false
+    %>
+</td>
+<% end %>
