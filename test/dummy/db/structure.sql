@@ -2540,57 +2540,6 @@ CREATE VIEW public.sivel2_gen_conscaso1 AS
 
 
 --
--- Name: sivel2_gen_conscaso; Type: MATERIALIZED VIEW; Schema: public; Owner: -
---
-
-CREATE MATERIALIZED VIEW public.sivel2_gen_conscaso AS
- SELECT sivel2_gen_conscaso1.caso_id,
-    sivel2_gen_conscaso1.fecha,
-    sivel2_gen_conscaso1.memo,
-    sivel2_gen_conscaso1.ubicaciones,
-    sivel2_gen_conscaso1.victimas,
-    sivel2_gen_conscaso1.presponsables,
-    sivel2_gen_conscaso1.tipificacion,
-    to_tsvector('spanish'::regconfig, public.unaccent(((((((((((((sivel2_gen_conscaso1.caso_id || ' '::text) || replace(((sivel2_gen_conscaso1.fecha)::character varying)::text, '-'::text, ' '::text)) || ' '::text) || sivel2_gen_conscaso1.memo) || ' '::text) || sivel2_gen_conscaso1.ubicaciones) || ' '::text) || sivel2_gen_conscaso1.victimas) || ' '::text) || sivel2_gen_conscaso1.presponsables) || ' '::text) || sivel2_gen_conscaso1.tipificacion))) AS q
-   FROM public.sivel2_gen_conscaso1
-  WITH NO DATA;
-
-
---
--- Name: sivel2_gen_consexpcaso; Type: MATERIALIZED VIEW; Schema: public; Owner: -
---
-
-CREATE MATERIALIZED VIEW public.sivel2_gen_consexpcaso AS
- SELECT conscaso.caso_id,
-    conscaso.fecha,
-    conscaso.memo,
-    conscaso.ubicaciones,
-    conscaso.victimas,
-    conscaso.presponsables,
-    conscaso.tipificacion,
-    conscaso.q,
-    caso.titulo,
-    caso.hora,
-    caso.duracion,
-    caso.grconfiabilidad,
-    caso.gresclarecimiento,
-    caso.grimpunidad,
-    caso.grinformacion,
-    caso.bienes,
-    caso.id_intervalo,
-    caso.created_at,
-    caso.updated_at
-   FROM (public.sivel2_gen_conscaso conscaso
-     JOIN public.sivel2_gen_caso caso ON ((caso.id = conscaso.caso_id)))
-  WHERE (conscaso.caso_id IN ( SELECT sivel2_gen_conscaso.caso_id
-           FROM public.sivel2_gen_conscaso
-          WHERE (sivel2_gen_conscaso.fecha >= '2019-01-01'::date)
-          ORDER BY sivel2_gen_conscaso.ubicaciones, sivel2_gen_conscaso.caso_id))
-  ORDER BY conscaso.ubicaciones, conscaso.caso_id
-  WITH NO DATA;
-
-
---
 -- Name: sivel2_gen_contexto_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
@@ -4398,13 +4347,6 @@ CREATE INDEX caso_fecha_idx1 ON public.sivel2_gen_caso USING btree (fecha);
 
 
 --
--- Name: caso_id_unico; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE UNIQUE INDEX caso_id_unico ON public.sivel2_gen_conscaso USING btree (caso_id);
-
-
---
 -- Name: index_heb412_gen_doc_on_tdoc_type_and_tdoc_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -5967,6 +5909,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20191219011910'),
 ('20191231102721'),
 ('20200106174710'),
-('20200221181049');
+('20200221181049'),
+('20200224134339');
 
 
