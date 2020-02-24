@@ -13,6 +13,7 @@ module Sivel2Gen
             except: [:index, :show]
           helper Sip::UbicacionHelper
 
+          MAX_CASOS_REFRESCA_AUTOMATICO=10000
 
           def clase
             'Sivel2Gen::Caso'
@@ -175,7 +176,8 @@ module Sivel2Gen
             begin
               @conscasocount = Conscaso.count
             rescue
-              Conscaso.refresca_conscaso
+              puts Conscaso.refresca_conscaso
+              @conscasocount = Conscaso.count
             end
             #if !ActiveRecord::Base.connection.data_source_exists?(
             #  'sivel2_gen_consexpcaso')
@@ -436,9 +438,18 @@ module Sivel2Gen
             @caso.memo = ''
             @caso.titulo = ''
 
+            notificacion = 'Caso creado.'
+            if @conscasocount > MAX_CASOS_REFRESCA_AUTOMATICO
+              notificacion += "  Por la cantidad de casos (#{@conscasocount})"+
+                " debe Refrescar para actualizar " +
+                " el cambio en el listado de casos"
+            end
             respond_to do |format|
               if @caso.save
-                format.html { redirect_to @caso, notice: 'Caso creado.' }
+                format.html { 
+                  redirect_to @caso, 
+                  notice: notificacion
+                }
                 format.json { 
                   render action: 'show', status: :created, location: @caso, 
                   layout: 'application' 
@@ -452,7 +463,19 @@ module Sivel2Gen
                 }
               end
             end
-            Conscaso.refresca_conscaso
+            begin
+              @conscasocount = Conscaso.count
+              if @conscasocount <= MAX_CASOS_REFRESCA_AUTOMATICO
+                puts Conscaso.refresca_conscaso
+              end
+            rescue
+               puts Conscaso.refresca_conscaso
+            end
+          end
+
+          def refresca
+            @resrefresca = Conscaso.refresca_conscaso
+            render 'refresca', layout: 'application'
           end
 
           # PATCH/PUT /casos/1
@@ -471,7 +494,16 @@ module Sivel2Gen
                 #  head :no_content
                 #  return
                 #end
-                format.html { redirect_to @caso, notice: 'Caso actualizado.' }
+                notificacion = 'Caso actualizado.'
+                if Sivel2Gen::Caso.count > MAX_CASOS_REFRESCA_AUTOMATICO
+                  notificacion += "  Por la cantidad de casos "+
+                    " debe Refrescar para notar " +
+                    " el cambio en el listado de casos".html_safe
+                end
+                format.html { 
+                  redirect_to @caso, 
+                  notice: notificacion
+                }
                 format.json { head :no_content }
                 format.js   { head :no_content }
               else
@@ -488,7 +520,15 @@ module Sivel2Gen
                               status: :unprocessable_entity }
               end
             end
-            Conscaso.refresca_conscaso
+            begin
+              @conscasocount = Conscaso.count
+              if @conscasocount <= MAX_CASOS_REFRESCA_AUTOMATICO
+                puts Conscaso.refresca_conscaso
+              end
+            rescue
+               puts Conscaso.refresca_conscaso
+               @conscasocount = Conscaso.count
+            end
           end
 
           def update
@@ -503,11 +543,24 @@ module Sivel2Gen
               CasoUsuario.where(id_caso: @caso.id).destroy_all
             end
             @caso.destroy
+            notificacion = 'Caso eliminado.'
+            if Sivel2Gen::Caso.count > MAX_CASOS_REFRESCA_AUTOMATICO
+              notificacion += "  Por la cantidad de casos "+
+                " debe Refrescar para notar " +
+                " el cambio en el listado de casos".html_safe
+            end
             respond_to do |format|
-              format.html { redirect_to casos_path }
+              format.html { redirect_to casos_path, notice: notificacion }
               format.json { head :no_content }
             end
-            Conscaso.refresca_conscaso
+            begin
+              @conscasocount = Conscaso.count
+              if @conscasocount <= MAX_CASOS_REFRESCA_AUTOMATICO
+                puts Conscaso.refresca_conscaso
+              end
+            rescue
+               puts Conscaso.refresca_conscaso
+            end
           end
 
           # Despliega detalle de un registro

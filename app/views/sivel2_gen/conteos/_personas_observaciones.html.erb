@@ -1,0 +1,26 @@
+<footer>
+  <ul>
+    <li>En este conteo están víctimas diferentes, cada una de un caso con
+        ubicación principal. </li>
+    <% csinu = Sivel2Gen::Caso.where(ubicacion_id: nil).count %>
+    <% vsinu = Sivel2Gen::Victima.joins(:caso).
+    where('sivel2_gen_caso.ubicacion_id IS NULL').count %>
+    <% if vsinu > 0 %>
+      <li>No se tienen en cuenta <%= vsinu %> víctimas de <%= csinu %> 
+      casos sin ubicación principal.</li>
+    <% end %>
+    <% pnvi = Sip::Persona.where(
+      'id NOT IN (SELECT id_persona FROM sivel2_gen_victima)').count %>
+    <% if pnvi > 0 %>
+      <li>No se tienen en cuenta <%= pnvi %> personas que no aparecen como 
+        víctimas (pueden ser familiares o desvinculadas de casos).</li>
+    <% end %>
+    <% vrep = Sip::Persona.connection.execute(
+      'SELECT COUNT(*) FROM ' +
+      '(SELECT id_persona, count(id) FROM sivel2_gen_victima GROUP BY 1) ' +
+      'AS s WHERE count>1')[0]['count'] %>
+    <% if vrep > 0 %>
+      <li>No se sobre-cuentan <%= vrep %>  víctimas que se encuentran en más
+        de un caso.</li>
+    <% end %>
+</footer>

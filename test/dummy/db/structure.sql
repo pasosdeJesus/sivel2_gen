@@ -384,12 +384,17 @@ CREATE TABLE public.sivel2_gen_victima (
 
 CREATE VIEW public.cben1 AS
  SELECT caso.id AS id_caso,
-    victima.id_persona,
+    subv.id_victima,
+    subv.id_persona,
     1 AS npersona,
     'total'::text AS total
    FROM public.sivel2_gen_caso caso,
-    public.sivel2_gen_victima victima
-  WHERE (caso.id = victima.id_caso);
+    public.sivel2_gen_victima victima,
+    ( SELECT sivel2_gen_victima.id_persona,
+            max(sivel2_gen_victima.id) AS id_victima
+           FROM public.sivel2_gen_victima
+          GROUP BY sivel2_gen_victima.id_persona) subv
+  WHERE ((subv.id_victima = victima.id) AND (caso.id = victima.id_caso));
 
 
 --
@@ -528,6 +533,7 @@ CREATE TABLE public.sip_ubicacion (
 
 CREATE VIEW public.cben2 AS
  SELECT cben1.id_caso,
+    cben1.id_victima,
     cben1.id_persona,
     cben1.npersona,
     cben1.total,
@@ -537,12 +543,13 @@ CREATE VIEW public.cben2 AS
     municipio.nombre AS municipio_nombre,
     ubicacion.id_clase,
     clase.nombre AS clase_nombre
-   FROM ((((public.cben1
-     LEFT JOIN public.sip_ubicacion ubicacion ON ((cben1.id_caso = ubicacion.id_caso)))
+   FROM (((((public.cben1
+     JOIN public.sivel2_gen_caso caso ON ((cben1.id_caso = caso.id)))
+     LEFT JOIN public.sip_ubicacion ubicacion ON ((caso.ubicacion_id = ubicacion.id)))
      LEFT JOIN public.sip_departamento departamento ON ((ubicacion.id_departamento = departamento.id)))
      LEFT JOIN public.sip_municipio municipio ON ((ubicacion.id_municipio = municipio.id)))
      LEFT JOIN public.sip_clase clase ON ((ubicacion.id_clase = clase.id)))
-  GROUP BY cben1.id_caso, cben1.id_persona, cben1.npersona, cben1.total, ubicacion.id_departamento, departamento.nombre, ubicacion.id_municipio, municipio.nombre, ubicacion.id_clase, clase.nombre;
+  GROUP BY cben1.id_caso, cben1.id_victima, cben1.id_persona, cben1.npersona, cben1.total, ubicacion.id_departamento, departamento.nombre, ubicacion.id_municipio, municipio.nombre, ubicacion.id_clase, clase.nombre;
 
 
 --
@@ -2267,42 +2274,14 @@ CREATE MATERIALIZED VIEW public.sivel2_gen_conscaso AS
     sivel2_gen_conscaso1.victimas,
     sivel2_gen_conscaso1.presponsables,
     sivel2_gen_conscaso1.tipificacion,
+    now() AS ultimo_refresco,
     to_tsvector('spanish'::regconfig, public.unaccent(((((((((((((sivel2_gen_conscaso1.caso_id || ' '::text) || replace(((sivel2_gen_conscaso1.fecha)::character varying)::text, '-'::text, ' '::text)) || ' '::text) || sivel2_gen_conscaso1.memo) || ' '::text) || sivel2_gen_conscaso1.ubicaciones) || ' '::text) || sivel2_gen_conscaso1.victimas) || ' '::text) || sivel2_gen_conscaso1.presponsables) || ' '::text) || sivel2_gen_conscaso1.tipificacion))) AS q
    FROM public.sivel2_gen_conscaso1
   WITH NO DATA;
 
 
 --
--- Name: sivel2_gen_consexpcaso; Type: MATERIALIZED VIEW; Schema: public; Owner: -
---
 
-CREATE MATERIALIZED VIEW public.sivel2_gen_consexpcaso AS
- SELECT conscaso.caso_id,
-    conscaso.fecha,
-    conscaso.memo,
-    conscaso.ubicaciones,
-    conscaso.victimas,
-    conscaso.presponsables,
-    conscaso.tipificacion,
-    conscaso.q,
-    caso.titulo,
-    caso.hora,
-    caso.duracion,
-    caso.grconfiabilidad,
-    caso.gresclarecimiento,
-    caso.grimpunidad,
-    caso.grinformacion,
-    caso.bienes,
-    caso.id_intervalo,
-    caso.created_at,
-    caso.updated_at
-   FROM (public.sivel2_gen_conscaso conscaso
-     JOIN public.sivel2_gen_caso caso ON ((caso.id = conscaso.caso_id)))
-  WHERE (true = false)
-  WITH NO DATA;
-
-
---
 -- Name: sivel2_gen_contexto_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
@@ -4119,17 +4098,24 @@ CREATE INDEX index_active_storage_attachments_on_blob_id ON public.active_storag
 
 
 --
--- Name: index_active_storage_attachments_uniqueness; Type: INDEX; Schema: public; Owner: -
+-- Name: busca_sivel2_gen_conscaso; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE UNIQUE INDEX index_active_storage_attachments_uniqueness ON public.active_storage_attachments USING btree (record_type, record_id, name, blob_id);
+CREATE INDEX busca_sivel2_gen_conscaso ON public.sivel2_gen_conscaso USING gin (q);
 
 
 --
--- Name: index_active_storage_blobs_on_key; Type: INDEX; Schema: public; Owner: -
+-- Name: caso_fecha_idx; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE UNIQUE INDEX index_active_storage_blobs_on_key ON public.active_storage_blobs USING btree (key);
+CREATE INDEX caso_fecha_idx ON public.sivel2_gen_caso USING btree (fecha);
+
+
+--
+-- Name: caso_fecha_idx1; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX caso_fecha_idx1 ON public.sivel2_gen_caso USING btree (fecha);
 
 
 --
@@ -5639,7 +5625,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20191219011910'),
 ('20191231102721'),
 ('20200106174710'),
-('20200201202642'),
-('20200203120105');
+('20200221181049'),
+('20200224134339');
 
 
