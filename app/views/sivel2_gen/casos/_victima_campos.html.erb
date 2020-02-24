@@ -6,6 +6,54 @@
       
     <%= render partial: 'contacto_campos', locals: {f: f} %>
 
+    <div class="panel-group" id="acordeonlc">
+      <div class="panel panel-default" id="panellc">
+        <div class="panel-heading">
+          <div class="panel-title">
+            <a data-toggle="collapse" data-target="#colapsalc" href="#colapsalc">
+              Familiares (Ingrese aquí familiares de esta víctima)
+            </a>
+          </div> <!-- panel-title -->
+        </div> <!-- panel-heading -->
+
+        <div id="colapsalc" class="panel-collapse collapse">
+          <div class="panel-body">
+            <div class="panel-body table-responsive" style="overflow-x:scroll;">
+              <table class="tablalistadocasosjr table  table-bordered table-sm ">
+                <thead class="thead-light">
+                  <tr>
+                    <th>Nombres</th>
+                    <th>Apellidos</th>
+                    <th>Sexo</th>
+                    <th width='6em'>Tipo Id.</th>
+                    <th>Número .Id</th>
+                    <th>Parentezco</th>
+                  </tr>
+                </thead>
+                <tbody id="victima_familiares">
+                    <%= f.simple_fields_for :persona_trelacion do |pt| %>
+                      <%= render 'victima_familiar_campos', f: pt %>
+                      <% if pt.object.personauno.nil? %>
+                        <% pt.object.personauno = f.object.persona %>
+                      <% end %>
+                    <% end %>
+                </tbody>
+              </table>
+              <div class="links">
+                <%= link_to_add_association 'Añadir Familiar', f, 
+                  :persona_trelacion,
+                  :"data-association-insertion-node" => "tbody#victima_familiares", 
+                  :"data-association-insertion-method" => "append", 
+                  partial: 'victima_familiar_campos',
+                  :class => 'btn-primary'
+                %>
+            </div>
+
+            </div> <!-- panel-body -->
+          </div> <!-- colapsalc -->
+        </div> <!-- panellc -->
+      </div> <!-- acordeonlc -->
+
     <%= link_to_remove_association(
       "Eliminar Víctima", f, 
       {:class => 'btn-danger', :'data-existing' => 'true'}) %> 
