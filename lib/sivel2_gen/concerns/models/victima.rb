@@ -160,15 +160,20 @@ module Sivel2Gen
           #u = @pconsolidado[0][2.count]
 
           scope :filtro_pconsolidado, lambda { |p|
-            case r
-            when 'TODOS'
+            sel = p.split("_")
+            l = sel[0]
+            op = sel[1]
+            #l = pconsolidado.all[0].categoria.map(&:id)
+            case op
+            when 'Todos'
+              joins('JOIN sivel2_gen_acto ON sivel2_gen_victima.id_caso = sivel2_gen_acto.id_caso')
+            when 'Si'
               joins('JOIN sivel2_gen_acto ON sivel2_gen_victima.id_caso = sivel2_gen_acto.id_caso').
-                joins('LEFT JOIN sivel2_gen_categoria ON sivel2_gen_acto.id_categoria = sivel2_gen_categoria.id')
-            when 'SI'
-              byebug
-            when 'NO'
+                where('sivel2_gen_acto.id_categoria IN (?)',l)
+            when 'No'
+              joins('JOIN sivel2_gen_acto ON sivel2_gen_victima.id_caso = sivel2_gen_acto.id_caso').
+                where('sivel2_gen_acto.id_categoria NOT IN (?)',l)
             end
-           byebug
           }
  
           scope :filtro_ubicacion_caso, lambda { |u|
