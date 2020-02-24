@@ -2540,6 +2540,24 @@ CREATE VIEW public.sivel2_gen_conscaso1 AS
 
 
 --
+-- Name: sivel2_gen_conscaso; Type: MATERIALIZED VIEW; Schema: public; Owner: -
+--
+
+CREATE MATERIALIZED VIEW public.sivel2_gen_conscaso AS
+ SELECT sivel2_gen_conscaso1.caso_id,
+    sivel2_gen_conscaso1.fecha,
+    sivel2_gen_conscaso1.memo,
+    sivel2_gen_conscaso1.ubicaciones,
+    sivel2_gen_conscaso1.victimas,
+    sivel2_gen_conscaso1.presponsables,
+    sivel2_gen_conscaso1.tipificacion,
+    now() AS ultimo_refresco,
+    to_tsvector('spanish'::regconfig, public.unaccent(((((((((((((sivel2_gen_conscaso1.caso_id || ' '::text) || replace(((sivel2_gen_conscaso1.fecha)::character varying)::text, '-'::text, ' '::text)) || ' '::text) || sivel2_gen_conscaso1.memo) || ' '::text) || sivel2_gen_conscaso1.ubicaciones) || ' '::text) || sivel2_gen_conscaso1.victimas) || ' '::text) || sivel2_gen_conscaso1.presponsables) || ' '::text) || sivel2_gen_conscaso1.tipificacion))) AS q
+   FROM public.sivel2_gen_conscaso1
+  WITH NO DATA;
+
+
+--
 -- Name: sivel2_gen_contexto_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
@@ -4333,6 +4351,13 @@ ALTER TABLE ONLY public.sivel2_gen_victima
 
 
 --
+-- Name: busca_sivel2_gen_conscaso; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX busca_sivel2_gen_conscaso ON public.sivel2_gen_conscaso USING gin (q);
+
+
+--
 -- Name: caso_fecha_idx; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -4937,6 +4962,14 @@ ALTER TABLE ONLY public.sivel2_gen_categoria
 
 
 --
+-- Name: sivel2_gen_categoria categoria_contadaen_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.sivel2_gen_categoria
+    ADD CONSTRAINT categoria_contadaen_fkey FOREIGN KEY (contadaen) REFERENCES public.sivel2_gen_categoria(id);
+
+
+--
 -- Name: sip_departamento departamento_id_pais_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -5358,6 +5391,14 @@ ALTER TABLE ONLY public.sip_persona
 
 ALTER TABLE ONLY public.sip_persona
     ADD CONSTRAINT persona_tdocumento_id_fkey FOREIGN KEY (tdocumento_id) REFERENCES public.sip_tdocumento(id);
+
+
+--
+-- Name: sivel2_gen_presponsable presponsable_papa_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.sivel2_gen_presponsable
+    ADD CONSTRAINT presponsable_papa_fkey FOREIGN KEY (papa) REFERENCES public.sivel2_gen_presponsable(id);
 
 
 --
