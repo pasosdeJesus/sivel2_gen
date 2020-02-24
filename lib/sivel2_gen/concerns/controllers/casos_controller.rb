@@ -455,6 +455,11 @@ module Sivel2Gen
             Conscaso.refresca_conscaso
           end
 
+          def refresca
+            @resrefresca = Conscaso.refresca_conscaso
+            render 'refresca', layout: 'application'
+          end
+
           # PATCH/PUT /casos/1
           # PATCH/PUT /casos/1.json
           def update_gen
