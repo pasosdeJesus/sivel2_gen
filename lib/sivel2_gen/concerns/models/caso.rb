@@ -133,6 +133,16 @@ module Sivel2Gen
           validates :grimpunidad, length: { maximum: 8 }
           validates :grinformacion, length: { maximum: 8 }
 
+          require 'active_support/core_ext/hash' 
+          def self.import(file)
+            doc = file.read
+            #doc = Nokogiri::XML(open(file))
+            relimportado = Hash.from_xml(doc)
+            return relimportado
+            #byebug
+            #your processing code goes here
+          end
+
           def presenta(atr)
             case atr.to_s
             when 'fuentesfrecuentes'
@@ -416,6 +426,7 @@ module Sivel2Gen
             else
               presenta_gen(atr)
             end
+
           end
         end
 

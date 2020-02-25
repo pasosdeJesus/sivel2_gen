@@ -555,7 +555,19 @@ module Sivel2Gen
           def destroy
             sivel2_gen_destroy
           end
-
+          
+          def import
+            relatosdic = Caso.import(params[:file])
+            relatosdic['relatos']['relato'].each do |r|
+              @caso = Caso.new
+              @caso.fecha = r['fecha']
+              @caso.hora = r['hora']
+              #@caso.titulo = r[titulo]
+              @caso.memo = r['hechos']
+              @caso.save!
+            end 
+            redirect_to casos_path, notice: "Relato importado!"
+          end
           private
 
           # Configuración común o restricciones entre acciones
@@ -726,6 +738,7 @@ module Sivel2Gen
               ],
             ]
           end
+          
 
           # Lista blanca de parametros
           def caso_params
