@@ -157,25 +157,27 @@ module Sivel2Gen
           scope :filtro_id_caso, lambda { |i|
             where(id_caso: i)
           }
-          #u = @pconsolidado[0][2.count]
 
           scope :filtro_pconsolidado, lambda { |p|
-            sel = p.split("_")
+            sel = p.split('_')
             l = sel[0]
             op = sel[1]
-            #l = pconsolidado.all[0].categoria.map(&:id)
+            # l = pconsolidado.all[0].categoria.map(&:id)
             case op
             when 'Todos'
-              joins('JOIN sivel2_gen_acto ON sivel2_gen_victima.id_caso = sivel2_gen_acto.id_caso')
+              joins('JOIN sivel2_gen_acto ON sivel2_gen_victima.id_caso'+
+                    ' = sivel2_gen_acto.id_caso')
             when 'Si'
-              joins('JOIN sivel2_gen_acto ON sivel2_gen_victima.id_caso = sivel2_gen_acto.id_caso').
-                where('sivel2_gen_acto.id_categoria IN (?)',l)
+              joins('JOIN sivel2_gen_acto ON sivel2_gen_victima.id_caso'+
+                    ' = sivel2_gen_acto.id_caso')
+                .where('sivel2_gen_acto.id_categoria IN (?)', l)
             when 'No'
-              joins('JOIN sivel2_gen_acto ON sivel2_gen_victima.id_caso = sivel2_gen_acto.id_caso').
-                where('sivel2_gen_acto.id_categoria NOT IN (?)',l)
+              joins('JOIN sivel2_gen_acto ON sivel2_gen_victima.id_caso'+
+                    ' = sivel2_gen_acto.id_caso')
+                .where('sivel2_gen_acto.id_categoria NOT IN (?)', l)
             end
           }
- 
+
           scope :filtro_ubicacion_caso, lambda { |u|
             joins('JOIN sip_ubicacion ON sivel2_gen_victima.id_caso=sip_ubicacion.id_caso').
               joins('LEFT JOIN sip_departamento ON sip_ubicacion.id_departamento=sip_departamento.id').
