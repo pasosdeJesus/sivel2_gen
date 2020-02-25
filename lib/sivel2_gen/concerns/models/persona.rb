@@ -25,7 +25,6 @@ module Sivel2Gen
             sivel2_gen_presenta(atr)
           end
 
-
         end
 
       end

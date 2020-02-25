@@ -757,19 +757,20 @@ module Sivel2Gen
                   :nacionalde, 
                   :numerodocumento, 
                   :sexo, 
-                  :tdocumento_id
-                ],
-                :persona_trelacion_attributes => [
-                  :id,
-                  :id_trelacion,
-                  :_destroy, 
-                  :personados_attributes => [
-                    :nombres, 
-                    :apellidos,
-                    :sexo,
-                    :tdocumento_id,
-                    :numerodocumento],
-                    
+                  :tdocumento_id,
+                  :persona_trelacion1_attributes => [
+                    :id,
+                    :id_trelacion,
+                    :_destroy, 
+                    :personados_attributes => [
+                      :id,
+                      :nombres, 
+                      :apellidos,
+                      :sexo,
+                      :tdocumento_id,
+                      :numerodocumento
+                    ]
+                  ]
                 ]
               ], 
               :victimacolectiva_attributes => [

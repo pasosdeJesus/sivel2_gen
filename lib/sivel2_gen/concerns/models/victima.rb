@@ -20,8 +20,6 @@ module Sivel2Gen
             association_foreign_key: 'id_antecedente',
             join_table: 'sivel2_gen_antecedente_victima'
           
-          has_many :persona_trelacion, foreign_key: "persona1", class_name: 'Sip::PersonaTrelacion'
-          accepts_nested_attributes_for :persona_trelacion, reject_if: :all_blank
           # En el orden de esquema en base 
           belongs_to :caso, foreign_key: "id_caso", validate: true, 
             class_name: "Sivel2Gen::Caso"
@@ -52,7 +50,6 @@ module Sivel2Gen
 
           validates :caso, presence: true
           validates :persona, presence: true
-
 
 
           ## AUXILIARES PARA PRESENTAR INFORMACIÓN
