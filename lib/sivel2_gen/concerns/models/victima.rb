@@ -165,14 +165,14 @@ module Sivel2Gen
             # l = pconsolidado.all[0].categoria.map(&:id)
             case op
             when 'Todos'
-              joins('JOIN sivel2_gen_acto ON sivel2_gen_victima.id_caso'+
+              joins('JOIN sivel2_gen_acto ON sivel2_gen_victima.id_caso' +
                     ' = sivel2_gen_acto.id_caso')
             when 'Si'
-              joins('JOIN sivel2_gen_acto ON sivel2_gen_victima.id_caso'+
+              joins('JOIN sivel2_gen_acto ON sivel2_gen_victima.id_caso' +
                     ' = sivel2_gen_acto.id_caso')
                 .where('sivel2_gen_acto.id_categoria IN (?)', l)
             when 'No'
-              joins('JOIN sivel2_gen_acto ON sivel2_gen_victima.id_caso'+
+              joins('JOIN sivel2_gen_acto ON sivel2_gen_victima.id_caso' +
                     ' = sivel2_gen_acto.id_caso')
                 .where('sivel2_gen_acto.id_categoria NOT IN (?)', l)
             end
