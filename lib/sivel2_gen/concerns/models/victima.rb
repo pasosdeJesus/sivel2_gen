@@ -160,7 +160,8 @@ module Sivel2Gen
 
           scope :filtro_pconsolidado, lambda { |p|
             sel = p.split('_')
-            l = sel[0]
+            l = sel[0].to_i
+            byebug
             op = sel[1]
             # l = pconsolidado.all[0].categoria.map(&:id)
             case op
