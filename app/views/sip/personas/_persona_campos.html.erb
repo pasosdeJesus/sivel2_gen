@@ -53,16 +53,24 @@
 
 
   <div class="row">
-    <div class="col-sm-4">
+    <div class="col-sm-3">
       <% @anios = *(1900..Date.today.year) %>
       <%= f.input :anionac, 
         collection: @anios %>
     </div>
-    <div class="col-sm-4">
+    <div class="col-sm-3">
       <%= fvictima.input :edad, as: :integer %>
     </div>
-    <div class="col-sm-4">
+    <div class="col-sm-3">
       <%= fvictima.input :edadactual, as: :integer %>
+    </div>
+    <div class="col-sm-3">
+      <%= fvictima.association :rangoedad,
+        collection: Sivel2Gen::Rangoedad.habilitados(:rango),
+        include_blank: false,
+        label_method: :rango, 
+        value_method: :id 
+      %>
     </div>
   </div>
 
