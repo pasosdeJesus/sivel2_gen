@@ -5,8 +5,19 @@
     <% end %>
     <%= f.simple_fields_for :personados do |p| %>
       <td>
-        <%= p.input :nombres,
+        <%= p.input :id, as: :hidden %>
+        <% ph = 'N'
+        ac = {'data-autocompleta' => 'no',
+               style: 'width: 9em' }
+        if (!p.object.nombres || p.object.nombres == 'N' || 
+            p.object.nombres == '')
+          ph = 'Buscar'
+          ac = { style: 'width: 9em' }
+        end %>
+
+        <%= p.input :nombres, placeholder: ph, 
           value_method: lambda {|t| '' if t.nombres == 'N'},
+          input_html: ac,
           label: false %>
       </td>
       <td>
@@ -28,16 +39,7 @@
         %>
       </td>
       <td>
-        <%= p.input :id, as: :hidden %>
-        <% ph = 'N'
-        ac = {'data-autocompleta' => 'no',
-               style: 'width: 9em' }
-        if (!p.object.numerodocumento || p.object.numerodocumento == 'N' || p.object.numerodocumento == '')
-          ph = 'Buscar'
-          ac = { style: 'width: 9em' }
-        end %>
-        <%= p.input :numerodocumento, placeholder: ph, 
-          input_html: ac,
+        <%= p.input :numerodocumento, 
           label: false %>
       </td>
       <td>

@@ -442,7 +442,7 @@ enviaFormularioContar= (root) ->
   )
   # En victimas permite autocompletar nombres de familiares
   $(document).on('focusin', 
-  'input[id^=caso_victima_attributes][id$=personados_attributes_numerodocumento]', 
+  'input[id^=caso_victima_attributes][id$=personados_attributes_nombres]', 
   (e) ->
     busca_persona_nombre($(this), root)
   )
