@@ -36,7 +36,7 @@ Sivel2Gen::Engine.routes.draw do
 
   resources :casos, path_names: { new: 'nuevo', edit: 'edita' }
   resources :casos do
-      collection { post :import }
+      collection { post :importa }
   end
   namespace :admin do
     ab=::Ability.new

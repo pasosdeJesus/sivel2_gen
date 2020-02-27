@@ -6,7 +6,6 @@ module Sivel2Gen
       module CasosController
         extend ActiveSupport::Concern
 
-
         included do
           before_action :set_caso, only: [:show, :edit, :update, :destroy]
           load_and_authorize_resource class: Sivel2Gen::Caso, 
@@ -556,8 +555,8 @@ module Sivel2Gen
             sivel2_gen_destroy
           end
           
-          def import
-            relatosdic = Caso.import(params[:file])
+          def importa
+            relatosdic = Caso.importa(params[:file])
             relatosdic['relatos']['relato'].each do |r|
               @caso = Caso.new
               @caso.fecha = r['fecha']
@@ -566,6 +565,7 @@ module Sivel2Gen
               @caso.memo = r['hechos']
               @caso.save!
             end 
+            #Sip::Modelo.importa(relatosdic)
             redirect_to casos_path, notice: "Relato importado!"
           end
           private
