@@ -426,6 +426,13 @@ enviaFormularioContar= (root) ->
     })
     $('.chosen-select').chosen()
   )
+ 
+  #En ubicación por omisión Colombia y actualiza departamentos 
+  $('#ubicacion').on('cocoon:after-insert', '', (e, ubicacion) ->
+    ubipais = 'select[id^=caso_][id$=id_pais]'
+    $(ubipais).val(170).trigger('chosen:updated')
+    llena_departamento($(ubicacion.find(ubipais)), root)
+  )
 
   # En victimas permite autocompletar nombres de victima
   $(document).on('focusin', 
@@ -446,7 +453,6 @@ enviaFormularioContar= (root) ->
   (e) ->
     busca_grupoper_nombre($(this), root)
   )
-
 
   # Al cambiar país se recalcula lista de departamentos
   $(document).on('change', 'select[id^=caso_][id$=id_pais]', (e) ->

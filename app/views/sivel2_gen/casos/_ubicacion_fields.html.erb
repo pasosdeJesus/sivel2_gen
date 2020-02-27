@@ -6,8 +6,7 @@
         <%= f.association :pais,
           collection: Sip::Pais.where(fechadeshabilitacion: nil).order(:nombre),
           label_method: :nombre,
-          value_method: :id,
-          selected: f.object.id_pais ? f.object.id_pais : 170
+          value_method: :id
            %>
       </div>
       <div class="col-md-6">
