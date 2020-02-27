@@ -160,9 +160,10 @@ module Sivel2Gen
 
           scope :filtro_pconsolidado, lambda { |p|
             sel = p.split('_')
-            l = sel[0].to_i
+            pc = sel[0].to_i
             op = sel[1]
-            # l = pconsolidado.all[0].categoria.map(&:id)
+            c = Sivel2Gen::Pconsolidado.find(pc)
+            l = c.categoria.map(&:id)
             case op
             when 'Todos'
               joins('JOIN sivel2_gen_acto ON sivel2_gen_victima.id_caso' +
