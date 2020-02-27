@@ -433,9 +433,16 @@ enviaFormularioContar= (root) ->
     $(ubipais).val(170).trigger('chosen:updated')
     llena_departamento($(ubicacion.find(ubipais)), root)
   )
-  # En victimas permite autocompletar nombres
+
+  # En victimas permite autocompletar nombres de victima
   $(document).on('focusin', 
   'input[id^=caso_victima_attributes][id$=persona_attributes_nombres]', 
+  (e) ->
+    busca_persona_nombre($(this), root)
+  )
+  # En victimas permite autocompletar nombres de familiares
+  $(document).on('focusin', 
+  'input[id^=caso_victima_attributes][id$=personados_attributes_numerodocumento]', 
   (e) ->
     busca_persona_nombre($(this), root)
   )
@@ -449,7 +456,6 @@ enviaFormularioContar= (root) ->
 
   # Al cambiar país se recalcula lista de departamentos
   $(document).on('change', 'select[id^=caso_][id$=id_pais]', (e) ->
-    console.log(root)
     llena_departamento($(this), root)
     # Exprimentando actualizar a medida que se modifica:
     idfu = $(this).attr('id').replace('_id_pais', '_id');

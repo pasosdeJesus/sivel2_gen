@@ -170,9 +170,12 @@ module Sivel2Gen
 
         module ClassMethods
 
+          # Retorna '' sii puede refrescar o crear sivel2_gen_conscaso
+          # en otro caso retorna cadena con problema o razón por la que
+          # no refresca
           def refresca_conscaso
             if ARGV.include?("db:migrate")
-              return
+              return 'Ejecutando migración'
             end
             if !ActiveRecord::Base.connection.data_source_exists? 'sivel2_gen_conscaso'
               ActiveRecord::Base.connection.execute("CREATE OR REPLACE 
@@ -181,10 +184,10 @@ module Sivel2Gen
         ARRAY_TO_STRING(ARRAY(SELECT COALESCE(departamento.nombre, '') ||  
         ' / ' || COALESCE(municipio.nombre, '')
         FROM public.sip_ubicacion AS ubicacion 
-					LEFT JOIN public.sip_departamento AS departamento 
-						ON (ubicacion.id_departamento = departamento.id)
-        	LEFT JOIN public.sip_municipio AS municipio 
-						ON (ubicacion.id_municipio=municipio.id)
+          LEFT JOIN public.sip_departamento AS departamento 
+            ON (ubicacion.id_departamento = departamento.id)
+          LEFT JOIN public.sip_municipio AS municipio 
+            ON (ubicacion.id_municipio=municipio.id)
           WHERE ubicacion.id_caso=caso.id), ', ')
         AS ubicaciones, 
         ARRAY_TO_STRING(ARRAY(SELECT nombres || ' ' || apellidos 
@@ -210,23 +213,30 @@ module Sivel2Gen
         AS tipificacion
         FROM public.sivel2_gen_caso AS caso;")
               ActiveRecord::Base.connection.execute(
-          "CREATE MATERIALIZED VIEW sivel2_gen_conscaso AS
+                "CREATE MATERIALIZED VIEW sivel2_gen_conscaso AS
         SELECT caso_id, fecha, memo, ubicaciones, victimas, 
-        presponsables, tipificacion, 
+        presponsables, tipificacion, now() AS ultimo_refresco,
         to_tsvector('spanish', unaccent(caso_id || ' ' || 
         replace(cast(fecha AS varchar), '-', ' ') 
         || ' ' || memo || ' ' || ubicaciones || ' ' || 
          victimas || ' ' || presponsables || ' ' || tipificacion)) as q
         FROM public.sivel2_gen_conscaso1");
-              ActiveRecord::Base.connection.execute(
+        ActiveRecord::Base.connection.execute(
           "CREATE INDEX busca_sivel2_gen_conscaso 
-							ON sivel2_gen_conscaso USING gin(q);"
+              ON sivel2_gen_conscaso USING gin(q);"
         )
             else
-              ActiveRecord::Base.connection.execute(
-                'REFRESH MATERIALIZED VIEW sivel2_gen_conscaso'
-              )
+              p = Sip::ProcesosHelper.procesos_OpenBSD
+              r = p.select {|u| u[:command] =~ /REFRESH/ }
+              if r.count > 0
+                return "Ejecución de otro(s) REFRESH en curso (#{r.map {|x| x[:command]}})"
+              else
+                ActiveRecord::Base.connection.execute(
+                  'REFRESH MATERIALIZED VIEW sivel2_gen_conscaso'
+                )
+              end
             end
+            return ''
           end # def refresca_conscaso
 
           def interpreta_ordenar_por(campo)

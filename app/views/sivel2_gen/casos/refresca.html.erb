@@ -1,0 +1,6 @@
+<% if @resrefresca == '' %>
+  <h1>Listado de casos refrescado.</h1>
+  <h2><%= Sivel2Gen::Conscaso.take.ultimo_refresco %>.</h2>
+<% else %>
+  <h1>Problema refrescando: <%= @resrefresca %></h1>
+<% end %>

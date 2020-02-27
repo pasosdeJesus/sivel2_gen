@@ -3,7 +3,6 @@
     locals: {f: p, fvictima: f}  %>
 <% end %>
 
-<%= render partial: 'campo_rangoedad', locals: {f: f} %>
 <%= render partial: 'contacto_complemento_1', locals: {f: f} %>
 
 <div class="row">
@@ -13,6 +12,10 @@
       include_blank: false,
       label_method: :nombre, 
       value_method: :id %>
+  </div>
+  <div class="col-md-3">
+    <%= render partial: 'sivel2_gen/victimas/campo_hijos',
+      locals: {f: f} %>
   </div>
 </div>
 

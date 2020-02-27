@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/pasosdeJesus/heb412_gen.git
-  revision: 4e9c3dd5420fe61b9fe5caf0d9f642d6a83766c6
+  revision: 1c91a8572ed68b7d4fe7c503a93f8f9277b9e4ca
   specs:
     heb412_gen (1.0.b6)
       mr519_gen
@@ -10,7 +10,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/mr519_gen.git
-  revision: 6ea24e3425b30391afd3cc6f301d4969d1116713
+  revision: 9c630e49592651782dcefadab3945a22b2d5cb26
   specs:
     mr519_gen (0.2.0)
       rails (~> 6.0.0.rc1, >= 6.0.0.rc1)
@@ -18,7 +18,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sip.git
-  revision: b4ffb2f66575fecb757211216321b3a216571d8a
+  revision: 5132a91a50c42b545b9bc96a4f6824cd57bc1e66
   specs:
     sip (2.0.b10)
       cancancan
@@ -101,7 +101,7 @@ GEM
       zeitwerk (~> 2.2)
     andand (1.3.3)
     bcrypt (3.1.13)
-    bootsnap (1.4.5)
+    bootsnap (1.4.6)
       msgpack (~> 1.0)
     builder (3.2.4)
     camertron-eprun (1.1.1)
@@ -123,7 +123,7 @@ GEM
     colorize (0.8.1)
     compare-xml (0.5.2)
       nokogiri (~> 1.6)
-    concurrent-ruby (1.1.5)
+    concurrent-ruby (1.1.6)
     crass (1.0.6)
     devise (4.7.1)
       bcrypt (~> 3.0)
@@ -136,13 +136,13 @@ GEM
     docile (1.3.2)
     erubi (1.9.0)
     execjs (2.7.0)
-    ffi (1.12.1)
+    ffi (1.12.2)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
     i18n (1.8.2)
       concurrent-ruby (~> 1.0)
-    jbuilder (2.9.1)
-      activesupport (>= 4.2.0)
+    jbuilder (2.10.0)
+      activesupport (>= 5.0.0)
     jquery-ui-rails (6.0.1)
       railties (>= 3.2.16)
     libxml-ruby (3.1.0)
@@ -161,12 +161,13 @@ GEM
     mini_mime (1.0.2)
     mini_portile2 (2.4.0)
     minitest (5.14.0)
-    msgpack (1.3.1)
+    msgpack (1.3.3)
     nio4r (2.5.2)
-    nokogiri (1.10.7)
+    nokogiri (1.10.8)
       mini_portile2 (~> 2.4.0)
-    odf-report (0.6.1)
-      nokogiri (>= 1.5.0)
+    odf-report (0.7.0)
+      mime-types
+      nokogiri (>= 1.10.0)
       rubyzip (>= 1.3.0)
     orm_adapter (0.5.0)
     paperclip (6.1.0)
@@ -187,7 +188,7 @@ GEM
       rails (>= 3.2)
     puma (4.3.1)
       nio4r (~> 2.0)
-    rack (2.1.2)
+    rack (2.2.2)
     rack-proxy (0.6.5)
       rack
     rack-test (1.1.0)
@@ -239,7 +240,7 @@ GEM
       andand (>= 1.3)
       rubyzip (>= 1.3)
     ruby-graphviz (1.2.4)
-    rubyzip (2.1.0)
+    rubyzip (2.2.0)
     sassc (2.2.1)
       ffi (~> 1.9)
     sassc-rails (2.1.2)
@@ -248,13 +249,13 @@ GEM
       sprockets (> 3.0)
       sprockets-rails
       tilt
-    simple_form (5.0.1)
+    simple_form (5.0.2)
       actionpack (>= 5.0)
       activemodel (>= 5.0)
-    simplecov (0.18.0)
+    simplecov (0.18.4)
       docile (~> 1.1)
-      simplecov-html (~> 0.11.0)
-    simplecov-html (0.11.0)
+      simplecov-html (~> 0.11)
+    simplecov-html (0.12.1)
     sprockets (4.0.0)
       concurrent-ruby (~> 1.0)
       rack (> 1, < 3)
@@ -267,7 +268,7 @@ GEM
     thor (1.0.1)
     thread_safe (0.3.6)
     tilt (2.0.10)
-    ttfunk (1.6.1)
+    ttfunk (1.6.2.1)
     twitter_cldr (5.3.0)
       camertron-eprun
       cldr-plurals-runtime-rb (~> 1.0)
