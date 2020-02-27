@@ -134,13 +134,12 @@ module Sivel2Gen
           validates :grinformacion, length: { maximum: 8 }
 
           require 'active_support/core_ext/hash' 
-          def self.importa(file)
-            doc = file.read
-            #doc = Nokogiri::XML(open(file))
-            relimportado = Hash.from_xml(doc)
-            return relimportado
-            #byebug
-            #your processing code goes here
+          def importa(datosent, datossal, menserror, opciones = {})
+            self.fecha = datosent['fecha']
+            self.hora = datosent['hora']
+            self.memo = datosent['hechos']
+             
+            return self
           end
 
           def presenta(atr)

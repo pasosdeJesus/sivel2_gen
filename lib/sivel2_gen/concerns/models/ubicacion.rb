@@ -37,8 +37,13 @@ module Sivel2Gen
               end
             end
           end
-
-            
+          
+          def importa(datosent, datossal, menserror, opciones = {})
+            byebug
+            self.departamento = datosent['departamento']
+            return self
+          end  
+          
           validates_presence_of :caso
         end
       end

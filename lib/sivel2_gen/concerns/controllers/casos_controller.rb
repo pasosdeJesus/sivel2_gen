@@ -556,16 +556,19 @@ module Sivel2Gen
           end
           
           def importa
-            relatosdic = Caso.importa(params[:file])
-            relatosdic['relatos']['relato'].each do |r|
+            file=params[:file]
+            doc = file.read
+            relimportado = Hash.from_xml(doc)
+            relimportado['relatos']['relato'].each do |c|
+              datossal = {}
+              menserror= ''
               @caso = Caso.new
-              @caso.fecha = r['fecha']
-              @caso.hora = r['hora']
-              #@caso.titulo = r[titulo]
-              @caso.memo = r['hechos']
-              @caso.save!
+              if @caso.importa(c, datossal, menserror, {}).nil?
+                error
+              else
+                @caso.save!
+              end
             end 
-            #Sip::Modelo.importa(relatosdic)
             redirect_to casos_path, notice: "Relato importado!"
           end
           private
