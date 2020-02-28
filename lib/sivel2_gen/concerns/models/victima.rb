@@ -157,6 +157,27 @@ module Sivel2Gen
             where(id_caso: i)
           }
 
+          scope :filtro_pconsolidado, lambda { |p|
+            sel = p.split('_')
+            pc = sel[0].to_i
+            op = sel[1]
+            c = Sivel2Gen::Pconsolidado.find(pc)
+            l = c.categoria.map(&:id)
+            case op
+            when 'Todos'
+              joins('JOIN sivel2_gen_acto ON sivel2_gen_victima.id_caso' +
+                    ' = sivel2_gen_acto.id_caso')
+            when 'Si'
+              joins('JOIN sivel2_gen_acto ON sivel2_gen_victima.id_caso' +
+                    ' = sivel2_gen_acto.id_caso')
+                .where('sivel2_gen_acto.id_categoria IN (?)', l)
+            when 'No'
+              joins('JOIN sivel2_gen_acto ON sivel2_gen_victima.id_caso' +
+                    ' = sivel2_gen_acto.id_caso')
+                .where('sivel2_gen_acto.id_categoria NOT IN (?)', l)
+            end
+          }
+
           scope :filtro_ubicacion_caso, lambda { |u|
             joins('JOIN sip_ubicacion ON sivel2_gen_victima.id_caso=sip_ubicacion.id_caso').
               joins('LEFT JOIN sip_departamento ON sip_ubicacion.id_departamento=sip_departamento.id').

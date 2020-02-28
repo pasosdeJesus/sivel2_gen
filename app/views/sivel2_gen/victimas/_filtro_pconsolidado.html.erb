@@ -1,0 +1,16 @@
+<!-- Ya viene un <td> abierto de index.html -->
+<% @pconsolidado.each do |p| %>
+  <%= f.input :buspconsolidado,
+    collection: {'Todos': "#{p[0]}_Todos", 'Si': "#{p[0]}_Si", 'No': "#{p[0]}_No"},
+    label: false,
+    selected: Sip::ModeloHelper.poromision(params, :buspconsolidado),
+    input_html: {
+      class: 'chosen-select',
+      'data-enviarautomatico' => '',
+      value: params && params[:filtro] && params[:filtro][:pconsolidado] ? 
+      params[:filtro][:pconsolidado] : 'Todos'
+    },
+    include_blank: false
+  %>
+  </td><td>
+<% end %>
