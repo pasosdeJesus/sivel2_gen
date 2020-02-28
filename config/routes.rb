@@ -13,6 +13,7 @@ Sivel2Gen::Engine.routes.draw do
   get "/casos/busca" => 'casos#busca'
   get '/casos/lista' => 'casos#lista'
   get '/casos/mapaosm' => 'casos#mapaosm'
+  get '/casos/importarrelatos' => 'casos#importarrelatos'
   get '/casos/nuevaubicacion' => 'casos#nueva_ubicacion'
   get '/casos/nuevavictima' => 'casos#nueva_victima'
   get '/casos/nuevopresponsable' => 'casos#nuevo_presponsable'
@@ -35,7 +36,9 @@ Sivel2Gen::Engine.routes.draw do
   get '/victimascolectivas/nuevo' => 'victimascolectivas#nuevo'
 
   resources :casos, path_names: { new: 'nuevo', edit: 'edita' }
-
+  resources :casos do
+      collection { post :importa }
+  end
   namespace :admin do
     ab=::Ability.new
     ab.tablasbasicas.each do |t|

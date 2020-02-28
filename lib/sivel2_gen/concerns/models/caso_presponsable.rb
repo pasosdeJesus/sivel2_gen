@@ -25,6 +25,13 @@ module Sivel2Gen
           validates :id_presponsable, presence: true
           validates :id_caso, presence: true
 
+
+          def importa(datosent, datossal, menserror, opciones = {})
+            datosent['grupo'].each do |g|
+              pres = Sivel2Gen::Presponsable.where(nombre: g['nombre_grupo'])
+              self.id_presponsable = pres.ids[0] if pres
+            end
+          end
         end # included
 
       end

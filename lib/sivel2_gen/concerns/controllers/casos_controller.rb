@@ -1,11 +1,10 @@
 # encoding: UTF-8
-
+require 'nokogiri'
 module Sivel2Gen
   module Concerns
     module Controllers
       module CasosController
         extend ActiveSupport::Concern
-
 
         included do
           before_action :set_caso, only: [:show, :edit, :update, :destroy]
@@ -608,7 +607,36 @@ module Sivel2Gen
           def destroy
             sivel2_gen_destroy
           end
-
+          def importa
+            file=params[:file]
+            doc = file.read
+            docnoko = Nokogiri::XML(doc)
+            docnoko.search('observaciones').each do |obs|
+              obs.content = obs['tipo'] + '_' + obs.text
+            end
+            relimportado = Hash.from_xml(docnoko.to_s)
+            datossal = {}
+            menserror= ''
+            @caso = Caso.new
+            if docnoko.search('relato').count == 1
+              relimportado['relatos'].each do |ca|
+                if @caso.importa(ca[1], datossal, menserror, {}).nil?
+                  error
+                else
+                  @caso.save!
+                end
+              end
+            else
+              relimportado['relatos']['relato'].each do |ca|
+                if @caso.importa(ca, datossal, menserror, {}).nil?
+                  error
+                else
+                  @caso.save!
+                end
+              end 
+            end
+            redirect_to casos_path, notice: "Relato importado!"
+          end
           private
 
           # Configuración común o restricciones entre acciones
@@ -792,6 +820,7 @@ module Sivel2Gen
               ],
             ]
           end
+          
 
           # Lista blanca de parametros
           def caso_params
