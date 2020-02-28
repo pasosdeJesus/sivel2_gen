@@ -1,5 +1,5 @@
 <% return if !f.object %>
-<tr class='nested-fileds'>
+<tr class='nested-fileds campos_personados'>
     <% if f.object.personados.nil? %>
       <% f.object.personados = Sip::Persona.new %>
     <% end %>

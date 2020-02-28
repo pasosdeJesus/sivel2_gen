@@ -158,6 +158,64 @@
     })
   return
 
+# Elije un familiar en autocompletación
+@sivel2_gen_autocompleta_familiar = (label, id, divcp, root) ->
+  sip_arregla_puntomontaje(root)
+  cs = id.split(";")
+  id_persona = cs[0]
+  pl = []
+  ini = 0
+  for i in [0..cs.length] by 1
+     t = parseInt(cs[i])
+     pl[i] = label.substring(ini, ini + t)
+     ini = ini + t + 1
+  # pl[1] es cnom, pl[2] es cape, pl[3] es cdoc
+  d = "&id_persona=" + id_persona
+  a = root.puntomontaje + 'personas/datos'
+  $.ajax(url: a, data: d, dataType: "json").fail( (jqXHR, texto) ->
+    alert("Error con ajax " + texto)
+  ).done( (e, r) ->
+    #debugger
+    divcp.find('[id^=caso_victima_attributes][id$=personados_attributes_id]').val(e.id)
+    divcp.find('[id^=caso_victima_attributes][id$=personados_attributes_nombres]').val(e.nombres)
+    divcp.find('[id^=caso_victima_attributes][id$=personados_attributes_apellidos]').val(e.apellidos)
+    divcp.find('[id^=caso_victima_attributes][id$=personados_attributes_sexo]').val(e.sexo)
+    divcp.find('[id^=caso_victima_attributes][id$=personados_attributes_tdocumento]').val(e.tdocumento)
+    divcp.find('[id^=caso_victima_attributes][id$=personados_attributes_numerodocumento]').val(e.numerodocumento)
+    #$(document).trigger("sip:autocompleto_persona", [id_victima, id_persona])
+    return
+  )
+  return
+
+# Busca persona por nombre, apellido o identificación
+# s es objeto con foco donde se busca persona
+@sivel2_gen_busca_familiar_nombre = (s) ->
+  root = window
+  sip_arregla_puntomontaje(root)
+  cnom = s.attr('id')
+  v = $("#" + cnom).data('autocompleta')
+  if (v != 1 && v != "no") 
+    $("#" + cnom).data('autocompleta', 1)
+    divcp = s.closest('.nested-fields')
+    if (typeof divcp == 'undefined')
+      alert('No se ubico .nested-fields')
+      return
+    idaa = divcp.parent().find('input[id$=personados_attributes_id').val()
+    if (typeof idaa == 'undefined')
+      alert('No se ubico personados_attributes_id')
+      return
+    $("#" + cnom).autocomplete({
+      source: root.puntomontaje + "personas.json",
+      minLength: 2,
+      select: ( event, ui ) -> 
+        if (ui.item) 
+          sivel2_gen_autocompleta_familiar(ui.item.value, ui.item.id, divcp, root)
+          event.stopPropagation()
+          event.preventDefault()
+    })
+  return
+
+
 # Elije una persona en autocompletación
 @autocompleta_grupoper = (label, id, id_victimac, divcp, root) ->
   sip_arregla_puntomontaje(root)
@@ -444,7 +502,7 @@ enviaFormularioContar= (root) ->
   $(document).on('focusin', 
   'input[id^=caso_victima_attributes][id$=personados_attributes_nombres]', 
   (e) ->
-    busca_persona_nombre($(this), root)
+    sivel2_gen_busca_familiar_nombre($(this), root)
   )
 
   # En victimas colectivas permite autocompletar nombre
