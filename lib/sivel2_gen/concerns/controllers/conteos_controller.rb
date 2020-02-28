@@ -851,7 +851,7 @@ module Sivel2Gen
                   where1
                 ),
                 genvic_tabla(
-                  'DESAPARICIÓN FORZADA E INVOLUNTARIA', 
+                  'OTRAS VIOLACIONES AL DERECHO A LA LIBERTAD', 
                   [
                     {"cat" => [24, 241, 301, 341],
                      "titulo" => "Victimizaciones por Detención Arbitraria y Judicialización Arbitraria por móvil de Abuso de Autoridad o Intolerancia Social, perpetrada por agentes directos o indirectos del Estado (Violaciones a los Derechos Humanos)."},
