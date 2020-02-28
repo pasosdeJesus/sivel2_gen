@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/pasosdeJesus/heb412_gen.git
-  revision: 1c91a8572ed68b7d4fe7c503a93f8f9277b9e4ca
+  revision: e366ee85520ffcaceadece0683dc78ce368c425a
   specs:
     heb412_gen (1.0.b6)
       mr519_gen
@@ -10,7 +10,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/mr519_gen.git
-  revision: 9c630e49592651782dcefadab3945a22b2d5cb26
+  revision: a28d19179b834bfb514b070b34868cc325f0750b
   specs:
     mr519_gen (0.2.0)
       rails (~> 6.0.0.rc1, >= 6.0.0.rc1)
@@ -18,7 +18,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sip.git
-  revision: 5132a91a50c42b545b9bc96a4f6824cd57bc1e66
+  revision: c5712e4461c393e5aa0b6a8868b44b93e07ca815
   specs:
     sip (2.0.b10)
       cancancan
@@ -186,7 +186,7 @@ GEM
     prawnto_2 (0.3.0)
       prawn (>= 1.0.0)
       rails (>= 3.2)
-    puma (4.3.1)
+    puma (4.3.3)
       nio4r (~> 2.0)
     rack (2.2.2)
     rack-proxy (0.6.5)
@@ -252,10 +252,10 @@ GEM
     simple_form (5.0.2)
       actionpack (>= 5.0)
       activemodel (>= 5.0)
-    simplecov (0.18.4)
+    simplecov (0.18.5)
       docile (~> 1.1)
       simplecov-html (~> 0.11)
-    simplecov-html (0.12.1)
+    simplecov-html (0.12.2)
     sprockets (4.0.0)
       concurrent-ruby (~> 1.0)
       rack (> 1, < 3)
@@ -269,7 +269,7 @@ GEM
     thread_safe (0.3.6)
     tilt (2.0.10)
     ttfunk (1.6.2.1)
-    twitter_cldr (5.3.0)
+    twitter_cldr (5.4.0)
       camertron-eprun
       cldr-plurals-runtime-rb (~> 1.0)
       tzinfo
@@ -284,7 +284,7 @@ GEM
     websocket-driver (0.7.1)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.4)
-    will_paginate (3.2.1)
+    will_paginate (3.3.0)
     zeitwerk (2.2.2)
 
 PLATFORMS

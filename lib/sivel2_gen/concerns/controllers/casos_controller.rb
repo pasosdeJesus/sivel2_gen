@@ -482,10 +482,36 @@ module Sivel2Gen
           # PATCH/PUT /casos/1.json
           def update_gen
             respond_to do |format|
+              # En etiquetas pone usuario actual por omision
               if (!params[:caso][:caso_etiqueta_attributes].nil?)
                 params[:caso][:caso_etiqueta_attributes].each  do |k,v|
                   if (v[:id_usuario].nil? || v[:id_usuario] == "") 
                     v[:id_usuario] = current_usuario.id
+                  end
+                end
+              end
+
+              # En familiares si falta crear trelacion_persona para personas
+              # autocompletadas los crea
+              if caso_params[:victima_attributes]
+                caso_params[:victima_attributes].each do |iv, v|
+                  if v[:persona_attributes][:persona_trelacion1_attributes]
+                    v[:persona_attributes][:persona_trelacion1_attributes].each do |it, t|
+                      # Ubicamos los de autocompletacion y para esos creamos un registro 
+                      if t && (!t[:id] || t[:id] == '') && 
+                          t[:personados_attributes] && 
+                          t[:personados_attributes][:id] &&
+                          t[:personados_attributes][:id].to_i > 0 &&
+                          Sip::Persona.where(
+                            id: t[:personados_attributes][:id].to_i).count == 1
+                          pt = Sip::PersonaTrelacion.create({
+                            persona1: v[:persona_attributes][:id],
+                            persona2: t[:personados_attributes][:id]
+                          })
+                          pt.save!(validate: false)
+                          params[:caso][:victima_attributes][iv][:persona_attributes][:persona_trelacion1_attributes][it][:id] = pt.id
+                      end
+                    end
                   end
                 end
               end

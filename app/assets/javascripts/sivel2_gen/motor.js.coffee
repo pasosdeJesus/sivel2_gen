@@ -196,9 +196,9 @@
   v = $("#" + cnom).data('autocompleta')
   if (v != 1 && v != "no") 
     $("#" + cnom).data('autocompleta', 1)
-    divcp = s.closest('.nested-fields')
+    divcp = s.closest('.campos_personados')
     if (typeof divcp == 'undefined')
-      alert('No se ubico .nested-fields')
+      alert('No se ubico .campos_personados')
       return
     idaa = divcp.parent().find('input[id$=personados_attributes_id').val()
     if (typeof idaa == 'undefined')

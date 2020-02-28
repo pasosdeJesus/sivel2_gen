@@ -1,5 +1,5 @@
 <% return if !f.object %>
-<tr class='nested-fileds campos_personados'>
+<tr class='nested-fields campos_personados'>
     <% if f.object.personados.nil? %>
       <% f.object.personados = Sip::Persona.new %>
     <% end %>
@@ -53,6 +53,8 @@
       <td>
     <%= link_to_remove_association(
       "Eliminar", f, 
-      {:class => 'btn-danger', :'data-existing' => 'true'}) %> 
+      {:class => 'btn-danger', 
+       :'wrapper-class' => 'campos_personados',
+       :'data-existing' => 'true'}) %> 
       </td>
 </tr>
