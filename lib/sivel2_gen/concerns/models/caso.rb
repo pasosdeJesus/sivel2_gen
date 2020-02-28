@@ -135,10 +135,32 @@ module Sivel2Gen
 
           require 'active_support/core_ext/hash' 
           def importa(datosent, datossal, menserror, opciones = {})
-            self.fecha = datosent['fecha']
-            self.hora = datosent['hora']
-            self.memo = datosent['hechos']
-             
+            self.fecha = datosent['fecha'] if datosent['fecha']
+            self.hora = datosent['hora'] if datosent['hora']
+            self.memo = datosent['hechos'] if datosent['hechos']
+            self.save!
+            #Importa ubicacion
+            ubicacion = Sip::Ubicacion.new
+            ubicacion.importa(datosent, datossal, menserror, opciones = {})
+            ubicacion.id_caso = self.id
+            ubicacion.save!
+
+            #Importa presunto responsable
+            casopresp = Sivel2Gen::CasoPresponsable.new
+            casopresp.importa(datosent, datossal, menserror, opciones = {})
+            casopresp.id_caso = self.id
+            casopresp.save!
+
+            #Importa grupos victimizados
+            victcol = Sivel2Gen::Victimacolectiva.new
+            victcol.id_caso = self.id
+            victcol.importa(datosent, datossal, menserror, opciones = {})
+            
+            #Importa victimas
+            vict = Sivel2Gen::Victima.new
+            vict.id_caso = self.id
+            vict.importa(datosent, datossal, menserror, opciones = {})
+            
             return self
           end
 

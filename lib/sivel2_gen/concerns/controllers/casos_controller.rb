@@ -1,5 +1,5 @@
 # encoding: UTF-8
-
+require 'nokogiri'
 module Sivel2Gen
   module Concerns
     module Controllers
@@ -554,21 +554,34 @@ module Sivel2Gen
           def destroy
             sivel2_gen_destroy
           end
-          
           def importa
             file=params[:file]
             doc = file.read
-            relimportado = Hash.from_xml(doc)
-            relimportado['relatos']['relato'].each do |c|
-              datossal = {}
-              menserror= ''
-              @caso = Caso.new
-              if @caso.importa(c, datossal, menserror, {}).nil?
-                error
-              else
-                @caso.save!
+            docnoko = Nokogiri::XML(doc)
+            docnoko.search('observaciones').each do |obs|
+              obs.content = obs['tipo'] + '_' + obs.text
+            end
+            relimportado = Hash.from_xml(docnoko.to_s)
+            datossal = {}
+            menserror= ''
+            @caso = Caso.new
+            if docnoko.search('relato').count == 1
+              relimportado['relatos'].each do |ca|
+                if @caso.importa(ca[1], datossal, menserror, {}).nil?
+                  error
+                else
+                  @caso.save!
+                end
               end
-            end 
+            else
+              relimportado['relatos']['relato'].each do |ca|
+                if @caso.importa(ca, datossal, menserror, {}).nil?
+                  error
+                else
+                  @caso.save!
+                end
+              end 
+            end
             redirect_to casos_path, notice: "Relato importado!"
           end
           private

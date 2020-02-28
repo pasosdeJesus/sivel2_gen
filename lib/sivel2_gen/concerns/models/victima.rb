@@ -175,6 +175,59 @@ module Sivel2Gen
           }
 
 
+          def importa(datosent, datossal, menserror, opciones = {})
+            datosent['victima'].each do |v|
+              datosent['persona'].each do |p|
+                if p['id_persona'] == v['id_persona']
+                  per = Sip::Persona.new
+                  per.nombres = p['nombre']
+                  per.apellidos = p['apellido']
+                  per.numerodocumento = p['cc']
+                  nac = p['fecha_nacimiento'].split('-')
+                  per.anionac = nac[0]
+                  per.mesnac = nac[1]
+                  per.dianac = nac[2]
+                  per.sexo = p['sexo']
+                  p['observaciones'].each do |ob|
+                    ele = ob.split('_')
+                    case ele[0]
+                    when 'etnia'
+                      self.id_etnia = Sivel2Gen::Etnia.where(nombre: ele[1]).ids[0]
+                    when 'pais'
+                      per.id_pais = Sip::Pais.where(nombre: ele[1]).ids[0]
+                    when 'departamento'
+                      per.id_departamento = Sip::Departamento.where(nombre: ele[1]).ids[0]
+                    when 'municipio'
+                      per.id_municipio = Sip::Municipio.where(nombre: ele[1]).ids[0]
+                    when 'centropoblado'
+                      per.id_clase = Sip::Clase.where(nombre: ele[1]).ids[0]
+                    end  
+                  end  
+                  per.save!
+                  self.id_persona = per.id
+                end  
+              end
+              self.id_profesion = Sivel2Gen::Profesion.where(nombre: v['ocupacion']).ids[0]
+              self.id_sectorsocial = Sivel2Gen::Sectorsocial.where(nombre: v['sector_condicion']).ids[0]
+              self.id_iglesia = Sivel2Gen::Iglesia.where(nombre: v['iglesia']).ids[0]
+              self.id_organizacion = Sivel2Gen::Organizacion.where(nombre: v['organizacion']).ids[0]
+              v['observaciones'].each do |ob|
+                ele = ob.split('_')
+                case ele[0]
+                  when 'filiacion'
+                    self.id_filiacion = Sivel2Gen::Filiacion.where(nombre: ele[1]).ids[0]
+                  when 'vinculoestado'
+                    self.id_vinculoestado = Sivel2Gen::Vinculoestado.where(nombre: ele[1]).ids[0]
+                  when 'organizacion_armada'
+                    self.personasaprox = Sivel2Gen::Presponsable.where(nombre: ele[1]).ids[0]
+                  when 'rangoedad'
+                    self.id_rangoedad = Sivel2Gen::Rangoedad.where(nombre: ele[1]).ids[0]
+                end
+              end
+              self.save!
+            end
+          end
+
         end
       end
     end
