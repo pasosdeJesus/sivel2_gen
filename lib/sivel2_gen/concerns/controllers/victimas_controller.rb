@@ -42,6 +42,7 @@ module Sivel2Gen
             if c == nil
               c = Sivel2Gen::Victima.all.order([:id_caso, :id])
             end
+            @titulo = 'Víctimas y Casos'
             @pconsolidado = Sivel2Gen::Pconsolidado.
               where(fechadeshabilitacion: nil).order(:id).map { |r|
               [r.id, r.nombre, Sivel2Gen::Categoria.
