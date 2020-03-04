@@ -14,12 +14,13 @@ module Sivel2Gen
       end
   
       def atributos_index
-        ["id", "nombre", "id_tviolencia", "codigo", 
-         "observaciones", "fechacreacion_localizada", "habilitado"]
-      end
-  
-      def atributos_form
-        atributos_index
+        ["id", 
+         "nombre", 
+         "id_tviolencia", 
+         "codigo", 
+         "observaciones", 
+         "fechacreacion_localizada", 
+         "habilitado"]
       end
   
       def supracategoria_params
