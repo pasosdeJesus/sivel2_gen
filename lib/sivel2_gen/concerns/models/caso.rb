@@ -439,8 +439,8 @@ module Sivel2Gen
                 r = (memo == '' ? '' : memo + '.   ')
                 r += ce.etiqueta.nombre
                 r += ' - ' + ce.usuario.nusuario if ce.usuario
-                r += ' - ' + ce.fecha_localizada
-                r += ' - ' + ce.observaciones
+                r += ' - ' + ce.fecha_localizada if ce.fecha_localizada
+                r += ' - ' + ce.observaciones if ce.observaciones
                 r
               }
                
