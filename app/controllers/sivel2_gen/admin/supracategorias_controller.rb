@@ -22,7 +22,11 @@ module Sivel2Gen
          "fechacreacion_localizada", 
          "habilitado"]
       end
-  
+
+      def atributos_form
+        atributos_index
+      end
+
       def supracategoria_params
         params.require(:supracategoria).permit( *atributos_form)
       end
