@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/pasosdeJesus/heb412_gen.git
-  revision: 94e77f9e601e1e38efbb3ff535b23eab8e58f008
+  revision: 83703c1582952b3a354775601e11b3a7f2bd4b37
   specs:
     heb412_gen (1.0.b6)
       mr519_gen
@@ -10,7 +10,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/mr519_gen.git
-  revision: a68526bcef5860e4e40e9c6d0783ba72650ee153
+  revision: 9665145d8be2ff1ca20bba21fb8011603057928a
   specs:
     mr519_gen (0.2.0)
       rails (~> 6.0.0.rc1, >= 6.0.0.rc1)
@@ -18,7 +18,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sip.git
-  revision: 577d502c1dc7c821eb81ec2b2631e0047f1aea51
+  revision: 43ac74a06b7568cc2886d6d648f5d527c411e2c1
   specs:
     sip (2.0.b10)
       cancancan
@@ -105,7 +105,7 @@ GEM
       msgpack (~> 1.0)
     builder (3.2.4)
     camertron-eprun (1.1.1)
-    cancancan (3.0.2)
+    cancancan (3.1.0)
     choice (0.2.0)
     chosen-rails (1.9.0)
       coffee-rails (>= 3.2)
@@ -177,7 +177,7 @@ GEM
       mimemagic (~> 0.3.0)
       terrapin (~> 0.6.0)
     pdf-core (0.7.0)
-    pg (1.2.2)
+    pg (1.2.3)
     prawn (2.2.2)
       pdf-core (~> 0.7.0)
       ttfunk (~> 1.5)
@@ -236,11 +236,13 @@ GEM
     responders (3.0.0)
       actionpack (>= 5.0)
       railties (>= 5.0)
+    rexml (3.2.4)
     rspreadsheet (0.5.3)
       andand (>= 1.3)
       rubyzip (>= 1.3)
-    ruby-graphviz (1.2.4)
-    rubyzip (2.2.0)
+    ruby-graphviz (1.2.5)
+      rexml
+    rubyzip (2.3.0)
     sassc (2.2.1)
       ffi (~> 1.9)
     sassc-rails (2.1.2)
