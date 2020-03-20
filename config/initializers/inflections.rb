@@ -18,6 +18,7 @@ ActiveSupport::Inflector.inflections do |inflect|
 	inflect.irregular 'actividad', 'actividades'
 	inflect.irregular 'categoria', 'categorias'
 	inflect.irregular 'clase', 'clases'
+	inflect.irregular 'contextovictima', 'contextosvictima'
 	inflect.irregular 'estadocivil', 'estadosciviles'
 	inflect.irregular 'etiqueta', 'etiquetas'
 	inflect.irregular 'error', 'errores'

@@ -16,6 +16,7 @@ module Sivel2Gen
       ['Sivel2Gen', 'actividadoficio'],
       ['Sivel2Gen', 'antecedente'],
       ['Sivel2Gen', 'categoria'],
+      ['Sivel2Gen', 'contextovictima'],
       ['Sivel2Gen', 'contexto'],
       ['Sivel2Gen', 'escolaridad'],
       ['Sivel2Gen', 'estadocivil'],
