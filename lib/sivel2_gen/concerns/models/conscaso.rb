@@ -128,6 +128,24 @@ module Sivel2Gen
                     WHERE sivel2_gen_victima.id_rangoedad = ?)', r)
           }
 
+          scope :filtro_sectorsocial_id, lambda { |r|
+            where('caso_id IN (SELECT id_caso
+                    FROM public.sivel2_gen_victima
+                    WHERE sivel2_gen_victima.id_sectorsocial = ?)', r)
+          }
+
+          scope :filtro_organizacion_id, lambda { |r|
+            where('caso_id IN (SELECT id_caso
+                    FROM public.sivel2_gen_victima
+                    WHERE sivel2_gen_victima.id_organizacion = ?)', r)
+          }
+
+          scope :filtro_profesion_id, lambda { |r|
+            where('caso_id IN (SELECT id_caso
+                    FROM public.sivel2_gen_victima
+                    WHERE sivel2_gen_victima.id_profesion = ?)', r)
+          }
+
           scope :filtro_etiqueta, lambda { |c, e|
             if c 
               where('caso_id IN (SELECT id_caso 
