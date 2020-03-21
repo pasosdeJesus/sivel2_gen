@@ -50,9 +50,9 @@ class Ability  < Sivel2Gen::Ability
         can :read, Heb412Gen::Plantillahcm
         can :read, Heb412Gen::Plantillahcr
         
-        can :manage, Sip::Persona
-
         can :manage, Sip::Actorsocial
+        can :manage, Sip::Bitacora, usuario: { id: usuario.id }
+        can :read, Sip::Bitacora
         can :manage, Sip::Persona
 
         can :manage, Sivel2Gen::Acto
@@ -62,6 +62,7 @@ class Ability  < Sivel2Gen::Ability
         can :nuevo, Sivel2Gen::Caso
         can [:update, :create, :destroy], Sivel2Gen::Caso
         can :read, Sivel2Gen::Victima
+
       when Ability::ROLADMIN
         can :manage, Heb412Gen::Doc
         can :manage, Heb412Gen::Plantilladoc
@@ -69,6 +70,7 @@ class Ability  < Sivel2Gen::Ability
         can :manage, Heb412Gen::Plantillahcr
         
         can :manage, Sip::Actorsocial
+        can :manage, Sip::Bitacora
         can :manage, Sip::Persona
         can :manage, Sip::Respaldo7z
 

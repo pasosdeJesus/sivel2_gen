@@ -8,7 +8,11 @@ module Sivel2Gen
       def clase 
         "Sivel2Gen::Iglesia"
       end
-  
+
+      def registrar_en_bitacora
+        true
+      end
+
       def set_iglesia
         @basica = Iglesia.find(params[:id])
       end

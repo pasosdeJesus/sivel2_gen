@@ -787,6 +787,31 @@ enviaFormularioContar= (root) ->
     return
   )
 
+  if $('input.bitacora_cambio').length > 0
+    root.bitacora_estado_inicial_formulario=$('input.bitacora_cambio').closest('form').serializeArray()
+
+  $(document).on('submit', 'form:has(.bitacora_cambio)', (e) ->
+    root.bitacora_estado_final_formulario=$('input.bitacora_cambio').closest('form').serializeArray()
+    cambio = {}
+    di = {} 
+    root.bitacora_estado_inicial_formulario.forEach((v) ->
+      di[v.name]=v.value
+    )
+    df = {} 
+    root.bitacora_estado_final_formulario.forEach((v) ->
+      df[v.name]=v.value
+      if typeof di[v.name] == 'undefined'
+        cambio[v.name] = [null, v.value]
+    )
+    for i, e of di
+      if typeof df[i] == 'undefined'
+        cambio[i] = [e, null]
+      else if df[i] != e && i != 'caso[bitacora_cambio]'
+        cambio[i] = [e, df[i]]
+      #if (JSON.stringify(root.bitacora_estado_inicial_formulario[v]) != JSON.stringify(root.bitacora_estado_final_formulario[v])) 
+      #  cambio[root.bitacora_estado_inicial_formulario[v].name]=[root.bitacora_estado_inicial_formulario[v].value, root.bitacora_estado_final_formulario[v].value]
+    $('input.bitacora_cambio').val(JSON.stringify(cambio))
+  )
   return
 
 

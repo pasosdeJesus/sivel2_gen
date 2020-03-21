@@ -447,8 +447,8 @@ module Sivel2Gen
             else
               presenta_gen(atr)
             end
-
           end
+
         end
 
         module ClassMethods

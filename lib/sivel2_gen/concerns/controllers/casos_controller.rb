@@ -7,12 +7,17 @@ module Sivel2Gen
         extend ActiveSupport::Concern
 
         included do
-          before_action :set_caso, only: [:show, :edit, :update, :destroy]
-          load_and_authorize_resource class: Sivel2Gen::Caso, 
-            except: [:index, :show]
+          # Los siguientes deben ir en clase que incluya esta modulo
+          #before_action :set_caso, only: [:show, :edit, :update, :destroy]
+          #load_and_authorize_resource class: Sivel2Gen::Caso, 
+          #  except: [:index, :show]
           helper Sip::UbicacionHelper
 
           MAX_CASOS_REFRESCA_AUTOMATICO=10000
+
+          def registrar_en_bitacora
+            true
+          end
 
           def clase
             'Sivel2Gen::Caso'
@@ -80,7 +85,8 @@ module Sivel2Gen
 
               # Otras
               :created_at,
-              :updated_at
+              :updated_at,
+              :registros_bitacora
             ]
           end
 
@@ -245,6 +251,11 @@ module Sivel2Gen
             #    @paginar = false
             #  end
             #end
+            if registrar_en_bitacora
+              Sip::Bitacora.a(request.remote_ip, current_usuario.id,
+                              request.url, params, 'Sivel2Gen::Caso',
+                              0,  'listar', '')
+            end
             presenta_index
           end
 
@@ -367,6 +378,12 @@ module Sivel2Gen
             cu.id_caso = @caso.id
             cu.fechainicio = DateTime.now.strftime('%Y-%m-%d')
             cu.save!
+            if registrar_en_bitacora
+              Sip::Bitacora.a(request.remote_ip, current_usuario.id,
+                              request.url, params, 'Sivel2Gen::Caso',
+                              @caso.id,  'iniciar', '')
+            end
+
             @registro = @caso
           end
 
@@ -412,8 +429,8 @@ module Sivel2Gen
          
           # GET casos/mapaosm
           def mapaosm
-	    @fechadesde = Sip::FormatoFechaHelper.inicio_semestre(Date.today - 182)
-	    @fechahasta = Sip::FormatoFechaHelper.fin_semestre(Date.today - 182)
+            @fechadesde = Sip::FormatoFechaHelper.inicio_semestre(Date.today - 182)
+            @fechahasta = Sip::FormatoFechaHelper.fin_semestre(Date.today - 182)
             render 'mapaosm', layout: 'application'
           end
 
@@ -423,6 +440,11 @@ module Sivel2Gen
           # GET /casos/1/edit
           def edit
             self.class.asegura_camposdinamicos(@registro, current_usuario.id)
+            if registrar_en_bitacora
+              Sip::Bitacora.a(request.remote_ip, current_usuario.id,
+                              request.url, params, 'Sivel2Gen::Caso',
+                              @caso.id,  'editar', '')
+            end
             if session[:capturacaso_acordeon]
               render 'editv', layout: 'application'
             else
@@ -445,6 +467,12 @@ module Sivel2Gen
             end
             respond_to do |format|
               if @caso.save
+                if registrar_en_bitacora
+                  Sip::Bitacora.a(request.remote_ip, current_usuario.id,
+                                  request.url, params, 'Sivel2Gen::Caso',
+                                  @caso.id,  'crear', '')
+                end
+
                 format.html { 
                   redirect_to @caso, 
                   notice: notificacion
@@ -514,11 +542,44 @@ module Sivel2Gen
                   end
                 end
               end
+
               if @caso.update(caso_params)
+                if registrar_en_bitacora 
+                  #byebug
+                  # Se intentó implementar a nivel de modelo con 
+                  # before_update, after_update pero a Sivel2Gen::Caso 
+                  # sólo le llegan los cambios al modelo Caso y no a los 
+                  # asociados. Por eso inicialmente se prefirió a nivel de 
+                  # controlador y los cambios al formulario en el cliente 
+                  # con Javascript.
+                  detalle_bitacora = {}
+                  if request.params[:caso] &&
+                      request.params[:caso][:bitacora_cambio] &&
+                      request.params[:caso][:bitacora_cambio] != ''
+                    begin
+                      detalle_bitacora = JSON.parse(
+                        request.params[:caso][:bitacora_cambio])
+                    rescue 
+                      detalle_bitacora = {error: 'Error al reconocer JSON'}
+                    end
+                  end
+                  if detalle_bitacora != {}
+                    Sip::Bitacora.a(request.remote_ip,
+                                    current_usuario.id,
+                                    request.url,
+                                    params, 
+                                    'Sivel2Gen::Caso',
+                                    @caso.id,  
+                                    'actualizar', 
+                                    detalle_bitacora.to_json)
+                  end
+                end
+
                 #if request.params[:enviarFichaCaso] == '1'
                 #  head :no_content
                 #  return
                 #end
+
                 notificacion = 'Caso actualizado.'
                 if Sivel2Gen::Caso.count > MAX_CASOS_REFRESCA_AUTOMATICO
                   notificacion += "  Por la cantidad de casos "+
@@ -564,10 +625,18 @@ module Sivel2Gen
           # sivel2_sjr/concerns/controllers/casos_controllers pues no hay super 
           # en módulos y no se logró con prepend u otra forma
           def sivel2_gen_destroy
+            tcaso_id=@caso.id
             if @caso.id
               CasoUsuario.where(id_caso: @caso.id).destroy_all
             end
             @caso.destroy
+
+            if registrar_en_bitacora
+              Sip::Bitacora.a(request.remote_ip, current_usuario.id,
+                              request.url, params, 'Sivel2Gen::Caso',
+                              tcaso_id,  'eliminar', '')
+            end
+
             notificacion = 'Caso eliminado.'
             if Sivel2Gen::Caso.count > MAX_CASOS_REFRESCA_AUTOMATICO
               notificacion += "  Por la cantidad de casos "+
@@ -599,6 +668,12 @@ module Sivel2Gen
               authorize! :read, @registro
               return
             end
+            if registrar_en_bitacora
+              Sip::Bitacora.a(request.remote_ip, current_usuario.id,
+                              request.url, params, 'Sivel2Gen::Caso',
+                              @caso.id,  'presentar', '')
+            end
+
             show_plantillas
 
             respond_to do |format|
@@ -628,11 +703,13 @@ module Sivel2Gen
           def show
             show_sivel2_gen
           end
+
           # DELETE /casos/1
           # DELETE /casos/1.json
           def destroy
             sivel2_gen_destroy
           end
+
           def importa
             file=params[:file]
             doc = file.read
@@ -663,6 +740,8 @@ module Sivel2Gen
             end
             redirect_to casos_path, notice: "Relato importado!"
           end
+
+
           private
 
           # Configuración común o restricciones entre acciones
