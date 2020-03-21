@@ -84,13 +84,14 @@ module Sivel2Gen
             ]
           end
 
-          # Todos los campos por los que se puede filtrar tienen un 
+          # Todos los campos por los que se puede filtrar tienen un
           # scope conscaso
           def campos_filtro1
             if current_usuario
               [:departamento_id, :municipio_id, :clase_id,
                 :fechaini, :fechafin, :presponsable_id, :categoria_id,
-                :nombres, :apellidos, :sexo, :rangoedad_id, :descripcion, 
+                :nombres, :apellidos, :sexo, :rangoedad_id, 
+                :sectorsocial_id, :organizacion_id, :profesion_id, :descripcion, 
                 :usuario_id, :fechaingini, :fechaingfin, :codigo
               ]
             else
@@ -98,7 +99,7 @@ module Sivel2Gen
                 :fechaini, :fechafin, :presponsable_id, :categoria_id,
                 :nombres, :apellidos, :sexo, :rangoedad_id, :descripcion
               ]
-            end  
+            end
           end
 
           # Todas las columnas que pueden presentarse
