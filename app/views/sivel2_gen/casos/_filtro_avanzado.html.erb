@@ -216,46 +216,46 @@
       </div>
     </div>
     <% if current_usuario %>
-    <div class="row filtro-fila">
-      <div class="offset-sm-0 col-sm-2 offset-md-1 col-md-1">
-      </div>
+      <div class="row filtro-fila">
+        <div class="offset-sm-0 col-sm-2 offset-md-1 col-md-1">
+        </div>
 
-      <div class="offset-sm-0 col-sm-8 col-md-7">
-        <div class="row filtro-fila">
-          <div class="col-sm col-md">
-            <%= f.input :sectorsocial_id,
-              collection: Sivel2Gen::Sectorsocial.habilitados,
-              label: false,
-              label_method: :nombre,
-              value_method: :id,
-              include_blank: '-- Sector Social'
-            %>
-          </div>
-          <div class="col-sm col-md">
-            <%= f.input :organizacion_id,
-              collection: Sivel2Gen::Organizacion.habilitados,
-              label: false,
-              label_method: :nombre,
-              value_method: :id,
-              include_blank: '-- Organizacion'
-            %>
-          </div>
-          <div class="col-sm col-md">
-            <%= f.input :profesion_id,
-              collection: Sivel2Gen::Profesion.habilitados,
-              label: false,
-              label_method: :nombre,
-              value_method: :id,
-              include_blank: '-- Profesion'
-            %>
+        <div class="offset-sm-0 col-sm-8 col-md-7">
+          <div class="row filtro-fila">
+            <div class="col-sm col-md">
+              <%= f.input :sectorsocial_id,
+                collection: Sivel2Gen::Sectorsocial.habilitados,
+                label: false,
+                label_method: :nombre,
+                value_method: :id,
+                include_blank: '-- Sector Social'
+              %>
+            </div>
+            <div class="col-sm col-md">
+              <%= f.input :organizacion_id,
+                collection: Sivel2Gen::Organizacion.habilitados,
+                label: false,
+                label_method: :nombre,
+                value_method: :id,
+                include_blank: '-- Organizacion'
+              %>
+            </div>
+            <div class="col-sm col-md">
+              <%= f.input :profesion_id,
+                collection: Sivel2Gen::Profesion.habilitados,
+                label: false,
+                label_method: :nombre,
+                value_method: :id,
+                include_blank: '-- Profesion'
+              %>
+            </div>
           </div>
         </div>
+        <div class="offset-sm-1 col-sm-1 offset-md-0 text-center">
+        </div>
+        <div class="offset-sm-0 col-sm-1 text-center">
+        </div>
       </div>
-      <div class="offset-sm-1 col-sm-1 offset-md-0 text-center">
-      </div>
-      <div class="offset-sm-0 col-sm-1 text-center">
-      </div>
-    </div>
     <% end %>
     <div class="row filtro-fila">
       <div class="offset-sm-0 col-sm-2 offset-md-1 col-md-1">
@@ -283,156 +283,149 @@
       </div>
     </div>
     <% if current_usuario %>
-    <div class="row filtro-fila">
-      <div class="offset-sm-0 col-sm-2 offset-md-1 col-md-1">
-        Etiqueta
-      </div>
-      <div class="offset-sm-0 col-sm-1">
-        <%= f.input :conetiqueta1, 
-          collection: [ ["TIENE", true], ["NO TIENE", false] ], 
-          label: false,
-          include_blank: false
-        %>
-      </div>
-      <div class="offset-sm-0 col-sm-2">
-        <%= f.input :etiqueta1,
-          collection: Sip::Etiqueta.habilitados,
-          label_method: :nombre,
-          value_method: :id,
-          label: false,
-          include_blank: '-- Etiqueta 1'
-        %>
-      </div>
-      <div class="offset-sm-1 col-sm-1">
-        <%= f.input :conetiqueta2, 
-          collection: [ ["TIENE", true], ["NO TIENE", false] ], 
-          label: false,
-          include_blank: false
-        %>
-      </div>
-      <div class="offset-sm-0 col-sm-2">
-        <%= f.input :etiqueta2,
-          collection: Sip::Etiqueta.habilitados,
-          label_method: :nombre,
-          value_method: :id,
-          label: false,
-          include_blank: '-- Etiqueta 1'
-        %>
-      </div>
-      <div class="offset-sm-0 col-sm-1 text-center">
-      </div>
-    </div>
-    <% end %>
-    <% if current_usuario %>
-    <div class="row filtro-fila">
-      <div class="offset-sm-0 col-sm-2 offset-md-1 col-md-1">
-        Ingreso a Sistema
-      </div>
-      <div class="offset-sm-0 col-sm-2">
-        <%= f.input :usuario_id,
-          collection: ::Usuario.habilitados,
-          label_method: lambda {|t| (t.nombre ? t.nombre : '') + ' - ' + 
-            t.nusuario
-        },
-          value_method: :id,
-          label: false,
-          include_blank: '-- Usuario'
-        %>
-      </div>
-      <div class="offset-md-1 col-sm-2">
-        <%= f.input :fechaingini,
-          maxlength: 10, 
-          size: 10,
-          label: false,
-          placeholder: 'Fecha Inicial',
-          input_html: {
-          "data-behaviour" => "datepicker"
-          }
-        %>
-      </div>
-      <div class="col-sm-2">
-        <%= f.input :fechaingfin,
-          maxlength: 10, 
-          size: 10,
-          label: false,
-          placeholder: 'Fecha Final',
-          input_html: {
-          "data-behaviour" => "datepicker"
-          }
-        %>
-      </div>
-    </div>
-    <% end %>
-    <% if current_usuario %>
-    <div class="row filtro-fila">
-      <div class="offset-sm-0 col-sm-2 offset-md-1 col-md-1">
-       Código(s) 
-      </div>
-      <div class="offset-sm-0 col-sm-2 offset-md-0 col-md-7">
-        <%= f.input :codigo, 
-          placeholder: 'Código(s)',
-          label: false
-        %>
-      </div>
-      <div class="offset-sm-0 col-sm-1 text-center">
-        <%= f.input :inc_casoid,
-          as: :boolean, 
-          label: false,
-          input_html: { :checked => "checked" }
-        %>
-      </div>
-      <div class="offset-sm-0 col-sm-1 text-center">
-        A <%= f.radio_button(:orden, :codigo, 
-                             checked: @campoord == 'codigo') %>
-        D <%= f.radio_button(:orden, :codigodesc, 
-                             checked: @campoord == 'codigodesc') %>
-      </div>
-    </div>
-    <% end %>
-    <% if current_usuario %>
-    <div class="row filtro-fila">
-      <div class="offset-sm-0 col-sm-2 offset-md-1 col-md-1">
-        Presentación  
-      </div>
-      <div class="offset-sm-0 col-sm-2 offset-md-0 col-md-7">
-      </div>
-      <div class="col-sm-2">
-      </div>
-      <div class="col-sm-1">
-        <%= f.input :paginar, 
-          as: :boolean, 
-          label: 'Paginar',
-          input_html: { checked: "checked" }
-        %>
-      </div>
-    </div> <!-- row -->
-    <% end %>
-    <% if current_usuario %>
-      <% if @plantillas %>
       <div class="row filtro-fila">
         <div class="offset-sm-0 col-sm-2 offset-md-1 col-md-1">
-          Generar Plantilla
+          Etiqueta
         </div>
-        <div class="offset-sm-1 col-sm-4">
-          <%= f.input :disgenera,
-            collection: @plantillas,
+        <div class="offset-sm-0 col-sm-1">
+          <%= f.input :conetiqueta1, 
+            collection: [ ["TIENE", true], ["NO TIENE", false] ], 
             label: false,
             include_blank: false
           %>
         </div>
-        <div class="col-sm-2">
-          <%= link_to t('Generar'), 
-            '#',
-            class: 'btn', 
-            target: '_blank', 
-            onclick: 'heb412_gen_completa_generarp(this, "#filtro_disgenera",
-              "casos", "casos")' %>
+        <div class="offset-sm-0 col-sm-2">
+          <%= f.input :etiqueta1,
+            collection: Sip::Etiqueta.habilitados,
+            label_method: :nombre,
+            value_method: :id,
+            label: false,
+            include_blank: '-- Etiqueta 1'
+          %>
         </div>
-        <div class="col-sm-3">
+        <div class="offset-sm-1 col-sm-1">
+          <%= f.input :conetiqueta2, 
+            collection: [ ["TIENE", true], ["NO TIENE", false] ], 
+            label: false,
+            include_blank: false
+          %>
+        </div>
+        <div class="offset-sm-0 col-sm-2">
+          <%= f.input :etiqueta2,
+            collection: Sip::Etiqueta.habilitados,
+            label_method: :nombre,
+            value_method: :id,
+            label: false,
+            include_blank: '-- Etiqueta 1'
+          %>
+        </div>
+        <div class="offset-sm-0 col-sm-1 text-center">
+        </div>
+      </div>
+   
+      <div class="row filtro-fila">
+        <div class="offset-sm-0 col-sm-2 offset-md-1 col-md-1">
+          Ingreso a Sistema
+        </div>
+        <div class="offset-sm-0 col-sm-2">
+          <%= f.input :usuario_id,
+            collection: ::Usuario.habilitados,
+            label_method: lambda {|t| (t.nombre ? t.nombre : '') + ' - ' + 
+              t.nusuario
+          },
+            value_method: :id,
+            label: false,
+            include_blank: '-- Usuario'
+          %>
+        </div>
+        <div class="offset-md-1 col-sm-2">
+          <%= f.input :fechaingini,
+            maxlength: 10, 
+            size: 10,
+            label: false,
+            placeholder: 'Fecha Inicial',
+            input_html: {
+            "data-behaviour" => "datepicker"
+            }
+          %>
+        </div>
+        <div class="col-sm-2">
+          <%= f.input :fechaingfin,
+            maxlength: 10, 
+            size: 10,
+            label: false,
+            placeholder: 'Fecha Final',
+            input_html: {
+            "data-behaviour" => "datepicker"
+            }
+          %>
+        </div>
+      </div>
+      <div class="row filtro-fila">
+        <div class="offset-sm-0 col-sm-2 offset-md-1 col-md-1">
+         Código(s) 
+        </div>
+        <div class="offset-sm-0 col-sm-2 offset-md-0 col-md-7">
+          <%= f.input :codigo, 
+            placeholder: 'Código(s)',
+            label: false
+          %>
+        </div>
+        <div class="offset-sm-0 col-sm-1 text-center">
+          <%= f.input :inc_casoid,
+            as: :boolean, 
+            label: false,
+            input_html: { :checked => "checked" }
+          %>
+        </div>
+        <div class="offset-sm-0 col-sm-1 text-center">
+          A <%= f.radio_button(:orden, :codigo, 
+                               checked: @campoord == 'codigo') %>
+          D <%= f.radio_button(:orden, :codigodesc, 
+                               checked: @campoord == 'codigodesc') %>
+        </div>
+      </div>
+      <div class="row filtro-fila">
+        <div class="offset-sm-0 col-sm-2 offset-md-1 col-md-1">
+          Presentación  
+        </div>
+        <div class="offset-sm-0 col-sm-2 offset-md-0 col-md-7">
+        </div>
+        <div class="col-sm-2">
+        </div>
+        <div class="col-sm-1">
+          <%= f.input :paginar, 
+            as: :boolean, 
+            label: 'Paginar',
+            input_html: { checked: "checked" }
+          %>
         </div>
       </div> <!-- row -->
-      <% end %>
-    <% end %> 
+      <% if @plantillas %>
+        <div class="row filtro-fila">
+          <div class="offset-sm-0 col-sm-2 offset-md-1 col-md-1">
+            Generar Plantilla
+          </div>
+          <div class="offset-sm-1 col-sm-4">
+            <%= f.input :disgenera,
+              collection: @plantillas,
+              label: false,
+              include_blank: false
+            %>
+          </div>
+          <div class="col-sm-2">
+            <%= link_to t('Generar'), 
+              '#',
+              class: 'btn', 
+              target: '_blank', 
+              onclick: 'heb412_gen_completa_generarp(this, "#filtro_disgenera",
+                "casos", "casos")' %>
+          </div>
+          <div class="col-sm-3">
+          </div>
+        </div> <!-- row -->
+      <% end %> <!-- if @plantillas -->
+    <% end %> <!-- if current_usuario -->
 
   <!--% end %-->
 </div>
