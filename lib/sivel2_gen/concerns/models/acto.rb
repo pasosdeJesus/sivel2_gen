@@ -20,6 +20,16 @@ module Sivel2Gen
           validates_presence_of :persona
           validates_presence_of :caso
           validates_presence_of :categoria
+
+          def importa(datosent, datossal, menserror, opciones = {})
+            victimas = datosent[0]
+            d = datosent[1]
+            self.id_presponsable = d['id_presunto_responsable']
+            cat = d['agresion_particular'].split('_')
+            self.id_categoria = cat[0]
+            self.id_persona = victimas[d['id_victima_individual']]
+            self.save!          
+          end
         end
       end
     end

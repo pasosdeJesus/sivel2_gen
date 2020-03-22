@@ -137,7 +137,9 @@ module Sivel2Gen
           def importa(datosent, datossal, menserror, opciones = {})
             self.fecha = datosent['fecha'] if datosent['fecha']
             self.hora = datosent['hora'] if datosent['hora']
+            self.duracion = datosent['duracion'] if datosent['duracion']
             self.memo = datosent['hechos'] if datosent['hechos']
+            self.titulo = datosent['titulo'] if datosent['titulo']
             self.save!
             #Importa ubicacion
             ubicacion = Sip::Ubicacion.new
@@ -146,21 +148,38 @@ module Sivel2Gen
             ubicacion.save!
 
             #Importa presunto responsable
-            casopresp = Sivel2Gen::CasoPresponsable.new
-            casopresp.importa(datosent, datossal, menserror, opciones = {})
-            casopresp.id_caso = self.id
-            casopresp.save!
+            datosent['grupo'].each do |pr|
+              casopresp = Sivel2Gen::CasoPresponsable.new
+              casopresp.importa(pr, datossal, menserror, opciones = {})
+              if casopresp.id_presponsable
+                casopresp.id_caso = self.id
+                casopresp.save!
+              end
+            end
 
             #Importa grupos victimizados
-            victcol = Sivel2Gen::Victimacolectiva.new
-            victcol.id_caso = self.id
-            victcol.importa(datosent, datossal, menserror, opciones = {})
+            datosent['grupo'].each do |vc|
+              victcol = Sivel2Gen::Victimacolectiva.new
+              victcol.id_caso = self.id
+              victcol.importa(vc, datossal, menserror, opciones = {})
+            end
             
             #Importa victimas
-            vict = Sivel2Gen::Victima.new
-            vict.id_caso = self.id
-            vict.importa(datosent, datossal, menserror, opciones = {})
+            idsv = {}
+            datosent['victima'].each do |v|
+              vict = Sivel2Gen::Victima.new
+              vict.id_caso = self.id
+              vict.importa([datosent, v], datossal, menserror, opciones = {})
+              idsv[v['id_persona']] = vict.id_persona
+            end
             
+            #Importa actos individuales
+            datosent['acto'].each do |ac|
+              acto = Sivel2Gen::Acto.new
+              acto.id_caso = self.id
+              datosactos = [idsv, ac]
+              acto.importa(datosactos, datossal, menserror, opciones = {})
+            end
             return self
           end
 
