@@ -553,33 +553,37 @@ enviaFormularioContar= (root) ->
     filascol = tbodyactoscol.children;
     ls = filas['length']-1
     lscol = filascol['length']-1
-    for i in [0..ls]
-      fila = filas[i]
-      pr = fila.firstElementChild.textContent
-      if pr == prespon
-        cont_actos += 1
-    for i in [0..lscol]
-      fila = filascol[i]
-      pr = fila.firstElementChild.textContent
-      if pr == prespon
-        cont_actoscol += 1
+    if ls >= 0
+      for i in [0..ls]
+        fila = filas[i]
+        pr = fila.firstElementChild.textContent
+        if pr == prespon
+          cont_actos += 1
+    if lscol >= 0
+      for i in [0..lscol]
+        fila = filascol[i]
+        pr = fila.firstElementChild.textContent
+        if pr == prespon
+          cont_actoscol += 1
     confirma = confirm('Se eliminarán ' + cont_actos + ' actos y ' +
             cont_actoscol + ' actos colectivos, ¿Desea continuar eliminando?');
     if !confirma
       e.preventDefault();
     else
-      for i in [0..ls]
-        fila = filas[i]
-        pr = fila.firstElementChild.textContent
-        if pr == prespon
-          btneliminar = fila.lastElementChild.firstElementChild
-          $(btneliminar).trigger('click')
-      for i in [0..lscol]
-        fila = filascol[i]
-        pr = fila.firstElementChild.textContent
-        if pr == prespon
-          btneliminar = fila.lastElementChild.firstElementChild
-          $(btneliminar).trigger('click')
+      if ls >= 0
+        for i in [0..ls]
+          fila = filas[i]
+          pr = fila.firstElementChild.textContent
+          if pr == prespon
+            btneliminar = fila.lastElementChild.firstElementChild
+            $(btneliminar).trigger('click')
+      if lscol >= 0
+        for i in [0..lscol]
+          fila = filascol[i]
+          pr = fila.firstElementChild.textContent
+          if pr == prespon
+            btneliminar = fila.lastElementChild.firstElementChild
+            $(btneliminar).trigger('click')
   )
 
   # Antes de eliminar víctima confirmar si se eliminan dependientes
