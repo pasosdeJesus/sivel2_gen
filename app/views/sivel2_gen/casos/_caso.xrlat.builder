@@ -126,7 +126,7 @@ xml.relato do
   xml.comment! "Actos con Victimas Colectivas"
   caso.actocolectivo.each do |acol|
     xml.actocolectivo do
-      xml.agresion acol.categoria.nombre
+      xml.agresion acol.id.to_s + '_' + acol.categoria.nombre
       xml.id_victima_colectiva acol.grupoper.id
       xml.id_presunto_grupo_responsable acol.presponsable.id
     end
