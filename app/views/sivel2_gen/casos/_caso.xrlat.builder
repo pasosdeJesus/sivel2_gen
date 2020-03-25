@@ -84,17 +84,19 @@ xml.relato do
   xml.fecha caso['fecha']      
   xml.hora caso['hora'] if caso['hora']
   xml.duracion caso['duracion'] if caso['duracion']
-  if caso.ubicacion
-    ub = caso.ubicacion[0]
+  if caso.ubicacion_id
+    ub = Sip::Ubicacion.find(caso.ubicacion_id)
     xml.departamento ub.departamento.nombre if ub.departamento
     xml.municipio ub.municipio.nombre if ub.municipio
     xml.centro_poblado ub.clase.nombre if ub.clase
     xml.longitud ub.longitud  if ub.longitud
     xml.latitud ub.latitud  if ub.latitud
 
-    caso.ubicacion.each_with_index do |ub, i|
-      next if i == 0
+    caso.ubicacion.each do |ub|
       if caso.ubicacion
+        if ub.id == caso.ubicacion_id
+         next
+        end 
         xml.ubicacion_secundaria do
           xml.departamento ub.departamento.nombre if ub.departamento
           xml.municipio ub.municipio.nombre if ub.municipio
