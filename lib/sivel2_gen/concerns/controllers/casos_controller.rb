@@ -172,6 +172,10 @@ module Sivel2Gen
             true
           end
 
+          # Prefiltra de acuerdo a control de acceso
+          def filtrar_ca(reg)
+            reg
+          end
 
           # GET /casos
           # GET /casos.json
@@ -194,6 +198,9 @@ module Sivel2Gen
             @incluir = incluir_inicial
             @campoord = campoord_inicial
             @conscaso = Sivel2Gen::Conscaso.all
+
+            @concaso = @conscaso.accessible_by(current_ability)
+            @conscaso = filtrar_ca(@conscaso)
 
             inicializa_index
 
@@ -228,7 +235,7 @@ module Sivel2Gen
               end
             end
 
-            # Ordenamiento
+            # Ordenamiento y control de acceso
             if defined? @conscaso.ordenar_por
               @conscaso = @conscaso.ordenar_por @campoord
             end
@@ -253,7 +260,8 @@ module Sivel2Gen
             #  end
             #end
             if registrar_en_bitacora
-              Sip::Bitacora.a(request.remote_ip, current_usuario.id,
+              Sip::Bitacora.a(request.remote_ip, current_usuario ?
+                              current_usuario.id : nil,
                               request.url, params, 'Sivel2Gen::Caso',
                               0,  'listar', '')
             end
@@ -670,9 +678,10 @@ module Sivel2Gen
               return
             end
             if registrar_en_bitacora
-              Sip::Bitacora.a(request.remote_ip, current_usuario.id,
+              Sip::Bitacora.a(request.remote_ip, current_usuario ? 
+                              current_usuario.id : nil,
                               request.url, params, 'Sivel2Gen::Caso',
-                              @caso.id,  'presentar', '')
+                              @registro.id,  'presentar', '')
             end
 
             show_plantillas
