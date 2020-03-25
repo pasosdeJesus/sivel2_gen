@@ -7,11 +7,15 @@ module Sivel2Gen
     has_many :categoria, foreign_key: "supracategoria_id", 
       class_name: 'Sivel2Gen::Categoria'
 
-    belongs_to :tviolencia, foreign_key: "id_tviolencia", validate: true, 
-      class_name: 'Sivel2Gen::Tviolencia'
+    belongs_to :tviolencia, foreign_key: "id_tviolencia", 
+      validate: true, class_name: 'Sivel2Gen::Tviolencia'
 
     validates :id, presence: true, uniqueness: true
     validates :id_tviolencia, presence: true
+
+    validates :codigo, uniqueness: { 
+      scope: :id_tviolencia,
+      message: "Código debe ser único por tipo de violencia" }
 
     def presenta_nombre
       self.nombre + " (" + 
