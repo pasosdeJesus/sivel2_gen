@@ -222,6 +222,7 @@ es:
       "sivel2_gen/victima":
         antecedente_caso: Antecedentes
         caso_id: Id. Caso
+        contextovictima: Contexto(s) de la víctima
         edad: Edad en fecha del hecho
         edadactual: Edad/aniversario actual
         etnia: Etnia

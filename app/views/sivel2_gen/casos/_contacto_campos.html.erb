@@ -6,21 +6,18 @@
 <%= render partial: 'contacto_complemento_1', locals: {f: f} %>
 
 <div class="row">
-  <div class="col-md-6">
+  <div class="col-md-4">
     <%= f.association :profesion,
       collection: Sivel2Gen::Profesion.habilitados,
       include_blank: false,
       label_method: :nombre, 
       value_method: :id %>
   </div>
-  <div class="col-md-3">
+  <div class="col-md-4">
     <%= render partial: 'sivel2_gen/victimas/campo_hijos',
       locals: {f: f} %>
   </div>
-</div>
-
-<div class="row">
-  <div class="col-md-6">
+  <div class="col-md-4">
     <%= f.association :filiacion,
       collection: Sivel2Gen::Filiacion.habilitados,
       include_blank: false,
@@ -31,6 +28,9 @@
         "title" => 'Partido o filiación política en el momento del hecho' 
       } %>
   </div>
+</div>
+
+<div class="row">
   <div class="col-md-6">
     <%= f.association :sectorsocial,
       collection: Sivel2Gen::Sectorsocial.habilitados,
@@ -41,6 +41,8 @@
         "data-toggle" => 'tooltip',
         "title" => 'Sector social al que pertenecía en el momento del hecho' 
       } %>
+  </div>
+  <div class="col-md-6">
     <%= f.association :contextovictima,
       collection: Sivel2Gen::Contextovictima.habilitados,
       include_blank: false,
