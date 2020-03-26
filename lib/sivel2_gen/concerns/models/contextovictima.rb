@@ -8,8 +8,7 @@ module Sivel2Gen
 
         included do
           include Sip::Basica
-          
-        end # included
+        end
 
       end
     end
