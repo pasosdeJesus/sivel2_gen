@@ -5,7 +5,7 @@ require 'nokogiri'
 require 'open-uri'
 
 module Sivel2Gen
-  class PruebaXml < PruebaIntegracion 
+  class PruebaXml < PruebaIntegracion
     include Devise::Test::IntegrationHelpers
     include Engine.routes.url_helpers
 
@@ -24,7 +24,6 @@ module Sivel2Gen
       duracion: '1 hora'
     }
 
-
     test 'genera xml del caso y su ubicacion' do
       caso = Sivel2Gen::Caso.create PRUEBA_CASO_BASICOS
       ubicaso1 = Sip::Ubicacion.create(
@@ -35,7 +34,7 @@ module Sivel2Gen
         id_pais: 170,
         id_departamento: 47,
         id_municipio: 86,
-        id_clase: 11737,
+        id_clase: 11_737,
         created_at: '2019-01-01',
         longitud: -77.0697417935442,
         latitud: 3.89381723858445
@@ -49,7 +48,7 @@ module Sivel2Gen
         id_pais: 170,
         id_departamento: 57,
         id_municipio: 335,
-        id_clase: 13117,
+        id_clase: 13_117,
         created_at: '2019-01-01',
         longitud: -71.9515773351967,
         latitud: 1.33679247514188
@@ -66,5 +65,5 @@ module Sivel2Gen
       ubicaso2.destroy
       caso.destroy
     end
-  end 
+  end
 end
