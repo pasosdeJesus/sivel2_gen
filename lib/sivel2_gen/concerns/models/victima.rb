@@ -20,6 +20,13 @@ module Sivel2Gen
             association_foreign_key: 'id_antecedente',
             join_table: 'sivel2_gen_antecedente_victima'
          
+          has_and_belongs_to_many :contextovictima,
+            class_name: "Sivel2Gen::Contextovictima", 
+            foreign_key: :victima_id,
+            validate: true,
+            association_foreign_key: :contextovictima_id,
+            join_table: 'sivel2_gen_contextovictima_victima',
+            optional: true
           # En el orden de esquema en base 
           belongs_to :caso, foreign_key: "id_caso", validate: true, 
             class_name: "Sivel2Gen::Caso"
@@ -46,9 +53,6 @@ module Sivel2Gen
             optional: true
           belongs_to :presponsable, foreign_key: "organizacionarmada", 
             validate: true, class_name: "Sivel2Gen::Presponsable", 
-            optional: true
-          belongs_to :contextovictima, foreign_key: "contextovictima", 
-            validate: true, class_name: "Sivel2Gen::Contextovictima", 
             optional: true
 
           validates :caso, presence: true
