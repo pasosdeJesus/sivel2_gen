@@ -16,6 +16,7 @@ module Sivel2Gen
       ['Sivel2Gen', 'actividadoficio'],
       ['Sivel2Gen', 'antecedente'],
       ['Sivel2Gen', 'categoria'],
+      ['Sivel2Gen', 'contextovictima'],
       ['Sivel2Gen', 'contexto'],
       ['Sivel2Gen', 'escolaridad'],
       ['Sivel2Gen', 'estadocivil'],
@@ -74,7 +75,8 @@ module Sivel2Gen
       ['Sivel2Gen', 'filiacion'],
       ['Sivel2Gen', 'organizacion'],
       ['Sivel2Gen', 'sectorsocial'],
-      ['Sivel2Gen', 'vinculoestado']
+      ['Sivel2Gen', 'vinculoestado'],
+      ['Sivel2Gen', 'contextovictima']
     ];
     def tablasbasicas_prio
       Sip::Ability::BASICAS_PRIO + BASICAS_PRIO - [['Sip', 'grupo']]
@@ -123,6 +125,7 @@ module Sivel2Gen
             :fecha_caso_localizada,
             :municipio_caso,
             :nombre,
+            :contextovictima,
             :profesion,
             :presponsables_caso,
             :rot1,

@@ -19,41 +19,48 @@ module Sivel2Gen
             foreign_key: :id_victima, 
             association_foreign_key: 'id_antecedente',
             join_table: 'sivel2_gen_antecedente_victima'
-          
-          # En el orden de esquema en base 
-          belongs_to :caso, foreign_key: "id_caso", validate: true, 
+         
+          has_and_belongs_to_many :contextovictima,
+            class_name: "Sivel2Gen::Contextovictima",
+            foreign_key: :victima_id,
+            validate: true,
+            association_foreign_key: :contextovictima_id,
+            join_table: 'sivel2_gen_contextovictima_victima',
+            optional: true
+
+          # En el orden de esquema en base
+          belongs_to :caso, foreign_key: "id_caso", validate: true,
             class_name: "Sivel2Gen::Caso"
-          belongs_to :etnia, foreign_key: "id_etnia", validate: true, 
+          belongs_to :etnia, foreign_key: "id_etnia", validate: true,
             class_name: "Sivel2Gen::Etnia", optional: true
-          belongs_to :filiacion, foreign_key: "id_filiacion", 
+          belongs_to :filiacion, foreign_key: "id_filiacion",
             validate: true, class_name: "Sivel2Gen::Filiacion", optional: true
-          belongs_to :iglesia, foreign_key: "id_iglesia", validate: true, 
+          belongs_to :iglesia, foreign_key: "id_iglesia", validate: true,
             class_name: "Sivel2Gen::Iglesia", optional: true
-          belongs_to :organizacion, foreign_key: "id_organizacion", 
+          belongs_to :organizacion, foreign_key: "id_organizacion",
             validate: true, class_name: "Sivel2Gen::Organizacion", optional: true
-          belongs_to :persona, foreign_key: "id_persona", validate: true, 
+          belongs_to :persona, foreign_key: "id_persona", validate: true,
             class_name: "Sip::Persona"
           accepts_nested_attributes_for :persona, reject_if: :all_blank
-          belongs_to :profesion, foreign_key: "id_profesion", validate: true, 
+          belongs_to :profesion, foreign_key: "id_profesion", validate: true,
             class_name: "Sivel2Gen::Profesion", optional: true
-          belongs_to :rangoedad, foreign_key: "id_rangoedad", validate: true, 
+          belongs_to :rangoedad, foreign_key: "id_rangoedad", validate: true,
             class_name: "Sivel2Gen::Rangoedad", optional: true
-          belongs_to :sectorsocial, foreign_key: "id_sectorsocial", 
-            validate: true, class_name: "Sivel2Gen::Sectorsocial", 
+          belongs_to :sectorsocial, foreign_key: "id_sectorsocial",
+            validate: true, class_name: "Sivel2Gen::Sectorsocial",
             optional: true
-          belongs_to :vinculoestado, foreign_key: "id_vinculoestado", 
-            validate: true, class_name: "Sivel2Gen::Vinculoestado", 
+          belongs_to :vinculoestado, foreign_key: "id_vinculoestado",
+            validate: true, class_name: "Sivel2Gen::Vinculoestado",
             optional: true
-          belongs_to :presponsable, foreign_key: "organizacionarmada", 
-            validate: true, class_name: "Sivel2Gen::Presponsable", 
+          belongs_to :presponsable, foreign_key: "organizacionarmada",
+            validate: true, class_name: "Sivel2Gen::Presponsable",
             optional: true
 
           validates :caso, presence: true
           validates :persona, presence: true
 
-
           ## AUXILIARES PARA PRESENTAR INFORMACIÓN
-          
+
           def departamento_caso
             r = ''
             if self.caso && self.caso.ubicacion && self.caso.ubicacion.count>0
@@ -96,7 +103,7 @@ module Sivel2Gen
 
           def trimestre_caso
             r = ''
-            if self.caso 
+            if self.caso
               f = self.caso.fecha
               r = f.year.to_s
               r += '-'
@@ -126,7 +133,7 @@ module Sivel2Gen
               return "" if num == 0 || num >= @pconsolidado.count
               p = @pconsolidado[num-1]
               cat = p[2]
-              if self.caso.acto.where(id_categoria: cat, 
+              if self.caso.acto.where(id_categoria: cat,
                                     id_persona: self.persona.id).count > 0
                 1
               else
@@ -186,7 +193,7 @@ module Sivel2Gen
                 "unaccent(sip_municipio.nombre))" +
                     " ILIKE '%' || unaccent(?) || '%'", u)
           }
-          
+
           scope :filtro_nombre, lambda { |n|
             joins(:persona).
               where("(unaccent(sip_persona.nombres) || ' ' || " +
@@ -221,11 +228,11 @@ module Sivel2Gen
                       per.id_municipio = Sip::Municipio.where(nombre: ele[1]).ids[0]
                     when 'centropoblado'
                       per.id_clase = Sip::Clase.where(nombre: ele[1]).ids[0]
-                    end  
-                  end  
+                    end
+                  end
                   per.save!
                   self.id_persona = per.id
-                end  
+                end
               end
               self.id_profesion = Sivel2Gen::Profesion.where(nombre: v['ocupacion']).ids[0]
               self.id_sectorsocial = Sivel2Gen::Sectorsocial.where(nombre: v['sector_condicion']).ids[0]
@@ -247,10 +254,8 @@ module Sivel2Gen
               self.save!
             end
           end
-
         end
       end
     end
   end
 end
-

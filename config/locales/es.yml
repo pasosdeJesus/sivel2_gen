@@ -126,6 +126,9 @@ es:
         resagresion: Resultado de la agresión
         sectorsocial: Sector social
         vinculoestado: Vínculo con el Estado
+      "sivel2_gen/contextovictima":
+        Contextovictima: Contexto Víctima
+        Contextosvictima: Contextos Víctimas
       "sivel2_gen/departamento":
         Departamento: Departamento/Estado
         Departamentos: Departamentos/Estados

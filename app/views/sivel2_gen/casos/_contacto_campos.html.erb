@@ -41,6 +41,16 @@
         "data-toggle" => 'tooltip',
         "title" => 'Sector social al que pertenecía en el momento del hecho' 
       } %>
+    <%= f.association :contextovictima,
+      collection: Sivel2Gen::Contextovictima.habilitados,
+      include_blank: false,
+      label_method: :nombre, 
+      value_method: :id,
+      input_html: {
+        "data-toggle" => 'tooltip',
+        multiple: true,
+        class: 'chosen-select'
+      } %>
   </div>
 </div>
 
