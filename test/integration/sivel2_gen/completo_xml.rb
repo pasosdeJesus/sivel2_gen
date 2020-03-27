@@ -92,7 +92,9 @@ module Sivel2Gen
         longitud: -77.0697417935442,
         latitud: 3.89381723858445
       )
+      ubicaso.save!
       caso.ubicacion_id = ubicaso.id
+      caso.save!
       persona1 =  Sip::Persona.create! PRUEBA_PERSONA1
       persona2 =  Sip::Persona.create! PRUEBA_PERSONA2
       persona3 =  Sip::Persona.create! PRUEBA_PERSONA3
@@ -123,11 +125,12 @@ module Sivel2Gen
         orientacionsexual: 'S'
       )
       presponsable = Sivel2Gen::Presponsable.find(37)
-      Sivel2Gen::CasoPresponsable.create(
+      pr = Sivel2Gen::CasoPresponsable.create(
         id_caso: caso.id,
         id_presponsable: presponsable.id,
         tipo: 1
       )
+      pr.save!
       categoria1 = Sivel2Gen::Categoria.find(97)
       categoria2 = Sivel2Gen::Categoria.find(98)
       acto1 = Sivel2Gen::Acto.create(
