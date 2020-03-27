@@ -84,17 +84,28 @@ xml.relato do
   xml.fecha caso['fecha']      
   xml.hora caso['hora'] if caso['hora']
   xml.duracion caso['duracion'] if caso['duracion']
-  caso.ubicacion.each do |ub|
-    if caso.ubicacion
-      # ub = Sip::Ubicacion.find(caso.ubicacion_id)      
-      xml.departamento ub.departamento.nombre if ub.departamento
-      xml.municipio ub.municipio.nombre if ub.municipio
-      xml.centro_poblado ub.clase.nombre if ub.clase
-      xml.longitud ub.longitud  if ub.longitud
-      xml.latitud ub.latitud  if ub.latitud
+  if caso.ubicacion_id
+    caso.ubicacion.each do |ub|
+      if caso.ubicacion
+        if ub.id == caso.ubicacion_id
+         next
+        end 
+        xml.ubicacion_secundaria do
+          xml.departamento ub.departamento.nombre if ub.departamento
+          xml.municipio ub.municipio.nombre if ub.municipio
+          xml.centro_poblado ub.clase.nombre if ub.clase
+          xml.longitud ub.longitud  if ub.longitud
+          xml.latitud ub.latitud  if ub.latitud
+        end
+      end
     end
+    ub = Sip::Ubicacion.find(caso.ubicacion_id)
+    xml.departamento ub.departamento.nombre if ub.departamento
+    xml.municipio ub.municipio.nombre if ub.municipio
+    xml.centro_poblado ub.clase.nombre if ub.clase
+    xml.longitud ub.longitud  if ub.longitud
+    xml.latitud ub.latitud  if ub.latitud
   end
-
   xml.comment! "Actos con Victimas Individuales"
   if caso.acto  
     caso.acto.each do |ac|
@@ -136,7 +147,3 @@ xml.relato do
   end
 
 end
-
-
-
-

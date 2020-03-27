@@ -1,0 +1,122 @@
+<!ELEMENT relatos (relato+)>
+
+<!ELEMENT relato (organizacion_responsable, derechos, id_relato, forma_compartir, titulo?, hechos, persona*, grupo*, victima*, presunto_responsable_individual*, fecha?, hora?, duracion?, ubicacion_secundaria*, departamento?, municipio?, centro_poblado?, longitud?, latitud?, acto*, contexto?, fuente*, acciones_juridicas?, otras_acciones?, fecha_publicacion?, anexo?, observaciones*)>
+
+<!ELEMENT organizacion_responsable (#PCDATA)>
+
+<!ELEMENT derechos (#PCDATA)>
+
+<!ELEMENT id_relato (#PCDATA)>
+
+<!ELEMENT forma_compartir (#PCDATA)>
+
+<!ELEMENT titulo (#PCDATA)>
+
+<!ELEMENT hechos (#PCDATA)>
+
+<!ELEMENT persona (id_persona, nombre?, nombre2?, apellido?, apellido2?, docid?, fecha_nacimiento?, sexo?, observaciones*)>
+
+<!ELEMENT id_persona (#PCDATA)>
+
+<!ELEMENT nombre (#PCDATA)>
+
+<!ELEMENT nombre2 (#PCDATA)>
+
+<!ELEMENT apellido (#PCDATA)>
+
+<!ELEMENT apellido2 (#PCDATA)>
+
+<!ELEMENT docid (#PCDATA)>
+
+<!ELEMENT fecha_nacimiento (#PCDATA)>
+
+<!ELEMENT sexo (#PCDATA)>
+
+<!ELEMENT observaciones (#PCDATA)>
+<!ATTLIST observaciones
+    tipo CDATA #IMPLIED
+>
+<!ELEMENT grupo (id_grupo, nombre_grupo?, sigla?, subgrupo_de?, agresion_sin_vicd*, observaciones*)>
+
+<!ELEMENT id_grupo (#PCDATA)>
+
+<!ELEMENT nombre_grupo (#PCDATA)>
+
+<!ELEMENT sigla (#PCDATA)>
+
+<!ELEMENT subgrupo_de (#PCDATA)>
+
+<!ELEMENT agresion_sin_vicd (#PCDATA)>
+
+<!ELEMENT victima (id_persona, ocupacion?, sector_condicion?, iglesia?, organizacion?, id_grupo?, estado_tras_hecho?, danio_directo?, danio_indirecto?, personas_dependientes?, observaciones*)>
+
+<!ELEMENT ocupacion (#PCDATA)>
+
+<!ELEMENT sector_condicion (#PCDATA)>
+
+<!ELEMENT iglesia (#PCDATA)>
+
+<!ELEMENT organizacion (#PCDATA)>
+
+<!ELEMENT estado_tras_hecho (#PCDATA)>
+
+<!ELEMENT danio_directo (#PCDATA)>
+
+<!ELEMENT danio_indirecto (#PCDATA)>
+
+<!ELEMENT personas_dependientes (#PCDATA)>
+
+<!ELEMENT presunto_responsable_individual (id_persona, id_grupo?, alias?, agresion_sin_vicd*, observaciones*)>
+
+<!ELEMENT alias (#PCDATA)>
+
+<!ELEMENT fecha (#PCDATA)>
+
+<!ELEMENT hora (#PCDATA)>
+
+<!ELEMENT duracion (#PCDATA)>
+
+<!ELEMENT ubicacion_secundaria (departamento?, municipio?, centro_poblado?, longitud?, latitud?, observaciones*)>
+
+<!ELEMENT departamento (#PCDATA)>
+
+<!ELEMENT municipio (#PCDATA)>
+
+<!ELEMENT centro_poblado (#PCDATA)>
+
+<!ELEMENT longitud (#PCDATA)>
+
+<!ELEMENT latitud (#PCDATA)>
+
+<!ELEMENT acto (agresion, agresion_particular?,  (id_victima_individual | id_grupo_victima) ,  (id_presunto_grupo_responsable | id_presunto_responsable_individual) )>
+
+<!ELEMENT agresion (#PCDATA)>
+
+<!ELEMENT agresion_particular (#PCDATA)>
+
+<!ELEMENT id_victima_individual (#PCDATA)>
+
+<!ELEMENT id_grupo_victima (#PCDATA)>
+
+<!ELEMENT id_presunto_grupo_responsable (#PCDATA)>
+
+<!ELEMENT id_presunto_responsable_individual (#PCDATA)>
+
+<!ELEMENT contexto (#PCDATA)>
+
+<!ELEMENT fuente (nombre_fuente, fecha_fuente?, ubicacion_fuente?, observaciones*)>
+
+<!ELEMENT nombre_fuente (#PCDATA)>
+
+<!ELEMENT fecha_fuente (#PCDATA)>
+
+<!ELEMENT ubicacion_fuente (#PCDATA)>
+
+<!ELEMENT acciones_juridicas (observaciones*)>
+
+<!ELEMENT otras_acciones (#PCDATA)>
+
+<!ELEMENT fecha_publicacion (#PCDATA)>
+
+<!ELEMENT anexo (observaciones*)>
+
