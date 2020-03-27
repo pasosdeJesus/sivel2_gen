@@ -23,8 +23,8 @@ module Sivel2Gen
          :habilitado]
       end
 
-      def atributos_form
-        atributos_index - [:habilitado] +
+      def atributos_form # Requiere id
+        atributos_index - [:habilitado] + 
           [:fechadeshabilitacion_localizada]
       end
 
