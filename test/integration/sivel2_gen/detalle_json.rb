@@ -71,7 +71,9 @@ module Sivel2Gen
         longitud: -77.0697417935442,
         latitud: 3.89381723858445
       )
+      ubicaso.save!
       caso.ubicacion_id = ubicaso.id
+      caso.save!
       persona1 =  Sip::Persona.create! PRUEBA_PERSONA1
       rangoedad = Sivel2Gen::Rangoedad.create! PRUEBA_RANGOEDAD
       profesion = Sivel2Gen::Profesion.create! PRUEBA_PROFESION
@@ -79,7 +81,7 @@ module Sivel2Gen
       victima1 = Sivel2Gen::Victima.create(
         id_caso: caso.id,
         id_persona: persona1.id,
-        id_etnia: nil,
+        id_etnia: 5,
         id_iglesia: nil,
         id_rangoedad: rangoedad.id
       )
