@@ -12,6 +12,8 @@ module Sivel2Gen
 
     setup do
       @routes = Engine.routes
+      @current_usuario = ::Usuario.create(PRUEBA_USUARIO)
+      sign_in @current_usuario
     end
 
     PRUEBA_CASO_BASICOS = {
@@ -100,7 +102,7 @@ module Sivel2Gen
       victima1 = Sivel2Gen::Victima.create(
         id_caso: caso.id,
         id_persona: persona1.id,
-        id_etnia: nil,
+        id_etnia: 5,
         id_iglesia: nil,
         id_rangoedad: rangoedad.id
       )
@@ -108,7 +110,7 @@ module Sivel2Gen
         id_caso: caso.id,
         id_persona: persona2.id,
         id_rangoedad: rangoedad.id,
-        id_etnia: nil,
+        id_etnia: 5,
         id_iglesia: nil,
         orientacionsexual: 'S'
       )
@@ -116,7 +118,7 @@ module Sivel2Gen
         id_caso: caso.id,
         id_persona: persona3.id,
         id_rangoedad: rangoedad.id,
-        id_etnia: nil,
+        id_etnia: 5,
         id_iglesia: nil,
         orientacionsexual: 'S'
       )
