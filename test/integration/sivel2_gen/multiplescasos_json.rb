@@ -17,7 +17,7 @@ module Sivel2Gen
     end
 
     PRUEBA_CASO_BASICOS1 = {
-      id: 1140,
+      id: 1122,
       fecha: '2019-08-30',
       memo: '',
       created_at: '2019-08-30',
@@ -50,7 +50,9 @@ module Sivel2Gen
         id_municipio: 1152,
         created_at: '2014-11-06'
       )
+      ubicacion1.save!
       caso1.ubicacion_id = ubicacion1.id
+      caso1.save!
       frontera1 = Sivel2Gen::Frontera.find(1)
       Sivel2Gen::CasoFrontera.create(
         id_frontera: frontera1.id,
@@ -76,7 +78,10 @@ module Sivel2Gen
         id_municipio: 1152,
         created_at: '2014-11-06'
       )
+      ubicacion2.save!
       caso2.ubicacion_id = ubicacion2.id
+      caso2.save!
+
       frontera2 = Sivel2Gen::Frontera.find(1)
       Sivel2Gen::CasoFrontera.create(
         id_frontera: frontera2.id,

@@ -74,6 +74,7 @@ module Sivel2Gen
       etiqueta = Sip::Etiqueta.create(
         id: 1000,
         nombre: 'Etiqueta',
+        observaciones: 'obs',
         fechacreacion: '2014-09-09',
         created_at: '2014-09-09'
       )
