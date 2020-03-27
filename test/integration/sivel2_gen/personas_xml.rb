@@ -11,6 +11,8 @@ module Sivel2Gen
 
     setup do
       @routes = Engine.routes
+      @current_usuario = ::Usuario.create(PRUEBA_USUARIO)
+      sign_in @current_usuario
     end
 
     PRUEBA_CASO_BASICOS = {
@@ -63,6 +65,14 @@ module Sivel2Gen
 
     test 'Valida caso con 1 victima' do
       caso = Sivel2Gen::Caso.create! PRUEBA_CASO_BASICOS
+      ubicaso = Sip::Ubicacion.create(
+        id_caso: caso.id,
+        id_pais: 170,
+        created_at: '2019-01-01',
+      )
+      ubicaso.save!
+      caso.ubicacion_id = ubicaso.id
+      caso.save!
       persona = Sip::Persona.create! PRUEBA_PERSONA
       rangoedad = Sivel2Gen::Rangoedad.create! PRUEBA_RANGOEDAD
       profesion = Sivel2Gen::Profesion.create! PRUEBA_PROFESION
@@ -88,6 +98,14 @@ module Sivel2Gen
 
     test 'valida caso con 2 victimas' do
       caso = Sivel2Gen::Caso.create! PRUEBA_CASO_BASICOS
+      ubicaso = Sip::Ubicacion.create(
+        id_caso: caso.id,
+        id_pais: 170,
+        created_at: '2019-01-01',
+      )
+      ubicaso.save!
+      caso.ubicacion_id = ubicaso.id
+      caso.save!
       persona1 =  Sip::Persona.create! PRUEBA_PERSONA
       persona2 =  Sip::Persona.create! PRUEBA_PERSONA
       profesion = Sivel2Gen::Profesion.create! PRUEBA_PROFESION
@@ -124,6 +142,14 @@ module Sivel2Gen
 
     test 'valida caso con 1 victima colectiva' do
       caso = Sivel2Gen::Caso.create! PRUEBA_CASO_BASICOS
+      ubicaso = Sip::Ubicacion.create(
+        id_caso: caso.id,
+        id_pais: 170,
+        created_at: '2019-01-01',
+      )
+      ubicaso.save!
+      caso.ubicacion_id = ubicaso.id
+      caso.save!
       grupoper = Sip::Grupoper.create(
         nombre: 'Nombre de grupo',
         anotaciones: 'Anotaciones de ejemplo',
@@ -147,6 +173,14 @@ module Sivel2Gen
 
     test 'valida caso con 2 victimas colectivas' do
       caso = Sivel2Gen::Caso.create! PRUEBA_CASO_BASICOS
+      ubicaso = Sip::Ubicacion.create(
+        id_caso: caso.id,
+        id_pais: 170,
+        created_at: '2019-01-01',
+      )
+      ubicaso.save!
+      caso.ubicacion_id = ubicaso.id
+      caso.save!
       grupoper1 = Sip::Grupoper.create(
         nombre: 'Nombre de grupo',
         anotaciones: 'Anotaciones de ejemplo',
@@ -182,6 +216,14 @@ module Sivel2Gen
 
     test 'valida con 1 presunto responsable' do
       caso = Sivel2Gen::Caso.create! PRUEBA_CASO_BASICOS
+      ubicaso = Sip::Ubicacion.create(
+        id_caso: caso.id,
+        id_pais: 170,
+        created_at: '2019-01-01',
+      )
+      ubicaso.save!
+      caso.ubicacion_id = ubicaso.id
+      caso.save!
       presponsable = Sivel2Gen::Presponsable.create(
         id: 1000,
         nombre: 'Nombre de grupo',
@@ -196,7 +238,6 @@ module Sivel2Gen
         brigada: 'Brigada'
       )
       get caso_path(caso) + '.xml'
-      # puts @response.body
       file = guarda_xml(@response.body)
       docu = File.read(file)
       verifica_dtd(docu)
@@ -204,6 +245,5 @@ module Sivel2Gen
       presponsable.destroy
       casopresponsable.destroy
     end
-
   end
 end

@@ -12,6 +12,8 @@ module Sivel2Gen
 
     setup do
       @routes = Engine.routes
+      @current_usuario = ::Usuario.create(PRUEBA_USUARIO)
+      sign_in @current_usuario
     end
 
     PRUEBA_CASO_BASICOS = {
@@ -90,7 +92,9 @@ module Sivel2Gen
         longitud: -77.0697417935442,
         latitud: 3.89381723858445
       )
+      ubicaso.save!
       caso.ubicacion_id = ubicaso.id
+      caso.save!
       persona1 =  Sip::Persona.create! PRUEBA_PERSONA1
       persona2 =  Sip::Persona.create! PRUEBA_PERSONA2
       persona3 =  Sip::Persona.create! PRUEBA_PERSONA3
@@ -100,7 +104,7 @@ module Sivel2Gen
       victima1 = Sivel2Gen::Victima.create(
         id_caso: caso.id,
         id_persona: persona1.id,
-        id_etnia: nil,
+        id_etnia: 5,
         id_iglesia: nil,
         id_rangoedad: rangoedad.id
       )
@@ -108,7 +112,7 @@ module Sivel2Gen
         id_caso: caso.id,
         id_persona: persona2.id,
         id_rangoedad: rangoedad.id,
-        id_etnia: nil,
+        id_etnia: 5,
         id_iglesia: nil,
         orientacionsexual: 'S'
       )
@@ -116,16 +120,17 @@ module Sivel2Gen
         id_caso: caso.id,
         id_persona: persona3.id,
         id_rangoedad: rangoedad.id,
-        id_etnia: nil,
+        id_etnia: 5,
         id_iglesia: nil,
         orientacionsexual: 'S'
       )
       presponsable = Sivel2Gen::Presponsable.find(37)
-      Sivel2Gen::CasoPresponsable.create(
+      pr = Sivel2Gen::CasoPresponsable.create(
         id_caso: caso.id,
         id_presponsable: presponsable.id,
         tipo: 1
       )
+      pr.save!
       categoria1 = Sivel2Gen::Categoria.find(97)
       categoria2 = Sivel2Gen::Categoria.find(98)
       acto1 = Sivel2Gen::Acto.create(

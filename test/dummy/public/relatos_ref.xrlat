@@ -15,6 +15,7 @@
          <apellido>N</apellido>
          <fecha_nacimiento>2006-06-15</fecha_nacimiento>
          <sexo>S</sexo>
+         <observaciones tipo="etnia">INDÍGENA</observaciones>
          </persona>
       <persona>
          <id_persona>249237</id_persona>
@@ -22,6 +23,7 @@
          <apellido>N</apellido>
          <fecha_nacimiento>2006-06-15</fecha_nacimiento>
          <sexo>S</sexo>
+         <observaciones tipo="etnia">INDÍGENA</observaciones>
       </persona>
       <persona>
          <id_persona>249238</id_persona>
@@ -29,6 +31,7 @@
          <apellido>N</apellido>
          <fecha_nacimiento>2011-06-15</fecha_nacimiento>
          <sexo>S</sexo>
+         <observaciones tipo="etnia">INDÍGENA</observaciones>
       </persona>
     <!-- Grupos victimizados -->
     <!-- Presuntos responsables -->

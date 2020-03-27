@@ -13,7 +13,9 @@ xml.relato do
         xml.id_persona v.persona.id
         xml.nombre v.persona.nombres
         xml.apellido v.persona.apellidos
-        xml.cc v.persona.numerodocumento if v.persona.numerodocumento
+        if v.persona.numerodocumento
+          xml.docid v.persona.tdocumento.sigla + " " + v.persona.numerodocumento
+        end
         xml.fecha_nacimiento v.persona.anionac,"-", v.persona.mesnac.to_s.rjust(2, '0'),"-", v.persona.dianac.to_s.rjust(2, '0')
         xml.sexo v.persona.sexo
         ['nacionalde', 'tdocumento'].each do |ob|
@@ -96,6 +98,9 @@ xml.relato do
           xml.centro_poblado ub.clase.nombre if ub.clase
           xml.longitud ub.longitud  if ub.longitud
           xml.latitud ub.latitud  if ub.latitud
+          xml.observaciones(ub.sitio, {tipo: 'sitio'}) if ub.sitio
+          xml.observaciones(ub.lugar, {tipo: 'lugar'}) if ub.lugar
+          xml.observaciones(ub.tsitio.nombre, {tipo: 'tsitio'}) if ub.tsitio
         end
       end
     end
@@ -135,12 +140,9 @@ xml.relato do
 
   xml.observaciones(caso.intervalo.nombre, {tipo: 'intervalo'}) if caso.intervalo.nombre
   xml.observaciones(caso.region.map(&:nombre).join("; "), {tipo: 'region'}) if caso.region
-
-  caso.ubicacion.each do |ubcaso|
-    xml.observaciones(ubcaso.sitio, {tipo: 'sitio'}) if ubcaso.sitio
-    xml.observaciones(ubcaso.lugar, {tipo: 'lugar'}) if ubcaso.lugar
-    xml.observaciones(ubcaso.tsitio.nombre, {tipo: 'tsitio'}) if ubcaso.tsitio
-  end
+  xml.observaciones(ub.sitio, {tipo: 'sitio'}) if ub.sitio
+  xml.observaciones(ub.lugar, {tipo: 'lugar'}) if ub.lugar
+  xml.observaciones(ub.tsitio.nombre, {tipo: 'tsitio'}) if ub.tsitio
 
   caso.contexto.each do |con|
     xml.observaciones(con.nombre, {tipo: 'contexto'}) if con
