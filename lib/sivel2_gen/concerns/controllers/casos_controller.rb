@@ -763,6 +763,7 @@ module Sivel2Gen
           def lista_params
             [ 
               :bienes, 
+              :bitacora_cambio,
               :duracion,  
               :fecha, 
               :fecha_localizada, 
