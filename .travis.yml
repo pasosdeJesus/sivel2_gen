@@ -37,6 +37,7 @@ before_install:
         - sed -e 's/provider = libc,//g;s/SET default_table_access_method.*/-- &/g' db/structure.sql.copia > db/structure.sql 
         - rake db:setup
         - rake sip:indices
+        - yarn install
         - cd ../..
 
 script: 
