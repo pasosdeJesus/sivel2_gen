@@ -19,6 +19,8 @@ env:
         global:
                 - NOKOGIRI_USE_SYSTEM_LIBRARIES=true
                 - CC_TEST_REPORTER_ID=1486a4589ae9326a7a567e9599edd0ecd306c65e5f359cc724855c2a34efe67b
+                - TRAVIS_NODE_VERSION="10.16.3"
+
 
 before_install: 
         - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
@@ -39,6 +41,9 @@ before_install:
         - rake sip:indices
         - yarn install
         - cd ../..
+
+install:
+        - rm -rf ~/.nvm && git clone https://github.com/creationix/nvm.git ~/.nvm && (cd ~/.nvm && git checkout `git describe --abbrev=0 --tags`) && source ~/.nvm/nvm.sh && nvm install $TRAVIS_NODE_VERSION
 
 script: 
         - CONFIG_HOSTS=www.example.com bundle exec rails test -b
