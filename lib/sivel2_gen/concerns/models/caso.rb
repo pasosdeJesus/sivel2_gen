@@ -142,9 +142,13 @@ module Sivel2Gen
             self.titulo = datosent['titulo'] if datosent['titulo']
             self.save!
             #Importa ubicacion
-            if datosent['ubicacion']
-              if datosent['ubicacion'].kind_of?(Array)
-                datosent['ubicacion'].each do |ub|
+            ubicacion = Sip::Ubicacion.new
+            ubicacion.importa(datosent, datossal, menserror, opciones = {})
+            ubicacion.id_caso = self.id
+            ubicacion.save!
+            if datosent['ubicacion_secundaria']
+              if datosent['ubicacion_secundaria'].kind_of?(Array)
+                datosent['ubicacion_secundaria'].each do |ub|
                   ubicacion = Sip::Ubicacion.new
                   ubicacion.importa(ub, datossal, menserror, opciones = {})
                   ubicacion.id_caso = self.id
@@ -152,7 +156,7 @@ module Sivel2Gen
                 end
               else
                   ubicacion = Sip::Ubicacion.new
-                  ubicacion.importa(datosent['ubicacion'], datossal, menserror, opciones = {})
+                  ubicacion.importa(datosent['ubicacion_secundaria'], datossal, menserror, opciones = {})
                   ubicacion.id_caso = self.id
                   ubicacion.save!
               end

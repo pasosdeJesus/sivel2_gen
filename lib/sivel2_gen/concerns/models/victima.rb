@@ -208,7 +208,9 @@ module Sivel2Gen
                 per = Sip::Persona.new
                 per.nombres = p['nombre']
                 per.apellidos = p['apellido']
-                per.numerodocumento = p['cc']
+                siglatdoc = p['docid'].split(' ')[0]
+                per.tdocumento = Sip::Tdocumento.where(sigla: siglatdoc)[0]
+                per.numerodocumento = p['docid'].split(' ')[1]
                 nac = p['fecha_nacimiento'].split('-')
                 per.anionac = nac[0]
                 per.mesnac = nac[1]

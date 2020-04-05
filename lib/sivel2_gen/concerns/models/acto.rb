@@ -25,8 +25,8 @@ module Sivel2Gen
             victimas = datosent[0]
             d = datosent[1]
             self.id_presponsable = d['id_presunto_responsable']
-            cat = d['agresion_particular'].split('_')
-            self.id_categoria = cat[0]
+            cate = d['agresion_particular'].split(" ")
+            self.id_categoria = cate[-1].tr('()', '').to_i
             self.id_persona = victimas[d['id_victima_individual']]
             self.save!          
           end
