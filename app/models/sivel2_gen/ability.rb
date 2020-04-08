@@ -7,8 +7,9 @@ module Sivel2Gen
     #ROLINV    = 2
     #ROLDIR    = 3
     #ROLCOOR   = 4
-    ROLANALI  = 5
+    ROLOPERADOR = 5
     #ROLSIST   = 6
+    ROLCONSULTA = 7
 
     ROLES = Sip::Ability::ROLES
 
