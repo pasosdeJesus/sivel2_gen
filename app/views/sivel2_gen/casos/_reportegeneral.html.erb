@@ -1,93 +1,128 @@
-<p><tt>CASO No. <a href=<%= caso_path %>><%= @caso.id%></a></p></tt>
-<p><tt>Fecha: <%= @caso.fecha if @caso.fecha%> <%= @caso.intervalo.nombre if @caso.intervalo%></p></tt>
-<tt> Región (es):
+<tt>
+<p style="margin: 0; padding: 0">
+CASO No. <a href=<%= caso_path %>><%= @caso.id%></a>
+</p>
+<p>
+Fecha: <%= @caso.fecha if @caso.fecha%> <%= @caso.hora if @caso.hora%> <%= @caso.intervalo.nombre if @caso.intervalo%>
+<% ubprincipal = Sip::Ubicacion.find(@caso.ubicacion_id) %>
+Tip. Ub:<%= Sip::Tsitio.find(ubprincipal.id_tsitio).nombre %>
+</p>
+<p style="margin: 0; padding: 0">
+Región (es):
 <% @caso.region.each_with_index do |re, i| %>
   <%= re.nombre if re.nombre %>
   <% next if i== @caso.region.size-1 %>
   /
-<% end %></tt>
-<p><tt>Ubicaciones: </tt>
-<% @caso.ubicacion.each do |ub| %>
-  <p><tt>
-  <%= ub.departamento.nombre if ub.departamento%> / 
-  <%= ub.municipio.nombre if ub.municipio%> /
-  <%= ub.clase.nombre if ub.clase%>
-  </p></tt></p>
 <% end %>
-<p><tt>
-<table>
- Memo:
-  <tr><td><tt>
-        <%= @caso.memo %>
-  </tt></td></tr>
-</table>
-<p><tt>
-Contexto(s): 
-<% @caso.contexto.each.with_index do |co, i| %>
-  <%= co.nombre if co.nombre %>
-  <% next if i== @caso.contexto.size-1 %>
-  ,
-<% end %></p></tt>
-<p><tt>
+</p>
+<p style="margin: 0; padding: 0">
 Frontera(s): 
 <% @caso.frontera.each.with_index do |fr, i| %>
   <%= fr.nombre if fr.nombre %>
   <% next if i== @caso.frontera.size-1 %>
   /
-<% end %></p></tt>
-Fuentes de Prensa: 
+<% end %></p>
+<p style="margin: 0; padding: 0">
+  <%= ubprincipal.departamento.nombre if ubprincipal.departamento%> / 
+  <%= ubprincipal.municipio.nombre if ubprincipal.municipio%> /
+  <%= ubprincipal.clase.nombre if ubprincipal.clase%>
+</p>
+<% @caso.ubicacion.each do |ub| %>
+  <% next if ub.id == @caso.ubicacion_id %>
+<p style="margin: 0; padding: 0">
+  <%= ub.departamento.nombre if ub.departamento%> / 
+  <%= ub.municipio.nombre if ub.municipio%> /
+  <%= ub.clase.nombre if ub.clase%>
+  (Secundaria)
+  </p>
+<% end %>
+
+<p style="margin: 0; padding: 0">
+Fuente: 
 <% fuentes = Sivel2Gen::CasoFuenteprensa.where(id_caso: @caso.id) %>
-<p><tt><% fuentes.each do |fr| %>
+<% fuentes.each do |fr| %>
   <%= fr.fuenteprensa.nombre if fr.fuenteprensa.nombre %>-
   <%= fr.fecha if fr.fecha %>-
   <%= fr.ubicacionfisica if fr.ubicacionfisica %>
-<% end %></p></tt>
+<% end %>
+</p>
 Otras fuentes Prensa: 
 <% otrasfuentes = Sivel2Gen::CasoFotra.where(id_caso: @caso.id) %>
-<p><tt><% otrasfuentes.each do |fr| %>
+<p style="margin: 0; padding: 0">
+<% otrasfuentes.each do |fr| %>
   <%= fr.nombre if fr.nombre %>-
   <%= fr.fecha if fr.fecha %>-
   <%= fr.ubicacionfisica if fr.ubicacionfisica %>
-<% end %></p></tt>
-<p><tt>
-Presunto(s) Responsable(s): 
-<% @caso.presponsable.each.with_index do |pr, i| %>
-  <%= pr.nombre if pr.nombre %>
+<% end %>
+</p>
+<table>
+ Memo:
+  <tr><td>
+    <%= @caso.memo %>
+  </td></tr>
+</table>
+ANEXO(S):
+<% anexo = Sivel2Gen::AnexoCaso.where(id_caso: @caso.id) %>
+<p>
+<% anexo.each do |an| %>
+  <%= an.fecha if an.fecha %>-
+  <a href= "/sivel2/anexos/descarga_anexo/<%= an.id_anexo %>"><%= @caso.id %>_<%= Sip::Anexo.find(an.id_anexo).adjunto_file_name %></a>
+<% end %>
+</p>
+
+<p>
+Contexto(s): 
+<% @caso.contexto.each.with_index do |co, i| %>
+  <%= co.nombre if co.nombre %>
   <% next if i== @caso.contexto.size-1 %>
   ,
-<% end %></p></tt>
-<p><tt>
+<% end %></p>
+<p>
 Antecedentes: 
 <% @caso.antecedente.each.with_index do |co, i| %>
   <%= co.nombre if co.nombre %>
   <% next if i== @caso.antecedente.size-1 %>
   ,
-<% end %></p></tt>
-<p><tt>
-Acto (s): 
+<% end %></p>
+<p>
 <% @caso.acto.each do |ac| %>
-  <%= ac.categoria.id if ac.categoria%> - 
-  <%= ac.categoria.nombre if ac.categoria%> 
+  <% supraid = ac.categoria.supracategoria_id%>
+  <% tviolencia = Sivel2Gen::Supracategoria.find(supraid).id_tviolencia if supraid%>
+  <%= Sivel2Gen::Tviolencia.find(tviolencia).id + ac.categoria.id.to_s if tviolencia%>. 
+  <%= Sivel2Gen::Tviolencia.find(tviolencia).nombre if tviolencia%>-
+  <%= Sivel2Gen::Supracategoria.find(supraid).nombre if supraid%>-
+  <%= ac.categoria.nombre%> 
 <% end %>
-</p></tt>
-<p><tt>
-Acto(s) Colectivo(s): 
+</p>
+<p>
 <% @caso.actocolectivo.each do |ac| %>
-  <%= ac.categoria.id if ac.categoria%> - 
-  <%= ac.categoria.nombre if ac.categoria%> 
+  <% supraid = ac.categoria.supracategoria_id%>
+  <% tviolencia = Sivel2Gen::Supracategoria.find(supraid).id_tviolencia if supraid%>
+  <%= Sivel2Gen::Tviolencia.find(tviolencia).id + ac.categoria.id.to_s if tviolencia%>. 
+  <%= Sivel2Gen::Tviolencia.find(tviolencia).nombre if tviolencia%>-
+  <%= Sivel2Gen::Supracategoria.find(supraid).nombre if supraid%>-
+  <%= ac.categoria.nombre%> 
 <% end %>
-</p></tt>
-<p><tt>
+</p>
+<p>
+Presunto(s) Responsable(s): 
+<% @caso.presponsable.each.with_index do |pr, i| %>
+  <%= pr.nombre if pr.nombre %>
+  <% next if i== @caso.contexto.size-1 %>
+  ,
+<% end %></p>
+<p>
 Analista: 
 <% @caso.usuario do |us| %>
   <%= us.nusuario if us.nombre %> - 
   <%= us. if us.categoria%> 
 <% end %>
-</p></tt>
+</p>
+</tt>
 <div class='row'>
   <div class='col-sm-3'>
-    <a class='btn' href='<% casos_path %>'>Regresar</a>
-    <a class='btn' href='<% edit_caso_path %>'>Editar</a>
+    <a class='btn' href='<%= casos_path %>'>Regresar</a>
+    <a class='btn' href='<%= edit_caso_path %>'>Editar</a>
   </div>
   <div class='col-sm-3'>
   </div>
