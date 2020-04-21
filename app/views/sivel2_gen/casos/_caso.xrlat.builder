@@ -116,17 +116,17 @@ xml.relato do
     caso.acto.each do |ac|
       xml.acto do
         xml.agresion ac.categoria.pconsolidado.clasificacion
-        xml.agresion_particular ac.categoria.nombre
+        xml.agresion_particular ac.categoria.nombre + ' ('+ ac.categoria.id.to_s + ')'
         xml.id_victima_individual ac.persona.id
-        xml.id_presunto_grupo_responsable ac.presponsable.id
+        xml.id_presunto_responsable ac.presponsable.id
       end
     end
   end
 
   xml.comment! "Actos con Victimas Colectivas"
   caso.actocolectivo.each do |acol|
-    xml.acto do
-      xml.agresion acol.categoria.nombre
+    xml.actocolectivo do
+      xml.agresion acol.categoria.nombre + ' ('+ acol.categoria.id.to_s + ')'
       xml.id_victima_colectiva acol.grupoper.id
       xml.id_presunto_grupo_responsable acol.presponsable.id
     end

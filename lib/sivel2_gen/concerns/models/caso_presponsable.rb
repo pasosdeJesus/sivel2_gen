@@ -27,9 +27,27 @@ module Sivel2Gen
 
 
           def importa(datosent, datossal, menserror, opciones = {})
-            datosent['grupo'].each do |g|
-              pres = Sivel2Gen::Presponsable.where(nombre: g['nombre_grupo'])
-              self.id_presponsable = pres.ids[0] if pres
+            pres = Sivel2Gen::Presponsable.
+              where(nombre: datosent['nombre_grupo'])
+            if pres
+              self.id_presponsable = pres.ids[0]
+              datosent['observaciones'].each do |ob|
+                ele = ob.split(/\_([^_]*)$/)
+                case ele[0]
+                when 'bloque'
+                  self.bloque = ele[1]
+                when 'frente'
+                  self.frente = ele[1]
+                when 'brigada'
+                  self.brigada = ele[1]
+                when 'batallon'
+                  self.batallon = ele[1]
+                when 'division'
+                  self.division = ele[1]
+                when 'otro'
+                  self.otro = ele[1]
+                end
+              end
             end
           end
         end # included

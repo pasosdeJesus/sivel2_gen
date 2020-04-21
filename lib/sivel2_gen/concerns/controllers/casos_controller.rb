@@ -748,7 +748,7 @@ module Sivel2Gen
                 end
               end 
             end
-            redirect_to casos_path, notice: "Relato importado!"
+            redirect_to @caso, notice: "Relato importado!"
           end
 
 

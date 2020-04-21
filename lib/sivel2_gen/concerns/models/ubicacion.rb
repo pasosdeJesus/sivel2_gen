@@ -41,8 +41,10 @@ module Sivel2Gen
           def importa(datosent, datossal, menserror, opciones = {})
             pais = Sip::Pais.where(nombre: datosent['pais']).ids[0]
             dep = Sip::Departamento.where(nombre: datosent['departamento']).ids[0]
-            mun = Sip::Municipio.where(nombre: datosent['municipio']).ids[0]
-            cen = Sip::Clase.where(nombre: datosent['centro_poblado']).ids[0]
+            mun = Sip::Municipio.where(nombre: datosent['municipio'],
+                                       id_departamento: dep).ids[0]
+            cen = Sip::Clase.where(nombre: datosent['centro_poblado'],
+                                   id_municipio: mun).ids[0]
             if pais
               self.id_pais = pais
             else

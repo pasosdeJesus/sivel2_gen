@@ -67,55 +67,53 @@ module Sivel2Gen
           validates :caso, presence: true
           validates :grupoper, presence: true
           
-          def importa(datosent, datossal, menserror, opciones = {})
-            datosent['grupo'].each do |g|
-              #Se verifica que el grupo no sea un presunto responsable
-              if Sivel2Gen::Presponsable.where(nombre: g['nombre_grupo']).empty?
-                gp = Sip::Grupoper.new
-                gp.nombre = g['nombre_grupo']
-                gp.save!
-                self.id_grupoper = gp.id
-                self.save!
-                g['observaciones'].each do |ob|
-                  ele = ob.split('_')
-                  case ele[0]
-                  when 'personasaprox'
-                    self.personasaprox = ele[1]
-                  when 'organizacionarmada'
-                    self.personasaprox = Sivel2Gen::Presponsable.where(nombre: ele[1]).ids[0]
-                  when 'filiacion'
-                    fv = Sivel2Gen::FiliacionVictimacolectiva.new
-                    fv.id_filiacion = Sivel2Gen::Filiacion.where(nombre: ele[1]).ids[0]
-                    fv.victimacolectiva_id = self.id
-                    fv.save!
-                  when 'organizacion'
-                    org = Sivel2Gen::OrganizacionVictimacolectiva.new
-                    org.id_organizacion = Sivel2Gen::Organizacion.where(nombre: ele[1]).ids[0]
-                    org.victimacolectiva_id = self.id
-                    org.save!
-                  when 'profesion'
-                    pr = Sivel2Gen::ProfesionVictimacolectiva.new
-                    pr.id_profesion = Sivel2Gen::Profesion.where(nombre: ele[1]).ids[0]
-                    pr.victimacolectiva_id = self.id
-                    pr.save!
-                  when 'rangoedad'
-                    re = Sivel2Gen::RangoedadVictimacolectiva.new
-                    re.id_rangoedad = Sivel2Gen::Rangoedad.where(nombre: ele[1]).ids[0]
-                    re.victimacolectiva_id = self.id
-                    re.save!
-                  when 'sectorsocial'
-                    ss = Sivel2Gen::SectorsocialVictimacolectiva.new
-                    ss.id_sectorsocial = Sivel2Gen::Sectorsocial.where(nombre: ele[1]).ids[0]
-                    ss.victimacolectiva_id = self.id
-                    ss.save!
-                  when 'vinculoestado'
-                    ve = Sivel2Gen::VictimacolectivaVinculoestado.new
-                    ve.id_vinculoestado = Sivel2Gen::Vinculoestado.where(nombre: ele[1]).ids[0]
-                    ve.victimacolectiva_id = self.id
-                    ve.save!
-                  end
-                end  
-              end
+          def importa(g, datossal, menserror, opciones = {})
+            #Se verifica que el grupo no sea un presunto responsable
+            if Sivel2Gen::Presponsable.where(nombre: g['nombre_grupo']).empty?
+              gp = Sip::Grupoper.new
+              gp.nombre = g['nombre_grupo']
+              gp.save!
+              self.id_grupoper = gp.id
+              self.save!
+              g['observaciones'].each do |ob|
+                ele = ob.split('_')
+                case ele[0]
+                when 'personasaprox'
+                  self.personasaprox = ele[1]
+                when 'organizacionarmada'
+                  self.personasaprox = Sivel2Gen::Presponsable.where(nombre: ele[1]).ids[0]
+                when 'filiacion'
+                  fv = Sivel2Gen::FiliacionVictimacolectiva.new
+                  fv.id_filiacion = Sivel2Gen::Filiacion.where(nombre: ele[1]).ids[0]
+                  fv.victimacolectiva_id = self.id
+                  fv.save!
+                when 'organizacion'
+                  org = Sivel2Gen::OrganizacionVictimacolectiva.new
+                  org.id_organizacion = Sivel2Gen::Organizacion.where(nombre: ele[1]).ids[0]
+                  org.victimacolectiva_id = self.id
+                  org.save!
+                when 'profesion'
+                  pr = Sivel2Gen::ProfesionVictimacolectiva.new
+                  pr.id_profesion = Sivel2Gen::Profesion.where(nombre: ele[1]).ids[0]
+                  pr.victimacolectiva_id = self.id
+                  pr.save!
+                when 'rangoedad'
+                  re = Sivel2Gen::RangoedadVictimacolectiva.new
+                  re.id_rangoedad = Sivel2Gen::Rangoedad.where(nombre: ele[1]).ids[0]
+                  re.victimacolectiva_id = self.id
+                  re.save!
+                when 'sectorsocial'
+                  ss = Sivel2Gen::SectorsocialVictimacolectiva.new
+                  ss.id_sectorsocial = Sivel2Gen::Sectorsocial.where(nombre: ele[1]).ids[0]
+                  ss.victimacolectiva_id = self.id
+                  ss.save!
+                when 'vinculoestado'
+                  ve = Sivel2Gen::VictimacolectivaVinculoestado.new
+                  ve.id_vinculoestado = Sivel2Gen::Vinculoestado.where(nombre: ele[1]).ids[0]
+                  ve.victimacolectiva_id = self.id
+                  ve.save!
+                end
+              end  
             end
           end
         end
