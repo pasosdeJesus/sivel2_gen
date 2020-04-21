@@ -4,8 +4,11 @@ CASO No. <a href=<%= caso_path %>><%= @caso.id%></a>
 </p>
 <p>
 Fecha: <%= @caso.fecha if @caso.fecha%> <%= @caso.hora if @caso.hora%> <%= @caso.intervalo.nombre if @caso.intervalo%>
-<% ubprincipal = Sip::Ubicacion.find(@caso.ubicacion_id) %>
-Tip. Ub:<%= Sip::Tsitio.find(ubprincipal.id_tsitio).nombre %>
+<% ubprincipal = nil %>
+<% if @caso.ubicacion_id %>
+  <% ubprincipal = Sip::Ubicacion.find(@caso.ubicacion_id) %>
+  Tip. Ub:<%= Sip::Tsitio.find(ubprincipal.id_tsitio).nombre %>
+<% end %>
 </p>
 <p style="margin: 0; padding: 0">
 Región (es):
@@ -23,9 +26,9 @@ Frontera(s):
   /
 <% end %></p>
 <p style="margin: 0; padding: 0">
-  <%= ubprincipal.departamento.nombre if ubprincipal.departamento%> / 
-  <%= ubprincipal.municipio.nombre if ubprincipal.municipio%> /
-  <%= ubprincipal.clase.nombre if ubprincipal.clase%>
+  <%= ubprincipal.departamento.nombre if ubprincipal && ubprincipal.departamento%> / 
+  <%= ubprincipal.municipio.nombre if ubprincipal && ubprincipal.municipio%> /
+  <%= ubprincipal.clase.nombre if ubprincipal && ubprincipal.clase%>
 </p>
 <% @caso.ubicacion.each do |ub| %>
   <% next if ub.id == @caso.ubicacion_id %>
