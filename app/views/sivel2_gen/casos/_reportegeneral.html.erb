@@ -122,16 +122,4 @@ Analista:
 <% end %>
 </p>
 </tt>
-<div class='row'>
-  <div class='col-sm-3'>
-    <a class='btn' href='<%= casos_path %>'>Regresar</a>
-    <a class='btn' href='<%= edit_caso_path %>'>Editar</a>
-  </div>
-  <div class='col-sm-3'>
-  </div>
-  <div class='col-sm-3'>
-  </div>
-  <div class='col-sm-3'>
-    <%= link_to 'Eliminar',  @caso,  method: :delete, data: { confirm: '¿Está seguro que desea eliminar?'}, :class=>"btn btn-danger" %>
-  </div>
-</div>
+
