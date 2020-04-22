@@ -39,9 +39,8 @@ module Sivel2Gen
       caso = Caso.create! PRUEBA_CASOV
       get caso_path(caso)
       assert_response :success
-      #puts @response.body
-      assert_select "dd", text: '2014-11-19'
-
+      puts @response.body
+      assert_select  "p", text: 'Fecha: 2014-11-19  SIN INFORMACIÓN'
     end
 
     def verifica_formulario
