@@ -446,8 +446,28 @@ module Sivel2Gen
           def self.asegura_camposdinamicos(caso, current_usuario_id)
           end
 
+          def pestanas_formulariocaso
+            [
+              { titulo: 'Datos Básicos', parcial: 'basicos'}, 
+              { titulo: 'Ubicación', parcial: 'ubicaciones'}, 
+              { titulo: 'Fuentes Frecuentes', parcial: 'fuentesprensa'}, 
+              { titulo: 'Otras Fuentes', parcial: 'fotras'}, 
+              { titulo: 'Contexto', parcial: 'contextos'}, 
+              { titulo: 'Presuntos Responsables', parcial: 'presponsables'}, 
+              { titulo: 'Víctimas', parcial: 'victimas'}, 
+              { titulo: 'Víctimas Colectivas', parcial: 'victimascolectivas'}, 
+              { titulo: 'Combatientes', parcial: 'combatientes'}, 
+              { titulo: 'Actos', parcial: 'actos'}, 
+              { titulo: 'Descripción', parcial: 'memo'}, 
+              { titulo: 'Anexos', parcial: 'sivel2_gen/casos/anexos'}, 
+              { titulo: 'Etiquetas', parcial: 'etiquetas'}, 
+              { titulo: 'Evaluación', parcial: 'evaluacion'}
+            ]
+          end
+
           # GET /casos/1/edit
           def edit
+            @pestanas_formulariocaso = pestanas_formulariocaso
             self.class.asegura_camposdinamicos(@registro, current_usuario.id)
             if registrar_en_bitacora
               Sip::Bitacora.a(request.remote_ip, current_usuario.id,
@@ -763,7 +783,7 @@ module Sivel2Gen
           def lista_params
             [ 
               :bienes, 
-              :bitacora_cambio,
+              #:bitacora_cambio,
               :duracion,  
               :fecha, 
               :fecha_localizada, 

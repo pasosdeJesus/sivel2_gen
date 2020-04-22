@@ -17,111 +17,42 @@
       
       <%= render partial: 'sivel2_gen/casos/datos_interjs', locals: { f: f } %>
 
-      <div role="tabpanel">
+
+      <div role="tabpanel">       
         <ul class="nav nav-tabs" role="tablist">
-           <li role="presentation" class="nav-item"><a href="#basicos" 
-            class="nav-link nav-link fichacambia active" aria-selected="true" aria-controls="basicos" role="tab" 
-            data-toggle="tab">Datos Básicos</a></li>
-          <li role="presentation" class='nav-item'><a href="#ubicacion" class="nav-link fichacambia" 
-            aria-controls="ubicacion" role="tab" 
-            data-toggle="tab">Ubicación</a></li>
-          <li role="presentation" class='nav-item'><a href="#fuenteprensa" class="nav-link fichacambia" 
-            aria-controls="fuenteprensa" role="tab" 
-            data-toggle="tab">Fuentes Frecuentes</a></li>
-          <li role="presentation" class='nav-item'><a href="#fotra" class="nav-link fichacambia" 
-            aria-controls="fotra" role="tab" 
-            data-toggle="tab">Otras Fuentes</a></li>
-          <li role="presentation" class='nav-item'><a href="#contexto" class="nav-link fichacambia" 
-            aria-controls="contexto" role="tab" 
-            data-toggle="tab">Contexto</a></li>
-          <li role="presentation" class='nav-item'><a href="#presponsable" class="nav-link fichacambia" 
-            aria-controls="presponsable" role="tab" 
-            data-toggle="tab">Presuntos Responsables</a></li>
-          <li role="presentation" class='nav-item'><a href="#victima" class="nav-link fichacambia" 
-            aria-controls="victima" role="tab" 
-            data-toggle="tab">Víctimas</a></li>
-          <li role="presentation" class='nav-item'><a href="#victimacolectiva" class="nav-link fichacambia"
-            aria-controls="victimacolectiva" role="tab" 
-            data-toggle="tab">Víctimas Colectivas</a></li>
-          <li role="presentation" class='nav-item'><a href="#combatiente" class="nav-link fichacambia" 
-            aria-controls="combatiente" role="tab" 
-            data-toggle="tab">Combatientes</a></li>
-
-          <li role="presentation" class='nav-item'><a href="#actos" class="nav-link fichacambia" 
-            aria-controls="actos" role="tab" data-toggle="tab">Actos</a></li>
-          <li role="presentation" class='nav-item'><a href="#descripcion" class="nav-link fichacambia" 
-            aria-controls="descripcion" role="tab" 
-            data-toggle="tab">Descripción</a></li>
-          <li role="presentation" class='nav-item'><a href="#anexos" class="nav-link fichacambia" 
-            aria-controls="anexos" role="tab" data-toggle="tab">Anexos</a></li>
-          <li role="presentation" class='nav-item'><a href="#etiquetas" class="nav-link fichacambia" 
-            aria-controls="etiquetas" role="tab" 
-            data-toggle="tab">Etiquetas</a></li>
-          <li role="presentation" class='nav-item'><a href="#evaluacion" class="fichacambia nav-link" 
-            aria-controls="evaluacion" role="tab" 
-            data-toggle="tab">Evaluación</a></li>
-
+          <% cac = ' active' %>
+          <% @pestanas_formulariocaso.each do |p| %>
+            <% idancla = Mr519Gen::ApplicationHelper.nombre_a_nombreinterno(p[:parcial]) %>
+            <li role="presentation" class="nav-item">
+              <a href="#<%= idancla %>" class="nav-link fichacambia<%= cac %>" aria-selected="<%= cac == '' ? 'false' : 'true' %>" aria-controls="<%= idancla %>" role="tab" data-toggle="tab">
+                <%= Sivel2Gen::Caso.human_attribute_name(p[:titulo]) %>
+              </a>
+            </li>
+            <% cac = '' %>
+          <% end %>
         </ul>
         <div class="tab-content">
-          <div role="tabpanel" class="tab-pane fade show active" id="basicos">
-            <%= render 'basicos', f: f %>
-          </div> 
+          <% cac = ' show active' %>
+          <% @pestanas_formulariocaso.each do |p| %>
+            <% idancla = Mr519Gen::ApplicationHelper.nombre_a_nombreinterno(p[:parcial]) %>
+            <div role="tabpanel" class="tab-pane fade <%= cac %>" id="<%= idancla %>" > 
+              <% if p[:parcial].starts_with?('Formulario::') %>
+                <%= f.simple_fields_for :respuestafor, 
+                  f.object.respuestafor.joins(:formulario).where('mr519_gen_formulario.nombre = ?', p[:parcial][12..-1]) do |r| %>
+                  <%= render partial: 'mr519_gen/encuestasusuario/campo_valorcampo', locals: {f: r}  %>
+                <% end %>
+              <% else %>
+                <%= render p[:parcial], f: f %>
+              <% end %>
+            </div> 
+            <% cac = '' %>
 
-          <div role="tabpanel" class="tab-pane fade" id="ubicacion">
-            <%= render 'ubicaciones', f: f %>
-          </div>
-
-          <div role="tabpanel" class="tab-pane fade" id="fuenteprensa">
-            <%= render 'fuentesprensa', f: f %>
-          </div>
-
-          <div role="tabpanel" class="tab-pane fade" id="fotra">
-            <%= render 'fotras', f: f %>
-          </div>
-
-          <div role="tabpanel" class="tab-pane fade" id="contexto">
-            <%= render 'contextos', f: f %>
-          </div>
-
-          <div role="tabpanel" class="tab-pane fade" id="presponsable">
-            <%= render 'presponsables', f: f %>
-          </div>
-
-          <div role="tabpanel" class="tab-pane fade" id="victima">
-            <%= render 'victimas', f: f %>
-          </div>
-
-          <div role="tabpanel" class="tab-pane fade" id="victimacolectiva">
-            <%= render 'victimascolectivas', f: f %>
-          </div>
-
-          <div role="tabpanel" class="tab-pane fade" id="combatiente">
-            <%= render 'combatientes', f: f %>
-          </div>
-
-          <div role="tabpanel" class="tab-pane fade" id="actos">
-            <%= render 'actos', f: f %> 
-          </div>
-
-          <div role="tabpanel" class="tab-pane fade" id="descripcion">
-            <%= render 'memo', f: f %>
-          </div>
-
-          <div role="tabpanel" class="tab-pane fade" id="anexos">
-            <%= render 'sivel2_gen/casos/anexos', f: f %>
-          </div>
-
-          <div role="tabpanel" class="tab-pane fade" id="etiquetas">
-            <%= render 'etiquetas', f: f %>
-          </div>
-
-          <div role="tabpanel" class="tab-pane fade" id="evaluacion">
-            <%= render 'evaluacion', f: f %>
-          </div>
-
-
+          <% end %>
         </div> <!-- tab-content -->
       </div> <!-- tabpanel -->
+
+
+
     </div> <!-- form-inputs -->
 
     <div class="form-actions" style="text-align: center">
