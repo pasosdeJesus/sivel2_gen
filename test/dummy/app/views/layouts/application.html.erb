@@ -15,7 +15,9 @@
         <%= opcion_menu "Validar casos", sivel2_gen.validarcasos_path,
             desplegable: true %>
         <%= opcion_menu "Buscar Repetidos", sivel2_gen.buscarrepetidos_path,
-            desplegable: true %>
+          desplegable: true %>
+        <%= opcion_menu "Importar Relatos", 
+          sivel2_gen.casos_importarrelatos_path, desplegable: true %>
       <% end %>
       <%= despliega_abajo "Reportes y conteos" do %>
         <%= opcion_menu "Conteo demografía víctimas", 
@@ -30,10 +32,6 @@
       <%= despliega_abajo "Mapas" do %>
         <%= opcion_menu "Casos sobre Open Street Maps", 
           sivel2_gen.casos_mapaosm_path, desplegable: true %>
-      <% end %> 
-      <%= despliega_abajo "Otros" do %>
-        <%= opcion_menu "Importar Relatos", 
-          sivel2_gen.casos_importarrelatos_path, desplegable: true %>
       <% end %> 
     <% end %>
   <% end %>
