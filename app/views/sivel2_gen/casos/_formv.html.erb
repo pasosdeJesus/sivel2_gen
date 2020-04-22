@@ -16,184 +16,50 @@
       <%= render partial: 'sip/hogar/errores', locals: { f: f } %>
       <%= render partial: 'sivel2_gen/casos/datos_interjs', locals: { f: f } %>
 
-      <div class="accordion" id="acordeon">
 
-        <div class="accordion-group">
-          <div class="accordion-heading">
-            <a class="accordion-toggle fichacambia" data-toggle="collapse" 
-              href="#basicos">Datos Básicos</a>
-          </div>
-          <div id="basicos" class="accordion-body collapse in">
-            <div class="accordion-inner">
-              <%= render 'basicos', :f => f %>
+      <div id="acordeon">
+
+        <% bcol = '' %>
+        <% aexp = 'true' %>
+        <% colshow = '' # show para mostrar primero %>
+        <% @pestanas_formulariocaso.each do |p| %>
+          <% idancla = Mr519Gen::ApplicationHelper.nombre_a_nombreinterno(p[:parcial]) %>
+          <div class="card">
+            <div class="card-header" id="enc_<%= idancla %>">
+              <h5 class="mb-0">
+                <a class="fichacambia<%= bcol %>" data-toggle="collapse" role="button" href="#col_<%= idancla %>" data-target="#col_<%= idancla %>" aria-expanded="<%= aexp %>" aria-controls="col_<%= idancla %>">
+                  <%= Sivel2Gen::Caso.human_attribute_name(p[:titulo]) %>
+                </a>
+              </h5>
             </div>
-          </div>
-        </div> <!-- accordion-group basicos -->
 
-        <div class="accordion-group">
-          <div class="accordion-heading">
-            <a class="accordion-toggle fichacambia" data-toggle="collapse" 
-              href="#ubicacion">Ubicación</a>
-          </div>
-          <div id="ubicacion" class="accordion-body collapse">
-            <div class="accordion-inner">
-              <%= render 'ubicaciones', :f => f %>
-            </div>
-          </div>
-        </div> <! -- accordion-group Ubicacion -->
+            <div id="col_<%= idancla %>" class="collapse<%= colshow %>" aria-labelledby="enc_<%= idancla %>" data-parent="#acordeon">
+              <div class="card-body">
+                <% if p[:parcial].starts_with?('Formulario::') %>
+                  <%= f.simple_fields_for :respuestafor, 
+                    f.object.respuestafor.joins(:formulario).where('mr519_gen_formulario.nombre = ?', p[:parcial][12..-1]) do |r| %>
+                    <%= render partial: 'mr519_gen/encuestasusuario/campo_valorcampo', locals: {f: r}  %>
+                  <% end %>
+                <% else %>
+                  <%= render p[:parcial], f: f %>
+                <% end %>
 
-        <div class="accordion-group">
-          <div class="accordion-heading">
-            <a class="accordion-toggle fichacambia" data-toggle="collapse" 
-              href="#fuenteprensa">Fuentes Frecuentes</a>
-          </div>
-          <div id="fuenteprensa" class="accordion-body collapse">
-            <div class="accordion-inner">
-              <%= render 'fuentesprensa', :f => f %>
-            </div>
-          </div>
-        </div> <! -- accordion-group Fuente Prensa-->
+              </div> <!-- card-body -->
+            </div> <!-- collapse -->
 
-        <div class="accordion-group">
-          <div class="accordion-heading">
-            <a class="accordion-toggle fichacambia" data-toggle="collapse" 
-              href="#fotra">Otras Fuentes</a>
-          </div>
-          <div id="fotra" class="accordion-body collapse">
-            <div class="accordion-inner">
-              <%= render 'fotras', :f => f %>
-            </div>
-          </div>
-        </div> <! -- accordion-group Otras fuentes -->
+          </div> <!-- card -->
 
-        <div class="accordion-group">
-          <div class="accordion-heading">
-            <a class="accordion-toggle fichacambia" data-toggle="collapse" 
-              href="#contexto">Contexto</a>
-          </div>
-          <div id="contexto" class="accordion-body collapse">
-            <div class="accordion-inner">
-              <%= render 'contextos', :f => f %>
-            </div>
-          </div>
-        </div> <! -- accordion-group Contexto -->
+          <% bcol = ' collapsed' %>
+          <% aexp = 'false' %>
+          <% colshow = ' ' %>
+        <% end %>
 
-        <div class="accordion-group">
-          <div class="accordion-heading">
-            <a class="accordion-toggle fichacambia" data-toggle="collapse" 
-              href="#presponsable">Presuntos Responsables</a>
-          </div>
-          <div id="presponsable" class="accordion-body collapse">
-            <div class="accordion-inner">
-              <%= render 'presponsables', :f => f %>
-            </div>
-          </div>
-        </div> <! -- accordion-group Presuntos Responsable-->
+      </div> <!-- acordeon -->
 
-        <div class="accordion-group">
-          <div class="accordion-heading">
-            <a class="accordion-toggle fichacambia" data-toggle="collapse" 
-              href="#victima">Víctimas</a>
-          </div>
-          <div id="victima" class="accordion-body collapse">
-            <div class="accordion-inner"> 
-              <%= render 'victimas', :f => f %>
-            </div>
-          </div>
-        </div> <! -- accordion-group Victima -->
-
-        <div class="accordion-group">
-          <div class="accordion-heading">
-            <a class="accordion-toggle fichacambia" data-toggle="collapse" 
-              href="#victimacolectiva">Víctimas Colectivas</a>
-          </div>
-          <div id="victimacolectiva" class="accordion-body collapse">
-            <div class="accordion-inner"> 
-              <%= render 'victimascolectivas', :f => f %>
-            </div>
-          </div>
-        </div> <! -- accordion-group Victima Colectiva -->
-
-
-        <div class="accordion-group">
-          <div class="accordion-heading">
-            <a class="accordion-toggle fichacambia" data-toggle="collapse" 
-              href="#combatiente">Combatientes</a>
-          </div>
-          <div id="combatiente" class="accordion-body collapse">
-            <div class="accordion-inner"> 
-              <%= render 'combatientes', :f => f %>
-            </div>
-          </div>
-        </div> <! -- accordion-group Combatiente-->
-
-
-        <div class="accordion-group">
-          <div class="accordion-heading">
-            <a class="accordion-toggle fichacambia" data-toggle="collapse" 
-              href="#actos">Actos</a>
-          </div>
-          <div id="actos" class="accordion-body collapse">
-            <div class="accordion-inner">
-              <%= render 'actos', :f => f %>
-            </div>
-          </div>
-        </div> <! -- accordion-group Actos -->
-
-        <div class="accordion-group">
-          <div class="accordion-heading">
-            <a class="accordion-toggle fichacambia" data-toggle="collapse" 
-              href="#descripcion">Descripción</a>
-          </div>
-          <div id="descripcion" class="accordion-body collapse">
-            <div class="accordion-inner">
-              <%= render 'memo', :f => f %>
-            </div>
-          </div>
-        </div> <! -- accordion-group Descripción -->
-
- 
-        <div class="accordion-group">
-          <div class="accordion-heading">
-            <a class="accordion-toggle fichacambia" data-toggle="collapse" 
-              href="#anexo">Anexos</a>
-          </div>
-          <div id="anexo" class="accordion-body collapse">
-            <div class="accordion-inner">
-              <%= render 'anexos', :f => f %>
-            </div>
-          </div>
-        </div> <! -- accordion-group Anexos -->
-
-        <div class="accordion-group">
-          <div class="accordion-heading">
-            <a class="accordion-toggle fichacambia" data-toggle="collapse" 
-              href="#etiquetas">Etiquetas</a>
-          </div>
-          <div id="etiquetas" class="accordion-body collapse">
-            <div class="accordion-inner">
-              <%= render 'etiquetas', :f => f %>
-            </div>
-          </div>
-        </div> <! -- accordion-group Etiquetas -->
-
-        <div class="accordion-group">
-          <div class="accordion-heading">
-            <a class="accordion-toggle fichacambia" data-toggle="collapse" 
-              href="#evaluacion">Evaluación</a>
-          </div>
-          <div id="evaluacion" class="accordion-body collapse">
-            <div class="accordion-inner">
-              <%= render 'evaluacion', :f => f %>
-            </div>
-          </div>
-        </div> <! -- accordion-group Contexto -->
-
-
-      </div> <!-- accordion -->
     </div> <!-- form-inputs -->
 
     <div class="form-actions">
+      <input class='bitacora_cambio' id='caso_bictacora_cambio' name='caso[bitacora_cambio]' type='hidden'>
       <%= f.button :submit, 'Validar y Guardar', {
         class: 'btn-primary',
         onclick: 'window.sivel2_detenerEnviarCada60()'
