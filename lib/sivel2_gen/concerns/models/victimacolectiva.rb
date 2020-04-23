@@ -76,11 +76,11 @@ module Sivel2Gen
               self.id_grupoper = gp.id
               self.save!
               g['observaciones'].each do |ob|
-                ele = ob.split('_')
+                ele = ob.split(/\_([^_]*)$/)
                 case ele[0]
                 when 'personasaprox'
                   self.personasaprox = ele[1]
-                when 'organizacionarmada'
+                when 'organizacion_armada'
                   self.personasaprox = Sivel2Gen::Presponsable.where(nombre: ele[1]).ids[0]
                 when 'filiacion'
                   fv = Sivel2Gen::FiliacionVictimacolectiva.new

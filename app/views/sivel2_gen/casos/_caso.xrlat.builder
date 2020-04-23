@@ -34,7 +34,7 @@ xml.relato do
     xml.grupo do
       xml.id_grupo vc.grupoper.id
       xml.nombre_grupo vc.grupoper.nombre
-      ['personasaprox','organizacionarmada'].each do |ob|
+      ['personasaprox','organizacion_armada'].each do |ob|
         xml.observaciones(vc[ob], {tipo: ob}) if vc[ob]
       end
       xml.observaciones(vc.antecedente.map(&:nombre).join(";"), {tipo: 'antecedente'}) if vc.antecedente[0]
@@ -118,16 +118,17 @@ xml.relato do
         xml.agresion ac.categoria.pconsolidado.clasificacion
         xml.agresion_particular ac.categoria.nombre + ' ('+ ac.categoria.id.to_s + ')'
         xml.id_victima_individual ac.persona.id
-        xml.id_presunto_responsable ac.presponsable.id
+        xml.id_presunto_responsable_individual ac.presponsable.id
       end
     end
   end
 
   xml.comment! "Actos con Victimas Colectivas"
   caso.actocolectivo.each do |acol|
-    xml.actocolectivo do
-      xml.agresion acol.categoria.nombre + ' ('+ acol.categoria.id.to_s + ')'
-      xml.id_victima_colectiva acol.grupoper.id
+    xml.acto do
+      xml.agresion acol.categoria.pconsolidado.clasificacion
+      xml.agresion_particular acol.categoria.nombre + ' ('+ acol.categoria.id.to_s + ')'
+      xml.id_grupo_victima acol.grupoper.id
       xml.id_presunto_grupo_responsable acol.presponsable.id
     end
   end

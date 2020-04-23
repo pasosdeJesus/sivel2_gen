@@ -197,10 +197,9 @@ module Sivel2Gen
                 victcol = Sivel2Gen::Victimacolectiva.new
                 victcol.id_caso = self.id
                 victcol.importa(datosent['grupo'], datossal, menserror, opciones = {})
-                idsvcol[vc['id_grupo']] = victcol.id_grupoper
+                idsvcol[datosent['grupo']['id_grupo']] = victcol.id_grupoper
               end
             end
-            
             #Importa victimas
             idsv = {}
             if datosent['victima']
@@ -215,10 +214,9 @@ module Sivel2Gen
                 vict = Sivel2Gen::Victima.new
                 vict.id_caso = self.id
                 vict.importa([datosent, datosent['victima']], datossal, menserror, opciones = {})
-                idsv[v['id_persona']] = vict.id_persona
+                idsv[datosent['victima']['id_persona']] = vict.id_persona
               end
             end
-            
             #Importa actos individuales
             if datosent['acto']
               if datosent['acto'].kind_of?(Array)
@@ -235,11 +233,10 @@ module Sivel2Gen
                 acto.importa(datosactos, datossal, menserror, opciones = {})
               end
             end
-
             #Importa actos colectivos
-            if datosent['actocolectivo']
-              if datosent['actocolectivo'].kind_of?(Array)
-                datosent['actocolectivo'].each do |ac|
+            if datosent['acto']
+              if datosent['acto'].kind_of?(Array)
+                datosent['acto'].each do |ac|
                   actocol = Sivel2Gen::Actocolectivo.new
                   actocol.id_caso = self.id
                   datosactos = [idsvcol, ac]
@@ -248,7 +245,7 @@ module Sivel2Gen
               else
                 actocol = Sivel2Gen::Actocolectivo.new
                 actocol.id_caso = self.id
-                datosactos = [idsvcol, datosent['actocolectivo']]
+                datosactos = [idsvcol, datosent['acto']]
                 actocol.importa(datosactos, datossal, menserror, opciones = {})
               end
             end
