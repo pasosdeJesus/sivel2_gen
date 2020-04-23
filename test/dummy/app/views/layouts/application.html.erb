@@ -81,6 +81,11 @@
         <% if can? :manage, Sip::Bitacora %>
           <%= opcion_menu "Bitácoras", sip.bitacoras_path, desplegable: true %>
         <% end %>
+        <% if can? :manage, Mr519Gen::Formulario %>
+          <%= opcion_menu "Formularios", 
+            mr519_gen.formularios_path,
+            desplegable: true %>
+        <% end %>
       <% end %>
       <%= opcion_menu "Salir #{current_usuario.nusuario}", 
         main_app.sign_out_path %>

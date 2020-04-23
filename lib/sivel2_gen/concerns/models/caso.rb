@@ -87,6 +87,14 @@ module Sivel2Gen
             association_foreign_key: 'id_region',
             join_table: 'sivel2_gen_caso_region'
 
+          has_and_belongs_to_many :respuestafor, 
+            class_name: 'Mr519Gen::Respuestafor',
+            foreign_key: 'caso_id',
+            association_foreign_key: 'respuestafor_id', 
+            join_table: 'sivel2_gen_caso_respuestafor'
+          accepts_nested_attributes_for :respuestafor, 
+            allow_destroy: true, reject_if: :all_blank
+
           has_many :caso_usuario, foreign_key: "id_caso", validate: true, 
             class_name: 'Sivel2Gen::CasoUsuario', dependent: :delete_all
           has_many :usuario, :through => :caso_usuario, class_name: 'Usuario'

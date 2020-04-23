@@ -12,9 +12,10 @@
 //
 //= require sip/motor
 //= require heb412_gen/motor
+//= require mr519_gen/motor
 //= require sivel2_gen/motor
-//= require_tree .
 //= require sivel2_gen/mapaosm
+//= require_tree .
 
 document.addEventListener('turbolinks:load', function() {
 	var root;
@@ -22,6 +23,7 @@ document.addEventListener('turbolinks:load', function() {
 		exports : window;
 	sip_prepara_eventos_comunes(root, null, false);
 	heb412_gen_prepara_eventos_comunes(root);
+	mr519_gen_prepara_eventos_comunes(root);
 	sivel2_gen_prepara_eventos_comunes(root);
 	sivel2_gen_prepara_eventos_unicos(root);
 

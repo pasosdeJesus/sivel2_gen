@@ -69,6 +69,8 @@ class Ability  < Sivel2Gen::Ability
         can :manage, Heb412Gen::Plantillahcm
         can :manage, Heb412Gen::Plantillahcr
         
+        can :manage, Mr519Gen::Formulario
+
         can :manage, Sip::Actorsocial
         can :manage, Sip::Bitacora
         can :manage, Sip::Persona
