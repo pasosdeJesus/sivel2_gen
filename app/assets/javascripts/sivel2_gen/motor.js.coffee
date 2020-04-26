@@ -23,7 +23,7 @@
 @actualiza_presponsables = (s) ->
   sel = s.val()
   nh = ''
-  lcg = $('#presponsable .control-group[style!="display: none;"]')
+  lcg = $('#presponsables .control-group[style!="display: none;"]')
   lcg.each((k, v) ->
     id = $(v).find('select[data-actualiza=presponsable]').val()
     nh = nh + "<option value='" + id + "'"
@@ -42,7 +42,7 @@
   sel =s.val()
   nh = ''
   c = $('#contacto')
-  lcg = c.add('#victima .control-group[style!="display: none;"]')
+  lcg = c.add('#victimas .control-group[style!="display: none;"]')
   lcg.each((k, v) ->
     id = $(v).find('div').filter( () -> 
       this.attributes.class.value.match(/caso_victima[_0-9]*persona_id/)
@@ -80,7 +80,7 @@
 @actualiza_gruposper = (s) ->
   sel =s.val()
   nh = ''
-  lcg = $('#victimacolectiva .control-group[style!="display: none;"]')
+  lcg = $('#victimascolectivas .control-group[style!="display: none;"]')
   lcg.each((k, v) ->
     id = $(v).find('div').filter( () -> 
       this.attributes.class.value.match(/caso_victimacolectiva[_0-9]*grupoper_id/)
@@ -533,7 +533,7 @@ enviaFormularioContar= (root) ->
   )
 
   # Tras eliminar presponsable, eliminar dependientes
-  $('#presponsable').on('cocoon:after-remove', '', (e, presponsable) ->
+  $('#presponsables').on('cocoon:after-remove', '', (e, presponsable) ->
     elimina_pendientes(root.elempe);
     root.elempe = []
   )
@@ -541,7 +541,7 @@ enviaFormularioContar= (root) ->
   # Antes de eliminar presponsable confirmar si se eliminan dependientes
   # Antes de eliminar se confirman num de actos y actos colectivos
   # Y se eliminan de la tabla de actos y actos colectivos
-  $('#presponsable').on('cocoon:before-remove', '', (e, papa) ->
+  $('#presponsables').on('cocoon:before-remove', '', (e, papa) ->
     confirma_elim_dep_presponsable(root, papa, nomactospe)
     sel = papa[0].firstElementChild.firstElementChild.firstElementChild.firstElementChild.firstElementChild.nextElementSibling;
     prespon = sel.options[sel.selectedIndex].text;
@@ -587,12 +587,12 @@ enviaFormularioContar= (root) ->
   )
 
   # Antes de eliminar víctima confirmar si se eliminan dependientes
-  $('#victima').on('cocoon:before-remove', '', (e, papa) ->
+  $('#victimas').on('cocoon:before-remove', '', (e, papa) ->
     confirma_elim_dep_victima(root, papa, nomactospe)
   )
 
   # Tras eliminar víctima, eliminar dependientes
-  $('#victima').on('cocoon:after-remove', '', (e, presponsable) ->
+  $('#victimas').on('cocoon:after-remove', '', (e, presponsable) ->
     elimina_pendientes(root.elempe);
     root.elempe = []
   )
