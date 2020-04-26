@@ -10,21 +10,26 @@ Fecha: <%= @caso.fecha if @caso.fecha%> <%= @caso.hora if @caso.hora%> <%= @caso
   Tip. Ub:<%= Sip::Tsitio.find(ubprincipal.id_tsitio).nombre %>
 <% end %>
 </p>
-<p style="margin: 0; padding: 0">
-Región (es):
-<% @caso.region.each_with_index do |re, i| %>
-  <%= re.nombre if re.nombre %>
-  <% next if i== @caso.region.size-1 %>
-  /
+<% unless @caso.region.empty? %>
+  <p style="margin: 0; padding: 0">
+  Región (es):
+  <% @caso.region.each_with_index do |re, i| %>
+    <%= re.nombre if re.nombre %>
+    <% next if i== @caso.region.size-1 %>
+    /
+  <% end %>
 <% end %>
 </p>
-<p style="margin: 0; padding: 0">
-Frontera(s): 
-<% @caso.frontera.each.with_index do |fr, i| %>
-  <%= fr.nombre if fr.nombre %>
-  <% next if i== @caso.frontera.size-1 %>
-  /
-<% end %></p>
+<% unless @caso.region.empty? %>
+  <p style="margin: 0; padding: 0">
+  Frontera(s): 
+  <% @caso.frontera.each.with_index do |fr, i| %>
+    <%= fr.nombre if fr.nombre %>
+    <% next if i== @caso.frontera.size-1 %>
+    /
+  <% end %>
+  </p>
+<% end %>
 <p style="margin: 0; padding: 0">
   <%= ubprincipal.departamento.nombre if ubprincipal && ubprincipal.departamento%> / 
   <%= ubprincipal.municipio.nombre if ubprincipal && ubprincipal.municipio%> /
@@ -40,38 +45,44 @@ Frontera(s):
   </p>
 <% end %>
 
-<p style="margin: 0; padding: 0">
-Fuente: 
-<% fuentes = Sivel2Gen::CasoFuenteprensa.where(id_caso: @caso.id) %>
-<% fuentes.each do |fr| %>
-  <%= fr.fuenteprensa.nombre if fr.fuenteprensa.nombre %>-
-  <%= fr.fecha if fr.fecha %>-
-  <%= fr.ubicacionfisica if fr.ubicacionfisica %>
+<% unless @caso.region.empty? %>
+  <p style="margin: 0; padding: 0">
+  Fuente: 
+  <% fuentes = Sivel2Gen::CasoFuenteprensa.where(id_caso: @caso.id) %>
+  <% fuentes.each do |fr| %>
+    <%= fr.fuenteprensa.nombre if fr.fuenteprensa.nombre %>-
+    <%= fr.fecha if fr.fecha %>-
+    <%= fr.ubicacionfisica if fr.ubicacionfisica %>
+  <% end %>
 <% end %>
 </p>
-Otras fuentes Prensa: 
-<% otrasfuentes = Sivel2Gen::CasoFotra.where(id_caso: @caso.id) %>
-<p style="margin: 0; padding: 0">
-<% otrasfuentes.each do |fr| %>
-  <%= fr.nombre if fr.nombre %>-
-  <%= fr.fecha if fr.fecha %>-
-  <%= fr.ubicacionfisica if fr.ubicacionfisica %>
+<% unless @caso.region.empty? %>
+  Otras fuentes Prensa: 
+  <% otrasfuentes = Sivel2Gen::CasoFotra.where(id_caso: @caso.id) %>
+  <p style="margin: 0; padding: 0">
+  <% otrasfuentes.each do |fr| %>
+    <%= fr.nombre if fr.nombre %>-
+    <%= fr.fecha if fr.fecha %>-
+    <%= fr.ubicacionfisica if fr.ubicacionfisica %>
+  <% end %>
+  </p>
 <% end %>
-</p>
 <table>
  Memo:
   <tr><td>
     <%= @caso.memo %>
   </td></tr>
 </table>
-ANEXO(S):
-<% anexo = Sivel2Gen::AnexoCaso.where(id_caso: @caso.id) %>
-<p>
-<% anexo.each do |an| %>
-  <%= an.fecha if an.fecha %>-
-  <a href= "/sivel2/anexos/descarga_anexo/<%= an.id_anexo %>"><%= @caso.id %>_<%= Sip::Anexo.find(an.id_anexo).adjunto_file_name %></a>
+<% unless @caso.region.empty? %>
+  ANEXO(S):
+  <% anexo = Sivel2Gen::AnexoCaso.where(id_caso: @caso.id) %>
+  <p>
+  <% anexo.each do |an| %>
+    <%= an.fecha if an.fecha %>-
+    <a href= "/sivel2/anexos/descarga_anexo/<%= an.id_anexo %>"><%= @caso.id %>_<%= Sip::Anexo.find(an.id_anexo).adjunto_file_name %></a>
+  <% end %>
+  </p>
 <% end %>
-</p>
 
 <p>
 Contexto(s): 
@@ -88,10 +99,16 @@ Antecedentes:
   ,
 <% end %></p>
 <p>
+<% codigos = {}%>
+<% array_cods = []%>
 <% @caso.acto.each do |ac| %>
   <% supraid = ac.categoria.supracategoria_id%>
   <% tviolencia = Sivel2Gen::Supracategoria.find(supraid).id_tviolencia if supraid%>
-  <%= Sivel2Gen::Tviolencia.find(tviolencia).id + ac.categoria.id.to_s if tviolencia%>. 
+  <% codigo = Sivel2Gen::Tviolencia.find(tviolencia).id + ac.categoria.id.to_s if tviolencia%>
+  <% pr = Sivel2Gen::Presponsable.find(ac.id_presponsable).nombre %>
+  <% array_cods.push(codigo) %>
+  <% codigos[pr] = array_cods %>
+  <%= codigo %>.
   <%= Sivel2Gen::Tviolencia.find(tviolencia).nombre if tviolencia%>-
   <%= Sivel2Gen::Supracategoria.find(supraid).nombre if supraid%>-
   <%= ac.categoria.nombre%> 
@@ -101,24 +118,43 @@ Antecedentes:
 <% @caso.actocolectivo.each do |ac| %>
   <% supraid = ac.categoria.supracategoria_id%>
   <% tviolencia = Sivel2Gen::Supracategoria.find(supraid).id_tviolencia if supraid%>
-  <%= Sivel2Gen::Tviolencia.find(tviolencia).id + ac.categoria.id.to_s if tviolencia%>. 
+  <% codigo = Sivel2Gen::Tviolencia.find(tviolencia).id + ac.categoria.id.to_s if tviolencia%>
+  <% pr = Sivel2Gen::Presponsable.find(ac.id_presponsable).nombre %>
+  <% array_cods.push(codigo) %>
+  <% codigos[pr] = array_cods %>
+  <%= codigo %>.
   <%= Sivel2Gen::Tviolencia.find(tviolencia).nombre if tviolencia%>-
   <%= Sivel2Gen::Supracategoria.find(supraid).nombre if supraid%>-
   <%= ac.categoria.nombre%> 
 <% end %>
 </p>
-<p>
-Presunto(s) Responsable(s): 
-<% @caso.presponsable.each.with_index do |pr, i| %>
-  <%= pr.nombre if pr.nombre %>
-  <% next if i== @caso.contexto.size-1 %>
+<p style="margin: 0; padding: 0;">
+Presunto Responsable: 
+<% codigos.to_a.each_with_index do |par, i|%>
+  <%= par[0] %>
+  :
+  <%= par[1].uniq.join(' / ') %>
+  <% next if i== @caso.presponsable.size-1 %>
   ,
-<% end %></p>
+<% end %>
+</p>
+<div style= "margin-left: 3rem;">
+<% @caso.victima.each do |v|  %>
+  <p style="margin: 0; padding: 0;">
+  <%= Sip::Persona.find(v.id_persona).nombres +
+    ' ' + Sip::Persona.find(v.id_persona).apellidos %> 
+  -
+  <%= Sivel2Gen::Sectorsocial.find(v.id_sectorsocial).nombre%>
+  </p>
+<% end %>
+</div>
+  
 <p>
-Analista: 
-<% @caso.usuario do |us| %>
-  <%= us.nusuario if us.nombre %> - 
-  <%= us. if us.categoria%> 
+Analista:
+<% casousuarios = Sivel2Gen::CasoUsuario.
+where(id_caso: @caso.id).pluck(:id_usuario) %>
+<% casousuarios.each do |us| %>
+  <%= Sip::Usuario.where(id: us)[0].nombre %> 
 <% end %>
 </p>
 </tt>
