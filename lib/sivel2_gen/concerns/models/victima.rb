@@ -203,65 +203,108 @@ module Sivel2Gen
 
           def importa(datosent, datossal, menserror, opciones = {})
             v = datosent[1]
-            datosent[0]['persona'].each do |p|
-              if p['id_persona'] == v['id_persona']
+            def crea_persona(p, v)
+              if p['id_persona'].to_i == v['id_persona'].to_i
                 per = Sip::Persona.new
-                per.nombres = p['nombre']
-                per.apellidos = p['apellido']
-                siglatdoc = p['docid'].split(' ')[0]
-                per.tdocumento = Sip::Tdocumento.where(sigla: siglatdoc)[0]
-                per.numerodocumento = p['docid'].split(' ')[1]
-                nac = p['fecha_nacimiento'].split('-')
-                per.anionac = nac[0]
-                per.mesnac = nac[1]
-                per.dianac = nac[2]
-                per.sexo = p['sexo']
-                p['observaciones'].each do |ob|
-                  ele = ob.split(/\_([^_]*)$/)
-                  case ele[0]
-                  when 'etnia'
-                    self.id_etnia = Sivel2Gen::Etnia.where(nombre: ele[1]).ids[0]
-                  when 'pais'
-                    per.id_pais = Sip::Pais.where(nombre: ele[1]).ids[0]
-                  when 'departamento'
-                    per.id_departamento = Sip::Departamento.
-                      where(nombre: ele[1], id_pais: per.id_pais).ids[0]
-                  when 'municipio'
-                    per.id_municipio = Sip::Municipio.
-                      where(nombre: ele[1], id_departamento: per.id_departamento).ids[0]
-                  when 'centro_poblado'
-                    per.id_clase = Sip::Clase.
-                      where(nombre: ele[1], id_municipio: per.id_municipio).ids[0]
+                if p['nombre'].nil?
+                  per.nombres = 'N'
+                else
+                  per.nombres = p['nombre']
+                end
+                if p['apellido'].nil?
+                  per.apellidos = 'N'
+                else
+                  per.apellidos = p['apellido']
+                end
+                if p['docid']
+                  siglatdoc = p['docid'].split(' ')[0]
+                  per.tdocumento = Sip::Tdocumento.where(sigla: siglatdoc)[0]
+                  per.numerodocumento = p['docid'].split(' ')[1]
+                end 
+                if p['fecha_nacimiento']
+                  nac = p['fecha_nacimiento'].split('-')
+                  per.anionac = nac[0].to_i if nac[0].to_i > 0
+                  per.mesnac = nac[1].to_i if (1..12).include?(nac[1].to_i)
+                  per.dianac = nac[2].to_i if (1..31).include?(nac[2].to_i)
+                end 
+                per.sexo = p['sexo'] if p['sexo']
+                def recorrer_observaciones_p(ele, per)
+                 case ele[0]
+                 when 'etnia'
+                   self.id_etnia = Sivel2Gen::Etnia.where(nombre: ele[1]).ids[0]
+                 when 'pais'
+                   per.id_pais = Sip::Pais.where(nombre: ele[1]).ids[0]
+                 when 'departamento'
+                   per.id_departamento = Sip::Departamento.
+                     where(nombre: ele[1], id_pais: per.id_pais).ids[0]
+                 when 'municipio'
+                   per.id_municipio = Sip::Municipio.
+                     where(nombre: ele[1], id_departamento: per.id_departamento).ids[0]
+                 when 'centro_poblado'
+                   per.id_clase = Sip::Clase.
+                     where(nombre: ele[1], id_municipio: per.id_municipio).ids[0]
+                 end
+                end
+                if p['observaciones']              
+                  if p['observaciones'].kind_of?(Array)
+                    p['observaciones'].each do |ob|
+                      ele = ob.split(/\_([^_]*)$/)
+                      recorrer_observaciones_p(ele, per)
+                    end
+                  else 
+                    ele = p['observaciones'].split(/\_([^_]*)$/)
+                    recorrer_observaciones_p(ele, per)
                   end
                 end
                 per.save!
                 self.id_persona = per.id
               end  
             end
+            if datosent[0]['persona'].kind_of?(Array)
+              datosent[0]['persona'].each do |p|
+                crea_persona(p, v)
+              end
+            else
+              p = datosent[0]['persona']
+              crea_persona(p, v)
+            end
             self.id_profesion = Sivel2Gen::Profesion.where(nombre: v['ocupacion']).ids[0]
             self.id_sectorsocial = Sivel2Gen::Sectorsocial.where(nombre: v['sector_condicion']).ids[0]
             self.id_iglesia = Sivel2Gen::Iglesia.where(nombre: v['iglesia']).ids[0]
-            self.id_organizacion = Sivel2Gen::Organizacion.where(nombre: v['organizacion']).ids[0]
-            v['observaciones'].each do |ob|
-              ele = ob.split(/\_([^_]*)$/)
+            self.id_organizacion = Sivel2Gen::Organizacion.where(nombre: v['organizacion'].strip).ids[0]
+            def recorrer_observaciones_v(ele)
               case ele[0]
               when 'filiacion'
                 self.id_filiacion = Sivel2Gen::Filiacion.
-                  where(nombre: ele[1]).ids[0]
+                  where(nombre: ele[1].strip).ids[0]
               when 'vinculoestado'
                 self.id_vinculoestado = Sivel2Gen::Vinculoestado.
                   where(nombre: ele[1]).ids[0]
               when 'organizacion_armada'
-                self.organizacionarmada = Sivel2Gen::Presponsable.
-                  find(ele[1]).id
+                if ele[1].to_i == 0
+                  self.organizacionarmada = Sivel2Gen::Presponsable.
+                    where(nombre: 'SIN INFORMACIÓN').ids[0]
+                else 
+                  self.organizacionarmada = Sivel2Gen::Presponsable.
+                    find(id: ele[1].to_i).id
+                end
               when 'rangoedad'
                 self.id_rangoedad = Sivel2Gen::Rangoedad.
-                  where(nombre: ele[1]).ids[0]
+                  where(rango: ele[1]).ids[0]
               when 'hijos'
                 self.hijos = ele[1]
               when 'anotaciones'
                 self.anotaciones = ele[1]
               end
+            end           
+            if v['observaciones'].kind_of?(Array)
+              v['observaciones'].each do |ob|
+                ele = ob.split(/\_([^_]*)$/)
+                recorrer_observaciones_v(ele)
+              end
+            else
+              ele = v['observaciones'].split(/\_([^_]*)$/)
+              recorrer_observaciones_v(ele)
             end
             self.save!
           end
