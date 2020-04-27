@@ -150,11 +150,20 @@ Presunto Responsable:
 </div>
   
 <p>
-Analista:
-<% casousuarios = Sivel2Gen::CasoUsuario.
-where(id_caso: @caso.id).pluck(:id_usuario) %>
-<% casousuarios.each do |us| %>
-  <%= Sip::Usuario.where(id: us)[0].nombre %> 
+Analista(s):
+<% 
+  # Se presenta una sola vez cada usuario que ha tocado el caso
+  # con la fecha de la primera vez que lo tocó
+  presentados = []
+  casousuarios = Sivel2Gen::CasoUsuario.
+  where(id_caso: @caso.id).order(:fechainicio).each do |us| %>
+  <% if !presentados.include?(us.id_usuario) %>
+    <% if Sip::Usuario.where(id: us.id_usuario) == 1 %> 
+      <%= Sip::Usuario.where(id: us.id_usuario)[0].nombre %> 
+    <% end %>
+    <%= us.fechainicio %> 
+    <% presentados << us.id_usuario %>
+  <% end %>
 <% end %>
 </p>
 </tt>

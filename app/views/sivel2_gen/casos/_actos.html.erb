@@ -5,8 +5,8 @@
          class="input select caso_acto_presponsable">
       <label class="select required control-label" 
              for="caso_acto_id_presponsable">Presunto Responsable</label>
-      <%= 
-        p = options_from_collection_for_select(
+      <% 
+          p = options_from_collection_for_select(
           Sivel2Gen::Presponsable.from(
             'sivel2_gen_caso_presponsable, sivel2_gen_presponsable').where(
               'sivel2_gen_caso_presponsable.id_presponsable=
@@ -14,7 +14,9 @@
                AND sivel2_gen_caso_presponsable.id_caso=?', @caso.id), 
                "id", "nombre"
         )
-        select_tag "caso_acto_id_presponsable", p, multiple: true,
+      %>
+
+      <%= select_tag "caso_acto_id_presponsable", p, multiple: true,
           "data-toggle" => 'tooltip',
           "title" => 
         'Seleccione de aquellos que añadió en la pestaña Presuntos Responsables'
