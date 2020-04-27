@@ -756,7 +756,7 @@ module Sivel2Gen
           end
 
           def importa
-            authorize! :update, @registro
+            authorize! :update, Sivel2Gen::Caso
             file=params[:file]
             doc = file.read
             docnoko = Nokogiri::XML(doc)

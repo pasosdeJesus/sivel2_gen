@@ -31,12 +31,12 @@
           </td>
         <% end %>
         <td>
-          <% if can?(:cambiaretiquetas, Sivel2Gen::Caso) ||
+          <% if can?(:edit, Sivel2Gen::Caso) || can?(:edit, caso) %>
+            <%= link_to t('.edit', :default => t("helpers.links.edit")),
+              sivel2_gen.edit_caso_path(caso.caso_id), :class => 'btn btn-sm' %>
+          <% elsif can?(:cambiaretiquetas, Sivel2Gen::Caso) ||
               can?(:cambiaretiquetas, caso) %>
             <%= link_to 'Cambiar etiquetas',
-            sivel2_gen.edit_caso_path(caso.caso_id), :class => 'btn btn-sm' %>
-          <% elsif can?(:edit, Sivel2Gen::Caso) || can?(:edit, caso) %>
-            <%= link_to t('.edit', :default => t("helpers.links.edit")),
               sivel2_gen.edit_caso_path(caso.caso_id), :class => 'btn btn-sm' %>
           <% end %>
           <% if can?(:destroy, Sivel2Gen::Caso) || can?(:destroy, caso) %>
