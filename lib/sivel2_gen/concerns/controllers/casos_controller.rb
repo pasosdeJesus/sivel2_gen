@@ -9,7 +9,7 @@ module Sivel2Gen
         included do
           # Los siguientes deben ir en clase que incluya esta modulo
           #before_action :set_caso, only: [:show, :edit, :update, :destroy]
-          #load_and_authorize_resource class: Sivel2Gen::Caso, 
+          #load_and_authorize_resource class: Sivel2Gen::Caso,
           #  except: [:index, :show]
           helper Sip::UbicacionHelper
 
@@ -78,10 +78,10 @@ module Sivel2Gen
               :etiquetas,
 
               #evaluacion
-              :grconfiabilidad, 
-              :gresclarecimiento, 
-              :grimpunidad, 
-              :grinformacion, 
+              :grconfiabilidad,
+              :gresclarecimiento,
+              :grimpunidad,
+              :grinformacion,
 
               # Otras
               :created_at,
@@ -96,8 +96,8 @@ module Sivel2Gen
             if current_usuario
               [:departamento_id, :municipio_id, :clase_id,
                 :fechaini, :fechafin, :presponsable_id, :categoria_id,
-                :nombres, :apellidos, :sexo, :rangoedad_id, 
-                :sectorsocial_id, :organizacion_id, :profesion_id, :descripcion, 
+                :nombres, :apellidos, :sexo, :rangoedad_id,
+                :sectorsocial_id, :organizacion_id, :profesion_id, :descripcion,
                 :usuario_id, :fechaingini, :fechaingfin, :codigo
               ]
             else
@@ -110,7 +110,7 @@ module Sivel2Gen
 
           # Todas las columnas que pueden presentarse
           def incluir_inicial
-            ['casoid', 'fecha', 'ubicaciones', 'presponsables', 
+            ['casoid', 'fecha', 'ubicaciones', 'presponsables',
               'tipificacion', 'victimas', 'memo']
           end
 
@@ -122,7 +122,7 @@ module Sivel2Gen
           # Filtro estándar
           def filtro_avanzado(conscaso, params_filtro)
             for i in campos_filtro1 do
-              if params_filtro[i] && params_filtro[i] != '' && 
+              if params_filtro[i] && params_filtro[i] != '' &&
                 params_filtro[i] != ['']
                 conscaso.respond_to?('filtro_' + i.to_s)
                 conscaso = conscaso.send('filtro_' + i.to_s, params_filtro[i])
@@ -133,7 +133,7 @@ module Sivel2Gen
               if params_filtro[i] && params_filtro[i] != ''  &&
                 conscaso.respond_to?('filtro_etiqueta')
                 op = 'con' + i.to_s
-                c = params_filtro[op.to_sym] && 
+                c = params_filtro[op.to_sym] &&
                   params_filtro[op.to_sym] == 'true'
                 conscaso = conscaso.send('filtro_etiqueta', c, params_filtro[i])
               end
@@ -154,7 +154,7 @@ module Sivel2Gen
 
           def inicializa_index
             @plantillas = Heb412Gen::Plantillahcm.where(
-              vista: 'Caso').select('nombremenu, id').map { 
+              vista: 'Caso').select('nombremenu, id').map {
                 |c| [c.nombremenu, c.id] }
             @plantillas += [
               ['Reporte Revista HTML', 'reprevista.html'],
@@ -162,12 +162,12 @@ module Sivel2Gen
               ['Exportar a JSON', 'reprevista.json']
             ]
           end
-      
+
          def vistas_manejadas
             return ['Caso']
-         end 
+         end
 
-          # Valida que el usuario pueda generar la plantilla idplant 
+          # Valida que el usuario pueda generar la plantilla idplant
           def valida_plantilla(current_usuario, idplant)
             true
           end
@@ -242,9 +242,9 @@ module Sivel2Gen
 
             # Cuenta y Paginación
             @numconscaso = @conscaso.size
-            @paginar = !params || !params[:filtro] || 
+            @paginar = !params || !params[:filtro] ||
               !params[:filtro][:paginar] ||
-              params[:filtro][:paginar] != '0' 
+              params[:filtro][:paginar] != '0'
             if @paginar && params[:idplantilla].nil? && defined?(@conscaso.paginate)
               @conscaso = @conscaso.paginate(
                 page: params[:pagina], per_page: 20)
@@ -274,16 +274,16 @@ module Sivel2Gen
 
           def gen_formato(formato)
             Consexpcaso.crea_consexpcaso(@conscaso, @campoord)
-            if params[:filtro].nil? || params[:idplantilla].nil? 
-              head :no_content 
+            if params[:filtro].nil? || params[:idplantilla].nil?
+              head :no_content
             elsif params[:idplantilla].to_i <= 0
-              head :no_content 
+              head :no_content
             elsif Heb412Gen::Plantillahcm.where(
               id: params[:idplantilla].to_i).take.nil?
-              head :no_content 
-            elsif !valida_plantilla(current_usuario, 
+              head :no_content
+            elsif !valida_plantilla(current_usuario,
                                     params[:idplantilla].to_i)
-              head :no_content 
+              head :no_content
             end
             @consexpcaso = Consexpcaso.all
             @registros = @consexpcaso
@@ -292,7 +292,7 @@ module Sivel2Gen
 
           def error_plantilla_no_autenticado
             redirect_back fallback_location: config.relative_url_root,
-            flash: { error: 
+            flash: { error:
             'La generación de este reporte permite máximo 2000 registros.' +
             ' Puede suscribirse a SIVeL Pro si requiere más' }
           end
@@ -317,7 +317,7 @@ module Sivel2Gen
                     when 'reprevista'
                       render params['idplantilla'], layout: nil
                     else
-                      redirect_back fallback_location: 
+                      redirect_back fallback_location:
                         config.relative_url_root,
                         flash: { error: "Plantilla desconocida" }
                     end
@@ -343,7 +343,7 @@ module Sivel2Gen
                 }
               else
                 format.html {
-                  if (params['idplantilla']) 
+                  if (params['idplantilla'])
                     case params['idplantilla']
                     when 'reprevista'
                       error_plantilla_no_autenticado
@@ -408,15 +408,15 @@ module Sivel2Gen
               if (params[:tabla] == "departamento" && params[:id_pais].to_i > 0)
                 r = Sip::Departamento.where(fechadeshabilitacion: nil,
                                             id_pais: params[:id_pais].to_i).order(:nombre)
-              elsif (params[:tabla] == "municipio" && params[:id_pais].to_i > 0 && 
+              elsif (params[:tabla] == "municipio" && params[:id_pais].to_i > 0 &&
                      params[:id_departamento].to_i > 0 )
                 r = Sip::Municipio.where(
                   id_departamento: params[:id_departamento].to_i,
                   fechadeshabilitacion: nil).order(:nombre)
-              elsif (params[:tabla] == "clase" && params[:id_pais].to_i > 0 && 
-                     params[:id_departamento].to_i > 0 && 
+              elsif (params[:tabla] == "clase" && params[:id_pais].to_i > 0 &&
+                     params[:id_departamento].to_i > 0 &&
                      params[:id_municipio].to_i > 0)
-                r = Sip::Clase.where( 
+                r = Sip::Clase.where(
                                      id_municipio: params[:id_municipio].to_i,
                                      fechadeshabilitacion: nil).order(:nombre)
               end
@@ -435,7 +435,7 @@ module Sivel2Gen
           def mapagm
             render 'mapagm', layout: 'application'
           end
-         
+
           # GET casos/mapaosm
           def mapaosm
             @fechadesde = Sip::FormatoFechaHelper.inicio_semestre(Date.today - 182)
@@ -447,22 +447,30 @@ module Sivel2Gen
           end
 
           def pestanas_formulariocaso
-            [
-              { titulo: 'Datos Básicos', parcial: 'basicos'}, 
-              { titulo: 'Ubicación', parcial: 'ubicaciones'}, 
-              { titulo: 'Fuentes Frecuentes', parcial: 'fuentesprensa'}, 
-              { titulo: 'Otras Fuentes', parcial: 'fotras'}, 
-              { titulo: 'Contexto', parcial: 'contextos'}, 
-              { titulo: 'Presuntos Responsables', parcial: 'presponsables'}, 
-              { titulo: 'Víctimas', parcial: 'victimas'}, 
-              { titulo: 'Víctimas Colectivas', parcial: 'victimascolectivas'}, 
-              { titulo: 'Combatientes', parcial: 'combatientes'}, 
-              { titulo: 'Actos', parcial: 'actos'}, 
-              { titulo: 'Descripción', parcial: 'memo'}, 
-              { titulo: 'Anexos', parcial: 'sivel2_gen/casos/anexos'}, 
-              { titulo: 'Etiquetas', parcial: 'etiquetas'}, 
-              { titulo: 'Evaluación', parcial: 'evaluacion'}
-            ]
+            if current_usuario && can?(:update, Sivel2Gen::Caso)
+              [
+                { titulo: 'Datos Básicos', parcial: 'basicos'},
+                { titulo: 'Ubicación', parcial: 'ubicaciones'},
+                { titulo: 'Fuentes Frecuentes', parcial: 'fuentesprensa'},
+                { titulo: 'Otras Fuentes', parcial: 'fotras'},
+                { titulo: 'Contexto', parcial: 'contextos'},
+                { titulo: 'Presuntos Responsables', parcial: 'presponsables'},
+                { titulo: 'Víctimas', parcial: 'victimas'},
+                { titulo: 'Víctimas Colectivas', parcial: 'victimascolectivas'},
+                { titulo: 'Combatientes', parcial: 'combatientes'},
+                { titulo: 'Actos', parcial: 'actos'},
+                { titulo: 'Descripción', parcial: 'memo'},
+                { titulo: 'Anexos', parcial: 'sivel2_gen/casos/anexos'},
+                { titulo: 'Etiquetas', parcial: 'etiquetas'},
+                { titulo: 'Evaluación', parcial: 'evaluacion'}
+              ]
+            elsif current_usuario && can?(:cambiaretiquetas, Sivel2Gen::Caso)
+              [
+                { titulo: 'Etiquetas', parcial: 'etiquetas'},
+              ]
+            else
+              []
+            end
           end
 
           # GET /casos/1/edit
@@ -502,20 +510,20 @@ module Sivel2Gen
                                   @caso.id,  'crear', '')
                 end
 
-                format.html { 
-                  redirect_to @caso, 
+                format.html {
+                  redirect_to @caso,
                   notice: notificacion
                 }
-                format.json { 
-                  render action: 'show', status: :created, location: @caso, 
-                  layout: 'application' 
+                format.json {
+                  render action: 'show', status: :created, location: @caso,
+                  layout: 'application'
                 }
               else
-                format.html { 
-                  render action: 'new', layout: 'application'  
+                format.html {
+                  render action: 'new', layout: 'application'
                 }
-                format.json { 
-                  render json: @caso.errors, status: :unprocessable_entity 
+                format.json {
+                  render json: @caso.errors, status: :unprocessable_entity
                 }
               end
             end
@@ -541,7 +549,7 @@ module Sivel2Gen
               # En etiquetas pone usuario actual por omision
               if (!params[:caso][:caso_etiqueta_attributes].nil?)
                 params[:caso][:caso_etiqueta_attributes].each  do |k,v|
-                  if (v[:id_usuario].nil? || v[:id_usuario] == "") 
+                  if (v[:id_usuario].nil? || v[:id_usuario] == "")
                     v[:id_usuario] = current_usuario.id
                   end
                 end
@@ -553,9 +561,9 @@ module Sivel2Gen
                 caso_params[:victima_attributes].each do |iv, v|
                   if v[:persona_attributes][:persona_trelacion1_attributes]
                     v[:persona_attributes][:persona_trelacion1_attributes].each do |it, t|
-                      # Ubicamos los de autocompletacion y para esos creamos un registro 
-                      if t && (!t[:id] || t[:id] == '') && 
-                          t[:personados_attributes] && 
+                      # Ubicamos los de autocompletacion y para esos creamos un registro
+                      if t && (!t[:id] || t[:id] == '') &&
+                          t[:personados_attributes] &&
                           t[:personados_attributes][:id] &&
                           t[:personados_attributes][:id].to_i > 0 &&
                           Sip::Persona.where(
@@ -573,13 +581,13 @@ module Sivel2Gen
               end
 
               if @caso.update(caso_params)
-                if registrar_en_bitacora 
+                if registrar_en_bitacora
                   #byebug
-                  # Se intentó implementar a nivel de modelo con 
-                  # before_update, after_update pero a Sivel2Gen::Caso 
-                  # sólo le llegan los cambios al modelo Caso y no a los 
-                  # asociados. Por eso inicialmente se prefirió a nivel de 
-                  # controlador y los cambios al formulario en el cliente 
+                  # Se intentó implementar a nivel de modelo con
+                  # before_update, after_update pero a Sivel2Gen::Caso
+                  # sólo le llegan los cambios al modelo Caso y no a los
+                  # asociados. Por eso inicialmente se prefirió a nivel de
+                  # controlador y los cambios al formulario en el cliente
                   # con Javascript.
                   detalle_bitacora = {}
                   if request.params[:caso] &&
@@ -588,7 +596,7 @@ module Sivel2Gen
                     begin
                       detalle_bitacora = JSON.parse(
                         request.params[:caso][:bitacora_cambio])
-                    rescue 
+                    rescue
                       detalle_bitacora = {error: 'Error al reconocer JSON'}
                     end
                   end
@@ -596,10 +604,10 @@ module Sivel2Gen
                     Sip::Bitacora.a(request.remote_ip,
                                     current_usuario.id,
                                     request.url,
-                                    params, 
+                                    params,
                                     'Sivel2Gen::Caso',
-                                    @caso.id,  
-                                    'actualizar', 
+                                    @caso.id,
+                                    'actualizar',
                                     detalle_bitacora.to_json)
                   end
                 end
@@ -615,23 +623,23 @@ module Sivel2Gen
                     " debe Refrescar para notar " +
                     " el cambio en el listado de casos".html_safe
                 end
-                format.html { 
-                  redirect_to @caso, 
+                format.html {
+                  redirect_to @caso,
                   notice: notificacion
                 }
                 format.json { head :no_content }
                 format.js   { head :no_content }
               else
-                format.html { 
+                format.html {
                   if session[:capturacaso_acordeon]
                     render 'editv', layout: 'application'
                   else
                     render 'edit', layout: 'application'
                   end
                 }
-                format.json { render json: @caso.errors, 
+                format.json { render json: @caso.errors,
                               status: :unprocessable_entity }
-                format.js   { render json: @caso.errors, 
+                format.js   { render json: @caso.errors,
                               status: :unprocessable_entity }
               end
             end
@@ -647,11 +655,18 @@ module Sivel2Gen
           end
 
           def update
+            if cannot?(:update, Sivel2Gen::Caso) &&
+                cannot?(:update, @registro) &&
+                cannot?(:cambiaretiquetas, @registro)
+              authorize! :update, @registro
+              return
+            end
+
             update_gen
           end
 
           # Tuve que crear el siguiente para llamarlo desde
-          # sivel2_sjr/concerns/controllers/casos_controllers pues no hay super 
+          # sivel2_sjr/concerns/controllers/casos_controllers pues no hay super
           # en módulos y no se logró con prepend u otra forma
           def sivel2_gen_destroy
             tcaso_id=@caso.id
@@ -698,7 +713,7 @@ module Sivel2Gen
               return
             end
             if registrar_en_bitacora
-              Sip::Bitacora.a(request.remote_ip, current_usuario ? 
+              Sip::Bitacora.a(request.remote_ip, current_usuario ?
                               current_usuario.id : nil,
                               request.url, params, 'Sivel2Gen::Caso',
                               @registro.id,  'presentar', '')
@@ -707,7 +722,7 @@ module Sivel2Gen
             show_plantillas
 
             respond_to do |format|
-              format.html { 
+              format.html {
                 render layout: 'application', locals: { caso: @caso }
               }
               format.json {
@@ -741,6 +756,7 @@ module Sivel2Gen
           end
 
           def importa
+            authorize! :update, @registro
             file=params[:file]
             doc = file.read
             docnoko = Nokogiri::XML(doc)
@@ -766,7 +782,7 @@ module Sivel2Gen
                 else
                   @caso.save!
                 end
-              end 
+              end
             end
             redirect_to @caso, notice: "Relato importado!"
           end
@@ -781,183 +797,199 @@ module Sivel2Gen
           end
 
           def lista_params
-            [ 
-              :bienes, 
-              #:bitacora_cambio,
-              :duracion,  
-              :fecha, 
-              :fecha_localizada, 
-              :grconfiabilidad, 
-              :gresclarecimiento, 
-              :grimpunidad, 
-              :grinformacion, 
-              :hora, 
-              :id, 
-              :id_intervalo, 
-              :memo, 
-              :q,
-              :titulo, 
-              :acto_attributes => [
-                :id, :id_presponsable, :id_categoria, 
-                :id_persona, :_destroy
-              ],
-              :anexo_caso_attributes => [
-                :id, 
-                :id_caso,
+            if current_usuario && can?(:update, Sivel2Gen::Caso)
+              [
+                :bienes,
+                #:bitacora_cambio,
+                :duracion,
                 :fecha,
-                :fecha_localizada, 
-                :_destroy,
-                :sip_anexo_attributes => [
-                  :id, :descripcion, :adjunto, :_destroy
-                ]
-              ],
-              :antecedente_ids => [],
-              :caso_etiqueta_attributes => [
-                :fecha, 
-                :fecha_localizada, 
-                :id, 
-                :id_etiqueta, 
-                :id_usuario, 
-                :observaciones, 
-                :_destroy
-              ],
-              :caso_fotra_attributes => [
-                :anexo_caso_id, 
-                :anotacion, 
-                :fecha, 
-                :fecha_localizada, 
-                :id, 
-                :nombre, 
-                :tfuente, 
-                :ubicacionfisica, 
-                :_destroy
-              ],
-              :caso_fuenteprensa_attributes => [
-                :anexo_caso_id, 
-                :clasificacion, 
-                :fecha, 
-                :fecha_localizada, 
-                :fuenteprensa_id, 
-                :id, 
-                :ubicacion, 
-                :ubicacionfisica, 
-                :_destroy
-              ],
-              :caso_presponsable_attributes => [
-                :batallon,
-                :bloque, 
-                :brigada, 
-                :division, 
-                :frente, 
-                :id, 
-                :id_presponsable, 
-                :otro, 
-                :tipo, 
-                :_destroy,
-                :categoria_ids => []
-              ],
-              :combatiente_attributes => [
-                :alias, 
-                :edad, 
-                :id, 
-                :id_filiacion, 
-                :id_organizacion, 
-                :id_profesion, 
-                :id_rangoedad, 
-                :id_resagresion, 
-                :id_sectorsocial, 
-                :id_vinculoestado, 
-                :nombre, 
-                :organizacionarmada,
-                :sexo, 
-                :_destroy, 
-                :antecedente_ids => []
-              ],
-              :contexto_ids => [],
-              :frontera_ids => [],
-              :region_ids => [],
-              :ubicacion_attributes => [
-                :id, 
-                :id_clase, 
-                :id_departamento, 
-                :id_municipio, 
-		:id_pais, 
-                :id_tsitio, 
-                :latitud, 
-                :longitud, 
-                :lugar, 
-                :principal,
-                :sitio, 
-                :_destroy
-              ],
-              :victima_attributes => [
-                :anotaciones,
-                :hijos,
-                :id, 
-                :id_etnia,  
-                :id_filiacion,
-                :id_iglesia,
-                :id_organizacion, 
-                :id_persona, 
-                :id_profesion,
-                :id_rangoedad,
-                :id_sectorsocial,
-                :id_vinculoestado, 
-                :organizacionarmada, 
-                :orientacionsexual, 
-                :_destroy, 
-                :contextovictima_ids => [], 
+                :fecha_localizada,
+                :grconfiabilidad,
+                :gresclarecimiento,
+                :grimpunidad,
+                :grinformacion,
+                :hora,
+                :id,
+                :id_intervalo,
+                :memo,
+                :q,
+                :titulo,
+                :acto_attributes => [
+                  :id, :id_presponsable, :id_categoria,
+                  :id_persona, :_destroy
+                ],
+                :anexo_caso_attributes => [
+                  :id,
+                  :id_caso,
+                  :fecha,
+                  :fecha_localizada,
+                  :_destroy,
+                  :sip_anexo_attributes => [
+                    :id, :descripcion, :adjunto, :_destroy
+                  ]
+                ],
                 :antecedente_ids => [],
-                :persona_attributes => [
-                  :anionac, 
-                  :apellidos, 
-                  :dianac, 
-                  :id, 
-                  :id_pais, 
-                  :id_departamento, 
-                  :id_municipio, 
-                  :id_clase, 
-                  :mesnac, 
-                  :nombres, 
-                  :nacionalde, 
-                  :numerodocumento, 
-                  :sexo, 
-                  :tdocumento_id,
-                  :persona_trelacion1_attributes => [
+                :caso_etiqueta_attributes => [
+                  :fecha,
+                  :fecha_localizada,
+                  :id,
+                  :id_etiqueta,
+                  :id_usuario,
+                  :observaciones,
+                  :_destroy
+                ],
+                :caso_fotra_attributes => [
+                  :anexo_caso_id,
+                  :anotacion,
+                  :fecha,
+                  :fecha_localizada,
+                  :id,
+                  :nombre,
+                  :tfuente,
+                  :ubicacionfisica,
+                  :_destroy
+                ],
+                :caso_fuenteprensa_attributes => [
+                  :anexo_caso_id,
+                  :clasificacion,
+                  :fecha,
+                  :fecha_localizada,
+                  :fuenteprensa_id,
+                  :id,
+                  :ubicacion,
+                  :ubicacionfisica,
+                  :_destroy
+                ],
+                :caso_presponsable_attributes => [
+                  :batallon,
+                  :bloque,
+                  :brigada,
+                  :division,
+                  :frente,
+                  :id,
+                  :id_presponsable,
+                  :otro,
+                  :tipo,
+                  :_destroy,
+                  :categoria_ids => []
+                ],
+                :combatiente_attributes => [
+                  :alias,
+                  :edad,
+                  :id,
+                  :id_filiacion,
+                  :id_organizacion,
+                  :id_profesion,
+                  :id_rangoedad,
+                  :id_resagresion,
+                  :id_sectorsocial,
+                  :id_vinculoestado,
+                  :nombre,
+                  :organizacionarmada,
+                  :sexo,
+                  :_destroy,
+                  :antecedente_ids => []
+                ],
+                :contexto_ids => [],
+                :frontera_ids => [],
+                :region_ids => [],
+                :ubicacion_attributes => [
+                  :id,
+                  :id_clase,
+                  :id_departamento,
+                  :id_municipio,
+                  :id_pais,
+                  :id_tsitio,
+                  :latitud,
+                  :longitud,
+                  :lugar,
+                  :principal,
+                  :sitio,
+                  :_destroy
+                ],
+                :victima_attributes => [
+                  :anotaciones,
+                  :hijos,
+                  :id,
+                  :id_etnia,
+                  :id_filiacion,
+                  :id_iglesia,
+                  :id_organizacion,
+                  :id_persona,
+                  :id_profesion,
+                  :id_rangoedad,
+                  :id_sectorsocial,
+                  :id_vinculoestado,
+                  :organizacionarmada,
+                  :orientacionsexual,
+                  :_destroy,
+                  :contextovictima_ids => [],
+                  :antecedente_ids => [],
+                  :persona_attributes => [
+                    :anionac,
+                    :apellidos,
+                    :dianac,
                     :id,
-                    :id_trelacion,
-                    :_destroy, 
-                    :personados_attributes => [
+                    :id_pais,
+                    :id_departamento,
+                    :id_municipio,
+                    :id_clase,
+                    :mesnac,
+                    :nombres,
+                    :nacionalde,
+                    :numerodocumento,
+                    :sexo,
+                    :tdocumento_id,
+                    :persona_trelacion1_attributes => [
                       :id,
-                      :nombres, 
-                      :apellidos,
-                      :sexo,
-                      :tdocumento_id,
-                      :numerodocumento
+                      :id_trelacion,
+                      :_destroy,
+                      :personados_attributes => [
+                        :id,
+                        :nombres,
+                        :apellidos,
+                        :sexo,
+                        :tdocumento_id,
+                        :numerodocumento
+                      ]
                     ]
                   ]
-                ]
-              ], 
-              :victimacolectiva_attributes => [
-                :id, 
-                :organizacionarmada,
-                :personasaprox, 
-                :_destroy, 
-                :filiacion_ids => [],
-                :grupoper_attributes => [
-                  :anotaciones,
-                  :id, 
-                  :nombre, 
                 ],
-                :organizacion_ids => [],
-                :profesion_ids => [],
-                :rangoedad_ids => [],
-              :sectorsocial_ids => [],
-                :vinculoestado_ids => []
-              ],
-            ]
+                :victimacolectiva_attributes => [
+                  :id,
+                  :organizacionarmada,
+                  :personasaprox,
+                  :_destroy,
+                  :filiacion_ids => [],
+                  :grupoper_attributes => [
+                    :anotaciones,
+                    :id,
+                    :nombre,
+                  ],
+                  :organizacion_ids => [],
+                  :profesion_ids => [],
+                  :rangoedad_ids => [],
+                  :sectorsocial_ids => [],
+                  :vinculoestado_ids => []
+                ],
+              ]
+            elsif current_usuario && can?(:cambiaretiquetas, Sivel2Gen::Caso)
+              [
+                :caso_etiqueta_attributes => [
+                  :fecha,
+                  :fecha_localizada,
+                  :id,
+                  :id_etiqueta,
+                  :id_usuario,
+                  :observaciones,
+                  :_destroy
+                ]
+              ]
+            else
+              []
+            end
           end
-          
+
 
           # Lista blanca de parametros
           def caso_params
@@ -967,7 +999,7 @@ module Sivel2Gen
 
         module ClassMethods
         end
-            
+
       end
     end
   end

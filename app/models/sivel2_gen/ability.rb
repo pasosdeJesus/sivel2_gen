@@ -13,6 +13,10 @@ module Sivel2Gen
 
     ROLES = Sip::Ability::ROLES
 
+    GRUPO_ANALISTA_CASOS = 20
+    GRUPO_OBSERVADOR_CASOS = 21
+
+
     BASICAS_PROPIAS = [
       ['Sivel2Gen', 'actividadoficio'],
       ['Sivel2Gen', 'antecedente'],

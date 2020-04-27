@@ -4,16 +4,16 @@ class Ability  < Sivel2Gen::Ability
 
   # Establece autorizaciones con CanCanCan
   def initialize(usuario = nil)
-    # Sin autenticación puede consultarse información geográfica 
+    # Sin autenticación puede consultarse información geográfica
     can :read, [Sip::Pais, Sip::Departamento, Sip::Municipio, Sip::Clase]
 
-    # La consulta web es publica dependiendo de 
-    if Rails.application.config.x.sivel2_consulta_web_publica  
+    # La consulta web es publica dependiendo de
+    if Rails.application.config.x.sivel2_consulta_web_publica
       can :buscar, Sivel2Gen::Caso
       can :contar, Sivel2Gen::Caso
       can :lista, Sivel2Gen::Caso
-   
-      # API público 
+
+      # API público
       # Mostrar un caso con casos/101
       # Mostrar un caso en XML - HTML con casos/101.xml
       # Mostrar un caso en XML para descarga casos/101.xrlat
@@ -34,7 +34,7 @@ class Ability  < Sivel2Gen::Ability
 
     can :contar, Sip::Ubicacion
     can :nuevo, Sip::Ubicacion
-   
+
     can :nuevo, Sivel2Gen::Combatiente
 
     can :nuevo, Sivel2Gen::Presponsable
@@ -43,32 +43,42 @@ class Ability  < Sivel2Gen::Ability
 
     can :nuevo, Sivel2Gen::Victimacolectiva
     if usuario && usuario.rol then
-      case usuario.rol 
+      case usuario.rol
       when Ability::ROLANALI
         can :read, Heb412Gen::Doc
         can :read, Heb412Gen::Plantilladoc
         can :read, Heb412Gen::Plantillahcm
         can :read, Heb412Gen::Plantillahcr
-        
-        can :manage, Sip::Actorsocial
+
         can :manage, Sip::Bitacora, usuario: { id: usuario.id }
-        can :read, Sip::Bitacora
-        can :manage, Sip::Persona
 
-        can :manage, Sivel2Gen::Acto
-        can :manage, Sivel2Gen::Actocolectivo
-        can :read, Sivel2Gen::Caso
-        can :new, Sivel2Gen::Caso
-        can :nuevo, Sivel2Gen::Caso
-        can [:update, :create, :destroy], Sivel2Gen::Caso
-        can :read, Sivel2Gen::Victima
+        if usuario.sip_grupo &&
+            usuario.sip_grupo.pluck(:id).include?(GRUPO_ANALISTA_CASOS)
+          can :manage, Sip::Actorsocial
+          can :read, Sip::Bitacora
+          can :manage, Sip::Persona
 
+          can :manage, Sivel2Gen::Acto
+          can :manage, Sivel2Gen::Actocolectivo
+          can [:read, :new, :edit, :update, :create, :destroy], Sivel2Gen::Caso
+          can :read, Sivel2Gen::Victima
+        elsif usuario.sip_grupo &&
+          usuario.sip_grupo.pluck(:id).include?(GRUPO_OBSERVADOR_CASOS)
+          can :read, Sip::Actorsocial
+          can :read, Sip::Bitacora, usuario: { id: usuario.id }
+          can :read, Sip::Persona
+
+          can :read, Sivel2Gen::Acto
+          can :read, Sivel2Gen::Actocolectivo
+          can [:read, :edit, :cambiaretiquetas], Sivel2Gen::Caso
+          can :read, Sivel2Gen::Victima
+        end
       when Ability::ROLADMIN
         can :manage, Heb412Gen::Doc
         can :manage, Heb412Gen::Plantilladoc
         can :manage, Heb412Gen::Plantillahcm
         can :manage, Heb412Gen::Plantillahcr
-        
+
         can :manage, Mr519Gen::Formulario
 
         can :manage, Sip::Actorsocial
