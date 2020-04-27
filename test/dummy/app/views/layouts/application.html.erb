@@ -7,17 +7,19 @@
     <% if !current_usuario.nil? %>
       <%= despliega_abajo "Casos" do %>
         <%= opcion_menu "Listado", sivel2_gen.casos_path, desplegable: true %>
-        <%= opcion_menu "Nuevo Caso", sivel2_gen.new_caso_path,
-          desplegable: true %>
-        <%= opcion_menu "Refrescar Listado de Casos", 
-          sivel2_gen.casos_refresca_path,
-          desplegable: true %>
-        <%= opcion_menu "Validar casos", sivel2_gen.validarcasos_path,
+        <% if can?(:new, Sivel2Gen::Caso) %>
+          <%= opcion_menu "Nuevo Caso", sivel2_gen.new_caso_path,
             desplegable: true %>
-        <%= opcion_menu "Buscar Repetidos", sivel2_gen.buscarrepetidos_path,
-          desplegable: true %>
-        <%= opcion_menu "Importar Relatos", 
-          sivel2_gen.casos_importarrelatos_path, desplegable: true %>
+          <%= opcion_menu "Refrescar Listado de Casos", 
+            sivel2_gen.casos_refresca_path,
+            desplegable: true %>
+          <%= opcion_menu "Validar casos", sivel2_gen.validarcasos_path,
+            desplegable: true %>
+          <%= opcion_menu "Buscar Repetidos", sivel2_gen.buscarrepetidos_path,
+            desplegable: true %>
+          <%= opcion_menu "Importar Relatos", 
+            sivel2_gen.casos_importarrelatos_path, desplegable: true %>
+        <% end %>
       <% end %>
       <%= despliega_abajo "Reportes y conteos" do %>
         <%= opcion_menu "Conteo demografía víctimas", 
