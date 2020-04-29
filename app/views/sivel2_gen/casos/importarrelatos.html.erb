@@ -3,14 +3,14 @@
   <%= form_tag importa_casos_path, multipart: true do %>
     <h5>Archivos con relatos</h5>
     <%= file_field_tag :file %>
-    <br>
+    <!--br>
     <h5>Buscar víctimas y grupos en otros casos</h5>
     <div class="form-check">
       <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
       <label class="form-check-label" for="defaultCheck1">
         Intensivo. Requiere memoria y disco proporcional al número de casos en la base.
       </label>
-    </div>
+    </div-->
     <%= submit_tag "Importar" %>
   <% end %>
 </div>      

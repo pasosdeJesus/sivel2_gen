@@ -35,10 +35,11 @@ Sivel2Gen::Engine.routes.draw do
   get '/victimas/nuevo' => 'victimas#nuevo'
   get '/victimascolectivas/nuevo' => 'victimascolectivas#nuevo'
 
-  resources :casos, path_names: { new: 'nuevo', edit: 'edita' }
   resources :casos do
       collection { post :importa }
   end
+  resources :casos, path_names: { new: 'nuevo', edit: 'edita' }
+
   namespace :admin do
     ab=::Ability.new
     ab.tablasbasicas.each do |t|

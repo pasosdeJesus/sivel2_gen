@@ -143,10 +143,20 @@ module Sivel2Gen
 
           require 'active_support/core_ext/hash' 
           def importa(datosent, datossal, menserror, opciones = {})
-            self.fecha = datosent['fecha'] if datosent['fecha']
+            if datosent['fecha'].nil?
+              self.fecha = Date.today
+              menserror << "Falta fecha. "
+            else
+              self.fecha = datosent['fecha']
+            end
             self.hora = datosent['hora'] if datosent['hora']
             self.duracion = datosent['duracion'] if datosent['duracion']
-            self.memo = datosent['hechos'] if datosent['hechos']
+            if datosent['hechos'].nil?
+              self.memo = ''
+              menserror << "Falta descripción de hechos. "
+            else
+              self.memo = datosent['hechos']
+            end
             self.titulo = datosent['titulo'] if datosent['titulo']
             self.save!
             #Importa ubicacion

@@ -203,7 +203,7 @@ module Sivel2Gen
 
           def importa(datosent, datossal, menserror, opciones = {})
             v = datosent[1]
-            def crea_persona(p, v)
+            def crea_persona(p, v, menserror)
               if p['id_persona'].to_i == v['id_persona'].to_i
                 per = Sip::Persona.new
                 if p['nombre'].nil?
@@ -228,32 +228,32 @@ module Sivel2Gen
                   per.dianac = nac[2].to_i if (1..31).include?(nac[2].to_i)
                 end 
                 per.sexo = p['sexo'] if p['sexo']
-                def recorrer_observaciones_p(ele, per)
+                def recorrer_observaciones_p(ele, per, menserror)
                  case ele[0]
                  when 'etnia'
-                   self.id_etnia = Sivel2Gen::Etnia.where(nombre: ele[1]).ids[0]
+                   self.id_etnia = Sivel2Gen::Etnia.where('TRIM(nombre)=?', ele[1]).ids[0]
                  when 'pais'
-                   per.id_pais = Sip::Pais.where(nombre: ele[1]).ids[0]
+                   per.id_pais = Sip::Pais.where('TRIM(nombre)=?', ele[1]).ids[0]
                  when 'departamento'
                    per.id_departamento = Sip::Departamento.
-                     where(nombre: ele[1], id_pais: per.id_pais).ids[0]
+                     where('TRIM(nombre)=?', ele[1]).where(id_pais: per.id_pais).ids[0]
                  when 'municipio'
                    per.id_municipio = Sip::Municipio.
-                     where(nombre: ele[1], id_departamento: per.id_departamento).ids[0]
+                     where('TRIM(nombre)=?', ele[1]).where(id_departamento: per.id_departamento).ids[0]
                  when 'centro_poblado'
                    per.id_clase = Sip::Clase.
-                     where(nombre: ele[1], id_municipio: per.id_municipio).ids[0]
+                     where('TRIM(nombre)=?', ele[1]).where(id_municipio: per.id_municipio).ids[0]
                  end
                 end
                 if p['observaciones']              
                   if p['observaciones'].kind_of?(Array)
                     p['observaciones'].each do |ob|
                       ele = ob.split(/\_([^_]*)$/)
-                      recorrer_observaciones_p(ele, per)
+                      recorrer_observaciones_p(ele, per, menserror)
                     end
                   else 
                     ele = p['observaciones'].split(/\_([^_]*)$/)
-                    recorrer_observaciones_p(ele, per)
+                    recorrer_observaciones_p(ele, per, menserror)
                   end
                 end
                 per.save!
@@ -262,32 +262,66 @@ module Sivel2Gen
             end
             if datosent[0]['persona'].kind_of?(Array)
               datosent[0]['persona'].each do |p|
-                crea_persona(p, v)
+                crea_persona(p, v, menserror)
               end
             else
               p = datosent[0]['persona']
-              crea_persona(p, v)
+              crea_persona(p, v, menserror)
             end
-            self.id_profesion = Sivel2Gen::Profesion.where(nombre: v['ocupacion']).ids[0]
-            self.id_sectorsocial = Sivel2Gen::Sectorsocial.where(nombre: v['sector_condicion']).ids[0]
-            self.id_iglesia = Sivel2Gen::Iglesia.where(nombre: v['iglesia']).ids[0]
-            self.id_organizacion = Sivel2Gen::Organizacion.where(nombre: v['organizacion'].strip).ids[0]
-            def recorrer_observaciones_v(ele)
+            if Sivel2Gen::Profesion.where('TRIM(nombre)=?', v['ocupacion'].strip).count == 1
+              self.id_profesion = Sivel2Gen::Profesion.where('TRIM(nombre)=?', v['ocupacion'].strip).ids[0]
+            else
+              menserror << "En la tabla básica Profesion no existe " +
+                "'#{v['profesion']}'"
+              self.id_profesion = Sivel2Gen::Profesion.where(
+                nombre: 'SIN INFORMACIÓN').ids[0]
+            end
+            if Sivel2Gen::Sectorsocial.where('TRIM(nombre)=?', v['sector_condicion'].strip).count == 1
+              self.id_sectorsocial = Sivel2Gen::Sectorsocial.where('TRIM(nombre)=?', v['sector_condicion'].strip).ids[0]
+            else
+              menserror << "En la tabla básica Sector Social no existe " +
+                "'#{v['sectorsocial']}'"
+              self.id_sectorsocial = Sivel2Gen::Sectorsocial.where(
+                nombre: 'SIN INFORMACIÓN').ids[0]
+            end
+            if Sivel2Gen::Iglesia.where('TRIM(nombre)=?', v['iglesia'].strip).count == 1
+              self.id_iglesia = Sivel2Gen::Iglesia.where('TRIM(nombre)=?', v['iglesia'].strip).ids[0]
+            else
+              menserror << "En la tabla básica Iglesia no existe " +
+                "'#{v['iglesia']}'"
+              self.id_iglesia= Sivel2Gen::Iglesia.where(
+                nombre: 'SIN INFORMACIÓN').ids[0]
+            end
+            if Sivel2Gen::Organizacion.where('TRIM(nombre)=?', v['organizacion'].strip).count == 1
+              self.id_organizacion = Sivel2Gen::Organizacion.where('TRIM(nombre)=?', v['organizacion'].strip).ids[0]
+            else
+              menserror << "En la tabla básica Organización no existe " +
+                "'#{v['organizacion']}'"
+              self.id_organizacion = Sivel2Gen::Organizacion.where(
+                nombre: 'SIN INFORMACIÓN').ids[0]
+            end
+
+            def recorrer_observaciones_v(ele, menserror)
               case ele[0]
               when 'filiacion'
-                self.id_filiacion = Sivel2Gen::Filiacion.
-                  where(nombre: ele[1].strip).ids[0]
+                if Sivel2Gen::Filiacion.where('TRIM(nombre)=?', ele[1].strip).count ==1
+                  self.id_filiacion = Sivel2Gen::Filiacion.
+                    where('TRIM(nombre)=?', ele[1].strip).ids[0]
+                else
+                  menserror << "Tabla básica Filiación no tiene '#{ele[1]}'. "
+                end
               when 'vinculoestado'
                 self.id_vinculoestado = Sivel2Gen::Vinculoestado.
-                  where(nombre: ele[1]).ids[0]
+                  where('TRIM(nombre)=?', ele[1]).ids[0]
               when 'organizacion_armada'
-                if ele[1].to_i == 0
-                  self.organizacionarmada = Sivel2Gen::Presponsable.
-                    where(nombre: 'SIN INFORMACIÓN').ids[0]
-                else 
-                  self.organizacionarmada = Sivel2Gen::Presponsable.
-                    find(id: ele[1].to_i).id
-                end
+                # Debería ser referencia interna en archivo XRLAT
+                # if ele[1].to_i == 0
+                # self.organizacionarmada = Sivel2Gen::Presponsable.
+                #   where('TRIM(nombre)=?', 'SIN INFORMACIÓN').ids[0]
+                #elsif Sivel2Gen::Presponsable.where(id: ele[1]).count
+                #  self.organizacionarmada = Sivel2Gen::Presponsable.
+                #    find(id: ele[1].to_i).id
+                #end
               when 'rangoedad'
                 self.id_rangoedad = Sivel2Gen::Rangoedad.
                   where(rango: ele[1]).ids[0]
@@ -300,11 +334,11 @@ module Sivel2Gen
             if v['observaciones'].kind_of?(Array)
               v['observaciones'].each do |ob|
                 ele = ob.split(/\_([^_]*)$/)
-                recorrer_observaciones_v(ele)
+                recorrer_observaciones_v(ele, menserror)
               end
             else
               ele = v['observaciones'].split(/\_([^_]*)$/)
-              recorrer_observaciones_v(ele)
+              recorrer_observaciones_v(ele, menserror)
             end
             self.save!
           end

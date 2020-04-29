@@ -845,7 +845,9 @@ module Sivel2Gen
 
           # Configuración común o restricciones entre acciones
           def set_caso
-            @registro = @caso = Caso.find(params[:id].to_i)
+            if params[:id] && params[:id].to_i > 0
+              @registro = @caso = Caso.find(params[:id].to_i)
+            end
             @caso.current_usuario = current_usuario
           end
 

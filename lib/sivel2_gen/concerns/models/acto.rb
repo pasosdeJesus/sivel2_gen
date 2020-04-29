@@ -29,7 +29,11 @@ module Sivel2Gen
               cate = d['agresion_particular'].split(" ")
               self.id_categoria = cate[-1].tr('()', '').to_i
               self.id_persona = victimas[d['id_victima_individual']]
-              self.save!          
+              if self.save
+                self.save!          
+              else
+                menserror << "No pudo crearse acto"
+              end
             end
           end
         end
