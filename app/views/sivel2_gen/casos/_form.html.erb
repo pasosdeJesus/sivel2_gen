@@ -6,7 +6,8 @@
     $(document).ready(function() {
       window.sivel2_enviarFichaCasoCada60()  ;
     });
-  </script-->
+    </script-->
+    <% @pestanas_formulariocaso = controller.pestanas_formulariocaso %>
   <%= simple_form_for @caso, 
     url: sivel2_gen.casos_path(@caso).sub(/\./,"/"), 
     html: { class: 'form-horizontal' } do |f| 
@@ -37,8 +38,9 @@
             <% idancla = Mr519Gen::ApplicationHelper.nombre_a_nombreinterno(p[:parcial]) %>
             <div role="tabpanel" class="tab-pane fade <%= cac %>" id="<%= idancla %>" > 
               <% if p[:parcial].starts_with?('Formulario::') %>
+                <% #byebug %>
                 <%= f.simple_fields_for :respuestafor, 
-                  f.object.respuestafor.joins(:formulario).where('mr519_gen_formulario.nombre = ?', p[:parcial][12..-1]) do |r| %>
+                  f.object.respuestafor.joins(:formulario).where('mr519_gen_formulario.nombreinterno = ?', p[:parcial][12..-1]) do |r| %>
                   <%= render partial: 'mr519_gen/encuestasusuario/campo_valorcampo', locals: {f: r}  %>
                 <% end %>
               <% else %>

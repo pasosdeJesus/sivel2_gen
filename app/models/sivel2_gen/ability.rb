@@ -202,7 +202,7 @@ module Sivel2Gen
       can :read, [Sip::Pais, Sip::Departamento, Sip::Municipio, Sip::Clase]
 
       # La consulta web es publica dependiendo de
-      if Rails.application.config.x.sivel2_consulta_web_publica
+      if usuario || Rails.application.config.x.sivel2_consulta_web_publica
         can :buscar, Sivel2Gen::Caso
         can :contar, Sivel2Gen::Caso
         can :lista, Sivel2Gen::Caso
@@ -255,6 +255,7 @@ module Sivel2Gen
             can :manage, Sivel2Gen::Acto
             can :manage, Sivel2Gen::Actocolectivo
             can [:read, :new, :edit, :update, :create, :destroy], Sivel2Gen::Caso
+            cannot :solocambiaretiquetas, Sivel2Gen::Caso
             can :read, Sivel2Gen::Victima
           elsif usuario.sip_grupo &&
             usuario.sip_grupo.pluck(:id).include?(GRUPO_OBSERVADOR_CASOS)
@@ -264,7 +265,8 @@ module Sivel2Gen
 
             can :read, Sivel2Gen::Acto
             can :read, Sivel2Gen::Actocolectivo
-            can [:read, :edit, :cambiaretiquetas], Sivel2Gen::Caso
+            can [:read, :edit, :solocambiaretiquetas, :update], Sivel2Gen::Caso
+            cannot [:new, :create], Sivel2Gen::Caso
             can :read, Sivel2Gen::Victima
           end
         when Ability::ROLADMIN
@@ -283,6 +285,7 @@ module Sivel2Gen
           can :manage, Sivel2Gen::Acto
           can :manage, Sivel2Gen::Actocolectivo
           can :manage, Sivel2Gen::Caso
+          cannot :solocambiaretiquetas, Sivel2Gen::Caso
           can :read, Sivel2Gen::Victima
 
           can :manage, Usuario

@@ -443,11 +443,14 @@ module Sivel2Gen
             render 'mapaosm', layout: 'application'
           end
 
-          def self.asegura_camposdinamicos(caso, current_usuario_id)
-          end
 
           def pestanas_formulariocaso
-            if current_usuario && can?(:update, Sivel2Gen::Caso)
+            #byebug
+            if current_usuario && can?(:solocambiaretiquetas, Sivel2Gen::Caso)
+              [
+                { titulo: 'Etiquetas', parcial: 'etiquetas'},
+              ]
+            elsif current_usuario && can?(:update, Sivel2Gen::Caso)
               [
                 { titulo: 'Datos Básicos', parcial: 'basicos'},
                 { titulo: 'Ubicación', parcial: 'ubicaciones'},
@@ -455,7 +458,11 @@ module Sivel2Gen
                 { titulo: 'Otras Fuentes', parcial: 'fotras'},
                 { titulo: 'Contexto', parcial: 'contextos'},
                 { titulo: 'Presuntos Responsables', parcial: 'presponsables'},
-                { titulo: 'Víctimas', parcial: 'victimas'},
+                { titulo: 'Víctimas', parcial: 'victimas'}] +
+              (can?(:pestanadesaparicion, Sivel2Gen::Caso) ?
+               [{titulo: 'Desaparición', parcial: 'Formulario::desaparicion'}]:
+               []) +
+              [
                 { titulo: 'Víctimas Colectivas', parcial: 'victimascolectivas'},
                 { titulo: 'Combatientes', parcial: 'combatientes'},
                 { titulo: 'Actos', parcial: 'actos'},
@@ -464,19 +471,66 @@ module Sivel2Gen
                 { titulo: 'Etiquetas', parcial: 'etiquetas'},
                 { titulo: 'Evaluación', parcial: 'evaluacion'}
               ]
-            elsif current_usuario && can?(:cambiaretiquetas, Sivel2Gen::Caso)
-              [
-                { titulo: 'Etiquetas', parcial: 'etiquetas'},
-              ]
-            else
+           else
               []
+            end
+          end
+
+          def self.asegura_camposdinamicos(caso, current_usuario_id, pestanas)
+            vfid = []  # ids de formularios que deben presentarse
+            pestanas.each do |p|
+              if p[:parcial].starts_with?('Formulario::')
+                mf = Mr519Gen::Formulario.where(nombreinterno: p[:parcial][12..-1])
+                #byebug
+                if mf.count == 1
+                  f = mf.take
+                  vfid << f.id
+                  aw = caso.respuestafor.where(formulario_id: f.id) 
+                  if  aw.count == 0
+                    rf = Mr519Gen::Respuestafor.create(
+                      formulario_id: f.id,
+                      fechaini: Date.today,
+                      fechacambio: Date.today)
+                    cr = Sivel2Gen::CasoRespuestafor.create(
+                      caso_id: caso.id,
+                      respuestafor_id: rf.id,
+                    )
+                  else # aw.count == 1
+                    r = aw.take
+                    cr = Sivel2Gen::CasoRespuestafor.where(
+                      caso_id: caso.id,
+                      respuestafor_id: r.id,
+                    ).take
+                  end
+                  Mr519Gen::ApplicationHelper::asegura_camposdinamicos(
+                    cr, current_usuario_id)
+                end
+              end
+            end
+            # Elimina sobrantes
+            if vfid.count > 0
+              cr = Sivel2Gen::CasoRespuestafor.
+                where(caso_id: caso.id).
+                joins(:respuestafor).
+                where("formulario_id NOT IN (#{vfid.join(', ')})")
+            else #vfid.count == 0
+              cr = Sivel2Gen::CasoRespuestafor.
+                where(caso_id: caso.id)
+            end
+            if cr.count > 0
+              rb = cr.map(&:respuestafor_id)
+              Sivel2Gen::CasoRespuestafor.connection.
+                execute("DELETE FROM sivel2_gen_caso_respuestafor
+                        WHERE caso_id=#{caso.id} 
+                        AND respuestafor_id IN (#{rb.join(', ')})")
+              Mr519Gen::Respuestafor.where(id: rb).destroy_all
             end
           end
 
           # GET /casos/1/edit
           def edit
-            @pestanas_formulariocaso = pestanas_formulariocaso
-            self.class.asegura_camposdinamicos(@registro, current_usuario.id)
+            self.class.asegura_camposdinamicos(@registro, current_usuario.id,
+                                              pestanas_formulariocaso)
             if registrar_en_bitacora
               Sip::Bitacora.a(request.remote_ip, current_usuario.id,
                               request.url, params, 'Sivel2Gen::Caso',
@@ -656,8 +710,7 @@ module Sivel2Gen
 
           def update
             if cannot?(:update, Sivel2Gen::Caso) &&
-                cannot?(:update, @registro) &&
-                cannot?(:cambiaretiquetas, @registro)
+                cannot?(:update, @registro)
               authorize! :update, @registro
               return
             end
@@ -797,7 +850,19 @@ module Sivel2Gen
           end
 
           def lista_params
-            if current_usuario && can?(:update, Sivel2Gen::Caso)
+            if current_usuario && can?(:solocambiaretiquetas, Sivel2Gen::Caso)
+              [
+                :caso_etiqueta_attributes => [
+                  :fecha,
+                  :fecha_localizada,
+                  :id,
+                  :id_etiqueta,
+                  :id_usuario,
+                  :observaciones,
+                  :_destroy
+                ]
+              ]
+            elsif current_usuario && can?(:update, Sivel2Gen::Caso)
               [
                 :bienes,
                 #:bitacora_cambio,
@@ -893,20 +958,28 @@ module Sivel2Gen
                 :contexto_ids => [],
                 :frontera_ids => [],
                 :region_ids => [],
-                :ubicacion_attributes => [
+                respuestafor_attributes: [
                   :id,
-                  :id_clase,
-                  :id_departamento,
-                  :id_municipio,
-                  :id_pais,
-                  :id_tsitio,
-                  :latitud,
-                  :longitud,
-                  :lugar,
-                  :principal,
-                  :sitio,
-                  :_destroy
+                  valorcampo_attributes: [ 
+                    :valor,
+                    :campo_id,
+                    :id ] + 
+                    [:valor_ids => []]
                 ],
+                :ubicacion_attributes => [
+                    :id,
+                    :id_clase,
+                    :id_departamento,
+                    :id_municipio,
+                    :id_pais,
+                    :id_tsitio,
+                    :latitud,
+                    :longitud,
+                    :lugar,
+                    :principal,
+                    :sitio,
+                    :_destroy
+                  ],
                 :victima_attributes => [
                   :anotaciones,
                   :hijos,
@@ -972,18 +1045,6 @@ module Sivel2Gen
                   :sectorsocial_ids => [],
                   :vinculoestado_ids => []
                 ],
-              ]
-            elsif current_usuario && can?(:cambiaretiquetas, Sivel2Gen::Caso)
-              [
-                :caso_etiqueta_attributes => [
-                  :fecha,
-                  :fecha_localizada,
-                  :id,
-                  :id_etiqueta,
-                  :id_usuario,
-                  :observaciones,
-                  :_destroy
-                ]
               ]
             else
               []
