@@ -58,17 +58,23 @@ function presentar_mapaosm() {
   };
   controlCapas = L.control.layers(capasBase, capasSuperpuestas, {position: 'topleft'});
 
-  // mapa = L.mapbox.map('mapa_osm', null, {zoomControl: false, minZoom: 2})
+  // Con Mapbox sería: mapa = L.mapbox.map('mapa_osm', null, {zoomControl: false, minZoom: 2})
   mapa = L.map('mapa_osm', {zoomControl: false, minZoom: 2})
-  //  .addLayer(mapboxTiles)
+    //  .addLayer(mapboxTiles) seria con Mapbox
     .addLayer(osmBaldosas)
     .addControl(filtro)
     .addControl(L.control.zoom({position:'topleft'}))
     .setView([4.6682, -74.071], 6)
-  //  .addControl(L.mapbox.geocoderControl('mapbox.places'))
-    .addControl(controlCapas)
-    .addControl(agregaCapaBtn)
-    .addControl(descargamapaBtn);
+    .addControl(controlCapas);
+
+
+  if (L.DomUtil.get('agregaCapa') != null) {
+    mapa.addControl(agregaCapaBtn)
+  }
+  if (L.DomUtil.get('descargaCapa') != null) {
+    mapa.addControl(descargamapaBtn);
+  } 
+
   L.control.scale({imperial: false}).addTo(mapa);
 
   //Crea los clusers de casos y agrega casos
