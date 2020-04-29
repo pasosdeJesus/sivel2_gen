@@ -1,3 +1,3 @@
 module Sivel2Gen
-  VERSION = "2.0b10"
+  VERSION = "2.0b11"
 end
