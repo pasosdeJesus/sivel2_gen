@@ -46,13 +46,7 @@ module Sivel2Gen
 
     def tablasbasicas
       r = (Sip::Ability::BASICAS_PROPIAS - 
-           [['Sip', 'oficina']]
-          ) + BASICAS_PROPIAS - [
-            ['Sivel2Gen', 'actividadoficio'],
-            ['Sivel2Gen', 'escolaridad'],
-            ['Sivel2Gen', 'estadocivil'],
-            ['Sivel2Gen', 'maternidad']
-          ]
+           [['Sip', 'oficina']]) + BASICAS_PROPIAS 
       return r
     end
 
