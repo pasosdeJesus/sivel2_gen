@@ -158,7 +158,7 @@ Analista(s):
   casousuarios = Sivel2Gen::CasoUsuario.
   where(id_caso: @caso.id).order(:fechainicio).each do |us| %>
   <% if !presentados.include?(us.id_usuario) %>
-    <% if Sip::Usuario.where(id: us.id_usuario) == 1 %> 
+    <% if Sip::Usuario.where(id: us.id_usuario).count == 1 %> 
       <%= Sip::Usuario.where(id: us.id_usuario)[0].nombre %> 
     <% end %>
     <%= us.fechainicio %> 
