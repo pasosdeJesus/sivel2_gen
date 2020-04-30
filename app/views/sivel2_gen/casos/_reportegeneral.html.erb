@@ -152,17 +152,20 @@ Presunto Responsable:
 <p>
 Analista(s):
 <% 
-  # Se presenta una sola vez cada usuario que ha tocado el caso
-  # con la fecha de la primera vez que lo tocó
+  # Se presenta una sola vez cada usuario que ha tocado, creado o
+  # editado el caso con la fecha de la primera vez que lo tocó
   presentados = []
-  casousuarios = Sivel2Gen::CasoUsuario.
-  where(id_caso: @caso.id).order(:fechainicio).each do |us| %>
-  <% if !presentados.include?(us.id_usuario) %>
-    <% if Sip::Usuario.where(id: us.id_usuario).count == 1 %> 
-      <%= Sip::Usuario.where(id: us.id_usuario)[0].nombre %> 
+  bitacora = Sip::Bitacora.
+    where(modelo: 'Sivel2Gen::Caso').
+    where(modelo_id: @caso.id).
+    where("operacion IN ('iniciar', 'editar', 'tocar')").
+    order(:fecha).each do |b| %>
+  <% if !presentados.include?(b.usuario_id) %>
+    <% if Sip::Usuario.where(id: b.usuario_id).count == 1 %> 
+      <%= Sip::Usuario.where(id: b.usuario_id)[0].nusuario %> 
     <% end %>
-    <%= us.fechainicio %> 
-    <% presentados << us.id_usuario %>
+    <%= b.fecha %> 
+    <% presentados << b.usuario_id %>
   <% end %>
 <% end %>
 </p>

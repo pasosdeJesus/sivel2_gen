@@ -25,7 +25,7 @@
             <% Sip::Bitacora.where(
               modelo: 'Sivel2Gen::Caso', 
               modelo_id: @caso.id, 
-              operacion: ['iniciar', 'actualizar']).order(:fecha).each do |r| %>
+              operacion: ['tocar', 'iniciar', 'actualizar']).order(:fecha).each do |r| %>
               <tr>
                 <th scope="row"><%= r.fecha %></th>
                 <td><%= r.usuario_id ? Usuario.find(r.usuario_id).nusuario : ''  %></td>
