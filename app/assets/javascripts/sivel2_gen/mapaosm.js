@@ -34,18 +34,6 @@ function presentar_mapaosm() {
     return this._div;
   };
 
-  var descargamapaBtn = L.control({position:'bottomleft'});
-  descargamapaBtn.onAdd = function (mapa){
-    this._div = L.DomUtil.get('descargaMapa');
-    return this._div;
-  };
-
-  var agregaCapaBtn = L.control({position: 'bottomleft'});
-  agregaCapaBtn.onAdd = function (mapa) {
-    this._div = L.DomUtil.get('agregaCapa');
-    return this._div;
-  };
-
   var capasBase= {
     //  "Mapbox" : mapboxTiles,
     "OpenStreetMap" : osmBaldosas,
@@ -56,24 +44,44 @@ function presentar_mapaosm() {
   var capasSuperpuestas= {
     "Transporte (OpenPtmap)" : L.tileLayer('http://www.openptmap.org/tiles/{z}/{x}/{y}.png'),
   };
-  controlCapas = L.control.layers(capasBase, capasSuperpuestas, {position: 'topleft'});
+  controlCapas = L.control.layers(capasBase, capasSuperpuestas, 
+    {position: 'topleft'});
 
-  // Con Mapbox sería: mapa = L.mapbox.map('mapa_osm', null, {zoomControl: false, minZoom: 2})
-  mapa = L.map('mapa_osm', {zoomControl: false, minZoom: 2})
+
+  if (L.DomUtil.get('agregaCapa') != null && 
+    L.DomUtil.get('descargaCapa') != null) {
+    // Con Mapbox sería: mapa = L.mapbox.map('mapa_osm', null, {zoomControl: false, minZoom: 2})
+    var descargamapaBtn = L.control({position:'bottomleft'});
+    descargamapaBtn.onAdd = function (mapa){
+      this._div = L.DomUtil.get('descargaMapa');
+      return this._div;
+    };
+
+    var agregaCapaBtn = L.control({position: 'bottomleft'});
+    agregaCapaBtn.onAdd = function (mapa) {
+      this._div = L.DomUtil.get('agregaCapa');
+      return this._div;
+    };
+
+    mapa = L.map('mapa_osm', {zoomControl: false, minZoom: 2})
     //  .addLayer(mapboxTiles) seria con Mapbox
-    .addLayer(osmBaldosas)
-    .addControl(filtro)
-    .addControl(L.control.zoom({position:'topleft'}))
-    .setView([4.6682, -74.071], 6)
-    .addControl(controlCapas);
-
-
-  if (L.DomUtil.get('agregaCapa') != null) {
-    mapa.addControl(agregaCapaBtn)
+      .addLayer(osmBaldosas)
+      .addControl(filtro)
+      .addControl(L.control.zoom({position:'topleft'}))
+      .setView([4.6682, -74.071], 6)
+      .addControl(controlCapas)
+      .addControl(agregaCapaBtn)
+      .addControl(descargamapaBtn);
+  } else {
+    mapa = L.map('mapa_osm', {zoomControl: false, minZoom: 2})
+      .addLayer(osmBaldosas)
+      .addControl(filtro)
+      .addControl(L.control.zoom({position:'topleft'}))
+      .setView([4.6682, -74.071], 6)
+      .addControl(controlCapas);
   }
-  if (L.DomUtil.get('descargaCapa') != null) {
-    mapa.addControl(descargamapaBtn);
-  } 
+
+
 
   L.control.scale({imperial: false}).addTo(mapa);
 

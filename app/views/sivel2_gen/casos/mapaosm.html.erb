@@ -92,17 +92,16 @@
     </div>
   </div>
 </div>
-<% if current_usuario %>
-<div id="agregaCapa">
-  <button id="agregarCapa" type="button" class="btn btn-primary btn-sm">Agregar capa GeoJSON (&lt;100K)</button>
-</div>
-<% end %>
-<% if current_usuario %>
-<div id="descargaMapa">
-  <button id="descargarMapa" type="button" class="btn btn-primary btn-sm"><a id= "enlaceDescarga">Descargar capa de casos</a></button>
-</div>
-<% end %>
 <div id="mapa_osm"></div>
+<% if current_usuario %>
+  <div id="agregaCapa">
+    <button id="agregarCapa" type="button" class="btn btn-primary btn-sm">Agregar capa GeoJSON (&lt;100K)</button>
+  </div>
+  <div id="descargaMapa">
+    <button id="descargarMapa" type="button" class="btn btn-primary btn-sm"><a id= "enlaceDescarga">Descargar capa de casos</a></button>
+  </div>
+<% end %>
+
 <script>
   presentar_mapaosm()
 </script>
