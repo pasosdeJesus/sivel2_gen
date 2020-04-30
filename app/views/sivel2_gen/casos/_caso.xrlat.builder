@@ -13,7 +13,7 @@ xml.relato do
         xml.id_persona v.persona.id
         xml.nombre v.persona.nombres
         xml.apellido v.persona.apellidos
-        if v.persona.numerodocumento
+        unless v.persona.numerodocumento.nil? || v.persona.numerodocumento.empty?
           xml.docid v.persona.tdocumento.sigla + " " + v.persona.numerodocumento
         end
         xml.fecha_nacimiento v.persona.anionac,"-", v.persona.mesnac.to_s.rjust(2, '0'),"-", v.persona.dianac.to_s.rjust(2, '0')
@@ -115,8 +115,12 @@ xml.relato do
   if caso.acto  
     caso.acto.each do |ac|
       xml.acto do
-        xml.agresion ac.categoria.pconsolidado.clasificacion
-        xml.agresion_particular ac.categoria.nombre + ' ('+ ac.categoria.id.to_s + ')'
+        unless ac.categoria.pconsolidado.nil?
+          xml.agresion ac.categoria.pconsolidado.clasificacion
+        end
+        unless ac.categoria.nombre.nil? || ac.categoria.nombre.empty?
+          xml.agresion_particular ac.categoria.nombre + ' ('+ ac.categoria.id.to_s + ')'
+        end
         xml.id_victima_individual ac.persona.id
         xml.id_presunto_responsable_individual ac.presponsable.id
       end
@@ -126,8 +130,12 @@ xml.relato do
   xml.comment! "Actos con Victimas Colectivas"
   caso.actocolectivo.each do |acol|
     xml.acto do
-      xml.agresion acol.categoria.pconsolidado.clasificacion
-      xml.agresion_particular acol.categoria.nombre + ' ('+ acol.categoria.id.to_s + ')'
+      unless acol.categoria.pconsolidado.nil?
+        xml.agresion acol.categoria.pconsolidado.clasificacion
+      end
+      unless acol.categoria.nombre.nil? || acol.categoria.nombre.empty?
+        xml.agresion_particular acol.categoria.nombre + ' ('+ acol.categoria.id.to_s + ')'
+      end
       xml.id_grupo_victima acol.grupoper.id
       xml.id_presunto_grupo_responsable acol.presponsable.id
     end
