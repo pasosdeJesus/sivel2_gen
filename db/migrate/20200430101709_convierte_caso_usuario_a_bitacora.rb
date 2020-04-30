@@ -5,7 +5,7 @@ class ConvierteCasoUsuarioABitacora < ActiveRecord::Migration[6.0]
         operacion, detalle, created_at, updated_at)
       (SELECT fechainicio, id_usuario, 'Sivel2Gen::Caso', id_caso, 
         'tocar', '{"origen": "caso_usuario"}', NOW(), NOW() 
-        FROM sivel2_gen_caso_usuario);
+        FROM sivel2_gen_caso_usuario WHERE id_usuario IN (SELECT id FROM usuario));
     SQL
   end
 
