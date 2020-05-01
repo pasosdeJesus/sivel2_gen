@@ -16,10 +16,16 @@ module Sivel2Gen
     end
 
     test 'importa xml de sivel12 de prueba ' do
-      file = File.open("test/dummy/public/relato_sivel12.xrlat") 
+      #file = File.open("test/dummy/public/relato_sivel12.xrlat") 
+      file = File.open("test/dummy/public/malo.xrlat") 
+      #file = File.open("test/dummy/public/varioscasos/nyn20929.xrlat")
       doc = file.read
-      docnoko = Nokogiri::XML(doc)
-      verifica_dtd(doc)
+      old_noko = Nokogiri::XML(doc)
+      docnoko = Nokogiri::XML('<relatos/>')
+      docnoko.create_internal_subset("relatos", nil, "test/dummy/public/relatos-098.dtd")
+      docnoko.at('relatos').children = old_noko.at('relatos').children
+      
+      verifica_dtd(docnoko.to_xml) #Falla si no sigue el DTDT
       docnoko.search('observaciones').each do |obs|
         obs.content = obs['tipo'] + '_' + obs.text
       end
@@ -30,21 +36,20 @@ module Sivel2Gen
       if docnoko.search('relato').count == 1
         relimportado['relatos'].each do |ca|
           if @caso.importa(ca[1], datossal, menserror, {}).nil?
-            error
+            assert_not @caso.save, 'error en el documento'
           else
-            @caso.save!
+            assert @caso.save!
           end
         end
       else
         relimportado['relatos']['relato'].each do |ca|
           if @caso.importa(ca, datossal, menserror, {}).nil?
-            error
+            assert_not @caso.save, 'error en el documento'
           else
-            @caso.save!
+            assert @caso.save!
           end
         end
       end
-      #file = guarda_xml(@response.body)
       @caso.destroy
     end
 
