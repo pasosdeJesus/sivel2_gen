@@ -158,7 +158,7 @@ Analista(s):
   bitacora = Sip::Bitacora.
     where(modelo: 'Sivel2Gen::Caso').
     where(modelo_id: @caso.id).
-    where("operacion IN ('iniciar', 'editar', 'tocar')").
+    where("operacion IN ('iniciar', 'actualizar', 'tocar')").
     order(:fecha).each do |b| %>
   <% if !presentados.include?(b.usuario_id) %>
     <% if Sip::Usuario.where(id: b.usuario_id).count == 1 %> 
