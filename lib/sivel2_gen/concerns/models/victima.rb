@@ -150,6 +150,36 @@ module Sivel2Gen
             sivel2_gen_victima_presenta(atr)
           end
 
+          #  Scope para filtros no convencionales de vistas automaticas
+          #  En este caso para pconsolidado que puede variar de una base a otra
+          scope :filtrar_alterno, lambda { |otros_params_filtro|
+            r = self
+            opf = otros_params_filtro.permit!.to_h.filter {|l, v|
+              l =~ /^buspconsolidado_[0-9]*/ && (v == 'Si' || v == 'No')
+            }
+
+            opf.each do |l, v|
+              l =~ /^buspconsolidado_([0-9])*/
+              pcon = Sivel2Gen::Pconsolidado.find($1.to_i)
+              lcat = pcon.categoria.map(&:id)
+              case v
+              when 'Si'
+                r = r.where('(sivel2_gen_victima.id_persona,
+                    sivel2_gen_victima.id_caso) IN (
+                    SELECT DISTINCT id_persona, id_caso  FROM 
+                    sivel2_gen_acto AS acto WHERE 
+                        acto.id_categoria IN (?))', lcat)
+              when 'No'
+                r = r.where('(sivel2_gen_victima.id_persona,
+                    sivel2_gen_victima.id_caso) NOT IN (
+                    SELECT DISTINCT id_persona, id_caso  FROM 
+                    sivel2_gen_acto AS acto WHERE 
+                        acto.id_categoria IN (?))', lcat)
+              end
+            end
+            return r
+          }
+
           scope :filtro_fecha_caso_localizadaini, lambda { |f|
             # En realidad no llega localizada
             joins(:caso).where('sivel2_gen_caso.fecha>=?', f)
@@ -162,27 +192,6 @@ module Sivel2Gen
 
           scope :filtro_id_caso, lambda { |i|
             where(id_caso: i)
-          }
-
-          scope :filtro_pconsolidado, lambda { |p|
-            sel = p.split('_')
-            pc = sel[0].to_i
-            op = sel[1]
-            c = Sivel2Gen::Pconsolidado.find(pc)
-            l = c.categoria.map(&:id)
-            case op
-            when 'Todos'
-              joins('JOIN sivel2_gen_acto ON sivel2_gen_victima.id_caso' +
-                    ' = sivel2_gen_acto.id_caso')
-            when 'Si'
-              joins('JOIN sivel2_gen_acto ON sivel2_gen_victima.id_caso' +
-                    ' = sivel2_gen_acto.id_caso')
-                .where('sivel2_gen_acto.id_categoria IN (?)', l)
-            when 'No'
-              joins('JOIN sivel2_gen_acto ON sivel2_gen_victima.id_caso' +
-                    ' = sivel2_gen_acto.id_caso')
-                .where('sivel2_gen_acto.id_categoria NOT IN (?)', l)
-            end
           }
 
           scope :filtro_ubicacion_caso, lambda { |u|
