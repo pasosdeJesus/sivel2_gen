@@ -11,16 +11,11 @@ class EliminaNoUsadas < ActiveRecord::Migration[6.0]
       DROP TABLE IF EXISTS muncoor;
       DROP TABLE IF EXISTS obsoleto_funcionario;
       DROP TABLE IF EXISTS victimao;
-      DROP TABLE IF EXISTS antecedente_combatiente;
       DROP TABLE IF EXISTS categoria_personal;
-      DROP TABLE IF EXISTS combatiente_presponsable;
-      DROP TABLE IF EXISTS combatiente;
       DROP TABLE IF EXISTS departamento_region;
       DROP TABLE IF EXISTS descripcion_frontera;
       DROP TABLE IF EXISTS homonimosim;
       DROP TABLE IF EXISTS p_responsable_agrede_persona;
-      DROP TABLE IF EXISTS resagresion;
-      DROP TABLE IF EXISTS resagresion;
     SQL
   end
 
