@@ -164,7 +164,7 @@ Analista(s):
     <% if Sip::Usuario.where(id: b.usuario_id).count == 1 %> 
       <%= Sip::Usuario.where(id: b.usuario_id)[0].nusuario %> 
     <% end %>
-    <%= b.fecha %> 
+    <%= b.fecha %><br> 
     <% presentados << b.usuario_id %>
   <% end %>
 <% end %>
