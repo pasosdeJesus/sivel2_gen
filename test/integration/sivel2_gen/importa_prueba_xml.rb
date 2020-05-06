@@ -17,7 +17,7 @@ module Sivel2Gen
 
     test 'importa xml de sivel12 de prueba ' do
       #file = File.open("test/dummy/public/relato_sivel12.xrlat") 
-      file = File.open("test/dummy/public/malo.xrlat") 
+      file = File.open("test/dummy/public/relato_sivel12.xrlat") 
       #file = File.open("test/dummy/public/varioscasos/nyn20929.xrlat")
       doc = file.read
       old_noko = Nokogiri::XML(doc)
@@ -25,7 +25,7 @@ module Sivel2Gen
       docnoko.create_internal_subset("relatos", nil, "test/dummy/public/relatos-098.dtd")
       docnoko.at('relatos').children = old_noko.at('relatos').children
       
-      verifica_dtd(docnoko.to_xml) #Falla si no sigue el DTDT
+      verifica_dtd(docnoko.to_xml)
       docnoko.search('observaciones').each do |obs|
         obs.content = obs['tipo'] + '_' + obs.text
       end
