@@ -267,7 +267,7 @@ module Sivel2Gen
                 actocol.importa(datosactos, datossal, menserror, opciones = {})
               end
             end
-            return self
+            return self, menserror
           end
 
           def presenta(atr)

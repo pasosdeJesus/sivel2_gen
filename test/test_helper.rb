@@ -50,6 +50,32 @@ class PruebaIntegracion < ActionDispatch::IntegrationTest
       assert_empty doc.external_subset.validate(doc)
     end
 
+    def importa_relato(docnoko)
+      docnoko.search('observaciones').each do |obs|
+        obs.content = obs['tipo'] + '_' + obs.text
+      end
+      relimportado = Hash.from_xml(docnoko.to_s)
+      datossal = {}
+      menserror= ''
+      @caso = Caso.new
+      if docnoko.search('relato').count == 1
+        relimportado['relatos'].each do |ca|
+          importado= @caso.importa(ca[1], datossal, menserror, {})
+          assert_not importado.nil?
+          unless importado.nil?
+            assert importado[1].empty?, importado[1]
+          end
+        end
+      else
+        relimportado['relatos']['relato'].each do |ca|
+          importado= @caso.importa(ca, datossal, menserror, {})
+          assert_not importado.nil?
+          unless importado.nil?
+            assert importado[1].empty?, importado[1]
+          end
+        end
+      end
+    end  
 end
 
 class ActiveSupport::TestCase

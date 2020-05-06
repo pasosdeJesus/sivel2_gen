@@ -25,32 +25,8 @@ module Sivel2Gen
       docnoko.create_internal_subset("relatos", nil, "test/dummy/public/relatos-098.dtd")
       docnoko.at('relatos').children = old_noko.at('relatos').children
       
-      verifica_dtd(docnoko.to_xml)
-      docnoko.search('observaciones').each do |obs|
-        obs.content = obs['tipo'] + '_' + obs.text
-      end
-      relimportado = Hash.from_xml(docnoko.to_s)
-      datossal = {}
-      menserror= ''
-      @caso = Caso.new
-      if docnoko.search('relato').count == 1
-        relimportado['relatos'].each do |ca|
-          if @caso.importa(ca[1], datossal, menserror, {}).nil?
-            assert_not @caso.save, 'error en el documento'
-          else
-            assert @caso.save!
-          end
-        end
-      else
-        relimportado['relatos']['relato'].each do |ca|
-          if @caso.importa(ca, datossal, menserror, {}).nil?
-            assert_not @caso.save, 'error en el documento'
-          else
-            assert @caso.save!
-          end
-        end
-      end
-      @caso.destroy
+      verifica_dtd(docnoko.to_xml) #Pasa si es validado el dtd
+      importa_relato(docnoko.to_xml) #Pasa si es importado con exito
     end
 
   end

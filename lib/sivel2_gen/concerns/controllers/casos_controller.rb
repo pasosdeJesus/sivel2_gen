@@ -819,27 +819,43 @@ module Sivel2Gen
             relimportado = Hash.from_xml(docnoko.to_s)
             datossal = {}
             menserror= ''
-            @caso = Caso.new
             if docnoko.search('relato').count == 1
               relimportado['relatos'].each do |ca|
-                if @caso.importa(ca[1], datossal, menserror, {}).nil?
+                @caso = Caso.new
+                importado= @caso.importa(ca[1], datossal, menserror, {})
+                if importado.nil?
                   error
+                  #redirect_to casos_path, alert: "Relato No importado!"
                 else
                   @caso.save!
+                  flash[:success] = "Relato importado!"
+                  flash[:error] = importado[1] unless importado[1].empty?
+                  redirect_to @caso
                 end
               end
             else
+              total_importados = 0
+              total_errores = []
               relimportado['relatos']['relato'].each do |ca|
-                if @caso.importa(ca, datossal, menserror, {}).nil?
+                @caso = Caso.new
+                menserror = ''
+                importado= @caso.importa(ca, datossal, menserror, {})
+                if importado.nil?
                   error
                 else
+                  total_importados += 1
                   @caso.save!
+                  error_singular = "En Caso #{@caso.id}: #{importado[1]}"
+                  total_errores.push(error_singular)  unless importado[1].empty?
                 end
               end
+              flash[:success] = "Se importaron #{total_importados} relatos!"
+              unless total_errores.empty?
+                flash[:error]= total_errores.join("\n")
+              end
+              redirect_to @caso
             end
-            redirect_to @caso, notice: "Relato importado!"
           end
-
 
           private
 
