@@ -83,10 +83,12 @@ module Sivel2Gen
                 when 'organizacion_armada'
                   self.personasaprox = Sivel2Gen::Presponsable.where(nombre: ele[1]).ids[0]
                 when 'filiacion'
-                  fv = Sivel2Gen::FiliacionVictimacolectiva.new
-                  fv.id_filiacion = Sivel2Gen::Filiacion.where(nombre: ele[1]).ids[0]
-                  fv.victimacolectiva_id = self.id
-                  fv.save!
+                  if Sivel2Gen::Filiacion.where(nombre: ele[1]).count == 1
+                    fv = Sivel2Gen::FiliacionVictimacolectiva.new
+                    fv.id_filiacion = Sivel2Gen::Filiacion.where(nombre: ele[1]).ids[0]
+                    fv.victimacolectiva_id = self.id
+                    fv.save!
+                  end
                 when 'organizacion'
                   if Sivel2Gen::Organizacion.where(nombre: ele[1]).count == 1
                     org = Sivel2Gen::OrganizacionVictimacolectiva.new
