@@ -63,8 +63,8 @@
     <% end %>
   <% end %>
 </div>
-
-<%= link_to t('.new', :default => t("helpers.links.new")),
-  sivel2_gen.new_caso_path,
-  :class => 'btn btn-primary' 
-%>
+<% if current_usuario && can?(:new, Sivel2Gen::Caso) %>
+  <%= link_to t('.new', :default => t("helpers.links.new")),
+    sivel2_gen.new_caso_path,
+    :class => 'btn btn-primary' %>
+<% end %>
