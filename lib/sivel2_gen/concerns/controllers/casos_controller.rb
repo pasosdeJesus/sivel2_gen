@@ -829,12 +829,22 @@ module Sivel2Gen
                 else
                   @caso.save!
                   flash[:success] = "Relato importado!"
-                  flash[:error] = importado[1] unless importado[1].empty?
+                  unless importado[1].empty?
+                    @etiqueta = Sivel2Gen::CasoEtiqueta.new
+                    @etiqueta.id_caso = @caso.id
+                    @etiqueta.id_etiqueta = Sip::Etiqueta.where(nombre: "ERROR_IMPORTACIÓN").ids[0]
+                    @etiqueta.observaciones = importado[1]
+                    @etiqueta.fecha = Date.today
+                    @etiqueta.id_usuario = current_usuario.id
+                    @etiqueta.save!
+                    flash[:error] = importado[1]
+                  end
                   redirect_to @caso
                 end
               end
             else
               total_importados = 0
+              ids_importados = []
               total_errores = []
               relimportado['relatos']['relato'].each do |ca|
                 @caso = Caso.new
@@ -845,15 +855,26 @@ module Sivel2Gen
                 else
                   total_importados += 1
                   @caso.save!
+                  ids_importados.push(@caso.id)
                   error_singular = "En Caso #{@caso.id}: #{importado[1]}"
-                  total_errores.push(error_singular)  unless importado[1].empty?
+                  unless importado[1].empty?
+                    @etiqueta = Sivel2Gen::CasoEtiqueta.new
+                    @etiqueta.id_caso = @caso.id
+                    @etiqueta.id_etiqueta = Sip::Etiqueta.where(nombre: "ERROR_IMPORTACIÓN").ids[0]
+                    @etiqueta.observaciones = importado[1]
+                    @etiqueta.fecha = Date.today
+                    @etiqueta.id_usuario = current_usuario.id
+                    @etiqueta.save!
+                    total_errores.push(error_singular)               
+                  end
                 end
               end
               flash[:success] = "Se importaron #{total_importados} relatos!"
               unless total_errores.empty?
-                flash[:error]= total_errores.join("\n")
+                flash[:error]= ["Los siguientes errores se han presentado durante la importación y quedarán guardados a través de etiquetas en su respectivo caso: "]
+                flash[:error]<< total_errores
               end
-              redirect_to @caso
+              redirect_to casos_path
             end
           end
 

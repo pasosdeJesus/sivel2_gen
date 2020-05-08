@@ -15,10 +15,10 @@ module Sivel2Gen
       sign_in @current_usuario
     end
 
-    test 'importa xml de sivel12 de prueba ' do
-      #file = File.open("test/dummy/public/relato_sivel12.xrlat") 
+    test 'importa un xml de sivel12 de prueba ' do
       file = File.open("test/dummy/public/relato_sivel12.xrlat") 
       #file = File.open("test/dummy/public/varioscasos/nyn20929.xrlat")
+      #Le asignamos el dtd que debe seguir (098)
       doc = file.read
       old_noko = Nokogiri::XML(doc)
       docnoko = Nokogiri::XML('<relatos/>')
@@ -26,7 +26,8 @@ module Sivel2Gen
       docnoko.at('relatos').children = old_noko.at('relatos').children
       
       verifica_dtd(docnoko.to_xml) #Pasa si es validado el dtd
-      importa_relato(docnoko.to_xml) #Pasa si es importado con exito
+      #Pasa si es importado con exito y pasa de nuevo si es importado pero con errores presentes
+      importa_relato(docnoko.to_xml)    
     end
 
   end
