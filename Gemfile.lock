@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/pasosdeJesus/heb412_gen.git
-  revision: 68048949bb55a25b3de6aef892b1d08b25e992f7
+  revision: 72198b9f3f35404f25a774cb39778d03ac75fbb2
   specs:
     heb412_gen (1.0.b6)
       mr519_gen
@@ -10,7 +10,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/mr519_gen.git
-  revision: e783a1529e20fc2a1d4f8c72bd13ff2ba8b3305c
+  revision: f9bc4b368c164ac2c378183f27e2fae24fb1bb9d
   specs:
     mr519_gen (0.2.0)
       rails (~> 6.0.0.rc1, >= 6.0.0.rc1)
@@ -18,7 +18,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sip.git
-  revision: a74c2ceceedb178187d29afa36ac6ba437a0376b
+  revision: 44f2692e6e2df4f865646042c6b2b0c7a6eab881
   specs:
     sip (2.0.b10)
       cancancan
@@ -156,7 +156,7 @@ GEM
     method_source (1.0.0)
     mime-types (3.3.1)
       mime-types-data (~> 3.2015)
-    mime-types-data (3.2020.0425)
+    mime-types-data (3.2020.0512)
     mimemagic (0.3.5)
     mini_mime (1.0.2)
     mini_portile2 (2.4.0)
