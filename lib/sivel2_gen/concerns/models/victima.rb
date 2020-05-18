@@ -277,37 +277,45 @@ module Sivel2Gen
               p = datosent[0]['persona']
               crea_persona(p, v, menserror)
             end
-            if Sivel2Gen::Profesion.where('TRIM(nombre)=?', v['ocupacion'].strip).count == 1
-              self.id_profesion = Sivel2Gen::Profesion.where('TRIM(nombre)=?', v['ocupacion'].strip).ids[0]
-            else
-              menserror << "En la tabla básica Profesion no existe " +
-                "'#{v['profesion']}'"
-              self.id_profesion = Sivel2Gen::Profesion.where(
-                nombre: 'SIN INFORMACIÓN').ids[0]
+            if v['ocupacion']
+              if Sivel2Gen::Profesion.where('TRIM(nombre)=?', v['ocupacion'].strip).count == 1
+                self.id_profesion = Sivel2Gen::Profesion.where('TRIM(nombre)=?', v['ocupacion'].strip).ids[0]
+              else
+                menserror << "En la tabla básica Profesion no existe " +
+                  "'#{v['profesion']}'"
+                self.id_profesion = Sivel2Gen::Profesion.where(
+                  nombre: 'SIN INFORMACIÓN').ids[0]
+              end
             end
-            if Sivel2Gen::Sectorsocial.where('TRIM(nombre)=?', v['sector_condicion'].strip).count == 1
-              self.id_sectorsocial = Sivel2Gen::Sectorsocial.where('TRIM(nombre)=?', v['sector_condicion'].strip).ids[0]
-            else
-              menserror << "En la tabla básica Sector Social no existe " +
-                "'#{v['sectorsocial']}'"
-              self.id_sectorsocial = Sivel2Gen::Sectorsocial.where(
-                nombre: 'SIN INFORMACIÓN').ids[0]
+            if v['sector_condicion']
+              if Sivel2Gen::Sectorsocial.where('TRIM(nombre)=?', v['sector_condicion'].strip).count == 1
+                self.id_sectorsocial = Sivel2Gen::Sectorsocial.where('TRIM(nombre)=?', v['sector_condicion'].strip).ids[0]
+              else
+                menserror << "En la tabla básica Sector Social no existe " +
+                  "'#{v['sector_condicion']}'"
+                self.id_sectorsocial = Sivel2Gen::Sectorsocial.where(
+                  nombre: 'SIN INFORMACIÓN').ids[0]
+              end
             end
-            if Sivel2Gen::Iglesia.where('TRIM(nombre)=?', v['iglesia'].strip).count == 1
-              self.id_iglesia = Sivel2Gen::Iglesia.where('TRIM(nombre)=?', v['iglesia'].strip).ids[0]
-            else
-              menserror << "En la tabla básica Iglesia no existe " +
-                "'#{v['iglesia']}'"
-              self.id_iglesia= Sivel2Gen::Iglesia.where(
-                nombre: 'SIN INFORMACIÓN').ids[0]
+            if v['iglesia']
+              if Sivel2Gen::Iglesia.where('TRIM(nombre)=?', v['iglesia'].strip).count == 1
+                self.id_iglesia = Sivel2Gen::Iglesia.where('TRIM(nombre)=?', v['iglesia'].strip).ids[0]
+              else
+                menserror << "En la tabla básica Iglesia no existe " +
+                  "'#{v['iglesia']}'"
+                self.id_iglesia= Sivel2Gen::Iglesia.where(
+                  nombre: 'SIN INFORMACIÓN').ids[0]
+              end
             end
-            if Sivel2Gen::Organizacion.where('TRIM(nombre)=?', v['organizacion'].strip).count == 1
-              self.id_organizacion = Sivel2Gen::Organizacion.where('TRIM(nombre)=?', v['organizacion'].strip).ids[0]
-            else
-              menserror << "En la tabla básica Organización no existe " +
-                "'#{v['organizacion']}'"
-              self.id_organizacion = Sivel2Gen::Organizacion.where(
-                nombre: 'SIN INFORMACIÓN').ids[0]
+            if v['organizacion']
+              if Sivel2Gen::Organizacion.where('TRIM(nombre)=?', v['organizacion'].strip).count == 1
+                self.id_organizacion = Sivel2Gen::Organizacion.where('TRIM(nombre)=?', v['organizacion'].strip).ids[0]
+              else
+                menserror << "En la tabla básica Organización no existe " +
+                  "'#{v['organizacion']}'"
+                self.id_organizacion = Sivel2Gen::Organizacion.where(
+                  nombre: 'SIN INFORMACIÓN').ids[0]
+              end
             end
 
             def recorrer_observaciones_v(ele, menserror)
