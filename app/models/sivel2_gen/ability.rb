@@ -248,7 +248,7 @@ module Sivel2Gen
 
             can :manage, Sivel2Gen::Acto
             can :manage, Sivel2Gen::Actocolectivo
-            can [:read, :new, :edit, :update, :create, :destroy], Sivel2Gen::Caso
+            can [:read, :new, :edit, :update, :create, :nuevo, :destroy], Sivel2Gen::Caso
             cannot :solocambiaretiquetas, Sivel2Gen::Caso
             can :read, Sivel2Gen::Victima
           elsif usuario.sip_grupo &&
