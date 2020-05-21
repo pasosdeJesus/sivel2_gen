@@ -874,7 +874,7 @@ module Sivel2Gen
                 flash[:error]= ["Los siguientes errores se han presentado durante la importación y quedarán guardados a través de etiquetas en su respectivo caso: "]
                 flash[:error]<< total_errores
               end
-              redirect_to casos_path
+              redirect_to casos_path + '?filtro[codigo]=' + ids_importados.join(' ')
             end
           end
 
