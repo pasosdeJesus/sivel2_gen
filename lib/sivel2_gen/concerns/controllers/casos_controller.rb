@@ -871,10 +871,12 @@ module Sivel2Gen
               end
               flash[:success] = "Se importaron #{total_importados} relatos!"
               unless total_errores.empty?
-                flash[:error]= ["Los siguientes errores se han presentado durante la importación y quedarán guardados a través de etiquetas en su respectivo caso: "]
+              flash[:error]= ["Los siguientes errores se han presentado durante la importación y quedarán guardados a través de etiquetas en su respectivo caso: "]
                 flash[:error]<< total_errores
               end
-              redirect_to casos_path + '?filtro[codigo]=' + ids_importados.join(' ')
+              Conscaso.refresca_conscaso
+              ruta_importados = casos_path + '?filtro[q]=&filtro[codigo]=' + ids_importados.join(' ')
+              redirect_to ruta_importados
             end
           end
 
