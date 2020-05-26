@@ -15,20 +15,34 @@ module Sivel2Gen
       sign_in @current_usuario
     end
 
-    test 'importa un xml de sivel12 de prueba ' do
-      file = File.open("test/dummy/public/relato_sivel12.xrlat") 
-      #file = File.open("test/dummy/public/varioscasos/nyn20929.xrlat")
-      #Le asignamos el dtd que debe seguir (098)
+    test 'importa un xml con un relato de sivel12' do
+      file = File.open("test/dummy/public/un_relato_sivel12.xrlat") 
+      #Le asignamos el dtd que debe seguir (097)
       doc = file.read
       old_noko = Nokogiri::XML(doc)
       docnoko = Nokogiri::XML('<relatos/>')
-      docnoko.create_internal_subset("relatos", nil, "test/dummy/public/relatos-098.dtd")
+      docnoko.create_internal_subset("relatos", nil, "test/dummy/public/relatos-097.dtd")
       docnoko.at('relatos').children = old_noko.at('relatos').children
       
       verifica_dtd(docnoko.to_xml) #Pasa si es validado el dtd
       #Pasa si es importado con exito y pasa de nuevo si es importado pero con errores presentes
       importa_relato(docnoko.to_xml)    
     end
+
+    test 'importa un xml con varios relatos de sivel12' do
+      file = File.open("test/dummy/public/relatos_sivel12.xrlat") 
+      #Le asignamos el dtd que debe seguir (097)
+      doc = file.read
+      old_noko = Nokogiri::XML(doc)
+      docnoko = Nokogiri::XML('<relatos/>')
+      docnoko.create_internal_subset("relatos", nil, "test/dummy/public/relatos-097.dtd")
+      docnoko.at('relatos').children = old_noko.at('relatos').children
+      
+      verifica_dtd(docnoko.to_xml) #Pasa si es validado el dtd
+      #Pasa si es importado con exito y pasa de nuevo si es importado pero con errores presentes
+      importa_relato(docnoko.to_xml)    
+    end
+
 
   end
 end

@@ -56,32 +56,21 @@ class PruebaIntegracion < ActionDispatch::IntegrationTest
       docnoko.search('observaciones').each do |obs|
         obs.content = obs['tipo'] + '_' + obs.text
       end
-      relimportado = Hash.from_xml(docnoko.to_s)
-      datossal = {}
       menserror= ''
-      if docnoko.search('relato').count == 1
-        relimportado['relatos'].each do |ca|
-          @caso = Sivel2Gen::Caso.new
-          importado= @caso.importa(ca[1], datossal, menserror, {})
-          assert_not importado.nil?
-          unless importado.nil?
-           assert importado[1].empty?
-           puts importado[1]
-          end
-          assert @caso.save
+      docnoko.xpath('relatos/relato').each do |relato|
+        datossal = {}
+        relimportado = Hash.from_xml(relato.to_s)
+        @caso = Sivel2Gen::Caso.new
+        importado = @caso.importa(relimportado['relato'], datossal, 
+                                  menserror, {})
+        assert_not importado.nil?
+        unless importado.nil?
+          assert importado[1].empty?, "Falla: #{importado[1]}"
         end
-      else
-        relimportado['relatos']['relato'].each do |ca|
-          @caso = Sivel2Gen::Caso.new
-          importado= @caso.importa(ca, datossal, menserror, {})
-          assert_not importado.nil?
-          unless importado.nil?
-           assert importado[1].empty?, "Falla: #{importado[1]}"
-          end
-          assert @caso.save
-        end
+        assert @caso.save
       end
-    end  
+    end   # importa_relato
+
 end
 
 class ActiveSupport::TestCase
