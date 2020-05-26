@@ -34,7 +34,7 @@
 
 <!ELEMENT observaciones (#PCDATA)>
 <!ATTLIST observaciones
-    tipo CDATA #IMPLIED
+  tipo CDATA #IMPLIED
 >
 <!ELEMENT grupo (id_grupo, nombre_grupo?, sigla?, subgrupo_de?, agresion_sin_vicd*, observaciones*)>
 

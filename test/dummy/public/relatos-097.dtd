@@ -14,7 +14,7 @@
 
 <!ELEMENT hechos (#PCDATA)>
 
-<!ELEMENT persona (id_persona, nombre?, nombre2?, apellido?, apellido2?, cc?, fecha_nacimiento?, sexo?, observaciones*)>
+<!ELEMENT persona (id_persona, nombre?, nombre2?, apellido?, apellido2?, docid?, fecha_nacimiento?, sexo?, observaciones*)>
 
 <!ELEMENT id_persona (#PCDATA)>
 
@@ -26,7 +26,7 @@
 
 <!ELEMENT apellido2 (#PCDATA)>
 
-<!ELEMENT cc (#PCDATA)>
+<!ELEMENT docid (#PCDATA)>
 
 <!ELEMENT fecha_nacimiento (#PCDATA)>
 
@@ -36,7 +36,7 @@
 <!ATTLIST observaciones
   tipo CDATA #IMPLIED
 >
-<!ELEMENT grupo (id_grupo, nombre_grupo?, sigla?, subgrupo_de?, observaciones*)>
+<!ELEMENT grupo (id_grupo, nombre_grupo?, sigla?, subgrupo_de?, agresion_sin_vicd*, observaciones*)>
 
 <!ELEMENT id_grupo (#PCDATA)>
 
@@ -45,6 +45,8 @@
 <!ELEMENT sigla (#PCDATA)>
 
 <!ELEMENT subgrupo_de (#PCDATA)>
+
+<!ELEMENT agresion_sin_vicd (#PCDATA)>
 
 <!ELEMENT victima (id_persona, ocupacion?, sector_condicion?, iglesia?, organizacion?, id_grupo?, estado_tras_hecho?, danio_directo?, danio_indirecto?, personas_dependientes?, observaciones*)>
 
@@ -64,7 +66,7 @@
 
 <!ELEMENT personas_dependientes (#PCDATA)>
 
-<!ELEMENT presunto_responsable_individual (id_persona, id_grupo?, alias?, observaciones*)>
+<!ELEMENT presunto_responsable_individual (id_persona, id_grupo?, alias?, agresion_sin_vicd*, observaciones*)>
 
 <!ELEMENT alias (#PCDATA)>
 
