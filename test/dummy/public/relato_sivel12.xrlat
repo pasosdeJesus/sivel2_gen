@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE relatos SYSTEM "test/dummy/public/relatos-098.dtd">
+<!DOCTYPE relatos SYSTEM "relatos-097.dtd">
 <?xml-stylesheet type="text/xsl" href="xrlat-a-html.xsl"?>
 <relatos><relato>
   <organizacion_responsable>Banco de Datos del CINEP</organizacion_responsable>

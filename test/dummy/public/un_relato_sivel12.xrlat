@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE relatos SYSTEM "relatos-097.dtd">
+<?xml-stylesheet type="text/xsl" href="xrlat-a-html.xsl"?>
+<relatos><relato>
+  <organizacion_responsable>Banco de Datos del CINEP</organizacion_responsable>
+  <derechos>Creative Commons Atribución 2.5 Colombia. http://creativecommons.org/licenses/by/2.5/co/</derechos>
+  <id_relato>901</id_relato>
+  <forma_compartir>publico</forma_compartir>
+  <titulo>ABUSOS DE MILITARES EN SARAVENA</titulo>
+  <hechos>De acuerdo con la denuncia recibida, a las 2:30 de la madrugada, mientras los vecinos de los barrios aledaños a la Plaza de Ferias festejaban la llegada del nuevo año, se presentaron &quot;tres soldados profesionales, cuyos distintivos corresponden a Zavala, Perdomo y un tercero que no portaba distintivo alguno, pertenecientes al Batallón 46 Héroes de Saraguro, de la Brigada Móvil, No. III&quot;.
+Los soldados comenzaron a disparar en repetidas ocasiones, ignorando la presencia de los civiles en la calle y &quot;generando pánico, miedo y zozobra&quot; entre éstos.
+ Asimismo, continúa la fuente, &quot;se acercaron a un grupo de personas, entre ellas varios menores de edad, agrediéndolas verbalmente, encañonando a dos de ellas y amenazando con matarlas&quot;. Expresaron que &quot;después que ellos se fueran, vendrían sus amigos los paramilitares&quot;, que éstos &quot;sí los mataban a todos&quot;, no como ellos que &quot;sólo mataban a tres o cinco&quot;. La denuncia añade que uno de los militares &quot;sacó una granada&quot; y preguntó: &quot;Mi cabo Zabala, ¿se la echamos a este guerrillero en el bolsillo de la camisa para que haga &#039;Bum&#039; o la guardamos?&quot;.
+&quot;A una de las mujeres presentes&quot;, prosigue la denuncia, &quot;le dijeron que &#039;a ella no la mataban, que sólo le cortaban la cabeza para que no pariera más guerrilleritos&#039;. El soldado Perdomo sacó un arma corta, diciendo que con ella hacían los trabajitos especiales&quot;.
+Al momento de retirarse, los militares profirieron más amenazas a los vecinos del sector: &quot;Ahora que nos vamos, vienen mis amigos. Ellos no les van a perdonar, ya que nosotros les perdonamos. Y no los matamos porque tenemos una fiestica especial donde nos invitaron y no podemos llegar tarde&quot;.
+En desarrollo de estos atropellos, de los cuales fueron víctimas varias personas del sector cuyo número no se precisa, lesionaron a un menor de edad con la culata del fusil.
+La denuncia pone de relieve el clima de terror que reina en Saravena desde la llegada de esta Brigada del Ejército, perceptible a través de &quot;la aparición en paredes y muros visibles de letreros alusivos a paramilitares o Autodefensas Unidas de Colombia, AUC (...), comentarios intimidatorios a los habitantes anunciando &#039;que después que ellos se retiren, vendrán los de la motosierra a limpiar la región&#039;&quot;.</hechos>
+  <!-- Victimas personas individuales -->
+  <persona>
+    <id_persona>215499</id_persona>
+    <nombre>N</nombre>
+    <apellido>N</apellido>
+    <sexo>F</sexo>
+  </persona>
+  <persona>
+    <id_persona>215500</id_persona>
+    <nombre>N</nombre>
+    <apellido>N</apellido>
+    <sexo>S</sexo>
+  </persona>
+  <persona>
+    <id_persona>215501</id_persona>
+    <nombre>N</nombre>
+    <apellido>N</apellido>
+    <sexo>S</sexo>
+  </persona>
+  <persona>
+    <id_persona>215502</id_persona>
+    <nombre>N</nombre>
+    <apellido>N</apellido>
+    <sexo>M</sexo>
+  </persona>
+  <!-- Grupos victimizados -->
+  <grupo>
+    <id_grupo>826</id_grupo>
+    <nombre_grupo>POBLACION BARRIOS DE LA PLAZA DE FERIAS</nombre_grupo>
+    <observaciones tipo="anotaciones">NO SE PRECISA NÚMERO DE PERSONAS</observaciones>
+    <observaciones tipo="organizacion_armada">SIN INFORMACIÓN</observaciones>
+    <observaciones tipo="comunidad_vinculoestado">SIN INFORMACIÓN</observaciones>
+    <observaciones tipo="profesion">SIN INFORMACIÓN</observaciones>
+    <observaciones tipo="antecedente">SIN INFORMACIÓN</observaciones>
+    <observaciones tipo="filiacion">SIN INFORMACIÓN</observaciones>
+    <observaciones tipo="organizacion">SIN INFORMACIÓN</observaciones>
+  </grupo>
+  <!-- Presuntos responsables -->
+  <grupo>
+    <id_grupo>830</id_grupo>
+    <nombre_grupo>EJERCITO</nombre_grupo>
+      <agresion_sin_vicd>LESIÓN FÍSICA (13)</agresion_sin_vicd>
+      <agresion_sin_vicd>AMENAZA (15)</agresion_sin_vicd>
+      <agresion_sin_vicd>COLECTIVO AMENAZADO (18)</agresion_sin_vicd>
+      <agresion_sin_vicd>AMENAZA (73)</agresion_sin_vicd>
+      <agresion_sin_vicd>LESIÓN A PERSONA PROTEGIDA (702)</agresion_sin_vicd>
+      <agresion_sin_vicd>COLECTIVO AMENAZADO (706)</agresion_sin_vicd>
+    <observaciones tipo="brigada">MOVIL, No. III</observaciones>
+    <observaciones tipo="batallon">46 &quot;HEROES DE SARAGURO&quot;</observaciones>
+  </grupo>
+  <!-- Victima Individual -->
+  <victima>
+    <id_persona>215499</id_persona>
+    <ocupacion>SIN INFORMACIÓN</ocupacion>
+    <sector_condicion>SIN INFORMACIÓN</sector_condicion>
+    <organizacion>SIN INFORMACIÓN</organizacion>
+    <observaciones tipo="filiacion">SIN INFORMACIÓN</observaciones>
+    <observaciones tipo="vinculoestado">SIN INFORMACIÓN</observaciones>
+    <observaciones tipo="organizacion_armada">SIN INFORMACIÓN</observaciones>
+    <observaciones tipo="rangoedad">SIN INFORMACIÓN</observaciones>
+  </victima>
+  <victima>
+    <id_persona>215500</id_persona>
+    <ocupacion>SIN INFORMACIÓN</ocupacion>
+    <sector_condicion>SIN INFORMACIÓN</sector_condicion>
+    <organizacion>SIN INFORMACIÓN</organizacion>
+    <observaciones tipo="filiacion">SIN INFORMACIÓN</observaciones>
+    <observaciones tipo="vinculoestado">SIN INFORMACIÓN</observaciones>
+    <observaciones tipo="organizacion_armada">SIN INFORMACIÓN</observaciones>
+    <observaciones tipo="rangoedad">SIN INFORMACIÓN</observaciones>
+  </victima>
+  <victima>
+    <id_persona>215501</id_persona>
+    <ocupacion>SIN INFORMACIÓN</ocupacion>
+    <sector_condicion>SIN INFORMACIÓN</sector_condicion>
+    <organizacion>SIN INFORMACIÓN</organizacion>
+    <observaciones tipo="filiacion">SIN INFORMACIÓN</observaciones>
+    <observaciones tipo="vinculoestado">SIN INFORMACIÓN</observaciones>
+    <observaciones tipo="organizacion_armada">SIN INFORMACIÓN</observaciones>
+    <observaciones tipo="rangoedad">SIN INFORMACIÓN</observaciones>
+  </victima>
+  <victima>
+    <id_persona>215502</id_persona>
+    <ocupacion>SIN INFORMACIÓN</ocupacion>
+    <sector_condicion>SIN INFORMACIÓN</sector_condicion>
+    <organizacion>SIN INFORMACIÓN</organizacion>
+    <observaciones tipo="filiacion">SIN INFORMACIÓN</observaciones>
+    <observaciones tipo="vinculoestado">SIN INFORMACIÓN</observaciones>
+    <observaciones tipo="organizacion_armada">SIN INFORMACIÓN</observaciones>
+    <observaciones tipo="rangoedad">SIN INFORMACIÓN</observaciones>
+  </victima>
+  <!-- Presuntos responsables individuales -->
+  <!-- Ubicacion -->
+  <fecha>2001-01-01</fecha>
+  <hora>2:30 AM</hora>
+  <duracion></duracion>
+  <departamento>ARAUCA</departamento>
+  <municipio>SARAVENA</municipio>
+  <centro_poblado>SARAVENA</centro_poblado>
+  <longitud>-71.8529721864769</longitud>
+  <latitud>6.92076444200651</latitud>
+  <!-- Actos con Victimas Individuales -->
+  <acto>
+    <agresion>VIDA</agresion>
+    <agresion_particular>AMENAZA (15)</agresion_particular>
+    <id_victima_individual>215499</id_victima_individual>
+    <id_presunto_grupo_responsable>35</id_presunto_grupo_responsable>
+  </acto>
+  <acto>
+    <agresion>VIDA</agresion>
+    <agresion_particular>AMENAZA (73)</agresion_particular>
+    <id_victima_individual>215499</id_victima_individual>
+    <id_presunto_grupo_responsable>35</id_presunto_grupo_responsable>
+  </acto>
+  <acto>
+    <agresion>VIDA</agresion>
+    <agresion_particular>AMENAZA (15)</agresion_particular>
+    <id_victima_individual>215500</id_victima_individual>
+    <id_presunto_grupo_responsable>35</id_presunto_grupo_responsable>
+  </acto>
+  <acto>
+    <agresion>VIDA</agresion>
+    <agresion_particular>AMENAZA (73)</agresion_particular>
+    <id_victima_individual>215500</id_victima_individual>
+    <id_presunto_grupo_responsable>35</id_presunto_grupo_responsable>
+  </acto>
+  <acto>
+    <agresion>VIDA</agresion>
+    <agresion_particular>AMENAZA (73)</agresion_particular>
+    <id_victima_individual>215501</id_victima_individual>
+    <id_presunto_grupo_responsable>35</id_presunto_grupo_responsable>
+  </acto>
+  <acto>
+    <agresion>VIDA</agresion>
+    <agresion_particular>AMENAZA (15)</agresion_particular>
+    <id_victima_individual>215501</id_victima_individual>
+    <id_presunto_grupo_responsable>35</id_presunto_grupo_responsable>
+  </acto>
+  <acto>
+    <agresion>INTEGRIDAD</agresion>
+    <agresion_particular>LESIÓN A PERSONA PROTEGIDA (702)</agresion_particular>
+    <id_victima_individual>215502</id_victima_individual>
+    <id_presunto_grupo_responsable>35</id_presunto_grupo_responsable>
+  </acto>
+  <acto>
+    <agresion>INTEGRIDAD</agresion>
+    <agresion_particular>LESIÓN FÍSICA (13)</agresion_particular>
+    <id_victima_individual>215502</id_victima_individual>
+    <id_presunto_grupo_responsable>35</id_presunto_grupo_responsable>
+  </acto>
+
+  <!-- Actos con Victimas Colectivas -->
+  <acto>
+    <agresion>COLECTIVO AMENAZADO</agresion>
+    <agresion_particular>COLECTIVO AMENAZADO (18)</agresion_particular>
+    <id_grupo_victima>826</id_grupo_victima>
+    <id_presunto_grupo_responsable>35</id_presunto_grupo_responsable>
+  </acto>
+  <acto>
+    <agresion>COLECTIVO AMENAZADO</agresion>
+    <agresion_particular>COLECTIVO AMENAZADO (706)</agresion_particular>
+    <id_grupo_victima>826</id_grupo_victima>
+    <id_presunto_grupo_responsable>35</id_presunto_grupo_responsable>
+  </acto>
+
+  <!-- Otros -->
+  <observaciones tipo="intervalo">MADRUGADA</observaciones>
+  <observaciones tipo="sitio">BARRIOS ALEDAÑOS A LA PLAZA DE FERIAS</observaciones>
+  <observaciones tipo="tsitio">URBANO</observaciones>
+  <observaciones tipo="contexto">MILITARIZACIÓN; PARAMILITARIZACIÓN</observaciones>
+  <observaciones tipo="antecedente">SIN INFORMACIÓN</observaciones>
+</relato>
+</relatos>
