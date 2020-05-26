@@ -1,0 +1,731 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE relatos SYSTEM "test/dummy/public/relatos-098.dtd">
+<?xml-stylesheet type="text/xsl" href="xrlat-a-html.xsl"?>
+<relatos><relato>
+  <organizacion_responsable>Banco de Datos del CINEP</organizacion_responsable>
+  <derechos>Creative Commons Atribución 2.5 Colombia. http://creativecommons.org/licenses/by/2.5/co/</derechos>
+  <id_relato>901</id_relato>
+  <forma_compartir>publico</forma_compartir>
+  <titulo>ABUSOS DE MILITARES EN SARAVENA</titulo>
+  <hechos>De acuerdo con la denuncia recibida, a las 2:30 de la madrugada, mientras los vecinos de los barrios aledaños a la Plaza de Ferias festejaban la llegada del nuevo año, se presentaron &quot;tres soldados profesionales, cuyos distintivos corresponden a Zavala, Perdomo y un tercero que no portaba distintivo alguno, pertenecientes al Batallón 46 Héroes de Saraguro, de la Brigada Móvil, No. III&quot;.
+Los soldados comenzaron a disparar en repetidas ocasiones, ignorando la presencia de los civiles en la calle y &quot;generando pánico, miedo y zozobra&quot; entre éstos.
+ Asimismo, continúa la fuente, &quot;se acercaron a un grupo de personas, entre ellas varios menores de edad, agrediéndolas verbalmente, encañonando a dos de ellas y amenazando con matarlas&quot;. Expresaron que &quot;después que ellos se fueran, vendrían sus amigos los paramilitares&quot;, que éstos &quot;sí los mataban a todos&quot;, no como ellos que &quot;sólo mataban a tres o cinco&quot;. La denuncia añade que uno de los militares &quot;sacó una granada&quot; y preguntó: &quot;Mi cabo Zabala, ¿se la echamos a este guerrillero en el bolsillo de la camisa para que haga &#039;Bum&#039; o la guardamos?&quot;.
+&quot;A una de las mujeres presentes&quot;, prosigue la denuncia, &quot;le dijeron que &#039;a ella no la mataban, que sólo le cortaban la cabeza para que no pariera más guerrilleritos&#039;. El soldado Perdomo sacó un arma corta, diciendo que con ella hacían los trabajitos especiales&quot;.
+Al momento de retirarse, los militares profirieron más amenazas a los vecinos del sector: &quot;Ahora que nos vamos, vienen mis amigos. Ellos no les van a perdonar, ya que nosotros les perdonamos. Y no los matamos porque tenemos una fiestica especial donde nos invitaron y no podemos llegar tarde&quot;.
+En desarrollo de estos atropellos, de los cuales fueron víctimas varias personas del sector cuyo número no se precisa, lesionaron a un menor de edad con la culata del fusil.
+La denuncia pone de relieve el clima de terror que reina en Saravena desde la llegada de esta Brigada del Ejército, perceptible a través de &quot;la aparición en paredes y muros visibles de letreros alusivos a paramilitares o Autodefensas Unidas de Colombia, AUC (...), comentarios intimidatorios a los habitantes anunciando &#039;que después que ellos se retiren, vendrán los de la motosierra a limpiar la región&#039;&quot;.</hechos>
+  <!-- Victimas personas individuales -->
+  <persona>
+    <id_persona>215499</id_persona>
+    <nombre>N</nombre>
+    <apellido>N</apellido>
+    <sexo>F</sexo>
+  </persona>
+  <persona>
+    <id_persona>215500</id_persona>
+    <nombre>N</nombre>
+    <apellido>N</apellido>
+    <sexo>S</sexo>
+  </persona>
+  <persona>
+    <id_persona>215501</id_persona>
+    <nombre>N</nombre>
+    <apellido>N</apellido>
+    <sexo>S</sexo>
+  </persona>
+  <persona>
+    <id_persona>215502</id_persona>
+    <nombre>N</nombre>
+    <apellido>N</apellido>
+    <sexo>M</sexo>
+  </persona>
+  <!-- Grupos victimizados -->
+  <grupo>
+    <id_grupo>826</id_grupo>
+    <nombre_grupo>POBLACION BARRIOS DE LA PLAZA DE FERIAS</nombre_grupo>
+    <observaciones tipo="anotaciones">NO SE PRECISA NÚMERO DE PERSONAS</observaciones>
+    <observaciones tipo="organizacion_armada">SIN INFORMACIÓN</observaciones>
+    <observaciones tipo="comunidad_vinculoestado">SIN INFORMACIÓN</observaciones>
+    <observaciones tipo="profesion">SIN INFORMACIÓN</observaciones>
+    <observaciones tipo="antecedente">SIN INFORMACIÓN</observaciones>
+    <observaciones tipo="filiacion">SIN INFORMACIÓN</observaciones>
+    <observaciones tipo="organizacion">SIN INFORMACIÓN</observaciones>
+  </grupo>
+  <!-- Presuntos responsables -->
+  <grupo>
+    <id_grupo>830</id_grupo>
+    <nombre_grupo>EJERCITO</nombre_grupo>
+      <agresion_sin_vicd>LESIÓN FÍSICA (13)</agresion_sin_vicd>
+      <agresion_sin_vicd>AMENAZA (15)</agresion_sin_vicd>
+      <agresion_sin_vicd>COLECTIVO AMENAZADO (18)</agresion_sin_vicd>
+      <agresion_sin_vicd>AMENAZA (73)</agresion_sin_vicd>
+      <agresion_sin_vicd>LESIÓN A PERSONA PROTEGIDA (702)</agresion_sin_vicd>
+      <agresion_sin_vicd>COLECTIVO AMENAZADO (706)</agresion_sin_vicd>
+    <observaciones tipo="brigada">MOVIL, No. III</observaciones>
+    <observaciones tipo="batallon">46 &quot;HEROES DE SARAGURO&quot;</observaciones>
+  </grupo>
+  <!-- Victima Individual -->
+  <victima>
+    <id_persona>215499</id_persona>
+    <ocupacion>SIN INFORMACIÓN</ocupacion>
+    <sector_condicion>SIN INFORMACIÓN</sector_condicion>
+    <organizacion>SIN INFORMACIÓN</organizacion>
+    <observaciones tipo="filiacion">SIN INFORMACIÓN</observaciones>
+    <observaciones tipo="vinculoestado">SIN INFORMACIÓN</observaciones>
+    <observaciones tipo="organizacion_armada">SIN INFORMACIÓN</observaciones>
+    <observaciones tipo="rangoedad">SIN INFORMACIÓN</observaciones>
+  </victima>
+  <victima>
+    <id_persona>215500</id_persona>
+    <ocupacion>SIN INFORMACIÓN</ocupacion>
+    <sector_condicion>SIN INFORMACIÓN</sector_condicion>
+    <organizacion>SIN INFORMACIÓN</organizacion>
+    <observaciones tipo="filiacion">SIN INFORMACIÓN</observaciones>
+    <observaciones tipo="vinculoestado">SIN INFORMACIÓN</observaciones>
+    <observaciones tipo="organizacion_armada">SIN INFORMACIÓN</observaciones>
+    <observaciones tipo="rangoedad">SIN INFORMACIÓN</observaciones>
+  </victima>
+  <victima>
+    <id_persona>215501</id_persona>
+    <ocupacion>SIN INFORMACIÓN</ocupacion>
+    <sector_condicion>SIN INFORMACIÓN</sector_condicion>
+    <organizacion>SIN INFORMACIÓN</organizacion>
+    <observaciones tipo="filiacion">SIN INFORMACIÓN</observaciones>
+    <observaciones tipo="vinculoestado">SIN INFORMACIÓN</observaciones>
+    <observaciones tipo="organizacion_armada">SIN INFORMACIÓN</observaciones>
+    <observaciones tipo="rangoedad">SIN INFORMACIÓN</observaciones>
+  </victima>
+  <victima>
+    <id_persona>215502</id_persona>
+    <ocupacion>SIN INFORMACIÓN</ocupacion>
+    <sector_condicion>SIN INFORMACIÓN</sector_condicion>
+    <organizacion>SIN INFORMACIÓN</organizacion>
+    <observaciones tipo="filiacion">SIN INFORMACIÓN</observaciones>
+    <observaciones tipo="vinculoestado">SIN INFORMACIÓN</observaciones>
+    <observaciones tipo="organizacion_armada">SIN INFORMACIÓN</observaciones>
+    <observaciones tipo="rangoedad">SIN INFORMACIÓN</observaciones>
+  </victima>
+  <!-- Presuntos responsables individuales -->
+  <!-- Ubicacion -->
+  <fecha>2001-01-01</fecha>
+  <hora>2:30 AM</hora>
+  <duracion></duracion>
+  <departamento>ARAUCA</departamento>
+  <municipio>SARAVENA</municipio>
+  <centro_poblado>SARAVENA</centro_poblado>
+  <longitud>-71.8529721864769</longitud>
+  <latitud>6.92076444200651</latitud>
+  <!-- Actos con Victimas Individuales -->
+  <acto>
+    <agresion>VIDA</agresion>
+    <agresion_particular>AMENAZA (15)</agresion_particular>
+    <id_victima_individual>215499</id_victima_individual>
+    <id_presunto_grupo_responsable>35</id_presunto_grupo_responsable>
+  </acto>
+  <acto>
+    <agresion>VIDA</agresion>
+    <agresion_particular>AMENAZA (73)</agresion_particular>
+    <id_victima_individual>215499</id_victima_individual>
+    <id_presunto_grupo_responsable>35</id_presunto_grupo_responsable>
+  </acto>
+  <acto>
+    <agresion>VIDA</agresion>
+    <agresion_particular>AMENAZA (15)</agresion_particular>
+    <id_victima_individual>215500</id_victima_individual>
+    <id_presunto_grupo_responsable>35</id_presunto_grupo_responsable>
+  </acto>
+  <acto>
+    <agresion>VIDA</agresion>
+    <agresion_particular>AMENAZA (73)</agresion_particular>
+    <id_victima_individual>215500</id_victima_individual>
+    <id_presunto_grupo_responsable>35</id_presunto_grupo_responsable>
+  </acto>
+  <acto>
+    <agresion>VIDA</agresion>
+    <agresion_particular>AMENAZA (73)</agresion_particular>
+    <id_victima_individual>215501</id_victima_individual>
+    <id_presunto_grupo_responsable>35</id_presunto_grupo_responsable>
+  </acto>
+  <acto>
+    <agresion>VIDA</agresion>
+    <agresion_particular>AMENAZA (15)</agresion_particular>
+    <id_victima_individual>215501</id_victima_individual>
+    <id_presunto_grupo_responsable>35</id_presunto_grupo_responsable>
+  </acto>
+  <acto>
+    <agresion>INTEGRIDAD</agresion>
+    <agresion_particular>LESIÓN A PERSONA PROTEGIDA (702)</agresion_particular>
+    <id_victima_individual>215502</id_victima_individual>
+    <id_presunto_grupo_responsable>35</id_presunto_grupo_responsable>
+  </acto>
+  <acto>
+    <agresion>INTEGRIDAD</agresion>
+    <agresion_particular>LESIÓN FÍSICA (13)</agresion_particular>
+    <id_victima_individual>215502</id_victima_individual>
+    <id_presunto_grupo_responsable>35</id_presunto_grupo_responsable>
+  </acto>
+
+  <!-- Actos con Victimas Colectivas -->
+  <acto>
+    <agresion>COLECTIVO AMENAZADO</agresion>
+    <agresion_particular>COLECTIVO AMENAZADO (18)</agresion_particular>
+    <id_grupo_victima>826</id_grupo_victima>
+    <id_presunto_grupo_responsable>35</id_presunto_grupo_responsable>
+  </acto>
+  <acto>
+    <agresion>COLECTIVO AMENAZADO</agresion>
+    <agresion_particular>COLECTIVO AMENAZADO (706)</agresion_particular>
+    <id_grupo_victima>826</id_grupo_victima>
+    <id_presunto_grupo_responsable>35</id_presunto_grupo_responsable>
+  </acto>
+
+  <!-- Otros -->
+  <observaciones tipo="intervalo">MADRUGADA</observaciones>
+  <observaciones tipo="sitio">BARRIOS ALEDAÑOS A LA PLAZA DE FERIAS</observaciones>
+  <observaciones tipo="tsitio">URBANO</observaciones>
+  <observaciones tipo="contexto">MILITARIZACIÓN; PARAMILITARIZACIÓN</observaciones>
+  <observaciones tipo="antecedente">SIN INFORMACIÓN</observaciones>
+</relato><relato>
+  <organizacion_responsable>Banco de Datos del CINEP</organizacion_responsable>
+  <derechos>Creative Commons Atribución 2.5 Colombia. http://creativecommons.org/licenses/by/2.5/co/</derechos>
+  <id_relato>960</id_relato>
+  <forma_compartir>publico</forma_compartir>
+  <titulo>BARRIO EL CONTENTO</titulo>
+  <hechos>Hombres armados dieron muerte de varios impactos de arma de fuego a una persona, en la Cll. 14 con Av. 13 del barrio El Contento. El hecho se presento hacia las 3:00 am.</hechos>
+  <!-- Victimas personas individuales -->
+  <persona>
+    <id_persona>202981</id_persona>
+    <nombre>JESUS FRANCISCO RONDON DUARTE</nombre>
+    <sexo>M</sexo>
+  </persona>
+  <!-- Grupos victimizados -->
+  <!-- Presuntos responsables -->
+  <grupo>
+    <id_grupo>35</id_grupo>
+    <nombre_grupo>SIN INFORMACIÓN</nombre_grupo>
+      <agresion_sin_vicd>ASESINATO (40)</agresion_sin_vicd>
+  </grupo>
+  <!-- Victima Individual -->
+  <victima>
+    <id_persona>202981</id_persona>
+    <ocupacion>SIN INFORMACIÓN</ocupacion>
+    <sector_condicion>SIN INFORMACIÓN</sector_condicion>
+    <organizacion>SIN INFORMACIÓN</organizacion>
+    <observaciones tipo="filiacion">SIN INFORMACIÓN</observaciones>
+    <observaciones tipo="vinculoestado">SIN INFORMACIÓN</observaciones>
+    <observaciones tipo="organizacion_armada">SIN INFORMACIÓN</observaciones>
+    <observaciones tipo="rangoedad">SIN INFORMACIÓN</observaciones>
+  </victima>
+  <!-- Presuntos responsables individuales -->
+  <!-- Ubicacion -->
+  <fecha>2001-01-01</fecha>
+  <hora>3:00 AM</hora>
+  <duracion></duracion>
+  <departamento>NORTE DE SANTANDER</departamento>
+  <municipio>CÚCUTA</municipio>
+  <longitud>-72.5052697540812</longitud>
+  <latitud>7.88354359413492</latitud>
+  <!-- Actos con Victimas Individuales -->
+  <acto>
+    <agresion>VIDA</agresion>
+    <agresion_particular>ASESINATO (40)</agresion_particular>
+    <id_victima_individual>202981</id_victima_individual>
+    <id_presunto_grupo_responsable>35</id_presunto_grupo_responsable>
+  </acto>
+
+  <!-- Actos con Victimas Colectivas -->
+
+  <!-- Otros -->
+  <observaciones tipo="intervalo">MAÑANA</observaciones>
+  <observaciones tipo="sitio">CALLE 14 CON CARRERA 13</observaciones>
+  <observaciones tipo="lugar">BARRIO EL CONTENTO</observaciones>
+  <observaciones tipo="tsitio">URBANO</observaciones>
+  <observaciones tipo="contexto">OTROS</observaciones>
+  <observaciones tipo="antecedente">SIN INFORMACIÓN</observaciones>
+</relato><relato>
+  <organizacion_responsable>Banco de Datos del CINEP</organizacion_responsable>
+  <derechos>Creative Commons Atribución 2.5 Colombia. http://creativecommons.org/licenses/by/2.5/co/</derechos>
+  <id_relato>961</id_relato>
+  <forma_compartir>publico</forma_compartir>
+  <titulo>ESTADERO EL PALO DE MANGO</titulo>
+  <hechos>Hombres armados dieron muerte de tres impactos de bala a una persona, e hirieron a dos más. El hecho se presentó en el establecimiento público, estadero El Palo de Mango.</hechos>
+  <!-- Victimas personas individuales -->
+  <persona>
+    <id_persona>202982</id_persona>
+    <nombre>AGUSTIN ALBERTO GONZALEZ OLIVEROS</nombre>
+    <sexo>M</sexo>
+  </persona>
+  <persona>
+    <id_persona>202983</id_persona>
+    <nombre>HEIDY JOHANA CEBALLOS VILLALOBOS</nombre>
+    <sexo>F</sexo>
+  </persona>
+  <persona>
+    <id_persona>202984</id_persona>
+    <nombre>ISABEL BROCHERO ROMERO</nombre>
+    <sexo>F</sexo>
+  </persona>
+  <!-- Grupos victimizados -->
+  <!-- Presuntos responsables -->
+  <grupo>
+    <id_grupo>35</id_grupo>
+    <nombre_grupo>SIN INFORMACIÓN</nombre_grupo>
+      <agresion_sin_vicd>ASESINATO (40)</agresion_sin_vicd>
+      <agresion_sin_vicd>LESIÓN FÍSICA (43)</agresion_sin_vicd>
+  </grupo>
+  <!-- Victima Individual -->
+  <victima>
+    <id_persona>202982</id_persona>
+    <ocupacion>SIN INFORMACIÓN</ocupacion>
+    <sector_condicion>SIN INFORMACIÓN</sector_condicion>
+    <organizacion>SIN INFORMACIÓN</organizacion>
+    <observaciones tipo="filiacion">SIN INFORMACIÓN</observaciones>
+    <observaciones tipo="vinculoestado">SIN INFORMACIÓN</observaciones>
+    <observaciones tipo="organizacion_armada">SIN INFORMACIÓN</observaciones>
+    <observaciones tipo="rangoedad">SIN INFORMACIÓN</observaciones>
+  </victima>
+  <victima>
+    <id_persona>202983</id_persona>
+    <ocupacion>SIN INFORMACIÓN</ocupacion>
+    <sector_condicion>SIN INFORMACIÓN</sector_condicion>
+    <organizacion>SIN INFORMACIÓN</organizacion>
+    <observaciones tipo="filiacion">SIN INFORMACIÓN</observaciones>
+    <observaciones tipo="vinculoestado">SIN INFORMACIÓN</observaciones>
+    <observaciones tipo="organizacion_armada">SIN INFORMACIÓN</observaciones>
+    <observaciones tipo="rangoedad">SIN INFORMACIÓN</observaciones>
+  </victima>
+  <victima>
+    <id_persona>202984</id_persona>
+    <ocupacion>SIN INFORMACIÓN</ocupacion>
+    <sector_condicion>SIN INFORMACIÓN</sector_condicion>
+    <organizacion>SIN INFORMACIÓN</organizacion>
+    <observaciones tipo="filiacion">SIN INFORMACIÓN</observaciones>
+    <observaciones tipo="vinculoestado">SIN INFORMACIÓN</observaciones>
+    <observaciones tipo="organizacion_armada">SIN INFORMACIÓN</observaciones>
+    <observaciones tipo="rangoedad">SIN INFORMACIÓN</observaciones>
+  </victima>
+  <!-- Presuntos responsables individuales -->
+  <!-- Ubicacion -->
+  <fecha>2001-01-01</fecha>
+  <hora></hora>
+  <duracion></duracion>
+  <departamento>MAGDALENA</departamento>
+  <municipio>CIÉNAGA</municipio>
+  <longitud>-74.0836080331662</longitud>
+  <latitud>10.832875856325</latitud>
+  <!-- Actos con Victimas Individuales -->
+  <acto>
+    <agresion>VIDA</agresion>
+    <agresion_particular>ASESINATO (40)</agresion_particular>
+    <id_victima_individual>202982</id_victima_individual>
+    <id_presunto_grupo_responsable>35</id_presunto_grupo_responsable>
+  </acto>
+  <acto>
+    <agresion>INTEGRIDAD</agresion>
+    <agresion_particular>LESIÓN FÍSICA (43)</agresion_particular>
+    <id_victima_individual>202983</id_victima_individual>
+    <id_presunto_grupo_responsable>35</id_presunto_grupo_responsable>
+  </acto>
+  <acto>
+    <agresion>INTEGRIDAD</agresion>
+    <agresion_particular>LESIÓN FÍSICA (43)</agresion_particular>
+    <id_victima_individual>202984</id_victima_individual>
+    <id_presunto_grupo_responsable>35</id_presunto_grupo_responsable>
+  </acto>
+
+  <!-- Actos con Victimas Colectivas -->
+
+  <!-- Otros -->
+  <observaciones tipo="intervalo">SIN INFORMACIÓN</observaciones>
+  <observaciones tipo="sitio">ESTADERO EL PALO DE MANGO</observaciones>
+  <observaciones tipo="tsitio">URBANO</observaciones>
+  <observaciones tipo="contexto">OTROS</observaciones>
+  <observaciones tipo="antecedente">SIN INFORMACIÓN</observaciones>
+  <observaciones tipo="etiqueta:RESTAURA VICTIMAS 2004:2010-06-02">En respaldo hay una víctima con nombre símilar a HEIDY JOHANA CEBALLOS VILLALOBOS. No se agregó, verificar. Nombre: HEIDY JOHANA CABELLOS VILLALOBOS, edad: 17, hijos: , sexo: F, profesion: SIN INFORMACIÓN, rango_edad: R2, filiacion: SIN INFORMACIÓN, sector_social: SIN INFORMACIÓN, organizacion: SIN INFORMACIÓN, vinculo_estado: , org. armada: SIN INFORMACIÓN. Antecedentes: SIN INFORMACIÓN Tipificacion: B 43 P. Responsable: SIN INFORMACIÓN</observaciones>
+</relato><relato>
+  <organizacion_responsable>Banco de Datos del CINEP</organizacion_responsable>
+  <derechos>Creative Commons Atribución 2.5 Colombia. http://creativecommons.org/licenses/by/2.5/co/</derechos>
+  <id_relato>962</id_relato>
+  <forma_compartir>publico</forma_compartir>
+  <titulo>6 IMP. FUSIL DECAPITADO</titulo>
+  <hechos>EL cadáver de un hombre con seis impactos de fusil, decapitado, 1.76 mts de estatura, de contextura gruesa; que vestía un pantalón camuflado, saco verde, botas de caucho y en avanzado estado de descomposición, fue hallado por tropas del Batallón García Rovira en la vereda Román.</hechos>
+  <!-- Victimas personas individuales -->
+  <persona>
+    <id_persona>8013</id_persona>
+    <nombre>N</nombre>
+    <apellido>N</apellido>
+    <sexo>M</sexo>
+  </persona>
+  <!-- Grupos victimizados -->
+  <!-- Presuntos responsables -->
+  <grupo>
+    <id_grupo>35</id_grupo>
+    <nombre_grupo>SIN INFORMACIÓN</nombre_grupo>
+      <agresion_sin_vicd>ASESINATO (40)</agresion_sin_vicd>
+  </grupo>
+  <!-- Victima Individual -->
+  <victima>
+    <id_persona>8013</id_persona>
+    <ocupacion>SIN INFORMACIÓN</ocupacion>
+    <sector_condicion>SIN INFORMACIÓN</sector_condicion>
+    <organizacion>SIN INFORMACIÓN</organizacion>
+    <observaciones tipo="filiacion">SIN INFORMACIÓN</observaciones>
+    <observaciones tipo="vinculoestado">SIN INFORMACIÓN</observaciones>
+    <observaciones tipo="organizacion_armada">SIN INFORMACIÓN</observaciones>
+    <observaciones tipo="rangoedad">SIN INFORMACIÓN</observaciones>
+    <observaciones tipo="antecedentes">SIN INFORMACIÓN</observaciones>
+  </victima>
+  <!-- Presuntos responsables individuales -->
+  <!-- Ubicacion -->
+  <fecha>2001-01-01</fecha>
+  <hora></hora>
+  <duracion></duracion>
+  <departamento>NORTE DE SANTANDER</departamento>
+  <municipio>ARBOLEDAS</municipio>
+  <longitud>-72.7496671653497</longitud>
+  <latitud>7.66644431278721</latitud>
+  <!-- Actos con Victimas Individuales -->
+  <acto>
+    <agresion>VIDA</agresion>
+    <agresion_particular>ASESINATO (40)</agresion_particular>
+    <id_victima_individual>8013</id_victima_individual>
+    <id_presunto_grupo_responsable>35</id_presunto_grupo_responsable>
+  </acto>
+  <acto>
+    <agresion>INTEGRIDAD</agresion>
+    <agresion_particular>TORTURA (47)</agresion_particular>
+    <id_victima_individual>8013</id_victima_individual>
+    <id_presunto_grupo_responsable>35</id_presunto_grupo_responsable>
+  </acto>
+
+  <!-- Actos con Victimas Colectivas -->
+
+  <!-- Otros -->
+  <observaciones tipo="intervalo">SIN INFORMACIÓN</observaciones>
+  <observaciones tipo="lugar">VEREDA ROMAN</observaciones>
+  <observaciones tipo="tsitio">RURAL</observaciones>
+  <observaciones tipo="contexto">OTROS</observaciones>
+  <observaciones tipo="antecedente">SIN INFORMACIÓN</observaciones>
+  <observaciones tipo="etiqueta:Falta Presunto Responsable Individual:2010-06-02">Víctima  tenía categoría 47 pero no presunto responsable con esa tipificacion. Víctima  tenía categoría 47 pero no presunto responsable con esa tipificacion. Víctima  tenía categoría 47 pero no presunto responsable con esa tipificacion. Víctima  tenía categoría 47 pero no presunto responsable con esa tipificacion. Víctima NN tenía categoría 47 pero no presunto responsable con esa tipificacion.</observaciones>
+</relato><relato>
+  <organizacion_responsable>Banco de Datos del CINEP</organizacion_responsable>
+  <derechos>Creative Commons Atribución 2.5 Colombia. http://creativecommons.org/licenses/by/2.5/co/</derechos>
+  <id_relato>963</id_relato>
+  <forma_compartir>publico</forma_compartir>
+  <titulo></titulo>
+  <hechos>Miembros de un grupo armado dieron muerte a una persona, de varios impactos de arma de fuego, en el sitio San Roque de la vereda San Isidro.</hechos>
+  <!-- Victimas personas individuales -->
+  <persona>
+    <id_persona>202985</id_persona>
+    <nombre>JOSE ADAN FRANCO CORONEL</nombre>
+    <sexo>M</sexo>
+  </persona>
+  <!-- Grupos victimizados -->
+  <!-- Presuntos responsables -->
+  <grupo>
+    <id_grupo>35</id_grupo>
+    <nombre_grupo>SIN INFORMACIÓN</nombre_grupo>
+      <agresion_sin_vicd>ASESINATO (40)</agresion_sin_vicd>
+  </grupo>
+  <!-- Victima Individual -->
+  <victima>
+    <id_persona>202985</id_persona>
+    <ocupacion>SIN INFORMACIÓN</ocupacion>
+    <sector_condicion>SIN INFORMACIÓN</sector_condicion>
+    <organizacion>SIN INFORMACIÓN</organizacion>
+    <observaciones tipo="filiacion">SIN INFORMACIÓN</observaciones>
+    <observaciones tipo="vinculoestado">SIN INFORMACIÓN</observaciones>
+    <observaciones tipo="organizacion_armada">SIN INFORMACIÓN</observaciones>
+    <observaciones tipo="rangoedad">SIN INFORMACIÓN</observaciones>
+  </victima>
+  <!-- Presuntos responsables individuales -->
+  <!-- Ubicacion -->
+  <fecha>2001-01-01</fecha>
+  <hora></hora>
+  <duracion></duracion>
+  <departamento>SANTANDER</departamento>
+  <municipio>BARBOSA</municipio>
+  <longitud>-73.5495409030141</longitud>
+  <latitud>6.00012003149232</latitud>
+  <!-- Actos con Victimas Individuales -->
+  <acto>
+    <agresion>VIDA</agresion>
+    <agresion_particular>ASESINATO (40)</agresion_particular>
+    <id_victima_individual>202985</id_victima_individual>
+    <id_presunto_grupo_responsable>35</id_presunto_grupo_responsable>
+  </acto>
+
+  <!-- Actos con Victimas Colectivas -->
+
+  <!-- Otros -->
+  <observaciones tipo="intervalo">SIN INFORMACIÓN</observaciones>
+  <observaciones tipo="sitio">SAN ROQUE</observaciones>
+  <observaciones tipo="lugar">VEREDA SAN ISIDRO</observaciones>
+  <observaciones tipo="tsitio">RURAL</observaciones>
+  <observaciones tipo="contexto">OTROS</observaciones>
+  <observaciones tipo="antecedente">SIN INFORMACIÓN</observaciones>
+</relato><relato>
+  <organizacion_responsable>Banco de Datos del CINEP</organizacion_responsable>
+  <derechos>Creative Commons Atribución 2.5 Colombia. http://creativecommons.org/licenses/by/2.5/co/</derechos>
+  <id_relato>984</id_relato>
+  <forma_compartir>publico</forma_compartir>
+  <titulo>INPEC</titulo>
+  <hechos>Un recluso del patio tres de la Cárcel de Villahermosa, fue muerto de un impacto de bala en la cabeza.</hechos>
+  <!-- Victimas personas individuales -->
+  <persona>
+    <id_persona>202986</id_persona>
+    <nombre>ROGER AGUDELO</nombre>
+    <sexo>M</sexo>
+  </persona>
+  <!-- Grupos victimizados -->
+  <!-- Presuntos responsables -->
+  <grupo>
+    <id_grupo>11</id_grupo>
+    <nombre_grupo>INPEC</nombre_grupo>
+      <agresion_sin_vicd>EJECUCIÓN EXTRAJUDICIAL (20)</agresion_sin_vicd>
+  </grupo>
+  <!-- Victima Individual -->
+  <victima>
+    <id_persona>202986</id_persona>
+    <ocupacion>SIN INFORMACIÓN</ocupacion>
+    <sector_condicion>SIN INFORMACIÓN</sector_condicion>
+    <organizacion>SIN INFORMACIÓN</organizacion>
+    <observaciones tipo="filiacion">SIN INFORMACIÓN</observaciones>
+    <observaciones tipo="vinculoestado">SIN INFORMACIÓN</observaciones>
+    <observaciones tipo="organizacion_armada">SIN INFORMACIÓN</observaciones>
+    <observaciones tipo="rangoedad">SIN INFORMACIÓN</observaciones>
+  </victima>
+  <!-- Presuntos responsables individuales -->
+  <!-- Ubicacion -->
+  <fecha>2001-01-01</fecha>
+  <hora></hora>
+  <duracion></duracion>
+  <departamento>VALLE DEL CAUCA</departamento>
+  <municipio>CALI</municipio>
+  <longitud>-76.5220620403509</longitud>
+  <latitud>3.43720165305891</latitud>
+  <!-- Actos con Victimas Individuales -->
+  <acto>
+    <agresion>VIDA</agresion>
+    <agresion_particular>EJECUCIÓN EXTRAJUDICIAL (20)</agresion_particular>
+    <id_victima_individual>202986</id_victima_individual>
+    <id_presunto_grupo_responsable>11</id_presunto_grupo_responsable>
+  </acto>
+
+  <!-- Actos con Victimas Colectivas -->
+
+  <!-- Otros -->
+  <observaciones tipo="intervalo">SIN INFORMACIÓN</observaciones>
+  <observaciones tipo="sitio">CARCEL DE VILLAHERMOSA</observaciones>
+  <observaciones tipo="tsitio">URBANO</observaciones>
+  <observaciones tipo="contexto">PROBLEMÁTICA CARCELARIA</observaciones>
+  <observaciones tipo="antecedente">OTRO</observaciones>
+</relato><relato>
+  <organizacion_responsable>Banco de Datos del CINEP</organizacion_responsable>
+  <derechos>Creative Commons Atribución 2.5 Colombia. http://creativecommons.org/licenses/by/2.5/co/</derechos>
+  <id_relato>985</id_relato>
+  <forma_compartir>publico</forma_compartir>
+  <titulo>MUERTO DEL BOSQUE POR POLICIA</titulo>
+  <hechos>Agentes de la Policía Nacional, ejecutaron a una persona de un impacto de bala en la cabeza. El hecho se presentó en la cra. 7 con Cll. 60, del barrio El Bosque, donde el joven observaba una riña callejera.
+Dice la fuente que &quot;familiares de la víctima sostienen que al llegar al sitio de la riña un grupo de policias (dos motorizados y una patrulla) realizó varios tiros al aire y una de las balas habría sido la que alcanzó al joven de 19 años de edad&quot;.</hechos>
+  <!-- Victimas personas individuales -->
+  <persona>
+    <id_persona>3490</id_persona>
+    <nombre>WILLIAN DE JESUS</nombre>
+    <apellido>ROMAN DE LA HOZ</apellido>
+    <fecha_nacimiento>1982-06-15</fecha_nacimiento>
+    <sexo>M</sexo>
+  </persona>
+  <!-- Grupos victimizados -->
+  <!-- Presuntos responsables -->
+  <grupo>
+    <id_grupo>7</id_grupo>
+    <nombre_grupo>POLICÍA</nombre_grupo>
+      <agresion_sin_vicd>EJECUCIÓN EXTRAJUDICIAL (20)</agresion_sin_vicd>
+  </grupo>
+  <!-- Victima Individual -->
+  <victima>
+    <id_persona>3490</id_persona>
+    <ocupacion>SIN INFORMACIÓN</ocupacion>
+    <sector_condicion>SIN INFORMACIÓN</sector_condicion>
+    <organizacion>SIN INFORMACIÓN</organizacion>
+    <observaciones tipo="filiacion">SIN INFORMACIÓN</observaciones>
+    <observaciones tipo="vinculoestado">SIN INFORMACIÓN</observaciones>
+    <observaciones tipo="organizacion_armada">SIN INFORMACIÓN</observaciones>
+    <observaciones tipo="rangoedad">De 16 a 25 Años</observaciones>
+    <observaciones tipo="antecedentes">SIN INFORMACIÓN</observaciones>
+  </victima>
+  <!-- Presuntos responsables individuales -->
+  <!-- Ubicacion -->
+  <fecha>2001-01-01</fecha>
+  <departamento>ATLÁNTICO</departamento>
+  <municipio>BARRANQUILLA</municipio>
+  <longitud>-74.796506112432</longitud>
+  <latitud>10.9634521887282</latitud>
+  <!-- Actos con Victimas Individuales -->
+  <acto>
+    <agresion>VIDA</agresion>
+    <agresion_particular>EJECUCIÓN EXTRAJUDICIAL (20)</agresion_particular>
+    <id_victima_individual>3490</id_victima_individual>
+    <id_presunto_grupo_responsable>7</id_presunto_grupo_responsable>
+  </acto>
+
+  <!-- Actos con Victimas Colectivas -->
+
+  <!-- Otros -->
+  <observaciones tipo="intervalo">MAÑANA</observaciones>
+  <observaciones tipo="sitio">CRA 7 CON CALL 60</observaciones>
+  <observaciones tipo="lugar">BARRIO EL BOSQUE</observaciones>
+  <observaciones tipo="tsitio">URBANO</observaciones>
+  <observaciones tipo="contexto">OTROS</observaciones>
+  <observaciones tipo="antecedente">SIN INFORMACIÓN</observaciones>
+</relato><relato>
+  <organizacion_responsable>Banco de Datos del CINEP</organizacion_responsable>
+  <derechos>Creative Commons Atribución 2.5 Colombia. http://creativecommons.org/licenses/by/2.5/co/</derechos>
+  <id_relato>1131</id_relato>
+  <forma_compartir>publico</forma_compartir>
+  <hechos>Paramilitares  que se movilizaban en un vehículo ejecutaron  en la zona urbana, en horas de la madrugada a dos personas, padre e hija. Miguel Antonio era concejal electo de Yacopí.</hechos>
+  <!-- Victimas personas individuales -->
+  <persona>
+    <id_persona>4834</id_persona>
+    <nombre>MIGUEL ANTONIO ULLOA SUTANEME</nombre>
+    <sexo>M</sexo>
+  </persona>
+  <persona>
+    <id_persona>4835</id_persona>
+    <nombre>N</nombre>
+    <apellido>N</apellido>
+    <sexo>F</sexo>
+  </persona>
+  <!-- Grupos victimizados -->
+  <!-- Presuntos responsables -->
+  <grupo>
+    <id_grupo>14</id_grupo>
+    <nombre_grupo>PARAMILITARES</nombre_grupo>
+      <agresion_sin_vicd>EJECUCIÓN EXTRAJUDICIAL (10)</agresion_sin_vicd>
+      <agresion_sin_vicd>HOMICIDIO INTENCIONAL DE PERSONA PROTEGIDA  (701)</agresion_sin_vicd>
+  </grupo>
+  <!-- Victima Individual -->
+  <victima>
+    <id_persona>4834</id_persona>
+    <ocupacion>SIN INFORMACIÓN</ocupacion>
+    <sector_condicion>SIN INFORMACIÓN</sector_condicion>
+    <organizacion>SIN INFORMACIÓN</organizacion>
+    <observaciones tipo="filiacion">SIN INFORMACIÓN</observaciones>
+    <observaciones tipo="vinculoestado">CONCEJO MUNICIPAL</observaciones>
+    <observaciones tipo="organizacion_armada">SIN INFORMACIÓN</observaciones>
+    <observaciones tipo="rangoedad">SIN INFORMACIÓN</observaciones>
+    <observaciones tipo="antecedentes">SIN INFORMACIÓN</observaciones>
+  </victima>
+  <victima>
+    <id_persona>4835</id_persona>
+    <ocupacion>SIN INFORMACIÓN</ocupacion>
+    <sector_condicion>SIN INFORMACIÓN</sector_condicion>
+    <organizacion>SIN INFORMACIÓN</organizacion>
+    <observaciones tipo="filiacion">SIN INFORMACIÓN</observaciones>
+    <observaciones tipo="vinculoestado">SIN INFORMACIÓN</observaciones>
+    <observaciones tipo="organizacion_armada">SIN INFORMACIÓN</observaciones>
+    <observaciones tipo="rangoedad">SIN INFORMACIÓN</observaciones>
+    <observaciones tipo="antecedentes">SIN INFORMACIÓN</observaciones>
+  </victima>
+  <!-- Presuntos responsables individuales -->
+  <!-- Ubicacion -->
+  <fecha>2001-01-01</fecha>
+  <departamento>CUNDINAMARCA</departamento>
+  <municipio>YACOPÍ</municipio>
+  <longitud>-74.4162448988334</longitud>
+  <latitud>5.66656032521935</latitud>
+  <!-- Actos con Victimas Individuales -->
+  <acto>
+    <agresion>VIDA</agresion>
+    <agresion_particular>EJECUCIÓN EXTRAJUDICIAL (10)</agresion_particular>
+    <id_victima_individual>4834</id_victima_individual>
+    <id_presunto_grupo_responsable>14</id_presunto_grupo_responsable>
+  </acto>
+  <acto>
+    <agresion>VIDA</agresion>
+    <agresion_particular>HOMICIDIO INTENCIONAL DE PERSONA PROTEGIDA  (701)</agresion_particular>
+    <id_victima_individual>4834</id_victima_individual>
+    <id_presunto_grupo_responsable>14</id_presunto_grupo_responsable>
+  </acto>
+  <acto>
+    <agresion>VIDA</agresion>
+    <agresion_particular>EJECUCIÓN EXTRAJUDICIAL (10)</agresion_particular>
+    <id_victima_individual>4835</id_victima_individual>
+    <id_presunto_grupo_responsable>14</id_presunto_grupo_responsable>
+  </acto>
+  <acto>
+    <agresion>VIDA</agresion>
+    <agresion_particular>HOMICIDIO INTENCIONAL DE PERSONA PROTEGIDA  (701)</agresion_particular>
+    <id_victima_individual>4835</id_victima_individual>
+    <id_presunto_grupo_responsable>14</id_presunto_grupo_responsable>
+  </acto>
+
+  <!-- Actos con Victimas Colectivas -->
+
+  <!-- Otros -->
+  <observaciones tipo="intervalo">MADRUGADA</observaciones>
+  <observaciones tipo="tsitio">URBANO</observaciones>
+  <observaciones tipo="contexto">OTROS; PARAMILITARIZACIÓN</observaciones>
+</relato><relato>
+  <organizacion_responsable>Banco de Datos del CINEP</organizacion_responsable>
+  <derechos>Creative Commons Atribución 2.5 Colombia. http://creativecommons.org/licenses/by/2.5/co/</derechos>
+  <id_relato>144078</id_relato>
+  <forma_compartir>publico</forma_compartir>
+  <hechos>Guerrilleros del EPL raptaron de la vereda Palogrande a Argemiro de 36 años de edad, a quien posteriormente asesinaron. Según la fuente: &quot;Su madre dijo que 6 hombres fuertemente armados llegaron a la casa buscándolo para matarlo. Ella les suplicó que no lo hicieran delante de sus hijos y se lo llevaron esposado&quot;. Años después el cadáver fue hallado por el CTI en zona rural del municipio de Santuario.</hechos>
+  <!-- Victimas personas individuales -->
+  <persona>
+    <id_persona>224867</id_persona>
+    <nombre>ARGEMIRO</nombre>
+    <apellido>ARICAPA</apellido>
+    <fecha_nacimiento>1965-06-15</fecha_nacimiento>
+    <sexo>M</sexo>
+  </persona>
+  <!-- Grupos victimizados -->
+  <!-- Presuntos responsables -->
+  <grupo>
+    <id_grupo>31</id_grupo>
+    <nombre_grupo>EPL</nombre_grupo>
+  </grupo>
+  <!-- Victima Individual -->
+  <victima>
+    <id_persona>224867</id_persona>
+    <ocupacion>SIN INFORMACIÓN</ocupacion>
+    <sector_condicion>CAMPESINO</sector_condicion>
+    <organizacion>SIN INFORMACIÓN</organizacion>
+    <observaciones tipo="filiacion">SIN INFORMACIÓN</observaciones>
+    <observaciones tipo="vinculoestado">SIN INFORMACIÓN</observaciones>
+    <observaciones tipo="organizacion_armada">SIN INFORMACIÓN</observaciones>
+    <observaciones tipo="rangoedad">De 26 a 45 Años</observaciones>
+  </victima>
+  <!-- Presuntos responsables individuales -->
+  <!-- Ubicacion -->
+  <fecha>2001-01-01</fecha>
+  <departamento>RISARALDA</departamento>
+  <municipio>QUINCHÍA</municipio>
+  <longitud>-75.6663535458195</longitud>
+  <latitud>5.33317408778187</latitud>
+  <!-- Actos con Victimas Individuales -->
+  <acto>
+    <agresion>VIDA</agresion>
+    <agresion_particular>HOMICIDIO INTENCIONAL DE PERSONA PROTEGIDA  (701)</agresion_particular>
+    <id_victima_individual>224867</id_victima_individual>
+    <id_presunto_grupo_responsable>31</id_presunto_grupo_responsable>
+  </acto>
+  <acto>
+    <agresion>LIBERTAD</agresion>
+    <agresion_particular>RAPTO (48)</agresion_particular>
+    <id_victima_individual>224867</id_victima_individual>
+    <id_presunto_grupo_responsable>31</id_presunto_grupo_responsable>
+  </acto>
+
+  <!-- Actos con Victimas Colectivas -->
+
+  <!-- Otros -->
+  <observaciones tipo="intervalo">SIN INFORMACIÓN</observaciones>
+  <observaciones tipo="region">EJE CAFETERO Y TOLIMA GRANDE</observaciones>
+  <observaciones tipo="lugar">VEREDA PALOGRANDE</observaciones>
+  <observaciones tipo="tsitio">RURAL</observaciones>
+  <observaciones tipo="contexto">PRESENCIA GUERRILLERA</observaciones>
+  <observaciones tipo="etiqueta:Q01:2013-01-31"></observaciones>
+</relato></relatos>

@@ -2,6 +2,7 @@
 
 ENV['RAILS_ENV'] ||= 'test'
 
+require 'nokogiri'
 require 'simplecov'
 SimpleCov.start 'rails'
 require_relative 'dummy/config/environment'
@@ -50,6 +51,37 @@ class PruebaIntegracion < ActionDispatch::IntegrationTest
       assert_empty doc.external_subset.validate(doc)
     end
 
+    def importa_relato(docu)
+      docnoko = Nokogiri::XML(docu)
+      docnoko.search('observaciones').each do |obs|
+        obs.content = obs['tipo'] + '_' + obs.text
+      end
+      relimportado = Hash.from_xml(docnoko.to_s)
+      datossal = {}
+      menserror= ''
+      if docnoko.search('relato').count == 1
+        relimportado['relatos'].each do |ca|
+          @caso = Sivel2Gen::Caso.new
+          importado= @caso.importa(ca[1], datossal, menserror, {})
+          assert_not importado.nil?
+          unless importado.nil?
+           assert importado[1].empty?
+           puts importado[1]
+          end
+          assert @caso.save
+        end
+      else
+        relimportado['relatos']['relato'].each do |ca|
+          @caso = Sivel2Gen::Caso.new
+          importado= @caso.importa(ca, datossal, menserror, {})
+          assert_not importado.nil?
+          unless importado.nil?
+           assert importado[1].empty?, "Falla: #{importado[1]}"
+          end
+          assert @caso.save
+        end
+      end
+    end  
 end
 
 class ActiveSupport::TestCase

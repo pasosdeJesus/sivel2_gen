@@ -317,7 +317,7 @@ module Sivel2Gen
                   nombre: 'SIN INFORMACIÓN').ids[0]
               end
             end
-
+              
             def recorrer_observaciones_v(ele, menserror)
               case ele[0]
               when 'filiacion'
@@ -340,14 +340,19 @@ module Sivel2Gen
                 #    find(id: ele[1].to_i).id
                 #end
               when 'rangoedad'
-                self.id_rangoedad = Sivel2Gen::Rangoedad.
-                  where(rango: ele[1]).ids[0]
+                if Sivel2Gen::Rangoedad.where('TRIM(rango)=?', ele[1].strip).count ==1
+
+                  self.id_rangoedad = Sivel2Gen::Rangoedad.
+                    where(rango: ele[1]).ids[0]
+                else
+                  menserror << "Tabla básica Rango Edad  no tiene '#{ele[1]}'. "
+                end  
               when 'hijos'
-                self.hijos = ele[1]
+                  self.hijos = ele[1]
               when 'anotaciones'
-                self.anotaciones = ele[1]
+                  self.anotaciones = ele[1]
               end
-            end           
+            end 
             if v['observaciones'].kind_of?(Array)
               v['observaciones'].each do |ob|
                 ele = ob.split(/\_([^_]*)$/)
