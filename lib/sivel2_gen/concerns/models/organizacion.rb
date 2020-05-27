@@ -12,7 +12,6 @@ module Sivel2Gen
                    class_name: 'Sivel2Gen::Victimacolectiva',
                    foreign_key: 'id_organizacion', 
                    validate: true, 
-                   association_foreign_key: 'id_victimacolectiva',
                    join_table: 'sivel2_gen_organizacion_victimacolectiva' 
 
            has_many :victima, 
