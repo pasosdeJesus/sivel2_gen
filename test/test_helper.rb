@@ -51,26 +51,6 @@ class PruebaIntegracion < ActionDispatch::IntegrationTest
       assert_empty doc.external_subset.validate(doc)
     end
 
-    def importa_relato(docu)
-      docnoko = Nokogiri::XML(docu)
-      docnoko.search('observaciones').each do |obs|
-        obs.content = obs['tipo'] + '_' + obs.text
-      end
-      menserror= ''
-      docnoko.xpath('relatos/relato').each do |relato|
-        datossal = {}
-        relimportado = Hash.from_xml(relato.to_s)
-        @caso = Sivel2Gen::Caso.new
-        importado = @caso.importa(relimportado['relato'], datossal, 
-                                  menserror, {})
-        assert_not importado.nil?
-        unless importado.nil?
-          assert importado[1].empty?, "Falla: #{importado[1]}"
-        end
-        assert @caso.save
-      end
-    end   # importa_relato
-
 end
 
 class ActiveSupport::TestCase

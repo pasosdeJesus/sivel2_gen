@@ -808,76 +808,70 @@ module Sivel2Gen
             sivel2_gen_destroy
           end
 
-          def importa
-            authorize! :update, Sivel2Gen::Caso
-            file=params[:file]
-            doc = file.read
+          def self.importar_relato(doc, menserror, mensexito, ids_importados,
+                                  usuario_id)
             docnoko = Nokogiri::XML(doc)
             docnoko.search('observaciones').each do |obs|
               obs.content = obs['tipo'] + '_' + obs.text
             end
-            relimportado = Hash.from_xml(docnoko.to_s)
-            datossal = {}
-            menserror= ''
-            if docnoko.search('relato').count == 1
-              relimportado['relatos'].each do |ca|
-                @caso = Caso.new
-                importado= @caso.importa(ca[1], datossal, menserror, {})
-                if importado.nil?
-                  error
-                  #redirect_to casos_path, alert: "Relato No importado!"
-                else
-                  @caso.save!
-                  flash[:success] = "Relato importado!"
-                  unless importado[1].empty?
-                    @etiqueta = Sivel2Gen::CasoEtiqueta.new
-                    @etiqueta.id_caso = @caso.id
-                    @etiqueta.id_etiqueta = Sip::Etiqueta.where(nombre: "ERROR_IMPORTACIÓN").ids[0]
-                    @etiqueta.observaciones = importado[1]
-                    @etiqueta.fecha = Date.today
-                    @etiqueta.id_usuario = current_usuario.id
-                    @etiqueta.save!
-                    flash[:error] = importado[1]
-                  end
-                  redirect_to @caso
+            total_importados = 0
+            total_errores = 0
+            docnoko.xpath('relatos/relato').each do |relato|
+              datossal = {}
+              relimportado = Hash.from_xml(relato.to_s)
+              @caso = Sivel2Gen::Caso.new
+              menserror_uno = ''
+              importado = @caso.importa(relimportado['relato'], datossal, 
+                                        menserror_uno, {})
+              if importado.nil?
+                menserror << "No se pudo importar relato número #{numr}.  "
+                total_errores += 1
+              else
+                @caso.save!
+                total_importados += 1
+                ids_importados << "#{@caso.id} "
+                if menserror_uno != ''
+                  total_errores += 1
+                  @etiqueta = Sivel2Gen::CasoEtiqueta.new
+                  @etiqueta.id_caso = @caso.id
+                  @etiqueta.id_etiqueta = Sip::Etiqueta.where(
+                    nombre: "ERROR_IMPORTACIÓN").ids[0]
+                  @etiqueta.observaciones = menserror_uno
+                  @etiqueta.fecha = Date.today
+                  @etiqueta.id_usuario = usuario_id
+                  @etiqueta.save!
                 end
               end
-            else
-              total_importados = 0
-              ids_importados = []
-              total_errores = []
-              relimportado['relatos']['relato'].each do |ca|
-                @caso = Caso.new
-                menserror = ''
-                importado= @caso.importa(ca, datossal, menserror, {})
-                if importado.nil?
-                  error
-                else
-                  total_importados += 1
-                  @caso.save!
-                  ids_importados.push(@caso.id)
-                  error_singular = "En Caso #{@caso.id}: #{importado[1]}"
-                  unless importado[1].empty?
-                    @etiqueta = Sivel2Gen::CasoEtiqueta.new
-                    @etiqueta.id_caso = @caso.id
-                    @etiqueta.id_etiqueta = Sip::Etiqueta.where(nombre: "ERROR_IMPORTACIÓN").ids[0]
-                    @etiqueta.observaciones = importado[1]
-                    @etiqueta.fecha = Date.today
-                    @etiqueta.id_usuario = current_usuario.id
-                    @etiqueta.save!
-                    total_errores.push(error_singular)               
-                  end
-                end
-              end
-              flash[:success] = "Se importaron #{total_importados} relatos!"
-              unless total_errores.empty?
-              flash[:error]= ["Los siguientes errores se han presentado durante la importación y quedarán guardados a través de etiquetas en su respectivo caso: "]
-                flash[:error]<< total_errores
-              end
-              Conscaso.refresca_conscaso
-              ruta_importados = casos_path + '?filtro[q]=&filtro[codigo]=' + ids_importados.join(' ')
-              redirect_to ruta_importados
             end
+            if total_importados > 0
+              mensexito << "¡Se importaron #{total_importados} relatos!  "
+            end
+            if total_errores > 0
+              menserror << "Se encontraron errores en #{total_errores} " \
+                "relatos. Se detallan en etiquetas de los casos importados.  "
+            end
+          end # importar_relato
+
+
+          def importa
+            authorize! :update, Sivel2Gen::Caso
+            file=params[:file]
+            doc = file.read
+            menserror = ''
+            mensexito = ''
+            ids_importados = ''
+            Sivel2Gen::CasosController.importar_relato(
+              doc, menserror, mensexito, ids_importados, current_usuario.id)
+            if mensexito != ''
+              flash[:success] = mensexito
+            end
+            if menserror != ''
+              flash[:error]  = menserror
+            end
+            Conscaso.refresca_conscaso
+            ruta_importados = casos_path + '?filtro[q]=&filtro[codigo]=' + 
+              ids_importados
+            redirect_to ruta_importados
           end
 
           private
