@@ -13,7 +13,6 @@ module Sivel2Gen
                 has_and_belongs_to_many :victimacolectiva, 
                   foreign_key: 'id_filiacion', 
                   class: 'Sivel2Gen::Victimacolectiva',
-                  association_foreign_key: 'victimacolectiva_id',
                   join_table: 'sivel2_gen_filiacion_victimacolectiva'
 
                 has_many :victima, foreign_key: 'id_filiacion', 
