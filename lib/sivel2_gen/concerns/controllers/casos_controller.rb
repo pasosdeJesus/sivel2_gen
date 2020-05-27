@@ -477,6 +477,10 @@ module Sivel2Gen
           end
 
           def self.asegura_camposdinamicos(caso, current_usuario_id, pestanas)
+            if caso.nil?  || caso.id.nil?
+              return
+            end
+
             vfid = []  # ids de formularios que deben presentarse
             pestanas.each do |p|
               if p[:parcial].starts_with?('Formulario::')
