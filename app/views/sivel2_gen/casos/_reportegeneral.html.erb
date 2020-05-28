@@ -148,7 +148,15 @@ Presunto Responsable:
   </p>
 <% end %>
 </div>
-  
+Etiquetas:  
+<% @caso.caso_etiqueta.each do |e|  %>
+  <p style="margin: 0; padding: 0;">
+  <%= Sip::Etiqueta.find(e.id_etiqueta).nombre %> -
+  <%= e.fecha %> -
+  <%= Sip::Usuario.find(e.id_usuario).nusuario %> -
+  <%= e.observaciones %>
+  </p>
+<% end %>
 <p>
 Analista(s):
 <% 
