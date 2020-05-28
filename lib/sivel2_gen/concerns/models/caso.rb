@@ -142,6 +142,7 @@ module Sivel2Gen
           validates :grinformacion, length: { maximum: 8 }
 
           require 'active_support/core_ext/hash' 
+
           def importa(datosent, datossal, menserror, opciones = {})
             if datosent['fecha'].nil?
               self.fecha = Date.today
@@ -161,20 +162,22 @@ module Sivel2Gen
             self.save!
             #Importa ubicacion
             ubicacion = Sip::Ubicacion.new
-            ubicacion.importa(datosent, datossal, menserror, opciones = {})
+            ubicacion.importa(datosent, datossal, menserror, opciones)
             ubicacion.id_caso = self.id
             ubicacion.save!
             if datosent['ubicacion_secundaria']
               if datosent['ubicacion_secundaria'].kind_of?(Array)
                 datosent['ubicacion_secundaria'].each do |ub|
                   ubicacion = Sip::Ubicacion.new
-                  ubicacion.importa(ub, datossal, menserror, opciones = {})
+                  ubicacion.importa(ub, datossal, menserror, opciones)
                   ubicacion.id_caso = self.id
                   ubicacion.save!
                 end
               else
                   ubicacion = Sip::Ubicacion.new
-                  ubicacion.importa(datosent['ubicacion_secundaria'], datossal, menserror, opciones = {})
+                  ubicacion.importa(
+                    datosent['ubicacion_secundaria'], datossal, menserror, 
+                    opciones)
                   ubicacion.id_caso = self.id
                   ubicacion.save!
               end
@@ -185,7 +188,7 @@ module Sivel2Gen
               if datosent['grupo'].kind_of?(Array)
                 datosent['grupo'].each do |pr|
                   casopresp = Sivel2Gen::CasoPresponsable.new
-                  casopresp.importa(pr, datossal, menserror, opciones = {})
+                  casopresp.importa(pr, datossal, menserror, opciones)
                   if casopresp.id_presponsable
                     casopresp.id_caso = self.id
                     casopresp.save!
@@ -193,7 +196,8 @@ module Sivel2Gen
                 end
               else
                 casopresp = Sivel2Gen::CasoPresponsable.new
-                casopresp.importa(datosent['grupo'], datossal, menserror, opciones = {})
+                casopresp.importa(
+                  datosent['grupo'], datossal, menserror, opciones)
                 if casopresp.id_presponsable
                   casopresp.id_caso = self.id
                   casopresp.save!
@@ -208,13 +212,14 @@ module Sivel2Gen
                 datosent['grupo'].each do |vc|
                   victcol = Sivel2Gen::Victimacolectiva.new
                   victcol.id_caso = self.id
-                  victcol.importa(vc, datossal, menserror, opciones = {})
+                  victcol.importa(vc, datossal, menserror, opciones)
                   idsvcol[vc['id_grupo']] = victcol.id_grupoper
                 end
               else
                 victcol = Sivel2Gen::Victimacolectiva.new
                 victcol.id_caso = self.id
-                victcol.importa(datosent['grupo'], datossal, menserror, opciones = {})
+                victcol.importa(
+                  datosent['grupo'], datossal, menserror, opciones)
                 idsvcol[datosent['grupo']['id_grupo']] = victcol.id_grupoper
               end
             end
@@ -225,13 +230,15 @@ module Sivel2Gen
                 datosent['victima'].each do |v|
                   vict = Sivel2Gen::Victima.new
                   vict.id_caso = self.id
-                  vict.importa([datosent, v], datossal, menserror, opciones = {})
+                  vict.importa([datosent, v], datossal, menserror, opciones)
                   idsv[v['id_persona']] = vict.id_persona
                 end
               else
                 vict = Sivel2Gen::Victima.new
                 vict.id_caso = self.id
-                vict.importa([datosent, datosent['victima']], datossal, menserror, opciones = {})
+                vict.importa(
+                  [datosent, datosent['victima']], datossal, menserror, 
+                  opciones)
                 idsv[datosent['victima']['id_persona']] = vict.id_persona
               end
             end
@@ -242,13 +249,13 @@ module Sivel2Gen
                   acto = Sivel2Gen::Acto.new
                   acto.id_caso = self.id
                   datosactos = [idsv, ac]
-                  acto.importa(datosactos, datossal, menserror, opciones = {})
+                  acto.importa(datosactos, datossal, menserror, opciones)
                 end
               else
                 acto = Sivel2Gen::Acto.new
                 acto.id_caso = self.id
                 datosactos = [idsv, datosent['acto']]
-                acto.importa(datosactos, datossal, menserror, opciones = {})
+                acto.importa(datosactos, datossal, menserror, opciones)
               end
             end
             #Importa actos colectivos
@@ -258,17 +265,18 @@ module Sivel2Gen
                   actocol = Sivel2Gen::Actocolectivo.new
                   actocol.id_caso = self.id
                   datosactos = [idsvcol, ac]
-                  actocol.importa(datosactos, datossal, menserror, opciones = {})
+                  actocol.importa(datosactos, datossal, menserror, opciones)
                 end
               else
                 actocol = Sivel2Gen::Actocolectivo.new
                 actocol.id_caso = self.id
                 datosactos = [idsvcol, datosent['acto']]
-                actocol.importa(datosactos, datossal, menserror, opciones = {})
+                actocol.importa(datosactos, datossal, menserror, opciones)
               end
             end
-            return self, menserror
+            return self
           end
+
 
           def presenta(atr)
             case atr.to_s
