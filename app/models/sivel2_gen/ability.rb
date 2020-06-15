@@ -251,7 +251,7 @@ module Sivel2Gen
             can [:read, :new, :edit, :update, :create, :nuevo, :destroy], Sivel2Gen::Caso
 
             cannot :solocambiaretiquetas, Sivel2Gen::Caso
-            can :refrescar, Sivel2Gen::Caso
+            can :refresca, Sivel2Gen::Caso
 
             can :read, Sivel2Gen::Victima
           elsif usuario.sip_grupo &&
