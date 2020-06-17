@@ -14,7 +14,8 @@ xml.relato do
         xml.nombre v.persona.nombres
         xml.apellido v.persona.apellidos
         unless v.persona.numerodocumento.nil? || v.persona.numerodocumento.empty?
-          xml.docid v.persona.tdocumento.sigla + " " + v.persona.numerodocumento
+          xml.docid (v.persona.tdocumento ? v.persona.tdocumento.sigla : '') + 
+            ' ' + v.persona.numerodocumento
         end
         xml.fecha_nacimiento v.persona.anionac,"-", v.persona.mesnac.to_s.rjust(2, '0'),"-", v.persona.dianac.to_s.rjust(2, '0')
         xml.sexo v.persona.sexo
