@@ -149,9 +149,11 @@ xml.relato do
 
   xml.observaciones(caso.intervalo.nombre, {tipo: 'intervalo'}) if caso.intervalo.nombre
   xml.observaciones(caso.region.map(&:nombre).join("; "), {tipo: 'region'}) if caso.region
-  xml.observaciones(ub.sitio, {tipo: 'sitio'}) if ub.sitio
-  xml.observaciones(ub.lugar, {tipo: 'lugar'}) if ub.lugar
-  xml.observaciones(ub.tsitio.nombre, {tipo: 'tsitio'}) if ub.tsitio
+  if ub
+    xml.observaciones(ub.sitio, {tipo: 'sitio'}) if ub.sitio
+    xml.observaciones(ub.lugar, {tipo: 'lugar'}) if ub.lugar
+    xml.observaciones(ub.tsitio.nombre, {tipo: 'tsitio'}) if ub.tsitio
+  end
 
   caso.contexto.each do |con|
     xml.observaciones(con.nombre, {tipo: 'contexto'}) if con
