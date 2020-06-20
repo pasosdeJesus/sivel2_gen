@@ -486,7 +486,8 @@ enviaFormularioContar= (root) ->
   )
  
   #En ubicación por omisión Colombia y actualiza departamentos 
-  $('#ubicacion').on('cocoon:after-insert', '', (e, ubicacion) ->
+  $('#ubicaciones').on('cocoon:after-insert', '', (e, ubicacion) ->
+    console.log "holi alejo"
     ubipais = 'select[id^=caso_][id$=id_pais]'
     $(ubipais).val(170).trigger('chosen:updated')
     llena_departamento($(ubicacion.find(ubipais)), root)
