@@ -10,6 +10,8 @@
   </head>
   <body>
     <% @conscaso.try(:each) do |caso| %>
+      <a href='<% sivel2_gen.caso_path(caso.caso_id) %>'><%= caso.caso_id %></a>
+      
       <p>
         <!-- % if @incluir.include?('casoid') %-->
           <!--%= link_to caso.caso_id, sivel2_gen.caso_path(caso.caso_id) %-->
