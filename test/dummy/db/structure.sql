@@ -2365,7 +2365,7 @@ CREATE TABLE public.sivel2_gen_caso_fotra (
     id_fotra integer,
     anotacion character varying(200),
     fecha date NOT NULL,
-    ubicacionfisica character varying(1000),
+    ubicacionfisica character varying(1024),
     tfuente character varying(25),
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
@@ -2407,7 +2407,7 @@ CREATE TABLE public.sivel2_gen_caso_fuenteprensa (
     fecha date NOT NULL,
     ubicacion character varying(100),
     clasificacion character varying(100),
-    ubicacionfisica character varying(100),
+    ubicacionfisica character varying(1024),
     fuenteprensa_id integer NOT NULL,
     id_caso integer NOT NULL,
     created_at timestamp without time zone,
@@ -5044,14 +5044,6 @@ ALTER TABLE ONLY public.sivel2_gen_categoria
 
 
 --
--- Name: sivel2_gen_categoria categoria_contadaen_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.sivel2_gen_categoria
-    ADD CONSTRAINT categoria_contadaen_fkey FOREIGN KEY (contadaen) REFERENCES public.sivel2_gen_categoria(id);
-
-
---
 -- Name: sip_departamento departamento_id_pais_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -5513,14 +5505,6 @@ ALTER TABLE ONLY public.sip_persona
 
 ALTER TABLE ONLY public.sip_persona
     ADD CONSTRAINT persona_tdocumento_id_fkey FOREIGN KEY (tdocumento_id) REFERENCES public.sip_tdocumento(id);
-
-
---
--- Name: sivel2_gen_presponsable presponsable_papa_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.sivel2_gen_presponsable
-    ADD CONSTRAINT presponsable_papa_fkey FOREIGN KEY (papa) REFERENCES public.sivel2_gen_presponsable(id);
 
 
 --
@@ -6083,6 +6067,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20200423092828'),
 ('20200427091939'),
 ('20200428155536'),
-('20200430101709');
+('20200430101709'),
+('20200622193241');
 
 

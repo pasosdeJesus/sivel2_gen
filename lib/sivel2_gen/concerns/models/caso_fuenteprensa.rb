@@ -24,7 +24,7 @@ module Sivel2Gen
           validates_presence_of :fuenteprensa
           validates :ubicacion, length: { maximum: 100 } 
           validates :clasificacion, length: { maximum: 100 } 
-          validates :ubicacionfisica, length: { maximum: 100 } 
+          validates :ubicacionfisica, length: { maximum: 1024 } 
 
           validates :fuenteprensa_id, uniqueness: { scope: [
             :id_caso, :fecha
