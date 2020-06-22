@@ -512,6 +512,13 @@ enviaFormularioContar= (root) ->
     busca_grupoper_nombre($(this), root)
   )
 
+  # Al seleccionar ubicacion principal se desenmarcan las demas
+  $(document).on('change', '#ubicaciones input[type=checkbox]', (e) ->
+    otros = $('input[type="checkbox"][name$="[principal]"').not($(this))
+    if $(this).is(':checked')
+      otros.prop('checked', false)
+  )
+
   # Al cambiar país se recalcula lista de departamentos
   $(document).on('change', 'select[id^=caso_][id$=id_pais]', (e) ->
     llena_departamento($(this), root)
@@ -856,7 +863,3 @@ enviaFormularioContar= (root) ->
     $('input.bitacora_cambio').val(JSON.stringify(cambio))
   )
   return
-
-
-
-
