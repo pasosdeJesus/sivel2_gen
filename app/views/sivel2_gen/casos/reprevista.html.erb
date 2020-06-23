@@ -11,7 +11,6 @@
   <body>
     <% @conscaso.try(:each) do |caso| %>
       <a href='<% sivel2_gen.caso_path(caso.caso_id) %>'><%= caso.caso_id %></a>
-      
       <p>
         <!-- % if @incluir.include?('casoid') %-->
           <!--%= link_to caso.caso_id, sivel2_gen.caso_path(caso.caso_id) %-->
@@ -20,21 +19,25 @@
           <%= I18n.localize(caso.fecha, format: '%B %d/%Y').capitalize %>
         <% end %>
       </p>
+        <% @caso = Sivel2Gen::Caso.find(caso.caso_id) %>
       <p>
         <% if caso.ubicacion.count == 0 %>
           <div class='alerta'>Caso sin ubicación</div>
-        <% elsif caso.ubicacion.count > 1 %>
-          <div class='alerta'>Caso con varias ubicaciones</div>
+        <% elsif caso.ubicacion.count >= 1 %>
+            <% ubi_principal = Sip::Ubicacion.find(@caso.ubicacion_id) %>
+            <% if ubi_principal.departamento %>
+              DEPARTAMENTO: <%= ubi_principal.departamento.nombre%> 
+            <% end %>
+            <% if ubi_principal.municipio %>
+              <br>MUNICIPIO: <%= ubi_principal.municipio.nombre%> 
+            <% end %>
+            <% if caso.ubicacion.count > 1 %>
+              <p class='alerta'>Caso con varias ubicaciones, (Principal mostrada)</p>
+            <% end %>
         <% elsif caso.ubicacion[0].departamento == nil %>
           <div class='alert'>Ubicacion sin departamento</div>
-        <% else %>
-          DEPARTAMENTO: <%= caso.ubicacion[0].departamento.nombre %>
-          <% if caso.ubicacion[0].municipio %>
-            <br>MUNICIPIO: <%= caso.ubicacion[0].municipio.nombre %>
-          <% end %>
         <% end %>
       </p>
-      <p>
         <% @markdown ||= Redcarpet::Markdown.new(Redcarpet::Render::HTML, {
           autolink: true,
           space_after_headers: true,
@@ -43,30 +46,43 @@
           highlight: true,
           tables: true }) %>
         <% c = @markdown.render(caso.memo).html_safe %>
-        <%= c %>
-      </p>
+        <table>
+          <tr><td><tt>
+                <%= c %>
+          </tt></td></tr>
+        </table>
+     <% @caso.acto.each do |ac| %>
       <p>
-      Presuntos Responsables:
-      <% if caso.caso_presponsable then %>
-        <% caso.caso_presponsable.each do |cpr| %>
-          <br/><%= cpr.presponsable.nombre %>
-        <% end %>
-      <% end %>
-      </p>
-      <p>
-      Actos de violencia:
-      <table border=1>
-        <tr><th>Presunto Responsable</th><th>Categoria de violencia</th><th>Víctima</th></tr>
-        <% if caso.acto then %>
-          <% caso.acto.each do |a| %>
-            <tr>
-              <td><%= a.presponsable.nombre %></td>
-              <td><%= a.categoria.nombre %></td>
-              <td><%= a.persona.presenta_nombre %></td>
-            </tr>
-          <% end %>
-        <% end %>
-      </table>
+       <% supraid = ac.categoria.supracategoria_id%>
+       <% tviolencia = Sivel2Gen::Supracategoria.find(supraid).id_tviolencia if supraid%>
+       <% pr = Sivel2Gen::Presponsable.find(ac.id_presponsable).nombre %>
+       <% tv_nombre = Sivel2Gen::Tviolencia.find(tviolencia).nombre if tviolencia%>
+       <% supra_nombre = Sivel2Gen::Supracategoria.find(supraid).nombre if supraid%>
+       Presunto Responsable: <%= pr %> </br>
+       <%= tv_nombre%></br>
+       <%= supra_nombre%></br>
+       <%= ac.categoria.nombre%> </br>
+       <% victima = Sivel2Gen::Victima.where(id_persona: ac.id_persona)[0]%>
+       <%= Sip::Persona.find(victima.id_persona).nombres +
+         ' ' + Sip::Persona.find(ac.id_persona).apellidos %> 
+       -
+       <%= Sivel2Gen::Sectorsocial.find(victima.id_sectorsocial).nombre%></br>
+     </p>
+     <% end %>
+     <% @caso.actocolectivo.each do |ac| %>
+     <p>
+       <% supraid = ac.categoria.supracategoria_id%>
+       <% tviolencia = Sivel2Gen::Supracategoria.find(supraid).id_tviolencia if supraid%>
+       <% pr = Sivel2Gen::Presponsable.find(ac.id_presponsable).nombre %>
+       <% tv_nombre = Sivel2Gen::Tviolencia.find(tviolencia).nombre if tviolencia%>
+       <% supra_nombre = Sivel2Gen::Supracategoria.find(supraid).nombre if supraid%>
+       Presunto Responsable: <%= pr %> </br>
+       <%= tv_nombre %> </br>
+       <%= supra_nombre %> </br>
+       <%= ac.categoria.nombre%></br> 
+       <%= Sip::Grupoper.find(ac.id_grupoper).nombre %></br> 
+     </p>
+     <% end %>
     <% end %>
   </body>
 </html>
