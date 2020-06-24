@@ -59,6 +59,10 @@ module Sivel2Gen
           validates :caso, presence: true
           validates :persona, presence: true
 
+          before_destroy do
+            byebug
+            Sivel2Gen::Acto(id_caso: id_caso, id_persona: id_persona).delete_all
+          end
           ## AUXILIARES PARA PRESENTAR INFORMACIÓN
 
           def departamento_caso
