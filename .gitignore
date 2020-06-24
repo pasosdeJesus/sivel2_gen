@@ -41,3 +41,4 @@ test/dummy/node_modules/
 bin/c.sh
 test/dummy/bin/c.sh
 test/dummy/public/sivel2/assets/
+test/dummy/public/packs

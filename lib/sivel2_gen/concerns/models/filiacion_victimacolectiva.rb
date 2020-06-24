@@ -1,0 +1,22 @@
+
+module Sivel2Gen
+  module Concerns
+    module Models
+      module FiliacionVictimacolectiva
+        extend ActiveSupport::Concern
+
+        included do
+
+          include Sip::Localizacion
+          include Sip::FormatoFechaHelper
+
+          belongs_to :filiacion, foreign_key: "id_filiacion", 
+            class_name: 'Sivel2Gen::Filiacion'
+          belongs_to :victimacolectiva, foreign_key: "victimacolectiva_id", 
+            class_name: 'Sivel2Gen::Victimacolectiva'
+        end # included
+
+      end
+    end
+  end
+end

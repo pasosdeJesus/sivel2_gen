@@ -66,7 +66,12 @@ module Sivel2Gen
 
           validates :caso, presence: true
           validates :grupoper, presence: true
-          
+
+          before_destroy do
+            Sivel2Gen::Actocolectivo.where(
+              id_caso: id_caso, id_grupoper: id_grupoper).delete_all
+          end
+
           def importa(g, datossal, menserror, opciones = {})
             #Se verifica que el grupo no sea un presunto responsable
             if Sivel2Gen::Presponsable.where(nombre: g['nombre_grupo']).empty?

@@ -60,8 +60,8 @@ module Sivel2Gen
           validates :persona, presence: true
 
           before_destroy do
-            byebug
-            Sivel2Gen::Acto(id_caso: id_caso, id_persona: id_persona).delete_all
+            Sivel2Gen::Acto.where(id_caso: id_caso, id_persona: id_persona).
+              delete_all
           end
           ## AUXILIARES PARA PRESENTAR INFORMACIÓN
 

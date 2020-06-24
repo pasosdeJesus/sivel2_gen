@@ -1,10 +1,7 @@
-# encoding: UTF-8
+require 'sivel2_gen/concerns/models/filiacion_victimacolectiva'
 
 module Sivel2Gen
   class FiliacionVictimacolectiva < ActiveRecord::Base
-    belongs_to :filiacion, foreign_key: "id_filiacion", 
-      class_name: 'Sivel2Gen::Filiacion'
-    belongs_to :victimacolectiva, foreign_key: "victimacolectiva_id", 
-      class_name: 'Sivel2Gen::Victimacolectiva'
+    include Sivel2Gen::Concerns::Models::FiliacionVictimacolectiva
   end
 end
