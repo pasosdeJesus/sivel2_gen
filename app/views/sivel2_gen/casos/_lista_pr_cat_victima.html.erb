@@ -107,15 +107,15 @@
     <% tviolencia = Sivel2Gen::Supracategoria.find(supraid).id_tviolencia if supraid%>
     <% tv_nombre = Sivel2Gen::Tviolencia.find(tviolencia).nombre if tviolencia%>
     <% supra_nombre = Sivel2Gen::Supracategoria.find(supraid).nombre if supraid%>
-    <%= tv_nombre %></br>
-    <%= Sivel2Gen::Categoria.find(ct).nombre.titleize %> por <%= supra_nombre.titleize   %></br>
+    &nbsp;&nbsp;<%= tv_nombre %></br>
+    &nbsp;&nbsp;<%= Sivel2Gen::Categoria.find(ct).nombre.titleize %> por <%= supra_nombre.titleize   %></br>
     <% porVic[pr][ct].each do |idv|%>
-      <%= lvic[idv]%></br>
+      &nbsp;&nbsp;&nbsp;&nbsp;<%= lvic[idv]%></br>
     <% end %>
   <% end %>
   <% if aspr[pr]%>
-    Otras Agresiones:
-    <%= Sivel2Gen::Categoria.where(id: aspr[pr]).pluck(:nombre).join(', ') %>
+    &nbsp;&nbsp;Otras Agresiones:
+    <%= Sivel2Gen::Categoria.where(id: aspr[pr]).pluck(:nombre).uniq.join(', ') %>
     </br>
   <% end %>
 <% end %>
