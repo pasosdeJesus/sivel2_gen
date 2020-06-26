@@ -10,6 +10,7 @@
   </head>
   <body>
     <% @conscaso.try(:each) do |caso| %>
+      <a href='<% sivel2_gen.caso_path(caso.caso_id) %>'><%= caso.caso_id %></a>
       <p>
         <!-- % if @incluir.include?('casoid') %-->
           <!--%= link_to caso.caso_id, sivel2_gen.caso_path(caso.caso_id) %-->
@@ -18,53 +19,155 @@
           <%= I18n.localize(caso.fecha, format: '%B %d/%Y').capitalize %>
         <% end %>
       </p>
+      <% @caso = Sivel2Gen::Caso.find(caso.caso_id) %>
       <p>
         <% if caso.ubicacion.count == 0 %>
           <div class='alerta'>Caso sin ubicación</div>
-        <% elsif caso.ubicacion.count > 1 %>
-          <div class='alerta'>Caso con varias ubicaciones</div>
+        <% elsif caso.ubicacion.count >= 1 %>
+            <% ubi_principal = Sip::Ubicacion.find(@caso.ubicacion_id) %>
+            <% if ubi_principal.departamento %>
+              DEPARTAMENTO: <%= ubi_principal.departamento.nombre%> 
+            <% end %>
+            <% if ubi_principal.municipio %>
+              <br>MUNICIPIO: <%= ubi_principal.municipio.nombre%> 
+            <% end %>
+            <% if caso.ubicacion.count > 1 %>
+              <p class='alerta'>Caso con varias ubicaciones, (Principal mostrada)</p>
+            <% end %>
         <% elsif caso.ubicacion[0].departamento == nil %>
           <div class='alert'>Ubicacion sin departamento</div>
-        <% else %>
-          DEPARTAMENTO: <%= caso.ubicacion[0].departamento.nombre %>
-          <% if caso.ubicacion[0].municipio %>
-            <br>MUNICIPIO: <%= caso.ubicacion[0].municipio.nombre %>
-          <% end %>
         <% end %>
       </p>
-      <p>
-        <% @markdown ||= Redcarpet::Markdown.new(Redcarpet::Render::HTML, {
-          autolink: true,
-          space_after_headers: true,
-          fenced_code_blocks: true,
-          underline: true,
-          highlight: true,
-          tables: true }) %>
-        <% c = @markdown.render(caso.memo).html_safe %>
-        <%= c %>
-      </p>
-      <p>
-      Presuntos Responsables:
-      <% if caso.caso_presponsable then %>
-        <% caso.caso_presponsable.each do |cpr| %>
-          <br/><%= cpr.presponsable.nombre %>
+      <% @markdown ||= Redcarpet::Markdown.new(Redcarpet::Render::HTML, {
+        autolink: true,
+        space_after_headers: true,
+        fenced_code_blocks: true,
+        underline: true,
+        highlight: true,
+        tables: true }) %>
+      <% c = @markdown.render(caso.memo).html_safe %>
+      <%= c %>
+      <% repgen = false %>
+      <% porVic = {} %>
+      <% lvic = {}%>
+      <% presponsables = Sivel2Gen::Acto.where(id_caso: caso.caso_id).pluck(:id_presponsable) + Sivel2Gen::Actocolectivo.where(id_caso: caso.caso_id).pluck(:id_presponsable) %>
+      <% presponsables.uniq.each do |pr| %>
+        <% h1 = {} %>
+        <% categorias = Sivel2Gen::Acto.where(id_caso: caso.caso_id).where(id_presponsable: pr).pluck(:id_categoria) + Sivel2Gen::Actocolectivo.where(id_caso: caso.caso_id).where(id_presponsable: pr).pluck(:id_categoria) %>
+        <% categorias.uniq.each do |ca|%>
+          <% personas = Sivel2Gen::Acto.where(id_caso: caso.caso_id).where(id_presponsable: pr).where(id_categoria: ca).pluck(:id_persona).map{|p| 'i'+ p.to_s } %>
+          <% grupoper = Sivel2Gen::Actocolectivo.where(id_caso: caso.caso_id).where(id_presponsable: pr).where(id_categoria: ca).pluck(:id_grupoper).map{|g| 'c'+ g.to_s }%>
+          <% h1[ca]= personas.uniq + grupoper.uniq %>
+          <% porVic[pr] = h1%>
         <% end %>
       <% end %>
-      </p>
-      <p>
-      Actos de violencia:
-      <table border=1>
-        <tr><th>Presunto Responsable</th><th>Categoria de violencia</th><th>Víctima</th></tr>
-        <% if caso.acto then %>
-          <% caso.acto.each do |a| %>
-            <tr>
-              <td><%= a.presponsable.nombre %></td>
-              <td><%= a.categoria.nombre %></td>
-              <td><%= a.persona.presenta_nombre %></td>
-            </tr>
+      <% @caso.victima.each do |v| %>
+        <% nvc = Sip::Persona.find(v.id_persona).nombres +
+          ' ' + Sip::Persona.find(v.id_persona).apellidos %> 
+        <% prof = Sivel2Gen::Profesion.find(v.id_profesion).nombre %>
+        <% sector = Sivel2Gen::Sectorsocial.find(v.id_sectorsocial).nombre %>
+        <% if prof != "SIN INFORMACIÓN" %>
+          <% nvc += ' - ' + prof %>
+        <% elsif sector != "SIN INFORMACIÓN"  %>
+          <% nvc +=  ' - ' + sector %>
+        <% end %>
+        <% if repgen %>
+          <% if v.hijos %>
+            <% nvc += ' - ' + v.hijos.to_s + 'hijos' %>
+          <% end %>
+          <% fil = Sivel2Gen::Filiacion.find(v.id_filiacion).nombre %>
+          <% if fil != "SIN INFORMACIÓN" %>
+            <% nvc += ' - ' + fil %>
+          <% end %>
+          <% if v.anotaciones != "" %>
+            <% nvc += ' - ' + v.anotaciones %>
+          <% end %>
+          <% org = Sivel2Gen::Organizacion.find(v.id_organizacion).nombre %>
+          <% if org != "SIN INFORMACIÓN" %>
+            <% nvc += ' - ' + org %>
           <% end %>
         <% end %>
-      </table>
+        <% lvic['i'+ v.id_persona.to_s] = nvc %>
+      <% end %>
+
+      <% @caso.victimacolectiva.each do |vc| %>
+        <% nvc = Sip::Grupoper.find(vc.id_grupoper).nombre.titleize %> 
+        <% lvic['c'+ vc.id_grupoper.to_s] = nvc %>
+      <% end %>
+
+      <!-- Agrupamos por categoria --> 
+      <% agcatarray= [] %>
+      <% agc = {} %>
+      <% porVic.keys.each do |pk|%>
+        <% h2 = porVic[pk] %>
+        <% h1 = h2.keys.group_by{|k| h2[k]} %>
+        <% h2 = h1.invert()%>
+        <% agcatarray = h2.to_a %>
+        <% agc[pk] = agcatarray.to_h%>
+      <% end %>
+      
+      <!-- Agrupamos por presuntos responsables --> 
+      <% agpr = {} %>
+      <% agpraa = {} %>
+      <% agprarray= [] %>
+      <% porVic.keys.each do |pk|%>
+        <% porVic[pk].to_a.each do |pv| %>
+          <% pv = [pv].to_h %>
+          <% if agpraa[pv] %>
+            <% agprarray = [agpraa[pv], pk] %>
+          <% else %>
+            <% agprarray = pk %>
+          <% end %>
+          <% agpraa[pv] = agprarray %>
+          <% agpr = agpraa.keys.group_by{|k| agpraa[k] }%>
+        <% end %>
+      <% end %>
+      
+      <!-- Categorias sin Victimas -->
+      <% asinv = {} %>
+      <% prs = Sivel2Gen::CasoPresponsable.where(id_caso: caso.caso_id) %>
+      <% prs.each do |cpr|  %>
+        <% csinv = Sivel2Gen::CasoCategoriaPresponsable.where(id_caso_presponsable: cpr.id).pluck(:id_categoria) %>
+        <% if !csinv.empty? %>
+          <% csinv.each do |cv|%>
+            <% asinv[cv] = cpr.id_presponsable %>
+          <% end %>
+        <% end %>
+      <% end %>
+      <% aspr = {} %>
+      <% asinv.each do |imc, ipr| %>
+        <% if aspr[ipr] %>
+          <% aspr[ipr] = aspr[ipr] + [imc] %>
+        <% else %>
+          <% aspr[ipr] = [imc] %>
+        <% end %>
+      <% end %>
+      
+      <!-- Presentacion de datos -->
+      <!-- Presponsables, cateogiras y victimas pueden presentarse: -->
+      <!-- porVic: victimas agrupadas (por defecto) -->
+      <!-- agc: categorias agrupadas -->
+      <!-- agpr: presponsables agrupadas -->
+      <% porVic.keys.each do |pr|%>
+      </br>
+       Presunto Responsable: <%= Sivel2Gen::Presponsable.find(pr).nombre %> </br>
+        <% porVic[pr].keys.each do |ct|%>
+          <% supraid = Sivel2Gen::Categoria.find(ct).supracategoria_id%>
+          <% tviolencia = Sivel2Gen::Supracategoria.find(supraid).id_tviolencia if supraid%>
+          <% tv_nombre = Sivel2Gen::Tviolencia.find(tviolencia).nombre if tviolencia%>
+          <% supra_nombre = Sivel2Gen::Supracategoria.find(supraid).nombre if supraid%>
+          <%= tv_nombre %></br>
+          <%= Sivel2Gen::Categoria.find(ct).nombre.titleize %> por <%= supra_nombre.titleize   %></br>
+          <% porVic[pr][ct].each do |idv|%>
+            <%= lvic[idv]%></br>
+          <% end %>
+        <% end %>
+        <% if aspr[pr]%>
+          Otras Agresiones:
+          <%= Sivel2Gen::Categoria.where(id: aspr[pr]).pluck(:nombre).join(', ') %>
+          </br>
+        <% end %>
+      <% end %>
     <% end %>
   </body>
 </html>
