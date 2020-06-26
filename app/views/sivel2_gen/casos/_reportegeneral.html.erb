@@ -99,61 +99,38 @@ Antecedentes:
   ,
 <% end %></p>
 <p>
-<% codigos = {}%>
-<% array_cods = []%>
-<% @caso.acto.each do |ac| %>
-  <% supraid = ac.categoria.supracategoria_id%>
-  <% tviolencia = Sivel2Gen::Supracategoria.find(supraid).id_tviolencia if supraid%>
-  <% codigo = Sivel2Gen::Tviolencia.find(tviolencia).id + ac.categoria.id.to_s if tviolencia%>
-  <% pr = Sivel2Gen::Presponsable.find(ac.id_presponsable).nombre %>
-  <% array_cods.push(codigo) %>
-  <% codigos[pr] = array_cods %>
-  <%= codigo %>.
-  <%= Sivel2Gen::Tviolencia.find(tviolencia).nombre if tviolencia%>-
-  <%= Sivel2Gen::Supracategoria.find(supraid).nombre if supraid%>-
-  <%= ac.categoria.nombre%> 
-<% end %>
+
+<%
+  lcat = {}
+  @caso.acto.each {|a| 
+    lcat[a.id_categoria] = a.id_categoria
+  }
+  @caso.actocolectivo.each {|ac| 
+    lcat[ac.id_categoria] = ac.id_categoria
+  }
+  @caso.caso_presponsable.each {|cp| 
+    cp.categoria_ids.each {|ci| 
+      lcat[ci] = ci
+    }
+  }
+%>
+<% lcat.keys.sort.each {|idcat| 
+  dcategoria = Sivel2Gen::Categoria.find(idcat) %>
+  <%= dcategoria.supracategoria.id_tviolencia + dcategoria.id.to_s %>. 
+  <%= dcategoria.supracategoria.tviolencia.nombre %> - 
+  <%= dcategoria.supracategoria.nombre %> - 
+  <%= dcategoria.nombre %><br>
+<% } %>
 </p>
-<p>
-<% @caso.actocolectivo.each do |ac| %>
-  <% supraid = ac.categoria.supracategoria_id%>
-  <% tviolencia = Sivel2Gen::Supracategoria.find(supraid).id_tviolencia if supraid%>
-  <% codigo = Sivel2Gen::Tviolencia.find(tviolencia).id + ac.categoria.id.to_s if tviolencia%>
-  <% pr = Sivel2Gen::Presponsable.find(ac.id_presponsable).nombre %>
-  <% array_cods.push(codigo) %>
-  <% codigos[pr] = array_cods %>
-  <%= codigo %>.
-  <%= Sivel2Gen::Tviolencia.find(tviolencia).nombre if tviolencia%>-
-  <%= Sivel2Gen::Supracategoria.find(supraid).nombre if supraid%>-
-  <%= ac.categoria.nombre%> 
-<% end %>
-</p>
-<p style="margin: 0; padding: 0;">
-Presunto Responsable: 
-<% codigos.to_a.each_with_index do |par, i|%>
-  <%= par[0] %>
-  :
-  <%= par[1].uniq.join(' / ') %>
-  <% next if i== @caso.presponsable.size-1 %>
-  ,
-<% end %>
-</p>
-<div style= "margin-left: 3rem;">
-<% @caso.victima.each do |v|  %>
-  <p style="margin: 0; padding: 0;">
-  <%= Sip::Persona.find(v.id_persona).nombres +
-    ' ' + Sip::Persona.find(v.id_persona).apellidos %> 
-  -
-  <%= Sivel2Gen::Sectorsocial.find(v.id_sectorsocial).nombre%>
-  </p>
-<% end %>
+<%= render partial: 'lista_pr_cat_victima', 
+  locals: { caso_id: @caso.id } %>
 </div>
 Etiquetas:  
 <% @caso.caso_etiqueta.each do |e|  %>
   <p style="margin: 0; padding: 0;">
   <%= Sip::Etiqueta.find(e.id_etiqueta).nombre %> -
   <%= e.fecha %> -
-  <%= Sip::Usuario.find(e.id_usuario).nusuario %> -
+  <%= Sip::Usuario.find(e.id_usuario).nusuario if Sip::Usuario.where(id: e.id_usuario).count > 0 %> -
   <%= e.observaciones %>
   </p>
 <% end %>
