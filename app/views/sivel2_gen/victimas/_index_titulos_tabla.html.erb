@@ -4,7 +4,14 @@
       <% id = p[0]; rotulo = p[1]; cat = p[2] %>
       <th>
         <%= rotulo %>
-        <%= Sivel2Gen::Acto.where(id_categoria: cat).count %>
+        <% cons=@registros.where(
+          '(sivel2_gen_victima.id_persona, ' +
+          'sivel2_gen_victima.id_caso) IN (SELECT DISTINCT ' +
+          'id_persona, id_caso FROM sivel2_gen_acto AS acto WHERE ' +
+          'acto.id_categoria IN (?))', cat)  %>
+        <% #puts cons.to_sql %>
+        <% #byebug %>
+        <%= cons.count('DISTINCT sivel2_gen_victima.id') %>
       </th>
     <% end %>
     <%= render partial: 'index_titulos_pconsolidado_complemento' %>
