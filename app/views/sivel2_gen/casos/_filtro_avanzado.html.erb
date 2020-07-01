@@ -158,35 +158,8 @@
         %>
       </div>
       <div class="offset-sm-0 col-sm-1 text-center">
-
       </div>
     </div>
-    <div class="row filtro-fila">
-      <div class="offset-sm-0 col-sm-2 offset-md-1 col-md-1">
-       Contexto
-      </div>
-      <div class="offset-sm-0 col-sm-10 offset-md-0 col-md-7">
-        <%= f.input :contexto_id,
-          collection: Sivel2Gen::Contexto.habilitados,
-          label_method: :nombre,
-          value_method: :id,
-          :include_hidden => false,
-          input_html: { :class => "chosen-select", multiple: true },
-          label: false
-        %>
-      </div>
-      <div class="offset-sm-0 col-sm-1 text-center">
-        <%= f.input :inc_contexto, 
-          as: :boolean, 
-          label: false,
-          input_html: {checked: 'checked'}
-        %>
-      </div>
-      <div class="offset-sm-0 col-sm-1 text-center">
-
-      </div>
-    </div>
-
     <div class="row filtro-fila">
       <div class="offset-sm-0 col-sm-2 offset-md-1 col-md-1">
         Víctima

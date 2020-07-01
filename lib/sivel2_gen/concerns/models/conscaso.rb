@@ -91,13 +91,6 @@ module Sivel2Gen
             end
           }
 
-          scope :filtro_contexto_id, lambda { |idc|
-            where('caso_id IN (SELECT id_caso
-                  FROM public.sivel2_gen_caso_contexto
-                  WHERE sivel2_gen_caso_contexto.id_contexto IN (?))',
-                  idc)
-          }
-
           scope :filtro_descripcion, lambda { |d|
             where('sivel2_gen_conscaso.memo ILIKE \'%' + 
                   ActiveRecord::Base.connection.quote_string(d) + '%\'')
