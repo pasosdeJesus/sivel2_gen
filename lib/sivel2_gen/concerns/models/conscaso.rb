@@ -91,6 +91,21 @@ module Sivel2Gen
             end
           }
 
+          scope :filtro_contexto_id, lambda { |idc|
+            where('caso_id IN (SELECT id_caso
+                  FROM public.sivel2_gen_caso_contexto
+                  WHERE sivel2_gen_caso_contexto.id_contexto IN (?))',
+                  idc)
+          }
+          
+          scope :filtro_contextovictima_id, lambda { |idc|
+            where('caso_id IN (SELECT id_caso
+                  FROM public.sivel2_gen_victima INNER JOIN
+                  public.sivel2_gen_contextovictima_victima ON
+                  public.sivel2_gen_victima.id = public.sivel2_gen_contextovictima_victima.victima_id WHERE sivel2_gen_contextovictima_victima.contextovictima_id IN (?))',
+                  idc)
+          }
+
           scope :filtro_descripcion, lambda { |d|
             where('sivel2_gen_conscaso.memo ILIKE \'%' + 
                   ActiveRecord::Base.connection.quote_string(d) + '%\'')
