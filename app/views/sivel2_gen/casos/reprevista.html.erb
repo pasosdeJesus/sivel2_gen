@@ -21,7 +21,7 @@
       </p>
       <% @caso = Sivel2Gen::Caso.find(caso.caso_id) %>
       <p>
-        <% if !caso.ubicacion || caso.ubicacion.count == 0 || @caso.ubicacion_id %>
+        <% if !caso.ubicacion || caso.ubicacion.count == 0 || !@caso.ubicacion_id %>
           <div class='alerta'>Caso sin ubicación</div>
         <% elsif caso.ubicacion.count >= 1 %>
             <% ubi_principal = Sip::Ubicacion.find(@caso.ubicacion_id) %>
