@@ -548,8 +548,8 @@ enviaFormularioContar= (root) ->
       url: b, 
       data: {id: id_clase}, 
       dataType: "json", 
-      success: (data) ->
-        tclase = data.nombre
+      success: (datos) ->
+        tclase = datos.nombre
         div_padre = select.parent().parent()
         span = div_padre.siblings("span")
         span.html("Tipo de centro poblado: " + tclase)
