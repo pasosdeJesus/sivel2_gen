@@ -1,31 +1,32 @@
 <tt>
-<p style="margin: 0; padding: 0">
-CASO No. <a href=<%= caso_path %>><%= @caso.id%></a>
+  <p style="margin: 0; padding: 0">
+  <% #byebug %>
+CASO No. <a href=<%= caso_path(caso.id) %>><%= caso.id%></a>
 </p>
 <p>
-Fecha: <%= @caso.fecha if @caso.fecha%> <%= @caso.hora if @caso.hora%> <%= @caso.intervalo.nombre if @caso.intervalo%>
+Fecha: <%= caso.fecha if caso.fecha%> <%= caso.hora if caso.hora%> <%= caso.intervalo.nombre if caso.intervalo%>
 <% ubprincipal = nil %>
-<% if @caso.ubicacion_id %>
-  <% ubprincipal = Sip::Ubicacion.find(@caso.ubicacion_id) %>
+<% if caso.ubicacion_id %>
+  <% ubprincipal = Sip::Ubicacion.find(caso.ubicacion_id) %>
   Tip. Ub:<%= Sip::Tsitio.find(ubprincipal.id_tsitio).nombre %>
 <% end %>
 </p>
-<% unless @caso.region.empty? %>
+<% unless caso.region.empty? %>
   <p style="margin: 0; padding: 0">
   Región (es):
-  <% @caso.region.each_with_index do |re, i| %>
+  <% caso.region.each_with_index do |re, i| %>
     <%= re.nombre if re.nombre %>
-    <% next if i== @caso.region.size-1 %>
+    <% next if i== caso.region.size-1 %>
     /
   <% end %>
 <% end %>
 </p>
-<% unless @caso.region.empty? %>
+<% unless caso.region.empty? %>
   <p style="margin: 0; padding: 0">
   Frontera(s): 
-  <% @caso.frontera.each.with_index do |fr, i| %>
+  <% caso.frontera.each.with_index do |fr, i| %>
     <%= fr.nombre if fr.nombre %>
-    <% next if i== @caso.frontera.size-1 %>
+    <% next if i== caso.frontera.size-1 %>
     /
   <% end %>
   </p>
@@ -35,8 +36,8 @@ Fecha: <%= @caso.fecha if @caso.fecha%> <%= @caso.hora if @caso.hora%> <%= @caso
   <%= ubprincipal.municipio.nombre if ubprincipal && ubprincipal.municipio%> /
   <%= ubprincipal.clase.nombre if ubprincipal && ubprincipal.clase%>
 </p>
-<% @caso.ubicacion.each do |ub| %>
-  <% next if ub.id == @caso.ubicacion_id %>
+<% caso.ubicacion.each do |ub| %>
+  <% next if ub.id == caso.ubicacion_id %>
 <p style="margin: 0; padding: 0">
   <%= ub.departamento.nombre if ub.departamento%> / 
   <%= ub.municipio.nombre if ub.municipio%> /
@@ -45,10 +46,10 @@ Fecha: <%= @caso.fecha if @caso.fecha%> <%= @caso.hora if @caso.hora%> <%= @caso
   </p>
 <% end %>
 
-<% unless @caso.region.empty? %>
+<% unless caso.region.empty? %>
   <p style="margin: 0; padding: 0">
   Fuente: 
-  <% fuentes = Sivel2Gen::CasoFuenteprensa.where(id_caso: @caso.id) %>
+  <% fuentes = Sivel2Gen::CasoFuenteprensa.where(id_caso: caso.id) %>
   <% fuentes.each do |fr| %>
     <%= fr.fuenteprensa.nombre if fr.fuenteprensa.nombre %>-
     <%= fr.fecha if fr.fecha %>-
@@ -56,9 +57,9 @@ Fecha: <%= @caso.fecha if @caso.fecha%> <%= @caso.hora if @caso.hora%> <%= @caso
   <% end %>
 <% end %>
 </p>
-<% unless @caso.region.empty? %>
+<% unless caso.region.empty? %>
   Otras fuentes Prensa: 
-  <% otrasfuentes = Sivel2Gen::CasoFotra.where(id_caso: @caso.id) %>
+  <% otrasfuentes = Sivel2Gen::CasoFotra.where(id_caso: caso.id) %>
   <p style="margin: 0; padding: 0">
   <% otrasfuentes.each do |fr| %>
     <%= fr.nombre if fr.nombre %>-
@@ -70,45 +71,45 @@ Fecha: <%= @caso.fecha if @caso.fecha%> <%= @caso.hora if @caso.hora%> <%= @caso
 <table>
  Memo:
   <tr><td>
-    <%= @caso.memo %>
+    <%= caso.memo %>
   </td></tr>
 </table>
-<% unless @caso.region.empty? %>
+<% unless caso.region.empty? %>
   ANEXO(S):
-  <% anexo = Sivel2Gen::AnexoCaso.where(id_caso: @caso.id) %>
+  <% anexo = Sivel2Gen::AnexoCaso.where(id_caso: caso.id) %>
   <p>
   <% anexo.each do |an| %>
     <%= an.fecha if an.fecha %>-
-    <a href= "/sivel2/anexos/descarga_anexo/<%= an.id_anexo %>"><%= @caso.id %>_<%= Sip::Anexo.find(an.id_anexo).adjunto_file_name %></a>
+    <a href= "/sivel2/anexos/descarga_anexo/<%= an.id_anexo %>"><%= caso.id %>_<%= Sip::Anexo.find(an.id_anexo).adjunto_file_name %></a>
   <% end %>
   </p>
 <% end %>
 
 <p>
 Contexto(s): 
-<% @caso.contexto.each.with_index do |co, i| %>
+<% caso.contexto.each.with_index do |co, i| %>
   <%= co.nombre if co.nombre %>
-  <% next if i== @caso.contexto.size-1 %>
+  <% next if i== caso.contexto.size-1 %>
   ,
 <% end %></p>
 <p>
 Antecedentes: 
-<% @caso.antecedente.each.with_index do |co, i| %>
+<% caso.antecedente.each.with_index do |co, i| %>
   <%= co.nombre if co.nombre %>
-  <% next if i== @caso.antecedente.size-1 %>
+  <% next if i== caso.antecedente.size-1 %>
   ,
 <% end %></p>
 <p>
 
 <%
   lcat = {}
-  @caso.acto.each {|a| 
+  caso.acto.each {|a| 
     lcat[a.id_categoria] = a.id_categoria
   }
-  @caso.actocolectivo.each {|ac| 
+  caso.actocolectivo.each {|ac| 
     lcat[ac.id_categoria] = ac.id_categoria
   }
-  @caso.caso_presponsable.each {|cp| 
+  caso.caso_presponsable.each {|cp| 
     cp.categoria_ids.each {|ci| 
       lcat[ci] = ci
     }
@@ -123,10 +124,10 @@ Antecedentes:
 <% } %>
 </p>
 <%= render partial: 'lista_pr_cat_victima', 
-  locals: { caso_id: @caso.id } %>
+  locals: { caso: caso, caso_id: caso.id } %>
 </div>
 Etiquetas:  
-<% @caso.caso_etiqueta.each do |e|  %>
+<% caso.caso_etiqueta.each do |e|  %>
   <p style="margin: 0; padding: 0;">
   <%= Sip::Etiqueta.find(e.id_etiqueta).nombre %> -
   <%= e.fecha %> -
@@ -142,7 +143,7 @@ Analista(s):
   presentados = []
   bitacora = Sip::Bitacora.
     where(modelo: 'Sivel2Gen::Caso').
-    where(modelo_id: @caso.id).
+    where(modelo_id: caso.id).
     where("operacion IN ('iniciar', 'actualizar', 'tocar')").
     order(:fecha).each do |b| %>
   <% if !presentados.include?(b.usuario_id) %>

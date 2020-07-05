@@ -24,7 +24,7 @@
           <tbody>
             <% Sip::Bitacora.where(
               modelo: 'Sivel2Gen::Caso', 
-              modelo_id: @caso.id, 
+              modelo_id: caso.id, 
               operacion: ['tocar', 'iniciar', 'actualizar']).order(:fecha).each do |r| %>
               <tr>
                 <th scope="row"><%= r.fecha %></th>

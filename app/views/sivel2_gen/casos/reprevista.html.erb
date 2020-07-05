@@ -10,7 +10,9 @@
   </head>
   <body>
     <% @conscaso.try(:each) do |caso| %>
-      <a href='<% sivel2_gen.caso_path(caso.caso_id) %>'><%= caso.caso_id %></a>
+      <% if @incluir.include?('casoid') %>
+        <a href='<% sivel2_gen.caso_path(caso.caso_id) %>'><%= caso.caso_id %></a>
+      <% end %>
       <p>
         <!-- % if @incluir.include?('casoid') %-->
           <!--%= link_to caso.caso_id, sivel2_gen.caso_path(caso.caso_id) %-->
@@ -48,7 +50,8 @@
       <% c = @markdown.render(caso.memo).html_safe %>
       <%= c %>
       <%= render partial: 'lista_pr_cat_victima', 
-        locals: { caso_id: caso.caso_id } %>
+        locals: { caso: @caso, caso_id: caso.caso_id } %>
+      <hr/>
     <% end %>
   </body>
 </html>

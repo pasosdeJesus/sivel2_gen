@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Reporte General</title>
+    <style>
+      .alerta {
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <% @conscaso.try(:each) do |conscaso| %>
+      <% caso = Sivel2Gen::Caso.find(conscaso.caso_id) %>
+      <%= render partial: 'reportegeneral', locals: {caso: caso} %>
+      <hr/>
+    <% end %>
+  </body>
+</html>

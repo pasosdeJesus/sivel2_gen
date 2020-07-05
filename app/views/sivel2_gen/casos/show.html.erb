@@ -1,6 +1,6 @@
 <div>
-  <%= render :partial => 'reportegeneral' %>
-  <%= render :partial => 'show_registros_bitacora' %>
+  <%= render :partial => 'reportegeneral', locals: {caso: @caso} %>
+  <%= render :partial => 'show_registros_bitacora', locals: {caso: @caso} %>
   <div class='row'>
     <div class='col-sm-3'>
       <a class='btn' href='<%= casos_path %>'>Regresar</a>

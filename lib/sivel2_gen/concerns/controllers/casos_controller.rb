@@ -98,7 +98,8 @@ module Sivel2Gen
                 :fechaini, :fechafin, :presponsable_id, :categoria_id,
                 :nombres, :apellidos, :sexo, :rangoedad_id,
                 :sectorsocial_id, :organizacion_id, :profesion_id, :descripcion,
-                :usuario_id, :fechaingini, :fechaingfin, :contexto_id, :contextovictima_id, :codigo
+                :usuario_id, :fechaingini, :fechaingfin, :contexto_id, 
+                :contextovictima_id, :codigo
               ]
             else
               [:departamento_id, :municipio_id, :clase_id,
@@ -158,6 +159,7 @@ module Sivel2Gen
                 |c| [c.nombremenu, c.id] }
             @plantillas += [
               ['Reporte Revista HTML', 'reprevista.html'],
+              ['Reporte General HTML', 'repgeneral.html'],
               ['Exportar a XRLAT( XML)', 'reprevista.xrlat'],
               ['Exportar a JSON', 'reprevista.json']
             ]
@@ -314,7 +316,7 @@ module Sivel2Gen
                   if (params['idplantilla'])
                     #byebug
                     case params['idplantilla']
-                    when 'reprevista'
+                    when 'reprevista', 'repgeneral'
                       render params['idplantilla'], layout: nil
                     else
                       redirect_back fallback_location:
