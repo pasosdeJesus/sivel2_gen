@@ -12,7 +12,7 @@
     <% porVic[pr] = h1%>
   <% end %>
 <% end %>
-<% @caso.victima.each do |v| %>
+<% caso.victima.each do |v| %>
   <% nvc = Sip::Persona.find(v.id_persona).nombres +
     ' ' + Sip::Persona.find(v.id_persona).apellidos %> 
   <% prof = Sivel2Gen::Profesion.find(v.id_profesion).nombre %>
@@ -41,8 +41,8 @@
   <% lvic['i'+ v.id_persona.to_s] = nvc %>
 <% end %>
 
-<% @caso.victimacolectiva.each do |vc| %>
-  <% nvc = Sip::Grupoper.find(vc.id_grupoper).nombre.titleize %> 
+<% caso.victimacolectiva.each do |vc| %>
+  <% nvc = Sip::Grupoper.find(vc.id_grupoper).nombre %> 
   <% lvic['c'+ vc.id_grupoper.to_s] = nvc %>
 <% end %>
 
