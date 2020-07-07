@@ -8,7 +8,7 @@
   <% categorias.uniq.each do |ca|%>
     <% personas = Sivel2Gen::Acto.where(id_caso: caso_id).where(id_presponsable: pr).where(id_categoria: ca).pluck(:id_persona).map{|p| 'i'+ p.to_s } %>
     <% grupoper = Sivel2Gen::Actocolectivo.where(id_caso: caso_id).where(id_presponsable: pr).where(id_categoria: ca).pluck(:id_grupoper).map{|g| 'c'+ g.to_s }%>
-    <% h1[ca]= personas.uniq + grupoper.uniq %>
+    <% h1[ca]= (personas.uniq + grupoper.uniq).sort %>
     <% porVic[pr] = h1%>
   <% end %>
 <% end %>
@@ -17,10 +17,11 @@
     ' ' + Sip::Persona.find(v.id_persona).apellidos %> 
   <% prof = Sivel2Gen::Profesion.find(v.id_profesion).nombre %>
   <% sector = Sivel2Gen::Sectorsocial.find(v.id_sectorsocial).nombre %>
+  <% if sector != "SIN INFORMACIÓN"  %>
+    <% nvc +=  ' - ' + sector %>
+  <% end %>
   <% if prof != "SIN INFORMACIÓN" %>
     <% nvc += ' - ' + prof %>
-  <% elsif sector != "SIN INFORMACIÓN"  %>
-    <% nvc +=  ' - ' + sector %>
   <% end %>
   <% if repgen %>
     <% if v.hijos %>
@@ -73,6 +74,17 @@
     <% agpr = agpraa.keys.group_by{|k| agpraa[k] }%>
   <% end %>
 <% end %>
+<% agpr.keys.each do |pk|%>
+  <% h2 = agpr[pk] %>
+  <% hi = {} %>
+  <% h2.each do |ar| %>
+    <% hi = hi.merge(ar) %>
+  <% end %>
+  <% h1 = hi.keys.group_by{|k| hi[k]} %>
+  <% h2 = h1.invert()%>
+  <% agcatarray = h2.to_a %>
+  <% agpr[pk] = agcatarray.to_h%>
+<% end %>
 
 <!-- Categorias sin Victimas -->
 <% asinv = {} %>
@@ -93,28 +105,84 @@
     <% aspr[ipr] = [imc] %>
   <% end %>
 <% end %>
-
 <!-- Presentacion de datos -->
 <!-- Presponsables, cateogiras y victimas pueden presentarse: -->
 <!-- porVic: victimas agrupadas (por defecto) -->
 <!-- agc: categorias agrupadas -->
 <!-- agpr: presponsables agrupadas -->
-<% porVic.keys.each do |pr|%>
-  </br>
-  Presunto Responsable: <%= Sivel2Gen::Presponsable.find(pr).nombre %> </br>
-  <% porVic[pr].keys.each do |ct|%>
-    <% supraid = Sivel2Gen::Categoria.find(ct).supracategoria_id%>
-    <% tviolencia = Sivel2Gen::Supracategoria.find(supraid).id_tviolencia if supraid%>
-    <% tv_nombre = Sivel2Gen::Tviolencia.find(tviolencia).nombre if tviolencia%>
-    <% supra_nombre = Sivel2Gen::Supracategoria.find(supraid).nombre if supraid%>
-    &nbsp;&nbsp;<%= tv_nombre %></br>
-    &nbsp;&nbsp;<%= Sivel2Gen::Categoria.find(ct).nombre.titleize %> por <%= supra_nombre.titleize   %></br>
-    <% porVic[pr][ct].each do |idv|%>
-      &nbsp;&nbsp;&nbsp;&nbsp;<%= lvic[idv]%></br>
+<% por = porVic %>
+<% agc.keys.each do |cc|%>
+  <% agc[cc].keys.each do |lc|%>
+    <% if lc.is_a? Array %>
+      <% por = agc %>
+    <% end %>
+  <% end %>
+<% end %>
+<% agpr.keys.each do |kpr|%>
+  <% if kpr.is_a? Array %>
+    <% por = agpr %>
+  <% end %>
+<% end %>
+<% por.keys.each do |pr|%>
+  <% if pr.is_a? Integer %>
+    </br>
+    Presunto Responsable: <%= Sivel2Gen::Presponsable.find(pr).nombre %> </br>
+  <% else %>
+    </br>
+    Presuntos Responsables:
+    <% pr.each_with_index do |pri, i|%>
+      <%= "Y" if i != 0 %>
+      <%= Sivel2Gen::Presponsable.find(pri).nombre %> 
+    <% end %></br>
+  <% end %>
+  <% if por[pr].is_a? Array %>
+    <% por[pr] = por[pr][0]%> 
+  <% end %>
+  <% por[pr].keys.each do |ct|%>
+    <% if ct.is_a? Integer %>
+      <% supraid = Sivel2Gen::Categoria.find(ct).supracategoria_id%>
+      <% tviolencia = Sivel2Gen::Supracategoria.find(supraid).id_tviolencia if supraid%>
+      <% tv_nombre = Sivel2Gen::Tviolencia.find(tviolencia).nombre if tviolencia%>
+      <% supra_nombre = Sivel2Gen::Supracategoria.find(supraid).nombre if supraid%>
+      <%= tv_nombre %></br>
+      <%= Sivel2Gen::Categoria.find(ct).nombre.titleize %> por <%= supra_nombre.titleize   %></br>
+    <% else %>
+      <% ct.each do |cti| %>
+        <% supraid = Sivel2Gen::Categoria.find(cti).supracategoria_id%>
+        <% tviolencia = Sivel2Gen::Supracategoria.find(supraid).id_tviolencia if supraid%>
+        <% tv_compara = Sivel2Gen::Tviolencia.find(tviolencia).nombre if tviolencia%>
+        <% if tv_nombre && tv_nombre == tv_compara %>
+          <% tv_nombre = Sivel2Gen::Tviolencia.find(tviolencia).nombre if tviolencia%>
+        <% else %>
+          <% tv_nombre = Sivel2Gen::Tviolencia.find(tviolencia).nombre if tviolencia%>
+          <%= tv_nombre %></br>
+        <% end %>
+        <% supra_nombre = Sivel2Gen::Supracategoria.find(supraid).nombre if supraid%>
+        <%= Sivel2Gen::Categoria.find(cti).nombre.titleize %> por <%= supra_nombre.titleize   %></br>
+      <% end %>
+    <% end %>
+    <% nns = {} %>
+    <% por[pr][ct].each do |idv|%>
+      <% if lvic[idv].split("-")[0] == "N N " %>
+        <% if nns[lvic[idv].split("-")[1]] %>
+          <% nns[lvic[idv].split("-")[1]] += 1 %>
+        <% else %>
+          <% nns[lvic[idv].split("-")[1]] = 1 %>
+        <% end %>
+      <% else %>
+        <%= lvic[idv]%></br>
+      <% end %>
+    <% end %>
+    <% nns.keys.each do |nn| %>
+      <% if nns[nn] == 1 %>
+        <%= nns[nn].to_s + " PERSONA SIN IDENTIFICAR- " + nn %></br> 
+      <% else %>
+        <%= nns[nn].to_s + " PERSONAS SIN IDENTIFICAR- " + nn %>
+      <% end %>
     <% end %>
   <% end %>
   <% if aspr[pr]%>
-    &nbsp;&nbsp;Otras Agresiones:
+    Otras Agresiones:
     <%= Sivel2Gen::Categoria.where(id: aspr[pr]).pluck(:nombre).uniq.join(', ') %>
     </br>
   <% end %>

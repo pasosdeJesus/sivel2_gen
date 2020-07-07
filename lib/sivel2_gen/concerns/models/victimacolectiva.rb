@@ -80,7 +80,13 @@ module Sivel2Gen
               gp.save!
               self.id_grupoper = gp.id
               self.save!
-              g['observaciones'].each do |ob|
+              array_obs = []
+              if g['observaciones'].kind_of? String
+                array_obs.push(g['observaciones'])
+              else
+                array_obs = g['observaciones']
+              end
+              array_obs.each do |ob|
                 ele = ob.split(/\_([^_]*)$/)
                 case ele[0]
                 when 'personasaprox'

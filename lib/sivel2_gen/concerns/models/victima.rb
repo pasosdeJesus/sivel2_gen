@@ -286,7 +286,7 @@ module Sivel2Gen
                 self.id_profesion = Sivel2Gen::Profesion.where('TRIM(nombre)=?', v['ocupacion'].strip).ids[0]
               else
                 menserror << "En la tabla básica Profesion no existe " +
-                  "'#{v['profesion']}'"
+                  "'#{v['ocupacion']}'. "
                 self.id_profesion = Sivel2Gen::Profesion.where(
                   nombre: 'SIN INFORMACIÓN').ids[0]
               end
@@ -296,7 +296,7 @@ module Sivel2Gen
                 self.id_sectorsocial = Sivel2Gen::Sectorsocial.where('TRIM(nombre)=?', v['sector_condicion'].strip).ids[0]
               else
                 menserror << "En la tabla básica Sector Social no existe " +
-                  "'#{v['sector_condicion']}'"
+                  "'#{v['sector_condicion']}'. "
                 self.id_sectorsocial = Sivel2Gen::Sectorsocial.where(
                   nombre: 'SIN INFORMACIÓN').ids[0]
               end
@@ -306,7 +306,7 @@ module Sivel2Gen
                 self.id_iglesia = Sivel2Gen::Iglesia.where('TRIM(nombre)=?', v['iglesia'].strip).ids[0]
               else
                 menserror << "En la tabla básica Iglesia no existe " +
-                  "'#{v['iglesia']}'"
+                  "'#{v['iglesia']}'. "
                 self.id_iglesia= Sivel2Gen::Iglesia.where(
                   nombre: 'SIN INFORMACIÓN').ids[0]
               end
@@ -316,7 +316,7 @@ module Sivel2Gen
                 self.id_organizacion = Sivel2Gen::Organizacion.where('TRIM(nombre)=?', v['organizacion'].strip).ids[0]
               else
                 menserror << "En la tabla básica Organización no existe " +
-                  "'#{v['organizacion']}'"
+                  "'#{v['organizacion']}'. "
                 self.id_organizacion = Sivel2Gen::Organizacion.where(
                   nombre: 'SIN INFORMACIÓN').ids[0]
               end
@@ -344,10 +344,9 @@ module Sivel2Gen
                 #    find(id: ele[1].to_i).id
                 #end
               when 'rangoedad'
-                if Sivel2Gen::Rangoedad.where('TRIM(rango)=?', ele[1].strip).count ==1
-
+                if Sivel2Gen::Rangoedad.where('TRIM(rango)=?', ele[1].strip.split).count ==1
                   self.id_rangoedad = Sivel2Gen::Rangoedad.
-                    where(rango: ele[1]).ids[0]
+                    where(rango: ele[1].strip.split).ids[0]
                 else
                   menserror << "Tabla básica Rango Edad  no tiene '#{ele[1]}'. "
                 end  
