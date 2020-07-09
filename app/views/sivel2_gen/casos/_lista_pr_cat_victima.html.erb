@@ -132,7 +132,11 @@
     Presuntos Responsables:
     <% pr.each_with_index do |pri, i|%>
       <%= "Y" if i != 0 %>
-      <%= Sivel2Gen::Presponsable.find(pri).nombre %> 
+      <% if pri.is_a? Array %>
+        <%= Sivel2Gen::Presponsable.find(pri).map(&:nombre).join(" Y ") %> 
+      <% else %>
+        <%= Sivel2Gen::Presponsable.find(pri).nombre %> 
+      <% end %>
     <% end %></br>
   <% end %>
   <% if por[pr].is_a? Array %>
