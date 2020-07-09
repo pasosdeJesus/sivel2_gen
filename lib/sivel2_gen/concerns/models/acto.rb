@@ -25,14 +25,14 @@ module Sivel2Gen
             victimas = datosent[0]
             d = datosent[1]
             if d['id_victima_individual']
-              self.id_presponsable = d['id_presunto_grupo_responsable'].to_i
+              self.id_presponsable = d['id_presunto_responsable_individual'].to_i
               cate = d['agresion_particular'].split(" ")
               self.id_categoria = cate[-1].tr('()', '').to_i
               self.id_persona = victimas[d['id_victima_individual']]
               if self.save
                 self.save!          
               else
-                menserror << "No pudo crearse acto"
+                menserror << "No pudo crearse acto. "
               end
             end
           end
