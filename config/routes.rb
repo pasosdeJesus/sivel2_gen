@@ -36,6 +36,10 @@ Sivel2Gen::Engine.routes.draw do
   get '/victimascolectivas/nuevo' => 'victimascolectivas#nuevo'
   get '/casos/infomapa' => 'infomapa#infomapa', 
              :as => 'infomapa'
+  get '/casos/infomapa/datoscovid' => 'infomapa#datoscovid', 
+             :as => 'infomapacovid'
+  get '/casos/maps/WORLD' => 'infomapa#worldjson', 
+             :as => 'worldjson'
   resources :casos, path_names: { new: 'nuevo', edit: 'edita' } do
       collection { post :importa }
   end
