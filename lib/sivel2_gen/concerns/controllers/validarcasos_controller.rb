@@ -149,7 +149,7 @@ module Sivel2Gen
               joins('INNER JOIN sip_grupoper
               ON sivel2_gen_victimacolectiva.id_grupoper=sip_grupoper.id')
             validacion_estandar(
-              c, 'Víctima individual sin acto', 
+              c, 'Víctima colectiva sin acto', 
               'NOT EXISTS (SELECT id_grupoper FROM sivel2_gen_actocolectivo
               WHERE id_grupoper=sip_grupoper.id)')
           end
