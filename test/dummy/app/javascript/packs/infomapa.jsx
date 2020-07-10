@@ -3,10 +3,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { render } from 'react-dom'
-//import HelloWorld from '../components/HelloWorld'
+import App from '../components/App'
 
-console.log("entro a react")
-const Appo  = ()=>{
-  return <h1> Hola desde appo </h1>
-}
-render(<Appo />, document.getElementById('root'))
+render(<App />, document.getElementById('root'))
