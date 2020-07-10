@@ -157,7 +157,6 @@ class App extends Component {
         this.updateFullDimensions()
         window.addEventListener('resize', this.updateFullDimensions)
     }
-    
     componentWillUnmount() {
         window.removeEventListener('resize', this.updateFullDimensions)
     }
