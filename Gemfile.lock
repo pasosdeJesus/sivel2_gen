@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/pasosdeJesus/heb412_gen.git
-  revision: c614288de359f8429ef6ab9a0e574e92ef5ab216
+  revision: 547adff3275ccda49d75791ad771a14b024ffb3b
   specs:
     heb412_gen (1.0.b6)
       mr519_gen
@@ -10,7 +10,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/mr519_gen.git
-  revision: 9ff1c2959aa93b59e36802130fea31e2dde9423a
+  revision: 213298dabd352d02006de71997b05101bf0803a5
   specs:
     mr519_gen (0.2.0)
       rails (~> 6.0.0.rc1, >= 6.0.0.rc1)
@@ -18,7 +18,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sip.git
-  revision: 8dcd983dd8febbbb0f00ba43f9f7dde447036fbd
+  revision: 1398d09b24066173b048ec110e4ff630ac757b40
   specs:
     sip (2.0.b10)
       cancancan
@@ -163,7 +163,7 @@ GEM
     minitest (5.14.1)
     msgpack (1.3.3)
     nio4r (2.5.2)
-    nokogiri (1.10.9)
+    nokogiri (1.10.10)
       mini_portile2 (~> 2.4.0)
     odf-report (0.7.2)
       mime-types
@@ -285,11 +285,11 @@ GEM
       rack-proxy (>= 0.6.1)
       railties (>= 5.2)
       semantic_range (>= 2.3.0)
-    websocket-driver (0.7.2)
+    websocket-driver (0.7.3)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
     will_paginate (3.3.0)
-    zeitwerk (2.3.1)
+    zeitwerk (2.4.0)
 
 PLATFORMS
   ruby
