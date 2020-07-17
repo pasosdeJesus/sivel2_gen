@@ -18,5 +18,10 @@ module Sivel2Gen
         :content_type => 'application/json',
           :layout => false
     end
+    def colombia
+      render :file => '/public/maps/gadm36_COL_1.json', 
+        :content_type => 'application/json',
+          :layout => false
+    end
   end
 end

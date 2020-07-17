@@ -46,7 +46,7 @@ class Map extends Component {
 
         this.props.regionToggle(region.split('.'))
     }
-
+    
     onZoomEnd = (event, state) => {
         this.props.handleMapZoomChange(state.zoom)
     }
@@ -175,7 +175,6 @@ class Map extends Component {
                     />
                     <ZoomableGroup
                         zoom={mapZoom}
-                        onZoomEnd={this.onZoomEnd}
                         onMoveStart={(e, m) => this.setState({ cursor: [ m.x, m.y ], clicked: false })}
                         onMoveEnd={(e, m) => {
                             // click on desktop
@@ -189,8 +188,6 @@ class Map extends Component {
                         center={center}
                         minZoom={0.2}
                         maxZoom={5}
-                        disableZooming={isMobile || isIPad13}
-                        disablePanning={isMobile || isIPad13}
                     >
                         {![ str.WORLD_MAP, str.US_MAP ].includes(this.props.currentMap) && (
                             <Geographies
