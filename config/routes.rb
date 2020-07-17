@@ -40,6 +40,8 @@ Sivel2Gen::Engine.routes.draw do
              :as => 'infomapacovid'
   get '/casos/maps/WORLD' => 'infomapa#worldjson', 
              :as => 'worldjson'
+  get '/casos/maps/gadm36_COL_1' => 'infomapa#colombia', 
+             :as => 'colombia'
   resources :casos, path_names: { new: 'nuevo', edit: 'edita' } do
       collection { post :importa }
   end
