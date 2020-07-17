@@ -26,7 +26,7 @@ import { mapText } from '../utils/map_text'
 const defaultState = {
     currentMap: 'WORLD',
     metric: 'confirmedCount',
-    currentRegion: [ str.GLOBAL_ZH ],
+    currentRegion: [ str.COLOMBIA_ZH ],
     playing: false,
     scale: 'linear',
     mapZoom: 1,
@@ -44,7 +44,7 @@ class App extends Component {
         plotDates: [ '2020-01-24', '2020-02-14' ],
         data: null,
         dataLoaded: false,
-        lang: 'en',
+        lang: 'es',
         darkMode: true,
         mapDimensions: {
             width: -1,
@@ -59,7 +59,7 @@ class App extends Component {
     }
     
     fetchData = () =>
-        fetch('infomapa/datoscovid').then((res) => res.json()).then((res) => {
+        fetch('https://raw.githubusercontent.com/stevenliuyi/covid19/master/public/data/all_minified.json').then((res) => res.json()).then((res) => {
             const latest = Object.keys(res[str.GLOBAL_ZH].confirmedCount).pop()
             this.setState({
                 data: res,
@@ -208,9 +208,6 @@ class App extends Component {
                         <Row>
                             <Col lg={!fullMap ? 7 : 12}>
                                 <div className="header">
-                                    <span className="header-icon" style={{ opacity: dataLoaded ? 1 : 0 }}>
-                                        <p> Aqui va el icono </p>
-                                    </span>
                                     <span
                                         className="header-title"
                                         style={{ letterSpacing: lang === 'zh' ? '1px' : 'normal' }}
