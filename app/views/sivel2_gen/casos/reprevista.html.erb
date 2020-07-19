@@ -37,7 +37,7 @@
               <p class='alerta'>Caso con varias ubicaciones, (Principal mostrada)</p>
             <% end %>
         <% elsif caso.ubicacion[0].departamento == nil %>
-          <div class='alert'>Ubicacion sin departamento</div>
+          <div class='alert'>Ubicación sin departamento</div>
         <% end %>
       </p>
       <% @markdown ||= Redcarpet::Markdown.new(Redcarpet::Render::HTML, {
