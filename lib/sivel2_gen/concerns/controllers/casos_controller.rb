@@ -1080,6 +1080,7 @@ module Sivel2Gen
                     :id,
                     :nombre,
                   ],
+                  :antecedente_ids => [],
                   :organizacion_ids => [],
                   :profesion_ids => [],
                   :rangoedad_ids => [],
