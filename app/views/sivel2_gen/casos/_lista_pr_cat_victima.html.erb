@@ -191,3 +191,46 @@
     </br>
   <% end %>
 <% end %>
+<% contextocaso = Sivel2Gen::CasoContexto.where(id_caso: caso_id).pluck(:id_contexto) %>
+<% contextos = contextocaso.map{|con| Sivel2Gen::Contexto.find(con).nombre}.join(", ") %>
+<%= "Contexto(s): #{contextos}" %> </br>
+<% lcat = {} %>
+<% caso = Sivel2Gen::Caso.find(caso_id) %>
+<% caso.caso_presponsable.each {|cp| 
+  cp.categoria_ids.each {|ci|
+      lcat[ci] = ci
+    }
+} %>
+<% lcat.keys.sort.each {|idcat| 
+  dcategoria = Sivel2Gen::Categoria.find(idcat) %>
+  <%= dcategoria.supracategoria.id_tviolencia + dcategoria.id.to_s %>. 
+  <%= dcategoria.supracategoria.tviolencia.nombre %> - 
+  <%= dcategoria.supracategoria.nombre %> - 
+  <%= dcategoria.nombre %><br>
+<% } %>
+<% prparabelicas = prs.pluck(:id_presponsable) %>
+<% if prparabelicas.uniq.count == 1 %>
+  </br>
+  Presunto Responsable: <%= Sivel2Gen::Presponsable.find(prparabelicas[0]).nombre %> </br>
+<% else %>
+  </br>
+  Presuntos Responsables:
+  <% prparabelicas.uniq.each_with_index do |pri, i|%>
+    <%= "Y" if i != 0 %>
+    <% if pri.is_a? Array %>
+      <%= Sivel2Gen::Presponsable.find(pri).map(&:nombre).join(" Y ") %> 
+    <% else %>
+      <%= Sivel2Gen::Presponsable.find(pri).nombre %> 
+    <% end %>
+  <% end %></br>
+<% end %>
+<% vcom = Sivel2Gen::Combatiente.where(id_caso: caso_id) %>
+<%= "Víctimas Combatientes:" %>
+<% vcom.each do |vc| %>
+  </br>
+  <%= vc.nombre %></br>
+  <% resagre = Sivel2Gen::Resagresion.find(vc.id_resagresion) %>
+  <%= resagre.nombre %></br>
+  <% orgar = Sivel2Gen::Presponsable.find(vc.organizacionarmada).nombre %>
+  <%= "Organización Armada Víctima: #{orgar}" %>
+<% end %>
