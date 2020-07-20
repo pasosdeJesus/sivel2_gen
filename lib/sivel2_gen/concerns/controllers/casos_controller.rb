@@ -1074,6 +1074,7 @@ module Sivel2Gen
                   :organizacionarmada,
                   :personasaprox,
                   :_destroy,
+                  :etnia_ids => [],
                   :filiacion_ids => [],
                   :grupoper_attributes => [
                     :anotaciones,
