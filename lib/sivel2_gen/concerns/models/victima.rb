@@ -350,9 +350,9 @@ module Sivel2Gen
                 #    find(id: ele[1].to_i).id
                 #end
               when 'rangoedad'
-                if Sivel2Gen::Rangoedad.where('TRIM(rango)=?', ele[1].strip.split).count ==1
+                if Sivel2Gen::Rangoedad.where('TRIM(rango)=?', ele[1].strip).count ==1
                   self.id_rangoedad = Sivel2Gen::Rangoedad.
-                    where(rango: ele[1].strip.split).ids[0]
+                    where(rango: ele[1].strip).ids[0]
                 else
                   menserror << "Tabla básica Rango Edad  no tiene '#{ele[1]}'. "
                 end  
