@@ -1037,6 +1037,7 @@ module Sivel2Gen
                   :organizacionarmada,
                   :orientacionsexual,
                   :_destroy,
+                  :sectorsocialsec_ids => [],
                   :contextovictima_ids => [],
                   :antecedente_ids => [],
                   :persona_attributes => [

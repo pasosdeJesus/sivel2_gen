@@ -17,8 +17,13 @@
     ' ' + Sip::Persona.find(v.id_persona).apellidos %> 
   <% prof = Sivel2Gen::Profesion.find(v.id_profesion).nombre %>
   <% sector = Sivel2Gen::Sectorsocial.find(v.id_sectorsocial).nombre %>
+  <% sectoressec = Sivel2Gen::SectorsocialsecVictima.where(victima_id: v.id).pluck(:sectorsocial_id) %>
+  <% sectores = sectoressec.map{|sec| Sivel2Gen::Sectorsocial.find(sec).nombre}.join(" - ") %>
   <% if sector != "SIN INFORMACIÓN"  %>
     <% nvc +=  ' - ' + sector %>
+  <% end %>
+  <% if sectoressec.count > 0 %>
+    <% nvc +=  ' - ' + sectores %>
   <% end %>
   <% if prof != "SIN INFORMACIÓN" %>
     <% nvc += ' - ' + prof %>
