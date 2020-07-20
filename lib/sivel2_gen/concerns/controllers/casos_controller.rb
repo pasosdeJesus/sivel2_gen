@@ -159,6 +159,7 @@ module Sivel2Gen
                 |c| [c.nombremenu, c.id] }
             @plantillas += [
               ['Reporte Revista HTML', 'reprevista.html'],
+              ['Reporte Revista no bélicas HTML', 'reprevistanobelicas.html'],
               ['Reporte General HTML', 'repgeneral.html'],
               ['Exportar a XRLAT( XML)', 'reprevista.xrlat'],
               ['Exportar a JSON', 'reprevista.json']
@@ -316,7 +317,8 @@ module Sivel2Gen
                   if (params['idplantilla'])
                     #byebug
                     case params['idplantilla']
-                    when 'reprevista', 'repgeneral'
+                    when 'reprevista', 'reprevistanobelicas', 
+                      'repgeneral'
                       render params['idplantilla'], layout: nil
                     else
                       redirect_back fallback_location:
