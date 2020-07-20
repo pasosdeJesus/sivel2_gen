@@ -19,6 +19,12 @@ module Sivel2Gen
             foreign_key: :id_victima, 
             association_foreign_key: 'id_antecedente',
             join_table: 'sivel2_gen_antecedente_victima'
+          
+          has_and_belongs_to_many :sectorsocialsec, 
+            class_name: 'Sivel2Gen::Sectorsocial',
+            foreign_key: :victima_id, 
+            association_foreign_key: 'sectorsocial_id',
+            join_table: 'sivel2_gen_sectorsocialsec_victima'
          
           has_and_belongs_to_many :contextovictima,
             class_name: "Sivel2Gen::Contextovictima",

@@ -32,8 +32,10 @@
 
 <div class="row">
   <div class="col-md-6">
+    Sector Social Principal:
     <%= f.association :sectorsocial,
       collection: Sivel2Gen::Sectorsocial.habilitados,
+      label: false,
       include_blank: false,
       label_method: :nombre, 
       value_method: :id,
@@ -48,6 +50,23 @@
       include_blank: false,
       label_method: :nombre, 
       value_method: :id,
+      input_html: {
+        "data-toggle" => 'tooltip',
+        multiple: true,
+        class: 'chosen-select'
+      } %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-6">
+    Sectores Sociales Secundarios:
+    <%= f.association :sectorsocialsec,
+      collection: Sivel2Gen::Sectorsocial.habilitados,
+      label: false,
+      label_method: :nombre, 
+      value_method: :id,
+      include_blank: false,
       input_html: {
         "data-toggle" => 'tooltip',
         multiple: true,
