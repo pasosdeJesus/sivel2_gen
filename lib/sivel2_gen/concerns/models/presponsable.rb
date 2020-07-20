@@ -14,7 +14,8 @@ module Sivel2Gen
             validate: true, class_name: 'Sivel2Gen::Actocolectivo'
           has_many :caso_presponsable, foreign_key: "id_presponsable", 
             validate: true, class_name: 'Sivel2Gen::CasoPresponsable'
-          has_many :caso_categoria_presponsable, through: :caso_presponsable, 
+          has_many :caso_categoria_presponsable, 
+            through: :caso_presponsable, 
             class_name: 'Sivel2Gen::CasoCategoriaPresponsable'
           has_many :caso, through: :caso_presponsable, 
             class_name: 'Sivel2Gen::Caso'

@@ -1,0 +1,44 @@
+<% # caso debe tener objeto por presentar Sivel2Gen::Caso %>
+<% if @incluir.include?('casoid') %>
+  <a href='<%= sivel2_gen.caso_path(caso.id) %>'><%= caso.id %></a>
+<% end %>
+<p>
+<% if @incluir.include?('fecha') %>
+  <%= I18n.localize(caso.fecha, format: '%B %d/%Y').capitalize %>
+<% end %>
+</p>
+
+<p>
+<% if !caso.ubicacion || caso.ubicacion.count == 0 || !caso.ubicacion_id %>
+  <div class='alerta'>Caso sin ubicación principal</div>
+<% elsif caso.ubicacion.count >= 1 %>
+  <% ubi_principal = Sip::Ubicacion.find(caso.ubicacion_id) %>
+  <% if ubi_principal.departamento %>
+    DEPARTAMENTO: 
+    <%= ubi_principal.departamento.nombre%> 
+  <% end %>
+  <% if ubi_principal.municipio %>
+    <br>
+    MUNICIPIO: 
+    <%= ubi_principal.municipio.nombre%> 
+  <% end %>
+  <% if caso.ubicacion.count > 1 %>
+    <p class='alerta'>Caso con varias ubicaciones, (Principal mostrada)</p>
+  <% end %>
+<% elsif caso.ubicacion[0].departamento == nil %>
+  <div class='alert'>Ubicación sin departamento</div>
+<% end %>
+</p>
+
+<% @markdown ||= Redcarpet::Markdown.new(Redcarpet::Render::HTML, {
+  autolink: true,
+  space_after_headers: true,
+  fenced_code_blocks: true,
+  underline: true,
+  highlight: true,
+  tables: true }) %>
+<% c = @markdown.render(caso.memo).html_safe %>
+<%= c %>
+<%= render partial: 'lista_pr_cat_victima', 
+  locals: { caso: caso, caso_id: caso.id } %>
+<hr/>

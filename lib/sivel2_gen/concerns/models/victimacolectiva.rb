@@ -15,6 +15,13 @@ module Sivel2Gen
             validate: true, 
             association_foreign_key: 'id_antecedente',
             join_table: 'sivel2_gen_antecedente_victimacolectiva'
+          
+          has_and_belongs_to_many :etnia, 
+            class_name: 'Sivel2Gen::Etnia',
+            foreign_key: :victimacolectiva_id, 
+            validate: true, 
+            association_foreign_key: 'etnia_id',
+            join_table: 'sivel2_gen_etnia_victimacolectiva'
 
           has_and_belongs_to_many :filiacion, 
             class_name: 'Sivel2Gen::Filiacion',
