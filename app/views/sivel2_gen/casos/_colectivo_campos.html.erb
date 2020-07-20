@@ -75,6 +75,13 @@
   </div>
 </div>
 <div class="row">
+    <div class="col-md-6">
+    <%= f.association :antecedente,
+      collection: Sivel2Gen::Antecedente.habilitados,
+      label_method: :nombre, 
+      value_method: :id,
+      include_blank: false %>
+  </div>
   <div class="col-md-6">
     <%= f.association :etnia,
       collection: Sivel2Gen::Etnia.habilitados,
