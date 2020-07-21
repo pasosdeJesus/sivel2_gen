@@ -1,4 +1,3 @@
-<% repgen = false %>
 <% porVic = {} %>
 <% lvic = {}%>
 <% presponsables = Sivel2Gen::Acto.where(id_caso: caso_id).pluck(:id_presponsable) + Sivel2Gen::Actocolectivo.where(id_caso: caso_id).pluck(:id_presponsable) %>
@@ -24,7 +23,7 @@
     <% nvc += ' - ' + prof %>
   <% end %>
   <% #byebug %>
-  <% if repgen %>
+  <% if repgeneral %>
     <% if v.hijos %>
       <% nvc += ' - ' + v.hijos.to_s + 'hijos' %>
     <% end %>
@@ -42,10 +41,15 @@
   <% end %>
   <% lvic['i'+ v.id_persona.to_s] = nvc %>
 <% end %>
-
 <% caso.victimacolectiva.each do |vc| %>
-  <% nvc = Sip::Grupoper.find(vc.id_grupoper).nombre %> 
-  <% lvic['c'+ vc.id_grupoper.to_s] = nvc %>
+  <% nvc = Sip::Grupoper.find(vc.id_grupoper).nombre %>
+  <% if repgeneral %>
+    <% etniasid =  Sivel2Gen::EtniaVictimacolectiva.where(victimacolectiva_id: vc.id).pluck(:etnia_id)%>
+    <% etnias = etniasid.map{|e| Sivel2Gen::Etnia.find(e).nombre}.join(" - ")%>
+    <% lvic['c'+ vc.id_grupoper.to_s] = nvc + " " + etnias %>
+  <% else %>
+    <% lvic['c'+ vc.id_grupoper.to_s] = nvc %>
+  <% end %>
 <% end %>
 
 <!-- Agrupamos por categoria --> 
