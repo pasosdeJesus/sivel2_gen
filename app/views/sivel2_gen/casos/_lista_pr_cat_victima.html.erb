@@ -1,4 +1,3 @@
-<% repgen = false %>
 <% porVic = {} %>
 <% lvic = {}%>
 <% presponsables = Sivel2Gen::Acto.where(id_caso: caso_id).pluck(:id_presponsable) + Sivel2Gen::Actocolectivo.where(id_caso: caso_id).pluck(:id_presponsable) %>
@@ -16,15 +15,24 @@
   <% nvc = Sip::Persona.find(v.id_persona).nombres +
     ' ' + Sip::Persona.find(v.id_persona).apellidos %> 
   <% sector = Sivel2Gen::Sectorsocial.find(v.id_sectorsocial).nombre %>
+  <% # Agrega sector social principal %>
   <% if sector != "SIN INFORMACIÓN"  %>
     <% nvc +=  ' - ' + sector %>
+  <% end %>
+  <% # Agrega sectores sociales secundarios reporte general %>
+  <% if repgeneral %>
+    <% sectoressecids = Sivel2Gen::SectorsocialsecVictima.where(victima_id: v.id).pluck(:sectorsocial_id) %>
+    <% sectoressec = sectoressecids.map{|sec| Sivel2Gen::Sectorsocial.find(sec).nombre}.join(" - ") %>
+    <% if sectoressecids.count > 0 %>
+      <% nvc +=  ' - ' + sectoressec %>
+    <% end %>
   <% end %>
   <% prof = Sivel2Gen::Profesion.find(v.id_profesion).nombre %>
   <% if prof != "SIN INFORMACIÓN" %>
     <% nvc += ' - ' + prof %>
   <% end %>
   <% #byebug %>
-  <% if repgen %>
+  <% if repgeneral %>
     <% if v.hijos %>
       <% nvc += ' - ' + v.hijos.to_s + 'hijos' %>
     <% end %>
@@ -196,8 +204,13 @@
         <% end %>
       <% elsif idv != -1 %>
         <% # Excluimos profesion %>
-        <% rnn = lvic[idv].split("-")[0..2].join("-") %>
-        <%= rnn %><br>
+        <% if repgeneral %>
+          <% rnn = lvic[idv] %>
+          <%= rnn %><br>
+        <% else %>
+          <% rnn = lvic[idv].split("-")[0..2].join("-") %>
+          <%= rnn %><br>
+        <% end %>
       <% end %>
     <% end %>
     <% nns.keys.each do |nn| %>
