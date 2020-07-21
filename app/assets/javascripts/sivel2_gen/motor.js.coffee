@@ -539,6 +539,7 @@ enviaFormularioContar= (root) ->
     llena_clase($(this), root)
   )
   
+  
   # Al cambiar centro poblado se muestra tipo
   $(document).on('change', 'select[id^=caso_][id$=id_clase]', (e) ->
     id_clase = $(this).val()
@@ -558,6 +559,9 @@ enviaFormularioContar= (root) ->
         alert("Error: " + jqXHR.responseText)
    })
   )
+  
+  # Obligar cálculo de tipo de centros poblados al cargar 
+  $('select[id^=caso_][id$=id_clase]').change()
 
   # Tras eliminar presponsable, eliminar dependientes
   $('#presponsables').on('cocoon:after-remove', '', (e, presponsable) ->
