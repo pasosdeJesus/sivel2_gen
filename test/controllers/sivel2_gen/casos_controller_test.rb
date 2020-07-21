@@ -40,7 +40,7 @@ module Sivel2Gen
       get caso_path(caso)
       assert_response :success
       puts @response.body
-      assert_select  "p", text: 'Fecha: 2014-11-19  SIN INFORMACIÓN'
+      assert_select  "p", text: /Fecha:[ \n]*2014-11-19[ \n]*SIN INFORMACIÓN/
     end
 
     def verifica_formulario
