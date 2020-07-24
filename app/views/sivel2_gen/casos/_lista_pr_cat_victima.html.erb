@@ -22,7 +22,7 @@
   <% # Agrega sectores sociales secundarios reporte general %>
   <% if repgeneral %>
     <% sectoressecids = Sivel2Gen::SectorsocialsecVictima.where(victima_id: v.id).pluck(:sectorsocial_id) %>
-    <% sectoressec = sectoressecids.map{|sec| Sivel2Gen::Sectorsocial.find(sec).nombre}.join(" - ") %>
+    <% sectoressec = sectoressecids.map{|sec| Sivel2Gen::Sectorsocial.find(sec).nombre}.join(" / ") %>
     <% if sectoressecids.count > 0 %>
       <% nvc +=  ' - ' + sectoressec %>
     <% end %>
@@ -40,7 +40,7 @@
     <% if fil != "SIN INFORMACIÓN" %>
       <% nvc += ' - ' + fil %>
     <% end %>
-    <% if v.anotaciones != "" %>
+    <% if v.anotaciones && v.anotaciones != "" %>
       <% nvc += ' - ' + v.anotaciones %>
     <% end %>
     <% org = Sivel2Gen::Organizacion.find(v.id_organizacion).nombre %>
@@ -54,8 +54,8 @@
   <% nvc = Sip::Grupoper.find(vc.id_grupoper).nombre %>
   <% if repgeneral %>
     <% etniasid =  Sivel2Gen::EtniaVictimacolectiva.where(victimacolectiva_id: vc.id).pluck(:etnia_id)%>
-    <% etnias = etniasid.map{|e| Sivel2Gen::Etnia.find(e).nombre}.join(" - ")%>
-    <% lvic['c'+ vc.id_grupoper.to_s] = nvc + " " + etnias %>
+    <% etnias = etniasid.map{|e| Sivel2Gen::Etnia.find(e).nombre}.join(" / ")%>
+    <% lvic['c'+ vc.id_grupoper.to_s] = nvc + " - " + etnias %>
   <% else %>
     <% lvic['c'+ vc.id_grupoper.to_s] = nvc %>
   <% end %>
