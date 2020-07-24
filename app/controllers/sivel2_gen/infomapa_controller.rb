@@ -9,7 +9,7 @@ module Sivel2Gen
       return
     end
     def datoscovid
-      render :file => '/public/data/all_minified.json', 
+      render :file => '/public/data/all.json', 
         :content_type => 'application/json',
           :layout => false
     end
