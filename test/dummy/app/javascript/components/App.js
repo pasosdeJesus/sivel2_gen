@@ -59,7 +59,7 @@ class App extends Component {
     }
     
     fetchData = () =>
-        fetch('https://raw.githubusercontent.com/stevenliuyi/covid19/master/public/data/all_minified.json').then((res) => res.json()).then((res) => {
+        fetch('/sivel2/casos/infomapa/datoscovid').then((res) => res.json()).then((res) => {
             const latest = Object.keys(res[str.GLOBAL_ZH].confirmedCount).pop()
             this.setState({
                 data: res,

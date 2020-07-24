@@ -42,7 +42,9 @@ class Map extends Component {
     }
 
     handleGeographyClick = (region) => () => {
-        if (!this.state.clicked || region == null) return
+        console.log(region);
+        // no se sabe or que this es undefined 
+        //if (!this.state.clicked || region == null) return 
 
         this.props.regionToggle(region.split('.'))
     }
@@ -123,10 +125,6 @@ class Map extends Component {
         const projection = isUsState ? 'geoMercator' : currentMap.projection
 
         const { colorScale } = this.getColorScale(isUsState)
-        const cruiseData = getDataFromRegion(data, [ str.INTL_CONVEYANCE_ZH, str.DIAMOND_PRINCESS_ZH ])
-        const cruiseCounts = cruiseData[metric][date] ? cruiseData[metric][date] : 0
-
-        const cruiseStrokeColor = this.getStrokeColor(cruiseCounts, isUsState)
         const greyStrokeColor = darkMode ? 'var(--primary-color-10)' : 'var(--grey)'
 
         return (
@@ -392,26 +390,6 @@ class Map extends Component {
                                     <circle cx="12" cy="10" r="3" />
                                     <path d="M12 21.7C17.3 17 20 13 20 10a8 8 0 1 0-16 0c0 3 2.7 6.9 8 11.7z" />
                                 </g>
-                            </Marker>
-                        )}
-                        {(this.props.currentMap === str.WORLD_MAP || this.props.currentMap === str.JAPAN_MAP) && (
-                            <Marker key={'diamond-princess'} coordinates={[ 139.6, 35.4 ]}>
-                                <FaShip
-                                    size={this.props.currentMap === str.WORLD_MAP ? 18 : 36}
-                                    color={colorScale(cruiseCounts)}
-                                    className="map-ship"
-                                    data-tip={`${lang === 'zh'
-                                        ? str.DIAMOND_PRINCESS_ZH
-                                        : cruiseData.ENGLISH} <span class="plot-tooltip-bold">${cruiseCounts}</span>`}
-                                    style={{
-                                        stroke: cruiseStrokeColor,
-                                        visibility: cruiseCounts > 0 ? 'visible' : 'hidden',
-                                        strokeWidth:
-                                            currentRegion[currentRegion.length - 1] === str.DIAMOND_PRINCESS_ZH ? 30 : 0
-                                    }}
-                                    onClick={() =>
-                                        this.props.regionToggle([ str.INTL_CONVEYANCE_ZH, str.DIAMOND_PRINCESS_ZH ])}
-                                />
                             </Marker>
                         )}
                     </ZoomableGroup>
