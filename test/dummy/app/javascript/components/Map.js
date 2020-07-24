@@ -395,26 +395,6 @@ class Map extends Component {
                                 </g>
                             </Marker>
                         )}
-                        {(this.props.currentMap === str.WORLD_MAP || this.props.currentMap === str.JAPAN_MAP) && (
-                            <Marker key={'diamond-princess'} coordinates={[ 139.6, 35.4 ]}>
-                                <FaShip
-                                    size={this.props.currentMap === str.WORLD_MAP ? 18 : 36}
-                                    color={colorScale(cruiseCounts)}
-                                    className="map-ship"
-                                    data-tip={`${lang === 'zh'
-                                        ? str.DIAMOND_PRINCESS_ZH
-                                        : cruiseData.ENGLISH} <span class="plot-tooltip-bold">${cruiseCounts}</span>`}
-                                    style={{
-                                        stroke: cruiseStrokeColor,
-                                        visibility: cruiseCounts > 0 ? 'visible' : 'hidden',
-                                        strokeWidth:
-                                            currentRegion[currentRegion.length - 1] === str.DIAMOND_PRINCESS_ZH ? 30 : 0
-                                    }}
-                                    onClick={() =>
-                                        this.props.regionToggle([ str.INTL_CONVEYANCE_ZH, str.DIAMOND_PRINCESS_ZH ])}
-                                />
-                            </Marker>
-                        )}
                     </ZoomableGroup>
                 </ComposableMap>
             </Fragment>

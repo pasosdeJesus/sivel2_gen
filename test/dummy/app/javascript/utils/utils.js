@@ -78,7 +78,7 @@ export const generateTreeData = (
     const preDate = previousDay(date, '2019-09-01', '2050-01-01')
 
     let data = Object.entries(obj)
-        .filter(([ k, v ]) => ![ 'confirmedCount', 'deadCount', 'curedCount', 'ENGLISH', str.GLOBAL_ZH ].includes(k))
+        .filter(([ k, v ]) => ![ 'casos', 'confirmedCount', 'deadCount', 'curedCount', 'ENGLISH', str.GLOBAL_ZH ].includes(k))
         .map(([ k, v ]) => {
             const currentRegion = rootRegion === str.GLOBAL_ZH ? k : `${rootRegion}.${k}`
             let newdata = {
