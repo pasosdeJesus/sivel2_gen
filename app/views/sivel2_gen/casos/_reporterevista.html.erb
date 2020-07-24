@@ -40,5 +40,5 @@
 <% c = @markdown.render(caso.memo).html_safe %>
 <%= c %>
 <%= render partial: 'lista_pr_cat_victima', 
-  locals: { caso: caso, caso_id: caso.id } %>
+  locals: { caso: caso, caso_id: caso.id, repgeneral: false } %>
 <hr/>
