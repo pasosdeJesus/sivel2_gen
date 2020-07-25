@@ -31,13 +31,14 @@ module Sivel2Gen
 
 
     # @parama modelorango es nombre de modelo con rangos e.g 
-    #   Sivel2Gen::Rangoead o Cor1440Gen::Rangoedadac
+    #   'Sivel2Gen::Rangoead' o 'Cor1440Gen::Rangoedadac'
     # @return id en tabla del rango o si no se puede calcular
     #   retorna ID del registro SIN INFORMACIÓN (o -1 si no hay
     #   SIN INFORMACIÓN)
     def buscar_rango_edad(edad, modelorango)
       if (!modelorango || !defined?(modelorango.constantize) || 
           !defined?(!modelorango.constantize.habilitados))
+        puts "No se pudo usar modelorango"
         return -1
       end
       t = modelorango.constantize.habilitados
