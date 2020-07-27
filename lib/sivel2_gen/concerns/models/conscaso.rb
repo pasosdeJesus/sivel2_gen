@@ -146,7 +146,10 @@ module Sivel2Gen
           scope :filtro_sectorsocial_id, lambda { |r|
             where('caso_id IN (SELECT id_caso
                     FROM public.sivel2_gen_victima
-                    WHERE sivel2_gen_victima.id_sectorsocial = ?)', r)
+                    WHERE sivel2_gen_victima.id_sectorsocial = ? UNION 
+                    SELECT id_caso FROM public.sivel2_gen_victima 
+                    INNER JOIN public.sivel2_gen_sectorsocialsec_victima ON sivel2_gen_victima.id = sivel2_gen_sectorsocialsec_victima.victima_id 
+                    WHERE sivel2_gen_sectorsocialsec_victima.sectorsocial_id = ?)', r, r)
           }
 
           scope :filtro_organizacion_id, lambda { |r|
