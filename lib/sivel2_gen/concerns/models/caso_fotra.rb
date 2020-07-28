@@ -13,7 +13,7 @@ module Sivel2Gen
           belongs_to :caso, class_name: "Sivel2Gen::Caso", 
             foreign_key: "id_caso", validate: true
           belongs_to :anexo_caso, class_name: "Sivel2Gen::AnexoCaso", 
-            foreign_key: "anexo_caso_id", optional: true
+            dependent: :destroy, foreign_key: "anexo_caso_id", optional: true
           
 
           campofecha_localizado :fecha
