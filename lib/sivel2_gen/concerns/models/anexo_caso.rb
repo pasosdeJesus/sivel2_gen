@@ -17,7 +17,7 @@ module Sivel2Gen
           accepts_nested_attributes_for :sip_anexo, reject_if: :all_blank
 
           has_many :caso_fuenteprensa, foreign_key: "anexo_caso_id",
-            class_name: "Sivel2Gen::CasoFuenteprensa"
+            dependent: :destroy, class_name: "Sivel2Gen::CasoFuenteprensa"
 
           has_many :caso_fotra, foreign_key: "anexo_caso_id", 
             dependent: :destroy, class_name: "Sivel2Gen::CasoFotra"
