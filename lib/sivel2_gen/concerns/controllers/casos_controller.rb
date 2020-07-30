@@ -831,6 +831,12 @@ module Sivel2Gen
               menserror_uno = ''
               importado = @caso.importa(relimportado['relato'], datossal, 
                                         menserror_uno, {})
+              casousuario = Sivel2Gen::CasoUsuario.new
+              casousuario.id_usuario = usuario_id
+              casousuario.id_caso = importado.id
+              casousuario.fechainicio = DateTime.now.strftime('%Y-%m-%d')
+              casousuario.save!
+              
               if importado.nil?
                 menserror << "No se pudo importar relato número #{numr}.  "
                 total_errores += 1
