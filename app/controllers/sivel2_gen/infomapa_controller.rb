@@ -9,12 +9,12 @@ module Sivel2Gen
       return
     end
     def datoscovid
-      render :file => '/public/data/all.json', 
+      render :file => '/public/data/allcasos.json', 
         :content_type => 'application/json',
           :layout => false
     end
     def worldjson
-      render :file => '/public/maps/WORLD.json', 
+      render :file => '/public/maps/WORLDnuevo.json', 
         :content_type => 'application/json',
           :layout => false
     end
