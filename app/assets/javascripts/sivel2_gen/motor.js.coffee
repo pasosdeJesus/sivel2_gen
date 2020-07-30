@@ -571,45 +571,48 @@ enviaFormularioContar= (root) ->
     confirma_elim_dep_presponsable(root, papa, nomactospe)
     sel = papa[0].firstElementChild.firstElementChild.firstElementChild.firstElementChild.firstElementChild.nextElementSibling;
     prespon = sel.options[sel.selectedIndex].text;
-    tbodyactos = $('#actos_tabla')[0].firstElementChild.firstElementChild.nextElementSibling;
-    tbodyactoscol = $('#actoscolectivos_tabla')[0].firstElementChild.firstElementChild.nextElementSibling;
-    cont_actos = 0
-    cont_actoscol = 0
-    filas = tbodyactos.children;
-    filascol = tbodyactoscol.children;
-    ls = filas['length']-1
-    lscol = filascol['length']-1
-    if ls >= 0
-      for i in [0..ls]
-        fila = filas[i]
-        pr = fila.firstElementChild.textContent
-        if pr == prespon
-          cont_actos += 1
-    if lscol >= 0
-      for i in [0..lscol]
-        fila = filascol[i]
-        pr = fila.firstElementChild.textContent
-        if pr == prespon
-          cont_actoscol += 1
-    confirma = confirm('Se eliminarán ' + cont_actos + ' actos y ' +
-            cont_actoscol + ' actos colectivos, ¿Desea continuar eliminando?');
-    if !confirma
-      e.preventDefault();
-    else
+    
+    if $('#actos_tabla').length && $('#actoscolectivos_tabla').length
+      tbodyactos = $('#actos_tabla')[0].firstElementChild.firstElementChild.nextElementSibling;
+      
+      tbodyactoscol = $('#actoscolectivos_tabla')[0].firstElementChild.firstElementChild.nextElementSibling;
+      cont_actos = 0
+      cont_actoscol = 0
+      filas = tbodyactos.children;
+      filascol = tbodyactoscol.children;
+      ls = filas['length']-1
+      lscol = filascol['length']-1
       if ls >= 0
         for i in [0..ls]
           fila = filas[i]
           pr = fila.firstElementChild.textContent
           if pr == prespon
-            btneliminar = fila.lastElementChild.firstElementChild
-            $(btneliminar).trigger('click')
+            cont_actos += 1
       if lscol >= 0
         for i in [0..lscol]
           fila = filascol[i]
           pr = fila.firstElementChild.textContent
           if pr == prespon
-            btneliminar = fila.lastElementChild.firstElementChild
-            $(btneliminar).trigger('click')
+            cont_actoscol += 1
+      confirma = confirm('Se eliminarán ' + cont_actos + ' actos y ' +
+              cont_actoscol + ' actos colectivos, ¿Desea continuar eliminando?');
+      if !confirma
+        e.preventDefault();
+      else
+        if ls >= 0
+          for i in [0..ls]
+            fila = filas[i]
+            pr = fila.firstElementChild.textContent
+            if pr == prespon
+              btneliminar = fila.lastElementChild.firstElementChild
+              $(btneliminar).trigger('click')
+        if lscol >= 0
+          for i in [0..lscol]
+            fila = filascol[i]
+            pr = fila.firstElementChild.textContent
+            if pr == prespon
+              btneliminar = fila.lastElementChild.firstElementChild
+              $(btneliminar).trigger('click')
   )
 
   # Antes de eliminar víctima confirmar si se eliminan dependientes
