@@ -123,7 +123,19 @@ class App extends Component {
         this.updateFullDimensions()
         window.addEventListener('resize', this.updateFullDimensions)
     }
+    
+    changeData = () => {
+              console.log("Bayron: ", this.data)
+              let objData = this.data
+              /*objData.哥伦比亚.大西洋省.confirmedCount = {
+                            "2020-02-26": 0,
+                            "2020-02-27": 0
+                        }
 
+              this.setState({
+                            data: objData,
+                        }) */
+          }
     componentWillUnmount() {
         window.removeEventListener('resize', this.updateFullDimensions)
     }
@@ -263,7 +275,7 @@ class App extends Component {
                                     </span>
                                     <span
                                         className="header-title"
-                                        style={{ letterSpacing: lang === 'zh' ? '1px' : 'normal' }}
+                                        style={{ letterSpacing: lang === 'es' ? '1px' : 'normal' }}
                                     >
                                         {i18n.COVID19[lang]}
                                     </span>
