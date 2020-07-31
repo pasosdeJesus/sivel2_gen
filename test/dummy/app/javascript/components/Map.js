@@ -25,9 +25,9 @@ class Map extends Component {
         usState: null
     }
     componentDidMount() {
-	            let region = "哥伦比亚"
-	            this.props.regionToggle(region.split('.'))
-	        }
+              let region = "哥伦比亚"
+              this.props.regionToggle(region.split('.'))
+          }
     componentDidUpdate(prevProps, prevState) {
         if (this.props.currentMap !== prevProps.currentMap || this.state.usState !== prevState.usState) {
             this.setState({ loaded: false })
