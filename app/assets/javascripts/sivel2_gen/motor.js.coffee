@@ -614,6 +614,12 @@ enviaFormularioContar= (root) ->
               btneliminar = fila.lastElementChild.firstElementChild
               $(btneliminar).trigger('click')
   )
+  
+  @crea_copia_de_victima = (obj, fobj) ->
+    debugger
+    #$('.add-vic').click()
+    #copia
+    #copia = $('')
 
   # Antes de eliminar víctima confirmar si se eliminan dependientes
   $('#victimas').on('cocoon:before-remove', '', (e, papa) ->

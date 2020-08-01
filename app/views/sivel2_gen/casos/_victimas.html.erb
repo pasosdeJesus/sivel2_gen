@@ -5,7 +5,7 @@
 <div class="links">
   <%= link_to_add_association 'Añadir Víctima', f, :victima, { 
     partial: 'sivel2_gen/casos/victima_campos',
-    class: 'btn-primary',
+    class: 'btn-primary add-vic',
     "data-ajax" => File.join(
       Rails.configuration.relative_url_root,
       "victimas/nuevo"
