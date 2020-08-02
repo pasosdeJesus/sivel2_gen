@@ -129,10 +129,15 @@ module Sivel2Gen
                         "'#{ele[1]}'"
                     end
                   when 'rangoedad'
-                    re = Sivel2Gen::RangoedadVictimacolectiva.new
-                    re.id_rangoedad = Sivel2Gen::Rangoedad.where(nombre: ele[1]).ids[0]
-                    re.victimacolectiva_id = self.id
-                    re.save!
+                    if Sivel2Gen::Rangoedad.where(nombre: ele[1]).count ==1
+                      re = Sivel2Gen::RangoedadVictimacolectiva.new
+                      re.id_rangoedad = Sivel2Gen::Rangoedad.where(nombre: ele[1]).ids[0]
+                      re.victimacolectiva_id = self.id
+                      re.save!
+                    else
+                      menserror << "En la tabla básica Rango Edad no está " +
+                        "'#{ele[1]}'"
+                    end
                   when 'sectorsocial'
                     if Sivel2Gen::Sectorsocial.where(nombre: ele[1]).count == 1
                       ss = Sivel2Gen::SectorsocialVictimacolectiva.new
@@ -144,13 +149,25 @@ module Sivel2Gen
                         "'#{ele[1]}'"
                     end
                   when 'vinculoestado'
-                    ve = Sivel2Gen::VictimacolectivaVinculoestado.new
-                    ve.id_vinculoestado = Sivel2Gen::Vinculoestado.where(nombre: ele[1]).ids[0]
-                    ve.victimacolectiva_id = self.id
-                    ve.save!
+                    if Sivel2Gen::Vinculoestado.where(nombre: ele[1].split("\;")).count == 1
+                      ve = Sivel2Gen::VictimacolectivaVinculoestado.new
+                      ve.id_vinculoestado = Sivel2Gen::Vinculoestado.where(nombre: ele[1].split("\;")).ids[0]
+                      ve.victimacolectiva_id = self.id
+                      ve.save!
+                    else
+                      menserror << "En la tabla básica Vínculo Estado no está " +
+                        "'#{ele[1].split("\;")}'"
+                    end
                   end
                 end  
-              end  
+              end
+              # agrega vinculo estado por omisión
+              if self.vinculoestado.empty?
+                ve = Sivel2Gen::VictimacolectivaVinculoestado.new
+                ve.id_vinculoestado = Sivel2Gen::Vinculoestado.where(nombre: "SIN INFORMACIÓN").ids[0]
+                ve.victimacolectiva_id = self.id
+                ve.save!
+              end
             end
           end
         end
