@@ -69,9 +69,54 @@ class App extends Component {
                 endDate: latest,
                 plotDates: [ this.state.plotDates[0], latest ]
             })
+
+            const { data } = this.state
+	    this.changeData(data)
             this.tooltipRebuild()
         })
     
+
+    changeData= (obj) => {
+	var proxyUrl = 'https://cors-anywhere.herokuapp.com/',
+            casosUrl = 'https://base.nocheyniebla.org/casos.json?filtro[q]=&filtro[fechaini]=2018-07-03&filtro[fechafin]=2020-06-30&filtro[disgenera]=reprevista.json&idplantilla=reprevista'
+    	fetch(proxyUrl + casosUrl).then((res) => res.json()).then((res) => {
+	console.log("casos: ", res)
+    	})
+    	
+	console.log("Data Obj: ", obj)
+	Object.entries(obj).map( (item) => {
+		
+		let country = item[0];
+		if(country == "哥伦比亚" ){
+			let countries = item[1];
+			console.log("Estamos en: ", item[1])
+			Object.entries(countries).map ( (event) =>{
+		if(typeof event[1] == "object"){
+			if(event[1].ENGLISH){
+				var depart = event[0];
+
+				var dates = {
+					"2020-07-01": 1
+				}
+				var zeros = {							"2020-07-01": 0
+				}
+				obj[country][depart].confirmedCount = dates;
+
+				obj[country][depart].curedCount = zeros;
+
+				obj[country][depart].deadCount = zeros;
+			}
+		}
+			
+			})
+		}
+	})
+	this.setState({
+		data: obj
+	})
+	console.log("Data Obj refact: ", obj)
+    }
+
     componentDidMount() {
         updateDarkMode(this.state.darkMode)
         this.fetchData()
@@ -193,12 +238,17 @@ class App extends Component {
 
     handlePlotTypeChange = (newType) => this.setState({ plotType: newType })
     tooltipRebuild = () => ReactTooltip.rebuild()
+    changeDataJSON = (data) => {
+    
+    	console.log("Data Two: ", data)
+    }
   
   render(){
-        const { lang, dataLoaded, currentMap, fullMap, fullPlot, fullTree, darkMode } = this.state
+        const { data, lang, dataLoaded, currentMap, fullMap, fullPlot, fullTree, darkMode } = this.state
         const fullScreenMode = fullMap ? 'map-full' : fullPlot ? 'plot-full' : fullTree ? 'tree-full' : ''
         const FullScreenIcon = fullMap ? AiOutlineFullscreenExit : AiOutlineFullscreen  
-    return (
+        this.changeDataJSON(data)
+	  return (
         <div className={`App ${darkMode ? 'dark' : ''}`}>
             {!dataLoaded ? (
                 <Loading />
