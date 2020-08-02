@@ -75,6 +75,7 @@ gem 'heb412_gen',  # Motor de nube y llenado de plantillas
   git: 'https://github.com/pasosdeJesus/heb412_gen.git'
 #gem 'heb412_gen', path: '../heb412_gen'
 
+gem 'react-rails'
 
 group :development do
   
@@ -91,7 +92,7 @@ end
 
 group  :development, :test do
 
-  #gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   
   gem 'colorize' # Colores en terminal
 
