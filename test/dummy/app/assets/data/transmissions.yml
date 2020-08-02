@@ -1,0 +1,1538 @@
+- date: 2020-01-13
+  from: 中国大陆
+  to: 泰国
+
+- date: 2020-01-16
+  from: 中国大陆
+  to: 日本
+
+- date: 2020-01-20
+  from: 中国大陆
+  to: 韩国
+
+- date: 2020-01-21
+  from: 中国大陆
+  to: 美国
+
+- date: 2020-01-21
+  from: 中国大陆
+  to: 台湾
+
+- date: 2020-01-22
+  from: 中国大陆
+  to: 香港
+
+- date: 2020-01-22
+  from: 中国大陆
+  to: 澳门
+
+- date: 2020-01-23
+  from: 中国大陆
+  to: 越南
+
+- date: 2020-01-23
+  from: 中国大陆
+  to: 新加坡
+
+- date: 2020-01-24
+  from: 中国大陆
+  to: 法国
+
+- date: 2020-01-24
+  from: 中国大陆
+  to: 尼泊尔
+
+- date: 2020-01-25
+  from: 中国大陆
+  to: 加拿大
+
+- date: 2020-01-25
+  from: 新加坡
+  to: 马来西亚
+  source: https://www.nst.com.my/news/nation/2020/01/559563/breaking-3-coronavirus-cases-confirmed-johor-baru
+
+- date: 2020-01-25
+  from: 中国大陆
+  to: 澳大利亚
+
+- date: 2020-01-27
+  from: 中国大陆
+  to: 柬埔寨
+
+- date: 2020-01-27
+  from: 中国大陆
+  to: 德国
+
+- date: 2020-01-27
+  from: 中国大陆
+  to: 斯里兰卡
+
+- date: 2020-01-28
+  from: 中国大陆
+  to: 芬兰
+
+- date: 2020-01-29
+  from: 中国大陆
+  to: 阿联酋
+
+- date: 2020-01-30
+  from: 中国大陆
+  to: 印度
+
+- date: 2020-01-30
+  from: 中国大陆
+  to: 菲律宾
+
+- date: 2020-01-31
+  from: 中国大陆
+  to: 英国
+
+- date: 2020-01-31
+  from: 中国大陆
+  to: 俄罗斯
+
+- date: 2020-01-31
+  from: 中国大陆
+  to: 意大利
+
+- date: 2020-01-31
+  from: 中国大陆
+  to: 瑞典
+  source: https://www.thelocal.se/20200131/first-case-of-coronavirus-confirmed-in-jonkoping-sweden/amp
+
+- date: 2020-01-31
+  from: 德国
+  to: 西班牙
+  source: https://elpais.com/sociedad/2020/01/31/actualidad/1580509404_469734.html
+
+- date: 2020-02-01
+  from: 日本
+  to: 韩国
+  source: https://news.naver.com/main/read.nhn?mode=LPOD&mid=sec&oid=001&aid=0011370927&isYeonhapFlash=Y&rc=N
+
+- date: 2020-02-04
+  from: 泰国
+  to: 韩国
+  source: https://www.straitstimes.com/asia/east-asia/coronavirus-south-korean-woman-travelling-home-from-thailand-tests-positive-for-virus
+  certainty: false
+
+- date: 2020-02-04
+  from: 日本
+  to: 泰国
+  source: https://www.reuters.com/article/us-china-health-thailand/thailand-confirms-six-new-coronavirus-cases-including-four-thais-idUSKBN1ZY0ZF
+  certainty: false
+
+- date: 2020-02-04
+  from: 中国大陆
+  to: 比利时
+
+- date: 2020-02-05
+  from: 中国大陆
+  to: 马来西亚
+  source: https://www.bernama.com/en/general/news.php?id=1811690
+
+- date: 2020-02-05
+  from: 香港
+  to: 钻石公主号
+
+- date: 2020-02-05
+  from: 新加坡
+  to: 韩国
+  source: https://en.yna.co.kr/view/AEN20200205002356320
+
+- date: 2020-02-06
+  from: 新加坡
+  to: 英国
+  source: https://www.theguardian.com/world/2020/feb/06/third-person-in-uk-confirmed-as-having-coronavirus
+
+- date: 2020-02-06
+  from: 澳门
+  to: 台湾
+  source: https://www.dwnews.com/%E5%8F%B0%E6%B9%BE/60166560/%E6%AD%A6%E6%B1%89%E7%96%AB%E6%83%85%E5%8F%B0%E6%AD%A6%E6%B1%89%E8%82%BA%E7%82%8E%E7%A1%AE%E8%AF%8A%E5%A2%9E%E8%87%B316%E4%BE%8B%E9%A6%96%E8%A7%81%E5%8F%AA%E6%9C%89%E6%B8%AF%E6%BE%B3%E6%97%85%E5%8F%B2%E6%82%A3%E8%80%85
+
+- date: 2020-02-09
+  from: 法国
+  to: 西班牙
+  source: https://www.reuters.com/article/us-china-health-spain-idUSKBN20309T
+
+- date: 2020-02-10
+  from: 澳门
+  to: 马来西亚
+  source: https://www.channelnewsasia.com/news/asia/coronavirus-malaysia-confirms-sixth-citizen-case-macau-12415998
+
+- date: 2020-02-10
+  from: 法国
+  to: 英国
+  source: https://www.gov.uk/government/news/chief-medical-officer-for-england-announces-four-further-coronavirus-cases
+
+- date: 2020-02-12
+  from: 钻石公主号
+  to: 日本
+
+- date: 2020-02-14
+  from: 中国大陆
+  to: 埃及
+
+- date: 2020-02-19
+  from: 中国大陆
+  to: 伊朗
+
+- date: 2020-02-20
+  from: 伊朗
+  to: 加拿大
+  source: https://bc.ctvnews.ca/b-c-s-new-coronavirus-case-is-woman-who-recently-returned-from-iran-1.4821112
+
+- date: 2020-02-21
+  from: 伊朗
+  to: 黎巴嫩
+  source: https://www.arabnews.com/node/1631166/middle-east
+
+- date: 2020-02-21
+  from: 钻石公主号
+  to: 美国
+
+- date: 2020-02-21
+  from: 钻石公主号
+  to: 澳大利亚
+
+- date: 2020-02-21
+  from: 钻石公主号
+  to: 以色列
+
+- date: 2020-02-22
+  from: 伊朗
+  to: 阿联酋
+  source: https://gulfnews.com/uae/iranian-couple-diagnosed-with-covid-19-in-uae-taking-number-of-cases-to-13-1.69875492
+
+- date: 2020-02-22
+  from: 韩国
+  to: 以色列
+  source: https://www.haaretz.com/israel-news/health-ministry-korean-nationals-who-visited-israel-tested-positive-for-coronavirus-1.8564475
+  certainty: false
+
+- date: 2020-02-23
+  from: 钻石公主号
+  to: 英国
+  source: https://news.cgtn.com/news/2020-02-29/Graphics-Where-are-the-Diamond-Princess-evacuees--OtLpmsv6KY/index.html
+
+- date: 2020-02-23
+  from: 钻石公主号
+  to: 香港
+  source: http://www.chinaqw.com/hqhr/2020/02-27/247126.shtml
+
+- date: 2020-02-24
+  from: 意大利
+  to: 西班牙
+  source: https://www.repubblica.it/cronaca/2020/02/24/news/coronavirus_italiano_positivo_al_test_a_tenerife_e_il_terzo_caso_di_contagio_in_spagna-249508945/
+
+- date: 2020-02-25
+  from: 新加坡
+  to: 意大利
+  source: https://www.thelocal.it/20200225/new-coronavirus-cases-confirmed-in-tuscany-and-sicily
+
+- date: 2020-02-25
+  from: 意大利
+  to: 法国
+  source: https://www.ledauphine.com/faits-divers-justice/2020/02/26/haute-savoie-le-cas-de-coronavirus-avere-dans-la-region-est-hospitalise-a-annecy
+
+- date: 2020-02-25
+  from: 意大利
+  to: 德国
+  source: https://www.reuters.com/article/us-china-health-germany-idUSKBN20J2K2
+
+- date: 2020-02-25
+  from: 意大利
+  to: 阿尔及利亚
+  source: https://news.trust.org/item/20200225190135-gnit5/
+
+- date: 2020-02-25
+  from: 意大利
+  to: 奥地利
+  source: https://www.theguardian.com/world/live/2020/feb/25/coronavirus-live-updates-outbreak-latest-news-italy-italia-deaths-symptoms-china-stocks-wall-street-dow-jones-economy-falls?page=with%3Ablock-5e550d8a8f086a28115b222d
+
+- date: 2020-02-25
+  from: 意大利
+  to: 巴西
+  source: https://g1.globo.com/sp/sao-paulo/noticia/2020/02/25/ministerio-da-saude-investiga-possivel-paciente-com-coronavirus-em-sp-caso-foi-para-contraprova.ghtml
+
+- date: 2020-02-25
+  from: 意大利
+  to: 克罗地亚
+  source: https://www.telegraph.co.uk/global-health/science-and-disease/coronavirus-news-uk-italy-china-south-korea-pandemic/
+
+- date: 2020-02-25
+  from: 意大利
+  to: 瑞士
+  source: https://www.repubblica.it/esteri/2020/02/25/news/coronavirus_contagiati_in_italia-249569108/
+
+- date: 2020-02-25
+  from: 伊朗
+  to: 伊拉克
+  source: https://www.reuters.com/article/us-china-health-iraq/first-iraqis-catch-coronavirus-amid-fear-of-iran-epidemic-spillover-idUSKCN20J0ZI
+
+- date: 2020-02-25
+  from: 伊朗
+  to: 阿富汗
+  source: https://www.theguardian.com/world/2020/feb/25/irans-deputy-health-minister-i-have-coronavirus
+
+- date: 2020-02-25
+  from: 伊朗
+  to: 巴林
+  source: https://www.theguardian.com/world/2020/feb/25/irans-deputy-health-minister-i-have-coronavirus
+
+- date: 2020-02-25
+  from: 伊朗
+  to: 科威特
+  source: https://www.theguardian.com/world/2020/feb/25/irans-deputy-health-minister-i-have-coronavirus
+
+- date: 2020-02-25
+  from: 伊朗
+  to: 阿曼
+  source: https://www.theguardian.com/world/2020/feb/25/irans-deputy-health-minister-i-have-coronavirus
+
+- date: 2020-02-26
+  from: 意大利
+  to: 芬兰
+  source: https://yle.fi/uutiset/osasto/news/woman_in_helsinki_tests_positive_for_novel_coronavirus/11229433
+
+- date: 2020-02-26
+  from: 意大利
+  to: 希腊
+  source: https://www.reuters.com/article/us-china-health-greece-idUSKCN20K1IA
+
+- date: 2020-02-26
+  from: 意大利
+  to: 北马其顿
+  source: https://a1on.mk/macedonia/prv-sluchaj-na-zabolen-od-koronavirus-vo-makedonija/
+
+- date: 2020-02-26
+  from: 意大利
+  to: 罗马尼亚
+  source: https://www.digi24.ro/stiri/actualitate/primul-caz-de-coronavirus-in-romania-1266806
+
+- date: 2020-02-26
+  from: 意大利
+  to: 瑞典
+  source: https://www.svt.se/nyheter/lokalt/vast/bekraftat-coronafall-i-goteborg-person-vardas-pa-sahlgrenska
+
+- date: 2020-02-26
+  from: 中国大陆
+  to: 挪威
+  source: https://www.straitstimes.com/world/europe/norway-detects-its-first-case-of-coronavirus
+
+- date: 2020-02-26
+  from: 伊朗
+  to: 格鲁吉亚
+  source: https://imedinews.ge/ge/saqartvelo/129237/saqartveloshi-koronavirusis-pirveli-shemtkhveva-dadasturda?fbclid=IwAR3rQNKKSiUehYVBhPm7AFVGKpCJ9CQe37HJJjtQF_V7RzlOZZBWsTzXZQg
+
+- date: 2020-02-26
+  from: 伊朗
+  to: 巴基斯坦
+  source: https://www.france24.com/en/20200226-pakistan-confirms-first-two-cases-of-coronavirus
+
+- date: 2020-02-26
+  from: 伊朗
+  to: 中国大陆
+  source: https://new.qq.com/omn/20200226/20200226A0RDD500.html
+
+- date: 2020-02-26
+  from: 钻石公主号
+  to: 俄罗斯
+  source: https://www.sohu.com/a/376193608_428290
+
+- date: 2020-02-27
+  from: 意大利
+  to: 丹麦
+  source: https://nyheder.tv2.dk/samfund/2020-02-27-dansker-smittet-med-coronavirus
+
+- date: 2020-02-27
+  from: 伊朗
+  to: 爱沙尼亚
+  source: https://www.delfi.ee/news/paevauudised/eesti/terviseamet-koikide-lux-expressis-olnud-reisijatega-on-uhendust-voetud?id=89066921
+
+- date: 2020-02-27
+  from: 意大利
+  to: 英国
+  source: https://www.bbc.com/news/uk-51656609
+
+- date: 2020-02-27
+  from: 西班牙
+  to: 英国
+  source: https://www.bbc.com/news/uk-51656609
+
+- date: 2020-02-27
+  from: 意大利
+  to: 以色列
+  source: https://www.ynetnews.com/article/HJkE9zHVI
+
+- date: 2020-02-27
+  from: 伊朗
+  to: 德国
+  source: https://www.swr.de/swraktuell/rheinland-pfalz/kaiserslautern/Neuer-Fall-in-Rheinland-Pfalz-Coronavirus-bei-Patienten-in-Kaiserslautern-festgestellt,corona-kaiserslautern-100.html
+
+- date: 2020-02-27
+  from: 埃及
+  to: 法国
+  source: https://www.letelegramme.fr/dossiers/lepidemie-de-coronavirus/cas-de-coronavirus-a-brest-ce-que-l-on-sait-ce-jeudi-soir-27-02-2020-12513463.php
+
+- date: 2020-02-27
+  from: 意大利
+  to: 挪威
+  source: https://www.fhi.no/nyheter/2020/tre-nye-personer-har-testet-positivt-pa-koronavirus/
+
+- date: 2020-02-27
+  from: 伊朗
+  to: 挪威
+  source: https://www.fhi.no/nyheter/2020/tre-nye-personer-har-testet-positivt-pa-koronavirus/
+
+- date: 2020-02-27
+  from: 意大利
+  to: 荷兰
+  source: https://www.rivm.nl/nieuws/patient-met-nieuw-coronavirus-in-nederland
+
+- date: 2020-02-27
+  from: 日本
+  to: 马来西亚
+  source: https://www.malaysiakini.com/news/512562
+
+- date: 2020-02-27
+  from: 意大利
+  to: 尼日利亚
+  source: https://www.reuters.com/article/us-china-health-nigeria/italian-man-becomes-nigerias-first-case-of-coronavirus-minister-idUSKCN20M07D
+
+- date: 2020-02-27
+  from: 韩国
+  to: 泰国
+  source: https://www.reuters.com/article/us-china-health-thailand-case/thailand-reports-one-new-coronavirus-case-total-reaches-41-health-official-idUSKCN20M0FS
+
+- date: 2020-02-27
+  from: 伊朗
+  to: 西班牙
+  source: https://www.elnortedecastilla.es/valladolid/sanidad-confirma-casos-20200227200136-nt.html
+
+- date: 2020-02-27
+  from: 意大利
+  to: 圣马力诺
+  source: https://www.altarimini.it/News132152-coronavirus-primo-caso-nella-repubblica-di-san-marino.php
+
+- date: 2020-02-27
+  from: 德国
+  to: 瑞典
+  source: https://www.thelocal.se/20200227/five-new-cases-of-the-coronavirus-in-sweden
+
+- date: 2020-02-27
+  from: 伊朗
+  to: 瑞典
+  source: https://www.thelocal.se/20200227/five-new-cases-of-the-coronavirus-in-sweden
+
+- date: 2020-02-28
+  from: 意大利
+  to: 马来西亚
+  source: https://www.malaysiakini.com/news/512562
+
+- date: 2020-02-28
+  from: 日本
+  to: 台湾
+  source: https://www.taiwannews.com.tw/en/news/3882752
+
+- date: 2020-02-28
+  from: 意大利
+  to: 立陶宛
+  source: https://www.15min.lt/naujiena/aktualu/lietuva/koronavirusas-pasieke-lietuva-uzfiksuotas-pirmasis-atvejis-56-1282110
+
+- date: 2020-02-28
+  from: 伊朗
+  to: 新西兰
+  source: https://www.nzherald.co.nz/nz/news/article.cfm?c_id=1&objectid=12312691
+
+- date: 2020-02-28
+  from: 伊朗
+  to: 白俄罗斯
+  source: http://minzdrav.gov.by/sobytiya/v-belarusi-zaregistrirovan-zavoznoy-sluchay-koronavirusa/
+
+- date: 2020-02-28
+  from: 德国
+  to: 法国
+  source: https://www.paris-normandie.fr/actualites/societe/sante/un-cas-de-coronavirus-confirme-pres-de-rouen-un-professionnel-de-sante-confine-chez-lui-EA16434473
+
+- date: 2020-02-28
+  from: 伊朗
+  to: 阿塞拜疆
+  source: https://www.interfax.ru/world/697084
+
+- date: 2020-02-28
+  from: 意大利
+  to: 墨西哥
+  source: https://losangeles.cbslocal.com/2020/02/28/mexico-confirms-its-first-2-coronavirus-cases/
+
+- date: 2020-02-28
+  from: 意大利
+  to: 冰岛
+  source: https://www.ruv.is/frett/fyrsta-tilfelli-covid-19-greint-a-islandi
+
+- date: 2020-02-28
+  from: 埃及
+  to: 加拿大
+  source: https://www.egypttoday.com/Article/1/82124/Cairo-contacts-Paris-Ontario-on-coronavirus-cases-coming-from-Egypt
+
+- date: 2020-02-28
+  from: 意大利
+  to: 阿联酋
+  source: https://www.thenational.ae/uae/health/coronavirus-uae-tour-cancelled-and-dozens-quarantined-as-two-participants-test-positive-1.985664
+
+- date: 2020-02-28
+  from: 伊朗
+  to: 英国
+  source: https://en.wikipedia.org/wiki/Template:2019%E2%80%9320_coronavirus_outbreak_data/United_Kingdom_medical_cases
+
+- date: 2020-02-29
+  from: 德国
+  to: 丹麦
+  source: https://www.dr.dk/nyheder/indland/tredje-smittet-med-coronavirus-havde-vaeret-paa-konference-i-munchen
+
+- date: 2020-02-29
+  from: 伊朗
+  to: 卡塔尔
+  source: https://www.nytimes.com/reuters/2020/02/29/world/middleeast/29reuters-china-health-qatar.html
+
+- date: 2020-02-29
+  from: 意大利
+  to: 卢森堡
+  source: https://today.rtl.lu/news/luxembourg/a/1476925.html
+
+- date: 2020-02-29
+  from: 意大利
+  to: 爱尔兰
+
+- date: 2020-02-29
+  from: 西班牙
+  to: 厄瓜多尔
+  source: https://www.elcomercio.com/actualidad/salud-confirma-primer-caso-coronavirus.html
+
+- date: 2020-02-29
+  from: 埃及
+  to: 台湾
+  source: https://focustaiwan.tw/society/202003080011?utm_source=share&utm_medium=ios_app&utm_name=iossmf
+
+- date: 2020-03-01
+  from: 伊朗
+  to: 亚美尼亚
+  source: http://arka.am/en/news/society/armenian_health_authorities_to_isolate_30_persons_because_of_the_threat_of_coronavirus_spread_/
+
+- date: 2020-03-01
+  from: 伊朗
+  to: 澳大利亚
+  source: https://www.health.nsw.gov.au/news/Pages/20200301_01.aspx
+
+- date: 2020-03-01
+  from: 法国
+  to: 比利时
+  source: https://www.info-coronavirus.be/nl/2020/03/01/tweede-besmetting-met-covid-19-vastgesteld-in-ons-land/
+
+- date: 2020-03-01
+  from: 意大利
+  to: 美国
+  source: https://www.ri.gov/press/view/37818
+
+- date: 2020-03-01
+  from: 意大利
+  to: 捷克
+  source: https://ct24.ceskatelevize.cz/domaci/3056228-v-cesku-jsou-tri-lide-nakazeni-koronavirem
+
+- date: 2020-03-01
+  from: 意大利
+  to: 多米尼加
+  source: https://listindiario.com/la-republica/2020/03/01/606407/se-registra-primer-caso-de-coronavirus-en-rd
+
+- date: 2020-03-01
+  from: 伊朗
+  to: 美国
+
+- date: 2020-03-01
+  from: 埃及
+  to: 美国
+  source: https://www.sccgov.org/sites/phd/news/Pages/three-new-covid-19-cases-3-1-2020.aspx
+
+- date: 2020-03-01
+  from: 英国
+  to: 中国大陆
+  source: https://www.thepaper.cn/newsDetail_forward_6370021
+
+- date: 2020-03-02
+  from: 意大利
+  to: 中国大陆
+  source: http://www.chinanews.com/sh/2020/03-02/9110462.shtml
+
+- date: 2020-03-02
+  from: 意大利
+  to: 印度
+  source: https://www.indiatoday.in/india/story/2-new-cases-of-coronavirus-delhi-patient-came-from-italy-telangana-patient-from-dubai-informs-health-minister-1651641-2020-03-02
+
+- date: 2020-03-02
+  from: 阿联酋
+  to: 印度
+  source: https://www.indiatoday.in/india/story/2-new-cases-of-coronavirus-delhi-patient-came-from-italy-telangana-patient-from-dubai-informs-health-minister-1651641-2020-03-02
+
+- date: 2020-03-02
+  from: 意大利
+  to: 安道尔
+  source: https://www.andorradifusio.ad/noticies/primer-cas-coronavirus-andorra
+
+- date: 2020-03-02
+  from: 意大利
+  to: 葡萄牙
+  source: https://www.nytimes.com/reuters/2020/03/02/world/europe/02reuters-health-coronavirus-portugal.html
+
+- date: 2020-03-02
+  from: 西班牙
+  to: 葡萄牙
+  source: https://www.nytimes.com/reuters/2020/03/02/world/europe/02reuters-health-coronavirus-portugal.html
+
+- date: 2020-03-02
+  from: 意大利
+  to: 比利时
+  source: https://www.info-coronavirus.be/nl/2020/03/02/zes-nieuwe-gevallen-van-covid-19-na-einde-krokusvakantie/
+
+- date: 2020-03-02
+  from: 意大利
+  to: 俄罗斯
+  source: https://ria.ru/20200302/1566843474.html
+
+- date: 2020-03-02
+  from: 印度尼西亚
+  to: 新加坡
+  source: https://www.moh.gov.sg/news-highlights/details/four-more-cases-discharged-two-new-cases-of-covid-19-infection-confirmed-2Mar
+
+- date: 2020-03-02
+  from: 伊朗
+  to: 沙特阿拉伯
+  source: https://www.spa.gov.sa/2041821
+
+- date: 2020-03-02
+  from: 法国
+  to: 塞内加尔
+  source: https://www.lequotidien.sn/coronavirus-le-senegal-enregistre-son-premier-cas/
+
+- date: 2020-03-02
+  from: 意大利
+  to: 拉脱维亚
+  source: https://www.delfi.lv/news/national/politics/latvija-apstiprina-pirmo-covid-19-saslimsanas-gadijumu.d?id=51924095
+
+- date: 2020-03-02
+  from: 摩洛哥
+  to: 意大利
+  source: http://www.mapexpress.ma/ar/actualite/%D8%A7%D9%84%D9%85%D8%BA%D8%B1%D8%A8-%D9%8A%D8%B9%D9%84%D9%86-%D8%B9%D9%86-%D8%AA%D8%B3%D8%AC%D9%8A%D9%84-%D8%A3%D9%88%D9%84-%D8%AD%D8%A7%D9%84%D8%A9-%D8%A5%D8%B5%D8%A7%D8%A8%D8%A9-%D8%A8%D9%81%D9%8A/%D9%85%D8%AC%D8%AA%D9%85%D8%B9-%D9%88%D8%AC%D9%87%D8%A7%D8%AA/
+
+- date: 2020-03-02
+  from: 意大利
+  to: 约旦
+  source: http://petra.gov.jo/Include/InnerPage.jsp?ID=129088&lang=ar&name=news
+
+- date: 2020-03-02
+  from: 意大利
+  to: 突尼斯
+  source: https://punchng.com/italian-returnee-confirmed-tunisias-first-coronavirus-case/
+
+- date: 2020-03-02
+  from: 奥地利
+  to: 冰岛
+  source: https://www.ruv.is/frett/niundi-smitadi-islendingurinn-hafdi-verid-i-austurriki
+
+- date: 2020-03-03
+  from: 澳大利亚
+  to: 马来西亚
+  source: https://kpkesihatan.com/2020/03/03/kenyataan-akhbar-kpk-3-mac-2020-situasi-terkini-jangkitan-covid-19-di-malaysia-3-mac-2020/
+
+- date: 2020-03-03
+  from: 埃及
+  to: 马来西亚
+  source: https://kpkesihatan.com/2020/03/03/kenyataan-akhbar-kpk-3-mac-2020-situasi-terkini-jangkitan-covid-19-di-malaysia-3-mac-2020/
+
+- date: 2020-03-03
+  from: 意大利
+  to: 阿根廷
+  source: https://www.clarin.com/sociedad/coronavirus-confirmaron-primer-caso-argentina-espera-conferencia-gobierno_0_awnywhZX.html
+
+- date: 2020-03-03
+  from: 意大利
+  to: 新西兰
+  source: https://www.health.govt.nz/news-media/media-releases/second-case-covid-19-confirmed-nz
+
+- date: 2020-03-03
+  from: 意大利
+  to: 乌克兰
+  source: https://www.reuters.com/article/us-health-coronavirus-ukraine/ukraine-reports-first-coronavirus-case-health-official-idUSKBN20Q0ZH
+
+- date: 2020-03-03
+  from: 瑞士
+  to: 列支敦士登
+  source: https://www.vaterland.li/liechtenstein/vermischtes/erster-positiv-getesteter-corona-verdachtsfall;art171,413173
+
+- date: 2020-03-03
+  from: 日本
+  to: 英国
+  source: https://en.wikipedia.org/wiki/Template:2019%E2%80%9320_coronavirus_outbreak_data/United_Kingdom_medical_cases
+
+- date: 2020-03-03
+  from: 德国
+  to: 英国
+  source: https://en.wikipedia.org/wiki/Template:2019%E2%80%9320_coronavirus_outbreak_data/United_Kingdom_medical_cases
+
+- date: 2020-03-04
+  from: 意大利
+  to: 波兰
+  source: https://www.thejakartapost.com/news/2020/03/04/poland-announces-first-coronavirus-case.html
+
+- date: 2020-03-04
+  from: 法国
+  to: 丹麦
+  source: https://www.government.fo/en/news/news/first-case-of-covid-19-confirmed-in-faroe-islands/
+
+- date: 2020-03-04
+  from: 伊朗
+  to: 匈牙利
+  source: https://www.reuters.com/article/us-health-coronavirus-hungary/hungary-confirms-first-two-coronavirus-cases-idUSKBN20R2RA
+
+- date: 2020-03-04
+  from: 香港
+  to: 加拿大
+  source: https://www.cbc.ca/news/canada/british-columbia/b-c-s-13th-coronavirus-patient-in-critical-condition-officials-announce-1.5486216
+  certainty: false
+
+- date: 2020-03-04
+  from: 意大利
+  to: 澳大利亚
+  source: https://www.health.nsw.gov.au/news/Pages/20200304_06.aspx
+
+- date: 2020-03-04
+  from: 菲律宾
+  to: 澳大利亚
+  source: https://www.health.nsw.gov.au/news/Pages/20200304_06.aspx
+
+- date: 2020-03-05
+  from: 泰国
+  to: 澳大利亚
+  source: https://www.health.qld.gov.au/news-events/doh-media-releases/releases/queensland-coronavirus-update15
+
+- date: 2020-03-05
+  from: 意大利
+  to: 波黑
+  source: https://balkaninsight.com/2020/03/05/bosnia-confirms-two-coronavirus-cases-expects-more/
+
+- date: 2020-03-05
+  from: 意大利
+  to: 爱沙尼亚
+  source: https://www.postimees.ee/6915264/kolmas-juhtum-eestis-itaaliast-naasnud-tallinlasel-tuvastati-koroonaviirus
+
+- date: 2020-03-05
+  from: 意大利
+  to: 南非
+  source: https://www.news24.com/SouthAfrica/News/breaking-sas-first-positive-case-of-covid-19-confirmed-20200305
+
+- date: 2020-03-05
+  from: 伊朗
+  to: 印度
+  source: https://www.livemint.com/news/india/coronavirus-update-new-case-reported-from-ghaziabad-india-now-has-30-patients-11583401881606.html
+
+- date: 2020-03-05
+  from: 意大利
+  to: 智利
+  source: https://www.cnnchile.com/pais/confirman-cuarto-caso-coronavirus-chile_20200305/
+
+- date: 2020-03-05
+  from: 印度
+  to: 香港
+  source: http://www.chinanews.com/ga/2020/03-05/9115180.shtml
+
+- date: 2020-03-05
+  from: 以色列
+  to: 希腊
+  source: https://www.timesofisrael.com/greece-says-23-tourists-who-recently-visited-israel-sick-with-covid-19/
+
+- date: 2020-03-05
+  from: 菲律宾
+  to: 台湾
+  source: https://www.cna.com.tw/news/firstnews/202003060214.aspx
+
+- date: 2020-03-05
+  from: 法国
+  to: 日本
+  source: https://www3.nhk.or.jp/news/html/20200305/k10012316101000.html
+
+- date: 2020-03-06
+  from: 英国
+  to: 黎巴嫩
+  source: https://www.lbcgroup.tv/news/d/lebanon-news/505470/ministry-of-health-new-coronavirus-case-registered/en
+
+- date: 2020-03-06
+  from: 意大利
+  to: 格鲁吉亚
+  source: https://www.kvirispalitra.ge/public/61715-koronavirusith-inficirebuli-5-akhali-pacientidan-mkholod-erths-aghenishneba-temperatura-da-msubuqi-yelis-tkivili.html
+
+- date: 2020-03-06
+  from: 印度
+  to: 不丹
+  source: https://www.reuters.com/article/us-health-coronavirus-southasia/bhutan-bans-tourists-after-first-coronavirus-case-india-total-hits-31-idUSKBN20T0QB
+
+- date: 2020-03-06
+  from: 日本
+  to: 菲律宾
+  source: https://www.gmanetwork.com/news/news/nation/728576/philippines-records-2-more-covid-19-cases/story/
+
+- date: 2020-03-06
+  from: 美国
+  to: 加拿大
+  source: https://www.thestar.com/politics/provincial/2020/03/05/ontarios-covid-19-tally-rises-to-22-with-first-case-from-italy.html
+
+- date: 2020-03-06
+  from: 法国
+  to: 喀麦隆
+  source: https://nationalpost.com/pmn/health-pmn/cameroon-confirms-first-case-of-coronavirus-2
+
+- date: 2020-03-06
+  from: 匈牙利
+  to: 塞尔维亚
+  source: https://nationalpost.com/pmn/health-pmn/serbia-reports-first-case-of-coronavirus-health-minister
+
+- date: 2020-03-06
+  from: 意大利
+  to: 梵蒂冈
+
+- date: 2020-03-06
+  from: 西班牙
+  to: 中国大陆
+  source: https://www.thepaper.cn/newsDetail_forward_6370021
+
+- date: 2020-03-06
+  from: 意大利
+  to: 哥伦比亚
+  source: https://www.minsalud.gov.co/Paginas/Colombia-confirma-su-primer-caso-de-COVID-19.aspx
+
+- date: 2020-03-06
+  from: 英国
+  to: 美国
+  source: https://governor.nebraska.gov/press/first-presumptive-positive-case-coronavirus-2019-reported-nebraska-dhhs
+
+- date: 2020-03-06
+  from: 美国
+  to: 哥斯达黎加
+  source: https://ticotimes.net/2020/03/06/updates-costa-rica-monitoring-several-suspected-cases-of-coronavirus
+
+- date: 2020-03-06
+  from: 意大利
+  to: 斯洛伐克
+  source: https://www.reuters.com/article/us-health-coronavirus-slovakia-idUSKBN20T1D8
+
+- date: 2020-03-06
+  from: 英国
+  to: 波兰
+  source: https://tvn24.pl/polska/koronawirus-w-polsce-cztery-nowe-przypadki-zakazenia-4300395
+
+- date: 2020-03-06
+  from: 德国
+  to: 新加坡
+  source: https://www.moh.gov.sg/news-highlights/details/eight-more-cases-discharged-eight-more-cases-of-covid-19-infection-confirmed
+
+- date: 2020-03-07
+  from: 美国
+  to: 澳大利亚
+  source: https://www2.health.vic.gov.au/about/media-centre/MediaReleases/eleventh-case-coronavirus-victoria
+
+- date: 2020-03-07
+  from: 韩国
+  to: 越南
+  source: https://news.trust.org/item/20200307083820-kzd6l
+
+- date: 2020-03-07
+  from: 意大利
+  to: 马耳他
+  source: https://news.trust.org/item/20200307102758-m8hf2
+
+- date: 2020-03-07
+  from: 日本
+  to: 柬埔寨
+  source: http://www.akp.gov.kh/post/detail/27426
+
+- date: 2020-03-07
+  from: 法国
+  to: 阿根廷
+  source: https://www.infobae.com/sociedad/2020/03/07/confirman-la-primera-muerte-por-coronavirus-en-argentina/
+
+- date: 2020-03-07
+  from: 意大利
+  to: 马尔代夫
+  source: https://www.reuters.com/article/health-coronavirus-maldives-idUSL4N2B00AG
+
+- date: 2020-03-07
+  from: 意大利
+  to: 摩尔多瓦
+  source: https://www.moldpres.md/news/2020/03/07/20002021
+
+- date: 2020-03-07
+  from: 厄瓜多尔
+  to: 巴拉圭
+  source: https://www.deccanherald.com/international/paraguay-reports-first-coronavirus-case-811730.html
+
+- date: 2020-03-07
+  from: 英国
+  to: 新加坡
+  source: https://www.moh.gov.sg/news-highlights/details/eight-more-cases-discharged-eight-more-cases-of-covid-19-infection-confirmed
+
+- date: 2020-03-07
+  from: 伊拉克
+  to: 沙特阿拉伯
+  source: https://www.arabnews.com/node/1638111/saudi-arabia
+
+- date: 2020-03-08
+  from: 印度尼西亚
+  to: 澳大利亚
+  source: https://www2.health.vic.gov.au/about/media-centre/MediaReleases/new-case-covid-19-victoria
+
+- date: 2020-03-08
+  from: 意大利
+  to: 孟加拉国
+  source: https://www.dhakatribune.com/bangladesh/dhaka/2020/03/08/iedcr-3-affected-with-coronavirus-in-bangladesh
+
+- date: 2020-03-08
+  from: 美国
+  to: 智利
+  source: https://www.biobiochile.cl/noticias/nacional/chile/2020/03/08/confirman-octavo-caso-de-coronavirus-covid-19-en-chile-es-una-persona-de-83-anos.shtml
+
+- date: 2020-03-08
+  from: 美国
+  to: 瑞典
+  source: https://www.svd.se/tre-nya-fall-i-orebro--en-smittad-i-usa
+
+- date: 2020-03-08
+  from: 泰国
+  to: 新加坡
+  source: https://www.moh.gov.sg/news-highlights/details/twelve-new-cases-of-covid-19-infection-confirmed
+
+- date: 2020-03-08
+  from: 德国
+  to: 埃及
+  source: https://www.abendblatt.de/vermischtes/article228637475/Coronavirus-News-Italien-Norden-abgeriegelt-Mailand-und-Venedig-betroffen.html
+
+- date: 2020-03-08
+  from: 意大利
+  to: 阿尔巴尼亚
+  source: https://www.facebook.com/MinistriaeShendetesisedheMbrojtjesSociale/posts/2594099987367729
+
+- date: 2020-03-09
+  from: 意大利
+  to: 塞浦路斯
+  source: https://cyprus-mail.com/2020/03/10/hospital-close-to-shutdown-after-doctor-with-virus-treated-patients-update-5/
+
+- date: 2020-03-09
+  from: 英国
+  to: 塞浦路斯
+  source: https://cyprus-mail.com/2020/03/10/hospital-close-to-shutdown-after-doctor-with-virus-treated-patients-update-5/
+
+- date: 2020-03-09
+  from: 马来西亚
+  to: 汶莱
+  source: http://www.moh.gov.bn/Lists/Latest%20news/NewDispForm.aspx?ID=366
+
+- date: 2020-03-09
+  from: 西班牙
+  to: 巴拿马
+  source: https://www.telemetro.com/nacionales/2020/03/10/minsa-anuncia-coronavirus-panama/2656443.html
+
+- date: 2020-03-09
+  from: 埃及
+  to: 日本
+  source: https://www3.nhk.or.jp/news/html/20200309/k10012321331000.html
+
+- date: 2020-03-10
+  from: 法国
+  to: 蒙古
+  source: https://www.usnews.com/news/world/articles/2020-03-09/mongolia-confirms-first-coronavirus-case-a-french-national
+
+- date: 2020-03-10
+  from: 荷兰
+  to: 台湾
+  source: https://www.cdc.gov.tw/En/Bulletin/Detail/i4yZFpKAdyzYO0rAiex7xA?typeid=158
+
+- date: 2020-03-10
+  from: 瑞士
+  to: 加拿大
+  source: https://twitter.com/CBCOttawa/status/1237390086326480904
+
+- date: 2020-03-10
+  from: 英国
+  to: 希腊
+  source: https://www.moh.gov.gr/articles/ministry/grafeio-typoy/press-releases/6809-anakoinwsh-5-newn-kroysmatwn-sars-cov-2
+
+- date: 2020-03-10
+  from: 阿塞拜疆
+  to: 以色列
+  source: ynetnews.com/article/rJJzKeBrI
+
+- date: 2020-03-10
+  from: 德国
+  to: 以色列
+  source: ynetnews.com/article/rJJzKeBrI
+
+- date: 2020-03-10
+  from: 奥地利
+  to: 以色列
+  source: ynetnews.com/article/rJJzKeBrI
+
+- date: 2020-03-10
+  from: 英国
+  to: 牙买加
+  source: http://jamaica-gleaner.com/article/news/20200310/update-jamaica-confirms-first-case-coronavirus-travel-ban-expanded
+
+- date: 2020-03-10
+  from: 比利时
+  to: 刚果（金）
+  source: https://nationalpost.com/pmn/health-pmn/democratic-republic-of-congo-confirms-first-coronavirus-case-2
+
+- date: 2020-03-10
+  from: 美国
+  to: 中国大陆
+  source: http://www.bjd.com.cn/a/202003/11/WS5e68329be4b01e8b9150890c.html
+
+- date: 2020-03-10
+  from: 以色列
+  to: 罗马尼亚
+  source: https://www.romaniajournal.ro/society-people/8-more-people-tested-positive-for-coronavirus-in-bucharest-25-cases-confirmed-overall-in-romania/
+
+- date: 2020-03-10
+  from: 英国
+  to: 罗马尼亚
+  source: https://www.romaniajournal.ro/society-people/8-more-people-tested-positive-for-coronavirus-in-bucharest-25-cases-confirmed-overall-in-romania/
+
+- date: 2020-03-10
+  from: 德国
+  to: 罗马尼亚
+  source: https://www.romaniajournal.ro/society-people/8-more-people-tested-positive-for-coronavirus-in-bucharest-25-cases-confirmed-overall-in-romania/
+
+- date: 2020-03-11
+  from: 奥地利
+  to: 加拿大
+  source: https://ottawa.ctvnews.ca/first-case-of-coronavirus-confirmed-in-ottawa-1.4848276
+
+- date: 2020-03-11
+  from: 西班牙
+  to: 洪都拉斯
+  source: https://apnews.com/d423e3e5df9c0b49821ebb651e3e4bb3
+
+- date: 2020-03-11
+  from: 瑞士
+  to: 洪都拉斯
+  source: https://apnews.com/d423e3e5df9c0b49821ebb651e3e4bb3
+
+- date: 2020-03-11
+  from: 意大利
+  to: 科特迪瓦
+  source: https://www.dailysabah.com/world/ivory-coast-confirms-first-case-of-coronavirus/news
+
+- date: 2020-03-11
+  from: 意大利
+  to: 古巴
+  source: https://www.reuters.com/article/health-coronavirus-cuba/update-1-cuba-confirms-first-coronavirus-cases-urges-citizens-to-make-own-masks-idUSL1N2B501N?fbclid=IwAR2w3qLR013q0Thzx4R5_95FeqR6dZi86KpYL2SuQBhGyl8_qHyRlGBgSOg
+
+- date: 2020-03-11
+  from: 美国
+  to: 圭亚那
+  source: https://www.kaieteurnewsonline.com/2020/03/11/breaking-news-guyana-records-first-coronavirus-related-death/
+
+- date: 2020-03-11
+  from: 英国
+  to: 圣文森特和格林纳丁斯
+  source: https://www.stlucianewsonline.com/breaking-news-st-vincent-confirms-first-case-of-coronavirus-disease-covid-19/
+
+- date: 2020-03-11
+  from: 埃及
+  to: 沙特阿拉伯
+  source: https://english.alarabiya.net/en/coronavirus/2020/03/11/Saudi-Arabia-reports-new-coronavirus-case-in-Egyptian-citizen-total-up-to-21.html
+
+- date: 2020-03-11
+  from: 法国
+  to: 新加坡
+  source: https://www.zaobao.com.sg/znews/singapore/story20200312-1036276
+
+- date: 2020-03-11
+  from: 英国
+  to: 台湾
+  source: http://bj.crntt.com/doc/1057/0/9/3/105709337.html?coluid=209&kindid=9572&docid=105709337
+
+- date: 2020-03-11
+  from: 波兰
+  to: 罗马尼亚
+  source: https://www.hotnews.ro/stiri-sanatate-23716682-alte-cinci-cazuri-coronavirus-confirmate-romania-bilantul-ajuns-44.htm
+
+- date: 2020-03-11
+  from: 菲律宾
+  to: 新加坡
+  source: https://www.moh.gov.sg/news-highlights/details/three-more-cases-discharged-twelve-new-cases-of-covid-19-infection-confirmed
+
+- date: 2020-03-12
+  from: 法国
+  to: 加蓬
+  source: https://nationalpost.com/pmn/health-pmn/ghana-gabon-confirm-first-cases-of-coronavirus
+
+- date: 2020-03-13
+  from: 沙特阿拉伯
+  to: 中国大陆
+  source: http://www.bjd.com.cn/a/202003/14/WS5e6c1773e4b01e8b91509236.html
+
+- date: 2020-03-13
+  from: 马来西亚
+  to: 新加坡
+  source: https://www.zaobao.com.sg/znews/singapore/story20200314-1036845
+
+- date: 2020-03-13
+  from: 印度
+  to: 新加坡
+
+- date: 2020-03-13
+  from: 美国
+  to: 新加坡
+  source: https://www.zaobao.com.sg/znews/singapore/story20200314-1036845
+
+- date: 2020-03-13
+  from: 德国
+  to: 哈萨克斯坦
+  source: https://www.usnews.com/news/world/articles/2020-03-13/kazakhstan-confirms-first-coronavirus-cases
+
+- date: 2020-03-13
+  from: 阿联酋
+  to: 苏丹
+  source: https://www.nytimes.com/reuters/2020/03/13/business/13reuters-health-coronavirus-sudan.html
+
+- date: 2020-03-13
+  from: 美国
+  to: 肯尼亚
+  source: https://www.nation.co.ke/news/Kenya-confirms-first-coronavirus-case/1056-5489268-28tqll/index.html
+
+- date: 2020-03-13
+  from: 意大利
+  to: 乌拉圭
+  source: https://www.elpais.com.uy/informacion/salud/confirman-primer-caso-coronavirus-uruguay.html
+
+- date: 2020-03-13
+  from: 西班牙
+  to: 乌拉圭
+  source: https://www.elpais.com.uy/informacion/salud/confirman-primer-caso-coronavirus-uruguay.html
+
+- date: 2020-03-13
+  from: 意大利
+  to: 瓜地马拉
+  source: https://www.prensalibre.com/guatemala/comunitario/coronavirus-alejandro-giammattei-confirma-el-primer-caso-de-covid-19-en-guatemala/
+
+- date: 2020-03-13
+  from: 英国
+  to: 圣卢西亚
+  source: https://www.stlucianewsonline.com/st-lucia-confirms-its-first-covid-19-case-woman-63-with-uk-travel-history/
+
+- date: 2020-03-13
+  from: 荷兰
+  to: 苏里南
+  source: https://www.reuters.com/article/us-health-coronavirus-suriname-confirmed/suriname-confirms-first-coronavirus-case-authorities-will-close-borders-idUSKBN210373?feedType=RSS&feedName=businessNews
+
+- date: 2020-03-13
+  from: 意大利
+  to: 日本
+  source: https://news.tv-asahi.co.jp/news_society/articles/000178976.html
+
+- date: 2020-03-13
+  from: 比利时
+  to: 罗马尼亚
+  source: https://www.digi24.ro/stiri/actualitate/bilantul-infectiilor-cu-noul-coronavirus-ajunge-la-70-alte-cazuri-au-aparut-in-mehedinti-1274766
+
+- date: 2020-03-13
+  from: 美国
+  to: 罗马尼亚
+  source: http://www.ziare.com/stiri/coronavirus/live-cele-mai-noi-date-despre-coronavirus-din-romania-si-din-lume-sotia-premierului-canadian-a-fost-infectata-1601428
+
+- date: 2020-03-13
+  from: 阿联酋
+  to: 罗马尼亚
+  source: https://www.news.ro/social/inca-sase-cazuri-de-infectare-cu-coronavirus-confirmate-numarul-total-al-persoanelor-infectate-a-ajuns-la-95-1922404114002020030019302387
+
+- date: 2020-03-13
+  from: 法国
+  to: 罗马尼亚
+  source: https://www.news.ro/social/inca-sase-cazuri-de-infectare-cu-coronavirus-confirmate-numarul-total-al-persoanelor-infectate-a-ajuns-la-95-1922404114002020030019302387
+
+- date: 2020-03-14
+  from: 法国
+  to: 中国大陆
+  source: http://www.xinhuanet.com/2020-03/14/c_1125712387.htm
+
+- date: 2020-03-14
+  from: 美国
+  to: 斯威士兰
+  source: https://www.jpost.com/Breaking-News/Eswatini-in-Southern-Africa-reports-first-coronavirus-case-620897
+
+- date: 2020-03-14
+  from: 印度
+  to: 卢旺达
+  source: https://www.reuters.com/article/us-health-coronavirus-rwanda/rwanda-confirms-first-case-of-coronavirus-health-ministry-idUSKBN2110G0
+
+- date: 2020-03-14
+  from: 意大利
+  to: 中非
+  source: https://www.reuters.com/article/health-coronavirus-centralafrica/central-african-republic-confirms-first-coronavirus-case-who-idUSL8N2B62KD
+
+- date: 2020-03-14
+  from: 法国
+  to: 刚果（布）
+  source: https://news.trust.org/item/20200314231524-ebs0t
+
+- date: 2020-03-14
+  from: 西班牙
+  to: 赤道几内亚
+  source: https://www.deccanherald.com/international/equatorial-guinea-announces-first-coronavirus-case-813802.html
+
+- date: 2020-03-15
+  from: 法国
+  to: 乌兹别克斯坦
+  source: https://www.aa.com.tr/en/asia-pacific/uzbekistan-confirms-its-first-coronavirus-case/1766896
+
+- date: 2020-03-14
+  from: 土耳其
+  to: 台湾
+  source: http://www.rfi.fr/cn/%E4%BA%9A%E6%B4%B2/20200315-%E6%96%B0%E5%86%A0%E8%82%BA%E7%82%8E-%E5%8F%B0%E6%B9%BE%E6%96%B0%E5%A2%9E6%E4%BE%8B-%E5%9D%87%E4%B8%BA%E5%A2%83%E5%A4%96%E7%A7%BB%E5%85%A5
+
+- date: 2020-03-14
+  from: 西班牙
+  to: 台湾
+  source: http://www.rfi.fr/cn/%E4%BA%9A%E6%B4%B2/20200315-%E6%96%B0%E5%86%A0%E8%82%BA%E7%82%8E-%E5%8F%B0%E6%B9%BE%E6%96%B0%E5%A2%9E6%E4%BE%8B-%E5%9D%87%E4%B8%BA%E5%A2%83%E5%A4%96%E7%A7%BB%E5%85%A5
+
+- date: 2020-03-14
+  from: 希腊
+  to: 台湾
+  source: http://www.rfi.fr/cn/%E4%BA%9A%E6%B4%B2/20200315-%E6%96%B0%E5%86%A0%E8%82%BA%E7%82%8E-%E5%8F%B0%E6%B9%BE%E6%96%B0%E5%A2%9E6%E4%BE%8B-%E5%9D%87%E4%B8%BA%E5%A2%83%E5%A4%96%E7%A7%BB%E5%85%A5
+
+- date: 2020-03-14
+  from: 菲律宾
+  to: 中国大陆
+  source: https://m.chinanews.com/wap/detail/zw/sh/2020/03-15/9126151.shtml
+
+- date: 2020-03-14
+  from: 西班牙
+  to: 日本
+  source: https://www3.nhk.or.jp/news/html/20200314/k10012331691000.html
+
+- date: 2020-03-14
+  from: 英国
+  to: 日本
+  source: https://www3.nhk.or.jp/news/html/20200314/k10012331691000.html
+
+- date: 2020-03-14
+  from: 挪威
+  to: 罗马尼亚
+  source: https://www.hotnews.ro/stiri-coronavirus-23724856-coronavirus-romania-doua-noi-cazuri-intre-care-femeie-din-constanta-infectata-senatorul-chitac-bilant-118.htm
+
+- date: 2020-03-14
+  from: 日本
+  to: 新加坡
+  source: https://www.moh.gov.sg/news-highlights/details/eight-more-cases-discharged-twelve-new-cases-of-covid-19-infection-confirmed
+
+- date: 2020-03-15
+  from: 德国
+  to: 台湾
+  source: http://www.rfi.fr/cn/%E4%BA%9A%E6%B4%B2/20200316-%E5%8F%B0%E6%B9%BE%E7%96%AB%E6%83%85%E7%BC%93%E5%8D%87-%E6%96%B0%E5%A2%9E8%E7%A1%AE%E8%AF%8A-%E5%9D%87%E5%A2%83%E5%A4%96%E7%A7%BB%E5%85%A5
+
+- date: 2020-03-15
+  from: 瑞士
+  to: 中国大陆
+  source: https://m.chinanews.com/wap/detail/zw/sh/2020/03-15/9126151.shtml
+
+- date: 2020-03-15
+  from: 泰国
+  to: 中国大陆
+  source: https://ie.bjd.com.cn/5b165687a010550e5ddc0e6a/contentApp/5b16573ae4b02a9fe2d558f9/AP5e6ed78de4b05e103851250d.html?isshare=1&contentType=0&isBjh=0
+
+- date: 2020-03-15
+  from: 埃及
+  to: 中国大陆
+  source: https://www.guancha.cn/politics/2020_03_16_541859.shtml
+
+- date: 2020-03-15
+  from: 西班牙
+  to: 新加坡
+  source: https://www.moh.gov.sg/news-highlights/details/fourteen-new-cases-of-covid-19-infection-confirmed
+
+- date: 2020-03-15
+  from: 荷兰
+  to: 新加坡
+  source: https://www.moh.gov.sg/news-highlights/details/four-more-cases-discharged-seventeen-new-cases-of-covid-19-infection-confirmed
+
+- date: 2020-03-16
+  from: 中国大陆
+  to: 索马里
+  source: https://www.aa.com.tr/en/africa/somalia-tanzania-confirm-first-coronavirus-cases/1767971
+
+- date: 2020-03-16
+  from: 印度尼西亚
+  to: 中国大陆
+  source: https://m.chinanews.com/wap/detail/zw/sh/2020/03-17/9127995.shtml
+
+- date: 2020-03-17
+  from: 中国大陆
+  to: 土耳其
+  source: https://news.trust.org/item/20200317203817-78c6n
+
+- date: 2020-03-17
+  from: 荷兰
+  to: 中国大陆
+  source: http://www.chinanews.com/sh/2020/03-18/9129278.shtml
+
+- date: 2020-03-17
+  from: 葡萄牙
+  to: 中国大陆
+  source: https://m.guancha.cn/politics/2020_03_18_542251.shtml
+
+- date: 2020-03-17
+  from: 美国
+  to: 黑山
+  source: https://www.vijesti.me/vijesti/drustvo/dvije-zenske-osobe-zarazene-koronavirusom
+
+- date: 2020-03-17
+  from: 西班牙
+  to: 黑山
+  source: https://www.vijesti.me/vijesti/drustvo/dvije-zenske-osobe-zarazene-koronavirusom
+
+- date: 2020-03-17
+  from: 西班牙
+  to: 吉布提
+  source: https://news.trust.org/item/20200318111927-8x6q5/
+
+- date: 2020-03-17
+  from: 英国
+  to: 冈比亚
+  source: https://nationalpost.com/pmn/health-pmn/gambia-reports-first-case-of-coronavirus-health-minister
+
+- date: 2020-03-18
+  from: 沙特阿拉伯
+  to: 吉尔吉斯斯坦
+  source: https://www.thejakartapost.com/news/2020/03/18/coronavirus-reaches-kyrgyzstan-via-saudi-arabia.html
+
+- date: 2020-03-18
+  from: 巴西
+  to: 中国大陆
+  source: http://www.bjnews.com.cn/news/2020/03/18/705528.html
+
+- date: 2020-03-18
+  from: 卢森堡
+  to: 中国大陆
+  source: http://www.bjnews.com.cn/news/2020/03/18/705528.html
+
+- date: 2020-03-18
+  from: 美国
+  to: 台湾
+  source: https://www.cdc.gov.tw/File/Get/K2mTU5Jd9OIUGoJRTObsEA
+
+- date: 2020-03-18
+  from: 法国
+  to: 台湾
+  source: https://www.cdc.gov.tw/File/Get/K2mTU5Jd9OIUGoJRTObsEA
+
+- date: 2020-03-18
+  from: 卡塔尔
+  to: 台湾
+  source: https://www.cdc.gov.tw/File/Get/K2mTU5Jd9OIUGoJRTObsEA
+
+- date: 2020-03-18
+  from: 印度尼西亚
+  to: 台湾
+  source: https://www.cdc.gov.tw/File/Get/K2mTU5Jd9OIUGoJRTObsEA
+
+- date: 2020-03-18
+  from: 瑞士
+  to: 台湾
+  source: https://www.cdc.gov.tw/File/Get/K2mTU5Jd9OIUGoJRTObsEA
+
+- date: 2020-03-18
+  from: 英国
+  to: 毛里求斯
+  source: https://www.reuters.com/article/us-health-coronavirus-mauritius/mauritius-confirms-first-three-cases-of-coronavirus-idUSKBN21541A
+
+- date: 2020-03-18
+  from: 法国
+  to: 赞比亚
+  source: https://diggers.news/breaking/2020/03/18/zambia-confirms-2-covid-19-cases/
+
+- date: 2020-03-18
+  from: 意大利
+  to: 萨尔瓦多
+  source: https://twitter.com/prensagrafica/status/1240465686926888973
+
+- date: 2020-03-18
+  from: 巴拿马
+  to: 尼加拉瓜
+  source: https://www.laprensa.com.ni/2020/03/18/nacionales/2648113-nicaragua-confirma-el-primer-caso-de-coronavirus
+
+- date: 2020-03-18
+  from: 奥地利
+  to: 中国大陆
+  source: http://www.bjd.com.cn/a/202003/19/WS5e72bfe3e4b01e8b9150a113.html
+
+- date: 2020-03-18
+  from: 匈牙利
+  to: 中国大陆
+  source: http://www.bjd.com.cn/a/202003/19/WS5e72bfe3e4b01e8b9150a113.html
+
+- date: 2020-03-18
+  from: 美国
+  to: 日本
+  source: https://www.asahi.com/articles/ASN3M2HN0N3LUTIL03W.html
+
+- date: 2020-03-18
+  from: 土耳其
+  to: 新加坡
+  source: https://www.moh.gov.sg/docs/librariesprovider5/pressroom/press-releases/annexc90b86d5422e4854adfe9a506b15c178.docx?sfvrsn=95250e33_0
+
+- date: 2020-03-19
+  from: 喀麦隆
+  to: 乍得
+  source: https://news.trust.org/item/20200319140813-of38h
+
+- date: 2020-03-19
+  from: 柬埔寨
+  to: 中国大陆
+  source: https://www.thepaper.cn/newsDetail_forward_6590105_1
+
+- date: 2020-03-20
+  from: 法国
+  to: 马达加斯加
+  source: https://actu.orange.mg/officiel-trois-premiers-cas-de-coronavirus-a-madagascar/
+
+- date: 2020-03-20
+  from: 毛里求斯
+  to: 马达加斯加
+  source: https://actu.orange.mg/officiel-trois-premiers-cas-de-coronavirus-a-madagascar/
+
+- date: 2020-03-20
+  from: 英国
+  to: 佛得角
+  source: https://www.publico.pt/2020/03/20/mundo/noticia/coronavirus-ingles-62-anos-caso-confirmado-cabo-verde-1908619
+
+- date: 2020-03-20
+  from: 西班牙
+  to: 巴布亚新几内亚
+  source: https://news.pngfacts.com/2020/03/png-confirms-first-case-of-coronavirus.html
+
+- date: 2020-03-20
+  from: 英国
+  to: 津巴布韦
+  source: https://www.voazimbabwe.com/a/zimbabw-records-first-coronavirus-case/5338585.html
+
+- date: 2020-03-20
+  from: 土耳其
+  to: 中国大陆
+  source: http://www.bjnews.com.cn/feature/2020/03/21/706959.html
+
+- date: 2020-03-20
+  from: 菲律宾
+  to: 日本
+  source: https://www.chugoku-np.co.jp/local/news/article.php?comment_id=624509&comment_sub_id=0&category_id=256
+
+- date: 2020-03-20
+  from: 瑞士
+  to: 新加坡
+  source: https://www.moh.gov.sg/docs/librariesprovider5/pressroom/press-releases/annex_moh-press-release---seven-more-cases-discharged-40-new-cases-of-covid-19-infection-confirmed-20-mar-2020.pdf
+
+- date: 2020-03-21
+  from: 葡萄牙
+  to: 安哥拉
+  source: https://nationalpost.com/pmn/health-pmn/angola-eritrea-uganda-confirm-first-cases-as-coronavirus-spreads-in-africa
+
+- date: 2020-03-21
+  from: 阿联酋
+  to: 乌干达
+  source: https://nationalpost.com/pmn/health-pmn/angola-eritrea-uganda-confirm-first-cases-as-coronavirus-spreads-in-africa
+
+- date: 2020-03-21
+  from: 挪威
+  to: 厄立特里亚
+  source: https://nationalpost.com/pmn/health-pmn/angola-eritrea-uganda-confirm-first-cases-as-coronavirus-spreads-in-africa
+
+- date: 2020-03-21
+  from: 爱尔兰
+  to: 新加坡
+  source: https://www.moh.gov.sg/docs/librariesprovider5/default-document-library/annex-(21-march).pdf
+
+- date: 2020-03-22
+  from: 英国
+  to: 格林纳达
+  source: https://www.mgovernance.net/grenada-confirms-its-first-case-coronavirus
+
+- date: 2020-03-22
+  from: 英国
+  to: 莫桑比克
+  source: https://nationalpost.com/pmn/health-pmn/mozambique-confirms-first-coronavirus-case
+
+- date: 2020-03-22
+  from: 英国
+  to: 多米尼克
+  source: http://www.loopjamaica.com/content/watch-dominica-records-first-case-coronavirus-3
+
+- date: 2020-03-23
+  from: 美国
+  to: 伯利兹
+  source: http://health.gov.bz/www/component/content/article/177-general-health/1028-ministry-of-health-announces-first-case-of-covid-19
+
+- date: 2020-03-23
+  from: 美国
+  to: 缅甸
+  source: https://www.reuters.com/article/us-health-coronavirus-myanmar/myanmar-reports-first-cases-of-coronavirus-idUSKBN21B0HB
+
+- date: 2020-03-23
+  from: 英国
+  to: 缅甸
+  source: https://www.reuters.com/article/us-health-coronavirus-myanmar/myanmar-reports-first-cases-of-coronavirus-idUSKBN21B0HB
+
+- date: 2020-03-24
+  from: 沙特阿拉伯
+  to: 利比亚
+  source: https://www.middleeasteye.net/news/war-ravaged-libya-records-first-case-coronavirus
+
+- date: 2020-03-25
+  from: 美国
+  to: 圣基茨和尼维斯
+  source: https://www.stlucianewsonline.com/st-kitts-and-nevis-confirms-two-covid-19-cases/
+
+- date: 2020-03-25
+  from: 法国
+  to: 马里
+  source: http://www.xinhuanet.com/english/2020-03/25/c_138916218.htm
+
+- date: 2020-03-30
+  from: 英国
+  to: 博茨瓦纳
+  source: https://www.reuters.com/article/health-coronavirus-botswana/botswana-records-first-3-cases-of-coronavirus-health-minister-idUSL8N2BK5AO
+
+- date: 2020-03-30
+  from: 泰国
+  to: 博茨瓦纳
+  source: https://www.reuters.com/article/health-coronavirus-botswana/botswana-records-first-3-cases-of-coronavirus-health-minister-idUSL8N2BK5AO
+
+- date: 2020-03-31
+  from: 卢旺达
+  to: 布隆迪
+  source: https://www.reuters.com/article/health-coronavirus-burundi/east-african-nation-of-burundi-confirms-first-coronavirus-cases-health-ministry-idUSL8N2BO34B
+
+- date: 2020-03-31
+  from: 阿联酋
+  to: 布隆迪
+  source: https://www.reuters.com/article/health-coronavirus-burundi/east-african-nation-of-burundi-confirms-first-coronavirus-cases-health-ministry-idUSL8N2BO34B
+
+- date: 2020-03-31
+  from: 法国
+  to: 塞拉利昂
+  source: https://www.reuters.com/article/us-health-coronavirus-leone-idUSKBN21I1MY
+
+- date: 2020-04-02
+  from: 印度
+  to: 马拉维
+  source: https://www.nyasatimes.com/malawi-confirms-three-cases-of-coronavirus-president-mutharika-calls-for-calm/
+
+- date: 2020-04-05
+  from: 荷兰
+  to: 南苏丹
+  source: https://time.com/5815838/south-sudan-africa-coronavirus-covid-19/
