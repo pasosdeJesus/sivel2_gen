@@ -161,13 +161,6 @@ module Sivel2Gen
                   end
                 end  
               end
-              # agrega vinculo estado por omisión
-              if self.vinculoestado.empty?
-                ve = Sivel2Gen::VictimacolectivaVinculoestado.new
-                ve.id_vinculoestado = Sivel2Gen::Vinculoestado.where(nombre: "SIN INFORMACIÓN").ids[0]
-                ve.victimacolectiva_id = self.id
-                ve.save!
-              end
             end
           end
         end
