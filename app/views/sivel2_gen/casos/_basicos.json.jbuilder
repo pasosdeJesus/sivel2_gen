@@ -6,6 +6,9 @@ json.set! caso.id do
     if ubi_prin.departamento && params && params[:filtro] && 
       params[:filtro][:inc_ubicaciones].to_i == 2
       json.departamento ubi_prin.departamento.nombre
+      if ubi_prin.municipio
+        json.municipio ubi_prin.municipio.nombre
+      end
     end
   end
   json.titulo caso.titulo
