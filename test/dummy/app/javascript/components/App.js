@@ -71,45 +71,78 @@ class App extends Component {
             })
 
             const { data } = this.state
-	    this.changeData(data)
+	    this.getCases(data)
             this.tooltipRebuild()
         })
     
 
-    changeData= (obj) => {
-	var proxyUrl = 'https://cors-anywhere.herokuapp.com/',
-            casosUrl = 'https://base.nocheyniebla.org/casos.json?filtro[q]=&filtro[fechaini]=2018-07-03&filtro[fechafin]=2020-06-30&filtro[disgenera]=reprevista.json&idplantilla=reprevista'
-    	fetch(proxyUrl + casosUrl).then((res) => res.json()).then((res) => {
-	console.log("casos: ", res)
-    	})
+  getCases = (data) => {
+       var casesRefact = [];
+	
+      // var proxyUrl = 'https://cors-anywhere.herokuapp.com/',
+      //      casosUrl = 'https://base.nocheyniebla.org/casos.json?filtro[q]=&filtro[fechaini]=2018-07-03&filtro[fechafin]=2020-06-30&filtro[disgenera]=reprevista.json&idplantilla=reprevista'
+    	//fetch(proxyUrl + casosUrl).then((res) => res.json()).then((res) => {
+    	fetch("/sivel2/casos.json?filtro[q]=&filtro[departamento_id]=&filtro[inc_ubicaciones]=0&filtro[inc_ubicaciones]=1&filtro[orden]=ubicacion&filtro[fechaini]=&filtro[fechafin]=&filtro[inc_fecha]=0&filtro[inc_fecha]=1&filtro[presponsable_id]=&filtro[inc_presponsables]=0&filtro[inc_presponsables]=1&filtro[inc_tipificacion]=0&filtro[inc_tipificacion]=1&filtro[nombres]=&filtro[apellidos]=&filtro[inc_victimas]=0&filtro[inc_victimas]=1&filtro[sexo]=&filtro[rangoedad_id]=&filtro[sectorsocial_id]=&filtro[organizacion_id]=&filtro[profesion_id]=&filtro[descripcion]=&filtro[inc_memo]=0&filtro[inc_memo]=1&filtro[conetiqueta1]=true&filtro[etiqueta1]=&filtro[conetiqueta2]=true&filtro[etiqueta2]=&filtro[usuario_id]=&filtro[fechaingini]=&filtro[fechaingfin]=&filtro[codigo]=&filtro[inc_casoid]=0&filtro[inc_casoid]=1&filtro[paginar]=0&filtro[paginar]=1&filtro[disgenera]=reprevista.json&idplantilla=reprevista").then((res) => res.json()).then((res) => {
+        //console.log("casos: ", res)
+        const cases = res;
+                Object.entries(cases).map( (data) => {
+          if(data[1].departamento){
+            //console.log("Casos: ", data[1])
+            var obj = {
+              id: data[0],
+              departamento: data[1].departamento,
+              fecha: data[1].fecha
+            }
+            casesRefact.push(obj);
+          }
+        });
+        console.log("Arreglo de Casos: ", casesRefact)
+          this.changeData(data, casesRefact)
+        })
+  }
+
+
+  changeData= (obj, cas) => {
     	
+       var casesRefact = cas;
 	console.log("Data Obj: ", obj)
-	Object.entries(obj).map( (item) => {
-		
-		let country = item[0];
-		if(country == "哥伦比亚" ){
-			let countries = item[1];
-			console.log("Estamos en: ", item[1])
-			Object.entries(countries).map ( (event) =>{
-		if(typeof event[1] == "object"){
-			if(event[1].ENGLISH){
-				var depart = event[0];
+	Object.entries(obj).map( (data) => {
+	      var country = data[0];
+          if(country == "哥伦比亚" ){
+            var countryObj = data[1];
+            Object.entries(countryObj).map ( (item) =>{
+              if(typeof item[1] == "object"){
+                if(item[1].ENGLISH){
+                  var depart = item[0];
+                  var dateszeros = {
+                  }
+                  obj[country][depart].confirmedCount = dateszeros;
+                  obj[country][depart].curedCount = dateszeros;
+                  obj[country][depart].deadCount = dateszeros;
+                  var count = 0;
+                  casesRefact.map((casos) => {
+                    //console.log("Casos: ", casos)
+                    if(item[1].ENGLISH.toUpperCase() == casos.departamento){
+                      let dateCase = casos.fecha;
+                      count++;
+                      var dateNow = {
+                        "2020-07-01": count 
+                      };
 
-				var dates = {
-					"2020-07-01": 1
-				}
-				var zeros = {							"2020-07-01": 0
-				}
-				obj[country][depart].confirmedCount = dates;
+                      if(obj[country][depart].confirmedCount[dateCase]){
+                        let total = obj[country][depart].confirmedCount[dateCase] + 1;
+                        obj[country][depart].confirmedCount[dateCase] = total;
+                      }else{
+                        obj[country][depart].confirmedCount[dateCase] = 1;
+                      }
+                      obj[country][depart].confirmedCount["2020-07-01"] = count;
+                    } 
+                  });
+                }
+              }
 
-				obj[country][depart].curedCount = zeros;
-
-				obj[country][depart].deadCount = zeros;
-			}
-		}
-			
-			})
-		}
+            })
+          }
 	})
 	this.setState({
 		data: obj
@@ -124,18 +157,6 @@ class App extends Component {
         window.addEventListener('resize', this.updateFullDimensions)
     }
     
-    changeData = () => {
-              console.log("Bayron: ", this.data)
-              let objData = this.data
-              /*objData.哥伦比亚.大西洋省.confirmedCount = {
-                            "2020-02-26": 0,
-                            "2020-02-27": 0
-                        }
-
-              this.setState({
-                            data: objData,
-                        }) */
-          }
     componentWillUnmount() {
         window.removeEventListener('resize', this.updateFullDimensions)
     }
