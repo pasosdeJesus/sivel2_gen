@@ -3,15 +3,17 @@ json.set! caso.id do
     ubi_prin = Sip::Ubicacion.find(caso.ubicacion_id)
     json.latitud ubi_prin.latitud if ubi_prin.latitud
     json.longitud ubi_prin.longitud if ubi_prin.longitud
-    if ubi_prin.id_departamento
-      dep = Sip::Departamento.find(ubi_prin.id_departamento).nombre
-      json.departamento dep if dep
-    end
-    if ubi_prin.id_municipio
-      mun = Sip::Municipio.find(ubi_prin.id_municipio).nombre
-      json.municipio mun if mun
+    if ubi_prin.departamento && params && params[:filtro] && 
+      params[:filtro][:inc_ubicaciones].to_i == 2
+      json.departamento ubi_prin.departamento.nombre
+      if ubi_prin.municipio
+        json.municipio ubi_prin.municipio.nombre
+      end
     end
   end
   json.titulo caso.titulo
   json.fecha caso.fecha
+  if params && params[:filtro] && params[:filtro][:inc_memo].to_i == 2
+    json.descripcion caso.memo
+  end
 end
