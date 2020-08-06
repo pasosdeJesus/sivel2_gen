@@ -230,6 +230,9 @@ module Sivel2Gen
       can :nuevo, Sivel2Gen::Victima
 
       can :nuevo, Sivel2Gen::Victimacolectiva
+
+      can :index, Sivel2Gen::Caso
+
       if usuario && usuario.rol then
         case usuario.rol
         when Ability::ROLANALI
