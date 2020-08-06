@@ -165,6 +165,7 @@ module Sivel2Gen
             ubicacion.importa(datosent, datossal, menserror, opciones)
             ubicacion.id_caso = self.id
             ubicacion.save!
+            self.ubicacion_id = ubicacion.id
             if datosent['ubicacion_secundaria']
               if datosent['ubicacion_secundaria'].kind_of?(Array)
                 datosent['ubicacion_secundaria'].each do |ub|
