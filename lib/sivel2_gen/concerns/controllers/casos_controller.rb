@@ -139,6 +139,12 @@ module Sivel2Gen
                 conscaso = conscaso.send('filtro_etiqueta', c, params_filtro[i])
               end
             end
+            if params_filtro[:q] && params_filtro[:q].length>0
+              q = params_filtro[:q].gsub("-", " ")
+              conscaso = conscaso.where(
+                "q @@ plainto_tsquery('spanish', unaccent(?))", q
+              )
+            end
 
             return conscaso
           end
@@ -209,13 +215,13 @@ module Sivel2Gen
 
             # Filtro
             if params && params[:filtro]
-              if params[:filtro][:q] && params[:filtro][:q].length>0
+#              if params[:filtro][:q] && params[:filtro][:q].length>0
                 # Simple
-                q = params[:filtro][:q].gsub("-", " ")
-                @conscaso = @conscaso.where(
-                  "q @@ plainto_tsquery('spanish', unaccent(?))", q
-                )
-              else
+#                q = params[:filtro][:q].gsub("-", " ")
+#                @conscaso = @conscaso.where(
+#                  "q @@ plainto_tsquery('spanish', unaccent(?))", q
+#                )
+#              else
                 # Avanzado
                 @conscaso = filtro_avanzado @conscaso, params[:filtro]
                 #puts @conscaso.to_sql; byebug
@@ -226,7 +232,7 @@ module Sivel2Gen
                   if params[:filtro][s.to_sym] && params[:filtro][s.to_sym] == '1'
                     nincluir.push(i)
                   end
-                end
+#                end
                 @incluir = nincluir
                 # Cambiar Ordenamiento
                 if params[:filtro][:orden]
@@ -831,6 +837,12 @@ module Sivel2Gen
               menserror_uno = ''
               importado = @caso.importa(relimportado['relato'], datossal, 
                                         menserror_uno, {})
+              casousuario = Sivel2Gen::CasoUsuario.new
+              casousuario.id_usuario = usuario_id
+              casousuario.id_caso = importado.id
+              casousuario.fechainicio = DateTime.now.strftime('%Y-%m-%d')
+              casousuario.save!
+              
               if importado.nil?
                 menserror << "No se pudo importar relato número #{numr}.  "
                 total_errores += 1
