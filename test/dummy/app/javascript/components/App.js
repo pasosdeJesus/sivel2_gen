@@ -71,11 +71,11 @@ class App extends Component {
             })
 
             const { data } = this.state
+
 	    this.getCases(data)
             this.tooltipRebuild()
         })
     
-
   getCases = (data) => {
        var casesRefact = [];
 	
