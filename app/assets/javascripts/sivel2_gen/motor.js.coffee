@@ -615,8 +615,23 @@ enviaFormularioContar= (root) ->
               $(btneliminar).trigger('click')
   )
   
+  template = $('#victimas .seccionvictima:first').clone();
+  sectionsCount = 1;
   @crea_copia_de_victima = (obj, fobj) ->
-    debugger
+    sectionsCount++;
+    section = template.clone().find(':input').each(()->
+        id_numero = this.id.split("_")[3]
+        id_resto = this.id.split(id_numero)
+        nuevonumero = +id_numero + sectionsCount
+        nuevoId = id_resto[0] + ""+nuevonumero + id_resto[1]
+        $(this.previousSibling).attr("for", nuevoId)
+        debugger
+        this.id = nuevoId
+        this
+    ).end()
+    section.appendTo('#victimas');
+    return false;
+
     #$('.add-vic').click()
     #copia
     #copia = $('')
