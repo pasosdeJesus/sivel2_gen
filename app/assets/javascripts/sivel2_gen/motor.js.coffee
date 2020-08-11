@@ -614,27 +614,26 @@ enviaFormularioContar= (root) ->
               btneliminar = fila.lastElementChild.firstElementChild
               $(btneliminar).trigger('click')
   )
-  
-  template = $('#victimas .seccionvictima:first').clone();
-  sectionsCount = 1;
-  @crea_copia_de_victima = (obj, fobj) ->
-    sectionsCount++;
-    section = template.clone().find(':input').each(()->
-        id_numero = this.id.split("_")[3]
-        id_resto = this.id.split(id_numero)
-        nuevonumero = +id_numero + sectionsCount
-        nuevoId = id_resto[0] + ""+nuevonumero + id_resto[1]
-        $(this.previousSibling).attr("for", nuevoId)
-        debugger
-        this.id = nuevoId
-        this
-    ).end()
-    section.appendTo('#victimas');
-    return false;
 
-    #$('.add-vic').click()
-    #copia
-    #copia = $('')
+  #Permite crear copias de victimas agregadas 
+  @crea_copia_de_victima = (obj, fobj) ->
+    
+    div_victima = $(obj).parent().parent()
+    valores= []
+    div_victima.find(':input').each(()->
+      valores.push($(this).val())
+    )
+    $('.add-vic').trigger("click")
+    setTimeout(()->
+      vic_agregada = $("#victimas div.seccionvictima:last")
+      vic_agregada.find(':input').each((i)->
+        if(i != 0 && i !=35)
+          debugger
+          $(this).val(valores[i])
+      )
+    , 1000)
+
+    return false;
 
   # Antes de eliminar víctima confirmar si se eliminan dependientes
   $('#victimas').on('cocoon:before-remove', '', (e, papa) ->
