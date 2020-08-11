@@ -76,14 +76,15 @@ class App extends Component {
             this.tooltipRebuild()
         })
     
+
   getCases = (data) => {
        var casesRefact = [];
 	
       // var proxyUrl = 'https://cors-anywhere.herokuapp.com/',
       //      casosUrl = 'https://base.nocheyniebla.org/casos.json?filtro[q]=&filtro[fechaini]=2018-07-03&filtro[fechafin]=2020-06-30&filtro[disgenera]=reprevista.json&idplantilla=reprevista'
     	//fetch(proxyUrl + casosUrl).then((res) => res.json()).then((res) => {
-    	fetch("/sivel2/casos.json?filtro[q]=&filtro[departamento_id]=&filtro[inc_ubicaciones]=0&filtro[inc_ubicaciones]=1&filtro[orden]=ubicacion&filtro[fechaini]=&filtro[fechafin]=&filtro[inc_fecha]=0&filtro[inc_fecha]=1&filtro[presponsable_id]=&filtro[inc_presponsables]=0&filtro[inc_presponsables]=1&filtro[inc_tipificacion]=0&filtro[inc_tipificacion]=1&filtro[nombres]=&filtro[apellidos]=&filtro[inc_victimas]=0&filtro[inc_victimas]=1&filtro[sexo]=&filtro[rangoedad_id]=&filtro[sectorsocial_id]=&filtro[organizacion_id]=&filtro[profesion_id]=&filtro[descripcion]=&filtro[inc_memo]=0&filtro[inc_memo]=1&filtro[conetiqueta1]=true&filtro[etiqueta1]=&filtro[conetiqueta2]=true&filtro[etiqueta2]=&filtro[usuario_id]=&filtro[fechaingini]=&filtro[fechaingfin]=&filtro[codigo]=&filtro[inc_casoid]=0&filtro[inc_casoid]=1&filtro[paginar]=0&filtro[paginar]=1&filtro[disgenera]=reprevista.json&idplantilla=reprevista").then((res) => res.json()).then((res) => {
-        //console.log("casos: ", res)
+    	fetch("/sivel2/casos.json?filtro[q]=&filtro[departamento_id]=&filtro[inc_ubicaciones]=2&filtro[inc_ubicaciones]=2&filtro[orden]=ubicacion&filtro[fechaini]=&filtro[fechafin]=&filtro[inc_fecha]=0&filtro[inc_fecha]=1&filtro[presponsable_id]=&filtro[inc_presponsables]=0&filtro[inc_presponsables]=1&filtro[inc_tipificacion]=0&filtro[inc_tipificacion]=1&filtro[nombres]=&filtro[apellidos]=&filtro[inc_victimas]=0&filtro[inc_victimas]=1&filtro[sexo]=&filtro[rangoedad_id]=&filtro[sectorsocial_id]=&filtro[organizacion_id]=&filtro[profesion_id]=&filtro[descripcion]=&filtro[inc_memo]=0&filtro[inc_memo]=1&filtro[conetiqueta1]=true&filtro[etiqueta1]=&filtro[conetiqueta2]=true&filtro[etiqueta2]=&filtro[usuario_id]=&filtro[fechaingini]=&filtro[fechaingfin]=&filtro[codigo]=&filtro[inc_casoid]=0&filtro[inc_casoid]=1&filtro[paginar]=0&filtro[paginar]=1&filtro[disgenera]=reprevista.json&idplantilla=reprevista").then((res) => res.json()).then((res) => {
+        console.log("casos: ", res)
         const cases = res;
                 Object.entries(cases).map( (data) => {
           if(data[1].departamento){
