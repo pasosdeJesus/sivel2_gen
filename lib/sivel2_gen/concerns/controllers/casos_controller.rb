@@ -878,6 +878,21 @@ module Sivel2Gen
               doc, menserror, mensexito, ids_importados, current_usuario.id)
             if mensexito != ''
               flash[:success] = mensexito
+              if registrar_en_bitacora
+                ids_importados.split(" ").each do |idcaso|
+                  b = Sip::Bitacora.create(
+                    fecha: Time.now.utc.iso8601,
+                    ip: request.remote_ip,
+                    usuario_id: current_usuario.id,
+                    url: request.url,
+                    params: params,
+                    modelo: 'Sivel2Gen::Caso',
+                    modelo_id: idcaso.to_i,
+                    operacion: 'importar',
+                    detalle: ''
+                  )
+                end
+              end
             end
             if menserror != ''
               flash[:error]  = menserror
