@@ -291,9 +291,6 @@ class App extends Component {
                         <Row>
                             <Col lg={!fullMap ? 7 : 12}>
                                 <div className="header">
-                                    <span className="header-icon" style={{ opacity: dataLoaded ? 1 : 0 }}>
-                                        <p> Aqui va el icono </p>
-                                    </span>
                                     <span
                                         className="header-title"
                                         style={{ letterSpacing: lang === 'es' ? '1px' : 'normal' }}

@@ -28,9 +28,9 @@ NEWCASE:
   fr: Nouveaux
   zh: 新增
 CONFIRMED:
-  en: Confirmed
-  es: Confirmados
-  fr: Confirmés
+  en: Total Casos
+  es: Total Casos
+  fr: Total Casos
   zh: 确诊
 DEATHS:
   en: Deaths
