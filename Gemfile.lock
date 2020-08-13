@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/pasosdeJesus/heb412_gen.git
-  revision: 71357753cd0b0a903959d41754843397fd35c286
+  revision: 84eeebe38ebfd3c53bc9f130803beb0d3f44df81
   specs:
     heb412_gen (1.0.b6)
       mr519_gen
@@ -10,7 +10,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/mr519_gen.git
-  revision: b506006012e484f1fbe24c66cd755fb2d117e3e7
+  revision: 1aa77ec9d34e46a32087c567ee4693c885ba0068
   specs:
     mr519_gen (0.2.0)
       rails (~> 6.0.0.rc1, >= 6.0.0.rc1)
@@ -18,7 +18,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sip.git
-  revision: 26047ecf238d45a9389f356cc94c77ac80674b27
+  revision: 56d2309d8f04c4667097303a2260570c129b4d28
   specs:
     sip (2.0.b10)
       cancancan
@@ -101,10 +101,9 @@ GEM
       zeitwerk (~> 2.2, >= 2.2.2)
     andand (1.3.3)
     bcrypt (3.1.15)
-    bootsnap (1.4.8)
+    bootsnap (1.4.7)
       msgpack (~> 1.0)
     builder (3.2.4)
-    byebug (11.1.3)
     camertron-eprun (1.1.1)
     cancancan (3.1.0)
     choice (0.2.0)
@@ -124,7 +123,7 @@ GEM
     colorize (0.8.1)
     compare-xml (0.5.2)
       nokogiri (~> 1.6)
-    concurrent-ruby (1.1.7)
+    concurrent-ruby (1.1.6)
     crass (1.0.6)
     devise (4.7.2)
       bcrypt (~> 3.0)
@@ -298,7 +297,6 @@ PLATFORMS
 DEPENDENCIES
   bcrypt
   bootsnap (>= 1.1.0)
-  byebug
   cancancan
   cocoon!
   coffee-rails
