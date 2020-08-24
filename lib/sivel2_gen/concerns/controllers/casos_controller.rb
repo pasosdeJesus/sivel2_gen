@@ -843,17 +843,24 @@ module Sivel2Gen
               else
                 @caso.save!
                 total_importados += 1
+                @etiquetaImp = Sivel2Gen::CasoEtiqueta.new
+                @etiquetaImp.id_caso = @caso.id
+                @etiquetaImp.id_etiqueta = Sip::Etiqueta.where(
+                  nombre: "IMPORTA_RELATO").ids[0]
+                @etiquetaImp.fecha = Date.today
+                @etiquetaImp.id_usuario = usuario_id
+                @etiquetaImp.save!
                 ids_importados << "#{@caso.id} "
                 if menserror_uno != ''
                   total_errores += 1
-                  @etiqueta = Sivel2Gen::CasoEtiqueta.new
-                  @etiqueta.id_caso = @caso.id
-                  @etiqueta.id_etiqueta = Sip::Etiqueta.where(
+                  @etiquetaErr = Sivel2Gen::CasoEtiqueta.new
+                  @etiquetaErr.id_caso = @caso.id
+                  @etiquetaErr.id_etiqueta = Sip::Etiqueta.where(
                     nombre: "ERROR_IMPORTACIÓN").ids[0]
-                  @etiqueta.observaciones = menserror_uno
-                  @etiqueta.fecha = Date.today
-                  @etiqueta.id_usuario = usuario_id
-                  @etiqueta.save!
+                  @etiquetaErr.observaciones = menserror_uno
+                  @etiquetaErr.fecha = Date.today
+                  @etiquetaErr.id_usuario = usuario_id
+                  @etiquetaErr.save!
                 end
               end
             end
