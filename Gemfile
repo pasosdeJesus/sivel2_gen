@@ -36,6 +36,8 @@ gem 'prawn-table'
 
 gem 'puma' # Servidor de aplicaciones
 
+gem 'react-rails' 
+
 gem 'rails', '~> 6.0.0.rc1' # Rails con internacionalización
 
 gem 'rails-i18n'

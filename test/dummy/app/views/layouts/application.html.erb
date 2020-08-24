@@ -88,6 +88,8 @@
             mr519_gen.formularios_path,
             desplegable: true %>
         <% end %>
+        <%= opcion_menu "Aregar ubicaciones", 
+          sivel2_gen.casos_agregaubi_path, desplegable: true %>
       <% end %>
       <%= opcion_menu "Salir #{current_usuario.nusuario}", 
         main_app.sign_out_path %>

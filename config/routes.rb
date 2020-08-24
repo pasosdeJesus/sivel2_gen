@@ -13,6 +13,7 @@ Sivel2Gen::Engine.routes.draw do
   get "/casos/busca" => 'casos#busca'
   get '/casos/lista' => 'casos#lista'
   get '/casos/mapaosm' => 'casos#mapaosm'
+  get '/casos/agregaubi' => 'casos#agregaubi'
   get '/casos/importarrelatos' => 'casos#importarrelatos'
   get '/casos/nuevaubicacion' => 'casos#nueva_ubicacion'
   get '/casos/nuevavictima' => 'casos#nueva_victima'
