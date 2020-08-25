@@ -192,7 +192,7 @@ class Map extends Component {
                     >
                         {![ str.WORLD_MAP, str.US_MAP ].includes(this.props.currentMap) && (
                             <Geographies
-                                geography={`maps/${this.props.currentMap === str.US_MAP2
+                                geography={`/maps/${this.props.currentMap === str.US_MAP2
                                     ? 'USA'
                                     : this.props.currentMap === str.HONGKONG_MAP ? 'CHN_1' : 'WORLD'}.json`}
                                 onMouseEnter={() => {
@@ -255,7 +255,7 @@ class Map extends Component {
                             </Geographies>
                         )}
                         <Geographies
-                            geography={`maps/${currentMap.filename}`}
+                            geography={`/maps/${currentMap.filename}`}
                             onMouseEnter={() => {
                                 if (!this.state.loaded) {
                                     this.setState({ loaded: true })
