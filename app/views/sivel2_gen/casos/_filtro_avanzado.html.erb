@@ -222,10 +222,36 @@
       <div class="offset-sm-0 col-sm-1 text-center">
       </div>
     </div>
+    <% if current_usuario %>
+    <div class="row filtro-fila">
+      <div class="offset-sm-0 col-sm-2 offset-md-1 col-md-1">
+        Víctima Colectiva
+      </div>
+      <div class="offset-sm-0 col-sm-4 offset-md-0 col-md-4">
+        <%= f.input :victimacol,
+          maxlength: 50, 
+          size: 10,
+          label: false,
+          placeholder: 'Nombre'
+        %>
+      </div>
+      <div class="offset-sm-0 col-sm-4 offset-md-0 col-md-3">
+      </div>
+      <div class="offset-sm-0 col-sm-1 text-center">
+        <%= f.input :inc_victimacol, 
+          as: :boolean, 
+          label: false,
+          input_html: {checked: 'checked'}
+        %>
+      </div>
+      <div class="offset-sm-0 col-sm-1 text-center">
+
+      </div>
+    </div>
+    <% end %>
     <div class="row filtro-fila">
       <div class="offset-sm-0 col-sm-2 offset-md-1 col-md-1">
       </div>
-
       <div class="offset-sm-0 col-sm-4 col-md-3">
         <%= f.input :sexo, 
           collection: Sip::Persona::OPCIONES_SEXO,
