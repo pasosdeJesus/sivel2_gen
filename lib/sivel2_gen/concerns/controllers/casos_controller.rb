@@ -770,6 +770,10 @@ module Sivel2Gen
 
           # Despliega detalle de un registro
           def show_sivel2_gen
+            if !Rails.application.config.x.sivel2_consulta_web_publica
+              authorize! :read, Sivel2Gen::Caso
+            end
+
             @caso = @registro = clase.constantize.find(params[:id])
             if @registro.respond_to?('current_usuario=')
               @registro.current_usuario = current_usuario
