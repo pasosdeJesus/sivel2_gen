@@ -897,7 +897,7 @@ module Sivel2Gen
             end
             Conscaso.refresca_conscaso
             ruta_importados = casos_path + '?filtro[q]=&filtro[codigo]=' + 
-              ids_importados
+              ids_importados + '&filtro[inc_casoid]=1&filtro[inc_ubicaciones]=1&filtro[inc_fecha]=1&filtro[inc_presponsables]=1&filtro[inc_victimas]=1&filtro[inc_memo]=1&filtro[inc_tipificacion]=1'
             redirect_to ruta_importados
           end
 
