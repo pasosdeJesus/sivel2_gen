@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/pasosdeJesus/heb412_gen.git
-  revision: 3db8a6c9d7dcad6afccf42fc92eb46d9bac14721
+  revision: 07fc8cb5d28718150f848ee5438a3e636b3dc304
   specs:
     heb412_gen (1.0.b6)
       mr519_gen
@@ -10,7 +10,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/mr519_gen.git
-  revision: 1120512f4d4f5ca8536dace82467e8eb72154a89
+  revision: e046cb75e36f62d5d24644ac383e4390efb68955
   specs:
     mr519_gen (0.2.0)
       rails (~> 6.0.0.rc1, >= 6.0.0.rc1)
@@ -18,7 +18,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sip.git
-  revision: ea5a12aecfe58347ba398ed2f927296a76f05e21
+  revision: 86249f0cb87ab9ebc076c618e64da05891aed4ba
   specs:
     sip (2.0.b10)
       cancancan
@@ -151,7 +151,7 @@ GEM
     jquery-ui-rails (6.0.1)
       railties (>= 3.2.16)
     libxml-ruby (3.2.0)
-    loofah (2.6.0)
+    loofah (2.7.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
     mail (2.7.1)
