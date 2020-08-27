@@ -82,6 +82,7 @@ const UbiForm = () => {
             <button className="btn btn-primary" type="submit">Agregar</button>
           </div>
         </div>
+        <p>{JSON.stringify(datos)}</p>
       </form>
     </Fragment>
   )
