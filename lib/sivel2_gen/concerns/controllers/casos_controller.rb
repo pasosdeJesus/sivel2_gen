@@ -452,7 +452,10 @@ module Sivel2Gen
             @fechahasta = Sip::FormatoFechaHelper.fin_semestre(Date.today - 182)
             render 'mapaosm', layout: 'application'
           end
-
+          
+          def agregaubi
+            render 'agregaubi', layout: 'application'
+          end
 
           def pestanas_formulariocaso
             #byebug
