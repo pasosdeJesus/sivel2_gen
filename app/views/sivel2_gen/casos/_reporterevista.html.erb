@@ -1,9 +1,9 @@
 <% # caso debe tener objeto por presentar Sivel2Gen::Caso %>
-<% if @incluir.include?('casoid') %>
+<% if @incluir && @incluir.include?('casoid') %>
   <a href='<%= sivel2_gen.caso_path(caso.id) %>'><%= caso.id %></a>
 <% end %>
 <p>
-<% if @incluir.include?('fecha') %>
+<% if @incluir && @incluir.include?('fecha') %>
   <%= I18n.localize(caso.fecha, format: '%B %d/%Y').capitalize %>
 <% end %>
 </p>
