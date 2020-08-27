@@ -22,6 +22,7 @@ module Sivel2Gen
             foreign_key: "id_caso", validate: true
 
           attr_accessor :principal
+          attr_accessor :tclase
 
           def principal
             self.id && self.caso && (self.caso.ubicacion_id == self.id ||
