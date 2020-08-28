@@ -40,6 +40,8 @@ gem 'rails', '~> 6.0.0.rc1' # Rails con internacionalización
 
 gem 'rails-i18n'
 
+gem 'react-rails'
+
 gem 'redcarpet' # Opera Markdown
 
 gem 'rspreadsheet'
