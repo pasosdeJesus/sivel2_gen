@@ -38,6 +38,13 @@ module Sivel2Gen
               end
             end
           end
+
+          def tclase
+            if self.clase && self.clase.tclase
+              return self.clase.tclase.nombre 
+            end
+            return ''
+          end
           
           def importa(datosent, datossal, menserror, opciones = {})
             pais = Sip::Pais.where(nombre: datosent['pais']).ids[0]
