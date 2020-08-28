@@ -21,21 +21,28 @@
             <% if i == 'casoid' %>
               <%= link_to caso.caso_id, sivel2_gen.caso_path(caso.caso_id) %>
             <% elsif i == 'memo' && @cortamemo > 0 && caso[i] &&
-              caso[i].length > @cortamemo
-            %>
+              caso[i].length > @cortamemo %>
               <%= caso[i].slice(0, @cortamemo) + ' ...' %>
             <% else %>
               <% #byebug %>
               <%= caso[i] if caso[i] %>
               <% if i == 'victimas' %>
+                <% hayind = caso[i] && caso[i].strip.length > 0 %>
                 <% gps = Sivel2Gen::Victimacolectiva.where(id_caso: caso.caso_id).pluck(:id_grupoper)%>
-                <% if params && params[:filtro] && params[:filtro][:inc_victimacol] == '1' && gps.count > 0 %>
-                  </br>
+                <% if gps.count> 0 && (!params || !params[:filtro] || 
+                    !params[:filtro][:inc_victimacol] || 
+                    params[:filtro][:inc_victimacol] != '0') %>
+                  <% haycol = true %>
+                  <% if hayind %>
+                    </br>
+                  <% end %>
                   <%= Sip::Grupoper.where(id: gps).pluck(:nombre).join(", ")%>
                 <% end %>
                 <% com = Sivel2Gen::Combatiente.where(id_caso: caso.caso_id)%>
                 <% if com.count > 0 %>
-                  </br>
+                  <% if hayind || haycol %>
+                    </br>
+                  <% end %>
                   <%= com.pluck(:nombre).join(", ")%>
                 <% end %>
               <% end %>
