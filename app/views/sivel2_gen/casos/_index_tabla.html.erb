@@ -27,6 +27,16 @@
             <% else %>
               <% #byebug %>
               <%= caso[i] if caso[i] %>
+              <% if i =='tipificacion' %>
+                <% ids_casopres = Sivel2Gen::CasoPresponsable.where(id_caso: caso.caso_id).pluck(:id) %>
+                <% ids_cat = Sivel2Gen::CasoCategoriaPresponsable.where(id_caso_presponsable: ids_casopres).pluck(:id_categoria) %>
+                <% catsinv = Sivel2Gen::Categoria.where(id: ids_cat).pluck(:nombre).join(", ") %>
+                <%= catsinv %>
+                </br>
+                <% ids_catcol = Sivel2Gen::Actocolectivo.where(id_caso: caso.caso_id).pluck(:id_categoria)%>
+                <% catcol = Sivel2Gen::Categoria.where(id: ids_catcol).pluck(:nombre).join(", ") %>
+                <%= catcol %>
+              <% end %>
             <% end %>
           </td>
         <% end %>
