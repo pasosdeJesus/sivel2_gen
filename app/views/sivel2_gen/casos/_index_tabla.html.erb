@@ -37,7 +37,9 @@
               sivel2_gen.edit_caso_path(caso.caso_id), :class => 'btn btn-sm' %>
           <% elsif can?(:update, Sivel2Gen::Caso) || can?(:edit, caso) %>
             <%= link_to t('.edit', :default => t("helpers.links.edit")),
-              sivel2_gen.edit_caso_path(caso.caso_id), :class => 'btn btn-sm' %>
+              sivel2_gen.edit_caso_path(caso.caso_id),
+              data: { turbolinks: false },
+              :class => 'btn btn-sm' %>
           <% end %>
           <% if can?(:destroy, Sivel2Gen::Caso) || can?(:destroy, caso) %>
             <%= link_to t('.destroy', :default => t("helpers.links.destroy")),

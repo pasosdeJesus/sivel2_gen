@@ -26,6 +26,7 @@ Rails.application.routes.draw do
     end
     resources :usuarios, path_names: { new: 'nuevo', edit: 'edita' }  
 
+    #root 'holareact#index'
     root 'sivel2_gen/hogar#index'
   end
   mount Sivel2Gen::Engine, at: "/sivel2", as: "sivel2_gen"
