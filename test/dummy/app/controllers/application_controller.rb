@@ -1,5 +1,5 @@
 class ApplicationController < Sivel2Gen::ApplicationController
-  # Prevent CSRF attacks by raising an exception.
-  # For APIs, you may want to use :null_session instead.
+  # Previene ataques CSRF lanzando una excepción
+  # Para APIs, más bien puede usar :null_session
   protect_from_forgery with: :exception
 end

@@ -560,9 +560,6 @@ enviaFormularioContar= (root) ->
    })
   )
   
-  # Obligar cálculo de tipo de centros poblados al cargar 
-  $('select[id^=caso_][id$=id_clase]').change()
-
   # Tras eliminar presponsable, eliminar dependientes
   $('#presponsables').on('cocoon:after-remove', '', (e, presponsable) ->
     elimina_pendientes(root.elempe);

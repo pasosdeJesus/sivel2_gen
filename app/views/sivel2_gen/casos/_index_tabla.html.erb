@@ -21,22 +21,42 @@
             <% if i == 'casoid' %>
               <%= link_to caso.caso_id, sivel2_gen.caso_path(caso.caso_id) %>
             <% elsif i == 'memo' && @cortamemo > 0 && caso[i] &&
-              caso[i].length > @cortamemo
-            %>
+              caso[i].length > @cortamemo %>
               <%= caso[i].slice(0, @cortamemo) + ' ...' %>
+            <% elsif i == 'tipificacion' %>
+              <%= caso[i] if caso[i] %>
+              <% ids_casopres = Sivel2Gen::CasoPresponsable.where(id_caso: caso.caso_id).pluck(:id) %>
+              <% ids_cat = Sivel2Gen::CasoCategoriaPresponsable.where(id_caso_presponsable: ids_casopres).pluck(:id_categoria) %>
+              <% catsinv = Sivel2Gen::Categoria.where(id: ids_cat).pluck(:nombre).join(", ") %>
+              <%= catsinv %>
+              </br>
+              <% ids_catcol = Sivel2Gen::Actocolectivo.where(id_caso: caso.caso_id).pluck(:id_categoria)%>
+              <% catcol = Sivel2Gen::Categoria.where(id: ids_catcol).pluck(:nombre).join(", ") %>
+              <%= catcol %>
+            <% elsif i == 'victimas' %>
+              <%= caso[i] if caso[i] %>
+              <% hayind = caso[i] && caso[i].strip.length > 0 %>
+              <% gps = Sivel2Gen::Victimacolectiva.where(id_caso: caso.caso_id).pluck(:id_grupoper)%>
+              <% if gps.count> 0 && (!params || !params[:filtro] || 
+                  !params[:filtro][:inc_victimacol] || 
+                  params[:filtro][:inc_victimacol] != '0') %>
+                <% haycol = true %>
+                <% if hayind %>
+                  </br>
+                <% end %>
+                <%= Sip::Grupoper.where(id: gps).pluck(:nombre).join(", ")%>
+              <% end %>
+              <% com = Sivel2Gen::Combatiente.where(id_caso: caso.caso_id)%>
+              <% if com.count > 0 %>
+                <% if hayind || haycol %>
+                  </br>
+                <% end %>
+                <%= com.pluck(:nombre).join(", ")%>
+              <% end %>
+
             <% else %>
               <% #byebug %>
               <%= caso[i] if caso[i] %>
-              <% if i =='tipificacion' %>
-                <% ids_casopres = Sivel2Gen::CasoPresponsable.where(id_caso: caso.caso_id).pluck(:id) %>
-                <% ids_cat = Sivel2Gen::CasoCategoriaPresponsable.where(id_caso_presponsable: ids_casopres).pluck(:id_categoria) %>
-                <% catsinv = Sivel2Gen::Categoria.where(id: ids_cat).pluck(:nombre).join(", ") %>
-                <%= catsinv %>
-                </br>
-                <% ids_catcol = Sivel2Gen::Actocolectivo.where(id_caso: caso.caso_id).pluck(:id_categoria)%>
-                <% catcol = Sivel2Gen::Categoria.where(id: ids_catcol).pluck(:nombre).join(", ") %>
-                <%= catcol %>
-              <% end %>
             <% end %>
           </td>
         <% end %>
