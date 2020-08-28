@@ -27,6 +27,18 @@
             <% else %>
               <% #byebug %>
               <%= caso[i] if caso[i] %>
+              <% if i == 'victimas' %>
+                <% gps = Sivel2Gen::Victimacolectiva.where(id_caso: caso.caso_id).pluck(:id_grupoper)%>
+                <% if params && params[:filtro] && params[:filtro][:inc_victimacol] == '1' && gps.count > 0 %>
+                  </br>
+                  <%= Sip::Grupoper.where(id: gps).pluck(:nombre).join(", ")%>
+                <% end %>
+                <% com = Sivel2Gen::Combatiente.where(id_caso: caso.caso_id)%>
+                <% if com.count > 0 %>
+                  </br>
+                  <%= com.pluck(:nombre).join(", ")%>
+                <% end %>
+              <% end %>
             <% end %>
           </td>
         <% end %>
