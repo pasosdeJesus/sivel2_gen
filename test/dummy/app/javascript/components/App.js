@@ -18,7 +18,6 @@ import Footer from './Footer'
 import Region from './Region'
 import TransmissionNetwork from './TransmissionNetwork'
 import i18n from 'js-yaml-loader!../../assets/data/i18n.yml';
-import us_map from 'js-yaml-loader!../../assets/data/us_map.yml';
 import * as str from '../utils/strings'
 import { updateDarkMode, isoDate } from '../utils/utils'
 import { mapText } from '../utils/map_text'
@@ -208,12 +207,6 @@ class App extends Component {
                 this.mapToggle(str.HONGKONG_MAP)
             } else if (currentMap !== str.CHINA_MAP2) {
                 this.mapToggle(str.CHINA_MAP1)
-            }
-        } else if (newRegion[0] === str.US_ZH) {
-            if (newRegion.length >= 2 && newRegion[1] in us_map) {
-                this.mapToggle(str.US_MAP2)
-            } else {
-                this.mapToggle(str.US_MAP)
             }
         } else if (newRegion[0] === str.ITALY_ZH) {
             if (newRegion.length >= 3) {

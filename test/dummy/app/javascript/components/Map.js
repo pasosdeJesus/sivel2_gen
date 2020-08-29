@@ -21,27 +21,20 @@ class Map extends Component {
         loaded: false,
         cursor: [ 0, 0 ],
         clicked: false,
-        showTransmissions: false,
-        usState: null
+        showTransmissions: false
     }
     componentDidMount() {
               let region = "哥伦比亚"
               this.props.regionToggle(region.split('.'))
           }
     componentDidUpdate(prevProps, prevState) {
-        if (this.props.currentMap !== prevProps.currentMap || this.state.usState !== prevState.usState) {
+        if (this.props.currentMap !== prevProps.currentMap) {
             this.setState({ loaded: false })
             setTimeout(() => {
                 this.props.tooltipRebuild()
             }, 100)
         }
 
-        if (this.props.currentMap === str.US_MAP2) {
-            const usState = this.props.currentRegion[1]
-            if (usState !== this.state.usState) {
-                this.setState({ usState })
-            }
-        }
     }
 
     handleGeographyClick = (region) => () => {
@@ -59,21 +52,13 @@ class Map extends Component {
     getConfig = (config, defaultConfig) =>
         config != null ? config.split(',').map((d) => parseInt(d, 10)) : defaultConfig
 
-    getColorScale = (isUsState) => {
+    getColorScale = () => {
         const { data, currentRegion, scale, metric, darkMode } = this.props
         const currentMap = maps[this.props.currentMap]
 
         const currentScale = scale === 'linear' ? scaleLinear : scaleLog
 
         let maxCount = currentMap[`maxScale_${metric}`]
-        if (isUsState && metric === 'confirmedCount') {
-            const stateData = getDataFromRegion(data, currentRegion.slice(0, 2))
-            maxCount = Math.max(
-                ...Object.keys(stateData)
-                    .filter((x) => ![ 'confirmedCount', 'curedCount', 'deadCount', 'ENGLISH' ].includes(x))
-                    .map((county) => Math.max(...Object.values(stateData[county][metric])))
-            )
-        }
         const mapScale = currentScale().domain([ 1, maxCount ]).clamp(true)
         const colorConvert = (x) => (darkMode ? x * 0.95 + 0.05 : 0.95 - x * 0.95)
         const colorScale = scaleSequential((d) => {
@@ -96,8 +81,8 @@ class Map extends Component {
         return { colorScale, mapScale }
     }
 
-    getStrokeColor = (counts, isUsState) => {
-        const { colorScale, mapScale } = this.getColorScale(isUsState)
+    getStrokeColor = (counts) => {
+        const { colorScale, mapScale } = this.getColorScale()
         const { darkMode } = this.props
         const tinyColor = new TinyColor(colorScale(counts))
 
@@ -119,15 +104,11 @@ class Map extends Component {
         const { data, metric, date, lang, currentRegion, mapZoom, darkMode } = this.props
 
         const lang_map = lang !== 'zh'? 'en' : 'zh'
-        const isUsState =
-            this.props.currentMap === str.US_MAP2 && this.state.usState != null && this.state.usState in us_map
-        const center = isUsState
-            ? us_map[this.state.usState].center.split(',').map((d) => parseFloat(d))
-            : currentMap.center.split(',').map((d) => parseFloat(d))
-        const scale = isUsState ? us_map[this.state.usState].scale : currentMap.scale
-        const projection = isUsState ? 'geoMercator' : currentMap.projection
+        const center = currentMap.center.split(',').map((d) => parseFloat(d))
+        const scale = currentMap.scale
+        const projection = currentMap.projection
 
-        const { colorScale } = this.getColorScale(isUsState)
+        const { colorScale } = this.getColorScale()
         const greyStrokeColor = darkMode ? 'var(--primary-color-10)' : 'var(--grey)'
 
         return (
@@ -190,11 +171,9 @@ class Map extends Component {
                         minZoom={0.2}
                         maxZoom={5}
                     >
-                        {![ str.WORLD_MAP, str.US_MAP ].includes(this.props.currentMap) && (
+                        {![ str.WORLD_MAP ].includes(this.props.currentMap) && (
                             <Geographies
-                                geography={`/maps/${this.props.currentMap === str.US_MAP2
-                                    ? 'USA'
-                                    : this.props.currentMap === str.HONGKONG_MAP ? 'CHN_1' : 'WORLD'}.json`}
+                                geography={`/maps/WORLD.json`}
                                 onMouseEnter={() => {
                                     if (!this.state.loaded) {
                                         this.setState({ loaded: true })
@@ -210,19 +189,13 @@ class Map extends Component {
                                             if (region && region[metric] && region[metric][date])
                                                 counts = region[metric][date]
                                         }
-                                        const backgroundMap =
-                                            this.props.currentMap === str.US_MAP2
-                                                ? str.US_MAP
-                                                : this.props.currentMap === str.HONGKONG_MAP
-                                                  ? str.CHINA_MAP1
-                                                  : str.WORLD_MAP
+                                        const backgroundMap = str.WORLD_MAP
                                         const name = geo.properties[maps[backgroundMap].name_key[lang_map]]
                                         const isCurrentCountryOrState =
                                             backgroundMap === str.WORLD_MAP
                                                 ? geo.properties.CHINESE_NAME === currentRegion[0]
                                                 : geo.properties.CHINESE_NAME === currentRegion[1]
                                         if (isCurrentCountryOrState) return <div />
-                                        if (backgroundMap === str.US_MAP && currentRegion.length === 1) return <div />
                                         return (
                                             <Geography
                                                 className="map-geography"
@@ -303,10 +276,7 @@ class Map extends Component {
                                     }
 
                                     const strokeColor =
-                                        counts === 0 ? greyStrokeColor : this.getStrokeColor(counts, isUsState)
-
-                                    // US map
-                                    if (this.props.currentMap === str.US_MAP2 && !isParentRegion) return <div />
+                                        counts === 0 ? greyStrokeColor : this.getStrokeColor(counts)
 
                                     return (
                                         <Fragment key={`fragment-${geo.rsmKey}`}>
