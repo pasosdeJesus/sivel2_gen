@@ -35,10 +35,8 @@
             fechadeshabilitacion: nil).order(:nombre)),
           label_method: :nombre,
           value_method: :id %>
-        <%= f.input :tclase, 
-          readonly: true %> 
-        <%= react_component('HolaMundo', {saludo: 'Hola desde react-rails'}) %>
-
+        <%= react_component('HolaMundo', {saludo: 'Loco'}) %>
+        <%= react_component('Tclase') %>
       </div>
     </div>
 
