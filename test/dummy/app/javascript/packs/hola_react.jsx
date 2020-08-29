@@ -6,17 +6,21 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
 
-const Hola = props => (
-  <div>Hola {props.nombre}!</div>
-)
+class Hola extends React.Component {
+  render () {
+    return <div>Holaa {this.props.nombre}!</div>
+  }
 
-Hola.defaultProps = {
-  nombre: 'David'
+  defaultProps = {
+    nombre: 'David'
+  }
 }
 
 Hola.propTypes = {
   nombre: PropTypes.string
 }
+
+export default Hola
 
 document.addEventListener('DOMContentLoaded', () => {
   ReactDOM.hydrate(
