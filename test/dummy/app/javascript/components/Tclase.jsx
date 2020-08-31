@@ -8,19 +8,13 @@ class Tclase extends React.Component {
       clase: '',
       tclase: ''
     }
+    this.manejaCambio = this.manejaCambio.bind(this);
   }
 
-  handleInputChange(event) {
-    e = {
-      clase: this.state.clase,
-      tclase: this.state.tclase
-    }
-    e[event.target.name] = event.target.value
-    this.setState(e)
-    /*setDatos({
-      ...datos,
-      [event.target.name] : event.target.value
-    })*/
+  manejaCambio(event) {
+    var ce = {}
+    ce[event.target.name] = event.target.value
+    this.setState(ce)
   }
 
   enviarDatos (event) {
@@ -35,7 +29,7 @@ class Tclase extends React.Component {
       className="form-control" 
       id="clase"
       name="clase"
-      onChange={this.handleInputChange} >
+      onChange={this.manejaCambio} >
       <option>Mosquera</option>
       <option>Madrid</option>
       <option>Facatativa</option>
@@ -44,7 +38,7 @@ class Tclase extends React.Component {
       <select className="form-control" 
       id="tclase"
       name="tclase"
-      onChange={this.handleInputChange} >
+      onChange={this.manejaCambio} >
       <option>Cabecera Municipal</option>
       <option>Centro poblado</option>
       </select>
