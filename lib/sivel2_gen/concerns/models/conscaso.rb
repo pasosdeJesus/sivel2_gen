@@ -128,6 +128,15 @@ module Sivel2Gen
                     WHERE sip_persona.apellidos ILIKE \'%' + 
                     ActiveRecord::Base.connection.quote_string(d) + '%\')')
           }
+          
+          scope :filtro_victimacol, lambda { |d|
+            where('caso_id IN (SELECT id_caso
+                    FROM public.sivel2_gen_victimacolectiva 
+                    INNER JOIN public.sip_grupoper
+                    ON sivel2_gen_victimacolectiva.id_grupoper=sip_grupoper.id
+                    WHERE sip_grupoper.nombre ILIKE \'%' + 
+                    ActiveRecord::Base.connection.quote_string(d) + '%\')')
+          }
 
           scope :filtro_sexo, lambda { |s|
             where('caso_id IN (SELECT id_caso

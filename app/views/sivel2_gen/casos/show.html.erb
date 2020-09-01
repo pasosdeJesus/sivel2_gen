@@ -1,17 +1,27 @@
 <div>
-  <%= render :partial => 'reportegeneral', locals: {caso: @caso} %>
-  <%= render :partial => 'show_registros_bitacora', locals: {caso: @caso} %>
+  <% if current_usuario %>
+    <%= render :partial => 'reportegeneral', locals: {caso: @caso} %>
+    <%= render :partial => 'show_registros_bitacora', locals: {caso: @caso} %>
+  <% else %>
+    <%= render :partial => 'reporterevista', locals: {caso: @caso} %>
+  <% end %>
   <div class='row'>
     <div class='col-sm-3'>
-      <a class='btn' href='<%= casos_path %>'>Regresar</a>
-      <a class='btn' href='<%= edit_caso_path %>'>Editar</a>
+      <% if can? :index, Sivel2Gen::Caso %>
+        <a class='btn' href='<%= casos_path %>'>Regresar</a>
+      <% end %>
+      <% if can? :edit, @caso %>
+        <a class='btn' href='<%= edit_caso_path %>'>Editar</a>
+      <% end %>
     </div>
     <div class='col-sm-3'>
     </div>
     <div class='col-sm-3'>
     </div>
     <div class='col-sm-3'>
-      <%= link_to 'Eliminar',  @caso,  method: :delete, data: { confirm: '¿Está seguro que desea eliminar?'}, :class=>"btn btn-danger" %>
+      <% if can? :destroy, @caso %>
+        <%= link_to 'Eliminar',  @caso,  method: :delete, data: { confirm: '¿Está seguro que desea eliminar?'}, :class=>"btn btn-danger" %>
+      <% end %>
     </div>
   </div>
 </div>

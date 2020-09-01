@@ -29,15 +29,14 @@
           value_method: :id %>
       </div>
       <div class="col-md-6">
-        <div class="divpa">
         <%= f.association :clase,
           collection: (Sip::Clase.where(
             id_municipio: f.object.id_municipio,
             fechadeshabilitacion: nil).order(:nombre)),
           label_method: :nombre,
           value_method: :id %>
-        </div>
-        <span class="tipoclase"></span>
+        <%= f.input :tclase, 
+          readonly: true %> 
       </div>
     </div>
 

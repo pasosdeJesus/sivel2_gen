@@ -8,7 +8,7 @@
     "@nivo/line": "^0.62.0",
     "@nivo/stream": "^0.62.0",
     "@rails/ujs": "^6.0.1",
-    "@rails/webpacker": "5.1.1",
+    "@rails/webpacker": "5.2.1",
     "@vx/pattern": "^0.0.198",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
     "bootstrap": "^4.3.1",

@@ -96,7 +96,7 @@ module Sivel2Gen
             if current_usuario
               [:departamento_id, :municipio_id, :clase_id,
                 :fechaini, :fechafin, :presponsable_id, :categoria_id,
-                :nombres, :apellidos, :sexo, :rangoedad_id,
+                :nombres, :apellidos, :victimacol, :sexo, :rangoedad_id,
                 :sectorsocial_id, :organizacion_id, :profesion_id, :descripcion,
                 :usuario_id, :fechaingini, :fechaingfin, :contexto_id, 
                 :contextovictima_id, :codigo
@@ -770,6 +770,10 @@ module Sivel2Gen
 
           # Despliega detalle de un registro
           def show_sivel2_gen
+            if !Rails.application.config.x.sivel2_consulta_web_publica
+              authorize! :read, Sivel2Gen::Caso
+            end
+
             @caso = @registro = clase.constantize.find(params[:id])
             if @registro.respond_to?('current_usuario=')
               @registro.current_usuario = current_usuario
@@ -849,17 +853,24 @@ module Sivel2Gen
               else
                 @caso.save!
                 total_importados += 1
+                @etiquetaImp = Sivel2Gen::CasoEtiqueta.new
+                @etiquetaImp.id_caso = @caso.id
+                @etiquetaImp.id_etiqueta = Sip::Etiqueta.where(
+                  nombre: "IMPORTA_RELATO").ids[0]
+                @etiquetaImp.fecha = Date.today
+                @etiquetaImp.id_usuario = usuario_id
+                @etiquetaImp.save!
                 ids_importados << "#{@caso.id} "
                 if menserror_uno != ''
                   total_errores += 1
-                  @etiqueta = Sivel2Gen::CasoEtiqueta.new
-                  @etiqueta.id_caso = @caso.id
-                  @etiqueta.id_etiqueta = Sip::Etiqueta.where(
+                  @etiquetaErr = Sivel2Gen::CasoEtiqueta.new
+                  @etiquetaErr.id_caso = @caso.id
+                  @etiquetaErr.id_etiqueta = Sip::Etiqueta.where(
                     nombre: "ERROR_IMPORTACIÓN").ids[0]
-                  @etiqueta.observaciones = menserror_uno
-                  @etiqueta.fecha = Date.today
-                  @etiqueta.id_usuario = usuario_id
-                  @etiqueta.save!
+                  @etiquetaErr.observaciones = menserror_uno
+                  @etiquetaErr.fecha = Date.today
+                  @etiquetaErr.id_usuario = usuario_id
+                  @etiquetaErr.save!
                 end
               end
             end
@@ -884,13 +895,20 @@ module Sivel2Gen
               doc, menserror, mensexito, ids_importados, current_usuario.id)
             if mensexito != ''
               flash[:success] = mensexito
+              if registrar_en_bitacora
+                ids_importados.split(" ").each do |idcaso|
+                  Sip::Bitacora.a(request.remote_ip, current_usuario.id,
+                                  request.url, params, 'Sivel2Gen::Caso',
+                                  idcaso.to_i,  'importar', '')
+                end
+              end
             end
             if menserror != ''
               flash[:error]  = menserror
             end
             Conscaso.refresca_conscaso
             ruta_importados = casos_path + '?filtro[q]=&filtro[codigo]=' + 
-              ids_importados
+              ids_importados + '&filtro[inc_casoid]=1&filtro[inc_ubicaciones]=1&filtro[inc_fecha]=1&filtro[inc_presponsables]=1&filtro[inc_victimas]=1&filtro[inc_memo]=1&filtro[inc_tipificacion]=1'
             redirect_to ruta_importados
           end
 

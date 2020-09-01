@@ -539,6 +539,7 @@ enviaFormularioContar= (root) ->
     llena_clase($(this), root)
   )
   
+  
   # Al cambiar centro poblado se muestra tipo
   $(document).on('change', 'select[id^=caso_][id$=id_clase]', (e) ->
     id_clase = $(this).val()
@@ -550,14 +551,15 @@ enviaFormularioContar= (root) ->
       dataType: "json", 
       success: (datos) ->
         tclase = datos.nombre
-        div_padre = select.parent().parent()
-        span = div_padre.siblings("span")
-        span.html("Tipo de centro poblado: " + tclase)
+        div_padre = select.closest("div")
+        div_tipo = div_padre.next()
+        input_tipo = div_tipo.find("input[id^=caso_ubicacion][id$=tclase]")
+        input_tipo.val(tclase)
       error: (jqXHR, texto) ->
         alert("Error: " + jqXHR.responseText)
    })
   )
-
+  
   # Tras eliminar presponsable, eliminar dependientes
   $('#presponsables').on('cocoon:after-remove', '', (e, presponsable) ->
     elimina_pendientes(root.elempe);

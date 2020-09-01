@@ -22,6 +22,7 @@ module Sivel2Gen
             foreign_key: "id_caso", validate: true
 
           attr_accessor :principal
+          attr_accessor :tclase
 
           def principal
             self.id && self.caso && (self.caso.ubicacion_id == self.id ||
@@ -36,6 +37,13 @@ module Sivel2Gen
                 self.caso.update_attribute('ubicacion_id', nil)
               end
             end
+          end
+
+          def tclase
+            if self.clase && self.clase.tclase
+              return self.clase.tclase.nombre 
+            end
+            return ''
           end
           
           def importa(datosent, datossal, menserror, opciones = {})
