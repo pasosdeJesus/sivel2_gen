@@ -2,6 +2,11 @@
 
 Rails.application.routes.draw do
 
+  get '/maps/WORLD' => 'sivel2_gen/infomapa#worldjson', 
+             :as => 'worldjson'
+  get '/maps/gadm36_COL_1' => 'sivel2_gen/infomapa#colombia', 
+             :as => 'colombia'
+
   scope '/sivel2' do
     devise_scope :usuario do
       get 'sign_out' => 'devise/sessions#destroy', as: 'sign_out'
@@ -26,6 +31,10 @@ Rails.application.routes.draw do
     end
     resources :usuarios, path_names: { new: 'nuevo', edit: 'edita' }  
 
+  get '/casos/infomapa' => 'sivel2_gen/infomapa#infomapa', 
+             :as => 'infomapa'
+  get '/casos/infomapa/datoscovid' => 'sivel2_gen/infomapa#datoscovid', 
+             :as => 'infomapacovid'
     root 'sivel2_gen/hogar#index'
   end
   mount Sivel2Gen::Engine, at: "/sivel2", as: "sivel2_gen"
