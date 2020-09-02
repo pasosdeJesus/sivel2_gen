@@ -446,6 +446,16 @@ module Sivel2Gen
             render 'mapagm', layout: 'application'
           end
 
+          def cuenta
+            casoscontados = []
+            fechasinicial = Sivel2Gen::Caso.all.order(fecha: :asc).pluck(:fecha).uniq
+            fechafinal = params[:fechafin] ? params[:fechafin] : Date.today
+            fechainicial = params[:fechaini] ? params[:fechaini] : fechasinicial[0]
+            sql = "select fecha, count(distinct sivel2_gen_caso.id), sip_departamento.nombre FROM sivel2_gen_caso LEFT JOIN sip_ubicacion ON sivel2_gen_caso.ubicacion_id = sip_ubicacion.id LEFT JOIN sip_departamento ON sip_ubicacion.id_departamento = sip_departamento.id WHERE sivel2_gen_caso.fecha BETWEEN '" + fechainicial.to_s + "' AND '" + fechafinal.to_s + "' group by 1,3 order by 1;"
+            array_cuentas = ActiveRecord::Base.connection.execute(sql)
+            render 'cuenta.json', layout: 'application', locals: {casosc: array_cuentas}
+          end
+
           # GET casos/mapaosm
           def mapaosm
             @fechadesde = Sip::FormatoFechaHelper.inicio_semestre(Date.today - 182)

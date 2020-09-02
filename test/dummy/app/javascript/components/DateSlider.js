@@ -7,7 +7,7 @@ import { parseDate, isoDate } from '../utils/utils'
 import i18n from 'js-yaml-loader!../../assets/data/i18n.yml';
 
 function formatTick(ms, lang) {
-    return format(new Date(ms), i18n.DATE_FORMAT_1[lang])
+  return format(new Date(ms), i18n.DATE_FORMAT_1[lang])
 }
 
 export default class DateSlider extends Component {

@@ -59,7 +59,7 @@ export default class MapNavBar extends Component {
         return (
             <div className={`map-nav-bar-wrap ${fullPlot && !plotTypes[plotType].metricChange ? 'grey-out' : ''}`}>
                 <ul className="map-nav-bar">
-                    {[ 'confirmedCount', 'deadCount', 'curedCount' ].map((count) => (
+                    {[ 'confirmedCount' ].map((count) => (
                         <li key={`map-nav-${count}`} className={count === metric ? 'current' : ''}>
                             <div value={count} onClick={this.metricToggle}>
                                 {metricText[count][lang]}

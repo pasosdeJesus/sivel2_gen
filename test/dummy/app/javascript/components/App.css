@@ -470,7 +470,6 @@ ul.map-nav-bar:not(:hover) li.current {
 }
 
 .counts-wrap {
-    display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 20px;
@@ -513,7 +512,7 @@ ul.map-nav-bar:not(:hover) li.current {
     text-transform: uppercase;
     background-color: var(--lighter-grey);
     height: 30px;
-    width: 100px;
+    padding: 10px;
     border-radius: 30px;
     font-size: 12px;
     display: flex;
