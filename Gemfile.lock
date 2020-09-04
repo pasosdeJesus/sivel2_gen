@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/pasosdeJesus/heb412_gen.git
-  revision: 75c4035a26e931973c4fa5a72ab7136cf11b8754
+  revision: c58f225cd86afc0d9a79900c6a65b073951e80fb
   specs:
     heb412_gen (1.0.b6)
       mr519_gen
@@ -10,7 +10,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/mr519_gen.git
-  revision: 3941567101d7540278b84cd5496680c7a4c25613
+  revision: a2114b6da79d7ebb876bc2aa3fa9526f15015baa
   specs:
     mr519_gen (0.2.0)
       rails (~> 6.0.0.rc1, >= 6.0.0.rc1)
@@ -18,7 +18,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sip.git
-  revision: f8363ea2ed1beb9e3dedf170ada4fcfd00e883cd
+  revision: 9cb0829dc2a59726c26107c5e3dc07c0fa3be2de
   specs:
     sip (2.0.b10)
       cancancan
@@ -125,7 +125,7 @@ GEM
       nokogiri (~> 1.6)
     concurrent-ruby (1.1.7)
     crass (1.0.6)
-    devise (4.7.2)
+    devise (4.7.3)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
       railties (>= 4.1.0)
@@ -183,7 +183,7 @@ GEM
       ttfunk (~> 1.6)
     prawn-table (0.2.2)
       prawn (>= 1.3.0, < 3.0.0)
-    prawnto_2 (0.3.0)
+    prawnto_2 (0.3.1)
       prawn (>= 1.0.0)
       rails (>= 3.2)
     puma (5.0.0)
@@ -258,7 +258,7 @@ GEM
     simplecov (0.19.0)
       docile (~> 1.1)
       simplecov-html (~> 0.11)
-    simplecov-html (0.12.2)
+    simplecov-html (0.12.3)
     sprockets (4.0.2)
       concurrent-ruby (~> 1.0)
       rack (> 1, < 3)

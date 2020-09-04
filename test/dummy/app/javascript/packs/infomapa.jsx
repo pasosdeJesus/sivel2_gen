@@ -1,4 +1,5 @@
-// Mapa con casos e indicadores, fuentes de Covid19.health
+// Mapa, tiempo y gráficas, exploración visual de datos, 
+// a partir de fuentes de Covid19.health
 
 import React from 'react'
 import ReactDOM from 'react-dom'
