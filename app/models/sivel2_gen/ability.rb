@@ -240,6 +240,7 @@ module Sivel2Gen
           can :read, Heb412Gen::Plantilladoc
           can :read, Heb412Gen::Plantillahcm
           can :read, Heb412Gen::Plantillahcr
+          can :index, Sivel2Gen::Victima
 
           can :manage, Sip::Bitacora, usuario: { id: usuario.id }
 
