@@ -257,8 +257,9 @@ module Sivel2Gen
             can :refresca, Sivel2Gen::Caso
 
             can :read, Sivel2Gen::Victima
-          elsif usuario.sip_grupo &&
-            usuario.sip_grupo.pluck(:id).include?(GRUPO_OBSERVADOR_CASOS)
+          else #Suponemos que es Observador
+            #if usuario.sip_grupo &&
+            #usuario.sip_grupo.pluck(:id).include?(GRUPO_OBSERVADOR_CASOS)
             can :read, Sip::Actorsocial
             can :read, Sip::Bitacora, usuario: { id: usuario.id }
             can :read, Sip::Persona
