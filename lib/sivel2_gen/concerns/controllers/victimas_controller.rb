@@ -28,23 +28,24 @@ module Sivel2Gen
               :ubicacion_caso,
               :nombre,
               :pconsolidado,
-              :presponsables_caso
+              :presponsables_caso,
+              :presponsables_caso_ids
             ]
             r
           end
 
           def self.index_reordenar(c)
-            c.reorder([:id_caso, :id])
+            c.reorder(['sip_persona.nombres', 'sip_persona.apellidos', :id_caso])
           end
 
 
           def index(c = nil)
             if c == nil
-              c = Sivel2Gen::Victima.all.order([:id_caso, :id])
+              c = Sivel2Gen::Victima.joins(:persona).all.order(['sip_persona.nombres', 'sip_persona.apellidos', :id_caso])
             end
             @titulo = 'Víctimas y Casos'
             @pconsolidado = Sivel2Gen::Pconsolidado.
-              where(fechadeshabilitacion: nil).order(:id).map { |r|
+              where(fechadeshabilitacion: nil).order(:peso, :id).map { |r|
               [r.id, r.nombre, Sivel2Gen::Categoria.
                where(id_pconsolidado: r.id).map(&:id)]
             }
