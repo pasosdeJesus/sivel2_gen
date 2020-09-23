@@ -133,6 +133,7 @@ module Sivel2Gen
             :contextovictima,
             :profesion,
             :presponsables_caso,
+            :presponsables_caso_ids,
             :rot1,
             :rot2,
             :rot3,

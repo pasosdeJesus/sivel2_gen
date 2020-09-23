@@ -99,6 +99,17 @@ module Sivel2Gen
             r
           end
 
+          def presponsables_caso_ids
+            r = ''
+            if self.caso && self.caso.presponsable
+              r = self.caso.presponsable.inject("") { |memo, pr|
+                (memo == '' ? '' : memo + '; ') + pr.id.to_s
+              }
+            end
+            r
+          end
+
+
           def ubicacion_caso
             r = ''
             if self.caso && self.caso.ubicacion && self.caso.ubicacion.count>0
