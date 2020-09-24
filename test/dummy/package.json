@@ -9,7 +9,7 @@
     "@nivo/circle-packing": "^0.62.0",
     "@nivo/line": "^0.62.0",
     "@nivo/stream": "^0.62.0",
-    "@pasosdejesus/mapa_tiempo_yi_liu": "file:/home/vtamara/comp/js/mapa_tiempo_yi_liu",
+    "@pasosdejesus/mapa_tiempo_yi_liu": "0.1.3",
     "@rails/ujs": "^6.0.1",
     "@rails/webpacker": "5.2.1",
     "@vx/pattern": "^0.0.198",
