@@ -1633,10 +1633,8 @@
   dependencies:
     mkdirp "^1.0.4"
 
-"@pasosdejesus/mapa_tiempo_yi_liu@^0.1.3":
-  version "0.1.4"
-  resolved "https://registry.yarnpkg.com/@pasosdejesus/mapa_tiempo_yi_liu/-/mapa_tiempo_yi_liu-0.1.4.tgz#0d966e253d93d1071c041e31648d25ce1b080bc4"
-  integrity sha512-KG3CkBjrxIi/LctjxN5Lk49pwtAAcMFPsQLwTvnslRR6/kRdsOW255w4o1gwzYUzYcM7YHn6f7AazzU3ZpG1nQ==
+"@pasosdejesus/mapa_tiempo_yi_liu@file:../../../../../../../home/vtamara/comp/js/mapa_tiempo_yi_liu-pasosdeJesus":
+  version "0.1.5"
   dependencies:
     "@ctrl/tinycolor" "3.1.4"
     d3 "^6.2.0"
@@ -1645,6 +1643,7 @@
     d3-time "^2.0.0"
     d3-zoom "^2.0.0"
     mapshaper "^0.5.21"
+    react-table "^7.2.2"
 
 "@rails/ujs@^6.0.1":
   version "6.0.3"
