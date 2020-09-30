@@ -224,6 +224,8 @@ module Sivel2Gen
       can :contar, Sip::Ubicacion
       can :nuevo, Sip::Ubicacion
 
+      can :cuenta, Sivel2Gen::Caso
+
       can :nuevo, Sivel2Gen::Combatiente
 
       can :nuevo, Sivel2Gen::Presponsable
