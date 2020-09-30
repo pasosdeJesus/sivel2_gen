@@ -196,6 +196,9 @@ module Sivel2Gen
       # Sin autenticación puede consultarse información geográfica
       can :read, [Sip::Pais, Sip::Departamento, Sip::Municipio, Sip::Clase]
 
+      # Hacer conteos
+      can :cuenta, Sivel2Gen::Caso
+
       # La consulta web es publica dependiendo de
       if usuario || Rails.application.config.x.sivel2_consulta_web_publica
         can :buscar, Sivel2Gen::Caso
@@ -223,8 +226,6 @@ module Sivel2Gen
 
       can :contar, Sip::Ubicacion
       can :nuevo, Sip::Ubicacion
-
-      can :cuenta, Sivel2Gen::Caso
 
       can :nuevo, Sivel2Gen::Combatiente
 
