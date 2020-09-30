@@ -12,7 +12,7 @@
     <% @caso.acto.try(:each) do |acto| %>
       <tr>
         <td><%= acto.presponsable.nombre %></td>
-        <td><%= acto.categoria.nombre %></td>
+        <td><%= acto.categoria.supracategoria.id_tviolencia + acto.categoria.id.to_s + ' ' + acto.categoria.nombre %></td>
         <td>
           <%= acto.persona.nombres + ' ' + acto.persona.apellidos %>
         </td>
