@@ -236,6 +236,7 @@ function createMarker(point, codigo, title) {
       var departamento = o['caso'].departamento; 
       var municipio = o['caso'].municipio; 
       var centro_poblado = o['caso'].centro_poblado;
+      var lugar = o['caso'].lugar;
       var victimas = o['caso'].victimas;
       var prresp = o['caso'].presponsables;
       var descripcionCont = '<div>' +
@@ -254,6 +255,9 @@ function createMarker(point, codigo, title) {
       hechosCont += ((typeof centro_poblado != 'undefined') && 
         centro_poblado != "") ?  '<tr><td>Centro Poblado:</td><td>' +
         centro_poblado + '</td></tr>' : '';
+      hechosCont += ((typeof lugar != 'undefined') && 
+        lugar != "") ?  '<tr><td>Vereda:</td><td>' +
+        lugar + '</td></tr>' : '';
       hechosCont += ((typeof codigo != 'undefined') && codigo != "") ? 
         '<tr><td>Codigo:</td><td>' + codigo + '</td></tr>' : '';
       hechosCont += '</table></div>';

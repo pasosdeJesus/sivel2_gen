@@ -11,6 +11,7 @@ Sivel2Gen::Engine.routes.draw do
   post "/buscarrepetidos" => 'buscarrepetidos#reportar', as: :envia_buscarrepetidos
   get "/casofotras/nuevo", 'casofotras#nuevo'
   get "/casos/busca" => 'casos#busca'
+  get "/casos/cuenta" => 'casos#cuenta'
   get '/casos/lista' => 'casos#lista'
   get '/casos/mapaosm' => 'casos#mapaosm'
   get '/casos/importarrelatos' => 'casos#importarrelatos'

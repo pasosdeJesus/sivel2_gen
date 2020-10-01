@@ -71,10 +71,19 @@ module Sivel2Gen
           }
 
           scope :filtro_presponsable_id, lambda { |id|
-            where('caso_id IN (SELECT id_caso
-                    FROM public.sivel2_gen_caso_presponsable
-                    WHERE sivel2_gen_caso_presponsable.id_presponsable = ?)', 
-                    id)
+            id.delete("")
+            id = id.map {|item| item.to_i}
+            if id.is_a? Array
+              where('caso_id IN (SELECT id_caso
+                      FROM public.sivel2_gen_caso_presponsable
+                      WHERE sivel2_gen_caso_presponsable.id_presponsable IN (?))',
+                      id)
+            else
+              where('caso_id IN (SELECT id_caso
+                      FROM public.sivel2_gen_caso_presponsable
+                      WHERE sivel2_gen_caso_presponsable.id_presponsable == ?)',
+                      id)
+            end
           }
 
           scope :filtro_categoria_id, lambda { |id|
