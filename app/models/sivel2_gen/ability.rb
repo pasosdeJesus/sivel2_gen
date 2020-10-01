@@ -94,7 +94,7 @@ module Sivel2Gen
     end
 
     #if ActiveRecord::Base.connection.data_source_exists?('sivel2_gen_caso')
-    #	Sivel2Gen::Consexpcaso.crea_consexpcaso(nil)
+    # Sivel2Gen::Consexpcaso.crea_consexpcaso(nil)
     #end
 
     CAMPOS_PLANTILLAS_PROPIAS = {
@@ -220,6 +220,8 @@ module Sivel2Gen
       end
 
       # Los siguientes son para todo autenticado
+
+      can [:read, :update], Mr519Gen::Encuestausuario
       can :read, Sip::Actorsocial
 
       can :descarga_anexo, Sip::Anexo
@@ -282,6 +284,7 @@ module Sivel2Gen
           can :manage, Heb412Gen::Plantillahcr
 
           can :manage, Mr519Gen::Formulario
+          can :manage, Mr519Gen::Encuestausuario 
 
           can :manage, Sip::Actorsocial
           can :manage, Sip::Bitacora
