@@ -1633,9 +1633,9 @@
   dependencies:
     mkdirp "^1.0.4"
 
-"@pasosdejesus/mapa_tiempo_yi_liu@github:pasosdejesus/mapa_tiempo_yi_liu":
+"@pasosdejesus/mapa_tiempo_yi_liu@github:pasosdeJesus/mapa_tiempo_yi_liu":
   version "0.1.6"
-  resolved "https://codeload.github.com/pasosdejesus/mapa_tiempo_yi_liu/tar.gz/9cb90bdb0632db9032f53d494e96a3e357e917de"
+  resolved "https://codeload.github.com/pasosdeJesus/mapa_tiempo_yi_liu/tar.gz/9cb90bdb0632db9032f53d494e96a3e357e917de"
   dependencies:
     "@ctrl/tinycolor" "3.1.4"
     d3-force "^2.0.1"
