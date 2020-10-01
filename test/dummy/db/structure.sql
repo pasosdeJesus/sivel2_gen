@@ -1313,6 +1313,41 @@ ALTER SEQUENCE public.mr519_gen_opcioncs_id_seq OWNED BY public.mr519_gen_opcion
 
 
 --
+-- Name: mr519_gen_planencuesta; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.mr519_gen_planencuesta (
+    id bigint NOT NULL,
+    fechaini date,
+    fechafin date,
+    formulario_id integer,
+    plantillacorreoinv_id integer,
+    adurl character varying(32),
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: mr519_gen_planencuesta_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.mr519_gen_planencuesta_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: mr519_gen_planencuesta_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.mr519_gen_planencuesta_id_seq OWNED BY public.mr519_gen_planencuesta.id;
+
+
+--
 -- Name: mr519_gen_respuestafor; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -3510,6 +3545,13 @@ ALTER TABLE ONLY public.mr519_gen_opcioncs ALTER COLUMN id SET DEFAULT nextval('
 
 
 --
+-- Name: mr519_gen_planencuesta id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.mr519_gen_planencuesta ALTER COLUMN id SET DEFAULT nextval('public.mr519_gen_planencuesta_id_seq'::regclass);
+
+
+--
 -- Name: mr519_gen_respuestafor id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -3814,6 +3856,14 @@ ALTER TABLE ONLY public.mr519_gen_formulario
 
 ALTER TABLE ONLY public.mr519_gen_opcioncs
     ADD CONSTRAINT mr519_gen_opcioncs_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: mr519_gen_planencuesta mr519_gen_planencuesta_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.mr519_gen_planencuesta
+    ADD CONSTRAINT mr519_gen_planencuesta_pkey PRIMARY KEY (id);
 
 
 --
@@ -5142,14 +5192,6 @@ ALTER TABLE ONLY public.sivel2_gen_categoria
 
 
 --
--- Name: sivel2_gen_categoria categoria_contadaen_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.sivel2_gen_categoria
-    ADD CONSTRAINT categoria_contadaen_fkey FOREIGN KEY (contadaen) REFERENCES public.sivel2_gen_categoria(id);
-
-
---
 -- Name: sip_departamento departamento_id_pais_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -5635,14 +5677,6 @@ ALTER TABLE ONLY public.sip_persona
 
 ALTER TABLE ONLY public.sip_persona
     ADD CONSTRAINT persona_tdocumento_id_fkey FOREIGN KEY (tdocumento_id) REFERENCES public.sip_tdocumento(id);
-
-
---
--- Name: sivel2_gen_presponsable presponsable_papa_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.sivel2_gen_presponsable
-    ADD CONSTRAINT presponsable_papa_fkey FOREIGN KEY (papa) REFERENCES public.sivel2_gen_presponsable(id);
 
 
 --
@@ -6212,6 +6246,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20200722210144'),
 ('20200723133542'),
 ('20200727021707'),
-('20200907174303');
+('20200907174303'),
+('20200921123831');
 
 
