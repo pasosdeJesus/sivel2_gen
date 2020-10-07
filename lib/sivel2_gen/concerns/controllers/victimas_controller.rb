@@ -35,7 +35,8 @@ module Sivel2Gen
           end
 
           def self.index_reordenar(c)
-            c.reorder(['sip_persona.nombres', 'sip_persona.apellidos', :id_caso])
+            #c.reorder(['sip_persona.nombres', 'sip_persona.apellidos', :id_caso])
+            c.reorder([:id_caso])
           end
 
 
