@@ -375,7 +375,7 @@ module Sivel2Gen
                 }
 
                 format.json {
-                  error_plantilla_no_autenticado
+                  render inline: {}
                   return
                 }
                 format.xrlat {
