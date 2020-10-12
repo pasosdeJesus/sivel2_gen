@@ -97,6 +97,6 @@ group  :development, :test do
 
   gem 'rails-controller-testing'
 
-  gem 'simplecov'
+  gem 'simplecov', '<0.18' # Debido a https://github.com/codeclimate/test-reporter/issues/418
 
 end
