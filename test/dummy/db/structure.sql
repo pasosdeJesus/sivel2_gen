@@ -2630,6 +2630,41 @@ CREATE MATERIALIZED VIEW public.sivel2_gen_conscaso AS
 
 
 --
+-- Name: sivel2_gen_consexpcaso; Type: MATERIALIZED VIEW; Schema: public; Owner: -
+--
+
+CREATE MATERIALIZED VIEW public.sivel2_gen_consexpcaso AS
+ SELECT conscaso.caso_id,
+    conscaso.fecha,
+    conscaso.memo,
+    conscaso.ubicaciones,
+    conscaso.victimas,
+    conscaso.presponsables,
+    conscaso.tipificacion,
+    conscaso.ultimo_refresco,
+    conscaso.q,
+    caso.titulo,
+    caso.hora,
+    caso.duracion,
+    caso.grconfiabilidad,
+    caso.gresclarecimiento,
+    caso.grimpunidad,
+    caso.grinformacion,
+    caso.bienes,
+    caso.id_intervalo,
+    caso.created_at,
+    caso.updated_at
+   FROM (public.sivel2_gen_conscaso conscaso
+     JOIN public.sivel2_gen_caso caso ON ((caso.id = conscaso.caso_id)))
+  WHERE (conscaso.caso_id IN ( SELECT sivel2_gen_conscaso.caso_id
+           FROM public.sivel2_gen_conscaso
+          WHERE ((sivel2_gen_conscaso.fecha >= '2018-01-01'::date) AND (sivel2_gen_conscaso.fecha <= '2018-01-31'::date))
+          ORDER BY sivel2_gen_conscaso.ubicaciones, sivel2_gen_conscaso.caso_id))
+  ORDER BY conscaso.ubicaciones, conscaso.caso_id
+  WITH NO DATA;
+
+
+--
 -- Name: sivel2_gen_contexto_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
@@ -6203,6 +6238,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20190926143845'),
 ('20191012042159'),
 ('20191016100031'),
+('20191021021621'),
 ('20191205200007'),
 ('20191205202150'),
 ('20191205204511'),
@@ -6216,7 +6252,9 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20200320152017'),
 ('20200324164130'),
 ('20200422103916'),
+('20200423092828'),
 ('20200427091939'),
+('20200428155536'),
 ('20200430101709'),
 ('20200622193241'),
 ('20200720005020'),
