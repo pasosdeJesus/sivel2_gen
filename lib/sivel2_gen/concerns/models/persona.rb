@@ -15,7 +15,8 @@ module Sivel2Gen
             class_name: "Sivel2Gen::Acto"
           has_many :victima, foreign_key: "id_persona", validate: true,
             class_name: "Sivel2Gen::Victima"
-          has_many :casos, :through => :victimas
+          has_many :caso, :through => :victima,
+            class_name: 'Sivel2Gen::Caso'
 
           def sivel2_gen_presenta(atr)
             sip_presenta(atr)

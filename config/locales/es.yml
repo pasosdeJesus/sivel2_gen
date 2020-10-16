@@ -37,6 +37,7 @@ es:
         numerodocumento: Número de documento
         pais: País de nacimiento
         tdocumento_id: Tipo de documento
+        caso_ids: Casos en los que es víctima
       "sivel2_gen/actividadarea": 
         Actividadarea: Área de Actividad
         Actividadareas: Áreas de Actividades

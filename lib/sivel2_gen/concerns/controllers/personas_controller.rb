@@ -11,6 +11,18 @@ module Sivel2Gen
 
         included do
           include Sip::Concerns::Controllers::PersonasController
+ 
+          def atributos_show_sivel2_gen
+            atributos_show_sip + [ :caso_ids ]
+          end
+
+          def atributos_show
+            atributos_show_sivel2_gen
+          end
+
+          def atributos_form
+            atributos_show - [:id, :caso_ids]
+          end
 
           def remplazar_antes_destruir_p
             true
@@ -55,6 +67,9 @@ module Sivel2Gen
 
         end # included
 
+
+        class_methods do
+        end # class_methods
       end
     end
   end
