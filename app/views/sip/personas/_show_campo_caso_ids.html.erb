@@ -1,0 +1,39 @@
+<div class="panel-group" id="acordeon_caids">
+  <div class="panel panel-default" id="panel_caids">
+    <div class="panel-heading">
+      <div class="panel-title" style='text-align: center'>
+        <a data-toggle="collapse" data-target="#colapsa_caids" href="#colapsa_caids">
+          Expandir / colapsar
+        </a>
+      </div> <!-- panel-title -->
+    </div> <!-- panel-heading -->
+
+    <div id="colapsa_caids" class="panel-collapse collapse">
+      <div class="panel-body table-responsive" style="overflow-x:scroll;">
+        <table class='table table-bordered'>
+          <thead>
+            <tr>
+              <th>Id Caso</th><th>Fecha</th><th>Ubicación</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @registro.caso.order(:fecha).each do |c| %>
+              <tr>
+                <td>
+                  <%= link_to c.id, sivel2_gen.caso_path(c), target: '_blank' %>
+                </td>
+                <td>
+                  <%= c.fecha %>
+                </td>
+                <td>
+                  <%= c.ubicacion_id ? Sip::Ubicacion.find(c.ubicacion_id).presenta_nombre : '' %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
