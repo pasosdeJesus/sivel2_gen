@@ -226,21 +226,36 @@
     <div class="row filtro-fila">
       <div class="offset-sm-0 col-sm-2 offset-md-1 col-md-1">
       </div>
-      <div class="offset-sm-0 col-sm-4 col-md-3">
-        <%= f.input :sexo, 
-          collection: Sip::Persona::OPCIONES_SEXO,
-          label: false,
-          include_blank: '-- Sexo'
-        %>
-      </div>
-      <div class="offset-sm-0 col-sm-4 offset-md-1 col-md-3">
-        <%= f.input :rangoedad_id, 
-          collection: Sivel2Gen::Rangoedad.habilitados,
-          label: false,
-          label_method: :rango,
-          value_method: :id,
-          include_blank: '-- Rango de Edad'
-        %>
+      <div class="offset-sm-0 col-sm-8 col-md-7">
+        <div class="row filtro-fila">
+          <div class="col-sm col-md">
+            <%= f.input :sexo, 
+              collection: Sip::Persona::OPCIONES_SEXO,
+              label: false,
+              include_blank: '-- Sexo'
+            %>
+          </div>
+          <div class="col-sm col-md">
+            <% if current_usuario %>
+              <%= f.input :orientacionsexual,
+                collection: [
+                  [:HETEROSEXUAL, :H], [:LESBIANA, :L], [:GAY, :G], 
+                  [:BISEXUAL, :B], [:TRANSEXUAL, :T], ["SIN INFORMACIÓN", :S]], 
+                label: false,
+                include_blank: '-- Orientación Sexual'
+                %>
+            <% end %>
+          </div>
+          <div class="col-sm col-md">
+            <%= f.input :rangoedad_id, 
+              collection: Sivel2Gen::Rangoedad.habilitados,
+              label: false,
+              label_method: :rango,
+              value_method: :id,
+              include_blank: '-- Rango de Edad'
+            %>
+          </div>
+        </div>
       </div>
       <div class="offset-sm-1 col-sm-1 offset-md-0 text-center">
       </div>
