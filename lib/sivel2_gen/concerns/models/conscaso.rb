@@ -72,8 +72,8 @@ module Sivel2Gen
 
           scope :filtro_presponsable_id, lambda { |id|
             id.delete("")
-            id = id.map {|item| item.to_i}
             if id.is_a? Array
+              id = id.map {|item| item.to_i}
               where('caso_id IN (SELECT id_caso
                       FROM public.sivel2_gen_caso_presponsable
                       WHERE sivel2_gen_caso_presponsable.id_presponsable IN (?))',
@@ -81,7 +81,7 @@ module Sivel2Gen
             else
               where('caso_id IN (SELECT id_caso
                       FROM public.sivel2_gen_caso_presponsable
-                      WHERE sivel2_gen_caso_presponsable.id_presponsable == ?)',
+                      WHERE sivel2_gen_caso_presponsable.id_presponsable = ?)',
                       id)
             end
           }
