@@ -238,9 +238,7 @@
           <div class="col-sm col-md">
             <% if current_usuario %>
               <%= f.input :orientacionsexual,
-                collection: [
-                  [:HETEROSEXUAL, :H], [:LESBIANA, :L], [:GAY, :G], 
-                  [:BISEXUAL, :B], [:TRANSEXUAL, :T], ["SIN INFORMACIÓN", :S]], 
+                collection: Sip::OrientacionsexualHelper::ORIENTACIONES,
                 label: false,
                 include_blank: '-- Orientación Sexual'
                 %>
