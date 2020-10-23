@@ -9,35 +9,35 @@
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css"
   integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
   crossorigin=""/>
-<div id="filtroOsm">
+<div id="filtro-osm">
   <div class="card border-primary">
     <div class="card-body">
       <h4 class="card-title">Filtrar Casos</h4>
-      <form name="settings" onsubmit="agregarCasosOsm(true); return false;">
+      <form name="configuracion" onsubmit="agregarCasosOsm(true); return false;">
         <div class= "row">
           <div class="col-sm-2">
-            <input class= "input_mapaOsm" name="num" type="hidden" value="200" />
-            <div class="settings_element">
+            <input class= "campo-mapa-osm" name="num" type="hidden" value="200" />
+            <div>
               <div>Fecha:</div>
               <div>
-                <input type="text" name="desde" class="input_mapaOsm form-control select_mapaOsm"
-                   placeholder= "Desde" id="inputDesde"
+                <input type="text" name="desde" class="campo-mapa-osm form-control seleccion-mapa-osm"
+                   placeholder= "Desde" id="campo-desde"
                    data-behaviour="datepicker" value="<%= @fechadesde.to_s %>"
                    size="11"/>
               </div>
               <div>
-                <input type="text" name="hasta" class="input_mapaOsm form-control select_mapaOsm"
-                   placeholder= "Hasta" id="inputHasta"
+                <input type="text" name="hasta" class="campo-mapa-osm form-control seleccion-mapa-osm"
+                   placeholder= "Hasta" id="campo-hasta"
                    data-behaviour="datepicker" value="<%= @fechahasta.to_s %>"
                    size="11"/>
               </div>
             </div>
           </div>
           <div class="col-sm-2">
-            <div class="settings_element">
+            <div>
               <div>Departamento:</div>
               <div>
-                <select name="departamento" class="select_mapaOsm form-control"
+                <select name="departamento" class="seleccion-mapa-osm form-control"
                   id="departamento" style="width:140px;">
                   <option value="0">Mostrar todos</option>
                   <option value="">-----------------------</option>
@@ -48,10 +48,10 @@
             </div>
           </div>
           <div class="col-sm-2">
-            <div class="settings_element">
+            <div>
               <div>P. Responsable:</div>
               <div>
-                <select name="prresp" class="select_mapaOsm form-control" id="presponsable" style="width:150px;">
+                <select name="prresp" class="seleccion-mapa-osm form-control" id="presponsable" style="width:150px;">
                   <option value="0">Mostrar todos</option>
                   <option value="">-----------------------</option>
                   <%= options_for_select(Sivel2Gen::Presponsable.all.collect { |d| [d.nombre, d.id ] }) %>
@@ -60,10 +60,10 @@
             </div>
           </div>
           <div class="col-sm-2">
-            <div class="settings_element">
+            <div>
               <div>Violencia:</div>
               <div>
-                <select name="tvio" class="select_mapaOsm form-control" id="tvio" style="width:150px;">
+                <select name="tvio" class="seleccion-mapa-osm form-control" id="tvio" style="width:150px;">
                   <option value="0">Mostrar todos</option>
                   <option value="">-----------------------</option>
                   <%= options_for_select(Sivel2Gen::Categoria.all.collect { |d| [d.nombre, d.id ] })%>
@@ -79,9 +79,9 @@
                 </div>
               </div>
               <div class="col-sm-6">
-                <button id="agregarCasosOsm" type="button" class="btn btn-primary">Filtrar</button>
+                <button id="agregar-casos-osm" type="button" class="btn btn-primary">Filtrar</button>
                 <div id="cargador" class="spinner-border text-light" role="status">
-                  <span class="sr-only">Loading...</span>
+                  <span class='sr-only'>Cargando...</span>
                 </div>
 
               </div>
@@ -92,13 +92,13 @@
     </div>
   </div>
 </div>
-<div id="mapa_osm"></div>
+<div id="mapa-osm"></div>
 <% if current_usuario %>
-  <div id="agregaCapa">
-    <button id="agregarCapa" type="button" class="btn btn-primary btn-sm">Agregar capa GeoJSON (&lt;100K)</button>
+  <div id="agrega-capa">
+    <button id="agregar-capa" type="button" class="btn btn-primary btn-sm">Agregar capa GeoJSON (&lt;100K)</button>
   </div>
-  <div id="descargaMapa">
-    <button id="descargarMapa" type="button" class="btn btn-primary btn-sm"><a id= "enlaceDescarga">Descargar capa de casos</a></button>
+  <div id="descarga-mapa">
+    <button id="descargar-mapa" type="button" class="btn btn-primary btn-sm"><a id= "enlace-descarga">Descargar capa de casos</a></button>
   </div>
 <% end %>
 

@@ -3,21 +3,12 @@
    Financiado por CINEP/PPP con recursos de la Universidad de Sheffield
    Cedido al dominio publico de acuerdo a la legislacion colombiana */
 
-.navbarosm{
-  margin-bottom: 0px;
-}
-.cardosm{
-  border: 0px;
-}
-.cardbodyosm{
-  padding: 0.5rem;
-}
-.select_mapaOsm, .inputsubir{
+.seleccion-mapa-osm, .campo-subir {
   margin-bottom: 1rem;
   font-size: 0.8rem;
 }
 
-.info, .agregaCapaDiv{
+.info, .agrega-capa-div {
   width: 400px;
   padding: 5px 5px 5px 5px;
   background-color: #fff;
@@ -26,7 +17,7 @@
   box-shadow: -5px 5px 8px 0px rgba(34,34,34,1);
 }
 
-.info{
+.info {
   height: 80vh;
 }
 
@@ -35,39 +26,39 @@
   overflow-y:scroll;
 }
 
-#infow{
+#infow {
   height: 80vh;
 }
 
-#filtroOsm{
+#filtro-osm {
   width: 100vw;
   margin-left: 0px;
   margin-top: 0px;
   z-index:2;
 }
 
-#mapa_osm {
+#mapa-osm {
   width: 100%; 
   height: 93vh;
   float: left;
   z-index:1; 
 }
 
-.select_mapaOsm { 
+.seleccion-mapa-osm { 
   background-color: #266DD3;
 }
 
-.input_mapaOsm{ 
+.campo-mapa-osm { 
   background-color: #266DD3;
   width: 140px;
   height: 24px;
   margin-top: 5px;
 }
 
-.input_mapaOsm::placeholder{
+.campo-mapa-osm::placeholder {
   color: #FFF;
 }
 
-#enlaceDescarga{
+#enlace-descarga {
   color: #FFF;
 }

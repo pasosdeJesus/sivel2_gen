@@ -30,7 +30,7 @@ function presentar_mapaosm() {
 
   var filtro = L.control({position: 'topleft'});
   filtro.onAdd = function (mapa) {
-    this._div = L.DomUtil.get('filtroOsm');
+    this._div = L.DomUtil.get('filtro-osm');
     return this._div;
   };
 
@@ -48,12 +48,12 @@ function presentar_mapaosm() {
     {position: 'topleft'});
 
 
-  if (L.DomUtil.get('agregaCapa') != null && 
-    L.DomUtil.get('descargaCapa') != null) {
-    // Con Mapbox sería: mapa = L.mapbox.map('mapa_osm', null, {zoomControl: false, minZoom: 2})
+  if (L.DomUtil.get('agrega-capa') != null && 
+    L.DomUtil.get('descarga-capa') != null) {
+    // Con Mapbox sería: mapa = L.mapbox.map('mapa-osm', null, {zoomControl: false, minZoom: 2})
     var descargamapaBtn = L.control({position:'bottomleft'});
     descargamapaBtn.onAdd = function (mapa){
-      this._div = L.DomUtil.get('descargaMapa');
+      this._div = L.DomUtil.get('descarga-mapa');
       return this._div;
     };
 
@@ -63,7 +63,7 @@ function presentar_mapaosm() {
       return this._div;
     };
 
-    mapa = L.map('mapa_osm', {zoomControl: false, minZoom: 2})
+    mapa = L.map('mapa-osm', {zoomControl: false, minZoom: 2})
     //  .addLayer(mapboxTiles) seria con Mapbox
       .addLayer(osmBaldosas)
       .addControl(filtro)
@@ -73,7 +73,7 @@ function presentar_mapaosm() {
       .addControl(agregaCapaBtn)
       .addControl(descargamapaBtn);
   } else {
-    mapa = L.map('mapa_osm', {zoomControl: false, minZoom: 2})
+    mapa = L.map('mapa-osm', {zoomControl: false, minZoom: 2})
       .addLayer(osmBaldosas)
       .addControl(filtro)
       .addControl(L.control.zoom({position:'topleft'}))
@@ -125,8 +125,8 @@ var coleccion = {
 var marcadoresCreados;
 
 function agregarCasosOsm() {
-  var desde = $('#inputDesde').val();
-  var hasta = $('#inputHasta').val();
+  var desde = $('#campo-desde').val();
+  var hasta = $('#campo-hasta').val();
   var departamento = $('#departamento').val();
   var prresp = $('#presponsable').val();
   var tvio = $('#tvio').val();
@@ -194,9 +194,9 @@ function agregarCasosOsm() {
 function actualizaGeoJson(datosMarcadores){
   var geojson = marcadoresCreados.toGeoJSON();
   coleccion.features.push(geojson);
-  $('#descargarMapa').on('click', function(){
+  $('#descargar-mapa').on('click', function(){
     var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(coleccion));
-    var descargaGeo = document.getElementById('enlaceDescarga');
+    var descargaGeo = document.getElementById('enlace-descarga');
     descargaGeo.setAttribute("href",     dataStr     );
     descargaGeo.setAttribute("download", "casos.geojson");
   });
@@ -334,14 +334,14 @@ $(document).on('click','#btnCerrarAgCapa', function() {
 });
 
 //limpia el mapa de casos cada que se filtra
-$(document).on('click', '#agregarCasosOsm', function(){
+$(document).on('click', '#agregar-casos-osm', function(){
   markers.clearLayers(); 
   coleccion.features = [];
   agregarCasosOsm();
 });
 
 //Funciones de agregar supercapas
-$(document).on('click', '#agregarCapa', function(){
+$(document).on('click', '#agregar-capa', function(){
   agregarCapa();
   var contenidoGeoJson;
 
@@ -386,8 +386,8 @@ function agregarCapa(){
     this._div.innerHTML = '<div class="card border-primary"> <div class="card-body"><button type="button" id="btnCerrarAgCapa" class="close" aria-label="Close">'+ 
       '<span aria-hidden="true">&times;</span></button>'+
       '<h5>Agregar capa al mapa</h5>' +
-      '<input id="nombreCapaNueva" class="form-group form-control inputsubir" type="text" placeholder="Nombre de la Capa">'+
-      '<div class="form-group custom-file inputsubir"><input id="archivoGeo" type="file" class="custom-file-input" id="customFileLang" lang="es"><label class="custom-file-label" for="customFileLang">Seleccionar archivo GeoJSON</label></div>' +
+      '<input id="nombreCapaNueva" class="form-group form-control campo-subir" type="text" placeholder="Nombre de la Capa">'+
+      '<div class="form-group custom-file campo-subir"><input id="archivoGeo" type="file" class="custom-file-input" id="customFileLang" lang="es"><label class="custom-file-label" for="customFileLang">Seleccionar archivo GeoJSON</label></div>' +
       '<button id="subirCapa" class="form-group btn btn-primary">Subir</button></div></div>';
   };
   agregaCapaDiv.addTo(mapa);
