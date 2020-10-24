@@ -8,7 +8,7 @@ var mapa;
 var baldosasOsm;
 var controlCapas;
 
-function presentar_mapaosm() {
+function presentarMapaOsm() {
   // Borrar clase container y ocultar pie de página
   $('.navbar').addClass('navbarosm');
   $('.card-body').addClass('cardbodyosm');
@@ -85,7 +85,7 @@ function presentar_mapaosm() {
   L.control.scale({imperial: false}).addTo(mapa);
 
   //Crea los cúmulos de casos y agrega casos
-  marcadores = L.markerClusterGroup();
+  marcadores = L.markerClusterGroup(); 
   window.setTimeout(agregarCasosOsm, 0);
 
   // Cierra el info al acercar/alejar
@@ -115,13 +115,6 @@ function descargarUrl(url, retrollamada) {
   request.open('GET', url, true);
   request.send(null);
 }
-
-// una colección GeoJson vacía
-var coleccion = {
-  "type": "FeatureCollection",
-  "features": []
-};
-var marcadoresCreados;
 
 function agregarCasosOsm() {
   var desde = $('#campo-desde').val();
@@ -167,8 +160,9 @@ function agregarCasosOsm() {
           window.alert("El URL" + urlSolicitud + "no retorno informacion JSON.\n\n" + data);
           return;
         }
+        var listaMarcadores = []
         var o = jQuery.parseJSON(data);
-        var numResult = 0;
+        var numResultados = 0;
         for(var codigo in o) {
           var lat = o[codigo].latitud;
           var lng = o[codigo].longitud;
@@ -180,12 +174,13 @@ function agregarCasosOsm() {
           }
           latf = parseFloat(lat);
           lngf = parseFloat(lng);
-          numResult++;
+          numResultados++;
           var punto = new L.LatLng(latf, lngf);
-          marcadoresCreados = creaMarcador(punto, codigo);
-          actualizaGeoJson(marcadoresCreados);
+          listaMarcadores.push (creaMarcador(punto, codigo));
         }
-        $('#nrcasos').html(numResult + ' Casos mostrados!');
+        marcadores.addLayers(listaMarcadores);
+        mapa.addLayer(marcadores);
+        $('#nrcasos').html(numResultados + ' Casos mostrados!');
         ocultarCargador();
       });
     }
@@ -200,23 +195,9 @@ function agregarCasosOsm() {
   } 
 }
 
-function actualizaGeoJson(datosMarcadores){
-  var geojson = marcadoresCreados.toGeoJSON();
-  coleccion.features.push(geojson);
-  $('#descargar-mapa').on('click', function(){
-    var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(coleccion));
-    var descargaGeo = document.getElementById('enlace-descarga');
-    descargaGeo.setAttribute("href",     dataStr     );
-    descargaGeo.setAttribute("download", "casos.geojson");
-  });
-}
-
 function creaMarcador(punto, codigo, titulo) {
   // Exportar los casos a formato GeoJson
-  var capaCasos = L.layerGroup();
-  var marcadorCaso = new L.Marker(punto).addTo(capaCasos);
-  marcadores.addLayer(capaCasos);
-  mapa.addLayer(marcadores);
+  var marcadorCaso = new L.Marker(punto)
 
   //Acción al hacer clic en caso en el mapa
   marcadorCaso.on('click', clicMarcadorCaso);
@@ -286,22 +267,20 @@ function creaMarcador(punto, codigo, titulo) {
           prrespel + '<br />' : 'SIN INFORMACIÓN';
       }
       victimasCont += '</td></tr></table></div>';
-      capa(descripcionCont, hechosCont, victimasCont);
+      capaInfo(descripcionCont, hechosCont, victimasCont);
       ocultarCargador();
     });
   }
 
-  return capaCasos;
+  return marcadorCaso;
 }
 
-// variable que guarda los detalles del marker al que se le dio click
-var eventBackup;
-// variable global donde se carga la capa flotante
+// Variable global donde se carga la capa flotante
 var info;
-// capa flotante donde se muestra la info al darle click sobre un maker
-function capa(des, hec, vic){
-  if (info != undefined) { // se valida si existe informacion en la capa, si es borra la capa
-    info.remove(mapa); // esta linea quita la capa flotante
+// Capa flotante donde se muestra información al pulsar un marcador
+function capaInfo(des, hec, vic){
+  if (info != undefined) { // si ya tenia información se quita primero
+    info.remove(mapa); 
   }
   info = L.control();
   info.onAdd = function (mapa) {
@@ -310,7 +289,7 @@ function capa(des, hec, vic){
     return this._div;
   };
   info.update = function (des, hec, vic) {
-    this._div.innerHTML = '<button type="button" id="closeBtn" class="close" aria-label="Close">'+
+    this._div.innerHTML = '<button type="button" id="boton-cerrar" class="close" aria-label="Close">'+
       '<span aria-hidden="true">&times;</span>'+
       '</button><div id="infow">'+
       '<ul class="nav nav-tabs" id="myTab" role="tablist">'+
@@ -329,24 +308,34 @@ function capa(des, hec, vic){
 }
 
 // Cierra la capa flotante desde el boton cerrar
-$(document).on('click','#closeBtn', function() {
+$(document).on('click','#boton-cerrar', function() {
   if (info != undefined) {
     info.remove(mapa);
   }
 });
 
 // Cierra la capa flotante desde el boton cerrar
-$(document).on('click','#btnCerrarAgCapa', function() {
+$(document).on('click','#boton-cerrar-ag-capa', function() {
   if (agregaCapaDiv != undefined) {
     agregaCapaDiv.remove(mapa);
   }
 });
 
-//limpia el mapa de casos cada que se filtra
+//Limpia el mapa de casos cada que se filtra
 $(document).on('click', '#agregar-casos-osm', function(){
   marcadores.clearLayers(); 
-  coleccion.features = [];
   agregarCasosOsm();
+});
+
+
+//Descargar capa de casos
+$(document).on('click', '#descargar-mapa', function() {
+  var geojson = marcadores.toGeoJSON();
+  var dataStr = "data:text/json;charset=utf-8," + 
+    encodeURIComponent(JSON.stringify(geojson));
+  var descargaGeo = document.getElementById('enlace-descarga');
+  descargaGeo.setAttribute("href",     dataStr     );
+  descargaGeo.setAttribute("download", "casos.geojson");
 });
 
 //Funciones de agregar supercapas
@@ -355,7 +344,8 @@ $(document).on('click', '#agregar-capa', function(){
   var contenidoGeoJson;
 
   // Función que sube la capa del usuario
-  document.getElementById('archivoGeo').addEventListener('change', leerArchivo, false);
+  document.getElementById('archivoGeo').addEventListener(
+    'change', leerArchivo, false);
   function leerArchivo(e){
     var archivo = e.target.files[0];
     if (!archivo) {
@@ -369,8 +359,8 @@ $(document).on('click', '#agregar-capa', function(){
   }
   $('#subirCapa').on('click', function(){
     nombreCapanueva = $('#nombreCapaNueva').val();
-    var geoJsonParseado = jQuery.parseJSON(contenidoGeoJson);
-    var capaGeoJson = L.geoJSON(geoJsonParseado);
+    var geoJsonReconocido = jQuery.parseJSON(contenidoGeoJson);
+    var capaGeoJson = L.geoJSON(geoJsonReconocido);
     mapa.addLayer(capaGeoJson);
     controlCapas.addOverlay(capaGeoJson, nombreCapanueva);
     agregaCapaDiv.remove(mapa);
@@ -378,11 +368,11 @@ $(document).on('click', '#agregar-capa', function(){
   });
 });
 
-// Boton agregar capas
+// Botón agregar capas
 var agregaCapaDiv;
-function agregarCapa(){
-  if (agregaCapaDiv != undefined) { // se valida si existe informacion en la capa, si es borra la capa
-    agregaCapaDiv.remove(mapa); // esta linea quita la capa flotante
+function agregarCapa() {
+  if (agregaCapaDiv != undefined) { // si había información se elimina
+    agregaCapaDiv.remove(mapa); 
   }
   agregaCapaDiv = L.control();
   agregaCapaDiv.onAdd = function (mapa) {
@@ -392,11 +382,15 @@ function agregarCapa(){
   };
 
   agregaCapaDiv.updateAgregaCapaDiv = function () {
-    this._div.innerHTML = '<div class="card border-primary"> <div class="card-body"><button type="button" id="btnCerrarAgCapa" class="close" aria-label="Close">'+ 
-      '<span aria-hidden="true">&times;</span></button>'+
+    this._div.innerHTML = '<div class="card border-primary"> ' +
+      '<div class="card-body">' +
+      '<button type="button" id="boton-cerrar-ag-capa" class="close" aria-label="Close">' +
+      '<span aria-hidden="true">&times;</span></button>' +
       '<h5>Agregar capa al mapa</h5>' +
-      '<input id="nombreCapaNueva" class="form-group form-control campo-subir" type="text" placeholder="Nombre de la Capa">'+
-      '<div class="form-group custom-file campo-subir"><input id="archivoGeo" type="file" class="custom-file-input" id="customFileLang" lang="es"><label class="custom-file-label" for="customFileLang">Seleccionar archivo GeoJSON</label></div>' +
+      '<input id="nombreCapaNueva" class="form-group form-control campo-subir" type="text" placeholder="Nombre de la Capa">' +
+      '<div class="form-group custom-file campo-subir">' +
+      '<input id="archivoGeo" type="file" class="custom-file-input" id="customFileLang" lang="es">' +
+      '<label class="custom-file-label" for="customFileLang">Seleccionar archivo GeoJSON</label></div>' +
       '<button id="subirCapa" class="form-group btn btn-primary">Subir</button></div></div>';
   };
   agregaCapaDiv.addTo(mapa);
