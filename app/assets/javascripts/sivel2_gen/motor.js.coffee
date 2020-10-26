@@ -7,6 +7,20 @@
 @sivel2_gen_procesa_eliminaracto = false
 @sivel2_gen_procesa_eliminaractocolectivo = false
 
+
+
+@sivel2_gen_cancelar_caso_eliminar_vacio = (caso) ->
+  nombre=$('#caso_titulo').val()
+  root = window
+  purl = root.puntomontaje
+  if purl == '/'
+    purl = ''
+  if (nombre == '')
+    casoId = caso
+    $('#btn-cancelar-caso').attr('data-method', 'delete')
+    $('#btn-cancelar-caso').attr('href', purl + '/casos/' + casoId)
+
+
 # Elimina secciones agregadas con cocoon listadas en elempe
 @elimina_pendientes = (elempe) ->
   for i, e of elempe
