@@ -26,6 +26,7 @@ ActiveSupport::Inflector.inflections do |inflect|
 	inflect.irregular 'filiacion', 'filiaciones'
 	inflect.irregular 'fuenteprensa', 'fuentesprensa'
 	inflect.irregular 'organizacion', 'organizaciones'
+	inflect.irregular 'lugarpreliminar', 'lugarespreliminares'
 	inflect.irregular 'presponsable', 'presponsables'
 	inflect.irregular 'profesion', 'profesiones'
 	inflect.irregular 'rangoedad', 'rangosedad'

@@ -7,6 +7,7 @@
     <% if !current_usuario.nil? %>
       <%= despliega_abajo "Casos" do %>
         <%= opcion_menu "Listado", sivel2_gen.casos_path, desplegable: true %>
+        <%= opcion_menu "Lugar Preliminar", sivel2_gen.lugarespreliminares_path, desplegable: true %>
         <% if can?(:new, Sivel2Gen::Caso) %>
           <%= opcion_menu "Nuevo Caso", sivel2_gen.new_caso_path,
             desplegable: true %>

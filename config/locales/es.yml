@@ -86,6 +86,11 @@ es:
         contacto: Solicitante Principal
       "sivel2_gen/caso_etiqueta":
         etiqueta: Etiqueta 
+      "sivel2_gen/lugarpreliminar":
+        Lugarpreliminar: Lugar Preliminar
+        Lugarespreliminares: Lugares Preliminares
+        fecha_localizada: Fecha
+        codigositio: Código de Sitio 
       "sivel2_gen/caso_fotra":
         anexo_caso: Anexo
         anotacion: Anotación
