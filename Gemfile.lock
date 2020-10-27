@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/pasosdeJesus/heb412_gen.git
-  revision: f99d0462705aabaad694a9c797996e42bd55fdb1
+  revision: 3218f50c2c16784bd887fb925e64156af773885b
   specs:
     heb412_gen (1.0.b6)
       mr519_gen
@@ -18,7 +18,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sip.git
-  revision: 37e27db2922c848718732ce54b88415c015ddd4b
+  revision: b483ef95aa3970f02df866dea491ed94ee3d2cf4
   specs:
     sip (2.0.b10)
       cancancan
@@ -101,7 +101,7 @@ GEM
       zeitwerk (~> 2.2, >= 2.2.2)
     andand (1.3.3)
     bcrypt (3.1.16)
-    bootsnap (1.4.8)
+    bootsnap (1.4.9)
       msgpack (~> 1.0)
     builder (3.2.4)
     camertron-eprun (1.1.1)
@@ -187,7 +187,7 @@ GEM
     prawnto_2 (0.3.1)
       prawn (>= 1.0.0)
       rails (>= 3.2)
-    puma (5.0.2)
+    puma (5.0.3)
       nio4r (~> 2.0)
     rack (2.2.3)
     rack-proxy (0.6.5)
