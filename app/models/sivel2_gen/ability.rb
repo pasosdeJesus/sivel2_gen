@@ -294,6 +294,7 @@ module Sivel2Gen
           can :manage, Sivel2Gen::Acto
           can :manage, Sivel2Gen::Actocolectivo
           can :manage, Sivel2Gen::Caso
+          can :manage, Sivel2Gen::Lugarpreliminar
           cannot :solocambiaretiquetas, Sivel2Gen::Caso
           can :read, Sivel2Gen::Victima
 
