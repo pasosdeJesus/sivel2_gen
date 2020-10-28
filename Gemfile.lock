@@ -34,13 +34,6 @@ GIT
       twitter_cldr
       will_paginate
 
-GIT
-  remote: https://github.com/vtamara/cocoon.git
-  revision: 9f1892403c3dbdb8f7d457a06f237ff58e7dfb07
-  branch: new_id_with_ajax
-  specs:
-    cocoon (1.2.11)
-
 GEM
   remote: https://rubygems.org/
   specs:
