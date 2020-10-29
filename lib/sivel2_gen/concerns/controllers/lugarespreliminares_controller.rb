@@ -16,7 +16,7 @@ module Sivel2Gen
           def registrar_en_bitacora
             true
           end
-
+          
           def clase
             'Sivel2Gen::Lugarpreliminar'
           end
