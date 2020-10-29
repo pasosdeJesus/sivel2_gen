@@ -9,6 +9,6 @@ module Sivel2Gen
     before_action :set_lugarpreliminar,
         only: [:show, :edit, :update, :destroy]
     load_and_authorize_resource class: Sivel2Gen::Lugarpreliminar,
-      except: [:index, :show]
+      except: [:index, :show, :update]
   end
 end

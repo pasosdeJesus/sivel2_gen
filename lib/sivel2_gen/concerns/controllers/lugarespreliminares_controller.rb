@@ -13,16 +13,25 @@ module Sivel2Gen
           #  except: [:index, :show]
           helper Sip::UbicacionHelper
          
-          
+          def registrar_en_bitacora
+            true
+          end
+
           def clase
             'Sivel2Gen::Lugarpreliminar'
           end
           
-          def atributos_index
+          def lista_params 
             [ "id",
               "fecha",
-              "codigositio"
+              "codigositio",
+              "nombreusuario",
+              "organizacion"
             ]
+          end
+
+          def atributos_index
+            lista_params
           end
 
           def genclase
@@ -56,10 +65,7 @@ module Sivel2Gen
 
           # No confiar parametros a Internet, sólo permitir lista blanca
           def lugarpreliminar_params
-            params.require(:lugarpreliminar).permit([
-              :fecha,
-              :codigositio
-            ])
+            params.require(:lugarpreliminar).permit(lista_params)
           end
         end
       end
