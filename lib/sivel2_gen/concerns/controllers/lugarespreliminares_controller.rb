@@ -26,7 +26,8 @@ module Sivel2Gen
               "fecha",
               "codigositio",
               "nombreusuario",
-              "organizacion"
+              "organizacion",
+              "ubicacionpre_id"
             ]
           end
 

@@ -89,10 +89,11 @@ es:
       "sivel2_gen/lugarpreliminar":
         Lugarpreliminar: Lugar de Disposición irregular de Cadáveres
         Lugarespreliminares: Lugares de Disposición irregluar de Cadáveres
-        fecha_localizada: Fecha
         codigositio: Código de Sitio
+        fecha_localizada: Fecha
         nombreusuario: Nombre de quien diligencia el formato
-        organizacion: Organización/Entidad perteneciente 
+        organizacion: Organización/Entidad perteneciente
+        ubicacionpre_id: Ubicación 
       "sivel2_gen/caso_fotra":
         anexo_caso: Anexo
         anotacion: Anotación

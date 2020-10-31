@@ -35,22 +35,25 @@
         </div>
       </div>
       <br>
-      <a data-toggle="collapse" href='#basicospreliminar'>
+      <a data-toggle="collapse" href='#ubicacionpreliminar'>
         <h5>UBICACIÓN GEOGRÁFICA</h5>
       </a>
-      <div class="collapse multi-collapse" id="basicospreliminar">
+      <div class="collapse multi-collapse" id="ubicacionpreliminar">
         <div class="row">
           <div class="col-md-6">
+             <%= render partial: 'campo_ubicacionpre', 
+                   locals: {f: f, con_label: false} %>
           </div>
           <div class="col-md-6">
           </div>
         </div>
       </div>
       <br>
-      <a data-toggle="collapse" href='#basicospreliminar'>
+
+      <a data-toggle="collapse" href='#aportantepreliminar'>
         <h5>DATOS DEL APORTANTE</h5>
       </a>
-      <div class="collapse multi-collapse" id="basicospreliminar">
+      <div class="collapse multi-collapse" id="aportantepreliminar">
         <div class="row">
           <div class="col-md-6">
           </div>
