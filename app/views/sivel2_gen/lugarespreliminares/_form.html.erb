@@ -21,6 +21,18 @@
             <%= f.input :codigositio %>
           </div>
         </div>
+        <div class="row">
+          <div class="col-md-6">
+            <%= f.input :nombreusuario,
+                input_html: {
+                  value: f.object.nombreusuario ? f.object.nombreusuario : current_usuario.nombre
+                }
+            %> 
+          </div>
+          <div class="col-md-6">
+            <%= f.input :organizacion %>
+          </div>
+        </div>
       </div>
       <br>
       <a data-toggle="collapse" href='#basicospreliminar'>
