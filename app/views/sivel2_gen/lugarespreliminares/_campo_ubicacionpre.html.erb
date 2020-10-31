@@ -1,0 +1,14 @@
+<div class='div_ubicacionpre' >
+  <% ph = ''%>
+  <% if (!f.object.ubicacionpre) %>
+    <% ph = 'Buscar'%>
+  <% end %>
+  <% ac = { } %>
+  <% ac['data-toogle']='tooltip' %>
+  <% ac['title']='Empiece a escribir el municipio o departamento y cuando lo vea en el listado de autocompletados, elijalo.' %>
+
+  <%= f.input :ubicacionpre_texto, placeholder: ph,
+    label: false,
+    input_html: ac %>
+  <%= f.input :ubicacionpre_id, as: :hidden %>
+</div>

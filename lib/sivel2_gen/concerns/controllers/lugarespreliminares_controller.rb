@@ -26,12 +26,18 @@ module Sivel2Gen
               "fecha",
               "codigositio",
               "nombreusuario",
-              "organizacion"
+              "organizacion",
+              "ubicacionpre_id"
             ]
           end
 
           def atributos_index
-            lista_params
+            [ "id",
+              "fecha",
+              "codigositio",
+              "nombreusuario",
+              "organizacion"
+            ]
           end
 
           def genclase

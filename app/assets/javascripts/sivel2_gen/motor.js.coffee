@@ -131,6 +131,10 @@
   )
   return
 
+$(document).on('focusin',
+  'input[id^=lugarpreliminar_ubicacionpre_texto]', (e) -> 
+   sip_busca_ubicacionpre($(this))
+)
 # Busca persona por nombre, apellido o identificación
 # s es objeto con foco donde se busca persona
 @busca_persona_nombre = (s, root) ->
