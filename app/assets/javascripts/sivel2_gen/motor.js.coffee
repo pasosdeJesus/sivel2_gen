@@ -10,12 +10,85 @@
 
 
 @sivel2_gen_cancelar_caso_eliminar_vacio = (caso) ->
-  nombre=$('#caso_titulo').val()
   root = window
   purl = root.puntomontaje
+  #validar dato importante por cada pestaña
+  #basico
+  nombre=$('#caso_titulo').val()
+  #memo
+  memo = $('#caso_memo').val()
+  #ubicacion
+  hay_departamentos = false
+  departamentos = $('select[id^=caso_][id$=id_departamento]')
+  departamentos.each(()->
+    if $(this).val() != ''
+      hay_departamentos = true
+  )
+  #fuentes de prensa
+  hay_fuentes = false
+  fuentes = $('select[id^=caso_][id$=fuenteprensa_id]')
+  fuentes.each(()->
+    if $(this).val() != ''
+      hay_fuentes = true
+  )
+  #otras fuentes de prensa
+  hay_otrasfuentes = false
+  otrasfuentes = $('select[id^=caso_caso_fotra][id$=_nombre]')
+  otrasfuentes.each(()->
+    if $(this).val() != ''
+      hay_otrasfuentes = true
+  )
+  #contexto
+  contexto = $('#caso_contexto_ids').val()
+  #presuntos responsble
+  hay_presponsables = false
+  presponsables = $('select[id^=caso_][id$=id_presponsable]')
+  presponsables.each(()->
+    if $(this).val().length != 0
+      hay_presponsables = true
+  )
+  #un nombre en victima
+  hay_victima = false
+  victimas = $('input[id^=caso_victima][id$=_nombres]')
+  victimas.each(()->
+    if $(this).val() != ''
+      hay_victima = true
+  )
+  #un nombre en victimacolectiva
+  hay_victimacol = false
+  victimascol = $('input[id^=caso_victimacolectiva][id$=_nombre]')
+  victimascol.each(()->
+    if $(this).val() != ''
+      hay_victimacol = true
+  )
+  #un nombre en combatiente
+  hay_combatientes = false
+  combatientes = $('input[id^=caso_combatiente][id$=_nombre]')
+  combatientes.each(()->
+    if $(this).val() != ''
+      hay_combatientes = true
+  )
+  #acto
+  categoriaenacto = $('#caso_acto_id_categoria').val()
+  #un adjunto en anexo
+  hay_anexos = false
+  anexos = $('input[id^=caso_anexo][id$=_adjunto]')
+  anexos.each(()->
+    if $(this).val() != ''
+      hay_anexos = true
+  )
+  #etiquetas
+  hay_etiquetas = false
+  etiquetas = $('select[id^=caso_caso_etiqueta][id$=id_etiqueta]')
+  etiquetas.each(()->
+    if $(this).val().length != 0
+      hay_etiquetas = true
+  )
+  #evaluacion
+  confiabilidad = $('#caso_grconfiabilidad').val()
   if purl == '/'
     purl = ''
-  if (nombre == '')
+  if (nombre == '' && memo == '' && !hay_departamentos && !hay_presponsables && !hay_fuentes && !hay_otrasfuentes && contexto.length == 0 && !hay_victima && !hay_victimacol && !hay_combatientes && categoriaenacto.length == 0 && !hay_anexos && !hay_etiquetas && confiabilidad == '')
     casoId = caso
     $('#btn-cancelar-caso').attr('data-method', 'delete')
     $('#btn-cancelar-caso').attr('href', purl + '/casos/' + casoId)
