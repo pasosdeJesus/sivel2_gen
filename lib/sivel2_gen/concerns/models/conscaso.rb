@@ -155,6 +155,12 @@ module Sivel2Gen
                     WHERE sip_persona.sexo=?)', s)
           }
 
+          scope :filtro_orientacionsexual, lambda { |s|
+            where('caso_id IN (SELECT id_caso
+                    FROM public.sivel2_gen_victima 
+                    WHERE orientacionsexual=?)', s)
+          }
+
           scope :filtro_rangoedad_id, lambda { |r|
             where('caso_id IN (SELECT id_caso
                     FROM public.sivel2_gen_victima 

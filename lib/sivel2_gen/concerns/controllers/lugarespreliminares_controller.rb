@@ -13,6 +13,7 @@ module Sivel2Gen
           #  except: [:index, :show]
           helper Sip::UbicacionHelper
          
+
           def registrar_en_bitacora
             true
           end
