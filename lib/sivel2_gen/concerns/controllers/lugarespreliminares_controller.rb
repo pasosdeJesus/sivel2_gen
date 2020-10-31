@@ -13,11 +13,10 @@ module Sivel2Gen
           #  except: [:index, :show]
           helper Sip::UbicacionHelper
          
-
           def registrar_en_bitacora
             true
           end
-
+          
           def clase
             'Sivel2Gen::Lugarpreliminar'
           end
@@ -33,12 +32,7 @@ module Sivel2Gen
           end
 
           def atributos_index
-            [ "id",
-              "fecha",
-              "codigositio",
-              "nombreusuario",
-              "organizacion"
-            ]
+            lista_params
           end
 
           def genclase
