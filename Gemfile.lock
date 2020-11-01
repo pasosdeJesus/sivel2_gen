@@ -17,8 +17,14 @@ GIT
       sip
 
 GIT
-  remote: https://github.com/pasosdeJesus/sip.git
-  revision: 78cb44e701aba2f608219d30d8e7c230d02bb93a
+  remote: https://github.com/vtamara/cocoon.git
+  revision: 9f1892403c3dbdb8f7d457a06f237ff58e7dfb07
+  branch: new_id_with_ajax
+  specs:
+    cocoon (1.2.11)
+
+PATH
+  remote: ../sip
   specs:
     sip (2.0.b10)
       cancancan
@@ -33,13 +39,6 @@ GIT
       simple_form
       twitter_cldr
       will_paginate
-
-GIT
-  remote: https://github.com/vtamara/cocoon.git
-  revision: 9f1892403c3dbdb8f7d457a06f237ff58e7dfb07
-  branch: new_id_with_ajax
-  specs:
-    cocoon (1.2.11)
 
 GEM
   remote: https://rubygems.org/

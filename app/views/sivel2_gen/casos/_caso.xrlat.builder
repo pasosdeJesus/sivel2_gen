@@ -148,7 +148,7 @@ xml.relato do
     xml.observaciones(caso[c], {tipo: c}) if caso[c]
   end
 
-  xml.observaciones(caso.intervalo.nombre, {tipo: 'intervalo'}) if caso.intervalo.nombre
+  xml.observaciones(caso.intervalo.nombre, {tipo: 'intervalo'}) if caso.intervalo && caso.intervalo.nombre
   xml.observaciones(caso.region.map(&:nombre).join("; "), {tipo: 'region'}) if caso.region
   if ub
     xml.observaciones(ub.sitio, {tipo: 'sitio'}) if ub.sitio
