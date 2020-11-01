@@ -63,8 +63,11 @@
         class: 'btn-primary',
         onclick: 'window.sivel2_detenerEnviarCada60()'
       } %>
+      <% id = @registro.id.to_s%>
       <%= link_to t('.cancel', default: t("helpers.links.cancel")),
-        sivel2_gen.casos_path, class: 'btn' 
+        modelos_path(@registro), :class => 'btn', id: 'btn-cancelar-caso', 
+        onclick: 'javascript: sivel2_gen_cancelar_caso_eliminar_vacio(' + 
+        id +')'
       %>
     </div> <!-- form-action -->
   <% end %> <!-- simple_form_for @caso -->
