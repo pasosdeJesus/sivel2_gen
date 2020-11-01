@@ -3116,7 +3116,8 @@ CREATE TABLE public.sivel2_gen_lugarpreliminar (
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
     nombreusuario character varying,
-    organizacion character varying
+    organizacion character varying,
+    ubicacionpre_id integer
 );
 
 
@@ -5347,6 +5348,14 @@ ALTER TABLE ONLY public.sip_municipio
 
 
 --
+-- Name: sivel2_gen_lugarpreliminar fk_rails_0f5958cb3b; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.sivel2_gen_lugarpreliminar
+    ADD CONSTRAINT fk_rails_0f5958cb3b FOREIGN KEY (ubicacionpre_id) REFERENCES public.sip_ubicacionpre(id);
+
+
+--
 -- Name: sivel2_gen_sectorsocialsec_victima fk_rails_0feb0e70eb; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -6416,6 +6425,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20201029153649'),
 ('20201029162732'),
 ('20201029180113'),
+('20201029220052'),
 ('20201030214942'),
 ('20201030234211');
 
