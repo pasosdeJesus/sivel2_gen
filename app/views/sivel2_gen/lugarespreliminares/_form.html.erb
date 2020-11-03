@@ -120,6 +120,23 @@
               <%= render partial: 'sip/personas/campo_sexo', locals: {f: p} %>
             </div>
           </div>
+          <div class="row">
+            <div class="col-md-4">
+              <%= f.input :grabacion,
+                label: false %>
+              <label> Grabación de audio</label>
+            </div>
+            <div class="col-md-4">
+              <%= f.input :parentezco,
+                collection: Sip::Trelacion.habilitados,
+                include_blank: false,
+                label_method: :nombre, 
+                value_method: :id %>
+            </div>
+            <div class="col-md-4">
+              <%= f.input :telefono %>
+            </div>
+          </div>
         <% end %>
       </div>
     </div>
