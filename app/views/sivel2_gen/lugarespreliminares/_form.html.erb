@@ -55,10 +55,10 @@
       </a>
       <div class="collapse multi-collapse" id="aportantepreliminar">
         <div class="row">
-          <div class="col-md-6">
-          </div>
-          <div class="col-md-6">
-          </div>
+          <%= f.simple_fields_for :persona do |p| %>
+            <%= render partial: 'sip/personas/persona_campos', 
+              locals: {f: p}  %>
+          <% end %>
         </div>
       </div>
     </div>
