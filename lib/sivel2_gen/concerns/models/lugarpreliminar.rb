@@ -12,6 +12,9 @@ module Sivel2Gen
 
           campofecha_localizado :fecha
           
+          belongs_to :persona, foreign_key: "id_persona", dependent: :destroy,
+           class_name: 'Sip::Persona'
+          accepts_nested_attributes_for :persona, reject_if: :all_blank
           belongs_to :ubicacionpre, class_name: 'Sip::Ubicacionpre', 
             foreign_key: 'ubicacionpre_id', optional: true
           

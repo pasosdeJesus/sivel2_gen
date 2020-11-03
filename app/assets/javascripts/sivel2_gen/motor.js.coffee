@@ -222,6 +222,62 @@ $(document).on('focusin',
   'input[id^=lugarpreliminar_ubicacionpre_texto]', (e) -> 
    sip_busca_ubicacionpre($(this))
 )
+
+@sivel2_gen_busca_cadaver = (s) ->
+  root = window
+  sip_arregla_puntomontaje(root)
+  cnom = s.attr('id')
+  v = $("#" + cnom).data('autocompleta')
+  if (v != 1 && v != "no") 
+    $("#" + cnom).data('autocompleta', 1)
+    divcp = s.closest('#aportantepreliminar')
+    if (typeof divcp == 'undefined')
+      alert('No se ubico div aportante preliminar')
+      return
+    if $(divcp).find("[id$='id_persona']").length != 1
+      alert('Dentro de aportantepreliminar no se ubicó id_persona')
+      return
+    $("#" + cnom).autocomplete({
+      source: root.puntomontaje + "personas.json",
+      minLength: 2,
+      select: ( event, ui ) -> 
+        if (ui.item) 
+          sivel2_gen_autocompleta_persona(ui.item.value, ui.item.id, divcp, root)
+          event.stopPropagation()
+          event.preventDefault()
+    })
+  return
+
+@sivel2_gen_autocompleta_persona = (label, id, divcp, root) ->
+  sip_arregla_puntomontaje(root)
+  cs = id.split(";")
+  id_persona = cs[0]
+  pl = []
+  ini = 0
+  for i in [0..cs.length] by 1
+     t = parseInt(cs[i])
+     pl[i] = label.substring(ini, ini + t)
+     ini = ini + t + 1
+  # pl[1] cnom, pl[2] es cape, pl[3] es cdoc
+  d = "&id_persona=" + id_persona
+  a = root.puntomontaje + 'personas/datos'
+  $.ajax(url: a, data: d, dataType: "json").fail( (jqXHR, texto) ->
+    alert("Error con ajax " + texto)
+  ).done( (e, r) ->
+    #debugger
+    divcp.find('[id^=lugarpreliminar_persona_attributes][id$=_attributes_nombres]').val(e.nombres)
+    divcp.find('[id^=lugarpreliminar_persona_attributes][id$=_attributes_apellidos]').val(e.apellidos)
+    divcp.find('[id^=lugarpreliminar_persona_attributes][id$=_attributes_sexo]').val(e.sexo)
+    divcp.find('[id^=lugarpreliminar_persona_attributes][id$=_tdocumento]').val(e.tdocumento)
+    divcp.find('[id^=lugarpreliminar_persona_attributes][id$=_numerodocumento]').val(e.numerodocumento)
+    divcp.find('[id^=lugarpreliminar_persona_attributes][id$=_anionac]').val(e.anionac)
+    divcp.find('[id^=lugarpreliminar_persona_attributes][id$=_mesnac]').val(e.mesnac)
+    divcp.find('[id^=lugarpreliminar_persona_attributes][id$=_dianac]').val(e.dianac)
+    $(document).trigger("cor1440gen:autocompletada-persona")
+    return
+  )
+  return
+
 # Busca persona por nombre, apellido o identificación
 # s es objeto con foco donde se busca persona
 @busca_persona_nombre = (s, root) ->
@@ -583,6 +639,12 @@ enviaFormularioContar= (root) ->
     llena_departamento($(ubicacion.find(ubipais)), root)
   )
 
+  # En lugar preliminar permite autocompletar nombres de persona
+  $(document).on('focusin', 
+  'input[id^=lugarpreliminar_persona_attributes][id$=_nombres]', 
+  (e) ->
+    sivel2_gen_busca_cadaver($(this), root)
+  )
   # En victimas permite autocompletar nombres de victima
   $(document).on('focusin', 
   'input[id^=caso_victima_attributes][id$=persona_attributes_nombres]', 

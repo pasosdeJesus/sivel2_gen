@@ -22,12 +22,12 @@ module Sivel2Gen
           end
           
           def lista_params 
-            [ "id",
-              "fecha",
-              "codigositio",
-              "nombreusuario",
-              "organizacion",
-              "ubicacionpre_id"
+            [ :id,
+              :fecha,
+              :codigositio,
+              :nombreusuario,
+              :organizacion,
+              :ubicacionpre_id
             ]
           end
 
@@ -66,7 +66,31 @@ module Sivel2Gen
 
           # No confiar parametros a Internet, sólo permitir lista blanca
           def lugarpreliminar_params
-            params.require(:lugarpreliminar).permit(lista_params)
+            params.require(:lugarpreliminar).permit(
+            [ :id,
+              :fecha,
+              :codigositio,
+              :nombreusuario,
+              :organizacion,
+              :ubicacionpre_id,
+              :persona_attributes => [
+                :anionac,
+                :apellidos,
+                :dianac,
+                :id,
+                :id_pais,
+                :id_departamento,
+                :id_municipio,
+                :id_clase,
+                :mesnac,
+                :nombres,
+                :nacionalde,
+                :numerodocumento,
+                :sexo,
+                :tdocumento_id
+              ]
+             ]
+            )
           end
         end
       end
