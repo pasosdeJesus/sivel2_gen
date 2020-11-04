@@ -81,7 +81,7 @@
               <%= p.input :tdocumento_id,
                 collection: Sip::Tdocumento.habilitados,
                 label_method: :nombre,
-                value_method: :id %>
+                value_method: :sigla %>
             </div>
             <div class="col-md-3">
                <%= p.input :numerodocumento,
