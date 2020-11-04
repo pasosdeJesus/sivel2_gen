@@ -265,6 +265,7 @@ $(document).on('focusin',
     alert("Error con ajax " + texto)
   ).done( (e, r) ->
     #debugger
+    divcp.find('[id^=lugarpreliminar_persona_attributes][id$=_attributes_id]').val(e.id)
     divcp.find('[id^=lugarpreliminar_persona_attributes][id$=_attributes_nombres]').val(e.nombres)
     divcp.find('[id^=lugarpreliminar_persona_attributes][id$=_attributes_apellidos]').val(e.apellidos)
     divcp.find('[id^=lugarpreliminar_persona_attributes][id$=_attributes_sexo]').val(e.sexo)

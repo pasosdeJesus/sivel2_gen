@@ -48,6 +48,25 @@ module Sivel2Gen
             ]
           end
 
+          def new
+            @registro = @lugarpreliminar = Sivel2Gen::Lugarpreliminar.new
+            @registro.save!(validate: false)
+            redirect_to sivel2_gen.edit_lugarpreliminar_path(@registro)
+          end
+
+          def update
+            # Ubicamos los de autocompletacion y para esos creamos un registro 
+            if lugarpreliminar_params && 
+                lugarpreliminar_params[:persona_attributes][:id].to_i > 0 &&
+                Sip::Persona.where(
+                  id: lugarpreliminar_params[:persona_attributes][:id].to_i).count == 1
+              @lugarpreliminar.id_persona = lugarpreliminar_params[:persona_attributes][:id]
+            
+              @lugarpreliminar.save!(validate: false)
+            end
+            update_gen
+          end
+
           def new_modelo_path(o)
             return new_lugarpreliminar_path()
           end
@@ -76,6 +95,7 @@ module Sivel2Gen
               :parentezco,
               :grabacion,
               :telefono,
+              :ubicacionpre_texto,
               :persona_attributes => [
                 :anionac,
                 :apellidos,
