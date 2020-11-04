@@ -92,6 +92,9 @@ module Sivel2Gen
               :nombreusuario,
               :organizacion,
               :ubicacionpre_id,
+              :parentezco,
+              :grabacion,
+              :telefono,
               :ubicacionpre_texto,
               :persona_attributes => [
                 :anionac,

@@ -16,7 +16,6 @@ GIT
       rails (~> 6.0.0.rc1, >= 6.0.0.rc1)
       sip
 
-GIT
   remote: https://github.com/pasosdeJesus/sip.git
   revision: 1ebaff813ff54d0298394d46ce39744d973d0d08
   specs:
@@ -33,13 +32,6 @@ GIT
       simple_form
       twitter_cldr
       will_paginate
-
-GIT
-  remote: https://github.com/vtamara/cocoon.git
-  revision: 9f1892403c3dbdb8f7d457a06f237ff58e7dfb07
-  branch: new_id_with_ajax
-  specs:
-    cocoon (1.2.11)
 
 GEM
   remote: https://rubygems.org/
@@ -104,6 +96,7 @@ GEM
     bootsnap (1.4.9)
       msgpack (~> 1.0)
     builder (3.2.4)
+    byebug (11.1.3)
     camertron-eprun (1.1.1)
     cancancan (3.1.0)
     choice (0.2.0)
@@ -299,6 +292,7 @@ PLATFORMS
 DEPENDENCIES
   bcrypt
   bootsnap (>= 1.1.0)
+  byebug
   cancancan
   cocoon!
   coffee-rails
