@@ -80,7 +80,7 @@
             <div class="col-md-3">
               <%= p.input :tdocumento_id,
                 collection: Sip::Tdocumento.habilitados,
-                label_method: :nombre,
+                label_method: lambda { |t| "#{t.sigla} | #{t.nombre}"},
                 value_method: :id %>
             </div>
             <div class="col-md-3">
