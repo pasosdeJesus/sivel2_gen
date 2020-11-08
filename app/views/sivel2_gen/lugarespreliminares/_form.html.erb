@@ -137,6 +137,26 @@
               <%= f.input :telefono %>
             </div>
           </div>
+          <div class="row">
+            <div class="col-md-4">
+              <%= f.association :tipotestigo,
+                collection: Sivel2Gen::Tipotestigo.habilitados,
+                include_blank: false,
+                label_method: :nombre, 
+                value_method: :id,
+                selected: f.object.tipotestigo ? f.object.tipotestigo.id : 1
+              %>
+            </div>
+            <div class="col-md-4">
+              <% if f.object.otrotipotestigo && f.object.tipotestigo.id == 4 %>
+                <% estipo = "display: block" %>
+              <% else %>
+                <% estipo = "display: none" %>
+              <% end %>
+              <div class="otrotipotestigo" style="<%= estipo %>">
+                <%= f.input :otrotipotestigo %>
+              </div>
+            </div>
         <% end %>
       </div>
     </div>

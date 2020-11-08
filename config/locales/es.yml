@@ -93,6 +93,8 @@ es:
         fecha_localizada: Fecha
         nombreusuario: Nombre de quien diligencia el formato
         organizacion: Organización/Entidad perteneciente
+        otrotipotestigo: ¿Otro tipo de testigo? ¿Cuál?
+        tipotestigo: Tipo de testigo
         ubicacionpre_id: Ubicación 
       "sivel2_gen/caso_fotra":
         anexo_caso: Anexo
@@ -212,6 +214,9 @@ es:
       "sivel2_gen/tdocumento":
         Tdocumento: Tipo de Documento
         Tdocumentos: Tipos de Documentos
+      "sivel2_gen/tipotestigo":
+        Tipotestigo: Tipo de Testigo
+        Tipostestigo: Tipos de Testigo
       "sivel2_gen/tsitio": 
         Tsitio: Tipo de Sitios
         Tsitios: Tipos de Sitios
