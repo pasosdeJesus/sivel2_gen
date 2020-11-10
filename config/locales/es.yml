@@ -91,9 +91,11 @@ es:
         Lugarespreliminares: Lugares de Disposición irregluar de Cadáveres
         codigositio: Código de Sitio
         fecha_localizada: Fecha
+        hechos: Presuntos Hechos
         nombreusuario: Nombre de quien diligencia el formato
         organizacion: Organización/Entidad perteneciente
-        ubicacionpre_id: Ubicación 
+        ubicacionpre_id: Ubicación
+        ubicaespecifica:  Ubicación del sitio de disposición (detalles más específicos) 
       "sivel2_gen/caso_fotra":
         anexo_caso: Anexo
         anotacion: Anotación

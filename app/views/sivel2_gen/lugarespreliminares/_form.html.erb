@@ -120,24 +120,38 @@
               <%= render partial: 'sip/personas/campo_sexo', locals: {f: p} %>
             </div>
           </div>
-          <div class="row">
-            <div class="col-md-4">
-              <%= f.input :grabacion,
-                label: false %>
-              <label> Grabación de audio</label>
-            </div>
-            <div class="col-md-4">
-              <%= f.input :parentezco,
-                collection: Sip::Trelacion.habilitados,
-                include_blank: false,
-                label_method: :nombre, 
-                value_method: :id %>
-            </div>
-            <div class="col-md-4">
-              <%= f.input :telefono %>
-            </div>
-          </div>
         <% end %>
+        <div class="row">
+          <div class="col-md-4">
+            <%= f.input :grabacion,
+              label: false %>
+            <label> Grabación de audio</label>
+          </div>
+          <div class="col-md-4">
+            <%= f.input :parentezco,
+              collection: Sip::Trelacion.habilitados,
+              include_blank: false,
+              label_method: :nombre, 
+              value_method: :id %>
+          </div>
+          <div class="col-md-4">
+            <%= f.input :telefono %>
+          </div>
+        </div>
+      </div>
+      <br>
+      <a data-toggle="collapse" href='#antepreliminar'>
+        <h5>ANTECEDENTES PROPORCIONADOS POR EL APORTANTE</h5>
+      </a>
+      <div class="collapse multi-collapse" id="antepreliminar">
+        <div class="row">
+          <div class="col-md-12">
+            <%= f.input :hechos %>
+          </div>
+          <div class="col-md-12">
+            <%= f.input :ubicaespecifica %>
+          </div>
+        </div>
       </div>
     </div>
     
