@@ -80,7 +80,7 @@
             <div class="col-md-3">
               <%= p.input :tdocumento_id,
                 collection: Sip::Tdocumento.habilitados,
-                label_method: :nombre,
+                label_method: lambda { |t| "#{t.sigla} | #{t.nombre}"},
                 value_method: :id %>
             </div>
             <div class="col-md-3">
@@ -120,25 +120,44 @@
               <%= render partial: 'sip/personas/campo_sexo', locals: {f: p} %>
             </div>
           </div>
-        <% end %>
-        <div class="row">
-          <div class="col-md-4">
-            <%= f.input :grabacion,
-              label: false %>
-            <label> Grabación de audio</label>
+          <div class="row">
+            <div class="col-md-4">
+              <%= f.input :grabacion,
+                label: false %>
+              <label> Grabación de audio</label>
+            </div>
+            <div class="col-md-4">
+              <%= f.input :parentezco,
+                collection: Sip::Trelacion.habilitados,
+                include_blank: false,
+                label_method: :nombre, 
+                value_method: :id %>
+            </div>
+            <div class="col-md-4">
+              <%= f.input :telefono %>
+            </div>
           </div>
-          <div class="col-md-4">
-            <%= f.input :parentezco,
-              collection: Sip::Trelacion.habilitados,
-              include_blank: false,
-              label_method: :nombre, 
-              value_method: :id %>
+          <div class="row">
+            <div class="col-md-4">
+              <%= f.association :tipotestigo,
+                collection: Sivel2Gen::Tipotestigo.habilitados,
+                include_blank: false,
+                label_method: :nombre, 
+                value_method: :id,
+                selected: f.object.tipotestigo ? f.object.tipotestigo.id : 1
+              %>
+            </div>
+            <div class="col-md-4">
+              <% if f.object.otrotipotestigo && f.object.tipotestigo.id == 4 %>
+                <% estipo = "display: block" %>
+              <% else %>
+                <% estipo = "display: none" %>
+              <% end %>
+              <div class="otrotipotestigo" style="<%= estipo %>">
+                <%= f.input :otrotipotestigo %>
+              </div>
+            </div>
           </div>
-          <div class="col-md-4">
-            <%= f.input :telefono %>
-          </div>
-        </div>
-      </div>
       <br>
       <a data-toggle="collapse" href='#antepreliminar'>
         <h5>ANTECEDENTES PROPORCIONADOS POR EL APORTANTE</h5>

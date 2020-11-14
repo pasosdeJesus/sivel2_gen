@@ -86,16 +86,18 @@ module Sivel2Gen
           # No confiar parametros a Internet, sólo permitir lista blanca
           def lugarpreliminar_params
             params.require(:lugarpreliminar).permit(
-            [ :id,
+            [ :codigositio,
               :fecha,
-              :codigositio,
+              :grabacion,
+              :id,
               :nombreusuario,
               :hechos,
               :organizacion,
-              :ubicacionpre_id,
+              :otrotipotestigo,
               :parentezco,
-              :grabacion,
               :telefono,
+              :tipotestigo_id,
+              :ubicacionpre_id,
               :ubicacionpre_texto,
               :ubicaespecifica,
               :persona_attributes => [

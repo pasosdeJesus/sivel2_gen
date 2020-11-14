@@ -218,6 +218,14 @@
   )
   return
 
+# Al elegir otro tipo de testigo se despliega el campo otro
+$(document).on('change', 'select[id=lugarpreliminar_tipotestigo_id]', (e) ->
+ div_otrotes = $(this).parent().parent().siblings().find($('.otrotipotestigo'))
+ if $(this).val() == '4'
+   div_otrotes.css("display", "block")
+ else
+   div_otrotes.css("display", "none")
+)
 $(document).on('focusin',
   'input[id^=lugarpreliminar_ubicacionpre_texto]', (e) -> 
    sip_busca_ubicacionpre($(this))
@@ -269,7 +277,8 @@ $(document).on('focusin',
     divcp.find('[id^=lugarpreliminar_persona_attributes][id$=_attributes_nombres]').val(e.nombres)
     divcp.find('[id^=lugarpreliminar_persona_attributes][id$=_attributes_apellidos]').val(e.apellidos)
     divcp.find('[id^=lugarpreliminar_persona_attributes][id$=_attributes_sexo]').val(e.sexo)
-    divcp.find('[id^=lugarpreliminar_persona_attributes][id$=_tdocumento]').val(e.tdocumento)
+    tdocid = divcp.find('[id^=lugarpreliminar_persona_attributes][id$=_attributes_tdocumento_id] option:contains(' + e.tdocumento + ')').val()
+    divcp.find('[id^=lugarpreliminar_persona_attributes][id$=_tdocumento_id]').val(tdocid)
     divcp.find('[id^=lugarpreliminar_persona_attributes][id$=_numerodocumento]').val(e.numerodocumento)
     divcp.find('[id^=lugarpreliminar_persona_attributes][id$=_anionac]').val(e.anionac)
     divcp.find('[id^=lugarpreliminar_persona_attributes][id$=_mesnac]').val(e.mesnac)
