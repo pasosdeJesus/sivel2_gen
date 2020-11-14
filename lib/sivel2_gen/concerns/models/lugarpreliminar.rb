@@ -17,6 +17,8 @@ module Sivel2Gen
           accepts_nested_attributes_for :persona, reject_if: :all_blank
           belongs_to :ubicacionpre, class_name: 'Sip::Ubicacionpre', 
             foreign_key: 'ubicacionpre_id', optional: true
+          belongs_to :tipotestigo, class_name: 'Sivel2Gen::Tipotestigo',
+            foreign_key: 'tipotestigo_id', optional: true
           
           attr_accessor :ubicacionpre_texto
           attr_accessor :ubicacionpre_mundep_texto

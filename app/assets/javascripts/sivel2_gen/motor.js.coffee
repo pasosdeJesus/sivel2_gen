@@ -218,6 +218,14 @@
   )
   return
 
+# Al elegir otro tipo de testigo se despliega el campo otro
+$(document).on('change', 'select[id=lugarpreliminar_tipotestigo_id]', (e) ->
+ div_otrotes = $(this).parent().parent().siblings().find($('.otrotipotestigo'))
+ if $(this).val() == '4'
+   div_otrotes.css("display", "block")
+ else
+   div_otrotes.css("display", "none")
+)
 $(document).on('focusin',
   'input[id^=lugarpreliminar_ubicacionpre_texto]', (e) -> 
    sip_busca_ubicacionpre($(this))
