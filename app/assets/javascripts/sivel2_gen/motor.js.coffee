@@ -399,26 +399,6 @@
   $("[id=" + prefIdVic + "_edadactual]").val('')
   $("[id=" + prefIdVic + "_id_rangoedad]").prop('disabled', false)
 
-# Retorna cantidad de años entre la fecha de nacimiento y
-# la fecha del hecho.
-@sivel2_gen_edadDeFechaNacFechaRef = (anionac, mesnac, dianac, anioref, mesref, diaref) ->
-  if typeof anionac == 'undefined' || anionac == ''
-    return -1
-  if typeof anioref == 'undefined' || anioref == ''
-    return -1
-
-  na = anioref - anionac
-
-  if typeof mesnac != 'undefined' && mesnac != '' && mesnac > 0 &&
-  typeof mesref != 'undefined' && mesref!= '' && mesref > 0 &&
-  mesnac >= mesref
-    if mesnac > mesref || (dianac != 'undefined' && dianac != '' && 
-    dianac > 0 && diaref != 'undefined' && diaref!= '' && 
-    diaref > 0 && dianac > diaref)
-      na--
-
-  return na;
-
 
 # Retorna cantidad de años entre la fecha de nacimiento y
 # la fecha del hecho.
@@ -427,7 +407,7 @@
   mesnac= +$("[id=" + prefId + "_mesnac]").val();
   dianac= +$("[id=" + prefId + "_dianac]").val();
   #alert("OJO edad_de_fechanac anionac=" + anionac + ", anioref=" + anioref+ ", mesnac=" + mesnac + ", mesref=" + mesref+ ", dianac=" + dianac + ", diaref=" + diaref);
-  sivel2_gen_edadDeFechaNacFechaRef(anionac, mesnac, dianac, anioref, mesref, diaref)
+  sip_gen_edadDeFechaNacFechaRef(anionac, mesnac, dianac, anioref, mesref, diaref)
 
 # Utiliza campos escondidos para calcular el rango al cual corresponde una edad
 @buscarRangoEdad = (edad) ->
