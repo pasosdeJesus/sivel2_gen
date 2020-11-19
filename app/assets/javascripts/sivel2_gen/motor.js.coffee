@@ -407,7 +407,7 @@
   mesnac= +$("[id=" + prefId + "_mesnac]").val();
   dianac= +$("[id=" + prefId + "_dianac]").val();
   #alert("OJO edad_de_fechanac anionac=" + anionac + ", anioref=" + anioref+ ", mesnac=" + mesnac + ", mesref=" + mesref+ ", dianac=" + dianac + ", diaref=" + diaref);
-  sip_gen_edadDeFechaNacFechaRef(anionac, mesnac, dianac, anioref, mesref, diaref)
+  sip_edadDeFechaNacFechaRef(anionac, mesnac, dianac, anioref, mesref, diaref)
 
 # Utiliza campos escondidos para calcular el rango al cual corresponde una edad
 @buscarRangoEdad = (edad) ->
