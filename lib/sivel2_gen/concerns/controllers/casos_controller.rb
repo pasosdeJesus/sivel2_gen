@@ -457,6 +457,11 @@ module Sivel2Gen
             render 'cuenta.json', layout: 'application', locals: {casosc: array_cuentas}
           end
 
+          # GET casos/importarrelatos
+          def importarrelatos
+            render 'importarrelatos', layout: 'application'
+          end
+
           # GET casos/mapaosm
           def mapaosm
             @fechadesde = Sip::FormatoFechaHelper.inicio_semestre(Date.today - 182)
