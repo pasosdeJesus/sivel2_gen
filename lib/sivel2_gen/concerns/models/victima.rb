@@ -304,8 +304,13 @@ module Sivel2Gen
               else
                 menserror << "En la tabla básica Profesion no existe " +
                   "'#{v['ocupacion']}'. "
-                self.id_profesion = Sivel2Gen::Profesion.where(
-                  nombre: 'SIN INFORMACIÓN').ids[0]
+                pr_sininf = Sivel2Gen::Profesion.where(
+                  "nombre LIKE '%SIN INFORMACIÓN%'")
+                if pr_sininf.count == 0
+                  menserror << "No se encuentra profesión SIN INFORMACIÓN. "
+                else
+                  self.id_profesion = pr_sininf.ids[0]
+                end
               end
             end
             if v['sector_condicion']
@@ -314,8 +319,13 @@ module Sivel2Gen
               else
                 menserror << "En la tabla básica Sector Social no existe " +
                   "'#{v['sector_condicion']}'. "
-                self.id_sectorsocial = Sivel2Gen::Sectorsocial.where(
-                  nombre: 'SIN INFORMACIÓN').ids[0]
+                ss_sininf = Sivel2Gen::Sectorsocial.where(
+                  "nombre LIKE '%SIN INFORMACIÓN%'")
+                if ss_sininf.count == 0
+                  menserror << "No se encuentra sector social SIN INFORMACIÓN. "
+                else
+                  self.id_sectorsocial = ss_sininf.ids[0]
+                end
               end
             end
             if v['iglesia']
@@ -324,8 +334,13 @@ module Sivel2Gen
               else
                 menserror << "En la tabla básica Iglesia no existe " +
                   "'#{v['iglesia']}'. "
-                self.id_iglesia= Sivel2Gen::Iglesia.where(
-                  nombre: 'SIN INFORMACIÓN').ids[0]
+                ig_sininf = Sivel2Gen::Iglesia.where(
+                  "nombre LIKE '%SIN INFORMACIÓN%'")
+                if ig_sininf.count == 0
+                  menserror << "No se encuentra iglesia SIN INFORMACIÓN. "
+                else
+                  self.id_iglesia= ig_sininf.ids[0]
+                end
               end
             end
             if v['organizacion']
@@ -334,11 +349,16 @@ module Sivel2Gen
               else
                 menserror << "En la tabla básica Organización no existe " +
                   "'#{v['organizacion']}'. "
-                self.id_organizacion = Sivel2Gen::Organizacion.where(
-                  nombre: 'SIN INFORMACIÓN').ids[0]
+                org_sininf = Sivel2Gen::Organizacion.where(
+                  "nombre LIKE '%SIN INFORMACIÓN%'")
+                if org_sininf.count == 0
+                  menserror << "No se encuentra organización SIN INFORMACIÓN. "
+                else
+                  self.id_organizacion = org_sininf.ids[0]
+                end
               end
             end
-              
+
             def recorrer_observaciones_v(ele, menserror)
               case ele[0]
               when 'filiacion'

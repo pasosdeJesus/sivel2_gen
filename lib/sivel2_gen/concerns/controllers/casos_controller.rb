@@ -897,8 +897,15 @@ module Sivel2Gen
 
           def importa
             authorize! :update, Sivel2Gen::Caso
-            file=params[:file]
-            doc = file.read
+            arc = params[:arc]
+            doc = nil
+            begin
+              doc = arc.read
+            rescue
+              flash[:error]  = "No se pudo leer archivo '#{arc}'"
+              redirect_to casos_path
+              return
+            end
             menserror = ''
             mensexito = ''
             ids_importados = ''
