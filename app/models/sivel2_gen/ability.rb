@@ -1,4 +1,3 @@
-# encoding: UTF-8
 module Sivel2Gen
   class Ability < Sip::Ability
     include CanCan::Ability
@@ -192,27 +191,27 @@ module Sivel2Gen
 
 
     # Establece autorizaciones con CanCanCan
-    def initialize_sivel2_gen(usuario = nil)
+    def self.initialize_sivel2_gen(habilidad, usuario = nil)
       # Sin autenticación puede consultarse información geográfica
-      can :read, [Sip::Pais, Sip::Departamento, Sip::Municipio, Sip::Clase]
+      habilidad.can :read, [Sip::Pais, Sip::Departamento, Sip::Municipio, Sip::Clase]
 
       # Hacer conteos
-      can :cuenta, Sivel2Gen::Caso
+      habilidad.can :cuenta, Sivel2Gen::Caso
 
       # La consulta web es publica dependiendo de
       if usuario || Rails.application.config.x.sivel2_consulta_web_publica
-        can :buscar, Sivel2Gen::Caso
-        can :contar, Sivel2Gen::Caso
-        can :lista, Sivel2Gen::Caso
+        habilidad.can :buscar, Sivel2Gen::Caso
+        habilidad.can :contar, Sivel2Gen::Caso
+        habilidad.can :lista, Sivel2Gen::Caso
 
         # API público
         # Mostrar un caso con casos/101
         # Mostrar un caso en XML - HTML con casos/101.xml
         # Mostrar un caso en XML para descarga casos/101.xrlat
-        can :show, Sivel2Gen::Caso
+        habilidad.can :show, Sivel2Gen::Caso
 
         #Mostrar hasta 4000 casos
-        can :index4000, Sivel2Gen::Caso
+        habilidad.can :index4000, Sivel2Gen::Caso
       end
 
       if !usuario || usuario.fechadeshabilitacion
@@ -221,92 +220,95 @@ module Sivel2Gen
 
       # Los siguientes son para todo autenticado
 
-      can [:read, :update], Mr519Gen::Encuestausuario
-      can :read, Sip::Actorsocial
+      habilidad.can [:read, :update], Mr519Gen::Encuestausuario
+      habilidad.can :read, Sip::Actorsocial
 
-      can :descarga_anexo, Sip::Anexo
+      habilidad.can :descarga_anexo, Sip::Anexo
 
-      can :contar, Sip::Ubicacion
-      can :nuevo, Sip::Ubicacion
+      habilidad.can :contar, Sip::Ubicacion
+      habilidad.can :nuevo, Sip::Ubicacion
 
-      can :nuevo, Sivel2Gen::Combatiente
+      habilidad.can :nuevo, Sivel2Gen::Combatiente
 
-      can :nuevo, Sivel2Gen::Presponsable
+      habilidad.can :nuevo, Sivel2Gen::Presponsable
 
-      can :nuevo, Sivel2Gen::Victima
+      habilidad.can :nuevo, Sivel2Gen::Victima
 
-      can :nuevo, Sivel2Gen::Victimacolectiva
+      habilidad.can :nuevo, Sivel2Gen::Victimacolectiva
 
-      can :index, Sivel2Gen::Caso
+      habilidad.can :index, Sivel2Gen::Caso
 
       if usuario && usuario.rol then
         case usuario.rol
         when Ability::ROLANALI
-          can :read, Heb412Gen::Doc
-          can :read, Heb412Gen::Plantilladoc
-          can :read, Heb412Gen::Plantillahcm
-          can :read, Heb412Gen::Plantillahcr
-          can :index, Sivel2Gen::Victima
+          habilidad.can :read, Heb412Gen::Doc
+          habilidad.can :read, Heb412Gen::Plantilladoc
+          habilidad.can :read, Heb412Gen::Plantillahcm
+          habilidad.can :read, Heb412Gen::Plantillahcr
+          habilidad.can :index, Sivel2Gen::Victima
 
-          can :manage, Sip::Bitacora, usuario: { id: usuario.id }
+          habilidad.can :manage, Sip::Bitacora, usuario: { id: usuario.id }
 
           if usuario.sip_grupo &&
               usuario.sip_grupo.pluck(:id).include?(GRUPO_ANALISTA_CASOS)
-            can :manage, Sip::Actorsocial
-            can :read, Sip::Bitacora
-            can :manage, Sip::Persona
+            habilidad.can :manage, Sip::Actorsocial
+            habilidad.can :read, Sip::Bitacora
+            habilidad.can :manage, Sip::Persona
 
-            can :manage, Sivel2Gen::Acto
-            can :manage, Sivel2Gen::Actocolectivo
-            can [:read, :new, :edit, :update, :create, :nuevo, :destroy], Sivel2Gen::Caso
+            habilidad.can :manage, Sivel2Gen::Acto
+            habilidad.can :manage, Sivel2Gen::Actocolectivo
+            habilidad.can [:read, :new, :edit, :update, :create, :nuevo, :destroy], Sivel2Gen::Caso
 
-            cannot :solocambiaretiquetas, Sivel2Gen::Caso
-            can :refresca, Sivel2Gen::Caso
+            habilidad.cannot :solocambiaretiquetas, Sivel2Gen::Caso
+            habilidad.can :refresca, Sivel2Gen::Caso
 
-            can :read, Sivel2Gen::Victima
+            habilidad.can :read, Sivel2Gen::Victima
           else #Suponemos que es Observador
             #if usuario.sip_grupo &&
             #usuario.sip_grupo.pluck(:id).include?(GRUPO_OBSERVADOR_CASOS)
-            can :read, Sip::Actorsocial
-            can :read, Sip::Bitacora, usuario: { id: usuario.id }
-            can :read, Sip::Persona
+            habilidad.can :read, Sip::Actorsocial
+            habilidad.can :read, Sip::Bitacora, usuario: { id: usuario.id }
+            habilidad.can :read, Sip::Persona
 
-            can :read, Sivel2Gen::Acto
-            can :read, Sivel2Gen::Actocolectivo
-            can [:read, :edit, :solocambiaretiquetas, :update], Sivel2Gen::Caso
-            cannot [:new, :create], Sivel2Gen::Caso
-            can :read, Sivel2Gen::Victima
+            habilidad.can :read, Sivel2Gen::Acto
+            habilidad.can :read, Sivel2Gen::Actocolectivo
+            habilidad.can [:read, :edit, :solocambiaretiquetas, :update], Sivel2Gen::Caso
+            habilidad.cannot [:new, :create], Sivel2Gen::Caso
+            habilidad.can :read, Sivel2Gen::Victima
           end
         when Ability::ROLADMIN
-          can :manage, Heb412Gen::Doc
-          can :manage, Heb412Gen::Plantilladoc
-          can :manage, Heb412Gen::Plantillahcm
-          can :manage, Heb412Gen::Plantillahcr
+          habilidad.can :manage, Heb412Gen::Doc
+          habilidad.can :manage, Heb412Gen::Plantilladoc
+          habilidad.can :manage, Heb412Gen::Plantillahcm
+          habilidad.can :manage, Heb412Gen::Plantillahcr
 
-          can :manage, Mr519Gen::Formulario
-          can :manage, Mr519Gen::Encuestausuario 
+          habilidad.can :manage, Mr519Gen::Formulario
+          habilidad.can :manage, Mr519Gen::Encuestausuario 
 
-          can :manage, Sip::Actorsocial
-          can :manage, Sip::Bitacora
-          can :manage, Sip::Persona
-          can :manage, Sip::Respaldo7z
+          habilidad.can :manage, Sip::Actorsocial
+          habilidad.can :manage, Sip::Bitacora
+          habilidad.can :manage, Sip::Persona
+          habilidad.can :manage, Sip::Respaldo7z
 
-          can :manage, Sivel2Gen::Acto
-          can :manage, Sivel2Gen::Actocolectivo
-          can :manage, Sivel2Gen::Caso
-          cannot :solocambiaretiquetas, Sivel2Gen::Caso
-          can :read, Sivel2Gen::Victima
+          habilidad.can :manage, Sivel2Gen::Acto
+          habilidad.can :manage, Sivel2Gen::Actocolectivo
+          habilidad.can :manage, Sivel2Gen::Caso
+          habilidad.cannot :solocambiaretiquetas, Sivel2Gen::Caso
+          habilidad.can :read, Sivel2Gen::Victima
 
-          can :manage, Usuario
-          can :manage, :tablasbasicas
-          tablasbasicas.each do |t|
+          habilidad.can :manage, Usuario
+          habilidad.can :manage, :tablasbasicas
+          habilidad.tablasbasicas.each do |t|
             c = Ability.tb_clase(t)
-            can :manage, c
+            habilidad.can :manage, c
           end
         end # case
       end # if
     end # def initialize_sivel2_gen
 
+    def initialize_sivel2_gen(usuario = nil)
+      Sivel2Gen::Ability.initialize_sivel2_gen(self, usuario)
+    end
 
   end # class
 end   # module
