@@ -8,6 +8,17 @@ var mapa;
 var baldosasOsm;
 var controlCapas;
 
+function agregarFuncionesExternasMapaosm(){
+  return null
+}
+
+function leerCapasSuperpuestas(){
+  var capasSuperpuestas= {
+    "Transporte (OpenPtmap)" : L.tileLayer('http://www.openptmap.org/tiles/{z}/{x}/{y}.png'),
+  };
+  return capasSuperpuestas
+}
+
 function presentarMapaOsm() {
   // Borrar clase container y ocultar pie de página
   $('.navbar').addClass('navbarosm');
@@ -42,12 +53,13 @@ function presentarMapaOsm() {
     "Oscuro (CartoDB)" : L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png')
 
   };
-  var capasSuperpuestas= {
-    "Transporte (OpenPtmap)" : L.tileLayer('http://www.openptmap.org/tiles/{z}/{x}/{y}.png'),
-  };
-  controlCapas = L.control.layers(capasBase, capasSuperpuestas, 
+  
+  controlCapas = L.control.layers(capasBase, leerCapasSuperpuestas(), 
     {position: 'topleft'});
 
+  //carga  funciones externas implementadas en otras aplicacion que usan este
+  //mapa
+  agregarFuncionesExternasMapaosm()
 
   if (L.DomUtil.get('agrega-capa') != null && 
     L.DomUtil.get('descarga-capa') != null) {
@@ -83,7 +95,7 @@ function presentarMapaOsm() {
   }
 
   L.control.scale({imperial: false}).addTo(mapa);
-
+  
   //Crea los cúmulos de casos y agrega casos
   marcadores = L.markerClusterGroup(); 
   window.setTimeout(agregarCasosOsm, 0);
