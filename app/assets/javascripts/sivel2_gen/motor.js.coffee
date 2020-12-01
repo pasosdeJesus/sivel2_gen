@@ -923,7 +923,6 @@ enviaFormularioContar= (root) ->
     div_fini = $('.usuario_observadorffechaini')
     div_ffin = $('.usuario_observadorffechafin')
     div_fdep = $('.usuario_filtrodepartamento')
-    debugger
     if ($(this).val().includes('22'))
       div_fini.css("display", "block")
       div_ffin.css("display", "block")
