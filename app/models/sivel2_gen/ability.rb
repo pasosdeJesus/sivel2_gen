@@ -8,13 +8,30 @@ module Sivel2Gen
     #ROLCOOR   = 4
     ROLOPERADOR = 5
     #ROLSIST   = 6
-    ROLCONSULTA = 7
+    #ROLCONSULTA = 7
 
     ROLES = Sip::Ability::ROLES
 
     GRUPO_ANALISTA_CASOS = 20
     GRUPO_OBSERVADOR_CASOS = 21
+    GRUPO_OBSERVADOR_PARTE_CASOS = 22
 
+
+    ROLES_CA = [
+      "Administrar casos, personas, organizaciones sociales " +
+      "Administrar plantillas, formularios y encuestas. " +
+      "Crear copias de respaldo cifradas y ver bitácoras. " +
+      "Administrar usuarios y tablas básicas. ", #1
+      "", #2
+      "", #3
+      "", #4
+      "Puede ver reportes, conteos y generar plantillas. "+
+      "Si es del grupo ANALISTA puede administrar organizaciones sociales, personas y caso. " +
+      "O de lo contrario si es del grupo OBSERVADOR podrá consultar toda la información pero sólo podrá cambiar etiquetas de casos. ", #5
+      "O de lo contrario si es del grupo OBSERVADOR DE PARTE podrá consultar la información sólo de algunos casos resultantes de un filtro particular.", #5
+      "", #6
+      "" #7
+    ]
 
     BASICAS_PROPIAS = [
       ['Sivel2Gen', 'actividadoficio'],

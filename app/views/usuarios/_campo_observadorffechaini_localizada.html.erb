@@ -1,0 +1,9 @@
+<% if f.object.sip_grupo_ids.include?(Ability::GRUPO_OBSERVADOR_PARTE_CASOS) %>
+  <% estipo = "display: block" %>
+<% else %>
+  <% estipo = "display: none" %>
+<% end %>
+<%= f.input :observadorffechaini, 
+  :input_html => { "data-behaviour" => "datepicker" },
+  :wrapper_html => { "style" => estipo },
+  :as => :string %>

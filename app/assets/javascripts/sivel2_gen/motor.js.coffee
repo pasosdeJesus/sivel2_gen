@@ -916,6 +916,25 @@ enviaFormularioContar= (root) ->
   )
 
 
+  # En formulario usuario, cambia visibilidad de filtro para casos
+  # dependiendo de si el grupo incluye 
+  # 22 - Observador de parte de los casos
+  $(document).on('change', 'select[id=usuario_sip_grupo_ids]', (e) ->
+    div_fini = $('.usuario_observadorffechaini')
+    div_ffin = $('.usuario_observadorffechafin')
+    div_fdep = $('.usuario_filtrodepartamento')
+    debugger
+    if ($(this).val().includes('22'))
+      div_fini.css("display", "block")
+      div_ffin.css("display", "block")
+      div_fdep.css("display", "block")
+    else 
+      div_fini.css("display", "none")
+      div_ffin.css("display", "none")
+      div_fdep.css("display", "none")
+  )
+
+
   # Deshabilitar parte para obligar a completar partes para continuar
   # http://stackoverflow.com/questions/16777003/what-is-the-easiest-way-to-disable-enable-buttons-and-links-jquery-bootstrap
   #$('body').on('click', 'a.disabled', (e) -> 

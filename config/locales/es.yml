@@ -211,12 +211,18 @@ es:
         Tviolencia: Tipo de Violencia
         Tviolencias: Tipos de Violencia
         nomcorto: Nombre Corto
-      "sivel2_gen/usuario":
-        nusuario: Usuario
-        regionsjr: Oficina
+      "usuario":
+        created_at: Fecha Registro
         descripcion: Descripción
         encrypted_password: Clave
-        created_at: Fecha Registro
+        nusuario: Usuario
+        observadorffechaini: Fecha inicial para filtrar como observador
+        observadorffechaini_localizada: Fecha inicial para filtrar como observador
+        observadorffechafin: Fecha final para filtrar como observador
+        observadorffechafin_localizada: Fecha final para filtrar como observador
+        filtrodepartamento_ids: Departamentos para filtrar como observador
+        filtrodepartamento: Departamentos para filtrar como observador
+        regionsjr: Oficina
       "sivel2_gen/vinculoestado":
         Vinculoestado: Vínculo con el Estado
         Vinculosestado: Vínculos con el Estado
