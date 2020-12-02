@@ -790,7 +790,24 @@ module Sivel2Gen
               authorize! :read, Sivel2Gen::Caso
             end
 
-            @caso = @registro = clase.constantize.find(params[:id])
+            if (!params[:id] || params[:id].to_i <= 0 || 
+                clase.constantize.where(id: params[:id].to_i)==0)
+              merr = "No existe caso con id #{params[:id].to_i}"
+              respond_to do |format|
+                format.html {
+                  render(inline: merr, 
+                         status: :unprocessable_entity, 
+                         layout: 'application')
+                }
+                format.json {
+                  render json: merr, status: :unprocessable_entity
+                }
+              end
+              return
+            end
+
+
+              @caso = @registro = clase.constantize.find(params[:id].to_i)
             if @registro.respond_to?('current_usuario=')
               @registro.current_usuario = current_usuario
             end
@@ -941,8 +958,8 @@ module Sivel2Gen
           def set_caso
             if params[:id] && params[:id].to_i > 0
               @registro = @caso = Caso.find(params[:id].to_i)
+              @caso.current_usuario = current_usuario
             end
-            @caso.current_usuario = current_usuario
           end
 
           def lista_params
