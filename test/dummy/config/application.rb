@@ -36,7 +36,9 @@ module Dummy
       idletime: 600.seconds
 
     config.x.heb412_ruta = Rails.root.join('public', 'heb412')
-    config.x.sivel2_consulta_web_publica = true
+    config.x.sivel2_consulta_web_publica = false 
+      # esto en true estaria
+      # en conflicto con observador de parte de los casos
 
     config.relative_url_root = '/sivel2'
     config.assets.prefix = '/sivel2/assets/'

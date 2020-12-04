@@ -208,9 +208,10 @@ module Sivel2Gen
             @campoord = campoord_inicial
             @conscaso = Sivel2Gen::Conscaso.all
 
-            @concaso = @conscaso.accessible_by(current_ability)
+            casos = Sivel2Gen::Caso.accessible_by(current_ability)
+            @conscaso = @conscaso.where(caso_id: casos.map(&:id))
             @conscaso = filtrar_ca(@conscaso)
-
+            @conscasocount = @conscaso.count
             inicializa_index
 
             # Filtro
@@ -807,11 +808,11 @@ module Sivel2Gen
             end
 
 
-              @caso = @registro = clase.constantize.find(params[:id].to_i)
+            @caso = @registro = clase.constantize.find(params[:id].to_i)
             if @registro.respond_to?('current_usuario=')
               @registro.current_usuario = current_usuario
             end
-            if cannot?(:show, Sivel2Gen::Caso) && cannot?(:show, @registro)
+            if cannot?(:show, Sivel2Gen::Caso) || cannot?(:show, @registro)
               # Supone alias por omision de https://github.com/CanCanCommunity/cancancan/blob/develop/lib/cancan/ability/actions.rb
               authorize! :read, @registro
               return

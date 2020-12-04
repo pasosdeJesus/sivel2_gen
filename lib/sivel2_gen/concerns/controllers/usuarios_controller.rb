@@ -56,6 +56,7 @@ module Sivel2Gen
               :unlock_token,
               :locked_at
             ]
+            r
           end
 
           def atributos_show

@@ -216,7 +216,7 @@ module Sivel2Gen
       habilidad.can :cuenta, Sivel2Gen::Caso
 
       # La consulta web es publica dependiendo de
-      if usuario || Rails.application.config.x.sivel2_consulta_web_publica
+      if Rails.application.config.x.sivel2_consulta_web_publica
         habilidad.can :buscar, Sivel2Gen::Caso
         habilidad.can :contar, Sivel2Gen::Caso
         habilidad.can :lista, Sivel2Gen::Caso
@@ -237,6 +237,10 @@ module Sivel2Gen
 
       # Los siguientes son para todo autenticado
 
+      habilidad.can :buscar, Sivel2Gen::Caso
+      habilidad.can :contar, Sivel2Gen::Caso
+      habilidad.can :lista, Sivel2Gen::Caso
+
       habilidad.can [:read, :update], Mr519Gen::Encuestausuario
       habilidad.can :read, Sip::Actorsocial
 
@@ -252,8 +256,6 @@ module Sivel2Gen
       habilidad.can :nuevo, Sivel2Gen::Victima
 
       habilidad.can :nuevo, Sivel2Gen::Victimacolectiva
-
-      habilidad.can :index, Sivel2Gen::Caso
 
       if usuario && usuario.rol then
         case usuario.rol
@@ -280,18 +282,42 @@ module Sivel2Gen
             habilidad.can :refresca, Sivel2Gen::Caso
 
             habilidad.can :read, Sivel2Gen::Victima
-          else #Suponemos que es Observador
-            #if usuario.sip_grupo &&
-            #usuario.sip_grupo.pluck(:id).include?(GRUPO_OBSERVADOR_CASOS)
+          else
             habilidad.can :read, Sip::Actorsocial
             habilidad.can :read, Sip::Bitacora, usuario: { id: usuario.id }
             habilidad.can :read, Sip::Persona
 
             habilidad.can :read, Sivel2Gen::Acto
             habilidad.can :read, Sivel2Gen::Actocolectivo
-            habilidad.can [:read, :edit, :solocambiaretiquetas, :update], Sivel2Gen::Caso
             habilidad.cannot [:new, :create], Sivel2Gen::Caso
             habilidad.can :read, Sivel2Gen::Victima
+
+            if usuario.sip_grupo &&
+                usuario.sip_grupo.pluck(:id).
+                include?(GRUPO_OBSERVADOR_PARTE_CASOS)
+              dicc_filtro = {}
+              if usuario.filtrodepartamento_ids.count > 0
+                #cfilt_ids = Sip::Ubicacion.where(id_pais: 170).
+                #  where(id_departamento: usuario.filtrodepartamento_ids).
+                #  map(&:id_caso)
+                dicc_filtro[:ubicacion]={id_departamento: usuario.filtrodepartamento_ids}
+                #dicc_filtro[:id] = cfilt_ids
+              end
+              fini = Sivel2Gen::Caso.all.minimum(:fecha) ?
+                Sivel2Gen::Caso.all.minimum(:fecha).to_s : '1970-01-01'
+              if usuario.observadorffechaini
+                fini = usuario.observadorffechaini
+              end
+              ffin = Date.today().to_s
+              if usuario.observadorffechafin
+                ffin = usuario.observadorffechafin
+              end
+              dicc_filtro[:fecha]=(fini..ffin)
+              habilidad.can [:show, :read], Sivel2Gen::Caso, dicc_filtro
+            else #Suponemos que es Observador de todo
+              habilidad.can [:read, :edit, :solocambiaretiquetas, :update], 
+                Sivel2Gen::Caso
+            end
           end
         when Ability::ROLADMIN
           habilidad.can :manage, Heb412Gen::Doc
