@@ -225,7 +225,7 @@ module Sivel2Gen
         # Mostrar un caso con casos/101
         # Mostrar un caso en XML - HTML con casos/101.xml
         # Mostrar un caso en XML para descarga casos/101.xrlat
-        habilidad.can :show, Sivel2Gen::Caso
+        habilidad.can [:read,:show], Sivel2Gen::Caso
 
         #Mostrar hasta 4000 casos
         habilidad.can :index4000, Sivel2Gen::Caso

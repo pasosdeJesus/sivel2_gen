@@ -230,17 +230,8 @@ module Sivel2Gen
 
         module ClassMethods
 
-          # Retorna '' sii puede refrescar o crear sivel2_gen_conscaso
-          # en otro caso retorna cadena con problema o razón por la que
-          # no refresca
-          def refresca_conscaso
-            if ARGV.include?("db:migrate")
-              return 'Ejecutando migración'
-            end
-            if !ActiveRecord::Base.connection.data_source_exists? 'sivel2_gen_conscaso'
-              ActiveRecord::Base.connection.execute("CREATE OR REPLACE 
-        VIEW sivel2_gen_conscaso1 AS
-        SELECT caso.id as caso_id, caso.fecha, caso.memo, 
+          def consulta_base_sivel2_gen
+            "SELECT caso.id as caso_id, caso.fecha, caso.memo, 
         ARRAY_TO_STRING(ARRAY(SELECT COALESCE(departamento.nombre, '') ||  
         ' / ' || COALESCE(municipio.nombre, '')
         FROM public.sip_ubicacion AS ubicacion 
@@ -271,7 +262,23 @@ module Sivel2Gen
           AND supracategoria.id=categoria.supracategoria_id
           AND acto.id_caso=caso.id), ', ')
         AS tipificacion
-        FROM public.sivel2_gen_caso AS caso;")
+        FROM public.sivel2_gen_caso AS caso"
+          end
+          
+          def consulta_base
+            consulta_base_sivel2_gen
+          end
+
+          # Retorna '' sii puede refrescar o crear sivel2_gen_conscaso
+          # en otro caso retorna cadena con problema o razón por la que
+          # no refresca
+          def refresca_conscaso
+            if ARGV.include?("db:migrate")
+              return 'Ejecutando migración'
+            end
+            if !ActiveRecord::Base.connection.data_source_exists? 'sivel2_gen_conscaso'
+              ActiveRecord::Base.connection.execute("CREATE OR REPLACE 
+        VIEW sivel2_gen_conscaso1 AS #{consulta_base};")
               ActiveRecord::Base.connection.execute(
                 "CREATE MATERIALIZED VIEW sivel2_gen_conscaso AS
         SELECT caso_id, fecha, memo, ubicaciones, victimas, 
