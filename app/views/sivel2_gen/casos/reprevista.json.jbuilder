@@ -20,11 +20,13 @@ if params && params[:filtro]
     sol << :memo
   end
 end
-r = @conscaso.joins('JOIN sivel2_gen_caso ON sivel2_gen_caso.id=caso_id ' +
+cons = @conscaso.joins('JOIN sivel2_gen_caso ON sivel2_gen_caso.id=caso_id ' +
     'LEFT JOIN sip_ubicacion ON sip_ubicacion.id=ubicacion_id ' +
     'LEFT JOIN sip_departamento ON sip_departamento.id=sip_ubicacion.id_departamento ' +
     'LEFT JOIN sip_municipio ON sip_municipio.id=sip_ubicacion.id_municipio '
-    ).pluck(sol).map {|l|
+    )
+pl = cons.pluck(*sol)
+r = pl.map {|l|
       h = {}
       if params && params[:filtro]
         p = 1
