@@ -24,6 +24,8 @@ gem 'libxml-ruby' # Genera ODS
 
 gem 'odf-report' # Genera ODT
 
+gem 'nokogiri', '>=1.11.0.rc4'
+
 gem 'paperclip'# Maneja adjuntos
 
 gem 'pg' # Postgresql
@@ -80,8 +82,6 @@ group :development do
   
   gem 'compare-xml', '~> 0.5.2' # para validar xml
 
-  gem 'nokogiri', '~> 1.6', '>= 1.6.8'
-  
   gem 'rails-erd' # Para generar modelo entidad asociación 
 
   gem "thor" # Requerido por rake
