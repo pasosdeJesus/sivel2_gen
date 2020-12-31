@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/pasosdeJesus/heb412_gen.git
-  revision: e4b1992c7cf1dd44bf2558afdc90d550d88afe29
+  revision: 1d2e5fd0d27ec9c40908158fd40d7b34714905e8
   specs:
     heb412_gen (1.0.b6)
       mr519_gen
@@ -10,7 +10,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/mr519_gen.git
-  revision: 473def9e234085d868ae867fee685cd9b383b8cf
+  revision: 7ff144a994ab632c10640ea3b3645b9507e2ff5b
   specs:
     mr519_gen (0.2.0)
       rails
@@ -18,7 +18,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sip.git
-  revision: a77f2e3b03edb45a9e3b46727c4ee131d41bdd44
+  revision: 2077a936cb53302edcaaac778636145bc01bdce6
   specs:
     sip (2.0.b10)
       cancancan
@@ -109,7 +109,7 @@ GEM
       msgpack (~> 1.0)
     builder (3.2.4)
     camertron-eprun (1.1.1)
-    cancancan (3.2.0)
+    cancancan (3.2.1)
     choice (0.2.0)
     chosen-rails (1.9.0)
       coffee-rails (>= 3.2)
@@ -276,7 +276,7 @@ GEM
       climate_control (>= 0.0.3, < 1.0)
     thor (1.0.1)
     tilt (2.0.10)
-    ttfunk (1.6.2.1)
+    ttfunk (1.7.0)
     twitter_cldr (6.4.0)
       camertron-eprun
       cldr-plurals-runtime-rb (~> 1.1)
