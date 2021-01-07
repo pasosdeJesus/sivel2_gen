@@ -26,10 +26,8 @@ module Sivel2Gen
 
   end
 
-  class << self
-    mattr_accessor :titulo
-    self.titulo = "Motor de SIVeL genérico " 
-  end
+  self.mattr_accessor :titulo
+  self.titulo = "Motor de SIVeL genérico " 
 
   def self.setup(&block)
     yield self

@@ -23,7 +23,7 @@ module Sivel2Gen
           validates_presence_of :fecha
           validates_presence_of :caso
           validates_presence_of :fuenteprensa
-          validates :ubicacion, length: { maximum: 100 } 
+          validates :ubicacion, length: { maximum: 1024} 
           validates :clasificacion, length: { maximum: 100 } 
           validates :ubicacionfisica, length: { maximum: 1024 } 
 
