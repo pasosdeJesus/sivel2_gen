@@ -1,4 +1,4 @@
-class AumentaAnotacionOtrasfuentes < ActiveRecord::Migration[6.1]
+class AumentaAnotacionOtrasfuentes < ActiveRecord::Migration[6.0]
   def up
     execute <<-SQL
       ALTER TABLE sivel2_gen_caso_fotra
