@@ -22,7 +22,7 @@ json.caso do
   end
   json.victimas do
     @caso.victima.each do |v|
-      json.set! v.persona.id, v.persona.nombres + ' ' + v.persona.apellidos
+      json.set! v.persona.id, v.persona.nombres + ' ' + v.persona.apellidos if v.persona
     end
   end
 end
