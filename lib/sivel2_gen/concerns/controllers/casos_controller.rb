@@ -189,7 +189,7 @@ module Sivel2Gen
           # GET /casos
           # GET /casos.json
           def index
-            if !Rails.application.config.x.sivel2_consulta_web_publica
+            if !Rails.configuration.x.sivel2_consulta_web_publica
               authorize! :index, Sivel2Gen::Caso
             end
             begin
@@ -297,27 +297,36 @@ module Sivel2Gen
             end
             @consexpcaso = Consexpcaso.all
             @registros = @consexpcaso
+            byebug
             programa_generacion_listado(params, formato, :caso_id)
           end
 
           def error_plantilla_no_autenticado
-            redirect_back fallback_location: config.relative_url_root,
-            flash: { error:
-            'La generación de este reporte permite máximo 2000 registros.' +
-            ' Puede suscribirse a SIVeL Pro si requiere más' }
+            redirect_back fallback_location: Rails.configuration.relative_url_root, flash:{ 
+              error: "La generación de este reporte permite máximo "\
+              "#{Rails.configuration.x.sivel2_consweb_max.to_s}"\
+              "registros. "\
+              "#{Rails.configuration.x.sivel2_consweb_epilogo}".html_safe
+            }
           end
 
           def presenta_index
             # Presentación
             respond_to do |format|
-              if @conscaso.count <= 2000 || current_usuario
+              if @conscaso.count <= Rails.configuration.x.sivel2_consweb_max ||
+                  current_usuario
                 format.ods {
                   gen_formato('.ods')
                   return
                 }
-                if request.format.symbol == 'ods'.to_sym
-                  # No funciona el anterior
-                  gen_formato('.ods')
+                format.xlsx{
+                  gen_formato('.xlsx')
+                  return
+                }
+                if request.format.symbol == :ods || 
+                    request.format.symbol == :xlsx
+                  # En caso de que no funcionen anteriores
+                  gen_formato(".#{request.format.symbol.to_s}")
                   return
                 end
                 format.html {
@@ -329,7 +338,7 @@ module Sivel2Gen
                       render params['idplantilla'], layout: nil
                     else
                       redirect_back fallback_location:
-                        config.relative_url_root,
+                        Rails.configuration.relative_url_root,
                         flash: { error: "Plantilla desconocida" }
                     end
                   else
@@ -787,7 +796,7 @@ module Sivel2Gen
 
           # Despliega detalle de un registro
           def show_sivel2_gen
-            if !Rails.application.config.x.sivel2_consulta_web_publica
+            if !Rails.configuration.x.sivel2_consulta_web_publica
               authorize! :read, Sivel2Gen::Caso
             end
 
