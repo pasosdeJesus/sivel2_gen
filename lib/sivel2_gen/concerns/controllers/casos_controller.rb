@@ -297,7 +297,6 @@ module Sivel2Gen
             end
             @consexpcaso = Consexpcaso.all
             @registros = @consexpcaso
-            byebug
             programa_generacion_listado(params, formato, :caso_id)
           end
 
