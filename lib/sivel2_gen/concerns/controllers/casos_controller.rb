@@ -303,17 +303,19 @@ module Sivel2Gen
           def error_plantilla_no_autenticado
             redirect_back fallback_location: Rails.configuration.relative_url_root, flash:{ 
               error: "La generación de este reporte permite máximo "\
-              "#{Rails.configuration.x.sivel2_consweb_max.to_s}"\
-              "registros. "\
-              "#{Rails.configuration.x.sivel2_consweb_epilogo}".html_safe
+              "#{Rails.configuration.x.sivel2_consweb_max ?
+              Rails.configuration.x.sivel2_consweb_max.to_s : '0' }"\
+              " registros. "\
+              " #{Rails.configuration.x.sivel2_consweb_epilogo ? 
+              Rails.configuration.x.sivel2_consweb_epilogo : ''}".html_safe
             }
           end
 
           def presenta_index
             # Presentación
             respond_to do |format|
-              if @conscaso.count <= Rails.configuration.x.sivel2_consweb_max ||
-                  current_usuario
+              if current_usuario || (Rails.configuration.x.sivel2_consweb_max &&
+                  @conscaso.count <= Rails.configuration.x.sivel2_consweb_max)
                 format.ods {
                   gen_formato('.ods')
                   return

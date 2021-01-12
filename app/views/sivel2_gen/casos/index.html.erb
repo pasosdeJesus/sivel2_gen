@@ -53,17 +53,23 @@
   <%if current_usuario %>
     <%= render 'index_tabla' %>
   <% else %>
-    <% if @conscaso.count <= Rails.configuration.x.sivel2_consweb_max %>
+    <% if Rails.configuration.x.sivel2_consweb_max && 
+        @conscaso.count <= Rails.configuration.x.sivel2_consweb_max %>
       <%= render 'index_tabla' %>
     <% else %>
       <div class="alert alert-danger">
         <h4><strong>
             La consulta pública permite máximo 
-            <%= Rails.configuration.x.sivel2_consweb_max %> registros.
+            <%= Rails.configuration.x.sivel2_consweb_max ? 
+              Rails.configuration.x.sivel2_consweb_max : 0 %> 
+            registros.
           </strong></h4>
-        <p>Puede usar el filtro de búsqueda avanzada para obtener menos registros
-        <%= Rails.configuration.x.sivel2_consweb_epilogo %>
-        </p>
+          <p>
+          Puede usar el filtro de búsqueda avanzada para obtener menos 
+          registros
+          <%= Rails.configuration.x.sivel2_consweb_epilogo ? 
+            Rails.configuration.x.sivel2_consweb_epilogo : '' %>
+          </p>
       </div>
     <% end %>
   <% end %>
