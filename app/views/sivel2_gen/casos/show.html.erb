@@ -1,7 +1,13 @@
 <div>
   <% if current_usuario %>
     <%= render :partial => 'reportegeneral', locals: {caso: @caso} %>
-    <%= render :partial => 'show_registros_bitacora', locals: {caso: @caso} %>
+
+    <% if  controller.registrar_en_bitacora %>
+      <div class="bitacora">
+        <%= render partial: 'resumen_registros_bitacora' %>
+      </div>
+    <% end %>
+
   <% else %>
     <%= render :partial => 'reporterevista', locals: {caso: @caso} %>
   <% end %>
