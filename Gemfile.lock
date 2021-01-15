@@ -18,7 +18,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sip.git
-  revision: 1fcf818f91196fcd6944067b963a032f5f5de444
+  revision: 0cc73576129e5ca5b9bf49755c73f0980c21616a
   specs:
     sip (2.0.b10)
       cancancan
@@ -133,7 +133,7 @@ GEM
       warden (~> 1.2.3)
     devise-i18n (1.9.2)
       devise (>= 4.7.1)
-    docile (1.3.4)
+    docile (1.3.5)
     erubi (1.10.0)
     execjs (2.7.0)
     ffi (1.14.2)
@@ -147,7 +147,7 @@ GEM
       railties (>= 3.2.16)
     json (2.5.1)
     libxml-ruby (3.2.1)
-    loofah (2.8.0)
+    loofah (2.9.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
     mail (2.7.1)
