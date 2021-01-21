@@ -7,8 +7,12 @@ module Sivel2Gen
         extend ActiveSupport::Concern
 
         included do
-          belongs_to :conscaso, class_name: 'Sivel2Gen::Conscaso'
-
+          belongs_to :conscaso, class_name: 'Sivel2Gen::Conscaso',
+            primary_key: 'caso_id', foreign_key: 'caso_id'
+          
+          belongs_to :caso, class_name: 'Sivel2Gen::Caso',
+            primary_key: 'id'
+          
           has_many :ubicacion, through: :caso,
             class_name: 'Sip::Ubicacion'
 
