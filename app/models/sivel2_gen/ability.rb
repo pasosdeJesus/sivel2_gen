@@ -3,12 +3,7 @@ module Sivel2Gen
     include CanCan::Ability
 
     ROLADMIN  = 1
-    #ROLINV    = 2
-    #ROLDIR    = 3
-    #ROLCOOR   = 4
     ROLOPERADOR = 5
-    #ROLSIST   = 6
-    #ROLCONSULTA = 7
 
     ROLES = Sip::Ability::ROLES
 
@@ -300,7 +295,9 @@ module Sivel2Gen
                 #cfilt_ids = Sip::Ubicacion.where(id_pais: 170).
                 #  where(id_departamento: usuario.filtrodepartamento_ids).
                 #  map(&:id_caso)
-                dicc_filtro[:ubicacion]={id_departamento: usuario.filtrodepartamento_ids}
+                dicc_filtro[:ubicacion]={ 
+                  id_departamento: usuario.filtrodepartamento_ids
+                }
                 #dicc_filtro[:id] = cfilt_ids
               end
               fini = Sivel2Gen::Caso.all.minimum(:fecha) ?

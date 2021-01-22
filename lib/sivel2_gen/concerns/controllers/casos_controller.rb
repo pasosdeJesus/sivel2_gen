@@ -475,8 +475,14 @@ module Sivel2Gen
 
           # GET casos/mapaosm
           def mapaosm
-            @fechadesde = Sip::FormatoFechaHelper.inicio_semestre(Date.today - 182)
-            @fechahasta = Sip::FormatoFechaHelper.fin_semestre(Date.today - 182)
+            diasatras = Rails.configuration.x.sivel2_mapaosm_diasatras ?
+              Rails.configuration.x.sivel2_mapaosm_diasatras : 182
+            puts "OJO diasatras=#{diasatras}"
+
+            @fechadesde = Sip::FormatoFechaHelper.inicio_semestre(Date.today -
+                                                                  diasatras)
+            @fechahasta = Sip::FormatoFechaHelper.fin_semestre(Date.today -
+                                                               diasatras)
             render 'mapaosm', layout: 'application'
           end
 
