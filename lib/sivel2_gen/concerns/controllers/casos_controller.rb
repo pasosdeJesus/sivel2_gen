@@ -213,7 +213,7 @@ module Sivel2Gen
             # de casos --Una consulta de 35.000 casos pasa de 3s a 28s.
             #casos = Sivel2Gen::Caso.accessible_by(current_ability)
             #@conscaso = @conscaso.where(caso_id: casos.map(&:id))
-            @conscaso = @conscaso.accessible_by(current_ability)
+            #@conscaso = @conscaso.accessible_by(current_ability)
 
             @conscaso = filtrar_ca(@conscaso)
             @conscasocount = @conscaso.count
