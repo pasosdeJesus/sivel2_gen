@@ -208,8 +208,13 @@ module Sivel2Gen
             @campoord = campoord_inicial
             @conscaso = Sivel2Gen::Conscaso.all
 
-            casos = Sivel2Gen::Caso.accessible_by(current_ability)
-            @conscaso = @conscaso.where(caso_id: casos.map(&:id))
+            # Las 2 siguientes se agregaron para evaluar OBSERVADOR_PARTE
+            # pero hacen demasiado ineficiente la consulta del listado
+            # de casos --Una consulta de 35.000 casos pasa de 3s a 28s.
+            #casos = Sivel2Gen::Caso.accessible_by(current_ability)
+            #@conscaso = @conscaso.where(caso_id: casos.map(&:id))
+            @conscaso = @conscaso.accessible_by(current_ability)
+
             @conscaso = filtrar_ca(@conscaso)
             @conscasocount = @conscaso.count
             inicializa_index
