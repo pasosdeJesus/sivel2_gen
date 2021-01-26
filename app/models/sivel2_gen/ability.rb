@@ -211,7 +211,7 @@ module Sivel2Gen
       habilidad.can :cuenta, Sivel2Gen::Caso
 
       # La consulta web es publica dependiendo de
-      if Rails.application.config.x.sivel2_consulta_web_publica
+      if !usuario && Rails.application.config.x.sivel2_consulta_web_publica
         habilidad.can :buscar, Sivel2Gen::Caso
         habilidad.can :contar, Sivel2Gen::Caso
         habilidad.can :lista, Sivel2Gen::Caso
@@ -222,7 +222,7 @@ module Sivel2Gen
         # Mostrar un caso en XML para descarga casos/101.xrlat
         habilidad.can [:read,:show], Sivel2Gen::Caso
 
-        #Mostrar hasta 4000 casos
+        #Mostrar registros limitados
         habilidad.can :index4000, Sivel2Gen::Caso
       end
 
@@ -301,11 +301,11 @@ module Sivel2Gen
                 #dicc_filtro[:id] = cfilt_ids
               end
               fini = Sivel2Gen::Caso.all.minimum(:fecha) ?
-                Sivel2Gen::Caso.all.minimum(:fecha).to_s : '1970-01-01'
+                Sivel2Gen::Caso.all.minimum(:fecha) : Date.new(1970,01,01)
               if usuario.observadorffechaini
                 fini = usuario.observadorffechaini
               end
-              ffin = Date.today().to_s
+              ffin = Date.today()
               if usuario.observadorffechafin
                 ffin = usuario.observadorffechafin
               end
