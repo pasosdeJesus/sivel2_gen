@@ -482,6 +482,10 @@ module Sivel2Gen
 
           # GET casos/mapaosm
           def mapaosm
+            if !Rails.configuration.x.sivel2_consulta_web_publica
+              authorize! :index, Sivel2Gen::Caso
+            end
+
             diasatras = Rails.configuration.x.sivel2_mapaosm_diasatras.to_i ?
               Rails.configuration.x.sivel2_mapaosm_diasatras : 182
             puts "OJO diasatras=#{diasatras}"
