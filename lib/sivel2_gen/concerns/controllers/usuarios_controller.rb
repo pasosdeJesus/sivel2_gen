@@ -24,7 +24,6 @@ module Sivel2Gen
               r += [:sip_grupo]
             end
             r += [
-              :email,
               :tema,
               :created_at_localizada,
               :habilitado
