@@ -66,7 +66,8 @@
                 <select name="tvio" class="seleccion-mapa-osm form-control" id="tvio" style="width:150px;">
                   <option value="0">Mostrar todos</option>
                   <option value="">-----------------------</option>
-                  <%= options_for_select(Sivel2Gen::Categoria.all.collect { |d| [d.nombre, d.id ] })%>
+                  <%= options_for_select(Sivel2Gen::Categoria.all.collect { |d|
+                    [d.presenta_con_codigo, d.id ] }.sort)%>
                 </select>
               </div>
             </div>

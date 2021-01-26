@@ -183,6 +183,8 @@ module Sivel2Gen
 
           # Prefiltra de acuerdo a control de acceso
           def filtrar_ca(reg)
+            f = Sivel2Gen::Caso.accessible_by(current_ability)
+            reg = reg.where("caso_id in (#{f.select(:id).to_sql})")
             reg
           end
 
@@ -480,7 +482,7 @@ module Sivel2Gen
 
           # GET casos/mapaosm
           def mapaosm
-            diasatras = Rails.configuration.x.sivel2_mapaosm_diasatras ?
+            diasatras = Rails.configuration.x.sivel2_mapaosm_diasatras.to_i ?
               Rails.configuration.x.sivel2_mapaosm_diasatras : 182
             puts "OJO diasatras=#{diasatras}"
 

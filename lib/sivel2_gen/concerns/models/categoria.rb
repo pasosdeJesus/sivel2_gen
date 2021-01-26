@@ -39,6 +39,14 @@ module Sivel2Gen
               Sivel2Gen::Tviolencia.find(sup.id_tviolencia).nombre + ")"
           end
 
+          def presenta_con_codigo
+            if !supracategoria_id
+              return nombre
+            end
+            supracategoria.id_tviolencia + 
+              id.to_s + ' ' +nombre
+          end
+
           def presenta(atr)
             #clf = clase_llave_foranea(atr)
             if (atr.to_s == "tipocat")
