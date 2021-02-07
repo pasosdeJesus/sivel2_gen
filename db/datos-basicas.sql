@@ -701,6 +701,20 @@ INSERT INTO public.sivel2_gen_contexto (id, nombre, fechacreacion, fechadeshabil
 --
 
 --
+-- Data for Name: sivel2_gen_contextovictima; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+INSERT INTO public.sivel2_gen_contextovictima (id, nombre, observaciones, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (1, 'FALSO POSITIVO', NULL, '2020-03-26', NULL, '2020-03-26 00:00:00', '2020-03-26 00:00:00');
+
+
+--
+-- Name: sivel2_gen_contextovictima_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.sivel2_gen_contextovictima_id_seq', 100, true);
+
+
+--
 -- PostgreSQL database dump
 --
 
