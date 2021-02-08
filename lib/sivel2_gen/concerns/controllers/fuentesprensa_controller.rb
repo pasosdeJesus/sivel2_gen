@@ -22,11 +22,12 @@ module Sivel2Gen
               @fprensa.id_caso = params[:caso_id]
               @fprensa.fuenteprensa_id = 0
               mdate = Sivel2Gen::CasoFuenteprensa.where(
-                id_caso: params[:caso_id], fuenteprensa_id: 0).maximum(:fecha)
-              if mdate.nil?
-                mdate = Date.today
-              else
+                id_caso: params[:caso_id]).maximum(:fecha)
+              if mdate
                 mdate = mdate + 1
+              else
+                mdate = Sivel2Gen::Caso.where(id: params[:caso_id]).count > 0 ?
+                  Sivel2Gen::Caso.find(params[:caso_id]).fecha + 2 : Date.today
               end
               @fprensa.fecha = mdate
               if @fprensa.save
@@ -39,7 +40,7 @@ module Sivel2Gen
               else
                 respond_to do |format|
                   format.html { 
-                    render inline: "No pudo guardar fuente frecuente: '#{@fprensa.errors.message.to_s}'" }
+                    render inline: "No pudo guardar fuente frecuente: '#{@fprensa.errors.messages.to_s}'" }
                   format.json { render json: @fprensa.errors, status: :unprocessable_entity }
                 end
               end

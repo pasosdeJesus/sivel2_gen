@@ -21,12 +21,12 @@ module Sivel2Gen
               @casofotra.id_caso = params[:caso_id]
               @casofotra.nombre = 'N'
               mdate = Sivel2Gen::CasoFotra.where(
-                id_caso: params[:caso_id], 
-                nombre: 'N').maximum(:fecha)
-              if mdate.nil?
-                mdate = Date.today
-              else
+                id_caso: params[:caso_id]).maximum(:fecha)
+              if mdate
                 mdate = mdate + 1
+              else
+                mdate = Sivel2Gen::Caso.where(id: params[:caso_id]).count > 0 ?
+                  Sivel2Gen::Caso.find(params[:caso_id]).fecha + 2: Date.today
               end
               @casofotra.fecha = mdate
               if @casofotra.save
