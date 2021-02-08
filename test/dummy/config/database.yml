@@ -1,0 +1,23 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+  username: <%= ENV.fetch('BD_USUARIO', 'sipdes') %>
+  password: <%= ENV.fetch('BD_CLAVE') %>
+  host: /var/www/var/run/postgresql
+
+development:
+  <<: *default
+  database: <%= ENV.fetch('BD_DES', 'sivel2gen_des') %>
+
+
+# Advertencia: La base de datos definida como "test" será eliminada
+# y re-generada desde su base de datos de desarrollo con ejecute "rake".
+# No establezca esa base de datos como la misma de desarrollo o producción.
+test:
+  <<: *default
+  database: <%= ENV.fetch('BD_PRUEBA', 'sivel2gen_pru') %>
+
+production:
+  <<: *default
+  database: <%= ENV.fetch('BD_PRO', 'sivel2gen_pro') %>

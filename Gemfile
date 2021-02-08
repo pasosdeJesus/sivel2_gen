@@ -36,8 +36,6 @@ gem 'prawnto_2',  :require => 'prawnto'
 
 gem 'prawn-table'
 
-gem 'puma' # Servidor de aplicaciones
-
 gem 'rails', '~> 6.0.3.4'
 
 gem 'rails-i18n'
@@ -66,37 +64,39 @@ gem 'will_paginate' # Listados en páginas
 # lógico y no alfabetico como las gemas anteriores) 
 
 gem 'sip', # Motor generico,
-  git: 'https://github.com/pasosdeJesus/sip.git'
+  git: 'https://github.com/pasosdeJesus/sip.git', branch: :main
   #path: '../sip'
 
 gem 'mr519_gen', # Motor de gestion de formularios y encuestas
-  git: 'https://github.com/pasosdeJesus/mr519_gen.git'
+  git: 'https://github.com/pasosdeJesus/mr519_gen.git', branch: :main
   #path: '../mr519_gen'
 
 gem 'heb412_gen',  # Motor de nube y llenado de plantillas
-  git: 'https://github.com/pasosdeJesus/heb412_gen.git'
+  git: 'https://github.com/pasosdeJesus/heb412_gen.git', branch: :main
   #path: '../heb412_gen'
 
 
 group :development do
-  
-  gem 'compare-xml', '~> 0.5.2' # para validar xml
+  gem 'puma'
 
   gem 'rails-erd' # Para generar modelo entidad asociación 
 
   gem "thor" # Requerido por rake
 
+  gem 'web-console'
 end
 
 
 group  :development, :test do
 
   #gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'compare-xml', '~> 0.5.2' # para validar xml
 
   gem 'colorize' # Colores en terminal
+
+  gem 'dotenv-rails'
 
   gem 'rails-controller-testing'
 
   gem 'simplecov', '<0.18' # Debido a https://github.com/codeclimate/test-reporter/issues/418
-
 end

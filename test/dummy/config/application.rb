@@ -4,8 +4,8 @@ require_relative 'boot'
 
 require 'rails/all'
 
-# Require the gems listed in Gemfile, including any gems
-# you've limited to :test, :development, or :production.
+# Requiere gemas listas en el Gemfile, incluyendo las
+# limitadas a :test, :development, o :production.
 Bundler.require(*Rails.groups)
 
 require 'sivel2_gen'
@@ -35,20 +35,30 @@ module Dummy
       max_threads: 2 * Concurrent.processor_count,
       idletime: 600.seconds
 
-    config.x.heb412_ruta = Rails.root.join('public', 'heb412')
-    config.x.sivel2_consulta_web_publica = false
-      # esto en true estaria
-      # en conflicto con observador de parte de los casos
-    
-    config.x.sivel2_consweb_max = 2000
+    config.hosts <<  ENV.fetch('CONFIG_HOSTS', 'defensor.info').downcase
 
-    config.x.sivel2_consweb_epilogo = "<br>Si requiere más puede "\
-      "suscribirse a <a href='http://sivel.sf.net' target='_blank'>SIVeL Pro</a>".html_safe
+    # sip
+    config.x.formato_fecha = ENV.fetch('FORMATO_FECHA', 'dd/M/yyyy')
 
-    config.relative_url_root = '/sivel2'
-    config.assets.prefix = '/sivel2/assets/'
+    # heb412
+    config.x.heb412_ruta = Pathname(
+      ENV.fetch('HEB412_RUTA', Rails.root.join('public', 'heb412').to_s)
+    )
 
-    config.hosts << ENV['CONFIG_HOSTS'] || '127.0.0.1'
+    # sivel2
+    config.x.sivel2_consulta_web_publica = 
+      (ENV['SIVEL2_CONSWEB_PUBLICA'] && ENV['SIVEL2_CONSWEB_PUBLICA'] != '')
+      # si es true no puede usarse observador de parte de los casos
+
+    config.x.sivel2_consweb_max = ENV.fetch('SIVEL2_CONSWEB_MAX', 2000)
+
+    config.x.sivel2_consweb_epilogo = ENV.fetch(
+      'SIVEL2_CONSWEB_EPILOGO',
+      "<br>Si requiere más puede suscribirse a SIVeL Pro"
+    ).html_safe
+
+    config.x.sivel2_mapaosm_diasatras = ENV.fetch('SIVEL2_CONSWEB_EPILOGO', 182)
 
   end
 end
+
