@@ -24,7 +24,7 @@ module Sivel2Gen
               r += [:sip_grupo]
             end
             r += [
-              :tema,
+              :descripcion,
               :created_at_localizada,
               :habilitado
             ]
