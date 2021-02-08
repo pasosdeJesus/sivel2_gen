@@ -467,19 +467,21 @@ module Sivel2Gen
           tablas3 = tcons1
           where3 = ''
 
-          if (pFini != '') 
-            pfechaini = DateTime.strptime(pFini, '%Y-%m-%d')
-            @fechaini = pfechaini.strftime('%Y-%m-%d')
-            where1 = consulta_and(
-              where1, "caso.fecha", @fechaini, ">="
-            )
+          if (pFini != '')
+            @fechaini = Sip::FormatoFechaHelper.fecha_local_estandar pFini
+            if @fechaini
+              where1 = consulta_and(
+                where1, "caso.fecha", @fechaini, ">="
+              )
+            end
           end
           if (pFfin != '') 
-            pfechafin = DateTime.strptime(pFfin, '%Y-%m-%d')
-            @fechafin = pfechafin.strftime('%Y-%m-%d')
-            where1 = consulta_and(
-              where1, "caso.fecha", @fechafin, "<="
-            )
+            @fechafin = Sip::FormatoFechaHelper.fecha_local_estandar pFfin
+            if @fechafin
+              where1 = consulta_and(
+                where1, "caso.fecha", @fechafin, "<="
+              )
+            end
           end
           if (pTviolencia != '') 
             where1 = consulta_and(

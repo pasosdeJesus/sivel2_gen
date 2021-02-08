@@ -28,22 +28,18 @@ module Sivel2Gen
             if (params[:validarcaso] && params[:validarcaso][:fechaini] && 
                 params[:validarcaso][:fechaini] != '')
               pfi = params[:validarcaso][:fechaini]
-              if Rails.application.config.x.formato_fecha == 'dd-mm-yyyy'
-                pfid = Date.strptime(pfi, '%d-%m-%Y')
-              else
-                pfid = Date.strptime(pfi, '%Y-%m-%d')
+              pfid = Sip::FormatoFechaHelper.fecha_local_estandar pfi
+              if pfid
+                casos = casos.where("#{cfecha} >= ?", pfid)
               end
-              casos = casos.where("#{cfecha} >= ?", pfid.strftime('%Y-%m-%d'))
             end
             if(params[:validarcaso] && params[:validarcaso][:fechafin] && 
                params[:validarcaso][:fechafin] != '')
               pff = params[:validarcaso][:fechafin]
-              if Rails.application.config.x.formato_fecha == 'dd-mm-yyyy'
-                pffd = Date.strptime(pff, '%d-%m-%Y')
-              else
-                pffd = Date.strptime(pff, '%Y-%m-%d')
+              pffd = Sip::FormatoFechaHelper.fecha_local_estandar pff
+              if pffd
+                casos = casos.where("#{cfecha} <= ?", pffd)
               end
-              casos = casos.where("#{cfecha} <= ?", pffd.strftime('%Y-%m-%d'))
             end
            return casos 
           end
