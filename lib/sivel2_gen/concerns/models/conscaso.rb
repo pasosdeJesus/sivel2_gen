@@ -116,35 +116,35 @@ module Sivel2Gen
           }
 
           scope :filtro_descripcion, lambda { |d|
-            where('sivel2_gen_conscaso.memo ILIKE \'%' + 
-                  ActiveRecord::Base.connection.quote_string(d) + '%\'')
-          }
-
-          scope :filtro_nombres, lambda { |d|
-            where('caso_id IN (SELECT id_caso
-                    FROM public.sivel2_gen_victima 
-                    INNER JOIN public.sip_persona
-                    ON sivel2_gen_victima.id_persona=sip_persona.id
-                    WHERE sip_persona.nombres ILIKE \'%' + 
-                    ActiveRecord::Base.connection.quote_string(d) + '%\')')
+            where("unaccent(sivel2_gen_conscaso.memo) ILIKE '%'
+                  || unaccent(?) || '%'", d)
           }
 
           scope :filtro_apellidos, lambda { |d|
-            where('caso_id IN (SELECT id_caso
+            where("caso_id IN (SELECT id_caso
                     FROM public.sivel2_gen_victima 
                     INNER JOIN public.sip_persona
                     ON sivel2_gen_victima.id_persona=sip_persona.id
-                    WHERE sip_persona.apellidos ILIKE \'%' + 
-                    ActiveRecord::Base.connection.quote_string(d) + '%\')')
+                    WHERE unaccent(sip_persona.apellidos) ILIKE '%' ||
+                      unaccent(?) || '%')", d)
           }
-          
+
+          scope :filtro_nombres, lambda { |d|
+            where("caso_id IN (SELECT id_caso
+                    FROM public.sivel2_gen_victima 
+                    INNER JOIN public.sip_persona
+                    ON sivel2_gen_victima.id_persona=sip_persona.id
+                    WHERE unaccent(sip_persona.nombres) ILIKE '%' ||
+                      unaccent(?) || '%')", d)
+          }
+
           scope :filtro_victimacol, lambda { |d|
-            where('caso_id IN (SELECT id_caso
+            where("caso_id IN (SELECT id_caso
                     FROM public.sivel2_gen_victimacolectiva 
                     INNER JOIN public.sip_grupoper
                     ON sivel2_gen_victimacolectiva.id_grupoper=sip_grupoper.id
-                    WHERE sip_grupoper.nombre ILIKE \'%' + 
-                    ActiveRecord::Base.connection.quote_string(d) + '%\')')
+                    WHERE unaccent(sip_grupoper.nombre) ILIKE '%' ||
+                      unaccent(?) || '%')", d)
           }
 
           scope :filtro_sexo, lambda { |s|
