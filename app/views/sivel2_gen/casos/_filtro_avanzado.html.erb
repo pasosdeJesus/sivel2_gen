@@ -230,7 +230,7 @@
         <div class="row filtro-fila">
           <div class="col-sm col-md">
             <%= f.input :sexo, 
-              collection: Sip::Persona::OPCIONES_SEXO,
+              collection: Sip::Persona::SEXO_OPCIONES,
               label: false,
               include_blank: '-- Sexo'
             %>
@@ -238,7 +238,7 @@
           <div class="col-sm col-md">
             <% if current_usuario %>
               <%= f.input :orientacionsexual,
-                collection: Sip::OrientacionsexualHelper::ORIENTACIONES,
+                collection: Sip::Persona::ORIENTACION_OPCIONES,
                 label: false,
                 include_blank: '-- Orientación Sexual'
                 %>
