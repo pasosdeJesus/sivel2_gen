@@ -546,7 +546,7 @@ CREATE VIEW public.cben1 AS
             max(sivel2_gen_victima.id) AS id_victima
            FROM public.sivel2_gen_victima
           GROUP BY sivel2_gen_victima.id_persona) subv
-  WHERE ((subv.id_victima = victima.id) AND (caso.id = victima.id_caso));
+  WHERE ((caso.fecha >= '2020-02-12'::date) AND (caso.fecha <= '2029-03-01'::date) AND (subv.id_victima = victima.id) AND (caso.id = victima.id_caso));
 
 
 --
@@ -5318,6 +5318,14 @@ ALTER TABLE ONLY public.sivel2_gen_categoria
 
 
 --
+-- Name: sivel2_gen_categoria categoria_contadaen_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.sivel2_gen_categoria
+    ADD CONSTRAINT categoria_contadaen_fkey FOREIGN KEY (contadaen) REFERENCES public.sivel2_gen_categoria(id);
+
+
+--
 -- Name: sip_departamento departamento_id_pais_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -5843,6 +5851,14 @@ ALTER TABLE ONLY public.sip_persona
 
 ALTER TABLE ONLY public.sip_persona
     ADD CONSTRAINT persona_tdocumento_id_fkey FOREIGN KEY (tdocumento_id) REFERENCES public.sip_tdocumento(id);
+
+
+--
+-- Name: sivel2_gen_presponsable presponsable_papa_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.sivel2_gen_presponsable
+    ADD CONSTRAINT presponsable_papa_fkey FOREIGN KEY (papa) REFERENCES public.sivel2_gen_presponsable(id);
 
 
 --
