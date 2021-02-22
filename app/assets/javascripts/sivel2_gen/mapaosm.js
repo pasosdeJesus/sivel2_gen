@@ -129,16 +129,20 @@ function descargarUrl(url, retrollamada) {
 }
 
 function agregarCasosOsm() {
-  var desde = $('#campo-desde').val();
+  var root = window;
+  if (typeof root.formato_fecha == 'undefined') {
+    sip_prepara_eventos_comunes(root)
+  }
+  var desde = $('#campo-desde').val()
+  var desdep = sip_partes_fecha_localizada(desde, root.formato_fecha)
   var hasta = $('#campo-hasta').val();
+  var hastap = sip_partes_fecha_localizada(hasta, root.formato_fecha)
   var departamento = $('#departamento').val();
   var prresp = $('#presponsable').val();
   var tvio = $('#tvio').val();
-  var root = window;
-  sip_arregla_puntomontaje(root);
   var ruta = root.puntomontaje + 'casos.json';
-  fechainicial = Date.parse(desde);
-  fechafinal = Date.parse(hasta);
+  fechainicial = Date.parse(desdep[0]+'-'+desdep[1]+'-'+desdep[2]);
+  fechafinal = Date.parse(hastap[0]+'-'+hastap[1]+'-'+hastap[2]);
   const hoy = new Date();
   const maniana = new Date(hoy);
   maniana.setDate(maniana.getDate() + 1);

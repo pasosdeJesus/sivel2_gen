@@ -1,5 +1,6 @@
 # encoding: UTF-8
 require 'nokogiri'
+
 module Sivel2Gen
   module Concerns
     module Controllers
@@ -200,6 +201,7 @@ module Sivel2Gen
               puts Conscaso.refresca_conscaso
               @conscasocount = Conscaso.count
             end
+            #byebug
             #if !ActiveRecord::Base.connection.data_source_exists?(
             #  'sivel2_gen_consexpcaso')
             #  Consexpcaso.crea_consexpcaso
@@ -486,8 +488,8 @@ module Sivel2Gen
               authorize! :index, Sivel2Gen::Caso
             end
 
-            diasatras = Rails.configuration.x.sivel2_mapaosm_diasatras.to_i ?
-              Rails.configuration.x.sivel2_mapaosm_diasatras : 182
+            diasatras = Rails.configuration.x.sivel2_mapaosm_diasatras ?
+              Rails.configuration.x.sivel2_mapaosm_diasatras.to_i : 182
             puts "OJO diasatras=#{diasatras}"
 
             @fechadesde = Sip::FormatoFechaHelper.inicio_semestre(Date.today -

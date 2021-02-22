@@ -20,16 +20,26 @@
             <div>
               <div>Fecha:</div>
               <div>
-                <input type="text" name="desde" class="campo-mapa-osm form-control seleccion-mapa-osm"
-                   placeholder= "Desde" id="campo-desde"
-                   data-behaviour="datepicker" value="<%= @fechadesde.to_s %>"
-                   size="11"/>
+                <input type="text" 
+                       name="desde" 
+                       class="campo-mapa-osm form-control seleccion-mapa-osm"
+                       placeholder= "Desde" 
+                       id="campo-desde"
+                       data-behaviour="datepicker" 
+                       value="<%= Sip::FormatoFechaHelper::
+                         fecha_estandar_local(@fechadesde) %>"
+                       size="11"/>
               </div>
               <div>
-                <input type="text" name="hasta" class="campo-mapa-osm form-control seleccion-mapa-osm"
-                   placeholder= "Hasta" id="campo-hasta"
-                   data-behaviour="datepicker" value="<%= @fechahasta.to_s %>"
-                   size="11"/>
+                <input type="text" 
+                       name="hasta" 
+                       class="campo-mapa-osm form-control seleccion-mapa-osm"
+                       placeholder= "Hasta" 
+                       id="campo-hasta"
+                       data-behaviour="datepicker" 
+                       value="<%= Sip::FormatoFechaHelper::
+                         fecha_estandar_local(@fechahasta) %>"
+                       size="11"/>
               </div>
             </div>
           </div>
