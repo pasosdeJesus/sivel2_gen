@@ -297,6 +297,9 @@ module Sivel2Gen
                 end
                 r += ' - ' + cf.fecha_localizada
               }
+
+            when 'caso_id'
+              self.id
  
             when 'otrasfuentes'
               caso_fotra.inject('') { 
@@ -558,7 +561,25 @@ module Sivel2Gen
                 r += ' - ' + ce.observaciones if ce.observaciones
                 r
               }
-               
+ 
+            when 'tipificacion'
+              ac = acto.map {|a|
+                a.categoria.supracategoria.id_tviolencia + 
+                  a.categoria.id.to_s + ' ' +
+                  a.categoria.nombre
+              }.uniq.join('; ')
+              sep = ''
+              if ac.length > 0
+                sep = '. '
+              end
+              col = actocolectivo.map {|a| 
+                a.categoria.supracategoria.id_tviolencia + 
+                  a.categoria.id.to_s + ' ' +
+                  a.categoria.nombre
+              }.uniq.join('; ')
+              ac += sep + col
+              ac
+
             else
               presenta_gen(atr)
             end
