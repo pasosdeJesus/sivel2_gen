@@ -15,75 +15,11 @@
       <h4 class="card-title">Filtrar Casos</h4>
       <form name="configuracion" onsubmit="agregarCasosOsm(true); return false;">
         <div class= "row">
-          <div class="col-sm-2">
-            <input class= "campo-mapa-osm" name="num" type="hidden" value="200" />
-            <div>
-              <div>Fecha:</div>
-              <div>
-                <input type="text" 
-                       name="desde" 
-                       class="campo-mapa-osm form-control seleccion-mapa-osm"
-                       placeholder= "Desde" 
-                       id="campo-desde"
-                       data-behaviour="datepicker" 
-                       value="<%= Sip::FormatoFechaHelper::
-                         fecha_estandar_local(@fechadesde) %>"
-                       size="11"/>
-              </div>
-              <div>
-                <input type="text" 
-                       name="hasta" 
-                       class="campo-mapa-osm form-control seleccion-mapa-osm"
-                       placeholder= "Hasta" 
-                       id="campo-hasta"
-                       data-behaviour="datepicker" 
-                       value="<%= Sip::FormatoFechaHelper::
-                         fecha_estandar_local(@fechahasta) %>"
-                       size="11"/>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-2">
-            <div>
-              <div>Departamento:</div>
-              <div>
-                <select name="departamento" class="seleccion-mapa-osm form-control"
-                  id="departamento" style="width:140px;">
-                  <option value="0">Mostrar todos</option>
-                  <option value="">-----------------------</option>
-                  <%= options_for_select(Sip::Departamento.habilitados.where(id_pais: 170).all.collect { |d| [d.nombre, d.id ] })
-                %> 
-                </select>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-2">
-            <div>
-              <div>P. Responsable:</div>
-              <div>
-                <select name="prresp" class="seleccion-mapa-osm form-control" id="presponsable" style="width:150px;">
-                  <option value="0">Mostrar todos</option>
-                  <option value="">-----------------------</option>
-                  <%= options_for_select(Sivel2Gen::Presponsable.all.collect { |d| [d.nombre, d.id ] }) %>
-                </select>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-2">
-            <div>
-              <div>Violencia:</div>
-              <div>
-                <select name="tvio" class="seleccion-mapa-osm form-control" id="tvio" style="width:150px;">
-                  <option value="0">Mostrar todos</option>
-                  <option value="">-----------------------</option>
-                  <%= options_for_select(Sivel2Gen::Categoria.all.collect { |d|
-                    [d.presenta_con_codigo, d.id ] }.sort)%>
-                </select>
-              </div>
-            </div>
+          <div class="col-sm-8">
+            <%= render "filtro_mapaosm" %>
           </div>
           <div class="col-sm-4">
-            <div class="row">
+            <div class= "row">
               <div class="col-sm-6">
                 <div class="alert alert-success" role="alert">
                   <span class="nrcasos" id="nrcasos"></span>
