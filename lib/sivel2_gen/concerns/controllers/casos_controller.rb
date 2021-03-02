@@ -324,7 +324,7 @@ module Sivel2Gen
             # Presentación
             respond_to do |format|
               if current_usuario || (Rails.configuration.x.sivel2_consweb_max &&
-                  @conscaso.count <= Rails.configuration.x.sivel2_consweb_max)
+                  @conscaso.count <= Rails.configuration.x.sivel2_consweb_max.to_i)
                 format.ods {
                   gen_formato('.ods')
                   return

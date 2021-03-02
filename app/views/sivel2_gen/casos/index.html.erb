@@ -54,14 +54,14 @@
     <%= render 'index_tabla' %>
   <% else %>
     <% if Rails.configuration.x.sivel2_consweb_max && 
-        @conscaso.count <= Rails.configuration.x.sivel2_consweb_max %>
+        @conscaso.count <= Rails.configuration.x.sivel2_consweb_max.to_i %>
       <%= render 'index_tabla' %>
     <% else %>
       <div class="alert alert-danger">
         <h4><strong>
             La consulta pública permite máximo 
             <%= Rails.configuration.x.sivel2_consweb_max ? 
-              Rails.configuration.x.sivel2_consweb_max : 0 %> 
+              Rails.configuration.x.sivel2_consweb_max.to_i : 0 %> 
             registros.
           </strong></h4>
           <p>
