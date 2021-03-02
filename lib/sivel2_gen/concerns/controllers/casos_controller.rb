@@ -490,7 +490,6 @@ module Sivel2Gen
 
             diasatras = Rails.configuration.x.sivel2_mapaosm_diasatras ?
               Rails.configuration.x.sivel2_mapaosm_diasatras.to_i : 182
-            puts "OJO diasatras=#{diasatras}"
 
             @fechadesde = Sip::FormatoFechaHelper.inicio_semestre(Date.today -
                                                                   diasatras)
