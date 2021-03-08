@@ -146,7 +146,7 @@ function agregarCasosOsm() {
   const hoy = new Date();
   const maniana = new Date(hoy);
   maniana.setDate(maniana.getDate() + 1);
-  if ( +fechainicial <= +maniana && +fechafinal <= +maniana){
+  //if ( +fechainicial <= +maniana && +fechafinal <= +maniana){
     if ( +fechainicial <= +fechafinal){
       var urlSolicitud = ruta + '?filtro[q]='+
         '&filtro[fechaini]='+ desde +
@@ -204,11 +204,11 @@ function agregarCasosOsm() {
       alert("La fecha Final debe ser mas antigua que la inicial");
       window.location.reload();
     } 
-  }
+  /*}
   else{
     alert("La fecha Final e Inicial debe existir");
     window.location.reload();
-  } 
+  }*/ 
 }
 
 function creaMarcador(punto, codigo, titulo) {
