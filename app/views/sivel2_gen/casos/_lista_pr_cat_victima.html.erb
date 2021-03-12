@@ -224,10 +224,11 @@
     <% end %>
     <% nns.keys.each do |nn| %>
       <% if nns[nn] == 1 %>
-        <%= "PERSONA SIN IDENTIFICAR - " + nn %><br> 
+        <%= "PERSONA SIN IDENTIFICAR - " + nn %>
       <% else %>
         <%= nns[nn].to_s + " PERSONAS SIN IDENTIFICAR - " + nn %>
       <% end %>
+      <br> 
     <% end %>
   <% end %>
 <% end %>
