@@ -125,6 +125,7 @@
     <% aspr[lipr] = [imc] %>
   <% end %>
 <% end %>
+
 <!-- Presentacion de datos -->
 <!-- Presponsables, categorias y victimas pueden presentarse: -->
 <!-- porVic: victimas agrupadas (por defecto) -->
@@ -151,7 +152,9 @@
   <% if !por[ipr] %>
     <% por[ipr] = {} %>
   <% end %>
-  <% por[ipr][lcat] = [-1] # Convención sin víctima %> 
+  <% if !por[ipr][lcat] %>
+    <% por[ipr][lcat] = [-1] # Convención sin víctima %> 
+  <% end %>
 <% end %>
 
 <% por.keys.each do |pr|%>
@@ -201,7 +204,7 @@
     <% #byebug %>
     <% nns = {} %>
     <% por[pr][ct].each do |idv|%>
-      <% if idv != -1 && lvic[idv].split("-")[0] == "N N " %>
+      <% if idv != -1 && lvic[idv].split("-")[0].strip == "N N" %>
         <% rnn = lvic[idv].split("-")[1..-1].join("-") %>
         <% if nns[rnn] %>
           <% nns[rnn] += 1 %>
