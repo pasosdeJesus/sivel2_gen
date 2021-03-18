@@ -510,7 +510,7 @@ module Sivel2Gen
           if (pDepartamento.to_i == 1 || pMunicipio.to_i == 1) 
             que3 << ["departamento_nombre", "Departamento"]
             que1 += ', ubicacion.id_departamento' +
-              ', departamento.nombre AS departamento_nombre'
+              ', INITCAP(departamento.nombre) AS departamento_nombre'
             # Tomamos ubicacion principal
             tablas1 += ' LEFT JOIN sip_ubicacion AS ubicacion ON' +
               ' caso.ubicacion_id = ubicacion.id'
@@ -521,7 +521,7 @@ module Sivel2Gen
           if (pMunicipio.to_i == 1) 
             que3 << ["municipio_nombre", "Municipio"]
             que1 += ', ubicacion.id_municipio' +
-              ', municipio.nombre AS municipio_nombre'
+              ', INITCAP(municipio.nombre) AS municipio_nombre'
             tablas1 += ' LEFT JOIN sip_municipio AS municipio ON ' +
               ' ubicacion.id_municipio=municipio.id'
           end
@@ -530,13 +530,13 @@ module Sivel2Gen
             case pSegun
             when "ACTOS PRESUNTOS RESPONSABLES"
             que3 << ["presponsable_nombre", "P. Responsable"]
-            que1 += ', presponsable.id, presponsable.nombre AS presponsable_nombre' 
+            que1 += ', presponsable.id, INITCAP(presponsable.nombre) AS presponsable_nombre' 
             tablas1 += ' LEFT JOIN sivel2_gen_presponsable AS presponsable ON ' +
               ' acto.id_presponsable=presponsable.id'
 
             when "FILIACIÓN"
             que3 << ["filiacion_nombre", "Filiacion"]
-            que1 += ', filiacion.id, filiacion.nombre AS filiacion_nombre' 
+            que1 += ', filiacion.id, INITCAP(filiacion.nombre) AS filiacion_nombre' 
             tablas1 += ' LEFT JOIN public.sivel2_gen_filiacion AS filiacion ON ' +
               ' victima.id_filiacion=filiacion.id'
 
@@ -548,37 +548,40 @@ module Sivel2Gen
 
             when "ORGANIZACIÓN SOCIAL"
               que3 << ["organizacion_nombre", "Organización"]
-              que1 += ', organizacion.id, organizacion.nombre AS organizacion_nombre' 
+              que1 += ', organizacion.id, INITCAP(organizacion.nombre) AS organizacion_nombre' 
               tablas1 += ' LEFT JOIN public.sivel2_gen_organizacion AS organizacion ON ' +
                 ' victima.id_organizacion=organizacion.id'
 
             when "PROFESIÓN"
               que3 << ["profesion_nombre", "Profesión"]
-              que1 += ', profesion.id, profesion.nombre AS profesion_nombre' 
+              que1 += ', profesion.id, INITCAP(profesion.nombre) AS profesion_nombre' 
               tablas1 += ' LEFT JOIN public.sivel2_gen_profesion AS profesion ON ' +
                 ' victima.id_profesion=profesion.id'
 
 
             when "RANGO DE EDAD"
               que3 << ["rangoedad_rango", "Rango de edad"]
-              que1 += ', rangoedad.id, rangoedad.rango AS rangoedad_rango' 
+              que1 += ', rangoedad.id, INITCAP(rangoedad.nombre) AS rangoedad_rango' 
               tablas1 += ' LEFT JOIN public.sivel2_gen_rangoedad AS rangoedad ON ' +
                 ' victima.id_rangoedad=rangoedad.id'
 
             when "SECTOR SOCIAL"
               que3 << ["sectorsocial_nombre", "Sector social"]
-              que1 += ', sectorsocial.id, sectorsocial.nombre AS sectorsocial_nombre' 
-              tablas1 += ' LEFT JOIN public.sivel2_gen_sectorsocial AS sectorsocial ON ' +
-                ' victima.id_sectorsocial=sectorsocial.id'
+              que1 += ", sectorsocial.id, "\
+                "INITCAP(sectorsocial.nombre) AS sectorsocial_nombre" 
+              tablas1 += " LEFT JOIN public.sivel2_gen_sectorsocial "\
+              "AS sectorsocial ON victima.id_sectorsocial=sectorsocial.id"
 
             when "SEXO"
               que3 << ["sexo", "Sexo"]
-              que1 += ', persona.sexo AS sexo' 
-              tablas1 += ' LEFT JOIN public.sivel2_gen_profesion AS profesion ON ' +
-                ' victima.id_profesion=profesion.id'
+              que1 += ", CASE  WHEN persona.sexo='F' THEN 'Femenino' "\
+                "  WHEN persona.sexo='M' THEN 'Masculino' "\
+                "  ELSE 'Sin Información' "\
+                "END AS sexo"
+              tablas1 += " LEFT JOIN public.sivel2_gen_profesion "\
+              "AS profesion ON victima.id_profesion=profesion.id"
             end
           end
-
 
           if where1 != ''
             where1 = "WHERE #{where1}"
@@ -800,7 +803,7 @@ module Sivel2Gen
                   ], "Total victimizaciones por lesión física", where1
                 ),
                 genvic_tabla(
-                  'TORTURA', 
+                  'Tortura', 
                   [
                     {"cat" => [22, 36],
                      "titulo" => "Victimizaciones por `Tortura´ por Abuso de Autoridad e Intolerancia Social por agentes directos o indirectos del Estado (Violaciones a los Derechos Humanos)."},
@@ -853,7 +856,7 @@ module Sivel2Gen
                   where1
                 ),
                 genvic_tabla(
-                  'Otras violaciones al derecho a la libertd', 
+                  'Otras violaciones al derecho a la libertad', 
                   [
                     {"cat" => [24, 241, 301, 341],
                      "titulo" => "Victimizaciones por `Detención Arbitraria´ y `Judicialización Arbitraria´ por móvil de Abuso de Autoridad o Intolerancia Social, perpetradas por agentes directos o indirectos del Estado (Violaciones a los Derechos Humanos)."},
