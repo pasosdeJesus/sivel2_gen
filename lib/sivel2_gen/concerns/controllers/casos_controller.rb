@@ -125,7 +125,7 @@ module Sivel2Gen
           def filtro_avanzado(conscaso, params_filtro)
             for i in campos_filtro1 do
               if params_filtro[i] && params_filtro[i] != '' &&
-                params_filtro[i] != ['']
+                params_filtro[i] != [''] &&
                 conscaso.respond_to?('filtro_' + i.to_s)
                 conscaso = conscaso.send('filtro_' + i.to_s, params_filtro[i])
               end
