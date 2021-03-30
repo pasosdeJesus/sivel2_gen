@@ -557,6 +557,15 @@ enviaFormularioContar= (root) ->
     ubipais = 'select[id^=caso_][id$=id_pais]'
     $(ubipais).val(170).trigger('chosen:updated')
     llena_departamento($(ubicacion.find(ubipais)), root)
+    if $(".ubicacion:visible").length == 1
+      principal = $('input[type="checkbox"][name$="[principal]"]:visible')
+      principal.prop('checked', true)
+  )
+
+  $('#ubicaciones').on('cocoon:after-remove', '', (e, ubicacion) ->
+    if $('input[type="checkbox"][name$="[principal]"]:visible:checkbox:checked').length == 0
+      ubis = $('input[type="checkbox"][name$="[principal]"]:visible')
+      $(ubis[0]).prop('checked', true)
   )
 
   # En victimas permite autocompletar nombres de victima
