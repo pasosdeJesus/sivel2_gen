@@ -140,7 +140,38 @@ module Sivel2Gen
           validates :gresclarecimiento, length: { maximum: 5 }
           validates :grimpunidad, length: { maximum: 8 }
           validates :grinformacion, length: { maximum: 8 }
+          validate :es_descendiente_poloestatal
 
+          def es_descendiente_poloestatal
+
+            consl= "WITH RECURSIVE cteRecursion AS (
+               SELECT id, 1 AS Level
+                   FROM public.sivel2_gen_presponsable
+                   WHERE id = 39
+               UNION ALL
+               SELECT t.id, c.Level+1
+                   FROM public.sivel2_gen_presponsable t
+                       INNER JOIN cteRecursion c
+                           ON t.papa = c.id
+                       )
+               SELECT id, Level
+                   FROM cteRecursion
+                   ORDER BY Level, id;"
+            descendientes_polo = ActiveRecord::Base.connection.select_all consl
+            desc_ids = descendientes_polo.to_a.map{|de| de["id"]} 
+            actos = self.acto
+
+            actos.each do |acto|
+              tv = acto.categoria.supracategoria.id_tviolencia
+              pr = acto.presponsable.id
+              if desc_ids.include? pr 
+                if tv != "A"
+                  errors.add(:acto, "En acto, si el presunto responsable es del polo estatal, la categoría debe ser de derechos humanos")
+                end
+              end
+            end
+
+          end
           require 'active_support/core_ext/hash' 
 
           def importa(datosent, datossal, menserror, opciones = {})
