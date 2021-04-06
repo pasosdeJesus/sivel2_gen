@@ -140,9 +140,9 @@ module Sivel2Gen
           validates :gresclarecimiento, length: { maximum: 5 }
           validates :grimpunidad, length: { maximum: 8 }
           validates :grinformacion, length: { maximum: 8 }
-          validate :es_descendiente_poloestatal
+          validate :categoria_presponsable
 
-          def es_descendiente_poloestatal
+          def categoria_presponsable
 
             consl= "WITH RECURSIVE cteRecursion AS (
                SELECT id, 1 AS Level
@@ -157,21 +157,28 @@ module Sivel2Gen
                SELECT id, Level
                    FROM cteRecursion
                    ORDER BY Level, id;"
-            descendientes_polo = ActiveRecord::Base.connection.select_all consl
-            desc_ids = descendientes_polo.to_a.map{|de| de["id"]} 
+            descendientes_poloe = ActiveRecord::Base.connection.select_all(
+              consl)
+            #byebug
+            descpe_ids = descendientes_poloe.to_a.map{|de| de["id"]} 
             actos = self.acto
 
             actos.each do |acto|
               tv = acto.categoria.supracategoria.id_tviolencia
               pr = acto.presponsable.id
-              if desc_ids.include? pr 
-                if tv != "A"
-                  errors.add(:acto, "En acto, si el presunto responsable es del polo estatal, la categoría debe ser de derechos humanos")
-                end
+              if tv == "A" && !descpe_ids.include?(pr) then
+                errors.add(:acto, "Si el tipo de violencia es "\
+                           "Derechos Humanos el presunto responsable debe "\
+                           "ser del Polo Estatal")
+              elsif tv == "B" && descpe_ids.include?(pr) then
+                errors.add(:acto, "Si el tipo de violencia es "\
+                           "Violencia Socio Política el presunto responsable "\
+                           "no puede ser del Polo Estatal")
               end
             end
 
           end
+
           require 'active_support/core_ext/hash' 
 
           def importa(datosent, datossal, menserror, opciones = {})
