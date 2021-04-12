@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/pasosdeJesus/heb412_gen.git
-  revision: 32d92e5a12faa4150f88f606aa42c76220321914
+  revision: 69d1104a5092097aad7378cecf51846b2a643f05
   branch: main
   specs:
     heb412_gen (1.0.b6)
@@ -11,7 +11,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/mr519_gen.git
-  revision: 960c8bc1f17a239fc8459567aa28a242a18a23d9
+  revision: 1969c8b677adb638393777f7b0fb5c701494a564
   branch: main
   specs:
     mr519_gen (0.2.0)
@@ -157,7 +157,7 @@ GEM
       railties (>= 3.2.16)
     json (2.5.1)
     libxml-ruby (3.2.1)
-    loofah (2.9.0)
+    loofah (2.9.1)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
     mail (2.7.1)
@@ -175,7 +175,7 @@ GEM
     minitest (5.14.4)
     msgpack (1.4.2)
     nio4r (2.5.7)
-    nokogiri (1.11.2)
+    nokogiri (1.11.3)
       mini_portile2 (~> 2.5.0)
       racc (~> 1.4)
     odf-report (0.7.2)
