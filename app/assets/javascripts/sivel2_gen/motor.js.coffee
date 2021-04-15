@@ -129,7 +129,8 @@
   sel =s.val()
   nh = ''
   c = $('#contacto')
-  lcg = c.add('#victimas .control-group[style!="display: none;"]')
+  lc = c.add('#victimas .control-group[style!="display: none;"]')
+  lcg = lc.add('#datosbasicos')
   lcg.each((k, v) ->
     id = $(v).find('div').filter( () -> 
       this.attributes.class.value.match(/caso_victima[_0-9]*persona_id/)
