@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/pasosdeJesus/heb412_gen.git
-  revision: 61f35cc3138e5230ef7d8e2f56974d26e7f00026
+  revision: 97393e7cc9f3a18755239b6e3a8d89967a9ff2da
   branch: main
   specs:
     heb412_gen (1.0.b6)
@@ -11,7 +11,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/mr519_gen.git
-  revision: 95eda0f32a3993f63b43e46d50946dfa6c3e1357
+  revision: 1ef5c00d25807cd2ef252e676e20802a6607d052
   branch: main
   specs:
     mr519_gen (0.2.0)
@@ -107,7 +107,7 @@ GEM
     andand (1.3.3)
     bcrypt (3.1.16)
     bindex (0.8.1)
-    bootsnap (1.7.3)
+    bootsnap (1.7.4)
       msgpack (~> 1.0)
     builder (3.2.4)
     camertron-eprun (1.1.1)
