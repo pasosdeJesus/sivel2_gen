@@ -760,6 +760,7 @@ enviaFormularioContar= (root) ->
         alert("Error: " + jqXHR.responseText)
       ).done( (e) ->
         @sivel2_gen_procesa_eliminaracto = false
+        $('.chosen-select').chosen()
       )
   )
 
