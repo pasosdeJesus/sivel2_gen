@@ -27,7 +27,7 @@ module Sivel2Gen
     PRUEBA_PRESPONSABLE = {
       id: 1000,
       nombre: 'presunto',
-      papa: 1000,
+      papa_id: 1000,
       fechacreacion: '2014-09-09',
       created_at: '2014-09-09'
     }

@@ -8,7 +8,18 @@ module Sivel2Gen
       def clase 
         "Sivel2Gen::Presponsable"
       end
-  
+
+      def atributos_index
+        [
+          :id, 
+          :nombre,
+          :papa,
+          :observaciones,
+          :fechacreacion_localizada,
+          :habilitado
+        ]
+      end
+
       def set_presponsable
         @basica = Presponsable.find(params[:id])
       end
@@ -17,8 +28,12 @@ module Sivel2Gen
         return 'M';
       end
 
+      def lista_params
+        atributos_form - [:papa] + [:papa_id]
+      end
+
       def presponsable_params
-        params.require(:presponsable).permit(*atributos_form)
+        params.require(:presponsable).permit(*lista_params)
       end
   
     end

@@ -152,7 +152,7 @@ module Sivel2Gen
                SELECT t.id, c.Level+1
                    FROM public.sivel2_gen_presponsable t
                        INNER JOIN cteRecursion c
-                           ON t.papa = c.id
+                           ON t.papa_id = c.id
                        )
                SELECT id, Level
                    FROM cteRecursion

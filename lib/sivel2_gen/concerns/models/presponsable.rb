@@ -8,6 +8,11 @@ module Sivel2Gen
 
         include Sip::Basica
         included do
+
+
+          belongs_to :papa, validate: false, 
+            class_name: 'Sivel2Gen::Presponsable', optional: true
+
           has_many :acto, foreign_key: "id_presponsable", validate: true, 
             class_name: 'Sivel2Gen::Acto'
           has_many :actocolectivo, foreign_key: "id_presponsable", 
@@ -19,7 +24,7 @@ module Sivel2Gen
             class_name: 'Sivel2Gen::CasoCategoriaPresponsable'
           has_many :caso, through: :caso_presponsable, 
             class_name: 'Sivel2Gen::Caso'
-          has_many :presponsable, foreign_key: "papa", validate: false, 
+          has_many :hijos, foreign_key: "id", validate: false, 
             class_name: 'Sivel2Gen::Presponsable'
           has_many :victima, foreign_key: "organizacionarmada", 
             validate: true, 
@@ -29,8 +34,6 @@ module Sivel2Gen
           has_many :combatiente, foreign_key: "organizacionarmada", 
             validate: true, class_name: 'Sivel2Gen::Combatiente'
 
-          belongs_to :presponsable, foreign_key: "papa", validate: false, 
-            class_name: 'Sivel2Gen::Presponsable', optional: true
 
         end
 
