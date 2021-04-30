@@ -24,7 +24,7 @@ module Sivel2Gen
             class_name: 'Sivel2Gen::CasoCategoriaPresponsable'
           has_many :caso, through: :caso_presponsable, 
             class_name: 'Sivel2Gen::Caso'
-          has_many :hijos, foreign_key: "id", validate: false, 
+          has_many :hijos, foreign_key: "papa_id", validate: false, 
             class_name: 'Sivel2Gen::Presponsable'
           has_many :victima, foreign_key: "organizacionarmada", 
             validate: true, 
