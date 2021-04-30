@@ -25,7 +25,6 @@ Sivel2Gen::Engine.routes.draw do
   get '/casos/mapaosm' => 'casos#mapaosm'
   get '/casos/nuevaubicacion' => 'casos#nueva_ubicacion'
   get '/casos/nuevavictima' => 'casos#nueva_victima'
-  get '/casos/nuevopresponsable' => 'casos#nuevo_presponsable'
   get '/casos/refresca' => 'casos#refresca', as: :casos_refresca
 
   get '/combatientes/nuevo' => 'combatientes#nuevo'
@@ -41,7 +40,7 @@ Sivel2Gen::Engine.routes.draw do
 
   get "/hogar" => 'hogar#index'
 
-  get '/presponsables/nuevo' => 'presponsables#nuevo'
+  get '/admin/presponsables/nuevo' => 'admin/presponsables#nuevo'
 
   get "/tablasbasicas" => 'hogar#tablasbasicas'
 
