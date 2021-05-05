@@ -1,7 +1,7 @@
 Puede verlo en el archivo
 ![doc/erd.pdf](https://github.com/pasosdeJesus/sivel2_gen/blob/master/doc/erd.pdf)
 
-Este archivo está en el directorio `doc` de las fuentes. Se generó con graphviz y `rails-erd`. En adJ, usted puede instalar `graphviz` con:
+Este archivo se generó con graphviz y `rails-erd`. En adJ, usted puede instalar `graphviz` con:
 ```sh
 doas pkg_add graphviz
 ```
