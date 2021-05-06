@@ -1,9 +1,9 @@
 <%- model_class = Sivel2Gen::Caso -%>
 <div class="page-header">
-  <% if !defined? @formulario_sin_titulo || !@formulario_sin_titulo %>
+  <% if !defined?(@formulario_sin_titulo) || !@formulario_sin_titulo %>
     <h1>
-      <%=t '.title', :default => [:'helpers.titles.edit', 'Edit %{model}'], 
-        :model => model_class.model_name.human.titleize %>
+      <%=t '.title', :default => 
+      ["Edita #{model_class.model_name.human.titleize }"] %>
     </h1>
   <% end %>
 </div>
