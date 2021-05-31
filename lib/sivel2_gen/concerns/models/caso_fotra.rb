@@ -27,13 +27,6 @@ module Sivel2Gen
           validates :tfuente, length: { maximum: 25 } 
           validates :nombre, uniqueness: { scope: [ :fecha, :id_caso ] }
 
-
-          validate :fuente_tras_caso
-          def fuente_tras_caso
-            errors.add(:fecha, 'En {%model} la fecha no puede ser anterior a la del caso') if
-              caso && fecha && fecha < caso.fecha
-          end
-
         end
       end
     end

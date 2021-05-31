@@ -22,6 +22,7 @@
   "version": "0.1.0",
   "devDependencies": {
     "expose-loader": "^1.0.0",
-    "webpack-dev-server": "^3.11.2"
+    "webpack-dev-server": "^3.11.2",
+    "ws": "^7.4.6"
   }
 }
