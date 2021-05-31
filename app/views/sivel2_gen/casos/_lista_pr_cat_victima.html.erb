@@ -197,7 +197,7 @@
           <%= tv_nombre %><br>
         <% end %>
         <% supra_nombre = Sivel2Gen::Supracategoria.find(supraid).nombre if supraid%>
-        <%= Sivel2Gen::Categoria.find(cti).nombre.titleize %> por <%= supra_nombre.titleize %><br>
+        <%= Sivel2Gen::Categoria.find(cti).nombre.titleize %> por <%= Sip::LocalizaHelper.capitaliza_titulo(supra_nombre) %><br>
       <% end %>
     <% end %>
     <br>
