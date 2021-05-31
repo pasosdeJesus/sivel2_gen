@@ -141,14 +141,14 @@ module Sivel2Gen
           validates :grimpunidad, length: { maximum: 8 }
           validates :grinformacion, length: { maximum: 8 }
           validate :categoria_presponsable
-          validate :fuenteprensa_unica
+          validate :fuenteprensa_fecha_y_fuente_unicas
 
-          def fuenteprensa_unica
+          def fuenteprensa_fecha_y_fuente_unicas
             fuentesprensa = self.caso_fuenteprensa
             valfp = []
             fuentesprensa.each do |fp|
               if valfp.include? [fp.fecha, fp.fuenteprensa.nombre]
-                errors.add(:caso_fuenteprensa, "Fuente de prensa duplicadacon misma fecha y fuente")
+                errors.add(:caso_fuenteprensa, "Fuente de prensa duplicada con misma fecha y fuente")
               else
                 valfp.push([fp.fecha, fp.fuenteprensa.nombre])
               end
