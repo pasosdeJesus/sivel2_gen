@@ -184,7 +184,7 @@ es:
         Region: Región
         Regiones: Regiones
         "{:departamento_ids=>[]}": Departamentos completos
-        "{:municipios_ids=>[]}": Otros municipios
+        "{:municipio_ids=>[]}": Otros municipios
       "sivel2_gen/regionsjr":
         Regionsjr: Oficina
         Regionessjr: Oficinas
