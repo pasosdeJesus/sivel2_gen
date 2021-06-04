@@ -142,7 +142,13 @@ module Sivel2Gen
           validates :grinformacion, length: { maximum: 8 }
           validate :categoria_presponsable
           validate :fuenteprensa_fecha_y_fuente_unicas
+          validate :fecha_no_futura, 
 
+          def fecha_no_futura
+            if self.fecha > Date.today
+              errors.add(:fecha, 'La fecha del caso no puede ser futura')
+            end
+          end
           def fuenteprensa_fecha_y_fuente_unicas
             fuentesprensa = self.caso_fuenteprensa
             valfp = []
