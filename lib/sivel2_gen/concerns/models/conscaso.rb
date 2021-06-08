@@ -90,13 +90,28 @@ module Sivel2Gen
             if id.is_a? Array
               where('caso_id IN (SELECT id_caso
                     FROM public.sivel2_gen_acto
-                    WHERE sivel2_gen_acto.id_categoria IN (?))',
-                    id)
+                    WHERE sivel2_gen_acto.id_categoria IN (?)) OR
+                    caso_id IN (
+                    SELECT id_caso FROM public.sivel2_gen_caso_presponsable
+                    INNER JOIN public.sivel2_gen_caso_categoria_presponsable ON
+                     public.sivel2_gen_caso_presponsable.id =
+                    public.sivel2_gen_caso_categoria_presponsable.id_caso_presponsable WHERE
+                    public.sivel2_gen_caso_categoria_presponsable.id_categoria IN (?) 
+                   )',
+                    id, id)
             else
               where('caso_id IN (SELECT id_caso
                     FROM public.sivel2_gen_acto
-                    WHERE sivel2_gen_acto.id_categoria = ?)',
-                    id)
+                    WHERE sivel2_gen_acto.id_categoria = ?) OR
+                    caso_id IN (
+                    SELECT id_caso FROM public.sivel2_gen_caso_presponsable
+                    INNER JOIN public.sivel2_gen_caso_categoria_presponsable ON
+                     public.sivel2_gen_caso_presponsable.id =
+                    public.sivel2_gen_caso_categoria_presponsable.id_caso_presponsable WHERE
+                    public.sivel2_gen_caso_categoria_presponsable.id_categoria = ? 
+                   )',
+                    id, id)
+
             end
           }
 
