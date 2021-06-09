@@ -166,6 +166,25 @@ xml.relato do
     end
   end
 
+  xml.comment! "Combatientes" 	
+  if caso.combatiente 
+    caso.combatiente.each do |co|
+      xml.combatiente do
+        xml.nombre co.nombre
+        xml.alias co.alias
+        xml.edad co.edad
+        xml.sexo co.sexo
+        xml.profesion co.profesion.nombre if co.profesion
+        xml.rangoedad co.rangoedad.nombre if co.rangoedad
+        xml.filiacion co.filiacion.nombre if co.filiacion
+        xml.sector_social co.sectorsocial.nombre if co.sectorsocial
+        xml.organizacion co.organizacion.nombre if co.organizacion
+        xml.organizacion_armada co.presponsable.nombre if co.presponsable
+        xml.vinculo_con_estado co.vinculoestado.nombre if co.vinculoestado
+        xml.resultado_agresion co.resagresion.nombre if co.resagresion
+      end
+    end
+  end
   #OTROS
   xml.comment! "Otros" 	
   ['grconfiabilidad', 'gresclarecimiento', 'grimpunidad', 'grinformacion', 
