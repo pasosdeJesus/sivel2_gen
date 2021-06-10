@@ -300,6 +300,23 @@ module Sivel2Gen
                 idsv[datosent['victima']['id_persona']] = vict.id_persona
               end
             end
+            #Importa combatientes
+            idsco = {}
+            if datosent['combatiente']
+              if datosent['combatiente'].kind_of?(Array)
+                datosent['combatiente'].each do |co|
+                  com = Sivel2Gen::Combatiente.new
+                  com.id_caso = self.id
+                  com.importa([datosent, co], datossal, menserror, opciones)
+                end
+              else
+                com = Sivel2Gen::Combatiente.new
+                com.id_caso = self.id
+                com.importa(
+                  [datosent, datosent['victima']], datossal, menserror, 
+                  opciones)
+              end
+            end
             #Importa actos individuales
             if datosent['acto']
               if datosent['acto'].kind_of?(Array)
