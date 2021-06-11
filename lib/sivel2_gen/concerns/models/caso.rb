@@ -145,7 +145,7 @@ module Sivel2Gen
           validate :fecha_no_futura, 
 
           def fecha_no_futura
-            if self.fecha > Date.today
+            if self.fecha && self.fecha > Date.today
               errors.add(:fecha, 'La fecha del caso no puede ser futura')
             end
           end
