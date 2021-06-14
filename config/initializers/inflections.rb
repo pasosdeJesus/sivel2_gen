@@ -34,7 +34,7 @@ ActiveSupport::Inflector.inflections do |inflect|
 	inflect.irregular 'region', 'regiones'
 	inflect.irregular 'resagresion', 'resagresiones'
 	inflect.irregular 'rolfamilia', 'rolesfamilia'
-	inflect.irregular 'perfilactorsocial', 'perfilesactorsocial'
+	inflect.irregular 'perfilorgsocial', 'perfilesorgsocial'
 	inflect.irregular 'sectorsocial', 'sectoressociales'
 	inflect.irregular 'ubicacion', 'ubicaciones'
 	inflect.irregular 'vinculoestado', 'vinculosestado'

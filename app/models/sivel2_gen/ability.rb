@@ -237,7 +237,7 @@ module Sivel2Gen
       habilidad.can :lista, Sivel2Gen::Caso
 
       habilidad.can [:read, :update], Mr519Gen::Encuestausuario
-      habilidad.can :read, Sip::Actorsocial
+      habilidad.can :read, Sip::Orgsocial
 
       habilidad.can :descarga_anexo, Sip::Anexo
 
@@ -265,7 +265,7 @@ module Sivel2Gen
 
           if usuario.sip_grupo &&
               usuario.sip_grupo.pluck(:id).include?(GRUPO_ANALISTA_CASOS)
-            habilidad.can :manage, Sip::Actorsocial
+            habilidad.can :manage, Sip::Orgsocial
             habilidad.can :read, Sip::Bitacora
             habilidad.can :manage, Sip::Persona
 
@@ -278,7 +278,7 @@ module Sivel2Gen
 
             habilidad.can :read, Sivel2Gen::Victima
           else
-            habilidad.can :read, Sip::Actorsocial
+            habilidad.can :read, Sip::Orgsocial
             habilidad.can :read, Sip::Bitacora, usuario: { id: usuario.id }
             habilidad.can :read, Sip::Persona
 
@@ -325,7 +325,7 @@ module Sivel2Gen
           habilidad.can :manage, Mr519Gen::Formulario
           habilidad.can :manage, Mr519Gen::Encuestausuario 
 
-          habilidad.can :manage, Sip::Actorsocial
+          habilidad.can :manage, Sip::Orgsocial
           habilidad.can :manage, Sip::Bitacora
           habilidad.can :manage, Sip::Persona
           habilidad.can :manage, Sip::Respaldo7z
