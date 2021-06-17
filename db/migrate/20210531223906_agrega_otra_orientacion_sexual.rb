@@ -5,13 +5,14 @@ class AgregaOtraOrientacionSexual < ActiveRecord::Migration[6.1]
         victima_orientacionsexual_check;
       ALTER TABLE sivel2_gen_victima ADD CONSTRAINT 
         victima_orientacionsexual_check CHECK (
-          orientacionsexual = 'L' OR 
-          orientacionsexual = 'G' OR 
           orientacionsexual = 'B' OR 
-          orientacionsexual = 'T' OR 
-          orientacionsexual = 'O' OR 
+          orientacionsexual = 'G' OR 
           orientacionsexual = 'H' OR 
-          orientacionsexual = 'S'
+          orientacionsexual = 'I' OR 
+          orientacionsexual = 'L' OR 
+          orientacionsexual = 'O' OR 
+          orientacionsexual = 'S' OR
+          orientacionsexual = 'T' 
         );
     SQL
   end
