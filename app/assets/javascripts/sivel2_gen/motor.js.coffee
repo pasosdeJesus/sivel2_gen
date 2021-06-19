@@ -726,6 +726,10 @@ enviaFormularioContar= (root) ->
   )
 
   $(document).on('click', 'a#boton_filtro_avanzado', (e) ->
+    if $(this).attr("aria-expanded") == 'true'
+      $('#botones_finfiltro').removeClass("float-right").addClass("d-flex justify-content-center")
+    else
+      $('#botones_finfiltro').removeClass("d-flex justify-content-center").addClass("float-right")
     if $('#conscasos_q').is(':visible')
       $('#conscasos_q').hide()
     else

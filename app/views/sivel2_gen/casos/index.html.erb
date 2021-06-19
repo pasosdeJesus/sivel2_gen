@@ -9,7 +9,7 @@
     method: "get" } do |f| 
 %>
   <div class="container">
-    <div class="row">
+    <div class="row align-items-center">
       <div class="offset-md-0 col-md-1"> 
         <% if @conscaso.size > 0 && current_usuario &&
             can?(:new, Sivel2Gen::Caso) %>
@@ -28,24 +28,33 @@
           placeholder: 'Búsqueda aproximada'
         %>
       </div>
-      <div class="offset-md-0 col-md-1"> 
-        <%= f.button :submit, 'Filtrar', class: 'btn btn-default' %>
-      </div>
-      <div class="offset-md-0 col-md-1">
-        <a class="btn btn-default btn-sm" role="button" data-toggle="collapse" 
+      <div class="col">
+        <a class="btn btn-default btn-sm float-right" role="button" data-toggle="collapse" 
           href="#filtro_avanzado" aria-expanded="false" 
           aria-controls="filtro_avanzado" id="boton_filtro_avanzado"> 
           Búsqueda Avanzada
         </a>
-        <button class="btn btn-default btn-sm" type="reset">
-          Limpiar
-        </button>
 
       </div>
     </div>
-  </div>
-  <div class="collapse" id="filtro_avanzado">
-    <%= render partial: 'filtro_avanzado', locals: {f: f} %>
+    <div class="row">
+      <div class="offset-md-0 col-md-12">
+        <div class="collapse" id="filtro_avanzado">
+          </br>
+          <%= render partial: 'filtro_avanzado', locals: {f: f} %>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="float-right" id="botones_finfiltro"> 
+          <%= f.button :submit, 'Filtrar', class: 'btn btn-default' %>
+          <button class="btn btn-default" type="reset">
+            Limpiar
+          </button>
+        </div>
+      </div>
+    </div>
   </div>
 <% end %>
 
