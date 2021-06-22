@@ -103,8 +103,6 @@ xml.relato do
       end
     end
   end
-
-  xml.comment! "Presuntos responsables individuales"
   xml.comment! "Ubicacion"
   xml.fecha caso['fecha']      
   xml.hora caso['hora'] if caso['hora']
@@ -181,13 +179,15 @@ xml.relato do
         xml.organizacion_armada co.presponsable.nombre if co.presponsable
         xml.resultado_agresion co.resagresion.nombre if co.resagresion
         xml.observaciones(
-          co.rangoedad.nombre, {tipo: 'rangoedad'}) if co.rangoedad
+          co.rangoedad.nombre.strip, {tipo: 'rangoedad'}) if co.rangoedad
         xml.observaciones(
-          co.filiacion.nombre, {tipo: 'filiacion'}) if co.filiacion
+          co.filiacion.nombre.strip, {tipo: 'filiacion'}) if co.filiacion
         xml.observaciones(
-          co.vinculoestado.nombre, {tipo: 'vinculo_estado'}) if co.vinculoestado
-        xml.observaciones(co.antecedente.map(&:nombre).join(";"), 
-                        {tipo: "contexto"}) if co.antecedente[0]
+          co.vinculoestado.nombre.strip, {tipo: 'vinculo_estado'}) if co.vinculoestado
+        co.antecedente.each do |ante|
+          xml.observaciones(ante.nombre.strip, 
+                          {tipo: "contexto"})
+        end
       end
     end
   end
@@ -212,5 +212,4 @@ xml.relato do
   caso.contexto.each do |con|
     xml.observaciones(con.nombre, {tipo: 'contexto'}) if con
   end
-
 end
