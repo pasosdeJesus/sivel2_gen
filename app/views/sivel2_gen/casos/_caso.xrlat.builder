@@ -174,14 +174,20 @@ xml.relato do
         xml.alias co.alias
         xml.edad co.edad
         xml.sexo co.sexo
-        xml.profesion co.profesion.nombre if co.profesion
-        xml.rangoedad co.rangoedad.nombre if co.rangoedad
+        xml.ocupacion co.profesion.nombre if co.profesion
         xml.filiacion co.filiacion.nombre if co.filiacion
-        xml.sector_social co.sectorsocial.nombre if co.sectorsocial
-        xml.organizacion co.organizacion.nombre if co.organizacion
+        xml.sector_condicion co.sectorsocial.nombre if co.sectorsocial
+        xml.organizacion co.organizacion.nombre.strip if co.organizacion
         xml.organizacion_armada co.presponsable.nombre if co.presponsable
-        xml.vinculo_con_estado co.vinculoestado.nombre if co.vinculoestado
         xml.resultado_agresion co.resagresion.nombre if co.resagresion
+        xml.observaciones(
+          co.rangoedad.nombre, {tipo: 'rangoedad'}) if co.rangoedad
+        xml.observaciones(
+          co.filiacion.nombre, {tipo: 'filiacion'}) if co.filiacion
+        xml.observaciones(
+          co.vinculoestado.nombre, {tipo: 'vinculo_estado'}) if co.vinculoestado
+        xml.observaciones(co.antecedente.map(&:nombre).join(";"), 
+                        {tipo: "contexto"}) if co.antecedente[0]
       end
     end
   end
