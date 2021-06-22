@@ -31,7 +31,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sip.git
-  revision: cf302cb1f25b58a2c93d7b380cc4b6a2ae6e4956
+  revision: beb4e8953e53b8947f46a26a1c52ac33181c989b
   branch: main
   specs:
     sip (2.0.b12)
@@ -124,7 +124,7 @@ GEM
       msgpack (~> 1.0)
     builder (3.2.4)
     camertron-eprun (1.1.1)
-    cancancan (3.2.2)
+    cancancan (3.3.0)
     choice (0.2.0)
     chosen-rails (1.9.0)
       coffee-rails (>= 3.2)
@@ -150,8 +150,8 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
-    devise-i18n (1.9.4)
-      devise (>= 4.7.1)
+    devise-i18n (1.10.0)
+      devise (>= 4.8.0)
     docile (1.4.0)
     dotenv (2.7.6)
     dotenv-rails (2.7.6)
