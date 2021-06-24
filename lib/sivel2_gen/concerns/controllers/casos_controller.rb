@@ -1,4 +1,3 @@
-# encoding: UTF-8
 require 'nokogiri'
 
 module Sivel2Gen
@@ -695,36 +694,12 @@ module Sivel2Gen
 
               if @caso.update(caso_params)
                 if registrar_en_bitacora
-                  #byebug
-                  # Se intentó implementar a nivel de modelo con
-                  # before_update, after_update pero a Sivel2Gen::Caso
-                  # sólo le llegan los cambios al modelo Caso y no a los
-                  # asociados. Por eso inicialmente se prefirió a nivel de
-                  # controlador y los cambios al formulario en el cliente
-                  # con Javascript.
-                  detalle_bitacora = {}
-                  if request.params[:caso] &&
-                      request.params[:caso][:bitacora_cambio] &&
-                      request.params[:caso][:bitacora_cambio] != ''
-                    begin
-                      detalle_bitacora = JSON.parse(
-                        request.params[:caso][:bitacora_cambio])
-                    rescue
-                      detalle_bitacora = {error: 'Error al reconocer JSON'}
-                    end
-                  end
-                  if detalle_bitacora != {}
-                    Sip::Bitacora.a(request.remote_ip,
-                                    current_usuario.id,
-                                    request.url,
-                                    params,
-                                    'Sivel2Gen::Caso',
-                                    @caso.id,
-                                    'actualizar',
-                                    detalle_bitacora.to_json)
-                  end
+                  Sip::Bitacora.agregar_actualizar(
+                    request, :caso, :bitacora_cambio, 
+                    current_usuario.id, params, 'Sivel2Gen::Caso',
+                    @caso.id
+                  )
                 end
-
                 #if request.params[:enviarFichaCaso] == '1'
                 #  head :no_content
                 #  return
