@@ -1,6 +1,6 @@
 <!ELEMENT relatos (relato+)>
 
-<!ELEMENT relato (organizacion_responsable, derechos, id_relato, forma_compartir, titulo?, hechos, persona*, grupo*, victima*, presunto_responsable_individual*, fecha?, hora?, duracion?, ubicacion_secundaria*, departamento?, municipio?, centro_poblado?, longitud?, latitud?, acto*, contexto?, fuente*, acciones_juridicas?, otras_acciones?, fecha_publicacion?, anexo?, observaciones*)>
+<!ELEMENT relato (organizacion_responsable, derechos, id_relato, forma_compartir, titulo?, hechos, persona*, grupo*, victima*, presunto_responsable_individual*, fecha?, hora?, duracion?, ubicacion_secundaria*, departamento?, municipio?, centro_poblado?, longitud?, latitud?, acto*, contexto?, fuente*, acciones_juridicas?, otras_acciones?, fecha_publicacion?, anexo?, combatiente*, observaciones*)>
 
 <!ELEMENT organizacion_responsable (#PCDATA)>
 
@@ -120,3 +120,26 @@
 
 <!ELEMENT anexo (observaciones*)>
 
+<!ELEMENT combatiente (nombre?, alias?, edad?, sexo?, ocupacion?, filiacion?, sector_condicion?, organizacion?, organizacion_armada?, resultado_agresion?, observaciones*)>
+
+<!ELEMENT nombre (#PCDATA)>
+
+<!ELEMENT alias (#PCDATA)>
+
+<!ELEMENT edad (#PCDATA)>
+
+<!ELEMENT sexo (#PCDATA)>
+
+<!ELEMENT ocupacion (#PCDATA)>
+
+<!ELEMENT filiacion (#PCDATA)>
+
+<!ELEMENT sector_condicion (#PCDATA)>
+
+<!ELEMENT organizacion (#PCDATA)>
+
+<!ELEMENT organizacion_armada (#PCDATA)>
+
+<!ELEMENT resultado_agresion (#PCDATA)>
+
+<!ELEMENT observaciones (#PCDATA)>
