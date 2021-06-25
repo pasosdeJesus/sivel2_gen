@@ -313,7 +313,7 @@ module Sivel2Gen
                 com = Sivel2Gen::Combatiente.new
                 com.id_caso = self.id
                 com.importa(
-                  [datosent, datosent['victima']], datossal, menserror, 
+                  [datosent, datosent['combatiente']], datossal, menserror, 
                   opciones)
               end
             end

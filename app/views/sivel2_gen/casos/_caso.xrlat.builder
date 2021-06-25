@@ -173,7 +173,6 @@ xml.relato do
         xml.edad co.edad
         xml.sexo co.sexo
         xml.ocupacion co.profesion.nombre if co.profesion
-        xml.filiacion co.filiacion.nombre if co.filiacion
         xml.sector_condicion co.sectorsocial.nombre if co.sectorsocial
         xml.organizacion co.organizacion.nombre.strip if co.organizacion
         xml.organizacion_armada co.presponsable.nombre if co.presponsable

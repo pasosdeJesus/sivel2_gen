@@ -1,6 +1,6 @@
 <!ELEMENT relatos (relato+)>
 
-<!ELEMENT relato (organizacion_responsable, derechos, id_relato, forma_compartir, titulo?, hechos, persona*, grupo*, victima*, presunto_responsable_individual*, fecha?, hora?, duracion?, ubicacion_secundaria*, departamento?, municipio?, centro_poblado?, longitud?, latitud?, acto*, contexto?, fuente*, acciones_juridicas?, otras_acciones?, fecha_publicacion?, anexo?, observaciones*, combatiente*)>
+<!ELEMENT relato (organizacion_responsable, derechos, id_relato, forma_compartir, titulo?, hechos, persona*, grupo*, victima*, presunto_responsable_individual*, fecha?, hora?, duracion?, ubicacion_secundaria*, departamento?, municipio?, centro_poblado?, longitud?, latitud?, acto*, contexto?, fuente*, acciones_juridicas?, otras_acciones?, fecha_publicacion?, anexo?, combatiente*, observaciones*)>
 
 <!ELEMENT organizacion_responsable (#PCDATA)>
 
