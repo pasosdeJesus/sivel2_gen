@@ -262,7 +262,6 @@
       <div class="offset-sm-0 col-sm-1 text-center">
       </div>
     </div>
-    <% if current_usuario %>
       <div class="row filtro-fila">
         <div class="offset-sm-0 col-sm-2 offset-md-1 col-md-1">
         </div>
@@ -279,6 +278,7 @@
               %>
             </div>
             <div class="col-sm col-md">
+            <% if current_usuario %>
               <%= f.input :organizacion_id,
                 collection: Sivel2Gen::Organizacion.habilitados,
                 label: false,
@@ -286,8 +286,10 @@
                 value_method: :id,
                 include_blank: '-- Organizacion'
               %>
+            <% end %>
             </div>
             <div class="col-sm col-md">
+            <% if current_usuario %>
               <%= f.input :profesion_id,
                 collection: Sivel2Gen::Profesion.habilitados,
                 label: false,
@@ -295,6 +297,7 @@
                 value_method: :id,
                 include_blank: '-- Profesion'
               %>
+            <% end %>
             </div>
           </div>
         </div>
@@ -303,6 +306,7 @@
         <div class="offset-sm-0 col-sm-1 text-center">
         </div>
       </div>
+      <% if current_usuario %>
       <div class="row filtro-fila">
         <div class="offset-sm-0 col-sm-2 offset-md-1 col-md-1">
           Víctima Colectiva
@@ -328,7 +332,7 @@
 
         </div>
       </div>
-    <% end # if current_usuario %>
+      <% end # if current_usuario %>
 
     <div class="row filtro-fila">
       <div class="offset-sm-0 col-sm-2 offset-md-1 col-md-1">
