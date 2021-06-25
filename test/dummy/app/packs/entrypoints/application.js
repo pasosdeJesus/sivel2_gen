@@ -1,5 +1,4 @@
 /* eslint no-console:0 */
-
 // This file is automatically compiled by Webpack, along with any other files
 // present in this directory. You're encouraged to place your actual application logic in
 // a relevant structure within app/javascript and only use these pack files to reference
@@ -23,7 +22,7 @@ require('turbolinks').start()   // Acelera carga de paginas
 //require('@rails/activestorage').start()         // Activestorage
 //require('channels')           // ActiveChannel
 
-import {$, jQuery} from 'jquery';
+import $ from "expose-loader?exposes=$,jQuery!jquery";
 import 'popper.js'              // Dialogos emergentes usados por bootstrap
 import 'bootstrap'              // Maquetacion y elementos de diseño
 import 'chosen-js/chosen.jquery';       // Cuadros de seleccion potenciados
