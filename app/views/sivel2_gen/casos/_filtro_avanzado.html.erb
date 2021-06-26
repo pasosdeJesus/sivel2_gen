@@ -243,10 +243,8 @@
                 collection: Sip::Persona::ORIENTACION_OPCIONES,
                 label: false,
                 include_blank: '-- Orientación Sexual'
-                %>
-            <% end %>
-          </div>
-          <div class="col-sm col-md">
+              %>
+          <% else %>
             <%= f.input :rangoedad_id, 
               collection: Sivel2Gen::Rangoedad.habilitados,
               label: false,
@@ -254,6 +252,26 @@
               value_method: :id,
               include_blank: '-- Rango de Edad'
             %>
+            <% end %>
+          </div>
+          <div class="col-sm col-md">
+          <% if current_usuario %>
+            <%= f.input :rangoedad_id, 
+              collection: Sivel2Gen::Rangoedad.habilitados,
+              label: false,
+              label_method: :rango,
+              value_method: :id,
+              include_blank: '-- Rango de Edad'
+            %>
+          <% else %>
+            <%= f.input :sectorsocial_id,
+              collection: Sivel2Gen::Sectorsocial.habilitados,
+              label: false,
+              label_method: :nombre,
+              value_method: :id,
+              include_blank: '-- Sector Social'
+            %>
+          <% end %>
           </div>
         </div>
       </div>
@@ -269,6 +287,7 @@
         <div class="offset-sm-0 col-sm-8 col-md-7">
           <div class="row filtro-fila">
             <div class="col-sm col-md">
+            <% if current_usuario %>
               <%= f.input :sectorsocial_id,
                 collection: Sivel2Gen::Sectorsocial.habilitados,
                 label: false,
@@ -276,6 +295,7 @@
                 value_method: :id,
                 include_blank: '-- Sector Social'
               %>
+            <% end %>
             </div>
             <div class="col-sm col-md">
             <% if current_usuario %>
