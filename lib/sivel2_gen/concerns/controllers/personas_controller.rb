@@ -28,6 +28,12 @@ module Sivel2Gen
             true
           end 
 
+          # Están llenas @persona, @victima, @personaant, @caso
+          # Y está listo para salvar la nueva persona @persona en
+          # @victima --remplazando @personaant.
+          # Continúa si esta función retorna true, de lo contrario
+          # se espera que la función haga render json con el error
+          # y que retorne false.
           def remplazar_antes_salvar_v
             true
           end 
@@ -46,7 +52,15 @@ module Sivel2Gen
             if !remplazar_antes_salvar_v
               return
             end
-            @victima.save!
+            if Sivel2Gen::Victima.where(id_persona: @persona.id).
+                where(id_caso: @caso.id).count == 0
+              @victima.save!
+            else
+              puts "Ya existe esa persona en el caso"
+              render json: "Ya existe esa persona en el caso",
+                status: :unprocessable_entity
+              return 
+            end
             if !remplazar_despues_salvar_v
               return
             end
@@ -56,7 +70,10 @@ module Sivel2Gen
               if !remplazar_antes_destruir_p
                 return
               end
+              begin
               @personaant.destroy
+              rescue e
+              end
             end
             respond_to do |format|
               format.html { 
