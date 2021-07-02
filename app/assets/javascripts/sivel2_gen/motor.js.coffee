@@ -983,3 +983,14 @@ enviaFormularioContar= (root) ->
 
   @sip_registra_cambios_para_bitacora(root)
   return
+
+## Ejemplo para probar Jest con coffescript
+@nombresco = () ->
+  [
+    'Alejandro',
+    'Felipe',
+    'Carlos']
+
+coloresco  = ['blanco', 'negro']
+
+module.exports = {nombresco: @nombresco, coloresco: coloresco }
