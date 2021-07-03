@@ -4,7 +4,7 @@
 
 ![Logo de sivel2_gen](https://raw.githubusercontent.com/pasosdeJesus/sivel2_gen/master/test/dummy/app/assets/images/logo.jpg)
 
-Este es un motor de SIVeL 2 con la funcionalidad central de este: manejo de casos de violencia socio política.
+Este es el motor central de SIVeL 2 para manejar casos de violencia socio política.
 
 Es para desarrolladores. Si estás interesado en desplegar la aplicación SIVeL mejor revisa:
 <https://github.com/pasosdeJesus/sivel2>
