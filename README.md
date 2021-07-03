@@ -9,7 +9,7 @@ Este es el motor central de SIVeL 2 para manejar casos de violencia socio polít
 Es para desarrolladores. Si estás interesado en desplegar la aplicación SIVeL mejor revisa:
 <https://github.com/pasosdeJesus/sivel2>
 
-## Requerimientos
+## Organización de los requerimientos
 Los manejamos mediante 3 proyectos en github:
 - [Funcionalidad completa de SIVeL 1.2 pero más estructurada](https://github.com/pasosdeJesus/sivel2_gen/projects/1)
 - [Mejorar usabilidad](https://github.com/pasosdeJesus/sivel2_gen/projects/2)
