@@ -556,7 +556,7 @@ enviaFormularioContar= (root) ->
  
   if root.puntomontaje[root.puntomontaje.length - 1] != '/'
     root.puntomontaje = root.puntomontaje + '/'
-
+  
   # Formato de campos de fecha con datepicker
   $(document).on('cocoon:after-insert', (e) ->
     $('[data-behaviour~=datepicker]').datepicker({
@@ -987,15 +987,6 @@ enviaFormularioContar= (root) ->
   )
 
   @sip_registra_cambios_para_bitacora(root)
+  ## Exporta funciones para Jest 
+  module.exports = {sivel2_gen_prepara_eventos_unicos: @sivel2_gen_prepara_eventos_unicos}
   return
-
-## Ejemplo para probar Jest con coffescript
-@nombresco = () ->
-  [
-    'Alejandro',
-    'Felipe',
-    'Carlos']
-
-coloresco  = ['blanco', 'negro']
-
-module.exports = {nombresco: @nombresco, coloresco: coloresco }

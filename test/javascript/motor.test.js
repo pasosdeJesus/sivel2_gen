@@ -1,11 +1,11 @@
-const {coloresco} = require('../../app/assets/javascripts/sivel2_gen/motor')
-const {nombresco} = require('../../app/assets/javascripts/sivel2_gen/motor')
+const {sivel2_gen_prepara_eventos_unicos} = require('../../app/assets/javascripts/sivel2_gen/motor')
 
 describe('verificando los nombres de motor', () => {
-  test('los colores contienen blanco', () => {
-    expect(coloresco).toContain('blanco')
-  })
-  test('los nombres contienen Alejandro', () => {
-    expect(nombresco()).toContain('Alejandro')
-  })
+  test('eventos comunes', () => {
+    //unicos = new sivel2_gen_prepara_eventos_unicos()
+    })
+})
+
+describe('pruebas de funciones de sivel2_gen_prepara eventos comunes', () => {
+
 })
