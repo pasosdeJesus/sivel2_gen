@@ -7,6 +7,7 @@
 @sivel2_gen_procesa_eliminaracto = false
 @sivel2_gen_procesa_eliminaractocolectivo = false
 
+module.exports = {sivel2_gen_procesa_eliminaracto: @sivel2_gen_procesa_eliminaracto, sivel2_gen_procesa_eliminaractocolectivo: @sivel2_gen_procesa_eliminaractocolectivo }
 
 
 @sivel2_gen_cancelar_caso_eliminar_vacio = (caso) ->
