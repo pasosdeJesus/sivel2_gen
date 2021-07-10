@@ -525,10 +525,31 @@ enviaFormularioContar= (root) ->
 @sivel2_idTemp60 = -1
 
 @sivel2_enviarFichaCasoCada60 = ->
-    @sivel2_idTemp60 = window.setInterval(@enviarFichaCaso, 60000)
+  @sivel2_idTemp60 = window.setInterval(@enviarFichaCaso, 60000)
 
 @sivel2_detenerEnviarCada60 = ->
-    window.clearInterval(@sivel2_idTemp60)
+  window.clearInterval(@sivel2_idTemp60)
+
+# A partir de datos de persona y fechas actual y del caso
+# llena campos edad, edadactual y rangoedad
+# @param prefIdVic de la forma caso_victima_attributes_123 donde 123 es id_victima
+# @param prefIdPer de la forma caso_victima_attributes_123_persona_attributes donde 123 es id_victima
+@sivel2_gen_llenar_edades = (root, prefIdVic, prefIdPer) ->
+  ponerVariablesEdad(root)
+  $('[id=' + prefIdVic + '_edad]').val(
+    edadDeFechaNac(prefIdPer, root.aniocaso, root.mescaso, root.diacaso))
+  $('[id=' + prefIdVic + '_edadactual]').val(
+    edadDeFechaNac(prefIdPer, root.anioactual, root.mesactual, root.diaactual))
+  ponerRangoEdad(prefIdVic);
+
+
+$(document).on('sip:autocompleto_persona', (evento, id_victima, id_persona) -> 
+  root =  exports ? window
+  ponerVariablesEdad(root)
+  prefIdVic = 'caso_victima_attributes_' + id_victima
+  prefIdPer = 'caso_victima_attributes_' + id_victima + '_persona_attributes'
+  sivel2_gen_llenar_edades(root, prefIdVic, prefIdPer)
+)
 
 
 # root es espacio para poner variables globales
@@ -835,16 +856,7 @@ enviaFormularioContar= (root) ->
     anionac = $(this).val();
     prefIdVic = $(this).attr('id').slice(0, -27)
     prefIdPer = $(this).attr('id').slice(0, -8)
-    ponerVariablesEdad(root)
-    if (anionac == '') 
-      limpiarFechaNac(prefIdPer, prefIdVic);
-    else 
-      $('[id=' + prefIdVic + '_edad]').val(
-        edadDeFechaNac(prefIdPer, root.aniocaso, root.mescaso, root.diacaso))
-      $('[id=' + prefIdVic + '_edadactual]').val(
-        edadDeFechaNac(prefIdPer, root.anioactual, root.mesactual, root.diaactual))
-    
-    ponerRangoEdad(prefIdVic);
+    sivel2_gen_llenar_edades(root, prefIdVic, prefIdPer)
   );
 
   $(document).on('change', 
@@ -852,12 +864,7 @@ enviaFormularioContar= (root) ->
     root =  exports ? window
     prefIdVic = $(this).attr('id').slice(0, -26)
     prefIdPer = $(this).attr('id').slice(0, -7)
-    ponerVariablesEdad(root)
-    $('[id=' + prefIdVic + '_edad]').val(
-      edadDeFechaNac(prefIdPer, root.aniocaso, root.mescaso, root.diacaso))
-    $('[id=' + prefIdVic + '_edadactual]').val(
-      edadDeFechaNac(prefIdPer, root.anioactual, root.mesactual, root.diaactual))
-    ponerRangoEdad(prefIdVic);
+    sivel2_gen_llenar_edades(root, prefIdVic, prefIdPer)
   )
 
   $(document).on('change', 
@@ -865,12 +872,7 @@ enviaFormularioContar= (root) ->
     root =  exports ? window
     prefIdVic = $(this).attr('id').slice(0, -26)
     prefIdPer = $(this).attr('id').slice(0, -7)
-    ponerVariablesEdad(root)
-    $('[id=' + prefIdVic + '_edad]').val(
-      edadDeFechaNac(prefIdPer, root.aniocaso, root.mescaso, root.diacaso))
-    $('[id=' + prefIdVic + '_edadactual]').val(
-      edadDeFechaNac(prefIdPer, root.anioactual, root.mesactual, root.diaactual))
-    ponerRangoEdad(prefIdVic);
+    sivel2_gen_llenar_edades(root, prefIdVic, prefIdPer)
   )
 
   $(document).on('change', 
