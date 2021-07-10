@@ -49,7 +49,6 @@ module Sivel2Gen
           validates :resagresion, presence: true
 
           def importa(datosent, datossal, menserror, opciones = {})
-            byebug
             v = datosent[1]
             if v
               if v['nombre']
