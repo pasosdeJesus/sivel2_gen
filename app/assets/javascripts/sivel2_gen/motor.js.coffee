@@ -536,11 +536,13 @@ enviaFormularioContar= (root) ->
 # @param prefIdPer de la forma caso_victima_attributes_123_persona_attributes donde 123 es id_victima
 @sivel2_gen_llenar_edades = (root, prefIdVic, prefIdPer) ->
   ponerVariablesEdad(root)
-  $('[id=' + prefIdVic + '_edad]').val(
-    edadDeFechaNac(prefIdPer, root.aniocaso, root.mescaso, root.diacaso))
-  $('[id=' + prefIdVic + '_edadactual]').val(
-    edadDeFechaNac(prefIdPer, root.anioactual, root.mesactual, root.diaactual))
-  ponerRangoEdad(prefIdVic);
+  anionac= +$("[id=" + prefIdPer + "_anionac]").val();
+  if anionac != 0
+    $('[id=' + prefIdVic + '_edad]').val(
+      edadDeFechaNac(prefIdPer, root.aniocaso, root.mescaso, root.diacaso))
+    $('[id=' + prefIdVic + '_edadactual]').val(
+     edadDeFechaNac(prefIdPer, root.anioactual, root.mesactual, root.diaactual))
+    ponerRangoEdad(prefIdVic);
 
 
 $(document).on('sip:autocompleto_persona', (evento, id_victima, id_persona) -> 
