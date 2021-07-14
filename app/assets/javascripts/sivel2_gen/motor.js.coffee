@@ -545,14 +545,6 @@ enviaFormularioContar= (root) ->
     ponerRangoEdad(prefIdVic);
 
 
-$(document).on('sip:autocompleto_persona', (evento, id_victima, id_persona) -> 
-  root =  exports ? window
-  ponerVariablesEdad(root)
-  prefIdVic = 'caso_victima_attributes_' + id_victima
-  prefIdPer = 'caso_victima_attributes_' + id_victima + '_persona_attributes'
-  sivel2_gen_llenar_edades(root, prefIdVic, prefIdPer)
-)
-
 
 # root es espacio para poner variables globales
 # nomactospe es nombre por dar a actos 
@@ -965,6 +957,15 @@ $(document).on('sip:autocompleto_persona', (evento, id_victima, id_persona) ->
     if (event.target.getAttribute('href').charAt(0) == '#') 
       return event.preventDefault()
   ) 
+
+  $(document).on('sip:autocompleto_persona', (evento, id_victima, id_persona) -> 
+    root =  exports ? window
+    ponerVariablesEdad(root)
+    prefIdVic = 'caso_victima_attributes_' + id_victima
+    prefIdPer = 'caso_victima_attributes_' + id_victima + '_persona_attributes'
+    sivel2_gen_llenar_edades(root, prefIdVic, prefIdPer)
+  )
+
 
   return
 
