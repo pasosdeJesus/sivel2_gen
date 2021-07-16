@@ -105,7 +105,9 @@ module Sivel2Gen
             reject_if: :all_blank
 
           has_many :victima,  foreign_key: "id_caso", dependent: :destroy, 
-            class_name: 'Sivel2Gen::Victima'
+            class_name: 'Sivel2Gen::Victima' 
+          #, validate: true Manejar en aplicaciones que usen este motor
+          
           has_many :persona, :through => :victima, class_name: 'Sip::Persona'
           accepts_nested_attributes_for :persona,  reject_if: :all_blank
           accepts_nested_attributes_for :victima, allow_destroy: true, 
