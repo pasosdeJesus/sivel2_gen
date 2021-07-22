@@ -25,14 +25,16 @@ module Sivel2Gen
           end
 
           def filtro_fechas(casos, cfecha = 'sivel2_gen_caso.fecha')
+            pfid = ''
             if (params[:validarcaso] && params[:validarcaso][:fechaini] && 
                 params[:validarcaso][:fechaini] != '')
               pfi = params[:validarcaso][:fechaini]
               pfid = Sip::FormatoFechaHelper.fecha_local_estandar pfi
-              if pfid
-                casos = casos.where("#{cfecha} >= ?", pfid)
-              end
+            else
+              # Comenzar en semestre anterior
+              pfid = Sip::FormatoFechaHelper.inicio_semestre(Date.today).to_s
             end
+            casos = casos.where("#{cfecha} >= ?", pfid)
             if(params[:validarcaso] && params[:validarcaso][:fechafin] && 
                params[:validarcaso][:fechafin] != '')
               pff = params[:validarcaso][:fechafin]
@@ -44,9 +46,29 @@ module Sivel2Gen
            return casos 
           end
 
+          def filtro_etiqueta(casos)
+            if (params[:validarcaso] && params[:validarcaso][:etiqueta_id] && 
+                params[:validarcaso][:etiqueta_id] != '' &&
+                Sip::Etiqueta.where(
+                  id: params[:validarcaso][:etiqueta_id].to_i
+                ).count > 0
+               )
+              casos = casos.where('sivel2_gen_caso.id IN (SELECT id_caso FROM 
+                                  sivel2_gen_caso_etiqueta 
+                                  WHERE id_etiqueta=?', 
+                                  params[:validarcaso][:etiqueta_id].to_i)
+            end
+           return casos 
+          end
+
+
           def ini_filtro
             casos = Sivel2Gen::Caso.all.order(:fecha)
+            puts "OJO 1 casos.count=·#{casos.count}"
             casos = filtro_fechas(casos)
+            puts "OJO 2 casos.count=·#{casos.count}"
+            casos = filtro_etiqueta(casos)
+            puts "OJO 3 casos.count=·#{casos.count}"
             return casos
           end
 
