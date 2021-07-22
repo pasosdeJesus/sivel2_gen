@@ -29,6 +29,7 @@
           <%= @rango_fechas %>
         </div>
         <div class="offset-sm-0 col-sm-4">
+          <% fpred = Sip::FormatoFechaHelper.inicio_semestre(Date.today) %>
           <%= f.input :fechaini,
             maxlength: 10, 
             size: 10,
@@ -36,8 +37,10 @@
             placeholder: 'Inicial',
             input_html: {
               "data-behaviour" => "datepicker",
-              value: params[:validarcaso] ? 
-                params[:validarcaso][:fechaini] : ''
+              value: (params[:validarcaso] ? 
+                      params[:validarcaso][:fechaini] :
+                      Sip::FormatoFechaHelper.fecha_estandar_local(fpred)
+                     )
             }
           %>
         </div>
