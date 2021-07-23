@@ -391,7 +391,7 @@ CREATE SEQUENCE public.sip_clase_id_seq
 
 
 --
--- Name: sip_clase; Type: TABLE; Schema: public; Owner: -
+-- Name: combatiente_presponsable; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE public.sip_clase (
@@ -476,10 +476,10 @@ CREATE TABLE public.sip_municipio (
 
 
 --
--- Name: sip_ubicacion_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+-- Name: sip_persona_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE public.sip_ubicacion_id_seq
+CREATE SEQUENCE public.sip_persona_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -488,7 +488,7 @@ CREATE SEQUENCE public.sip_ubicacion_id_seq
 
 
 --
--- Name: sip_ubicacion; Type: TABLE; Schema: public; Owner: -
+-- Name: sip_persona; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE public.sip_ubicacion (
@@ -502,9 +502,14 @@ CREATE TABLE public.sip_ubicacion (
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
     id_pais integer,
+    nacionalde integer,
+    tdocumento_id integer,
     id_departamento integer,
     id_municipio integer,
-    id_clase integer
+    id_clase integer,
+    CONSTRAINT persona_check CHECK (((dianac IS NULL) OR (((dianac >= 1) AND (((mesnac = 1) OR (mesnac = 3) OR (mesnac = 5) OR (mesnac = 7) OR (mesnac = 8) OR (mesnac = 10) OR (mesnac = 12)) AND (dianac <= 31))) OR (((mesnac = 4) OR (mesnac = 6) OR (mesnac = 9) OR (mesnac = 11)) AND (dianac <= 30)) OR ((mesnac = 2) AND (dianac <= 29))))),
+    CONSTRAINT persona_mesnac_check CHECK (((mesnac IS NULL) OR ((mesnac >= 1) AND (mesnac <= 12)))),
+    CONSTRAINT persona_sexo_check CHECK (((sexo = 'S'::bpchar) OR (sexo = 'F'::bpchar) OR (sexo = 'M'::bpchar)))
 );
 
 
@@ -537,7 +542,7 @@ CREATE VIEW public.cben2 AS
 -- Name: sip_persona_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE public.sip_persona_id_seq
+CREATE SEQUENCE public.sip_ubicacion_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -546,29 +551,23 @@ CREATE SEQUENCE public.sip_persona_id_seq
 
 
 --
--- Name: sip_persona; Type: TABLE; Schema: public; Owner: -
+-- Name: sip_ubicacion; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE public.sip_persona (
-    id integer DEFAULT nextval('public.sip_persona_id_seq'::regclass) NOT NULL,
-    nombres character varying(100) NOT NULL COLLATE public.es_co_utf_8,
-    apellidos character varying(100) NOT NULL COLLATE public.es_co_utf_8,
-    anionac integer,
-    mesnac integer,
-    dianac integer,
-    sexo character(1) NOT NULL,
-    numerodocumento character varying(100),
+CREATE TABLE public.sip_ubicacion (
+    id integer DEFAULT nextval('public.sip_ubicacion_id_seq'::regclass) NOT NULL,
+    id_tsitio integer DEFAULT 1 NOT NULL,
+    id_caso integer NOT NULL,
+    latitud double precision,
+    longitud double precision,
+    sitio character varying(500) COLLATE public.es_co_utf_8,
+    lugar character varying(500) COLLATE public.es_co_utf_8,
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
     id_pais integer,
-    nacionalde integer,
-    tdocumento_id integer,
     id_departamento integer,
     id_municipio integer,
-    id_clase integer,
-    CONSTRAINT persona_check CHECK (((dianac IS NULL) OR (((dianac >= 1) AND (((mesnac = 1) OR (mesnac = 3) OR (mesnac = 5) OR (mesnac = 7) OR (mesnac = 8) OR (mesnac = 10) OR (mesnac = 12)) AND (dianac <= 31))) OR (((mesnac = 4) OR (mesnac = 6) OR (mesnac = 9) OR (mesnac = 11)) AND (dianac <= 30)) OR ((mesnac = 2) AND (dianac <= 29))))),
-    CONSTRAINT persona_mesnac_check CHECK (((mesnac IS NULL) OR ((mesnac >= 1) AND (mesnac <= 12)))),
-    CONSTRAINT persona_sexo_check CHECK (((sexo = 'S'::bpchar) OR (sexo = 'F'::bpchar) OR (sexo = 'M'::bpchar)))
+    id_clase integer
 );
 
 
@@ -584,6 +583,41 @@ CREATE TABLE public.sivel2_gen_acto (
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
     id integer DEFAULT nextval('public.acto_seq'::regclass) NOT NULL
+);
+
+
+--
+-- Name: sivel2_gen_caso_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.sivel2_gen_caso_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: sivel2_gen_caso; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.sivel2_gen_caso (
+    id integer DEFAULT nextval('public.sivel2_gen_caso_id_seq'::regclass) NOT NULL,
+    titulo character varying(50),
+    fecha date NOT NULL,
+    hora character varying(10),
+    duracion character varying(10),
+    memo text NOT NULL,
+    grconfiabilidad character varying(5),
+    gresclarecimiento character varying(5),
+    grimpunidad character varying(8),
+    grinformacion character varying(8),
+    bienes text,
+    id_intervalo integer DEFAULT 5,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone,
+    ubicacion_id integer
 );
 
 
@@ -612,7 +646,7 @@ CREATE TABLE public.sivel2_gen_categoria (
 -- Name: sivel2_gen_supracategoria_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE public.sivel2_gen_supracategoria_id_seq
+CREATE SEQUENCE public.victima_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -621,20 +655,29 @@ CREATE SEQUENCE public.sivel2_gen_supracategoria_id_seq
 
 
 --
--- Name: sivel2_gen_supracategoria; Type: TABLE; Schema: public; Owner: -
+-- Name: sivel2_gen_victima; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE public.sivel2_gen_supracategoria (
-    codigo integer,
-    nombre character varying(500) NOT NULL COLLATE public.es_co_utf_8,
-    fechacreacion date NOT NULL,
-    fechadeshabilitacion date,
-    id_tviolencia character varying(1) NOT NULL,
+CREATE TABLE public.sivel2_gen_victima (
+    hijos integer,
+    id_profesion integer DEFAULT 22 NOT NULL,
+    id_rangoedad integer DEFAULT 6 NOT NULL,
+    id_filiacion integer DEFAULT 10 NOT NULL,
+    id_sectorsocial integer DEFAULT 15 NOT NULL,
+    id_organizacion integer DEFAULT 16 NOT NULL,
+    id_vinculoestado integer DEFAULT 38 NOT NULL,
+    id_caso integer NOT NULL,
+    organizacionarmada integer DEFAULT 35 NOT NULL,
+    anotaciones character varying(1000),
+    id_persona integer NOT NULL,
+    id_etnia integer DEFAULT 1 NOT NULL,
+    id_iglesia integer DEFAULT 1,
+    orientacionsexual character(1) DEFAULT 'S'::bpchar NOT NULL,
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
-    observaciones character varying(5000),
-    id integer DEFAULT nextval('public.sivel2_gen_supracategoria_id_seq'::regclass) NOT NULL,
-    CONSTRAINT supracategoria_check CHECK (((fechadeshabilitacion IS NULL) OR (fechadeshabilitacion >= fechacreacion)))
+    id integer DEFAULT nextval('public.victima_seq'::regclass) NOT NULL,
+    CONSTRAINT victima_hijos_check CHECK (((hijos IS NULL) OR ((hijos >= 0) AND (hijos <= 100)))),
+    CONSTRAINT victima_orientacionsexual_check CHECK (((orientacionsexual = 'B'::bpchar) OR (orientacionsexual = 'G'::bpchar) OR (orientacionsexual = 'H'::bpchar) OR (orientacionsexual = 'I'::bpchar) OR (orientacionsexual = 'L'::bpchar) OR (orientacionsexual = 'O'::bpchar) OR (orientacionsexual = 'S'::bpchar) OR (orientacionsexual = 'T'::bpchar)))
 );
 
 
@@ -1340,6 +1383,49 @@ CREATE SEQUENCE public.sip_bitacora_id_seq
 --
 
 ALTER SEQUENCE public.sip_bitacora_id_seq OWNED BY public.sip_bitacora.id;
+
+
+--
+-- Name: sip_clase_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.sip_clase_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: sip_clase; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.sip_clase (
+    id_clalocal integer,
+    id_tclase character varying(10) DEFAULT 'CP'::character varying NOT NULL,
+    nombre character varying(500) COLLATE public.es_co_utf_8,
+    fechacreacion date DEFAULT '2001-01-01'::date NOT NULL,
+    fechadeshabilitacion date,
+    latitud double precision,
+    longitud double precision,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone,
+    id_municipio integer,
+    id integer DEFAULT nextval('public.sip_clase_id_seq'::regclass) NOT NULL,
+    observaciones character varying(5000) COLLATE public.es_co_utf_8,
+    CONSTRAINT clase_check CHECK (((fechadeshabilitacion IS NULL) OR (fechadeshabilitacion >= fechacreacion)))
+);
+
+
+--
+-- Name: sip_departamento_sivel2_gen_region; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.sip_departamento_sivel2_gen_region (
+    sivel2_gen_region_id bigint NOT NULL,
+    sip_departamento_id bigint NOT NULL
+);
 
 
 --
@@ -6038,13 +6124,11 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20190926143845'),
 ('20191012042159'),
 ('20191016100031'),
-('20191021021621'),
 ('20191205200007'),
 ('20191205202150'),
 ('20191205204511'),
 ('20191219011910'),
 ('20191231102721'),
-('20200106174710'),
 ('20200221181049'),
 ('20200224134339'),
 ('20200228235200'),
@@ -6052,9 +6136,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20200320152017'),
 ('20200324164130'),
 ('20200422103916'),
-('20200423092828'),
 ('20200427091939'),
-('20200428155536'),
 ('20200430101709'),
 ('20200622193241'),
 ('20200720005020'),
