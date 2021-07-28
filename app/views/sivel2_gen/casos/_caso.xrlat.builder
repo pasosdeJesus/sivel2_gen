@@ -178,7 +178,7 @@ xml.relato do
         xml.organizacion_armada co.presponsable.nombre if co.presponsable
         xml.resultado_agresion co.resagresion.nombre if co.resagresion
         xml.observaciones(
-          co.rangoedad.nombre.strip, {tipo: 'rangoedad'}) if co.rangoedad
+          co.rangoedad.rango.strip, {tipo: 'rangoedad'}) if co.rangoedad
         xml.observaciones(
           co.filiacion.nombre.strip, {tipo: 'filiacion'}) if co.filiacion
         xml.observaciones(
