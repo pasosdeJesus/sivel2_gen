@@ -52,7 +52,7 @@
         'sivel2_gen_victima.id_persona=sip_persona.id 
         AND sivel2_gen_victima.id_caso=?', @caso.id),
         "id",
-        lambda {|t| t.nombres + ' ' + t.apellidos}
+        lambda {|t| (t.nombres == 'N' && t.apellidos == 'N') ? t.sin_identificacion : (t.nombres + ' ' + t.apellidos)}
     )
     select_tag "caso_acto_id_persona", p, multiple: true,
       "data-toggle" => 'tooltip',

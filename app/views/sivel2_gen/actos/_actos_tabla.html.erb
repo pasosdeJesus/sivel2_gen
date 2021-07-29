@@ -14,7 +14,11 @@
         <td><%= acto.presponsable.nombre %></td>
         <td><%= acto.categoria.supracategoria.id_tviolencia + acto.categoria.id.to_s + ' ' + acto.categoria.nombre %></td>
         <td>
-          <%= acto.persona.nombres + ' ' + acto.persona.apellidos %>
+          <%if acto.persona.nombres == 'N' && acto.persona.apellidos == 'N' %>
+            <%= acto.persona.sin_identificacion %>
+          <% else %> 
+            <%= acto.persona.nombres + ' ' + acto.persona.apellidos %>
+          <% end %> 
         </td>
         <td>
           <%= link_to t('.destroy', :default => t("helpers.links.destroy")),

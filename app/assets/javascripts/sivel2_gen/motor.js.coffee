@@ -131,6 +131,7 @@
   c = $('#contacto')
   lc = c.add('#victimas .control-group[style!="display: none;"]')
   lcg = lc.add('#datosbasicos')
+  sinid = 0
   lcg.each((k, v) ->
     id = $(v).find('div').filter( () -> 
       this.attributes.class.value.match(/caso_victima[_0-9]*persona_id/)
@@ -157,7 +158,11 @@
       ap = $(v).find('div').filter( () -> 
         this.attributes.class.value.match(/persona_apellidos/)
       ).find('input').val()
-    tx = (nom + " " + ap).trim()
+    if (nom == 'N' && ap == 'N')
+      sinid += 1
+      tx = "PERSONA SIN IDENTIFICAR " + sinid
+    else
+      tx = (nom + " " + ap).trim()
     nh = nh + ">" + tx + "</option>" 
   )
   s.html(nh)
