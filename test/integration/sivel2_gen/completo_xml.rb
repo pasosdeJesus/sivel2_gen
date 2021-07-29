@@ -174,15 +174,32 @@ module Sivel2Gen
         id_region: region2.id,
         created_at: '2014-09-09'
       )
+      combatiente = Sivel2Gen::Combatiente.create(
+        id_caso: caso.id,
+        nombre: "Juan",
+        alias: "Reyes",
+        edad: 45,
+        sexo: "F",
+        id_resagresion: 2,
+        id_profesion: 16,
+        id_rangoedad: 3,
+        id_sectorsocial: 2,
+        id_organizacion: 10,
+        id_vinculoestado: 13,
+        organizacionarmada: 27,
+        antecedente_ids: [6, 4, 2]
+      )
       get caso_path(caso) + '.xml'
       d12 = 'test/dummy/public/relatos_ref.xrlat'
       puts @response.body
       file = guarda_xml(@response.body)
       docu = File.read(file)
+      verifica_dtd(open(d12))
       verifica_dtd(docu)
       compara(docu, d12)
       ubicaso.destroy
       caso.destroy
+      combatiente.destroy
       acto1.destroy
       acto2.destroy
       acto3.destroy

@@ -1,8 +1,8 @@
 xml.instruct!
 if ENV['RAILS_ENV'] == 'test'
-  rdtd = 'test/dummy/public/relatos-098.dtd'
+  rdtd = 'test/dummy/public/relatos-099.dtd'
 else
-  rdtd = 'https://sincodh.pasosdejesus.org/relatos/relatos-098.dtd'
+  rdtd = 'https://sincodh.pasosdejesus.org/relatos/relatos-099.dtd'
 end
 
 xml.declare! :DOCTYPE, :relatos, :SYSTEM, rdtd
