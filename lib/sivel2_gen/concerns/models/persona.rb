@@ -32,9 +32,11 @@ module Sivel2Gen
               caso = Sivel2Gen::Victima.where(id_persona: self.id)[0].id_caso
               vics = Sivel2Gen::Victima.where(id_caso: caso)
               hv = {}
+              ban = 1
               vics.each_with_index do |vi, index|
                 if vi.persona.nombres == 'N' && vi.persona.apellidos == 'N'
-                  hv[vi.id] = index
+                  hv[vi.id] = ban
+                  ban += 1
                 end
               end
               return "PERSONA SIN IDENTIFICAR #{hv[Sivel2Gen::Victima.where(id_persona: self.id)[0].id]}"
