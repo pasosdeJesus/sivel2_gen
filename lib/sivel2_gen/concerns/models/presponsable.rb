@@ -34,6 +34,27 @@ module Sivel2Gen
           has_many :combatiente, foreign_key: "organizacionarmada", 
             validate: true, class_name: 'Sivel2Gen::Combatiente'
 
+          def polo_id
+            r=Sivel2Gen::Presponsable.connection.execute <<-SQL
+              SELECT sivel2_gen_polo_id(#{self.id});
+            SQL
+            return r[0]["sivel2_gen_polo_id"]
+          end
+
+          def polo_nombre
+            r=Sivel2Gen::Presponsable.connection.execute <<-SQL
+              SELECT sivel2_gen_polo_nombre(#{self.id});
+            SQL
+            return r[0]["sivel2_gen_polo_nombre"]
+          end
+
+          def nombre_con_polo
+            if self.id == polo_id
+              self.nombre
+            else
+              polo_nombre + " - " + self.nombre
+            end
+          end
 
         end
 
