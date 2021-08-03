@@ -7,7 +7,7 @@
 @sivel2_gen_procesa_eliminaracto = false
 @sivel2_gen_procesa_eliminaractocolectivo = false
 
-module.exports = {sivel2_gen_procesa_eliminaracto: @sivel2_gen_procesa_eliminaracto, sivel2_gen_procesa_eliminaractocolectivo: @sivel2_gen_procesa_eliminaractocolectivo }
+exports = {sivel2_gen_procesa_eliminaracto: @sivel2_gen_procesa_eliminaracto, sivel2_gen_procesa_eliminaractocolectivo: @sivel2_gen_procesa_eliminaractocolectivo }
 
 
 @sivel2_gen_cancelar_caso_eliminar_vacio = (caso) ->
@@ -989,5 +989,5 @@ enviaFormularioContar= (root) ->
 
   @sip_registra_cambios_para_bitacora(root)
   ## Exporta funciones para Jest 
-  module.exports = {sivel2_gen_prepara_eventos_unicos: @sivel2_gen_prepara_eventos_unicos}
+  exports = {sivel2_gen_prepara_eventos_unicos: @sivel2_gen_prepara_eventos_unicos}
   return

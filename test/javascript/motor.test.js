@@ -9,6 +9,3 @@ describe('verificando variables globales', () => {
     })
 })
 
-describe('pruebas de funciones de sivel2_gen_prepara eventos comunes', () => {
-
-})
