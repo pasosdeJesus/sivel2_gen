@@ -1,4 +1,7 @@
 <%= f.simple_fields_for :persona do |p| %>
+  <%= p.input :sin_identificacion,
+    label: false,
+    readonly: true %>
   <%= render partial: 'sip/personas/persona_campos', 
     locals: {f: p, fvictima: f}  %>
 <% end %>
