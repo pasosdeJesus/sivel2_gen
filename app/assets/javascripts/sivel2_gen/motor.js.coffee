@@ -525,6 +525,7 @@ enviaFormularioContar= (root) ->
   actualiza_presponsables($('#caso_acto_id_presponsable'))
   actualiza_presponsables($('#caso_actocolectivo_id_presponsable'))
   actualiza_victimas($('#caso_acto_id_persona'))
+  actualiza_actostabla()
   actualiza_gruposper($('#caso_actocolectivo_id_grupoper'))
 
 @sivel2_idTemp60 = -1
@@ -549,7 +550,26 @@ enviaFormularioContar= (root) ->
      edadDeFechaNac(prefIdPer, root.anioactual, root.mesactual, root.diaactual))
     ponerRangoEdad(prefIdVic);
 
-
+@consultar_nns = () -> 
+  victimas = $(".seccionvictima")
+  sin_id = []
+  con_id = []
+  victimas.each(()->
+    nombres = $(this).find("input[id$=nombres]").val() 
+    apellidos = $(this).find("input[id$=apellidos]").val() 
+    if nombres == "N"  && apellidos == "N"
+      sin_id.push($(this))
+    else
+      con_id.push($(this))
+  )
+  $.each(sin_id, (index, valor)->
+    identificacion = valor.find("input[id$=sin_identificacion]")
+    identificacion.val("PERSONA SIN IDENTIFICAR " + (index + 1) )
+  )
+  $.each(con_id, (index, valor)->
+    identificacion = valor.find("input[id$=sin_identificacion]")
+    identificacion.val("PERSONA IDENTIFICADA" )
+  )
 
 # root es espacio para poner variables globales
 # nomactospe es nombre por dar a actos 
@@ -608,6 +628,14 @@ enviaFormularioContar= (root) ->
   (e) ->
     busca_grupoper_nombre($(this), root)
   )
+
+  # Al seleccionar ubicacion principal se desenmarcan las demas
+  $(document).on('change', '#victimas input[id^=caso_victima][id$=_apellidos]', (e) ->
+    consultar_nns()
+    )
+  $(document).on('change', '#victimas input[id^=caso_victima][id$=_nombres]', (e) ->
+    consultar_nns()
+    )
 
   # Al seleccionar ubicacion principal se desenmarcan las demas
   $(document).on('change', '#ubicaciones input[type=checkbox]', (e) ->
