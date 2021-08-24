@@ -436,7 +436,6 @@ module Sivel2Gen
           #  pContar = pContarDef
           #end
 
-          #byebug
           tcons1 = 'cvt1'
           # La estrategia es 
           # 1. Agrupar en la vista tcons1 respuesta con lo que se contará 
@@ -629,7 +628,7 @@ module Sivel2Gen
             gb ="GROUP BY #{gb}" #ORDER BY #{i} DESC"
           end
           gb += " ORDER BY id_categoria"
-          que3 << ["", "Victimizaciones"]
+
           twhere3 = where3 == "" ? "" : "WHERE " + where3
           q3 = "SELECT #{qc}
               COUNT(cast(#{tcons1}.id_caso as text))
@@ -637,14 +636,87 @@ module Sivel2Gen
               #{twhere3}
               #{gb} 
           "
-	#q3 = "SELECT COUNT(*) FROM #{tcons1}"
           puts "q3=#{q3}"
-          @cuerpotabla = ActiveRecord::Base.connection.select_all(q3)
 
-          @enctabla = []
-          que3.each do |t|
-            if (t[1] != "") 
-              @enctabla << CGI.escapeHTML(t[1])
+          if params[:filtro] && params[:filtro][:agrucol] &&
+            params[:filtro][:agrucol] == 'CATEGORÍA'
+
+            if que3.count == 3
+              # Si no se desagrega, solo presenta tabla mínima con 
+              # categorías y conteos por categoría
+              q4 = "SELECT categoria, SUM(count)::INTEGER " +
+                "FROM (#{q3}) AS sub GROUP BY 1 ORDER BY 1;"
+
+              r = ActiveRecord::Base.connection.select_all(q4)
+              @enctabla = []
+              fila = []
+              i = 0
+              r.each do |t|
+                @enctabla << CGI.escapeHTML(t['categoria'])
+                fila << CGI.escapeHTML(t['sum'].to_s)
+                @coltotales << i
+                i += 1
+              end
+              @cuerpotabla = [fila]
+
+            elsif que3.count == 4
+              # Si se desagrega, pone los desagregados en columnas
+              fila = que3.last[0]
+              fila_hum = que3.last[1]
+              q4 = "SELECT #{fila}, categoria, SUM(count)::INTEGER " +
+                "FROM (#{q3}) AS sub GROUP BY 1, 2 ORDER BY 1, 2;"
+
+              r = ActiveRecord::Base.connection.select_all(q4)
+              @enctabla = []
+              inter = {}
+              filas = []
+              et = []
+              r.each do |t|
+                if !inter[t[fila]]
+                  inter[t[fila]] = {}
+                end
+                if !inter[t[fila]][t['categoria']]
+                  inter[t[fila]][t['categoria']] = 0
+                end
+                inter[t[fila]][t['categoria']] += t['sum'].to_i
+                if !et.include?(t['categoria'])
+                  et << t['categoria']
+                end
+                if !filas.include?(t[fila])
+                  filas << t[fila]
+                end
+              end
+              et.sort!
+              @enctabla << fila_hum
+              i = 1
+              et.each do |e|
+                @enctabla << CGI.escapeHTML(e)
+                @coltotales << i
+                i += 1
+              end
+              @cuerpotabla = []
+              filas.each do |f|
+                ft = [f]
+                et.each do |e|
+                  if inter[f] && inter[f][e]
+                    ft << inter[f][e]
+                  else
+                    ft << 0
+                  end
+                end
+                @cuerpotabla << ft
+              end
+
+            end
+          else
+            que3 << ["", "Victimizaciones"]
+            @cuerpotabla = ActiveRecord::Base.connection.select_all(q3)
+
+            @enctabla = []
+            que3.each do |t|
+              if (t[1] != "") 
+                @enctabla << CGI.escapeHTML(t[1])
+              end
             end
           end
 
@@ -745,7 +817,7 @@ module Sivel2Gen
                     {"cat" => [40],
                      "titulo" => "Víctimas de `Asesinato´ por Persecución Política sin autor determinado"},
                     {"cat" => [50],
-                     "titulo" => "Víctimas de Asesinato por Intolerancia Social sin autor determinado"},
+                     "titulo" => "Víctimas de `Asesinato´ por Intolerancia Social sin autor determinado"},
 
                   ], "Total víctimas que perdieron la vida", where1
                 ),
