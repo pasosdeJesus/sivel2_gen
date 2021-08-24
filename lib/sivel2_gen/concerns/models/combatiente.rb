@@ -125,7 +125,7 @@ module Sivel2Gen
                 end
               end
               if v['resultado_agresion']
-                if Sivel2Gen::Resagresion.where('TRIM(nombre)=?', v['organizacion'].strip).count == 1
+                if Sivel2Gen::Resagresion.where('TRIM(nombre)=?', v['resultado_agresion'].strip).count == 1
                   self.id_resagresion = Sivel2Gen::Resagresion.where('TRIM(nombre)=?', v['resultado_agresion'].strip).ids[0]
                 else
                   menserror << "En la tabla resultado agresión no exste " +
@@ -158,7 +158,7 @@ module Sivel2Gen
                     menserror << "Tabla básica Vinculo estado no tiene '#{ele[1]}'. "
                   end 
                 when 'rangoedad'
-                  if Sivel2Gen::Rangoedad.where('TRIM(nombre)=?', ele[1].strip.upcase).count ==1
+                  if Sivel2Gen::Rangoedad.where('TRIM(nombre)=?', ele[1].strip).count ==1
                     self.id_rangoedad = Sivel2Gen::Rangoedad.
                       where(nombre: ele[1].strip).ids[0]
                   else
