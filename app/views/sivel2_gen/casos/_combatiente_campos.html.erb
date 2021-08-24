@@ -23,9 +23,9 @@
       </div>
       <div class="col-md-4">
         <%= f.association :rangoedad,
-          collection: Sivel2Gen::Rangoedad.habilitados(:rango),
+          collection: Sivel2Gen::Rangoedad.habilitados(:nombre),
           include_blank: false,
-          label_method: :rango, 
+          label_method: :nombre, 
           value_method: :id %>
        </div>
     </div>
