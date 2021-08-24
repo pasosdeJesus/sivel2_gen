@@ -103,6 +103,21 @@
       </div>
     </div>
     <div class="row filtro-fila">
+      <div class="offset-sm-0 col-sm-3 offset-md-1 col-md-1">
+        Columnas por:
+      </div>
+      <div class="col-sm-3">
+        <% @opcol = ['', 'CATEGORÍA'] %>
+        <%= f.input :agrucol,
+          collection: @opcol,
+          label: false,
+          include_blank: false,
+          input_html: { "data-contarautomatico" => "" }
+        %>
+      </div>
+    </div>
+ 
+    <div class="row filtro-fila">
       <div class="offset-md-5 col-md-2">
         <%= f.button :submit, 'Contar', class: 'btn btn-default' %>
       </div>

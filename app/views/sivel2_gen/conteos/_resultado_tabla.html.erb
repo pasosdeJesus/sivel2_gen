@@ -10,16 +10,21 @@
     <% @tot=[]; @cuerpotabla.try(:each) do |fila| %>
       <tr>
         <% i=0; fila.try(:each) do |campo| %>
+          <% if campo.is_a? Array %>
+            <% valc = campo[1] %>
+          <% else %>
+            <% valc = campo %>
+          <% end %>
           <% if @coltotales.include? i
                if @tot[i] 
-                 @tot[i] += campo[1].to_i
+                 @tot[i] += valc.to_i
                else 
-                 @tot[i] = campo[1].to_i
+                 @tot[i] = valc.to_i
                end 
              end
              i += 1
-          %>
-          <td><%= CGI.escapeHTML(campo[1].to_s) if campo[1] %></td>
+           %>
+          <td><%= CGI.escapeHTML(valc.to_s) if valc %></td>
         <% end %>
       </tr>
     <% end %>
