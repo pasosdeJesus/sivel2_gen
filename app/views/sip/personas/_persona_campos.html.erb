@@ -66,7 +66,7 @@
     </div>
     <div class="col-sm-3">
       <%= fvictima.association :rangoedad,
-        collection: Sivel2Gen::Rangoedad.habilitados(:nombre),
+        collection: Sivel2Gen::Rangoedad.habilitados,
         include_blank: false,
         label_method: :nombre, 
         value_method: :id 
