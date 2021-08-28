@@ -12,19 +12,18 @@
 // them with the image_pack_tag helper in views (e.g <%= image_pack_tag 'rails.png' %>)
 // or the `imagePath` JavaScript helper below.
 //
-// const images = require.context('../images', true)
-// const imagePath = (name) => images(name, true)
 
 console.log('Hola Mundo desde Webpacker')
 
-require('@rails/ujs').start()   // Javascript no intrusivo segun rails
-require('turbolinks').start()   // Acelera carga de paginas
-//require('@rails/activestorage').start()         // Activestorage
-//require('channels')           // ActiveChannel
+import Rails from "@rails/ujs"
+Rails.start()
+
+import Turbolinks from "turbolinks"
+Turbolinks.start()
 
 import $ from "expose-loader?exposes=$,jQuery!jquery";
 import 'popper.js'              // Dialogos emergentes usados por bootstrap
-import 'bootstrap'              // Maquetacion y elementos de diseño
+import * as bootstrap from 'bootstrap'              // Maquetacion y elementos de diseño
 import 'chosen-js/chosen.jquery';       // Cuadros de seleccion potenciados
 import 'bootstrap-datepicker'
 import 'bootstrap-datepicker/dist/locales/bootstrap-datepicker.es.min.js'
