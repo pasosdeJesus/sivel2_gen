@@ -18,24 +18,30 @@
       <%= render partial: 'sivel2_gen/casos/datos_interjs', locals: { f: f } %>
 
 
-      <div id="acordeon">
+      <div class='accordion' id="acordeon-formv">
 
         <% bcol = '' %>
         <% aexp = 'true' %>
-        <% colshow = '' # show para mostrar primero %>
+        <% colshow = ' show' # show para mostrar primero %>
         <% @pestanas_formulariocaso.each do |p| %>
           <% idancla = Mr519Gen::ApplicationHelper.nombre_a_nombreinterno(p[:parcial]) %>
-          <div class="card">
-            <div class="card-header" id="enc_<%= idancla %>">
-              <h5 class="mb-0">
-                <a class="fichacambia<%= bcol %>" data-toggle="collapse" role="button" href="#col_<%= idancla %>" data-target="#col_<%= idancla %>" aria-expanded="<%= aexp %>" aria-controls="col_<%= idancla %>">
-                  <%= Sivel2Gen::Caso.human_attribute_name(p[:titulo]) %>
-                </a>
-              </h5>
-            </div>
+          <div class="accordion-item">
+            <h5 class="accordion-header mb-0" id="enc_<%= idancla %>">
+              <button class="accordion-button collapsed fichacambia<%= bcol %>" 
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#col_<%= idancla %>"
+                      aria-expanded="<%= aexp %>"
+                      aria-controls="col_<%= idancla %>">
+                      <%= Sivel2Gen::Caso.human_attribute_name(p[:titulo]) %>
+              </button>
+            </h5>
 
-            <div id="col_<%= idancla %>" class="collapse<%= colshow %>" aria-labelledby="enc_<%= idancla %>" data-parent="#acordeon">
-              <div class="card-body">
+            <div class="accordion-collapse collapse<%= colshow %>" 
+                 id="col_<%= idancla %>" 
+                 aria-labelledby="enc_<%= idancla %>" 
+                 data-bs-parent="#acordeon-formv">
+              <div class="accordion-body">
                 <% if p[:parcial].starts_with?('Formulario::') %>
                   <%= f.simple_fields_for :respuestafor, 
                     f.object.respuestafor.joins(:formulario).where('mr519_gen_formulario.nombre = ?', p[:parcial][12..-1]) do |r| %>
@@ -45,17 +51,17 @@
                   <%= render p[:parcial], f: f %>
                 <% end %>
 
-              </div> <!-- card-body -->
-            </div> <!-- collapse -->
+              </div> <!-- accordion-body -->
+            </div> <!-- accordion-collapse -->
 
-          </div> <!-- card -->
+          </div> <!-- accordion-item -->
 
           <% bcol = ' collapsed' %>
           <% aexp = 'false' %>
           <% colshow = ' ' %>
         <% end %>
 
-      </div> <!-- acordeon -->
+      </div> <!-- accordion -->
 
     </div> <!-- form-inputs -->
 
