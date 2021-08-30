@@ -265,7 +265,8 @@ module Sivel2Gen
 
           if usuario.sip_grupo &&
               usuario.sip_grupo.pluck(:id).include?(GRUPO_ANALISTA_CASOS)
-            habilidad.can :manage, Sip::Orgsocial
+            habilidad.can [:read, :new, :edit, :update, :create],
+              Sip::Orgsocial
             habilidad.can :read, Sip::Bitacora
             habilidad.can :manage, Sip::Persona
 
