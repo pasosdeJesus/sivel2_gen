@@ -25,9 +25,16 @@
           <% @pestanas_formulariocaso.each do |p| %>
             <% idancla = Mr519Gen::ApplicationHelper.nombre_a_nombreinterno(p[:parcial]) %>
             <li role="presentation" class="nav-item">
-              <a href="#<%= idancla %>" class="nav-link fichacambia<%= cac %>" aria-selected="<%= cac == '' ? 'false' : 'true' %>" aria-controls="<%= idancla %>" role="tab" data-toggle="tab">
+              <button class="nav-link fichacambia<%= cac %>" 
+                      id="<%= idancla %>-pestana" 
+                      aria-selected="<%= cac == '' ? 'false' : 'true' %>" 
+                      aria-controls="<%= idancla %>" 
+                      role="tab" 
+                      data-bs-toggle="tab"
+                      data-bs-target="#<%= idancla %>"
+                      type="button">
                 <%= Sivel2Gen::Caso.human_attribute_name(p[:titulo]) %>
-              </a>
+              </button>
             </li>
             <% cac = '' %>
           <% end %>
@@ -35,12 +42,19 @@
         <div class="tab-content">
           <% cac = ' show active' %>
           <% @pestanas_formulariocaso.each do |p| %>
-            <% idancla = Mr519Gen::ApplicationHelper.nombre_a_nombreinterno(p[:parcial]) %>
-            <div role="tabpanel" class="tab-pane fade <%= cac %>" id="<%= idancla %>" > 
+            <% idancla = Mr519Gen::ApplicationHelper.
+              nombre_a_nombreinterno(p[:parcial]) %>
+            <div class="tab-pane fade <%= cac %>" 
+                 role="tabpanel" 
+                 id="<%= idancla %>"
+                 aria-labelledby="<%= idancla %>-pestana"> 
               <% if p[:parcial].starts_with?('Formulario::') %>
                 <% #byebug %>
                 <%= f.simple_fields_for :respuestafor, 
-                  f.object.respuestafor.joins(:formulario).where('mr519_gen_formulario.nombreinterno = ?', p[:parcial][12..-1]) do |r| %>
+                f.object.respuestafor.joins(:formulario).
+                where(
+                  'mr519_gen_formulario.nombreinterno = ?', 
+                  p[:parcial][12..-1]) do |r| %>
                   <%= render partial: 'mr519_gen/encuestasusuario/campo_valorcampo', locals: {f: r}  %>
                 <% end %>
               <% else %>

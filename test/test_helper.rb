@@ -12,22 +12,6 @@ require 'rake'
 Rake::Task.clear # necessary to avoid tasks being loaded several times in dev mode
 Dummy::Application.load_tasks # providing your application name is 'sample'
 
-# Usuario para ingresar y hacer pruebas
-PRUEBA_USUARIO = {
-  nusuario: "admin",
-  password: "sjrven123",
-  nombre: "admin",
-  descripcion: "admin",
-  rol: 1,
-  idioma: "es_CO",
-  email: "usuario1@localhost",
-  encrypted_password: '$2a$10$uMAciEcJuUXDnpelfSH6He7BxW0yBeq6VMemlWc5xEl6NZRDYVA3G',
-  sign_in_count: 0,
-  fechacreacion: "2014-08-05",
-  fechadeshabilitacion: nil,
-  oficina_id: nil
-}
-
 class PruebaIntegracion < ActionDispatch::IntegrationTest
 
     def guarda_xml(docu)
@@ -67,3 +51,23 @@ class ActiveSupport::TestCase
     load "#{Rails.root}/db/seeds.rb"
   end
 end
+
+
+# Usuario administrador para ingresar y hacer pruebas
+PRUEBA_USUARIO = {
+  nusuario: "admin",
+  password: "sjrven123",
+  nombre: "admin",
+  descripcion: "admin",
+  rol: 1,
+  idioma: "es_CO",
+  email: "usuario1@localhost",
+  encrypted_password: '$2a$10$uMAciEcJuUXDnpelfSH6He7BxW0yBeq6VMemlWc5xEl6NZRDYVA3G',
+  sign_in_count: 0,
+  fechacreacion: "2014-08-05",
+  fechadeshabilitacion: nil,
+  oficina_id: nil
+}
+
+
+
