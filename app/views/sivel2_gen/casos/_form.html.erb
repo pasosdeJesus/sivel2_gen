@@ -15,59 +15,44 @@
     <div data-role="content" class="form-inputs">
 
       <%= render partial: 'sip/hogar/errores', locals: { f: f } %>
-      
       <%= render partial: 'sivel2_gen/casos/datos_interjs', locals: { f: f } %>
 
+      <ul class="nav nav-tabs" role="tablist">
+        <% primera = true %>
+        <% @pestanas_formulariocaso.each do |p| %>
+          <% idancla = Mr519Gen::ApplicationHelper.nombre_a_nombreinterno(p[:parcial]) %>
+          <%= item_nav_pestaña_bs(
+            idancla,
+            Sivel2Gen::Caso.human_attribute_name(p[:titulo]),
+            primera,
+            'fichacambia')
+          %>
+          <% primera = false %>
+        <% end %>
+      </ul>
 
-      <div role="tabpanel">       
-        <ul class="nav nav-tabs" role="tablist">
-          <% cac = ' active' %>
-          <% @pestanas_formulariocaso.each do |p| %>
-            <% idancla = Mr519Gen::ApplicationHelper.nombre_a_nombreinterno(p[:parcial]) %>
-            <li role="presentation" class="nav-item">
-              <button class="nav-link fichacambia<%= cac %>" 
-                      id="<%= idancla %>-pestana" 
-                      aria-selected="<%= cac == '' ? 'false' : 'true' %>" 
-                      aria-controls="<%= idancla %>" 
-                      role="tab" 
-                      data-bs-toggle="tab"
-                      data-bs-target="#<%= idancla %>"
-                      type="button">
-                <%= Sivel2Gen::Caso.human_attribute_name(p[:titulo]) %>
-              </button>
-            </li>
-            <% cac = '' %>
-          <% end %>
-        </ul>
-        <div class="tab-content">
-          <% cac = ' show active' %>
-          <% @pestanas_formulariocaso.each do |p| %>
-            <% idancla = Mr519Gen::ApplicationHelper.
-              nombre_a_nombreinterno(p[:parcial]) %>
-            <div class="tab-pane fade <%= cac %>" 
-                 role="tabpanel" 
-                 id="<%= idancla %>"
-                 aria-labelledby="<%= idancla %>-pestana"> 
-              <% if p[:parcial].starts_with?('Formulario::') %>
-                <% #byebug %>
-                <%= f.simple_fields_for :respuestafor, 
-                f.object.respuestafor.joins(:formulario).
-                where(
-                  'mr519_gen_formulario.nombreinterno = ?', 
-                  p[:parcial][12..-1]) do |r| %>
-                  <%= render partial: 'mr519_gen/encuestasusuario/campo_valorcampo', locals: {f: r}  %>
-                <% end %>
-              <% else %>
-                <%= render p[:parcial], f: f %>
+      <div class="tab-content">
+        <% primera = true %>
+        <% @pestanas_formulariocaso.each do |p| %>
+          <% idancla = Mr519Gen::ApplicationHelper.
+            nombre_a_nombreinterno(p[:parcial]) %>
+          <%= contenido_pestaña_bs(idancla,primera) do %>
+            <% if p[:parcial].starts_with?('Formulario::') %>
+              <% #byebug %>
+              <%= f.simple_fields_for :respuestafor, 
+              f.object.respuestafor.joins(:formulario).
+              where(
+                'mr519_gen_formulario.nombreinterno = ?', 
+                p[:parcial][12..-1]) do |r| %>
+                <%= render partial: 'mr519_gen/encuestasusuario/campo_valorcampo', locals: {f: r}  %>
               <% end %>
-            </div> 
-            <% cac = '' %>
-
+            <% else %>
+              <%= render p[:parcial], f: f %>
+            <% end %>
           <% end %>
-        </div> <!-- tab-content -->
-      </div> <!-- tabpanel -->
-
-
+          <% primera = false %>
+        <% end %>
+      </div> <!-- tab-content -->
 
     </div> <!-- form-inputs -->
 
