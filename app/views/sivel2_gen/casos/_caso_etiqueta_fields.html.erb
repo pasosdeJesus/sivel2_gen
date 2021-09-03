@@ -13,9 +13,11 @@
           <%= f.label :fecha, "Fecha", class: "select optional control-label" %>
           <%= 
             if !f.object.fecha.nil?
-              f.text_field :fecha, readonly: true
+              f.text_field :fecha, label: false, readonly: true, 
+                class: 'form-control'
             else
-              f.text_field :fecha, readonly: true, value: Time.now.strftime("%Y-%m-%d")
+              f.text_field :fecha, label: false, readonly: true, 
+                value: Time.now.strftime("%Y-%m-%d"), class: 'form-control'
             end
           %>
         </div>
@@ -26,9 +28,11 @@
             class: "select optional control-label" %>
           <%= 
             if !f.object.usuario.nil?
-              text_field_tag 'nusuario', f.object.usuario.nusuario, readonly: true
+              text_field_tag 'nusuario', f.object.usuario.nusuario, 
+                readonly: true, class: 'form-control'
             else
-              text_field_tag 'nusuario', current_usuario.nusuario, readonly: true
+              text_field_tag 'nusuario', current_usuario.nusuario, 
+                readonly: true, class: 'form-control'
             end
           %>
         </div>
