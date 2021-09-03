@@ -773,11 +773,11 @@ enviaFormularioContar= (root) ->
     root.elempe = []
   )
 
-  $(document).on('click', 'a#boton_filtro_avanzado', (e) ->
+  $(document).on('click', 'button#boton_filtro_avanzado', (e) ->
     if $(this).attr("aria-expanded") == 'true'
-      $('#botones_finfiltro').removeClass("float-right").addClass("d-flex justify-content-center")
+      $('#botones_finfiltro').removeClass("float-end").addClass("d-flex justify-content-center")
     else
-      $('#botones_finfiltro').removeClass("d-flex justify-content-center").addClass("float-right")
+      $('#botones_finfiltro').removeClass("d-flex justify-content-center").addClass("float-end")
     if $('#conscasos_q').is(':visible')
       $('#conscasos_q').hide()
     else
