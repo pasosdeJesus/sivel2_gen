@@ -1235,12 +1235,12 @@ SET search_path = public, pg_catalog;
 -- Data for Name: public.sivel2_gen_rangoedad; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-INSERT INTO public.sivel2_gen_rangoedad (id, nombre, rango, limiteinferior, limitesuperior, fechacreacion, fechadeshabilitacion, created_at, updated_at, observaciones) VALUES (1, 'R1', 'De 0 a 15 Años', 0, 15, '2001-03-23', NULL, '2001-03-23', '2001-03-23', NULL);
-INSERT INTO public.sivel2_gen_rangoedad (id, nombre, rango, limiteinferior, limitesuperior, fechacreacion, fechadeshabilitacion, created_at, updated_at, observaciones) VALUES (2, 'R2', 'De 16 a 25 Años', 16, 25, '2001-03-23', NULL, '2001-03-23', '2001-03-23', NULL);
-INSERT INTO public.sivel2_gen_rangoedad (id, nombre, rango, limiteinferior, limitesuperior, fechacreacion, fechadeshabilitacion, created_at, updated_at, observaciones) VALUES (3, 'R3', 'De 26 a 45 Años', 26, 45, '2001-03-23', NULL, '2001-03-23', '2001-03-23', NULL);
-INSERT INTO public.sivel2_gen_rangoedad (id, nombre, rango, limiteinferior, limitesuperior, fechacreacion, fechadeshabilitacion, created_at, updated_at, observaciones) VALUES (4, 'R4', 'De 46 a 60', 46, 60, '2001-03-23', NULL, '2001-03-23', '2001-03-23', NULL);
-INSERT INTO public.sivel2_gen_rangoedad (id, nombre, rango, limiteinferior, limitesuperior, fechacreacion, fechadeshabilitacion, created_at, updated_at, observaciones) VALUES (5, 'R5', 'De 61 en Adelante', 61, 130, '2001-03-23', NULL, '2001-03-23', '2001-03-23', NULL);
-INSERT INTO public.sivel2_gen_rangoedad (id, nombre, rango, limiteinferior, limitesuperior, fechacreacion, fechadeshabilitacion, created_at, updated_at, observaciones) VALUES (6, 'SN', 'SIN INFORMACIÓN', -1, -1, '2001-03-23', NULL, '2001-03-23', '2001-03-23', NULL);
+INSERT INTO public.sivel2_gen_rangoedad (id, nombre, limiteinferior, limitesuperior, fechacreacion, fechadeshabilitacion, created_at, updated_at, observaciones) VALUES (1, 'De 0 a 15 Años', 0, 15, '2001-03-23', NULL, '2001-03-23', '2001-03-23', NULL);
+INSERT INTO public.sivel2_gen_rangoedad (id, nombre, limiteinferior, limitesuperior, fechacreacion, fechadeshabilitacion, created_at, updated_at, observaciones) VALUES (2, 'De 16 a 25 Años', 16, 25, '2001-03-23', NULL, '2001-03-23', '2001-03-23', NULL);
+INSERT INTO public.sivel2_gen_rangoedad (id, nombre, limiteinferior, limitesuperior, fechacreacion, fechadeshabilitacion, created_at, updated_at, observaciones) VALUES (3, 'De 26 a 45 Años', 26, 45, '2001-03-23', NULL, '2001-03-23', '2001-03-23', NULL);
+INSERT INTO public.sivel2_gen_rangoedad (id, nombre, limiteinferior, limitesuperior, fechacreacion, fechadeshabilitacion, created_at, updated_at, observaciones) VALUES (4, 'De 46 a 60', 46, 60, '2001-03-23', NULL, '2001-03-23', '2001-03-23', NULL);
+INSERT INTO public.sivel2_gen_rangoedad (id, nombre, limiteinferior, limitesuperior, fechacreacion, fechadeshabilitacion, created_at, updated_at, observaciones) VALUES (5, 'De 61 en Adelante', 61, 130, '2001-03-23', NULL, '2001-03-23', '2001-03-23', NULL);
+INSERT INTO public.sivel2_gen_rangoedad (id, nombre, limiteinferior, limitesuperior, fechacreacion, fechadeshabilitacion, created_at, updated_at, observaciones) VALUES (6, 'SIN INFORMACIÓN', -1, -1, '2001-03-23', NULL, '2001-03-23', '2001-03-23', NULL);
 
 
 --
