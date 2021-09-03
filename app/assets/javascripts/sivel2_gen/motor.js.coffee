@@ -525,7 +525,6 @@ enviaFormularioContar= (root) ->
   actualiza_presponsables($('#caso_acto_id_presponsable'))
   actualiza_presponsables($('#caso_actocolectivo_id_presponsable'))
   actualiza_victimas($('#caso_acto_id_persona'))
-  actualiza_actostabla()
   actualiza_gruposper($('#caso_actocolectivo_id_grupoper'))
 
 @sivel2_idTemp60 = -1
