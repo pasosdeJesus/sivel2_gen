@@ -16,7 +16,6 @@ module Sivel2Gen
               foreign_key: 'id_rangoedad' 
 
             validates :nombre, length: { maximum: 20 }
-            validates :rango, length: { maximum: 20 }
             validates :observaciones, length: { maximum: 5000 }
         end
       end

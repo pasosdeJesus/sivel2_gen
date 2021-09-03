@@ -6,8 +6,7 @@ module Sivel2Gen
 
     PRUEBA_RANGOEDAD= {
       id: 1000,
-      nombre: "Rangoedad",
-      rango: '1-2',
+      nombre: "1-2",
       limiteinferior: 1,
       limitesuperior: 2,
       fechacreacion: "2014-09-09",
