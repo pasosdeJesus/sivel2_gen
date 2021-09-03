@@ -29,7 +29,7 @@ module Sivel2Gen
 
     test "existente" do
       rangoedad = Sivel2Gen::Rangoedad.where(id: 1).take
-      assert_equal rangoedad.nombre, "R1"
+      assert_equal rangoedad.nombre, "De 0 a 15 Años"
     end
 
   end

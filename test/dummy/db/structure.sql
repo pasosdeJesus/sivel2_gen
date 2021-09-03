@@ -868,7 +868,6 @@ CREATE SEQUENCE public.sivel2_gen_rangoedad_id_seq
 CREATE TABLE public.sivel2_gen_rangoedad (
     id integer DEFAULT nextval('public.sivel2_gen_rangoedad_id_seq'::regclass) NOT NULL,
     nombre character varying(500) NOT NULL COLLATE public.es_co_utf_8,
-    rango character varying(20),
     limiteinferior integer DEFAULT 0 NOT NULL,
     limitesuperior integer DEFAULT 0 NOT NULL,
     fechacreacion date DEFAULT '2001-01-01'::date NOT NULL,
@@ -5539,14 +5538,6 @@ ALTER TABLE ONLY public.sivel2_gen_categoria
 
 
 --
--- Name: sivel2_gen_categoria categoria_contadaen_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.sivel2_gen_categoria
-    ADD CONSTRAINT categoria_contadaen_fkey FOREIGN KEY (contadaen) REFERENCES public.sivel2_gen_categoria(id);
-
-
---
 -- Name: sip_departamento departamento_id_pais_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -6096,14 +6087,6 @@ ALTER TABLE ONLY public.sip_persona
 
 ALTER TABLE ONLY public.sip_persona
     ADD CONSTRAINT persona_tdocumento_id_fkey FOREIGN KEY (tdocumento_id) REFERENCES public.sip_tdocumento(id);
-
-
---
--- Name: sivel2_gen_presponsable presponsable_papa_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.sivel2_gen_presponsable
-    ADD CONSTRAINT presponsable_papa_fkey FOREIGN KEY (papa_id) REFERENCES public.sivel2_gen_presponsable(id);
 
 
 --
@@ -6717,6 +6700,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20210619191706'),
 ('20210727111355'),
 ('20210728214424'),
-('20210730120340');
+('20210730120340'),
+('20210823162357');
 
 
