@@ -1,33 +1,61 @@
 <div class="row">
   <div class="col-xl-3 col-md-6">
-    <div class="card text-center border-primary mb-3" style="max-width: 18rem;">
+    <div class="card border-primary mb-3" style="max-width: 18rem;">
       <div class="card-body text-primary">
-        <h6 class="m-b-0">Total de casos</h6>
-        <h4 class="m-t-15 m-b-15"><%= Sivel2Gen::Caso.all.count %></h4>
+        <div class="row">
+          <div class="col-md-3">
+            <i class="fas fa-list-ul fa-3x"></i>
+          </div>
+          <div class="col-md-9 justify-center text-center">
+            <h6 class="m-b-0">Total de casos</h6>
+            <h4 class="m-t-15 m-b-15"><%= Sivel2Gen::Caso.all.count %></h4>
+          </div>
+        </div>
       </div>
     </div>
   </div>
   <div class="col-xl-3 col-md-6">
-    <div class="card text-center border-primary mb-3" style="max-width: 18rem;">
+    <div class="card border-primary mb-3" style="max-width: 18rem;">
       <div class="card-body text-primary">
-        <h6 class="m-b-0">Total de víctimas</h6>
-        <h4 class="m-t-15 m-b-15"><%= Sivel2Gen::Victima.all.count %></h4>
+        <div class="row">
+          <div class="col-md-3">
+            <i class="fas fa-list-ul fa-3x"></i>
+          </div>
+          <div class="col-md-9 justify-center text-center">
+            <h6 class="m-b-0">Total de víctimas</h6>
+            <h4 class="m-t-15 m-b-15"><%= Sivel2Gen::Victima.all.count %></h4>
+          </div>
+        </div>
       </div>
     </div>
   </div>
   <div class="col-xl-3 col-md-6">
-    <div class="card text-center border-primary mb-3" style="max-width: 18rem;">
+    <div class="card border-primary mb-3" style="max-width: 18rem;">
       <div class="card-body text-primary">
-        <h6 class="m-b-0">Total de victimizaciones</h6>
-        <h4 class="m-t-15 m-b-15"><%= Sivel2Gen::Categoria.pluck(:nombre).uniq.count %></h4>
+        <div class="row">
+          <div class="col-md-3">
+            <i class="fas fa-list-ul fa-3x"></i>
+          </div>
+          <div class="col-md-9 justify-center text-center">
+            <h6 class="m-b-0">Total de victimizaciones</h6>
+            <h4 class="m-t-15 m-b-15"><%= Sivel2Gen::Categoria.pluck(:nombre).uniq.count %></h4>
+          </div>
+        </div>
       </div>
     </div>
   </div>
   <div class="col-xl-3 col-md-6">
-    <div class="card text-center border-primary mb-3" style="max-width: 18rem;">
+    <div class="card border-primary mb-3" style="max-width: 18rem;">
       <div class="card-body text-primary">
-        <h6 class="m-b-0">Total de actos</h6>
-        <h4 class="m-t-15 m-b-15"><%= Sivel2Gen::Acto.all.count %></h4>
+        <div class="row">
+          <div class="col-md-3">
+            <i class="fas fa-list-ul fa-3x"></i>
+          </div>
+          <div class="col-md-9 justify-center text-center">
+            <h6 class="m-b-0">Total de actos</h6>
+            <h4 class="m-t-15 m-b-15"><%= Sivel2Gen::Acto.all.count %></h4>
+          </div>
+        </div>
       </div>
     </div>
   </div>
