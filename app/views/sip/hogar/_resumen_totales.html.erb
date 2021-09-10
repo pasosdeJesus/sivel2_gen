@@ -38,7 +38,7 @@
           </div>
           <div class="col-md-9 justify-center text-center">
             <h6 class="m-b-0">Total de victimizaciones</h6>
-            <h4 class="m-t-15 m-b-15"><%= Sivel2Gen::Categoria.pluck(:nombre).uniq.count %></h4>
+            <h4 class="m-t-15 m-b-15"><%= ActiveRecord::Base.connection.execute("select count(cast(cvt1.id_caso as text)) from cvt1").values[0][0] %></h4>
           </div>
         </div>
       </div>
