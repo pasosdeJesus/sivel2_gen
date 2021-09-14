@@ -1,0 +1,8 @@
+<article>
+  <% if current_usuario %>
+    <div class="py-5">
+      <%= render partial: "resumen_totales" %>
+    </div> 
+  <% end %>
+  <%= render "local" %>
+</article>
