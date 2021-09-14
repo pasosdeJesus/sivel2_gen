@@ -27,7 +27,6 @@
     "glob-parent": "^5.1.2",
     "normalize-url": "^4.5.1",
     "postcss": "^8.2.10",
-    "webpack-dev-server": "^4.0.0-beta.2",
     "ws": "^7.4.6"
   },
   "babel": {
