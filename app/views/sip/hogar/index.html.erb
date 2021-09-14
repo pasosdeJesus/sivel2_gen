@@ -1,11 +1,8 @@
 <article>
   <% if current_usuario %>
-    <%= render partial: "resumen_totales" %>
+    <div class="py-5">
+      <%= render partial: "resumen_totales" %>
+    </div> 
   <% end %>
-  <center>
-    <%= image_tag 'logo.jpg', class: "img-fluid" %>
-    <% # ubicar logo en app/assets/images/logo.jpg %>
-  </center>
-
   <%= render "local" %>
 </article>
