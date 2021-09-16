@@ -38,6 +38,8 @@ Sivel2Gen::Engine.routes.draw do
 
   get "/fuentesprensa/nuevo", 'fuentesprensa#nuevo'
 
+  get '/graficar/actos_individuales' => 'fil23_gen/graficar_plotly#actos_individuales', 
+    :as => 'graficar_actos_individuales'
   get "/hogar" => 'hogar#index'
 
   get '/admin/presponsables/nuevo' => 'admin/presponsables#nuevo'
