@@ -1,0 +1,38 @@
+<script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
+<script src='https://cdn.plot.ly/plotly-locale-es-latest.js'></script>
+
+<div class="row">
+  <div class="col-sm-4">
+    <div class="card filtros">
+      <h5 class="card-title">Filtro</h5>
+      <div id="rango" class="form-group">
+        <label class="control-label" for="rango">Rango de fechas</label>
+        <div class="input-daterange input-group">
+          <div class="input string required">
+            <input data-behaviour="datepicker" class="string required form-control" placeholder="Desde" maxlength="10" size="10" type="text" name="fechaini" id="fechaini">
+          </div>
+          <span class="input-group-addon"> - </span>
+          <div class="input string required">
+            <input data-behaviour="datepicker" class="string required form-control" placeholder="Hasta" maxlength="10" size="10" type="text" name="fechafin" id="fechafin">
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="control-label" for="presponsable">Presuntos responsables incluidos</label>
+          <select id="presponsable" class="presponsableselect chosen-select" multiple="multiple" >
+          </select>
+            <script type="application/json" data-for="presponsable">{}</script>
+      </div>
+    </div> <!-- card -->
+  </div>
+  <div class="col-sm-8">
+    <div class="card">
+      <div class="card-body plot" id="div_serietiempo" style="padding: 0px; height:400px">
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-body plot" id="div_barras" style="padding: 0px; height: 400px">
+      </div>
+    </div>
+  </div>
+</div>
