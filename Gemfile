@@ -92,6 +92,8 @@ end
 group  :development, :test do
   #gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 
+  gem 'apexcharts'
+
   gem 'compare-xml', '~> 0.5.2' # para validar xml
 
   gem 'colorize' # Colores en terminal
