@@ -1,4 +1,3 @@
-# encoding: UTF-8
 
 module Sivel2Gen
   class AntecedenteCaso < ActiveRecord::Base

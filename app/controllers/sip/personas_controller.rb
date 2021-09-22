@@ -1,4 +1,3 @@
-# encoding: UTF-8
 require 'date'
 require 'sivel2_gen/concerns/controllers/personas_controller' 
 

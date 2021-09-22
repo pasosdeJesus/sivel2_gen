@@ -1,4 +1,3 @@
-# encoding: utf-8
 
 class MejoraMarcoCinep716singplural < ActiveRecord::Migration[5.1]
   def up

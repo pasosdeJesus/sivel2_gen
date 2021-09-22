@@ -1,4 +1,3 @@
-# encoding: UTF-8
 
 Rails.application.routes.draw do
 

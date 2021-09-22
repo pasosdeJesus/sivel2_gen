@@ -1,4 +1,3 @@
-# encoding: utf-8
 
 class Renombravista < ActiveRecord::Migration[5.0]
 

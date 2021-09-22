@@ -1,4 +1,3 @@
-# encoding: UTF-8
 
 Sivel2Gen::Engine.routes.draw do
 

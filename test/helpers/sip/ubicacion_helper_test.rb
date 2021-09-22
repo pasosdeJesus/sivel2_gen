@@ -1,4 +1,3 @@
-# encoding: UTF-8
 
 require_relative '../../test_helper'
 require_relative '../../models/sivel2_gen/caso_test'

@@ -1,4 +1,3 @@
-# encoding: UTF-8
 module Sivel2Gen
   module Admin
     class OrganizacionesController < Sip::Admin::BasicasController
