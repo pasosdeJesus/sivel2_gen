@@ -30,7 +30,6 @@ module Sivel2Gen
         class_methods do
 
           def calcula_de_depmun(departamento_id, municipio_id)
-            byebug
             if departamento_id && 
                 Sivel2Gen::DepartamentoRegion.where(
                   departamento_id: departamento_id).count > 0
