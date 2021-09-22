@@ -1,4 +1,3 @@
-# encoding: UTF-8 
 require 'sivel2_gen/concerns/controllers/fuentesprensa_controller'
 
 module Sivel2Gen

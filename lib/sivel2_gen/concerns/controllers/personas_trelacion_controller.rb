@@ -1,4 +1,3 @@
-# encoding: UTF-8
 
 require 'sip/concerns/controllers/personas_trelacion_controller'
 

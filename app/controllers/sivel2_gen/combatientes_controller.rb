@@ -1,4 +1,3 @@
-# encoding: UTF-8
 require 'date'
 module Sivel2Gen
   class CombatientesController < ApplicationController

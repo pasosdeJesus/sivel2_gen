@@ -1,4 +1,3 @@
-# encoding: UTF-8
 module Sivel2Gen
   class Intervalo < ActiveRecord::Base
     include Sip::Basica

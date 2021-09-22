@@ -1,4 +1,3 @@
-# encoding: utf-8
 
 class UbicacionPrincipal < ActiveRecord::Migration[5.2]
   # Cada caso puede tener muchas ubicaciones secundarias
