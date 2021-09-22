@@ -41,7 +41,6 @@ module Sivel2Gen
                 Sivel2Gen::MunicipioRegion.where(
                   municipio_id: municipio_id).count > 0
               mr = Sivel2Gen::MunicipioRegion.where(
-                departamento_id: departamento_id,
                 municipio_id: municipio_id
               ).take
               return mr.region
