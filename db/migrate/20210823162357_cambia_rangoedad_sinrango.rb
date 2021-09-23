@@ -4,7 +4,7 @@ class CambiaRangoedadSinrango < ActiveRecord::Migration[6.1]
     remove_column :sivel2_gen_rangoedad, :rango
   end
   def down
-    add_column :sivel2_gen_rangoedad, :rango
+    add_column :sivel2_gen_rangoedad, :rango, :string
     Sivel2Gen::Rangoedad.update_all 'rango=nombre' 
   end
 end
