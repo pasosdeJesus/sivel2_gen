@@ -3,6 +3,12 @@
     <div class="py-5">
       <%= render partial: "resumen_totales" %>
     </div> 
+  <% else %>
+    <br>
+    <center>
+      <%= image_tag 'logo.jpg', class: "img-fluid" %>
+      <% # ubicar logo en app/assets/images/logo.jpg %>
+    </center>
   <% end %>
   <%= render "local" %>
 </article>
