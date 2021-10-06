@@ -116,9 +116,7 @@
     </div>
  
     <div class="row filtro-fila">
-      <div class="offset-md-5 col-md-2">
-        <%= f.button :submit, 'Contar', class: 'btn btn-default' %>
-      </div>
+      <%= render partial: 'victimizaciones_botones', locals: {f: f} %>
     </div>
   </div>
 <% end %>
