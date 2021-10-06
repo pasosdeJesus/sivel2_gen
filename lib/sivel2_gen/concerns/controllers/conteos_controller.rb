@@ -506,8 +506,10 @@ module Sivel2Gen
           que3 << ["categoria", 'Categoria']
 
           if (pDepartamento.to_i == 1 || pMunicipio.to_i == 1) 
+            que3 << ["departamento_divipola", "Cod. Departamento"]
             que3 << ["departamento_nombre", "Departamento"]
             que1 += ', ubicacion.id_departamento' +
+              ', departamento.id_deplocal AS departamento_divipola' +
               ', INITCAP(departamento.nombre) AS departamento_nombre'
             # Tomamos ubicacion principal
             tablas1 += ' LEFT JOIN sip_ubicacion AS ubicacion ON' +
