@@ -3,12 +3,15 @@
 module Sivel2Gen
   module Fil23Gen
     class GraficarPlotlyController < ApplicationController
-  
+
       def actos_individuales
         authorize! :contar, Sivel2Gen::Caso
-  
-        @rutacsv = File.join(Rails.root, 'public/sivel2/csv/actos_individuales.csv').to_s
-  
+
+        @rutacsv = File.join(
+          Rails.root, "public/#{Rails.configuration.relative_url_root}/"\
+          "csv/actos_individuales.csv").to_s
+          byebug
+
         tarc = Tempfile.new(['actos_individuales', '.csv'], '/var/www/tmp/')
         rutatmp = tarc.path
         tarc.close
@@ -41,19 +44,6 @@ module Sivel2Gen
           File.unlink(@rutacsv)
         end
         FileUtils.cp(rutatmp, @rutacsv)
-        if ENV['fil23_gen_servidor'].nil?
-          flash[:error] = "No se ha definidio fil23_gen_servidor"
-          redirect_to Rails.application.config.relative_url_root
-          return
-        end
-        @fil23_gen_op = {
-          servidor: ENV['fil23_gen_servidor'],
-          ip: ENV['fil23_gen_ip'],
-          puerto: ENV['fil23_gen_puerto'],
-          protocolo: ENV['fil23_gen_protocolo'],
-          guionR: 'lib/R/victimizaciones_por_sexo.R',
-          rutacsv: @rutacsv
-        }
         render 'fil23_gen/graficar_plotly/actos_individuales', 
           layout: 'application'
       end
