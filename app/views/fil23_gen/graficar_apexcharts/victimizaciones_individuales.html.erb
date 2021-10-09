@@ -75,13 +75,15 @@
       <div class="offset-sm-0 col-12">
         <%
           if params.nil? || params[:filtro].nil? || params[:filtro][:departamentos].nil?
-            dep_sel = Sip::Departamento.habilitados.pluck(:nombre)
+            dep_sel = Sip::Departamento.habilitados.where(id_pais: 170).pluck(:id)
           else
             dep_sel = params[:filtro][:departamentos]
           end
         %>
         <%= f.input :departamentos,
-          collection: Sip::Departamento.habilitados.pluck(:nombre),
+          collection: Sip::Departamento.habilitados.where(id_pais: 170), 
+          label_method: :nombre,
+          value_method: :id, 
           selected: dep_sel,
           input_html: {
             class: 'chosen-select',
