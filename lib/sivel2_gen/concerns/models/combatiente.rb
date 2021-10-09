@@ -119,7 +119,7 @@ module Sivel2Gen
                   if oa_sininf.count == 0
                     menserror << "No se encuentra organización armada SIN INFORMACIÓN. "
                   else
-                    self.organizacionarmada = ora_sininf.ids[0]
+                    self.organizacionarmada = oa_sininf.ids[0]
                   end
                 end
               end
