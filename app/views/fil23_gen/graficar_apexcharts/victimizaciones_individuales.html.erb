@@ -1,6 +1,6 @@
 <h1> Graficar victimizaciones individuales </h1>
 <%
-  series= [
+  series_gen= [
     {name: "Hombres",
      data: @valores_m},
     {name: "Mujeres",
@@ -9,11 +9,22 @@
      data: @valores_s}
   ]
 
-  options = {
+  opciones_gen = {
    title: 'Victimizaciones',
-   xtitle: 'Week',
-   ytitle: 'Properties',
+   xtitle: 'Fecha',
+   ytitle: 'Victimizaciones',
    stacked: true 
+  }
+
+  series_totsex= [
+    {name: "Hombres",
+     data: @valores_totsex}
+  ]
+
+  opciones_totsex = {
+   title: 'Totales por sexo',
+   xtitle: 'Sexo',
+   ytitle: 'Victimizaciones'
   }
 %>
 
@@ -63,7 +74,27 @@
     <div class="row">
       <div class="offset-sm-0 col-12">
         <%
-          if params.nil? || params[:filtro].nil? || params[:filtro][:categoria].nil?
+          if params.nil? || params[:filtro].nil? || params[:filtro][:departamentos].nil?
+            dep_sel = Sip::Departamento.habilitados.pluck(:nombre)
+          else
+            dep_sel = params[:filtro][:departamentos]
+          end
+        %>
+        <%= f.input :departamentos,
+          collection: Sip::Departamento.habilitados.pluck(:nombre),
+          selected: dep_sel,
+          input_html: {
+            class: 'chosen-select',
+            multiple: true,
+            'data-enviarautomatico' => ''
+          }
+        %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="offset-sm-0 col-12">
+        <%
+          if params.nil? || params[:filtro].nil? || params[:filtro][:categorias].nil?
             cat_sel = @vic_categorias
           else
             cat_sel = params[:filtro][:categorias]
@@ -88,6 +119,12 @@
 <% end %>
 <div class="row">
   <div class="col-12">
-    <%= line_chart(series, options) %>  
+    <%= line_chart(series_gen, opciones_gen) %>  
+  </div>
+</div>
+</br>
+<div class="row">
+  <div class="col-12">
+    <%= column_chart(series_totsex, opciones_totsex) %>  
   </div>
 </div>

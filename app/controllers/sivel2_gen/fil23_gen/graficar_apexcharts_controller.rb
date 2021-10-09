@@ -27,9 +27,16 @@ module Sivel2Gen
           GROUP BY fecha_caso ORDER BY fecha_caso;"
         end
 
+        def consulta_totsex
+          "select persona.sexo as sexo_persona, count(*) as total from cvt1
+          JOIN sip_persona AS persona ON persona.id=id_persona 
+          GROUP BY sexo_persona 
+          ORDER BY persona.sexo='S', persona.sexo='M', persona.sexo='F';"
+        end
         @valores_m = ActiveRecord::Base.connection.execute(consulta('M')).values.to_h 
         @valores_f = ActiveRecord::Base.connection.execute(consulta('F')).values.to_h 
         @valores_s = ActiveRecord::Base.connection.execute(consulta('S')).values.to_h 
+        @valores_totsex = ActiveRecord::Base.connection.execute(consulta_totsex).values.to_h 
         render 'fil23_gen/graficar_apexcharts/victimizaciones_individuales', 
           layout: 'application'
       end
