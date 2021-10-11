@@ -37,7 +37,7 @@ module Sivel2Gen
                 where(departamento_id: departamento_id).take
               return dr.region
             end
-            if departamento_id && municipio_id &&
+            if municipio_id &&
                 Sivel2Gen::MunicipioRegion.where(
                   municipio_id: municipio_id).count > 0
               mr = Sivel2Gen::MunicipioRegion.where(
@@ -45,6 +45,17 @@ module Sivel2Gen
               ).take
               return mr.region
             end
+            if municipio_id &&
+                Sip::Municipio.where(id: municipio_id).count > 0
+              dm = Sip::Municipio.find(municipio_id)
+              if Sivel2Gen::DepartamentoRegion.where(
+                  departamento_id: dm.id_departamento).count > 0
+                dr = Sivel2Gen::DepartamentoRegion.
+                  where(departamento_id: dm.id_departamento).take
+                return dr.region
+              end
+            end
+
 
             return nil
           end # calcula_de_depmun
