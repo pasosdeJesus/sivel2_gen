@@ -81,7 +81,7 @@ SET search_path = public, pg_catalog;
 -- Data for Name: public.sivel2_gen_tviolencia; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-INSERT INTO public.sivel2_gen_tviolencia (id, nombre, nomcorto, fechacreacion, fechadeshabilitacion, created_at, updated_at, observaciones) VALUES ('A', 'VIOLACIÓNES A LOS DERECHOS HUMANOS', 'DH', '2000-07-24', NULL, '2000-07-24', '2000-07-24', NULL);
+INSERT INTO public.sivel2_gen_tviolencia (id, nombre, nomcorto, fechacreacion, fechadeshabilitacion, created_at, updated_at, observaciones) VALUES ('A', 'VIOLACIONES A LOS DERECHOS HUMANOS', 'DH', '2000-07-24', NULL, '2000-07-24', '2000-07-24', NULL);
 INSERT INTO public.sivel2_gen_tviolencia (id, nombre, nomcorto, fechacreacion, fechadeshabilitacion, created_at, updated_at, observaciones) VALUES ('B', 'VIOLENCIA POLÍTICO SOCIAL', 'VPS', '2000-07-24', NULL, '2000-07-24', '2000-07-24', NULL);
 INSERT INTO public.sivel2_gen_tviolencia (id, nombre, nomcorto, fechacreacion, fechadeshabilitacion, created_at, updated_at, observaciones) VALUES ('C', 'ACCIONES BÉLICAS', 'BELICAS', '2000-07-24', NULL, '2000-07-24', '2000-07-24', NULL);
 INSERT INTO public.sivel2_gen_tviolencia (id, nombre, nomcorto, fechacreacion, fechadeshabilitacion, created_at, updated_at, observaciones) VALUES ('D', 'INFRACCIONES AL DIH', 'DIH', '2000-07-24', NULL, '2000-07-24', '2000-07-24', NULL);
