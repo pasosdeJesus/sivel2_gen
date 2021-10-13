@@ -1,0 +1,85 @@
+<div class="page-header">
+  <h1>Conteo de victimizaciones individuales</h1>
+</div>
+
+<%= simple_form_for :filtro, 
+  { remote: true, 
+    url: sivel2_gen.mapadepvic_path,
+    method: "get" } do |f| 
+%>
+  <div class="container">
+    <div class="row filtro-fila">
+      <div class="offset-sm-0 col-sm-3 offset-md-1 col-md-1">
+        Filtrar por:
+      </div>
+      <div class="offset-sm-0 col-sm-3">
+        <%= f.input :fechaini,
+          maxlength: 10, 
+          size: 10,
+          label: false,
+          placeholder: 'Fecha Inicial',
+          input_html: {
+            "data-behaviour" => "datepicker",
+            "data-contarautomatico" => ""
+          }
+        %>
+      </div>
+      <div class="offset-sm-0 col-sm-3">
+        <%= f.input :fechafin,
+          maxlength: 10, 
+          size: 10,
+          label: false,
+          placeholder: 'Fecha Final',
+          input_html: {
+            "data-behaviour" => "datepicker",
+            "data-contarautomatico" => ""
+          }
+        %>
+      </div>
+      <div class="offset-sm-0 col-sm-3">
+        <%= f.input :tviolencia_id,
+          collection: Sivel2Gen::Tviolencia.habilitados,
+          label_method: :nombre,
+          value_method: :id,
+          label: false,
+          include_blank: '-- Tipo de violencia',
+          input_html: { "data-contarautomatico" => "" }
+        %>
+      </div>
+    </div>
+
+    <div class="row filtro-fila">
+      <div class="offset-sm-2 col-sm-3">
+        <%= f.input :etiqueta1,
+          collection: Sip::Etiqueta.habilitados,
+          label_method: :nombre,
+          value_method: :id,
+          label: false,
+          include_blank: '-- Etiqueta 1',
+          input_html: { "data-contarautomatico" => "" }
+        %>
+      </div>
+      <div class="col-sm-3">
+        <%= f.input :etiqueta2,
+          collection: Sip::Etiqueta.habilitados,
+          label_method: :nombre,
+          value_method: :id,
+          label: false,
+          include_blank: '-- Etiqueta 2',
+          input_html: { "data-contarautomatico" => "" }
+        %>
+      </div>
+
+    </div>
+
+    <div class="row filtro-fila">
+      <div class="offset-md-4 col-md-2">
+        <%= f.button :submit, 'Contar', class: 'btn btn-default' %>
+      </div>
+    </div>
+<% end %>
+
+<div id="resultado">
+  <%= render 'sivel2_gen/mapadep/mapadep' %>
+</div> <!-- id: resultado -->
+

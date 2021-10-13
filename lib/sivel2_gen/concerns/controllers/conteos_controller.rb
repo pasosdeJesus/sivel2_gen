@@ -430,76 +430,14 @@ module Sivel2Gen
             "SEXO"
           ]
 
-          #pContar='victimizaciones'
-          #if (pContar == '') 
-          #  pContar = pContarDef
-          #end
+          tcons1 = Sivel2Gen::ConteosController::genconsulta_victimizaciones(
+            pFini, pFfin, pTviolencia, pEtiqueta1, pEtiqueta2, pSegun,
+            pDepartamento, pMunicipio
+          )
 
-          tcons1 = 'cvt1'
-          # La estrategia es 
-          # 1. Agrupar en la vista tcons1 respuesta con lo que se contará 
-          #    con máxima desagregación restringiendo por filtros con códigos 
-          # 2. Contar derechos/respuestas tcons1, cambiar códigos
-          #    por información por desplegar
-
-          # Para la vista tcons1 emplear que1, tablas1 y where1
-          que1 = 'DISTINCT acto.id_caso, acto.id_persona, acto.id_categoria, 
-            supracategoria.id_tviolencia AS id_tviolencia, 
-            categoria.nombre AS categoria'
-          tablas1 = ' public.sivel2_gen_acto AS acto JOIN ' +
-            'public.sivel2_gen_caso AS caso ON acto.id_caso=caso.id ' +
-            'JOIN public.sivel2_gen_categoria AS categoria ' + 
-            ' ON acto.id_categoria=categoria.id ' +
-            'JOIN public.sivel2_gen_supracategoria AS supracategoria ' + 
-            ' ON categoria.supracategoria_id=supracategoria.id ' +
-            'JOIN public.sivel2_gen_victima AS victima ' + 
-            ' ON victima.id_persona=acto.id_persona AND ' +
-            ' victima.id_caso=caso.id ' +
-            'JOIN public.sip_persona AS persona ' + 
-            ' ON persona.id=acto.id_persona'
-          where1 = ''
-
-          # Para la consulta final emplear arreglo que3, que tendrá parejas
-          # (campo, titulo por presentar en tabla)
           que3 = []
           tablas3 = tcons1
           where3 = ''
-
-          if (pFini != '')
-            @fechaini = Sip::FormatoFechaHelper.fecha_local_estandar pFini
-            if @fechaini
-              where1 = consulta_and(
-                where1, "caso.fecha", @fechaini, ">="
-              )
-            end
-          end
-          if (pFfin != '') 
-            @fechafin = Sip::FormatoFechaHelper.fecha_local_estandar pFfin
-            if @fechafin
-              where1 = consulta_and(
-                where1, "caso.fecha", @fechafin, "<="
-              )
-            end
-          end
-          if (pTviolencia != '') 
-            where1 = consulta_and(
-              where1, "id_tviolencia", pTviolencia[0], "="
-            )
-          end
-          if (pEtiqueta1 != '' || pEtiqueta2 != '')
-            tablas1 += ' JOIN sivel2_gen_caso_etiqueta AS caso_etiqueta ON' +
-              ' caso.id=caso_etiqueta.id_caso' 
-            if (pEtiqueta1 != '') 
-              where1 = consulta_and(
-               where1, "caso_etiqueta.id_etiqueta", pEtiqueta1, "="
-            )
-            end
-            if (pEtiqueta2 != '') 
-              where1 = consulta_and(
-               where1, "caso_etiqueta.id_etiqueta", pEtiqueta2, "="
-              )
-            end
-          end
 
           que3 << ["id_tviolencia", 'T. Violencia']
           que3 << ["id_categoria", 'Id. Categoria']
@@ -508,92 +446,40 @@ module Sivel2Gen
           if (pDepartamento.to_i == 1 || pMunicipio.to_i == 1) 
             que3 << ["departamento_divipola", "Cod. Departamento"]
             que3 << ["departamento_nombre", "Departamento"]
-            que1 += ', ubicacion.id_departamento' +
-              ', departamento.id_deplocal AS departamento_divipola' +
-              ', INITCAP(departamento.nombre) AS departamento_nombre'
-            # Tomamos ubicacion principal
-            tablas1 += ' LEFT JOIN sip_ubicacion AS ubicacion ON' +
-              ' caso.ubicacion_id = ubicacion.id'
-            tablas1 += ' LEFT JOIN sip_departamento AS departamento ON ' +
-              ' ubicacion.id_departamento=departamento.id'
           end
 
           if (pMunicipio.to_i == 1) 
             que3 << ["municipio_nombre", "Municipio"]
-            que1 += ', ubicacion.id_municipio' +
-              ', INITCAP(municipio.nombre) AS municipio_nombre'
-            tablas1 += ' LEFT JOIN sip_municipio AS municipio ON ' +
-              ' ubicacion.id_municipio=municipio.id'
           end
 
           if pSegun && pSegun != ''
             case pSegun
             when "ACTOS PRESUNTOS RESPONSABLES"
-            que3 << ["presponsable_nombre", "P. Responsable"]
-            que1 += ', presponsable.id, INITCAP(presponsable.nombre) AS presponsable_nombre' 
-            tablas1 += ' LEFT JOIN sivel2_gen_presponsable AS presponsable ON ' +
-              ' acto.id_presponsable=presponsable.id'
+              que3 << ["presponsable_nombre", "P. Responsable"]
 
             when "FILIACIÓN"
-            que3 << ["filiacion_nombre", "Filiacion"]
-            que1 += ', filiacion.id, INITCAP(filiacion.nombre) AS filiacion_nombre' 
-            tablas1 += ' LEFT JOIN public.sivel2_gen_filiacion AS filiacion ON ' +
-              ' victima.id_filiacion=filiacion.id'
+              que3 << ["filiacion_nombre", "Filiacion"]
 
             when "MES CASO"
               que3 << ["mes_anio", "Mes"]
-              que1 += ", TO_CHAR(EXTRACT(YEAR FROM caso.fecha), '0000') || " +
-                " '-' || TO_CHAR(EXTRACT(MONTH FROM caso.fecha),'00') " +
-                "AS mes_anio" 
 
             when "ORGANIZACIÓN SOCIAL"
               que3 << ["organizacion_nombre", "Organización"]
-              que1 += ', organizacion.id, INITCAP(organizacion.nombre) AS organizacion_nombre' 
-              tablas1 += ' LEFT JOIN public.sivel2_gen_organizacion AS organizacion ON ' +
-                ' victima.id_organizacion=organizacion.id'
 
             when "PROFESIÓN"
               que3 << ["profesion_nombre", "Profesión"]
-              que1 += ', profesion.id, INITCAP(profesion.nombre) AS profesion_nombre' 
-              tablas1 += ' LEFT JOIN public.sivel2_gen_profesion AS profesion ON ' +
-                ' victima.id_profesion=profesion.id'
-
 
             when "RANGO DE EDAD"
               que3 << ["rangoedad_rango", "Rango de edad"]
-              que1 += ', rangoedad.id, INITCAP(rangoedad.nombre) AS rangoedad_rango' 
-              tablas1 += ' LEFT JOIN public.sivel2_gen_rangoedad AS rangoedad ON ' +
-                ' victima.id_rangoedad=rangoedad.id'
 
             when "SECTOR SOCIAL"
               que3 << ["sectorsocial_nombre", "Sector social"]
-              que1 += ", sectorsocial.id, "\
-                "INITCAP(sectorsocial.nombre) AS sectorsocial_nombre" 
-              tablas1 += " LEFT JOIN public.sivel2_gen_sectorsocial "\
-              "AS sectorsocial ON victima.id_sectorsocial=sectorsocial.id"
 
             when "SEXO"
               que3 << ["sexo", "Sexo"]
-              que1 += ", CASE  WHEN persona.sexo='F' THEN 'Femenino' "\
-                "  WHEN persona.sexo='M' THEN 'Masculino' "\
-                "  ELSE 'Sin Información' "\
-                "END AS sexo"
-              tablas1 += " LEFT JOIN public.sivel2_gen_profesion "\
-              "AS profesion ON victima.id_profesion=profesion.id"
+
             end
           end
-
-          if where1 != ''
-            where1 = "WHERE #{where1}"
-          end
-          ActiveRecord::Base.connection.execute "DROP VIEW  IF EXISTS #{tcons1}"
-          # Filtrar 
-          q1="CREATE VIEW #{tcons1} AS 
-          SELECT #{que1}
-          FROM #{tablas1} #{where1} "
-          puts "q1 es #{q1}"
-          ActiveRecord::Base.connection.execute q1
-
 
 #          "CREATE VIEW #{tcons2} AS SELECT #{tcons1}.*,
 #            ubicacion.id_departamento, departamento.nombre AS departamento_nombre, 
@@ -955,7 +841,180 @@ module Sivel2Gen
             format.js   { render 'sivel2_gen/conteos/genvic' }
           end
         end # def personas
- 
+
+
+
+        class_methods do
+
+
+          ##
+          # Agrega condición a WHERE en un SELECT de SQL
+          #
+          # @param unknown &$db   Conexión a base de datos
+          # @param string  &$w    cadena con WHERE que se completa
+          # @param string  $n     nombre de campo
+          # @param string  $v     valor esperado
+          # @param string  $opcmp operador de comparación por usar.
+          # @param string  $con   con
+          #
+          # @return string cadena w completada con nueva condición
+          def consulta_and(w, n, v, opcmp = '=', con='AND')
+            if (!v || v === '' || $v === ' ') 
+              return
+            end
+            if (w != "") 
+              w += " #{con}"
+            end
+            w += " " + n + opcmp + Sivel2Gen::Caso.connection.quote(v)
+          end
+
+
+          def genconsulta_victimizaciones(
+            pFini, pFfin, pTviolencia, pEtiqueta1, pEtiqueta2, pSegun,
+            pDepartamento, pMunicipio)
+
+            tcons1 = 'cvt1'
+            # La estrategia es 
+            # 1. Agrupar en la vista tcons1 respuesta con lo que se contará 
+            #    con máxima desagregación restringiendo por filtros con códigos 
+            # 2. Contar derechos/respuestas tcons1, cambiar códigos
+            #    por información por desplegar
+
+            # Para la vista tcons1 emplear que1, tablas1 y where1
+            que1 = 'DISTINCT acto.id_caso, acto.id_persona, acto.id_categoria, 
+            supracategoria.id_tviolencia AS id_tviolencia, 
+            categoria.nombre AS categoria'
+            tablas1 = ' public.sivel2_gen_acto AS acto JOIN ' +
+            'public.sivel2_gen_caso AS caso ON acto.id_caso=caso.id ' +
+            'JOIN public.sivel2_gen_categoria AS categoria ' + 
+            ' ON acto.id_categoria=categoria.id ' +
+            'JOIN public.sivel2_gen_supracategoria AS supracategoria ' + 
+            ' ON categoria.supracategoria_id=supracategoria.id ' +
+            'JOIN public.sivel2_gen_victima AS victima ' + 
+            ' ON victima.id_persona=acto.id_persona AND ' +
+            ' victima.id_caso=caso.id ' +
+            'JOIN public.sip_persona AS persona ' + 
+            ' ON persona.id=acto.id_persona'
+            where1 = ''
+
+            if (pFini != '')
+              @fechaini = Sip::FormatoFechaHelper.fecha_local_estandar pFini
+              if @fechaini
+                where1 = consulta_and(
+                  where1, "caso.fecha", @fechaini, ">="
+                )
+              end
+            end
+            if (pFfin != '') 
+              @fechafin = Sip::FormatoFechaHelper.fecha_local_estandar pFfin
+              if @fechafin
+                where1 = consulta_and(
+                  where1, "caso.fecha", @fechafin, "<="
+                )
+              end
+            end
+            if (pTviolencia != '') 
+              where1 = consulta_and(
+                where1, "id_tviolencia", pTviolencia[0], "="
+              )
+            end
+            if (pEtiqueta1 != '' || pEtiqueta2 != '')
+              tablas1 += ' JOIN sivel2_gen_caso_etiqueta AS caso_etiqueta ON' +
+                ' caso.id=caso_etiqueta.id_caso' 
+              if (pEtiqueta1 != '') 
+                where1 = consulta_and(
+                  where1, "caso_etiqueta.id_etiqueta", pEtiqueta1, "="
+                )
+              end
+              if (pEtiqueta2 != '') 
+                where1 = consulta_and(
+                  where1, "caso_etiqueta.id_etiqueta", pEtiqueta2, "="
+                )
+              end
+            end
+
+            if (pDepartamento.to_i == 1 || pMunicipio.to_i == 1) 
+              que1 += ', ubicacion.id_departamento' +
+                ', departamento.id_deplocal AS departamento_divipola' +
+                ', INITCAP(departamento.nombre) AS departamento_nombre'
+              # Tomamos ubicacion principal
+              tablas1 += ' LEFT JOIN sip_ubicacion AS ubicacion ON' +
+                ' caso.ubicacion_id = ubicacion.id'
+              tablas1 += ' LEFT JOIN sip_departamento AS departamento ON ' +
+                ' ubicacion.id_departamento=departamento.id'
+            end
+
+            if (pMunicipio.to_i == 1) 
+              que1 += ', ubicacion.id_municipio' +
+                ', INITCAP(municipio.nombre) AS municipio_nombre'
+              tablas1 += ' LEFT JOIN sip_municipio AS municipio ON ' +
+                ' ubicacion.id_municipio=municipio.id'
+            end
+
+            if pSegun && pSegun != ''
+              case pSegun
+              when "ACTOS PRESUNTOS RESPONSABLES"
+                que1 += ', presponsable.id, INITCAP(presponsable.nombre) AS presponsable_nombre' 
+                tablas1 += ' LEFT JOIN sivel2_gen_presponsable AS presponsable ON ' +
+                  ' acto.id_presponsable=presponsable.id'
+
+              when "FILIACIÓN"
+                que1 += ', filiacion.id, INITCAP(filiacion.nombre) AS filiacion_nombre' 
+                tablas1 += ' LEFT JOIN public.sivel2_gen_filiacion AS filiacion ON ' +
+                  ' victima.id_filiacion=filiacion.id'
+
+              when "MES CASO"
+                que1 += ", TO_CHAR(EXTRACT(YEAR FROM caso.fecha), '0000') || " +
+                  " '-' || TO_CHAR(EXTRACT(MONTH FROM caso.fecha),'00') " +
+                  "AS mes_anio" 
+
+              when "ORGANIZACIÓN SOCIAL"
+                que1 += ', organizacion.id, INITCAP(organizacion.nombre) AS organizacion_nombre' 
+                tablas1 += ' LEFT JOIN public.sivel2_gen_organizacion AS organizacion ON ' +
+                  ' victima.id_organizacion=organizacion.id'
+
+              when "PROFESIÓN"
+                que1 += ', profesion.id, INITCAP(profesion.nombre) AS profesion_nombre' 
+                tablas1 += ' LEFT JOIN public.sivel2_gen_profesion AS profesion ON ' +
+                  ' victima.id_profesion=profesion.id'
+
+
+              when "RANGO DE EDAD"
+                que1 += ', rangoedad.id, INITCAP(rangoedad.nombre) AS rangoedad_rango' 
+                tablas1 += ' LEFT JOIN public.sivel2_gen_rangoedad AS rangoedad ON ' +
+                  ' victima.id_rangoedad=rangoedad.id'
+
+              when "SECTOR SOCIAL"
+                que1 += ", sectorsocial.id, "\
+                  "INITCAP(sectorsocial.nombre) AS sectorsocial_nombre" 
+                tablas1 += " LEFT JOIN public.sivel2_gen_sectorsocial "\
+                  "AS sectorsocial ON victima.id_sectorsocial=sectorsocial.id"
+
+              when "SEXO"
+                que1 += ", CASE  WHEN persona.sexo='F' THEN 'Femenino' "\
+                  "  WHEN persona.sexo='M' THEN 'Masculino' "\
+                  "  ELSE 'Sin Información' "\
+                  "END AS sexo"
+                tablas1 += " LEFT JOIN public.sivel2_gen_profesion "\
+                  "AS profesion ON victima.id_profesion=profesion.id"
+              end
+            end
+
+            if where1 != ''
+              where1 = "WHERE #{where1}"
+            end
+            ActiveRecord::Base.connection.execute "DROP VIEW  IF EXISTS #{tcons1}"
+            # Filtrar 
+            q1="CREATE VIEW #{tcons1} AS 
+              SELECT #{que1}
+              FROM #{tablas1} #{where1} "
+            puts "q1 es #{q1}"
+            ActiveRecord::Base.connection.execute q1
+
+            return tcons1
+          end # def
+
+        end # class_methods
 
       end
     end

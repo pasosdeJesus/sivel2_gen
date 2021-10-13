@@ -53,6 +53,9 @@ Sivel2Gen::Engine.routes.draw do
   get '/admin/presponsables/arbol' => 'admin/presponsables#arbol',
     as: :arbol_presponsables
 
+  get '/mapadep/victimizaciones' => 'mapadep#victimizaciones',
+    as: :mapadepvic
+
   get "/tablasbasicas" => 'hogar#tablasbasicas'
 
   get '/ubicaciones/nuevo' => 'ubicaciones#nuevo'
