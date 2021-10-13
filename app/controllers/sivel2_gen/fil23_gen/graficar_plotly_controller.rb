@@ -10,7 +10,6 @@ module Sivel2Gen
         @rutacsv = File.join(
           Rails.root, "public/#{Rails.configuration.relative_url_root}/"\
           "csv/actos_individuales.csv").to_s
-          byebug
 
         tarc = Tempfile.new(['actos_individuales', '.csv'], '/var/www/tmp/')
         rutatmp = tarc.path
