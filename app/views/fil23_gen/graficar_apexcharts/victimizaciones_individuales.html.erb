@@ -1,1 +1,132 @@
 <h1> Graficar victimizaciones individuales </h1>
+<%
+  series_gen= [
+    {name: "Hombres",
+     data: @valores_m},
+    {name: "Mujeres",
+     data: @valores_f},
+    {name: "Sin sexo",
+     data: @valores_s}
+  ]
+
+  opciones_gen = {
+   title: 'Victimizaciones',
+   xtitle: 'Fecha',
+   ytitle: 'Victimizaciones',
+   stacked: true 
+  }
+
+  series_totsex= [
+    {name: "Hombres",
+     data: @valores_totsex}
+  ]
+
+  opciones_totsex = {
+   title: 'Totales por sexo',
+   xtitle: 'Sexo',
+   ytitle: 'Victimizaciones'
+  }
+%>
+
+<%= simple_form_for :filtro do |f| %>
+<div class="card" >
+  <div class="card-header">
+    <h3> Filtrar por: </h3>
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="offset-sm-0 col-3">
+      <%
+        if params.nil? || params[:filtro].nil? || params[:filtro][:fechaini].nil?
+          vfi = fecha_estandar_local(@vic_fechaini)
+        else
+          vfi = fecha_estandar_local(Sip::FormatoFechaHelper.fecha_local_estandar(params[:filtro][:fechaini]))
+        end
+      %>
+        <%= f.input :fechaini,
+          maxlength: 10, 
+          size: 10,
+          label: 'Fecha Inicial',
+          input_html: {
+            "data-behaviour" => "datepicker",
+            value: vfi
+          }
+        %>
+      </div>
+      <%
+        if params.nil? || params[:filtro].nil? || params[:filtro][:fechafin].nil?
+          vff = fecha_estandar_local(@vic_fechafin)
+        else
+          vff =  fecha_estandar_local(Sip::FormatoFechaHelper.fecha_local_estandar(params[:filtro][:fechafin]))
+        end
+      %>
+      <div class="offset-sm-0 col-3">
+        <%= f.input :fechafin,
+          maxlength: 10, 
+          size: 10,
+          label: 'Fecha Final',
+          input_html: {
+            "data-behaviour" => "datepicker",
+            value: vff
+          } %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="offset-sm-0 col-12">
+        <%
+          if params.nil? || params[:filtro].nil? || params[:filtro][:departamentos].nil?
+            dep_sel = Sip::Departamento.habilitados.where(id_pais: 170).pluck(:id)
+          else
+            dep_sel = params[:filtro][:departamentos]
+          end
+        %>
+        <%= f.input :departamentos,
+          collection: Sip::Departamento.habilitados.where(id_pais: 170), 
+          label_method: :nombre,
+          value_method: :id, 
+          selected: dep_sel,
+          input_html: {
+            class: 'chosen-select',
+            multiple: true,
+            'data-enviarautomatico' => ''
+          }
+        %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="offset-sm-0 col-12">
+        <%
+          if params.nil? || params[:filtro].nil? || params[:filtro][:categorias].nil?
+            cat_sel = @vic_categorias
+          else
+            cat_sel = params[:filtro][:categorias]
+          end
+        %>
+        <%= f.input :categorias,
+          collection: @categorias,
+          selected: cat_sel,
+          input_html: {
+            class: 'chosen-select',
+            multiple: true,
+            'data-enviarautomatico' => ''
+          }
+        %>
+      </div>
+    </div>
+  </div>
+  <div class="card-footer text-center">
+      <%= f.submit 'Filtrar' %>
+  </div>
+</div>
+<% end %>
+<div class="row">
+  <div class="col-12">
+    <%= line_chart(series_gen, opciones_gen) %>  
+  </div>
+</div>
+</br>
+<div class="row">
+  <div class="col-12">
+    <%= column_chart(series_totsex, opciones_totsex) %>  
+  </div>
+</div>
