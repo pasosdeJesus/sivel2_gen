@@ -43,6 +43,9 @@ Sivel2Gen::Engine.routes.draw do
   get '/graficar/victimizaciones_individuales' => 'fil23_gen/graficar_apexcharts#victimizaciones_individuales', 
     :as => 'graficar_victimizaciones_individuales'
 
+  post '/graficar/victimizaciones_individuales' => 'fil23_gen/graficar_apexcharts#victimizaciones_individuales', 
+    :as => 'enviar_graficar_victimizaciones_individuales'
+
   get "/hogar" => 'hogar#index'
 
   get '/admin/presponsables/nuevo' => 'admin/presponsables#nuevo'
