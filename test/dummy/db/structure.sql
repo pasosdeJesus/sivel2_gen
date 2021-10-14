@@ -840,35 +840,6 @@ CREATE TABLE public.sivel2_gen_categoria (
 
 
 --
--- Name: sivel2_gen_presponsable_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public.sivel2_gen_presponsable_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: sivel2_gen_presponsable; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.sivel2_gen_presponsable (
-    id integer DEFAULT nextval('public.sivel2_gen_presponsable_id_seq'::regclass) NOT NULL,
-    fechacreacion date DEFAULT CURRENT_DATE NOT NULL,
-    fechadeshabilitacion date,
-    papa_id integer,
-    nombre character varying(500) COLLATE public.es_co_utf_8,
-    created_at timestamp without time zone,
-    updated_at timestamp without time zone,
-    observaciones character varying(5000),
-    CONSTRAINT presuntos_responsables_check CHECK (((fechadeshabilitacion IS NULL) OR (fechadeshabilitacion >= fechacreacion)))
-);
-
-
---
 -- Name: sivel2_gen_supracategoria_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
@@ -908,15 +879,17 @@ CREATE VIEW public.cvt1 AS
     acto.id_categoria,
     supracategoria.id_tviolencia,
     categoria.nombre AS categoria,
-    presponsable.id,
-    initcap((presponsable.nombre)::text) AS presponsable_nombre
-   FROM ((((((public.sivel2_gen_acto acto
+    ubicacion.id_departamento,
+    departamento.id_deplocal AS departamento_divipola,
+    initcap((departamento.nombre)::text) AS departamento_nombre
+   FROM (((((((public.sivel2_gen_acto acto
      JOIN public.sivel2_gen_caso caso ON ((acto.id_caso = caso.id)))
      JOIN public.sivel2_gen_categoria categoria ON ((acto.id_categoria = categoria.id)))
      JOIN public.sivel2_gen_supracategoria supracategoria ON ((categoria.supracategoria_id = supracategoria.id)))
      JOIN public.sivel2_gen_victima victima ON (((victima.id_persona = acto.id_persona) AND (victima.id_caso = caso.id))))
      JOIN public.sip_persona persona ON ((persona.id = acto.id_persona)))
-     LEFT JOIN public.sivel2_gen_presponsable presponsable ON ((acto.id_presponsable = presponsable.id)));
+     LEFT JOIN public.sip_ubicacion ubicacion ON ((caso.ubicacion_id = ubicacion.id)))
+     LEFT JOIN public.sip_departamento departamento ON ((ubicacion.id_departamento = departamento.id)));
 
 
 --
@@ -2740,6 +2713,35 @@ CREATE SEQUENCE public.sivel2_gen_combatiente_id_seq
 --
 
 ALTER SEQUENCE public.sivel2_gen_combatiente_id_seq OWNED BY public.sivel2_gen_combatiente.id;
+
+
+--
+-- Name: sivel2_gen_presponsable_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.sivel2_gen_presponsable_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: sivel2_gen_presponsable; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.sivel2_gen_presponsable (
+    id integer DEFAULT nextval('public.sivel2_gen_presponsable_id_seq'::regclass) NOT NULL,
+    fechacreacion date DEFAULT CURRENT_DATE NOT NULL,
+    fechadeshabilitacion date,
+    papa_id integer,
+    nombre character varying(500) COLLATE public.es_co_utf_8,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone,
+    observaciones character varying(5000),
+    CONSTRAINT presuntos_responsables_check CHECK (((fechadeshabilitacion IS NULL) OR (fechadeshabilitacion >= fechacreacion)))
+);
 
 
 --
@@ -6739,6 +6741,8 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20210728214424'),
 ('20210730120340'),
 ('20210823162357'),
-('20210924022913');
+('20210924022913'),
+('20211011214752'),
+('20211011233005');
 
 
