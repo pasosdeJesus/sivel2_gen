@@ -879,7 +879,7 @@ module Sivel2Gen
               doc = Nokogiri::XML::Document.parse(nuevo_doc.to_s, nil, nil, options)
               errores_dtd = doc.external_subset.validate(doc)
               if errores_dtd.count > 0
-                menserror << " Imposible importar relato(s). Su contenido no sigue el dtd. \n #{errores_dtd.join('\n ')}"
+                menserror << " Imposible importar relato(s). Su contenido no sigue el dtd: #{errores_dtd.join('. ')}"
                 return false
               end
             else
@@ -948,12 +948,16 @@ module Sivel2Gen
             arc = params[:arc]
             doc = nil
             begin
-              doc = arc.read
+              doc_noseguro = arc.read
+              doc_seguro = Nokogiri::XML(doc_noseguro) do |config|
+                config.strict.noent
+              end
             rescue
               flash[:error]  = "No se pudo leer archivo '#{arc}'"
               redirect_to casos_path
               return
             end
+            doc = doc_seguro.to_s
             menserror = ''
             mensexito = ''
             ids_importados = ''
