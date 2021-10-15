@@ -152,7 +152,9 @@ xml.relato do
   xml.comment! "Actos con Victimas Colectivas"
   caso.actocolectivo.each do |acol|
     xml.acto do
-      unless acol.categoria.pconsolidado.nil?
+      if acol.categoria.pconsolidado.nil?
+        xml.agresion "OTRO"
+      else 
         xml.agresion acol.categoria.pconsolidado.clasificacion
       end
       unless acol.categoria.nombre.nil? || acol.categoria.nombre.empty?

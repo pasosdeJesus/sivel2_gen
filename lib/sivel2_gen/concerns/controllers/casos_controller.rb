@@ -865,7 +865,33 @@ module Sivel2Gen
 
           def self.importar_relato(doc, menserror, mensexito, ids_importados,
                                   usuario_id)
-            docnoko = Nokogiri::XML(doc)
+            docnoko_inicial = Nokogiri::XML(doc) do |config|
+              config.strict.noent
+            end
+            ## Verifica si trae un enlace a un dtd válido (097, 098 o 099)
+            enlace = docnoko_inicial.children[0].system_id
+            pre = "http://sincodh.pasosdejesus.org/relatos/relatos-"
+            aceptados = [pre + "097.dtd", pre + "098.dtd", pre + "099.dtd"]
+            if aceptados.include? enlace
+              nuevo_doc = Nokogiri::XML('<relatos/>') do |config|
+                config.strict.noent
+              end
+
+              nuevo_doc.create_internal_subset('relatos', nil, 'public/relatos-099.dtd')
+              nuevo_doc.at('relatos').children = docnoko_inicial.at('relatos').children
+              ## Verifica si sigue correctamente el dtd
+              options = Nokogiri::XML::ParseOptions::DTDVALID
+              doc = Nokogiri::XML::Document.parse(nuevo_doc.to_s, nil, nil, options)
+              errores_dtd = doc.external_subset.validate(doc)
+              if errores_dtd.count > 0
+                menserror << " Imposible importar relato(s). Su contenido no sigue el dtd: #{errores_dtd.join('. ')}"
+                return false
+              end
+            else
+              menserror << " Imposible importar relato(s). El enlace al dtd #{enlace} no corresponde a los aceptados"
+              return false
+            end
+            docnoko = docnoko_inicial 
             docnoko.search('observaciones').each do |obs|
               obs.content = obs['tipo'] + '_' + obs.text
             end
@@ -918,6 +944,7 @@ module Sivel2Gen
               menserror << "Se encontraron errores en #{total_errores} " \
                 "relatos. Se detallan en etiquetas de los casos importados.  "
             end
+            return true
           end # importar_relato
 
 
@@ -935,7 +962,7 @@ module Sivel2Gen
             menserror = ''
             mensexito = ''
             ids_importados = ''
-            Sivel2Gen::CasosController.importar_relato(
+            importa_exito = Sivel2Gen::CasosController.importar_relato(
               doc, menserror, mensexito, ids_importados, current_usuario.id)
             if mensexito != ''
               flash[:success] = mensexito
@@ -950,10 +977,14 @@ module Sivel2Gen
             if menserror != ''
               flash[:error]  = menserror
             end
-            Conscaso.refresca_conscaso
-            ruta_importados = casos_path + '?filtro[q]=&filtro[codigo]=' + 
-              ids_importados + '&filtro[inc_casoid]=1&filtro[inc_ubicaciones]=1&filtro[inc_fecha]=1&filtro[inc_presponsables]=1&filtro[inc_victimas]=1&filtro[inc_memo]=1&filtro[inc_tipificacion]=1'
-            redirect_to ruta_importados
+            if importa_exito != true
+              redirect_to casos_path
+            else 
+              Conscaso.refresca_conscaso
+              ruta_importados = casos_path + '?filtro[q]=&filtro[codigo]=' + 
+                ids_importados + '&filtro[inc_casoid]=1&filtro[inc_ubicaciones]=1&filtro[inc_fecha]=1&filtro[inc_presponsables]=1&filtro[inc_victimas]=1&filtro[inc_memo]=1&filtro[inc_tipificacion]=1'
+              redirect_to ruta_importados
+              end
           end
 
           private
