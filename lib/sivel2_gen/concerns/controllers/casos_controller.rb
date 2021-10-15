@@ -865,7 +865,9 @@ module Sivel2Gen
 
           def self.importar_relato(doc, menserror, mensexito, ids_importados,
                                   usuario_id)
-            docnoko_inicial = Nokogiri::XML(doc)
+            docnoko_inicial = Nokogiri::XML(doc) do |config|
+              config.strict.noent
+            end
             ## Verifica si trae un enlace a un dtd válido (097, 098 o 099)
             enlace = docnoko_inicial.children[0].system_id
             pre = "http://sincodh.pasosdejesus.org/relatos/relatos-"
@@ -948,16 +950,12 @@ module Sivel2Gen
             arc = params[:arc]
             doc = nil
             begin
-              doc_noseguro = arc.read
-              doc_seguro = Nokogiri::XML(doc_noseguro) do |config|
-                config.strict.noent
-              end
+              doc = arc.read
             rescue
               flash[:error]  = "No se pudo leer archivo '#{arc}'"
               redirect_to casos_path
               return
             end
-            doc = doc_seguro.to_s
             menserror = ''
             mensexito = ''
             ids_importados = ''
