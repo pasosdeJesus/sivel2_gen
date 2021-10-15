@@ -49,6 +49,12 @@
   </div>
 <% end %>
 
-<script>
-  presentarMapaOsm()
-</script>
+<% if current_usuario %>
+  <script>
+    presentarMapaOsm(true)
+  </script>
+<% else %>
+  <script>
+    presentarMapaOsm(false)
+  </script>
+<% end %>
