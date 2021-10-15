@@ -31,7 +31,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sip.git
-  revision: 6d73352f61c4220cf8ec8b9ab14648561ac6e4c7
+  revision: 8d26297d9ae68e39869c941641473f571d114a5b
   branch: main
   specs:
     sip (2.0.b12)
@@ -125,7 +125,6 @@ GEM
     bootsnap (1.9.1)
       msgpack (~> 1.0)
     builder (3.2.4)
-    byebug (11.1.3)
     camertron-eprun (1.1.1)
     cancancan (3.3.0)
     choice (0.2.0)
@@ -197,7 +196,7 @@ GEM
       activesupport (>= 5.0.0)
     jquery-ui-rails (6.0.1)
       railties (>= 3.2.16)
-    json (2.5.1)
+    json (2.6.0)
     libxml-ruby (3.2.1)
     loofah (2.12.0)
       crass (~> 1.0.2)
@@ -360,7 +359,6 @@ DEPENDENCIES
   apexcharts
   bcrypt
   bootsnap (>= 1.1.0)
-  byebug
   cancancan
   cocoon!
   coffee-rails
