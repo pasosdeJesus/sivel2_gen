@@ -2,7 +2,7 @@ xml.instruct!
 if ENV['RAILS_ENV'] == 'test'
   rdtd = 'test/dummy/public/relatos-099.dtd'
 else
-  rdtd = 'https://sincodh.pasosdejesus.org/relatos/relatos-099.dtd'
+  rdtd = 'http://sincodh.pasosdejesus.org/relatos/relatos-099.dtd'
 end
 
 xml.declare! :DOCTYPE, :relatos, :SYSTEM, rdtd
