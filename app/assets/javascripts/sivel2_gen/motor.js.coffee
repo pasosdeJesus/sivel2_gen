@@ -754,7 +754,6 @@ enviaFormularioContar= (root) ->
       vic_agregada = $("#victimas div.seccionvictima:last")
       vic_agregada.find(':input').each((i)->
         if(i != 0 && i !=35)
-          debugger
           $(this).val(valores[i])
       )
     , 1000)
@@ -785,6 +784,7 @@ enviaFormularioContar= (root) ->
 
   # Agrega actos  
   $(document).on('click', 'a.agregaractos[href^="#"]', (e) ->
+    debugger
     e.preventDefault()
     tn = Date.now()
     d = -1
@@ -1003,9 +1003,9 @@ enviaFormularioContar= (root) ->
 
 @sivel2_gen_prepara_eventos_unicos = (root) ->
 
-  # Envia formulario al presionar enlaces con clase fichacambia 
+  # Envia formulario al presionar botones con clase fichacambia 
   # con más de 5 segundos de diferencia entre un click y el siguiente
-  $(document).on('click', 'a.fichacambia[href^="#"]', (e) ->
+  $(document).on('click', 'button.fichacambia[data-bs-target^="#"]', (e) ->
     e.preventDefault()
     tn = Date.now()
     d = -1
