@@ -873,7 +873,10 @@ module Sivel2Gen
             pre = "http://sincodh.pasosdejesus.org/relatos/relatos-"
             aceptados = [pre + "097.dtd", pre + "098.dtd", pre + "099.dtd"]
             if aceptados.include? enlace
-              nuevo_doc = Nokogiri::XML('<relatos/>')
+              nuevo_doc = Nokogiri::XML('<relatos/>') do |config|
+                config.strict.noent
+              end
+
               nuevo_doc.create_internal_subset('relatos', nil, 'public/relatos-099.dtd')
               nuevo_doc.at('relatos').children = docnoko_inicial.at('relatos').children
               ## Verifica si sigue correctamente el dtd
@@ -888,7 +891,7 @@ module Sivel2Gen
               menserror << " Imposible importar relato(s). El enlace al dtd #{enlace} no corresponde a los aceptados"
               return false
             end
-            docnoko = nuevo_doc 
+            docnoko = docnoko_inicial 
             docnoko.search('observaciones').each do |obs|
               obs.content = obs['tipo'] + '_' + obs.text
             end
