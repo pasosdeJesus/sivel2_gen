@@ -27,8 +27,17 @@ module Sivel2Gen
   # Basado en función de https://thoughtbot.com/blog/organized-workflow-for-svg
   def embeber_mapacalordepcol_svg(titulo, subtitulo, cantidadesdep, opciones = {})
     assets = Rails.application.assets
-    file = assets.find_asset('svg/mapacalordep.svg').source.force_encoding("UTF-8")
-    doc = Nokogiri::HTML::DocumentFragment.parse file
+
+    if assets
+      cont = assets.find_asset('svg/mapacalordep.svg').source.force_encoding("UTF-8")
+    else
+      rutas = Gem::Specification.stubs.map(&:full_gem_path)
+      rs = rutas.select {|x| x.include?('sivel2_gen')}.first
+      rs += "/app/assets/images/svg/mapacalordep.svg"
+      puts "OJO rs=#{rs}"
+      cont = File.read(rs).force_encoding("UTF-8")
+    end
+    doc = Nokogiri::HTML::DocumentFragment.parse cont
     svg = doc.at_css "svg"
     if opciones[:class].present?
       svg["class"] = opciones[:class]
