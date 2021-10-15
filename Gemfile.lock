@@ -125,7 +125,6 @@ GEM
     bootsnap (1.9.1)
       msgpack (~> 1.0)
     builder (3.2.4)
-    byebug (11.1.3)
     camertron-eprun (1.1.1)
     cancancan (3.3.0)
     choice (0.2.0)
@@ -360,7 +359,6 @@ DEPENDENCIES
   apexcharts
   bcrypt
   bootsnap (>= 1.1.0)
-  byebug
   cancancan
   cocoon!
   coffee-rails
