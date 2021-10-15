@@ -7,7 +7,11 @@ var marcadores;
 var mapa;
 var baldosasOsm;
 var controlCapas;
+var usuario_aut_global;
 
+function filtrar_por_categoria(){
+  return '';
+}
 function agregarFuncionesExternasMapaosm(){
   return null
 }
@@ -19,7 +23,8 @@ function leerCapasSuperpuestas(){
   return capasSuperpuestas
 }
 
-function presentarMapaOsm() {
+function presentarMapaOsm(usuario_autenticado) {
+  usuario_aut_global = usuario_autenticado
   // Borrar clase container y ocultar pie de página
   $('.navbar').addClass('navbarosm');
   $('.card-body').addClass('cardbodyosm');
@@ -98,7 +103,7 @@ function presentarMapaOsm() {
   
   //Crea los cúmulos de casos y agrega casos
   marcadores = L.markerClusterGroup(); 
-  window.setTimeout(agregarCasosOsm, 0);
+  window.setTimeout(agregarCasosOsm(usuario_autenticado), 0);
 
   // Cierra el info al acercar/alejar
   mapa.on('zoom', function() {
@@ -128,7 +133,7 @@ function descargarUrl(url, retrollamada) {
   request.send(null);
 }
 
-function agregarCasosOsm() {
+function agregarCasosOsm(usuario_autenticado) {
   var root = window;
   if (typeof root.formato_fecha == 'undefined') {
     sip_prepara_eventos_comunes(root)
@@ -160,6 +165,8 @@ function agregarCasosOsm() {
       if (tvio != undefined && tvio != 0){
         urlSolicitud += '&filtro[categoria_id]=' + tvio;
       }
+      filtro_cat = filtrar_por_categoria(usuario_autenticado); 
+      urlSolicitud += filtro_cat;
       urlSolicitud += '&filtro[inc_ubicaciones]=2'+
         //'&filtro[inc_titulo]=1'+
         //'&filtro[inc_fecha]=1'+
@@ -343,7 +350,7 @@ $(document).on('click','#boton-cerrar-ag-capa', function() {
 //Limpia el mapa de casos cada que se filtra
 $(document).on('click', '#agregar-casos-osm', function(){
   marcadores.clearLayers(); 
-  agregarCasosOsm();
+  agregarCasosOsm(usuario_aut_global);
 });
 
 
