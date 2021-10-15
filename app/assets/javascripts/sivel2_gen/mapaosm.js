@@ -300,25 +300,28 @@ function capaInfo(des, hec, vic){
   }
   info = L.control();
   info.onAdd = function (mapa) {
-    this._div = L.DomUtil.create('div', 'info');
+    this._div = L.DomUtil.create('div', 'info card');
     this.update(des, hec, vic);
     return this._div;
   };
   info.update = function (des, hec, vic) {
-    this._div.innerHTML = '<button type="button" id="boton-cerrar" class="close" aria-label="Close">'+
-      '<span aria-hidden="true">&times;</span>'+
-      '</button><div id="infow">'+
-      '<ul class="nav nav-tabs" id="myTab" role="tablist">'+
-      '<li class="nav-item active"><a class="nav-link" id="infodes-tab" data-toggle="tab" href="#infodes" role="tab" aria-controls="infodes" aria-selected="true">Descripción</a></li>'+
-      '<li class="nav-item"><a class="nav-link" id="infodatos-tab" data-toggle="tab" href="#infodatos" role="tab" aria-controls="infodatos" aria-selected="false">Datos</a></li>'+
-      '<li class="nav-item"><a class="nav-link" id="infovictima-tab" data-toggle="tab" href="#infovictima" role="tab" aria-controls="infovictima" aria-selected="false">Víctimas</a></li>'+
-      '</ul>'+
-      '<div class="tab-content" id="myTabContent">'+
-      '<div class="tab-pane fade show active in panel-infomapa" id="infodes" role="tabpanel" aria-labelledby="infodes-tab">'+ des +'</div>'+
-      '<div class="tab-pane fade panel-infomapa" id="infodatos" role="tabpanel" aria-labelledby="infodatos-tab">'+ hec +'</div>'+
-      '<div class="tab-pane fade panel-infomapa" id="infovictima" role="tabpanel" aria-labelledby="infovctima-tab">'+ vic +'</div>'+
-      '</div>'+
-      '</div>';
+    this._div.innerHTML = 
+    ' <div id="infow" class="card-body">' +
+      ' <nav>' +
+        ' <div class="nav nav-tabs" id="nav-tab" role="tablist">' +
+          ' <button class="nav-link active" id="infodes-tab" data-bs-toggle="tab" data-bs-target="#infodes" type="button" role="tab" aria-controls="infodes" aria-selected="true">Descripción</button>' +
+          ' <button class="nav-link" id="infodatos-tab" data-bs-toggle="tab" data-bs-target="#infodatos" type="button" role="tab" aria-controls="infodatos" aria-selected="false">Datos</button>' +
+          ' <button class="nav-link" id="infovictima-tab" data-bs-toggle="tab" data-bs-target="#infovictima" type="button" role="tab" aria-controls="infovictima" aria-selected="false">Víctimas</button>' +
+          ' <button id="boton-cerrar" type="button" class="btn-close close position-absolute top-0 end-0" aria-label="Close"></button>' +
+        ' </div>' +
+      ' </nav>' +
+          ' <div class="tab-content" id="nav-tabContent">' +
+            ' <div class="tab-pane fade show active panel-infomapa" id="infodes" role="tabpanel" aria-labelledby="infodes-tab">'+ des +'</div>' +
+            ' <div class="tab-pane fade panel-infomapa" id="infodatos" role="tabpanel" aria-labelledby="infodatos-tab">'+ hec +'</div>' +
+             ' <div class="tab-pane fade panel-infomapa" id="infovictima" role="tabpanel" aria-labelledby="infovictima-tab">'+ vic +'</div>' +
+          ' </div>' +
+    '</div>'
+    ;
   };
   info.addTo(mapa);
 }
