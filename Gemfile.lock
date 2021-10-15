@@ -11,7 +11,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/heb412_gen.git
-  revision: 72abce59df3efea20099773738e00fc22fa2c823
+  revision: df27c86e91e44aaaf600932863c259a24dcdc5b1
   branch: main
   specs:
     heb412_gen (1.0.b7)
@@ -22,7 +22,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/mr519_gen.git
-  revision: d57e9f50a7bff6abafa2043350d3dd82cb73ac70
+  revision: f5d7007139ffa2212b228025097d9acc9e7c5454
   branch: main
   specs:
     mr519_gen (0.2.1)
@@ -31,7 +31,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sip.git
-  revision: 10491e19f326b4ad4ed4b4e77b8b80b78cd34a2d
+  revision: 41e63cfc9a7d82c35e93f34371c408ae4cbabccf
   branch: main
   specs:
     sip (2.0.b12)
@@ -125,7 +125,6 @@ GEM
     bootsnap (1.9.1)
       msgpack (~> 1.0)
     builder (3.2.4)
-    byebug (11.1.3)
     camertron-eprun (1.1.1)
     cancancan (3.3.0)
     choice (0.2.0)
@@ -360,7 +359,6 @@ DEPENDENCIES
   apexcharts
   bcrypt
   bootsnap (>= 1.1.0)
-  byebug
   cancancan
   cocoon!
   coffee-rails
