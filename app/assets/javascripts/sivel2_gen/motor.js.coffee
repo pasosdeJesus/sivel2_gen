@@ -784,7 +784,6 @@ enviaFormularioContar= (root) ->
 
   # Agrega actos  
   $(document).on('click', 'a.agregaractos[href^="#"]', (e) ->
-    debugger
     e.preventDefault()
     tn = Date.now()
     d = -1
