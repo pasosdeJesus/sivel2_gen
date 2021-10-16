@@ -2,7 +2,7 @@ require 'test_helper'
 
 module Sivel2Gen
   module Admin
-    class FronterasControladorPruebas < ActionDispatch::IntegrationTest
+    class FronterasControllerTest < ActionDispatch::IntegrationTest
 
       FRONTERA_NUEVO = {
         created_at: '2021-07-29',

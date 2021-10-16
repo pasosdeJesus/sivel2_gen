@@ -2,7 +2,7 @@ require 'test_helper'
 
 module Sivel2Gen
   module Admin
-    class RegionesControladorPruebas < ActionDispatch::IntegrationTest
+    class RegionesControllerTest < ActionDispatch::IntegrationTest
 
       REGION_NUEVO = {
         created_at: '2021-07-29',

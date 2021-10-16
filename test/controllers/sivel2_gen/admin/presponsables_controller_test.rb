@@ -2,9 +2,9 @@ require 'test_helper'
 
 module Sivel2Gen
   module Admin
-    class AntecedentesControladorPruebas < ActionDispatch::IntegrationTest
+    class PresponsablesControllerTest < ActionDispatch::IntegrationTest
 
-      ANTECEDENTE_NUEVO = {
+      PRESPONSABLE_NUEVO = {
         created_at: '2021-07-29',
         fechacreacion: '2021-07-29',
         fechadeshabilitacion: nil,
@@ -30,48 +30,49 @@ module Sivel2Gen
       # que después de la prueba se revierte
 
       test "debe presentar listado" do
-        get sivel2_gen.admin_antecedentes_path
+        get sivel2_gen.admin_presponsables_path
         assert_response :success
         assert_template :index
       end
 
       test "debe presentar resumen de existente" do
-        get sivel2_gen.admin_antecedente_url(Antecedente.find(IDEX))
+        get sivel2_gen.admin_presponsable_url(Presponsable.find(IDEX))
         assert_response :success
         assert_template :show
       end
 
       test "debe presentar formulario para nueva" do
-        get sivel2_gen.new_admin_antecedente_path
+        get sivel2_gen.new_admin_presponsable_path
         assert_response :success
         assert_template :new
       end
 
       test "debe crear nueva" do
-        assert_difference('Antecedente.count') do
-          post sivel2_gen.admin_antecedentes_path, params: { 
-            antecedente: ANTECEDENTE_NUEVO
+        assert_difference('Presponsable.count') do
+          post sivel2_gen.admin_presponsables_path, params: { 
+            presponsable: PRESPONSABLE_NUEVO
           }
         end
 
-        assert_redirected_to sivel2_gen.admin_antecedente_path(
-          assigns(:antecedente))
+        assert_redirected_to sivel2_gen.admin_presponsable_path(
+          assigns(:presponsable))
       end
 
       test "debe actualizar existente" do
-        patch sivel2_gen.admin_antecedente_path(Antecedente.find(IDEX)),
-          params: { antecedente: { nombre: 'YY'}}
+        patch sivel2_gen.admin_presponsable_path(Presponsable.find(IDEX)),
+          params: { presponsable: { nombre: 'YY'}}
 
-        assert_redirected_to sivel2_gen.admin_antecedente_path(
-          assigns(:antecedente))
+        assert_redirected_to sivel2_gen.admin_presponsable_path(
+          assigns(:presponsable))
       end
 
       test "debe eliminar" do
-        assert_difference('Antecedente.count', -1) do
-          delete sivel2_gen.admin_antecedente_url(Antecedente.find(IDEX))
+        r = Presponsable.create!(PRESPONSABLE_NUEVO)
+        assert_difference('Presponsable.count', -1) do
+          delete sivel2_gen.admin_presponsable_url(Presponsable.find(r.id))
         end
 
-        assert_redirected_to sivel2_gen.admin_antecedentes_path
+        assert_redirected_to sivel2_gen.admin_presponsables_path
       end
 
     end

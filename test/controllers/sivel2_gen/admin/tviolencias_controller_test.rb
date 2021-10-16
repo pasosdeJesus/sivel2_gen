@@ -2,18 +2,20 @@ require 'test_helper'
 
 module Sivel2Gen
   module Admin
-    class ContextosvictimaControladorPruebas < ActionDispatch::IntegrationTest
+    class TviolenciasControllerTest < ActionDispatch::IntegrationTest
 
-      CONTEXTOVICTIMA_NUEVO = {
+      TVIOLENCIA_NUEVO = {
         created_at: '2021-07-29',
         fechacreacion: '2021-07-29',
         fechadeshabilitacion: nil,
         nombre: 'X',
+        nomcorto: 'X',
+        id: 'X',
         observaciones: 'y',
         updated_at: '2021-07-18'
       }
 
-      IDEX = 1
+      IDEX = 'A'
 
       include Rails.application.routes.url_helpers
       include Devise::Test::IntegrationHelpers
@@ -30,48 +32,49 @@ module Sivel2Gen
       # que después de la prueba se revierte
 
       test "debe presentar listado" do
-        get sivel2_gen.admin_contextosvictima_path
+        get sivel2_gen.admin_tviolencias_path
         assert_response :success
         assert_template :index
       end
 
       test "debe presentar resumen de existente" do
-        get sivel2_gen.admin_contextovictima_url(Contextovictima.find(IDEX))
+        get sivel2_gen.admin_tviolencia_url(Tviolencia.find(IDEX))
         assert_response :success
         assert_template :show
       end
 
       test "debe presentar formulario para nueva" do
-        get sivel2_gen.new_admin_contextovictima_path
+        get sivel2_gen.new_admin_tviolencia_path
         assert_response :success
         assert_template :new
       end
 
       test "debe crear nueva" do
-        assert_difference('Contextovictima.count') do
-          post sivel2_gen.admin_contextosvictima_path, params: { 
-            contextovictima: CONTEXTOVICTIMA_NUEVO
+        assert_difference('Tviolencia.count') do
+          post sivel2_gen.admin_tviolencias_path, params: { 
+            tviolencia: TVIOLENCIA_NUEVO
           }
         end
 
-        assert_redirected_to sivel2_gen.admin_contextovictima_path(
-          assigns(:contextovictima))
+        assert_redirected_to sivel2_gen.admin_tviolencia_path(
+          assigns(:tviolencia))
       end
 
       test "debe actualizar existente" do
-        patch sivel2_gen.admin_contextovictima_path(Contextovictima.find(IDEX)),
-          params: { contextovictima: { nombre: 'YY'}}
+        patch sivel2_gen.admin_tviolencia_path(Tviolencia.find(IDEX)),
+          params: { tviolencia: { nombre: 'YY'}}
 
-        assert_redirected_to sivel2_gen.admin_contextovictima_path(
-          assigns(:contextovictima))
+        assert_redirected_to sivel2_gen.admin_tviolencia_path(
+          assigns(:tviolencia))
       end
 
       test "debe eliminar" do
-        assert_difference('Contextovictima.count', -1) do
-          delete sivel2_gen.admin_contextovictima_url(Contextovictima.find(IDEX))
+        r = Tviolencia.create!(TVIOLENCIA_NUEVO)
+        assert_difference('Tviolencia.count', -1) do
+          delete sivel2_gen.admin_tviolencia_url(Tviolencia.find(r.id))
         end
 
-        assert_redirected_to sivel2_gen.admin_contextosvictima_path
+        assert_redirected_to sivel2_gen.admin_tviolencias_path
       end
 
     end

@@ -2,9 +2,9 @@ require 'test_helper'
 
 module Sivel2Gen
   module Admin
-    class ContextosControladorPruebas < ActionDispatch::IntegrationTest
+    class EstadoscivilesControllerTest < ActionDispatch::IntegrationTest
 
-      CONTEXTO_NUEVO = {
+      ESTADOCIVIL_NUEVO = {
         created_at: '2021-07-29',
         fechacreacion: '2021-07-29',
         fechadeshabilitacion: nil,
@@ -30,48 +30,48 @@ module Sivel2Gen
       # que después de la prueba se revierte
 
       test "debe presentar listado" do
-        get sivel2_gen.admin_contextos_path
+        get sivel2_gen.admin_estadosciviles_path
         assert_response :success
         assert_template :index
       end
 
       test "debe presentar resumen de existente" do
-        get sivel2_gen.admin_contexto_url(Contexto.find(IDEX))
+        get sivel2_gen.admin_estadocivil_url(Estadocivil.find(IDEX))
         assert_response :success
         assert_template :show
       end
 
       test "debe presentar formulario para nueva" do
-        get sivel2_gen.new_admin_contexto_path
+        get sivel2_gen.new_admin_estadocivil_path
         assert_response :success
         assert_template :new
       end
 
       test "debe crear nueva" do
-        assert_difference('Contexto.count') do
-          post sivel2_gen.admin_contextos_path, params: { 
-            contexto: CONTEXTO_NUEVO
+        assert_difference('Estadocivil.count') do
+          post sivel2_gen.admin_estadosciviles_path, params: { 
+            estadocivil: ESTADOCIVIL_NUEVO
           }
         end
 
-        assert_redirected_to sivel2_gen.admin_contexto_path(
-          assigns(:contexto))
+        assert_redirected_to sivel2_gen.admin_estadocivil_path(
+          assigns(:estadocivil))
       end
 
       test "debe actualizar existente" do
-        patch sivel2_gen.admin_contexto_path(Contexto.find(IDEX)),
-          params: { contexto: { nombre: 'YY'}}
+        patch sivel2_gen.admin_estadocivil_path(Estadocivil.find(IDEX)),
+          params: { estadocivil: { nombre: 'YY'}}
 
-        assert_redirected_to sivel2_gen.admin_contexto_path(
-          assigns(:contexto))
+        assert_redirected_to sivel2_gen.admin_estadocivil_path(
+          assigns(:estadocivil))
       end
 
       test "debe eliminar" do
-        assert_difference('Contexto.count', -1) do
-          delete sivel2_gen.admin_contexto_url(Contexto.find(IDEX))
+        assert_difference('Estadocivil.count', -1) do
+          delete sivel2_gen.admin_estadocivil_url(Estadocivil.find(IDEX))
         end
 
-        assert_redirected_to sivel2_gen.admin_contextos_path
+        assert_redirected_to sivel2_gen.admin_estadosciviles_path
       end
 
     end

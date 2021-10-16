@@ -2,20 +2,18 @@ require 'test_helper'
 
 module Sivel2Gen
   module Admin
-    class TviolenciasControladorPruebas < ActionDispatch::IntegrationTest
+    class ResagresionesControllerTest < ActionDispatch::IntegrationTest
 
-      TVIOLENCIA_NUEVO = {
+      RESAGRESION_NUEVO = {
         created_at: '2021-07-29',
         fechacreacion: '2021-07-29',
         fechadeshabilitacion: nil,
         nombre: 'X',
-        nomcorto: 'X',
-        id: 'X',
         observaciones: 'y',
         updated_at: '2021-07-18'
       }
 
-      IDEX = 'A'
+      IDEX = 3
 
       include Rails.application.routes.url_helpers
       include Devise::Test::IntegrationHelpers
@@ -32,49 +30,49 @@ module Sivel2Gen
       # que después de la prueba se revierte
 
       test "debe presentar listado" do
-        get sivel2_gen.admin_tviolencias_path
+        get sivel2_gen.admin_resagresiones_path
         assert_response :success
         assert_template :index
       end
 
       test "debe presentar resumen de existente" do
-        get sivel2_gen.admin_tviolencia_url(Tviolencia.find(IDEX))
+        get sivel2_gen.admin_resagresion_url(Resagresion.find(IDEX))
         assert_response :success
         assert_template :show
       end
 
       test "debe presentar formulario para nueva" do
-        get sivel2_gen.new_admin_tviolencia_path
+        get sivel2_gen.new_admin_resagresion_path
         assert_response :success
         assert_template :new
       end
 
       test "debe crear nueva" do
-        assert_difference('Tviolencia.count') do
-          post sivel2_gen.admin_tviolencias_path, params: { 
-            tviolencia: TVIOLENCIA_NUEVO
+        assert_difference('Resagresion.count') do
+          post sivel2_gen.admin_resagresiones_path, params: { 
+            resagresion: RESAGRESION_NUEVO
           }
         end
 
-        assert_redirected_to sivel2_gen.admin_tviolencia_path(
-          assigns(:tviolencia))
+        assert_redirected_to sivel2_gen.admin_resagresion_path(
+          assigns(:resagresion))
       end
 
       test "debe actualizar existente" do
-        patch sivel2_gen.admin_tviolencia_path(Tviolencia.find(IDEX)),
-          params: { tviolencia: { nombre: 'YY'}}
+        patch sivel2_gen.admin_resagresion_path(Resagresion.find(IDEX)),
+          params: { resagresion: { nombre: 'YY'}}
 
-        assert_redirected_to sivel2_gen.admin_tviolencia_path(
-          assigns(:tviolencia))
+        assert_redirected_to sivel2_gen.admin_resagresion_path(
+          assigns(:resagresion))
       end
 
       test "debe eliminar" do
-        r = Tviolencia.create!(TVIOLENCIA_NUEVO)
-        assert_difference('Tviolencia.count', -1) do
-          delete sivel2_gen.admin_tviolencia_url(Tviolencia.find(r.id))
+        r = Resagresion.create!(RESAGRESION_NUEVO)
+        assert_difference('Resagresion.count', -1) do
+          delete sivel2_gen.admin_resagresion_url(Resagresion.find(r.id))
         end
 
-        assert_redirected_to sivel2_gen.admin_tviolencias_path
+        assert_redirected_to sivel2_gen.admin_resagresiones_path
       end
 
     end
