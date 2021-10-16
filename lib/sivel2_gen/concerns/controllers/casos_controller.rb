@@ -97,7 +97,7 @@ module Sivel2Gen
               [:departamento_id, :municipio_id, :clase_id,
                 :fechaini, :fechafin, :presponsable_id, :categoria_id,
                 :nombres, :apellidos, :victimacol, :sexo, :rangoedad_id,
-                :organizacion_id, :profesion_id, :descripcion,
+                :organizacion_id, :descripcion,
                 :usuario_id, :fechaingini, :fechaingfin, :contexto_id, 
                 :contextovictima_id, :codigo, :orientacionsexual
               ]
@@ -105,7 +105,7 @@ module Sivel2Gen
               [:departamento_id, :municipio_id, :clase_id,
                 :fechaini, :fechafin, :presponsable_id, :categoria_id,
                 :nombres, :apellidos, :sexo, :rangoedad_id, :descripcion, 
-                :sectorsocial_id 
+                :profesion_id, :sectorsocial_id 
               ]
             end
           end

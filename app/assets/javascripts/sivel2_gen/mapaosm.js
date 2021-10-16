@@ -145,6 +145,7 @@ function agregarCasosOsm(usuario_autenticado) {
   var departamento = $('#departamento').val();
   var prresp = $('#presponsable').val();
   var tvio = $('#tvio').val();
+  var tliderazgo = $('#tliderazgo').val();
   var ruta = root.puntomontaje + 'casos.json';
   fechainicial = Date.parse(desdep[0]+'-'+desdep[1]+'-'+desdep[2]);
   fechafinal = Date.parse(hastap[0]+'-'+hastap[1]+'-'+hastap[2]);
@@ -164,6 +165,11 @@ function agregarCasosOsm(usuario_autenticado) {
       }
       if (tvio != undefined && tvio != 0){
         urlSolicitud += '&filtro[categoria_id]=' + tvio;
+      }
+      for(var tl in tliderazgo){
+        if (tliderazgo != undefined && tliderazgo != 0){
+          urlSolicitud += '&filtro[profesion_id]=' + tliderazgo[tl];
+        }
       }
       filtro_cat = filtrar_por_categoria(usuario_autenticado); 
       urlSolicitud += filtro_cat;
