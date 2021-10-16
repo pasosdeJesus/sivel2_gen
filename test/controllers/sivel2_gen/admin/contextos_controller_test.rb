@@ -2,9 +2,9 @@ require 'test_helper'
 
 module Sivel2Gen
   module Admin
-    class IglesiasControladorPruebas < ActionDispatch::IntegrationTest
+    class ContextosControllerTest < ActionDispatch::IntegrationTest
 
-      IGLESIA_NUEVO = {
+      CONTEXTO_NUEVO = {
         created_at: '2021-07-29',
         fechacreacion: '2021-07-29',
         fechadeshabilitacion: nil,
@@ -13,7 +13,7 @@ module Sivel2Gen
         updated_at: '2021-07-18'
       }
 
-      IDEX = 10
+      IDEX = 3
 
       include Rails.application.routes.url_helpers
       include Devise::Test::IntegrationHelpers
@@ -30,48 +30,48 @@ module Sivel2Gen
       # que después de la prueba se revierte
 
       test "debe presentar listado" do
-        get sivel2_gen.admin_iglesias_path
+        get sivel2_gen.admin_contextos_path
         assert_response :success
         assert_template :index
       end
 
       test "debe presentar resumen de existente" do
-        get sivel2_gen.admin_iglesia_url(Iglesia.find(IDEX))
+        get sivel2_gen.admin_contexto_url(Contexto.find(IDEX))
         assert_response :success
         assert_template :show
       end
 
       test "debe presentar formulario para nueva" do
-        get sivel2_gen.new_admin_iglesia_path
+        get sivel2_gen.new_admin_contexto_path
         assert_response :success
         assert_template :new
       end
 
       test "debe crear nueva" do
-        assert_difference('Iglesia.count') do
-          post sivel2_gen.admin_iglesias_path, params: { 
-            iglesia: IGLESIA_NUEVO
+        assert_difference('Contexto.count') do
+          post sivel2_gen.admin_contextos_path, params: { 
+            contexto: CONTEXTO_NUEVO
           }
         end
 
-        assert_redirected_to sivel2_gen.admin_iglesia_path(
-          assigns(:iglesia))
+        assert_redirected_to sivel2_gen.admin_contexto_path(
+          assigns(:contexto))
       end
 
       test "debe actualizar existente" do
-        patch sivel2_gen.admin_iglesia_path(Iglesia.find(IDEX)),
-          params: { iglesia: { nombre: 'YY'}}
+        patch sivel2_gen.admin_contexto_path(Contexto.find(IDEX)),
+          params: { contexto: { nombre: 'YY'}}
 
-        assert_redirected_to sivel2_gen.admin_iglesia_path(
-          assigns(:iglesia))
+        assert_redirected_to sivel2_gen.admin_contexto_path(
+          assigns(:contexto))
       end
 
       test "debe eliminar" do
-        assert_difference('Iglesia.count', -1) do
-          delete sivel2_gen.admin_iglesia_url(Iglesia.find(IDEX))
+        assert_difference('Contexto.count', -1) do
+          delete sivel2_gen.admin_contexto_url(Contexto.find(IDEX))
         end
 
-        assert_redirected_to sivel2_gen.admin_iglesias_path
+        assert_redirected_to sivel2_gen.admin_contextos_path
       end
 
     end

@@ -2,9 +2,9 @@ require 'test_helper'
 
 module Sivel2Gen
   module Admin
-    class ProfesionesControladorPruebas < ActionDispatch::IntegrationTest
+    class EtniasControllerTest < ActionDispatch::IntegrationTest
 
-      PROFESION_NUEVO = {
+      ETNIA_NUEVO = {
         created_at: '2021-07-29',
         fechacreacion: '2021-07-29',
         fechadeshabilitacion: nil,
@@ -30,49 +30,48 @@ module Sivel2Gen
       # que después de la prueba se revierte
 
       test "debe presentar listado" do
-        get sivel2_gen.admin_profesiones_path
+        get sivel2_gen.admin_etnias_path
         assert_response :success
         assert_template :index
       end
 
       test "debe presentar resumen de existente" do
-        get sivel2_gen.admin_profesion_url(Profesion.find(IDEX))
+        get sivel2_gen.admin_etnia_url(Etnia.find(IDEX))
         assert_response :success
         assert_template :show
       end
 
       test "debe presentar formulario para nueva" do
-        get sivel2_gen.new_admin_profesion_path
+        get sivel2_gen.new_admin_etnia_path
         assert_response :success
         assert_template :new
       end
 
       test "debe crear nueva" do
-        assert_difference('Profesion.count') do
-          post sivel2_gen.admin_profesiones_path, params: { 
-            profesion: PROFESION_NUEVO
+        assert_difference('Etnia.count') do
+          post sivel2_gen.admin_etnias_path, params: { 
+            etnia: ETNIA_NUEVO
           }
         end
 
-        assert_redirected_to sivel2_gen.admin_profesion_path(
-          assigns(:profesion))
+        assert_redirected_to sivel2_gen.admin_etnia_path(
+          assigns(:etnia))
       end
 
       test "debe actualizar existente" do
-        patch sivel2_gen.admin_profesion_path(Profesion.find(IDEX)),
-          params: { profesion: { nombre: 'YY'}}
+        patch sivel2_gen.admin_etnia_path(Etnia.find(IDEX)),
+          params: { etnia: { nombre: 'YY'}}
 
-        assert_redirected_to sivel2_gen.admin_profesion_path(
-          assigns(:profesion))
+        assert_redirected_to sivel2_gen.admin_etnia_path(
+          assigns(:etnia))
       end
 
       test "debe eliminar" do
-        r = Profesion.create!(PROFESION_NUEVO)
-        assert_difference('Profesion.count', -1) do
-          delete sivel2_gen.admin_profesion_url(Profesion.find(r.id))
+        assert_difference('Etnia.count', -1) do
+          delete sivel2_gen.admin_etnia_url(Etnia.find(IDEX))
         end
 
-        assert_redirected_to sivel2_gen.admin_profesiones_path
+        assert_redirected_to sivel2_gen.admin_etnias_path
       end
 
     end

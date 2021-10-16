@@ -2,7 +2,7 @@ require 'test_helper'
 
 module Sivel2Gen
   module Admin
-    class MaternidadesControladorPruebas < ActionDispatch::IntegrationTest
+    class MaternidadesControllerTest < ActionDispatch::IntegrationTest
 
       MATERNIDAD_NUEVO = {
         created_at: '2021-07-29',

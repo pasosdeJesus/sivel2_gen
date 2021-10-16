@@ -2,14 +2,12 @@ require 'test_helper'
 
 module Sivel2Gen
   module Admin
-    class SupracategoriasControladorPruebas < ActionDispatch::IntegrationTest
+    class SectoressocialesControllerTest < ActionDispatch::IntegrationTest
 
-      SUPRACATEGORIA_NUEVO = {
+      SECTORSOCIAL_NUEVO = {
         created_at: '2021-07-29',
         fechacreacion: '2021-07-29',
         fechadeshabilitacion: nil,
-        id_tviolencia: 'C',
-        id: 1000,
         nombre: 'X',
         observaciones: 'y',
         updated_at: '2021-07-18'
@@ -32,49 +30,49 @@ module Sivel2Gen
       # que después de la prueba se revierte
 
       test "debe presentar listado" do
-        get sivel2_gen.admin_supracategorias_path
+        get sivel2_gen.admin_sectoressociales_path
         assert_response :success
         assert_template :index
       end
 
       test "debe presentar resumen de existente" do
-        get sivel2_gen.admin_supracategoria_url(Supracategoria.find(IDEX))
+        get sivel2_gen.admin_sectorsocial_url(Sectorsocial.find(IDEX))
         assert_response :success
         assert_template :show
       end
 
       test "debe presentar formulario para nueva" do
-        get sivel2_gen.new_admin_supracategoria_path
+        get sivel2_gen.new_admin_sectorsocial_path
         assert_response :success
         assert_template :new
       end
 
       test "debe crear nueva" do
-        assert_difference('Supracategoria.count') do
-          post sivel2_gen.admin_supracategorias_path, params: { 
-            supracategoria: SUPRACATEGORIA_NUEVO
+        assert_difference('Sectorsocial.count') do
+          post sivel2_gen.admin_sectoressociales_path, params: { 
+            sectorsocial: SECTORSOCIAL_NUEVO
           }
         end
 
-        assert_redirected_to sivel2_gen.admin_supracategoria_path(
-          assigns(:supracategoria))
+        assert_redirected_to sivel2_gen.admin_sectorsocial_path(
+          assigns(:sectorsocial))
       end
 
       test "debe actualizar existente" do
-        patch sivel2_gen.admin_supracategoria_path(Supracategoria.find(IDEX)),
-          params: { supracategoria: { nombre: 'YY'}}
+        patch sivel2_gen.admin_sectorsocial_path(Sectorsocial.find(IDEX)),
+          params: { sectorsocial: { nombre: 'YY'}}
 
-        assert_redirected_to sivel2_gen.admin_supracategoria_path(
-          assigns(:supracategoria))
+        assert_redirected_to sivel2_gen.admin_sectorsocial_path(
+          assigns(:sectorsocial))
       end
 
       test "debe eliminar" do
-        r = Supracategoria.create!(SUPRACATEGORIA_NUEVO)
-        assert_difference('Supracategoria.count', -1) do
-          delete sivel2_gen.admin_supracategoria_url(Supracategoria.find(r.id))
+        r = Sectorsocial.create!(SECTORSOCIAL_NUEVO)
+        assert_difference('Sectorsocial.count', -1) do
+          delete sivel2_gen.admin_sectorsocial_url(Sectorsocial.find(r.id))
         end
 
-        assert_redirected_to sivel2_gen.admin_supracategorias_path
+        assert_redirected_to sivel2_gen.admin_sectoressociales_path
       end
 
     end

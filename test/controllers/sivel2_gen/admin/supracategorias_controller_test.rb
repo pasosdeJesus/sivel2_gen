@@ -2,19 +2,20 @@ require 'test_helper'
 
 module Sivel2Gen
   module Admin
-    class IntervalosControladorPruebas < ActionDispatch::IntegrationTest
+    class SupracategoriasControllerTest < ActionDispatch::IntegrationTest
 
-      INTERVALO_NUEVO = {
+      SUPRACATEGORIA_NUEVO = {
         created_at: '2021-07-29',
         fechacreacion: '2021-07-29',
         fechadeshabilitacion: nil,
+        id_tviolencia: 'C',
+        id: 1000,
         nombre: 'X',
-        rango: '1 a 2',
         observaciones: 'y',
         updated_at: '2021-07-18'
       }
 
-      IDEX = 1
+      IDEX = 3
 
       include Rails.application.routes.url_helpers
       include Devise::Test::IntegrationHelpers
@@ -31,48 +32,49 @@ module Sivel2Gen
       # que después de la prueba se revierte
 
       test "debe presentar listado" do
-        get sivel2_gen.admin_intervalos_path
+        get sivel2_gen.admin_supracategorias_path
         assert_response :success
         assert_template :index
       end
 
       test "debe presentar resumen de existente" do
-        get sivel2_gen.admin_intervalo_url(Intervalo.find(IDEX))
+        get sivel2_gen.admin_supracategoria_url(Supracategoria.find(IDEX))
         assert_response :success
         assert_template :show
       end
 
       test "debe presentar formulario para nueva" do
-        get sivel2_gen.new_admin_intervalo_path
+        get sivel2_gen.new_admin_supracategoria_path
         assert_response :success
         assert_template :new
       end
 
       test "debe crear nueva" do
-        assert_difference('Intervalo.count') do
-          post sivel2_gen.admin_intervalos_path, params: { 
-            intervalo: INTERVALO_NUEVO
+        assert_difference('Supracategoria.count') do
+          post sivel2_gen.admin_supracategorias_path, params: { 
+            supracategoria: SUPRACATEGORIA_NUEVO
           }
         end
 
-        assert_redirected_to sivel2_gen.admin_intervalo_path(
-          assigns(:intervalo))
+        assert_redirected_to sivel2_gen.admin_supracategoria_path(
+          assigns(:supracategoria))
       end
 
       test "debe actualizar existente" do
-        patch sivel2_gen.admin_intervalo_path(Intervalo.find(IDEX)),
-          params: { intervalo: { nombre: 'YY'}}
+        patch sivel2_gen.admin_supracategoria_path(Supracategoria.find(IDEX)),
+          params: { supracategoria: { nombre: 'YY'}}
 
-        assert_redirected_to sivel2_gen.admin_intervalo_path(
-          assigns(:intervalo))
+        assert_redirected_to sivel2_gen.admin_supracategoria_path(
+          assigns(:supracategoria))
       end
 
       test "debe eliminar" do
-        assert_difference('Intervalo.count', -1) do
-          delete sivel2_gen.admin_intervalo_url(Intervalo.find(IDEX))
+        r = Supracategoria.create!(SUPRACATEGORIA_NUEVO)
+        assert_difference('Supracategoria.count', -1) do
+          delete sivel2_gen.admin_supracategoria_url(Supracategoria.find(r.id))
         end
 
-        assert_redirected_to sivel2_gen.admin_intervalos_path
+        assert_redirected_to sivel2_gen.admin_supracategorias_path
       end
 
     end

@@ -2,18 +2,20 @@ require 'test_helper'
 
 module Sivel2Gen
   module Admin
-    class PresponsablesControladorPruebas < ActionDispatch::IntegrationTest
+    class CategoriasControllerTest < ActionDispatch::IntegrationTest
 
-      PRESPONSABLE_NUEVO = {
+      CATEGORIA_NUEVO = {
         created_at: '2021-07-29',
         fechacreacion: '2021-07-29',
         fechadeshabilitacion: nil,
+        id: 1000,
         nombre: 'X',
         observaciones: 'y',
+        supracategoria_id: 1,
         updated_at: '2021-07-18'
       }
 
-      IDEX = 3
+      IDEX = 10
 
       include Rails.application.routes.url_helpers
       include Devise::Test::IntegrationHelpers
@@ -30,49 +32,48 @@ module Sivel2Gen
       # que después de la prueba se revierte
 
       test "debe presentar listado" do
-        get sivel2_gen.admin_presponsables_path
+        get sivel2_gen.admin_categorias_path
         assert_response :success
         assert_template :index
       end
 
       test "debe presentar resumen de existente" do
-        get sivel2_gen.admin_presponsable_url(Presponsable.find(IDEX))
+        get sivel2_gen.admin_categoria_url(Categoria.find(IDEX))
         assert_response :success
         assert_template :show
       end
 
       test "debe presentar formulario para nueva" do
-        get sivel2_gen.new_admin_presponsable_path
+        get sivel2_gen.new_admin_categoria_path
         assert_response :success
         assert_template :new
       end
 
       test "debe crear nueva" do
-        assert_difference('Presponsable.count') do
-          post sivel2_gen.admin_presponsables_path, params: { 
-            presponsable: PRESPONSABLE_NUEVO
+        assert_difference('Categoria.count') do
+          post sivel2_gen.admin_categorias_path, params: { 
+            categoria: CATEGORIA_NUEVO
           }
         end
 
-        assert_redirected_to sivel2_gen.admin_presponsable_path(
-          assigns(:presponsable))
+        assert_redirected_to sivel2_gen.admin_categoria_path(
+          assigns(:categoria))
       end
 
       test "debe actualizar existente" do
-        patch sivel2_gen.admin_presponsable_path(Presponsable.find(IDEX)),
-          params: { presponsable: { nombre: 'YY'}}
+        patch sivel2_gen.admin_categoria_path(Categoria.find(IDEX)),
+          params: { categoria: { nombre: 'YY'}}
 
-        assert_redirected_to sivel2_gen.admin_presponsable_path(
-          assigns(:presponsable))
+        assert_redirected_to sivel2_gen.admin_categoria_path(
+          assigns(:categoria))
       end
 
       test "debe eliminar" do
-        r = Presponsable.create!(PRESPONSABLE_NUEVO)
-        assert_difference('Presponsable.count', -1) do
-          delete sivel2_gen.admin_presponsable_url(Presponsable.find(r.id))
+        assert_difference('Categoria.count', -1) do
+          delete sivel2_gen.admin_categoria_url(Categoria.find(IDEX))
         end
 
-        assert_redirected_to sivel2_gen.admin_presponsables_path
+        assert_redirected_to sivel2_gen.admin_categorias_path
       end
 
     end
