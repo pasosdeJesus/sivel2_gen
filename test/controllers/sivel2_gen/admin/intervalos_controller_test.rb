@@ -2,18 +2,19 @@ require 'test_helper'
 
 module Sivel2Gen
   module Admin
-    class SectoressocialesControladorPruebas < ActionDispatch::IntegrationTest
+    class IntervalosControllerTest < ActionDispatch::IntegrationTest
 
-      SECTORSOCIAL_NUEVO = {
+      INTERVALO_NUEVO = {
         created_at: '2021-07-29',
         fechacreacion: '2021-07-29',
         fechadeshabilitacion: nil,
         nombre: 'X',
+        rango: '1 a 2',
         observaciones: 'y',
         updated_at: '2021-07-18'
       }
 
-      IDEX = 3
+      IDEX = 1
 
       include Rails.application.routes.url_helpers
       include Devise::Test::IntegrationHelpers
@@ -30,49 +31,48 @@ module Sivel2Gen
       # que después de la prueba se revierte
 
       test "debe presentar listado" do
-        get sivel2_gen.admin_sectoressociales_path
+        get sivel2_gen.admin_intervalos_path
         assert_response :success
         assert_template :index
       end
 
       test "debe presentar resumen de existente" do
-        get sivel2_gen.admin_sectorsocial_url(Sectorsocial.find(IDEX))
+        get sivel2_gen.admin_intervalo_url(Intervalo.find(IDEX))
         assert_response :success
         assert_template :show
       end
 
       test "debe presentar formulario para nueva" do
-        get sivel2_gen.new_admin_sectorsocial_path
+        get sivel2_gen.new_admin_intervalo_path
         assert_response :success
         assert_template :new
       end
 
       test "debe crear nueva" do
-        assert_difference('Sectorsocial.count') do
-          post sivel2_gen.admin_sectoressociales_path, params: { 
-            sectorsocial: SECTORSOCIAL_NUEVO
+        assert_difference('Intervalo.count') do
+          post sivel2_gen.admin_intervalos_path, params: { 
+            intervalo: INTERVALO_NUEVO
           }
         end
 
-        assert_redirected_to sivel2_gen.admin_sectorsocial_path(
-          assigns(:sectorsocial))
+        assert_redirected_to sivel2_gen.admin_intervalo_path(
+          assigns(:intervalo))
       end
 
       test "debe actualizar existente" do
-        patch sivel2_gen.admin_sectorsocial_path(Sectorsocial.find(IDEX)),
-          params: { sectorsocial: { nombre: 'YY'}}
+        patch sivel2_gen.admin_intervalo_path(Intervalo.find(IDEX)),
+          params: { intervalo: { nombre: 'YY'}}
 
-        assert_redirected_to sivel2_gen.admin_sectorsocial_path(
-          assigns(:sectorsocial))
+        assert_redirected_to sivel2_gen.admin_intervalo_path(
+          assigns(:intervalo))
       end
 
       test "debe eliminar" do
-        r = Sectorsocial.create!(SECTORSOCIAL_NUEVO)
-        assert_difference('Sectorsocial.count', -1) do
-          delete sivel2_gen.admin_sectorsocial_url(Sectorsocial.find(r.id))
+        assert_difference('Intervalo.count', -1) do
+          delete sivel2_gen.admin_intervalo_url(Intervalo.find(IDEX))
         end
 
-        assert_redirected_to sivel2_gen.admin_sectoressociales_path
+        assert_redirected_to sivel2_gen.admin_intervalos_path
       end
 
     end

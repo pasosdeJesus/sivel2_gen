@@ -2,7 +2,7 @@ require 'test_helper'
 
 module Sivel2Gen
   module Admin
-    class OrganizacionesControladorPruebas < ActionDispatch::IntegrationTest
+    class OrganizacionesControllerTest < ActionDispatch::IntegrationTest
 
       ORGANIZACION_NUEVO = {
         created_at: '2021-07-29',
