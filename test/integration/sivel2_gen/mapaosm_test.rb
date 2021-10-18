@@ -29,7 +29,7 @@ module Sivel2Gen
 
     test 'entra a Mapas' do
       Sivel2Gen::Conscaso.refresca_conscaso
-      get '/sivel2/casos/mapaosm'
+      get sivel2_gen.casos_mapaosm_path
       assert :success
     end
 
