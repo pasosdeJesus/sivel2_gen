@@ -69,6 +69,15 @@
           input_html: { "data-contarautomatico" => "" }
         %>
       </div>
+      <div class="col-sm-3">
+        <%= f.input :excluircaterep, 
+          as: :boolean, 
+          boolean_style: :nested,
+          label: false,
+          inline_label: 'Excluir categorías repetidas',
+          input_html: { 'data-contarautomatico' => '' }
+        %> 
+      </div>
 
     </div>
       

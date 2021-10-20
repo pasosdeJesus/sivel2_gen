@@ -414,6 +414,7 @@ module Sivel2Gen
           pEtiqueta1 = param_escapa([:filtro, 'etiqueta1'])
           pEtiqueta2 = param_escapa([:filtro, 'etiqueta2'])
           pSegun = param_escapa([:filtro, 'segun'])
+          pExcluirCateRep = param_escapa([:filtro, 'excluircaterep'])
 
           # Desagregar
           pMunicipio = param_escapa([:filtro, 'municipio'])
@@ -431,7 +432,7 @@ module Sivel2Gen
           ]
 
           tcons1 = Sivel2Gen::ConteosController::genconsulta_victimizaciones(
-            pFini, pFfin, pTviolencia, pEtiqueta1, pEtiqueta2, pSegun,
+            pFini, pFfin, pTviolencia, pEtiqueta1, pEtiqueta2, pExcluirCateRep, pSegun,
             pDepartamento, pMunicipio
           )
 
@@ -870,7 +871,7 @@ module Sivel2Gen
 
 
           def genconsulta_victimizaciones(
-            pFini, pFfin, pTviolencia, pEtiqueta1, pEtiqueta2, pSegun,
+            pFini, pFfin, pTviolencia, pEtiqueta1, pEtiqueta2, pExcluirCateRep, pSegun,
             pDepartamento, pMunicipio)
 
             tcons1 = 'cvt1'
@@ -917,6 +918,10 @@ module Sivel2Gen
               where1 = consulta_and(
                 where1, "id_tviolencia", pTviolencia[0], "="
               )
+            end
+            if (pExcluirCateRep == '1')
+              cats_repetidas = Sivel2Gen::Categoria.habilitados.where.not(contadaen: nil).pluck(:id)
+              where1 << "acto.id_categoria IN (#{cats_repetidas.join(', ')})"
             end
             if (pEtiqueta1 != '' || pEtiqueta2 != '')
               tablas1 += ' JOIN sivel2_gen_caso_etiqueta AS caso_etiqueta ON' +
