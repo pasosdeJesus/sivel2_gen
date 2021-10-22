@@ -274,22 +274,7 @@ function creaMarcador(punto, codigo, titulo) {
       hechosCont += ((typeof codigo != 'undefined') && codigo != "") ? 
         '<tr><td>Codigo:</td><td>' + codigo + '</td></tr>' : '';
       hechosCont += '</table></div>';
-      var victimasCont = '<div><table>' +
-        '<tr><td>Victimas:</td><td>';
-      for(var cv in victimas) {
-        var victima = victimas[cv];
-        victimasCont += ((typeof victima != 'undefined') && 
-          victima != "") ? victima + '<br />' : 'SIN INFORMACIÓN';
-      }
-
-      victimasCont += '</td></tr><tr>' +
-        '<td>Presuntos Responsables:</td><td>';
-      for(var cp in prresp) {
-        var prrespel = prresp[cp];
-        victimasCont += ((typeof prrespel != 'undefined') && prrespel != "") ? 
-          prrespel + '<br />' : 'SIN INFORMACIÓN';
-      }
-      victimasCont += '</td></tr></table></div>';
+      var victimasCont = obtener_info_victimas(victimas, prresp, o['caso']);
       capaInfo(descripcionCont, hechosCont, victimasCont);
       ocultarCargador();
     });
@@ -297,6 +282,26 @@ function creaMarcador(punto, codigo, titulo) {
 
   return marcadorCaso;
 }
+
+function obtener_info_victimas(victimas, prresp, caso){
+  var victimasCont = '<div><table>' +
+  '<tr><td>Victimas:</td><td>';
+  for(var cv in victimas) {
+    var victima = victimas[cv];
+    victimasCont += ((typeof victima != 'undefined') && 
+      victima != "") ? victima + '<br />' : 'SIN INFORMACIÓN';
+  }
+  victimasCont += '</td></tr><tr>' +
+    '<td>Presuntos Responsables:</td><td>';
+  for(var cp in prresp) {
+    var prrespel = prresp[cp];
+    victimasCont += ((typeof prrespel != 'undefined') && prrespel != "") ? 
+      prrespel + '<br />' : 'SIN INFORMACIÓN';
+  }
+  victimasCont += '</td></tr></table></div>';
+  return victimasCont
+}
+
 
 // Variable global donde se carga la capa flotante
 var info;
