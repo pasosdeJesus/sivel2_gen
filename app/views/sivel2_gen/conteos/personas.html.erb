@@ -20,6 +20,7 @@
           placeholder: 'Fecha Inicial',
           input_html: {
             "data-behaviour" => "datepicker",
+            "autocomplete" => "off",
             "data-contarautomatico" => ""
           }
         %>
@@ -32,14 +33,15 @@
           placeholder: 'Fecha Final',
           input_html: {
             "data-behaviour" => "datepicker",
+            "autocomplete" => "off",
             "data-contarautomatico" => ""
           }
         %>
+      </div>
     </div>
-      <%= render partial: 'sivel2_gen/conteos/personas_mitad_filtro', 
-        locals: {f: f} 
-      %>
-    </div>
+    <%= render partial: 'sivel2_gen/conteos/personas_mitad_filtro', 
+      locals: {f: f} 
+    %>
     <div class="row filtro-fila">
       <div class="offset-sm-0 col-sm-3 offset-md-1 col-md-1">
         Desagregar por:
@@ -56,6 +58,7 @@
         <%= f.input :departamento, 
           as: :boolean, 
           boolean_style: :nested,
+          label: false,
           inline_label: 'Departamento',
           input_html: { style: 'margin-left: 15px',
                         'data-contarautomatico' => '' }
@@ -65,6 +68,7 @@
         <%= f.input :municipio, 
           as: :boolean, 
           boolean_style: :nested,
+          label: false,
           inline_label: 'Municipio',
           input_html: { 'data-contarautomatico' => '' }
         %>
