@@ -30,6 +30,7 @@ Sivel2Gen::Engine.routes.draw do
 
   get "/conteos/genvic" => 'conteos#genvic', as: :conteos_genvic
   get "/conteos/personas" => 'conteos#personas', as: :conteos_personas
+  post "/conteos/personas" => 'conteos#personas', as: :post_conteos_personas
   get "/conteos/victimizaciones" => 'conteos#victimizaciones', 
     as: :conteos_victimizaciones
 
