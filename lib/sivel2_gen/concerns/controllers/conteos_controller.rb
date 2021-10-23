@@ -512,7 +512,7 @@ module Sivel2Gen
             respond_to do |format|
               format.html { render 'sivel2_gen/conteos/personas', layout: 'application' }
               format.json { head :no_content }
-              format.js   { render 'sivel2_gen/conteos/resultado' }
+              format.js   { render 'sivel2_gen/conteos/personas' }
             end
           end # def personas
 

@@ -1,0 +1,40 @@
+
+<% if @cuerpotabla.columns.count == 1 %>
+  <% @nombregraf = 'Total de victimas' %>
+  <% @ejex = 'Total de victimas' %>
+  <% @valoresgraf = {'Total' => @cuerpotabla.rows[0][0]} %>
+<% else %>
+  <% @nombregraf = @pSegun %>
+  <% @ejex = @pSegun %>
+  <% @valoresgraf = {} %>
+  <% @tot=[]; @cuerpotabla.try(:each) do |fila| %>
+    <% if fila.values[0] %>
+      <% @valoresgraf[fila.values[0]] = fila.values[1] %>
+    <% else %>
+      <% @obsgrafica = "En la gráfica no se presentan #{fila.values[1]} víctimas con año de nacimiento desconocido" %>
+    <% end %>
+  <% end %>
+<% end %>
+
+<% 
+    serie = [
+      {name: @nombregraf,
+       data: @valoresgraf}
+    ] 
+  %>
+
+<%
+    opciones = {
+      title: @nombregraf,
+      xtitle: @ejex,
+      ytitle: 'Víctimas',
+    }
+  %>
+
+<div class="row">
+  <div class="col-12">
+    <%= column_chart(serie, opciones) %>  
+  </div>
+</div>
+
+

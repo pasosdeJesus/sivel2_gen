@@ -35,6 +35,11 @@ import 'jquery-ui/ui/focusable'
 // Apexcharts
 import ApexCharts from 'apexcharts'
 window.ApexCharts = ApexCharts
+import apexes from 'apexcharts/dist/locales/es.json'
+Apex.chart = {
+  locales: [apexes],
+  defaultLocale: 'es',
+}
 
 // Leaflet
 var L = require('leaflet');
