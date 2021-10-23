@@ -112,12 +112,8 @@ module Sivel2Gen
           # @titulo_personas_fecha y otras nuevas relacionads con filtros
           # (prefijo p)
           def personas_filtros_especializados
-            @opsegun =  ["", "AÑO DE NACIMIENTO", "ETNIA", "FILIACIÓN", 
-                         "MES CASO", "ORGANIZACIÓN", "PROFESIÓN", 
-                         "RANGO DE EDAD", "SECTOR SOCIAL", "SEXO", 
-                         Sivel2Gen::Victima.human_attribute_name(:vinculoestado).upcase
-#                         "VÍNCULO CON EL ESTADO" 
-            ]
+            @filtrosegun = personas_arma_filtros()
+            @opsegun =  [''] + @filtrosegun.keys
             @titulo_personas = 'Demografía de Víctimas'
             @titulo_personas_fecha = 'Fecha del Caso'
           end
@@ -137,12 +133,132 @@ module Sivel2Gen
           end
 
 
+          # Arma filtros que ve el usuario tras tener poblada la vista
+          # indicada por personas_cons1
+          def personas_arma_filtros
+            caniosnac = Sip::Persona.where('anionac IS NOT NULL').
+              pluck('distinct anionac').sort
 
-          #  Retorns consultas y llena variables de clase usadas
+            cmesescasos = Sivel2Gen::Caso.all.pluck('distinct fecha').
+              map { |f| "#{f.year}-#{f.month.to_s.rjust(2, '0')}"}.uniq.sort
+
+            f = {
+              'AÑO DE NACIMIENTO' => { 
+                nomfiltro: :aniosnac,
+                coleccion: caniosnac.map {|a| [a, a]},
+                metodo_etiqueta: false,
+                metodo_id: false,
+                campocons: 'persona.anionac'
+              },
+              'ETNIA' => { 
+                nomfiltro: :etnias,
+                coleccion: Sivel2Gen::Etnia.all.order(:nombre), 
+                # No usuamos habilitados porque deben incluirse históricos
+                metodo_etiqueta: :nombre,
+                metodo_id: :id,
+                campocons: 'victima.id_etnia'
+              },
+              'FILIACIÓN' => { 
+                nomfiltro: :filiaciones,
+                coleccion: Sivel2Gen::Filiacion.all.order(:nombre),
+                metodo_etiqueta: :nombre,
+                metodo_id: :id,
+                campocons: 'victima.id_filiacion'
+              },
+              'MES CASO' => { 
+                nomfiltro: :mesescasos,
+                coleccion: cmesescasos.map {|m| [m, m]},
+                metodo_etiqueta: false,
+                metodo_id: false,
+                campocons: "EXTRACT(YEAR FROM caso.fecha)::text || '-' || "+
+                  "LPAD(EXTRACT(MONTH FROM caso.fecha)::text, 2, '0')"
+              },
+              'ORGANIZACIÓN' => { 
+                nomfiltro: :organizaciones,
+                coleccion: Sivel2Gen::Organizacion.all.order(:nombre),
+                metodo_etiqueta: :nombre,
+                metodo_id: :id,
+                campocons: 'victima.id_organizacion'
+
+              },
+              'PROFESIÓN' => { 
+                nomfiltro: :profesiones,
+                coleccion: Sivel2Gen::Profesion.all.order(:nombre),
+                metodo_etiqueta: :nombre,
+                metodo_id: :id,
+                campocons: 'victima.id_profesion'
+
+              },
+              'RANGO DE EDAD' => { 
+                nomfiltro: :rangosedad,
+                coleccion: Sivel2Gen::Rangoedad.all.order(:nombre),
+                metodo_etiqueta: :nombre,
+                metodo_id: :id,
+                campocons: 'victima.id_rangoedad'
+              },
+              'SECTOR SOCIAL' => { 
+                nomfiltro: :sectoresociales,
+                coleccion: Sivel2Gen::Sectorsocial.all.order(:nombre),
+                metodo_etiqueta: :nombre,
+                metodo_id: :id,
+                campocons: 'victima.id_sectorsocial'
+              },
+              'SEXO' => { 
+                nomfiltro: :sexos,
+                coleccion: Sip::Persona::SEXO_OPCIONES,
+                metodo_etiqueta: false,
+                metodo_id: false,
+                campocons: 'persona.sexo'
+              },
+              Sivel2Gen::Victima.human_attribute_name(:vinculoestado).upcase=>{ 
+                nomfiltro: :vinculosestado,
+                coleccion: Sivel2Gen::Vinculoestado.all.order(:nombre),
+                metodo_etiqueta: :nombre,
+                metodo_id: :id,
+                campocons: 'victima.id_vinculoestado'
+
+              }
+            }
+            return f
+          end # personas_arma_filtros
+
+
+
+          # Retorna consultas y llena variables de clase usadas
           # en formulario como @fechaini, @fechafin
           # No procesa pSegun
-          def personas_procesa_filtros(que1, tablas1, where1, que3, tablas3, where3)
-           #byebug
+          def personas_procesa_filtros(que1, tablas1, where1, que3, 
+                                       tablas3, where3)
+            @filtrosegun.each do |e, r|
+              if (params[:filtro] && params[:filtro][r[:nomfiltro]] && 
+                  params[:filtro][r[:nomfiltro]] != '') 
+                if r[:metodo_id] == :id
+                  ids = r[:coleccion].where(
+                    id: params[:filtro][r[:nomfiltro]].map(&:to_i)
+                  ).pluck(:id)
+                else # e.g sexo
+
+                  ids = r[:coleccion].map(&:last).select {|id| 
+                    id && id.to_s != '' && params[:filtro][r[:nomfiltro]].
+                      map(&:to_s).include?(id.to_s)
+                  }
+                end
+                if ids.count == 0
+                  where1 =consulta_and_sinap(where1, 'TRUE', 'FALSE', '=')
+                elsif r[:nomfiltro] == :aniosnac
+                  where1 += (where1 != '' ? ' AND ' : '') + 
+                    "(persona.anionac IS NULL OR persona.anionac IN ('" +
+                    ids.sort.join("', '") + "'))"
+                else
+                  where1 = consulta_and_sinap(
+                    where1, r[:campocons], "('" + 
+                    ids.sort.join("', '") + "')", ' IN '
+                  )
+                end
+              end
+
+            end
+
             return [que1, tablas1, where1, que3, tablas3, where3]
           end
 
@@ -159,6 +275,10 @@ module Sivel2Gen
 
 
           def personas_procesa_segun_om(que1, tablas1, where1, que3, tablas3, where3)
+            tablas1 = agrega_tabla(tablas1, 'public.sip_persona AS persona')
+            where1 = consulta_and_sinap(
+              where1, "persona.id", "victima.id_persona")
+
             case @pSegun
             when ''
               que1 = agrega_tabla(que1, 'cast(\'total\' as text) as total')
@@ -166,9 +286,6 @@ module Sivel2Gen
 
             when 'AÑO DE NACIMIENTO'
               que1 = agrega_tabla(que1, 'persona.anionac AS anionac')
-              tablas1 = agrega_tabla(tablas1, 'public.sip_persona AS persona')
-              where1 = consulta_and_sinap(
-                where1, "persona.id", "victima.id_persona")
               que3 << ["anionac", "Año de Nacimiento"]
 
             when 'ETNIA'
@@ -220,11 +337,7 @@ module Sivel2Gen
 
             when 'SEXO'
               que1 = agrega_tabla(que1, 'persona.sexo AS sexo')
-              tablas1 = agrega_tabla(tablas1, 'public.sip_persona AS persona')
-              where1 = consulta_and_sinap(
-                where1, "persona.id", "victima.id_persona")
               que3 << ["sexo", "Sexo"]
-
 
             else
               puts "opción desconocida pSegun=#{@pSegun}"
@@ -305,9 +418,11 @@ module Sivel2Gen
             @pSegun = param_escapa([:filtro, 'segun'])
             @pMunicipio = param_escapa([:filtro, 'municipio'])
             @pDepartamento = param_escapa([:filtro, 'departamento'])
+            @filtrosegun = {}
             personas_filtros_especializados()
 
-            # La estrategia es 
+
+           # La estrategia es 
             # 1. Agrupar en la vista personas_cons1 personas con lo que se contará 
             #    restringiendo por filtros con códigos sin desp. ni info geog.
             # 2. En vista personas_cons2 dejar lo mismo que en personas_cons1, pero añadiendo
@@ -340,13 +455,13 @@ module Sivel2Gen
             where3 = ''
             que1, tablas1, where1, que3, tablas3, where3 = 
               personas_procesa_filtros(
-                que1, tablas1, where1, que3, tablas3, where3
-            )
+                que1, tablas1, where1, que3, tablas3, where3)
 
             que1, tablas1, where1, que3, tablas3, where3 = 
-              personas_procesa_segun(que1, tablas1, where1, que3, tablas3, where3)
-            ActiveRecord::Base.connection.execute "DROP VIEW  IF EXISTS #{personas_cons2}"
-            ActiveRecord::Base.connection.execute "DROP VIEW  IF EXISTS #{personas_cons1}"
+              personas_procesa_segun(
+                que1, tablas1, where1, que3, tablas3, where3)
+            ActiveRecord::Base.connection.execute "DROP VIEW  IF EXISTS #{personas_cons2} CASCADE"
+            ActiveRecord::Base.connection.execute "DROP VIEW  IF EXISTS #{personas_cons1} CASCADE"
 
             if where1 != ''
               where1 = 'WHERE ' + where1
@@ -400,7 +515,7 @@ module Sivel2Gen
               format.js   { render 'sivel2_gen/conteos/resultado' }
             end
           end # def personas
-          
+
         end
 
 

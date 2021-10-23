@@ -518,6 +518,23 @@ enviaFormularioContar= (root) ->
   root.dant = d 
   return
 
+
+# Envia con método POST datos del formulario, junto con el botón Contar.
+# @param root Raiz del documento, para guardar allí variable global.
+enviaFormularioContarPost= (root) ->
+  f = $('form')
+  a = f.attr('action')
+  d = f.serialize()
+  d += '&commit=Contar'
+  # Parece que en ocasiones lanza 2 veces seguidas el mismo evento
+  # y PostgreSQL produce error por 2 creaciones practicamente
+  # simultaneas de la vista. Evitamos enviar lo mismo.
+  if (!root.dant || root.dant != d)
+    sip_enviarautomatico_formulario($('form'), 'POST', 'script', true, 'Contar')
+  root.dant = d 
+  return
+
+
 # Envía datos de la ficha del caso para guardar 
 @enviarFichaCaso = ->
   sip_enviarautomatico_formulario($('form'), 'POST', 'json', false)
@@ -861,6 +878,19 @@ enviaFormularioContar= (root) ->
   $(document).on('change', 'input[data-contarautomatico]:not([data-behaviour])', 
     (e) -> enviaFormularioContar(root)
   )
+
+  $(document).on('changeDate', '[data-contarautomatico-post]', 
+    (e) -> enviaFormularioContarPost(root)
+  )
+
+  $(document).on('change', 'select[data-contarautomatico-post]', 
+    (e) -> enviaFormularioContarPost(root)
+  )
+
+  $(document).on('change', 'input[data-contarautomatico-post]:not([data-behaviour])', 
+    (e) -> enviaFormularioContarPost(root)
+  )
+
 
   # Activar datepicker en campos que lo requieren
   $("input[data-behaviour='datepicker']").datepicker({
