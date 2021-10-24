@@ -18,8 +18,8 @@ module Sivel2Gen
           # @return string cadena t completada para asegurar tabla
           #/
           def agrega_tabla(t, nt)
-            at = t.split(',')
-            if (!at.include? nt)
+            at = t.split(',').map(&:strip)
+            if (!at.include? nt.strip)
               at << nt
             end
             t = at.join(",")
@@ -135,7 +135,7 @@ module Sivel2Gen
 
           # Arma filtros que ve el usuario tras tener poblada la vista
           # indicada por personas_cons1
-          def personas_arma_filtros
+          def personas_arma_filtros_sivel2_gen
             caniosnac = Sip::Persona.where('anionac IS NOT NULL').
               pluck('distinct anionac').sort
 
@@ -223,18 +223,22 @@ module Sivel2Gen
           end # personas_arma_filtros
 
 
+          def personas_arma_filtros
+            personas_arma_filtros_sivel2_gen
+          end
 
           # Retorna consultas y llena variables de clase usadas
           # en formulario como @fechaini, @fechafin
           # No procesa pSegun
-          def personas_procesa_filtros(que1, tablas1, where1, que3, 
+          def personas_procesa_filtros_sivel2_gen(que1, tablas1, where1, que3, 
                                        tablas3, where3)
             @filtrosegun.each do |e, r|
               if (params[:filtro] && params[:filtro][r[:nomfiltro]] && 
                   params[:filtro][r[:nomfiltro]] != '') 
                 if r[:metodo_id] == :id
                   ids = r[:coleccion].where(
-                    id: params[:filtro][r[:nomfiltro]].map(&:to_i)
+                    id: params[:filtro][r[:nomfiltro]].select{|x| x!= ''}.
+                    map(&:to_i)
                   ).pluck(:id)
                 else # e.g sexo
 
@@ -262,6 +266,15 @@ module Sivel2Gen
             return [que1, tablas1, where1, que3, tablas3, where3]
           end
 
+
+          def personas_procesa_filtros(que1, tablas1, where1, que3, 
+                                       tablas3, where3)
+            return personas_procesa_filtros_sivel2_gen(que1, tablas1, 
+                                                       where1, que3, 
+                                                       tablas3, where3)
+          end
+
+
           def personas_segun_tipico(tabla, nomtabla, que1, que3, tablas3, where3)
             que1 = agrega_tabla(
               que1, "victima.id_#{tabla} AS id_#{tabla}")
@@ -275,9 +288,12 @@ module Sivel2Gen
 
 
           def personas_procesa_segun_om(que1, tablas1, where1, que3, tablas3, where3)
+            ctablas1 = tablas1
             tablas1 = agrega_tabla(tablas1, 'public.sip_persona AS persona')
-            where1 = consulta_and_sinap(
-              where1, "persona.id", "victima.id_persona")
+            if (ctablas1 != tablas1)
+              where1 = consulta_and_sinap(
+                where1, "persona.id", "victima.id_persona")
+            end
 
             case @pSegun
             when ''
