@@ -92,6 +92,10 @@ module Sivel2Gen
 
           # Todos los campos por los que se puede filtrar tienen un
           # scope conscaso
+          def campos_filtro1_gen
+            campos_filtro1
+          end
+
           def campos_filtro1
             if current_usuario
               [:departamento_id, :municipio_id, :clase_id,
@@ -123,7 +127,7 @@ module Sivel2Gen
 
           # Filtro estándar
           def filtro_avanzado(conscaso, params_filtro)
-            for i in campos_filtro1 do
+            for i in campos_filtro1_gen do
               if params_filtro[i] && params_filtro[i] != '' &&
                 params_filtro[i] != [''] &&
                 conscaso.respond_to?('filtro_' + i.to_s)

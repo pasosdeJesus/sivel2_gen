@@ -9,8 +9,8 @@ var baldosasOsm;
 var controlCapas;
 var usuario_aut_global;
 
-function filtrar_por_categoria(){
-  return '';
+function filtrar_adicionales(){
+  return [];
 }
 function agregarFuncionesExternasMapaosm(){
   return null
@@ -165,8 +165,10 @@ function agregarCasosOsm(usuario_autenticado) {
       if (tvio != undefined && tvio != 0){
         urlSolicitud += '&filtro[categoria_id]=' + tvio;
       }
-      filtro_cat = filtrar_por_categoria(usuario_autenticado); 
-      urlSolicitud += filtro_cat;
+      filtros_adicionales = filtrar_adicionales(usuario_autenticado);
+      for(var fi in filtros_adicionales){
+        urlSolicitud += filtros_adicionales[fi];
+      }
       urlSolicitud += '&filtro[inc_ubicaciones]=2'+
         //'&filtro[inc_titulo]=1'+
         //'&filtro[inc_fecha]=1'+
