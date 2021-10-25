@@ -131,6 +131,10 @@ module Sivel2Gen
           belongs_to :intervalo, foreign_key: "id_intervalo", 
             validate: true, class_name: 'Sivel2Gen::Intervalo', optional: true
 
+          belongs_to :ubicacionprincipal, foreign_key: "ubicacion_id",
+            validate: false, class_name: 'Sip::Ubicacion',
+            optional: true
+
           campofecha_localizado :fecha
 
           validates_presence_of :fecha
