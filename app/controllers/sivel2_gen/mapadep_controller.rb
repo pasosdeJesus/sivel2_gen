@@ -1,6 +1,7 @@
 
 module Sivel2Gen
   class MapadepController < ApplicationController
+  load_and_authorize_resource class: Sivel2Gen::Caso
 
     def victimizaciones
 
