@@ -32,27 +32,12 @@ import 'jquery-ui/ui/widgets/autocomplete'
 import 'jquery-ui/ui/data'
 import 'jquery-ui/ui/focusable'
 
-// Apexcharts
-import ApexCharts from 'apexcharts'
-window.ApexCharts = ApexCharts
-
 // Leaflet
 var L = require('leaflet');
 var mc= require('leaflet.markercluster');
 
-import plotly_serietiempo_actos from '../plotly_actos'
-
 document.addEventListener("DOMContentLoaded", function() {
 
-  var p = new URL(document.URL).pathname.split('/')
-  var p2ult = ''
-  if (p.length>2) { 
-    p2ult = p[p.length - 2] + "/" + p[p.length - 1]
-  }
-  console.log("p2ult=" + p2ult)
-  if (p2ult == 'graficar/actos_individuales') {
-    plotly_serietiempo_actos() 
-  }
 
 });
 
