@@ -2,6 +2,8 @@
 module Sivel2Gen
   class HogarController < Sip::HogarController
 
+    # No define control de acceso por ser usada por no autenticados
+
     def index
       if current_usuario
         authorize! :contar, Sivel2Gen::Caso
