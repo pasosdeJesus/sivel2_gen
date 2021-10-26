@@ -4,6 +4,8 @@ module Sivel2Gen
   module Fil23Gen
     class GraficarApexchartsController < ApplicationController
 
+      # Control de acceso no estandar en función
+      
       def victimizaciones_individuales
         authorize! :contar, Sivel2Gen::Caso
         @vic_fechaini = params[:filtro] ? Sip::FormatoFechaHelper.fecha_local_estandar(params[:filtro][:fechaini]) : "1998-01-01"

@@ -4,6 +4,8 @@ module Sivel2Gen
   module Fil23Gen
     class GraficarPlotlyController < ApplicationController
 
+      # Control de acceso no estándar en función
+      
       def actos_individuales
         authorize! :contar, Sivel2Gen::Caso
 

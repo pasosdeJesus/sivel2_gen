@@ -1,4 +1,3 @@
-
 module Sivel2Gen
   module Concerns
     module Models
@@ -19,14 +18,5 @@ module Sivel2Gen
         end
       end
     end
-  end
-end
-
-
-# encoding: UTF-8
-module Sivel2Gen
-  class Rangoedad < ActiveRecord::Base
-    include Sip::Basica
-
   end
 end

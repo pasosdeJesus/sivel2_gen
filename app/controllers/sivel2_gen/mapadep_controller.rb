@@ -1,8 +1,9 @@
 
 module Sivel2Gen
   class MapadepController < ApplicationController
-  load_and_authorize_resource class: Sivel2Gen::Caso
 
+    # Control de acceso no estándar en función
+    
     def victimizaciones
 
       authorize! :contar, Sivel2Gen::Caso
