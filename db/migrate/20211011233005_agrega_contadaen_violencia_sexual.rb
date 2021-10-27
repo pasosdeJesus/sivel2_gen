@@ -4,10 +4,12 @@ class AgregaContadaenViolenciaSexual < ActiveRecord::Migration[6.1]
     categorias.each do |cat|
       [1, 2, 4, 5, 6, 8].each do |supra|
         cat_violencia = Sivel2Gen::Categoria.where(nombre: 'VIOLENCIA SEXUAL').where(supracategoria_id: supra)[0]
-        execute <<-SQL
-          UPDATE sivel2_gen_categoria SET contadaen=#{cat_violencia.id} 
-            WHERE supracategoria_id=#{supra} AND nombre='#{cat}'; 
-        SQL
+        if cat_violencia
+          execute <<-SQL
+            UPDATE sivel2_gen_categoria SET contadaen=#{cat_violencia.id} 
+              WHERE supracategoria_id=#{supra} AND nombre='#{cat}'; 
+          SQL
+        end
       end
     end
   end
