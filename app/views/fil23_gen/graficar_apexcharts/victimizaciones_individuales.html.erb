@@ -1,14 +1,5 @@
 <h1> Graficar victimizaciones individuales </h1>
 <%
-  series_gen= [
-    {name: "Hombres",
-     data: @valores_m},
-    {name: "Mujeres",
-     data: @valores_f},
-    {name: "Sin sexo",
-     data: @valores_s}
-  ]
-
   opciones_gen = {
    title: 'Victimizaciones',
    xtitle: 'Fecha',
@@ -69,6 +60,24 @@
             "data-behaviour" => "datepicker",
             value: vff
           } %>
+      </div>
+      <div class="offset-sm-0 col-3">
+        <%= f.input :sexo,
+          collection: Sip::Persona::SEXO_OPCIONES, 
+          label: 'Sexo:',
+          include_blank: '--Mostrar Todos',
+          input_html: {
+            'data-enviarautomatico' => ''}
+         %>
+      </div>
+      <div class="offset-sm-0 col-3">
+        <%= f.input :desagregar,
+          collection: ['Sexo', 'Departamento', 'Categoria'], 
+          label: 'Desagregar por:',
+          selected: 'Categoria',
+          input_html: {
+            'data-enviarautomatico' => ''}
+         %>
       </div>
     </div>
     <div class="row">
