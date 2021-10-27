@@ -199,7 +199,7 @@ module Sivel2Gen
           scope :filtro_profesion_id, lambda { |r|
             where('caso_id IN (SELECT id_caso
                     FROM public.sivel2_gen_victima
-                    WHERE sivel2_gen_victima.id_profesion = ?)', r)
+                    WHERE sivel2_gen_victima.id_profesion IN (?))', r)
           }
 
           scope :filtro_etiqueta, lambda { |c, e|
