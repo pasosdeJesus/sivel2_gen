@@ -323,6 +323,9 @@ module Sivel2Gen
             }
           end
 
+          def presenta_mas_index(format)
+          end
+
           def presenta_index
             # Presentación
             respond_to do |format|
@@ -332,7 +335,7 @@ module Sivel2Gen
                   gen_formato('.ods')
                   return
                 }
-                format.xlsx{
+                format.xlsx {
                   gen_formato('.xlsx')
                   return
                 }
@@ -374,6 +377,7 @@ module Sivel2Gen
                   render 'reprevista.xrlat'
                   return
                 }
+                presenta_mas_index(format)
               else
                 format.html {
                   if (params['idplantilla'])

@@ -133,92 +133,88 @@ function descargarUrl(url, retrollamada) {
   request.send(null);
 }
 
+// Construye URL para consulta agregando el punto de montaje antes de
+// ruta_sin_puntomontaje y los filtros acordes a lo elegido a continuación
+function armarRutaConsulta(root, rutaSinPuntomontaje, usuarioAutenticado) {
+  var ruta = root.puntomontaje + rutaSinPuntomontaje
+  var desde = $('#campo-desde').val()
+  var desdep = sip_partes_fecha_localizada(desde, root.formato_fecha)
+  var hasta = $('#campo-hasta').val();
+  var hastap = sip_partes_fecha_localizada(hasta, root.formato_fecha)
+  var departamento = $('#departamento').val()
+  var prresp = $('#presponsable').val()
+  var tvio = $('#tvio').val();
+  fechainicial = Date.parse(desdep[0]+'-'+desdep[1]+'-'+desdep[2]);
+  fechafinal = Date.parse(hastap[0]+'-'+hastap[1]+'-'+hastap[2]);
+  if ( +fechainicial > +fechafinal) {
+    alert("La fecha Final debe ser mas antigua que la inicial");
+    window.location.reload();
+    return
+  } 
+  var urlSolicitud = ruta + '?filtro[q]='+
+    '&filtro[fechaini]='+ desde +
+    '&filtro[fechafin]='+ hasta
+  if (departamento != undefined && departamento != 0){
+    urlSolicitud += '&filtro[departamento_id]=' + departamento;
+  }
+  if (prresp != undefined && prresp != 0){
+    urlSolicitud += '&filtro[presponsable_id]=' + prresp;
+  }
+  if (tvio != undefined && tvio != 0){
+    urlSolicitud += '&filtro[categoria_id]=' + tvio;
+  }
+  filtros_adicionales = filtrar_adicionales(usuarioAutenticado);
+  for(var fi in filtros_adicionales){
+    urlSolicitud += filtros_adicionales[fi];
+  }
+  urlSolicitud += '&filtro[inc_ubicaciones]=2'+
+    '&filtro[disgenera]=reprevista.json' +
+    '&idplantilla=reprevista' +
+    '&commit=Enviar';
+  return urlSolicitud;
+}
+
+
 function agregarCasosOsm(usuario_autenticado) {
   var root = window;
   if (typeof root.formato_fecha == 'undefined') {
     sip_prepara_eventos_comunes(root)
   }
-  var desde = $('#campo-desde').val()
-  var desdep = sip_partes_fecha_localizada(desde, root.formato_fecha)
-  var hasta = $('#campo-hasta').val();
-  var hastap = sip_partes_fecha_localizada(hasta, root.formato_fecha)
-  var departamento = $('#departamento').val();
-  var prresp = $('#presponsable').val();
-  var tvio = $('#tvio').val();
-  var ruta = root.puntomontaje + 'casos.json';
-  fechainicial = Date.parse(desdep[0]+'-'+desdep[1]+'-'+desdep[2]);
-  fechafinal = Date.parse(hastap[0]+'-'+hastap[1]+'-'+hastap[2]);
-  const hoy = new Date();
-  const maniana = new Date(hoy);
-  maniana.setDate(maniana.getDate() + 1);
-  //if ( +fechainicial <= +maniana && +fechafinal <= +maniana){
-    if ( +fechainicial <= +fechafinal){
-      var urlSolicitud = ruta + '?filtro[q]='+
-        '&filtro[fechaini]='+ desde +
-        '&filtro[fechafin]='+ hasta
-      if (departamento != undefined && departamento != 0){
-        urlSolicitud += '&filtro[departamento_id]=' + departamento;
-      }
-      if (prresp != undefined && prresp != 0){
-        urlSolicitud += '&filtro[presponsable_id]=' + prresp;
-      }
-      if (tvio != undefined && tvio != 0){
-        urlSolicitud += '&filtro[categoria_id]=' + tvio;
-      }
-      filtros_adicionales = filtrar_adicionales(usuario_autenticado);
-      for(var fi in filtros_adicionales){
-        urlSolicitud += filtros_adicionales[fi];
-      }
-      urlSolicitud += '&filtro[inc_ubicaciones]=2'+
-        //'&filtro[inc_titulo]=1'+
-        //'&filtro[inc_fecha]=1'+
-        //'&filtro[inc_memo]=1'+
-        '&filtro[disgenera]=reprevista.json' +
-        '&idplantilla=reprevista' +
-        '&commit=Enviar';
-      mostrarCargador();
-      descargarUrl(urlSolicitud, function(req) {
-        var data = req.responseText;
-        if (data == null || data.substr(0, 1) != '{'){
-          ocultarCargador();
-          $('#nrcasos').html("0");
-          window.alert("El URL" + urlSolicitud + "no retorno informacion JSON.\n\n" + data);
-          return;
-        }
-        var listaMarcadores = []
-        var o = jQuery.parseJSON(data);
-        var numResultados = 0;
-        for(var codigo in o) {
-          var lat = o[codigo].latitud;
-          var lng = o[codigo].longitud;
-          if (lat == null || lat == '') {
-            lat = '0';
-          }
-          if (lng == null || lng == '') {
-            lng = '0';
-          }
-          latf = parseFloat(lat);
-          lngf = parseFloat(lng);
-          numResultados++;
-          var punto = new L.LatLng(latf, lngf);
-          listaMarcadores.push (creaMarcador(punto, codigo));
-        }
-        marcadores.addLayers(listaMarcadores);
-        mapa.addLayer(marcadores);
-        $('#nrcasos').html(numResultados + ' Casos mostrados!');
-        ocultarCargador();
-      });
+  urlSolicitud = armarRutaConsulta(root, 'casos.json', usuario_autenticado) 
+  mostrarCargador();
+  descargarUrl(urlSolicitud, function(req) {
+    var data = req.responseText;
+    if (data == null || data.substr(0, 1) != '{'){
+      ocultarCargador();
+      $('#nrcasos').html("0");
+      window.alert("El URL" + urlSolicitud + "no retorno informacion JSON.\n\n" + data);
+      return;
     }
-    else{
-      alert("La fecha Final debe ser mas antigua que la inicial");
-      window.location.reload();
-    } 
-  /*}
-  else{
-    alert("La fecha Final e Inicial debe existir");
-    window.location.reload();
-  }*/ 
+    var listaMarcadores = []
+    var o = jQuery.parseJSON(data);
+    var numResultados = 0;
+    for(var codigo in o) {
+      var lat = o[codigo].latitud;
+      var lng = o[codigo].longitud;
+      if (lat == null || lat == '') {
+        lat = '0';
+      }
+      if (lng == null || lng == '') {
+        lng = '0';
+      }
+      latf = parseFloat(lat);
+      lngf = parseFloat(lng);
+      numResultados++;
+      var punto = new L.LatLng(latf, lngf);
+      listaMarcadores.push (creaMarcador(punto, codigo));
+    }
+    marcadores.addLayers(listaMarcadores);
+    mapa.addLayer(marcadores);
+    $('#nrcasos').html(numResultados + ' Casos mostrados!');
+    ocultarCargador();
+  });
 }
+
 
 function creaMarcador(punto, codigo, titulo) {
   // Exportar los casos a formato GeoJson
