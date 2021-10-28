@@ -699,7 +699,6 @@ module Sivel2Gen
                   end
                 end
               end
-
               if @caso.update(caso_params)
                 if registrar_en_bitacora
                   Sip::Bitacora.agregar_actualizar(
