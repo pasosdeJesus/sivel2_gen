@@ -876,13 +876,16 @@ module Sivel2Gen
               nuevo_doc = Nokogiri::XML('<relatos/>') do |config|
                 config.strict.noent
               end
-
-              nuevo_doc.create_internal_subset('relatos', nil, 'public/relatos-099.dtd')
+              rutas = Gem::Specification.stubs.map(&:full_gem_path)
+              rs = rutas.select {|x| x.include?('sivel2_gen')}.first
+              rs = rs.nil? ? "#{File.expand_path("../../../", Dir.pwd)}/sivel2_gen" : rs
+              rs = rs + "/test/dummy/public/relatos-#{enlace[-7..-5]}.dtd"
+              nuevo_doc.create_internal_subset('relatos', nil, rs)
               nuevo_doc.at('relatos').children = docnoko_inicial.at('relatos').children
               ## Verifica si sigue correctamente el dtd
               options = Nokogiri::XML::ParseOptions::DTDVALID
-              doc = Nokogiri::XML::Document.parse(nuevo_doc.to_s, nil, nil, options)
-              errores_dtd = doc.external_subset.validate(doc)
+              doc_val = Nokogiri::XML::Document.parse(nuevo_doc.to_s, nil, nil, options)
+              errores_dtd = doc_val.external_subset.validate(doc_val)
               if errores_dtd.count > 0
                 menserror << " Imposible importar relato(s). Su contenido no sigue el dtd: #{errores_dtd.join('. ')}"
                 return false
@@ -891,7 +894,7 @@ module Sivel2Gen
               menserror << " Imposible importar relato(s). El enlace al dtd #{enlace} no corresponde a los aceptados"
               return false
             end
-            docnoko = docnoko_inicial 
+            docnoko = nuevo_doc 
             docnoko.search('observaciones').each do |obs|
               obs.content = obs['tipo'] + '_' + obs.text
             end
@@ -909,7 +912,6 @@ module Sivel2Gen
               casousuario.id_caso = importado.id
               casousuario.fechainicio = DateTime.now.strftime('%Y-%m-%d')
               casousuario.save!
-              
               if importado.nil?
                 menserror << "No se pudo importar relato número #{numr}.  "
                 total_errores += 1
@@ -946,7 +948,6 @@ module Sivel2Gen
             end
             return true
           end # importar_relato
-
 
           def importa
             authorize! :update, Sivel2Gen::Caso
