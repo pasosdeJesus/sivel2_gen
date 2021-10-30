@@ -246,10 +246,12 @@ es:
         nombre: Víctima
         organizacion: Organización
         orientacionsexual: Orientación sexual
+        otraorga: Otras organizaciones
         presponsable: Organización armada de la víctima
         profesion: Profesión
         rangoedad: Rango de edad
-        sectorsocial: Sector social
+        sectorsocial: Sector social principal
+        sectorsocialsec: Sectores sociales secundarios
         ubicacion_caso: Ubicación
         filiacion: Filiación política
         vinculoestado: Vínculo con el Estado

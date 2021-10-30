@@ -35,10 +35,8 @@
 
 <div class="row">
   <div class="col-md-6">
-    Sector Social Principal:
     <%= f.association :sectorsocial,
       collection: Sivel2Gen::Sectorsocial.habilitados,
-      label: false,
       include_blank: false,
       label_method: :nombre, 
       value_method: :id,
@@ -48,54 +46,27 @@
       } %>
   </div>
   <div class="col-md-6">
+    <%= f.association :sectorsocialsec,
+      collection: Sivel2Gen::Sectorsocial.habilitados,
+      label_method: :nombre, 
+      value_method: :id,
+      include_blank: false,
+      input_html: {
+        "data-toggle" => 'tooltip',
+        multiple: true,
+        class: 'chosen-select'
+      } %>
+
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-6">
     <%= f.association :contextovictima,
       collection: Sivel2Gen::Contextovictima.habilitados,
       include_blank: false,
       label_method: :nombre, 
       value_method: :id,
-      input_html: {
-        "data-toggle" => 'tooltip',
-        multiple: true,
-        class: 'chosen-select'
-      } %>
-  </div>
-</div>
-
-<div class="row">
-  <div class="col-md-6">
-    Sectores Sociales Secundarios:
-    <%= f.association :sectorsocialsec,
-      collection: Sivel2Gen::Sectorsocial.habilitados,
-      label: false,
-      label_method: :nombre, 
-      value_method: :id,
-      include_blank: false,
-      input_html: {
-        "data-toggle" => 'tooltip',
-        multiple: true,
-        class: 'chosen-select'
-      } %>
-  </div>
-</div>
-
-<div class="row">
-  <div class="col-md-6">
-    <%= f.association :organizacion,
-      collection: Sivel2Gen::Organizacion.habilitados,
-      include_blank: false,
-      label_method: :nombre, 
-      value_method: :id,
-      input_html: {
-        "data-toggle" => 'tooltip',
-        "title" => 'Organización a la que pertenecía en el momento del hecho'
-      } %>
-    Otros tipos de organización:
-    <%= f.association :otraorga,
-      collection: Sivel2Gen::Organizacion.habilitados,
-      label: false,
-      label_method: :nombre, 
-      value_method: :id,
-      include_blank: false,
       input_html: {
         "data-toggle" => 'tooltip',
         multiple: true,
@@ -111,6 +82,32 @@
       input_html: {
         "data-toggle" => 'tooltip',
         "title" => 'Registre si la persona era funcionaria pública en el momento del hecho'
+      } %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-6">
+    <%= f.association :organizacion,
+      collection: Sivel2Gen::Organizacion.habilitados,
+      include_blank: false,
+      label_method: :nombre, 
+      value_method: :id,
+      input_html: {
+        "data-toggle" => 'tooltip',
+        "title" => 'Organización a la que pertenecía en el momento del hecho'
+      } %>
+  </div>
+  <div class="col-md-6">
+    <%= f.association :otraorga,
+      collection: Sivel2Gen::Organizacion.habilitados,
+      label_method: :nombre, 
+      value_method: :id,
+      include_blank: false,
+      input_html: {
+        "data-toggle" => 'tooltip',
+        multiple: true,
+        class: 'chosen-select'
       } %>
   </div>
 </div>
