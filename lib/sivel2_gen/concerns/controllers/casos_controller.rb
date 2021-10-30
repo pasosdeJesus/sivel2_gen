@@ -1153,6 +1153,7 @@ module Sivel2Gen
                   :orientacionsexual,
                   :_destroy,
                   :sectorsocialsec_ids => [],
+                  :otraorga_ids => [],
                   :contextovictima_ids => [],
                   :antecedente_ids => [],
                   :persona_attributes => [
