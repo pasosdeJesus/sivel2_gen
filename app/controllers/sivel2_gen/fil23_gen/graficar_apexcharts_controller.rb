@@ -5,9 +5,11 @@ module Sivel2Gen
     class GraficarApexchartsController < ApplicationController
 
       # Control de acceso no estandar en función
-      
+
       def victimizaciones_individuales
         authorize! :contar, Sivel2Gen::Caso
+
+        ## Valores de los filtros
         @vic_fechaini = params[:filtro] ? Sip::FormatoFechaHelper.fecha_local_estandar(params[:filtro][:fechaini]) : "1998-01-01"
         @vic_fechafin = params[:filtro] ? Sip::FormatoFechaHelper.fecha_local_estandar(params[:filtro][:fechafin]) : "2020-12-31"
 
@@ -19,7 +21,10 @@ module Sivel2Gen
               AND sivel2_gen_categoria.tipocat=\'I\'').
               reorder('sivel2_gen_supracategoria.id_tviolencia', :id).pluck(:nombre).uniq 
         @vic_categorias = params[:filtro] ? params[:filtro][:categorias] : @categorias
-        def consulta(sexo)
+        filtro_sexo = params[:filtro] ? params[:filtro][:sexo] : Sip::Persona::SEXO_OPCIONES.map{|se| se[1].to_s}
+        @vic_sexo = filtro_sexo == "" ? ["S", "M", "H"] : filtro_sexo
+        ## Consulta para desagregar por Sexo
+        def consulta_sexo(sexo)
           "select caso.fecha as fecha_caso, count(*) as total from cvt1 JOIN sivel2_gen_caso as caso ON caso.id=id_caso 
           JOIN sip_persona AS persona ON persona.id=id_persona
           JOIN sip_ubicacion as ubi ON ubi.id=caso.ubicacion_id
@@ -31,17 +36,118 @@ module Sivel2Gen
           AND categoria.nombre IN (" + (@vic_categorias - ['']).map{|k| "'" + k + "'"}.join(', ') + ")
           GROUP BY fecha_caso ORDER BY fecha_caso;"
         end
+
+        def consulta_gen(desagregado, filtros)
+          "select caso.fecha as fecha_caso, count(*) as total from cvt1 
+          JOIN sivel2_gen_caso as caso ON caso.id=id_caso 
+          JOIN sip_persona AS persona ON persona.id=id_persona
+          JOIN sip_ubicacion as ubi ON ubi.id=caso.ubicacion_id
+          JOIN sivel2_gen_categoria AS categoria ON categoria.id=id_categoria
+          WHERE #{desagregado} 
+          AND caso.fecha >='" + @vic_fechaini + "'
+          AND caso.fecha <='" + @vic_fechafin + "'
+          #{filtros} 
+          GROUP BY fecha_caso ORDER BY fecha_caso;"
+        end
+
         def consulta_totsex
           "select persona.sexo as sexo_persona, count(*) as total from cvt1
           JOIN sip_persona AS persona ON persona.id=id_persona 
           GROUP BY sexo_persona 
           ORDER BY persona.sexo='S', persona.sexo='M', persona.sexo='F';"
         end
-        @valores_m = ActiveRecord::Base.connection.execute(consulta('M')).values.to_h 
-        @valores_f = ActiveRecord::Base.connection.execute(consulta('F')).values.to_h 
-        @valores_s = ActiveRecord::Base.connection.execute(consulta('S')).values.to_h 
-        @valores_totsex = ActiveRecord::Base.connection.execute(consulta_totsex).values.to_h 
-        render 'fil23_gen/graficar_apexcharts/victimizaciones_individuales', 
+
+        def consulta_totcat
+          "select categoria.nombre as categoria_nom, count(*) as total from cvt1
+          JOIN sivel2_gen_categoria AS categoria ON categoria.id=id_categoria
+          GROUP BY categoria_nom;"
+        end
+
+        def consulta_totdep
+          "select departamento.nombre as departamento_nombre, count(*) as total from cvt1
+          JOIN sivel2_gen_caso as caso ON caso.id=id_caso 
+          JOIN sip_ubicacion as ubi ON ubi.id=caso.ubicacion_id
+          JOIN sip_departamento as departamento ON departamento.id=ubi.id_departamento
+          GROUP BY departamento_nombre;"
+        end
+
+        def graficar_sexo
+          series_gen= []
+          Sip::Persona::SEXO_OPCIONES.each do |sexo|
+            desagr = "persona.sexo ='#{sexo[1].to_s}'" 
+            filtros= "
+            AND ubi.id_departamento IN (#{(@vic_dep - ['']).join(', ')})
+            AND categoria.nombre IN (" + (@vic_categorias - ['']).map{|k| "'" + k + "'"}.join(', ') + ")" 
+            valores_sex = ActiveRecord::Base.connection.execute(consulta_gen(desagr, filtros)).values.to_h 
+            presex = {name: sexo[0], data: valores_sex}
+            series_gen.push(presex)
+          end
+          return series_gen
+        end 
+
+        if params[:filtro]
+          if params[:filtro][:desagregar] == 'Sexo' 
+            series_gen = graficar_sexo
+            sexos = Sip::Persona::SEXO_OPCIONES.to_h.invert
+            valores = ActiveRecord::Base.connection.execute(consulta_totsex).values.to_h
+            @valores_tot= valores.to_a.map{|k| [sexos[k[0].to_sym], k[1]]}.to_h 
+            @opciones_tot = {
+              titulo: 'Victimizaciones por sexo',
+              ejex: 'Sexo',
+              ejey: 'Victimizaciones'
+            }
+          end
+          if params[:filtro][:desagregar] == 'Departamento' 
+            series_gen= []
+            deps = Sip::Departamento.habilitados
+            deps.each do |dep|
+              desagr = "ubi.id_departamento ='#{dep.id}'" 
+              filtros= "AND persona.sexo IN (" + (@vic_sexo - ['']).map{|k| "'" + k + "'"}.join(', ') + ")
+          AND categoria.nombre IN (" + (@vic_categorias - ['']).map{|k| "'" + k + "'"}.join(', ') + ")"
+              valores_dep = ActiveRecord::Base.connection.execute(consulta_gen(desagr, filtros)).values.to_h 
+              predep = {name: dep.nombre, data: valores_dep}
+              series_gen.push(predep)
+            end
+            @valores_tot = ActiveRecord::Base.connection.execute(consulta_totdep).values.to_h
+            @opciones_tot = {
+              titulo: 'Victimizaciones por departamento',
+              ejex: 'Departamentos',
+              ejey: 'Victimizaciones'
+            }
+          end
+
+          if params[:filtro][:desagregar] == 'Categoria' 
+            series_gen= []
+            @categorias.each do |cat|
+              desagr = "categoria.nombre ='#{cat}'"
+              filtros= "
+              AND ubi.id_departamento IN (#{(@vic_dep - ['']).join(', ')})
+              AND persona.sexo IN (" + (@vic_sexo - ['']).map{|k| "'" + k + "'"}.join(', ') + ')'"" 
+              valores_cat = ActiveRecord::Base.connection.execute(consulta_gen(desagr, filtros)).values.to_h 
+              precat = {name: cat, data: valores_cat}
+              series_gen.push(precat)
+            end
+            @valores_tot = ActiveRecord::Base.connection.execute(consulta_totcat).values.to_h
+            @opciones_tot = {
+              titulo: 'Victimizaciones por Categorías de violencia',
+              ejex: 'Categorías de violencia',
+              ejey: 'Victimizaciones'
+            }
+          end
+        else 
+          series_gen = graficar_sexo
+          sexos = Sip::Persona::SEXO_OPCIONES.to_h.invert
+          valores = ActiveRecord::Base.connection.execute(consulta_totsex).values.to_h
+          @valores_tot= valores.to_a.map{|k| [sexos[k[0].to_sym], k[1]]}.to_h 
+          @opciones_tot = {
+            titulo: 'Victimizaciones por sexo',
+            ejex: 'Sexo',
+            ejey: 'Victimizaciones'
+          }
+        end
+
+
+        render 'fil23_gen/graficar_apexcharts/victimizaciones_individuales', locals: {series_gen: series_gen},  
           layout: 'application'
       end
     end

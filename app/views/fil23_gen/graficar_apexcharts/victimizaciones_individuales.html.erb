@@ -1,14 +1,5 @@
 <h1> Graficar victimizaciones individuales </h1>
 <%
-  series_gen= [
-    {name: "Hombres",
-     data: @valores_m},
-    {name: "Mujeres",
-     data: @valores_f},
-    {name: "Sin sexo",
-     data: @valores_s}
-  ]
-
   opciones_gen = {
    title: 'Victimizaciones',
    xtitle: 'Fecha',
@@ -16,22 +7,23 @@
    stacked: true 
   }
 
-  series_totsex= [
-    {name: "Hombres",
-     data: @valores_totsex}
+  series_tot= [
+    {name: "Victimizaciones",
+     data: @valores_tot}
   ]
 
-  opciones_totsex = {
-   title: 'Totales por sexo',
-   xtitle: 'Sexo',
-   ytitle: 'Victimizaciones'
+  opciones_tot = {
+   title: @opciones_tot[:titulo],
+   xtitle: @opciones_tot[:ejex],
+   ytitle: @opciones_tot[:ejey],
+   data_labels: false
   }
 %>
 
 <%= simple_form_for :filtro do |f| %>
 <div class="card" >
   <div class="card-header">
-    <h3> Filtrar por: </h3>
+    <h5> Filtros y Desagregación</h5>
   </div>
   <div class="card-body">
     <div class="row">
@@ -70,14 +62,46 @@
             value: vff
           } %>
       </div>
+      <div class="offset-sm-0 col-3">
+        <% if params.nil? || params[:filtro].nil? || params[:filtro][:desagregar].nil?
+             ops= 'Sexo' 
+           else
+             ops= params[:filtro][:desagregar]
+           end %>
+        <%= f.input :desagregar,
+          collection: ['Sexo', 'Departamento', 'Categoria'], 
+          label: 'Desagregar por:',
+          selected: ops,
+          input_html: {
+            'data-enviarautomatico' => ''}
+         %>
+      </div>
+      <div class="offset-sm-0 col-3">
+        <% if params.nil? || params[:filtro].nil? || params[:filtro][:desagregar].nil? || params[:filtro][:desagregar]== 'Sexo'
+ %>
+          <% estdes = "display: none" %>
+        <% else %>
+          <% estdes = "display: block" %>
+        <% end %>
+        <%= f.input :sexo,
+          collection: Sip::Persona::SEXO_OPCIONES, 
+          label: 'Sexo:',
+          include_blank: '--Mostrar Todos',
+          input_html: {
+            'data-enviarautomatico' => ''},
+          wrapper_html: { "style" => estdes }
+         %>
+      </div>
     </div>
     <div class="row">
       <div class="offset-sm-0 col-12">
         <%
           if params.nil? || params[:filtro].nil? || params[:filtro][:departamentos].nil?
             dep_sel = Sip::Departamento.habilitados.where(id_pais: 170).pluck(:id)
+            estdep = "display: block"
           else
             dep_sel = params[:filtro][:departamentos]
+            estdep = "display: none" if params[:filtro][:desagregar] == 'Departamento'
           end
         %>
         <%= f.input :departamentos,
@@ -89,7 +113,8 @@
             class: 'chosen-select',
             multiple: true,
             'data-enviarautomatico' => ''
-          }
+          },
+          wrapper_html: { 'style': estdep}
         %>
       </div>
     </div>
@@ -98,8 +123,10 @@
         <%
           if params.nil? || params[:filtro].nil? || params[:filtro][:categorias].nil?
             cat_sel = @vic_categorias
+            estcat = "display: block"
           else
             cat_sel = params[:filtro][:categorias]
+            estcat = "display: none" if params[:filtro][:desagregar] == 'Categoria'
           end
         %>
         <%= f.input :categorias,
@@ -109,13 +136,14 @@
             class: 'chosen-select',
             multiple: true,
             'data-enviarautomatico' => ''
-          }
+          },
+          wrapper_html: { 'style': estcat}
         %>
       </div>
     </div>
   </div>
   <div class="card-footer text-center">
-      <%= f.submit 'Filtrar' %>
+      <%= f.submit 'Cargar/Actualizar' %>
   </div>
 </div>
 <% end %>
@@ -127,6 +155,6 @@
 </br>
 <div class="row">
   <div class="col-12">
-    <%= column_chart(series_totsex, opciones_totsex) %>  
+    <%= column_chart(series_tot, opciones_tot) %>  
   </div>
 </div>

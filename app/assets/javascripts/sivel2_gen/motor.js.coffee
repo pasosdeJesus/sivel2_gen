@@ -1049,3 +1049,29 @@ enviaFormularioContarPost= (root) ->
 
   @sip_registra_cambios_para_bitacora(root)
   return
+
+
+$(document).on('change', '#filtro_desagregar', (e) ->
+  valor = this.value
+  if valor == 'Departamento'
+    fil_dep = $("#filtro_departamentos")
+    fil_sex = $("#filtro_sexo")
+    fil_cat = $("#filtro_categorias")
+    fil_dep.parent().css('display', 'none')
+    fil_sex.parent().css('display', 'block')
+    fil_cat.parent().css('display', 'block')
+  if valor == 'Categoria'
+    fil_cat = $("#filtro_categorias")
+    fil_dep = $("#filtro_departamentos")
+    fil_sex = $("#filtro_sexo")
+    fil_cat.parent().css('display', 'none')
+    fil_dep.parent().css('display', 'block')
+    fil_sex.parent().css('display', 'block')
+  if valor == 'Sexo'
+    fil_cat = $("#filtro_categorias")
+    fil_dep = $("#filtro_departamentos")
+    fil_sex = $("#filtro_sexo")
+    fil_sex.parent().css('display', 'none')
+    fil_dep.parent().css('display', 'block')
+    fil_cat.parent().css('display', 'block')
+)
