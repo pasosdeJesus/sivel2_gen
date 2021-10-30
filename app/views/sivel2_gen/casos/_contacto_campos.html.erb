@@ -89,6 +89,18 @@
         "data-toggle" => 'tooltip',
         "title" => 'Organización a la que pertenecía en el momento del hecho'
       } %>
+    Otros tipos de organización:
+    <%= f.association :otraorga,
+      collection: Sivel2Gen::Organizacion.habilitados,
+      label: false,
+      label_method: :nombre, 
+      value_method: :id,
+      include_blank: false,
+      input_html: {
+        "data-toggle" => 'tooltip',
+        multiple: true,
+        class: 'chosen-select'
+      } %>
   </div>
   <div class="col-md-6">
     <%= f.association :vinculoestado,

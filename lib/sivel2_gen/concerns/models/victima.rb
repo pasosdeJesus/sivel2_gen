@@ -24,6 +24,12 @@ module Sivel2Gen
             association_foreign_key: 'sectorsocial_id',
             join_table: 'sivel2_gen_sectorsocialsec_victima'
 
+          has_and_belongs_to_many :otraorga, 
+            class_name: 'Sivel2Gen::Organizacion',
+            foreign_key: :victima_id, 
+            association_foreign_key: 'organizacion_id',
+            join_table: 'sivel2_gen_otraorga_victima'
+
           has_and_belongs_to_many :contextovictima,
             class_name: "Sivel2Gen::Contextovictima",
             foreign_key: :victima_id,
