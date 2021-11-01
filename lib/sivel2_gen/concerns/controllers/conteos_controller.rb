@@ -1051,7 +1051,7 @@ module Sivel2Gen
               )
             end
             if (pExcluirCateRep == '1')
-              cats_repetidas = Sivel2Gen::Categoria.habilitados.where.not(contadaen: nil).pluck(:id)
+              cats_repetidas = Sivel2Gen::Categoria.habilitados.where(contadaen: nil).pluck(:id)
               where1 << "acto.id_categoria IN (#{cats_repetidas.join(', ')})"
             end
             if (pEtiqueta1 != '' || pEtiqueta2 != '')
