@@ -173,7 +173,8 @@ module Sivel2Gen
               ['Reporte Revista no bélicas HTML', 'reprevistanobelicas.html'],
               ['Reporte General HTML', 'repgeneral.html'],
               ['Exportar a XRLAT( XML)', 'reprevista.xrlat'],
-              ['Exportar a JSON', 'reprevista.json']
+              ['Exportar a JSON', 'reprevista.json'],
+              ['Exportar a CSV', 'reprevista.csv']
             ]
           end
 
@@ -323,7 +324,84 @@ module Sivel2Gen
             }
           end
 
-          def presenta_mas_index(format)
+          def presenta_mas_index(formato)
+            formato.csv {
+              atributos = %w{caso_id fecha ubicaciones victimas presponsables tipificacion memo}
+              r = CSV.generate(headers: true) do |csv|
+                csv << ["Identificacion", "Fecha", "Ubicaciones", "Víctimas", "Presuntos Responsables", "Tipificación", "Memo"]
+                fila = []
+                @conscaso.try(:each) do |caso|
+                  for i in atributos
+                    case i
+                    when 'victimas'
+                      vic = ''
+                      if caso[i]
+                        vic += caso[i]
+                      end 
+                      hayind = caso[i] && caso[i].strip.length > 0
+                      haycol = false 
+                      gps = Sivel2Gen::Victimacolectiva.where(id_caso: caso.caso_id).pluck(:id_grupoper)
+                      if gps.count> 0 && (!params || !params[:filtro] || 
+                        !params[:filtro][:inc_victimacol] || 
+                       params[:filtro][:inc_victimacol] != '0') 
+                        haycol = true
+                        if hayind 
+                          vic += '. '
+                        end 
+                        vic += Sip::Grupoper.where(id: gps).pluck(:nombre).join(", ")
+                      end
+                      com = Sivel2Gen::Combatiente.where(id_caso: caso.caso_id)
+                      if com.count > 0
+                        if hayind || haycol
+                          vic += '. '
+                        end
+                        vic += com.pluck(:nombre).join(", ")
+                      end
+                      fila << vic
+                    when 'tipificacion'
+                      tip = ''
+                      haytip = false 
+                      haycatcol = false
+                      if caso[i] && caso[i].strip.length > 0
+                        tip += caso[i]
+                        haytip = true
+                      end
+                      ids_catcol = Sivel2Gen::Actocolectivo.where(id_caso: caso.caso_id).pluck(:id_categoria)
+                      if ids_catcol.count > 0
+                        haycatcol = true 
+                        if haytip 
+                          tip += '. '
+                        end 
+                        catcol = Sivel2Gen::Categoria.where(id: ids_catcol) 
+                        tip += catcol.inject("") {|memo, r| 
+                         (memo == "" ? "" : memo + ", ") + 
+                         r.supracategoria.id_tviolencia + ':' +
+                         r.supracategoria.codigo.to_s + ':' +
+                         r.id.to_s + ' ' + r.nombre} 
+                      end 
+                      ids_casopres = Sivel2Gen::CasoPresponsable.where(id_caso: caso.caso_id).pluck(:id) 
+                      ids_cat = Sivel2Gen::CasoCategoriaPresponsable.where(id_caso_presponsable: ids_casopres).pluck(:id_categoria)
+                      if ids_cat.count > 0 
+                        if haytip || haycatcol
+                          tip += '. '
+                        end 
+                      catsinv = Sivel2Gen::Categoria.where(id: ids_cat) 
+                      tip += catsinv.inject("") {|memo, r| 
+                       (memo == "" ? "" : memo + ", ") + 
+                         r.supracategoria.id_tviolencia + ':' +
+                         r.supracategoria.codigo.to_s + ':' +
+                         r.id.to_s + ' ' + r.nombre}
+                      end 
+                      fila << tip
+                    else
+                      fila << caso.send(i)
+                    end
+                  end
+                  csv << fila
+                end
+              end
+              send_data r, filename: "casos-sivel2.csv" 
+            }
           end
 
           def presenta_index
@@ -377,6 +455,7 @@ module Sivel2Gen
                   render 'reprevista.xrlat'
                   return
                 }
+                
                 presenta_mas_index(format)
               else
                 format.html {
