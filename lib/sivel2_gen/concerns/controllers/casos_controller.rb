@@ -1,4 +1,5 @@
 require 'nokogiri'
+require 'csv'
 
 module Sivel2Gen
   module Concerns
