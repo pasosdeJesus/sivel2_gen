@@ -1,6 +1,5 @@
 
 require_relative 'boot'
-require 'csv'
 require 'rails/all'
 
 # Requiere gemas listas en el Gemfile, incluyendo las
