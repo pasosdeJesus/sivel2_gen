@@ -330,8 +330,8 @@ module Sivel2Gen
               atributos = %w{caso_id fecha ubicaciones victimas presponsables tipificacion memo}
               r = CSV.generate(headers: true) do |csv|
                 csv << ["Identificacion", "Fecha", "Ubicaciones", "Víctimas", "Presuntos Responsables", "Tipificación", "Memo"]
-                fila = []
                 @conscaso.try(:each) do |caso|
+                  fila = []
                   for i in atributos
                     case i
                     when 'victimas'
