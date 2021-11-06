@@ -2,7 +2,6 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-
 gem 'bcrypt'
 
 gem 'bootsnap', '>=1.1.0', require: false
