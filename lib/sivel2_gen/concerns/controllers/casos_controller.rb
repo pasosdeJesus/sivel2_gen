@@ -959,7 +959,10 @@ module Sivel2Gen
             enlace = docnoko_inicial.children[0].system_id
             pre = "http://sincodh.pasosdejesus.org/relatos/relatos-"
             aceptados = [pre + "097.dtd", pre + "098.dtd", pre + "099.dtd"]
+            #byebug
             if aceptados.include? enlace
+              # Adaptado de respuesta de the Tin Man de 
+              # https://nokogiri.org/tutorials/parsing_an_html_xml_document.html#encoding
               nuevo_doc = Nokogiri::XML('<relatos/>') do |config|
                 config.strict.noent
               end
@@ -972,13 +975,21 @@ module Sivel2Gen
               ## Verifica si sigue correctamente el dtd
               options = Nokogiri::XML::ParseOptions::DTDVALID
               doc_val = Nokogiri::XML::Document.parse(nuevo_doc.to_s, nil, nil, options)
-              errores_dtd = doc_val.external_subset.validate(doc_val)
-              if errores_dtd.count > 0
-                menserror << " Imposible importar relato(s). Su contenido no sigue el dtd: #{errores_dtd.join('. ')}"
+              if doc_val.nil? 
+                menserror << " Imposible importar relato(s). No pudo reconocer XML de #{nuevo_doc.to_s}}."
                 return false
               end
+              if !doc_val.external_subset.nil? 
+                errores_dtd = doc_val.external_subset.validate(doc_val)
+                if errores_dtd.count > 0
+                  menserror << " Imposible importar relato(s). Su contenido no sigue el dtd: #{errores_dtd.join('. ')}."
+                  return false
+                end
+              else
+                puts " Imposible importar relato(s). No tien subconjunto externo #{nuevo_doc.to_s}}."
+              end
             else
-              menserror << " Imposible importar relato(s). El enlace al dtd #{enlace} no corresponde a los aceptados"
+              menserror << " Imposible importar relato(s). El enlace al dtd #{enlace} no corresponde a los aceptados."
               return false
             end
             docnoko = nuevo_doc 
@@ -1005,6 +1016,7 @@ module Sivel2Gen
               else
                 @caso.save!
                 total_importados += 1
+                puts "OJO total_importados=#{total_importados}"
                 @etiquetaImp = Sivel2Gen::CasoEtiqueta.new
                 @etiquetaImp.id_caso = @caso.id
                 @etiquetaImp.id_etiqueta = Sip::Etiqueta.where(
