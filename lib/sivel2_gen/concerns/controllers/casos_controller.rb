@@ -14,7 +14,7 @@ module Sivel2Gen
           #  except: [:index, :show]
           helper Sip::UbicacionHelper
 
-          MAX_CASOS_REFRESCA_AUTOMATICO=10000
+          MAX_CASOS_REFRESCA_AUTOMATICO = 10000
 
           def registrar_en_bitacora
             true
@@ -1051,6 +1051,7 @@ module Sivel2Gen
             mensexito = ''
             ids_importados = ''
             importa_exito = Sivel2Gen::CasosController.importar_relato(
+
               doc, menserror, mensexito, ids_importados, current_usuario.id)
             if mensexito != ''
               flash[:success] = mensexito
@@ -1063,7 +1064,9 @@ module Sivel2Gen
               end
             end
             if menserror != ''
-              flash[:error]  = menserror
+              flash[:error]  = menserror.length > 1000 ? 
+                (menserror[0..1000] + '...') : menserror
+              puts "OJO menserror=#{menserror}"
             end
             if importa_exito != true
               redirect_to casos_path
