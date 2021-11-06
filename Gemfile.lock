@@ -11,7 +11,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/heb412_gen.git
-  revision: dc0e19cd43e760d303b2d36548077f8c0277320c
+  revision: 85c646df496cb54ef7e17fd40be396e3f41b326f
   branch: main
   specs:
     heb412_gen (1.0.b7)
@@ -31,7 +31,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sip.git
-  revision: c13e90196c7321167a61e459f5f8ac301a572aaf
+  revision: df87337baea91f074f95a9c69eed63d43a107dea
   branch: main
   specs:
     sip (2.0.b12)
@@ -190,7 +190,7 @@ GEM
     ffi (1.15.4)
     globalid (0.5.2)
       activesupport (>= 5.0)
-    i18n (1.8.10)
+    i18n (1.8.11)
       concurrent-ruby (~> 1.0)
     jbuilder (2.11.2)
       activesupport (>= 5.0.0)
@@ -341,7 +341,7 @@ GEM
       activemodel (>= 6.0.0)
       bindex (>= 0.4.0)
       railties (>= 6.0.0)
-    webpacker (6.0.0.rc.5)
+    webpacker (6.0.0.rc.6)
       activesupport (>= 5.2)
       rack-proxy (>= 0.6.1)
       railties (>= 5.2)
