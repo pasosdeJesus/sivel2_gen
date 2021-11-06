@@ -136,9 +136,8 @@ xml.relato do
   if caso.acto  
     caso.acto.each do |ac|
       xml.acto do
-        unless ac.categoria.pconsolidado.nil?
-          xml.agresion ac.categoria.pconsolidado.clasificacion
-        end
+        xml.agresion !ac.categoria.pconsolidado.nil? ?
+          ac.categoria.pconsolidado.clasificacion : 'OTRA'
         unless ac.categoria.nombre.nil? || ac.categoria.nombre.empty?
           xml.agresion_particular ac.categoria.nombre + ' (' + 
             ac.categoria.id.to_s + ')'
