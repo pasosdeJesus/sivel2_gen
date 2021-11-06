@@ -122,24 +122,11 @@
 
 <!ELEMENT combatiente (nombre?, alias?, edad?, sexo?, ocupacion?, filiacion?, sector_condicion?, organizacion?, organizacion_armada?, resultado_agresion?, observaciones*)>
 
-<!ELEMENT nombre (#PCDATA)>
-
-<!ELEMENT alias (#PCDATA)>
-
 <!ELEMENT edad (#PCDATA)>
 
-<!ELEMENT sexo (#PCDATA)>
-
-<!ELEMENT ocupacion (#PCDATA)>
-
 <!ELEMENT filiacion (#PCDATA)>
-
-<!ELEMENT sector_condicion (#PCDATA)>
-
-<!ELEMENT organizacion (#PCDATA)>
 
 <!ELEMENT organizacion_armada (#PCDATA)>
 
 <!ELEMENT resultado_agresion (#PCDATA)>
 
-<!ELEMENT observaciones (#PCDATA)>
