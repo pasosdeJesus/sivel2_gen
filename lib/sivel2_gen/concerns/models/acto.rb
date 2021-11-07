@@ -25,8 +25,16 @@ module Sivel2Gen
             d = datosent[1]
             if d['id_victima_individual']
               self.id_presponsable = d['id_presunto_responsable_individual'].to_i
+              if Sivel2Gen::Presponsable.where(id: self.id_presponsable).count == 0
+                menserror << "No pudo crear acto porque no existe presunto responsable #{self.id_presponsable}. "
+                return
+              end
               cate = d['agresion_particular'].split(" ")
               self.id_categoria = cate[-1].tr('()', '').to_i
+              if Sivel2Gen::Categoria.where(id: self.id_categoria).count == 0
+                menserror << "No pudo crear acto porque no existe categoria #{self.id_categoria}. "
+                return
+              end
               self.id_persona = victimas[d['id_victima_individual']]
               if self.save
                 self.save!          
