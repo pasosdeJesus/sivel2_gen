@@ -1002,8 +1002,8 @@ module Sivel2Gen
 
 
           def genconsulta_victimizaciones(
-            pFini, pFfin, pTviolencia, pEtiqueta1, pEtiqueta2, pExcluirCateRep, pSegun,
-            pDepartamento, pMunicipio)
+            pFini, pFfin, pTviolencia, pEtiqueta1, pEtiqueta2, pExcluirCateRep,
+            pSegun, pDepartamento, pMunicipio)
 
             tcons1 = 'cvt1'
             # La estrategia es 
