@@ -18,14 +18,14 @@ module Sivel2Gen
         af=" de #{fechaini.year}"
       end
       if fechaini.day == 1
-        mi = MES[fechaini.month]
+        mi = Sip::FormatoFechaHelper::MESES[fechaini.month]
       else
-        mi = "#{fechaini.day}/#{fecahini.month}"
+        mi = "#{fechaini.day}/#{fechaini.month}"
       end
       if fechafin.day == fechafin.end_of_month.day
-        mi = MES[fechaini.month]
+        mf = Sip::FormatoFechaHelper::MESES[fechafin.month]
       else
-        mi = "#{fechafin.day}/#{fechafin.month}"
+        mf = "#{fechafin.day}/#{fechafin.month}"
       end
       return mi + ai + " - " + mf + af
     end
@@ -48,7 +48,7 @@ module Sivel2Gen
 
       cons = Sivel2Gen::ConteosController::genconsulta_victimizaciones(
         pFini, pFfin, pTviolencia, pEtiqueta1, pEtiqueta2, nil,
-        1, nil
+        nil, 1, nil
       )
 
       r = ActiveRecord::Base.connection.select_all(
@@ -58,9 +58,17 @@ module Sivel2Gen
       r.each {|h| 
         @mapa_depcuenta[h['departamento_divipola']]=h['count']
       }
-      @mapadep_titulo = 'Victimizaciones'
-      @mapadep_subtitulo = nomrango(pFini ? Date.new(pFini) : @conscaso.min(fecha), 
-                                  pFfin ? Date.new(pFfin) : @conscas.max(fecha))
+      @mapadep_titulo = 'VICTIMIZACIONES'
+      if pTviolencia != ''
+        @mapadep_titulo += " POR " +
+          "#{Sivel2Gen::Tviolencia.find(pTviolencia).nombre}"
+      end
+      @mapadep_subtitulo = nomrango(pFini != '' ? 
+                                    Sip::FormatoFechaHelper::reconoce_adivinando_locale(pFini) : 
+                                    Sivel2Gen::Caso.all.minimum(:fecha), 
+                                    pFfin != '' ? 
+                                    Sip::FormatoFechaHelper::reconoce_adivinando_locale(pFfin) : 
+                                    Sivel2Gen::Caso.all.maximum(:fecha))
 
       respond_to do |format|
         format.html { render 'mapadep_victimizaciones', layout: 'application' }
