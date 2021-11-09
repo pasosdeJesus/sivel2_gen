@@ -174,9 +174,12 @@ module Sivel2Gen
               ['Reporte Revista no bélicas HTML', 'reprevistanobelicas.html'],
               ['Reporte General HTML', 'repgeneral.html'],
               ['Exportar a XRLAT( XML)', 'reprevista.xrlat'],
-              ['Exportar a JSON', 'reprevista.json'],
-              ['Exportar a CSV', 'reprevista.csv']
-            ]
+              ['Exportar a JSON', 'reprevista.json']]
+            if can? :exportaCSV, Sivel2Gen::Caso
+              @plantillas += [
+                ['Exportar a CSV', 'reprevista.csv']
+              ]
+            end
           end
 
          def vistas_manejadas
@@ -327,6 +330,7 @@ module Sivel2Gen
 
           def presenta_mas_index(formato)
             formato.csv {
+              authorize! :exportaCSV, Sivel2Gen::Caso
               atributos = %w{caso_id fecha ubicaciones victimas presponsables tipificacion memo}
               r = CSV.generate(headers: true) do |csv|
                 csv << ["Identificacion", "Fecha", "Ubicaciones", "Víctimas", "Presuntos Responsables", "Tipificación", "Memo"]
