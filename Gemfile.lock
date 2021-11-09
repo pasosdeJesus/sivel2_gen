@@ -141,6 +141,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.12.2)
+    color (1.8)
     colorize (0.8.1)
     compare-xml (0.5.2)
       nokogiri (~> 1.6)
@@ -362,6 +363,7 @@ DEPENDENCIES
   cancancan
   cocoon!
   coffee-rails
+  color
   colorize
   compare-xml (~> 0.5.2)
   devise

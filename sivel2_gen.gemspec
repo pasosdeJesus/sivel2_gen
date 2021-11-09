@@ -20,8 +20,9 @@ Gem::Specification.new do |s|
 
   s.add_dependency "jquery-rails"
 
-  s.add_runtime_dependency "rails"
+  s.add_runtime_dependency "color"
   s.add_runtime_dependency "devise"
+  s.add_runtime_dependency "rails"
 
   s.add_development_dependency "rspec-rails"
   s.add_development_dependency "capybara"

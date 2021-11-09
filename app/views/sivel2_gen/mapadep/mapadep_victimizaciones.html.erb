@@ -69,6 +69,19 @@
           input_html: { "data-contarautomatico" => "" }
         %>
       </div>
+      <div class="col-sm-3">
+        <% pom = Sip::ModeloHelper.poromision(params, :colormax) %>
+        <%= f.input :colormax, 
+          label: false,
+          inline_label: 'Color más oscuro',
+          input_html: {
+            "data-contarautomatico" => "",
+            type: 'color',
+            width: '2em',
+            value: pom == '' ? '#00ff00' : pom
+          } %>
+      </div>
+
 
     </div>
 

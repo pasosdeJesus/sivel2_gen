@@ -1,4 +1,9 @@
 <%= Sivel2Gen::VistaHelper::embeber_mapacalordepcol_svg(
-  @mapadep_titulo, @mapadep_subtitulo, @mapa_depcuenta
-) %>
+  @mapadep_titulo, @mapadep_subtitulo, @mapadep_titulorangos, 
+  @mapa_depcuenta, {
+    colormax_r: @mapadep_colormax_r,
+    colormax_v: @mapadep_colormax_v,
+    colormax_a: @mapadep_colormax_a
+  })
+%>
 
