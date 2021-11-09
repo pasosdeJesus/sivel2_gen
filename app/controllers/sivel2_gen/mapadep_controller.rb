@@ -45,6 +45,9 @@ module Sivel2Gen
         params, [:filtro, 'etiqueta1'])
       pEtiqueta2 = Sivel2Gen::ApplicationHelper.param_escapa(
         params, [:filtro, 'etiqueta2'])
+      pColormax = Sivel2Gen::ApplicationHelper.param_escapa(
+        params, [:filtro, 'colormax'])
+
 
       cons = Sivel2Gen::ConteosController::genconsulta_victimizaciones(
         pFini, pFfin, pTviolencia, pEtiqueta1, pEtiqueta2, nil,
@@ -69,6 +72,12 @@ module Sivel2Gen
                                     pFfin != '' ? 
                                     Sip::FormatoFechaHelper::reconoce_adivinando_locale(pFfin) : 
                                     Sivel2Gen::Caso.all.maximum(:fecha))
+      colormax = Color::RGB.from_html(pColormax == '' ? '#00ff00' : pColormax)
+      @mapadep_colormax_r = colormax.red.to_i
+      @mapadep_colormax_v = colormax.green.to_i
+      @mapadep_colormax_a = colormax.blue.to_i
+      
+      @mapadep_titulorangos = 'Rango de victimizaciones'
 
       respond_to do |format|
         format.html { render 'mapadep_victimizaciones', layout: 'application' }

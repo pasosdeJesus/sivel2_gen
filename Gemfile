@@ -13,6 +13,8 @@ gem 'cocoon', git: 'https://github.com/vtamara/cocoon.git',
 
 gem 'coffee-rails' # CoffeeScript para recuersos .js.coffee y vistas
 
+gem 'color' # Maneja colores RGB
+
 gem 'jbuilder' # API JSON facil. Ver: https://github.com/rails/jbuilder
 
 gem 'devise' # Autenticación 
