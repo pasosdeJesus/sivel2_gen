@@ -8,12 +8,12 @@
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    id="svg2"
-   viewBox="0 0 760 1050"
+   viewBox="0 0 760 1080"
    version="1.1"
    sodipodi:docname="mapacalordep.svg"
    inkscape:version="1.0.2 (e86c870879, 2021-01-15)"
    width="760"
-   height="1050">
+   height="1080">
   <sodipodi:namedview
      pagecolor="#ffffff"
      bordercolor="#666666"
@@ -1384,11 +1384,27 @@
        stroke-width="0.2"
        fill="#000000"
        >61 - 115</text>
+    <text
+       id="titulo-rangos"
+       font-size="14px"
+       font-weight="500"
+       font-family="DejaVu Serif"
+       xml:space="preserve"
+       transform="scale(1.0194048,0.98096458)"
+       line-height="90%"
+       stroke="#000000"
+       y="1070"
+       x="95%"
+       text-anchor="end"
+       stroke-width="0.749996"
+       fill="#000000"
+       >Fuente: SIADDHH  </text>
+
     <rect
        style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-opacity:1"
        id="rect-todo"
        width="760"
-       height="1050"
+       height="1080"
        x="9.5923269e-14"
        y="3.5527137e-14" />
   </g>
@@ -1414,7 +1430,7 @@
      x="26.76647"
      y="814.3692" />
   <rect
-     style="fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;image-rendering:auto",
+     style="fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;image-rendering:auto"
      fill="#e8e8fb"
      id="colorrango1"
      width="42.20956"
@@ -1439,7 +1455,7 @@
      y="960.07562" />
   <rect
      style="fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;image-rendering:auto"
-     fill="#0000f0";
+     fill="#0000f0"
      id="colorrango4"
      width="42.20956"
      height="18.892853"
