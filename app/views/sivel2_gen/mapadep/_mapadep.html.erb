@@ -1,9 +1,11 @@
-<%= Sivel2Gen::VistaHelper::embeber_mapacalordepcol_svg(
-  @mapadep_titulo, @mapadep_subtitulo, @mapadep_titulorangos, 
-  @mapa_depcuenta, {
-    colormax_r: @mapadep_colormax_r,
-    colormax_v: @mapadep_colormax_v,
-    colormax_a: @mapadep_colormax_a
-  })
-%>
-
+<div id="mapadep-svg">
+  <% s = Sivel2Gen::VistaHelper::embeber_mapacalordepcol_svg(
+    @mapadep_titulo, @mapadep_subtitulo, @mapadep_titulorangos, 
+    @mapa_depcuenta, {
+      colormax_r: @mapadep_colormax_r,
+      colormax_v: @mapadep_colormax_v,
+      colormax_a: @mapadep_colormax_a
+    }) %>
+  <%= s %>
+</div>
+<a class='btn btn-sm' download='mapadep.svg' href='data:image/svg;base64,<%= Base64.encode64(s) %>'>Descargar</a>
