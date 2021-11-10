@@ -78,6 +78,7 @@ module Sivel2Gen
       @mapadep_colormax_a = colormax.blue.to_i
       
       @mapadep_titulorangos = 'Rango de victimizaciones'
+      @mapadep_fuente = 'Fuente: Banco de Datos de Derechos Humanos, DIH y Violencia Política del CINEP www.nocheyniebla.org'
 
       respond_to do |format|
         format.html { render 'mapadep_victimizaciones', layout: 'application' }

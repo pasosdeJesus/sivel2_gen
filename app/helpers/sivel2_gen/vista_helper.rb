@@ -28,6 +28,7 @@ module Sivel2Gen
     # @param titulo Por centrar
     # @param subtitulo Por centrar
     # @param titulorangos Titulo del cuadro de rangos
+    # @param fuente Fuente de datos
     # @param cantidadesdep Cantidad por mostrar en cada departamento
     # @param opciones Entre ellas puede estar: 
     #   :colormax_r, :colormax_v, :colormax_a Componentes rojo, verde y azul de
@@ -36,7 +37,7 @@ module Sivel2Gen
     #
     # Tomo ideas para manipulación svg de 
     # https://thoughtbot.com/blog/organized-workflow-for-svg
-    def embeber_mapacalordepcol_svg(titulo, subtitulo, titulorangos,
+    def embeber_mapacalordepcol_svg(titulo, subtitulo, titulorangos, fuente,
                                     cantidadesdep, opciones = {})
       # Color más oscuro (para rango4)
       cr = 0
@@ -93,6 +94,11 @@ module Sivel2Gen
         #sub['x']='50%'
         #sub['text-anchor'] = 'middle'
       end
+      tfuente = svg.at_css('#fuente')
+      if tfuente && fuente
+        tfuente.content = fuente
+      end
+
 
       min = 0
       max = 0
