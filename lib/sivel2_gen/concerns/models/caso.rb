@@ -138,6 +138,7 @@ module Sivel2Gen
           campofecha_localizado :fecha
 
           validates_presence_of :fecha
+          validates_presence_of :memo, on: :update, message: 'La descripción del caso no debe estar vacía'
           validates :titulo, length: { maximum: 50 }
           validates :hora, length: { maximum: 10 }
           validates :duracion, length: { maximum: 10 }
@@ -145,20 +146,10 @@ module Sivel2Gen
           validates :gresclarecimiento, length: { maximum: 5 }
           validates :grimpunidad, length: { maximum: 8 }
           validates :grinformacion, length: { maximum: 8 }
-          validate :caso_vacio
           validate :categoria_presponsable
           validate :fuenteprensa_fecha_y_fuente_unicas
           validate :fecha_no_futura 
 
-          def caso_vacio
-            if (self.fecha.to_s == Date.today.to_s) && (self.titulo = "") && 
-            (self.hora = "") && (self.duracion == "") && (self.memo == "") && 
-            (self.grconfiabilidad == "") && (self.gresclarecimiento == "") && 
-            (self.grimpunidad == "") && (self.grinformacion == "") && 
-            (self.bienes == "")
-              errors.add(:base, 'El caso no debería estar vacío')
-            end
-          end
           def fecha_no_futura
             if self.fecha && self.fecha > Date.today
               errors.add(:fecha, 'La fecha del caso no puede ser futura')
