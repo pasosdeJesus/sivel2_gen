@@ -68,8 +68,8 @@ xml.relato do
   if caso.caso_presponsable
     caso.caso_presponsable.each do |cpr|
       xml.grupo do
-        xml.id_grupo cpr.presponsable.id
-        xml.nombre_grupo cpr.presponsable.nombre
+        xml.id_grupo cpr.presponsable.id if cpr.presponsable
+        xml.nombre_grupo cpr.presponsable.nombre if cpr.presponsable
         ['batallon', 'brigada', 'bloque', 'frente', 'division', 
          'otro'].each do |ob|
           xml.observaciones(cpr[ob], {tipo: ob}) if cpr[ob]
@@ -161,7 +161,7 @@ xml.relato do
           acol.categoria.id.to_s + ')'
       end
       xml.id_grupo_victima acol.grupoper.id
-      xml.id_presunto_grupo_responsable acol.presponsable.id
+      xml.id_presunto_grupo_responsable acol.presponsable.id if acol.presponsable
     end
   end
 
