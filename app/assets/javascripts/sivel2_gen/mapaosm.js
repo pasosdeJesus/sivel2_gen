@@ -196,11 +196,11 @@ function agregarCasosOsm(usuario_autenticado) {
     for(var codigo in o) {
       var lat = o[codigo].latitud;
       var lng = o[codigo].longitud;
-      if (lat == null || lat == '') {
-        lat = '0';
+      if (lat == null || lat == '' || lat == 'NaN') {
+        continue;
       }
-      if (lng == null || lng == '') {
-        lng = '0';
+      if (lng == null || lng == '' || lng == 'NaN') {
+        continue;
       }
       latf = parseFloat(lat);
       lngf = parseFloat(lng);
