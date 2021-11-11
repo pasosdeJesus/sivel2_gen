@@ -269,6 +269,7 @@ module Sivel2Gen
               Sip::Orgsocial
             habilidad.can :read, Sip::Bitacora
             habilidad.can :manage, Sip::Persona
+            habilidad.can :manage, Sip::Grupoper
 
             habilidad.can :manage, Sivel2Gen::Acto
             habilidad.can :manage, Sivel2Gen::Actocolectivo
@@ -282,6 +283,7 @@ module Sivel2Gen
             habilidad.can :read, Sip::Orgsocial
             habilidad.can :read, Sip::Bitacora, usuario: { id: usuario.id }
             habilidad.can :read, Sip::Persona
+            habilidad.can :read, Sip::Grupoper
 
             habilidad.can :read, Sivel2Gen::Acto
             habilidad.can :read, Sivel2Gen::Actocolectivo
@@ -329,6 +331,7 @@ module Sivel2Gen
           habilidad.can :manage, Sip::Orgsocial
           habilidad.can :manage, Sip::Bitacora
           habilidad.can :manage, Sip::Persona
+          habilidad.can :manage, Sip::Grupoper
           habilidad.can :manage, Sip::Respaldo7z
 
           habilidad.can :manage, Sivel2Gen::Acto
