@@ -138,7 +138,8 @@ module Sivel2Gen
           campofecha_localizado :fecha
 
           validates_presence_of :fecha
-          validates_presence_of :memo, on: :update, message: 'La descripción del caso no debe estar vacía'
+          validates_presence_of :memo, on: :update, 
+            message: 'La descripción del caso no debe estar vacía'
           validates :titulo, length: { maximum: 50 }
           validates :hora, length: { maximum: 10 }
           validates :duracion, length: { maximum: 10 }
