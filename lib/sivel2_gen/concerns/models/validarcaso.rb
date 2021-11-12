@@ -9,6 +9,7 @@ module Sivel2Gen
           include ActiveModel::Model
           attr_accessor :fechaini
           attr_accessor :fechafin
+          attr_accessor :etiqueta_id
         end
 
       end
