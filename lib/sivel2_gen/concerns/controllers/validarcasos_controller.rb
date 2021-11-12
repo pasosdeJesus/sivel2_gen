@@ -54,7 +54,7 @@ module Sivel2Gen
                )
               casos = casos.where('sivel2_gen_caso.id IN (SELECT id_caso FROM 
                                   sivel2_gen_caso_etiqueta 
-                                  WHERE id_etiqueta=?', 
+                                  WHERE id_etiqueta=?)', 
                                   params[:validarcaso][:etiqueta_id].to_i)
             end
            return casos 
@@ -272,7 +272,8 @@ module Sivel2Gen
           def validarcasos_params
             params.require(:validarcaso).permit(
               :fechafin,
-              :fechaini
+              :fechaini,
+              :etiqueta
             )
           end
 
