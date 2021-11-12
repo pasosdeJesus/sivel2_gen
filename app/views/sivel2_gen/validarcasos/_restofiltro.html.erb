@@ -1,14 +1,14 @@
 
 <div class="row filtro-fila">
-  <div class="offset-sm-0 col-sm-4">
+  <div class="offset-sm-0 col-sm-2 offset-md-1 col-md-1">
     Etiqueta
   </div>
   <div class="offset-sm-0 col-sm-4">
-    <%= f.input :etiqueta,
+    <%= f.input :etiqueta_id,
       collection: Sip::Etiqueta.habilitados,
       selected: (
         params[:validarcaso] ? 
-        params[:validarcaso][:etiqueta] :
+        params[:validarcaso][:etiqueta_id] :
         ''
       ),
       include_blank: true,
