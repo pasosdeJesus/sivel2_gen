@@ -144,10 +144,16 @@ module Sivel2Gen
           validate :categoria_presponsable
           validate :fuenteprensa_fecha_y_fuente_unicas
           validate :fecha_no_futura, 
+          validate :caso_no_vacio  # Con función para posibilitar sobrecargar
+
+          def caso_no_vacio
+            if self.memo.nil? || self.memo == ''
+              errors.add(:memo, 'La descripción del caso no debe estar vacía')
+            end
+          end
 
           def fecha_no_futura
             if self.fecha && self.fecha > Date.today
-              errors.add(:fecha, 'La fecha del caso no puede ser futura')
             end
           end
           def fuenteprensa_fecha_y_fuente_unicas
