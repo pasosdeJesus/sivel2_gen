@@ -500,7 +500,7 @@ module Sivel2Gen
           def new_sivel2_gen
             @caso.current_usuario = current_usuario
             @caso.fecha = DateTime.now.strftime('%Y-%m-%d')
-            @caso.memo = ''
+            @caso.memo = ' '
             @caso.save!
             @formulario_sin_titulo = true
             cu = CasoUsuario.new
