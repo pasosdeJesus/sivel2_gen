@@ -13,7 +13,7 @@ module Sivel2Gen
 
     PRUEBA_CASOV = {
       fecha: "2014-11-19", 
-      memo: "", 
+      memo: "x", 
       created_at: "2014-11-11" 
     }
 

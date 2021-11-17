@@ -5,7 +5,7 @@ module Sivel2Gen
 
     PRUEBA_CASO= {
       fecha: "2014-11-05",
-      memo: "",
+      memo: "x",
       created_at: "2014-11-05",
     }
 

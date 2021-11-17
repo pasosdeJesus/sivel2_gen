@@ -141,10 +141,10 @@ module Sivel2Gen
           validates :gresclarecimiento, length: { maximum: 5 }
           validates :grimpunidad, length: { maximum: 8 }
           validates :grinformacion, length: { maximum: 8 }
+          validate :caso_no_vacio  # Con función para posibilitar sobrecargar
           validate :categoria_presponsable
           validate :fuenteprensa_fecha_y_fuente_unicas
-          validate :fecha_no_futura, 
-          validate :caso_no_vacio  # Con función para posibilitar sobrecargar
+          validate :fecha_no_futura
 
           def caso_no_vacio
             if self.memo.nil? || self.memo == ''
