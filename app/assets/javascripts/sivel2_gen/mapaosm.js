@@ -246,15 +246,7 @@ function agregarCasosOsm(usuario_autenticado) {
         ocultarCargador();
       });
     }
-    else{
-      alert("La fecha Final debe ser mas antigua que la inicial");
-      window.location.reload();
-    } 
-  /*}
-  else{
-    alert("La fecha Final e Inicial debe existir");
-    window.location.reload();
-  }*/ 
+  })
 }
 
 function creaMarcador(punto, codigo, titulo) {
