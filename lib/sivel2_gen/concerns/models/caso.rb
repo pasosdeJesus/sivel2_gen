@@ -148,7 +148,7 @@ module Sivel2Gen
           validate :categoria_presponsable
           validate :fuenteprensa_fecha_y_fuente_unicas
           validate :fecha_no_futura 
-          validate :caso_no_vacio  # Con función para posibilitar sobrecargar
+          validate :caso_no_vacio, on: :update  # Con función para posibilitar sobrecargar
 
           def caso_no_vacio
             if self.memo.nil? || self.memo == ''
