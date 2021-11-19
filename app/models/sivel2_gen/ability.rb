@@ -276,7 +276,7 @@ module Sivel2Gen
             habilidad.can [:read, :new, :edit, :update, :create, :nuevo, :destroy], Sivel2Gen::Caso
 
             habilidad.cannot :solocambiaretiquetas, Sivel2Gen::Caso
-            habilidad.can [:validar, :refresca], Sivel2Gen::Caso
+            habilidad.can [:refresca, :validar], Sivel2Gen::Caso
 
             habilidad.can :read, Sivel2Gen::Victima
           else
