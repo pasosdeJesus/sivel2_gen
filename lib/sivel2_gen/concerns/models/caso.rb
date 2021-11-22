@@ -193,6 +193,20 @@ module Sivel2Gen
             actos.each do |acto|
               tv = acto.categoria.supracategoria.id_tviolencia
               pr = acto.presponsable.id
+              cat = acto.categoria
+              ce = cat.contadaen if cat
+              if ce != nil
+                actos_hermanos = actos.where.not(id: acto.id)
+                vale = false
+                actos_hermanos.each do |ah|
+                  if ah.persona == acto.persona && ah.presponsable == acto.presponsable && ah.categoria.id == ce
+                    vale = true
+                  end
+                end
+                if !vale
+                  errors.add(:id_categoria, "No se encuentran actos equivalentes para actos con categorías ya contadas en otros actos.")
+                end
+              end
               if tv == "A" && !descpe_ids.include?(pr) then
                 errors.add(:acto, "Si el tipo de violencia es "\
                            "Derechos Humanos el presunto responsable debe "\
