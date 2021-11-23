@@ -29,12 +29,18 @@
       xtitle: @ejex,
       ytitle: 'Víctimas',
       colors: [defined?(@colorg) && @colorg != '' ? @colorg : '#00ff00']
-    }
+  }
+
+  controller.persona_ajusta_serie_opciones(serie, opciones)
   %>
 
 <div class="row">
   <div class="col-12">
-    <%= column_chart(serie, opciones) %>  
+    <% if @pDepartamento == "1" %>
+      <%= bar_chart(serie, opciones) %>  
+    <% else %>
+      <%= column_chart(serie, opciones) %>  
+    <% end %>
   </div>
 </div>
 

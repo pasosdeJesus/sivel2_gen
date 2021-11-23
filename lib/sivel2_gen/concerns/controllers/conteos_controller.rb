@@ -100,6 +100,9 @@ module Sivel2Gen
           @pMunicipio = ''
           @pSegun = ''
 
+          def persona_ajusta_serie_opciones(serie, opciones)
+          end
+
           def personas_cons1 
             'public.cben1'
           end
