@@ -176,6 +176,7 @@ module Sivel2Gen
         cr4['fill'] = color4
       end
 
+      sindep = 0
       Sip::Departamento.where(id_pais: 170).each do |dep|
         cant = 0
         if cantidadesdep.keys.include?(dep.id_deplocal)
@@ -189,6 +190,8 @@ module Sivel2Gen
           else
             ud.content=''
           end
+        else
+          sindep += cant
         end
 
         md = svg.at_css('#mixtidep' + dep.id_deplocal.to_s)
@@ -210,6 +213,23 @@ module Sivel2Gen
         #        nd['fill']='#0f0'
         #        nd.content=dep.nombre + ' ' + dep.id_deplocal.to_s
         #      end
+      end
+      if sindep > 0
+        md = svg.at_css('#mixtidep0')
+        if md && sindep > 0
+          if r4.include?(sindep)
+            md['fill'] = color4
+          elsif r3.include?(sindep)
+            md['fill'] = color3
+          elsif r2.include?(sindep)
+            md['fill'] = color2
+          elsif r1.include?(sindep)
+            md['fill'] = color1
+          else
+            puts "** OJO Algo falló en calculo de rangos porque #{sindep} no está en ninguno"
+          end
+        end
+
       end
       r= doc.to_s.html_safe
       return r

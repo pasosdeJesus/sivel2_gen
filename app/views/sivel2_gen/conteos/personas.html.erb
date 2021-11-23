@@ -112,12 +112,16 @@
         %>
       </div>
     </div>
+    <%= render partial: 'sivel2_gen/conteos/personas_resto_formulario', 
+      locals: {f: f} %>
+
     <div class="row filtro-fila">
       <div class="offset-md-5 col-md-2">
         <%= f.button :submit, 'Contar', class: 'btn btn-default' %>
       </div>
     </div>
   </div>
+
 <% end %>
 
 <hr>

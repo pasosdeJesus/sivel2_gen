@@ -10,7 +10,7 @@ module Sivel2Gen
 
           # Control de acceso no estándar en función
 
-          def nomrango(fechaini, fechafin)
+          def self.nomrango(fechaini, fechafin)
             if fechaini > fechafin
               return 'fechaini > fechafin'
             end
@@ -78,12 +78,13 @@ module Sivel2Gen
               @mapadep_titulo += " POR " +
                 "#{Sivel2Gen::Tviolencia.find(pTviolencia).nombre}"
             end
-            @mapadep_subtitulo = nomrango(pFini != '' ? 
-                                          Sip::FormatoFechaHelper::reconoce_adivinando_locale(pFini) : 
-                                          Sivel2Gen::Caso.all.minimum(:fecha), 
-                                          pFfin != '' ? 
-                                          Sip::FormatoFechaHelper::reconoce_adivinando_locale(pFfin) : 
-                                          Sivel2Gen::Caso.all.maximum(:fecha))
+            @mapadep_subtitulo = Sivel2Gen::MapadepController.nomrango(
+              pFini != '' ? 
+              Sip::FormatoFechaHelper::reconoce_adivinando_locale(pFini) : 
+              Sivel2Gen::Caso.all.minimum(:fecha), 
+              pFfin != '' ? 
+              Sip::FormatoFechaHelper::reconoce_adivinando_locale(pFfin) : 
+              Sivel2Gen::Caso.all.maximum(:fecha))
             colormax = Color::RGB.from_html(pColormax == '' ? '#00ff00' : pColormax)
             @mapadep_colormax_r = colormax.red.to_i
             @mapadep_colormax_v = colormax.green.to_i
