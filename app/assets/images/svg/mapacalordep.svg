@@ -1314,6 +1314,35 @@
        stroke-width="0.749996"
        fill="#000000"
        >Rango de agresiones</text>
+
+    <text
+       id="nomdep0"
+       font-size="8.08016px"
+       font-weight="500"
+       font-family="Ubuntu"
+       xml:space="preserve"
+       style="text-align:center;text-anchor:middle"
+       transform="scale(1.0194048,0.98096458)"
+       stroke="#000000"
+       line-height="90%"
+       y="940"
+       x="668"
+       stroke-width="0.749996"
+       fill="#000">SIN DEPARTAMENTO</text>
+    <text
+       id="numdep0"
+       font-size="8.08016px"
+       font-weight="500"
+       font-family="Ubuntu"
+       xml:space="preserve"
+       transform="scale(1.0194048,0.98096458)"
+       line-height="90%"
+       stroke="#000000"
+       y="955"
+       x="660"
+       stroke-width="0.749996"
+       fill="#000">0</text>
+
     <text
        id="rango0"
        font-size="14px"
@@ -1429,6 +1458,18 @@
      height="208.53322"
      x="26.76647"
      y="814.3692" />
+  <rect
+     id="mixtidep0"
+     width="100"
+     height="50"
+     x="630"
+     y="900"
+     stroke="#000000"
+     stroke-miterlimit="4"
+     stroke-width="0.75"
+     fill-opacity="0"
+     />
+
   <rect
      style="fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;image-rendering:auto"
      fill="#e8e8fb"
