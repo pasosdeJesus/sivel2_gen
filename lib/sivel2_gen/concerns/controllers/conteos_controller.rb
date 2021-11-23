@@ -382,9 +382,14 @@ module Sivel2Gen
 
             return ["CREATE VIEW #{personas_cons2} AS SELECT #{personas_cons1}.*,
             ubicacion.id_departamento, 
+            departamento.id_deplocal AS departamento_divipola,
             departamento.nombre AS departamento_nombre, 
-            ubicacion.id_municipio, municipio.nombre AS municipio_nombre, 
-            ubicacion.id_clase, clase.nombre AS clase_nombre
+            ubicacion.id_municipio, 
+            municipio.id_munlocal AS municipio_divipola,
+            municipio.nombre AS municipio_nombre, 
+            ubicacion.id_clase, 
+            clase.id_clalocal AS clase_divipola,
+            clase.nombre AS clase_nombre
             FROM
             #{personas_cons1} JOIN sivel2_gen_caso AS caso ON
               (#{personas_cons1}.id_caso = caso.id) 
@@ -396,7 +401,7 @@ module Sivel2Gen
               (ubicacion.id_municipio=municipio.id)
             LEFT JOIN sip_clase AS clase ON 
               (ubicacion.id_clase=clase.id)
-            GROUP BY 1,2,3,4,5,6,7,8,9,10,11", que3, tablas3, where3]
+            GROUP BY 1,2,3,4,5,6,7,8,9,10,11,12,13,14", que3, tablas3, where3]
           end
 
           # Genera q3 y llena @coltotales
@@ -427,6 +432,9 @@ module Sivel2Gen
             return que1, tablas1, where1
           end
 
+            
+          def personas_post_consulta_final
+          end
 
           def personas
             authorize! :contar, Sivel2Gen::Caso
@@ -524,6 +532,8 @@ module Sivel2Gen
                 @enctabla << CGI.escapeHTML(t[1])
               end
             end
+
+            personas_post_consulta_final
 
             respond_to do |format|
               format.html { render 'sivel2_gen/conteos/personas', layout: 'application' }
