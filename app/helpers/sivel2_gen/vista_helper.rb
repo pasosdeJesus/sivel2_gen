@@ -214,23 +214,31 @@ module Sivel2Gen
         #        nd.content=dep.nombre + ' ' + dep.id_deplocal.to_s
         #      end
       end
-      if sindep > 0
-        md = svg.at_css('#mixtidep0')
-        if md && sindep > 0
-          if r4.include?(sindep)
-            md['fill'] = color4
-          elsif r3.include?(sindep)
-            md['fill'] = color3
-          elsif r2.include?(sindep)
-            md['fill'] = color2
-          elsif r1.include?(sindep)
-            md['fill'] = color1
-          else
-            puts "** OJO Algo falló en calculo de rangos porque #{sindep} no está en ninguno"
-          end
-        end
 
+      ud = svg.at_css('#numdep0')
+      if ud
+        if sindep > 0
+          ud.content="#{sindep}"
+        else
+          ud.content=''
+        end
       end
+
+      md = svg.at_css('#mixtidep0')
+      if md && sindep > 0
+        if r4.include?(sindep)
+          md['fill'] = color4
+        elsif r3.include?(sindep)
+          md['fill'] = color3
+        elsif r2.include?(sindep)
+          md['fill'] = color2
+        elsif r1.include?(sindep)
+          md['fill'] = color1
+        else
+          puts "** OJO Algo falló en calculo de rangos porque #{sindep} no está en ninguno"
+        end
+      end
+
       r= doc.to_s.html_safe
       return r
     end
