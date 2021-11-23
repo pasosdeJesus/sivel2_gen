@@ -1,6 +1,6 @@
 <footer>
   <ul>
-    <li>En este conteo están víctimas diferentes, cada una de un caso con
+    <li>Este conteo se diseñó para víctimas diferentes, cada una de un caso con
         ubicación principal. </li>
     <% csinu = Sivel2Gen::Caso.where(ubicacion_id: nil).count %>
     <% vsinu = Sivel2Gen::Victima.joins(:caso).
