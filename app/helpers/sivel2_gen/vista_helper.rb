@@ -177,6 +177,12 @@ module Sivel2Gen
       end
 
       sindep = 0
+      cantidadesdep.each do |iddep, v|
+        if Sip::Departamento.where(id_pais: 170).where(id_deplocal: iddep).count == 0
+          sindep += v.to_i
+        end
+      end
+
       Sip::Departamento.where(id_pais: 170).each do |dep|
         cant = 0
         if cantidadesdep.keys.include?(dep.id_deplocal)
