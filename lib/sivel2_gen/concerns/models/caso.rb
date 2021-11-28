@@ -204,7 +204,7 @@ module Sivel2Gen
                   end
                 end
                 if !vale
-                  errors.add(:id_categoria, "No se encuentran actos equivalentes para actos con categorías ya contadas en otros actos.")
+                  errors.add(:id_categoria, "Falta categoría #{ce} requerida por categoría #{cat.id}.")
                 end
               end
               if tv == "A" && !descpe_ids.include?(pr) then
