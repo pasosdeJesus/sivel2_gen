@@ -215,6 +215,7 @@ module Sivel2Gen
         habilidad.can :buscar, Sivel2Gen::Caso
         habilidad.can :contar, Sivel2Gen::Caso
         habilidad.can :lista, Sivel2Gen::Caso
+        habilidad.can :fotopublica, Sivel2Gen::Caso
 
         # API público
         # Mostrar un caso con casos/101
