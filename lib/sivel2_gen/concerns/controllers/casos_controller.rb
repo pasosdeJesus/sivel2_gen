@@ -324,7 +324,7 @@ module Sivel2Gen
               Rails.configuration.x.sivel2_consweb_max.to_s : '0' }"\
               " registros. "\
               " #{Rails.configuration.x.sivel2_consweb_epilogo ? 
-              Rails.configuration.x.sivel2_consweb_epilogo : ''}".html_safe
+              Rails.configuration.x.sivel2_consweb_epilogo : ''}"
             }
           end
 
