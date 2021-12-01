@@ -10,12 +10,13 @@ module Sivel2Gen
       if arbol[:hijos].count > 0
         subarbol = "<ul>\n".html_safe + arbol[:hijos].map{|h| 
           "<li>".html_safe + 
-            presenta_arbol_presp_ul_li(nivel+1, h) +
+            presenta_arbol_presp_ul_li(nivel+1, h)+
             "</li>".html_safe
-        }.join("\n") +
+        }.join("\n").html_safe +
         "</ul>\n".html_safe
       end
-      return arbol[:nombre] + "\n" + subarbol
+      r = CGI::escapeHTML(arbol[:nombre]) + "\n" + subarbol
+      return r.html_safe
     end
     module_function :presenta_arbol_presp_ul_li
 
