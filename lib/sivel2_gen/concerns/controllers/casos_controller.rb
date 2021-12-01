@@ -315,7 +315,7 @@ module Sivel2Gen
               Rails.configuration.x.sivel2_consweb_max.to_s : '0' }"\
               " registros. "\
               " #{Rails.configuration.x.sivel2_consweb_epilogo ? 
-              Rails.configuration.x.sivel2_consweb_epilogo : ''}".html_safe
+              Rails.configuration.x.sivel2_consweb_epilogo : ''}"
             }
           end
 
@@ -709,7 +709,7 @@ module Sivel2Gen
                 if Sivel2Gen::Caso.count > MAX_CASOS_REFRESCA_AUTOMATICO
                   notificacion += "  Por la cantidad de casos "+
                     " debe Refrescar para notar " +
-                    " el cambio en el listado de casos".html_safe
+                    " el cambio en el listado de casos"
                 end
                 format.html {
                   redirect_to @caso,
@@ -772,7 +772,7 @@ module Sivel2Gen
             if Sivel2Gen::Caso.count > MAX_CASOS_REFRESCA_AUTOMATICO
               notificacion += "  Por la cantidad de casos "+
                 " debe Refrescar para notar " +
-                " el cambio en el listado de casos".html_safe
+                " el cambio en el listado de casos"
             end
             respond_to do |format|
               format.html { redirect_to casos_path, notice: notificacion }
