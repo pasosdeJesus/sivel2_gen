@@ -19,7 +19,8 @@ module Sivel2Gen
           where('sivel2_gen_supracategoria.id=sivel2_gen_categoria.supracategoria_id 
               AND sivel2_gen_categoria.fechadeshabilitacion is NULL 
               AND sivel2_gen_categoria.tipocat=\'I\'').
-              reorder('sivel2_gen_supracategoria.id_tviolencia', :id).pluck(:nombre).uniq 
+              reorder('sivel2_gen_supracategoria.id_tviolencia', :id).
+              pluck(:nombre).uniq 
         @vic_categorias = (params[:filtro] ? params[:filtro][:categorias] : @categorias) - [""]
         @vic_sexo = (params[:filtro] ? params[:filtro][:sexo] : Sip::Persona::SEXO_OPCIONES.map{|se| se[1].to_s}) - [""]
 
@@ -33,20 +34,20 @@ module Sivel2Gen
           AND caso.fecha >='" + @vic_fechaini + "'
           AND caso.fecha <='" + @vic_fechafin + "'
           #{filtros} 
-          GROUP BY fecha_caso ORDER BY fecha_caso;"
+          GROUP BY 1 ORDER BY fecha_caso;"
         end
 
         def consulta_totsex
           "select persona.sexo as sexo_persona, count(*) as total from cvt1
           JOIN sip_persona AS persona ON persona.id=id_persona 
-          GROUP BY sexo_persona 
+          GROUP BY 1
           ORDER BY persona.sexo='S', persona.sexo='M', persona.sexo='F';"
         end
 
         def consulta_totcat
           "select categoria.nombre as categoria_nom, count(*) as total from cvt1
           JOIN sivel2_gen_categoria AS categoria ON categoria.id=id_categoria
-          GROUP BY categoria_nom;"
+          GROUP BY 1;"
         end
 
         def consulta_totdep
@@ -54,7 +55,7 @@ module Sivel2Gen
           JOIN sivel2_gen_caso as caso ON caso.id=id_caso 
           JOIN sip_ubicacion as ubi ON ubi.id=caso.ubicacion_id
           JOIN sip_departamento as departamento ON departamento.id=ubi.id_departamento
-          GROUP BY departamento_nombre;"
+          GROUP BY 1;"
         end
 
         def graficar_sexo
@@ -107,7 +108,8 @@ module Sivel2Gen
                 series_gen.push(predep)
               end
             end
-            @valores_tot = ActiveRecord::Base.connection.execute(consulta_totdep).values.to_h
+            @valores_tot = ActiveRecord::Base.connection.execute(
+              consulta_totdep).values.to_h
             @opciones_tot = {
               titulo: 'Victimizaciones por departamento',
               ejex: 'Departamentos',
