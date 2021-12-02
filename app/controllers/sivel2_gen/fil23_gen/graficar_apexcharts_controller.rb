@@ -13,7 +13,7 @@ module Sivel2Gen
         @vic_fechaini = params[:filtro] ? Sip::FormatoFechaHelper.fecha_local_estandar(params[:filtro][:fechaini]) : "1998-01-01"
         @vic_fechafin = params[:filtro] ? Sip::FormatoFechaHelper.fecha_local_estandar(params[:filtro][:fechafin]) : "2020-12-31"
 
-        @vic_dep = (params[:filtro] ? params[:filtro][:departamentos] : Sip::Departamento.habilitados.pluck(:id)) - [""]
+        @vic_dep = (params[:filtro] ? params[:filtro][:departamentos] : Sip::Departamento.habilitados.where(id_pais: 170).pluck(:id)) - [""]
         @categorias = Sivel2Gen::Categoria.from(
           'sivel2_gen_categoria, sivel2_gen_supracategoria').
           where('sivel2_gen_supracategoria.id=sivel2_gen_categoria.supracategoria_id 
@@ -91,7 +91,7 @@ module Sivel2Gen
           end
           if params[:filtro][:desagregar] == 'Departamento' 
             series_gen= []
-            deps = Sip::Departamento.habilitados
+            deps = Sip::Departamento.habilitados.where(id_pais: 170)
             if (@vic_sexo.count == 0) || (@vic_categorias.count == 0)
               flash.now[:info] = "Uno de los filtros se encuentra vacío"
             else
