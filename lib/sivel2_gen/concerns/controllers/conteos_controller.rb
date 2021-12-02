@@ -547,6 +547,15 @@ module Sivel2Gen
 
         end
 
+        def filtros_victimizaciones_gen(pFini, pFfin, pTviolencia, pEtiqueta1, pEtiqueta2, pExcluirCateRep, pSegun,
+            pDepartamento, pMunicipio, otro= nil)
+
+          tcons1 = Sivel2Gen::ConteosController::genconsulta_victimizaciones(
+            pFini, pFfin, pTviolencia, pEtiqueta1, pEtiqueta2, pExcluirCateRep, pSegun,
+            pDepartamento, pMunicipio
+          )
+          return tcons1
+        end
 
         def victimizaciones
           authorize! :contar, Sivel2Gen::Caso
@@ -559,10 +568,14 @@ module Sivel2Gen
           pEtiqueta2 = param_escapa([:filtro, 'etiqueta2'])
           pSegun = param_escapa([:filtro, 'segun'])
           pExcluirCateRep = param_escapa([:filtro, 'excluircaterep'])
-
           # Desagregar
           pMunicipio = param_escapa([:filtro, 'municipio'])
           pDepartamento = param_escapa([:filtro, 'departamento'])
+
+          tcons1 = filtros_victimizaciones_gen(pFini, pFfin, pTviolencia, pEtiqueta1, pEtiqueta2, pExcluirCateRep, pSegun,
+            pDepartamento, pMunicipio, otro = nil)
+
+
 
           @opsegun =  ["", 
             "ACTOS PRESUNTOS RESPONSABLES", 
@@ -574,11 +587,6 @@ module Sivel2Gen
             "SECTOR SOCIAL", 
             "SEXO"
           ]
-
-          tcons1 = Sivel2Gen::ConteosController::genconsulta_victimizaciones(
-            pFini, pFfin, pTviolencia, pEtiqueta1, pEtiqueta2, pExcluirCateRep, pSegun,
-            pDepartamento, pMunicipio
-          )
 
           que3 = []
           tablas3 = tcons1
@@ -758,7 +766,6 @@ module Sivel2Gen
             format.js   { render 'sivel2_gen/conteos/resultado' }
           end
         end # def victimizaciones
-
 
 
         def cuenta_actos(cat, concat, sincat, where)
