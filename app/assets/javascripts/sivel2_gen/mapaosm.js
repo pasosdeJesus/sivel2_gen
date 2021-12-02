@@ -210,7 +210,7 @@ function agregarCasosOsm(usuario_autenticado) {
     }
     marcadores.addLayers(listaMarcadores);
     mapa.addLayer(marcadores);
-    $('#nrcasos').html(numResultados + ' Casos mostrados!');
+    $('#nrcasos').html(numResultados + ' Casos mostrados');
     ocultarCargador();
   });
 }
