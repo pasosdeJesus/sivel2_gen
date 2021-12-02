@@ -14,13 +14,13 @@ module Sivel2Gen
         @vic_fechafin = params[:filtro] ? Sip::FormatoFechaHelper.fecha_local_estandar(params[:filtro][:fechafin]) : "2020-12-31"
 
         @vic_dep = (params[:filtro] ? params[:filtro][:departamentos] : Sip::Departamento.habilitados.where(id_pais: 170).pluck(:id)) - [""]
-        @categorias = Sivel2Gen::Categoria.from(
+        @categorias_gen = Sivel2Gen::Categoria.from(
           'sivel2_gen_categoria, sivel2_gen_supracategoria').
           where('sivel2_gen_supracategoria.id=sivel2_gen_categoria.supracategoria_id 
               AND sivel2_gen_categoria.fechadeshabilitacion is NULL 
               AND sivel2_gen_categoria.tipocat=\'I\'').
-              reorder('sivel2_gen_supracategoria.id_tviolencia', :id).
-              pluck(:nombre).uniq 
+              reorder('sivel2_gen_supracategoria.id_tviolencia', :id)
+        @categorias = @categorias_gen.pluck(:nombre).uniq 
         @vic_categorias = (params[:filtro] ? params[:filtro][:categorias] : @categorias) - [""]
         @vic_sexo = (params[:filtro] ? params[:filtro][:sexo] : Sip::Persona::SEXO_OPCIONES.map{|se| se[1].to_s}) - [""]
 
@@ -128,7 +128,7 @@ module Sivel2Gen
                 filtros << "
                   AND ubi.id_departamento IN (#{(@vic_dep).join(', ')})" if @vic_dep.count >= 1 
                 filtros << ("
-                  AND persona.sexo IN (" + (@vic_sexo).map{|k| "'" + k + "'"}.join(', ') + ')') if @vic_sexo.count >= 1  
+                  AND persona.sexo IN (" + (@vic_sexo).map{|k| "'" + k + "'"}.join(', ') + ')') if @vic_sexo.count >= 1
                 valores_cat = ActiveRecord::Base.connection.execute(consulta_gen(desagr, filtros)).values.to_h 
                 precat = {name: cat, data: valores_cat}
                 series_gen.push(precat)
