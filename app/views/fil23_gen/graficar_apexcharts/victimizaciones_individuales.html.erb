@@ -29,10 +29,13 @@
     <div class="row">
       <div class="offset-sm-0 col-3">
       <%
-        if params.nil? || params[:filtro].nil? || params[:filtro][:fechaini].nil?
+        if params.nil? || params[:filtro].nil? || 
+          params[:filtro][:fechaini].nil?
           vfi = fecha_estandar_local(@vic_fechaini)
         else
-          vfi = fecha_estandar_local(Sip::FormatoFechaHelper.fecha_local_estandar(params[:filtro][:fechaini]))
+          vfi = fecha_estandar_local(
+            Sip::FormatoFechaHelper.fecha_local_estandar(
+              params[:filtro][:fechaini]))
         end
       %>
         <%= f.input :fechaini,
@@ -46,10 +49,13 @@
         %>
       </div>
       <%
-        if params.nil? || params[:filtro].nil? || params[:filtro][:fechafin].nil?
+        if params.nil? || params[:filtro].nil? || 
+          params[:filtro][:fechafin].nil?
           vff = fecha_estandar_local(@vic_fechafin)
         else
-          vff =  fecha_estandar_local(Sip::FormatoFechaHelper.fecha_local_estandar(params[:filtro][:fechafin]))
+          vff =  fecha_estandar_local(
+            Sip::FormatoFechaHelper.fecha_local_estandar(
+              params[:filtro][:fechafin]))
         end
       %>
       <div class="offset-sm-0 col-3">
@@ -63,11 +69,14 @@
           } %>
       </div>
       <div class="offset-sm-0 col-3">
-        <% if params.nil? || params[:filtro].nil? || params[:filtro][:desagregar].nil?
-             ops= 'Sexo' 
-           else
-             ops= params[:filtro][:desagregar]
-           end %>
+        <% 
+          if params.nil? || params[:filtro].nil? || 
+            params[:filtro][:desagregar].nil?
+            ops= 'Sexo' 
+          else
+            ops= params[:filtro][:desagregar]
+          end 
+        %>
         <%= f.input :desagregar,
           collection: ['Sexo', 'Departamento', 'Categoria'], 
           label: 'Desagregar por:',
@@ -77,8 +86,9 @@
          %>
       </div>
       <div class="offset-sm-0 col-3">
-        <% if params.nil? || params[:filtro].nil? || params[:filtro][:desagregar].nil? || params[:filtro][:desagregar]== 'Sexo'
- %>
+        <% if params.nil? || params[:filtro].nil? || 
+            params[:filtro][:desagregar].nil? || 
+            params[:filtro][:desagregar]== 'Sexo' %>
           <% sex_sel = Sip::Persona::SEXO_OPCIONES.map{|k| k[1]} %>
           <% estdes = "display: none" %>
         <% else %>
@@ -100,8 +110,10 @@
     <div class="row">
       <div class="offset-sm-0 col-12">
         <%
-          if params.nil? || params[:filtro].nil? || params[:filtro][:departamentos].nil?
-            dep_sel = Sip::Departamento.habilitados.where(id_pais: 170).pluck(:id)
+          if params.nil? || params[:filtro].nil? || 
+            params[:filtro][:departamentos].nil?
+            dep_sel = Sip::Departamento.habilitados.
+              where(id_pais: 170).pluck(:id)
             estdep = "display: block"
           else
             dep_sel = params[:filtro][:departamentos]
@@ -125,7 +137,8 @@
     <div class="row">
       <div class="offset-sm-0 col-12">
         <%
-          if params.nil? || params[:filtro].nil? || params[:filtro][:categorias].nil?
+          if params.nil? || params[:filtro].nil? || 
+            params[:filtro][:categorias].nil?
             cat_sel = @vic_categorias
             estcat = "display: block"
           else
@@ -134,13 +147,16 @@
           end
         %>
         <%= f.input :categorias,
-          collection: @categorias_gen.group_by{ |c| c.supracategoria.id_tviolencia},
-          group_label_method: lambda { |ca| Sivel2Gen::Tviolencia.find(ca[0]).nombre},
+          collection: @categorias_gen.group_by{ |c| 
+            c.supracategoria.id_tviolencia},
+          group_label_method: lambda { |ca| 
+            Sivel2Gen::Tviolencia.find(ca[0]).nombre},
           as: :grouped_select, 
           group_method: :last,
           selected: cat_sel,
-          value_method: :nombre,
-          label_method: lambda { |cat| "#{Sivel2Gen::Supracategoria.find(cat.supracategoria_id.to_i).id_tviolencia}#{cat.id.to_s} #{cat.nombre}" }, 
+          value_method: :id,
+          label_method: lambda { |cat| 
+            "#{Sivel2Gen::Supracategoria.find(cat.supracategoria_id.to_i).id_tviolencia}#{cat.id.to_s} #{cat.nombre}" }, 
           input_html: {
             class: 'chosen-select',
             multiple: true,

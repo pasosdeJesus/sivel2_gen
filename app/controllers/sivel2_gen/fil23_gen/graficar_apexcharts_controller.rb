@@ -10,19 +10,30 @@ module Sivel2Gen
         authorize! :contar, Sivel2Gen::Caso
 
         ## Valores de los filtros
-        @vic_fechaini = params[:filtro] ? Sip::FormatoFechaHelper.fecha_local_estandar(params[:filtro][:fechaini]) : "1998-01-01"
-        @vic_fechafin = params[:filtro] ? Sip::FormatoFechaHelper.fecha_local_estandar(params[:filtro][:fechafin]) : "2020-12-31"
+        @vic_fechaini = params[:filtro] ? 
+          Sip::FormatoFechaHelper.fecha_local_estandar(
+            params[:filtro][:fechaini]) : Sivel2Gen::Caso.minimum(:fecha).to_s
+        @vic_fechafin = params[:filtro] ? 
+          Sip::FormatoFechaHelper.fecha_local_estandar(
+            params[:filtro][:fechafin]) : Sivel2Gen::Caso.maximum(:fecha).to_s
 
-        @vic_dep = (params[:filtro] ? params[:filtro][:departamentos] : Sip::Departamento.habilitados.where(id_pais: 170).pluck(:id)) - [""]
-        @categorias_gen = Sivel2Gen::Categoria.from(
-          'sivel2_gen_categoria, sivel2_gen_supracategoria').
-          where('sivel2_gen_supracategoria.id=sivel2_gen_categoria.supracategoria_id 
-              AND sivel2_gen_categoria.fechadeshabilitacion is NULL 
+        ldep = Sip::Departamento.habilitados.where(id_pais: 170).pluck(:id)
+        @vic_dep = params[:filtro] && params[:filtro][:departamento] ?
+          ldep & params[:filtro][:departamento] : ldep
+
+        @categorias_gen = Sivel2Gen::Categoria.joins(
+          'JOIN sivel2_gen_supracategoria ON '\
+          'sivel2_gen_supracategoria.id=sivel2_gen_categoria.supracategoria_id ').
+          where('sivel2_gen_categoria.fechadeshabilitacion is NULL 
               AND sivel2_gen_categoria.tipocat=\'I\'').
               reorder('sivel2_gen_supracategoria.id_tviolencia', :id)
-        @categorias = @categorias_gen.pluck(:nombre).uniq 
-        @vic_categorias = (params[:filtro] ? params[:filtro][:categorias] : @categorias) - [""]
-        @vic_sexo = (params[:filtro] ? params[:filtro][:sexo] : Sip::Persona::SEXO_OPCIONES.map{|se| se[1].to_s}) - [""]
+        @categorias = @categorias_gen.pluck(:id).uniq 
+        @vic_categorias = params[:filtro] && params[:filtro][:categorias] ? 
+          @categorias & params[:filtro][:categorias].map(&:to_i) : @categorias
+
+        lsexo = Sip::Persona::SEXO_OPCIONES.map{|se| se[1].to_s}
+        @vic_sexo = params[:filtro] && params[:filtro][:sexo] ? 
+          lsexo & params[:filtro][:sexo] : lsexo
 
         def consulta_gen(desagregado, filtros)
           "select caso.fecha as fecha_caso, count(*) as total from cvt1 
@@ -69,7 +80,7 @@ module Sivel2Gen
               filtros << "
               AND ubi.id_departamento IN (#{(@vic_dep).join(', ')})" if @vic_dep.count >= 1
               filtros << "
-              AND categoria.nombre IN (" + (@vic_categorias).map{|k| "'" + k + "'"}.join(', ') + ")" if @vic_categorias.count >= 1
+              AND categoria.id IN (#{@vic_categorias.join(', ')})" if @vic_categorias.count >= 1
               valores_sex = ActiveRecord::Base.connection.execute(consulta_gen(desagr, filtros)).values.to_h 
               presex = {name: sexo[0], data: valores_sex}
               series_gen.push(presex)
@@ -102,7 +113,7 @@ module Sivel2Gen
                 filtros << ("
                   AND persona.sexo IN (" + (@vic_sexo).map{|k| "'" + k + "'"}.join(', ') + ")") if @vic_sexo.count >= 1
                 filtros << ("
-                  AND categoria.nombre IN (" + (@vic_categorias).map{|k| "'" + k + "'"}.join(', ') + ")") if @vic_categorias.count >= 1
+                  AND categoria.id IN (" + (@vic_categorias).join(', ') + ")") if @vic_categorias.count >= 1
                 valores_dep = ActiveRecord::Base.connection.execute(consulta_gen(desagr, filtros)).values.to_h 
                 predep = {name: dep.nombre, data: valores_dep}
                 series_gen.push(predep)
@@ -123,7 +134,7 @@ module Sivel2Gen
               flash.now[:info] = "Uno de los filtros se encuentra vacío"
             else
               @categorias.each do |cat|
-                desagr = "categoria.nombre ='#{cat}'"
+                desagr = "categoria.id ='#{cat}'"
                 filtros= ""
                 filtros << "
                   AND ubi.id_departamento IN (#{(@vic_dep).join(', ')})" if @vic_dep.count >= 1 
