@@ -167,7 +167,7 @@ function armarRutaConsulta(root, rutaSinPuntomontaje, usuarioAutenticado) {
   for(var fi in filtros_adicionales){
     urlSolicitud += filtros_adicionales[fi];
   }
-  urlSolicitud += '&filtro[inc_ubicaciones]=2'+
+  urlSolicitud += '&filtro[inc_fecha]=1&filtro[inc_ubicaciones]=2'+
     '&filtro[disgenera]=reprevista.json' +
     '&idplantilla=reprevista' +
     '&commit=Enviar';
