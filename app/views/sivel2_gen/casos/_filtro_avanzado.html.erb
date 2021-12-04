@@ -498,6 +498,9 @@
           %>
         </div>
       </div> <!-- row -->
+      <div class="row">
+        <%= render partial: 'filtros_adicionales', locals: {f: f} %>
+      </div>
       <% if @plantillas %>
         <div class="row filtro-fila">
           <div class="offset-sm-0 col-sm-2 offset-md-1 col-md-1">
