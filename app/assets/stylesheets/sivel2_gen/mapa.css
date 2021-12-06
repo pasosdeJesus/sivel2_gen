@@ -69,3 +69,36 @@
   width: 32px; 
   height: 32px; 
 }
+
+#filtro_mostrar_cats_1:checked {
+      background: green;
+      ~ .toggle {
+        border: 0.1rem solid #008000;
+        background: lighten(#008000, 10%);
+        box-shadow: 0 0 0.2rem 0.1rem #008000 inset,
+                    0 0 0.2rem 0.1rem #008000;
+        left: -10;
+      }
+}
+
+#filtro_mostrar_cats_2:checked {
+      background: orange;
+      ~ .toggle {
+        border: 0.1rem solid #008000;
+        background: lighten(#008000, 10%);
+        box-shadow: 0 0 0.2rem 0.1rem #008000 inset,
+                    0 0 0.2rem 0.1rem #008000;
+        left: -10;
+      }
+}
+
+#filtro_mostrar_cats_0:checked {
+      background: red;
+      ~ .toggle {
+        border: 0.1rem solid #008000;
+        background: lighten(#008000, 10%);
+        box-shadow: 0 0 0.2rem 0.1rem #008000 inset,
+                    0 0 0.2rem 0.1rem #008000;
+        left: -10;
+      }
+}
