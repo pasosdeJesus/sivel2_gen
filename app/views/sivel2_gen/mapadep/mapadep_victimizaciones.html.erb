@@ -86,13 +86,13 @@
     <%= render partial: 'filtro_categorias', locals: {f: f} %>
 
     <div class="row filtro-fila">
-      <div class="offset-md-4 col-md-2">
+      <div class="offset-md-5 col-md-2">
         <%= f.button :submit, 'Contar', class: 'btn btn-default' %>
       </div>
     </div>
 <% end %>
 
-<div id="resultado">
+<div id="resultado" style='margin-top: 40px'>
   <%= render 'sivel2_gen/mapadep/mapadep' %>
 </div> <!-- id: resultado -->
 

@@ -1,4 +1,4 @@
-<div id="mapadep-svg">
+<div id="mapadep-svg" style='text-align: center'>
   <% s = Sivel2Gen::VistaHelper::embeber_mapacalordepcol_svg(
     @mapadep_titulo, @mapadep_subtitulo, @mapadep_titulorangos, 
     @mapadep_fuente, @mapa_depcuenta, {
@@ -8,4 +8,6 @@
     }) %>
   <%= s %>
 </div>
-<a class='btn btn-sm' download='mapadep.svg' href='data:image/svg;base64,<%= Base64.encode64(s) %>'>Descargar</a>
+<div style='text-align: center; margin-bottom: 20px; margin-top: 10px'>
+  <a class='btn btn-sm' download='mapadep.svg' href='data:image/svg;base64,<%= Base64.encode64(s) %>'>Descargar</a>
+</div>

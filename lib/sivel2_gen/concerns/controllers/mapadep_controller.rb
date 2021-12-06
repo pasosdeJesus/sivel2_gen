@@ -60,10 +60,13 @@ module Sivel2Gen
             pColormax = Sivel2Gen::ApplicationHelper.param_escapa(
               params, [:filtro, 'colormax'])
 
+            lcat = Sivel2Gen::Categoria.habilitados.pluck(:id)
+            pCategoria = params[:filtro] && params[:filtro][:categoria] ?
+              lcat & params[:filtro][:categoria].map(&:to_i) : lcat
 
             cons = Sivel2Gen::ConteosController::genconsulta_victimizaciones(
               pFini, pFfin, pTviolencia, pEtiqueta1, pEtiqueta2, nil,
-              nil, 1, nil
+              nil, 1, nil, pCategoria
             )
 
             r = ActiveRecord::Base.connection.select_all(
