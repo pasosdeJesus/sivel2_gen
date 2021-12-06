@@ -115,10 +115,10 @@ module Sivel2Gen
           # @titulo_personas_fecha y otras nuevas relacionads con filtros
           # (prefijo p)
           def personas_filtros_especializados
-            @filtrosegun = personas_arma_filtros()
-            @opsegun =  [''] + @filtrosegun.keys
             @titulo_personas = 'Demografía de Víctimas'
             @titulo_personas_fecha = 'Fecha del Caso'
+            @filtrosegun = personas_arma_filtros()
+            @opsegun =  [''] + @filtrosegun.keys
           end
 
           # Restringe con base en @fechaini
@@ -574,9 +574,13 @@ module Sivel2Gen
           pMunicipio = param_escapa([:filtro, 'municipio'])
           pDepartamento = param_escapa([:filtro, 'departamento'])
 
-          tcons1 = filtros_victimizaciones_gen(pFini, pFfin, pTviolencia, pEtiqueta1, pEtiqueta2, pExcluirCateRep, pSegun,
-            pDepartamento, pMunicipio, nil, nil)
+          lcat = Sivel2Gen::Categoria.habilitados.pluck(:id)
+          pCategoria = params[:filtro] && params[:filtro][:categoria] ?
+            lcat & params[:filtro][:categoria].map(&:to_i) : lcat
 
+
+          tcons1 = filtros_victimizaciones_gen(pFini, pFfin, pTviolencia, pEtiqueta1, pEtiqueta2, pExcluirCateRep, pSegun,
+            pDepartamento, pMunicipio, nil, pCategoria)
 
 
           @opsegun =  ["", 
@@ -1073,7 +1077,7 @@ module Sivel2Gen
               )
             end
 
-            if (!pCategoria.empty? && pCategoria != [""])
+            if (!pCategoria.nil? && !pCategoria.empty? && pCategoria != [""])
               where1 += (where1 != '' ? ' AND ' : '') + 
                 "(categoria.id IN ('" + pCategoria.join("', '") + "'))"
             else 
