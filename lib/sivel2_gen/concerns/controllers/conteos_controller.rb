@@ -547,12 +547,14 @@ module Sivel2Gen
 
         end
 
-        def filtros_victimizaciones_gen(pFini, pFfin, pTviolencia, pEtiqueta1, pEtiqueta2, pExcluirCateRep, pSegun,
-            pDepartamento, pMunicipio, otro= nil)
+        def filtros_victimizaciones_gen(
+          pFini, pFfin, pTviolencia, pEtiqueta1, pEtiqueta2, 
+          pExcluirCateRep, pSegun, pDepartamento, pMunicipio, otro= nil,
+          pCategoria = nil)
 
           tcons1 = Sivel2Gen::ConteosController::genconsulta_victimizaciones(
-            pFini, pFfin, pTviolencia, pEtiqueta1, pEtiqueta2, pExcluirCateRep, pSegun,
-            pDepartamento, pMunicipio
+            pFini, pFfin, pTviolencia, pEtiqueta1, pEtiqueta2, pExcluirCateRep,
+            pSegun, pDepartamento, pMunicipio, pCategoria
           )
           return tcons1
         end
@@ -573,7 +575,7 @@ module Sivel2Gen
           pDepartamento = param_escapa([:filtro, 'departamento'])
 
           tcons1 = filtros_victimizaciones_gen(pFini, pFfin, pTviolencia, pEtiqueta1, pEtiqueta2, pExcluirCateRep, pSegun,
-            pDepartamento, pMunicipio, otro = nil)
+            pDepartamento, pMunicipio, nil, nil)
 
 
 
@@ -1023,7 +1025,7 @@ module Sivel2Gen
 
           def genconsulta_victimizaciones(
             pFini, pFfin, pTviolencia, pEtiqueta1, pEtiqueta2, pExcluirCateRep,
-            pSegun, pDepartamento, pMunicipio)
+            pSegun, pDepartamento, pMunicipio, pCategoria = nil)
 
             tcons1 = 'cvt1'
             # La estrategia es 
@@ -1070,9 +1072,22 @@ module Sivel2Gen
                 where1, "id_tviolencia", pTviolencia[0], "="
               )
             end
+
+            if (!pCategoria.empty? && pCategoria != [""])
+              where1 += (where1 != '' ? ' AND ' : '') + 
+                "(categoria.id IN ('" + pCategoria.join("', '") + "'))"
+            else 
+              where1 += (where1 != '' ? ' AND ' : '') + 
+                "(categoria.id IN ('-1'))"
+            end
+
             if (pExcluirCateRep == '1')
-              cats_repetidas = Sivel2Gen::Categoria.habilitados.where(contadaen: nil).pluck(:id)
-              where1 << "acto.id_categoria IN (#{cats_repetidas.join(', ')})"
+              cats_repetidas = Sivel2Gen::Categoria.habilitados.
+                where(contadaen: nil).pluck(:id)
+              where1 = consulta_and_sinap(
+                where1, 'categoria.id', "('" + 
+                cats_repetidas.join("', '") + "')", ' IN '
+              )
             end
             if (pEtiqueta1 != '' || pEtiqueta2 != '')
               tablas1 += ' JOIN sivel2_gen_caso_etiqueta AS caso_etiqueta ON' +

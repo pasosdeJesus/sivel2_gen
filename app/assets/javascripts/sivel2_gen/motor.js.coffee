@@ -868,27 +868,27 @@ enviaFormularioContarPost= (root) ->
   # ha afectado ficha caso en ocasiones, por eso se elije sólo los que
   # tengan afectando ficha caso 
   $(document).on('changeDate', '[data-contarautomatico]', 
-    (e) -> enviaFormularioContar(root)
+    (e) -> setTimeout( (() -> enviaFormularioContar(root)), 200)
   )
 
   $(document).on('change', 'select[data-contarautomatico]', 
-    (e) -> enviaFormularioContar(root)
+    (e) -> setTimeout( (() -> enviaFormularioContar(root)), 200)
   )
 
-  $(document).on('change', 'input[data-contarautomatico]:not([data-behaviour])', 
-    (e) -> enviaFormularioContar(root)
+  $(document).on('change', 'input[data-contarautomatico]:not([data-behaviour])',
+    (e) -> setTimeout( (() -> enviaFormularioContar(root)), 200)
   )
 
   $(document).on('changeDate', '[data-contarautomatico-post]', 
-    (e) -> enviaFormularioContarPost(root)
+    (e) -> setTimeout( (()  -> enviaFormularioContar(root)), 200)
   )
 
   $(document).on('change', 'select[data-contarautomatico-post]', 
-    (e) -> enviaFormularioContarPost(root)
+    (e) -> setTimeout( (() -> enviaFormularioContar(root)), 200)
   )
 
   $(document).on('change', 'input[data-contarautomatico-post]:not([data-behaviour])', 
-    (e) -> enviaFormularioContarPost(root)
+    (e) -> setTimeout( (() -> enviaFormularioContar(root)), 200)
   )
 
 
