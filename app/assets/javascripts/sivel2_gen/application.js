@@ -15,6 +15,7 @@
 //= require mr519_gen/motor
 //= require sivel2_gen/motor
 //= require sivel2_gen/mapaosm
+//= require sivel2_gen/motor2
 //= require_tree .
 
 document.addEventListener('turbolinks:load', function() {

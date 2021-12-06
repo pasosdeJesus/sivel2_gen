@@ -1,5 +1,5 @@
 <div class="page-header">
-  <h1>Conteo de victimizaciones individuales</h1>
+  <h1>Victimizaciones individuales por departamento</h1>
 </div>
 
 <%= simple_form_for :filtro, 
@@ -81,9 +81,9 @@
             value: pom == '' ? '#00ff00' : pom
           } %>
       </div>
-
-
     </div>
+
+    <%= render partial: 'filtro_categorias', locals: {f: f} %>
 
     <div class="row filtro-fila">
       <div class="offset-md-4 col-md-2">
