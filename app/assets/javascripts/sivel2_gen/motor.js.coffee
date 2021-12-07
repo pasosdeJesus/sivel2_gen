@@ -880,15 +880,15 @@ enviaFormularioContarPost= (root) ->
   )
 
   $(document).on('changeDate', '[data-contarautomatico-post]', 
-    (e) -> setTimeout( (()  -> enviaFormularioContar(root)), 200)
+    (e) -> setTimeout( (()  -> enviaFormularioContarPost(root)), 200)
   )
 
   $(document).on('change', 'select[data-contarautomatico-post]', 
-    (e) -> setTimeout( (() -> enviaFormularioContar(root)), 200)
+    (e) -> setTimeout( (() -> enviaFormularioContarPost(root)), 200)
   )
 
   $(document).on('change', 'input[data-contarautomatico-post]:not([data-behaviour])', 
-    (e) -> setTimeout( (() -> enviaFormularioContar(root)), 200)
+    (e) -> setTimeout( (() -> enviaFormularioContarPost(root)), 200)
   )
 
 
