@@ -248,6 +248,8 @@ module Sivel2Gen
 
       habilidad.can :nuevo, Sivel2Gen::Presponsable
 
+      habilidad.can :mundep, Sip::Ubicacionpre
+
       habilidad.can :nuevo, Sivel2Gen::Victima
 
       habilidad.can :nuevo, Sivel2Gen::Victimacolectiva
