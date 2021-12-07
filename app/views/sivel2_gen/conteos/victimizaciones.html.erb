@@ -12,7 +12,7 @@
       <div class="offset-sm-0 col-sm-3 offset-md-1 col-md-1">
         Filtrar por:
       </div>
-      <div class="offset-sm-0 col-sm-3">
+      <div class="offset-sm-0 col-sm-4">
         <%= f.input :fechaini,
           maxlength: 10, 
           size: 10,
@@ -24,7 +24,7 @@
           }
         %>
       </div>
-      <div class="offset-sm-0 col-sm-3">
+      <div class="offset-sm-1 col-sm-4">
         <%= f.input :fechafin,
           maxlength: 10, 
           size: 10,
@@ -36,20 +36,10 @@
           }
         %>
       </div>
-      <div class="offset-sm-0 col-sm-3">
-        <%= f.input :tviolencia_id,
-          collection: Sivel2Gen::Tviolencia.habilitados,
-          label_method: :nombre,
-          value_method: :id,
-          label: false,
-          include_blank: '-- Tipo de violencia',
-          input_html: { "data-contarautomatico" => "" }
-        %>
-      </div>
     </div>
 
     <div class="row filtro-fila">
-      <div class="offset-sm-2 col-sm-3">
+      <div class="offset-sm-2 col-sm-4">
         <%= f.input :etiqueta1,
           collection: Sip::Etiqueta.habilitados,
           label_method: :nombre,
@@ -59,7 +49,7 @@
           input_html: { "data-contarautomatico" => "" }
         %>
       </div>
-      <div class="col-sm-3">
+      <div class="offset-sm-1 col-sm-4">
         <%= f.input :etiqueta2,
           collection: Sip::Etiqueta.habilitados,
           label_method: :nombre,
@@ -69,18 +59,10 @@
           input_html: { "data-contarautomatico" => "" }
         %>
       </div>
-      <div class="col-sm-3">
-        <%= f.input :excluircaterep, 
-          as: :boolean, 
-          boolean_style: :nested,
-          label: false,
-          inline_label: 'Excluir categorías repetidas',
-          input_html: { 'data-contarautomatico' => '' }
-        %> 
-      </div>
-
     </div>
-      
+
+    <%= render partial: 'sivel2_gen/mapadep/filtro_categorias', locals: {f: f} %>
+
     <div class="row filtro-fila">
       <div class="offset-sm-0 col-sm-3 offset-md-1 col-md-1">
         Desagregar por:

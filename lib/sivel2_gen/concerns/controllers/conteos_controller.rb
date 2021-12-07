@@ -8,93 +8,7 @@ module Sivel2Gen
         included do
 
           include Sip::FormatoFechaHelper
-
-          ##
-          # Agrega una nueva tabla al listado $t
-          #
-          # @param string &$t Listado de tablas separadas por ,
-          # @param string $nt Nueva tabla por agregar si falta
-          #
-          # @return string cadena t completada para asegurar tabla
-          #/
-          def agrega_tabla(t, nt)
-            at = t.split(',').map(&:strip)
-            if (!at.include? nt.strip)
-              at << nt
-            end
-            t = at.join(",")
-          end
-
-          ##
-          # Agrega condición a WHERE en un SELECT de SQL
-          #
-          # @param unknown &$db   Conexión a base de datos
-          # @param string  &$w    cadena con WHERE que se completa
-          # @param string  $n     nombre de campo
-          # @param string  $v     valor esperado
-          # @param string  $opcmp operador de comparación por usar.
-          # @param string  $con   con
-          #
-          # @return string cadena w completada con nueva condición
-          def consulta_and(w, n, v, opcmp = '=', con='AND')
-            if (!v || v === '' || $v === ' ') 
-              return
-            end
-            if (w != "") 
-              w += " #{con}"
-            end
-            w += " " + n + opcmp + Sivel2Gen::Caso.connection.quote(v)
-          end
-
-
-          ##
-          # Como la función anterior sólo que el valor no lo pone entre 
-          # apostrofes y supone que ya viene escapado el valor $v
-          #
-          # @param string &$w    cadena con WHERE que se completa
-          # @param string $n     nombre de campo
-          # @param string $v     valor esperado
-          # @param string $opcmp operador de comparación por usar.
-          # @param string $con   con
-          #
-          # @return string cadena w completada con nueva condición
-          #/
-          def consulta_and_sinap(w, n, v, opcmp = '=', con = "AND")
-            if (w != "") 
-              w += " " + con
-            end
-            w += " " + n + opcmp + v
-          end
-
-          def cadena_escapa(c)
-            Sivel2Gen::Caso.connection.quote_string(c)
-          end
-
-          def param_escapa(p)
-            if (p.is_a? String) || (p.is_a? Symbol) then
-              params[p] ? cadena_escapa(params[p]) : ''
-            elsif (p.is_a? Array) && p.length == 1 then
-              params[p[0]] ? cadena_escapa(params[p[0]]) : ''
-            elsif (p.is_a? Array) && p.length > 1 && params[p[0]] then
-              n = params[p[0]]
-              i = 1
-              while i < (p.length - 2) do
-                if n[p[i]] then
-                  n = n[p[i]]
-                else
-                  return ''
-                end
-                i += 1
-              end
-              if n[p[i]] then
-                return cadena_escapa(n[p[i]])
-              else
-                return ''
-              end
-            else
-              return ''
-            end
-          end
+          include Sip::SqlHelper
 
           @pDepartamento = ''
           @pMunicipio = ''
@@ -123,14 +37,14 @@ module Sivel2Gen
 
           # Restringe con base en @fechaini
           def personas_fecha_inicial(where1)
-            return consulta_and(
+            return ampliar_where(
               where1, "caso.fecha", @fechaini, ">="
             )
           end
 
           # Restringe con base en @fechafin
           def personas_fecha_final(where1)
-            return consulta_and(
+            return ampliar_where(
                 where1, "caso.fecha", @fechafin, "<="
               )
           end
@@ -251,13 +165,13 @@ module Sivel2Gen
                   }
                 end
                 if ids.count == 0
-                  where1 =consulta_and_sinap(where1, 'TRUE', 'FALSE', '=')
+                  where1 =ampliar_where_sinap(where1, 'TRUE', 'FALSE', '=')
                 elsif r[:nomfiltro] == :aniosnac
                   where1 += (where1 != '' ? ' AND ' : '') + 
                     "(persona.anionac IS NULL OR persona.anionac IN ('" +
                     ids.sort.join("', '") + "'))"
                 else
-                  where1 = consulta_and_sinap(
+                  where1 = ampliar_where_sinap(
                     where1, r[:campocons], "('" + 
                     ids.sort.join("', '") + "')", ' IN '
                   )
@@ -279,11 +193,11 @@ module Sivel2Gen
 
 
           def personas_segun_tipico(tabla, nomtabla, que1, que3, tablas3, where3)
-            que1 = agrega_tabla(
+            que1 = agregar_tabla(
               que1, "victima.id_#{tabla} AS id_#{tabla}")
-            tablas3 = agrega_tabla(
+            tablas3 = agregar_tabla(
               tablas3, "public.sivel2_gen_#{tabla} AS #{tabla}")
-            where3 = consulta_and_sinap(
+            where3 = ampliar_where_sinap(
               where3, "id_#{tabla}", "#{tabla}.id")
             que3 << ["#{tabla}.nombre", nomtabla]
             return [que1, que3, tablas3, where3]
@@ -292,19 +206,19 @@ module Sivel2Gen
 
           def personas_procesa_segun_om(que1, tablas1, where1, que3, tablas3, where3)
             ctablas1 = tablas1
-            tablas1 = agrega_tabla(tablas1, 'public.sip_persona AS persona')
+            tablas1 = agregar_tabla(tablas1, 'public.sip_persona AS persona')
             if (ctablas1 != tablas1)
-              where1 = consulta_and_sinap(
+              where1 = ampliar_where_sinap(
                 where1, "persona.id", "victima.id_persona")
             end
 
             case @pSegun
             when ''
-              que1 = agrega_tabla(que1, 'cast(\'total\' as text) as total')
+              que1 = agregar_tabla(que1, 'cast(\'total\' as text) as total')
               que3 << ["", ""]
 
             when 'AÑO DE NACIMIENTO'
-              que1 = agrega_tabla(que1, 'persona.anionac AS anionac')
+              que1 = agregar_tabla(que1, 'persona.anionac AS anionac')
               que3 << ["anionac", "Año de Nacimiento"]
 
             when 'ETNIA'
@@ -318,7 +232,7 @@ module Sivel2Gen
               )
 
             when 'MES CASO'
-              que1 = agrega_tabla(
+              que1 = agregar_tabla(
                 que1, "extract(year from fecha) || '-' " +
                 "|| lpad(cast(extract(month from fecha) as text), 2 , " +
                 "cast('0' as text)) as mes")
@@ -355,7 +269,7 @@ module Sivel2Gen
               )
 
             when 'SEXO'
-              que1 = agrega_tabla(que1, 'persona.sexo AS sexo')
+              que1 = agregar_tabla(que1, 'persona.sexo AS sexo')
               que3 << ["sexo", "Sexo"]
 
             else
@@ -430,8 +344,8 @@ module Sivel2Gen
               '(SELECT id_persona, ' +
               ' MAX(id) AS id_victima' +
               ' FROM sivel2_gen_victima GROUP BY 1) AS subv '
-            where1 = consulta_and_sinap(where1, "subv.id_victima", "victima.id")
-            where1 = consulta_and_sinap(where1, "caso.id", "victima.id_caso")
+            where1 = ampliar_where_sinap(where1, "subv.id_victima", "victima.id")
+            where1 = ampliar_where_sinap(where1, "caso.id", "victima.id_caso")
             return que1, tablas1, where1
           end
 
@@ -442,9 +356,9 @@ module Sivel2Gen
           def personas
             authorize! :contar, Sivel2Gen::Caso
 
-            @pSegun = param_escapa([:filtro, 'segun'])
-            @pMunicipio = param_escapa([:filtro, 'municipio'])
-            @pDepartamento = param_escapa([:filtro, 'departamento'])
+            @pSegun = escapar_param([:filtro, 'segun'])
+            @pMunicipio = escapar_param([:filtro, 'municipio'])
+            @pDepartamento = escapar_param([:filtro, 'departamento'])
             @filtrosegun = {}
             personas_filtros_especializados()
 
@@ -563,16 +477,16 @@ module Sivel2Gen
           authorize! :contar, Sivel2Gen::Caso
 
           # Filtros
-          pFini = param_escapa([:filtro, 'fechaini'])
-          pFfin = param_escapa([:filtro, 'fechafin'])
-          pTviolencia = param_escapa([:filtro, 'tviolencia_id'])
-          pEtiqueta1 = param_escapa([:filtro, 'etiqueta1'])
-          pEtiqueta2 = param_escapa([:filtro, 'etiqueta2'])
-          pSegun = param_escapa([:filtro, 'segun'])
-          pExcluirCateRep = param_escapa([:filtro, 'excluircaterep'])
+          pFini = escapar_param([:filtro, 'fechaini'])
+          pFfin = escapar_param([:filtro, 'fechafin'])
+          pTviolencia = escapar_param([:filtro, 'tviolencia_id'])
+          pEtiqueta1 = escapar_param([:filtro, 'etiqueta1'])
+          pEtiqueta2 = escapar_param([:filtro, 'etiqueta2'])
+          pSegun = escapar_param([:filtro, 'segun'])
+          pExcluirCateRep = escapar_param([:filtro, 'excluircaterep'])
           # Desagregar
-          pMunicipio = param_escapa([:filtro, 'municipio'])
-          pDepartamento = param_escapa([:filtro, 'departamento'])
+          pMunicipio = escapar_param([:filtro, 'municipio'])
+          pDepartamento = escapar_param([:filtro, 'departamento'])
 
           lcat = Sivel2Gen::Categoria.habilitados.pluck(:id)
           pCategoria = params[:filtro] && params[:filtro][:categoria] ?
@@ -776,7 +690,7 @@ module Sivel2Gen
 
         def cuenta_actos(cat, concat, sincat, where)
           w = where
-          w = consulta_and(w, "sivel2_gen_acto.id_categoria", cat.to_i);
+          w = ampliar_where(w, "sivel2_gen_acto.id_categoria", cat.to_i);
           if concat > 0
             w = "#{w} AND (sivel2_gen_acto.id_caso, sivel2_gen_acto.id_persona) IN 
                 (SELECT id_caso, id_persona FROM sivel2_gen_acto 
@@ -1004,28 +918,7 @@ module Sivel2Gen
 
         class_methods do
 
-
-          ##
-          # Agrega condición a WHERE en un SELECT de SQL
-          #
-          # @param unknown &$db   Conexión a base de datos
-          # @param string  &$w    cadena con WHERE que se completa
-          # @param string  $n     nombre de campo
-          # @param string  $v     valor esperado
-          # @param string  $opcmp operador de comparación por usar.
-          # @param string  $con   con
-          #
-          # @return string cadena w completada con nueva condición
-          def consulta_and(w, n, v, opcmp = '=', con='AND')
-            if (!v || v === '' || $v === ' ') 
-              return
-            end
-            if (w != "") 
-              w += " #{con}"
-            end
-            w += " " + n + opcmp + Sivel2Gen::Caso.connection.quote(v)
-          end
-
+          include Sip::SqlHelper
 
           def genconsulta_victimizaciones(
             pFini, pFfin, pTviolencia, pEtiqueta1, pEtiqueta2, pExcluirCateRep,
@@ -1058,7 +951,7 @@ module Sivel2Gen
             if (pFini != '')
               @fechaini = Sip::FormatoFechaHelper.fecha_local_estandar pFini
               if @fechaini
-                where1 = consulta_and(
+                where1 = ampliar_where(
                   where1, "caso.fecha", @fechaini, ">="
                 )
               end
@@ -1066,13 +959,13 @@ module Sivel2Gen
             if (pFfin != '') 
               @fechafin = Sip::FormatoFechaHelper.fecha_local_estandar pFfin
               if @fechafin
-                where1 = consulta_and(
+                where1 = ampliar_where(
                   where1, "caso.fecha", @fechafin, "<="
                 )
               end
             end
             if (pTviolencia != '') 
-              where1 = consulta_and(
+              where1 = ampliar_where(
                 where1, "id_tviolencia", pTviolencia[0], "="
               )
             end
@@ -1088,7 +981,7 @@ module Sivel2Gen
             if (pExcluirCateRep == '1')
               cats_repetidas = Sivel2Gen::Categoria.habilitados.
                 where(contadaen: nil).pluck(:id)
-              where1 = consulta_and_sinap(
+              where1 = ampliar_where_sinap(
                 where1, 'categoria.id', "('" + 
                 cats_repetidas.join("', '") + "')", ' IN '
               )
@@ -1097,12 +990,12 @@ module Sivel2Gen
               tablas1 += ' JOIN sivel2_gen_caso_etiqueta AS caso_etiqueta ON' +
                 ' caso.id=caso_etiqueta.id_caso' 
               if (pEtiqueta1 != '') 
-                where1 = consulta_and(
+                where1 = ampliar_where(
                   where1, "caso_etiqueta.id_etiqueta", pEtiqueta1, "="
                 )
               end
               if (pEtiqueta2 != '') 
-                where1 = consulta_and(
+                where1 = ampliar_where(
                   where1, "caso_etiqueta.id_etiqueta", pEtiqueta2, "="
                 )
               end
