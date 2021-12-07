@@ -493,9 +493,9 @@ module Sivel2Gen
             lcat & params[:filtro][:categoria].map(&:to_i) : lcat
 
 
-          tcons1 = filtros_victimizaciones_gen(pFini, pFfin, pTviolencia, pEtiqueta1, pEtiqueta2, pExcluirCateRep, pSegun,
-            pDepartamento, pMunicipio, nil, pCategoria)
-
+          tcons1 = filtros_victimizaciones_gen(
+            pFini, pFfin, pTviolencia, pEtiqueta1, pEtiqueta2, 
+            pExcluirCateRep, pSegun, pDepartamento, pMunicipio, nil, pCategoria)
 
           @opsegun =  ["", 
             "ACTOS PRESUNTOS RESPONSABLES", 
