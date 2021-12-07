@@ -7,6 +7,7 @@ module Sivel2Gen
         included do
 
           include Sip::FormatoFechaHelper
+          include Sip::SqlHelper
 
           # Control de acceso no estándar en función
 
@@ -47,26 +48,21 @@ module Sivel2Gen
             authorize! :contar, Sivel2Gen::Caso
 
             # Filtros
-            pFini = Sivel2Gen::ApplicationHelper.param_escapa(
-              params, [:filtro, 'fechaini'])
-            pFfin = Sivel2Gen::ApplicationHelper.param_escapa(
-              params, [:filtro, 'fechafin'])
-            pTviolencia = Sivel2Gen::ApplicationHelper.param_escapa(
-              params, [:filtro, 'tviolencia_id'])
-            pEtiqueta1 = Sivel2Gen::ApplicationHelper.param_escapa(
-              params, [:filtro, 'etiqueta1'])
-            pEtiqueta2 = Sivel2Gen::ApplicationHelper.param_escapa(
-              params, [:filtro, 'etiqueta2'])
-            pColormax = Sivel2Gen::ApplicationHelper.param_escapa(
-              params, [:filtro, 'colormax'])
+            pFini = escapar_param([:filtro, 'fechaini'])
+            pFfin = escapar_param([:filtro, 'fechafin'])
+            pTviolencia = escapar_param([:filtro, 'tviolencia_id'])
+            pEtiqueta1 = escapar_param([:filtro, 'etiqueta1'])
+            pEtiqueta2 = escapar_param([:filtro, 'etiqueta2'])
+            pColormax = escapar_param([:filtro, 'colormax'])
+            pExcluirCateRep = escapar_param([:filtro, 'excluircaterep'])
 
             lcat = Sivel2Gen::Categoria.habilitados.pluck(:id)
             pCategoria = params[:filtro] && params[:filtro][:categoria] ?
               lcat & params[:filtro][:categoria].map(&:to_i) : lcat
 
             cons = Sivel2Gen::ConteosController::genconsulta_victimizaciones(
-              pFini, pFfin, pTviolencia, pEtiqueta1, pEtiqueta2, nil,
-              nil, 1, nil, pCategoria
+              pFini, pFfin, pTviolencia, pEtiqueta1, pEtiqueta2, 
+              pExcluirCateRep, nil, 1, nil, pCategoria
             )
 
             r = ActiveRecord::Base.connection.select_all(
