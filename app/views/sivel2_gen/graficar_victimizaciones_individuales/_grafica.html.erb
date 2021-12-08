@@ -38,24 +38,24 @@
   <div class="col-12">
     <% otraserie = [] %>
     <% otrasopciones = {} %>
-    <% if @pDesagregarpor != 'FECHAS' %>
-      <% otraserie = serie[0][:data].map{|l, v| 
-        {name: l, data: v} } %>
-    <% end %>
     <% numdatos = serie[0][:data].count %>
+    <% if numdatos < 1000 %>
+      <% otraserie = serie[0][:data].map{|l, v| 
+        {name: l.to_s, data: v} } %>
+    <% end %>
     <! --datos: <%= numdatos %> -->
     <% if (@pTipografica == 'BARRAS VERTICALES' || @pTipografica == '') &&
-        numdatos <= 500 %>
+        numdatos <= 2000 %>
       <%= column_chart(serie, opciones) %>  
     <% elsif @pTipografica == 'LÍNEAS' %>
       <%= line_chart(serie, opciones) %>  
-    <% elsif @pTipografica == 'BARRAS HORIZONTALES' && numdatos <= 500 %>
+    <% elsif @pTipografica == 'BARRAS HORIZONTALES' && numdatos <= 200 %>
       <%= bar_chart(serie, opciones) %>  
-    <% elsif @pTipografica == 'ÁREAS' && numdatos <= 1000 %>
+    <% elsif @pTipografica == 'ÁREAS' && numdatos <= 3000 %>
       <%= area_chart(serie, opciones) %>  
-    <% elsif @pTipografica == 'TORTA' && numdatos <= 100 %>
+    <% elsif @pTipografica == 'TORTA' && numdatos <= 500 %>
       <%= pie_chart(otraserie, otrasopciones) %>  
-    <% elsif @pTipografica == 'DONA' && numdatos <= 100 %>
+    <% elsif @pTipografica == 'DONA' && numdatos <= 500 %>
       <%= donut_chart(otraserie, otrasopciones) %>  
     <% else %>
       Tipo de gráfica no soportado o muy demorado  (<%= numdatos %> datos)
