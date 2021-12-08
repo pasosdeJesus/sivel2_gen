@@ -41,7 +41,8 @@ module Sivel2Gen
 
           def index(c = nil)
             if c == nil
-              c = Sivel2Gen::Victima.joins(:persona).all.order(['sip_persona.nombres', 'sip_persona.apellidos', :id_caso])
+              c = Sivel2Gen::Victima.joins(:persona).all.order(
+                ['sip_persona.nombres', 'sip_persona.apellidos', :id_caso])
             end
             @titulo = 'Víctimas y Casos'
             @pconsolidado = Sivel2Gen::Pconsolidado.

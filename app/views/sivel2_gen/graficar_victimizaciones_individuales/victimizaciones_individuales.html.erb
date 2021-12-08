@@ -87,25 +87,24 @@
     </div> <!-- accordion filtro -->
 
     <div class="row">
-      <div class="offset-sm-0 col-3">
-        Desagregar por
-      </div>
-      <div class="offset-sm-0 col-3">
+      <div class="offset-sm-0 col-sm-3">
         <% des = Sip::ModeloHelper::poromision(
           params, :desagregarpor, @opdesagregarpor.first) %>
         <%= f.input :desagregarpor,
         collection: @opdesagregarpor,
-        label: false,
+        label: 'Desagregar por',
         selected: des,
+        required: false,
         input_html: {
-          'data-enviarautomatico' => ''}
+          'data-contarautomatico-post' => '' }
         %>
       </div>
-      <div class="col-sm-3">
+      <div class="offset-sm-3 col-sm-3">
         <% pom = Sip::ModeloHelper.poromision(params, :colormax) %>
         <%= f.input :colormax, 
-          label: false,
+          label: 'Color',
           inline_label: 'Color más oscuro',
+          required: false,
           input_html: {
             "data-contarautomatico" => "",
             type: 'color',
@@ -113,6 +112,20 @@
             value: pom == '' ? '#00ff00' : pom
           } %>
       </div>
+      <% tg = Sip::ModeloHelper::poromision(
+        params, :tipografica, @pDesagregarpor == 'FECHAS' ? 
+        'LÍNEAS' : 'BARRAS VERTICALES') %>
+      <div class="col-sm-3">
+        <%= f.input :tipografica, 
+          collection: controller.tiposgraficas,
+          label: 'Tipo de gráfica',
+          selected: tg,
+          input_html: {
+            'data-contarautomatico-post' => '',
+            value: tg
+          } %>
+      </div>
+
     </div> <!-- row -->
 
 
