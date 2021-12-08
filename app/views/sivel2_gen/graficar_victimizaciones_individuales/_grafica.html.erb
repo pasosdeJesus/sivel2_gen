@@ -1,0 +1,47 @@
+
+<% if @cuerpotabla.columns.count == 1 %>
+  <% @nombregraf = 'Total de victimizaciones' %>
+  <% @ejex = 'Total de victimizaciones' %>
+  <% @valoresgraf = {'Total' => @cuerpotabla.rows[0][0]} %>
+<% else %>
+  <% @nombregraf = @pDesagregarpor %>
+  <% @ejex = @pDesagregarpor %>
+  <% @valoresgraf = {} %>
+  <% @tot=[]; @cuerpotabla.try(:each) do |fila| %>
+    <% if fila.values[0] %>
+      <% @valoresgraf[fila.values[0]] = fila.values.last %>
+    <% else %>
+      <% @obsgrafica = "En la gráfica no se presentan #{fila.values[1]} víctimas con año de nacimiento desconocido" %>
+    <% end %>
+  <% end %>
+<% end %>
+
+<% 
+    serie = [
+      {name: @nombregraf,
+       data: @valoresgraf}
+    ] 
+  %>
+
+<%
+    opciones = {
+      title: @nombregraf,
+      xtitle: @ejex,
+      ytitle: 'Victimizaciones',
+      colors: [defined?(@colorg) && @colorg != '' ? @colorg : '#00ff00']
+  }
+
+  controller.ajusta_serie_opciones(serie, opciones)
+  %>
+
+<div class="row">
+  <div class="col-12">
+    <% if @pDesagregarpor == "FECHAS" %>
+      <%= line_chart(serie, opciones) %>  
+    <% else %>
+      <%= column_chart(serie, opciones) %>  
+    <% end %>
+  </div>
+</div>
+
+

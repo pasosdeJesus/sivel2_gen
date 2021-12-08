@@ -1,0 +1,13 @@
+<footer>
+  <ul>
+    <% if Sivel2Gen::Caso.where(ubicacion_id: nil).count > 0 %>
+      <li> En este conteo no se tienen en cuenta las 
+        posibles victimizaciones de 
+        <%= Sivel2Gen::Caso.where(ubicacion_id: nil).count %>
+        casos que no tienen ubicación principal.</li>
+    <% end %>
+    <% if @obsgrafica %>
+      <li><%= @obsgrafica %></li>
+    <% end %>
+  </ul>
+</footer>
