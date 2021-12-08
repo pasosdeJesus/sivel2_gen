@@ -1,0 +1,129 @@
+<div class="page-header">
+  <h1>Victimizaciones individuales</h1>
+</div>
+
+<%= simple_form_for :filtro, { 
+  remote: true, 
+  url: sivel2_gen.graficar_victimizaciones_individuales_path,
+  method: "post" } do |f| %>
+
+  <div class="accordion" id="filtros">
+    <%= item_acordeon_bs(
+      'filtros', "ftiempo", 
+      'Tiempo', false, {
+        'estilo_accordion-header': 'text-align: center',
+        'clase_accordion-body': 'table-responsive',
+        'estilo_accordion-body': 'overflow-x:scroll'
+      }) do %>
+      <div class="row">
+        <div class="offset-sm-0 col-4">
+          <% vfi = Sip::ModeloHelper::poromision(
+            params, :fechaini, @vic_fechaini) %>
+          <%= f.input :fechaini,
+            maxlength: 10, 
+            size: 10,
+            label: 'Fecha Inicial',
+            input_html: {
+              "data-behaviour" => "datepicker",
+              value: vfi,
+              'data-contarautomatico-post' => ''
+            }
+          %>
+        </div>
+        <div class="offset-sm-4 col-4">
+          <% vff = Sip::ModeloHelper::poromision(
+            params, :fechafin, @vic_fechafin) %>
+          <%= f.input :fechafin,
+            maxlength: 10, 
+            size: 10,
+            label: 'Fecha Final',
+            input_html: {
+              "data-behaviour" => "datepicker",
+              value: vff,
+              'data-contarautomatico-post' => ''
+            } 
+          %>
+        </div>
+      </div> <!--row -->
+    <% end # :item_acorden_bs %>
+
+    <%= render partial: 'sivel2_gen/mapadep/filtro_categorias_item_acordeon', 
+      locals: {f: f, divacordeon: 'filtros'} %>
+
+    <% @opdesagregarpor.each do |o| %>
+      <% if @estfiltrosm[o] && !@estfiltrosm[o][:nomfiltro].nil? %>
+        <% nomfiltro = @estfiltrosm[o][:nomfiltro] %>
+        <% if params.nil? || params[:filtro].nil? %>
+          <% if @estfiltrosm[o][:coleccion].kind_of?(Array) %>
+            <% sel = @estfiltrosm[o][:coleccion].map(&:last) %>
+          <% else %>
+            <% sel = @estfiltrosm[o][:coleccion].pluck(:id) %>
+          <% end %>
+        <% else %>
+          <% sel = params[:filtro][nomfiltro] %>
+        <% end %>
+
+        <%= item_acordeon_bs(
+          'filtros', "mfiltros_#{nomfiltro}", o.capitalize, false) do %>
+          <div class="row filtro-fila">
+            <div class="offset-sm-0 col-sm-12 form-inline">
+              <%= f.input nomfiltro,
+                  collection: @estfiltrosm[o][:coleccion],
+                  label_method: @estfiltrosm[o][:metodo_etiqueta],
+                  value_method: @estfiltrosm[o][:metodo_id],
+                  label: false,
+                  selected: sel,
+                  input_html: {
+                    class: 'chosen-select',
+                    multiple: true,
+                    'data-contarautomatico-post' => ''
+                  }
+                %>
+              </div> <!-- col -->
+            </div> <!-- row -->
+          <% end %> <!-- if @estfiltrosm[o] -->
+        <% end %> <! -- @opdesagregarpor -->
+      <% end %> <!-- item_acordeon_bs -->
+    </div> <!-- accordion filtro -->
+
+    <div class="row">
+      <div class="offset-sm-0 col-3">
+        Desagregar por
+      </div>
+      <div class="offset-sm-0 col-3">
+        <% des = Sip::ModeloHelper::poromision(
+          params, :desagregarpor, @opdesagregarpor.first) %>
+        <%= f.input :desagregarpor,
+        collection: @opdesagregarpor,
+        label: false,
+        selected: des,
+        input_html: {
+          'data-enviarautomatico' => ''}
+        %>
+      </div>
+      <div class="col-sm-3">
+        <% pom = Sip::ModeloHelper.poromision(params, :colormax) %>
+        <%= f.input :colormax, 
+          label: false,
+          inline_label: 'Color más oscuro',
+          input_html: {
+            "data-contarautomatico" => "",
+            type: 'color',
+            width: '2em',
+            value: pom == '' ? '#00ff00' : pom
+          } %>
+      </div>
+    </div> <!-- row -->
+
+
+    <div class="row filtro-fila">
+      <div class="offset-md-5 col-md-2">
+        <%= f.button :submit, 'Contar', class: 'btn btn-default' %>
+      </div>
+    </div>
+<% end %>
+
+<div id="resultado" style='margin-top: 40px'>
+  <%= render 'grafica_y_tabla' %>
+</div> <!-- id: resultado -->
+

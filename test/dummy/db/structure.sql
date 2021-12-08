@@ -882,14 +882,20 @@ CREATE VIEW public.cvt1 AS
     acto.id_persona,
     acto.id_categoria,
     supracategoria.id_tviolencia,
-    categoria.nombre AS categoria
-   FROM (((((public.sivel2_gen_acto acto
+    categoria.nombre AS categoria,
+    ((supracategoria.id_tviolencia)::text || (categoria.id)::text) AS nomcategoria,
+    departamento.nombre AS departamento_nombre,
+    departamento.id_deplocal AS departamento_divipola,
+    'total'::text AS total
+   FROM (((((((public.sivel2_gen_acto acto
      JOIN public.sivel2_gen_caso caso ON ((acto.id_caso = caso.id)))
      JOIN public.sivel2_gen_categoria categoria ON ((acto.id_categoria = categoria.id)))
      JOIN public.sivel2_gen_supracategoria supracategoria ON ((categoria.supracategoria_id = supracategoria.id)))
      JOIN public.sivel2_gen_victima victima ON (((victima.id_persona = acto.id_persona) AND (victima.id_caso = caso.id))))
      JOIN public.sip_persona persona ON ((persona.id = acto.id_persona)))
-  WHERE (categoria.id = ANY (ARRAY[397, 197, 427, 297, 527, 777, 396, 196, 426, 776, 296, 526, 35, 25, 15, 45, 55, 73, 65, 92, 50, 40, 67, 801, 90, 57, 46, 26, 37, 16, 80, 85, 66, 64, 703, 38, 49, 28, 706, 59, 18, 401, 501, 904, 502, 231, 17, 331, 402, 705, 62, 906, 104, 713, 101, 11, 76, 302, 21, 903, 34, 902, 102, 27, 14, 301, 24, 30, 20, 10, 772, 522, 192, 422, 292, 392, 63, 93, 910, 525, 195, 425, 775, 295, 395, 714, 78, 424, 774, 394, 194, 294, 524, 89, 905, 86, 701, 68, 141, 241, 341, 715, 704, 702, 23, 43, 53, 13, 33, 88, 98, 84, 709, 711, 707, 708, 710, 87, 97, 717, 917, 716, 916, 91, 95, 718, 293, 523, 193, 423, 773, 393, 48, 58, 75, 69, 41, 74, 72, 56, 22, 12, 36, 47, 521, 291, 771, 391, 421, 191, 420, 19, 520, 39, 77, 29, 712]));
+     JOIN public.sip_ubicacion ubicacion ON ((ubicacion.id = caso.ubicacion_id)))
+     LEFT JOIN public.sip_departamento departamento ON ((departamento.id = ubicacion.id_departamento)))
+  WHERE ((caso.fecha >= '1900-01-11'::date) AND (caso.fecha <= '2021-11-18'::date) AND (categoria.id = ANY (ARRAY[397, 197, 427, 297, 527, 777, 396, 196, 426, 776, 296, 526, 35, 25, 15, 45, 55, 73, 65, 92, 50, 40, 67, 801, 90, 57, 46, 26, 37, 16, 80, 85, 66, 64, 703, 38, 49, 28, 706, 59, 18, 401, 501, 904, 502, 231, 17, 331, 402, 705, 62, 906, 104, 713, 101, 11, 76, 302, 21, 903, 34, 902, 102, 27, 14, 301, 24, 30, 20, 10, 772, 522, 192, 422, 292, 392, 63, 93, 910, 525, 195, 425, 775, 295, 395, 714, 78, 424, 774, 394, 194, 294, 524, 89, 905, 86, 701, 68, 141, 241, 341, 715, 704, 702, 23, 43, 53, 13, 33, 88, 98, 84, 709, 711, 707, 708, 710, 87, 97, 717, 917, 716, 916, 91, 95, 718, 293, 523, 193, 423, 773, 393, 48, 58, 75, 69, 41, 74, 72, 56, 22, 12, 36, 47, 521, 291, 771, 391, 421, 191, 420, 19, 520, 39, 77, 29, 712])));
 
 
 --

@@ -1,81 +1,9 @@
-
 <div class="row filtro-fila">
   <div class="offset-sm-0 col-sm-3 offset-md-1 col-md-1">
   </div>
   <div class="col-sm-9 accordion" id='colcategorias'>
-    <%= item_acordeon_bs(
-      'colcategorias', 'colcategorias2', 'Categorías', false) do %> 
-
-      <div class='row' style='text-align: right'>
-        <div class="offset-sm-0 col-sm-3">
-          <%= f.input :tviolencia_id,
-            collection: Sivel2Gen::Tviolencia.habilitados,
-            label_method: :nombre,
-            value_method: :id,
-            label: false,
-            include_blank: '-- Violencia',
-            input_html: { "data-contarautomatico" => "" }
-          %>
-        </div>
-        <div class="col-sm-3">
-          <%= f.input :excluircaterep, 
-            as: :boolean, 
-            boolean_style: :nested,
-            label: false,
-            inline_label: 'Sin repetidas',
-            input_html: { 'data-contarautomatico' => '' }
-          %> 
-        </div>
-        <div class="col-sm-6">
-          <% # Estilo con base en https://codepen.io/Davide_sd/pen/AmazD %>
-          <%= f.input :mostrar_cats, 
-          collection: [
-            [1, 'Todas'], [2, 'Algunas'], [0, 'Ninguna']
-          ], 
-          label_method: :last, 
-          value_method: :first,
-          as: :radio_buttons, 
-          item_wrapper_class: 'form-check-inline',
-          disabled: 2,
-          checked: 1,
-          required: false,
-          label: '',
-          input_html:  {
-            'data-contarautomatico' => ''
-          },
-          wrapper_html: {
-            style: 'width: 20rem; height: 2rem; position: relative; '\
-            'margin-left: auto; border-radius: 2rem; background: gray'
-          }
-        %>
-        </div>
-      </div> <!-- row -->
-      <div class='row'>
-        <% cats = Sivel2Gen::Categoria.habilitados.pluck(:id) %>
-        <%= f.input :categoria, 
-          collection: Sivel2Gen::Categoria.habilitados.group_by { |c| 
-            c.supracategoria.id_tviolencia
-          },
-          as: :grouped_select, 
-          group_method: :last, 
-          group_label_method: lambda { |ca| 
-            Sivel2Gen::Tviolencia.find(ca[0]).nombre
-          }, 
-          value_method: :id,
-          label_method: lambda { |cat| 
-            Sivel2Gen::Supracategoria.find(cat.supracategoria_id.to_i).
-              id_tviolencia + cat.id.to_s + ' ' + cat.nombre 
-          },
-          selected: cats,
-          label: false,
-          input_html: { 
-            "data-contarautomatico" => "",
-            class: 'chosen-select',
-            multiple: true
-          }
-        %>
-      </div> <!-- row -->
-    <% end %>
+    <%= render partial: 'filtro_categorias_item_acordeon', 
+      locals: {f: f, divacordeon: 'colcategorias'} %>
   </div> <!-- colcategorias -->
 </div> <!-- row -->
 
