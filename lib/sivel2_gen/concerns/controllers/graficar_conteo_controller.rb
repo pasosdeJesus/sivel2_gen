@@ -52,6 +52,16 @@ module Sivel2Gen
             'sivel2_gen/conteos/personas'
           end
 
+          def tiposgraficas 
+            [ 
+              'BARRAS VERTICALES', 
+              'BARRAS HORIZONTALES',
+              'LÍNEAS',
+              'ÁREAS',
+              'TORTA',
+              'DONA'
+            ]
+          end
 
           # Llena variables de clase: @opdesagregarpor, @estfiltrosm
           def arma_estructuras
@@ -332,7 +342,8 @@ module Sivel2Gen
 
 
           def post_consulta_final
-            @colorg = pColormax = escapar_param( [:filtro, 'colormax'])
+            @pColormax = @colorg = escapar_param( [:filtro, 'colormax'])
+            @pTipografica = escapar_param( [:filtro, 'tipografica'])
           end
 
 
