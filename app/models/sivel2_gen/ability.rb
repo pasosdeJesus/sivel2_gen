@@ -215,6 +215,7 @@ module Sivel2Gen
         habilidad.can :buscar, Sivel2Gen::Caso
         habilidad.can :contar, Sivel2Gen::Caso
         habilidad.can :lista, Sivel2Gen::Caso
+        habilidad.can :read, Sip::Ubicacionpre
 
         # API público
         # Mostrar un caso con casos/101
@@ -334,6 +335,7 @@ module Sivel2Gen
           habilidad.can :manage, Sip::Persona
           habilidad.can :manage, Sip::Grupoper
           habilidad.can :manage, Sip::Respaldo7z
+          habilidad.can :manage, Sip::Ubicacionpre
 
           habilidad.can :manage, Sivel2Gen::Acto
           habilidad.can :manage, Sivel2Gen::Actocolectivo
