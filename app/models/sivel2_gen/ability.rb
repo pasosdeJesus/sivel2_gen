@@ -267,6 +267,7 @@ module Sivel2Gen
             habilidad.can [:read, :new, :edit, :update, :create],
               Sip::Orgsocial
             habilidad.can :create, Sip::Bitacora, usuario: { id: usuario.id }
+            habilidad.can :read, Sip::Bitacora, usuario: { id: usuario.id }
             habilidad.can :manage, Sip::Persona
             habilidad.can :manage, Sip::Grupoper
 
