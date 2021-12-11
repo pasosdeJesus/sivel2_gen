@@ -215,6 +215,7 @@ module Sivel2Gen
         habilidad.can :buscar, Sivel2Gen::Caso
         habilidad.can :contar, Sivel2Gen::Caso
         habilidad.can :lista, Sivel2Gen::Caso
+        habilidad.can :read, Sip::Ubicacionpre
 
         # API público
         # Mostrar un caso con casos/101
@@ -248,6 +249,8 @@ module Sivel2Gen
 
       habilidad.can :nuevo, Sivel2Gen::Presponsable
 
+      habilidad.can :mundep, Sip::Ubicacionpre
+
       habilidad.can :nuevo, Sivel2Gen::Victima
 
       habilidad.can :nuevo, Sivel2Gen::Victimacolectiva
@@ -260,7 +263,6 @@ module Sivel2Gen
           habilidad.can :read, Heb412Gen::Plantillahcm
           habilidad.can :read, Heb412Gen::Plantillahcr
           habilidad.can :index, Sivel2Gen::Victima
-
 
           if usuario.sip_grupo &&
               usuario.sip_grupo.pluck(:id).include?(GRUPO_ANALISTA_CASOS)
@@ -333,6 +335,7 @@ module Sivel2Gen
           habilidad.can :manage, Sip::Persona
           habilidad.can :manage, Sip::Grupoper
           habilidad.can :manage, Sip::Respaldo7z
+          habilidad.can :manage, Sip::Ubicacionpre
 
           habilidad.can :manage, Sivel2Gen::Acto
           habilidad.can :manage, Sivel2Gen::Actocolectivo
