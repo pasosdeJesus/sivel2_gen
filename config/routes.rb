@@ -22,8 +22,6 @@ Sivel2Gen::Engine.routes.draw do
     as: :caso_fichapdf
   get '/casos/lista' => 'casos#lista'
   get '/casos/mapaosm' => 'casos#mapaosm', as: :casos_mapaosm
-  get '/casos/nuevaubicacion' => 'casos#nueva_ubicacion'
-  get '/casos/nuevavictima' => 'casos#nueva_victima'
   get '/casos/refresca' => 'casos#refresca', as: :casos_refresca
 
   get '/combatientes/nuevo' => 'combatientes#nuevo'
