@@ -11,7 +11,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/heb412_gen.git
-  revision: c22a02cb726bc376f1b5ba1cdde9b47a33bb5e79
+  revision: 0223e8e5b72d8143e07d76fc7a825d8d1577c965
   branch: main
   specs:
     heb412_gen (2.0)
@@ -22,7 +22,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/mr519_gen.git
-  revision: 274f0780cb6c13055cd8a2084d84b61ee43e4e10
+  revision: b7f404e2a46e5104e20ffb5e6be46cf80088fac6
   branch: main
   specs:
     mr519_gen (2.0)
@@ -31,7 +31,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sip.git
-  revision: 2720bc956842f17e222b730a2d34b2f0c3c19ca1
+  revision: b90543e16f676d68f8cacceb2370948536e7a36e
   branch: main
   specs:
     sip (2.0)
@@ -193,7 +193,7 @@ GEM
       activesupport (>= 5.0)
     i18n (1.8.11)
       concurrent-ruby (~> 1.0)
-    jbuilder (2.11.3)
+    jbuilder (2.11.4)
       activesupport (>= 5.0.0)
     jquery-ui-rails (6.0.1)
       railties (>= 3.2.16)
@@ -329,7 +329,7 @@ GEM
     thor (1.1.0)
     tilt (2.0.10)
     ttfunk (1.7.0)
-    twitter_cldr (6.9.0)
+    twitter_cldr (6.10.0)
       camertron-eprun
       cldr-plurals-runtime-rb (~> 1.1)
       tzinfo
