@@ -173,9 +173,9 @@ module Sivel2Gen
 
 
           def procesa_filtros_categoria(where1)
-            pTviolencia = escapar_param([:filtro, 'tviolencia_id'])
-            @pDesagregarpor = escapar_param([:filtro, 'segun'])
-            pExcluirCateRep = escapar_param([:filtro, 'excluircaterep'])
+            pTviolencia = escapar_param(params, [:filtro, 'tviolencia_id'])
+            @pDesagregarpor = escapar_param(params, [:filtro, 'segun'])
+            pExcluirCateRep = escapar_param(params, [:filtro, 'excluircaterep'])
             lcat = Sivel2Gen::Categoria.habilitados.pluck(:id)
             pCategoria = params[:filtro] && params[:filtro][:categoria] ?
               lcat & params[:filtro][:categoria].map(&:to_i) : lcat
@@ -284,7 +284,7 @@ module Sivel2Gen
 
 
           def procesa_desagregarpor(que1, tablas1, where1, que3, tablas3, where3)
-            @pDesagregarpor = escapar_param([:filtro, 'desagregarpor'])
+            @pDesagregarpor = escapar_param(params, [:filtro, 'desagregarpor'])
 
             return procesa_desagregarpor_om(
               que1, tablas1, where1, que3, tablas3, where3
@@ -342,8 +342,8 @@ module Sivel2Gen
 
 
           def post_consulta_final
-            @pColormax = @colorg = escapar_param( [:filtro, 'colormax'])
-            @pTipografica = escapar_param( [:filtro, 'tipografica'])
+            @pColormax = @colorg = escapar_param(params,  [:filtro, 'colormax'])
+            @pTipografica = escapar_param(params,  [:filtro, 'tipografica'])
           end
 
 

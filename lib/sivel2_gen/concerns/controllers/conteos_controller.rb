@@ -356,9 +356,9 @@ module Sivel2Gen
           def personas
             authorize! :contar, Sivel2Gen::Caso
 
-            @pSegun = escapar_param([:filtro, 'segun'])
-            @pMunicipio = escapar_param([:filtro, 'municipio'])
-            @pDepartamento = escapar_param([:filtro, 'departamento'])
+            @pSegun = escapar_param(params, [:filtro, 'segun'])
+            @pMunicipio = escapar_param(params, [:filtro, 'municipio'])
+            @pDepartamento = escapar_param(params, [:filtro, 'departamento'])
             @filtrosegun = {}
             personas_filtros_especializados()
 
@@ -477,16 +477,16 @@ module Sivel2Gen
           authorize! :contar, Sivel2Gen::Caso
 
           # Filtros
-          pFini = escapar_param([:filtro, 'fechaini'])
-          pFfin = escapar_param([:filtro, 'fechafin'])
-          pTviolencia = escapar_param([:filtro, 'tviolencia_id'])
-          pEtiqueta1 = escapar_param([:filtro, 'etiqueta1'])
-          pEtiqueta2 = escapar_param([:filtro, 'etiqueta2'])
-          pSegun = escapar_param([:filtro, 'segun'])
-          pExcluirCateRep = escapar_param([:filtro, 'excluircaterep'])
+          pFini = escapar_param(params, [:filtro, 'fechaini'])
+          pFfin = escapar_param(params, [:filtro, 'fechafin'])
+          pTviolencia = escapar_param(params, [:filtro, 'tviolencia_id'])
+          pEtiqueta1 = escapar_param(params, [:filtro, 'etiqueta1'])
+          pEtiqueta2 = escapar_param(params, [:filtro, 'etiqueta2'])
+          pSegun = escapar_param(params, [:filtro, 'segun'])
+          pExcluirCateRep = escapar_param(params, [:filtro, 'excluircaterep'])
           # Desagregar
-          pMunicipio = escapar_param([:filtro, 'municipio'])
-          pDepartamento = escapar_param([:filtro, 'departamento'])
+          pMunicipio = escapar_param(params, [:filtro, 'municipio'])
+          pDepartamento = escapar_param(params, [:filtro, 'departamento'])
 
           lcat = Sivel2Gen::Categoria.habilitados.pluck(:id)
           pCategoria = params[:filtro] && params[:filtro][:categoria] ?

@@ -48,13 +48,13 @@ module Sivel2Gen
             authorize! :contar, Sivel2Gen::Caso
 
             # Filtros
-            pFini = escapar_param([:filtro, 'fechaini'])
-            pFfin = escapar_param([:filtro, 'fechafin'])
-            pTviolencia = escapar_param([:filtro, 'tviolencia_id'])
-            pEtiqueta1 = escapar_param([:filtro, 'etiqueta1'])
-            pEtiqueta2 = escapar_param([:filtro, 'etiqueta2'])
-            pColormax = escapar_param([:filtro, 'colormax'])
-            pExcluirCateRep = escapar_param([:filtro, 'excluircaterep'])
+            pFini = escapar_param(params, [:filtro, 'fechaini'])
+            pFfin = escapar_param(params, [:filtro, 'fechafin'])
+            pTviolencia = escapar_param(params, [:filtro, 'tviolencia_id'])
+            pEtiqueta1 = escapar_param(params, [:filtro, 'etiqueta1'])
+            pEtiqueta2 = escapar_param(params, [:filtro, 'etiqueta2'])
+            pColormax = escapar_param(params, [:filtro, 'colormax'])
+            pExcluirCateRep = escapar_param(params, [:filtro, 'excluircaterep'])
 
             lcat = Sivel2Gen::Categoria.habilitados.pluck(:id)
             pCategoria = params[:filtro] && params[:filtro][:categoria] ?
