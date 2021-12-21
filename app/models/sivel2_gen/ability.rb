@@ -206,6 +206,7 @@ module Sivel2Gen
     def self.initialize_sivel2_gen(habilidad, usuario = nil)
       # Sin autenticación puede consultarse información geográfica
       habilidad.can :read, [Sip::Pais, Sip::Departamento, Sip::Municipio, Sip::Clase]
+      habilidad.can :read, Sip::Ubicacionpre
 
       # Hacer conteos
       habilidad.can :cuenta, Sivel2Gen::Caso
@@ -215,7 +216,6 @@ module Sivel2Gen
         habilidad.can :buscar, Sivel2Gen::Caso
         habilidad.can :contar, Sivel2Gen::Caso
         habilidad.can :lista, Sivel2Gen::Caso
-        habilidad.can :read, Sip::Ubicacionpre
 
         # API público
         # Mostrar un caso con casos/101
