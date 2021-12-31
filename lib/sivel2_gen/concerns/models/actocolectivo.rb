@@ -8,13 +8,15 @@ module Sivel2Gen
         included do
 
           belongs_to :presponsable, foreign_key: "id_presponsable", 
-            validate: true, class_name: 'Sivel2Gen::Presponsable'
+            validate: true, class_name: 'Sivel2Gen::Presponsable', 
+            optional: false
           belongs_to :grupoper, foreign_key: "id_grupoper", 
-            validate: true, class_name: 'Sip::Grupoper'
+            validate: true, class_name: 'Sip::Grupoper', optional: false
           belongs_to :caso, foreign_key: "id_caso", validate: true, 
-            class_name: 'Sivel2Gen::Caso'
+            class_name: 'Sivel2Gen::Caso', optional: false
           belongs_to :categoria, foreign_key: "id_categoria", 
-            validate: true, class_name: 'Sivel2Gen::Categoria'
+            validate: true, class_name: 'Sivel2Gen::Categoria', 
+            optional: false
 
           def importa(datosent, datossal, menserror, opciones = {})
             victimascol = datosent[0]

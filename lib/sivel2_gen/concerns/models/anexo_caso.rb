@@ -10,9 +10,10 @@ module Sivel2Gen
           include Sip::FormatoFechaHelper
 
           belongs_to :caso, foreign_key: "id_caso", validate: true, 
-            class_name: "Sivel2Gen::Caso", inverse_of: :anexo_caso
+            class_name: "Sivel2Gen::Caso", inverse_of: :anexo_caso, 
+            optional: false
           belongs_to :sip_anexo, foreign_key: "id_anexo", validate: true, 
-            class_name: "Sip::Anexo"
+            class_name: "Sip::Anexo", optional: false
           accepts_nested_attributes_for :sip_anexo, reject_if: :all_blank
 
           has_many :caso_fuenteprensa, foreign_key: "anexo_caso_id",

@@ -10,9 +10,10 @@ module Sivel2Gen
 
           belongs_to :vinculoestado, foreign_key: "id_vinculoestado", 
             validate: true, 
-            class_name: 'Sivel2Gen::Vinculoestado'
+            class_name: 'Sivel2Gen::Vinculoestado', optional: false
           belongs_to :victimacolectiva, foreign_key: "victimacolectiva_id", 
-            validate: true, class_name: 'Sivel2Gen::Victimacolectiva'
+            validate: true, class_name: 'Sivel2Gen::Victimacolectiva', 
+            optional: false
 
         end
       end

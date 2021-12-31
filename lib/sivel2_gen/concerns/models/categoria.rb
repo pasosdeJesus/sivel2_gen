@@ -14,7 +14,9 @@ module Sivel2Gen
           belongs_to :pconsolidado, foreign_key: "id_pconsolidado", 
             class_name: 'Sivel2Gen::Pconsolidado', optional: true
           belongs_to :supracategoria, foreign_key: "supracategoria_id", 
-             class_name: 'Sivel2Gen::Supracategoria', validate: true
+             class_name: 'Sivel2Gen::Supracategoria', validate: true,
+             optional: false
+
 
 
           has_many :acto, foreign_key: "id_categoria", validate: true,

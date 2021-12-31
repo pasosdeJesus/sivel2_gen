@@ -40,7 +40,7 @@ module Sivel2Gen
 
           # En el orden de esquema en base
           belongs_to :caso, foreign_key: "id_caso", validate: true,
-            class_name: "Sivel2Gen::Caso"
+            class_name: "Sivel2Gen::Caso", optional: false
           belongs_to :etnia, foreign_key: "id_etnia", validate: true,
             class_name: "Sivel2Gen::Etnia", optional: true
           belongs_to :filiacion, foreign_key: "id_filiacion",
@@ -50,7 +50,7 @@ module Sivel2Gen
           belongs_to :organizacion, foreign_key: "id_organizacion",
             validate: true, class_name: "Sivel2Gen::Organizacion", optional: true
           belongs_to :persona, foreign_key: "id_persona", validate: true,
-            class_name: "Sip::Persona"
+            class_name: "Sip::Persona", optional: false
           accepts_nested_attributes_for :persona, reject_if: :all_blank
           belongs_to :profesion, foreign_key: "id_profesion", validate: true,
             class_name: "Sivel2Gen::Profesion", optional: true

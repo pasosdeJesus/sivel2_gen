@@ -46,7 +46,7 @@ if (test "$SININS" != "1") then {
 } fi;
 
 if (test "$SINMIG" != "1") then {
-	(cd test/dummy; bin/rails db:migrate sip:indices db:structure:dump)
+	(cd test/dummy; bin/rails db:migrate sip:indices db:schema:dump)
 	if (test "$?" != "0") then {
 		exit 1;
 	} fi;
@@ -72,7 +72,7 @@ for i in test/integration/*rb; do
 	} fi;
 done;
 
-(cd test/dummy; RAILS_ENV=test bin/rails db:structure:dump)
+(cd test/dummy; RAILS_ENV=test bin/rails db:schema:dump)
 
 b=`git branch | grep "^*" | sed -e  "s/^* //g"`
 git status -s

@@ -34,7 +34,7 @@ module Sivel2Gen
             validate: true, class_name: "Sivel2Gen::Vinculoestado", 
             optional: true
           belongs_to :caso, foreign_key: "id_caso", validate: true, 
-            class_name: "Sivel2Gen::Caso"
+            class_name: "Sivel2Gen::Caso", optional: false
           belongs_to :presponsable, foreign_key: "organizacionarmada", 
             validate: true, class_name: "Sivel2Gen::Presponsable", 
             optional: true

@@ -11,9 +11,9 @@ module Sivel2Gen
           include Sip::FormatoFechaHelper
 
           belongs_to :caso, class_name: "Sivel2Gen::Caso", 
-            foreign_key: "id_caso", validate: true
+            foreign_key: "id_caso", validate: true, optional: false
           belongs_to :fuenteprensa, class_name: "Sip::Fuenteprensa", 
-            foreign_key: "fuenteprensa_id", validate: true
+            foreign_key: "fuenteprensa_id", validate: true, optional: false
           belongs_to :anexo_caso, class_name: "Sivel2Gen::AnexoCaso", 
             dependent: :destroy, foreign_key: "anexo_caso_id", 
             optional: true

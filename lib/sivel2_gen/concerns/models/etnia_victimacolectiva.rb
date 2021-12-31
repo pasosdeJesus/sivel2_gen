@@ -9,10 +9,10 @@ module Sivel2Gen
         included do
           belongs_to :etnia, foreign_key: "etnia_id",
             validate: true,
-            class_name: 'Sivel2Gen::Etnia'
+            class_name: 'Sivel2Gen::Etnia', optional: false
           belongs_to :victimacolectiva, foreign_key: "victimacolectiva_id",
             validate: true,
-            class_name: 'Sivel2Gen::Victimacolectiva'
+            class_name: 'Sivel2Gen::Victimacolectiva', optional: false
         end
       end
     end

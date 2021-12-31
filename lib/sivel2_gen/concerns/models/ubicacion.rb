@@ -18,7 +18,7 @@ module Sivel2Gen
             class_name: "Sivel2Gen::Caso"
 
           belongs_to :caso, class_name: "Sivel2Gen::Caso", 
-            foreign_key: "id_caso", validate: true
+            foreign_key: "id_caso", validate: true, optional: false
 
           attr_accessor :principal
           attr_accessor :tclase

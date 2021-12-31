@@ -6,7 +6,7 @@ module Sivel2Gen
         extend ActiveSupport::Concern
 
         included do
-          belongs_to :caso, class_name: 'Sivel2Gen::Caso'
+          belongs_to :caso, class_name: 'Sivel2Gen::Caso', optional: false
 
           has_many :ubicacion, through: :caso,
             class_name: 'Sip::Ubicacion'
