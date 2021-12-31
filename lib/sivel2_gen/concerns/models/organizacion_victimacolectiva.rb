@@ -11,9 +11,11 @@ module Sivel2Gen
           include Sip::FormatoFechaHelper
 
           belongs_to :organizacion, foreign_key: "id_organizacion", 
-            validate: true, class_name: 'Sivel2Gen::Organizacion'
+            validate: true, class_name: 'Sivel2Gen::Organizacion', 
+            optional: false
           belongs_to :victimacolectiva, foreign_key: "victimacolectiva_id", 
-            validate: true, class_name: 'Sivel2Gen::Victimacolectiva'
+            validate: true, class_name: 'Sivel2Gen::Victimacolectiva', 
+            optional: false
 
         end # included
 

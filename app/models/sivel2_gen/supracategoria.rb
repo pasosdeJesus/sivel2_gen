@@ -7,7 +7,7 @@ module Sivel2Gen
       class_name: 'Sivel2Gen::Categoria'
 
     belongs_to :tviolencia, foreign_key: "id_tviolencia", 
-      validate: true, class_name: 'Sivel2Gen::Tviolencia'
+      validate: true, class_name: 'Sivel2Gen::Tviolencia', optional: false
 
     validates :id, presence: true, uniqueness: true
     validates :id_tviolencia, presence: true

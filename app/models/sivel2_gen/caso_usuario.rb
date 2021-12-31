@@ -2,9 +2,9 @@
 module Sivel2Gen
   class CasoUsuario < ActiveRecord::Base
     belongs_to :usuario, foreign_key: "id_usuario", validate: true,
-       class_name: 'Usuario'
+       class_name: 'Usuario', optional: false
     belongs_to :caso, foreign_key: "id_caso", validate: true,
-       class_name: 'Sivel2Gen::Caso'
+       class_name: 'Sivel2Gen::Caso', optional: false
 
     self.primary_key = :id_caso
     # No es la llave primaria --pues no hay-- pero se usa para que
