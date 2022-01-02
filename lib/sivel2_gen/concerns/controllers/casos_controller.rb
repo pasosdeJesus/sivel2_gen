@@ -586,7 +586,10 @@ module Sivel2Gen
                                                                   diasatras)
             @fechahasta = Sip::FormatoFechaHelper.fin_semestre(Date.today -
                                                                diasatras)
-            render 'mapaosm', layout: 'application'
+            @clase_divcontenido = ''
+            @margensup_divcontenido = '-9x'
+            render 'mapaosm', layout: 'application', 
+              locals: {clasedivcontenido: '', margensupdivcontenido: '-9px'}
           end
 
 
