@@ -10,7 +10,7 @@ xml.relatos do
 
   @conscaso.try(:each) do |conscaso|
     caso= conscaso.caso
-    xml << render(:partial => 'sivel2_gen/casos/caso.xrlat', :locals => { :caso => caso} ).gsub(/^/, '     ')
+    xml << render(:partial => 'sivel2_gen/casos/caso', :locals => { :caso => caso} ).gsub(/^/, '     ')
 
   end
 end

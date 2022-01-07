@@ -802,15 +802,18 @@ enviaFormularioContarPost= (root) ->
   # Agrega actos  
   $(document).on('click', 'a.agregaractos[href^="#"]', (e) ->
     e.preventDefault()
-    tn = Date.now()
-    d = -1
-    if (root.tagregaactos) 
-      d = (tn - root.tagregaactos)/1000
-    if (d == -1 || d>5) 
-      f=$('form')
-      a = root.puntomontaje + 'actos/agregar'
-      $.post(a, f.serialize())
-      root.tagregaactos= Date.now()
+    f=$('form')
+    # Empleamos el de SIP que agrega token CSRF
+    sip_enviarautomatico_formulario(f, 'POST', 'script', true, 'Enviar', false)
+
+#    tn = Date.now()
+#    d = -1
+#    if (root.tagregaactos) 
+#      d = (tn - root.tagregaactos)/1000
+#    if (d == -1 || d>5) 
+#      a = root.puntomontaje + 'actos/agregar'
+#      $.post(a, f.serialize())
+#      root.tagregaactos= Date.now()
     return
   )
 
