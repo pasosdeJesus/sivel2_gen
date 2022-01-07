@@ -457,7 +457,7 @@ module Sivel2Gen
                 }
 
                 format.xrlat {
-                  render 'reprevista.xrlat'
+                  render 'reprevista'
                   return
                 }
                 
@@ -931,7 +931,10 @@ module Sivel2Gen
                 render 'show.json', locals: { caso: @caso }
               }
               format.xrlat {
-                xml = render_to_string  action: 'show.xml', locals: { caso: @caso }
+                xml = render_to_string(
+                  action: 'show', locals: { caso: @caso },
+                  formats: [:xml, :xrlat]
+                )
                 send_data xml, :type=>"text/xml"
               }
               format.xml {
