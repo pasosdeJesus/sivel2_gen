@@ -25,8 +25,12 @@ console.log('Hola Mundo desde Webpacker')
 import Rails from "@rails/ujs"
 Rails.start()
 
+import mrujs from "mrujs";
 import Turbolinks from "turbolinks"
+
+mrujs.start();
 Turbolinks.start()
+
 
 import './jquery'
 import '../../vendor/assets/javascripts/jquery-ui'

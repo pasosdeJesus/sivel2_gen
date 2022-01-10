@@ -60,6 +60,9 @@ module Dummy
     config.x.sivel2_mapaosm_diasatras = ENV.fetch(
       'SIVEL2_MAPAOSM_DIASATRAS', 182)
 
+    config.web_console.permissions = ENV.fetch('WEBCONSOLE_PERMISSIONS', '').
+      split(';')
+
   end
 end
 

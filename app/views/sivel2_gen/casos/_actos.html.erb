@@ -65,7 +65,8 @@
 
     <%= link_to 'Añadir Acto(s)',
       '#',
-      :class => 'agregaractos btn btn-primary' 
+      class: 'agregaractos btn btn-primary',
+      id: 'boton-añadir-actos'
     %>
   <div id="actos_tabla">
     <%= render 'sivel2_gen/actos/actos_tabla'  %>

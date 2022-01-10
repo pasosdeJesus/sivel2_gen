@@ -1,3 +1,4 @@
+'use strict';
 
 // REEMPLAZOS DE FUNCIONES EN JQUERY
 
@@ -103,4 +104,11 @@ $(document).on('change', '#filtro_categoria', function(e) {
   // No entra en recursión ni llama al otro
   sivel2genManejarCambioCategorias()
 })
+
+
+// INTENTANDO EMULAR LO DE COMMONJS PARA MÓDULOS COMMONJS QUE SE CARGARÁN
+// TRAS CONVERTIR DE ES6
+
+exports = {}
+module = { exports: exports}
 

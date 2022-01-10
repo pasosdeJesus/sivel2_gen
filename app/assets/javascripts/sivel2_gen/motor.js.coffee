@@ -804,7 +804,7 @@ enviaFormularioContarPost= (root) ->
     e.preventDefault()
     f=$('form')
     # Empleamos el de SIP que agrega token CSRF
-    sip_enviarautomatico_formulario(f, 'POST', 'script', true, 'Enviar', false)
+    #sip_enviarautomatico_formulario(f, 'POST', 'script', true, 'Enviar', false)
 
 #    tn = Date.now()
 #    d = -1
@@ -910,7 +910,7 @@ enviaFormularioContarPost= (root) ->
 
   $(document).on('change', 
   '[id^=caso_victima_attributes][id$=persona_attributes_anionac]', (event) ->
-    root =  exports ? window
+    root =  window
     anionac = $(this).val();
     prefIdVic = $(this).attr('id').slice(0, -27)
     prefIdPer = $(this).attr('id').slice(0, -8)
@@ -919,7 +919,7 @@ enviaFormularioContarPost= (root) ->
 
   $(document).on('change', 
   "[id^=caso_victima_attributes][id$=persona_attributes_mesnac]", (event) ->
-    root =  exports ? window
+    root =  window
     prefIdVic = $(this).attr('id').slice(0, -26)
     prefIdPer = $(this).attr('id').slice(0, -7)
     sivel2_gen_llenar_edades(root, prefIdVic, prefIdPer)
@@ -927,7 +927,7 @@ enviaFormularioContarPost= (root) ->
 
   $(document).on('change', 
   "[id^=caso_victima_attributes][id$=persona_attributes_dianac]", (event) ->
-    root =  exports ? window
+    root =  window
     prefIdVic = $(this).attr('id').slice(0, -26)
     prefIdPer = $(this).attr('id').slice(0, -7)
     sivel2_gen_llenar_edades(root, prefIdVic, prefIdPer)
@@ -935,7 +935,7 @@ enviaFormularioContarPost= (root) ->
 
   $(document).on('change', 
   "[id^=caso_victima_attributes][id$=_edad]", (event) ->
-    root =  exports ? window
+    root =  window
     edad = $(this).val();
     prefIdVic = $(this).attr('id').slice(0, -5)
     prefIdPer = prefIdVic + '_persona_attributes'
@@ -954,7 +954,7 @@ enviaFormularioContarPost= (root) ->
 
   $(document).on('change', 
   "[id^=caso_victima_attributes][id$=_edadactual]", (event) ->
-    root =  exports ? window
+    root =  window
     edadactual = $(this).val();
     prefIdVic = $(this).attr('id').slice(0, -11)
     prefIdPer = prefIdVic + '_persona_attributes'
@@ -1023,7 +1023,7 @@ enviaFormularioContarPost= (root) ->
   ) 
 
   $(document).on('sip:autocompleto_persona', (evento, id_victima, id_persona) -> 
-    root =  exports ? window
+    root =  window
     ponerVariablesEdad(root)
     prefIdVic = 'caso_victima_attributes_' + id_victima
     prefIdPer = 'caso_victima_attributes_' + id_victima + '_persona_attributes'
