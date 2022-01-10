@@ -25,8 +25,10 @@ console.log('Hola Mundo desde Webpacker')
 import Rails from "@rails/ujs"
 Rails.start()
 
-import Turbolinks from "turbolinks"
-Turbolinks.start()
+import * as Turbo from "@hotwired/turbo"
+
+//import Turbolinks from "turbolinks"
+//Turbolinks.start()
 
 import './jquery'
 import '../../vendor/assets/javascripts/jquery-ui'

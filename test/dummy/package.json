@@ -7,6 +7,7 @@
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.11.2",
+    "@hotwired/turbo": "^7.1.0",
     "@popperjs/core": "^2.9.3",
     "@rails/ujs": "^6.0.1",
     "apexcharts": "^3.28.3",
@@ -14,7 +15,6 @@
     "bootstrap-datepicker": "^1.9.0",
     "chosen-js": "^1.8.7",
     "esbuild": "^0.14.10",
-    "expose-loader": "^3.0.0",
     "gridstack": "^0.6.0",
     "jquery": "^3.6.0",
     "jquery-ui": "^1.12.1",
