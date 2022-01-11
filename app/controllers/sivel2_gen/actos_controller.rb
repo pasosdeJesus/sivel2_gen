@@ -102,25 +102,5 @@ module Sivel2Gen
       end
     end
 
-    def destroy
-      @registro = @acto = Sivel2Gen::Acto.where(id: params[:id]).take
-      if @acto.nil?
-        return
-      end
-
-      authorize! :destroy, @acto.caso
-      @acto.destroy!
-      respond_to do |format|
-        format.turbo_stream {
-          render turbo_stream: turbo_stream.replace(
-            'actos_tabla_tf', partial: 'actos_tabla')
-        }
-      end
-    end
-
-    def new
-      @registro = @acto = @caso.actos.new
-    end
-
   end
 end
