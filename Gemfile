@@ -2,7 +2,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-gem 'babel-rails'
+gem 'babel-transpiler'
 
 gem 'bcrypt'
 

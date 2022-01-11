@@ -6,48 +6,90 @@ module Sivel2Gen
 
     # Crea nuevos actos procesando parámetros
     def agregar
-      if params[:caso][:id].nil?
+      params2 = {}
+      if params[:_json]
+        # Este es el formato generado por fetch
+        params2 = Sip::ControladorHelper.convertir_arrnomval_diccionario(
+          params[:_json])
+      end
+      if (!params[:caso] && !params2['caso'])
+        respond_to do |format|
+          format.html { render inline: 'Faltan paramétros de caso' }
+        end
+        return
+      elsif (params[:caso] && params[:caso][:id].nil?) ||
+        (params2['caso'] && params2['caso']['id'].nil?)
         respond_to do |format|
           format.html { render inline: 'Falta identificacion del caso' }
         end
-      elsif !params[:caso_acto_id_presponsable]
+        return
+      elsif (params[:caso] && !params[:caso_acto_id_presponsable]) ||
+        (params2['caso'] && !params2['caso_acto_id_presponsable'])
         respond_to do |format|
           format.html { render inline: 'Debe tener Presunto Responsable' }
         end
-      elsif !params[:caso_acto_id_categoria]
+        return
+      elsif (params[:caso] && !params[:caso_acto_id_categoria]) ||
+        (params2['caso'] && !params2['caso_acto_id_categoria'])
         respond_to do |format|
           format.html { render inline: 'Debe tener Categoria' }
         end
-      elsif !params[:caso_acto_id_persona]
+        return
+      elsif (params[:caso] && !params[:caso_acto_id_persona]) ||
+        (params2['caso'] && !params2['caso_acto_id_persona'])
         respond_to do |format|
           format.html { render inline: 'Debe tener Víctima' }
         end
+        return
       else
-        params[:caso_acto_id_presponsable].each do |cpresp|
+        lpresp = params[:caso] ? params[:caso_acto_id_presponsable] :
+          params2['caso_acto_id_presponsable']['']
+        lcat = params[:caso] ? params[:caso_acto_id_categoria] :
+          params2['caso_acto_id_categoria']['']
+        lper = params[:caso] ? params[:caso_acto_id_persona] :
+          params2['caso_acto_id_persona']['']
+        casoid = params[:caso] ? params[:caso][:id] :
+          params2['caso']['id']
+
+        lpresp.each do |cpresp|
           presp = cpresp.to_i
-          params[:caso_acto_id_categoria].each do |ccat|
+          lcat.each do |ccat|
             cat = ccat.to_i
-            params[:caso_acto_id_persona].each do |cvic|
+            lper.each do |cvic|
               vic = cvic.to_i
-              @caso = Sivel2Gen::Caso.find(params[:caso][:id])
+              @caso = Sivel2Gen::Caso.find(casoid)
               @caso.current_usuario = current_usuario
               authorize! :update, @caso
-              acto = Sivel2Gen::Acto.new(
+              cacto = {
                 id_presponsable: presp,
                 id_categoria: cat,
                 id_persona: vic,
-              )
-              acto.caso = @caso
-              acto.save
+                id_caso: @caso.id
+              }
+              if Sivel2Gen::Acto.where(cacto).count == 0
+                Sivel2Gen::Acto.create!(
+                  id_presponsable: presp,
+                  id_categoria: cat,
+                  id_persona: vic,
+                  id_caso: @caso.id
+                )
+              end
             end
           end
         end
-      end
-    
-      respond_to do |format|
-        format.js { render 'refrescar' }
+
+        respond_to do |format|
+          format.js { 
+            # Con fetch ya no opera js aunque llega aquí
+             render partial: 'sivel2_gen/actos/actos_tabla' 
+           }
+           format.html { 
+             render 'actos_tabla' 
+           }
+         end
       end
     end
+
 
     def eliminar
       acto = Acto.where(id: params[:id_acto].to_i).take
@@ -67,9 +109,12 @@ module Sivel2Gen
       end
 
       authorize! :destroy, @acto.caso
-      @acto.destroy
+      @acto.destroy!
       respond_to do |format|
-        format.turbo_stream 
+        format.turbo_stream {
+          render turbo_stream: turbo_stream.replace(
+            'actos_tabla_tf', partial: 'actos_tabla')
+        }
       end
     end
 
@@ -77,8 +122,5 @@ module Sivel2Gen
       @registro = @acto = @caso.actos.new
     end
 
-    def create
-      debugger
-    end
   end
 end

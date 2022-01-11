@@ -11,7 +11,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/heb412_gen.git
-  revision: 1aeab05dadb8e9089ffa96759d63d54c5120a422
+  revision: 2aa9ca5d1be293d409531a485ea80a1947cf8298
   branch: rails7jses
   specs:
     heb412_gen (2.1a1)
@@ -22,7 +22,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/mr519_gen.git
-  revision: fb37805d38e0253c4222b75d761d0ee69522e191
+  revision: 232ef30642cb004626ca01513397903de1c49c20
   branch: rails7jses
   specs:
     mr519_gen (2.1a1)
@@ -31,7 +31,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sip.git
-  revision: 1be63d69081e8683d7c2d0170ca53e6590556311
+  revision: 2e61011909b90f7b1451c37fd4e624fd9a844577
   branch: rails7jses
   specs:
     sip (2.1a1)
@@ -55,61 +55,67 @@ GIT
 GEM
   remote: https://rubygems.org/
   specs:
-    actioncable (7.0.0)
-      actionpack (= 7.0.0)
-      activesupport (= 7.0.0)
+    actioncable (7.0.1)
+      actionpack (= 7.0.1)
+      activesupport (= 7.0.1)
       nio4r (~> 2.0)
       websocket-driver (>= 0.6.1)
-    actionmailbox (7.0.0)
-      actionpack (= 7.0.0)
-      activejob (= 7.0.0)
-      activerecord (= 7.0.0)
-      activestorage (= 7.0.0)
-      activesupport (= 7.0.0)
+    actionmailbox (7.0.1)
+      actionpack (= 7.0.1)
+      activejob (= 7.0.1)
+      activerecord (= 7.0.1)
+      activestorage (= 7.0.1)
+      activesupport (= 7.0.1)
       mail (>= 2.7.1)
-    actionmailer (7.0.0)
-      actionpack (= 7.0.0)
-      actionview (= 7.0.0)
-      activejob (= 7.0.0)
-      activesupport (= 7.0.0)
+      net-imap
+      net-pop
+      net-smtp
+    actionmailer (7.0.1)
+      actionpack (= 7.0.1)
+      actionview (= 7.0.1)
+      activejob (= 7.0.1)
+      activesupport (= 7.0.1)
       mail (~> 2.5, >= 2.5.4)
+      net-imap
+      net-pop
+      net-smtp
       rails-dom-testing (~> 2.0)
-    actionpack (7.0.0)
-      actionview (= 7.0.0)
-      activesupport (= 7.0.0)
+    actionpack (7.0.1)
+      actionview (= 7.0.1)
+      activesupport (= 7.0.1)
       rack (~> 2.0, >= 2.2.0)
       rack-test (>= 0.6.3)
       rails-dom-testing (~> 2.0)
       rails-html-sanitizer (~> 1.0, >= 1.2.0)
-    actiontext (7.0.0)
-      actionpack (= 7.0.0)
-      activerecord (= 7.0.0)
-      activestorage (= 7.0.0)
-      activesupport (= 7.0.0)
+    actiontext (7.0.1)
+      actionpack (= 7.0.1)
+      activerecord (= 7.0.1)
+      activestorage (= 7.0.1)
+      activesupport (= 7.0.1)
       globalid (>= 0.6.0)
       nokogiri (>= 1.8.5)
-    actionview (7.0.0)
-      activesupport (= 7.0.0)
+    actionview (7.0.1)
+      activesupport (= 7.0.1)
       builder (~> 3.1)
       erubi (~> 1.4)
       rails-dom-testing (~> 2.0)
       rails-html-sanitizer (~> 1.1, >= 1.2.0)
-    activejob (7.0.0)
-      activesupport (= 7.0.0)
+    activejob (7.0.1)
+      activesupport (= 7.0.1)
       globalid (>= 0.3.6)
-    activemodel (7.0.0)
-      activesupport (= 7.0.0)
-    activerecord (7.0.0)
-      activemodel (= 7.0.0)
-      activesupport (= 7.0.0)
-    activestorage (7.0.0)
-      actionpack (= 7.0.0)
-      activejob (= 7.0.0)
-      activerecord (= 7.0.0)
-      activesupport (= 7.0.0)
+    activemodel (7.0.1)
+      activesupport (= 7.0.1)
+    activerecord (7.0.1)
+      activemodel (= 7.0.1)
+      activesupport (= 7.0.1)
+    activestorage (7.0.1)
+      actionpack (= 7.0.1)
+      activejob (= 7.0.1)
+      activerecord (= 7.0.1)
+      activesupport (= 7.0.1)
       marcel (~> 1.0)
       mini_mime (>= 1.1.0)
-    activesupport (7.0.0)
+    activesupport (7.0.1)
       concurrent-ruby (~> 1.0, >= 1.0.2)
       i18n (>= 1.6, < 2)
       minitest (>= 5.1)
@@ -118,16 +124,13 @@ GEM
     apexcharts (0.1.11)
       dry-schema (~> 1.5)
       smart_kv (~> 0.2.8)
-    babel-rails (0.2.0)
-      babel-transpiler (~> 0.7, >= 0.7.0)
-      sprockets (>= 4.0.0.beta4)
     babel-source (5.8.35)
     babel-transpiler (0.7.0)
       babel-source (>= 4.0, < 6)
       execjs (~> 2.0)
     bcrypt (3.1.16)
     bindex (0.8.1)
-    bootsnap (1.9.3)
+    bootsnap (1.9.4)
       msgpack (~> 1.0)
     builder (3.2.4)
     camertron-eprun (1.1.1)
@@ -159,6 +162,7 @@ GEM
       warden (~> 1.2.3)
     devise-i18n (1.10.1)
       devise (>= 4.8.0)
+    digest (3.1.0)
     docile (1.4.0)
     dotenv (2.7.6)
     dotenv-rails (2.7.6)
@@ -192,12 +196,13 @@ GEM
       dry-logic (~> 1.0, >= 1.0.2)
     erubi (1.10.0)
     execjs (2.8.1)
-    ffi (1.15.4)
+    ffi (1.15.5)
     globalid (1.0.0)
       activesupport (>= 5.0)
     i18n (1.8.11)
       concurrent-ruby (~> 1.0)
     io-console (0.5.11)
+    io-wait (0.2.1)
     irb (1.4.1)
       reline (>= 0.3.0)
     jbuilder (2.11.5)
@@ -216,14 +221,29 @@ GEM
     method_source (1.0.0)
     mime-types (3.4.1)
       mime-types-data (~> 3.2015)
-    mime-types-data (3.2021.1115)
+    mime-types-data (3.2022.0105)
     mini_mime (1.1.2)
-    mini_portile2 (2.6.1)
+    mini_portile2 (2.7.1)
     minitest (5.15.0)
     msgpack (1.4.2)
+    net-imap (0.2.3)
+      digest
+      net-protocol
+      strscan
+    net-pop (0.1.1)
+      digest
+      net-protocol
+      timeout
+    net-protocol (0.1.2)
+      io-wait
+      timeout
+    net-smtp (0.3.1)
+      digest
+      net-protocol
+      timeout
     nio4r (2.5.8)
-    nokogiri (1.12.5)
-      mini_portile2 (~> 2.6.1)
+    nokogiri (1.13.0)
+      mini_portile2 (~> 2.7.0)
       racc (~> 1.4)
     odf-report (0.7.2)
       mime-types
@@ -246,20 +266,20 @@ GEM
     rack (2.2.3)
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
-    rails (7.0.0)
-      actioncable (= 7.0.0)
-      actionmailbox (= 7.0.0)
-      actionmailer (= 7.0.0)
-      actionpack (= 7.0.0)
-      actiontext (= 7.0.0)
-      actionview (= 7.0.0)
-      activejob (= 7.0.0)
-      activemodel (= 7.0.0)
-      activerecord (= 7.0.0)
-      activestorage (= 7.0.0)
-      activesupport (= 7.0.0)
+    rails (7.0.1)
+      actioncable (= 7.0.1)
+      actionmailbox (= 7.0.1)
+      actionmailer (= 7.0.1)
+      actionpack (= 7.0.1)
+      actiontext (= 7.0.1)
+      actionview (= 7.0.1)
+      activejob (= 7.0.1)
+      activemodel (= 7.0.1)
+      activerecord (= 7.0.1)
+      activestorage (= 7.0.1)
+      activesupport (= 7.0.1)
       bundler (>= 1.15.0)
-      railties (= 7.0.0)
+      railties (= 7.0.1)
     rails-controller-testing (1.0.5)
       actionpack (>= 5.0.1.rc1)
       actionview (>= 5.0.1.rc1)
@@ -277,9 +297,9 @@ GEM
     rails-i18n (7.0.1)
       i18n (>= 0.7, < 2)
       railties (>= 6.0.0, < 8)
-    railties (7.0.0)
-      actionpack (= 7.0.0)
-      activesupport (= 7.0.0)
+    railties (7.0.1)
+      actionpack (= 7.0.1)
+      activesupport (= 7.0.1)
       method_source
       rake (>= 12.2)
       thor (~> 1.0)
@@ -322,10 +342,12 @@ GEM
       actionpack (>= 5.2)
       activesupport (>= 5.2)
       sprockets (>= 3.0.0)
+    strscan (3.0.1)
     terrapin (0.6.0)
       climate_control (>= 0.0.3, < 1.0)
-    thor (1.1.0)
+    thor (1.2.1)
     tilt (2.0.10)
+    timeout (0.2.0)
     ttfunk (1.7.0)
     turbo-rails (7.1.1)
       rails (>= 6.0.0)
@@ -353,7 +375,7 @@ PLATFORMS
 
 DEPENDENCIES
   apexcharts
-  babel-rails
+  babel-transpiler
   bcrypt
   bootsnap (>= 1.1.0)
   cancancan
