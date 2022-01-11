@@ -1,84 +1,80 @@
 <div class="panel panel-default">
   <div class="panel-heading">Actos Individuales</div><div class="panel-body">
 
-    
-    <%= turbo_frame_tag 'actos_tabla_tf' do %>
-      <% # No hay formularios anidados %>
-      <div style="padding-bottom: 18px;" 
-           class="input select caso_acto_presponsable">
-        <label class="select required control-label" 
-               for="caso_acto_id_presponsable">Presunto Responsable</label>
-        <% 
-            p = options_from_collection_for_select(
-              Sivel2Gen::Presponsable.from(
-                'sivel2_gen_caso_presponsable, sivel2_gen_presponsable').where(
-                  'sivel2_gen_caso_presponsable.id_presponsable=
+    <% # No hay formularios anidados %>
+    <div style="padding-bottom: 18px;" 
+         class="input select caso_acto_presponsable">
+      <label class="select required control-label" 
+             for="caso_acto_id_presponsable">Presunto Responsable</label>
+      <% 
+          p = options_from_collection_for_select(
+            Sivel2Gen::Presponsable.from(
+              'sivel2_gen_caso_presponsable, sivel2_gen_presponsable').where(
+                'sivel2_gen_caso_presponsable.id_presponsable=
                  sivel2_gen_presponsable.id 
-               AND sivel2_gen_caso_presponsable.id_caso=?', @caso.id), 
-               "id", "nombre"
-        )
-      %>
+               AND sivel2_gen_caso_presponsable.id_caso=?', @caso.id
+              ), 
+              "id", "nombre"
+      ) %>
 
-    <%= select_tag "caso_acto_id_presponsable", p, multiple: true,
-      "data-toggle" => 'tooltip',
-      "title" => 
-    'Seleccione de aquellos que añadió en la pestaña Presuntos Responsables'
-  %>
-      </div>
-      <div style="padding-bottom: 18px;" class="input select caso_acto_categoria">
-        <label class="select required control-label" for="caso_acto_id_categoria">
-          Categoria Individual</label>
-        <%= 
-          c = options_from_collection_for_select(
-            Sivel2Gen::Categoria.from(
-              'sivel2_gen_categoria, sivel2_gen_supracategoria').
-              where('sivel2_gen_supracategoria.id=sivel2_gen_categoria.supracategoria_id 
+      <%= select_tag "caso_acto_id_presponsable", p, multiple: true,
+        "data-toggle" => 'tooltip',
+        "title" => 
+      'Seleccione de aquellos que añadió en la pestaña Presuntos Responsables' 
+    %>
+    </div>
+    <div style="padding-bottom: 18px;" class="input select caso_acto_categoria">
+      <label class="select required control-label" for="caso_acto_id_categoria">
+        Categoria Individual</label>
+      <%= 
+        c = options_from_collection_for_select(
+          Sivel2Gen::Categoria.from(
+            'sivel2_gen_categoria, sivel2_gen_supracategoria').
+            where('sivel2_gen_supracategoria.id=sivel2_gen_categoria.supracategoria_id 
               AND sivel2_gen_categoria.fechadeshabilitacion is NULL 
               AND sivel2_gen_categoria.tipocat=\'I\'').
               reorder('sivel2_gen_supracategoria.id_tviolencia', :id), 
               "id", 
               lambda {|t| t.supracategoria.id_tviolencia + t.id.to_s + ' ' + t.nombre }
-          )
-          select_tag "caso_acto_id_categoria", c, multiple: true,
-            "data-toggle" => 'tooltip',
-            "title" => 'Seleccione el(los) tipo(s) de violencia que asociados al 
+        )
+        select_tag "caso_acto_id_categoria", c, multiple: true,
+          "data-toggle" => 'tooltip',
+          "title" => 'Seleccione el(los) tipo(s) de violencia que asociados al 
       presunto responsable() y víctima(s). Para seleccionar varios presione 
       CTRL y pulse en las categorías que desee.'
     %>
-      </div>
-      <div style="padding-bottom: 18px;" class="input select caso_acto_persona">
-        <label class="select required control-label" for="caso_acto_id_persona">
-          Víctima</label>
-        <%= 
-          p = options_from_collection_for_select(
-            Sip::Persona.from('sivel2_gen_victima, sip_persona').where(
-              'sivel2_gen_victima.id_persona=sip_persona.id 
+    </div>
+    <div style="padding-bottom: 18px;" class="input select caso_acto_persona">
+      <label class="select required control-label" for="caso_acto_id_persona">
+        Víctima</label>
+      <%= 
+        p = options_from_collection_for_select(
+          Sip::Persona.from('sivel2_gen_victima, sip_persona').where(
+            'sivel2_gen_victima.id_persona=sip_persona.id 
         AND sivel2_gen_victima.id_caso=?', @caso.id),
         "id",
         lambda {|t| (t.nombres == 'N' && t.apellidos == 'N') ? 
                 t.sin_identificacion : (t.nombres + ' ' + t.apellidos)}
-          )
-          select_tag "caso_acto_id_persona", p, multiple: true,
-            "data-toggle" => 'tooltip',
-            "title" => 'Seleccione los nombres de una o más víctimas asociadas al 
+        )
+        select_tag "caso_acto_id_persona", p, multiple: true,
+          "data-toggle" => 'tooltip',
+          "title" => 'Seleccione los nombres de una o más víctimas asociadas al 
       presunto responsable y a la categoria de violencia elegida. 
       Después no olvide presionar el botón Añadir Acto(s).'
     %>
-      </div>
+    </div>
 
-      <%= link_to 'Añadir Acto(s)',
-        sivel2_gen.actos_create_path(@caso.id),
-        class: 'agregaractos btn btn-primary',
-        'data-method' => 'patch'%>
+    <%= link_to 'Añadir Acto(s)',
+      sivel2_gen.actos_create_path(@caso.id),
+      id: 'boton-añadir-actos',
+      class: 'agregaractos btn btn-primary' %>
 
     <div id="actos_tabla">
       <%= render 'sivel2_gen/actos/actos_tabla'  %>
     </div>
-  <% end %> <!-- turbo_frame_tag -->
 
   </div> <!-- panel-body -->  
 </div> <!-- panel panel-default --> 
-
 
 
 <div class="panel panel-default">

@@ -16,18 +16,19 @@
 //= require sivel2_gen/motor
 //= require sivel2_gen/mapaosm
 //= require sivel2_gen/motor2
+//= require sivel2_gen/motor_es6
 //= require_tree .
 
-document.addEventListener('turbolinks:load', function() {
+document.addEventListener('turbo:load', function() {
 	var root;
-	root = typeof exports !== "undefined" && exports !== null ? 
-		exports : window;
+	root = window;
 	sip_prepara_eventos_comunes(root, null, false);
 	heb412_gen_prepara_eventos_comunes(root);
 	mr519_gen_prepara_eventos_comunes(root);
 	sivel2_gen_prepara_eventos_comunes(root);
 	sivel2_gen_prepara_eventos_unicos(root);
 
+  Sivel2GenMotorEs6.iniciar();
 	// Siguiente de https://github.com/turbolinks/turbolinks/issues/75
 	// pero tampoco logra que permita pasar de una pestaña a otra
 	// en ficha caso.  Seguimos con turbolinks 2.5.3

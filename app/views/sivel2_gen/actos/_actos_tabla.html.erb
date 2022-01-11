@@ -24,6 +24,7 @@
           <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
             actos_destroy_path(acto.id),
             'data-method' => :delete,
+            'data-turbo' => true,
             'data-ujs-navigate' => false,
             'data-eliminaracto'  => "#{acto.id}",
             :class => 'btn btn-sm btn-danger eliminaracto' 

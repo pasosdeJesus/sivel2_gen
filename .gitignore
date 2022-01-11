@@ -40,6 +40,7 @@ test/dummy/archivos/
 test/dummy/node_modules/
 bin/c.sh
 test/dummy/bin/c.sh
+test/dummy/public/sivel2_1/assets/
 test/dummy/public/sivel2/assets/
 test/dummy/public/packs
 test/dummy/app/assets/builds
