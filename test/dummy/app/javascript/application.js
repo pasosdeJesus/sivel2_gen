@@ -22,11 +22,7 @@
 
 console.log('Hola Mundo desde Webpacker')
 
-import Rails from "@rails/ujs"
-Rails.start()
-
 import mrujs from "mrujs";
-import * as Turbo from "@hotwired/turbo"
 import "@hotwired/turbo-rails"
 
 mrujs.start();
