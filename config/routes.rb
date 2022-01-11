@@ -4,9 +4,6 @@ Sivel2Gen::Engine.routes.draw do
   patch "/actos/agregar" => 'actos#agregar'
   get "/actos/eliminar" => 'actos#eliminar'
 
-  delete "/actos/:id" => 'actos#destroy', as: :actos_destroy
-  patch "/actos/" => 'actos#create', as: :actos_create
-
   patch "/actoscolectivos/agregar" => 'actoscolectivos#agregar'
   get "/actoscolectivos/eliminar" => 'actoscolectivos#eliminar'
 
