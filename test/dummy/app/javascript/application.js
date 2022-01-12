@@ -27,9 +27,6 @@ import "@hotwired/turbo-rails"
 
 mrujs.start();
 
-//import Turbolinks from "turbolinks"
-//Turbolinks.start()
-
 import './jquery'
 import '../../vendor/assets/javascripts/jquery-ui'
 

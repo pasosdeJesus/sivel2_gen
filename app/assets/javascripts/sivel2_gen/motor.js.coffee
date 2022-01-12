@@ -3,6 +3,7 @@
 # Por compartir entre motores que operen sobre sivel2_gen 
 #//= require sip/motor
 #//= require cocoon
+#//= require sivel2_gen/motor_es6
 
 @sivel2_gen_procesa_eliminaracto = false
 @sivel2_gen_procesa_eliminaractocolectivo = false
@@ -799,23 +800,7 @@ enviaFormularioContarPost= (root) ->
       $('#conscasos_q').show()
   )
 
-  # Agrega actos  
-#  $(document).on('click', 'a.agregaractos[href^="#"]', (e) ->
-#    e.preventDefault()
-#    f=$('form')
-    # Empleamos el de SIP que agrega token CSRF
-#    sip_enviarautomatico_formulario(f, 'POST', 'script', true, 'Enviar', false)
-
-#    tn = Date.now()
-#    d = -1
-#    if (root.tagregaactos) 
-#      d = (tn - root.tagregaactos)/1000
-#    if (d == -1 || d>5) 
-#      a = root.puntomontaje + 'actos/agregar'
-#      $.post(a, f.serialize())
-#      root.tagregaactos= Date.now()
-#    return
-#  )
+  Sivel2GenMotorEs6.iniciar()
 
   # Elimina acto
   $(document).on('click', 'a.eliminaracto[href^="#"]', (e) ->
@@ -1019,7 +1004,7 @@ enviaFormularioContarPost= (root) ->
   # Obligar cálculo de edades al cargar 
   $('[id^=caso_victima_attributes][id$=persona_attributes_anionac]').change()
 
-  $(document).on('turbolinks:click', (event) ->
+  $(document).on('turbo:click', (event) ->
     if (event.target.getAttribute('href').charAt(0) == '#') 
       return event.preventDefault()
   ) 

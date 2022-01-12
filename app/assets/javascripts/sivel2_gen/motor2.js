@@ -104,7 +104,3 @@ $(document).on('change', '#filtro_categoria', function(e) {
   sivel2genManejarCambioCategorias()
 })
 
-
-exports = {}
-module = { exports: exports}
-

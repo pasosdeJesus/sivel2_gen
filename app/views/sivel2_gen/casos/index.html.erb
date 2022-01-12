@@ -52,7 +52,8 @@
     <div class="row">
       <div class="col-md-12">
         <div class="float-end" id="botones_finfiltro"> 
-          <%= f.button :submit, 'Filtrar', class: 'btn btn-default' %>
+          <%= f.button :submit, 'Filtrar', class: 'btn btn-default',
+            'data-turbo' => false %>
           <button class="btn btn-default" type="reset">
             Limpiar
           </button>

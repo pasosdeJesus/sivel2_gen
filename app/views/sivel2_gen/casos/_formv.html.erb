@@ -47,7 +47,8 @@
       <input class='bitacora_cambio' id='caso_bictacora_cambio' name='caso[bitacora_cambio]' type='hidden'>
       <%= f.button :submit, 'Validar y Guardar', {
         class: 'btn-primary',
-        onclick: 'window.sivel2_detenerEnviarCada60()'
+        onclick: 'window.sivel2_detenerEnviarCada60()',
+        'data-turbo' => false
       } %>
       <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
         sivel2_gen.casos_path, :class => 'btn' 
