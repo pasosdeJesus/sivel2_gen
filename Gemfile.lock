@@ -11,7 +11,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/heb412_gen.git
-  revision: ed98b6f27957d1a0a7403de5f3e86ee83deba696
+  revision: 611ace7e57f54d34c88337a8b7da535690d792e2
   branch: rails7jses
   specs:
     heb412_gen (2.1a1)
@@ -22,7 +22,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/mr519_gen.git
-  revision: 01c72c097d974e134fd833b9ae7c1a32ee6c32c3
+  revision: e4ed1565b0343ec8cb1fbd974568cef35f4710f9
   branch: rails7jses
   specs:
     mr519_gen (2.1a1)
