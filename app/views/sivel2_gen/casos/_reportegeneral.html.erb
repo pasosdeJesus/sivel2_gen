@@ -99,7 +99,7 @@
       <% anexo.each do |an| %>
         <%= an.fecha if an.fecha %>-
         <%= link_to sip.descarga_anexo_path(an.id_anexo.to_i),
-          'data-turbolinks' => :false do %>
+          'data-turbo' => :false do %>
           <%= caso.id %>_<%= Sip::Anexo.find(an.id_anexo).adjunto_file_name %>
         <% end %>
       <% end %>

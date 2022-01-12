@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/kreeti/kt-paperclip.git
-  revision: c9e6f9d0018f3913b67fed5860a5d439ac72ac78
+  revision: 1328a1a69f88c9bab911c305455e67ca4daa0b5a
   specs:
     kt-paperclip (7.0.1)
       activemodel (>= 4.2.0)
@@ -11,7 +11,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/heb412_gen.git
-  revision: 2aa9ca5d1be293d409531a485ea80a1947cf8298
+  revision: ed98b6f27957d1a0a7403de5f3e86ee83deba696
   branch: rails7jses
   specs:
     heb412_gen (2.1a1)
@@ -22,7 +22,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/mr519_gen.git
-  revision: 232ef30642cb004626ca01513397903de1c49c20
+  revision: 01c72c097d974e134fd833b9ae7c1a32ee6c32c3
   branch: rails7jses
   specs:
     mr519_gen (2.1a1)
@@ -30,27 +30,27 @@ GIT
       sip
 
 GIT
-  remote: https://github.com/pasosdeJesus/sip.git
-  revision: 2e61011909b90f7b1451c37fd4e624fd9a844577
-  branch: rails7jses
+  remote: https://github.com/vtamara/cocoon.git
+  revision: 9f1892403c3dbdb8f7d457a06f237ff58e7dfb07
+  branch: new_id_with_ajax
+  specs:
+    cocoon (1.2.11)
+
+PATH
+  remote: ../sip-rails7
   specs:
     sip (2.1a1)
       cancancan
+      coffee-rails
       devise
       devise-i18n
       kt-paperclip
       minitest
       rails
       rails-i18n
+      sassc-rails
       simple_form
       twitter_cldr
-
-GIT
-  remote: https://github.com/vtamara/cocoon.git
-  revision: 9f1892403c3dbdb8f7d457a06f237ff58e7dfb07
-  branch: new_id_with_ajax
-  specs:
-    cocoon (1.2.11)
 
 GEM
   remote: https://rubygems.org/
