@@ -32,13 +32,20 @@ module Sivel2Gen
               @caso = Sivel2Gen::Caso.find(params[:caso][:id])
               @caso.current_usuario = current_usuario
               authorize! :update, @caso
-              acto = Sivel2Gen::Acto.new(
+              cacto = {
                 id_presponsable: presp,
                 id_categoria: cat,
                 id_persona: vic,
-              )
-              acto.caso = @caso
-              acto.save
+                id_caso: @caso.id
+              }
+              if Sivel2Gen::Acto.where(cacto).count == 0
+                Sivel2Gen::Acto.create!(
+                  id_presponsable: presp,
+                  id_categoria: cat,
+                  id_persona: vic,
+                  id_caso: @caso.id
+                )
+              end
             end
           end
         end
