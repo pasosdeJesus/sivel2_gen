@@ -2,7 +2,7 @@
 // Este se convertirá a ES5 como módulo CommonJS
 // Para que no se quiebre antes debe crearse exports y modules
 
-export default class Sivel2GenMotorEs6{
+export default class Sivel2GenMotorEs6 {
 
   static iniciar() {
 
@@ -12,7 +12,7 @@ export default class Sivel2GenMotorEs6{
      */
     document.addEventListener('click', function (e) {
       if (/^boton-añadir-actos$/.test(e.target.id)) {
-        console.log('OJO click en añadir acto ' + e.target.id),
+        console.log('OJO click en añadir acto ' + e.target.id);
         e.preventDefault();
         var f = document.querySelector('form');
         // FormData parece no operar con rails
@@ -49,9 +49,23 @@ export default class Sivel2GenMotorEs6{
       }
 
     }, false);
+
+
+    document.addEventListener("ajax:success", (event) => {
+      if (event.detail.submitter && 
+        event.detail.submitter.id == 'sivel2_gen-filtrar-casos') {
+        let p1=event.detail.fetchResponse.html().then(html => {
+          var parser = new DOMParser();
+          var doc = parser.parseFromString(html, "text/html");
+          var casos = doc.querySelector('#casos');
+          var ncasos = doc.querySelector('#numconscaso');
+          document.querySelector('#numconscaso').innerHTML= ncasos.innerHTML
+          document.querySelector('#casos').innerHTML = casos.innerHTML
+        })
+      }
+    })
+
   }
-
-
 }
 
 
