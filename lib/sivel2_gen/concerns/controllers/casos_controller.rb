@@ -406,7 +406,9 @@ module Sivel2Gen
                 end
               end
               send_data r, filename: "casos-sivel2.csv" 
+              return true
             }
+            return false
           end
 
           def presenta_index
@@ -414,20 +416,6 @@ module Sivel2Gen
             respond_to do |format|
               if current_usuario || (Rails.configuration.x.sivel2_consweb_max &&
                   @conscaso.count <= Rails.configuration.x.sivel2_consweb_max.to_i)
-                format.ods {
-                  gen_formato('.ods')
-                  return
-                }
-                format.xlsx {
-                  gen_formato('.xlsx')
-                  return
-                }
-                if request.format.symbol == :ods || 
-                    request.format.symbol == :xlsx
-                  # En caso de que no funcionen anteriores
-                  gen_formato(".#{request.format.symbol.to_s}")
-                  return
-                end
                 format.html {
                   if (params['idplantilla'])
                     #byebug
@@ -446,6 +434,20 @@ module Sivel2Gen
                   return
                 }
 
+                format.ods {
+                  gen_formato('.ods')
+                  return
+                }
+                format.xlsx {
+                  gen_formato('.xlsx')
+                  return
+                }
+                if request.format.symbol == :ods || 
+                    request.format.symbol == :xlsx
+                  # En caso de que no funcionen anteriores
+                  gen_formato(".#{request.format.symbol.to_s}")
+                  return
+                end
                 format.js {
                   render 'sivel2_gen/casos/filtro'
                   return
@@ -461,7 +463,11 @@ module Sivel2Gen
                   return
                 }
                 
-                presenta_mas_index(format)
+                r = presenta_mas_index(format)
+                if !r
+                  format.any {
+                  }
+                end
               else
                 format.html {
                   if (params['idplantilla'])
