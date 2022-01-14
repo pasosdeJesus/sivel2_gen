@@ -111,3 +111,7 @@ group  :development, :test do
 
   gem 'simplecov', '<0.18' # Debido a https://github.com/codeclimate/test-reporter/issues/418
 end
+
+group :test do
+  gem 'cuprite'
+end
