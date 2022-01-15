@@ -51,20 +51,6 @@ export default class Sivel2GenMotorEs6 {
     }, false);
 
 
-    document.addEventListener("ajax:success", (event) => {
-      if (event.detail.submitter && 
-        event.detail.submitter.id == 'sivel2_gen-filtrar-casos') {
-        let p1=event.detail.fetchResponse.html().then(html => {
-          var parser = new DOMParser();
-          var doc = parser.parseFromString(html, "text/html");
-          var casos = doc.querySelector('#casos');
-          var ncasos = doc.querySelector('#numconscaso');
-          document.querySelector('#numconscaso').innerHTML= ncasos.innerHTML
-          document.querySelector('#casos').innerHTML = casos.innerHTML
-        })
-      }
-    })
-
   }
 }
 
