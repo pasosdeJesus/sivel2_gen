@@ -454,7 +454,7 @@ module Sivel2Gen
                 }
 
                 format.json {
-                  render 'reprevista.json'
+                  render 'reprevista'
                   return
                 }
 
