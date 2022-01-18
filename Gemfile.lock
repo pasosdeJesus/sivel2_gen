@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/kreeti/kt-paperclip.git
-  revision: 1328a1a69f88c9bab911c305455e67ca4daa0b5a
+  revision: a077561f75d6ef064dbd4f4806b519cb3df28c88
   specs:
     kt-paperclip (7.0.1)
       activemodel (>= 4.2.0)
@@ -11,7 +11,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/heb412_gen.git
-  revision: 611ace7e57f54d34c88337a8b7da535690d792e2
+  revision: c545351d99a420c84c86b3a447d9a131a642cb77
   branch: rails7jses
   specs:
     heb412_gen (2.1a1)
@@ -22,7 +22,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/mr519_gen.git
-  revision: e4ed1565b0343ec8cb1fbd974568cef35f4710f9
+  revision: 58aa4d417659da8e9deb535aca39d681b1c78070
   branch: rails7jses
   specs:
     mr519_gen (2.1a1)
@@ -30,14 +30,9 @@ GIT
       sip
 
 GIT
-  remote: https://github.com/vtamara/cocoon.git
-  revision: 9f1892403c3dbdb8f7d457a06f237ff58e7dfb07
-  branch: new_id_with_ajax
-  specs:
-    cocoon (1.2.11)
-
-PATH
-  remote: ../sip-rails7
+  remote: https://github.com/pasosdeJesus/sip.git
+  revision: d3e1e3bc677513c641e800039653c9e74e1422a5
+  branch: rails7jses
   specs:
     sip (2.1a1)
       cancancan
@@ -51,6 +46,13 @@ PATH
       sassc-rails
       simple_form
       twitter_cldr
+
+GIT
+  remote: https://github.com/vtamara/cocoon.git
+  revision: 9f1892403c3dbdb8f7d457a06f237ff58e7dfb07
+  branch: new_id_with_ajax
+  specs:
+    cocoon (1.2.11)
 
 GEM
   remote: https://rubygems.org/
@@ -132,8 +134,8 @@ GEM
       execjs (~> 2.0)
     bcrypt (3.1.16)
     bindex (0.8.1)
-    bootsnap (1.9.4)
-      msgpack (~> 1.0)
+    bootsnap (1.10.1)
+      msgpack (~> 1.2)
     builder (3.2.4)
     camertron-eprun (1.1.1)
     cancancan (3.3.0)
@@ -183,7 +185,7 @@ GEM
     dotenv-rails (2.7.6)
       dotenv (= 2.7.6)
       railties (>= 3.2)
-    dry-configurable (0.13.0)
+    dry-configurable (0.14.0)
       concurrent-ruby (~> 1.0)
       dry-core (~> 0.6)
     dry-container (0.9.0)
@@ -192,7 +194,7 @@ GEM
     dry-core (0.7.1)
       concurrent-ruby (~> 1.0)
     dry-inflector (0.2.1)
-    dry-initializer (3.0.4)
+    dry-initializer (3.1.0)
     dry-logic (1.2.0)
       concurrent-ruby (~> 1.0)
       dry-core (~> 0.5, >= 0.5)
@@ -231,7 +233,7 @@ GEM
     jsbundling-rails (1.0.0)
       railties (>= 6.0.0)
     json (2.6.1)
-    libxml-ruby (3.2.1)
+    libxml-ruby (3.2.2)
     loofah (2.13.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
@@ -263,7 +265,7 @@ GEM
       net-protocol
       timeout
     nio4r (2.5.8)
-    nokogiri (1.13.0)
+    nokogiri (1.13.1)
       mini_portile2 (~> 2.7.0)
       racc (~> 1.4)
     odf-report (0.7.2)
