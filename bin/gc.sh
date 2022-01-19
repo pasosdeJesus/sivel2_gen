@@ -48,7 +48,7 @@ if (test "$SININS" != "1") then {
 if (test "$SINMIG" != "1") then {
 
 (cd test/dummy; CONFIG_HOSTS=127.0.0.1 bin/rails test:system)
-if (test "0" != "0") then {
+if (test "$?" != "0") then {
 	echo "No pasaron pruebas del sistema";
 	exit 1;
 } fi;
