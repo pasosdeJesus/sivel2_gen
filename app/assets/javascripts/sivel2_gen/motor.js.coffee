@@ -199,7 +199,7 @@
   )
   s.html(nh)
   return
-  
+
 # AUTOCOMPLETACIÓN PERSONA
 # Elije una persona en autocompletación
 @autocompleta_persona = (label, id, id_victima, divcp, root) ->
