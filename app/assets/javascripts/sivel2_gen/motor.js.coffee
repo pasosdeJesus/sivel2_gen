@@ -627,17 +627,17 @@ enviaFormularioContarPost= (root) ->
   )
 
   # En victimas permite autocompletar nombres de victima
-  $(document).on('focusin', 
-  'input[id^=caso_victima_attributes][id$=persona_attributes_nombres]', 
-  (e) ->
-    busca_persona_nombre($(this), root)
-  )
+  #$(document).on('focusin', 
+  #'input[id^=caso_victima_attributes][id$=persona_attributes_nombres]', 
+  #(e) ->
+  #  busca_persona_nombre($(this), root)
+  #)
   # En victimas permite autocompletar nombres de familiares
-  $(document).on('focusin', 
-  'input[id^=caso_victima_attributes][id$=personados_attributes_nombres]', 
-  (e) ->
-    sivel2_gen_busca_familiar_nombre($(this), root)
-  )
+  #$(document).on('focusin', 
+  #'input[id^=caso_victima_attributes][id$=personados_attributes_nombres]', 
+  #(e) ->
+  #  sivel2_gen_busca_familiar_nombre($(this), root)
+  #)
 
   # En victimas colectivas permite autocompletar nombre
   $(document).on('focusin', 
