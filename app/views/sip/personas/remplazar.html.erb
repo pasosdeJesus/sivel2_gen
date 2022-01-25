@@ -2,23 +2,32 @@
 <%= simple_form_for @caso, 
   url: sivel2_gen.casos_path(@caso).sub(/\./,"/"),
   :html => { :class => 'form-horizontal' } do |c| %>
-  <%= c.simple_fields_for :victima, @victima,  include_id: false do |v| %> 
-    <% # El anterior con include_id: false para que no se genere un campo id escondido con victima_atributes_0_id que no sería remplazado %>
-    <%= v.simple_fields_for :persona do |p| %>
+  <div class='campos-persona-con-victima-id'>
+    <%= c.simple_fields_for :victima, @victima,  include_id: false do |v| %> 
+      <% # El anterior con include_id: false para que no se genere un campo id escondido con victima_atributes_0_id que no sería remplazado %>
+      <div class='caso_victima_id'>
+        <input type='hidden'
+               name='caso[victima_attributes][<%= @victima.id.to_s %>][id]' 
+               id='caso_victima_attributes_<%=@victima.id.to_s %>_id' 
+               value='<%= @victima.id.to_s %>' >
+        </input>
+      </div>
+      <%= v.simple_fields_for :persona do |p| %>
 
-      <% s = render partial: 'sip/personas/persona_campos', 
-        locals: { f: p, fvictima: v }  %>
-      <%  #byebug %>
-      <% # se genera con victima_attributes_0 pero lo
-         # generado por cocoon usa el id de la víctima
-         # asi que la cambiamos %>
-      <% s.gsub!(
-        'victima_attributes_0', 
-        'victima_attributes_' + @victima.id.to_s ) %>
-      <% s.gsub!(
-        'victima_attributes][0]', 
-        'victima_attributes][' + @victima.id.to_s + ']') %>
-      <%= s.html_safe %>
-    <% end %>
-  <% end %>
+               <% s = render partial: 'sip/personas/persona_campos', 
+                 locals: { f: p, fvictima: v }  %>
+               <%  #byebug %>
+               <% # se genera con victima_attributes_0 pero lo
+               # generado por cocoon usa el id de la víctima
+               # asi que la cambiamos %>
+             <% s.gsub!(
+               'victima_attributes_0', 
+               'victima_attributes_' + @victima.id.to_s ) %>
+             <% s.gsub!(
+               'victima_attributes][0]', 
+               'victima_attributes][' + @victima.id.to_s + ']') %>
+             <%= s.html_safe %>
+           <% end %>
+         <% end %>
+  </div> <!-- campos-victima -->
 <% end %>

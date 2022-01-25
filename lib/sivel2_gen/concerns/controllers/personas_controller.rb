@@ -77,6 +77,7 @@ module Sivel2Gen
             respond_to do |format|
               format.html { 
                 render('/sip/personas/remplazar', layout: false) 
+                return
               }
             end
           end
