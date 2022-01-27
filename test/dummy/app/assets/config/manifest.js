@@ -1,7 +1,7 @@
 //= link application.css
 //= link application.js
-//= link recursos_globales.js
-//= link recursos_globales.js.map
+//= link recursos_sprockets.js
+//= link recursos_sprockets.js.map
 //= link logo.jpg
 //= link spinnern.gif
 //= link sivel2_gen/mapaosm.js

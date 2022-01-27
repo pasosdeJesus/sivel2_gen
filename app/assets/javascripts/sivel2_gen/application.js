@@ -19,14 +19,4 @@
 //= require sivel2_gen/motor_es6
 //= require_tree .
 
-document.addEventListener('turbo:load', function() {
-	var root;
-	root = window;
-	sip_prepara_eventos_comunes(root, null, false);
-	heb412_gen_prepara_eventos_comunes(root);
-	mr519_gen_prepara_eventos_comunes(root);
-	sivel2_gen_prepara_eventos_comunes(root);
-	sivel2_gen_prepara_eventos_unicos(root);
-
-});
 

@@ -35,6 +35,35 @@ import plotly_serietiempo_actos from './plotly_actos'
 
 document.addEventListener("DOMContentLoaded", function() {
 
+});
+
+let esperarRecursosSprocketsYDocumento = function (resolver) {
+  if (typeof window.puntomontaje == 'undefined') {
+    setTimeout(esperarRecursosSprocketsYDocumento, 100, resolver)
+    return false
+  }
+  if (document.readyState !== 'complete') {
+    setTimeout(esperarRecursosSprocketsYDocumento, 100, resolver)
+    return false
+  }
+  resolver("otros recursos manejados con sprockets cargados y documento presentado en navegador")
+    return true
+  }
+
+let promesaRecursosSprocketsYDocumento = new Promise((resolver, rechazar) => {
+  esperarRecursosSprocketsYDocumento(resolver)
+})
+
+promesaRecursosSprocketsYDocumento.then((mensaje) => {
+  console.log('Cargando recursos sprockets')
+  var root;
+  root = window;
+  sip_prepara_eventos_comunes(root);
+  mr519_gen_prepara_eventos_comunes(root);
+  heb412_gen_prepara_eventos_comunes(root);
+  sivel2_gen_prepara_eventos_comunes(root);
+  sivel2_gen_prepara_eventos_unicos(root);
+
   var p = new URL(document.URL).pathname.split('/')
   var p2ult = ''
   if (p.length>2) { 
@@ -45,5 +74,4 @@ document.addEventListener("DOMContentLoaded", function() {
     plotly_serietiempo_actos() 
   }
 
-});
-
+})
