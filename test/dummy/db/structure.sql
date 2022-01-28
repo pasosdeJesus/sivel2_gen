@@ -880,7 +880,7 @@ CREATE VIEW public.cvt1 AS
      JOIN public.sip_persona persona ON ((persona.id = acto.id_persona)))
      LEFT JOIN public.sip_ubicacion ubicacion ON ((caso.ubicacion_id = ubicacion.id)))
      LEFT JOIN public.sip_departamento departamento ON ((ubicacion.id_departamento = departamento.id)))
-  WHERE ((caso.fecha >= '2019-01-01'::date) AND (caso.fecha <= '2022-02-07'::date) AND (categoria.id = ANY (ARRAY[397, 197, 427, 297, 527, 777, 396, 196, 426, 776, 296, 526, 35, 25, 15, 45, 55, 73, 65, 92, 50, 40, 67, 801, 90, 57, 46, 26, 37, 16, 80, 85, 66, 64, 703, 38, 49, 28, 706, 59, 18, 401, 501, 904, 502, 231, 17, 331, 402, 705, 62, 906, 104, 713, 101, 11, 76, 302, 21, 903, 34, 902, 102, 27, 14, 301, 24, 30, 20, 10, 772, 522, 192, 422, 292, 392, 63, 93, 910, 525, 195, 425, 775, 295, 395, 714, 78, 424, 774, 394, 194, 294, 524, 89, 905, 86, 701, 68, 141, 241, 341, 715, 704, 702, 23, 43, 53, 13, 33, 88, 98, 84, 709, 711, 707, 708, 710, 87, 97, 717, 917, 716, 916, 91, 95, 718, 293, 523, 193, 423, 773, 393, 48, 58, 75, 69, 41, 74, 72, 56, 22, 12, 36, 47, 521, 291, 771, 391, 421, 191, 420, 19, 520, 39, 77, 29, 712])));
+  WHERE (categoria.id = ANY (ARRAY[397, 197, 427, 297, 527, 777, 396, 196, 426, 776, 296, 526, 35, 25, 15, 45, 55, 73, 65, 92, 50, 40, 67, 801, 90, 57, 46, 26, 37, 16, 80, 85, 66, 64, 703, 38, 49, 28, 706, 59, 18, 401, 501, 904, 502, 231, 17, 331, 402, 705, 62, 906, 104, 713, 101, 11, 76, 302, 21, 903, 34, 902, 102, 27, 14, 301, 24, 30, 20, 10, 772, 522, 192, 422, 292, 392, 63, 93, 910, 525, 195, 425, 775, 295, 395, 714, 78, 424, 774, 394, 194, 294, 524, 89, 905, 86, 701, 68, 141, 241, 341, 715, 704, 702, 23, 43, 53, 13, 33, 88, 98, 84, 709, 711, 707, 708, 710, 87, 97, 717, 917, 716, 916, 91, 95, 718, 293, 523, 193, 423, 773, 393, 48, 58, 75, 69, 41, 74, 72, 56, 22, 12, 36, 47, 521, 291, 771, 391, 421, 191, 420, 19, 520, 39, 77, 29, 712]));
 
 
 --
@@ -2338,6 +2338,44 @@ CREATE SEQUENCE public.sip_ubicacionpre_id_seq
 --
 
 ALTER SEQUENCE public.sip_ubicacionpre_id_seq OWNED BY public.sip_ubicacionpre.id;
+
+
+--
+-- Name: sip_vereda; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.sip_vereda (
+    id bigint NOT NULL,
+    nombre character varying(500) NOT NULL COLLATE public.es_co_utf_8,
+    municipio_id integer,
+    verlocal_id integer,
+    observaciones character varying(5000),
+    latitud double precision,
+    longitud double precision,
+    fechacreacion date NOT NULL,
+    fechadeshabilitacion date,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: sip_vereda_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.sip_vereda_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: sip_vereda_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.sip_vereda_id_seq OWNED BY public.sip_vereda.id;
 
 
 --
@@ -3847,6 +3885,13 @@ ALTER TABLE ONLY public.sip_ubicacionpre ALTER COLUMN id SET DEFAULT nextval('pu
 
 
 --
+-- Name: sip_vereda id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.sip_vereda ALTER COLUMN id SET DEFAULT nextval('public.sip_vereda_id_seq'::regclass);
+
+
+--
 -- Name: sivel2_gen_actividadoficio id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -4317,6 +4362,14 @@ ALTER TABLE ONLY public.sip_trivalente
 
 ALTER TABLE ONLY public.sip_ubicacionpre
     ADD CONSTRAINT sip_ubicacionpre_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: sip_vereda sip_vereda_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.sip_vereda
+    ADD CONSTRAINT sip_vereda_pkey PRIMARY KEY (id);
 
 
 --
@@ -5714,6 +5767,14 @@ ALTER TABLE ONLY public.sivel2_gen_categoria
 
 
 --
+-- Name: sivel2_gen_categoria categoria_contadaen_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.sivel2_gen_categoria
+    ADD CONSTRAINT categoria_contadaen_fkey FOREIGN KEY (contadaen) REFERENCES public.sivel2_gen_categoria(id);
+
+
+--
 -- Name: sivel2_gen_contextovictima_victima contextovictima_victima_contextovictima_id_fkey1; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -6279,6 +6340,14 @@ ALTER TABLE ONLY public.sip_persona
 
 ALTER TABLE ONLY public.sip_persona
     ADD CONSTRAINT persona_tdocumento_id_fkey FOREIGN KEY (tdocumento_id) REFERENCES public.sip_tdocumento(id);
+
+
+--
+-- Name: sivel2_gen_presponsable presponsable_papa_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.sivel2_gen_presponsable
+    ADD CONSTRAINT presponsable_papa_fkey FOREIGN KEY (papa_id) REFERENCES public.sivel2_gen_presponsable(id);
 
 
 --
@@ -6915,6 +6984,8 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20211216125250'),
 ('20220122105047'),
 ('20220213031520'),
-('20220214121713');
+('20220214121713'),
+('20220214232150'),
+('20220215095957');
 
 
