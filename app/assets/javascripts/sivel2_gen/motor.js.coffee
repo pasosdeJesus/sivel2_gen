@@ -627,6 +627,8 @@ enviaFormularioContarPost= (root) ->
   )
 
   # En victimas permite autocompletar nombres de victima
+  Sivel2GenAutocompletaAjaxVictimas.iniciar()
+
   #$(document).on('focusin', 
   #'input[id^=caso_victima_attributes][id$=persona_attributes_nombres]', 
   #(e) ->
