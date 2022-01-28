@@ -1,10 +1,12 @@
-<%= f.simple_fields_for :persona do |p| %>
-  <%= p.input :sin_identificacion,
-    label: false,
-    readonly: true %>
-  <%= render partial: 'sip/personas/persona_campos', 
-    locals: {f: p, fvictima: f}  %>
-<% end %>
+<div class='campos-persona-con-victima-id'>
+  <%= f.simple_fields_for :persona do |p| %>
+    <%= p.input :sin_identificacion,
+      label: false,
+      readonly: true %>
+    <%= render partial: 'sip/personas/persona_campos', 
+      locals: {f: p, fvictima: f}  %>
+  <% end %>
+</div>
 
 <%= render partial: 'contacto_complemento_1', locals: {f: f} %>
 

@@ -2,6 +2,9 @@
   <%= render 'victima_campos', :f => victima %>
 <% end %>
 
+<datalist id='fuente-victimas'>
+</datalist>
+
 <div class="links">
   <%= link_to_add_association 'Añadir Víctima', f, :victima, { 
     partial: 'sivel2_gen/casos/victima_campos',
