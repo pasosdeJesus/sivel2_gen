@@ -772,7 +772,8 @@ module Sivel2Gen
               # autocompletadas los crea
               if caso_params[:victima_attributes]
                 caso_params[:victima_attributes].each do |iv, v|
-                  if v[:persona_attributes][:persona_trelacion1_attributes]
+                  if v[:persona_attributes] &&
+                      v[:persona_attributes][:persona_trelacion1_attributes]
                     v[:persona_attributes][:persona_trelacion1_attributes].each do |it, t|
                       # Ubicamos los de autocompletacion y para esos creamos un registro
                       if t && (!t[:id] || t[:id] == '') &&

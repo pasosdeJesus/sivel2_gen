@@ -33,10 +33,6 @@ var mc= require('leaflet.markercluster');
 
 import plotly_serietiempo_actos from './plotly_actos'
 
-document.addEventListener("DOMContentLoaded", function() {
-
-});
-
 import {AutocompletaAjaxExpreg} from '@pasosdejesus/autocompleta_ajax'
 window.AutocompletaAjaxExpreg = AutocompletaAjaxExpreg
 

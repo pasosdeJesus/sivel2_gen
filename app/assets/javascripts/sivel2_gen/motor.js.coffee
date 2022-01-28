@@ -4,6 +4,7 @@
 #//= require sip/motor
 #//= require cocoon
 #//= require sivel2_gen/motor_es6
+#//= require sivel2_gen/AutocompletaAjaxVictimas
 
 @sivel2_gen_procesa_eliminaracto = false
 @sivel2_gen_procesa_eliminaractocolectivo = false
