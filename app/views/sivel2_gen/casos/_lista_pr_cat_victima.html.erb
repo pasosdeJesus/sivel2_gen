@@ -204,7 +204,7 @@
     <% #byebug %>
     <% nns = {} %>
     <% por[pr][ct].each do |idv|%>
-      <% if idv != -1 && lvic[idv].split("-")[0].strip == "N N" %>
+      <% if idv != -1 && lvic[idv] && lvic[idv].split("-")[0].strip == "N N" %>
         <% rnn = lvic[idv].split("-")[1..-1].join("-") %>
         <% if nns[rnn] %>
           <% nns[rnn] += 1 %>
@@ -215,9 +215,9 @@
         <% # Excluimos profesion %>
         <% if repgeneral %>
           <% rnn = lvic[idv] %>
-          <%= rnn %><br>
+          <%= rnn.to_s %><br>
         <% else %>
-          <% rnn = lvic[idv].split("-")[0..2].join("-") %>
+          <% rnn = lvic[idv] ? lvic[idv].split("-")[0..2].join("-") : ''  %>
           <%= rnn %><br>
         <% end %>
       <% end %>
