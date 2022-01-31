@@ -912,7 +912,7 @@ module Sivel2Gen
             format.json { head :no_content }
             format.js   { render 'sivel2_gen/conteos/genvic' }
           end
-        end # def personas
+        end # def genvic
 
 
 

@@ -2,6 +2,9 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
+gem 'apexcharts',
+  git: 'https://github.com/vtamara/apexcharts.rb.git', branch: :master
+
 gem 'babel-transpiler'
 
 gem 'bcrypt'
@@ -98,8 +101,6 @@ end
 
 group  :development, :test do
   gem 'debug'
-
-  gem 'apexcharts'
 
   gem 'compare-xml', '~> 0.5.2' # para validar xml
 
