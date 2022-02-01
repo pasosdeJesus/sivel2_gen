@@ -19,6 +19,12 @@ module Sivel2Gen
             @basica = Region.find(params[:id])
           end
 
+          def create
+            @region.departamento_ids = params[:region][:departamento_ids]
+            @region.municipio_ids = params[:region][:municipio_ids]
+            create_gen
+          end
+
           def atributos_index
             [
               "id", "nombre", "observaciones"] +
