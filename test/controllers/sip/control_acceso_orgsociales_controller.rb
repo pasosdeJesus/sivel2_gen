@@ -17,64 +17,63 @@ module Sip
     # No autenticado
     ################
 
-#    test "sin autenticar no debe presentar listado" do
-#      assert_raise CanCan::AccessDenied do
-#        get sip.orgsociales_path
-#      end
-#    end
-#
-#    test "sin autenticar no debe presentar resumen de existente" do
-#      assert_raise CanCan::AccessDenied do
-#        get sip.orgsocial_path(@orgsocial.id)
-#      end
-#    end
-#
-#    test "sin autenticar no debe ver formulario de nuevo" do
-#      assert_raise CanCan::AccessDenied do
-#        get sip.new_orgsocial_path()
-#      end
-#    end
-#
-#    test "sin autenticar no debe crear" do
-#      assert_raise CanCan::AccessDenied do
-#        post sip.orgsociales_path, params: { 
-#          orgsocial: { 
-#            id: nil,
-#            grupoper_attributes: {
-#              id: nil,
-#              nombre: 'ZZ'
-#            }
-#          }
-#        }
-#      end
-#    end
-#
-#
-#    test "sin autenticar no debe editar" do
-#      assert_raise CanCan::AccessDenied do
-#        get sip.edit_orgsocial_path(@orgsocial.id)
-#      end
-#    end
-#
-#    test "sin autenticar no debe actualizar" do
-#      assert_raise CanCan::AccessDenied do
-#        patch sip.orgsocial_path(@orgsocial.id)
-#      end
-#    end
-#
-#    test "sin autenticar no debe eliminar" do
-#      assert_raise CanCan::AccessDenied do
-#        delete sip.orgsocial_path(@orgsocial.id)
-#      end
-#    end
-#
+    test "sin autenticar no debe presentar listado" do
+      assert_raise CanCan::AccessDenied do
+        get sip.orgsociales_path
+      end
+    end
+
+    test "sin autenticar no debe presentar resumen de existente" do
+      assert_raise CanCan::AccessDenied do
+        get sip.orgsocial_path(@orgsocial.id)
+      end
+    end
+
+    test "sin autenticar no debe ver formulario de nuevo" do
+      assert_raise CanCan::AccessDenied do
+        get sip.new_orgsocial_path()
+      end
+    end
+
+    test "sin autenticar no debe crear" do
+      assert_raise CanCan::AccessDenied do
+        post sip.orgsociales_path, params: { 
+          orgsocial: { 
+            id: nil,
+            grupoper_attributes: {
+              id: nil,
+              nombre: 'ZZ'
+            }
+          }
+        }
+      end
+    end
+
+
+    test "sin autenticar no debe editar" do
+      assert_raise CanCan::AccessDenied do
+        get sip.edit_orgsocial_path(@orgsocial.id)
+      end
+    end
+
+    test "sin autenticar no debe actualizar" do
+      assert_raise CanCan::AccessDenied do
+        patch sip.orgsocial_path(@orgsocial.id)
+      end
+    end
+
+    test "sin autenticar no debe eliminar" do
+      assert_raise CanCan::AccessDenied do
+        delete sip.orgsocial_path(@orgsocial.id)
+      end
+    end
+
     # Autenticado como operador
     ###########################
 
     test "autenticado como operador debe presentar listado" do
-      byebug
-      current_usuario = Usuario.create!(PRUEBA_USUARIO_OP)
-      byebug
+      skip
+      current_usuario = Usuario.where(nusuario: 'operador').take
       sign_in current_usuario
       get sip.orgsociales_path
       assert_response :ok
