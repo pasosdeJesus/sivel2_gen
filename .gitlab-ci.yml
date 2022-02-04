@@ -53,6 +53,7 @@ test:
     - bin/rails db:drop db:create db:setup
     - bin/rails sip:indices
     - yarn install
+    - bin/rails assets:precompile
     - cd ../..
   script:
     - CONFIG_HOSTS=www.example.com bin/rails test
