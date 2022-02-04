@@ -59,3 +59,7 @@ test:
     - ./cc-test-reporter after-build -t simplecov --exit-code $?
 
 
+sast:
+    stage: test
+include:
+- template: Security/SAST.gitlab-ci.yml
