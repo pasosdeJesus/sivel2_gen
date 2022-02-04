@@ -70,3 +70,15 @@ PRUEBA_USUARIO = {
 
 
 
+PRUEBA_GRUPOPER = {
+  id: 1,
+  nombre: 'grupoper1'
+}
+
+PRUEBA_ORGSOCIAL = {
+  id: 1,
+  grupoper_id: 1,
+  created_at: '2021-08-27',
+  updated_at: '2021-08-27'
+}
+

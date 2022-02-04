@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 gem 'apexcharts',
-  git: 'https://github.com/vtamara/apexcharts.rb.git', branch: :master
+  git: 'https://github.com/styd/apexcharts.rb.git', branch: :master
 
 gem 'babel-transpiler'
 
@@ -62,7 +62,7 @@ gem 'simple_form' # Formularios simples
 
 gem 'sprockets-rails'
 
-gem 'turbo-rails'
+gem 'turbo-rails', '~> 1.0'
 
 gem 'twitter_cldr' # ICU con CLDR
 

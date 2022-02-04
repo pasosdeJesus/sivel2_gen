@@ -48,8 +48,8 @@ GIT
       twitter_cldr
 
 GIT
-  remote: https://github.com/vtamara/apexcharts.rb.git
-  revision: 7eb03e6075dbbff8602a815cc69daa4d1d83339b
+  remote: https://github.com/styd/apexcharts.rb.git
+  revision: 1c5e91cd5ba60690a758c099b2a30e4470cbb430
   branch: master
   specs:
     apexcharts (0.1.11)
@@ -380,8 +380,9 @@ GEM
     tilt (2.0.10)
     timeout (0.2.0)
     ttfunk (1.7.0)
-    turbo-rails (7.1.1)
-      rails (>= 6.0.0)
+    turbo-rails (1.0.1)
+      actionpack (>= 6.0.0)
+      railties (>= 6.0.0)
     twitter_cldr (6.11.1)
       camertron-eprun
       cldr-plurals-runtime-rb (~> 1.1)
@@ -448,7 +449,7 @@ DEPENDENCIES
   sip!
   sprockets-rails
   thor
-  turbo-rails
+  turbo-rails (~> 1.0)
   twitter_cldr
   tzinfo
   web-console
