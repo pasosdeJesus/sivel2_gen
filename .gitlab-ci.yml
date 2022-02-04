@@ -1,61 +1,66 @@
-# Basado entre otros en: https://dev.to/mpressen/rails-minitest-gitlab-ci-31ap
-
-image: "ruby:3.0.2"
-
+# You can override the included template(s) by including variable overrides
+# SAST customization: https://docs.gitlab.com/ee/user/application_security/sast/#customizing-the-sast-settings
+# Secret Detection customization: https://docs.gitlab.com/ee/user/application_security/secret_detection/#customizing-settings
+# Dependency Scanning customization: https://docs.gitlab.com/ee/user/application_security/dependency_scanning/#customizing-the-dependency-scanning-settings
+# Container Scanning customization: https://docs.gitlab.com/ee/user/application_security/container_scanning/#customizing-the-container-scanning-settings
+# Note that environment variables can be set in several places
+# See https://docs.gitlab.com/ee/ci/variables/#cicd-variable-precedence
+image: ruby:3.0.2
 services:
-  - name: vtamara/postgis-es_co:13.3-1
-    alias: postgres
-
+- name: vtamara/postgis-es_co:13.3-1
+  alias: postgres
 variables:
   RAILS_ENV: test
-  POSTGRES_ENABLED: "true"
+  POSTGRES_ENABLED: 'true'
   POSTGRES_USER: runner
-  POSTGRES_PASSWORD: ""
+  POSTGRES_PASSWORD: ''
   POSTGRES_DB: sivel2gen_pru
   POSTGRES_HOST_AUTH_METHOD: trust
-  NOKOGIRI_USE_SYSTEM_LIBRARIES: "true"
-  CC_TEST_REPORTER_ID: "1486a4589ae9326a7a567e9599edd0ecd306c65e5f359cc724855c2a34efe67b"
-
-
-
+  NOKOGIRI_USE_SYSTEM_LIBRARIES: 'true'
+  CC_TEST_REPORTER_ID: 1486a4589ae9326a7a567e9599edd0ecd306c65e5f359cc724855c2a34efe67b
 stages:
-  - test
-
+- test
 test:
   stage: test
   cache:
     paths:
-      - apt-cache
-      - node_modules
-      - vendor/bundle
+    - apt-cache
+    - node_modules
+    - vendor/bundle
   before_script:
-    - uname -a
-    - whoami
-    - echo "HOME=${HOME}"
-    - pwd
-    - which ruby
-    - ruby -v
-    - export APT_CACHE_DIR=`pwd`/apt-cache && mkdir -pv $APT_CACHE_DIR
-    - apt-get update -yy && apt-get install build-essential libpq-dev postgresql-client -y
-    - apt-get install -y -qq nodejs
-    - curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
-    - echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
-    - apt-get update -qq && apt-get -o dir::cache::archives="$APT_CACHE_DIR" install -yqq yarn
-    - gem install bundler --no-document
-    - bundle install --jobs $(nproc) "${FLAGS[@]}"
-    - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
-    - chmod +x ./cc-test-reporter
-    - ./cc-test-reporter before-build
-    - cd test/dummy
-    - cp .env.gitlab .env
-    - cp db/structure.sql db/structure.sql.copia 
-    - sed -e 's/provider = libc,//g;s/SET default_table_access_method.*/-- &/g' db/structure.sql.copia > db/structure.sql 
-    - bin/rails db:drop db:create db:setup
-    - bin/rails sip:indices
-    - yarn install
-    - cd ../..
+  - uname -a
+  - whoami
+  - echo "HOME=${HOME}"
+  - pwd
+  - which ruby
+  - ruby -v
+  - export APT_CACHE_DIR=`pwd`/apt-cache && mkdir -pv $APT_CACHE_DIR
+  - apt-get update -yy && apt-get install build-essential libpq-dev postgresql-client
+    -y
+  - apt-get install -y -qq nodejs
+  - curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
+  - echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
+  - apt-get update -qq && apt-get -o dir::cache::archives="$APT_CACHE_DIR" install
+    -yqq yarn
+  - gem install bundler --no-document
+  - bundle install --jobs $(nproc) "${FLAGS[@]}"
+  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64
+    > ./cc-test-reporter
+  - chmod +x ./cc-test-reporter
+  - "./cc-test-reporter before-build"
+  - cd test/dummy
+  - cp .env.gitlab .env
+  - cp db/structure.sql db/structure.sql.copia
+  - sed -e 's/provider = libc,//g;s/SET default_table_access_method.*/-- &/g' db/structure.sql.copia
+    > db/structure.sql
+  - bin/rails db:drop db:create db:setup
+  - bin/rails sip:indices
+  - yarn install
+  - cd ../..
   script:
-    - CONFIG_HOSTS=www.example.com bin/rails test
-    - ./cc-test-reporter after-build -t simplecov --exit-code $?
-
-
+  - CONFIG_HOSTS=www.example.com bin/rails test
+  - "./cc-test-reporter after-build -t simplecov --exit-code $?"
+sast:
+  stage: test
+include:
+- template: Security/SAST.gitlab-ci.yml
