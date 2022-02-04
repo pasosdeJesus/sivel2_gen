@@ -1,6 +1,6 @@
 # Motor SIVeL 2 Genérico
 
-[![Revisado por Hound](https://img.shields.io/badge/Reviewed_by-Hound-8E64B0.svg)](https://houndci.com) [![Estado Construcción](https://gitlab.com/pasosdeJesus/sivel2_gen/badges/sivel2.0/pipeline.svg)](https://gitlab.com/pasosdeJesus/sivel2_gen/-/pipelines?page=1&scope=all&ref=sivel2.0)[![Clima del Código](https://codeclimate.com/github/pasosdeJesus/sivel2_gen/badges/gpa.svg)](https://codeclimate.com/github/pasosdeJesus/sivel2_gen) [![Cobertura de Pruebas](https://codeclimate.com/github/pasosdeJesus/sivel2_gen/badges/coverage.svg)](https://codeclimate.com/github/pasosdeJesus/sivel2_gen) Seguridad: [![Seguridad](https://gitlab.com/pasosdeJesus/sivel2_gen/badges/sivel2.0/pipeline.svg)](https://gitlab.com/pasosdeJesus/sivel2_gen/-/pipelines?page=1&scope=all&ref=sivel2.0)
+[![Revisado por Hound](https://img.shields.io/badge/Reviewed_by-Hound-8E64B0.svg)](https://houndci.com) Pruebas y seguridad:[![Estado Construcción](https://gitlab.com/pasosdeJesus/sivel2_gen/badges/sivel2.0/pipeline.svg)](https://gitlab.com/pasosdeJesus/sivel2_gen/-/pipelines?page=1&scope=all&ref=sivel2.0)[![Clima del Código](https://codeclimate.com/github/pasosdeJesus/sivel2_gen/badges/gpa.svg)](https://codeclimate.com/github/pasosdeJesus/sivel2_gen) [![Cobertura de Pruebas](https://codeclimate.com/github/pasosdeJesus/sivel2_gen/badges/coverage.svg)](https://codeclimate.com/github/pasosdeJesus/sivel2_gen) 
 
 ![Logo de sivel2_gen](https://raw.githubusercontent.com/pasosdeJesus/sivel2_gen/master/test/dummy/app/assets/images/logo.jpg)
 
