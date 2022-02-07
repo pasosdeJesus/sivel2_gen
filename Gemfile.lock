@@ -1,8 +1,8 @@
 GIT
   remote: https://github.com/kreeti/kt-paperclip.git
-  revision: a077561f75d6ef064dbd4f4806b519cb3df28c88
+  revision: 64ac41e10af276524fbde358a57f9af0f50d5066
   specs:
-    kt-paperclip (7.0.1)
+    kt-paperclip (7.1.0)
       activemodel (>= 4.2.0)
       activesupport (>= 4.2.0)
       marcel (~> 1.0.1)
@@ -11,7 +11,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/heb412_gen.git
-  revision: d5f2abb89f10e3524862134de0502570109f4dfa
+  revision: bfde5cf28559a2a87eb995e27cc184a5e3fa41ab
   branch: v2.0
   specs:
     heb412_gen (2.0)
@@ -22,7 +22,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/mr519_gen.git
-  revision: 6fcf9291677827a0e00fc426c37a1abfb2031d21
+  revision: 7a32b017561b9e1956c4cb5e083cd243f00bb1f8
   branch: v2.0
   specs:
     mr519_gen (2.0)
@@ -31,7 +31,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sip.git
-  revision: 7108afb24c98572ea60350d73cc3e99469009d77
+  revision: 8989eb8bee562a5a7054c00493891ff92d0237e6
   branch: v2.0
   specs:
     sip (2.0)
@@ -119,7 +119,7 @@ GEM
     andand (1.3.3)
     bcrypt (3.1.16)
     bindex (0.8.1)
-    bootsnap (1.10.2)
+    bootsnap (1.10.3)
       msgpack (~> 1.2)
     builder (3.2.4)
     camertron-eprun (1.1.1)
@@ -203,7 +203,7 @@ GEM
       mimemagic (~> 0.3.0)
       terrapin (~> 0.6.0)
     pdf-core (0.9.0)
-    pg (1.3.0)
+    pg (1.3.1)
     prawn (2.4.0)
       pdf-core (~> 0.9.0)
       ttfunk (~> 1.7)
