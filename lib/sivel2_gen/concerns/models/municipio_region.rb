@@ -7,10 +7,10 @@ module Sivel2Gen
 
         included do
           belongs_to :region, class_name: 'Sivel2Gen::Region', 
-            foreign_key: 'region_id', optional: false
+            foreign_key: 'region_id', optional: true
           belongs_to :municipio, 
             class_name: 'Sip::Municipio',
-            foreign_key: 'municipio_id', optional: false
+            foreign_key: 'municipio_id', optional: true
         end
       end
     end
