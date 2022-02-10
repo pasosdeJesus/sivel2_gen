@@ -4,39 +4,47 @@
     <div class="row">
       <div class="col-md-6">
         <%= f.association :pais,
-          collection: Sip::Pais.where(fechadeshabilitacion: nil).order(:nombre),
+          collection: Sip::ModeloHelper.opciones_tabla_basica(
+            Sip::Pais, f, :pais
+          ),
           label_method: :nombre,
           value_method: :id
-           %>
+        %>
       </div>
       <div class="col-md-6">
-        <%= f.association :departamento,
-          collection: (Sip::Departamento.where(
-            id_pais: f.object.id_pais, 
-            fechadeshabilitacion: nil).order(:nombre)),
-          label_method: :nombre,
-          value_method: :id %>
+        <% cold = Sip::ModeloHelper.opciones_tabla_basica(
+          Sip::Departamento.where(id_pais: f.object.id_pais), 
+          f, :departamento)
+        %>
+      <%= f.association :departamento,
+        collection: cold,
+        label_method: :nombre,
+        value_method: :id %>
       </div>
     </div>
 
     <div class="row">
       <div class="col-md-6">
-        <%= f.association :municipio,
-          collection: (Sip::Municipio.where(
-            id_departamento: f.object.id_departamento,
-            fechadeshabilitacion: nil).order(:nombre)),
-          label_method: :nombre,
-          value_method: :id %>
+        <% colm = Sip::ModeloHelper.opciones_tabla_basica(
+          Sip::Municipio.where(id_departamento: f.object.id_departamento), 
+          f, :municipio)
+        %>
+      <%= f.association :municipio,
+        collection: colm,
+        label_method: :nombre,
+        value_method: :id %>
       </div>
       <div class="col-md-6">
-        <%= f.association :clase,
-          collection: (Sip::Clase.where(
-            id_municipio: f.object.id_municipio,
-            fechadeshabilitacion: nil).order(:nombre)),
-          label_method: :nombre,
-          value_method: :id %>
-        <%= f.input :tclase, 
-          readonly: true %> 
+        <% colc = Sip::ModeloHelper.opciones_tabla_basica(
+          Sip::Clase.where(id_municipio: f.object.id_municipio), 
+          f, :clase) 
+        %>
+      <%= f.association :clase,
+        collection: colc,
+        label_method: :nombre,
+        value_method: :id %>
+      <%= f.input :tclase, 
+        readonly: true %> 
       </div>
     </div>
 
@@ -59,8 +67,9 @@
     <div class="row">
       <div class="col-md-4">
         <%= f.association :tsitio,
-          collection: Sip::Tsitio.where(
-            fechadeshabilitacion: nil).order(:nombre),
+          collection: Sip::ModeloHelper.opciones_tabla_basica(
+            Sip::Tsitio, f, :tsitio
+          ),
           label_method: :nombre, 
           value_method: :id,
           include_blank: false %>
@@ -72,10 +81,10 @@
         <%= f.input :longitud %>
       </div>
     </div>
-		<%= f.input :id, as: :hidden %>
-		<%= link_to_remove_association "Eliminar " + 
-				Sip::Ubicacion.human_attribute_name("Ubicacion"), f, 
-				{:class => 'btn-danger', :'data-existing' => 'true'} 
-		%> 
-	</div>
+    <%= f.input :id, as: :hidden %>
+    <%= link_to_remove_association "Eliminar " + 
+      Sip::Ubicacion.human_attribute_name("Ubicacion"), f, 
+      {:class => 'btn-danger', :'data-existing' => 'true'} 
+    %> 
+  </div>
 </div>
