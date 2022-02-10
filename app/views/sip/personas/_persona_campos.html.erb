@@ -25,7 +25,9 @@
   <div class="row">
     <div class="col-md-6">
       <%= f.input :tdocumento_id,
-        collection: Sip::Tdocumento.habilitados,
+        collection: Sip::ModeloHelper.opciones_tabla_basica(
+          Sip::Tdocumento, f, :tdocumento_id
+        ),
         label_method: :nombre,
         value_method: :id %>
     </div>
@@ -68,7 +70,9 @@
     </div>
     <div class="col-sm-3">
       <%= fvictima.association :rangoedad,
-        collection: Sivel2Gen::Rangoedad.habilitados,
+        collection: Sip::ModeloHelper.opciones_tabla_basica(
+          Sivel2Gen::Rangoedad, fvictima, :rangoedad
+        ),
         include_blank: false,
         label_method: :nombre, 
         value_method: :id 
@@ -106,32 +110,44 @@
   <div class="row">
     <div class="col-md-6">
       <%= f.association :pais,
-        collection: Sip::Pais.habilitados,
+        collection: Sip::ModeloHelper.opciones_tabla_basica(
+          Sip::Pais, f, :pais
+        ),
         label_method: :nombre,
         value_method: :id %>
     </div>
     <div class="col-md-6">
       <%= f.association :departamento,
-        collection: (Sip::Departamento.habilitados.where(
-          id_pais: f.object.id_pais)),
-          label_method: :nombre,
-          value_method: :id %>
+        collection: (
+          Sip::ModeloHelper.opciones_tabla_basica(
+            Sip::Departamento, f, :departamento
+          ).where(
+            id_pais: f.object.id_pais)
+        ),
+        label_method: :nombre,
+        value_method: :id %>
     </div>
   </div>
 
   <div class="row">
     <div class="col-md-6">
       <%= f.association :municipio, 
-        collection: (Sip::Municipio.habilitados.
-                     where(id_departamento: f.object.id_departamento)), 
+        collection: (
+          Sip::ModeloHelper.opciones_tabla_basica(
+            Sip::Municipio, f, :municipio
+          ).where(id_departamento: f.object.id_departamento)
+        ), 
         label_method: :nombre, value_method: :id %>
     </div>
     <div class="col-md-6">
       <%= f.association :clase,
-        collection: (Sip::Clase.habilitados.where(
-          id_municipio: f.object.id_municipio)),
-          label_method: :nombre,
-          value_method: :id %>
+        collection: (
+          Sip::ModeloHelper.opciones_tabla_basica(
+            Sip::Clase, f, :clase
+          ).where(id_municipio: f.object.id_municipio)
+        ),
+        label_method: :nombre,
+        value_method: :id %>
     </div>
   </div>
 

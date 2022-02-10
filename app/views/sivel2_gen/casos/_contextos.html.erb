@@ -2,13 +2,17 @@
 <div class="row">
   <div class="col-md-6">
     <%= f.association :contexto, 
-      collection: Sivel2Gen::Contexto.habilitados,
+      collection: Sip::ModeloHelper.opciones_tabla_basica(
+        Sivel2Gen::Contexto, f, :contexto
+      ),
       label_method: :nombre, 
       value_method: :id %>
   </div>
   <div class="col-md-6">
     <%= f.association :antecedente, 
-      collection: Sivel2Gen::Antecedente.habilitados,
+      collection: Sip::ModeloHelper.opciones_tabla_basica(
+        Sivel2Gen::Antecedente, f, :antecedente
+      ),
       label_method: :nombre, 
       value_method: :id %>
   </div>

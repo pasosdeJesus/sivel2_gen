@@ -41,7 +41,9 @@
     <div class="row filtro-fila">
       <div class="offset-sm-2 col-sm-4">
         <%= f.input :etiqueta1,
-          collection: Sip::Etiqueta.habilitados,
+          collection: Sip::ModeloHelper.opciones_tabla_basica(
+            Sip::Etiqueta, f, :etiqueta1
+          ),
           label_method: :nombre,
           value_method: :id,
           label: false,
@@ -51,7 +53,9 @@
       </div>
       <div class="offset-sm-1 col-sm-4">
         <%= f.input :etiqueta2,
-          collection: Sip::Etiqueta.habilitados,
+          collection: Sip::ModeloHelper.opciones_tabla_basica(
+            Sip::Etiqueta, f, :etiqueta2
+          ),
           label_method: :nombre,
           value_method: :id,
           label: false,

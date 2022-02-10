@@ -14,7 +14,9 @@
       </div>
       <div class="offset-sm-0 col-sm-3 col-md-3">
         <%= f.input :departamento_id,
-          collection: Sip::Departamento.habilitados.where(id_pais: 170),
+          collection: Sip::ModeloHelper.opciones_tabla_basica(
+            Sip::Departamento, f, :departamento_id
+          ).where(id_pais: 170),
           label_method: :nombre,
           value_method: :id,
           label: false,
@@ -23,7 +25,9 @@
       </div>
       <div class="col-md-2">
         <%= f.input :municipio_id,
-          collection: Sip::Municipio.habilitados,
+          collection: Sip::ModeloHelper.opciones_tabla_basica(
+            Sip::Municipio, f, :municipio_id
+          ),
           label_method: :nombre,
           value_method: :id,
           label: false,
@@ -33,7 +37,9 @@
       </div>
       <div class="col-md-2">
         <%= f.input :clase_id,
-          collection: Sip::Clase.habilitados,
+          collection: Sip::ModeloHelper.opciones_tabla_basica(
+            Sip::Clase, f, :clase_id
+          ),
           label_method: :nombre,
           value_method: :id,
           label: false,
@@ -102,7 +108,9 @@
       </div>
       <div class="offset-sm-0 col-sm-10 offset-md-0 col-md-7">
         <%= f.input :presponsable_id,
-          collection: Sivel2Gen::Presponsable.habilitados,
+          collection: Sip::ModeloHelper.opciones_tabla_basica(
+            Sivel2Gen::Presponsable, f, :presponsable_id
+          ),
           label_method: :nombre,
           value_method: :id,
           input_html: { :class => "chosen-select", multiple: true },
@@ -173,7 +181,9 @@
           <div class = "row">
             <div class="col-sm-6">
               <%= f.input :contexto_id,
-                collection: Sivel2Gen::Contexto.habilitados,
+                collection: Sip::ModeloHelper.opciones_tabla_basica(
+                  Sivel2Gen::Contexto, f, :contexto_id
+                ),
                 label_method: :nombre,
                 value_method: :id,
                 :include_hidden => false,
@@ -183,7 +193,8 @@
             </div>
             <div class="col-sm-6">
               <%= f.input :contextovictima_id,
-                collection: Sivel2Gen::Contextovictima.habilitados,
+                collection: Sip::ModeloHelper.opciones_tabla_basica(
+                  Sivel2Gen::Contextovictima, f, :contextovictima_id),
                 label_method: :nombre,
                 value_method: :id,
                 :include_hidden => false,
@@ -246,7 +257,9 @@
               %>
           <% else %>
             <%= f.input :rangoedad_id, 
-              collection: Sivel2Gen::Rangoedad.habilitados,
+              collection: Sip::ModeloHelper.opciones_tabla_basica(
+                Sivel2Gen::Rangoedad, f, :rangoedad_id
+              ),
               label: false,
               label_method: :nombre,
               value_method: :id,
@@ -257,7 +270,9 @@
           <div class="col-sm col-md">
           <% if current_usuario %>
             <%= f.input :rangoedad_id, 
-              collection: Sivel2Gen::Rangoedad.habilitados,
+              collection: Sip::ModeloHelper.opciones_tabla_basica(
+                Sivel2Gen::Rangoedad, f, :rangoedad_id
+              ),
               label: false,
               label_method: :nombre,
               value_method: :id,
@@ -265,7 +280,9 @@
             %>
           <% else %>
             <%= f.input :sectorsocial_id,
-              collection: Sivel2Gen::Sectorsocial.habilitados,
+              collection: Sip::ModeloHelper.opciones_tabla_basica(
+                Sivel2Gen::Sectorsocial, f, :sectorsocial_id
+              ),
               label: false,
               label_method: :nombre,
               value_method: :id,
@@ -289,7 +306,9 @@
             <div class="col-sm col-md">
             <% if current_usuario %>
               <%= f.input :sectorsocial_id,
-                collection: Sivel2Gen::Sectorsocial.habilitados,
+                collection: Sip::ModeloHelper.opciones_tabla_basica(
+                  Sivel2Gen::Sectorsocial, f, :sectorsocial_id
+                ),
                 label: false,
                 label_method: :nombre,
                 value_method: :id,
@@ -300,7 +319,9 @@
             <div class="col-sm col-md">
             <% if current_usuario %>
               <%= f.input :organizacion_id,
-                collection: Sivel2Gen::Organizacion.habilitados,
+                collection: Sip::ModeloHelper.opciones_tabla_basica(
+                  Sivel2Gen::Organizacion, f, :organizacion_id
+                ),
                 label: false,
                 label_method: :nombre,
                 value_method: :id,
@@ -311,7 +332,9 @@
             <div class="col-sm col-md">
             <% if current_usuario %>
               <%= f.input :profesion_id,
-                collection: Sivel2Gen::Profesion.habilitados,
+                collection: Sip::ModeloHelper.opciones_tabla_basica(
+                  Sivel2Gen::Profesion, f, :profesion_id
+                ),
                 label: false,
                 label_method: :nombre,
                 value_method: :id,
@@ -393,7 +416,9 @@
         </div>
         <div class="offset-sm-0 col-sm-2">
           <%= f.input :etiqueta1,
-            collection: Sip::Etiqueta.habilitados,
+            collection: Sip::ModeloHelper.opciones_tabla_basica(
+              Sip::Etiqueta, f, :etiqueta1
+            ),
             label_method: :nombre,
             value_method: :id,
             label: false,
@@ -409,7 +434,9 @@
         </div>
         <div class="offset-sm-0 col-sm-2">
           <%= f.input :etiqueta2,
-            collection: Sip::Etiqueta.habilitados,
+            collection: Sip::ModeloHelper.opciones_tabla_basica(
+              Sip::Etiqueta, f, :etiqueta2
+            ),
             label_method: :nombre,
             value_method: :id,
             label: false,
@@ -426,7 +453,9 @@
         </div>
         <div class="offset-sm-0 col-sm-2">
           <%= f.input :usuario_id,
-            collection: ::Usuario.habilitados,
+            collection: Sip::ModeloHelper.opciones_tabla_basica(
+              ::Usuario, f, :usuario_id
+            ),
             label_method: lambda {|t| (t.nombre ? t.nombre : '') + ' - ' + 
               t.nusuario
           },

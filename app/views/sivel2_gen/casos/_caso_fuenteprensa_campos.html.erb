@@ -11,7 +11,9 @@
       </div>
       <div class="col-md-6">
         <%= f.association :fuenteprensa,
-          collection: Sip::Fuenteprensa.habilitados,
+          collection: Sip::ModeloHelper.opciones_tabla_basica(
+            Sip::Fuenteprensa, f, :fuenteprensa
+          ),
           label_method: :nombre,
           value_method: :id %>
       </div>
