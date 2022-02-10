@@ -20,7 +20,9 @@
   </div>
   <div class="col-md-4">
     <%= f.association :intervalo,
-      collection: Sivel2Gen::Intervalo.habilitados,
+      collection: Sip::ModeloHelper.opciones_tabla_basica(
+        Sivel2Gen::Intervalo, f, :intervalo
+      ),
       label_method: :nombre,
       value_method: :id %>
   </div>

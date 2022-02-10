@@ -31,7 +31,9 @@
       </td>
       <td>
         <%= p.input :tdocumento_id,
-          collection: Sip::Tdocumento.habilitados,
+          collection: Sip::ModeloHelper.opciones_tabla_basica(
+            Sip::Tdocumento, p, :tdocumento_id
+          ),
           label_method: :sigla,
           value_method: :id ,
           label: false,
@@ -44,7 +46,9 @@
       </td>
       <td>
         <%= f.input :id_trelacion, 
-          collection: Sip::Trelacion.habilitados,
+          collection: Sip::ModeloHelper.opciones_tabla_basica(
+            Sip::Trelacion, f, :id_trelacion
+          ),
           label_method: :nombre,
           value_method: :id,
           label: false %>

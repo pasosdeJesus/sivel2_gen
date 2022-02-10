@@ -38,7 +38,9 @@
       </div>
       <div class="offset-sm-0 col-sm-3">
         <%= f.input :tviolencia_id,
-          collection: Sivel2Gen::Tviolencia.habilitados,
+          collection: Sip::ModeloHelper.opciones_tabla_basica(
+            Sivel2Gen::Tviolencia, f, :tviolencia_id
+          ),
           label_method: :nombre,
           value_method: :id,
           label: false,
@@ -51,7 +53,9 @@
     <div class="row filtro-fila">
       <div class="offset-sm-2 col-sm-3">
         <%= f.input :etiqueta1,
-          collection: Sip::Etiqueta.habilitados,
+          collection: Sip::ModeloHelper.opciones_tabla_basica(
+            Sip::Etiqueta, f, :etiqueta1
+          ),
           label_method: :nombre,
           value_method: :id,
           label: false,
@@ -61,7 +65,9 @@
       </div>
       <div class="col-sm-3">
         <%= f.input :etiqueta2,
-          collection: Sip::Etiqueta.habilitados,
+          collection: Sip::ModeloHelper.opciones_tabla_basica(
+            Sip::Etiqueta, f, :etiqueta2
+          ),
           label_method: :nombre,
           value_method: :id,
           label: false,
