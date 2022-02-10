@@ -9,10 +9,10 @@
       value_method: :id %>
   </div>
   <div class="col-md-6">
+    <% cant = Sip::ModeloHelper.opciones_tabla_basica(
+      Sivel2Gen::Antecedente, f, :antecedente) %>
     <%= f.association :antecedente, 
-      collection: Sip::ModeloHelper.opciones_tabla_basica(
-        Sivel2Gen::Antecedente, f, :antecedente
-      ),
+      collection: cant,
       label_method: :nombre, 
       value_method: :id %>
   </div>

@@ -66,15 +66,15 @@ gem 'will_paginate' # Listados en páginas
 
 gem 'sip', # Motor generico,
   git: 'https://github.com/pasosdeJesus/sip.git', branch: 'v2.0'
-  #path: '../sip'
+  #path: '../sip-2.0'
 
 gem 'mr519_gen', # Motor de gestion de formularios y encuestas
   git: 'https://github.com/pasosdeJesus/mr519_gen.git', branch: 'v2.0'
-  #path: '../mr519_gen'
+  #path: '../mr519_gen-2.0'
 
 gem 'heb412_gen',  # Motor de nube y llenado de plantillas
   git: 'https://github.com/pasosdeJesus/heb412_gen.git', branch: 'v2.0'
-  #path: '../heb412_gen'
+  #path: '../heb412_gen-2.0'
 
 
 group :development do
@@ -89,7 +89,7 @@ end
 
 
 group  :development, :test do
-  #gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'debug'
 
   gem 'compare-xml', '~> 0.5.2' # para validar xml
 
