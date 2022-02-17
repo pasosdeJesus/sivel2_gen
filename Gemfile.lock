@@ -307,7 +307,7 @@ GEM
     thor (1.2.1)
     tilt (2.0.10)
     ttfunk (1.7.0)
-    twitter_cldr (6.11.1)
+    twitter_cldr (6.11.2)
       camertron-eprun
       cldr-plurals-runtime-rb (~> 1.1)
       tzinfo
