@@ -99,7 +99,8 @@ module Sivel2Gen
                 :nombres, :apellidos, :victimacol, :sexo, :rangoedad_id,
                 :organizacion_id, :profesion_id, :descripcion,
                 :usuario_id, :fechaingini, :fechaingfin, :contexto_id, 
-                :contextovictima_id, :codigo, :orientacionsexual
+                :contextovictima_id, :codigo, :orientacionsexual,
+                :sectorsocial_id 
               ]
             else
               [:departamento_id, :municipio_id, :clase_id,
