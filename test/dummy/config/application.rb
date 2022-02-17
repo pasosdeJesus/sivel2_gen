@@ -34,7 +34,9 @@ module Dummy
       max_threads: 2 * Concurrent.processor_count,
       idletime: 600.seconds
 
-    config.hosts <<  ENV.fetch('CONFIG_HOSTS', 'defensor.info').downcase
+    puts "CONFIG_HOSTS="+ENV.fetch('CONFIG_HOSTS', 'defensor.info').to_s
+    config.hosts.concat(
+      ENV.fetch('CONFIG_HOSTS', 'defensor.info').downcase.split(";"))
 
     # sip
     config.x.formato_fecha = ENV.fetch('FORMATO_FECHA', 'dd/M/yyyy')
