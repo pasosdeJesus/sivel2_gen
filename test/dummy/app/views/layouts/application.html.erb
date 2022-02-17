@@ -30,14 +30,6 @@
           sivel2_gen.conteos_victimizaciones_path, desplegable: true %>
         <%= opcion_menu "Conteo general de victimizaciones", 
           sivel2_gen.conteos_genvic_path, desplegable: true %>
-        <%= opcion_menu "Graficar actos individuales", 
-          sivel2_gen.graficar_actos_individuales_path,
-          'data-turbolinks' => false,
-          desplegable: true %>
-        <%= opcion_menu "Graficar victimizaciones individuales", 
-          sivel2_gen.graficar_victimizaciones_individuales_path,
-          'data-turbolinks' => false,
-          desplegable: true %>
       <% end %>
       <%= despliega_abajo "Mapas" do %>
         <%= opcion_menu "Casos sobre Open Street Maps", 
