@@ -14,7 +14,7 @@ module Sivel2Gen
           #  except: [:index, :show]
           helper Sip::UbicacionHelper
 
-          MAX_CASOS_REFRESCA_AUTOMATICO = 10000
+          MAX_CASOS_REFRESCA_AUTOMATICO = 30000
 
           def registrar_en_bitacora
             true
