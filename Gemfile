@@ -24,9 +24,13 @@ gem 'kt-paperclip',                 # Anexos
 
 gem 'libxml-ruby' # Genera ODS
 
-gem 'odf-report' # Genera ODT
+gem 'matrix' # Requerido por ruby 3.1
+
+gem 'net-smtp' # Requerido por ruby 3.1
 
 gem 'nokogiri', '>=1.11.1'
+
+gem 'odf-report' # Genera ODT
 
 gem 'pg' # Postgresql
 
