@@ -45,3 +45,5 @@ test/dummy/public/sivel2/assets/
 test/dummy/public/packs
 test/dummy/app/assets/builds
 .env
+test/dummy/app/javascript/controllers/sip
+

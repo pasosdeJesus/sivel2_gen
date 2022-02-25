@@ -1,0 +1,3 @@
+rails: R=f bin/corre
+js: (. .env && yarn start --watch)
+

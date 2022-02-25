@@ -62,6 +62,8 @@ gem 'simple_form' # Formularios simples
 
 gem 'sprockets-rails'
 
+gem 'stimulus-rails'
+
 gem 'turbo-rails', '~> 1.0'
 
 gem 'twitter_cldr' # ICU con CLDR
