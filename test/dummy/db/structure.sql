@@ -653,8 +653,7 @@ CREATE VIEW public.cvt1 AS
      JOIN public.sivel2_gen_categoria categoria ON ((acto.id_categoria = categoria.id)))
      JOIN public.sivel2_gen_supracategoria supracategoria ON ((categoria.supracategoria_id = supracategoria.id)))
      JOIN public.sivel2_gen_victima victima ON (((victima.id_persona = acto.id_persona) AND (victima.id_caso = caso.id))))
-     JOIN public.sip_persona persona ON ((persona.id = acto.id_persona)))
-  WHERE (caso.fecha >= '2022-12-15'::date);
+     JOIN public.sip_persona persona ON ((persona.id = acto.id_persona)));
 
 
 --
