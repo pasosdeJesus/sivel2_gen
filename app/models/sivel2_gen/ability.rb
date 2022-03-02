@@ -264,7 +264,7 @@ module Sivel2Gen
           habilidad.can :read, Heb412Gen::Plantillahcr
 
           habilidad.can :index, Sivel2Gen::Victima
-          habilidad.can :personas, Sivel2Gen::Caso
+          habilidad.can [:victimizaciones,:personas,:genvic], Sivel2Gen::Caso
 
           if usuario.sip_grupo &&
               usuario.sip_grupo.pluck(:id).include?(GRUPO_ANALISTA_CASOS)
