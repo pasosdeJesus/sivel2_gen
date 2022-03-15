@@ -822,7 +822,7 @@ module Sivel2Gen
                     {"cat" => [14, 141, 101],
                      "titulo" => "Victimizaciones por `Detención Arbitraria´,  `Judicialización Arbitraria´ y `Deportación´ por móviles de Persecución Política (Violaciones a los Derechos Humanos)."},
                   {"cat" => [48],
-                   "titulo" => "Victimizaciones por `Rapto´ por Móviles Políticos perpetrado por organizaciones insurgentes."},
+                   "titulo" => "Victimizaciones por `Rapto´ por Móviles Políticos sin autor determinado."},
                   {"cat" => [41],
                    "titulo" => "Victimizaciones por `Secuestro´ perpetrado por organizaciones insurgentes."},
                   {"cat" => [58],
