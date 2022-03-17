@@ -153,6 +153,20 @@
     locals: { caso: caso, caso_id: caso.id, repgeneral: true } %>
 
   <% if current_usuario %>
+    <% caso.victima.each do |v| %>
+      <% if caso.acto.where(id_persona: v.id_persona).count == 0 %>
+        Víctima individual sin acto de violencia: 
+        <%= v.persona.presenta_nombre %><br>
+      <% end %>
+    <% end %>
+    <% caso.victimacolectiva.each do |vc| %>
+      <% if caso.actocolectivo.where(id_grupoper: vc.id_grupoper).count == 0 %>
+        Víctima colectiva sin acto de violencia: 
+        <%= vc.grupoper.presenta_nombre %><br>
+      <% end %>
+    <% end %>
+    <br>
+
     <% unless caso.caso_etiqueta.empty? %>
       Etiquetas:  
       <% caso.caso_etiqueta.each do |e|  %>
