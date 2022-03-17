@@ -54,8 +54,8 @@
   integrity sha512-Q8kGjqwPqER+CtpQudbH+3Zgs2X4zb6pBAlr6NsKTXadg45pAOvxI9i4QpuHbwSzR2+x87HUm+rot9F/Pe8rxA==
 
 "@pasosdejesus/autocompleta_ajax@https://gitlab.com/pasosdeJesus/autocompleta_ajax.git":
-  version "0.9.9-a26"
-  resolved "https://gitlab.com/pasosdeJesus/autocompleta_ajax.git#719cd6dd89d4ba7852bfd132a1f70ad1c7f60145"
+  version "0.9.9-a27"
+  resolved "https://gitlab.com/pasosdeJesus/autocompleta_ajax.git#a648f68956ae69e73eafcf3bf3b863714c23ce56"
 
 "@popperjs/core@^2.9.3":
   version "2.11.4"

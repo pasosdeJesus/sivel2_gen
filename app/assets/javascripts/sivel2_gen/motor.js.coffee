@@ -5,6 +5,7 @@
 #//= require cocoon
 #//= require sivel2_gen/motor_es6
 #//= require sivel2_gen/AutocompletaAjaxVictimas
+#//= require sivel2_gen/AutocompletaAjaxColectivas
 
 @sivel2_gen_procesa_eliminaracto = false
 @sivel2_gen_procesa_eliminaractocolectivo = false
@@ -311,62 +312,6 @@
   return
 
 
-# Elije una persona en autocompletación
-@autocompleta_grupoper = (label, id, id_victimac, divcp, root) ->
-  sip_arregla_puntomontaje(root)
-  id_grupoper = id
-#  pl = []
-#  ini = 0
-#  for i in [0..cs.length] by 1
-#     t = parseInt(cs[i])
-#     pl[i] = label.substring(ini, ini + t)
-#     ini = ini + t + 1
-  # pl[1] cnom
-  d = "id_victimacolectiva=" + id_victimac
-  d += "&id_grupoper=" + id_grupoper
-  a = root.puntomontaje + 'gruposper/remplazar'
-  $.ajax(url: a, data: d, dataType: "html").fail( (jqXHR, texto) ->
-    alert("Error: " + jqXHR.responseText)
-  ).done( (e, r) ->
-    remp = e
-    # Remplazamos la parte minima necesaria
-    if $(e).find('.campos_grupoper').length == 1
-      remp = $(e).find('.campos_grupoper').html()
-
-    divcp.html(remp)
-    $(document).trigger("sip:autocompleto_grupoper", [id_victimac, id_grupoper])
-    return
-  )
-  return
-
-# Busca un grupo de personas por nombre
-# s es objeto con foco donde se busca 
-@busca_grupoper_nombre = (s, root) ->
-  sip_arregla_puntomontaje(root)
-  cnom = s.attr('id')
-  v = $("#" + cnom).data('autocompleta')
-  if (v != 1 && v != "no") 
-    $("#" + cnom).data('autocompleta', 1)
-    divcp = s.closest('.campos_grupoper')
-    if (typeof divcp == 'undefined')
-      alert('No se ubico .campos_grupoper')
-      return
-    idvictimac = divcp.parent().find('.caso_victimacolectiva_id').find('input').val()
-    if (typeof idvictimac == 'undefined')
-      alert('No se ubico .caso_victimacolectiva_id')
-      return
-    $("#" + cnom).autocomplete({
-      source: root.puntomontaje + "gruposper.json",
-      minLength: 2,
-      select: ( event, ui ) -> 
-        if (ui.item) 
-          autocompleta_grupoper(ui.item.value, ui.item.id, idvictimac, divcp, root)
-          event.stopPropagation()
-          event.preventDefault()
-    })
-  return
-
-
 @ponerVariablesEdad = (root) ->
     if typeof root.campo_fecha_ref_edad == 'undefined'
       root.campo_fecha_ref_edad = 'caso_fecha_localizada'
@@ -629,25 +574,13 @@ enviaFormularioContarPost= (root) ->
 
   # En victimas permite autocompletar nombres de victima
   Sivel2GenAutocompletaAjaxVictimas.iniciar()
+  Sivel2GenAutocompletaAjaxColectivas.iniciar()
 
-  #$(document).on('focusin', 
-  #'input[id^=caso_victima_attributes][id$=persona_attributes_nombres]', 
-  #(e) ->
-  #  busca_persona_nombre($(this), root)
-  #)
-  # En victimas permite autocompletar nombres de familiares
   #$(document).on('focusin', 
   #'input[id^=caso_victima_attributes][id$=personados_attributes_nombres]', 
   #(e) ->
   #  sivel2_gen_busca_familiar_nombre($(this), root)
   #)
-
-  # En victimas colectivas permite autocompletar nombre
-  $(document).on('focusin', 
-  'input[id^=caso_victimacolectiva_attributes][id$=grupoper_attributes_nombre]', 
-  (e) ->
-    busca_grupoper_nombre($(this), root)
-  )
 
   # Al seleccionar ubicacion principal se desenmarcan las demas
   $(document).on('change', '#victimas input[id^=caso_victima][id$=_apellidos]', (e) ->
