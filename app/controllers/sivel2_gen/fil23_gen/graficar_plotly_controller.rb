@@ -10,7 +10,7 @@ module Sivel2Gen
         authorize! :contar, Sivel2Gen::Caso
 
         @rutacsv = File.join(
-          Rails.root, "public/#{Rails.configuration.relative_url_root}/"\
+          Rails.root, "public#{Rails.configuration.relative_url_root}" +
           "csv/actos_individuales.csv").to_s
 
         tarc = Tempfile.new(['actos_individuales', '.csv'], '/var/www/tmp/')
