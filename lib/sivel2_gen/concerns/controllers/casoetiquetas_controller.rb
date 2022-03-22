@@ -11,7 +11,6 @@ module Sivel2Gen
           # Crea una nueva etiqueta para el caso que recibe por parametro 
           # params[:caso_id].  Pone valores simples en los campos requeridos
           def nueva
-            debugger
             if params[:caso_id] 
               @casoetiqueta = Sivel2Gen::CasoEtiqueta.new
               @casoetiqueta.id_caso = params[:caso_id]
