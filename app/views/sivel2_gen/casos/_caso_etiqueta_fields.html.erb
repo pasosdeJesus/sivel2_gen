@@ -1,6 +1,7 @@
 <div class='control-group nested-fields'>
   <div class="controls">
 
+    <%= f.input :id, as: :hidden, value: f.object.id %>
     <div class="row">
       <div class="col-md-4">
         <%= f.association :etiqueta,
