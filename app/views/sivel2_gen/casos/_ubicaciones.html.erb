@@ -2,12 +2,13 @@
 	<%= render 'ubicacion_fields', :f => ubicacion %>
 <% end %>
 <div class="links">
-	<%= link_to_add_association 'Añadir Ubicación', f, :ubicacion, { 
-                :class => 'btn-primary',
-                "data-ajax" => File.join(
-                        Rails.configuration.relative_url_root , 
-                        "ubicaciones/nuevo"
-                ), 
-                "data-ajaxdata" => "caso_id" 
-	} %>
+  <%= link_to_add_association 'Añadir Ubicación', f, 
+    :ubicacion,
+    partial: 'ubicacion_fields',
+    class: 'btn-primary',
+    'data-ajax' => File.join(
+      Rails.configuration.relative_url_root, "ubicaciones/nuevo"
+    ), 
+    "data-ajaxdata" => "caso_id" 
+  %>
 </div>
