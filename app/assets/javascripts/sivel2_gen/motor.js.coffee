@@ -792,7 +792,9 @@ enviaFormularioContar= (root) ->
     if (d == -1 || d>5) 
       f=$('form')
       a = root.puntomontaje + 'actos/agregar'
-      $.post(a, f.serialize())
+      d = f.serializeArray()
+      d.push({name: 'csrf-token', value: $('meta[name="csrf-token"]').attr('content')})
+      $.post(a, $.param(d))
       root.tagregaactos= Date.now()
     return
   )
@@ -824,7 +826,9 @@ enviaFormularioContar= (root) ->
     if (d == -1 || d>5) 
       f=$('form')
       a = root.puntomontaje + 'actoscolectivos/agregar'
-      $.post(a, f.serialize())
+      d = f.serializeArray()
+      d.push({name: 'csrf-token', value: $('meta[name="csrf-token"]').attr('content')})
+      $.post(a, $.param(d))
       root.tagregaactoscolectivos= Date.now()
     return
   )
