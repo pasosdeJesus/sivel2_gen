@@ -26,15 +26,14 @@
         <% end %>
       </tbody>
     </table>
+    <div class="links">
+      <%= link_to_add_association 'Añadir Familiar', f, 
+        :persona_trelacion1,
+        :"data-association-insertion-node" => "tbody#persona_familiares-#{f.object.id}", 
+        :"data-association-insertion-method" => "append", 
+        partial: 'sip/personas/persona_familiar_campos',
+        :class => 'btn-primary'
+      %>
+    </div>
   <% end %>
 </div> <!-- accordion -->
-<div class="links">
-  <%= link_to_add_association 'Añadir Familiar', f, 
-    :persona_trelacion1,
-    :"data-association-insertion-node" => "tbody#persona_familiares-#{f.object.id}", 
-    :"data-association-insertion-method" => "append", 
-    partial: 'sip/personas/persona_familiar_campos',
-    :class => 'btn-primary'
-  %>
-</div>
-
