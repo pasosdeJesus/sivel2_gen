@@ -14,7 +14,7 @@
           <tr>
             <% i=0; fila.try(:each) do |campo| %>
               <td>
-                <% if i == 0 %>
+                <% if i == 0 && tabla[:encabezado][i] == 'Código' %>
                   <%= link_to(
                     campo[1].to_i, 
                     sivel2_gen.edit_caso_path(campo[1].to_i)) if campo[1] %>
