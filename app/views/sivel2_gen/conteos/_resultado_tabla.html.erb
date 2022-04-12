@@ -4,11 +4,19 @@
       <% @enctabla.try(:each) do |enc| %>
         <th><%= CGI.escapeHTML(enc) %></th>
       <% end %>
+      <% if @totalesfila %>
+        <th>Total</th>
+      <% end %>
+
     </tr>
   </thead>
   <tbody>
+    <% grantotal = 0 %>
     <% @tot=[]; @cuerpotabla.try(:each) do |fila| %>
       <tr>
+        <% if @totalesfila %>
+          <% totfila = 0 %>
+        <% end  %>
         <% i=0; fila.try(:each) do |campo| %>
           <% if campo.is_a? Array %>
             <% valc = campo[1] %>
@@ -21,21 +29,33 @@
                else 
                  @tot[i] = valc.to_i
                end 
+               if @totalesfila 
+                 totfila += valc.to_i
+               end
              end
              i += 1
            %>
           <td><%= CGI.escapeHTML(valc.to_s) if valc %></td>
         <% end %>
+        <% if @totalesfila %>
+          <th><%= totfila %></th>
+          <% grantotal += totfila %>
+        <% end %>
       </tr>
     <% end %>
     <% i=0; @enctabla.try(:each) do |enc| %>
       <th>
-        <%= if @coltotales.include? i
-              @tot[i]
-            end
-        %>
+        <% if @coltotales.include? i %>
+          <%= @tot[i] %>
+        <% elsif i == 0 %>
+            Total General
+        <% end %>
       </th>
       <% i += 1 %>
     <% end %>
+    <% if @totalesfila %>
+      <th><%= grantotal %></th>
+    <% end %>
+
   </tbody>
 </table>
