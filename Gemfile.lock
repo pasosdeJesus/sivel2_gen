@@ -11,7 +11,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/heb412_gen.git
-  revision: 2fb9a47c54b6fcb6ef7ea00c6e5fffc1e9b12f3f
+  revision: a5db230667ec5ac4ff352cd523ad7d16e61cdd4a
   branch: v2.0
   specs:
     heb412_gen (2.0)
@@ -22,7 +22,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/mr519_gen.git
-  revision: 1b13c84f9ade91dedfb57a4db8192eed88d0fd60
+  revision: 526e94c24660659f8cb3bade01d1f1c07f227c51
   branch: v2.0
   specs:
     mr519_gen (2.0)
@@ -31,7 +31,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sip.git
-  revision: f295efddd04af10c2662975fd663dc17196caae8
+  revision: c41d2ad0f3bccdcce833ab770b4c9ec19496e5c4
   branch: v2.0
   specs:
     sip (2.0)
@@ -202,7 +202,7 @@ GEM
       net-protocol
       timeout
     nio4r (2.5.8)
-    nokogiri (1.13.3)
+    nokogiri (1.13.4)
       mini_portile2 (~> 2.8.0)
       racc (~> 1.4)
     odf-report (0.7.3)
