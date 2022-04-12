@@ -58,16 +58,16 @@
         )
         select_tag "caso_acto_id_persona", p, multiple: true,
           "data-toggle" => 'tooltip',
-          "title" => 'Seleccione los nombres de una o más víctimas asociadas al 
+          "title" => 'Seleccione los nombres de una o más víctimas asociadas al
       presunto responsable y a la categoria de violencia elegida. 
       Después no olvide presionar el botón Añadir Acto(s).'
     %>
     </div>
 
-    <%= link_to 'Añadir Acto(s)',
-      '#',
-      id: 'boton-añadir-actos',
-      class: 'agregaractos btn btn-primary' %>
+    <button id='boton-añadir-actos'
+            class='agregaractos btn btn-primary'>
+      Añadir Acto(s)
+    </button>
 
     <div id="actos_tabla">
       <%= render 'sivel2_gen/actos/actos_tabla'  %>
@@ -146,10 +146,11 @@
     %>
     </div>
 
-    <%= link_to 'Añadir Acto(s) Colectivo',
-      '#',
-      :class => 'agregaractoscolectivos btn btn-primary' 
-    %>
+    <button id='boton-añadir-actoscolectivos'
+            class='agregaractoscolectivos btn btn-primary'>
+      Añadir Acto(s) Colectivo(s)
+    </button>
+
     <div id="actoscolectivos_tabla">
       <%= render 'sivel2_gen/actoscolectivos/actoscolectivos_tabla'  %>
     </div>

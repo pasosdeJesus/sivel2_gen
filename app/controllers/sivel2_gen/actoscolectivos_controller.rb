@@ -10,18 +10,22 @@ module Sivel2Gen
         respond_to do |format|
           format.html { render inline: 'Falta identificacion del caso' }
         end
+        return
       elsif !params[:caso_actocolectivo_id_presponsable]
         respond_to do |format|
           format.html { render inline: 'Debe tener Presunto Responsable' }
         end
+        return
       elsif !params[:caso_actocolectivo_id_categoria]
         respond_to do |format|
           format.html { render inline: 'Debe tener Categoria' }
         end
+        return
       elsif !params[:caso_actocolectivo_id_grupoper]
         respond_to do |format|
           format.html { render inline: 'Debe tener Víctima Colectiva' }
         end
+        return
       else
         params[:caso_actocolectivo_id_presponsable].each do |cpresp|
           presp = cpresp.to_i
@@ -52,6 +56,9 @@ module Sivel2Gen
     
       respond_to do |format|
         format.js { render 'refrescar' }
+        format.html {
+          render partial: 'sivel2_gen/actoscolectivos/actoscolectivos_tabla'
+        }
       end
     end
 

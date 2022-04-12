@@ -755,23 +755,6 @@ enviaFormularioContarPost= (root) ->
       )
   )
 
-  # Agrega actoscolectivos  
-  $(document).on('click', 'a.agregaractoscolectivos[href^="#"]', (e) ->
-    e.preventDefault()
-    tn = Date.now()
-    d = -1
-    if (root.tagregaactoscolectivos) 
-      d = (tn - root.tagregaactoscolectivos)/1000
-    if (d == -1 || d>5) 
-      f=$('form')
-      a = root.puntomontaje + 'actoscolectivos/agregar'
-      d = f.serializeArray()
-      d.push({name: 'csrf-token', value: $('meta[name="csrf-token"]').attr('content')})
-      $.post(a, $.param(d))
-      root.tagregaactoscolectivos= Date.now()
-    return
-  )
-
   # Elimina actocolectivo
   $(document).on('click', 'a.eliminaractocolectivo[href^="#"]', (e) ->
     e.preventDefault()

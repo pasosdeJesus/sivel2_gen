@@ -80,13 +80,17 @@ module Sivel2Gen
 
         respond_to do |format|
           format.js { 
-            # Con fetch ya no opera js aunque llega aquí
-             render partial: 'sivel2_gen/actos/actos_tabla' 
-           }
-           format.html { 
-             render 'actos_tabla' 
-           }
-         end
+            debugger # Con fetch ya no opera js, mejor no usar
+            render partial: 'sivel2_gen/actos/actos_tabla' 
+          }
+          format.json { 
+            # Con fetch llega aquí --no se ha lograr html
+            render partial: 'sivel2_gen/actos/actos_tabla' 
+          }
+          format.html { 
+            render partial: 'sivel2_gen/actos/actos_tabla' 
+          }
+        end
       end
     end
 
