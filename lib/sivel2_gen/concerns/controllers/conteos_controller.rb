@@ -527,6 +527,7 @@ module Sivel2Gen
 
           if params[:filtro] && params[:filtro][:agrucol] &&
             params[:filtro][:agrucol] == 'CATEGORÍA'
+            @totalesfila = true
 
             if que3.count == 3
               # Si no se desagrega, solo presenta tabla mínima con 
