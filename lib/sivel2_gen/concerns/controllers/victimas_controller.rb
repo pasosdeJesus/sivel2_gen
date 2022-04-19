@@ -26,6 +26,7 @@ module Sivel2Gen
               :fecha_caso_localizada,
               :ubicacion_caso,
               :nombre,
+              :etiqueta_caso,
               :pconsolidado,
               :presponsables_caso,
               :presponsables_caso_ids
