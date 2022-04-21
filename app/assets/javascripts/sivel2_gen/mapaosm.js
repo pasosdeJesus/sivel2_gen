@@ -9,9 +9,15 @@ var baldosasOsm;
 var controlCapas;
 var usuario_aut_global;
 
+
+function filtrar_adicionales(){
+  return [];
+}
+
 function filtrar_por_categoria(){
   return '';
 }
+
 function agregarFuncionesExternasMapaosm(){
   return null
 }
@@ -193,8 +199,14 @@ function agregarCasosOsm(usuario_autenticado) {
       return;
     }
     var listaMarcadores = []
-    var o = jQuery.parseJSON(data);
     var numResultados = 0;
+
+    if (data == '{}') {
+      $('#nrcasos').html(numResultados + ' Casos mostrados!');
+      ocultarCargador();
+      return;
+    }
+    var o = jQuery.parseJSON(data);
     for(var codigo in o) {
       var lat = o[codigo].latitud;
       var lng = o[codigo].longitud;
@@ -204,49 +216,17 @@ function agregarCasosOsm(usuario_autenticado) {
       if (lng == null || lng == '' || lng == 'NaN') {
         continue;
       }
-      filtro_cat = filtrar_por_categoria(usuario_autenticado); 
-      urlSolicitud += filtro_cat;
-      urlSolicitud += '&filtro[inc_ubicaciones]=2'+
-        //'&filtro[inc_titulo]=1'+
-        //'&filtro[inc_fecha]=1'+
-        //'&filtro[inc_memo]=1'+
-        '&filtro[disgenera]=reprevista.json' +
-        '&idplantilla=reprevista' +
-        '&commit=Enviar';
-      mostrarCargador();
-      descargarUrl(urlSolicitud, function(req) {
-        var data = req.responseText;
-        if (data == null || data.substr(0, 1) != '{'){
-          ocultarCargador();
-          $('#nrcasos').html("0");
-          window.alert("El URL" + urlSolicitud + "no retorno informacion JSON.\n\n" + data);
-          return;
-        }
-        var listaMarcadores = []
-        var o = jQuery.parseJSON(data);
-        var numResultados = 0;
-        for(var codigo in o) {
-          var lat = o[codigo].latitud;
-          var lng = o[codigo].longitud;
-          if (lat == null || lat == '') {
-            lat = '0';
-          }
-          if (lng == null || lng == '') {
-            lng = '0';
-          }
-          latf = parseFloat(lat);
-          lngf = parseFloat(lng);
-          numResultados++;
-          var punto = new L.LatLng(latf, lngf);
-          listaMarcadores.push (creaMarcador(punto, codigo));
-        }
-        marcadores.addLayers(listaMarcadores);
-        mapa.addLayer(marcadores);
-        $('#nrcasos').html(numResultados + ' Casos mostrados!');
-        ocultarCargador();
-      });
+      latf = parseFloat(lat);
+      lngf = parseFloat(lng);
+      numResultados++;
+      var punto = new L.LatLng(latf, lngf);
+      listaMarcadores.push (creaMarcador(punto, codigo));
     }
-  })
+    marcadores.addLayers(listaMarcadores);
+    mapa.addLayer(marcadores);
+    $('#nrcasos').html(numResultados + ' Casos mostrados!');
+    ocultarCargador();
+  });
 }
 
 function creaMarcador(punto, codigo, titulo) {
