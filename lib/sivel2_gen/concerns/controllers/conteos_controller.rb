@@ -83,7 +83,7 @@ module Sivel2Gen
                 campocons: 'victima.id_filiacion'
               },
               'MES CASO' => { 
-                nomfiltro: :mesescas,
+                nomfiltro: :mesescasos,
                 coleccion: cmesescasos.map {|m| [m, m]},
                 metodo_etiqueta: false,
                 metodo_id: false,
@@ -752,7 +752,6 @@ module Sivel2Gen
           where1 = '';
           @fechaini = '';
           @fechafin = '';
-          @etiqueta_id = 0;
           if (params[:filtro] && params[:filtro]['fechaini'] && 
               params[:filtro]['fechaini'] != "") 
             @fechaini = fecha_local_estandar(params[:filtro]['fechaini'])
