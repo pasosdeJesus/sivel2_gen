@@ -707,7 +707,7 @@ module Sivel2Gen
             FROM public.sivel2_gen_acto 
             JOIN public.sivel2_gen_caso AS caso
               ON caso.id = sivel2_gen_acto.id_caso 
-            FULL JOIN public.sivel2_gen_caso_etiqueta AS casoetiqueta 
+            LEFT JOIN public.sivel2_gen_caso_etiqueta AS casoetiqueta 
               ON casoetiqueta.id_caso = caso.id
             WHERE #{w}) AS subcuentaactos;";
           r = ActiveRecord::Base.connection.select_all(q)
