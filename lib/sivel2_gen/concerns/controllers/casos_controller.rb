@@ -592,7 +592,7 @@ module Sivel2Gen
             @fechadesde = ENV['SIVEL2_MAPAOSM_FECHADESDE'] ? 
               Date.parse(ENV['SIVEL2_MAPAOSM_FECHADESDE']) : Sip::FormatoFechaHelper.inicio_semestre(Date.today - diasatras)
             @fechahasta = ENV['SIVEL2_MAPAOSM_FECHAHASTA'] ?
-              Daate.parse(ENV['SIVEL2_MAPAOSM_FECHAHASTA']) : Sip::FormatoFechaHelper.fin_semestre(Date.today - diasatras)
+              Date.parse(ENV['SIVEL2_MAPAOSM_FECHAHASTA']) : Sip::FormatoFechaHelper.fin_semestre(Date.today - diasatras)
             @clase_divcontenido = ''
             @margensup_divcontenido = '-9x'
             render 'mapaosm', layout: 'application', 
