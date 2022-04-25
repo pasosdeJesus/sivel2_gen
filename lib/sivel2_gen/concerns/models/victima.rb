@@ -218,11 +218,6 @@ module Sivel2Gen
           scope :filtro_id_caso, lambda { |i|
             where(id_caso: i)
           }
-          
-          scope :filtro_etiqueta_caso, lambda { |i|
-            joins('JOIN sivel2_gen_caso_etiqueta AS casoetiqueta ON sivel2_gen_victima.id_caso= casoetiqueta.id_caso').
-              where('casoetiqueta.id_etiqueta =?', i)
-          }
 
           scope :filtro_ubicacion_caso, lambda { |u|
             joins('JOIN sip_ubicacion ON sivel2_gen_victima.id_caso=sip_ubicacion.id_caso').
