@@ -704,8 +704,11 @@ module Sivel2Gen
           end
           q = "SELECT count(*) FROM (SELECT DISTINCT sivel2_gen_acto.id_caso, 
             sivel2_gen_acto.id_persona, sivel2_gen_acto.id_categoria 
-            FROM public.sivel2_gen_acto JOIN public.sivel2_gen_caso AS caso
-            ON caso.id = sivel2_gen_acto.id_caso 
+            FROM public.sivel2_gen_acto 
+            JOIN public.sivel2_gen_caso AS caso
+              ON caso.id = sivel2_gen_acto.id_caso 
+            LEFT JOIN public.sivel2_gen_caso_etiqueta AS casoetiqueta 
+              ON casoetiqueta.id_caso = caso.id
             WHERE #{w}) AS subcuentaactos;";
           r = ActiveRecord::Base.connection.select_all(q)
           #byebug
@@ -758,6 +761,13 @@ module Sivel2Gen
               params[:filtro]['fechafin'] != "") 
             @fechafin = fecha_local_estandar(params[:filtro]['fechafin'])
             where1 = personas_fecha_final(where1)
+          end
+          if (params[:filtro] && params[:filtro]['etiqueta_id'] && 
+              params[:filtro]['etiqueta_id'] != "") 
+            @etiqueta_id = params[:filtro]['etiqueta_id']
+            where1 = ampliar_where(
+              where1, "casoetiqueta.id_etiqueta", @etiqueta_id, "="
+                )
           end
           @tablader = [
             { 
