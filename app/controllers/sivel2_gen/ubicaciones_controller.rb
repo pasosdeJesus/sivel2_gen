@@ -11,7 +11,7 @@ module Sivel2Gen
         @ubicacion = Sip::Ubicacion.new
         @ubicacion.id_caso = params[:caso_id]
         @ubicacion.id_pais = 170
-        if @ubicacion.save
+        if @ubicacion.save(validate: false)
           respond_to do |format|
             format.js { render text: @ubicacion.id.to_s }
             format.json { render json: @ubicacion.id.to_s, status: :created }
