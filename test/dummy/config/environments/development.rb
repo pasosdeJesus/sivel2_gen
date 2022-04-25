@@ -64,6 +64,10 @@ Rails.application.configure do
   # Raises error for missing translations.
   # config.i18n.raise_on_missing_translations = true
 
+
+  config.web_console.allowed_ips = ENV.fetch(
+    'WEB_CONSOLE_ALLOWED_IPS', '127.0.0.1').split(";")
+
   # Annotate rendered view with file names.
   # config.action_view.annotate_rendered_view_with_filenames = true
 
