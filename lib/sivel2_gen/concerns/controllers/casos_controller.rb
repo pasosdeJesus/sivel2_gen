@@ -749,7 +749,6 @@ module Sivel2Gen
               authorize! :update, @registro
               return
             end
-
             update_gen
           end
 
