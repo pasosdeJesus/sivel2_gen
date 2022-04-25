@@ -38,6 +38,24 @@
       </div>
     </div>
     <div class="row filtro-fila">
+      <div class="offset-sm-0 col-sm-2 offset-md-1 col-md-1">
+      </div>
+      <div class="offset-sm-0 col-sm-4">
+        <%= f.input :etiqueta_id,
+          collection: Sip::ModeloHelper.opciones_tabla_basica(
+            Sip::Etiqueta, f, :etiqueta_id
+          ),
+          selected: (
+            params[:filtro] ? 
+            params[:filtro][:etiqueta_id] :
+            ''
+          ),
+          include_blank: true,
+          label_method: :presenta_nombre
+        %>
+      </div>
+    </div>
+    <div class="row filtro-fila">
       <div class="offset-md-5 col-md-2">
         <%= f.button :submit, 'Filtrar', class: 'btn btn-default' %>
       </div>
