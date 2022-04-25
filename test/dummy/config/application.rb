@@ -60,6 +60,9 @@ module Dummy
     config.x.sivel2_mapaosm_diasatras = ENV.fetch(
       'SIVEL2_MAPAOSM_DIASATRAS', 182)
 
+    config.web_console.allowed_ips = ENV.fetch(
+      'WEB_CONSOLE_ALLOWED_IPS', '127.0.0.1').split(";")
+
   end
 end
 

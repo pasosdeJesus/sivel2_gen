@@ -2770,7 +2770,9 @@ CREATE TABLE public.sip_pais (
     updated_at timestamp without time zone,
     observaciones character varying(5000) COLLATE public.es_co_utf_8,
     nombreiso_ingles character varying(512),
-    nombreiso_frances character varying(512)
+    nombreiso_frances character varying(512),
+    ultvigenciaini date,
+    ultvigenciafin date
 );
 
 
@@ -7927,7 +7929,6 @@ ALTER TABLE ONLY public.sivel2_gen_victimacolectiva_vinculoestado
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
-(' 20220417203841'),
 ('20131128151014'),
 ('20131204135932'),
 ('20131204140000'),
