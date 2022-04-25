@@ -30,11 +30,15 @@
 <% end %>
 
 <% if current_usuario %>
-  <script>
-    presentarMapaOsm(true)
-  </script>
+ <script defer="true">
+   document.addEventListener('sip:cargado', function (e) {  
+     presentarMapaOsm(true)
+   }, false);
+ </script>
 <% else %>
-  <script>
-    presentarMapaOsm(false)
+  <script defer="true">
+    document.addEventListener('sip:cargado', function (e) {  
+     presentarMapaOsm(false)
+    }, false);
   </script>
 <% end %>
