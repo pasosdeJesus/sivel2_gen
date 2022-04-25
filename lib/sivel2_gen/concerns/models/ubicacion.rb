@@ -20,8 +20,9 @@ module Sivel2Gen
           belongs_to :caso, class_name: "Sivel2Gen::Caso", 
             foreign_key: "id_caso", validate: true, optional: false
 
-          validates :id_departamento, presence: { message: "En ubicación de Colombia debe especificar un departamento" },
-            if: -> {id_pais == 170}
+          validates :id_departamento, presence: { 
+            message: "Ubicación de Colombia debe tener departamento." 
+          }, if: -> {id_pais == 170}
 
           attr_accessor :principal
           attr_accessor :tclase

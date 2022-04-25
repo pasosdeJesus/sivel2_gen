@@ -63,6 +63,9 @@ Rails.application.configure do
 
   config.assets.resolv_with = %i[manifest]
 
+  config.web_console.allowed_ips = ENV.fetch(
+    'WEB_CONSOLE_ALLOWED_IPS', '127.0.0.1').split(";")
+
 
   # Raises error for missing translations.
   # config.i18n.raise_on_missing_translations = true
