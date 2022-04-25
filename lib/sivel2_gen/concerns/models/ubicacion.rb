@@ -20,6 +20,7 @@ module Sivel2Gen
           belongs_to :caso, class_name: "Sivel2Gen::Caso", 
             foreign_key: "id_caso", validate: true, optional: false
 
+          validates :id_departamento, presence: { message: "En ubicación debe especificar un departamento" }
           attr_accessor :principal
           attr_accessor :tclase
 
