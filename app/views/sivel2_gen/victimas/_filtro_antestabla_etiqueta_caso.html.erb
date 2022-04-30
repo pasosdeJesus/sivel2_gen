@@ -1,0 +1,15 @@
+Etiqueta del caso:
+<%= f.input :busetiqueta_caso,
+    collection: Sip::ModeloHelper.opciones_tabla_basica(
+      Sip::Etiqueta, f, :etiqueta_id
+    ),
+    selected: Sip::ModeloHelper.poromision(params, 
+                                           "busetiqueta_caso".to_sym),
+    input_html: {
+      class: 'chosen-select',
+      'data-enviarautomatico' => '',
+    },
+    include_blank: true,
+    label_method: :presenta_nombre, 
+    label: false
+  %>

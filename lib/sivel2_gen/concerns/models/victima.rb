@@ -182,7 +182,6 @@ module Sivel2Gen
             opf = otros_params_filtro.permit!.to_h.filter {|l, v|
               l =~ /^buspconsolidado_[0-9]*/ && (v == 'Si' || v == 'No')
             }
-
             opf.each do |l, v|
               l =~ /^buspconsolidado_([0-9])*/
               pcon = Sivel2Gen::Pconsolidado.find($1.to_i)
@@ -203,6 +202,11 @@ module Sivel2Gen
               end
             end
             return r
+          }
+
+          scope :filtro_etiqueta_caso, lambda { |i|
+            joins('JOIN sivel2_gen_caso_etiqueta AS casoetiqueta ON sivel2_gen_victima.id_caso= casoetiqueta.id_caso').
+              where('casoetiqueta.id_etiqueta =?', i)
           }
 
           scope :filtro_fecha_caso_localizadaini, lambda { |f|

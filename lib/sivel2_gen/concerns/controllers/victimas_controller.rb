@@ -20,6 +20,12 @@ module Sivel2Gen
             return 'F'
           end
 
+          def atributos_filtro_antestabla
+            r = [
+              :etiqueta_caso
+            ]
+          end
+
           def atributos_index
             r = [
               :id_caso,
