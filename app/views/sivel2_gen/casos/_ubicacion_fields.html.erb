@@ -3,16 +3,18 @@
 
     <div class="row">
       <div class="col-md-6">
+        <% idpais = f.object.id_pais ? f.object.id_pais : 170 %>
         <%= f.association :pais,
           collection: Sip::Pais.where(fechadeshabilitacion: nil).order(:nombre),
           label_method: :nombre,
-          value_method: :id
+          value_method: :id,
+          selected: idpais
            %>
       </div>
       <div class="col-md-6">
         <%= f.association :departamento,
           collection: (Sip::Departamento.where(
-            id_pais: f.object.id_pais, 
+           id_pais: idpais, 
             fechadeshabilitacion: nil).order(:nombre)),
           label_method: :nombre,
           value_method: :id %>
