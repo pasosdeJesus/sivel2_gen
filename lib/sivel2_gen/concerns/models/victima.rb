@@ -206,7 +206,8 @@ module Sivel2Gen
 
           scope :filtro_etiqueta_caso, lambda { |i|
             joins("JOIN sivel2_gen_caso_etiqueta
-              AS casoetiqueta ON sivel2_gen_victima.id_caso= casoetiqueta.id_caso").
+              AS casoetiqueta ON
+              sivel2_gen_victima.id_caso= casoetiqueta.id_caso").
               where("casoetiqueta.id_etiqueta =?", i)
           }
 
