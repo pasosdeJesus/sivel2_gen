@@ -21,7 +21,7 @@ module Sivel2Gen
           end
 
           def atributos_filtro_antestabla
-            r = [
+            [
               :etiqueta_caso
             ]
           end
