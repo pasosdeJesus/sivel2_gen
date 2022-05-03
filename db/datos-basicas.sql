@@ -59,6 +59,8 @@ INSERT INTO public.sivel2_gen_pconsolidado (id, nombre, tipoviolencia, clasifica
 -- PostgreSQL database dump complete
 --
 
+SELECT pg_catalog.setval('public.sivel2_gen_pconsolidado_id_seq', 100, true);
+
 --
 -- PostgreSQL database dump
 --
@@ -128,6 +130,8 @@ INSERT INTO public.sivel2_gen_supracategoria (codigo, nombre, fechacreacion, fec
 -- PostgreSQL database dump complete
 --
 
+SELECT pg_catalog.setval('public.sivel2_gen_supracategoria_id_seq', 100, true);
+
 --
 -- PostgreSQL database dump
 --
@@ -160,6 +164,8 @@ INSERT INTO public.sivel2_gen_intervalo (id, nombre, rango, fechacreacion, fecha
 --
 -- PostgreSQL database dump complete
 --
+
+SELECT pg_catalog.setval('public.sivel2_gen_intervalo_id_seq', 100, true);
 
 --
 -- PostgreSQL database dump
@@ -203,6 +209,9 @@ INSERT INTO public.sivel2_gen_filiacion (id, nombre, fechacreacion, fechadeshabi
 --
 -- PostgreSQL database dump complete
 --
+
+SELECT pg_catalog.setval('public.sivel2_gen_filiacion_id_seq', 100, true);
+
 
 --
 -- PostgreSQL database dump
@@ -249,6 +258,8 @@ INSERT INTO public.sivel2_gen_organizacion (id, nombre, fechacreacion, fechadesh
 -- PostgreSQL database dump complete
 --
 
+SELECT pg_catalog.setval('public.sivel2_gen_organizacion_id_seq', 100, true);
+
 --
 -- PostgreSQL database dump
 --
@@ -292,6 +303,9 @@ INSERT INTO public.sivel2_gen_sectorsocial (id, nombre, fechacreacion, fechadesh
 --
 -- PostgreSQL database dump complete
 --
+
+SELECT pg_catalog.setval('public.sivel2_gen_sectorsocial_id_seq', 100, true);
+
 
 --
 -- PostgreSQL database dump
@@ -361,6 +375,8 @@ INSERT INTO public.sivel2_gen_vinculoestado (id, nombre, fechacreacion, fechades
 -- PostgreSQL database dump complete
 --
 
+SELECT pg_catalog.setval('public.sivel2_gen_vinculoestado_id_seq', 100, true);
+
 --
 -- PostgreSQL database dump
 --
@@ -411,6 +427,8 @@ INSERT INTO public.sivel2_gen_actividadoficio (id, nombre, fechacreacion, fechad
 -- PostgreSQL database dump complete
 --
 
+SELECT pg_catalog.setval('public.sivel2_gen_actividadoficio_id_seq', 100, true);
+
 --
 -- PostgreSQL database dump
 --
@@ -454,6 +472,8 @@ INSERT INTO public.sivel2_gen_antecedente (id, nombre, fechacreacion, fechadesha
 --
 -- PostgreSQL database dump complete
 --
+
+SELECT pg_catalog.setval('public.sivel2_gen_antecedente_id_seq', 100, true);
 
 --
 -- PostgreSQL database dump
@@ -700,6 +720,8 @@ INSERT INTO public.sivel2_gen_contexto (id, nombre, fechacreacion, fechadeshabil
 -- PostgreSQL database dump complete
 --
 
+SELECT pg_catalog.setval('public.sivel2_gen_contexto_id_seq', 100, true);
+
 --
 -- Data for Name: sivel2_gen_contextovictima; Type: TABLE DATA; Schema: public; Owner: -
 --
@@ -754,6 +776,8 @@ INSERT INTO public.sivel2_gen_escolaridad (id, nombre, fechacreacion, fechadesha
 -- PostgreSQL database dump complete
 --
 
+SELECT pg_catalog.setval('public.sivel2_gen_escolaridad_id_seq', 100, true);
+
 --
 -- PostgreSQL database dump
 --
@@ -788,6 +812,8 @@ INSERT INTO public.sivel2_gen_estadocivil (id, nombre, fechacreacion, fechadesha
 --
 -- PostgreSQL database dump complete
 --
+
+SELECT pg_catalog.setval('public.sivel2_gen_estadocivil_id_seq', 100, true);
 
 --
 -- PostgreSQL database dump
@@ -925,6 +951,8 @@ INSERT INTO public.sivel2_gen_etnia (id, nombre, descripcion, fechacreacion, fec
 -- PostgreSQL database dump complete
 --
 
+SELECT pg_catalog.setval('public.sivel2_gen_etnia_id_seq', 100, true);
+
 --
 -- PostgreSQL database dump
 --
@@ -957,6 +985,8 @@ INSERT INTO public.sivel2_gen_frontera (id, nombre, fechacreacion, fechadeshabil
 --
 -- PostgreSQL database dump complete
 --
+
+SELECT pg_catalog.setval('public.sivel2_gen_frontera_id_seq', 1000, true);
 
 --
 -- PostgreSQL database dump
@@ -1056,6 +1086,8 @@ INSERT INTO public.sivel2_gen_iglesia (id, nombre, descripcion, fechacreacion, f
 -- PostgreSQL database dump complete
 --
 
+SELECT pg_catalog.setval('public.sivel2_gen_iglesia_id_seq', 1000, true);
+
 --
 -- PostgreSQL database dump
 --
@@ -1086,6 +1118,8 @@ INSERT INTO public.sivel2_gen_maternidad (id, nombre, fechacreacion, fechadeshab
 --
 -- PostgreSQL database dump complete
 --
+
+SELECT pg_catalog.setval('public.sivel2_gen_maternidad_id_seq', 1000, true);
 
 --
 -- PostgreSQL database dump
@@ -1162,6 +1196,8 @@ INSERT INTO public.sivel2_gen_presponsable (id, nombre, papa_id, fechacreacion, 
 -- PostgreSQL database dump complete
 --
 
+SELECT pg_catalog.setval('public.sivel2_gen_presponsable_id_seq', 1000, true);
+
 --
 -- PostgreSQL database dump
 --
@@ -1213,6 +1249,8 @@ INSERT INTO public.sivel2_gen_profesion (id, nombre, fechacreacion, fechadeshabi
 -- PostgreSQL database dump complete
 --
 
+SELECT pg_catalog.setval('public.sivel2_gen_profesion_id_seq', 1000, true);
+
 --
 -- PostgreSQL database dump
 --
@@ -1246,6 +1284,8 @@ INSERT INTO public.sivel2_gen_rangoedad (id, nombre, limiteinferior, limitesuper
 --
 -- PostgreSQL database dump complete
 --
+
+SELECT pg_catalog.setval('public.sivel2_gen_rangoedad_id_seq', 1000, true);
 
 --
 -- PostgreSQL database dump
@@ -1281,6 +1321,8 @@ INSERT INTO public.sivel2_gen_region (id, nombre, fechacreacion, fechadeshabilit
 --
 -- PostgreSQL database dump complete
 --
+
+SELECT pg_catalog.setval('public.sivel2_gen_region_id_seq', 1000, true);
 
 --
 -- PostgreSQL database dump
