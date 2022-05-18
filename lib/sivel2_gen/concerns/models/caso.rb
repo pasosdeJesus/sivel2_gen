@@ -157,6 +157,7 @@ module Sivel2Gen
             if self.fecha && self.fecha > Date.today
             end
           end
+
           def fuenteprensa_fecha_y_fuente_unicas
             fuentesprensa = self.caso_fuenteprensa
             valfp = []
