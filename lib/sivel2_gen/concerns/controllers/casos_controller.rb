@@ -1117,7 +1117,7 @@ module Sivel2Gen
             end
           end
 
-          def lista_params
+          def lista_params_sivel2_gen
             if current_usuario && can?(:solocambiaretiquetas, Sivel2Gen::Caso)
               [
                 :caso_etiqueta_attributes => [
@@ -1323,6 +1323,9 @@ module Sivel2Gen
             end
           end
 
+          def lista_params
+            return lista_params_sivel2_gen
+          end
 
           # Lista blanca de parametros
           def caso_params

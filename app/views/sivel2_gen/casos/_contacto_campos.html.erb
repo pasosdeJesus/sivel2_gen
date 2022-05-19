@@ -87,19 +87,13 @@
       } %>
   </div>
   <div class="col-md-6">
-    <%= f.association :vinculoestado,
-      collection: Sip::ModeloHelper.opciones_tabla_basica(
-        Sivel2Gen::Vinculoestado, f, :vinculoestado
-      ),
-      include_blank: false,
-      label_method: :nombre, 
-      value_method: :id,
-      input_html: {
-        "data-toggle" => 'tooltip',
-        "title" => 'Registre si la persona era funcionaria pública en el momento del hecho'
-      } %>
+    <%= render partial: 'sivel2_gen/casos/campo_vinculoestado',
+      locals: {f: f} %>
   </div>
 </div>
+
+<%= render partial: 'sivel2_gen/casos/fila_despues_vinculoestado',
+  locals: {f: f} %>
 
 <div class="row">
   <div class="col-md-6">
