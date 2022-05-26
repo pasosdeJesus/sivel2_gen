@@ -137,29 +137,47 @@
   sinid = 0
   lcg.each((k, v) ->
     id = $(v).find('div').filter( () -> 
-      this.attributes.class.value.match(/caso_victima[_0-9]*persona_id/)
+      if (typeof this.attributes.class != 'undefined' && typeof this.attributes.class.value  != 'undefined')
+        return this.attributes.class.value.match(/caso_victima[_0-9]*persona_id/)
+      else
+        return null
     ).find('input').val()
     if (typeof id == 'undefined')
       id = $(v).find('div').filter( () -> 
-        this.attributes.class.value.match(/persona_id/)
+        if (typeof this.attributes.class != 'undefined' && typeof this.attributes.class.value  != 'undefined')
+          return this.attributes.class.value.match(/persona_id/)
+        else
+          return null
       ).find('input').val()
     nh = nh + "<option value='" + id + "'"
     if id == sel 
       nh = nh + ' selected'
     # texto: nombres apellidos
     nom = $(v).find('div').filter( () -> 
-      this.attributes.class.value.match(/caso_victima[_0-9]*persona_nombres/)
+      if (typeof this.attributes.class != 'undefined' && typeof this.attributes.class.value  != 'undefined')
+              return this.attributes.class.value.match(/caso_victima[_0-9]*persona_nombres/)
+      else
+        return null
     ).find('input').val()
     if (typeof nom == 'undefined')
       nom = $(v).find('div').filter( () -> 
-        this.attributes.class.value.match(/persona_nombres/)
+        if (typeof this.attributes.class != 'undefined' && typeof this.attributes.class.value  != 'undefined')
+          return this.attributes.class.value.match(/persona_nombres/)
+        else
+          return null
       ).find('input').val()
     ap = $(v).find('div').filter( () -> 
-      this.attributes.class.value.match(/caso_victima[_0-9]*persona_apellidos/)
+      if (typeof this.attributes.class != 'undefined' && typeof this.attributes.class.value  != 'undefined')
+        return this.attributes.class.value.match(/caso_victima[_0-9]*persona_apellidos/)
+      else 
+        return null
     ).find('input').val()
     if (typeof ap == 'undefined')
       ap = $(v).find('div').filter( () -> 
-        this.attributes.class.value.match(/persona_apellidos/)
+        if (typeof this.attributes.class != 'undefined' && typeof this.attributes.class.value  != 'undefined')
+          return this.attributes.class.value.match(/persona_apellidos/)
+        else
+          return null
       ).find('input').val()
     if (nom == 'N' && ap == 'N')
       sinid += 1
