@@ -193,10 +193,12 @@ module Sivel2Gen
           scope :filtro_organizacion_id, lambda { |r|
             where('caso_id IN (SELECT id_caso
                     FROM public.sivel2_gen_victima
-                    WHERE sivel2_gen_victima.id_organizacion = ? UNION 
-                    SELECT id_caso FROM public.sivel2_gen_victima 
-                    INNER JOIN public.sivel2_gen_otraorga_victima ON sivel2_gen_victima.id = sivel2_gen_otraorga_victima.victima_id 
-                    WHERE sivel2_gen_otraorga_victima.organizacion_id = ?)', r, r)
+                    WHERE sivel2_gen_victima.id_organizacion = ? UNION
+                    SELECT id_caso FROM public.sivel2_gen_victima
+                    INNER JOIN public.sivel2_gen_otraorga_victima ON
+                    sivel2_gen_victima.id =
+                    sivel2_gen_otraorga_victima.victima_id WHERE
+                    sivel2_gen_otraorga_victima.organizacion_id = ?)', r, r)
           }
 
           scope :filtro_profesion_id, lambda { |r|

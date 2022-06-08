@@ -6,9 +6,11 @@ class CreaOtraOrgaVictima < ActiveRecord::Migration[6.1]
       t.index :organizacion_id
       t.index :victima_id
     end
-    add_foreign_key :sivel2_gen_otraorga_victima, 
-      :sivel2_gen_organizacion, column: :organizacion_id
-    add_foreign_key :sivel2_gen_otraorga_victima, 
-      :sivel2_gen_victima, column: :victima_id
+    add_foreign_key :sivel2_gen_otraorga_victima,
+                    :sivel2_gen_organizacion,
+                    column: :organizacion_id
+    add_foreign_key :sivel2_gen_otraorga_victima,
+                    :sivel2_gen_victima,
+                    column: :victima_id
   end
 end
