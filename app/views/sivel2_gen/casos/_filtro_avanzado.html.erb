@@ -132,7 +132,29 @@
       <div class="offset-sm-0 col-sm-2 offset-md-1 col-md-1">
        Tipificación
       </div>
-      <div class="offset-sm-0 col-sm-5 offset-md-0 col-md-2">
+      <div class="offset-sm-0 col-sm-10 offset-md-0 col-md-7">
+        <% col = []
+           col << Sivel2Gen::Tviolencia.new(id: "Z", nombre: "Otro")
+           col += Sip::ModeloHelper.opciones_tabla_basica(
+            Sivel2Gen::Tviolencia, f, :tviolencia_id
+        ) 
+      %>
+        <%= f.input :tviolencia_id,
+          collection: col,
+          label_method: :nombre,
+          value_method: :id,
+          selected: "Z",
+          label: false,
+          include_blank: false
+        %>
+
+      </div>
+    </div>
+    <div class="row filtro-fila">
+      <div class="offset-sm-0 col-sm-2 offset-md-1 col-md-1">
+       Tipo de violencia
+      </div>
+      <div class="offset-sm-0 col-sm-10 offset-md-0 col-md-7">
         <% if current_usuario %>
           <% col1 = Sivel2Gen::Categoria.habilitados.where(tipocat: 'O').pluck(:id) %>
           <% col2 = Sivel2Gen::Categoria.habilitados.pluck(:id) %>
@@ -159,28 +181,6 @@
               include_blank: true
         %>
         <% end %>
-
-      </div>
-
-      <div class="offset-sm-0 col-sm-2 offset-md-1 col-md-1">
-       Tipo de violencia
-      </div>
-
-      <div class="offset-sm-0 col-sm-5 offset-md-0 col-md-3">
-        <% col = []
-           col << Sivel2Gen::Tviolencia.new(id: "Z", nombre: "Otro")
-           col += Sip::ModeloHelper.opciones_tabla_basica(
-            Sivel2Gen::Tviolencia, f, :tviolencia_id
-        ) 
-      %>
-        <%= f.input :tviolencia_id,
-          collection: col,
-          label_method: :nombre,
-          value_method: :id,
-          selected: "Z",
-          label: false,
-          include_blank: false
-        %>
       </div>
 
       <div class="offset-sm-0 col-sm-1 text-center">

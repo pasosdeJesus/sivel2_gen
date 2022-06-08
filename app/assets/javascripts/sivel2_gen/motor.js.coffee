@@ -1001,25 +1001,24 @@ enviaFormularioContar= (root) ->
     sivel2_gen_llenar_edades(root, prefIdVic, prefIdPer)
   )
 
-
   $(document).on('change', '#filtro_tviolencia_id', (e) ->
-   id_tviolencia = $(this).val()
-   select = $(this)
-   if id_tviolencia != "Z"
-     b = root.puntomontaje + 'admin/categorias/filtratviolencia'
-     $.ajax({
-       url: b,
-       data: {tviolencia: id_tviolencia},
-       dataType: "json",
-       success: (datos) ->
-         div_padre = select.closest("div")
-         div_grid = div_padre.parent()
-         div_filtro = div_grid.parent()
-         input_cat = div_filtro.find("select[id=filtro_categoria_id]")
-         input_cat.val(datos[0]).trigger('chosen:updated')
-       error: (jqXHR, texto) ->
-         alert("Error: " + jqXHR.responseText)
-      })
+    id_tviolencia = $(this).val()
+    select = $(this)
+    if id_tviolencia != "Z"
+      b = root.puntomontaje + 'admin/categorias/filtratviolencia'
+      $.ajax({
+        url: b,
+        data: {tviolencia: id_tviolencia},
+        dataType: "json",
+        success: (datos) ->
+          div_padre = select.closest("div")
+          div_grid = div_padre.parent()
+          div_filtro = div_grid.parent().parent()
+          input_cat = div_filtro.find("select[id=filtro_categoria_id]")
+          input_cat.val(datos[0]).trigger('chosen:updated')
+        error: (jqXHR, texto) ->
+          alert("Error: " + jqXHR.responseText)
+       })
   )
 
   $(document).on('change', '#filtro_categoria_id', (e) ->
@@ -1034,7 +1033,7 @@ enviaFormularioContar= (root) ->
         if datos[0] == false
           div_padre = select.closest("div")
           div_grid = div_padre.parent()
-          div_filtro = div_grid.parent()
+          div_filtro = div_grid.parent().parent()
           input_tipo = div_filtro.find("select[id=filtro_tviolencia_id]")
           input_tipo.val("Z").trigger('chosen:updated')
       error: (jqXHR, texto) ->

@@ -24,7 +24,8 @@ Sivel2Gen::Engine.routes.draw do
   get '/casos/lista' => 'casos#lista'
   get '/casos/mapaosm' => 'casos#mapaosm', as: :casos_mapaosm
   get '/casos/refresca' => 'casos#refresca', as: :casos_refresca
-  get '/admin/categorias/filtratviolencia' => 'admin/categorias#filtra_por_tviolencia'
+  get '/admin/categorias/filtratviolencia' =>
+          'admin/categorias#filtra_por_tviolencia'
   get '/combatientes/nuevo' => 'combatientes#nuevo'
 
   get "/conteos/genvic" => 'conteos#genvic', as: :conteos_genvic
