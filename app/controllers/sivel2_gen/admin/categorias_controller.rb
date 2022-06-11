@@ -38,10 +38,8 @@ module Sivel2Gen
           @categorias = Sivel2Gen::Categoria.
                         habilitados.where(supracategoria_id: supra.id)
           datos[0] = @categorias.map { |cat| cat.id }
-          datos[1] = @categorias.
-                     map { 
-                     |cat| params[:tviolencia] + cat.id.to_s + " " + cat.nombre
-                     }
+          par = params[:tviolencia]
+          datos[1] = @categorias.map { |k| par + k.id.to_s + " " + k.nombre }
         end
         if params[:categorias_seleccionadas]
           categorias = Sivel2Gen::Categoria.where(
