@@ -9,7 +9,7 @@ Sip.setup do |config|
   end
   config.titulo = "Motor SIVeL " + Sivel2Gen::VERSION
   config.descripcion = "Motor para manejar casos de violencia socio política"
-  config.codigofuente = "https://github.com/pasosdeJesus/sivel2"
+  config.codigofuente = "https://github.com/pasosdeJesus/sivel2_gen"
   config.urlcontribuyentes = "https://github.com/pasosdeJesus/sivel2_gen/graphs/contributors"
   config.urlcreditos = "https://github.com/pasosdeJesus/sivel2/blob/main/CREDITOS.md"
   config.agradecimientoDios = "<p>
