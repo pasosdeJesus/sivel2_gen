@@ -962,7 +962,7 @@ enviaFormularioContarPost= (root) ->
       $.ajax({
         url: b, 
         data: {tviolencia: id_tviolencia}, 
-        dataType: "json", 
+        dataType: "json",
         success: (datos) ->
           div_padre = select.closest("div")
           div_grid = div_padre.parent()
