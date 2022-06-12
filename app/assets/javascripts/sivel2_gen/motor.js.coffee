@@ -960,7 +960,7 @@ enviaFormularioContarPost= (root) ->
     if id_tviolencia != "Z"
       b = root.puntomontaje + 'admin/categorias/filtratviolencia'
       $.ajax({
-        url: b, 
+        url: b,
         data: {tviolencia: id_tviolencia}, 
         dataType: "json",
         success: (datos) ->
@@ -978,11 +978,11 @@ enviaFormularioContarPost= (root) ->
     select = $(this)
     b = root.puntomontaje + 'admin/categorias/filtratviolencia'
     $.ajax({
-      url: b, 
-      data: {categorias_seleccionadas: id_categoria}, 
-      dataType: "json", 
+      url: b,
+      data: {categorias_seleccionadas: id_categoria},
+      dataType: "json",
       success: (datos) ->
-        if datos[0] == false 
+        if datos[0] == false
           div_padre = select.closest("div")
           div_grid = div_padre.parent()
           div_filtro = div_grid.parent()
