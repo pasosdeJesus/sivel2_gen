@@ -966,7 +966,7 @@ enviaFormularioContarPost= (root) ->
         success: (datos) ->
           div_padre = select.closest("div")
           div_grid = div_padre.parent()
-          div_filtro = div_grid.parent()
+          div_filtro = div_grid.parent().parent()
           input_cat = div_filtro.find("select[id=filtro_categoria_id]")
           input_cat.val(datos[0]).trigger('chosen:updated')
         error: (jqXHR, texto) ->
@@ -985,7 +985,7 @@ enviaFormularioContarPost= (root) ->
         if datos[0] == false
           div_padre = select.closest("div")
           div_grid = div_padre.parent()
-          div_filtro = div_grid.parent()
+          div_filtro = div_grid.parent().parent()
           input_tipo = div_filtro.find("select[id=filtro_tviolencia_id]")
           input_tipo.val("Z").trigger('chosen:updated')
       error: (jqXHR, texto) ->
