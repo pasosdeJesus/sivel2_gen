@@ -243,12 +243,12 @@ module Sivel2Gen
               self.memo = datosent['hechos']
             end
             self.titulo = datosent['titulo'] if datosent['titulo']
-            self.save!
+            self.save!(validate: false)
             #Importa ubicacion
             ubicacion = Sip::Ubicacion.new
             ubicacion.importa(datosent, datossal, menserror, opciones)
             ubicacion.id_caso = self.id
-            ubicacion.save!
+            ubicacion.save!(validate: false)
             self.ubicacion_id = ubicacion.id
             if datosent['ubicacion_secundaria']
               if datosent['ubicacion_secundaria'].kind_of?(Array)
@@ -256,7 +256,7 @@ module Sivel2Gen
                   ubicacion = Sip::Ubicacion.new
                   ubicacion.importa(ub, datossal, menserror, opciones)
                   ubicacion.id_caso = self.id
-                  ubicacion.save!
+                  ubicacion.save!(validate: false)
                 end
               else
                   ubicacion = Sip::Ubicacion.new
@@ -264,7 +264,7 @@ module Sivel2Gen
                     datosent['ubicacion_secundaria'], datossal, menserror, 
                     opciones)
                   ubicacion.id_caso = self.id
-                  ubicacion.save!
+                  ubicacion.save!(validate: false)
               end
             end
 
@@ -276,7 +276,7 @@ module Sivel2Gen
                   casopresp.importa(pr, datossal, menserror, opciones)
                   if casopresp.id_presponsable
                     casopresp.id_caso = self.id
-                    casopresp.save!
+                    casopresp.save!(validate: false)
                   end
                 end
               else
@@ -285,7 +285,7 @@ module Sivel2Gen
                   datosent['grupo'], datossal, menserror, opciones)
                 if casopresp.id_presponsable
                   casopresp.id_caso = self.id
-                  casopresp.save!
+                  casopresp.save!(validate: false)
                 end
               end
             end
