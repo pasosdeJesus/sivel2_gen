@@ -179,6 +179,15 @@
       <% end %>
     <% end %>
 
+    <% unless caso.caso_solicitud.empty? %>
+      <p>
+      Solicitudes:  
+      </p>
+      <%= render partial: 'sip/solicitudes/resumen_tabla_solicitudes',
+        locals: { objeto: caso } %>
+    <% end %>
+
+
     <p>
     Analista(s):
     <% 
