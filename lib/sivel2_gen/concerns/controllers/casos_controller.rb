@@ -624,7 +624,7 @@ module Sivel2Gen
                 { titulo: 'Actos', parcial: 'actos'},
                 { titulo: 'Descripción', parcial: 'memo'},
                 { titulo: 'Anexos', parcial: 'sivel2_gen/casos/anexos'},
-                { titulo: 'Etiquetas', parcial: 'etiquetas'},
+                { titulo: 'Etiquetas y Solicitudes', parcial: 'etiquetas'},
                 { titulo: 'Evaluación', parcial: 'evaluacion'}
               ]
            else
@@ -1205,6 +1205,19 @@ module Sivel2Gen
                   :tipo,
                   :_destroy,
                   :categoria_ids => []
+                ],
+                :caso_solicitud_attributes => [
+                  :id, 
+                  :_destroy,
+                  :solicitud_attributes => [
+                    :id,
+                    :usuario_id, 
+                    :fecha,
+                    :fecha_localizada,
+                    :solicitud,
+                    :estadosol_id,
+                    :usuarionotificar_ids => []
+                  ]
                 ],
                 :combatiente_attributes => [
                   :alias,

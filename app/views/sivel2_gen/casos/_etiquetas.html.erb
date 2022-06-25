@@ -11,3 +11,12 @@
     'data-ajaxdata' => 'caso_id'
   %>
 </div>
+
+<% if f.object && f.object.id && !can?(:solocambiaretiquetas, Sivel2Gen::Caso) %>
+  <hr>
+
+  <%= render partial: 'sip/solicitudes/tabla_solicitudes',
+    locals: {f: f, relacion: :caso_solicitud} %>
+<% end %>
+
+

@@ -103,6 +103,17 @@ module Sivel2Gen
           accepts_nested_attributes_for :ubicacion, allow_destroy: true, 
             reject_if: :all_blank
 
+          has_many :caso_solicitud, dependent: :delete_all,
+            class_name: 'Sivel2Gen::CasoSolicitud',
+            foreign_key: 'caso_id'
+          has_many :solicitud, through: :caso_solicitud, 
+            dependent: :delete_all,
+            class_name: 'Sip::Solicitud'
+          accepts_nested_attributes_for :solicitud,
+            allow_destroy: true, reject_if: :all_blank
+          accepts_nested_attributes_for :caso_solicitud,
+            allow_destroy: true, reject_if: :all_blank
+
           has_many :victima,  foreign_key: "id_caso", dependent: :destroy, 
             class_name: 'Sivel2Gen::Victima' 
           #, validate: true Manejar en aplicaciones que usen este motor
