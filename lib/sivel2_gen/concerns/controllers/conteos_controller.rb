@@ -805,7 +805,22 @@ module Sivel2Gen
                     {"cat" => [520],
                      "titulo" => "Victimizaciones por `Violencia Sexual´ por Intolerancia Social sin autor determinado"}
                   ], "Total victimizaciones por violencia sexual", where1
-                )
+                ),
+                genvic_tabla(
+                  'Otras violaciones al derecho a la integridad', 
+                  [
+                    {"cat" => [78],
+                     "titulo" => "Victimizaciones por `Escudo Individual´ DIHC."},
+                    {"cat" => [717],
+                     "titulo" => "Victimizaciones por `Negación de Atención a persona Vulnerable´ DIHC."},
+                    {"cat" => [718],
+                     "titulo" => "Victimizaciones por `Profanación y Ocultamiento de Cadáveres´ DIHC."},
+                    {"cat" => [716],
+                     "titulo" => "Victimizaciones por `Negación de Derechos a Prisioneros de Guerra´ DIHC."}
+                  ], "Total victimizaciones por violencia sexual", where1
+                ),
+
+
               ]
             }, 
             {
@@ -830,15 +845,24 @@ module Sivel2Gen
                   [
                     {"cat" => [24, 241, 301, 341],
                      "titulo" => "Victimizaciones por `Detención Arbitraria´ y `Judicialización Arbitraria´ por móvil de Abuso de Autoridad o Intolerancia Social, perpetradas por agentes directos o indirectos del Estado (Violaciones a los Derechos Humanos)."},
-                    {"cat" => [14, 141, 101],
-                     "titulo" => "Victimizaciones por `Detención Arbitraria´,  `Judicialización Arbitraria´ y `Deportación´ por móviles de Persecución Política (Violaciones a los Derechos Humanos)."},
-                  {"cat" => [48],
-                   "titulo" => "Victimizaciones por `Rapto´ por Móviles Políticos sin autor determinado."},
-                  {"cat" => [41],
-                   "titulo" => "Victimizaciones por `Secuestro´ perpetrado por organizaciones insurgentes."},
-                  {"cat" => [58],
-                   "titulo" => "Victimizaciones por `Rapto´ por Móviles de Intolerancia Social sin autor determinado."}
-                  ], "Total victimizaciones de otras violaciones al derecho a la libertad",
+                    {"cat" => [14, 101],
+                     "titulo" => "Victimizaciones por `Detención Arbitraria´  y `Deportación´ por móviles de Persecución Política (Violaciones a los Derechos Humanos)."},
+                    {"cat" => ['141&!715'],
+                     "titulo" => "Victimizaciones por `Judicialización Arbitraria´ que no representan `Judicialización Arbitraría como Instrumento de Guerra´."},
+                    {"cat" => ['141&715'],
+                     "titulo" => "Victimizaciones que son simultaneamente `Judicialización Arbitraria´ y `Judicialización Arbitraría como Instrumento de Guerra´."},
+                    {"cat" => ['!141&715'],
+                     "titulo" => "Victimizaciones que son `Judicialización Arbitraría como Instrumento de Guerra´  pero que no son `Judicialización Arbitraria´."},
+                    {"cat" => [48],
+                     "titulo" => "Victimizaciones por `Rapto´ por Móviles Políticos sin autor determinado."},
+                    {"cat" => [41],
+                      "titulo" => "Victimizaciones por `Secuestro´ perpetrado por organizaciones insurgentes."},
+                    {"cat" => [58],
+                       "titulo" => "Victimizaciones por `Rapto´ por Móviles de Intolerancia Social sin autor determinado."},
+                    {"cat" => [74, 75, 714],
+                       "titulo" => "Victimizaciones por `Toma de Rehenes´, `Reclutamiento de Menores´ y `Esclavitud y Trabajos Forzados´ DIHC."}
+                  ], 
+                  "Total victimizaciones de otras violaciones al derecho a la libertad",
                   where1
                 )
               ]
