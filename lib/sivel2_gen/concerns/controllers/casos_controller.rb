@@ -615,7 +615,8 @@ module Sivel2Gen
                 { titulo: 'Contexto', parcial: 'contextos'},
                 { titulo: 'Presuntos Responsables', parcial: 'presponsables'},
                 { titulo: 'Víctimas', parcial: 'victimas'}] +
-              (can?(:pestanadesaparicion, Sivel2Gen::Caso) ?
+              (Rails.configuration.x.sivel2_desaparicion && 
+               can?(:pestanadesaparicion, Sivel2Gen::Caso) ?
                [{titulo: 'Desaparición', parcial: 'Formulario::desaparicion'}]:
                []) +
               [

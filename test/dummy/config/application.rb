@@ -60,6 +60,9 @@ module Dummy
     config.x.sivel2_mapaosm_diasatras = ENV.fetch(
       'SIVEL2_MAPAOSM_DIASATRAS', 182)
 
+    config.x.sivel2_desaparicion =
+      ENV.fetch('SIVEL2_DESAPARICION', '') != ''
+
 
   end
 end
