@@ -482,7 +482,7 @@ module Sivel2Gen
 
             pAgrucol = escapar_param(params, [:filtro, 'agrucol'])
 
-            @opsegun, @coltotales, @totalesfila, @enctabla,
+            @opsegun, @coltotales, @totalesfila, @numpersonas, @enctabla,
               @cuerpotabla = Sivel2Gen::ConteosController::victimizaciones_gen_tabla(
                 pFini, pFfin, pTviolencia, pEtiqueta1, pEtiqueta2,
                 pExcluirCateRep, pSegun, pDepartamento, pMunicipio,
@@ -1124,8 +1124,17 @@ module Sivel2Gen
                 if que3.count == 3
                   # Si no se desagrega, solo presenta tabla mínima con 
                   # categorías y conteos por categoría
+                  sub = "SELECT DISTINCT id_caso, id_persona, id_categoria, "\
+                    "c.id_pconsolidado, p.nombre FROM cvt1 "\
+                    " JOIN sivel2_gen_categoria AS c "\
+                    "  ON cvt1.id_categoria=c.id "\
+                    "JOIN sivel2_gen_pconsolidado AS p "\
+                    "  ON p.id=c.id_pconsolidado"
+                  numpersonas = ActiveRecord::Base.connection.select_all(
+                    "SELECT count(DISTINCT id_persona) FROM (#{sub}) AS sub"
+                                                             )[0]['count']
                   q4 = "SELECT nombre, count(*)" +
-                    "FROM (SELECT DISTINCT id_caso, id_persona, id_categoria, c.id_pconsolidado, p.nombre FROM cvt1 JOIN sivel2_gen_categoria AS c ON cvt1.id_categoria=c.id JOIN sivel2_gen_pconsolidado AS p on p.id=c.id_pconsolidado) AS sub GROUP BY 1 ORDER BY 1;"
+                    "FROM (#{sub}) AS sub GROUP BY 1 ORDER BY 1;"
                   puts "OJO q4=#{q4}"
                   r = ActiveRecord::Base.connection.select_all(q4)
                   enctabla = []
@@ -1201,7 +1210,8 @@ module Sivel2Gen
                 end
               end
 
-              return [opsegun, coltotales, totalesfila, enctabla, cuerpotabla]
+              return [opsegun, coltotales, totalesfila, 
+                      numpersonas, enctabla, cuerpotabla]
           end
 
 
