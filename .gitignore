@@ -47,3 +47,4 @@ test/dummy/app/assets/builds
 .env
 test/dummy/app/javascript/controllers/sip
 
+public/*/csv/actos_individuales.csv
