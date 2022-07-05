@@ -894,6 +894,10 @@ module Sivel2Gen
                 tablas1 += ' LEFT JOIN public.sivel2_gen_profesion AS profesion ON ' +
                   ' victima.id_profesion=profesion.id'
 
+              when "REGIÓN"
+                que1 += ", (SELECT r.nombre FROM  sivel2_gen_caso_region AS cr "\
+                    "  JOIN sivel2_gen_region AS r ON cr.id_region=r.id "\
+                    "  WHERE cr.id_caso=caso.id LIMIT 1) AS region "
 
               when "RANGO DE EDAD"
                 que1 += ', rangoedad.id, INITCAP(rangoedad.nombre) AS rangoedad_rango' 
@@ -958,6 +962,7 @@ module Sivel2Gen
                         "ORGANIZACIÓN SOCIAL", 
                         "PROFESIÓN", 
                         "RANGO DE EDAD", 
+                        "REGIÓN",
                         "SECTOR SOCIAL", 
                         "SEXO"
             ]
@@ -998,6 +1003,10 @@ module Sivel2Gen
 
               when "RANGO DE EDAD"
                 que3 << ["rangoedad_rango", "Rango de edad"]
+
+              when "REGIÓN"
+                que3 << ["region", "Región"]
+
 
               when "SECTOR SOCIAL"
                 que3 << ["sectorsocial_nombre", "Sector social"]
@@ -1118,18 +1127,18 @@ module Sivel2Gen
                   end
 
                 end
-              elsif pAgrucol == 'ROTULO'
+              elsif pAgrucol == 'RÓTULO'
                 totalesfila = true
+                sub = "SELECT DISTINCT id_caso, id_persona, id_categoria, "\
+                  "c.id_pconsolidado, p.nombre FROM cvt1 "\
+                  " JOIN sivel2_gen_categoria AS c "\
+                  "  ON cvt1.id_categoria=c.id "\
+                  "JOIN sivel2_gen_pconsolidado AS p "\
+                  "  ON p.id=c.id_pconsolidado"
 
                 if que3.count == 3
                   # Si no se desagrega, solo presenta tabla mínima con 
                   # categorías y conteos por categoría
-                  sub = "SELECT DISTINCT id_caso, id_persona, id_categoria, "\
-                    "c.id_pconsolidado, p.nombre FROM cvt1 "\
-                    " JOIN sivel2_gen_categoria AS c "\
-                    "  ON cvt1.id_categoria=c.id "\
-                    "JOIN sivel2_gen_pconsolidado AS p "\
-                    "  ON p.id=c.id_pconsolidado"
                   numpersonas = ActiveRecord::Base.connection.select_all(
                     "SELECT count(DISTINCT id_persona) FROM (#{sub}) AS sub"
                                                              )[0]['count']
@@ -1152,9 +1161,21 @@ module Sivel2Gen
                   # Si se desagrega, pone los desagregados en columnas
                   fila = que3.last[0]
                   fila_hum = que3.last[1]
-                  q4 = "SELECT #{fila}, categoria, SUM(count)::INTEGER " +
-                    "FROM (#{q3}) AS sub GROUP BY 1, 2 ORDER BY 1, 2;"
 
+                  sub = "SELECT DISTINCT cvt1.id_caso, id_persona, id_categoria, "\
+                    "c.id_pconsolidado, p.nombre AS rotulo, "\
+                    "(SELECT r.nombre FROM  sivel2_gen_caso_region AS cr "\
+                    "  JOIN sivel2_gen_region AS r ON cr.id_region=r.id "\
+                    "  WHERE cr.id_caso=cvt1.id_caso LIMIT 1) AS region "\
+                    " FROM cvt1 "\
+                    " JOIN sivel2_gen_categoria AS c "\
+                    "  ON cvt1.id_categoria=c.id "\
+                    "JOIN sivel2_gen_pconsolidado AS p "\
+                    "  ON p.id=c.id_pconsolidado "
+
+                  q4 = "SELECT #{fila}, rotulo, count(*)::INTEGER " +
+                    "FROM (#{sub}) AS sub GROUP BY 1, 2 ORDER BY 1, 2;"
+                  puts "OJO q4=#{q4}"
                   r = ActiveRecord::Base.connection.select_all(q4)
                   enctabla = []
                   inter = {}
@@ -1164,12 +1185,12 @@ module Sivel2Gen
                     if !inter[t[fila]]
                       inter[t[fila]] = {}
                     end
-                    if !inter[t[fila]][t['categoria']]
-                      inter[t[fila]][t['categoria']] = 0
+                    if !inter[t[fila]][t['rotulo']]
+                      inter[t[fila]][t['rotulo']] = 0
                     end
-                    inter[t[fila]][t['categoria']] += t['sum'].to_i
-                    if !et.include?(t['categoria'])
-                      et << t['categoria']
+                    inter[t[fila]][t['rotulo']] += t['count'].to_i
+                    if !et.include?(t['rotulo'])
+                      et << t['rotulo']
                     end
                     if !filas.include?(t[fila])
                       filas << t[fila]
