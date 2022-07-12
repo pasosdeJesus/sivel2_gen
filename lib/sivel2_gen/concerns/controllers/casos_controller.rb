@@ -927,7 +927,7 @@ module Sivel2Gen
                 menserror << "No se pudo importar relato número #{numr}.  "
                 total_errores += 1
               else
-                @caso.save!
+                @caso.save!(validate: false)
                 total_importados += 1
                 puts "OJO total_importados=#{total_importados}"
                 @etiquetaImp = Sivel2Gen::CasoEtiqueta.new
