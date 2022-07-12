@@ -969,7 +969,7 @@ module Sivel2Gen
           end
 
           def self.importar_relato(doc, menserror, sintaxis_errores, mensexito, ids_importados,
-                                  usuario_id)
+                                  usuario_id, formato_sexo)
             if Nokogiri::XML(doc).errors
               Nokogiri::XML(doc).errors.each do |error|
                 sintaxis_errores.push(error.message)
@@ -983,7 +983,6 @@ module Sivel2Gen
             enlace = docnoko_inicial.children[0].system_id
             pre = "http://sincodh.pasosdejesus.org/relatos/relatos-"
             aceptados = [pre + "097.dtd", pre + "098.dtd", pre + "099.dtd"]
-            #byebug
             if aceptados.include? enlace
               # Adaptado de respuesta de the Tin Man de 
               # https://nokogiri.org/tutorials/parsing_an_html_xml_document.html#encoding
@@ -1027,7 +1026,7 @@ module Sivel2Gen
               relimportado = Hash.from_xml(relato.to_s)
               @caso = Sivel2Gen::Caso.new
               menserror_uno = ''
-              importado = @caso.importa(relimportado['relato'], datossal, 
+              importado = @caso.importa(relimportado['relato'], datossal, formato_sexo,
                                         menserror_uno, {})
               casousuario = Sivel2Gen::CasoUsuario.new
               casousuario.id_usuario = usuario_id
@@ -1095,9 +1094,11 @@ module Sivel2Gen
             mensexito = ''
             sintaxis_errores=[]
             ids_importados = ''
+            formato_sexo = params[:formatosexo] ? params[:formatosexo] : "sexomfs"
             importa_exito = Sivel2Gen::CasosController.importar_relato(
 
-              doc, menserror, sintaxis_errores, mensexito, ids_importados, current_usuario.id)
+              doc, menserror, sintaxis_errores, mensexito, ids_importados, current_usuario.id, formato_sexo)
+
             if sintaxis_errores.length > 0
               redirect_to casos_errores_importacion_path(errores: sintaxis_errores)
               return 

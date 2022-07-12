@@ -3,7 +3,19 @@
   <%= form_tag importa_casos_path, multipart: true do %>
     <h5>Archivos con relatos</h5>
     <%= file_field_tag :arc %>
+    <br>
+    <br>
+    <h5>Seleccione el formato para sexo de personas:</h5>
+    <%= radio_button_tag :formatosexo, "sexomfs", checcked: true %>
+    <%= label_tag :age_sexomfs, "Masculino-Femenino-Sin Información" %>
+    <br>
+    <%= radio_button_tag :formatosexo, "sexohms" %>
+    <%= label_tag :age_sexohms, "Hombre-Mujer-Sin Información" %>
+    <br>
+    <br>
+    <p> Sólo son soportados los formados presentes </p>
     <!--br>
+
     <h5>Buscar víctimas y grupos en otros casos</h5>
     <div class="form-check">
       <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">

@@ -241,9 +241,9 @@ module Sivel2Gen
                     " ILIKE '%' || unaccent(?) || '%'", n)
           }
 
-          def importa(datosent, datossal, menserror, opciones = {})
+          def importa(datosent, datossal, formato_sexo , menserror, opciones = {})
             v = datosent[1]
-            def crea_persona(p, v, menserror)
+            def crea_persona(p, v, menserror, formato_sexo)
               if p['id_persona'].to_i == v['id_persona'].to_i
                 per = Sip::Persona.new
                 if p['nombre'].nil?
@@ -266,8 +266,29 @@ module Sivel2Gen
                   per.anionac = nac[0].to_i if nac[0].to_i > 0
                   per.mesnac = nac[1].to_i if (1..12).include?(nac[1].to_i)
                   per.dianac = nac[2].to_i if (1..31).include?(nac[2].to_i)
-                end 
-                per.sexo = p['sexo'] if p['sexo']
+                end
+
+                if p['sexo']
+                  case formato_sexo
+                    when 'sexomfs'
+                      per.sexo = p['sexo']
+                      if !per.save
+                        menserror << "El formato de sexo selecionado no coincide con el relato "
+                      end
+                    when 'sexohms'
+                      case p['sexo']
+                        when 'H'
+                          per.sexo = 'M'
+                        when 'M'
+                          per.sexo = 'F'
+                        when 'S'
+                          per.sexo = 'S'
+                      end
+                    else
+                      per.sexo = p['sexo']
+                  end
+                end
+
                 def recorrer_observaciones_p(ele, per, menserror)
                  case ele[0]
                  when 'etnia'
@@ -302,11 +323,11 @@ module Sivel2Gen
             end
             if datosent[0]['persona'].kind_of?(Array)
               datosent[0]['persona'].each do |p|
-                crea_persona(p, v, menserror)
+                crea_persona(p, v, menserror, formato_sexo)
               end
             else
               p = datosent[0]['persona']
-              crea_persona(p, v, menserror)
+              crea_persona(p, v, menserror, formato_sexo)
             end
             if v['ocupacion']
               if Sivel2Gen::Profesion.where('TRIM(nombre)=?', v['ocupacion'].strip).count == 1
