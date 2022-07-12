@@ -971,7 +971,7 @@ module Sivel2Gen
           def self.importar_relato(doc, menserror, mensexito, ids_importados,
                                   usuario_id)
             if Nokogiri::XML(doc).errors
-              Nokogiri::XML(doc).errors.each  do |error| 
+              Nokogiri::XML(doc).errors.each do |error|
                 menserror << error.message
               end
               return
