@@ -1032,16 +1032,18 @@ module Sivel2Gen
                 menserror << "No se pudo importar relato número #{numr}.  "
                 total_errores += 1
               else
-                @caso.save!
+                @caso.save!(validate: false)
                 total_importados += 1
                 puts "OJO total_importados=#{total_importados}"
                 @etiquetaImp = Sivel2Gen::CasoEtiqueta.new
                 @etiquetaImp.id_caso = @caso.id
                 @etiquetaImp.id_etiqueta = Sip::Etiqueta.where(
                   nombre: "IMPORTA_RELATO").ids[0]
-                @etiquetaImp.fecha = Date.today
-                @etiquetaImp.id_usuario = usuario_id
-                @etiquetaImp.save!
+                if !@etiquetaImp.id_etiqueta.nil?
+                  @etiquetaImp.fecha = Date.today
+                  @etiquetaImp.id_usuario = usuario_id
+                  @etiquetaImp.save!
+                end
                 ids_importados << "#{@caso.id} "
                 if menserror_uno != ''
                   total_errores += 1
@@ -1049,10 +1051,12 @@ module Sivel2Gen
                   @etiquetaErr.id_caso = @caso.id
                   @etiquetaErr.id_etiqueta = Sip::Etiqueta.where(
                     nombre: "ERROR_IMPORTACIÓN").ids[0]
-                  @etiquetaErr.observaciones = menserror_uno
-                  @etiquetaErr.fecha = Date.today
-                  @etiquetaErr.id_usuario = usuario_id
-                  @etiquetaErr.save!
+                  if !@etiquetaErr.id_etiqueta.nil?
+                    @etiquetaErr.observaciones = menserror_uno
+                    @etiquetaErr.fecha = Date.today
+                    @etiquetaErr.id_usuario = usuario_id
+                    @etiquetaErr.save!
+                  end
                 end
               end
             end
