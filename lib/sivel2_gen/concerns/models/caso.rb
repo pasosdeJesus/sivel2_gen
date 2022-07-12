@@ -239,7 +239,7 @@ module Sivel2Gen
               self.memo = datosent['hechos']
             end
             self.titulo = datosent['titulo'] if datosent['titulo']
-            self.save!
+            self.save!(validate: false)
             #Importa ubicacion
             ubicacion = Sip::Ubicacion.new
             ubicacion.importa(datosent, datossal, menserror, opciones)
