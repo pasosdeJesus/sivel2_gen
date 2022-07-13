@@ -238,7 +238,8 @@ module Sivel2Gen
 
           require 'active_support/core_ext/hash' 
 
-          def importa(datosent, datossal, formato_sexo,menserror, opciones = {})
+          def importa(datosent, datossal, formato_sexo,
+                      menserror, opciones = {})
             if datosent['fecha'].nil?
               self.fecha = Date.today
               menserror << "Falta fecha. "
@@ -326,15 +327,16 @@ module Sivel2Gen
                 datosent['victima'].each do |v|
                   vict = Sivel2Gen::Victima.new
                   vict.id_caso = self.id
-                  vict.importa([datosent, v], datossal, formato_sexo, menserror, opciones)
+                  vict.importa([datosent, v], datossal, formato_sexo, 
+                               menserror, opciones)
                   idsv[v['id_persona']] = vict.id_persona
                 end
               else
                 vict = Sivel2Gen::Victima.new
                 vict.id_caso = self.id
                 vict.importa(
-                  [datosent, datosent['victima']], datossal, formato_sexo, menserror, 
-                  opciones)
+                             [datosent, datosent["victima"]], datossal,
+                             formato_sexo, menserror, opciones)
                 idsv[datosent['victima']['id_persona']] = vict.id_persona
               end
             end

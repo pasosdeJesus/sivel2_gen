@@ -1026,7 +1026,8 @@ module Sivel2Gen
               relimportado = Hash.from_xml(relato.to_s)
               @caso = Sivel2Gen::Caso.new
               menserror_uno = ''
-              importado = @caso.importa(relimportado['relato'], datossal, formato_sexo,
+              importado = @caso.importa(relimportado["relato"],
+                                        datossal, formato_sexo,
                                         menserror_uno, {})
               casousuario = Sivel2Gen::CasoUsuario.new
               casousuario.id_usuario = usuario_id
@@ -1094,10 +1095,11 @@ module Sivel2Gen
             mensexito = ''
             sintaxis_errores=[]
             ids_importados = ''
-            formato_sexo = params[:formatosexo] ? params[:formatosexo] : "sexomfs"
+            formato_sexo = params[:formatosexo] ?
+              params[:formatosexo] : "sexomfs"
             importa_exito = Sivel2Gen::CasosController.importar_relato(
-
-              doc, menserror, sintaxis_errores, mensexito, ids_importados, current_usuario.id, formato_sexo)
+              doc, menserror, sintaxis_errores, mensexito,
+              ids_importados, current_usuario.id, formato_sexo)
 
             if sintaxis_errores.length > 0
               redirect_to casos_errores_importacion_path(errores: sintaxis_errores)

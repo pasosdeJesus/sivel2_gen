@@ -268,24 +268,24 @@ module Sivel2Gen
                   per.dianac = nac[2].to_i if (1..31).include?(nac[2].to_i)
                 end
 
-                if p['sexo']
+                if p["sexo"]
                   case formato_sexo
-                    when 'sexomfs'
-                      per.sexo = p['sexo']
+                    when "sexomfs"
+                      per.sexo = p["sexo"]
                       if !per.save
                         menserror << "El formato de sexo selecionado no coincide con el relato "
                       end
-                    when 'sexohms'
-                      case p['sexo']
-                        when 'H'
-                          per.sexo = 'M'
-                        when 'M'
-                          per.sexo = 'F'
-                        when 'S'
-                          per.sexo = 'S'
+                    when "sexohms"
+                      case p["sexo"]
+                        when "H"
+                          per.sexo = "M"
+                        when "M"
+                          per.sexo = "F"
+                        when "S"
+                          per.sexo = "S"
                       end
                     else
-                      per.sexo = p['sexo']
+                      per.sexo = p["sexo"]
                   end
                 end
 
