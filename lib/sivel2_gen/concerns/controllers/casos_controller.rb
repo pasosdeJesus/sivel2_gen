@@ -1095,8 +1095,11 @@ module Sivel2Gen
             mensexito = ''
             sintaxis_errores=[]
             ids_importados = ''
-            formato_sexo = params[:formatosexo] ?
-              params[:formatosexo] : "sexomfs"
+            if params[:formatosexo]
+              formato_sexo = params[:formatosexo]
+            else
+              formato_sexo = "sexomfs"
+            end
             importa_exito = Sivel2Gen::CasosController.importar_relato(
               doc, menserror, sintaxis_errores, mensexito,
               ids_importados, current_usuario.id, formato_sexo)

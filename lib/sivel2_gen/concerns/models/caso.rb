@@ -327,7 +327,7 @@ module Sivel2Gen
                 datosent['victima'].each do |v|
                   vict = Sivel2Gen::Victima.new
                   vict.id_caso = self.id
-                  vict.importa([datosent, v], datossal, formato_sexo, 
+                  vict.importa([datosent, v], datossal, formato_sexo,
                                menserror, opciones)
                   idsv[v['id_persona']] = vict.id_persona
                 end
@@ -335,8 +335,9 @@ module Sivel2Gen
                 vict = Sivel2Gen::Victima.new
                 vict.id_caso = self.id
                 vict.importa(
-                             [datosent, datosent["victima"]], datossal,
-                             formato_sexo, menserror, opciones)
+                              [datosent, datosent["victima"]], datossal,
+                              formato_sexo, menserror, opciones
+                            )
                 idsv[datosent['victima']['id_persona']] = vict.id_persona
               end
             end

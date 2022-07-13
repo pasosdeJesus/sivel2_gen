@@ -241,7 +241,7 @@ module Sivel2Gen
                     " ILIKE '%' || unaccent(?) || '%'", n)
           }
 
-          def importa(datosent, datossal, formato_sexo , menserror, opciones = {})
+          def importa(datosent, datossal, formato_sexo, menserror, opciones = {})
             v = datosent[1]
             def crea_persona(p, v, menserror, formato_sexo)
               if p['id_persona'].to_i == v['id_persona'].to_i
@@ -270,22 +270,23 @@ module Sivel2Gen
 
                 if p["sexo"]
                   case formato_sexo
-                    when "sexomfs"
-                      per.sexo = p["sexo"]
-                      if !per.save
-                        menserror << "El formato de sexo selecionado no coincide con el relato "
-                      end
-                    when "sexohms"
-                      case p["sexo"]
-                        when "H"
-                          per.sexo = "M"
-                        when "M"
-                          per.sexo = "F"
-                        when "S"
-                          per.sexo = "S"
-                      end
-                    else
-                      per.sexo = p["sexo"]
+                  when "sexomfs"
+                    per.sexo = p["sexo"]
+                    if !per.save
+                      menserror << "El formato de sexo selecionado " +
+                        "no coincide con el relato "
+                    end
+                  when "sexohms"
+                    case p["sexo"]
+                    when "H"
+                      per.sexo = "M"
+                    when "M"
+                      per.sexo = "F"
+                    when "S"
+                      per.sexo = "S"
+                    end
+                  else
+                    per.sexo = p["sexo"]
                   end
                 end
 
