@@ -16,6 +16,8 @@ Sivel2Gen::Engine.routes.draw do
 
   get "/casos/busca" => 'casos#busca'
   get "/casos/cuenta" => 'casos#cuenta'
+  get '/casos/errores_importacion' => 'casos#errores_importacion',
+    as: :casos_errores_importacion
   get '/casos/importarrelatos' => 'casos#importarrelatos'
   get "/casos/:id/fichaimp" => "casos#fichaimp",
     as: :caso_fichaimp

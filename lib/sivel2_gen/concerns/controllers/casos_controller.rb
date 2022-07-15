@@ -968,11 +968,11 @@ module Sivel2Gen
             sivel2_gen_destroy
           end
 
-          def self.importar_relato(doc, menserror, mensexito, ids_importados,
+          def self.importar_relato(doc, menserror, sintaxis_errores, mensexito, ids_importados,
                                   usuario_id)
             if Nokogiri::XML(doc).errors
               Nokogiri::XML(doc).errors.each do |error|
-                menserror << error.message
+                sintaxis_errores.push(error.message)
               end
               return
             end
@@ -1076,6 +1076,10 @@ module Sivel2Gen
             return true
           end # importar_relato
 
+          def errores_importacion
+            render 'errores_importacion', locals:{errores: @errores}, layout: 'application'
+          end
+
           def importa
             authorize! :update, Sivel2Gen::Caso
             arc = params[:arc]
@@ -1089,10 +1093,15 @@ module Sivel2Gen
             end
             menserror = ''
             mensexito = ''
+            sintaxis_errores=[]
             ids_importados = ''
             importa_exito = Sivel2Gen::CasosController.importar_relato(
 
-              doc, menserror, mensexito, ids_importados, current_usuario.id)
+              doc, menserror, sintaxis_errores, mensexito, ids_importados, current_usuario.id)
+            if sintaxis_errores.length > 0
+              redirect_to casos_errores_importacion_path(errores: sintaxis_errores)
+              return 
+            end
             if mensexito != ''
               flash[:success] = mensexito
               if registrar_en_bitacora
