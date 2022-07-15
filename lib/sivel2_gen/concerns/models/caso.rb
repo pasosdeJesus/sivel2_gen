@@ -202,7 +202,6 @@ module Sivel2Gen
                    ORDER BY Level, id;"
             descendientes_poloe = ActiveRecord::Base.connection.select_all(
               consl)
-            #byebug
             descpe_ids = descendientes_poloe.to_a.map{|de| de["id"]} 
             actos = self.acto
 
@@ -329,12 +328,13 @@ module Sivel2Gen
                   vict.id_caso = self.id
                   vict.importa([datosent, v], datossal, formato_sexo,
                                menserror, opciones)
+                  byebug
                   idsv[v['id_persona']] = vict.id_persona
                 end
               else
                 vict = Sivel2Gen::Victima.new
                 vict.id_caso = self.id
-                vict.importa(
+                importa_vic = vict.importa(
                               [datosent, datosent["victima"]], datossal,
                               formato_sexo, menserror, opciones
                             )

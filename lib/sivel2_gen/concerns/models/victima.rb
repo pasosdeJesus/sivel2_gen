@@ -272,9 +272,12 @@ module Sivel2Gen
                   case formato_sexo
                   when "sexomfs"
                     per.sexo = p["sexo"]
-                    if !per.save
-                      menserror << "El formato de sexo selecionado " +
-                        "no coincide con el relato "
+                    begin
+                      per.save
+                    rescue => err
+                      per.sexo = "S"
+                      menserror << "Formato de sexo no coincide " +
+                        err.cause.to_s
                     end
                   when "sexohms"
                     case p["sexo"]
@@ -320,7 +323,7 @@ module Sivel2Gen
                 end
                 per.save!
                 self.id_persona = per.id
-              end  
+              end
             end
             if datosent[0]['persona'].kind_of?(Array)
               datosent[0]['persona'].each do |p|
@@ -434,7 +437,11 @@ module Sivel2Gen
               ele = v['observaciones'].split(/\_([^_]*)$/)
               recorrer_observaciones_v(ele, menserror)
             end
-            self.save!
+            if self.save
+              self.save!
+            else
+              return
+            end
           end
         end
       end
