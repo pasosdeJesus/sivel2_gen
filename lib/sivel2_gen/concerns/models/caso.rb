@@ -117,7 +117,7 @@ module Sivel2Gen
           has_many :victima,  foreign_key: "id_caso", dependent: :destroy, 
             class_name: 'Sivel2Gen::Victima' 
           #, validate: true Manejar en aplicaciones que usen este motor
-          
+
           has_many :persona, :through => :victima, class_name: 'Sip::Persona'
           accepts_nested_attributes_for :persona,  reject_if: :all_blank
           accepts_nested_attributes_for :victima, allow_destroy: true, 
@@ -202,7 +202,6 @@ module Sivel2Gen
                    ORDER BY Level, id;"
             descendientes_poloe = ActiveRecord::Base.connection.select_all(
               consl)
-            #byebug
             descpe_ids = descendientes_poloe.to_a.map{|de| de["id"]} 
             actos = self.acto
 
@@ -238,7 +237,8 @@ module Sivel2Gen
 
           require 'active_support/core_ext/hash' 
 
-          def importa(datosent, datossal, menserror, opciones = {})
+          def importa(datosent, datossal, formato_sexo,
+                      menserror, opciones = {})
             if datosent['fecha'].nil?
               self.fecha = Date.today
               menserror << "Falta fecha. "
@@ -326,15 +326,17 @@ module Sivel2Gen
                 datosent['victima'].each do |v|
                   vict = Sivel2Gen::Victima.new
                   vict.id_caso = self.id
-                  vict.importa([datosent, v], datossal, menserror, opciones)
+                  vict.importa([datosent, v], datossal, formato_sexo,
+                               menserror, opciones)
                   idsv[v['id_persona']] = vict.id_persona
                 end
               else
                 vict = Sivel2Gen::Victima.new
                 vict.id_caso = self.id
                 vict.importa(
-                  [datosent, datosent['victima']], datossal, menserror, 
-                  opciones)
+                              [datosent, datosent["victima"]], datossal,
+                              formato_sexo, menserror, opciones
+                            )
                 idsv[datosent['victima']['id_persona']] = vict.id_persona
               end
             end
