@@ -117,7 +117,7 @@ module Sivel2Gen
           has_many :victima,  foreign_key: "id_caso", dependent: :destroy, 
             class_name: 'Sivel2Gen::Victima' 
           #, validate: true Manejar en aplicaciones que usen este motor
-          
+
           has_many :persona, :through => :victima, class_name: 'Sip::Persona'
           accepts_nested_attributes_for :persona,  reject_if: :all_blank
           accepts_nested_attributes_for :victima, allow_destroy: true, 
@@ -328,13 +328,12 @@ module Sivel2Gen
                   vict.id_caso = self.id
                   vict.importa([datosent, v], datossal, formato_sexo,
                                menserror, opciones)
-                  byebug
                   idsv[v['id_persona']] = vict.id_persona
                 end
               else
                 vict = Sivel2Gen::Victima.new
                 vict.id_caso = self.id
-                importa_vic = vict.importa(
+                vict.importa(
                               [datosent, datosent["victima"]], datossal,
                               formato_sexo, menserror, opciones
                             )

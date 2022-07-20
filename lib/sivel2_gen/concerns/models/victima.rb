@@ -277,7 +277,7 @@ module Sivel2Gen
                     rescue => err
                       per.sexo = "S"
                       menserror << "Formato de sexo no coincide " +
-                        err.cause.to_s
+                                    err.cause.to_s
                     end
                   when "sexohms"
                     case p["sexo"]
@@ -437,11 +437,7 @@ module Sivel2Gen
               ele = v['observaciones'].split(/\_([^_]*)$/)
               recorrer_observaciones_v(ele, menserror)
             end
-            if self.save
-              self.save!
-            else
-              return
-            end
+            self.save ? self.save! : return
           end
         end
       end
