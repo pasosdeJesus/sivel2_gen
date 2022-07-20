@@ -1,0 +1,7 @@
+<h1> Se han encontrado los siguientes errores de sintaxis: </h1>
+<br>
+<% if params[:errores] %>
+  <%  params[:errores].each do |error| %>
+    <p><%= error %> </p>
+  <% end %>
+<% end %>
