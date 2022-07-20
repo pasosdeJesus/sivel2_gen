@@ -969,7 +969,7 @@ module Sivel2Gen
           end
 
           def self.importar_relato(doc, menserror, sintaxis_errores, mensexito, ids_importados,
-                                  usuario_id, formato_sexo)
+                                   usuario_id, formato_sexo)
             if Nokogiri::XML(doc).errors
               Nokogiri::XML(doc).errors.each do |error|
                 sintaxis_errores.push(error.message)
@@ -1102,7 +1102,8 @@ module Sivel2Gen
             end
             importa_exito = Sivel2Gen::CasosController.importar_relato(
               doc, menserror, sintaxis_errores, mensexito,
-              ids_importados, current_usuario.id, formato_sexo)
+              ids_importados, current_usuario.id, formato_sexo
+                            )
 
             if sintaxis_errores.length > 0
               redirect_to casos_errores_importacion_path(errores: sintaxis_errores)
