@@ -287,6 +287,10 @@ module Sivel2Gen
                       per.sexo = "F"
                     when "S"
                       per.sexo = "S"
+                    else
+                      per.sexo = "S"
+                      menserror << "Formato de sexo seleccionado no coincide" +
+                                    " con alguna opción del sistema"
                     end
                   else
                     per.sexo = p["sexo"]
