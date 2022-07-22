@@ -31,10 +31,10 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sip.git
-  revision: 69354b5cbb1a05767fac67ab1e91d157777f57a1
+  revision: f1465fe53a09d3345642263b8a94f5babad8c038
   branch: main
   specs:
-    sip (2.1a1)
+    sip (2.1a2)
       cancancan
       coffee-rails
       devise
