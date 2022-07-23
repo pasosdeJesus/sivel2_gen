@@ -31,7 +31,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sip.git
-  revision: f1465fe53a09d3345642263b8a94f5babad8c038
+  revision: 46f0e2b36dd5f6c93cf39206f72fcf31e194f948
   branch: main
   specs:
     sip (2.1a2)
@@ -348,7 +348,7 @@ GEM
     terrapin (0.6.0)
       climate_control (>= 0.0.3, < 1.0)
     thor (1.2.1)
-    tilt (2.0.10)
+    tilt (2.0.11)
     timeout (0.3.0)
     ttfunk (1.7.0)
     turbo-rails (1.1.1)
