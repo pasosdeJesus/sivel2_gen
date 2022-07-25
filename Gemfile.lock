@@ -11,8 +11,8 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/heb412_gen.git
-  revision: b6a87807716c356d50d4c6618c8b05eb7193116f
-  branch: main
+  revision: 58b6a2089fb63cd6cdd9a531e680709b6f6bc945
+  branch: sexoel2
   specs:
     heb412_gen (2.1a1)
       mr519_gen
@@ -22,8 +22,8 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/mr519_gen.git
-  revision: b0298e9542c2670ad6a16eb2a6d9a6435c9aa482
-  branch: main
+  revision: b524cc3933a8dc39ffcf7b36d40da0d543267f0e
+  branch: sexoel2
   specs:
     mr519_gen (2.1a1)
       rails
@@ -31,8 +31,8 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sip.git
-  revision: 64d484c6741850e9da033acae842a4f60a352b85
-  branch: main
+  revision: 4814f58e59048f629472777d7a48aa7dd2b83651
+  branch: sexoel2
   specs:
     sip (2.1a2)
       cancancan
@@ -225,7 +225,7 @@ GEM
     mini_mime (1.1.2)
     mini_portile2 (2.8.0)
     minitest (5.16.2)
-    msgpack (1.5.3)
+    msgpack (1.5.4)
     net-imap (0.2.3)
       digest
       net-protocol
@@ -241,7 +241,7 @@ GEM
       net-protocol
       timeout
     nio4r (2.5.8)
-    nokogiri (1.13.7)
+    nokogiri (1.13.8)
       mini_portile2 (~> 2.8.0)
       racc (~> 1.4)
     odf-report (0.7.3)
@@ -344,7 +344,7 @@ GEM
       sprockets (>= 3.0.0)
     stimulus-rails (1.1.0)
       railties (>= 6.0.0)
-    strscan (3.0.3)
+    strscan (3.0.4)
     terrapin (0.6.0)
       climate_control (>= 0.0.3, < 1.0)
     thor (1.2.1)

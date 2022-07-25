@@ -96,7 +96,7 @@
           <% estdes = "display: block" %>
         <% end %>
         <%= f.input :sexo,
-          collection: Sip::Persona::SEXO_OPCIONES, 
+          collection: Sip::Persona::sexo_opciones, 
           label: 'Sexo:',
           selected: sex_sel,
           input_html: {

@@ -48,7 +48,7 @@ module Sivel2Gen
               },
               'SEXOS' => { 
                 nomfiltro: :sexos,
-                coleccion: Sip::Persona::SEXO_OPCIONES,
+                coleccion: Sip::Persona::sexo_opciones,
                 metodo_etiqueta: false,
                 metodo_id: false,
                 campocons: 'persona.sexo'

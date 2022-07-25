@@ -22,7 +22,7 @@ module Sivel2Gen
           # O para colecciones como sexo:
           #   'SEXO' => { 
           #      nomfiltro: :sexos,
-          #      coleccion: Sip::Persona::SEXO_OPCIONES,
+          #      coleccion: Sip::Persona::sexo_opciones,
           #      metodo_etiqueta: false,
           #      metodo_id: false,
           #      campocons: 'persona.sexo'
@@ -81,7 +81,7 @@ module Sivel2Gen
               },
               'SEXO' => { 
                 nomfiltro: :sexos,
-                coleccion: Sip::Persona::SEXO_OPCIONES,
+                coleccion: Sip::Persona::sexo_opciones,
                 metodo_etiqueta: false,
                 metodo_id: false,
                 campocons: 'persona.sexo'

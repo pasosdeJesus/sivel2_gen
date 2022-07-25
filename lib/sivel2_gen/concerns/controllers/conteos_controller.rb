@@ -122,7 +122,7 @@ module Sivel2Gen
               },
               'SEXO' => { 
                 nomfiltro: :sexos,
-                coleccion: Sip::Persona::SEXO_OPCIONES,
+                coleccion: Sip::Persona::sexo_opciones,
                 metodo_etiqueta: false,
                 metodo_id: false,
                 campocons: 'persona.sexo'
@@ -911,9 +911,9 @@ module Sivel2Gen
                   "AS sectorsocial ON victima.id_sectorsocial=sectorsocial.id"
 
               when "SEXO"
-                que1 += ", CASE  WHEN persona.sexo='F' THEN 'Femenino' "\
-                  "  WHEN persona.sexo='M' THEN 'Masculino' "\
-                  "  ELSE 'Sin Información' "\
+                que1 += ", CASE  WHEN persona.sexo='#{Sip::Persona::convencion_sexo[:sexo_femenino].to_s}' THEN '#{Sip::Persona::convencion_sexo[:nombre_femenino]}' "\
+                  "  WHEN persona.sexo='#{Sip::Persona::convencion_sexo[:sexo_masculino].to_s}' THEN '#{Sip::Persona::convencion_sexo[:nombre_masculino]}' "\
+                  "  ELSE '#{Sip::Persona::convencion_sexo[:nombre_sininformacion]}' "\
                   "END AS sexo"
                 tablas1 += " LEFT JOIN public.sivel2_gen_profesion "\
                   "AS profesion ON victima.id_profesion=profesion.id"

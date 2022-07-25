@@ -9,7 +9,7 @@ module Sivel2Gen
       if params[:caso_id]
         @combatiente = Combatiente.new
         @combatiente.nombre = 'N'
-        @combatiente.sexo = 'S'
+        @combatiente.sexo = Sip::Persona.convencion_sexo[:sexo_sinformacion].to_s
         @combatiente.id_resagresion = 1
         @combatiente.id_caso = params[:caso_id]
         if @combatiente.save

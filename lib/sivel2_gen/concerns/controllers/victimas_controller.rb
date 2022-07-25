@@ -68,7 +68,7 @@ module Sivel2Gen
               @victima = Victima.new
               @persona.nombres = 'N'
               @persona.apellidos = 'N'
-              @persona.sexo = 'S'
+              @persona.sexo = Sip::Persona::convencion_sexo[:sexo_sininformacion]
               if !@persona.save
                 respond_to do |format|
                   format.html { render inline: 'No pudo crear persona' }

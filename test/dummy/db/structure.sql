@@ -1195,7 +1195,7 @@ CREATE TABLE public.sip_persona (
     id_clase integer,
     CONSTRAINT persona_check CHECK (((dianac IS NULL) OR (((dianac >= 1) AND (((mesnac = 1) OR (mesnac = 3) OR (mesnac = 5) OR (mesnac = 7) OR (mesnac = 8) OR (mesnac = 10) OR (mesnac = 12)) AND (dianac <= 31))) OR (((mesnac = 4) OR (mesnac = 6) OR (mesnac = 9) OR (mesnac = 11)) AND (dianac <= 30)) OR ((mesnac = 2) AND (dianac <= 29))))),
     CONSTRAINT persona_mesnac_check CHECK (((mesnac IS NULL) OR ((mesnac >= 1) AND (mesnac <= 12)))),
-    CONSTRAINT persona_sexo_check CHECK (((sexo = 'S'::bpchar) OR (sexo = 'F'::bpchar) OR (sexo = 'M'::bpchar)))
+    CONSTRAINT persona_sexo_check CHECK (((length(sexo) = 1) AND ('MHS'::text ~~ (('%'::text || (sexo)::text) || '%'::text))))
 );
 
 
@@ -8796,6 +8796,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20220721170452'),
 ('20220721200858'),
 ('20220722000850'),
-('20220722192214');
+('20220722192214'),
+('20220725155243');
 
 
