@@ -48,3 +48,4 @@ test/dummy/app/assets/builds
 test/dummy/app/javascript/controllers/sip
 
 public/*/csv/actos_individuales.csv
+test/dummy/public/sivel2_1/csv
