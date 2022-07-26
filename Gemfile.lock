@@ -11,8 +11,8 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/heb412_gen.git
-  revision: 58b6a2089fb63cd6cdd9a531e680709b6f6bc945
-  branch: sexoel2
+  revision: 2c427ae13e1874c1b04b396bcc9e3cbb637f49e1
+  branch: main
   specs:
     heb412_gen (2.1a1)
       mr519_gen
@@ -22,8 +22,8 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/mr519_gen.git
-  revision: b524cc3933a8dc39ffcf7b36d40da0d543267f0e
-  branch: sexoel2
+  revision: 25cf3b23b9302af3230532483f0a874d0a07f6cd
+  branch: main
   specs:
     mr519_gen (2.1a1)
       rails
@@ -31,8 +31,8 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sip.git
-  revision: 4814f58e59048f629472777d7a48aa7dd2b83651
-  branch: sexoel2
+  revision: 6bbed3b646d21aca1e814d5d9913b13a57288e3a
+  branch: main
   specs:
     sip (2.1a2)
       cancancan
@@ -185,9 +185,9 @@ GEM
       devise (>= 4.8.0)
     digest (3.1.0)
     docile (1.4.0)
-    dotenv (2.7.6)
-    dotenv-rails (2.7.6)
-      dotenv (= 2.7.6)
+    dotenv (2.8.0)
+    dotenv-rails (2.8.0)
+      dotenv (= 2.8.0)
       railties (>= 3.2)
     erubi (1.10.0)
     execjs (2.8.1)
