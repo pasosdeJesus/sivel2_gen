@@ -271,24 +271,46 @@ module Sivel2Gen
                 if p["sexo"]
                   case formato_sexo
                   when "sexomfs"
-                    per.sexo = p["sexo"]
+                    case p["sexo"]
+                    when "M"
+                      per.sexo =
+                        Sip::Persona.convencion_sexo[:sexo_masculino].to_s
+                    when "F"
+                      per.sexo =
+                        Sip::Persona.convencion_sexo[:sexo_femenino].to_s
+                    when "S"
+                      per.sexo =
+                        Sip::Persona.convencion_sexo[:sexo_sininformacion].to_s
+                    end
                     begin
-                      per.save
+                      if per.save
+                        per.save
+                      else
+                        per.sexo=
+                          Sip::Persona.convencion_sexo[:sexo_sininformacion].to_s
+                        per.save
+                        menserror << "Formato de sexo no coincide "
+                      end
                     rescue => err
-                      per.sexo = "S"
+                      per.sexo =
+                        Sip::Persona.convencion_sexo[:sexo_sininformacion].to_s
                       menserror << "Formato de sexo no coincide " +
                                     err.cause.to_s
                     end
                   when "sexohms"
                     case p["sexo"]
                     when "H"
-                      per.sexo = "M"
+                      per.sexo =
+                        Sip::Persona.convencion_sexo[:sexo_masculino].to_s
                     when "M"
-                      per.sexo = "F"
+                      per.sexo =
+                        Sip::Persona.convencion_sexo[:sexo_femenino].to_s
                     when "S"
-                      per.sexo = "S"
+                      per.sexo =
+                        Sip::Persona.convencion_sexo[:sexo_sininformacion].to_s
                     else
-                      per.sexo = "S"
+                      per.sexo =
+                        Sip::Persona.convencion_sexo[:sexo_sininformacion].to_s
                       menserror << "Formato de sexo seleccionado no coincide" +
                                     " con alguna opción del sistema"
                     end
