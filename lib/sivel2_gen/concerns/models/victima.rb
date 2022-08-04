@@ -286,8 +286,8 @@ module Sivel2Gen
                       if per.save
                         per.save
                       else
-                        per.sexo=
-                          Sip::Persona.convencion_sexo[:sexo_sininformacion].to_s
+                        per.sexo =
+                         Sip::Persona.convencion_sexo[:sexo_sininformacion].to_s
                         per.save
                         menserror << "Formato de sexo no coincide "
                       end
