@@ -25,15 +25,20 @@ module Sivel2Gen
 
           def filtro_fechas(casos, cfecha = 'sivel2_gen_caso.fecha')
             pfid = ''
-            if (params[:validarcaso] && params[:validarcaso][:fechaini] && 
-                params[:validarcaso][:fechaini] != '')
-              pfi = params[:validarcaso][:fechaini]
-              pfid = Sip::FormatoFechaHelper.fecha_local_estandar pfi
+            if (params[:validarcaso] && params[:validarcaso][:fechaini])
+              if params[:validarcaso][:fechaini] != ''
+                pfi = params[:validarcaso][:fechaini]
+                pfid = Sip::FormatoFechaHelper.fecha_local_estandar pfi
+              else
+                pfid = nil
+              end
             else
               # Comenzar en semestre anterior
               pfid = Sip::FormatoFechaHelper.inicio_semestre(Date.today).to_s
             end
-            casos = casos.where("#{cfecha} >= ?", pfid)
+            if pfid
+              casos = casos.where("#{cfecha} >= ?", pfid)
+            end
             if(params[:validarcaso] && params[:validarcaso][:fechafin] && 
                params[:validarcaso][:fechafin] != '')
               pff = params[:validarcaso][:fechafin]
