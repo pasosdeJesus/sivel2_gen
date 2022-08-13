@@ -6,7 +6,7 @@
       'clase_accordion-body': 'table-responsive',
       'estilo_accordion-body': 'overflow-x:scroll'
     }) do %>
-    <table class="table table-bordered table-sm ">
+    <table class="table table-bordered table-sm tabla_familiares ">
       <thead class="thead-light">
         <tr>
           <th>Nombres</th>
@@ -17,7 +17,7 @@
           <th>Parentesco</th>
         </tr>
       </thead>
-      <tbody id="persona_familiares-<%= f.object.id %>">
+      <tbody id="persona_familiares">
         <%= f.simple_fields_for :persona_trelacion1 do |pt| %>
           <%= render 'sip/personas/persona_familiar_campos', f: pt %>
           <% if pt.object.personauno.nil? %>
@@ -29,7 +29,7 @@
     <div class="links">
       <%= link_to_add_association 'Añadir Familiar', f, 
         :persona_trelacion1,
-        :"data-association-insertion-node" => "tbody#persona_familiares-#{f.object.id}", 
+        :"data-association-insertion-node" => "tbody#persona_familiares", 
         :"data-association-insertion-method" => "append", 
         partial: 'sip/personas/persona_familiar_campos',
         :class => 'btn-primary'

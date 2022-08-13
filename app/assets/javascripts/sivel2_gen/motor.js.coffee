@@ -5,6 +5,7 @@
 #//= require cocoon
 #//= require sivel2_gen/motor_es6
 #//= require sivel2_gen/AutocompletaAjaxVictimas
+#//= require sivel2_gen/AutocompletaAjaxFamiliares
 #//= require sivel2_gen/AutocompletaAjaxColectivas
 
 @sivel2_gen_procesa_eliminaracto = false
@@ -592,6 +593,7 @@ enviaFormularioContarPost= (root) ->
 
   # En victimas permite autocompletar nombres de victima
   Sivel2GenAutocompletaAjaxVictimas.iniciar()
+  Sivel2GenAutocompletaAjaxFamiliares.iniciar()
   Sivel2GenAutocompletaAjaxColectivas.iniciar()
 
   #$(document).on('focusin', 
