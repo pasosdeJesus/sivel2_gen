@@ -5,6 +5,8 @@
     <% end %>
     <%= f.simple_fields_for :personados do |p| %>
       <td>
+        <datalist id="fuente-familiares">
+        </datalist>
         <%= p.input :id, as: :hidden %>
         <% ph = 'N'
         ac = {'data-autocompleta' => 'no',
@@ -12,7 +14,8 @@
         if (!p.object.nombres || p.object.nombres == 'N' || 
             p.object.nombres == '')
           ph = 'Buscar'
-          ac = { style: 'width: 9em' }
+          ac = { list: "fuente-familiares",
+                 style: 'width: 9em' }
         end %>
 
         <%= p.input :nombres, placeholder: ph, 

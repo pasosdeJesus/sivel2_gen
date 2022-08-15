@@ -1,0 +1,46 @@
+<% model_class = Sivel2Gen::Caso %>
+<%= simple_form_for @victima,
+    url: sivel2_gen.victimas_path(@victima).sub(/\./,"/"),
+    include_id: false do |f| %>
+      <%= f.simple_fields_for :persona do |p| %>
+    <table class="table table-bordered table-sm tabla_familiares ">
+      <thead class="thead-light">
+        <tr>
+          <th>Nombres</th>
+          <th>Apellidos</th>
+          <th>Sexo</th>
+          <th width='6em'>Tipo Id.</th>
+          <th>Número .Id</th>
+          <th>Parentesco</th>
+        </tr>
+      </thead>
+        <% if @personados %>
+          <% personatr = Sip::PersonaTrelacion.new
+          personatr.persona1 = @victima.persona.id
+          personatr.persona2 = @personados.id
+          p.object.persona_trelacion1.push(personatr) %>
+      <% end %>
+      <tbody id="persona_familiares">
+        <%= p.simple_fields_for :persona_trelacion1 do |pt| %>
+          <% s = render 'sip/personas/persona_familiar_campos', f: pt %>
+          <% if pt.object.persona1.nil? %>
+            <% pt.object.persona1 = f.object.persona %>
+          <% end %>
+           <% s.gsub!(
+             'caso_victima_attributes_0', 
+             'caso_victima_attributes_' + @victima.id.to_s) %>
+           <% s.gsub!(
+             'caso[victima_attributes][0]', 
+             'caso[victima_attributes][' + @victima.id.to_s + ']') %>
+           <% s.gsub!(
+             'persona_trelacion1_attributes_0', 
+             'persona_trelacion1_attributes_' + @trelacion1) %>
+           <% s.gsub!(
+             'persona_trelacion1_attributes][0]', 
+             'persona_trelacion1_attributes][' + @trelacion1 + ']') %>
+          <%= s.html_safe %>
+        <% end %>
+      </tbody>
+    </table>
+    <% end %>
+<% end %>

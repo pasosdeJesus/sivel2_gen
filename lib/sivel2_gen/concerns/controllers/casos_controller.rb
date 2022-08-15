@@ -784,12 +784,20 @@ module Sivel2Gen
                           t[:personados_attributes][:id].to_i > 0 &&
                           Sip::Persona.where(
                             id: t[:personados_attributes][:id].to_i).count == 1
-                          pt = Sip::PersonaTrelacion.create({
+                          pt_e = Sip::PersonaTrelacion.where(
                             persona1: v[:persona_attributes][:id],
                             persona2: t[:personados_attributes][:id]
-                          })
-                          pt.save!(validate: false)
-                          params[:caso][:victima_attributes][iv][:persona_attributes][:persona_trelacion1_attributes][it][:id] = pt.id
+                          )
+                          if !pt_e
+                            pt = Sip::PersonaTrelacion.create({
+                              persona1: v[:persona_attributes][:id],
+                              persona2: t[:personados_attributes][:id]
+                            })
+                            pt.save!(validate: false)
+                            params[:caso][:victima_attributes][iv][:persona_attributes][:persona_trelacion1_attributes][it][:id] = pt.id
+                          else
+                            params[:caso][:victima_attributes][iv][:persona_attributes][:persona_trelacion1_attributes][it][:id] = pt_e[0].id
+                          end
                       end
                     end
                   end
