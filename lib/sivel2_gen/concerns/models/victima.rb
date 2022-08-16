@@ -289,12 +289,12 @@ module Sivel2Gen
                         per.sexo =
                          Sip::Persona.convencion_sexo[:sexo_sininformacion].to_s
                         per.save
-                        menserror << "Formato de sexo no coincide "
+                        menserror << "Convención de sexo #{p["sexo"]} no coincide "
                       end
                     rescue => err
                       per.sexo =
                         Sip::Persona.convencion_sexo[:sexo_sininformacion].to_s
-                      menserror << "Formato de sexo no coincide " +
+                      menserror << "Convención de sexo #{p["sexo"]} no coincide " +
                                     err.cause.to_s
                     end
                   when "sexohms"
@@ -311,7 +311,7 @@ module Sivel2Gen
                     else
                       per.sexo =
                         Sip::Persona.convencion_sexo[:sexo_sininformacion].to_s
-                      menserror << "Formato de sexo seleccionado no coincide" +
+                      menserror << "Convención de sexo #{p["sexo"]} seleccionado no coincide" +
                                     " con alguna opción del sistema"
                     end
                   else
