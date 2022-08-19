@@ -9,7 +9,7 @@ module Sivel2Gen
       if params[:caso_id]
         @combatiente = Combatiente.new
         @combatiente.nombre = 'N'
-        @combatiente.sexo = Sip::Persona.convencion_sexo[:sexo_sinformacion].to_s
+        @combatiente.sexo = Sip::Persona.convencion_sexo[:sexo_masculino].to_s
         @combatiente.id_resagresion = 1
         @combatiente.id_caso = params[:caso_id]
         if @combatiente.save
@@ -21,8 +21,10 @@ module Sivel2Gen
           end
         else
           respond_to do |format|
-            format.html { render action: 'error' }
-            format.json { render json: @combatiente.errors, 
+            format.html { 
+              render inline: 'Error: ' + @combatiente.errors.messages.to_s 
+            }
+            format.json { render json: @combatiente.errors.messages, 
                           status: :unprocessable_entity }
           end
         end
