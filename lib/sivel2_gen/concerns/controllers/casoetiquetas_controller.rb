@@ -8,10 +8,10 @@ module Sivel2Gen
         included do
           include ActionView::Helpers::AssetUrlHelper
 
-          # Crea una nueva etiqueta para el caso que recibe por parametro 
+          # Crea una nueva etiqueta para el caso que recibe por parametro
           # params[:caso_id].  Pone valores simples en los campos requeridos
           def nueva
-            if params[:caso_id] 
+            if params[:caso_id]
               @casoetiqueta = Sivel2Gen::CasoEtiqueta.new
               @casoetiqueta.id_caso = params[:caso_id]
               @casoetiqueta.id_etiqueta = Sip::Etiqueta.count > 0 ? Sip::Etiqueta.take.id : 0
@@ -25,8 +25,10 @@ module Sivel2Gen
                 end
               else
                 respond_to do |format|
-                  format.html { render action: "error" }
-                  format.json { render json: @casoetiqueta.errors, 
+                  format.html {
+                    render inline: "error: #{@casoetiqueta.errors.messages} "
+                  }
+                  format.json { render json: @casoetiqueta.errors.messages,
                     status: :unprocessable_entity }
                 end
               end
@@ -39,7 +41,7 @@ module Sivel2Gen
 
         end # included
 
-      end 
+      end
     end
   end
 end
