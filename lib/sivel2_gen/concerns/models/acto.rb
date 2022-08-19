@@ -5,6 +5,9 @@ module Sivel2Gen
       module Acto
         extend ActiveSupport::Concern
         included do
+
+          include Sip::Modelo
+
           belongs_to :presponsable, class_name: 'Sivel2Gen::Presponsable',
             foreign_key: "id_presponsable", validate: true, optional: false
           accepts_nested_attributes_for :presponsable

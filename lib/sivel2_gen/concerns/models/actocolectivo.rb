@@ -7,6 +7,8 @@ module Sivel2Gen
 
         included do
 
+          include Sip::Modelo
+
           belongs_to :presponsable, foreign_key: "id_presponsable", 
             validate: true, class_name: 'Sivel2Gen::Presponsable', 
             optional: false

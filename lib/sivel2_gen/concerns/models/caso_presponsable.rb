@@ -7,6 +7,7 @@ module Sivel2Gen
 
         included do
 
+          include Sip::Modelo
           include Sip::Localizacion
           include Sip::FormatoFechaHelper
 
