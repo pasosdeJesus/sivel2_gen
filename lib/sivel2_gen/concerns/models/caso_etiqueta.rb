@@ -12,12 +12,12 @@ module Sivel2Gen
 
           self.table_name = 'sivel2_gen_caso_etiqueta'
 
-          belongs_to :caso, foreign_key: "id_caso", validate: true, 
+          belongs_to :caso, foreign_key: "id_caso", validate: false, 
             class_name: 'Sivel2Gen::Caso', inverse_of: :caso_etiqueta, 
             optional: false
-          belongs_to :etiqueta, foreign_key: "id_etiqueta", validate: true,
+          belongs_to :etiqueta, foreign_key: "id_etiqueta", validate: false,
             class_name: 'Sip::Etiqueta', optional: false
-          belongs_to :usuario, foreign_key: "id_usuario", validate: true, 
+          belongs_to :usuario, foreign_key: "id_usuario", validate: false, 
             optional: false
 
           campofecha_localizado :fecha

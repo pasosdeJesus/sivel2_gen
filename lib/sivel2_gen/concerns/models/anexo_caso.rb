@@ -6,6 +6,7 @@ module Sivel2Gen
         extend ActiveSupport::Concern
 
         included do
+          include Sip::Modelo
           include Sip::Localizacion
           include Sip::FormatoFechaHelper
 
