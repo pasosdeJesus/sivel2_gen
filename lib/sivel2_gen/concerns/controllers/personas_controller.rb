@@ -43,8 +43,8 @@ module Sivel2Gen
 
           def remplazarfamiliar
             @personados = Sip::Persona.find(params[:id_persona].to_i)
+            @caso = Sivel2Gen::Caso.find(params[:id_caso])
             @victima = Sivel2Gen::Victima.find(params[:id_victima].to_i)
-            @caso = @victima.caso
             @caso.current_usuario = current_usuario
             @trelacion1 = params[:id_trelacion1]
             respond_to do |format|
