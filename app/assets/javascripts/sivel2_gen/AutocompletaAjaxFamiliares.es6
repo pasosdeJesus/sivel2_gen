@@ -26,17 +26,19 @@ export default class Sivel2GenAutocompletaAjaxFamiliares {
         Sivel2GenAutocompletaAjaxFamiliares.claseEnvolturaFamiliar)
       return
     }
-    const elemIdVictima = divcp.querySelector('input')
+    const elemIdVictima =
+    $(eorig.target.closest(".seccionvictima")).find(".caso_victima_id").find("input[id^=caso_victima_attributes][id$=id]")[0].value
     const elemIdFamiliar = divcpf.querySelector('input')
     if (elemIdVictima == null) {
-      window.alert('No se ubico .campos_personados')
+      window.alert('No se ubico id de la víctima')
       return
     }
-    const id_victima = elemIdVictima.id.split("_")[3]
+    const id_victima = elemIdVictima
     const id_trelacion1 = elemIdFamiliar.id.split("_")[9]
-
+    caso = $("form")[0].id.split("_")[2]
     let d = 'id_persona=' + idPersona
     d += "&id_victima=" + id_victima + "&id_trelacion1=" + id_trelacion1
+    d += "&id_caso=" + caso
     console.log(d)
     const a = root.puntomontaje + 'personas/remplazarfamiliar'
 
