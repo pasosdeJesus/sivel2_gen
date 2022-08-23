@@ -715,9 +715,26 @@ enviaFormularioContarPost= (root) ->
               $(btneliminar).trigger('click')
   )
 
+  #Permite crear copias de combatientes
+  @crea_copia_de_combatiente = (obj, fobj) ->
+    div_combatiente = $(obj).parent().parent()
+    valores= []
+    div_combatiente.find(':input').each(()->
+      valores.push($(this).val())
+    )
+    $('.agrega-comb').trigger("click")
+    setTimeout(()->
+      comb_agregado = $("#combatientes div.seccioncombatiente:last")
+      comb_agregado.find(':input').each((i)->
+        if(i != 0 && i !=35)
+          $(this).val(valores[i])
+      )
+    , 1000)
+
+    return false;
+
   #Permite crear copias de victimas agregadas 
   @crea_copia_de_victima = (obj, fobj) ->
-    
     div_victima = $(obj).parent().parent()
     valores= []
     div_victima.find(':input').each(()->
