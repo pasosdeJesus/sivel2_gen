@@ -50,11 +50,30 @@ export default class Sivel2GenMotorEs6 {
           }
         })
       }
-
     }, false);
-
-
   }
+
+  static crea_copia_de_combatiente(obj, fobj){
+    div_combatiente = obj.parentElement.parentElement;
+    valores= []
+    div_combatiente.querySelectorAll('input').forEach(elem => {
+      valores.push(elem.value)
+    });
+    document.querySelector('.agrega-comb').click();
+    setTimeout(() =>{
+      combatientes = document.querySelector("#combatientes").
+        querySelectorAll(".seccioncombatiente")
+      comb_agregado = combatientes[combatientes.length- 1]
+      comb_agregado.querySelectorAll('input').forEach((elem, i) => {
+        if(i != 0 && i !=35){
+          elem.value = valores[i]
+        }
+      })}
+    , 1000);
+
+    return false
+  }
+
 }
 
 
