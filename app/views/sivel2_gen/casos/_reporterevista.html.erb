@@ -13,14 +13,18 @@
   <div class='alerta'>Caso sin ubicación principal</div>
 <% elsif caso.ubicacion.count >= 1 %>
   <% ubi_principal = Sip::Ubicacion.find(caso.ubicacion_id) %>
-  <% if ubi_principal.departamento %>
-    DEPARTAMENTO: 
-    <%= ubi_principal.departamento.nombre%> 
-  <% end %>
-  <% if ubi_principal.municipio %>
-    <br>
-    MUNICIPIO: 
-    <%= ubi_principal.municipio.nombre%> 
+  <% if ubi_principal.pais.id == 170 %>
+    <% if ubi_principal.departamento %>
+      DEPARTAMENTO: 
+      <%= ubi_principal.departamento.nombre%> 
+    <% end %>
+    <% if ubi_principal.municipio %>
+      <br>
+      MUNICIPIO: 
+      <%= ubi_principal.municipio.nombre%> 
+    <% end %>
+  <% elsif ubi_principal.pais.id > 0 %>
+    PAÍS: <%= ubi_principal.pais.nombre %>
   <% end %>
   <% if caso.ubicacion.count > 1 %>
     <p class='alerta'>Caso con varias ubicaciones, (Principal mostrada)</p>
