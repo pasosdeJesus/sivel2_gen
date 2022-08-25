@@ -81,12 +81,12 @@ export default class Sivel2GenMotorEs6 {
         querySelectorAll(".seccioncombatiente")
       comb_agregado = combatientes[combatientes.length- 1]
       comb_agregado.querySelectorAll('input').forEach((elem, i) => {
-        if(i != 0 && i !=35){
+        if(i >= 0 && i !=35){
           elem.value = valores_input[i]
         }
       })
       comb_agregado.querySelectorAll('select').forEach((elem, i) => {
-        if(i != 0 && i !=35){
+        if(i >= 0 && i !=35){
           if(elem.multiple){
             for(const val of valores_select[i]){
               for (const opc of elem.options) {
@@ -103,7 +103,6 @@ export default class Sivel2GenMotorEs6 {
       })
       }
     , 1000);
-
     return false
   }
 
