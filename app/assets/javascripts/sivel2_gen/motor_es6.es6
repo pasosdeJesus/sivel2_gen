@@ -55,9 +55,25 @@ export default class Sivel2GenMotorEs6 {
 
   static crea_copia_de_combatiente(obj, fobj){
     div_combatiente = obj.parentElement.parentElement;
-    valores= []
+    valores_input= []
+    valores_select= []
     div_combatiente.querySelectorAll('input').forEach(elem => {
-      valores.push(elem.value)
+      valores_input.push(elem.value)
+    });
+    div_combatiente.querySelectorAll('select').forEach(elem => {
+      if(elem.multiple){
+        opciones = elem.options
+        valores_multi= []
+        for (const opc of opciones){
+          if(opc.selected){
+            valores_multi.push(opc.value)
+          }
+        }
+        valores_select.push(valores_multi)
+      }
+      else{
+        valores_select.push(elem.value)
+      }
     });
     document.querySelector('.agrega-comb').click();
     setTimeout(() =>{
@@ -66,9 +82,26 @@ export default class Sivel2GenMotorEs6 {
       comb_agregado = combatientes[combatientes.length- 1]
       comb_agregado.querySelectorAll('input').forEach((elem, i) => {
         if(i != 0 && i !=35){
-          elem.value = valores[i]
+          elem.value = valores_input[i]
         }
-      })}
+      })
+      comb_agregado.querySelectorAll('select').forEach((elem, i) => {
+        if(i != 0 && i !=35){
+          if(elem.multiple){
+            for(const val of valores_select[i]){
+              for (const opc of elem.options) {
+                if(opc.value == val){
+                  opc.selected = true;
+                }
+              }
+            }
+          }
+          else{
+            elem.value = valores_select[i]
+          }
+        }
+      })
+      }
     , 1000);
 
     return false
