@@ -77,18 +77,27 @@ module Sivel2Gen
 
           def departamento_caso
             r = ''
-            if self.caso && self.caso.ubicacion && self.caso.ubicacion.count>0
-              r += self.caso.ubicacion[0].departamento ?
-                self.caso.ubicacion[0].departamento.nombre : ''
+            if self.caso && self.caso.ubicacionprincipal
+              if self.caso.ubicacionprincipal.id_pais == 170 # COLOMBIA
+                r += self.caso.ubicacionprincipal.departamento ?
+                  self.caso.ubicacionprincipal.departamento.nombre : ''
+              else
+                r += 'Exterior'
+              end
             end
             r
           end
 
           def municipio_caso
             r = ''
-            if self.caso && self.caso.ubicacion && self.caso.ubicacion.count>0
-              r += self.caso.ubicacion[0].municipio ?
-                self.caso.ubicacion[0].municipio.nombre : ''
+            if self.caso && self.caso.ubicacionprincipal
+              if self.caso.ubicacionprincipal.id_pais == 170 # COLOMBIA
+                r += self.caso.ubicacionprincipal.municipio ?
+                  self.caso.ubicacionprincipal.municipio.nombre : ''
+              else
+                r += self.caso.ubicacionprincipal.pais ?
+                  self.caso.ubicacionprincipal.pais.nombre : ''
+              end
             end
             r
           end
@@ -116,12 +125,18 @@ module Sivel2Gen
 
           def ubicacion_caso
             r = ''
-            if self.caso && self.caso.ubicacion && self.caso.ubicacion.count>0
-              r += self.caso.ubicacion[0].departamento ?
-                self.caso.ubicacion[0].departamento.nombre : ''
-              r += ' - '
-              r += self.caso.ubicacion[0].municipio ?
-                self.caso.ubicacion[0].municipio.nombre : ''
+            if self.caso && self.caso.ubicacionprincipal
+              if self.caso.ubicacionprincipal.id_pais == 170
+                r += self.caso.ubicacionprincipal.departamento ?
+                  self.caso.ubicacionprincipal.departamento.nombre : ''
+                r += ' - '
+                r += self.caso.ubicacionprincipal.municipio ?
+                  self.caso.ubicacionprincipal.municipio.nombre : ''
+              else
+                r += 'Exterior - '
+                r += self.caso.ubicacionprincipal.pais ?
+                  self.caso.ubicacionprincipal.pais.nombre : ''
+              end
             end
             r
           end
