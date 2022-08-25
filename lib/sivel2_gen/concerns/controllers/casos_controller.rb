@@ -777,8 +777,7 @@ module Sivel2Gen
                   if v[:persona_attributes] &&
                       v[:persona_attributes][:persona_trelacion1_attributes]
                     v[:persona_attributes][:persona_trelacion1_attributes].each do |it, t|
-                      # Ubicamos los de autocompletacion y para esos creamos un registro
-                      if t && (!t[:id] || t[:id] == '') &&
+                     if t && (!t[:id] || t[:id] == '') &&
                           t[:personados_attributes] &&
                           t[:personados_attributes][:id] &&
                           t[:personados_attributes][:id].to_i > 0 &&

@@ -45,6 +45,7 @@ module Sivel2Gen
             @personados = Sip::Persona.find(params[:id_persona].to_i)
             @caso = Sivel2Gen::Caso.find(params[:id_caso])
             @victima = Sivel2Gen::Victima.find(params[:id_victima].to_i)
+            @victima_cocoon = params[:id_victcocoon]
             @caso.current_usuario = current_usuario
             @trelacion1 = params[:id_trelacion1]
             respond_to do |format|

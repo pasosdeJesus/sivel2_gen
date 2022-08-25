@@ -12,22 +12,16 @@ export default class Sivel2GenAutocompletaAjaxFamiliares {
     sip_arregla_puntomontaje(root)
     const cs = id.split(';')
     const idPersona = cs[0]
-    const divcp = eorig.target.closest('.' + 
-      Sivel2GenAutocompletaAjaxFamiliares.claseEnvoltura)
     const divcpf = eorig.target.closest('.' + 
-      Sivel2GenAutocompletaAjaxFamiliares.claseEnvolturaFamiliar)
-    if (divcp == null) {
+      Sivel2GenAutocompletaAjaxFamiliares.claseEnvoltura)
+    if (divcpf == null) {
       window.alert('No se ubico ' +
         Sivel2GenAutocompletaAjaxFamiliares.claseEnvoltura)
       return
     }
-    if (divcpf == null) {
-      window.alert('No se ubico ' +
-        Sivel2GenAutocompletaAjaxFamiliares.claseEnvolturaFamiliar)
-      return
-    }
-    const elemIdVictima =
-    $(eorig.target.closest(".seccionvictima")).find(".caso_victima_id").find("input[id^=caso_victima_attributes][id$=id]")[0].value
+    const campo_oculto = $(eorig.target.closest(".seccionvictima")).find(".caso_victima_id").find("input[id^=caso_victima_attributes][id$=id]")[0]
+    const elemIdVictima = campo_oculto.value
+    const elemIdVictimaCocoon = campo_oculto.id.split("_")[3]
     const elemIdFamiliar = divcpf.querySelector('input')
     if (elemIdVictima == null) {
       window.alert('No se ubico id de la víctima')
@@ -39,9 +33,9 @@ export default class Sivel2GenAutocompletaAjaxFamiliares {
     let d = 'id_persona=' + idPersona
     d += "&id_victima=" + id_victima + "&id_trelacion1=" + id_trelacion1
     d += "&id_caso=" + caso
+    d += "&id_victcocoon=" + elemIdVictimaCocoon
     console.log(d)
     const a = root.puntomontaje + 'personas/remplazarfamiliar'
-
     window.Rails.ajax({
       type: 'GET',
       url: a,
@@ -76,6 +70,5 @@ export default class Sivel2GenAutocompletaAjaxFamiliares {
 
 // Sobrellevamos imposibilidad de hacer static claseEnvoltura y
 // static idDatalist dentro de la clase Sivel2GenAutocompletaAjaxFamiliares asi:
-Sivel2GenAutocompletaAjaxFamiliares.claseEnvoltura = 'tabla_familiares'
-Sivel2GenAutocompletaAjaxFamiliares.claseEnvolturaFamiliar = 'campos_personados'
+Sivel2GenAutocompletaAjaxFamiliares.claseEnvoltura = 'campos_personados'
 Sivel2GenAutocompletaAjaxFamiliares.idDatalist = 'fuente-familiares'
