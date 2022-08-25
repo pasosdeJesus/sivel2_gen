@@ -717,7 +717,6 @@ enviaFormularioContarPost= (root) ->
 
   #Permite crear copias de victimas agregadas 
   @crea_copia_de_victima = (obj, fobj) ->
-    
     div_victima = $(obj).parent().parent()
     valores= []
     div_victima.find(':input').each(()->

@@ -1,4 +1,4 @@
-<div class='control-group nested-fields'>
+<div class='control-group nested-fields seccioncombatiente'>
   <div class="controls">
     
     <%= f.input :id, as: :hidden %>
@@ -115,7 +115,9 @@
         value_method: :id %>
        </div>
     </div>
-
+    <%= link_to t('Crea Copia'), '#',
+                  class: 'btn btn-sm',
+                  onclick: 'Sivel2GenMotorEs6.crea_copia_de_combatiente(this, event)' %>
     <%= link_to_remove_association "Eliminar Combatiente", f, 
       {:class => 'btn-danger', :'data-existing' => 'true'} 
     %> 
