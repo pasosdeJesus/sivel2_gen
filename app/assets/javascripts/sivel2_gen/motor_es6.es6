@@ -82,7 +82,10 @@ export default class Sivel2GenMotorEs6 {
       comb_agregado = combatientes[combatientes.length- 1]
       comb_agregado.querySelectorAll('input').forEach((elem, i) => {
         if(i >= 0 && i !=35){
-          elem.value = valores_input[i]
+          if(elem.type != "hidden"){
+            elem.value = valores_input[i]
+            elem.dispatchEvent(new Event('input'));
+          }
         }
       })
       comb_agregado.querySelectorAll('select').forEach((elem, i) => {
