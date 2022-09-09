@@ -116,7 +116,7 @@ module Sivel2Gen
                          "MES CASO", "ORGANIZACIÓN", "PROFESIÓN", 
                          "RANGO DE EDAD", "SECTOR SOCIAL", "SEXO", 
                          Sivel2Gen::Victima.human_attribute_name(:vinculoestado).upcase
-#                         "VÍNCULO CON EL ESTADO" 
+            #                         "VÍNCULO CON EL ESTADO" 
             ]
             @titulo_personas = 'Demografía de Víctimas'
             @titulo_personas_fecha = 'Fecha del Caso'
@@ -132,8 +132,8 @@ module Sivel2Gen
           # Restringe con base en @fechafin
           def personas_fecha_final(where1)
             return consulta_and(
-                where1, "caso.fecha", @fechafin, "<="
-              )
+              where1, "caso.fecha", @fechafin, "<="
+            )
           end
 
 
@@ -142,7 +142,7 @@ module Sivel2Gen
           # en formulario como @fechaini, @fechafin
           # No procesa pSegun
           def personas_procesa_filtros(que1, tablas1, where1, que3, tablas3, where3)
-           #byebug
+            #byebug
             return [que1, tablas1, where1, que3, tablas3, where3]
           end
 
@@ -341,7 +341,7 @@ module Sivel2Gen
             que1, tablas1, where1, que3, tablas3, where3 = 
               personas_procesa_filtros(
                 que1, tablas1, where1, que3, tablas3, where3
-            )
+              )
 
             que1, tablas1, where1, que3, tablas3, where3 = 
               personas_procesa_segun(que1, tablas1, where1, que3, tablas3, where3)
@@ -356,8 +356,8 @@ module Sivel2Gen
               SELECT #{que1}
               FROM #{tablas1} #{where1}
             "
-#            q1 += 'GROUP BY '
-#            q1 += (3..que1.split(',').count).to_a.join(', ')
+            #            q1 += 'GROUP BY '
+            #            q1 += (3..que1.split(',').count).to_a.join(', ')
             puts "OJO q1 es #{q1}<hr>"
             ActiveRecord::Base.connection.execute q1
 
@@ -400,7 +400,7 @@ module Sivel2Gen
               format.js   { render 'sivel2_gen/conteos/resultado' }
             end
           end # def personas
-          
+
         end
 
 
@@ -420,14 +420,14 @@ module Sivel2Gen
           pDepartamento = param_escapa([:filtro, 'departamento'])
 
           @opsegun =  ["", 
-            "ACTOS PRESUNTOS RESPONSABLES", 
-            "FILIACIÓN", 
-            "MES CASO", 
-            "ORGANIZACIÓN SOCIAL", 
-            "PROFESIÓN", 
-            "RANGO DE EDAD", 
-            "SECTOR SOCIAL", 
-            "SEXO"
+                       "ACTOS PRESUNTOS RESPONSABLES", 
+                       "FILIACIÓN", 
+                       "MES CASO", 
+                       "ORGANIZACIÓN SOCIAL", 
+                       "PROFESIÓN", 
+                       "RANGO DE EDAD", 
+                       "SECTOR SOCIAL", 
+                       "SEXO"
           ]
 
           tcons1 = Sivel2Gen::ConteosController::genconsulta_victimizaciones(
@@ -481,23 +481,23 @@ module Sivel2Gen
             end
           end
 
-#          "CREATE VIEW #{tcons2} AS SELECT #{tcons1}.*,
-#            ubicacion.id_departamento, departamento.nombre AS departamento_nombre, 
-#            ubicacion.id_municipio, municipio.nombre AS municipio_nombre, 
-#            ubicacion.id_clase, clase.nombre AS clase_nombre
-#            FROM
-#            #{tcons1} LEFT JOIN sip_ubicacion AS ubicacion ON
-#              (#{tcons1}.id_caso = ubicacion.id_caso) 
-#            LEFT JOIN sip_departamento AS departamento ON 
-#              (ubicacion.id_departamento=departamento.id) 
-#            LEFT JOIN sip_municipio AS municipio ON 
-#              (ubicacion.id_municipio=municipio.id)
-#            LEFT JOIN sip_clase AS clase ON 
-#              (ubicacion.id_clase=clase.id)"
-#
-#
+          #          "CREATE VIEW #{tcons2} AS SELECT #{tcons1}.*,
+          #            ubicacion.id_departamento, departamento.nombre AS departamento_nombre, 
+          #            ubicacion.id_municipio, municipio.nombre AS municipio_nombre, 
+          #            ubicacion.id_clase, clase.nombre AS clase_nombre
+          #            FROM
+          #            #{tcons1} LEFT JOIN sip_ubicacion AS ubicacion ON
+          #              (#{tcons1}.id_caso = ubicacion.id_caso) 
+          #            LEFT JOIN sip_departamento AS departamento ON 
+          #              (ubicacion.id_departamento=departamento.id) 
+          #            LEFT JOIN sip_municipio AS municipio ON 
+          #              (ubicacion.id_municipio=municipio.id)
+          #            LEFT JOIN sip_clase AS clase ON 
+          #              (ubicacion.id_clase=clase.id)"
+          #
+          #
           puts que3
-#          # Generamos 1,2,3 ...n para GROUP BY
+          #          # Generamos 1,2,3 ...n para GROUP BY
           gb = sep = ""
           qc = ""
           i = 1
@@ -526,7 +526,7 @@ module Sivel2Gen
           puts "q3=#{q3}"
 
           if params[:filtro] && params[:filtro][:agrucol] &&
-            params[:filtro][:agrucol] == 'CATEGORÍA'
+              params[:filtro][:agrucol] == 'CATEGORÍA'
             @totalesfila = true
 
             if que3.count == 3
@@ -638,9 +638,9 @@ module Sivel2Gen
             LEFT JOIN public.sivel2_gen_caso_etiqueta AS casoetiqueta 
               ON casoetiqueta.id_caso = caso.id
             WHERE #{w}) AS subcuentaactos;";
-          r = ActiveRecord::Base.connection.select_all(q)
-          #byebug
-          return r[0]["count"];
+            r = ActiveRecord::Base.connection.select_all(q)
+            #byebug
+            return r[0]["count"];
         end
 
         def genvic_tabla(titulo, filas, tittotales, where1)
@@ -653,8 +653,8 @@ module Sivel2Gen
               concat = 0
               sincat = 0
               if (pc.count > 2) 
-                  puts 'Implementar primero'
-                  return
+                puts 'Implementar primero'
+                return
               elsif pc.count == 2
                 if pc[1][0] == '!'
                   sincat = pc[1][1..-1].to_i
@@ -695,7 +695,7 @@ module Sivel2Gen
             @etiqueta_id = params[:filtro]['etiqueta_id']
             where1 = ampliar_where(
               where1, "casoetiqueta.id_etiqueta", @etiqueta_id, "="
-                )
+            )
           end
           @tablader = [
             { 
@@ -706,16 +706,16 @@ module Sivel2Gen
                   [
                     {"cat" => [20, 30],
                      "titulo" => "Víctimas de `Ejecución Extrajudicial´ por Abuso de Autoridad e Intolerancia Social por agentes directos o indirectos del Estado (Violaciones a los Derechos Humanos)"},
-                    {"cat" => ['10&!701'],
-                     "titulo" => "Víctimas de `Ejecución Extrajudicial´ por Persecución Política (Violaciones a los DH) que no representan infracciones al DIHC"},
-                    {"cat" => ['10&701'],
-                     "titulo" => "Víctimas simultáneamente de `Ejecución Extrajudicial´ perpetradas por agentes directos o indirectos del Estado por móviles de Persecución Política (Violaciones a los Derechos Humanos) y de `Homicidio Intencional de Persona Protegida´ (Infracciones al Derecho Internacional Humanitario Consuetudinario)."},
-                    {"cat" => ['701&!10', 97, 703, 87],
-                     "titulo" => "Víctimas de `Homicidio Intencional de Persona Protegida´ (excepto casos de Violaciones a Derechos Humanos) o `Muerte Causada por Empleo de Métodos y Medios Ilícitos de Guerra´ o `Muerte de Civil en Acción Bélica´ o `Muerte Causada por Ataque a Bienes Civiles.´"},
-                    {"cat" => [40],
-                     "titulo" => "Víctimas de `Asesinato´ por Persecución Política sin autor determinado"},
-                    {"cat" => [50],
-                     "titulo" => "Víctimas de `Asesinato´ por Intolerancia Social sin autor determinado"},
+                  {"cat" => ['10&!701'],
+                   "titulo" => "Víctimas de `Ejecución Extrajudicial´ por Persecución Política (Violaciones a los DH) que no representan infracciones al DIHC"},
+                  {"cat" => ['10&701'],
+                   "titulo" => "Víctimas simultáneamente de `Ejecución Extrajudicial´ perpetradas por agentes directos o indirectos del Estado por móviles de Persecución Política (Violaciones a los Derechos Humanos) y de `Homicidio Intencional de Persona Protegida´ (Infracciones al Derecho Internacional Humanitario Consuetudinario)."},
+                  {"cat" => ['701&!10', 97, 703, 87],
+                   "titulo" => "Víctimas de `Homicidio Intencional de Persona Protegida´ (excepto casos de Violaciones a Derechos Humanos) o `Muerte Causada por Empleo de Métodos y Medios Ilícitos de Guerra´ o `Muerte de Civil en Acción Bélica´ o `Muerte Causada por Ataque a Bienes Civiles.´"},
+                  {"cat" => [40],
+                   "titulo" => "Víctimas de `Asesinato´ por Persecución Política sin autor determinado"},
+                   {"cat" => [50],
+                    "titulo" => "Víctimas de `Asesinato´ por Intolerancia Social sin autor determinado"},
 
                   ], "Total víctimas que perdieron la vida", where1
                 ),
@@ -724,12 +724,12 @@ module Sivel2Gen
                   [
                     {"cat" => [26, 37],
                      "titulo" => "Victimizaciones por `Atentado´ por Abuso de Autoridad o Intolerancia Social por agentes directos o indirectos del Estado (Violaciones a los Derechos Humanos)."},
-                    {"cat" => [16],
-                     "titulo" => "Victimizaciones por `Atentado´ por Persecución Política por agentes directos o indirectos del Estado (Violaciones a los Derechos Humanos)."},
-                    {"cat" => [46],
-                     "titulo" => "Victimizaciones por `Atentado´ por Persecución Política sin autor determinado" },
-                    {"cat" => [57],
-                     "titulo" => "Victimizaciones por `Atentado´ por Intolerancia Social sin autor determinado" }
+                  {"cat" => [16],
+                   "titulo" => "Victimizaciones por `Atentado´ por Persecución Política por agentes directos o indirectos del Estado (Violaciones a los Derechos Humanos)."},
+                  {"cat" => [46],
+                   "titulo" => "Victimizaciones por `Atentado´ por Persecución Política sin autor determinado" },
+                   {"cat" => [57],
+                    "titulo" => "Victimizaciones por `Atentado´ por Intolerancia Social sin autor determinado" }
                   ], "Total victimizaciones por atentados", where1
                 ),
                 genvic_tabla(
@@ -737,14 +737,14 @@ module Sivel2Gen
                   [
                     {"cat" => [25, 35],
                      "titulo" => "Victimizaciones por `Amenaza´ por Abuso de Autoridad e Intolerancia Social por agentes directos o indirectos del Estado (Violaciones a los Derechos Humanos)."},
-                    {"cat" => ['15&!73'],
-                     "titulo" => "Victimizaciones por `Amenaza´ por agentes directos o indirectos del Estado por móviles de Persecución Política (Violaciones a los Derechos Humanos) que no constituyen Infracciones al Derecho Internacional Humanitario Consuetudinario."},
-                    {"cat" => ['15&73'],
-                     "titulo" => "Victimizaciones que son simultáneamente `Amenaza´ por agentes directos o indirectos del Estado por móviles de Persecución Política (Violaciones a los Derechos Humanos) y `Amenaza´ que constituyen Infracciones al Derecho Internacional Humanitario Consuetudinario por parte de agentes directos o indirectos del Estado."},
-                    {"cat" => ['73&!15'],
-                     "titulo" => "Victimizaciones por `Amenaza´ como Infracciones al Derecho Internacional Humanitario Consuetudinario por parte de la insurgencia."},
-                    {"cat" => [45],
-                     "titulo" => "Victimizaciones por `Amenaza´ por Persecución Política sin autor determinado"},
+                  {"cat" => ['15&!73'],
+                   "titulo" => "Victimizaciones por `Amenaza´ por agentes directos o indirectos del Estado por móviles de Persecución Política (Violaciones a los Derechos Humanos) que no constituyen Infracciones al Derecho Internacional Humanitario Consuetudinario."},
+                  {"cat" => ['15&73'],
+                   "titulo" => "Victimizaciones que son simultáneamente `Amenaza´ por agentes directos o indirectos del Estado por móviles de Persecución Política (Violaciones a los Derechos Humanos) y `Amenaza´ que constituyen Infracciones al Derecho Internacional Humanitario Consuetudinario por parte de agentes directos o indirectos del Estado."},
+                  {"cat" => ['73&!15'],
+                   "titulo" => "Victimizaciones por `Amenaza´ como Infracciones al Derecho Internacional Humanitario Consuetudinario por parte de la insurgencia."},
+                   {"cat" => [45],
+                    "titulo" => "Victimizaciones por `Amenaza´ por Persecución Política sin autor determinado"},
                     {"cat" => [55],
                      "titulo" => "Victimizaciones por `Amenaza´ por Intolerancia Social sin autor determinado"}
                   ], "Total víctimizaciones por amenazas", where1
@@ -760,16 +760,16 @@ module Sivel2Gen
                   [
                     {"cat" => [23, 33],
                      "titulo" => "Victimizaciones por `Lesión Física´ por Abuso de Autoridad e Intolerancia Social por agentes directos o indirectos del Estado (Violaciones a los Derechos Humanos)"},
-                    {"cat" => ['13&!702'],
-                     "titulo" => "Victimizaciones por `Lesión Física´ por Persecución Política (Violaciones a los DH) que no representan infracciones al DIHC"},
-                    {"cat" => ['13&702'],
-                     "titulo" => "Victimizaciones por `Lesión Física´ por agentes directos o indirectos del Estado por móviles de Persecución Política (Violaciones a los Derechos Humanos) y de `Lesión Intencional a la Integridad Personal de Personas Protegidas´ (Infracciones al Derecho Internacional Humanitario Consuetudinario)."},
-                    {"cat" => ['702&!13', 98, 704, 88],
-                     "titulo" => "Victimizaciones por `Lesión Intencional a la Integridad de Persona Protegida´ (excepto casos de Violación a Derechos Humanos) o `Lesiones a la Integridad Personal de Persona Protegida´ por Empleo de Métodos o Medios Ilícitos de Guerra o `Lesiones a la Integridad Personal de Persona Protegida´ como Consecuencia de una Acción Bélica o `Lesiones a la Integridad Personal de Persona Protegida´ como Consecuencia de Ataques a Bienes de Cáracter Civil"},
-                    {"cat" => [43],
-                     "titulo" => "Victimizaciones por `Lesión Física´ por Persecución Política sin autor determinado"},
-                    {"cat" => [53],
-                     "titulo" => "Victimizaciones por `Lesión Física´ por Intolerancia Social sin autor determinado"},
+                  {"cat" => ['13&!702'],
+                   "titulo" => "Victimizaciones por `Lesión Física´ por Persecución Política (Violaciones a los DH) que no representan infracciones al DIHC"},
+                  {"cat" => ['13&702'],
+                   "titulo" => "Victimizaciones por `Lesión Física´ por agentes directos o indirectos del Estado por móviles de Persecución Política (Violaciones a los Derechos Humanos) y de `Lesión Intencional a la Integridad Personal de Personas Protegidas´ (Infracciones al Derecho Internacional Humanitario Consuetudinario)."},
+                  {"cat" => ['702&!13', 98, 704, 88],
+                   "titulo" => "Victimizaciones por `Lesión Intencional a la Integridad de Persona Protegida´ (excepto casos de Violación a Derechos Humanos) o `Lesiones a la Integridad Personal de Persona Protegida´ por Empleo de Métodos o Medios Ilícitos de Guerra o `Lesiones a la Integridad Personal de Persona Protegida´ como Consecuencia de una Acción Bélica o `Lesiones a la Integridad Personal de Persona Protegida´ como Consecuencia de Ataques a Bienes de Cáracter Civil"},
+                  {"cat" => [43],
+                   "titulo" => "Victimizaciones por `Lesión Física´ por Persecución Política sin autor determinado"},
+                   {"cat" => [53],
+                    "titulo" => "Victimizaciones por `Lesión Física´ por Intolerancia Social sin autor determinado"},
                   ], "Total victimizaciones por lesión física", where1
                 ),
                 genvic_tabla(
@@ -777,14 +777,14 @@ module Sivel2Gen
                   [
                     {"cat" => [22, 36],
                      "titulo" => "Victimizaciones por `Tortura´ por Abuso de Autoridad e Intolerancia Social por agentes directos o indirectos del Estado (Violaciones a los Derechos Humanos)."},
-                    {"cat" => ['12&!72'],
-                     "titulo" => "Victimizaciones por `Tortura´ por agentes directos o indirectos del Estado por móviles de Persecución Política (Violaciones a los Derechos Humanos) que no constituye Infracción al Derecho Internacional Humanitario Consuetudinario."},
-                    {"cat" => ['12&72'],
-                     "titulo" => "Victimizaciones que son simultáneamente `Tortura´ por agentes directos o indirectos del Estado por móviles de Persecución Política (Violaciones a los Derechos Humanos) y `Tortura y Tratos Crueles e Inhumanos, Atentados contra la Dignidad Personal, Tratos Humillantes y Degradantes y Castigos Corporales, como Instrumentos de Guerra´ que constituye Infracción al Derecho Internacional Humanitario Consuetudinario por parte de agentes directos o indirectos del Estado."},
-                    {"cat" => ['72&!12'],
-                     "titulo" => "Victimizaciones por `Tortura y Tratos Crueles e Inhumanos, Atentados contra la Dignidad Personal, Tratos Humillantes y Degradantes y Castigos Corporales, como Instrumentos de Guerra´ como Infracciones al Derecho Internacional Humanitario Consuetudinario por parte de la insurgencia."},
-                    {"cat" => [47],
-                     "titulo" => "Victimizaciones por `Tortura´ por Persecución Política sin autor determinado"},
+                  {"cat" => ['12&!72'],
+                   "titulo" => "Victimizaciones por `Tortura´ por agentes directos o indirectos del Estado por móviles de Persecución Política (Violaciones a los Derechos Humanos) que no constituye Infracción al Derecho Internacional Humanitario Consuetudinario."},
+                  {"cat" => ['12&72'],
+                   "titulo" => "Victimizaciones que son simultáneamente `Tortura´ por agentes directos o indirectos del Estado por móviles de Persecución Política (Violaciones a los Derechos Humanos) y `Tortura y Tratos Crueles e Inhumanos, Atentados contra la Dignidad Personal, Tratos Humillantes y Degradantes y Castigos Corporales, como Instrumentos de Guerra´ que constituye Infracción al Derecho Internacional Humanitario Consuetudinario por parte de agentes directos o indirectos del Estado."},
+                  {"cat" => ['72&!12'],
+                   "titulo" => "Victimizaciones por `Tortura y Tratos Crueles e Inhumanos, Atentados contra la Dignidad Personal, Tratos Humillantes y Degradantes y Castigos Corporales, como Instrumentos de Guerra´ como Infracciones al Derecho Internacional Humanitario Consuetudinario por parte de la insurgencia."},
+                   {"cat" => [47],
+                    "titulo" => "Victimizaciones por `Tortura´ por Persecución Política sin autor determinado"},
                     {"cat" => [56],
                      "titulo" => "Victimizaciones por `Tortura´ por Intolerancia Social sin autor determinado"}
                   ], "Total victimizaciones por tortura", where1
@@ -794,14 +794,14 @@ module Sivel2Gen
                   [
                     {"cat" => [29, 39],
                      "titulo" => "Victimizaciones por `Violencia Sexual´ por móvil de Abuso de Autoridad o Intolerancia Social, perpetradas por agentes directos o indirectos del Estado (Violaciones a los Derechos Humanos)."},
-                    {"cat" => ['19&!77'],
-                     "titulo" => "Victimizaciones por `Violencia Sexual´ por agentes directos o indirectos del Estado por móviles de Persecución Política (Violaciones a los Derechos Humanos) que no representan infracciones al Derecho Internacional Humanitario Consuetudinario."},
-                    {"cat" => ['19&77'],
-                     "titulo" => "Victimizaciones por `Violencia Sexual´ por agentes directos o indirectos del Estado por móviles de Persecución Política (Violaciones a los Derechos Humanos) y que constituyen al mismo tiempo infracciones al Derecho Internacional Humanitario Consuetudinario."},
-                    {"cat" => ['77&!19'],
-                     "titulo" => "Victimizaciones por `Violencia Sexual´ que constituyen infracciones al Derecho Internacional Humanitario Consuetudinario por parte de la insurgencia."},
-                    {"cat" => [420],
-                     "titulo" => "Victimizaciones por `Violencia Sexual´ por Persecución Política sin autor determinado"},
+                  {"cat" => ['19&!77'],
+                   "titulo" => "Victimizaciones por `Violencia Sexual´ por agentes directos o indirectos del Estado por móviles de Persecución Política (Violaciones a los Derechos Humanos) que no representan infracciones al Derecho Internacional Humanitario Consuetudinario."},
+                  {"cat" => ['19&77'],
+                   "titulo" => "Victimizaciones por `Violencia Sexual´ por agentes directos o indirectos del Estado por móviles de Persecución Política (Violaciones a los Derechos Humanos) y que constituyen al mismo tiempo infracciones al Derecho Internacional Humanitario Consuetudinario."},
+                  {"cat" => ['77&!19'],
+                   "titulo" => "Victimizaciones por `Violencia Sexual´ que constituyen infracciones al Derecho Internacional Humanitario Consuetudinario por parte de la insurgencia."},
+                   {"cat" => [420],
+                    "titulo" => "Victimizaciones por `Violencia Sexual´ por Persecución Política sin autor determinado"},
                     {"cat" => [520],
                      "titulo" => "Victimizaciones por `Violencia Sexual´ por Intolerancia Social sin autor determinado"}
                   ], "Total victimizaciones por violencia sexual", where1
@@ -811,12 +811,12 @@ module Sivel2Gen
                   [
                     {"cat" => [78],
                      "titulo" => "Victimizaciones por `Escudo Individual´ DIHC."},
-                    {"cat" => [717],
-                     "titulo" => "Victimizaciones por `Negación de Atención a persona Vulnerable´ DIHC."},
-                    {"cat" => [718],
-                     "titulo" => "Victimizaciones por `Profanación y Ocultamiento de Cadáveres´ DIHC."},
-                    {"cat" => [716],
-                     "titulo" => "Victimizaciones por `Negación de Derechos a Prisioneros de Guerra´ DIHC."}
+                     {"cat" => [717],
+                      "titulo" => "Victimizaciones por `Negación de Atención a persona Vulnerable´ DIHC."},
+                      {"cat" => [718],
+                       "titulo" => "Victimizaciones por `Profanación y Ocultamiento de Cadáveres´ DIHC."},
+                       {"cat" => [716],
+                        "titulo" => "Victimizaciones por `Negación de Derechos a Prisioneros de Guerra´ DIHC."}
                   ], "Total victimizaciones por violencia sexual", where1
                 ),
 
@@ -831,12 +831,12 @@ module Sivel2Gen
                   [
                     {"cat" => [21, 302],
                      "titulo" => "Victimizaciones por `Desaparición Forzada e Involuntaria´ por móvil de Abuso de Autoridad o Intolerancia Social, perpetradas por agentes directos o indirectos del Estado (Violaciones a los Derechos Humanos)."},
-                    {"cat" => ['11&!76'],
-                     "titulo" => "Victimizaciones por `Desaparicion Forzada e Involuntaria´ por agentes directos o indirectos del Estado por móviles de Persecución Política (Violaciones a los Derechos Humanos) que no representan infracciones al Derecho Internacional Humanitario Consuetudinario."},
-                    {"cat" => ['11&76'],
-                     "titulo" => "Victimizaciones por `Desaparicion Forzada e Involuntaria´ por agentes directos o indirectos del Estado por móviles de Persecución Política (Violaciones a los Derechos Humanos) y que constituyen al mismo tiempo infracciones al Derecho Internacional Humanitario Consuetudinario."},
-                    {"cat" => ['76&!11'],
-                     "titulo" => "Victimizaciones por `Desaparición Forzada como Instrumento de Guerra´ que constituyen infracciones al Derecho Internacional Humanitario Consuetudinario pero no violación a los Derechos Humanos."}
+                  {"cat" => ['11&!76'],
+                   "titulo" => "Victimizaciones por `Desaparicion Forzada e Involuntaria´ por agentes directos o indirectos del Estado por móviles de Persecución Política (Violaciones a los Derechos Humanos) que no representan infracciones al Derecho Internacional Humanitario Consuetudinario."},
+                  {"cat" => ['11&76'],
+                   "titulo" => "Victimizaciones por `Desaparicion Forzada e Involuntaria´ por agentes directos o indirectos del Estado por móviles de Persecución Política (Violaciones a los Derechos Humanos) y que constituyen al mismo tiempo infracciones al Derecho Internacional Humanitario Consuetudinario."},
+                  {"cat" => ['76&!11'],
+                   "titulo" => "Victimizaciones por `Desaparición Forzada como Instrumento de Guerra´ que constituyen infracciones al Derecho Internacional Humanitario Consuetudinario pero no violación a los Derechos Humanos."}
                   ], "Total victimizaciones por desaparición forzada e involuntaria",
                   where1
                 ),
@@ -845,22 +845,22 @@ module Sivel2Gen
                   [
                     {"cat" => [24, 241, 301, 341],
                      "titulo" => "Victimizaciones por `Detención Arbitraria´ y `Judicialización Arbitraria´ por móvil de Abuso de Autoridad o Intolerancia Social, perpetradas por agentes directos o indirectos del Estado (Violaciones a los Derechos Humanos)."},
-                    {"cat" => [14, 101],
-                     "titulo" => "Victimizaciones por `Detención Arbitraria´  y `Deportación´ por móviles de Persecución Política (Violaciones a los Derechos Humanos)."},
-                    {"cat" => ['141&!715'],
-                     "titulo" => "Victimizaciones por `Judicialización Arbitraria´ que no representan `Judicialización Arbitraría como Instrumento de Guerra´."},
-                    {"cat" => ['141&715'],
-                     "titulo" => "Victimizaciones que son simultaneamente `Judicialización Arbitraria´ y `Judicialización Arbitraría como Instrumento de Guerra´."},
+                  {"cat" => [14, 101],
+                   "titulo" => "Victimizaciones por `Detención Arbitraria´  y `Deportación´ por móviles de Persecución Política (Violaciones a los Derechos Humanos)."},
+                  {"cat" => ['141&!715'],
+                   "titulo" => "Victimizaciones por `Judicialización Arbitraria´ que no representan `Judicialización Arbitraría como Instrumento de Guerra´."},
+                   {"cat" => ['141&715'],
+                    "titulo" => "Victimizaciones que son simultaneamente `Judicialización Arbitraria´ y `Judicialización Arbitraría como Instrumento de Guerra´."},
                     {"cat" => ['!141&715'],
                      "titulo" => "Victimizaciones que son `Judicialización Arbitraría como Instrumento de Guerra´  pero que no son `Judicialización Arbitraria´."},
-                    {"cat" => [48],
-                     "titulo" => "Victimizaciones por `Rapto´ por Móviles Políticos sin autor determinado."},
-                    {"cat" => [41],
-                      "titulo" => "Victimizaciones por `Secuestro´ perpetrado por organizaciones insurgentes."},
-                    {"cat" => [58],
-                       "titulo" => "Victimizaciones por `Rapto´ por Móviles de Intolerancia Social sin autor determinado."},
-                    {"cat" => [74, 75, 714],
-                       "titulo" => "Victimizaciones por `Toma de Rehenes´, `Reclutamiento de Menores´ y `Esclavitud y Trabajos Forzados´ DIHC."}
+                     {"cat" => [48],
+                      "titulo" => "Victimizaciones por `Rapto´ por Móviles Políticos sin autor determinado."},
+                      {"cat" => [41],
+                       "titulo" => "Victimizaciones por `Secuestro´ perpetrado por organizaciones insurgentes."},
+                       {"cat" => [58],
+                        "titulo" => "Victimizaciones por `Rapto´ por Móviles de Intolerancia Social sin autor determinado."},
+                        {"cat" => [74, 75, 714],
+                         "titulo" => "Victimizaciones por `Toma de Rehenes´, `Reclutamiento de Menores´ y `Esclavitud y Trabajos Forzados´ DIHC."}
                   ], 
                   "Total victimizaciones de otras violaciones al derecho a la libertad",
                   where1
