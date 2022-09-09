@@ -398,65 +398,65 @@ module Sivel2Gen
               personas_procesa_filtros(
                 que1, tablas1, where1, que3, tablas3, where3)
 
-              que1, tablas1, where1, que3, tablas3, where3 = 
-                personas_procesa_segun(
-                  que1, tablas1, where1, que3, tablas3, where3)
-                ActiveRecord::Base.connection.execute "DROP VIEW  IF EXISTS #{personas_cons2} CASCADE"
-                ActiveRecord::Base.connection.execute "DROP VIEW  IF EXISTS #{personas_cons1} CASCADE"
+            que1, tablas1, where1, que3, tablas3, where3 = 
+              personas_procesa_segun(
+                que1, tablas1, where1, que3, tablas3, where3)
+            ActiveRecord::Base.connection.execute "DROP VIEW  IF EXISTS #{personas_cons2} CASCADE"
+            ActiveRecord::Base.connection.execute "DROP VIEW  IF EXISTS #{personas_cons1} CASCADE"
 
-                if where1 != ''
-                  where1 = 'WHERE ' + where1
-                end
-                # Filtrar 
-                q1="CREATE VIEW #{personas_cons1} AS 
+            if where1 != ''
+              where1 = 'WHERE ' + where1
+            end
+            # Filtrar 
+            q1="CREATE VIEW #{personas_cons1} AS 
               SELECT #{que1}
               FROM #{tablas1} #{where1}
-              "
-              #            q1 += 'GROUP BY '
-              #            q1 += (3..que1.split(',').count).to_a.join(', ')
-              puts "OJO q1 es #{q1}<hr>"
-              ActiveRecord::Base.connection.execute q1
+            "
+            #            q1 += 'GROUP BY '
+            #            q1 += (3..que1.split(',').count).to_a.join(', ')
+            puts "OJO q1 es #{q1}<hr>"
+            ActiveRecord::Base.connection.execute q1
 
-              # Paso 2
-              # Añadimos información geográfica que se pueda
-              q2, que3, tablas3, where3 = 
-                personas_vista_geo(que3, tablas3, where3)
-              #puts "OJO q2 es #{q2}<hr>"
-              ActiveRecord::Base.connection.execute q2
+            # Paso 2
+            # Añadimos información geográfica que se pueda
+            q2, que3, tablas3, where3 = 
+              personas_vista_geo(que3, tablas3, where3)
+            #puts "OJO q2 es #{q2}<hr>"
+            ActiveRecord::Base.connection.execute q2
 
-              #puts "OJO que3 es #{que3}"
-              # Generamos 1,2,3 ...n para GROUP BY
-              gb = sep = ""
-              qc = ""
-              i = 1
-              que3.each do |t|
-                if (t[1] != "") 
-                  gb += sep + i.to_s
-                  qc += t[0] + ", "
-                  sep = ", "
-                  i += 1
-                end
+            #puts "OJO que3 es #{que3}"
+            # Generamos 1,2,3 ...n para GROUP BY
+            gb = sep = ""
+            qc = ""
+            i = 1
+            que3.each do |t|
+              if (t[1] != "") 
+                gb += sep + i.to_s
+                qc += t[0] + ", "
+                sep = ", "
+                i += 1
               end
-              if (gb != "") 
-                gb ="GROUP BY #{gb} ORDER BY #{gb}"
-              end
-              q3 = personas_consulta_final(i, que3, tablas3, where3, qc, gb)
-              @cuerpotabla = ActiveRecord::Base.connection.select_all(q3)
+            end
+            if (gb != "") 
+              gb ="GROUP BY #{gb} ORDER BY #{gb}"
+            end
+            q3 = personas_consulta_final(i, que3, tablas3, where3, qc, gb)
+            @cuerpotabla = ActiveRecord::Base.connection.select_all(q3)
 
-              @enctabla = []
-              que3.each do |t|
-                if (t[1] != "") 
-                  @enctabla << CGI.escapeHTML(t[1])
-                end
+            @enctabla = []
+            que3.each do |t|
+              if (t[1] != "") 
+                @enctabla << CGI.escapeHTML(t[1])
               end
+            end
 
-              personas_post_consulta_final
+            personas_post_consulta_final
 
-              respond_to do |format|
-                format.html { render 'sivel2_gen/conteos/personas', layout: 'application' }
-                format.json { head :no_content }
-                format.js   { render 'sivel2_gen/conteos/personas' }
-              end
+            respond_to do |format|
+              format.html { render 'sivel2_gen/conteos/personas', layout: 'application' }
+              format.json { head :no_content }
+              format.js   { render 'sivel2_gen/conteos/personas' }
+            end
           end # def personas
 
 
@@ -488,17 +488,17 @@ module Sivel2Gen
                 pExcluirCateRep, pSegun, pDepartamento, pMunicipio,
                 nil, pCategoria, pAgrucol)
 
-              #          @opsegun = lr[0]
-              #          @coltotales = lr[1]
-              #          @totalesfila = lr[2]
-              #          @enctabla = lr[3]
-              #          @cuerpotabla = lr[4]
+            #          @opsegun = lr[0]
+            #          @coltotales = lr[1]
+            #          @totalesfila = lr[2]
+            #          @enctabla = lr[3]
+            #          @cuerpotabla = lr[4]
 
-              respond_to do |format|
-                format.html { render 'victimizaciones', layout: 'application'}
-                format.json { head :no_content }
-                format.js   { render 'sivel2_gen/conteos/resultado' }
-              end
+            respond_to do |format|
+              format.html { render 'victimizaciones', layout: 'application'}
+              format.json { head :no_content }
+              format.js   { render 'sivel2_gen/conteos/resultado' }
+            end
           end # def victimizaciones
 
           def cuenta_actos(cat, concat, sincat, where)
@@ -590,16 +590,16 @@ module Sivel2Gen
                     [
                       {"cat" => [20, 30],
                        "titulo" => "Víctimas de `Ejecución Extrajudicial´ por Abuso de Autoridad e Intolerancia Social por agentes directos o indirectos del Estado (Violaciones a los Derechos Humanos)"},
-                      {"cat" => ['10&!701'],
-                       "titulo" => "Víctimas de `Ejecución Extrajudicial´ por Persecución Política (Violaciones a los DH) que no representan infracciones al DIHC"},
-                      {"cat" => ['10&701'],
-                       "titulo" => "Víctimas simultáneamente de `Ejecución Extrajudicial´ perpetradas por agentes directos o indirectos del Estado por móviles de Persecución Política (Violaciones a los Derechos Humanos) y de `Homicidio Intencional de Persona Protegida´ (Infracciones al Derecho Internacional Humanitario Consuetudinario)."},
-                      {"cat" => ['701&!10', 97, 703, 87],
-                       "titulo" => "Víctimas de `Homicidio Intencional de Persona Protegida´ (excepto casos de Violaciones a Derechos Humanos) o `Muerte Causada por Empleo de Métodos y Medios Ilícitos de Guerra´ o `Muerte de Civil en Acción Bélica´ o `Muerte Causada por Ataque a Bienes Civiles.´"},
-                      {"cat" => [40],
-                       "titulo" => "Víctimas de `Asesinato´ por Persecución Política sin autor determinado"},
-                       {"cat" => [50],
-                        "titulo" => "Víctimas de `Asesinato´ por Intolerancia Social sin autor determinado"},
+                    {"cat" => ['10&!701'],
+                     "titulo" => "Víctimas de `Ejecución Extrajudicial´ por Persecución Política (Violaciones a los DH) que no representan infracciones al DIHC"},
+                    {"cat" => ['10&701'],
+                     "titulo" => "Víctimas simultáneamente de `Ejecución Extrajudicial´ perpetradas por agentes directos o indirectos del Estado por móviles de Persecución Política (Violaciones a los Derechos Humanos) y de `Homicidio Intencional de Persona Protegida´ (Infracciones al Derecho Internacional Humanitario Consuetudinario)."},
+                    {"cat" => ['701&!10', 97, 703, 87],
+                     "titulo" => "Víctimas de `Homicidio Intencional de Persona Protegida´ (excepto casos de Violaciones a Derechos Humanos) o `Muerte Causada por Empleo de Métodos y Medios Ilícitos de Guerra´ o `Muerte de Civil en Acción Bélica´ o `Muerte Causada por Ataque a Bienes Civiles.´"},
+                    {"cat" => [40],
+                     "titulo" => "Víctimas de `Asesinato´ por Persecución Política sin autor determinado"},
+                     {"cat" => [50],
+                      "titulo" => "Víctimas de `Asesinato´ por Intolerancia Social sin autor determinado"},
 
                     ], "Total víctimas que perdieron la vida", where1
                   ),
@@ -608,12 +608,12 @@ module Sivel2Gen
                     [
                       {"cat" => [26, 37],
                        "titulo" => "Victimizaciones por `Atentado´ por Abuso de Autoridad o Intolerancia Social por agentes directos o indirectos del Estado (Violaciones a los Derechos Humanos)."},
-                      {"cat" => [16],
-                       "titulo" => "Victimizaciones por `Atentado´ por Persecución Política por agentes directos o indirectos del Estado (Violaciones a los Derechos Humanos)."},
-                      {"cat" => [46],
-                       "titulo" => "Victimizaciones por `Atentado´ por Persecución Política sin autor determinado" },
-                       {"cat" => [57],
-                        "titulo" => "Victimizaciones por `Atentado´ por Intolerancia Social sin autor determinado" }
+                    {"cat" => [16],
+                     "titulo" => "Victimizaciones por `Atentado´ por Persecución Política por agentes directos o indirectos del Estado (Violaciones a los Derechos Humanos)."},
+                    {"cat" => [46],
+                     "titulo" => "Victimizaciones por `Atentado´ por Persecución Política sin autor determinado" },
+                     {"cat" => [57],
+                      "titulo" => "Victimizaciones por `Atentado´ por Intolerancia Social sin autor determinado" }
                     ], "Total victimizaciones por atentados", where1
                   ),
                   genvic_tabla(
@@ -621,16 +621,16 @@ module Sivel2Gen
                     [
                       {"cat" => [25, 35],
                        "titulo" => "Victimizaciones por `Amenaza´ por Abuso de Autoridad e Intolerancia Social por agentes directos o indirectos del Estado (Violaciones a los Derechos Humanos)."},
-                      {"cat" => ['15&!73'],
-                       "titulo" => "Victimizaciones por `Amenaza´ por agentes directos o indirectos del Estado por móviles de Persecución Política (Violaciones a los Derechos Humanos) que no constituyen Infracciones al Derecho Internacional Humanitario Consuetudinario."},
-                      {"cat" => ['15&73'],
-                       "titulo" => "Víctimas simultáneamente de `Amenaza´ por agentes directos o indirectos del Estado por móviles de Persecución Política (Violaciones a los Derechos Humanos) y de `Amenaza´ que constituyen Infracciones al Derecho Internacional Humanitario Consuetudinario por parte de agentes directos o indirectos del Estado."},
-                      {"cat" => ['73&!15'],
-                       "titulo" => "Victimizaciones por `Amenaza´ como Infracciones al Derecho Internacional Humanitario Consuetudinario por parte de la insurgencia."},
-                       {"cat" => [45],
-                        "titulo" => "Victimizaciones por `Amenaza´ por Persecución Política sin autor determinado"},
-                        {"cat" => [55],
-                         "titulo" => "Victimizaciones por `Amenaza´ por Intolerancia Social sin autor determinado"}
+                    {"cat" => ['15&!73'],
+                     "titulo" => "Victimizaciones por `Amenaza´ por agentes directos o indirectos del Estado por móviles de Persecución Política (Violaciones a los Derechos Humanos) que no constituyen Infracciones al Derecho Internacional Humanitario Consuetudinario."},
+                    {"cat" => ['15&73'],
+                     "titulo" => "Victimazacioness que son simultáneamente `Amenaza´ por agentes directos o indirectos del Estado por móviles de Persecución Política (Violaciones a los Derechos Humanos) y `Amenaza´ que constituyen Infracciones al Derecho Internacional Humanitario Consuetudinario por parte de agentes directos o indirectos del Estado."},
+                    {"cat" => ['73&!15'],
+                     "titulo" => "Victimizaciones por `Amenaza´ como Infracciones al Derecho Internacional Humanitario Consuetudinario por parte de la insurgencia."},
+                     {"cat" => [45],
+                      "titulo" => "Victimizaciones por `Amenaza´ por Persecución Política sin autor determinado"},
+                      {"cat" => [55],
+                       "titulo" => "Victimizaciones por `Amenaza´ por Intolerancia Social sin autor determinado"}
                     ], "Total víctimizaciones por amenazas", where1
                   ),
 
@@ -644,16 +644,16 @@ module Sivel2Gen
                     [
                       {"cat" => [23, 33],
                        "titulo" => "Victimizaciones por `Lesión Física´ por Abuso de Autoridad e Intolerancia Social por agentes directos o indirectos del Estado (Violaciones a los Derechos Humanos)"},
-                      {"cat" => ['13&!702'],
-                       "titulo" => "Victimizaciones por `Lesión Física´ por Persecución Política (Violaciones a los DH) que no representan infracciones al DIHC"},
-                      {"cat" => ['13&702'],
-                       "titulo" => "Victimizaciones por `Lesión Física´ por agentes directos o indirectos del Estado por móviles de Persecución Política (Violaciones a los Derechos Humanos) y de `Lesión Intencional a la Integridad Personal de Personas Protegidas´ (Infracciones al Derecho Internacional Humanitario Consuetudinario)."},
-                      {"cat" => ['702&!13', 98, 704, 88],
-                       "titulo" => "Victimizaciones por `Lesión Intencional a la Integridad de Persona Protegida´ (excepto casos de Violación a Derechos Humanos) o `Lesiones a la Integridad Personal de Persona Protegida´ por Empleo de Métodos o Medios Ilícitos de Guerra o `Lesiones a la Integridad Personal de Persona Protegida´ como Consecuencia de una Acción Bélica o `Lesiones a la Integridad Personal de Persona Protegida´ como Consecuencia de Ataques a Bienes de Cáracter Civil"},
-                      {"cat" => [43],
-                       "titulo" => "Victimizaciones por `Lesión Física´ por Persecución Política sin autor determinado"},
-                       {"cat" => [53],
-                        "titulo" => "Victimizaciones por `Lesión Física´ por Intolerancia Social sin autor determinado"},
+                    {"cat" => ['13&!702'],
+                     "titulo" => "Victimizaciones por `Lesión Física´ por Persecución Política (Violaciones a los DH) que no representan infracciones al DIHC"},
+                    {"cat" => ['13&702'],
+                     "titulo" => "Victimizaciones por `Lesión Física´ por agentes directos o indirectos del Estado por móviles de Persecución Política (Violaciones a los Derechos Humanos) y de `Lesión Intencional a la Integridad Personal de Personas Protegidas´ (Infracciones al Derecho Internacional Humanitario Consuetudinario)."},
+                    {"cat" => ['702&!13', 98, 704, 88],
+                     "titulo" => "Victimizaciones por `Lesión Intencional a la Integridad de Persona Protegida´ (excepto casos de Violación a Derechos Humanos) o `Lesiones a la Integridad Personal de Persona Protegida´ por Empleo de Métodos o Medios Ilícitos de Guerra o `Lesiones a la Integridad Personal de Persona Protegida´ como Consecuencia de una Acción Bélica o `Lesiones a la Integridad Personal de Persona Protegida´ como Consecuencia de Ataques a Bienes de Cáracter Civil"},
+                    {"cat" => [43],
+                     "titulo" => "Victimizaciones por `Lesión Física´ por Persecución Política sin autor determinado"},
+                     {"cat" => [53],
+                      "titulo" => "Victimizaciones por `Lesión Física´ por Intolerancia Social sin autor determinado"},
                     ], "Total victimizaciones por lesión física", where1
                   ),
                   genvic_tabla(
@@ -661,16 +661,16 @@ module Sivel2Gen
                     [
                       {"cat" => [22, 36],
                        "titulo" => "Victimizaciones por `Tortura´ por Abuso de Autoridad e Intolerancia Social por agentes directos o indirectos del Estado (Violaciones a los Derechos Humanos)."},
-                      {"cat" => ['12&!72'],
-                       "titulo" => "Victimizaciones por `Tortura´ por agentes directos o indirectos del Estado por móviles de Persecución Política (Violaciones a los Derechos Humanos) que no constituye Infracción al Derecho Internacional Humanitario Consuetudinario."},
-                      {"cat" => ['12&72'],
-                       "titulo" => "Víctimas simultáneamente de `Tortura´ por agentes directos o indirectos del Estado por móviles de Persecución Política (Violaciones a los Derechos Humanos) y de `Tortura y Tratos Crueles e Inhumanos, Atentados contra la Dignidad Personal, Tratos Humillantes y Degradantes y Castigos Corporales, como Instrumentos de Guerra´ que constituye Infracción al Derecho Internacional Humanitario Consuetudinario por parte de agentes directos o indirectos del Estado."},
-                      {"cat" => ['72&!12'],
-                       "titulo" => "Victimizaciones por `Tortura y Tratos Crueles e Inhumanos, Atentados contra la Dignidad Personal, Tratos Humillantes y Degradantes y Castigos Corporales, como Instrumentos de Guerra´ como Infracciones al Derecho Internacional Humanitario Consuetudinario por parte de la insurgencia."},
-                       {"cat" => [47],
-                        "titulo" => "Victimizaciones por `Tortura´ por Persecución Política sin autor determinado"},
-                        {"cat" => [56],
-                         "titulo" => "Victimizaciones por `Tortura´ por Intolerancia Social sin autor determinado"}
+                    {"cat" => ['12&!72'],
+                     "titulo" => "Victimizaciones por `Tortura´ por agentes directos o indirectos del Estado por móviles de Persecución Política (Violaciones a los Derechos Humanos) que no constituye Infracción al Derecho Internacional Humanitario Consuetudinario."},
+                    {"cat" => ['12&72'],
+                     "titulo" => "Victimazaciones que son simultáneamente `Tortura´ por agentes directos o indirectos del Estado por móviles de Persecución Política (Violaciones a los Derechos Humanos) y `Tortura y Tratos Crueles e Inhumanos, Atentados contra la Dignidad Personal, Tratos Humillantes y Degradantes y Castigos Corporales, como Instrumentos de Guerra´ que constituye Infracción al Derecho Internacional Humanitario Consuetudinario por parte de agentes directos o indirectos del Estado."},
+                    {"cat" => ['72&!12'],
+                     "titulo" => "Victimizaciones por `Tortura y Tratos Crueles e Inhumanos, Atentados contra la Dignidad Personal, Tratos Humillantes y Degradantes y Castigos Corporales, como Instrumentos de Guerra´ como Infracciones al Derecho Internacional Humanitario Consuetudinario por parte de la insurgencia."},
+                     {"cat" => [47],
+                      "titulo" => "Victimizaciones por `Tortura´ por Persecución Política sin autor determinado"},
+                      {"cat" => [56],
+                       "titulo" => "Victimizaciones por `Tortura´ por Intolerancia Social sin autor determinado"}
                     ], "Total victimizaciones por tortura", where1
                   ),
                   genvic_tabla(
@@ -678,16 +678,16 @@ module Sivel2Gen
                     [
                       {"cat" => [29, 39],
                        "titulo" => "Victimizaciones por `Violencia Sexual´ por móvil de Abuso de Autoridad o Intolerancia Social, perpetradas por agentes directos o indirectos del Estado (Violaciones a los Derechos Humanos)."},
-                      {"cat" => ['19&!77'],
-                       "titulo" => "Victimizaciones por `Violencia Sexual´ por agentes directos o indirectos del Estado por móviles de Persecución Política (Violaciones a los Derechos Humanos) que no representan infracciones al Derecho Internacional Humanitario Consuetudinario."},
-                      {"cat" => ['19&77'],
-                       "titulo" => "Victimizaciones por `Violencia Sexual´ por agentes directos o indirectos del Estado por móviles de Persecución Política (Violaciones a los Derechos Humanos) y que constituyen al mismo tiempo infracciones al Derecho Internacional Humanitario Consuetudinario."},
-                      {"cat" => ['77&!19'],
-                       "titulo" => "Victimizaciones por `Violencia Sexual´ que constituyen infracciones al Derecho Internacional Humanitario Consuetudinario por parte de la insurgencia."},
-                       {"cat" => [420],
-                        "titulo" => "Victimizaciones por `Violencia Sexual´ por Persecución Política sin autor determinado"},
-                        {"cat" => [520],
-                         "titulo" => "Victimizaciones por `Violencia Sexual´ por Intolerancia Social sin autor determinado"}
+                    {"cat" => ['19&!77'],
+                     "titulo" => "Victimizaciones por `Violencia Sexual´ por agentes directos o indirectos del Estado por móviles de Persecución Política (Violaciones a los Derechos Humanos) que no representan infracciones al Derecho Internacional Humanitario Consuetudinario."},
+                    {"cat" => ['19&77'],
+                     "titulo" => "Victimizaciones por `Violencia Sexual´ por agentes directos o indirectos del Estado por móviles de Persecución Política (Violaciones a los Derechos Humanos) y que constituyen al mismo tiempo infracciones al Derecho Internacional Humanitario Consuetudinario."},
+                    {"cat" => ['77&!19'],
+                     "titulo" => "Victimizaciones por `Violencia Sexual´ que constituyen infracciones al Derecho Internacional Humanitario Consuetudinario por parte de la insurgencia."},
+                     {"cat" => [420],
+                      "titulo" => "Victimizaciones por `Violencia Sexual´ por Persecución Política sin autor determinado"},
+                      {"cat" => [520],
+                       "titulo" => "Victimizaciones por `Violencia Sexual´ por Intolerancia Social sin autor determinado"}
                     ], "Total victimizaciones por violencia sexual", where1
                   ),
                   genvic_tabla(
@@ -715,12 +715,12 @@ module Sivel2Gen
                     [
                       {"cat" => [21, 302],
                        "titulo" => "Victimizaciones por `Desaparición Forzada e Involuntaria´ por móvil de Abuso de Autoridad o Intolerancia Social, perpetradas por agentes directos o indirectos del Estado (Violaciones a los Derechos Humanos)."},
-                      {"cat" => ['11&!76'],
-                       "titulo" => "Victimizaciones por `Desaparicion Forzada e Involuntaria´ por agentes directos o indirectos del Estado por móviles de Persecución Política (Violaciones a los Derechos Humanos) que no representan infracciones al Derecho Internacional Humanitario Consuetudinario."},
-                      {"cat" => ['11&76'],
-                       "titulo" => "Victimizaciones por `Desaparicion Forzada e Involuntaria´ por agentes directos o indirectos del Estado por móviles de Persecución Política (Violaciones a los Derechos Humanos) y que constituyen al mismo tiempo infracciones al Derecho Internacional Humanitario Consuetudinario."},
-                      {"cat" => ['76&!11'],
-                       "titulo" => "Victimizaciones por `Desaparición Forzada como Instrumento de Guerra´ que constituyen infracciones al Derecho Internacional Humanitario Consuetudinario pero no violación a los Derechos Humanos."}
+                    {"cat" => ['11&!76'],
+                     "titulo" => "Victimizaciones por `Desaparicion Forzada e Involuntaria´ por agentes directos o indirectos del Estado por móviles de Persecución Política (Violaciones a los Derechos Humanos) que no representan infracciones al Derecho Internacional Humanitario Consuetudinario."},
+                    {"cat" => ['11&76'],
+                     "titulo" => "Victimizaciones por `Desaparicion Forzada e Involuntaria´ por agentes directos o indirectos del Estado por móviles de Persecución Política (Violaciones a los Derechos Humanos) y que constituyen al mismo tiempo infracciones al Derecho Internacional Humanitario Consuetudinario."},
+                    {"cat" => ['76&!11'],
+                     "titulo" => "Victimizaciones por `Desaparición Forzada como Instrumento de Guerra´ que constituyen infracciones al Derecho Internacional Humanitario Consuetudinario pero no violación a los Derechos Humanos."}
                     ], "Total victimizaciones por desaparición forzada e involuntaria",
                     where1
                   ),
@@ -729,22 +729,22 @@ module Sivel2Gen
                     [
                       {"cat" => [24, 241, 301, 341],
                        "titulo" => "Victimizaciones por `Detención Arbitraria´ y `Judicialización Arbitraria´ por móvil de Abuso de Autoridad o Intolerancia Social, perpetradas por agentes directos o indirectos del Estado (Violaciones a los Derechos Humanos)."},
-                      {"cat" => [14, 101],
-                       "titulo" => "Victimizaciones por `Detención Arbitraria´  y `Deportación´ por móviles de Persecución Política (Violaciones a los Derechos Humanos)."},
-                      {"cat" => ['141&!715'],
-                       "titulo" => "Victimizaciones por `Judicialización Arbitraria´ que no representan `Judicialización Arbitraría como Instrumento de Guerra´."},
-                       {"cat" => ['141&715'],
-                        "titulo" => "Victimizaciones que son simultaneamente `Judicialización Arbitraria´ y `Judicialización Arbitraría como Instrumento de Guerra´."},
-                        {"cat" => ['!141&715'],
-                         "titulo" => "Victimizaciones que son `Judicialización Arbitraría como Instrumento de Guerra´  pero que no son `Judicialización Arbitraria´."},
-                         {"cat" => [48],
-                          "titulo" => "Victimizaciones por `Rapto´ por Móviles Políticos sin autor determinado."},
-                          {"cat" => [41],
-                           "titulo" => "Victimizaciones por `Secuestro´ perpetrado por organizaciones insurgentes."},
-                           {"cat" => [58],
-                            "titulo" => "Victimizaciones por `Rapto´ por Móviles de Intolerancia Social sin autor determinado."},
-                            {"cat" => [74, 75, 714],
-                             "titulo" => "Victimizaciones por `Toma de Rehenes´, `Reclutamiento de Menores´ y `Esclavitud y Trabajos Forzados´ DIHC."}
+                    {"cat" => [14, 101],
+                     "titulo" => "Victimizaciones por `Detención Arbitraria´  y `Deportación´ por móviles de Persecución Política (Violaciones a los Derechos Humanos)."},
+                    {"cat" => ['141&!715'],
+                     "titulo" => "Victimizaciones por `Judicialización Arbitraria´ que no representan `Judicialización Arbitraría como Instrumento de Guerra´."},
+                     {"cat" => ['141&715'],
+                      "titulo" => "Victimizaciones que son simultaneamente `Judicialización Arbitraria´ y `Judicialización Arbitraría como Instrumento de Guerra´."},
+                      {"cat" => ['!141&715'],
+                       "titulo" => "Victimizaciones que son `Judicialización Arbitraría como Instrumento de Guerra´  pero que no son `Judicialización Arbitraria´."},
+                       {"cat" => [48],
+                        "titulo" => "Victimizaciones por `Rapto´ por Móviles Políticos sin autor determinado."},
+                        {"cat" => [41],
+                         "titulo" => "Victimizaciones por `Secuestro´ perpetrado por organizaciones insurgentes."},
+                         {"cat" => [58],
+                          "titulo" => "Victimizaciones por `Rapto´ por Móviles de Intolerancia Social sin autor determinado."},
+                          {"cat" => [74, 75, 714],
+                           "titulo" => "Victimizaciones por `Toma de Rehenes´, `Reclutamiento de Menores´ y `Esclavitud y Trabajos Forzados´ DIHC."}
                     ], 
                     "Total victimizaciones de otras violaciones al derecho a la libertad",
                     where1
@@ -896,8 +896,8 @@ module Sivel2Gen
 
               when "REGIÓN"
                 que1 += ", (SELECT r.nombre FROM  sivel2_gen_caso_region AS cr "\
-                    "  JOIN sivel2_gen_region AS r ON cr.id_region=r.id "\
-                    "  WHERE cr.id_caso=caso.id LIMIT 1) AS region "
+                  "  JOIN sivel2_gen_region AS r ON cr.id_region=r.id "\
+                  "  WHERE cr.id_caso=caso.id LIMIT 1) AS region "
 
               when "RANGO DE EDAD"
                 que1 += ', rangoedad.id, INITCAP(rangoedad.nombre) AS rangoedad_rango' 
@@ -928,10 +928,10 @@ module Sivel2Gen
             q1="CREATE VIEW #{tcons1} AS 
               SELECT #{que1}
               FROM #{tablas1} #{where1} "
-              puts "q1 es #{q1}"
-              ActiveRecord::Base.connection.execute q1
+            puts "q1 es #{q1}"
+            ActiveRecord::Base.connection.execute q1
 
-              return tcons1
+            return tcons1
           end # def
 
           def filtros_victimizaciones_gen(
@@ -1056,183 +1056,183 @@ module Sivel2Gen
             q3 = "SELECT #{qc} \n"\
               "COUNT(cast(#{tcons1}.id_caso as text)) \n"\
               "FROM #{tablas3} \n #{twhere3} \n #{gb}"
-              puts "q3=#{q3}"
+            puts "q3=#{q3}"
 
-              if pAgrucol == 'CATEGORÍA'
-                totalesfila = true
+            if pAgrucol == 'CATEGORÍA'
+              totalesfila = true
 
-                if que3.count == 3
-                  # Si no se desagrega, solo presenta tabla mínima con 
-                  # categorías y conteos por categoría
-                  q4 = "SELECT categoria, SUM(count)::INTEGER " +
-                    "FROM (#{q3}) AS sub GROUP BY 1 ORDER BY 1;"
-                  r = ActiveRecord::Base.connection.select_all(q4)
-                  enctabla = []
-                  fila = []
-                  i = 0
-                  r.each do |t|
-                    enctabla << CGI.escapeHTML(t['categoria'])
-                    fila << CGI.escapeHTML(t['sum'].to_s)
-                    coltotales << i
-                    i += 1
-                  end
-                  cuerpotabla = [fila]
-
-                elsif que3.count == 4
-                  # Si se desagrega, pone los desagregados en columnas
-                  fila = que3.last[0]
-                  fila_hum = que3.last[1]
-                  q4 = "SELECT #{fila}, categoria, SUM(count)::INTEGER " +
-                    "FROM (#{q3}) AS sub GROUP BY 1, 2 ORDER BY 1, 2;"
-
-                  r = ActiveRecord::Base.connection.select_all(q4)
-                  enctabla = []
-                  inter = {}
-                  filas = []
-                  et = []
-                  r.each do |t|
-                    if !inter[t[fila]]
-                      inter[t[fila]] = {}
-                    end
-                    if !inter[t[fila]][t['categoria']]
-                      inter[t[fila]][t['categoria']] = 0
-                    end
-                    inter[t[fila]][t['categoria']] += t['sum'].to_i
-                    if !et.include?(t['categoria'])
-                      et << t['categoria']
-                    end
-                    if !filas.include?(t[fila])
-                      filas << t[fila]
-                    end
-                  end
-                  et.sort!
-                  enctabla << fila_hum
-                  i = 1
-                  et.each do |e|
-                    enctabla << CGI.escapeHTML(e)
-                    coltotales << i
-                    i += 1
-                  end
-                  cuerpotabla = []
-                  filas.each do |f|
-                    ft = [f]
-                    et.each do |e|
-                      if inter[f] && inter[f][e]
-                        ft << inter[f][e]
-                      else
-                        ft << 0
-                      end
-                    end
-                    cuerpotabla << ft
-                  end
-
+              if que3.count == 3
+                # Si no se desagrega, solo presenta tabla mínima con 
+                # categorías y conteos por categoría
+                q4 = "SELECT categoria, SUM(count)::INTEGER " +
+                  "FROM (#{q3}) AS sub GROUP BY 1 ORDER BY 1;"
+                r = ActiveRecord::Base.connection.select_all(q4)
+                enctabla = []
+                fila = []
+                i = 0
+                r.each do |t|
+                  enctabla << CGI.escapeHTML(t['categoria'])
+                  fila << CGI.escapeHTML(t['sum'].to_s)
+                  coltotales << i
+                  i += 1
                 end
-              elsif pAgrucol == 'RÓTULO'
-                totalesfila = true
-                sub = "SELECT DISTINCT id_caso, id_persona, id_categoria, "\
-                  "c.id_pconsolidado, p.nombre FROM cvt1 "\
+                cuerpotabla = [fila]
+
+              elsif que3.count == 4
+                # Si se desagrega, pone los desagregados en columnas
+                fila = que3.last[0]
+                fila_hum = que3.last[1]
+                q4 = "SELECT #{fila}, categoria, SUM(count)::INTEGER " +
+                  "FROM (#{q3}) AS sub GROUP BY 1, 2 ORDER BY 1, 2;"
+
+                r = ActiveRecord::Base.connection.select_all(q4)
+                enctabla = []
+                inter = {}
+                filas = []
+                et = []
+                r.each do |t|
+                  if !inter[t[fila]]
+                    inter[t[fila]] = {}
+                  end
+                  if !inter[t[fila]][t['categoria']]
+                    inter[t[fila]][t['categoria']] = 0
+                  end
+                  inter[t[fila]][t['categoria']] += t['sum'].to_i
+                  if !et.include?(t['categoria'])
+                    et << t['categoria']
+                  end
+                  if !filas.include?(t[fila])
+                    filas << t[fila]
+                  end
+                end
+                et.sort!
+                enctabla << fila_hum
+                i = 1
+                et.each do |e|
+                  enctabla << CGI.escapeHTML(e)
+                  coltotales << i
+                  i += 1
+                end
+                cuerpotabla = []
+                filas.each do |f|
+                  ft = [f]
+                  et.each do |e|
+                    if inter[f] && inter[f][e]
+                      ft << inter[f][e]
+                    else
+                      ft << 0
+                    end
+                  end
+                  cuerpotabla << ft
+                end
+
+              end
+            elsif pAgrucol == 'RÓTULO'
+              totalesfila = true
+              sub = "SELECT DISTINCT id_caso, id_persona, id_categoria, "\
+                "c.id_pconsolidado, p.nombre FROM cvt1 "\
+                " JOIN sivel2_gen_categoria AS c "\
+                "  ON cvt1.id_categoria=c.id "\
+                "JOIN sivel2_gen_pconsolidado AS p "\
+                "  ON p.id=c.id_pconsolidado"
+
+              if que3.count == 3
+                # Si no se desagrega, solo presenta tabla mínima con 
+                # categorías y conteos por categoría
+                numpersonas = ActiveRecord::Base.connection.select_all(
+                  "SELECT count(DISTINCT id_persona) FROM (#{sub}) AS sub"
+                )[0]['count']
+                q4 = "SELECT nombre, count(*)" +
+                  "FROM (#{sub}) AS sub GROUP BY 1 ORDER BY 1;"
+                puts "OJO q4=#{q4}"
+                r = ActiveRecord::Base.connection.select_all(q4)
+                enctabla = []
+                fila = []
+                i = 0
+                r.each do |t|
+                  enctabla << CGI.escapeHTML(t['nombre'].to_s)
+                  fila << CGI.escapeHTML(t['count'].to_s)
+                  coltotales << i
+                  i += 1
+                end
+                cuerpotabla = [fila]
+
+              elsif que3.count == 4
+                # Si se desagrega, pone los desagregados en columnas
+                fila = que3.last[0]
+                fila_hum = que3.last[1]
+
+                sub = "SELECT DISTINCT cvt1.id_caso, id_persona, id_categoria, "\
+                  "c.id_pconsolidado, p.nombre AS rotulo, "\
+                  "(SELECT r.nombre FROM  sivel2_gen_caso_region AS cr "\
+                  "  JOIN sivel2_gen_region AS r ON cr.id_region=r.id "\
+                  "  WHERE cr.id_caso=cvt1.id_caso LIMIT 1) AS region "\
+                  " FROM cvt1 "\
                   " JOIN sivel2_gen_categoria AS c "\
                   "  ON cvt1.id_categoria=c.id "\
                   "JOIN sivel2_gen_pconsolidado AS p "\
-                  "  ON p.id=c.id_pconsolidado"
+                  "  ON p.id=c.id_pconsolidado "
 
-                if que3.count == 3
-                  # Si no se desagrega, solo presenta tabla mínima con 
-                  # categorías y conteos por categoría
-                  numpersonas = ActiveRecord::Base.connection.select_all(
-                    "SELECT count(DISTINCT id_persona) FROM (#{sub}) AS sub"
-                                                             )[0]['count']
-                  q4 = "SELECT nombre, count(*)" +
-                    "FROM (#{sub}) AS sub GROUP BY 1 ORDER BY 1;"
-                  puts "OJO q4=#{q4}"
-                  r = ActiveRecord::Base.connection.select_all(q4)
-                  enctabla = []
-                  fila = []
-                  i = 0
-                  r.each do |t|
-                    enctabla << CGI.escapeHTML(t['nombre'].to_s)
-                    fila << CGI.escapeHTML(t['count'].to_s)
-                    coltotales << i
-                    i += 1
-                  end
-                  cuerpotabla = [fila]
-
-                elsif que3.count == 4
-                  # Si se desagrega, pone los desagregados en columnas
-                  fila = que3.last[0]
-                  fila_hum = que3.last[1]
-
-                  sub = "SELECT DISTINCT cvt1.id_caso, id_persona, id_categoria, "\
-                    "c.id_pconsolidado, p.nombre AS rotulo, "\
-                    "(SELECT r.nombre FROM  sivel2_gen_caso_region AS cr "\
-                    "  JOIN sivel2_gen_region AS r ON cr.id_region=r.id "\
-                    "  WHERE cr.id_caso=cvt1.id_caso LIMIT 1) AS region "\
-                    " FROM cvt1 "\
-                    " JOIN sivel2_gen_categoria AS c "\
-                    "  ON cvt1.id_categoria=c.id "\
-                    "JOIN sivel2_gen_pconsolidado AS p "\
-                    "  ON p.id=c.id_pconsolidado "
-
-                  q4 = "SELECT #{fila}, rotulo, count(*)::INTEGER " +
-                    "FROM (#{sub}) AS sub GROUP BY 1, 2 ORDER BY 1, 2;"
-                  puts "OJO q4=#{q4}"
-                  r = ActiveRecord::Base.connection.select_all(q4)
-                  enctabla = []
-                  inter = {}
-                  filas = []
-                  et = []
-                  r.each do |t|
-                    if !inter[t[fila]]
-                      inter[t[fila]] = {}
-                    end
-                    if !inter[t[fila]][t['rotulo']]
-                      inter[t[fila]][t['rotulo']] = 0
-                    end
-                    inter[t[fila]][t['rotulo']] += t['count'].to_i
-                    if !et.include?(t['rotulo'])
-                      et << t['rotulo']
-                    end
-                    if !filas.include?(t[fila])
-                      filas << t[fila]
-                    end
-                  end
-                  et.sort!
-                  enctabla << fila_hum
-                  i = 1
-                  et.each do |e|
-                    enctabla << CGI.escapeHTML(e)
-                    coltotales << i
-                    i += 1
-                  end
-                  cuerpotabla = []
-                  filas.each do |f|
-                    ft = [f]
-                    et.each do |e|
-                      if inter[f] && inter[f][e]
-                        ft << inter[f][e]
-                      else
-                        ft << 0
-                      end
-                    end
-                    cuerpotabla << ft
-                  end
-
-                end
-
-              else
-                que3 << ["", "Victimizaciones"]
-                cuerpotabla = ActiveRecord::Base.connection.select_all(q3)
-
+                q4 = "SELECT #{fila}, rotulo, count(*)::INTEGER " +
+                  "FROM (#{sub}) AS sub GROUP BY 1, 2 ORDER BY 1, 2;"
+                puts "OJO q4=#{q4}"
+                r = ActiveRecord::Base.connection.select_all(q4)
                 enctabla = []
-                que3.each do |t|
-                  if (t[1] != "") 
-                    enctabla << CGI.escapeHTML(t[1])
+                inter = {}
+                filas = []
+                et = []
+                r.each do |t|
+                  if !inter[t[fila]]
+                    inter[t[fila]] = {}
+                  end
+                  if !inter[t[fila]][t['rotulo']]
+                    inter[t[fila]][t['rotulo']] = 0
+                  end
+                  inter[t[fila]][t['rotulo']] += t['count'].to_i
+                  if !et.include?(t['rotulo'])
+                    et << t['rotulo']
+                  end
+                  if !filas.include?(t[fila])
+                    filas << t[fila]
                   end
                 end
+                et.sort!
+                enctabla << fila_hum
+                i = 1
+                et.each do |e|
+                  enctabla << CGI.escapeHTML(e)
+                  coltotales << i
+                  i += 1
+                end
+                cuerpotabla = []
+                filas.each do |f|
+                  ft = [f]
+                  et.each do |e|
+                    if inter[f] && inter[f][e]
+                      ft << inter[f][e]
+                    else
+                      ft << 0
+                    end
+                  end
+                  cuerpotabla << ft
+                end
+
               end
 
-              return [opsegun, coltotales, totalesfila, 
-                      numpersonas, enctabla, cuerpotabla]
+            else
+              que3 << ["", "Victimizaciones"]
+              cuerpotabla = ActiveRecord::Base.connection.select_all(q3)
+
+              enctabla = []
+              que3.each do |t|
+                if (t[1] != "") 
+                  enctabla << CGI.escapeHTML(t[1])
+                end
+              end
+            end
+
+            return [opsegun, coltotales, totalesfila, 
+                    numpersonas, enctabla, cuerpotabla]
           end
 
 
