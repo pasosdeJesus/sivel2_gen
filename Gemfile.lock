@@ -11,7 +11,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/heb412_gen.git
-  revision: 3f2a03346956c93221b78898c2e9af363463c700
+  revision: cf7252aa9130f554af25c959ac2e43faff4b8e23
   branch: main
   specs:
     heb412_gen (2.1a1)
@@ -22,7 +22,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/mr519_gen.git
-  revision: 059ba93de68e307d893ae1474b0846e7846102fe
+  revision: b4cca21191481dc9e6253b5c1d348e9bbd253694
   branch: main
   specs:
     mr519_gen (2.1a1)
@@ -31,7 +31,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sip.git
-  revision: 4d451472c5045a60594456bbc9372584f050dee9
+  revision: 1a3721bef698e6da633e35722518c900fa2aed66
   branch: main
   specs:
     sip (2.1a2)
@@ -49,7 +49,7 @@ GIT
 
 GIT
   remote: https://github.com/styd/apexcharts.rb.git
-  revision: 1695f5a933f56499e2d291731c7e36130f2ffaea
+  revision: 0a8018093f5ca1ef6cf14597387d30420a404afb
   branch: master
   specs:
     apexcharts (0.2.0)
@@ -211,7 +211,7 @@ GEM
       railties (>= 6.0.0)
     json (2.6.2)
     libxml-ruby (3.2.3)
-    loofah (2.18.0)
+    loofah (2.19.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
     mail (2.7.1)
