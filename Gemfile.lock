@@ -11,7 +11,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/heb412_gen.git
-  revision: a9b9662ae17bcaa35e3fd0d03ec9992c563078d7
+  revision: b153e42bc1835e9e098337413dac77894b12a7d3
   branch: v2.0
   specs:
     heb412_gen (2.0)
@@ -22,7 +22,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/mr519_gen.git
-  revision: 755f4f7656c12f0b260e6883f1d10281067f29a8
+  revision: 9eb8ca4b9b37e209b35980f2ae0600ad607ba323
   branch: v2.0
   specs:
     mr519_gen (2.0)
@@ -31,7 +31,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sip.git
-  revision: c3b9f5b6cd006ca483393e9f417d28240f9ba197
+  revision: 31cab50e571583744d98e202797b155f25091b87
   branch: v2.0
   specs:
     sip (2.0)
@@ -177,7 +177,7 @@ GEM
       railties (>= 3.2.16)
     json (2.6.2)
     libxml-ruby (3.2.3)
-    loofah (2.18.0)
+    loofah (2.19.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
     mail (2.7.1)
@@ -230,7 +230,7 @@ GEM
       nio4r (~> 2.0)
     racc (1.6.0)
     rack (2.2.4)
-    rack-proxy (0.7.2)
+    rack-proxy (0.7.4)
       rack
     rack-test (2.0.2)
       rack (>= 1.3)
