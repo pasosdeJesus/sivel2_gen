@@ -11,7 +11,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/heb412_gen.git
-  revision: cf7252aa9130f554af25c959ac2e43faff4b8e23
+  revision: fa0162e02e7cd1b4316827ad53151f2bf7bcf961
   branch: main
   specs:
     heb412_gen (2.1a1)
@@ -22,7 +22,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/mr519_gen.git
-  revision: b4cca21191481dc9e6253b5c1d348e9bbd253694
+  revision: cba50f1413401074528155b2a7cdb5da905b2abb
   branch: main
   specs:
     mr519_gen (2.1a1)
@@ -31,7 +31,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sip.git
-  revision: 1a3721bef698e6da633e35722518c900fa2aed66
+  revision: 964896c053090d375ef95dd8b8864adc0371e350
   branch: main
   specs:
     sip (2.1a2)
@@ -49,7 +49,7 @@ GIT
 
 GIT
   remote: https://github.com/styd/apexcharts.rb.git
-  revision: 0a8018093f5ca1ef6cf14597387d30420a404afb
+  revision: d72c88c265828c810ef0094d84e61825020f4dbc
   branch: master
   specs:
     apexcharts (0.2.0)
