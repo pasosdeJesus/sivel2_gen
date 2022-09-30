@@ -78,8 +78,12 @@ gem 'will_paginate' # Listados en páginas
 # lógico y no alfabetico como las gemas anteriores) 
 
 gem 'sip', # Motor generico,
-  git: 'https://github.com/pasosdeJesus/sip.git', branch: :carto
-  #path: '../sip-carto'
+  git: 'https://github.com/pasosdeJesus/sip.git', branch: :main
+  #path: '../sip'
+
+gem 'siep_carto', # Motor generico,
+  git: 'https://gitlab.com/pasosdeJesus/siep_carto.git', branch: :main
+  #path: '../siep_carto'
 
 gem 'mr519_gen', # Motor de gestion de formularios y encuestas
   git: 'https://github.com/pasosdeJesus/mr519_gen.git', branch: :main

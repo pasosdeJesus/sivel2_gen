@@ -31,8 +31,8 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sip.git
-  revision: 4b551052e164b07aff7dbd7be32f3ac7ee21531c
-  branch: carto
+  revision: 780753ebc42c6b4c4db561389e53adbe5a351d2b
+  branch: main
   specs:
     sip (2.1a2)
       cancancan
@@ -60,6 +60,15 @@ GIT
   branch: new_id_with_ajax
   specs:
     cocoon (1.2.11)
+
+GIT
+  remote: https://gitlab.com/pasosdeJesus/siep_carto.git
+  revision: e92f09d71dc00101a7745b977e027deeea35327f
+  branch: main
+  specs:
+    siep_carto (0.1.0)
+      rails (>= 7.0.4)
+      sip
 
 GEM
   remote: https://rubygems.org/
@@ -224,7 +233,7 @@ GEM
     mini_mime (1.1.2)
     mini_portile2 (2.8.0)
     minitest (5.16.3)
-    msgpack (1.5.6)
+    msgpack (1.6.0)
     net-imap (0.3.1)
       net-protocol
     net-pop (0.1.2)
@@ -408,6 +417,7 @@ DEPENDENCIES
   rspreadsheet
   rubyzip (>= 2.0)
   sassc-rails
+  siep_carto!
   simple_form
   simplecov (< 0.18)
   sip!
