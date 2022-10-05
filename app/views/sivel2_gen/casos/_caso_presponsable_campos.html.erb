@@ -21,6 +21,17 @@
     </div>
 
     <div class="row">
+      <div class="col-md-12">
+        <%= f.input :subdivision,
+          label: "División / Brigada / Batallón",
+          input_html: {
+          "data-toggle" => 'tooltip',
+          "title" => 'En el caso de ejército'
+        } %>
+      </div>
+    </div>
+
+    <div class="row">
       <div class="col-md-4">
         <%= f.input :bloque,
           input_html: {
@@ -36,30 +47,6 @@
         } %>
       </div>
       <div class="col-md-4">
-        <%= f.input :division,
-          input_html: {
-          "data-toggle" => 'tooltip',
-          "title" => 'En el caso de ejército'
-        } %>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-md-4">
-        <%= f.input :brigada,
-          input_html: {
-          "data-toggle" => 'tooltip',
-          "title" => 'En el caso de ejército'
-        } %>
-      </div>
-      <div class="col-md-4">
-        <%= f.input :batallon,
-          input_html: {
-          "data-toggle" => 'tooltip',
-          "title" => 'En el caso de ejército'
-        } %>
-      </div>
-      <div class="col-md-4">
         <%= f.input :otro,
           input_html: {
           "data-toggle" => 'tooltip',
@@ -67,7 +54,7 @@
         } %>
       </div>
     </div>
-    
+
     <%= render 'sivel2_gen/casos/caso_presponsable_compf', f:  f %>
     <%= f.input :id, as: :hidden %>
     <%= link_to_remove_association "Eliminar " +

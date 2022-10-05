@@ -70,7 +70,7 @@ xml.relato do
       xml.grupo do
         xml.id_grupo cpr.presponsable.id if cpr.presponsable
         xml.nombre_grupo cpr.presponsable.nombre if cpr.presponsable
-        ['batallon', 'brigada', 'bloque', 'frente', 'division', 
+        ['subdivision', 'bloque', 'frente',
          'otro'].each do |ob|
           xml.observaciones(cpr[ob], {tipo: ob}) if cpr[ob]
         end
