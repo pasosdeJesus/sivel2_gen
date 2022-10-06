@@ -102,19 +102,16 @@
       <p>
       <% anexo.each do |an| %>
         <% archivo = Sip::Anexo.find(an.id_anexo) %>
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target=<%="#anexoModal#{an.id.to_s}" %>>
-           <%= an.fecha if an.fecha %>-
+        <a class="link-primary" data-bs-toggle="modal" data-bs-target=<%="#anexoModal#{an.id.to_s}" %>>
            <%= caso.id %>_<%= Sip::Anexo.find(an.id_anexo).adjunto_file_name %>
-        </button>
+        </a>
         <div class="modal fade" id=<%="anexoModal#{an.id.to_s}"%> tabindex="-1" aria-labelledby="anexoModalLabel" aria-hidden="true">
           <div class="modal-dialog" style="position: relative;
             display: table;
             overflow-y: auto;
             overflow-x: auto;
-            width: auto;
-            height: 100%;
-            min-width: 40%; 
-            min-height: 50%;
+            width: 512px;
+            height: 512px;
             ">
             <div class="modal-content" style="height: 85%;">
               <div class="modal-header">
@@ -129,11 +126,12 @@
               <% else %>
                 <%= link_to sip.descarga_anexo_path(an.id_anexo.to_i),
                  'data-turbo' => :false do %>
-                  <%= image_tag sip.descarga_anexo_path(an.id_anexo.to_i) %>
+                  <%= image_tag sip.descarga_anexo_path(an.id_anexo.to_i), style: "width: 100%; height: 100%;" %>
                 <% end %>
               <% end %>
               </div>
               <div class="modal-footer">
+                <p class="px-2">Fecha: <%= an.fecha if an.fecha %></p>
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
                 <%= link_to "Descargar", sip.descarga_anexo_path(an.id_anexo.to_i), class: "btn btn-primary" %>
               </div>
