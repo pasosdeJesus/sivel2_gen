@@ -121,6 +121,15 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body" style="height: 100%; overflow: auto;">
+                <p class="px-2">
+                <% if archivo.descripcion %>
+                  <% if archivo.descripcion.length > 80 %>
+                    <%= truncate(archivo.descripcion, length: 80) %> 
+                  <% else %>
+                    <%= archivo.descripcion %>
+                  <% end %>
+                <% end %>
+                </p>
               <% if archivo.adjunto_content_type == "application/pdf" %>
                   <iframe class="embed-responsive-item" style="width: 100%; height: 100%;" src=<%= sip.abre_anexo_path(an.id_anexo.to_i) %> type="application/pdf" allowfullscreen></iframe>
               <% else %>
