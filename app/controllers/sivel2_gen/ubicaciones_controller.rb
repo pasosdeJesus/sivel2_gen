@@ -10,7 +10,7 @@ module Sivel2Gen
       if !params[:caso_id].nil?
         @ubicacion = Sip::Ubicacion.new
         @ubicacion.id_caso = params[:caso_id]
-        @ubicacion.id_pais = 170
+        @ubicacion.id_pais = ENV.fetch('SIVEL2_PAIS', '170').to_i
         if @ubicacion.save(validate: false)
           respond_to do |format|
             format.js { render text: @ubicacion.id.to_s }

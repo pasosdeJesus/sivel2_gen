@@ -113,7 +113,8 @@
           if params.nil? || params[:filtro].nil? || 
             params[:filtro][:departamentos].nil?
             dep_sel = Sip::Departamento.habilitados.
-              where(id_pais: 170).pluck(:id)
+              where(
+                id_pais: ENV.fetch('SIVEL2_PAIS', '170').to_i).pluck(:id)
             estdep = "display: block"
           else
             dep_sel = params[:filtro][:departamentos]
@@ -121,7 +122,8 @@
           end
         %>
         <%= f.input :departamentos,
-          collection: Sip::Departamento.habilitados.where(id_pais: 170), 
+          collection: Sip::Departamento.habilitados.where(
+            id_pais: ENV.fetch('SIVEL2_PAIS', '170').to_i), 
           label_method: :nombre,
           value_method: :id, 
           selected: dep_sel,

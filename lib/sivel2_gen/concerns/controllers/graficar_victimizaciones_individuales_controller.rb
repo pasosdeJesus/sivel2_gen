@@ -41,7 +41,8 @@ module Sivel2Gen
               },
               'DEPARTAMENTOS' => { 
                 nomfiltro: :departamentos,
-                coleccion: Sip::Departamento.where(id_pais: 170).order(:nombre),
+                coleccion: Sip::Departamento.where(
+                  id_pais: ENV.fetch('SIVEL2_PAIS', '170').to_i).order(:nombre),
                 metodo_etiqueta: :nombre,
                 metodo_id: :id,
                 campocons: 'departamento.id'

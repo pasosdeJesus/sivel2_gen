@@ -35,8 +35,9 @@
           id="departamento" style="width:140px;">
           <option value="0">Mostrar todos</option>
           <option value="">-----------------------</option>
-          <%= options_for_select(Sip::Departamento.habilitados.where(id_pais: 170).all.collect { |d| [d.nombre, d.id ] })
-        %> 
+          <%= options_for_select(Sip::Departamento.habilitados.where(
+            id_pais: ENV.fetch('SIVEL2_PAIS', '170').to_i).
+          all.collect { |d| [d.nombre, d.id ] }) %> 
         </select>
       </div>
     </div>

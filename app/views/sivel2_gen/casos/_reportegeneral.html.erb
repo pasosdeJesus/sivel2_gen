@@ -41,7 +41,8 @@
   <% end # if current_usuario %> 
 
   <p style="margin: 0; padding: 0">
-  <% if ubprincipal && ubprincipal.pais.id == 170 %>
+  <% if ubprincipal && ubprincipal.pais.id == 
+      ENV.fetch('SIVEL2_PAIS', '170').to_i %>
     <%= ubprincipal.departamento.nombre if ubprincipal && ubprincipal.departamento%> / 
     <%= ubprincipal.municipio.nombre if ubprincipal && ubprincipal.municipio%> /
     <%= ubprincipal.clase.nombre if ubprincipal && ubprincipal.clase%>

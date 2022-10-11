@@ -299,13 +299,9 @@ module Sivel2Gen
                 include?(GRUPO_OBSERVADOR_PARTE_CASOS)
               dicc_filtro = {}
               if usuario.filtrodepartamento_ids.count > 0
-                #cfilt_ids = Sip::Ubicacion.where(id_pais: 170).
-                #  where(id_departamento: usuario.filtrodepartamento_ids).
-                #  map(&:id_caso)
                 dicc_filtro[:ubicacion]={ 
                   id_departamento: usuario.filtrodepartamento_ids
                 }
-                #dicc_filtro[:id] = cfilt_ids
               end
               fini = Sivel2Gen::Caso.all.minimum(:fecha) ?
                 Sivel2Gen::Caso.all.minimum(:fecha) : Date.new(1970,01,01)

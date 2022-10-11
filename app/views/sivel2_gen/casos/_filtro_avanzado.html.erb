@@ -16,7 +16,8 @@
         <%= f.input :departamento_id,
           collection: Sip::ModeloHelper.opciones_tabla_basica(
             Sip::Departamento, f, :departamento_id
-          ).where(id_pais: 170),
+          ).where(
+            id_pais: ENV.fetch('SIVEL2_PAIS', '170').to_i),
           label_method: :nombre,
           value_method: :id,
           label: false,
