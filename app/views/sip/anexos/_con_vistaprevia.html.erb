@@ -1,0 +1,63 @@
+
+<a class="link-primary" 
+   data-bs-toggle="modal" 
+   data-bs-target=<%="#anexoModal#{anexo.id}" %>>
+   <%= truncate(anexo.adjunto_file_name, length: 80) %> 
+</a>
+<div class="modal fade" id="<%= "anexoModal#{anexo.id}" %>" tabindex="-1" 
+    aria-labelledby="anexoModalLabel" 
+    aria-hidden="true">
+  <div class="modal-dialog" style="position: relative;
+                                       display: table;
+                                       overflow-y: auto;
+                                       overflow-x: auto;
+                                       width: 512px;
+                                       height: 512px; ">
+    <div class="modal-content" style="height: 85%;">
+      <div class="modal-header">
+        <h5 class="modal-title">
+          <%= anexo.adjunto_file_name %>
+        </h5>
+        <button type="button" 
+          class="btn-close" 
+          data-bs-dismiss="modal" 
+          aria-label="Close"></button>
+      </div>
+      <div class="modal-body" style="height: 100%; overflow: auto;">
+        <p class="px-2">
+        <% if anexo.descripcion %>
+          <% if anexo.descripcion.length > 80 %>
+            <%= truncate(anexo.descripcion, length: 80) %> 
+          <% else %>
+            <%= anexo.descripcion %>
+          <% end %>
+        <% end %>
+        </p>
+        <% if anexo.adjunto_content_type == "application/pdf" %>
+          <iframe class="embed-responsive-item" 
+                  style="width: 100%; height: 100%;" 
+                  src="<%= sip.abre_anexo_path(anexo.id) %>"
+                  type="application/pdf" allowfullscreen></iframe>
+        <% else %>
+          <%= link_to sip.descarga_anexo_path(anexo.id),
+            'data-turbo' => :false do %>
+            <%= image_tag sip.descarga_anexo_path(anexo.id), 
+              style: "width: 100%; height: 100%;" %>
+          <% end %>
+        <% end %>
+      </div>
+      <div class="modal-footer">
+        <p class="px-2">Fecha: <%= fecha if fecha %></p>
+        <button type="button" 
+                class="btn btn-secondary" 
+                data-bs-dismiss="modal">
+          Cerrar
+        </button>
+        <%= link_to "Descargar", 
+          sip.descarga_anexo_path(anexo.id), 
+          class: "btn btn-primary" %>
+      </div>
+    </div> <!--modal-content -->
+  </div> <!-- modal-dialog -->
+</div> <!-- modal fade -->
+
