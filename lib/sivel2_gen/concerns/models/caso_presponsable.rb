@@ -41,7 +41,7 @@ module Sivel2Gen
                   self.frente = ele[1]
                 when 'otro'
                   self.otro = ele[1]
-                when 'subdivision'
+                when "subdivision"
                   self.subdivision = ele[1]
                 end
               end
