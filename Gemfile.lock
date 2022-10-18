@@ -11,7 +11,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/heb412_gen.git
-  revision: af40b40abb9e3065cfd5a51c57161d809a69cbc5
+  revision: e4aad6d684bde6ac133c0d65692f809435b7d392
   branch: main
   specs:
     heb412_gen (2.1a1)
@@ -22,7 +22,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/mr519_gen.git
-  revision: 676aea4493fe86d8fb5d981b136b7ed73d2abc67
+  revision: d9988188158bca17ff02ca2ca8b4a37fcfdc9e03
   branch: main
   specs:
     mr519_gen (2.1a1)
@@ -31,7 +31,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sip.git
-  revision: e70ce2d2aa793c4ab208b7585f1cece0cce3f999
+  revision: eb3939b1ae2afa99389ee939fa398044ac123e7e
   branch: main
   specs:
     sip (2.1a2)
@@ -252,7 +252,7 @@ GEM
       prawn (>= 1.0.0)
       rails (>= 3.2)
     public_suffix (5.0.0)
-    puma (5.6.5)
+    puma (6.0.0)
       nio4r (~> 2.0)
     racc (1.6.0)
     rack (2.2.4)
@@ -421,4 +421,4 @@ DEPENDENCIES
   will_paginate
 
 BUNDLED WITH
-   2.3.23
+   2.3.24
