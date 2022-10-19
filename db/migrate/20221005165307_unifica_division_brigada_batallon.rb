@@ -1,28 +1,46 @@
 # frozen_string_literal: true.
 class UnificaDivisionBrigadaBatallon < ActiveRecord::Migration[7.0]
   def up
-    cps_antigua = Sivel2Gen::CasoPresponsable.all
     add_column :sivel2_gen_caso_presponsable, :subdivision, :string
-    cps_nuevas = Sivel2Gen::CasoPresponsable.all
-    cps_nuevas.each do |cp|
-      cp.update_column(:subdivision, "#{:division}. #{:brigada}. #{:batallon}")
-    end
+    execute <<-SQL
+      UPDATE sivel2_gen_caso_presponsable 
+        SET subdivision = TRIM(COALESCE(division, '')) || ' / ' || 
+          TRIM(COALESCE(brigada, '')) || ' / ' || 
+          TRIM(COALESCE(batallon, '')) WHERE
+          TRIM(COALESCE(division, ''))<>'' OR
+          TRIM(COALESCE(brigada, ''))<>'' OR
+          TRIM(COALESCE(batallon, ''))<>'';
+    SQL
     remove_column :sivel2_gen_caso_presponsable, :division, :string
     remove_column :sivel2_gen_caso_presponsable, :brigada, :string
     remove_column :sivel2_gen_caso_presponsable, :batallon, :string
   end
 
   def down
-    cps = Sivel2Gen::CasoPresponsable.all
     add_column :sivel2_gen_caso_presponsable, :division, :string
     add_column :sivel2_gen_caso_presponsable, :brigada, :string
     add_column :sivel2_gen_caso_presponsable, :batallon, :string
-    cps_nueva = Sivel2Gen::CasoPresponsable.all
-    cps_nueva.each do |cp|
+    cps = Sivel2Gen::CasoPresponsable.all
+    cps.each do |cp|
       if cp.subdivision
-        cp.update_column(:division, "#{:subdivision}".split(". ")[0])
-        cp.update_column(:brigada, "#{:subdivision}".split(". ")[1])
-        cp.update_column(:batallon, "#{:subdivision}".split(". ")[2])
+        p = cp.subdivision.split('/')
+        if p.count == 3
+          p = p.map {|x| quote(x)}
+          execute <<-SQL
+            UPDATE sivel2_gen_caso_presponsable 
+              SET division=TRIM(#{p[0]}),
+                brigada=TRIM(#{p[1]}),
+                batallon=TRIM(#{p[2]})
+              WHERE id=#{cp.id};
+          SQL
+        else
+          debugger
+          execute <<-SQL
+            UPDATE sivel2_gen_caso_presponsable 
+              SET division='#{cp.subdivision}'
+              WHERE id='#{cp.id}';
+          SQL
+        end
       end
     end
     remove_column :sivel2_gen_caso_presponsable, :subdivision, :string
