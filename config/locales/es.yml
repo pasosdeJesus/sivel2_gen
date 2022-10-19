@@ -99,9 +99,7 @@ es:
         anexo_caso: Anexo
       "sivel2_gen/caso_presponsable":
         presponsable: Presunto responsable
-        division: División
-        brigada: Brigada
-        batallon: Batallón
+        subdivision: División / Brigada / Batallón
         categoria: Otras agresiones
       "sivel2_gen/categoria":
         Categoria: Categoria

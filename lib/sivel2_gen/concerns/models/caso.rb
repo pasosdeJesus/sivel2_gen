@@ -448,16 +448,8 @@ module Sivel2Gen
                     r += sigp + pr.frente
                     sigp = ', '
                   end
-                  if pr.division
-                    r += sigp + pr.division
-                    sigp = ', '
-                  end
-                  if pr.brigada
-                    r += sigp + pr.brigada
-                    sigp = ', '
-                  end
-                  if pr.batallon
-                    r += sigp + pr.batallon
+                  if pr.subdivision
+                    r += sigp + pr.subdivision
                     sigp = ', '
                   end
                   if pr.otro

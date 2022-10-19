@@ -1228,14 +1228,12 @@ module Sivel2Gen
                   :_destroy
                 ],
                 :caso_presponsable_attributes => [
-                  :batallon,
                   :bloque,
-                  :brigada,
-                  :division,
                   :frente,
                   :id,
                   :id_presponsable,
                   :otro,
+                  :subdivision,
                   :tipo,
                   :_destroy,
                   :categoria_ids => []

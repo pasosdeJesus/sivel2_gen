@@ -39,14 +39,10 @@ module Sivel2Gen
                   self.bloque = ele[1]
                 when 'frente'
                   self.frente = ele[1]
-                when 'brigada'
-                  self.brigada = ele[1]
-                when 'batallon'
-                  self.batallon = ele[1]
-                when 'division'
-                  self.division = ele[1]
                 when 'otro'
                   self.otro = ele[1]
+                when "subdivision"
+                  self.subdivision = ele[1]
                 end
               end
               if datosent['observaciones']
