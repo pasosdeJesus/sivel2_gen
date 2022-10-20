@@ -943,7 +943,7 @@ module Sivel2Gen
                 render layout: 'application', locals: { caso: @caso }
               }
               format.json {
-                render 'show.json', locals: { caso: @caso }
+                render 'sivel2_gen/casos/show', locals: { caso: @caso }
               }
               format.xrlat {
                 xml = render_to_string(
