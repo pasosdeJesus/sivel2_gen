@@ -30,6 +30,7 @@ test:
       - vendor/bundle
   before_script:
     - uname -a
+    - cat /etc/os-release
     - whoami
     - echo "HOME=${HOME}"
     - pwd
