@@ -1,5 +1,5 @@
 // Mapa de casos sobre OpenStreetMap
-// Desarrollado por Luis Alejandro Cruz luisalejo@unicauca.edu.co
+// Desarrollo inicial de Luis Alejandro Cruz luisalejo@unicauca.edu.co
 // Financiado por CINEP/PPP con recursos de la Universidad de Sheffield
 // Cedido al dominio publico de acuerdo a la legislacion colombiana
 
@@ -62,10 +62,13 @@ function presentarMapaOsm(usuario_autenticado) {
   controlCapas = L.control.layers(capasBase, leerCapasSuperpuestas(), 
     {position: 'topleft'});
 
+  if (typeof window.formato_fecha == 'undefined') {
+    sip_prepara_eventos_comunes(window)
+  }
+
   //carga  funciones externas implementadas en otras aplicacion que usan este
   //mapa
   agregarFuncionesExternasMapaosm()
-
   if (L.DomUtil.get('agrega-capa') != null && 
     L.DomUtil.get('descarga-capa') != null) {
     // Con Mapbox sería: mapa = L.mapbox.map('mapa-osm', null, {zoomControl: false, minZoom: 2})
@@ -137,12 +140,12 @@ function descargarUrl(url, retrollamada) {
 
 // Construye URL para consulta agregando el punto de montaje antes de
 // ruta_sin_puntomontaje y los filtros acordes a lo elegido a continuación
-function armarRutaConsulta(root, rutaSinPuntomontaje, usuarioAutenticado) {
-  var ruta = root.puntomontaje + rutaSinPuntomontaje
+function armarRutaConsulta(rutaSinPuntomontaje, usuarioAutenticado) {
+  var ruta = window.puntomontaje + rutaSinPuntomontaje
   var desde = $('#campo-desde').val()
-  var desdep = sip_partes_fecha_localizada(desde, root.formato_fecha)
+  var desdep = sip_partes_fecha_localizada(desde, window.formato_fecha)
   var hasta = $('#campo-hasta').val();
-  var hastap = sip_partes_fecha_localizada(hasta, root.formato_fecha)
+  var hastap = sip_partes_fecha_localizada(hasta, window.formato_fecha)
   var departamento = $('#departamento').val()
   var prresp = $('#presponsable').val()
   var tvio = $('#tvio').val();
@@ -178,11 +181,10 @@ function armarRutaConsulta(root, rutaSinPuntomontaje, usuarioAutenticado) {
 
 
 function agregarCasosOsm(usuario_autenticado) {
-  var root = window;
-  if (typeof root.formato_fecha == 'undefined') {
-    sip_prepara_eventos_comunes(root)
+  if (typeof window.formato_fecha == 'undefined') {
+    sip_prepara_eventos_comunes(window)
   }
-  urlSolicitud = armarRutaConsulta(root, 'casos.json', usuario_autenticado) 
+  urlSolicitud = armarRutaConsulta('casos.json', usuario_autenticado) 
   mostrarCargador();
   descargarUrl(urlSolicitud, function(req) {
     var data = req.responseText;
@@ -226,9 +228,8 @@ function creaMarcador(punto, codigo, titulo) {
   marcadorCaso.on('click', clicMarcadorCaso);
   function clicMarcadorCaso() {
     mostrarCargador();
-    var root = window;
-    sip_arregla_puntomontaje(root);
-    var ruta = root.puntomontaje + 'casos/';
+    sip_arregla_puntomontaje(window);
+    var ruta = window.puntomontaje + 'casos/';
     var urlSolicitud = ruta + codigo + ".json";  
     descargarUrl(urlSolicitud, function(req) {
       data = req.responseText;
