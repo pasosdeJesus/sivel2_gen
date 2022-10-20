@@ -4,9 +4,16 @@
 
 export default class Sivel2GenMotorEs6 {
 
+  static get MapaOSMLatInicial() { 
+    return +(<%= ENV.fetch('SIVEL2_MAPAOSM_LATINICIAL', 4.6682) %>)
+  }
+  static get MapaOSMLongInicial() {
+    return +(<%= ENV.fetch('SIVEL2_MAPAOSM_LONGINICIAL', -74.071) %>)
+  }
+
   static iniciar() {
 
-    /**
+     /**
      * Detecta eventos click.
      * @param {event} e evento
      */

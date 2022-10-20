@@ -86,7 +86,8 @@ function presentarMapaOsm(usuario_autenticado) {
       .addLayer(baldosasOsm)
       .addControl(filtro)
       .addControl(L.control.zoom({position:'topleft'}))
-      .setView([4.6682, -74.071], 6)
+      .setView([Sivel2GenMotorEs6.MapaOSMLatInicial, 
+        Sivel2GenMotorEs6.MapaOSMLongInicial], 6)
       .addControl(controlCapas)
       .addControl(agregaCapaBtn)
       .addControl(descargamapaBtn);
@@ -95,7 +96,8 @@ function presentarMapaOsm(usuario_autenticado) {
       .addLayer(baldosasOsm)
       .addControl(filtro)
       .addControl(L.control.zoom({position:'topleft'}))
-      .setView([4.6682, -74.071], 6)
+      .setView([Sivel2GenMotorEs6.MapaOSMLatInicial, 
+        Sivel2GenMotorEs6.MapaOSMLongInicial], 6)
       .addControl(controlCapas);
   }
 
