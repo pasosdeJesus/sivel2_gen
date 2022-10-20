@@ -2,6 +2,9 @@
   "name": "sivel2_gen",
   "private": true,
   "version": "0.1.0",
+  "engine": {
+    "node": "14.8.0"
+  },
   "scripts": {
     "build": "esbuild app/javascript/*.* --preserve-symlinks --bundle --sourcemap --outdir=app/assets/builds",
     "start": "node esbuild-des.config.js"
