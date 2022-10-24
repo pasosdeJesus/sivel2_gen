@@ -181,14 +181,14 @@ module Sivel2Gen
       sindep = 0
       cantidadesdep.each do |iddep, v|
         if Sip::Departamento.where(
-            id_pais: ENV.fetch('SIVEL2_PAIS', '170').to_i).
+            id_pais: Sip.paisomision).
             where(id_deplocal: iddep).count == 0
           sindep += v.to_i
         end
       end
 
       Sip::Departamento.where(
-        id_pais: ENV.fetch('SIVEL2_PAIS', '170').to_i).each do |dep|
+        id_pais: Sip.paisomision).each do |dep|
         cant = 0
         if cantidadesdep.keys.include?(dep.id_deplocal)
           cant = cantidadesdep[dep.id_deplocal].to_i

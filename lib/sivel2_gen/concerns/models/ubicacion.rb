@@ -22,7 +22,7 @@ module Sivel2Gen
 
           validates :id_departamento, presence: { 
             message: "Ubicación del país debe tener departamento." 
-          }, if: -> {id_pais == ENV.fetch('SIVEL2_PAIS', '170').to_i}
+          }, if: -> {id_pais == Sip.paisomision}
 
           attr_accessor :principal
           attr_accessor :tclase
@@ -52,7 +52,7 @@ module Sivel2Gen
           def importa(datosent, datossal, menserror, opciones = {})
             pais = Sip::Pais.
               where('nombre ILIKE ?', datosent['pais']).ids[0]
-            self.id_pais = pais || ENV.fetch('SIVEL2_PAIS', '170').to_i
+            self.id_pais = pais || Sip.paisomision 
             dep = Sip::Departamento.
               where('nombre ILIKE ?', datosent['departamento']).
               where(id_pais: self.id_pais).ids[0]

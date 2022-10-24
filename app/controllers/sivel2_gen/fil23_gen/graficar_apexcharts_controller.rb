@@ -18,7 +18,7 @@ module Sivel2Gen
             params[:filtro][:fechafin]) : Sivel2Gen::Caso.maximum(:fecha).to_s
 
         ldep = Sip::Departamento.habilitados.where(
-          id_pais: ENV.fetch('SIVEL2_PAIS', '170').to_i).pluck(:id)
+          id_pais: Sip.paisomision).pluck(:id)
         @vic_dep = params[:filtro] && params[:filtro][:departamento] ?
           ldep & params[:filtro][:departamento] : ldep
 
@@ -109,7 +109,7 @@ module Sivel2Gen
           if params[:filtro][:desagregar] == 'Departamento' 
             series_gen= []
             deps = Sip::Departamento.habilitados.where(
-              id_pais: ENV.fetch('SIVEL2_PAIS', '170').to_i)
+              id_pais: Sip.paisomision)
             if (@vic_sexo.count == 0) || (@vic_categorias.count == 0)
               flash.now[:info] = "Uno de los filtros se encuentra vacío"
             else

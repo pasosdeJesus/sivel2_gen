@@ -17,7 +17,7 @@
           collection: Sip::ModeloHelper.opciones_tabla_basica(
             Sip::Departamento, f, :departamento_id
           ).where(
-            id_pais: ENV.fetch('SIVEL2_PAIS', '170').to_i),
+            id_pais: Sip.paisomision),
           label_method: :nombre,
           value_method: :id,
           label: false,

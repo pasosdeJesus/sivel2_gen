@@ -78,8 +78,7 @@ module Sivel2Gen
           def departamento_caso
             r = ''
             if self.caso && self.caso.ubicacionprincipal
-              if self.caso.ubicacionprincipal.id_pais == 
-                  ENV.fetch('SIVEL2_PAIS', '170').to_i
+              if self.caso.ubicacionprincipal.id_pais == Sip.paisomision
                 r += self.caso.ubicacionprincipal.departamento ?
                   self.caso.ubicacionprincipal.departamento.nombre : ''
               else

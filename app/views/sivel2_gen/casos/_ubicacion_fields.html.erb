@@ -3,8 +3,7 @@
 
     <div class="row">
       <div class="col-md-6">
-        <% idpais = f.object.id_pais ? f.object.id_pais : 
-          ENV.fetch('SIVEL2_PAIS', '170').to_i %>
+        <% idpais = f.object.id_pais ? f.object.id_pais : Sip.paisomision %>
         <%= f.association :pais,
           collection: Sip::Pais.where(fechadeshabilitacion: nil).order(:nombre),
           label_method: :nombre,
