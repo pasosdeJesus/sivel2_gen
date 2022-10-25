@@ -26,7 +26,29 @@ module Sivel2Gen
     module_function :presenta_arbol_presp_ul_li
 
 
-    # Genera mapa svg
+    # Genera mapa svg.
+    #
+    # Se espera que el mapa SVG tenga:
+    #
+    # - Un elemento `<text id="titulo"...>` para poner como contenido el título
+    # - Un elemento `<text id="subtitulo"...>` para poner título
+    # - Un elemento `<text id="titulo-rangos"...>` para poner título de rangos
+    # - Un elemento `<text id="fuente"...>` para poner fuente
+    # - 4 elementos `<text id="rango1"...>` ... `<text id="rango4"...>
+    #   para poner rangos de menor a mayor como contenido en c/u
+    # - 4 elementos `<rect id="colorrango1" fill="#e8e8fb"...>`  para poner
+    #   color de cada rango en atributo fill
+    # - Un elemento `<text id="numdep0"...>` para poner número de
+    #   victimizaciones sin departamento
+    #  - Un elemento `<path id="mixtidep0" fill="#e8e8fb" ..>` para
+    #    poner color en atributo `fill` de victimizaciones sin departamento
+    #
+    # Por cada departamento (por ejemplo Amazonas con divipola 91):
+    #  - Un elemento `<path id="mixtidep91" fill="#e8e8fb" ..>` para
+    #    poner color en atributo `fill`
+    #  - Un elemento `<text id="numdep91" ..>` para poner el número de 
+    #    victimizaciones 
+    #
     # @param titulo Por centrar
     # @param subtitulo Por centrar
     # @param titulorangos Titulo del cuadro de rangos
