@@ -8,11 +8,13 @@
     aria-labelledby="anexoModalLabel" 
     aria-hidden="true">
   <div class="modal-dialog" style="position: relative;
-                                       max-width: 800px !important;
-                                       width: 100%;
-                                       height: 70%; ">
-    <div class="modal-content" style="height: 100%; width: 100%;">
-      <div class="modal-header" style = "word-break: break-all;">
+                                       display: table;
+                                       overflow-y: auto;
+                                       overflow-x: auto;
+                                       width: 512px;
+                                       height: 512px; ">
+    <div class="modal-content" style="height: 85%;">
+      <div class="modal-header">
         <h5 class="modal-title">
           <%= anexo.adjunto_file_name %>
         </h5>
@@ -21,9 +23,7 @@
           data-bs-dismiss="modal" 
           aria-label="Close"></button>
       </div>
-      <div class="modal-body" style="height: 100%; width: 100%; 
-                                       overflow-y: auto;
-                                       overflow-x: auto; ">
+      <div class="modal-body" style="height: 100%; overflow: auto;">
         <p class="px-2">
         <% if anexo.descripcion %>
           <% if anexo.descripcion.length > 80 %>
@@ -35,7 +35,7 @@
         </p>
         <% if anexo.adjunto_content_type == "application/pdf" %>
           <iframe class="embed-responsive-item" 
-                  style="width: 100%; height: 100%;" 
+                  style="width: 75vw; height: 50vh;" 
                   src="<%= sip.abre_anexo_path(anexo.id) %>"
                   type="application/pdf" allowfullscreen></iframe>
         <% else %>
