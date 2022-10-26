@@ -241,6 +241,7 @@ module Sivel2Gen
       habilidad.can :read, Sip::Orgsocial
 
       habilidad.can :descarga_anexo, Sip::Anexo
+      habilidad.can :mostrar_portada, Sip::Anexo
       habilidad.can :abre_anexo, Sip::Anexo
 
       habilidad.can :contar, Sip::Ubicacion

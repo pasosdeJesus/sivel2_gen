@@ -7,14 +7,12 @@
 <div class="modal fade" id="<%= "anexoModal#{anexo.id}" %>" tabindex="-1" 
     aria-labelledby="anexoModalLabel" 
     aria-hidden="true">
-  <div class="modal-dialog" style="position: relative;
-                                       display: table;
-                                       overflow-y: auto;
-                                       overflow-x: auto;
-                                       width: 512px;
-                                       height: 512px; ">
+    <div class="modal-dialog" style="position: relative;
+                                       max-width: 800px !important;
+                                       width: 100%;
+                                       height: 80%; ">
     <div class="modal-content" style="height: 85%;">
-      <div class="modal-header">
+      <div class="modal-header" style = "word-break: break-all;">
         <h5 class="modal-title">
           <%= anexo.adjunto_file_name %>
         </h5>
@@ -23,7 +21,9 @@
           data-bs-dismiss="modal" 
           aria-label="Close"></button>
       </div>
-      <div class="modal-body" style="height: 100%; overflow: auto;">
+      <div class="modal-body" style="height: 100%; width: 100%;
+                                    overflow-y: auto;
+                                    overflow-x: auto; ">
         <p class="px-2">
         <% if anexo.descripcion %>
           <% if anexo.descripcion.length > 80 %>
@@ -34,10 +34,12 @@
         <% end %>
         </p>
         <% if anexo.adjunto_content_type == "application/pdf" %>
-          <iframe class="embed-responsive-item" 
-                  style="width: 75vw; height: 50vh;" 
-                  src="<%= sip.abre_anexo_path(anexo.id) %>"
-                  type="application/pdf" allowfullscreen></iframe>
+          <% data_url = sip.mostrar_portada_path(anexo.id) %>
+          <%= link_to sip.descarga_anexo_path(anexo.id),
+            'data-turbo' => :false do %>
+            <%= image_tag data_url,
+              style: "width: 100%; height: 100%; object-fit: contain;" %>
+          <% end %>
         <% else %>
           <%= link_to sip.descarga_anexo_path(anexo.id),
             'data-turbo' => :false do %>
