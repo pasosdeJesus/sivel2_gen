@@ -11,10 +11,10 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/heb412_gen.git
-  revision: 976da37a4b44216288dcee0860b8427ff0b9dbf8
+  revision: 79ec03951dcd86cede4d02082d870d32ac8e8886
   branch: main
   specs:
-    heb412_gen (2.1a1)
+    heb412_gen (2.1.0.beta1)
       mr519_gen
       redcarpet
       rspreadsheet
@@ -22,19 +22,19 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/mr519_gen.git
-  revision: b62dfd5f46b8c395e97d22eb94bf6d12a7d5d585
+  revision: 7aea026d37b51d4af47f62b169670362254e47ff
   branch: main
   specs:
-    mr519_gen (2.1a1)
+    mr519_gen (2.1.0.beta1)
       rails
       sip
 
 GIT
   remote: https://github.com/pasosdeJesus/sip.git
-  revision: f3216db4775a2018179a374b472a439c8a2599b6
+  revision: 2965ab8c5bd42a69abfe0720c395c4b7283b8864
   branch: main
   specs:
-    sip (2.1a2)
+    sip (2.1.0.beta1)
       cancancan
       coffee-rails
       devise
