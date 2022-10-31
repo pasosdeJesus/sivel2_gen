@@ -11,7 +11,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/heb412_gen.git
-  revision: d17bfd3e6aad8ad25fa099d048cf03ba7e7d2e29
+  revision: da8da472edfb06ad2202157c20c861fc71307c11
   branch: main
   specs:
     heb412_gen (2.1.0.beta1)
@@ -22,7 +22,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/mr519_gen.git
-  revision: 8ac9ae4f68254f0640e24def4526dd64207f7a4d
+  revision: 270134545d4e93e06c8ff5c8a49f3b9bbca3ae56
   branch: main
   specs:
     mr519_gen (2.1.0.beta1)
@@ -31,7 +31,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sip.git
-  revision: f6870e519c63ba8479e3f316349a660072b6ea94
+  revision: f8199a3eccc023f9cadc650d5fd15166267a44aa
   branch: main
   specs:
     sip (2.1.0.beta1)
@@ -334,7 +334,7 @@ GEM
       actionpack (>= 5.2)
       activesupport (>= 5.2)
       sprockets (>= 3.0.0)
-    stimulus-rails (1.1.0)
+    stimulus-rails (1.1.1)
       railties (>= 6.0.0)
     terrapin (0.6.0)
       climate_control (>= 0.0.3, < 1.0)
@@ -366,7 +366,7 @@ GEM
     will_paginate (3.3.1)
     xpath (3.2.0)
       nokogiri (~> 1.8)
-    zeitwerk (2.6.1)
+    zeitwerk (2.6.3)
 
 PLATFORMS
   x86_64-openbsd

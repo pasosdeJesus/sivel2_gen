@@ -73,7 +73,15 @@ module Sivel2Gen
 
     # Tablas no básicas pero que tienen índice
     NOBASICAS_INDSEQID =  [
-      ['Sivel2Gen', 'caso']
+      ['sivel2_gen', 'caso'],
+      ['sivel2_gen', 'actocolectivo'],
+      ['sivel2_gen', 'caso_categoria_presponsable'],
+      #['Sivel2Gen', 'caso_fotra'],
+      #['Sivel2Gen', 'caso_fuenteprensa'],
+      ['sivel2_gen', 'caso_solicitud'],
+      ['sivel2_gen', 'combatiente'],
+      #['Sivel2Gen', 'victima'],
+      ['sivel2_gen', 'victimacolectiva']
     ]
 
     # Tablas no básicas pero que tienen índice con secuencia id_seq
