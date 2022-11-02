@@ -1,8 +1,7 @@
-class CreaCasoRespuestafor < ActiveRecord::Migration[6.0]
+class CreaCasoRespuestafor < ActiveRecord::Migration[6.1]
   def change
-    create_join_table :sivel2_gen_caso, :mr519_gen_respuestafor, {
+    create_join_table :sivel2_gen_caso, :mr519_gen_respuestafor, 
       table_name: 'sivel2_gen_caso_respuestafor'
-    }
     add_foreign_key :sivel2_gen_caso_respuestafor, :sivel2_gen_caso
     add_foreign_key :sivel2_gen_caso_respuestafor, :mr519_gen_respuestafor
     rename_column :sivel2_gen_caso_respuestafor, :sivel2_gen_caso_id, 

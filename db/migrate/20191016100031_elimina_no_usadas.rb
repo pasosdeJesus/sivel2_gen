@@ -9,7 +9,7 @@ class EliminaNoUsadas < ActiveRecord::Migration[6.0]
       DROP TABLE IF EXISTS actualizacionbase;
       DROP TABLE IF EXISTS caso_usuario_tmp;
       DROP TABLE IF EXISTS muncoor;
-      DROP TABLE IF EXISTS obsoleto_funcionario;
+      DROP TABLE IF EXISTS obsoleto_funcionario CASCADE;
       DROP TABLE IF EXISTS victimao;
       DROP TABLE IF EXISTS categoria_personal;
       DROP TABLE IF EXISTS departamento_region;
