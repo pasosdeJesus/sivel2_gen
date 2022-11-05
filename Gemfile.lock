@@ -11,7 +11,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/heb412_gen.git
-  revision: 7f8d952db9a6e741e1089c9fd256cacce2dd824c
+  revision: e1fb2ab3c93da5d215d6857e77c7a9bd4dfb9b78
   branch: v2.0
   specs:
     heb412_gen (2.0)
@@ -22,7 +22,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/mr519_gen.git
-  revision: bc287fc67d3428c491d775fa7e20208b4ac16632
+  revision: 823d890c04a53bf21418f2dd31da8942dcc50e1f
   branch: v2.0
   specs:
     mr519_gen (2.0)
@@ -31,7 +31,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sip.git
-  revision: 8f6651f9cc8fd59e1997845750e3b076f8d0e6ae
+  revision: c7e71e7f1959a9b628b79737253560481e79dd4e
   branch: v2.0
   specs:
     sip (2.0)
@@ -313,7 +313,7 @@ GEM
     tilt (2.0.11)
     timeout (0.3.0)
     ttfunk (1.7.0)
-    twitter_cldr (6.11.3)
+    twitter_cldr (6.11.4)
       camertron-eprun
       cldr-plurals-runtime-rb (~> 1.1)
       tzinfo
@@ -335,7 +335,7 @@ GEM
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
     will_paginate (3.3.1)
-    zeitwerk (2.6.3)
+    zeitwerk (2.6.4)
 
 PLATFORMS
   x86_64-openbsd
@@ -385,4 +385,4 @@ DEPENDENCIES
   will_paginate
 
 BUNDLED WITH
-   2.3.24
+   2.3.25
