@@ -370,6 +370,7 @@ GEM
 
 PLATFORMS
   x86_64-openbsd
+  x86_64-linux
 
 DEPENDENCIES
   apexcharts!
