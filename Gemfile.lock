@@ -11,7 +11,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/heb412_gen.git
-  revision: 67199baf0d599d5ddd7e2eab64296076907e3b8d
+  revision: 73989cff62ea86a75b2a8d19b28168988d94de32
   branch: main
   specs:
     heb412_gen (2.1.0.beta1)
@@ -22,7 +22,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/mr519_gen.git
-  revision: 569883b5b396f76501df24b685cf044bbc77971c
+  revision: 96b61ca2865d3f5a4d55521c59154dce9ea8d676
   branch: main
   specs:
     mr519_gen (2.1.0.beta1)
@@ -31,7 +31,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sip.git
-  revision: 14272dc1722d7a44ec4eddee016a309ac8a1ecc6
+  revision: 5e7d4e6a9c4f45212aecf39f4e60f3d35cce1125
   branch: main
   specs:
     sip (2.1.0.beta1)
@@ -168,9 +168,9 @@ GEM
       nokogiri (~> 1.6)
     concurrent-ruby (1.1.10)
     crass (1.0.6)
-    cuprite (0.14.2)
+    cuprite (0.14.3)
       capybara (~> 3.0)
-      ferrum (~> 0.12.0)
+      ferrum (~> 0.13.0)
     debug (1.6.3)
       irb (>= 1.3.6)
       reline (>= 0.3.1)
@@ -189,7 +189,7 @@ GEM
       railties (>= 3.2)
     erubi (1.11.0)
     execjs (2.8.1)
-    ferrum (0.12)
+    ferrum (0.13)
       addressable (~> 2.5)
       concurrent-ruby (~> 1.1)
       webrick (~> 1.7)
@@ -235,6 +235,8 @@ GEM
     nio4r (2.5.8)
     nokogiri (1.13.9)
       mini_portile2 (~> 2.8.0)
+      racc (~> 1.4)
+    nokogiri (1.13.9-x86_64-linux)
       racc (~> 1.4)
     odf-report (0.7.3)
       mime-types
@@ -369,8 +371,8 @@ GEM
     zeitwerk (2.6.6)
 
 PLATFORMS
-  x86_64-openbsd
   x86_64-linux
+  x86_64-openbsd
 
 DEPENDENCIES
   apexcharts!
