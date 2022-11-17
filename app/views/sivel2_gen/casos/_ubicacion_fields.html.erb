@@ -75,9 +75,12 @@
       </div>
     </div>
 		<%= f.input :id, as: :hidden %>
-		<%= link_to_remove_association "Eliminar " + 
-				Sip::Ubicacion.human_attribute_name("Ubicacion"), f, 
-				{:class => 'btn-danger', :'data-existing' => 'true'} 
-		%> 
+    <%= link_to_remove_association "Eliminar " + 
+      Sip::Ubicacion.human_attribute_name("Ubicacion"), f, {
+        class: 'btn btn-sm btn-danger', 
+        'data-existing': 'true',
+        style: 'margin-bottom: 1em'
+      } 
+    %> 
 	</div>
 </div>

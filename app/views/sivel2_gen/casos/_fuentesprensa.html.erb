@@ -4,7 +4,7 @@
 <div class="links">
   <%= link_to_add_association 'Añadir Fuente Frecuente', f, :caso_fuenteprensa, 
     { partial: 'sivel2_gen/casos/caso_fuenteprensa_campos',
-      class: 'btn-primary',
+      class: 'btn btn-sm btn-primary',
       "data-ajax" => File.join(Rails.configuration.relative_url_root, 
                              "fuentesprensa/nuevo"),
       "data-ajaxdata" => "caso_id"

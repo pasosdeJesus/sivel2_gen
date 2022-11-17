@@ -58,8 +58,11 @@
     <%= render 'sivel2_gen/casos/caso_presponsable_compf', f:  f %>
     <%= f.input :id, as: :hidden %>
     <%= link_to_remove_association "Eliminar " +
-      Sivel2Gen::Presponsable.human_attribute_name(:presponsable), f, 
-      {class: 'btn-danger', 'data-existing': 'true'} 
+      Sivel2Gen::Presponsable.human_attribute_name(:presponsable), f, {
+        class: 'btn btn-sm btn-danger', 
+        'data-existing': 'true',
+        style: 'margin-bottom: 1em'
+      } 
     %> 
   </div>
 </div>

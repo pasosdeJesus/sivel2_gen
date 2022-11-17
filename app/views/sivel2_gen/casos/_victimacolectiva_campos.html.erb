@@ -6,7 +6,10 @@
        
     <%= render 'colectivo_campos', :f => f %>
 
-    <%= link_to_remove_association "Eliminar Víctima Colectiva", f, 
-      {:class => 'btn-danger', :'data-existing' => 'true'} %> 
+    <%= link_to_remove_association "Eliminar Víctima Colectiva", f, {
+      class: 'btn btn-sm btn-danger', 
+      'data-existing': 'true',
+      style: 'margin-bottom: 1em'
+    } %> 
   </div>
 </div>
