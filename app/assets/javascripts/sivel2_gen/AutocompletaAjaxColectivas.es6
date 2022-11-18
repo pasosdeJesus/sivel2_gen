@@ -38,7 +38,7 @@ export default class Sivel2GenAutocompletaAjaxColectivas {
           [idColectivo, idGrupo]))
       },
       error: (resp, estado, xhr) => {
-        window.alert('Error con ajax ' + resp)
+        window.alert('Error: ' + resp)
       }
     })
   }
