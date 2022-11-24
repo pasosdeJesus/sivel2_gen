@@ -43,7 +43,7 @@
           <%= link_to sip.descarga_anexo_path(anexo.id),
             'data-turbo' => :false do %>
             <img src='<%= sip.descarga_anexo_path(anexo.id) %>'
-                 style='width: 100%; height: 100%;'>
+                 style='width: 100%; height: 100%; object-fit: scale-down;''>
           <% end %>
         <% else %>
           <%= link_to sip.descarga_anexo_path(anexo.id),
