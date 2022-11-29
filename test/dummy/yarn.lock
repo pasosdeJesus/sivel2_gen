@@ -24,11 +24,11 @@
     js-tokens "^4.0.0"
 
 "@babel/runtime@^7.12.5":
-  version "7.20.1"
-  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.20.1.tgz#1148bb33ab252b165a06698fde7576092a78b4a9"
-  integrity sha512-mrzLkl6U9YLF8qpqI7TB82PESyEGjm/0Ly91jG575eVxMMlb8fYfOXFZIJ8XfLrJZQbm7dlKry2bJmXBUEkdFg==
+  version "7.20.6"
+  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.20.6.tgz#facf4879bfed9b5326326273a64220f099b0fce3"
+  integrity sha512-Q+8MqP7TiHMWzSfwiJwXCjyf4GYA4Dgw3emg/7xmwsdLJOZUp+nMqcOwOzzYheuM1rhDu8FSj2l0aoMygEuXuA==
   dependencies:
-    regenerator-runtime "^0.13.10"
+    regenerator-runtime "^0.13.11"
 
 "@esbuild/linux-loong64@0.14.54":
   version "0.14.54"
@@ -41,9 +41,9 @@
   integrity sha512-eYm8vijH/hpzr/6/1CJ/V/Eb1xQFW2nnUKArb3z+yUWv7HTwj6M7SP957oMjfZjAHU6qpoNc2wQvIxBLWYa/Jg==
 
 "@hotwired/stimulus@^3.0.1":
-  version "3.1.1"
-  resolved "https://registry.yarnpkg.com/@hotwired/stimulus/-/stimulus-3.1.1.tgz#652f08a8e1d5edcb407340e58818fcff463b5848"
-  integrity sha512-e0JpzIaYLsRRXevRDVs0yevabiCvieIWWCwh7VqVXjXM5AOHdjb7AjaKIj34zYFmY1N6HIRRfk915WVMYlHnDA==
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/@hotwired/stimulus/-/stimulus-3.2.0.tgz#257272f1348b1f7beb1a8510be88b80aec6c4c5b"
+  integrity sha512-uAIIdg049qId0lBhyjuMBfcC5uV8JwbhNLoxEyi9vxM3MW6h+mM97G9rNT4ZZMiqnKK9XUHp9SQUrd9rSLEmpQ==
 
 "@hotwired/turbo-rails@^7.1.0":
   version "7.2.4"
@@ -452,7 +452,7 @@ postcss@^8.2.10:
     picocolors "^1.0.0"
     source-map-js "^1.0.2"
 
-regenerator-runtime@^0.13.10:
+regenerator-runtime@^0.13.11:
   version "0.13.11"
   resolved "https://registry.yarnpkg.com/regenerator-runtime/-/regenerator-runtime-0.13.11.tgz#f6dca3e7ceec20590d07ada785636a90cdca17f9"
   integrity sha512-kY1AZVr2Ra+t+piVaJ4gxaFaReZVH40AKNo7UCX6W+dEwBo/2oZJzqfuN1qLq1oL45o56cPaTXELwrTh8Fpggg==
