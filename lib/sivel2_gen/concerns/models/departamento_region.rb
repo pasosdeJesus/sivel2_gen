@@ -9,7 +9,7 @@ module Sivel2Gen
           belongs_to :region, class_name: 'Sivel2Gen::Region', 
             foreign_key: 'region_id', optional: true
           belongs_to :departamento, 
-            class_name: 'Sip::Departamento',
+            class_name: 'Msip::Departamento',
             foreign_key: 'departamento_id', optional: true
         end
       end

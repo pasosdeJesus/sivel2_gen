@@ -1,6 +1,6 @@
 module Sivel2Gen
   module Admin
-    class TviolenciasController < Sip::Admin::BasicasController
+    class TviolenciasController < Msip::Admin::BasicasController
       before_action :set_tviolencia, only: [:show, :edit, :update, :destroy]
       load_and_authorize_resource class: Sivel2Gen::Tviolencia
   

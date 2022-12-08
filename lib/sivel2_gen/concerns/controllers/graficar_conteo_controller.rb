@@ -6,8 +6,8 @@ module Sivel2Gen
 
         included do
 
-          include Sip::FormatoFechaHelper
-          include Sip::SqlHelper
+          include Msip::FormatoFechaHelper
+          include Msip::SqlHelper
 
           # Estructura para mantener filtros posibles y desagregar según estos
           # Cada entrada es como en el siguiente ejemplo
@@ -22,7 +22,7 @@ module Sivel2Gen
           # O para colecciones como sexo:
           #   'SEXO' => { 
           #      nomfiltro: :sexos,
-          #      coleccion: Sip::Persona::sexo_opciones,
+          #      coleccion: Msip::Persona::sexo_opciones,
           #      metodo_etiqueta: false,
           #      metodo_id: false,
           #      campocons: 'persona.sexo'
@@ -74,15 +74,15 @@ module Sivel2Gen
             f = {
               'DEPARTAMENTO' => { 
                 nomfiltro: :departamentos,
-                coleccion: Sip::Departamento.where(
-                  id_pais: Sip.paisomision).order(:nombre),
+                coleccion: Msip::Departamento.where(
+                  id_pais: Msip.paisomision).order(:nombre),
                 metodo_etiqueta: :nombre,
                 metodo_id: :id,
                 campocons: 'departamento.id'
               },
               'SEXO' => { 
                 nomfiltro: :sexos,
-                coleccion: Sip::Persona::sexo_opciones,
+                coleccion: Msip::Persona::sexo_opciones,
                 metodo_etiqueta: false,
                 metodo_id: false,
                 campocons: 'persona.sexo'
@@ -316,13 +316,13 @@ module Sivel2Gen
             FROM
             #{cons1} JOIN sivel2_gen_caso AS caso ON
               (#{cons1}.id_caso = caso.id) 
-            LEFT JOIN sip_ubicacion AS ubicacion ON
+            LEFT JOIN msip_ubicacion AS ubicacion ON
               (caso.ubicacion_id = ubicacion.id) 
-            LEFT JOIN sip_departamento AS departamento ON 
+            LEFT JOIN msip_departamento AS departamento ON 
               (ubicacion.id_departamento=departamento.id) 
-            LEFT JOIN sip_municipio AS municipio ON 
+            LEFT JOIN msip_municipio AS municipio ON 
               (ubicacion.id_municipio=municipio.id)
-            LEFT JOIN sip_clase AS clase ON 
+            LEFT JOIN msip_clase AS clase ON 
               (ubicacion.id_clase=clase.id)
             GROUP BY 1,2,3,4,5,6,7,8,9,10,11,12,13,14", que3, tablas3, where3]
           end
@@ -362,7 +362,7 @@ module Sivel2Gen
             'JOIN public.sivel2_gen_victima AS victima ' + 
             ' ON victima.id_persona=acto.id_persona AND ' +
             ' victima.id_caso=caso.id ' +
-            'JOIN public.sip_persona AS persona ' + 
+            'JOIN public.msip_persona AS persona ' + 
             ' ON persona.id=acto.id_persona'
             return [que1, tablas1, where1]
           end

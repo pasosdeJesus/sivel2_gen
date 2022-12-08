@@ -1,6 +1,6 @@
 module Sivel2Gen
   module Admin
-    class ActividadoficiosController < Sip::Admin::BasicasController
+    class ActividadoficiosController < Msip::Admin::BasicasController
       before_action :set_actividadoficio, only: [:show, :edit, :update, :destroy]
       load_and_authorize_resource class: Sivel2Gen::Actividadoficio
   

@@ -1,6 +1,6 @@
 module Sivel2Gen
   class Pconsolidado < ActiveRecord::Base
-    include Sip::Basica
+    include Msip::Basica
 
     Nombresunicos=false
     has_many :categoria, foreign_key: "id_pconsolidado", validate: true, 

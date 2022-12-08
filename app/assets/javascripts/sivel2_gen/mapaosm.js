@@ -63,7 +63,7 @@ function presentarMapaOsm(usuario_autenticado) {
     {position: 'topleft'});
 
   if (typeof window.formato_fecha == 'undefined') {
-    sip_prepara_eventos_comunes(window)
+    msip_prepara_eventos_comunes(window)
   }
 
   //carga  funciones externas implementadas en otras aplicacion que usan este
@@ -143,9 +143,9 @@ function descargarUrl(url, retrollamada) {
 function armarRutaConsulta(rutaSinPuntomontaje, usuarioAutenticado) {
   var ruta = window.puntomontaje + rutaSinPuntomontaje
   var desde = $('#campo-desde').val()
-  var desdep = sip_partes_fecha_localizada(desde, window.formato_fecha)
+  var desdep = msip_partes_fecha_localizada(desde, window.formato_fecha)
   var hasta = $('#campo-hasta').val();
-  var hastap = sip_partes_fecha_localizada(hasta, window.formato_fecha)
+  var hastap = msip_partes_fecha_localizada(hasta, window.formato_fecha)
   var departamento = $('#departamento').val()
   var prresp = $('#presponsable').val()
   var tvio = $('#tvio').val();
@@ -182,7 +182,7 @@ function armarRutaConsulta(rutaSinPuntomontaje, usuarioAutenticado) {
 
 function agregarCasosOsm(usuario_autenticado) {
   if (typeof window.formato_fecha == 'undefined') {
-    sip_prepara_eventos_comunes(window)
+    msip_prepara_eventos_comunes(window)
   }
   urlSolicitud = armarRutaConsulta('casos.json', usuario_autenticado) 
   mostrarCargador();
@@ -228,7 +228,7 @@ function creaMarcador(punto, codigo, titulo) {
   marcadorCaso.on('click', clicMarcadorCaso);
   function clicMarcadorCaso() {
     mostrarCargador();
-    sip_arregla_puntomontaje(window);
+    msip_arregla_puntomontaje(window);
     var ruta = window.puntomontaje + 'casos/';
     var urlSolicitud = ruta + codigo + ".json";  
     descargarUrl(urlSolicitud, function(req) {

@@ -1,7 +1,7 @@
 <div class='control-group nested-fields seccionvictima'>
   <div class="controls">
     <% if f.object.persona.nil? %>
-      <% f.object.persona = Sip::Persona.new %>
+      <% f.object.persona = Msip::Persona.new %>
     <% end %>
 
     <%= render partial: 'contacto_campos', locals: {f: f} %>

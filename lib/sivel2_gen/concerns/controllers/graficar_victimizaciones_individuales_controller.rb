@@ -41,15 +41,15 @@ module Sivel2Gen
               },
               'DEPARTAMENTOS' => { 
                 nomfiltro: :departamentos,
-                coleccion: Sip::Departamento.where(
-                  id_pais: Sip.paisomision).order(:nombre),
+                coleccion: Msip::Departamento.where(
+                  id_pais: Msip.paisomision).order(:nombre),
                 metodo_etiqueta: :nombre,
                 metodo_id: :id,
                 campocons: 'departamento.id'
               },
               'SEXOS' => { 
                 nomfiltro: :sexos,
-                coleccion: Sip::Persona::sexo_opciones,
+                coleccion: Msip::Persona::sexo_opciones,
                 metodo_etiqueta: false,
                 metodo_id: false,
                 campocons: 'persona.sexo'
@@ -110,11 +110,11 @@ module Sivel2Gen
               'JOIN public.sivel2_gen_victima AS victima '\
               ' ON victima.id_persona=acto.id_persona AND '\
               ' victima.id_caso=caso.id '\
-              'JOIN public.sip_persona AS persona '\
+              'JOIN public.msip_persona AS persona '\
               ' ON persona.id=acto.id_persona '\
-              'JOIN public.sip_ubicacion AS ubicacion '\
+              'JOIN public.msip_ubicacion AS ubicacion '\
               ' ON ubicacion.id=caso.ubicacion_id '\
-              'LEFT JOIN public.sip_departamento AS departamento '\
+              'LEFT JOIN public.msip_departamento AS departamento '\
               ' ON departamento.id=ubicacion.id_departamento '
 
             return [que1, tablas1, where1]
@@ -139,7 +139,7 @@ module Sivel2Gen
 #            if (@vic_dep.count == 0) || (@vic_categorias.count == 0)
 #              flash.now[:info] = "Uno de los filros se encuentra vacío"
 #            else
-#              Sip::Persona::SEXO_OPCIONES.each do |sexo|
+#              Msip::Persona::SEXO_OPCIONES.each do |sexo|
 #                desagr = "persona.sexo ='#{sexo[1].to_s}'" 
 #                filtros= ""
 #                filtros << "

@@ -7,12 +7,12 @@ module Sivel2Gen
 
         included do
 
-          include Sip::Localizacion
-          include Sip::FormatoFechaHelper
+          include Msip::Localizacion
+          include Msip::FormatoFechaHelper
 
           belongs_to :caso, class_name: "Sivel2Gen::Caso", 
             foreign_key: "id_caso", validate: true, optional: false
-          belongs_to :fuenteprensa, class_name: "Sip::Fuenteprensa", 
+          belongs_to :fuenteprensa, class_name: "Msip::Fuenteprensa", 
             foreign_key: "fuenteprensa_id", validate: true, optional: false
           belongs_to :anexo_caso, class_name: "Sivel2Gen::AnexoCaso", 
             dependent: :destroy, foreign_key: "anexo_caso_id", 

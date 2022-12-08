@@ -1,5 +1,5 @@
 
-require 'sip/concerns/models/persona'
+require 'msip/concerns/models/persona'
 
 module Sivel2Gen
   module Concerns
@@ -8,7 +8,7 @@ module Sivel2Gen
         extend ActiveSupport::Concern
 
         included do
-          include Sip::Concerns::Models::Persona
+          include Msip::Concerns::Models::Persona
           attr_accessor :sin_identificacion
 
           has_many :acto, foreign_key: "id_persona", validate: true,
@@ -19,7 +19,7 @@ module Sivel2Gen
             class_name: 'Sivel2Gen::Caso'
 
           def sivel2_gen_presenta(atr)
-            sip_presenta(atr)
+            msip_presenta(atr)
           end
 
           def presenta(atr)

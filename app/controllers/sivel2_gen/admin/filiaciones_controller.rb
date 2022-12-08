@@ -1,6 +1,6 @@
 module Sivel2Gen
   module Admin
-    class FiliacionesController < Sip::Admin::BasicasController
+    class FiliacionesController < Msip::Admin::BasicasController
       before_action :set_filiacion, only: [:show, :edit, :update, :destroy]
       load_and_authorize_resource class: Sivel2Gen::Filiacion
   

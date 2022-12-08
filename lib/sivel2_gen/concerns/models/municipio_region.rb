@@ -9,7 +9,7 @@ module Sivel2Gen
           belongs_to :region, class_name: 'Sivel2Gen::Region', 
             foreign_key: 'region_id', optional: true
           belongs_to :municipio, 
-            class_name: 'Sip::Municipio',
+            class_name: 'Msip::Municipio',
             foreign_key: 'municipio_id', optional: true
         end
       end

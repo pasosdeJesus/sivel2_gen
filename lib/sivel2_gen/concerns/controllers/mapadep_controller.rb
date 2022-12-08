@@ -6,8 +6,8 @@ module Sivel2Gen
 
         included do
 
-          include Sip::FormatoFechaHelper
-          include Sip::SqlHelper
+          include Msip::FormatoFechaHelper
+          include Msip::SqlHelper
 
           # Control de acceso no estándar en función
 
@@ -25,12 +25,12 @@ module Sivel2Gen
               af=" de #{fechaini.year}"
             end
             if fechaini.day == 1
-              mi = Sip::FormatoFechaHelper::MESES[fechaini.month]
+              mi = Msip::FormatoFechaHelper::MESES[fechaini.month]
             else
               mi = "#{fechaini.day}/#{fechaini.month}"
             end
             if fechafin.day == fechafin.end_of_month.day
-              mf = Sip::FormatoFechaHelper::MESES[fechafin.month]
+              mf = Msip::FormatoFechaHelper::MESES[fechafin.month]
             else
               mf = "#{fechafin.day}/#{fechafin.month}"
             end
@@ -79,10 +79,10 @@ module Sivel2Gen
             end
             @mapadep_subtitulo = Sivel2Gen::MapadepController.nomrango(
               pFini != '' ? 
-              Sip::FormatoFechaHelper::reconoce_adivinando_locale(pFini) : 
+              Msip::FormatoFechaHelper::reconoce_adivinando_locale(pFini) : 
               Sivel2Gen::Caso.all.minimum(:fecha), 
               pFfin != '' ? 
-              Sip::FormatoFechaHelper::reconoce_adivinando_locale(pFfin) : 
+              Msip::FormatoFechaHelper::reconoce_adivinando_locale(pFfin) : 
               Sivel2Gen::Caso.all.maximum(:fecha))
             colormax = Color::RGB.from_html(pColormax == '' ? '#00ff00' : pColormax)
             @mapadep_colormax_r = colormax.red.to_i

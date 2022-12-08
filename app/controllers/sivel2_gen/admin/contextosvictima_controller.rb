@@ -1,6 +1,6 @@
 module Sivel2Gen
   module Admin
-    class ContextosvictimaController < Sip::Admin::BasicasController
+    class ContextosvictimaController < Msip::Admin::BasicasController
       before_action :set_contextovictima, only: [:show, :edit, :update, :destroy]
       load_and_authorize_resource class: Sivel2Gen::Contextovictima
 

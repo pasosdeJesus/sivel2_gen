@@ -1,7 +1,7 @@
 
 module Sivel2Gen
   module Admin
-    class ResagresionesController < Sip::Admin::BasicasController
+    class ResagresionesController < Msip::Admin::BasicasController
       before_action :set_resagresion, 
         only: [:show, :edit, :update, :destroy]
       load_and_authorize_resource  class: Sivel2Gen::Resagresion

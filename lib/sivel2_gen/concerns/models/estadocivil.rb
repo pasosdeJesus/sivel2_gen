@@ -4,7 +4,7 @@ module Sivel2Gen
       module Estadocivil
         extend ActiveSupport::Concern
 
-        include Sip::Basica
+        include Msip::Basica
         included do
           validates :nombre, presence: true, allow_blank: false
           validates :fechacreacion, presence: true, allow_blank: false

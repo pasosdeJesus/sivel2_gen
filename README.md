@@ -34,15 +34,15 @@ y editar casos.
 
 ### Requisitos tecnológicos
 
-Ver <https://github.com/pasosdeJesus/sip/blob/master/doc/requisitos.md>
+Ver <https://github.com/pasosdeJesus/msip/blob/master/doc/requisitos.md>
 
 ### Aplicación de prueba
 
 Este motor incluye una aplicación mínima de prueba cuya configuración
 es como la descrita en:
-<https://github.com/pasosdeJesus/sip/blob/master/doc/aplicacion-de-prueba.md>
+<https://github.com/pasosdeJesus/msip/blob/master/doc/aplicacion-de-prueba.md>
 
-Si ya habías lanzado la aplicación de prueba del motor **sip**, podrás utilizar
+Si ya habías lanzado la aplicación de prueba del motor **msip**, podrás utilizar
 el mismo usuario y basta que configures la clave
 en ```test/dummy/config/database.yml```
 
@@ -51,14 +51,14 @@ en ```test/dummy/config/database.yml```
 Se han implementado algunas pruebas con `minitest` a modelos y  controladores.
 Si pudiste ver la aplicación de prueba en un navegador, las siguientes
 instrucciones aplican:
-<https://github.com/pasosdeJesus/sip/blob/master/doc/pruebas-con-minitest.md>
+<https://github.com/pasosdeJesus/msip/blob/master/doc/pruebas-con-minitest.md>
 
 ## Desarrollo
 
 ### Convenciones de Desarrollo
 
 Consúltalas en
-<https://github.com/pasosdeJesus/sip/blob/master/doc/convenciones.md>
+<https://github.com/pasosdeJesus/msip/blob/master/doc/convenciones.md>
 
 ### Generación de datos de tablas básicas
 

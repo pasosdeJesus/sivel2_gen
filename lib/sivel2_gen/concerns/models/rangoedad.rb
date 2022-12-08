@@ -4,7 +4,7 @@ module Sivel2Gen
       module Rangoedad
         extend ActiveSupport::Concern
 
-          include Sip::Basica
+          include Msip::Basica
           included do
             has_many :rangoedad_victimacolectiva, foreign_key: 'id_rangoedad', 
               validate: true, class_name: 'Sivel2Gen::RangoedadVictimacolectiva'

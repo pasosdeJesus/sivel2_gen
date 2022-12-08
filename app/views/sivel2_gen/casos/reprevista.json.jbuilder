@@ -3,12 +3,12 @@
 sol = [:caso_id]
 if params && params[:filtro]
   if params[:filtro][:inc_ubicaciones]
-    sol << 'sip_ubicacion.latitud'
-    sol << 'sip_ubicacion.longitud'
+    sol << 'msip_ubicacion.latitud'
+    sol << 'msip_ubicacion.longitud'
   end
   if params[:filtro][:inc_ubicaciones].to_i == 2
-    sol << 'sip_departamento.nombre'
-    sol << 'sip_municipio.nombre'
+    sol << 'msip_departamento.nombre'
+    sol << 'msip_municipio.nombre'
   end
   if params[:filtro][:inc_titulo]
     sol << :titulo
@@ -21,9 +21,9 @@ if params && params[:filtro]
   end
 end
 cons = @conscaso.joins('JOIN sivel2_gen_caso as caso ON caso.id=caso_id ' +
-    'LEFT JOIN sip_ubicacion ON sip_ubicacion.id=caso.ubicacion_id ' +
-    'LEFT JOIN sip_departamento ON sip_departamento.id=sip_ubicacion.id_departamento ' +
-    'LEFT JOIN sip_municipio ON sip_municipio.id=sip_ubicacion.id_municipio '
+    'LEFT JOIN msip_ubicacion ON msip_ubicacion.id=caso.ubicacion_id ' +
+    'LEFT JOIN msip_departamento ON msip_departamento.id=msip_ubicacion.id_departamento ' +
+    'LEFT JOIN msip_municipio ON msip_municipio.id=msip_ubicacion.id_municipio '
     )
 pl = cons.pluck(*sol)
 r = pl.map {|l|

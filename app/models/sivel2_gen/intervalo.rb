@@ -1,6 +1,6 @@
 module Sivel2Gen
   class Intervalo < ActiveRecord::Base
-    include Sip::Basica
+    include Msip::Basica
 
     has_many :caso, foreign_key: "id_intervalo", validate: true,
       class_name: 'Sivel2Gen::Caso'

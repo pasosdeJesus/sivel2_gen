@@ -63,7 +63,7 @@ module Sivel2Gen
 
     test 'Valida caso con una etiqueta' do
       caso = Sivel2Gen::Caso.create! PRUEBA_CASO_BASICOS
-      ubicaso = Sip::Ubicacion.create(
+      ubicaso = Msip::Ubicacion.create(
         id_caso: caso.id,
         id_pais: 170,
         created_at: '2019-01-01',
@@ -71,7 +71,7 @@ module Sivel2Gen
       ubicaso.save!
       caso.ubicacion_id = ubicaso.id
       caso.save!
-      etiqueta = Sip::Etiqueta.create(
+      etiqueta = Msip::Etiqueta.create(
         id: 1000,
         nombre: 'Etiqueta',
         observaciones: 'obs',

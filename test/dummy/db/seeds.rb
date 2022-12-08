@@ -1,9 +1,9 @@
 
 conexion = ActiveRecord::Base.connection();
 
-Sip::carga_semillas_sql(conexion, 'sip', :datos)
-Sip::carga_semillas_sql(conexion, '../..', :cambios)
-Sip::carga_semillas_sql(conexion, '../..', :datos)
+Msip::carga_semillas_sql(conexion, 'msip', :datos)
+Msip::carga_semillas_sql(conexion, '../..', :cambios)
+Msip::carga_semillas_sql(conexion, '../..', :datos)
 
 # usuario sivel2 con clave sivel2
 conexion.execute("INSERT INTO public.usuario 

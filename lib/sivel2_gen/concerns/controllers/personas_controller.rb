@@ -1,5 +1,5 @@
 
-require 'sip/concerns/controllers/personas_controller'
+require 'msip/concerns/controllers/personas_controller'
 require 'date'
 
 module Sivel2Gen
@@ -9,10 +9,10 @@ module Sivel2Gen
         extend ActiveSupport::Concern
 
         included do
-          include Sip::Concerns::Controllers::PersonasController
+          include Msip::Concerns::Controllers::PersonasController
  
           def atributos_show_sivel2_gen
-            atributos_show_sip + [ :caso_ids ]
+            atributos_show_msip + [ :caso_ids ]
           end
 
           def atributos_show
@@ -42,7 +42,7 @@ module Sivel2Gen
           end 
 
           def remplazarfamiliar
-            @personados = Sip::Persona.find(params[:id_persona].to_i)
+            @personados = Msip::Persona.find(params[:id_persona].to_i)
             @caso = Sivel2Gen::Caso.find(params[:id_caso])
             @victima = Sivel2Gen::Victima.find(params[:id_victima].to_i)
             @victima_cocoon = params[:id_victcocoon]
@@ -50,7 +50,7 @@ module Sivel2Gen
             @trelacion1 = params[:id_trelacion1]
             respond_to do |format|
               format.html {
-                render("/sip/personas/remplazar_familiar",
+                render("/msip/personas/remplazar_familiar",
                        layout: false)
                 return
               }
@@ -58,7 +58,7 @@ module Sivel2Gen
           end
 
           def remplazar
-            @persona = Sip::Persona.find(params[:id_persona].to_i)
+            @persona = Msip::Persona.find(params[:id_persona].to_i)
             @victima = Sivel2Gen::Victima.find(params[:id_victima].to_i)
             @personaant = @victima.persona
             @caso = @victima.caso
@@ -92,7 +92,7 @@ module Sivel2Gen
             end
             respond_to do |format|
               format.html { 
-                render('/sip/personas/remplazar', layout: false) 
+                render('/msip/personas/remplazar', layout: false) 
                 return
               }
             end

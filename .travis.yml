@@ -39,7 +39,7 @@ before_install:
         - cp db/structure.sql db/structure.sql.copia # travis no soporta PostreSQL 10
         - sed -e 's/provider = libc,//g;s/SET default_table_access_method.*/-- &/g' db/structure.sql.copia > db/structure.sql 
         - rake db:setup
-        - rake sip:indices
+        - rake msip:indices
         - yarn install
         - cd ../..
 

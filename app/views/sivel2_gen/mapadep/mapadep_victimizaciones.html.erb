@@ -41,7 +41,7 @@
     <div class="row filtro-fila">
       <div class="offset-sm-2 col-sm-3">
         <%= f.input :etiqueta1,
-          collection: Sip::Etiqueta.habilitados,
+          collection: Msip::Etiqueta.habilitados,
           label_method: :nombre,
           value_method: :id,
           label: false,
@@ -51,7 +51,7 @@
       </div>
       <div class="col-sm-3">
         <%= f.input :etiqueta2,
-          collection: Sip::Etiqueta.habilitados,
+          collection: Msip::Etiqueta.habilitados,
           label_method: :nombre,
           value_method: :id,
           label: false,
@@ -60,7 +60,7 @@
         %>
       </div>
       <div class="col-sm-3">
-        <% pom = Sip::ModeloHelper.poromision(params, :colormax) %>
+        <% pom = Msip::ModeloHelper.poromision(params, :colormax) %>
         <%= f.input :colormax, 
           label: false,
           inline_label: 'Color más oscuro',

@@ -35,9 +35,9 @@ module Sivel2Gen
           "JOIN sivel2_gen_categoria AS categoria ON categoria.id=acto.id_categoria " \
           "JOIN sivel2_gen_supracategoria AS supracategoria ON supracategoria.id = categoria.supracategoria_id " \
           "JOIN sivel2_gen_presponsable AS presponsable ON presponsable.id=acto.id_presponsable " \
-          "LEFT JOIN sip_ubicacion AS ubicacion ON ubicacion.id=caso.ubicacion_id " \
-          "LEFT JOIN sip_departamento AS departamento ON ubicacion.id_departamento=departamento.id " \
-          "LEFT JOIN sip_municipio AS municipio ON ubicacion.id_municipio=municipio.id " \
+          "LEFT JOIN msip_ubicacion AS ubicacion ON ubicacion.id=caso.ubicacion_id " \
+          "LEFT JOIN msip_departamento AS departamento ON ubicacion.id_departamento=departamento.id " \
+          "LEFT JOIN msip_municipio AS municipio ON ubicacion.id_municipio=municipio.id " \
           "GROUP BY 1,2,3,4,5,6,7,8,9,10,11) " \
           " TO '#{rutatmp}' DELIMITER ',' CSV HEADER;" 
         res = ActiveRecord::Base.connection.execute(sql)

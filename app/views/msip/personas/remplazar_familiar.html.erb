@@ -1,0 +1,38 @@
+<% model_class = Sivel2Gen::Caso %>
+<%= simple_form_for @caso,
+    url: sivel2_gen.casos_path(@caso).sub(/\./,"/"),
+      :html => { :class => 'form-horizontal' } do |ca| %>
+<%= ca.simple_fields_for :victima, @victima, include_id: false do |f| %>
+  <%= f.simple_fields_for :persona do |p| %>
+        <% if @personados %>
+          <% personatr = Msip::PersonaTrelacion.new
+          personatr.persona1 = @victima.persona.id
+          personatr.persona2 = @personados.id
+          p.object.persona_trelacion1.push(personatr) %>
+        <% end %>
+        <table>
+        <tbody>
+        <%= p.simple_fields_for :persona_trelacion1, personatr do |pt| %>
+          <% s = render 'msip/personas/persona_familiar_campos', f: pt %>
+          <% if pt.object.persona1.nil? %>
+            <% pt.object.persona1 = f.object.persona %>
+          <% end %>
+           <% s.gsub!(
+             'caso_victima_attributes_0', 
+             'caso_victima_attributes_' + @victima_cocoon) %>
+           <% s.gsub!(
+             'caso[victima_attributes][0]', 
+             'caso[victima_attributes][' + @victima_cocoon + ']') %>
+           <% s.gsub!(
+             'persona_trelacion1_attributes_0', 
+             'persona_trelacion1_attributes_' + @trelacion1) %>
+           <% s.gsub!(
+             'persona_trelacion1_attributes][0]', 
+             'persona_trelacion1_attributes][' + @trelacion1 + ']') %>
+           <%= s.html_safe %>
+        <% end %>
+        </tbody>
+        </table>
+    <% end %>
+<% end %>
+<% end %>

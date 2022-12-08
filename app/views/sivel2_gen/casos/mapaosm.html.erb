@@ -31,13 +31,13 @@
 
 <% if current_usuario %>
  <script defer="true">
-   document.addEventListener('sip:cargado', function (e) {  
+   document.addEventListener('msip:cargado', function (e) {  
      presentarMapaOsm(true)
    }, false);
  </script>
 <% else %>
   <script defer="true">
-    document.addEventListener('sip:cargado', function (e) {  
+    document.addEventListener('msip:cargado', function (e) {  
      presentarMapaOsm(false)
     }, false);
   </script>

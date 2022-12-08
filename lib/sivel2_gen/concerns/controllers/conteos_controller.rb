@@ -7,8 +7,8 @@ module Sivel2Gen
 
         included do
 
-          include Sip::FormatoFechaHelper
-          include Sip::SqlHelper
+          include Msip::FormatoFechaHelper
+          include Msip::SqlHelper
 
           @pDepartamento = ''
           @pMunicipio = ''
@@ -53,7 +53,7 @@ module Sivel2Gen
           # Arma filtros que ve el usuario tras tener poblada la vista
           # indicada por personas_cons1
           def personas_arma_filtros_sivel2_gen
-            caniosnac = Sip::Persona.where('anionac IS NOT NULL').
+            caniosnac = Msip::Persona.where('anionac IS NOT NULL').
               pluck('distinct anionac').sort
 
             cmesescasos = Sivel2Gen::Caso.all.pluck('distinct fecha').
@@ -122,7 +122,7 @@ module Sivel2Gen
               },
               'SEXO' => { 
                 nomfiltro: :sexos,
-                coleccion: Sip::Persona::sexo_opciones,
+                coleccion: Msip::Persona::sexo_opciones,
                 metodo_etiqueta: false,
                 metodo_id: false,
                 campocons: 'persona.sexo'
@@ -206,7 +206,7 @@ module Sivel2Gen
 
           def personas_procesa_segun_om(que1, tablas1, where1, que3, tablas3, where3)
             ctablas1 = tablas1
-            tablas1 = agregar_tabla(tablas1, 'public.sip_persona AS persona')
+            tablas1 = agregar_tabla(tablas1, 'public.msip_persona AS persona')
             if (ctablas1 != tablas1)
               where1 = ampliar_where_sinap(
                 where1, "persona.id", "victima.id_persona")
@@ -310,13 +310,13 @@ module Sivel2Gen
             FROM
                     #{personas_cons1} JOIN sivel2_gen_caso AS caso ON
               (#{personas_cons1}.id_caso = caso.id) 
-            LEFT JOIN sip_ubicacion AS ubicacion ON
+            LEFT JOIN msip_ubicacion AS ubicacion ON
               (caso.ubicacion_id = ubicacion.id) 
-            LEFT JOIN sip_departamento AS departamento ON 
+            LEFT JOIN msip_departamento AS departamento ON 
               (ubicacion.id_departamento=departamento.id) 
-            LEFT JOIN sip_municipio AS municipio ON 
+            LEFT JOIN msip_municipio AS municipio ON 
               (ubicacion.id_municipio=municipio.id)
-            LEFT JOIN sip_clase AS clase ON 
+            LEFT JOIN msip_clase AS clase ON 
               (ubicacion.id_clase=clase.id)
             GROUP BY 1,2,3,4,5,6,7,8,9,10,11,12,13,14", que3, tablas3, where3]
           end
@@ -766,7 +766,7 @@ module Sivel2Gen
 
         class_methods do
 
-          include Sip::SqlHelper
+          include Msip::SqlHelper
 
           def genconsulta_victimizaciones(
             pFini, pFfin, pTviolencia, pEtiqueta1, pEtiqueta2, pExcluirCateRep,
@@ -792,12 +792,12 @@ module Sivel2Gen
             'JOIN public.sivel2_gen_victima AS victima ' + 
             ' ON victima.id_persona=acto.id_persona AND ' +
             ' victima.id_caso=caso.id ' +
-            'JOIN public.sip_persona AS persona ' + 
+            'JOIN public.msip_persona AS persona ' + 
             ' ON persona.id=acto.id_persona'
             where1 = ''
 
             if (pFini != '')
-              @fechaini = Sip::FormatoFechaHelper.fecha_local_estandar pFini
+              @fechaini = Msip::FormatoFechaHelper.fecha_local_estandar pFini
               if @fechaini
                 where1 = ampliar_where(
                   where1, "caso.fecha", @fechaini, ">="
@@ -805,7 +805,7 @@ module Sivel2Gen
               end
             end
             if (pFfin != '') 
-              @fechafin = Sip::FormatoFechaHelper.fecha_local_estandar pFfin
+              @fechafin = Msip::FormatoFechaHelper.fecha_local_estandar pFfin
               if @fechafin
                 where1 = ampliar_where(
                   where1, "caso.fecha", @fechafin, "<="
@@ -854,16 +854,16 @@ module Sivel2Gen
                 ', departamento.id_deplocal AS departamento_divipola' +
                 ', INITCAP(departamento.nombre) AS departamento_nombre'
               # Tomamos ubicacion principal
-              tablas1 += ' LEFT JOIN sip_ubicacion AS ubicacion ON' +
+              tablas1 += ' LEFT JOIN msip_ubicacion AS ubicacion ON' +
                 ' caso.ubicacion_id = ubicacion.id'
-              tablas1 += ' LEFT JOIN sip_departamento AS departamento ON ' +
+              tablas1 += ' LEFT JOIN msip_departamento AS departamento ON ' +
                 ' ubicacion.id_departamento=departamento.id'
             end
 
             if (pMunicipio.to_i == 1) 
               que1 += ', ubicacion.id_municipio' +
                 ', INITCAP(municipio.nombre) AS municipio_nombre'
-              tablas1 += ' LEFT JOIN sip_municipio AS municipio ON ' +
+              tablas1 += ' LEFT JOIN msip_municipio AS municipio ON ' +
                 ' ubicacion.id_municipio=municipio.id'
             end
 
@@ -911,9 +911,9 @@ module Sivel2Gen
                   "AS sectorsocial ON victima.id_sectorsocial=sectorsocial.id"
 
               when "SEXO"
-                que1 += ", CASE  WHEN persona.sexo='#{Sip::Persona::convencion_sexo[:sexo_femenino].to_s}' THEN '#{Sip::Persona::convencion_sexo[:nombre_femenino]}' "\
-                  "  WHEN persona.sexo='#{Sip::Persona::convencion_sexo[:sexo_masculino].to_s}' THEN '#{Sip::Persona::convencion_sexo[:nombre_masculino]}' "\
-                  "  ELSE '#{Sip::Persona::convencion_sexo[:nombre_sininformacion]}' "\
+                que1 += ", CASE  WHEN persona.sexo='#{Msip::Persona::convencion_sexo[:sexo_femenino].to_s}' THEN '#{Msip::Persona::convencion_sexo[:nombre_femenino]}' "\
+                  "  WHEN persona.sexo='#{Msip::Persona::convencion_sexo[:sexo_masculino].to_s}' THEN '#{Msip::Persona::convencion_sexo[:nombre_masculino]}' "\
+                  "  ELSE '#{Msip::Persona::convencion_sexo[:nombre_sininformacion]}' "\
                   "END AS sexo"
                 tablas1 += " LEFT JOIN public.sivel2_gen_profesion "\
                   "AS profesion ON victima.id_profesion=profesion.id"
@@ -1022,13 +1022,13 @@ module Sivel2Gen
             #            ubicacion.id_municipio, municipio.nombre AS municipio_nombre, 
             #            ubicacion.id_clase, clase.nombre AS clase_nombre
             #            FROM
-            #            #{tcons1} LEFT JOIN sip_ubicacion AS ubicacion ON
+            #            #{tcons1} LEFT JOIN msip_ubicacion AS ubicacion ON
             #              (#{tcons1}.id_caso = ubicacion.id_caso) 
-            #            LEFT JOIN sip_departamento AS departamento ON 
+            #            LEFT JOIN msip_departamento AS departamento ON 
             #              (ubicacion.id_departamento=departamento.id) 
-            #            LEFT JOIN sip_municipio AS municipio ON 
+            #            LEFT JOIN msip_municipio AS municipio ON 
             #              (ubicacion.id_municipio=municipio.id)
-            #            LEFT JOIN sip_clase AS clase ON 
+            #            LEFT JOIN msip_clase AS clase ON 
             #              (ubicacion.id_clase=clase.id)"
             #
             #

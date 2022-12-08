@@ -4,7 +4,7 @@
   <%= f.input "buspconsolidado_#{p[0]}".to_sym,
     collection: {'Todos': "Todos", 'Si': "Si", 'No': "No"},
     label: false,
-    selected: Sip::ModeloHelper.poromision(params, 
+    selected: Msip::ModeloHelper.poromision(params, 
                                            "buspconsolidado_#{p[0]}".to_sym),
     input_html: {
       class: 'chosen-select',

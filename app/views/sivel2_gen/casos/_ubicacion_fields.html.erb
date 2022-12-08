@@ -3,9 +3,9 @@
 
     <div class="row">
       <div class="col-md-6">
-        <% idpais = f.object.id_pais ? f.object.id_pais : Sip.paisomision %>
+        <% idpais = f.object.id_pais ? f.object.id_pais : Msip.paisomision %>
         <%= f.association :pais,
-          collection: Sip::Pais.where(fechadeshabilitacion: nil).order(:nombre),
+          collection: Msip::Pais.where(fechadeshabilitacion: nil).order(:nombre),
           label_method: :nombre,
           value_method: :id,
           selected: idpais
@@ -13,7 +13,7 @@
       </div>
       <div class="col-md-6">
         <%= f.association :departamento,
-          collection: (Sip::Departamento.where(
+          collection: (Msip::Departamento.where(
            id_pais: idpais, 
             fechadeshabilitacion: nil).order(:nombre)),
           label_method: :nombre,
@@ -24,7 +24,7 @@
     <div class="row">
       <div class="col-md-6">
         <%= f.association :municipio,
-          collection: (Sip::Municipio.where(
+          collection: (Msip::Municipio.where(
             id_departamento: f.object.id_departamento,
             fechadeshabilitacion: nil).order(:nombre)),
           label_method: :nombre,
@@ -32,7 +32,7 @@
       </div>
       <div class="col-md-6">
         <%= f.association :clase,
-          collection: (Sip::Clase.where(
+          collection: (Msip::Clase.where(
             id_municipio: f.object.id_municipio,
             fechadeshabilitacion: nil).order(:nombre)),
           label_method: :nombre,
@@ -61,7 +61,7 @@
     <div class="row">
       <div class="col-md-4">
         <%= f.association :tsitio,
-          collection: Sip::Tsitio.where(
+          collection: Msip::Tsitio.where(
             fechadeshabilitacion: nil).order(:nombre),
           label_method: :nombre, 
           value_method: :id,
@@ -76,7 +76,7 @@
     </div>
 		<%= f.input :id, as: :hidden %>
     <%= link_to_remove_association "Eliminar " + 
-      Sip::Ubicacion.human_attribute_name("Ubicacion"), f, {
+      Msip::Ubicacion.human_attribute_name("Ubicacion"), f, {
         class: 'btn btn-sm btn-danger', 
         'data-existing': 'true',
         style: 'margin-bottom: 1em'
