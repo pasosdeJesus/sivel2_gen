@@ -34,7 +34,7 @@
           vfi = fecha_estandar_local(@vic_fechaini)
         else
           vfi = fecha_estandar_local(
-            Sip::FormatoFechaHelper.fecha_local_estandar(
+            Msip::FormatoFechaHelper.fecha_local_estandar(
               params[:filtro][:fechaini]))
         end
       %>
@@ -54,7 +54,7 @@
           vff = fecha_estandar_local(@vic_fechafin)
         else
           vff =  fecha_estandar_local(
-            Sip::FormatoFechaHelper.fecha_local_estandar(
+            Msip::FormatoFechaHelper.fecha_local_estandar(
               params[:filtro][:fechafin]))
         end
       %>
@@ -89,14 +89,14 @@
         <% if params.nil? || params[:filtro].nil? || 
             params[:filtro][:desagregar].nil? || 
             params[:filtro][:desagregar]== 'Sexo' %>
-          <% sex_sel = Sip::Persona::SEXO_OPCIONES.map{|k| k[1]} %>
+          <% sex_sel = Msip::Persona::SEXO_OPCIONES.map{|k| k[1]} %>
           <% estdes = "display: none" %>
         <% else %>
           <% sex_sel = params[:filtro][:sexo] %>
           <% estdes = "display: block" %>
         <% end %>
         <%= f.input :sexo,
-          collection: Sip::Persona::sexo_opciones, 
+          collection: Msip::Persona::sexo_opciones, 
           label: 'Sexo:',
           selected: sex_sel,
           input_html: {
@@ -112,9 +112,9 @@
         <%
           if params.nil? || params[:filtro].nil? || 
             params[:filtro][:departamentos].nil?
-            dep_sel = Sip::Departamento.habilitados.
+            dep_sel = Msip::Departamento.habilitados.
               where(
-                id_pais: Sip.paisomision).pluck(:id)
+                id_pais: Msip.paisomision).pluck(:id)
             estdep = "display: block"
           else
             dep_sel = params[:filtro][:departamentos]
@@ -122,8 +122,8 @@
           end
         %>
         <%= f.input :departamentos,
-          collection: Sip::Departamento.habilitados.where(
-            id_pais: Sip.paisomision), 
+          collection: Msip::Departamento.habilitados.where(
+            id_pais: Msip.paisomision), 
           label_method: :nombre,
           value_method: :id, 
           selected: dep_sel,

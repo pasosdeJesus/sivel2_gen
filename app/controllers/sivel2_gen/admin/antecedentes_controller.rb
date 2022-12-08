@@ -1,7 +1,7 @@
 
 module Sivel2Gen
   module Admin
-    class AntecedentesController < Sip::Admin::BasicasController
+    class AntecedentesController < Msip::Admin::BasicasController
       before_action :set_antecedente, only: [:show, :edit, :update, :destroy]
       load_and_authorize_resource class: Sivel2Gen::Antecedente
   

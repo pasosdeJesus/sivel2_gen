@@ -6,16 +6,16 @@ module Sivel2Gen
         extend ActiveSupport::Concern
 
         included do
-          include Sip::Modelo
-          include Sip::Localizacion
-          include Sip::FormatoFechaHelper
+          include Msip::Modelo
+          include Msip::Localizacion
+          include Msip::FormatoFechaHelper
 
           belongs_to :caso, foreign_key: "id_caso", validate: true, 
             class_name: "Sivel2Gen::Caso", inverse_of: :anexo_caso, 
             optional: false
-          belongs_to :sip_anexo, foreign_key: "id_anexo", validate: true, 
-            class_name: "Sip::Anexo", optional: false
-          accepts_nested_attributes_for :sip_anexo, reject_if: :all_blank
+          belongs_to :msip_anexo, foreign_key: "id_anexo", validate: true, 
+            class_name: "Msip::Anexo", optional: false
+          accepts_nested_attributes_for :msip_anexo, reject_if: :all_blank
 
           has_many :caso_fuenteprensa, foreign_key: "anexo_caso_id",
             dependent: :nullify, class_name: "Sivel2Gen::CasoFuenteprensa"
@@ -26,7 +26,7 @@ module Sivel2Gen
           campofecha_localizado :fecha
 
           validates :caso, presence: true
-          validates :sip_anexo, presence: true
+          validates :msip_anexo, presence: true
           validates :fecha, presence: true
         end
 

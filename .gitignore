@@ -40,12 +40,12 @@ test/dummy/archivos/
 test/dummy/node_modules/
 bin/c.sh
 test/dummy/bin/c.sh
-test/dummy/public/sivel2_1/assets/
+test/dummy/public/sivel2_2/assets/
 test/dummy/public/sivel2/assets/
 test/dummy/public/packs
 test/dummy/app/assets/builds
 .env
-test/dummy/app/javascript/controllers/sip
+test/dummy/app/javascript/controllers/msip
 
 public/*/csv/actos_individuales.csv
-test/dummy/public/sivel2_1/csv
+test/dummy/public/sivel2_2/csv

@@ -1,7 +1,7 @@
 <%= f.input :id, as: :hidden %>
 
 <%= f.simple_fields_for :grupoper do |g| %>
-  <%= render partial: 'sip/gruposper/grupoper_campos', 
+  <%= render partial: 'msip/gruposper/grupoper_campos', 
     locals: {f: g, fvictimacolectiva: f} %>
 <% end %>
 
@@ -12,7 +12,7 @@
   </div>
   <div class="col-md-6">
     <%= f.association :presponsable,
-      collection: Sip::ModeloHelper.opciones_tabla_basica(
+      collection: Msip::ModeloHelper.opciones_tabla_basica(
         Sivel2Gen::Presponsable, f, :presponsable
       ),
       include_blank: false,
@@ -24,7 +24,7 @@
 <div class="row">
   <div class="col-md-6">
     <%= f.association :rangoedad,
-      collection: Sip::ModeloHelper.opciones_tabla_basica(
+      collection: Msip::ModeloHelper.opciones_tabla_basica(
         Sivel2Gen::Rangoedad, f, :rangoedad
       ),
       include_blank: false,
@@ -34,7 +34,7 @@
   </div>
   <div class="col-md-6">
     <%= f.association :filiacion,
-      collection: Sip::ModeloHelper.opciones_tabla_basica(
+      collection: Msip::ModeloHelper.opciones_tabla_basica(
         Sivel2Gen::Filiacion, f, :filiacion
       ),
       include_blank: false,
@@ -47,7 +47,7 @@
   <div class="col-md-6">
 
     <%= f.association :organizacion,
-      collection: Sip::ModeloHelper.opciones_tabla_basica(
+      collection: Msip::ModeloHelper.opciones_tabla_basica(
         Sivel2Gen::Organizacion, f, :organizacion
       ),
       include_blank: false,
@@ -56,7 +56,7 @@
   </div>
   <div class="col-md-6">
     <%= f.association :sectorsocial,
-      collection: Sip::ModeloHelper.opciones_tabla_basica(
+      collection: Msip::ModeloHelper.opciones_tabla_basica(
         Sivel2Gen::Sectorsocial, f, :sectorsocial
       ),
       include_blank: false,
@@ -70,7 +70,7 @@
   <div class="col-md-6">
 
     <%= f.association :profesion,
-      collection: Sip::ModeloHelper.opciones_tabla_basica(
+      collection: Msip::ModeloHelper.opciones_tabla_basica(
         Sivel2Gen::Profesion, f, :profesion
       ),
       include_blank: false,
@@ -80,7 +80,7 @@
   </div>
   <div class="col-md-6">
     <%= f.association :vinculoestado,
-      collection: Sip::ModeloHelper.opciones_tabla_basica(
+      collection: Msip::ModeloHelper.opciones_tabla_basica(
         Sivel2Gen::Vinculoestado, f, :vinculoestado
       ),
       include_blank: false,
@@ -91,7 +91,7 @@
 <div class="row">
     <div class="col-md-6">
     <%= f.association :antecedente,
-      collection: Sip::ModeloHelper.opciones_tabla_basica(
+      collection: Msip::ModeloHelper.opciones_tabla_basica(
         Sivel2Gen::Antecedente, f, :antecedente
       ),
       label_method: :nombre, 
@@ -100,7 +100,7 @@
   </div>
   <div class="col-md-6">
     <%= f.association :etnia,
-      collection: Sip::ModeloHelper.opciones_tabla_basica(
+      collection: Msip::ModeloHelper.opciones_tabla_basica(
         Sivel2Gen::Etnia, f, :etnia
       ),
       include_blank: false,

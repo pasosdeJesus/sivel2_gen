@@ -62,7 +62,7 @@ module Sivel2Gen
 
           # En el orden de esquema en base 
           belongs_to :grupoper, foreign_key: "id_grupoper", validate: true, 
-            class_name: "Sip::Grupoper", optional: false
+            class_name: "Msip::Grupoper", optional: false
           accepts_nested_attributes_for :grupoper, reject_if: :all_blank
           belongs_to :caso, foreign_key: "id_caso", validate: true, 
             class_name: "Sivel2Gen::Caso", optional: false
@@ -81,7 +81,7 @@ module Sivel2Gen
           def importa(g, datossal, menserror, opciones = {})
             #Se verifica que el grupo no sea un presunto responsable
             if Sivel2Gen::Presponsable.where(nombre: g['nombre_grupo']).empty?
-              gp = Sip::Grupoper.new
+              gp = Msip::Grupoper.new
               gp.nombre = g['nombre_grupo']
               gp.save!
               self.id_grupoper = gp.id

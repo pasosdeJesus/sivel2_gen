@@ -14,10 +14,10 @@
       </div>
       <div class="offset-sm-0 col-sm-3 col-md-3">
         <%= f.input :departamento_id,
-          collection: Sip::ModeloHelper.opciones_tabla_basica(
-            Sip::Departamento, f, :departamento_id
+          collection: Msip::ModeloHelper.opciones_tabla_basica(
+            Msip::Departamento, f, :departamento_id
           ).where(
-            id_pais: Sip.paisomision),
+            id_pais: Msip.paisomision),
           label_method: :nombre,
           value_method: :id,
           label: false,
@@ -26,8 +26,8 @@
       </div>
       <div class="col-md-2">
         <%= f.input :municipio_id,
-          collection: Sip::ModeloHelper.opciones_tabla_basica(
-            Sip::Municipio, f, :municipio_id
+          collection: Msip::ModeloHelper.opciones_tabla_basica(
+            Msip::Municipio, f, :municipio_id
           ),
           label_method: :nombre,
           value_method: :id,
@@ -38,8 +38,8 @@
       </div>
       <div class="col-md-2">
         <%= f.input :clase_id,
-          collection: Sip::ModeloHelper.opciones_tabla_basica(
-            Sip::Clase, f, :clase_id
+          collection: Msip::ModeloHelper.opciones_tabla_basica(
+            Msip::Clase, f, :clase_id
           ),
           label_method: :nombre,
           value_method: :id,
@@ -109,7 +109,7 @@
       </div>
       <div class="offset-sm-0 col-sm-10 offset-md-0 col-md-7">
         <%= f.input :presponsable_id,
-          collection: Sip::ModeloHelper.opciones_tabla_basica(
+          collection: Msip::ModeloHelper.opciones_tabla_basica(
             Sivel2Gen::Presponsable, f, :presponsable_id
           ),
           label_method: :nombre,
@@ -136,7 +136,7 @@
       <div class="offset-sm-0 col-sm-10 offset-md-0 col-md-7">
         <% col = []
            col << Sivel2Gen::Tviolencia.new(id: "Z", nombre: "Otro")
-           col += Sip::ModeloHelper.opciones_tabla_basica(
+           col += Msip::ModeloHelper.opciones_tabla_basica(
             Sivel2Gen::Tviolencia, f, :tviolencia_id
         ) 
       %>
@@ -204,7 +204,7 @@
           <div class = "row">
             <div class="col-sm-6">
               <%= f.input :contexto_id,
-                collection: Sip::ModeloHelper.opciones_tabla_basica(
+                collection: Msip::ModeloHelper.opciones_tabla_basica(
                   Sivel2Gen::Contexto, f, :contexto_id
                 ),
                 label_method: :nombre,
@@ -216,7 +216,7 @@
             </div>
             <div class="col-sm-6">
               <%= f.input :contextovictima_id,
-                collection: Sip::ModeloHelper.opciones_tabla_basica(
+                collection: Msip::ModeloHelper.opciones_tabla_basica(
                   Sivel2Gen::Contextovictima, f, :contextovictima_id),
                 label_method: :nombre,
                 value_method: :id,
@@ -266,7 +266,7 @@
         <div class="row filtro-fila">
           <div class="col-sm col-md">
             <%= f.input :sexo, 
-              collection: Sip::Persona::sexo_opciones,
+              collection: Msip::Persona::sexo_opciones,
               label: false,
               include_blank: '-- Sexo'
             %>
@@ -274,13 +274,13 @@
           <div class="col-sm col-md">
             <% if current_usuario %>
               <%= f.input :orientacionsexual,
-                collection: Sip::Persona::ORIENTACION_OPCIONES,
+                collection: Msip::Persona::ORIENTACION_OPCIONES,
                 label: false,
                 include_blank: '-- Orientación Sexual'
               %>
           <% else %>
             <%= f.input :rangoedad_id, 
-              collection: Sip::ModeloHelper.opciones_tabla_basica(
+              collection: Msip::ModeloHelper.opciones_tabla_basica(
                 Sivel2Gen::Rangoedad, f, :rangoedad_id
               ),
               label: false,
@@ -293,7 +293,7 @@
           <div class="col-sm col-md">
           <% if current_usuario %>
             <%= f.input :rangoedad_id, 
-              collection: Sip::ModeloHelper.opciones_tabla_basica(
+              collection: Msip::ModeloHelper.opciones_tabla_basica(
                 Sivel2Gen::Rangoedad, f, :rangoedad_id
               ),
               label: false,
@@ -303,7 +303,7 @@
             %>
           <% else %>
             <%= f.input :sectorsocial_id,
-              collection: Sip::ModeloHelper.opciones_tabla_basica(
+              collection: Msip::ModeloHelper.opciones_tabla_basica(
                 Sivel2Gen::Sectorsocial, f, :sectorsocial_id
               ),
               label: false,
@@ -329,7 +329,7 @@
             <div class="col-sm col-md">
             <% if current_usuario %>
               <%= f.input :sectorsocial_id,
-                collection: Sip::ModeloHelper.opciones_tabla_basica(
+                collection: Msip::ModeloHelper.opciones_tabla_basica(
                   Sivel2Gen::Sectorsocial, f, :sectorsocial_id
                 ),
                 label: false,
@@ -342,7 +342,7 @@
             <div class="col-sm col-md">
             <% if current_usuario %>
               <%= f.input :organizacion_id,
-                collection: Sip::ModeloHelper.opciones_tabla_basica(
+                collection: Msip::ModeloHelper.opciones_tabla_basica(
                   Sivel2Gen::Organizacion, f, :organizacion_id
                 ),
                 label: false,
@@ -355,7 +355,7 @@
             <div class="col-sm col-md">
             <% if current_usuario %>
               <%= f.input :profesion_id,
-                collection: Sip::ModeloHelper.opciones_tabla_basica(
+                collection: Msip::ModeloHelper.opciones_tabla_basica(
                   Sivel2Gen::Profesion, f, :profesion_id
                 ),
                 label: false,
@@ -439,8 +439,8 @@
         </div>
         <div class="offset-sm-0 col-sm-2">
           <%= f.input :etiqueta1,
-            collection: Sip::ModeloHelper.opciones_tabla_basica(
-              Sip::Etiqueta, f, :etiqueta1
+            collection: Msip::ModeloHelper.opciones_tabla_basica(
+              Msip::Etiqueta, f, :etiqueta1
             ),
             label_method: :nombre,
             value_method: :id,
@@ -457,8 +457,8 @@
         </div>
         <div class="offset-sm-0 col-sm-2">
           <%= f.input :etiqueta2,
-            collection: Sip::ModeloHelper.opciones_tabla_basica(
-              Sip::Etiqueta, f, :etiqueta2
+            collection: Msip::ModeloHelper.opciones_tabla_basica(
+              Msip::Etiqueta, f, :etiqueta2
             ),
             label_method: :nombre,
             value_method: :id,
@@ -476,7 +476,7 @@
         </div>
         <div class="offset-sm-0 col-sm-2">
           <%= f.input :usuario_id,
-            collection: Sip::ModeloHelper.opciones_tabla_basica(
+            collection: Msip::ModeloHelper.opciones_tabla_basica(
               ::Usuario, f, :usuario_id
             ),
             label_method: lambda {|t| (t.nombre ? t.nombre : '') + ' - ' + 

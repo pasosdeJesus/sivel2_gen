@@ -15,7 +15,7 @@
 <% if f.object && f.object.id && !can?(:solocambiaretiquetas, Sivel2Gen::Caso) %>
   <hr>
 
-  <%= render partial: 'sip/solicitudes/tabla_solicitudes',
+  <%= render partial: 'msip/solicitudes/tabla_solicitudes',
     locals: {f: f, relacion: :caso_solicitud} %>
 <% end %>
 

@@ -9,7 +9,7 @@ export default class Sivel2GenAutocompletaAjaxFamiliares {
   // Elije una persona en autocompletación
   static operarElegida (eorig, cadpersona, id, otrosop) {
     let root = window
-    sip_arregla_puntomontaje(root)
+    msip_arregla_puntomontaje(root)
     const cs = id.split(';')
     const idPersona = cs[0]
     const divcpf = eorig.target.closest('.' + 

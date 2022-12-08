@@ -39,10 +39,10 @@ end
 class ActiveSupport::TestCase
   #fixtures :all
 
-  if Sip::Tclase.all.count == 0
+  if Msip::Tclase.all.count == 0
     load "#{Rails.root}/db/seeds.rb"
     #Rake::Task[].reenable # in case you're going to invoke the same task second time.
-    Rake::Task['sip:indices'].invoke
+    Rake::Task['msip:indices'].invoke
   end
 
   protected

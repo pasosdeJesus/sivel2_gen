@@ -4,8 +4,8 @@ module Sivel2Gen
       module Victima
         extend ActiveSupport::Concern
 
-        include Sip::Modelo 
-        include Sip::Localizacion
+        include Msip::Modelo 
+        include Msip::Localizacion
 
         included do
 
@@ -50,7 +50,7 @@ module Sivel2Gen
           belongs_to :organizacion, foreign_key: "id_organizacion",
             validate: true, class_name: "Sivel2Gen::Organizacion", optional: true
           belongs_to :persona, foreign_key: "id_persona", validate: true,
-            class_name: "Sip::Persona", optional: false
+            class_name: "Msip::Persona", optional: false
           accepts_nested_attributes_for :persona, reject_if: :all_blank
           belongs_to :profesion, foreign_key: "id_profesion", validate: true,
             class_name: "Sivel2Gen::Profesion", optional: true
@@ -78,7 +78,7 @@ module Sivel2Gen
           def departamento_caso
             r = ''
             if self.caso && self.caso.ubicacionprincipal
-              if self.caso.ubicacionprincipal.id_pais == Sip.paisomision
+              if self.caso.ubicacionprincipal.id_pais == Msip.paisomision
                 r += self.caso.ubicacionprincipal.departamento ?
                   self.caso.ubicacionprincipal.departamento.nombre : ''
               else
@@ -241,18 +241,18 @@ module Sivel2Gen
           }
 
           scope :filtro_ubicacion_caso, lambda { |u|
-            joins('JOIN sip_ubicacion ON sivel2_gen_victima.id_caso=sip_ubicacion.id_caso').
-              joins('LEFT JOIN sip_departamento ON sip_ubicacion.id_departamento=sip_departamento.id').
-              joins('LEFT JOIN sip_municipio ON sip_ubicacion.id_municipio=sip_municipio.id').
-              where("(unaccent(sip_departamento.nombre) || ' - ' || " +
-                "unaccent(sip_municipio.nombre))" +
+            joins('JOIN msip_ubicacion ON sivel2_gen_victima.id_caso=msip_ubicacion.id_caso').
+              joins('LEFT JOIN msip_departamento ON msip_ubicacion.id_departamento=msip_departamento.id').
+              joins('LEFT JOIN msip_municipio ON msip_ubicacion.id_municipio=msip_municipio.id').
+              where("(unaccent(msip_departamento.nombre) || ' - ' || " +
+                "unaccent(msip_municipio.nombre))" +
                     " ILIKE '%' || unaccent(?) || '%'", u)
           }
 
           scope :filtro_nombre, lambda { |n|
             joins(:persona).
-              where("(unaccent(sip_persona.nombres) || ' ' || " +
-                    " unaccent(sip_persona.apellidos)) " +
+              where("(unaccent(msip_persona.nombres) || ' ' || " +
+                    " unaccent(msip_persona.apellidos)) " +
                     " ILIKE '%' || unaccent(?) || '%'", n)
           }
 
@@ -260,7 +260,7 @@ module Sivel2Gen
             v = datosent[1]
             def crea_persona(p, v, menserror, formato_sexo)
               if p['id_persona'].to_i == v['id_persona'].to_i
-                per = Sip::Persona.new
+                per = Msip::Persona.new
                 if p['nombre'].nil?
                   per.nombres = 'N'
                 else
@@ -273,7 +273,7 @@ module Sivel2Gen
                 end
                 if p['docid']
                   siglatdoc = p['docid'].split(' ')[0]
-                  per.tdocumento = Sip::Tdocumento.where(sigla: siglatdoc)[0]
+                  per.tdocumento = Msip::Tdocumento.where(sigla: siglatdoc)[0]
                   per.numerodocumento = p['docid'].split(' ')[1]
                 end 
                 if p['fecha_nacimiento']
@@ -289,26 +289,26 @@ module Sivel2Gen
                     case p["sexo"]
                     when "M"
                       per.sexo =
-                        Sip::Persona.convencion_sexo[:sexo_masculino].to_s
+                        Msip::Persona.convencion_sexo[:sexo_masculino].to_s
                     when "F"
                       per.sexo =
-                        Sip::Persona.convencion_sexo[:sexo_femenino].to_s
+                        Msip::Persona.convencion_sexo[:sexo_femenino].to_s
                     when "S"
                       per.sexo =
-                        Sip::Persona.convencion_sexo[:sexo_sininformacion].to_s
+                        Msip::Persona.convencion_sexo[:sexo_sininformacion].to_s
                     end
                     begin
                       if per.save
                         per.save
                       else
                         per.sexo =
-                         Sip::Persona.convencion_sexo[:sexo_sininformacion].to_s
+                         Msip::Persona.convencion_sexo[:sexo_sininformacion].to_s
                         per.save
                         menserror << "Convención de sexo #{p["sexo"]} no coincide "
                       end
                     rescue => err
                       per.sexo =
-                        Sip::Persona.convencion_sexo[:sexo_sininformacion].to_s
+                        Msip::Persona.convencion_sexo[:sexo_sininformacion].to_s
                       menserror << "Convención de sexo #{p["sexo"]} no coincide " +
                                     err.cause.to_s
                     end
@@ -316,16 +316,16 @@ module Sivel2Gen
                     case p["sexo"]
                     when "H"
                       per.sexo =
-                        Sip::Persona.convencion_sexo[:sexo_masculino].to_s
+                        Msip::Persona.convencion_sexo[:sexo_masculino].to_s
                     when "M"
                       per.sexo =
-                        Sip::Persona.convencion_sexo[:sexo_femenino].to_s
+                        Msip::Persona.convencion_sexo[:sexo_femenino].to_s
                     when "S"
                       per.sexo =
-                        Sip::Persona.convencion_sexo[:sexo_sininformacion].to_s
+                        Msip::Persona.convencion_sexo[:sexo_sininformacion].to_s
                     else
                       per.sexo =
-                        Sip::Persona.convencion_sexo[:sexo_sininformacion].to_s
+                        Msip::Persona.convencion_sexo[:sexo_sininformacion].to_s
                       menserror << "Convención de sexo #{p["sexo"]} seleccionado no coincide" +
                                     " con alguna opción del sistema"
                     end
@@ -339,15 +339,15 @@ module Sivel2Gen
                  when 'etnia'
                    self.id_etnia = Sivel2Gen::Etnia.where('TRIM(nombre)=?', ele[1]).ids[0]
                  when 'pais'
-                   per.id_pais = Sip::Pais.where('TRIM(nombre)=?', ele[1]).ids[0]
+                   per.id_pais = Msip::Pais.where('TRIM(nombre)=?', ele[1]).ids[0]
                  when 'departamento'
-                   per.id_departamento = Sip::Departamento.
+                   per.id_departamento = Msip::Departamento.
                      where('TRIM(nombre)=?', ele[1]).where(id_pais: per.id_pais).ids[0]
                  when 'municipio'
-                   per.id_municipio = Sip::Municipio.
+                   per.id_municipio = Msip::Municipio.
                      where('TRIM(nombre)=?', ele[1]).where(id_departamento: per.id_departamento).ids[0]
                  when 'centro_poblado'
-                   per.id_clase = Sip::Clase.
+                   per.id_clase = Msip::Clase.
                      where('TRIM(nombre)=?', ele[1]).where(id_municipio: per.id_municipio).ids[0]
                  end
                 end

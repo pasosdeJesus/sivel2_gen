@@ -9,7 +9,7 @@ module Sivel2Gen
           belongs_to :caso, class_name: 'Sivel2Gen::Caso', optional: false
 
           has_many :ubicacion, through: :caso,
-            class_name: 'Sip::Ubicacion'
+            class_name: 'Msip::Ubicacion'
 
           has_many :caso_presponsable, through: :caso,
             class_name: 'Sivel2Gen::CasoPresponsable'
@@ -21,7 +21,7 @@ module Sivel2Gen
             class_name: 'Sivel2Gen::Victima'
 
           has_many :persona, through: :victima,
-            class_name: 'Sip::Persona'
+            class_name: 'Msip::Persona'
 
           has_many :caso_etiqueta, through: :caso,
             class_name: 'Sivel2Gen::CasoEtiqueta'
@@ -39,32 +39,32 @@ module Sivel2Gen
 
           scope :filtro_departamento_id, lambda { |id|
             where('caso_id IN (SELECT id_caso
-                    FROM public.sip_ubicacion
-                    WHERE sip_ubicacion.id_departamento = ?)', id)
+                    FROM public.msip_ubicacion
+                    WHERE msip_ubicacion.id_departamento = ?)', id)
           }
 
           scope :filtro_municipio_id, lambda { |id|
             where('caso_id IN (SELECT id_caso
-                    FROM public.sip_ubicacion
-                    WHERE sip_ubicacion.id_municipio = ?)', id)
+                    FROM public.msip_ubicacion
+                    WHERE msip_ubicacion.id_municipio = ?)', id)
           }
 
           scope :filtro_clase_id, lambda { |id|
             where('caso_id IN (SELECT id_caso
-                    FROM public.sip_ubicacion
-                    WHERE sip_ubicacion.id_clase = ?)', id)
+                    FROM public.msip_ubicacion
+                    WHERE msip_ubicacion.id_clase = ?)', id)
           }
 
           scope :filtro_fechaini, lambda { |fecha_ref|
             where('sivel2_gen_conscaso.fecha >= ?', 
-                  Sip::FormatoFechaHelper.
+                  Msip::FormatoFechaHelper.
                   fecha_local_estandar(fecha_ref)
                  )
           }
 
           scope :filtro_fechafin, lambda { |fecha_ref|
             where('sivel2_gen_conscaso.fecha <= ?', 
-                   Sip::FormatoFechaHelper.
+                   Msip::FormatoFechaHelper.
                   fecha_local_estandar(fecha_ref)
                  )
           }
@@ -137,36 +137,36 @@ module Sivel2Gen
           scope :filtro_apellidos, lambda { |d|
             where("caso_id IN (SELECT id_caso
                     FROM public.sivel2_gen_victima 
-                    INNER JOIN public.sip_persona
-                    ON sivel2_gen_victima.id_persona=sip_persona.id
-                    WHERE unaccent(sip_persona.apellidos) ILIKE '%' ||
+                    INNER JOIN public.msip_persona
+                    ON sivel2_gen_victima.id_persona=msip_persona.id
+                    WHERE unaccent(msip_persona.apellidos) ILIKE '%' ||
                       unaccent(?) || '%')", d)
           }
 
           scope :filtro_nombres, lambda { |d|
             where("caso_id IN (SELECT id_caso
                     FROM public.sivel2_gen_victima 
-                    INNER JOIN public.sip_persona
-                    ON sivel2_gen_victima.id_persona=sip_persona.id
-                    WHERE unaccent(sip_persona.nombres) ILIKE '%' ||
+                    INNER JOIN public.msip_persona
+                    ON sivel2_gen_victima.id_persona=msip_persona.id
+                    WHERE unaccent(msip_persona.nombres) ILIKE '%' ||
                       unaccent(?) || '%')", d)
           }
 
           scope :filtro_victimacol, lambda { |d|
             where("caso_id IN (SELECT id_caso
                     FROM public.sivel2_gen_victimacolectiva 
-                    INNER JOIN public.sip_grupoper
-                    ON sivel2_gen_victimacolectiva.id_grupoper=sip_grupoper.id
-                    WHERE unaccent(sip_grupoper.nombre) ILIKE '%' ||
+                    INNER JOIN public.msip_grupoper
+                    ON sivel2_gen_victimacolectiva.id_grupoper=msip_grupoper.id
+                    WHERE unaccent(msip_grupoper.nombre) ILIKE '%' ||
                       unaccent(?) || '%')", d)
           }
 
           scope :filtro_sexo, lambda { |s|
             where('caso_id IN (SELECT id_caso
                     FROM public.sivel2_gen_victima 
-                    INNER JOIN public.sip_persona
-                    ON sivel2_gen_victima.id_persona=sip_persona.id
-                    WHERE sip_persona.sexo=?)', s)
+                    INNER JOIN public.msip_persona
+                    ON sivel2_gen_victima.id_persona=msip_persona.id
+                    WHERE msip_persona.sexo=?)', s)
           }
 
           scope :filtro_orientacionsexual, lambda { |s|
@@ -227,14 +227,14 @@ module Sivel2Gen
             where('caso_id IN (SELECT id
                     FROM public.sivel2_gen_caso
                     WHERE created_at >= ?)', 
-                  Sip::FormatoFechaHelper.fecha_local_estandar(f)
+                  Msip::FormatoFechaHelper.fecha_local_estandar(f)
                  )
           }
 
           scope :filtro_fechaingfin, lambda { |f|
             where('caso_id IN (SELECT id FROM public.sivel2_gen_caso
               WHERE created_at <= ?)',
-              Sip::FormatoFechaHelper.fecha_local_estandar(f)
+              Msip::FormatoFechaHelper.fecha_local_estandar(f)
                  )
 
           }
@@ -251,15 +251,15 @@ module Sivel2Gen
             "SELECT caso.id as caso_id, caso.fecha, caso.memo, 
         ARRAY_TO_STRING(ARRAY(SELECT COALESCE(departamento.nombre, '') ||  
         ' / ' || COALESCE(municipio.nombre, '')
-        FROM public.sip_ubicacion AS ubicacion 
-          LEFT JOIN public.sip_departamento AS departamento 
+        FROM public.msip_ubicacion AS ubicacion 
+          LEFT JOIN public.msip_departamento AS departamento 
             ON (ubicacion.id_departamento = departamento.id)
-          LEFT JOIN public.sip_municipio AS municipio 
+          LEFT JOIN public.msip_municipio AS municipio 
             ON (ubicacion.id_municipio=municipio.id)
           WHERE ubicacion.id_caso=caso.id), ', ')
         AS ubicaciones, 
         ARRAY_TO_STRING(ARRAY(SELECT nombres || ' ' || apellidos 
-          FROM public.sip_persona AS persona, 
+          FROM public.msip_persona AS persona, 
           public.sivel2_gen_victima AS victima 
           WHERE persona.id=victima.id_persona 
           AND victima.id_caso=caso.id), ', ')
@@ -310,7 +310,7 @@ module Sivel2Gen
               ON sivel2_gen_conscaso USING gin(q);"
         )
             else
-              p = Sip::ProcesosHelper.procesos_OpenBSD
+              p = Msip::ProcesosHelper.procesos_OpenBSD
               r = p.select {|u| u[:command] =~ /REFRESH/ }
               if r.count > 0
                 return "Ejecución de otro(s) REFRESH en curso (#{r.map {|x| x[:command]}})"

@@ -8,22 +8,22 @@ module Sivel2Gen
 
           include ActionView::Helpers::AssetUrlHelper
 
-          Sip::Municipio.conf_presenta_nombre_con_origen = true
-          Sip::Departamento.conf_presenta_nombre_con_origen = true
+          Msip::Municipio.conf_presenta_nombre_con_origen = true
+          Msip::Departamento.conf_presenta_nombre_con_origen = true
 
           def clase 
             "Sivel2Gen::Region"
           end
 
           def set_region
-            Sip::Municipio.conf_presenta_nombre_con_origen = true
-            Sip::Departamento.conf_presenta_nombre_con_origen = true
+            Msip::Municipio.conf_presenta_nombre_con_origen = true
+            Msip::Departamento.conf_presenta_nombre_con_origen = true
             @basica = Region.find(params[:id])
           end
 
           def create
-            Sip::Municipio.conf_presenta_nombre_con_origen = true
-            Sip::Departamento.conf_presenta_nombre_con_origen = true
+            Msip::Municipio.conf_presenta_nombre_con_origen = true
+            Msip::Departamento.conf_presenta_nombre_con_origen = true
             @region.departamento_ids = params[:region][:departamento_ids]
             @region.municipio_ids = params[:region][:municipio_ids]
             create_gen

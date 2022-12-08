@@ -5,7 +5,7 @@ module Sivel2Gen
       module Vinculoestado
         extend ActiveSupport::Concern
 
-        include Sip::Basica
+        include Msip::Basica
         included do
           has_many :victimacolectiva_vinculoestado, 
             foreign_key: "id_vinculoestado", 

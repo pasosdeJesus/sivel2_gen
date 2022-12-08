@@ -28,13 +28,13 @@ module Sivel2Gen
             if (params[:validarcaso] && params[:validarcaso][:fechaini])
               if params[:validarcaso][:fechaini] != ''
                 pfi = params[:validarcaso][:fechaini]
-                pfid = Sip::FormatoFechaHelper.fecha_local_estandar pfi
+                pfid = Msip::FormatoFechaHelper.fecha_local_estandar pfi
               else
                 pfid = nil
               end
             else
               # Comenzar en semestre anterior
-              pfid = Sip::FormatoFechaHelper.inicio_semestre(Date.today).to_s
+              pfid = Msip::FormatoFechaHelper.inicio_semestre(Date.today).to_s
             end
             if pfid
               casos = casos.where("#{cfecha} >= ?", pfid)
@@ -42,7 +42,7 @@ module Sivel2Gen
             if(params[:validarcaso] && params[:validarcaso][:fechafin] && 
                params[:validarcaso][:fechafin] != '')
               pff = params[:validarcaso][:fechafin]
-              pffd = Sip::FormatoFechaHelper.fecha_local_estandar pff
+              pffd = Msip::FormatoFechaHelper.fecha_local_estandar pff
               if pffd
                 casos = casos.where("#{cfecha} <= ?", pffd)
               end
@@ -53,7 +53,7 @@ module Sivel2Gen
           def filtro_etiqueta(casos)
             if (params[:validarcaso] && params[:validarcaso][:etiqueta_id] && 
                 params[:validarcaso][:etiqueta_id] != '' &&
-                Sip::Etiqueta.where(
+                Msip::Etiqueta.where(
                   id: params[:validarcaso][:etiqueta_id].to_i
                 ).count > 0
                )
@@ -157,57 +157,57 @@ module Sivel2Gen
           def valida_victima_individual_sin_acto(c)
             c = c.joins('INNER JOIN sivel2_gen_victima 
               ON sivel2_gen_victima.id_caso=sivel2_gen_caso.id').
-              joins('INNER JOIN sip_persona
-              ON sivel2_gen_victima.id_persona=sip_persona.id')
+              joins('INNER JOIN msip_persona
+              ON sivel2_gen_victima.id_persona=msip_persona.id')
             validacion_estandar(
               c, 'Víctima individual sin acto', 
               'NOT EXISTS (SELECT id_persona FROM sivel2_gen_acto 
-              WHERE id_persona=sip_persona.id)')
+              WHERE id_persona=msip_persona.id)')
           end
 
           def valida_victima_colectiva_sin_acto(c)
             c = c.joins('INNER JOIN sivel2_gen_victimacolectiva
               ON sivel2_gen_victimacolectiva.id_caso=sivel2_gen_caso.id').
-              joins('INNER JOIN sip_grupoper
-              ON sivel2_gen_victimacolectiva.id_grupoper=sip_grupoper.id')
+              joins('INNER JOIN msip_grupoper
+              ON sivel2_gen_victimacolectiva.id_grupoper=msip_grupoper.id')
             validacion_estandar(
               c, 'Víctima colectiva sin acto', 
               'NOT EXISTS (SELECT id_grupoper FROM sivel2_gen_actocolectivo
-              WHERE id_grupoper=sip_grupoper.id)')
+              WHERE id_grupoper=msip_grupoper.id)')
           end
 
           def valida_nombres_victimas_cortos(c)
             c = c.joins('INNER JOIN sivel2_gen_victima
               ON sivel2_gen_victima.id_caso=sivel2_gen_caso.id').
-              joins('INNER JOIN sip_persona
-              ON sivel2_gen_victima.id_persona=sip_persona.id')
+              joins('INNER JOIN msip_persona
+              ON sivel2_gen_victima.id_persona=msip_persona.id')
             validacion_estandar(
               c, 'Nombres de víctimas individuales muy cortos', 
-              'length(sip_persona.nombres) <= 2 
-              AND sip_persona.nombres <> \'N\''
+              'length(msip_persona.nombres) <= 2 
+              AND msip_persona.nombres <> \'N\''
             )
           end
 
           def valida_apellidos_victimas_cortos(c)
             c = c.joins('INNER JOIN sivel2_gen_victima
               ON sivel2_gen_victima.id_caso=sivel2_gen_caso.id').
-              joins('INNER JOIN sip_persona
-              ON sivel2_gen_victima.id_persona=sip_persona.id')
+              joins('INNER JOIN msip_persona
+              ON sivel2_gen_victima.id_persona=msip_persona.id')
             validacion_estandar(
               c, 'Apellidos de víctimas individuales muy cortos', 
-              'length(sip_persona.apellidos) <= 2 
-              AND sip_persona.apellidos <> \'N\''
+              'length(msip_persona.apellidos) <= 2 
+              AND msip_persona.apellidos <> \'N\''
             )
           end
 
           def valida_nombres_victimas_colectivas_cortos(c)
             c = c.joins('INNER JOIN sivel2_gen_victimacolectiva
               ON sivel2_gen_victimacolectiva.id_caso=sivel2_gen_caso.id').
-              joins('INNER JOIN sip_grupoper
-              ON sivel2_gen_victimacolectiva.id_grupoper=sip_grupoper.id')
+              joins('INNER JOIN msip_grupoper
+              ON sivel2_gen_victimacolectiva.id_grupoper=msip_grupoper.id')
             validacion_estandar(
               c, 'Nombres de víctimas colectivas muy cortos', 
-              'LENGTH(sip_grupoper.nombre) <= 2'
+              'LENGTH(msip_grupoper.nombre) <= 2'
             )
           end
 

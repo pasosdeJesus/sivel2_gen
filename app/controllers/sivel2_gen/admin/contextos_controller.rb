@@ -1,6 +1,6 @@
 module Sivel2Gen
   module Admin
-    class ContextosController < Sip::Admin::BasicasController
+    class ContextosController < Msip::Admin::BasicasController
       before_action :set_contexto, only: [:show, :edit, :update, :destroy]
       load_and_authorize_resource class: Sivel2Gen::Contexto
   

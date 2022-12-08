@@ -1,12 +1,12 @@
 
-require 'sip/concerns/models/ubicacion'
+require 'msip/concerns/models/ubicacion'
 
 module Sivel2Gen
   module Concerns
     module Models
       module Ubicacion
         extend ActiveSupport::Concern
-        include Sip::Concerns::Models::Ubicacion
+        include Msip::Concerns::Models::Ubicacion
 
         included do
           has_one :salidarefugio, validate: true, foreign_key: "id_salida",
@@ -22,7 +22,7 @@ module Sivel2Gen
 
           validates :id_departamento, presence: { 
             message: "Ubicación del país debe tener departamento." 
-          }, if: -> {id_pais == Sip.paisomision}
+          }, if: -> {id_pais == Msip.paisomision}
 
           attr_accessor :principal
           attr_accessor :tclase
@@ -50,16 +50,16 @@ module Sivel2Gen
           end
           
           def importa(datosent, datossal, menserror, opciones = {})
-            pais = Sip::Pais.
+            pais = Msip::Pais.
               where('nombre ILIKE ?', datosent['pais']).ids[0]
-            self.id_pais = pais || Sip.paisomision 
-            dep = Sip::Departamento.
+            self.id_pais = pais || Msip.paisomision 
+            dep = Msip::Departamento.
               where('nombre ILIKE ?', datosent['departamento']).
               where(id_pais: self.id_pais).ids[0]
-            mun = Sip::Municipio.
+            mun = Msip::Municipio.
               where('nombre ILIKE ?', datosent['municipio']).
               where(id_departamento: dep).ids[0]
-            cen = Sip::Clase.
+            cen = Msip::Clase.
               where('nombre ILIKE ?', datosent['centro_poblado']).
               where(id_municipio: mun).ids[0]
             self.id_departamento= dep if dep

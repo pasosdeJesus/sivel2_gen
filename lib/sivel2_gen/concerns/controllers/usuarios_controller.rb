@@ -1,5 +1,5 @@
 
-require 'sip/concerns/controllers/usuarios_controller'
+require 'msip/concerns/controllers/usuarios_controller'
 
 module Sivel2Gen
   module Concerns
@@ -9,7 +9,7 @@ module Sivel2Gen
         extend ActiveSupport::Concern
 
         included do
-          include Sip::Concerns::Controllers::UsuariosController
+          include Msip::Concerns::Controllers::UsuariosController
 
           def atributos_index
             r = [
@@ -19,8 +19,8 @@ module Sivel2Gen
               :email,
               :rol
             ]
-            if can?(:manage, Sip::Grupo)
-              r += [:sip_grupo]
+            if can?(:manage, Msip::Grupo)
+              r += [:msip_grupo]
             end
             r += [
               :descripcion,
@@ -38,8 +38,8 @@ module Sivel2Gen
               :email,
               :rol,
             ]
-            if can?(:manage, Sip::Grupo)
-              r += [:sip_grupo]
+            if can?(:manage, Msip::Grupo)
+              r += [:msip_grupo]
             end
             r += [
               :observadorffechaini_localizada,
@@ -68,7 +68,7 @@ module Sivel2Gen
           private
 
           def lista_params_sivel2_gen
-            lista_params_sip + [
+            lista_params_msip + [
               :observadorffechaini_localizada,
               :observadorffechafin_localizada,
               filtrodepartamento_ids: []

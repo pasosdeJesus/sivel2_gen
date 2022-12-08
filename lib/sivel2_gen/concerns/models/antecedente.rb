@@ -5,7 +5,7 @@ module Sivel2Gen
       module Antecedente
         extend ActiveSupport::Concern
 
-        include Sip::Basica
+        include Msip::Basica
         included do
           self.table_name = "sivel2_gen_antecedente"
           has_many :antecedente_caso, foreign_key: "id_antecedente", 

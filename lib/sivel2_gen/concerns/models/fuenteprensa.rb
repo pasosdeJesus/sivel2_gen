@@ -1,12 +1,12 @@
 
-require 'sip/concerns/models/fuenteprensa'   
+require 'msip/concerns/models/fuenteprensa'   
 
 module Sivel2Gen
   module Concerns
     module Models
       module Fuenteprensa
         extend ActiveSupport::Concern
-        include Sip::Concerns::Models::Fuenteprensa
+        include Msip::Concerns::Models::Fuenteprensa
 
         included do
           has_many :caso_fuenteprensa, foreign_key: "fuenteprensa_id", 

@@ -7,7 +7,7 @@ json.caso do
   json.fecha @caso.fecha if @caso.fecha
   json.hora @caso.hora if @caso.hora
   if @caso.ubicacion_id
-    ub = Sip::Ubicacion.find(@caso.ubicacion_id)
+    ub = Msip::Ubicacion.find(@caso.ubicacion_id)
     json.departamento ub.departamento.nombre if ub.departamento
     json.municipio ub.municipio.nombre if ub.municipio
     json.centro_poblado ub.clase.nombre if ub.clase

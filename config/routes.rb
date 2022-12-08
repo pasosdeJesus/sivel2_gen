@@ -59,7 +59,7 @@ Sivel2Gen::Engine.routes.draw do
   get '/mapadep/victimizaciones' => 'mapadep#victimizaciones',
     as: :mapadepvic
 
-  get "/personas/remplazarfamiliar" => "/sip/personas#remplazarfamiliar"
+  get "/personas/remplazarfamiliar" => "/msip/personas#remplazarfamiliar"
 
   get "/tablasbasicas" => 'hogar#tablasbasicas'
 

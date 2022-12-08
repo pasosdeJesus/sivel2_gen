@@ -1,8 +1,8 @@
 <div class='control-group nested-fields'>
   <div class="controls">
-    <%  f.object.sip_anexo = Sip::Anexo.new if !f.object.sip_anexo %>
+    <%  f.object.msip_anexo = Msip::Anexo.new if !f.object.msip_anexo %>
 
-    <%= f.simple_fields_for :sip_anexo do |a| %>
+    <%= f.simple_fields_for :msip_anexo do |a| %>
       
       <div class="row">
         <div class="col-md-6">
@@ -15,12 +15,12 @@
           <% if !a.object || !a.object.adjunto_file_name || !a.object.id %>
             <%= a.input :adjunto, as: :file, label: 'Archivo' %>
           <% else %>
-            <div class="sip_anexo_adjunto">
-              <label for="sip_anexo_attributes_<%=a.object.id%>_adjunto">
+            <div class="msip_anexo_adjunto">
+              <label for="msip_anexo_attributes_<%=a.object.id%>_adjunto">
                 Archivo
               </label>
-              <a id="sip_anexo_attributes_<%=a.object.id%>_adjunto" 
-                 href="<%= sip.descarga_anexo_path(a.object.id) %>" 
+              <a id="msip_anexo_attributes_<%=a.object.id%>_adjunto" 
+                 href="<%= msip.descarga_anexo_path(a.object.id) %>" 
                  style="text-decoration:none" 
                  data-turbo='false'>
                  <%= a.object.adjunto_file_name %>
@@ -34,7 +34,7 @@
       <%= a.input :descripcion %>
 
       <%= a.input :id, as: :hidden %>
-    <% end %> <!-- f.simple_fields_for :sip_anexo -->
+    <% end %> <!-- f.simple_fields_for :msip_anexo -->
     <%= link_to_remove_association "Eliminar Anexo", f, 
       :class => 'btn btn-sm btn-danger',
       style: 'margin-bottom: 1em'
