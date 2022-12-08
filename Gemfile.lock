@@ -11,7 +11,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/heb412_gen.git
-  revision: b5fb47a8a1b7333f183eb2129f357a3a541a2b29
+  revision: 90954df65c5fd22e1b9e776ecbf66f8f2bb7be9c
   branch: msip
   specs:
     heb412_gen (2.1.0.beta1)
@@ -22,7 +22,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/mr519_gen.git
-  revision: 0c9d6fc9dcedbcafdb1590991755e58a181f8202
+  revision: d5fab36f31fa721126501fbd2feeabe25fb18ebc
   branch: msip
   specs:
     mr519_gen (2.1.0.beta1)
@@ -30,21 +30,9 @@ GIT
       rails
 
 GIT
-  remote: https://github.com/styd/apexcharts.rb.git
-  revision: d72c88c265828c810ef0094d84e61825020f4dbc
-  branch: master
-  specs:
-    apexcharts (0.2.0)
-
-GIT
-  remote: https://github.com/vtamara/cocoon.git
-  revision: 9f1892403c3dbdb8f7d457a06f237ff58e7dfb07
-  branch: new_id_with_ajax
-  specs:
-    cocoon (1.2.11)
-
-PATH
-  remote: ../msip
+  remote: https://github.com/pasosdeJesus/msip.git
+  revision: 374573cdc556e9da1dedbf80e2c88d6e81b6ad1c
+  branch: main
   specs:
     msip (2.2.0.alfa3)
       cancancan (~> 3)
@@ -60,6 +48,20 @@ PATH
       stimulus-rails (~> 1)
       twitter_cldr (~> 6)
       will_paginate (~> 3)
+
+GIT
+  remote: https://github.com/styd/apexcharts.rb.git
+  revision: d72c88c265828c810ef0094d84e61825020f4dbc
+  branch: master
+  specs:
+    apexcharts (0.2.0)
+
+GIT
+  remote: https://github.com/vtamara/cocoon.git
+  revision: 9f1892403c3dbdb8f7d457a06f237ff58e7dfb07
+  branch: new_id_with_ajax
+  specs:
+    cocoon (1.2.11)
 
 GEM
   remote: https://rubygems.org/
