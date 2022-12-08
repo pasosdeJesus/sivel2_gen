@@ -13,7 +13,7 @@ module Sivel2Gen
             primary_key: 'id', optional: false
           
           has_many :ubicacion, through: :caso,
-            class_name: 'Sip::Ubicacion'
+            class_name: 'Msip::Ubicacion'
 
           has_many :caso_presponsable, through: :caso,
             class_name: 'Sivel2Gen::CasoPresponsable'
@@ -25,7 +25,7 @@ module Sivel2Gen
             class_name: 'Sivel2Gen::Victima'
 
           has_many :persona, through: :victima,
-            class_name: 'Sip::Persona'
+            class_name: 'Msip::Persona'
 
           has_many :caso_etiqueta, through: :caso,
             class_name: 'Sivel2Gen::CasoEtiqueta'

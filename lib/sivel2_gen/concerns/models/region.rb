@@ -5,7 +5,7 @@ module Sivel2Gen
       module Region
         extend ActiveSupport::Concern
 
-        include Sip::Basica
+        include Msip::Basica
         included do
 
           has_many :caso_region, foreign_key: "id_region", 
@@ -16,13 +16,13 @@ module Sivel2Gen
             class_name: 'Sivel2Gen::DepartamentoRegion',
             foreign_key: 'region_id'
           has_many :departamento, through: :region_departamento,
-            class_name: 'Sip::Departamento'
+            class_name: 'Msip::Departamento'
 
           has_many :region_municipio, dependent: :delete_all,
             class_name: 'Sivel2Gen::MunicipioRegion',
             foreign_key: 'region_id'
           has_many :municipio, through: :region_municipio,
-            class_name: 'Sip::Municipio'
+            class_name: 'Msip::Municipio'
 
         end
 
@@ -46,8 +46,8 @@ module Sivel2Gen
               return mr.region
             end
             if municipio_id &&
-                Sip::Municipio.where(id: municipio_id).count > 0
-              dm = Sip::Municipio.find(municipio_id)
+                Msip::Municipio.where(id: municipio_id).count > 0
+              dm = Msip::Municipio.find(municipio_id)
               if Sivel2Gen::DepartamentoRegion.where(
                   departamento_id: dm.id_departamento).count > 0
                 dr = Sivel2Gen::DepartamentoRegion.

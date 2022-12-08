@@ -1,6 +1,6 @@
 module Sivel2Gen
   module Admin
-    class VinculosestadoController < Sip::Admin::BasicasController
+    class VinculosestadoController < Msip::Admin::BasicasController
       before_action :set_vinculoestado, only: [:show, :edit, :update, :destroy]
       load_and_authorize_resource class: Sivel2Gen::Vinculoestado
   

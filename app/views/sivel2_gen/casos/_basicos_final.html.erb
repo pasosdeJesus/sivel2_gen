@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-md-6">
     <%= f.association :region, 
-      collection: Sip::ModeloHelper.opciones_tabla_basica(
+      collection: Msip::ModeloHelper.opciones_tabla_basica(
         Sivel2Gen::Region, f, :region
       ),
       label_method: :nombre, 
@@ -10,7 +10,7 @@
   </div>
   <div class="col-md-6">
     <%= f.association :frontera, 
-      collection: Sip::ModeloHelper.opciones_tabla_basica(
+      collection: Msip::ModeloHelper.opciones_tabla_basica(
         Sivel2Gen::Frontera, f, :frontera
       ),
       label_method: :nombre, 

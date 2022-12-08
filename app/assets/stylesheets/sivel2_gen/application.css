@@ -9,7 +9,7 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
- *= require sip/application.css
+ *= require msip/application.css
  *= require mr519_gen/application.css
  *= require heb412_gen/application.css
  *= require_tree .

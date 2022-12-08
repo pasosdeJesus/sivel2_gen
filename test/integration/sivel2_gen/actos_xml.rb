@@ -66,7 +66,7 @@ module Sivel2Gen
     }
     test 'Valida caso con acto individual' do
       caso = Sivel2Gen::Caso.create! PRUEBA_CASO_BASICOS
-      ubicaso = Sip::Ubicacion.create(
+      ubicaso = Msip::Ubicacion.create(
         id_caso: caso.id,
         id_pais: 170,
         created_at: '2019-01-01',
@@ -77,7 +77,7 @@ module Sivel2Gen
       categoria = Sivel2Gen::Categoria.find(15)
       presponsable = Sivel2Gen::Presponsable.find(104)
       rangoedad = Sivel2Gen::Rangoedad.create! PRUEBA_RANGOEDAD
-      persona = Sip::Persona.create! PRUEBA_PERSONA
+      persona = Msip::Persona.create! PRUEBA_PERSONA
       persona.save!
       victima = Sivel2Gen::Victima.create(
         id_caso: caso.id,
@@ -107,7 +107,7 @@ module Sivel2Gen
 
     test 'valida caso con 1 acto colectivo' do
       caso = Sivel2Gen::Caso.create! PRUEBA_CASO_BASICOS
-      ubicaso = Sip::Ubicacion.create(
+      ubicaso = Msip::Ubicacion.create(
         id_caso: caso.id,
         id_pais: 170,
         created_at: '2019-01-01',
@@ -115,7 +115,7 @@ module Sivel2Gen
       ubicaso.save!
       caso.ubicacion_id = ubicaso.id
       caso.save!
-      grupoper = Sip::Grupoper.create(
+      grupoper = Msip::Grupoper.create(
         nombre: 'Nombre de grupo',
         anotaciones: 'Anotaciones de ejemplo',
         created_at: '2014-09-09'

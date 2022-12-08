@@ -6,12 +6,12 @@ module Sivel2Gen
         extend ActiveSupport::Concern
         included do
 
-          include Sip::Modelo
+          include Msip::Modelo
 
           belongs_to :presponsable, class_name: 'Sivel2Gen::Presponsable',
             foreign_key: "id_presponsable", validate: true, optional: false
           accepts_nested_attributes_for :presponsable
-          belongs_to :persona, class_name: 'Sip::Persona',
+          belongs_to :persona, class_name: 'Msip::Persona',
             foreign_key: "id_persona", validate: true, optional: false
           belongs_to :caso, class_name: 'Sivel2Gen::Caso', 
             foreign_key: "id_caso", validate: true, optional: false

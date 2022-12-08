@@ -55,7 +55,7 @@ let promesaRecursosSprocketsYDocumento = new Promise((resolver, rechazar) => {
 promesaRecursosSprocketsYDocumento.then((mensaje) => {
   console.log(mensaje)
   var root = window;
-  sip_prepara_eventos_comunes(root);
+  msip_prepara_eventos_comunes(root);
   mr519_gen_prepara_eventos_comunes(root);
   heb412_gen_prepara_eventos_comunes(root);
   sivel2_gen_prepara_eventos_comunes(root);
@@ -82,7 +82,7 @@ document.addEventListener('turbo:load', (e) => {
 
   console.log('Escuchador turbo:load')
 
-  sip_ejecutarAlCargarPagina(window)
+  msip_ejecutarAlCargarPagina(window)
 })
 
 import "./controllers"

@@ -37,7 +37,7 @@ module Dummy
     config.hosts.concat(
       ENV.fetch('CONFIG_HOSTS', 'defensor.info').downcase.split(";"))
 
-    # sip
+    # msip
     config.x.formato_fecha = ENV.fetch('FORMATO_FECHA', 'dd/M/yyyy')
 
     # heb412

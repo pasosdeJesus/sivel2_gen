@@ -1,12 +1,12 @@
-<% if f.object.sip_grupo_ids.include?(Ability::GRUPO_OBSERVADOR_PARTE_CASOS) %>
+<% if f.object.grupo_ids.include?(Ability::GRUPO_OBSERVADOR_PARTE_CASOS) %>
   <% estipo = "display: block" %>
 <% else %>
   <% estipo = "display: none" %>
 <% end %>
-<% col = Sip::Departamento.habilitados.map(&:id) | 
+<% col = Msip::Departamento.habilitados.map(&:id) | 
   f.object.filtrodepartamento_ids %>
 <%= f.association :filtrodepartamento, 
-  collection: Sip::Departamento.where(id: col),
+  collection: Msip::Departamento.where(id: col),
   label_method: :nombre,
   value_method: :id,
   input_html: { class: 'chosen-select', multiple: true },

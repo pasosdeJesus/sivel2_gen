@@ -1,5 +1,5 @@
 
-require 'sip/concerns/models/usuario'
+require 'msip/concerns/models/usuario'
 
 module Sivel2Gen
   module Concerns
@@ -8,7 +8,7 @@ module Sivel2Gen
         extend ActiveSupport::Concern
 
         included do
-          include Sip::Concerns::Models::Usuario
+          include Msip::Concerns::Models::Usuario
 
           has_many :caso_usuario, foreign_key: "id_usuario", validate: true,
             class_name: 'Sivel2Gen::CasoUsuario'
@@ -19,7 +19,7 @@ module Sivel2Gen
           has_and_belongs_to_many :filtrodepartamento, 
             foreign_key: :usuario_id, 
             validate: true,
-            class_name: 'Sip::Departamento',
+            class_name: 'Msip::Departamento',
             association_foreign_key: 'departamento_id',
             join_table: :sivel2_gen_observador_filtrodepartamento
 

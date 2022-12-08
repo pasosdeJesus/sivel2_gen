@@ -125,7 +125,7 @@ xml.relato do
         end
       end
     end
-    ub = Sip::Ubicacion.find(caso.ubicacion_id)
+    ub = Msip::Ubicacion.find(caso.ubicacion_id)
     xml.departamento ub.departamento.nombre if ub.departamento
     xml.municipio ub.municipio.nombre if ub.municipio
     xml.centro_poblado ub.clase.nombre if ub.clase

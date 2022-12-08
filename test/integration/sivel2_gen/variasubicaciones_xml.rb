@@ -26,7 +26,7 @@ module Sivel2Gen
 
     test 'genera xml del caso y su ubicacion' do
       caso = Sivel2Gen::Caso.create PRUEBA_CASO_BASICOS
-      ubicaso1 = Sip::Ubicacion.create(
+      ubicaso1 = Msip::Ubicacion.create(
         lugar: 'VEREDA EL PAPAYO',
         sitio: 'UNO DE LOS EXTREMOS DEL RÍO YURUMANGUÍ EN LA RIVERA DEL RÍO',
         id_caso: caso.id,
@@ -40,7 +40,7 @@ module Sivel2Gen
         latitud: 3.89381723858445
       )
       ubicaso1.save!
-      ubicaso2 = Sip::Ubicacion.create(
+      ubicaso2 = Msip::Ubicacion.create(
         lugar: 'VEREDA EL PAPAYO',
         sitio: 'UNO DE LOS EXTREMOS DEL RÍO YURUMANGUÍ EN LA RIVERA DEL RÍO',
         id_caso: caso.id,

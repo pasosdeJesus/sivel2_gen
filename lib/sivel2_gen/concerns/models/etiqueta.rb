@@ -1,12 +1,12 @@
 
-require 'sip/concerns/models/etiqueta'
+require 'msip/concerns/models/etiqueta'
 
 module Sivel2Gen
   module Concerns
     module Models
       module Etiqueta
         extend ActiveSupport::Concern
-        include Sip::Concerns::Models::Etiqueta
+        include Msip::Concerns::Models::Etiqueta
 
         included do
           has_many :caso_etiqueta, class_name: 'Sivel2Gen::CasoEtiqueta',

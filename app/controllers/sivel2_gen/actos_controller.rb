@@ -7,6 +7,11 @@ module Sivel2Gen
     # Crea nuevos actos procesando parámetros
     def agregar
       params2 = {}
+      if params[:_json]
+        # Este es el formato generado por fetch
+        params2 = Msip::ControladorHelper.convertir_arrnomval_diccionario(
+          params[:_json])
+      end
       if (!params[:caso] && !params2['caso'])
         respond_to do |format|
           format.html { render inline: 'Faltan paramétros de caso' }

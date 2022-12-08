@@ -1,6 +1,6 @@
 module Sivel2Gen
   module Admin
-    class EscolaridadesController < Sip::Admin::BasicasController
+    class EscolaridadesController < Msip::Admin::BasicasController
       before_action :set_escolaridad, only: [:show, :edit, :update, :destroy]
       load_and_authorize_resource class: Sivel2Gen::Escolaridad
   

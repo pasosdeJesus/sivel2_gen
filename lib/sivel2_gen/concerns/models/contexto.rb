@@ -5,7 +5,7 @@ module Sivel2Gen
       module Contexto 
         extend ActiveSupport::Concern
 
-        include Sip::Basica
+        include Msip::Basica
         included do
             
           has_and_belongs_to_many :caso, 

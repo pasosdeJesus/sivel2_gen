@@ -97,8 +97,8 @@
           <%= opcion_menu "Tablas Básicas", sivel2_gen.tablasbasicas_path,
             desplegable: true %>
         <% end %>
-        <% if can? :manage, Sip::Bitacora %>
-          <%= opcion_menu "Bitácoras", sip.bitacoras_path, desplegable: true %>
+        <% if can? :manage, Msip::Bitacora %>
+          <%= opcion_menu "Bitácoras", msip.bitacoras_path, desplegable: true %>
         <% end %>
         <% if can? :manage, Mr519Gen::Formulario %>
           <%= opcion_menu "Formularios", 
@@ -124,4 +124,4 @@
   </span>
 <% end %>
 
-<%= render template: "layouts/sip/application" %>
+<%= render template: "layouts/msip/application" %>

@@ -17,7 +17,7 @@
       }) do %>
       <div class="row">
         <div class="offset-sm-0 col-4">
-          <% vfi = Sip::ModeloHelper::poromision(
+          <% vfi = Msip::ModeloHelper::poromision(
             params, :fechaini, @vic_fechaini) %>
           <%= f.input :fechaini,
             maxlength: 10, 
@@ -31,7 +31,7 @@
           %>
         </div>
         <div class="offset-sm-4 col-4">
-          <% vff = Sip::ModeloHelper::poromision(
+          <% vff = Msip::ModeloHelper::poromision(
             params, :fechafin, @vic_fechafin) %>
           <%= f.input :fechafin,
             maxlength: 10, 
@@ -88,7 +88,7 @@
 
     <div class="row">
       <div class="offset-sm-0 col-sm-3">
-        <% des = Sip::ModeloHelper::poromision(
+        <% des = Msip::ModeloHelper::poromision(
           params, :desagregarpor, @opdesagregarpor.first) %>
         <%= f.input :desagregarpor,
         collection: @opdesagregarpor,
@@ -100,7 +100,7 @@
         %>
       </div>
       <div class="offset-sm-3 col-sm-3">
-        <% pom = Sip::ModeloHelper.poromision(params, :colormax) %>
+        <% pom = Msip::ModeloHelper.poromision(params, :colormax) %>
         <%= f.input :colormax, 
           label: 'Color',
           inline_label: 'Color más oscuro',
@@ -112,7 +112,7 @@
             value: pom == '' ? '#00ff00' : pom
           } %>
       </div>
-      <% tg = Sip::ModeloHelper::poromision(
+      <% tg = Msip::ModeloHelper::poromision(
         params, :tipografica, @pDesagregarpor == 'FECHAS' ? 
         'LÍNEAS' : 'BARRAS VERTICALES') %>
       <div class="col-sm-3">
