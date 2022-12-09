@@ -274,8 +274,8 @@ module Sivel2Gen
           habilidad.can :read, Heb412Gen::Plantillahcr
           habilidad.can :index, Sivel2Gen::Victima
 
-          if usuario.msip_grupo &&
-              usuario.msip_grupo.pluck(:id).include?(GRUPO_ANALISTA_CASOS)
+          if usuario.grupo &&
+              usuario.grupo.pluck(:id).include?(GRUPO_ANALISTA_CASOS)
             habilidad.can [:read, :new, :edit, :update, :create],
               Msip::Orgsocial
             habilidad.can :create, Msip::Bitacora, usuario: { id: usuario.id }
@@ -303,8 +303,8 @@ module Sivel2Gen
             habilidad.cannot [:new, :create], Sivel2Gen::Caso
             habilidad.can :read, Sivel2Gen::Victima
 
-            if usuario.msip_grupo &&
-                usuario.msip_grupo.pluck(:id).
+            if usuario.grupo &&
+                usuario.grupo.pluck(:id).
                 include?(GRUPO_OBSERVADOR_PARTE_CASOS)
               dicc_filtro = {}
               if usuario.filtrodepartamento_ids.count > 0

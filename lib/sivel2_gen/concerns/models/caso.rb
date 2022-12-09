@@ -31,7 +31,7 @@ module Sivel2Gen
             class_name: 'Msip::Anexo'
           accepts_nested_attributes_for :msip_anexo,  reject_if: :all_blank
 
-          has_and_belongs_to_many :antecedente, 
+          has_and_belongs_to_many :antecedente,
             class_name: 'Sivel2Gen::Antecedente',
             foreign_key: :id_caso, 
             association_foreign_key: :id_antecedente,
@@ -341,7 +341,6 @@ module Sivel2Gen
               end
             end
             #Importa combatientes
-            idsco = {}
             if datosent['combatiente']
               if datosent['combatiente'].kind_of?(Array)
                 datosent['combatiente'].each do |co|

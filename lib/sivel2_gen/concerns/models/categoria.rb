@@ -45,7 +45,7 @@ module Sivel2Gen
               return nombre
             end
             supracategoria.id_tviolencia + 
-              id.to_s + ' ' +nombre
+              id.to_s + ' ' + nombre
           end
 
           def presenta(atr)
