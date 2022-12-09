@@ -248,6 +248,7 @@ module Sivel2Gen
       habilidad.can [:read, :update], Mr519Gen::Encuestausuario
       habilidad.can :read, Msip::Orgsocial
 
+      habilidad.can :genvic, Sivel2Gen::Caso
       habilidad.can :personas, Sivel2Gen::Caso
 
       # Conteos
