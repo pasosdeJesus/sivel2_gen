@@ -252,6 +252,10 @@ module Sivel2Gen
       habilidad.can :mostrar_portada, Sip::Anexo
       habilidad.can :abre_anexo, Sip::Anexo
 
+      habilidad.can :personas, Sivel2Gen::Caso
+      habilidad.can :victimizaciones, Sivel2Gen::Caso
+      habilidad.can :filtra_por_tviolencia, Sivel2Gen::Categoria
+
       habilidad.can :contar, Sip::Ubicacion
       habilidad.can :nuevo, Sip::Ubicacion
 
