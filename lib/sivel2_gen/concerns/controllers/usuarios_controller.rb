@@ -20,7 +20,7 @@ module Sivel2Gen
               :rol
             ]
             if can?(:manage, Msip::Grupo)
-              r += [:msip_grupo]
+              r += [:grupo]
             end
             r += [
               :descripcion,
@@ -39,7 +39,7 @@ module Sivel2Gen
               :rol,
             ]
             if can?(:manage, Msip::Grupo)
-              r += [:msip_grupo]
+              r += [:grupo]
             end
             r += [
               :observadorffechaini_localizada,

@@ -40,7 +40,7 @@ module Sivel2Gen
           "LEFT JOIN msip_municipio AS municipio ON ubicacion.id_municipio=municipio.id " \
           "GROUP BY 1,2,3,4,5,6,7,8,9,10,11) " \
           " TO '#{rutatmp}' DELIMITER ',' CSV HEADER;" 
-        res = ActiveRecord::Base.connection.execute(sql)
+        ActiveRecord::Base.connection.execute(sql)
         if File.exist?(@rutacsv)
           File.unlink(@rutacsv)
         end

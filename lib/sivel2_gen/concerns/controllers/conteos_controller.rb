@@ -946,7 +946,7 @@ module Sivel2Gen
             return tcons1
           end
 
-          def victimizaciones_gen_tabla (
+          def victimizaciones_gen_tabla(
             pFini, pFfin, pTviolencia, pEtiqueta1, pEtiqueta2,
             pExcluirCateRep, pSegun, pDepartamento, pMunicipio, otro,
             pCategoria, pAgrucol)

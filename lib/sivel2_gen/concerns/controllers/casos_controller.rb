@@ -565,7 +565,6 @@ module Sivel2Gen
           end
 
           def cuenta
-            casoscontados = []
             fechasinicial = Sivel2Gen::Caso.all.order(fecha: :asc).pluck(:fecha).uniq
             fechafinal = params[:fechafin] ? params[:fechafin] : Date.today
             fechainicial = params[:fechaini] ? params[:fechaini] : 
@@ -628,7 +627,7 @@ module Sivel2Gen
                 { titulo: 'Etiquetas y Solicitudes', parcial: 'etiquetas'},
                 { titulo: 'Evaluación', parcial: 'evaluacion'}
               ]
-           else
+            else
               []
             end
           end
@@ -777,7 +776,7 @@ module Sivel2Gen
                   if v[:persona_attributes] &&
                       v[:persona_attributes][:persona_trelacion1_attributes]
                     v[:persona_attributes][:persona_trelacion1_attributes].each do |it, t|
-                     if t && (!t[:id] || t[:id] == '') &&
+                      if t && (!t[:id] || t[:id] == '') &&
                           t[:personados_attributes] &&
                           t[:personados_attributes][:id] &&
                           t[:personados_attributes][:id].to_i > 0 &&
@@ -1138,7 +1137,7 @@ module Sivel2Gen
               ruta_importados = casos_path + '?filtro[q]=&filtro[codigo]=' + 
                 ids_importados + '&filtro[inc_casoid]=1&filtro[inc_ubicaciones]=1&filtro[inc_fecha]=1&filtro[inc_presponsables]=1&filtro[inc_victimas]=1&filtro[inc_memo]=1&filtro[inc_tipificacion]=1'
               redirect_to ruta_importados
-              end
+            end
           end
 
           private
