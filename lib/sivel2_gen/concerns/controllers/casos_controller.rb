@@ -690,6 +690,8 @@ module Sivel2Gen
 
           # GET /casos/1/edit
           def edit
+            #@caso = Sivel2Gen::Caso.new(caso_fuenteprensa: [Sivel2Gen::CasoFuenteprensa.new])
+            #@fuenteprensa = @caso.caso_fuenteprensa.new
             self.class.asegura_camposdinamicos(@registro, current_usuario.id,
                                               pestanas_formulariocaso)
             if registrar_en_bitacora

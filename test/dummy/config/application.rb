@@ -37,6 +37,8 @@ module Dummy
     config.hosts.concat(
       ENV.fetch('CONFIG_HOSTS', 'defensor.info').downcase.split(";"))
 
+    #Evita deshabilitar butones en formularios anidados dinámicos
+    config.action_view.automatically_disable_submit_tag = false
     # sip
     config.x.formato_fecha = ENV.fetch('FORMATO_FECHA', 'dd/M/yyyy')
 
