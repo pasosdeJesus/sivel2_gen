@@ -1294,10 +1294,10 @@ CREATE SEQUENCE public.caso_etiqueta_seq
 
 
 --
--- Name: msip_persona_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+-- Name: sip_persona_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE public.msip_persona_id_seq
+CREATE SEQUENCE public.sip_persona_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1306,11 +1306,11 @@ CREATE SEQUENCE public.msip_persona_id_seq
 
 
 --
--- Name: msip_persona; Type: TABLE; Schema: public; Owner: -
+-- Name: sip_persona; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE public.msip_persona (
-    id integer DEFAULT nextval('public.msip_persona_id_seq'::regclass) NOT NULL,
+CREATE TABLE public.sip_persona (
+    id integer DEFAULT nextval('public.sip_persona_id_seq'::regclass) NOT NULL,
     nombres character varying(100) NOT NULL COLLATE public.es_co_utf_8,
     apellidos character varying(100) NOT NULL COLLATE public.es_co_utf_8,
     anionac integer,
@@ -1422,7 +1422,7 @@ CREATE VIEW public.cben1 AS
             max(sivel2_gen_victima.id) AS id_victima
            FROM public.sivel2_gen_victima
           GROUP BY sivel2_gen_victima.id_persona) subv,
-    public.msip_persona persona
+    public.sip_persona persona
   WHERE ((subv.id_victima = victima.id) AND (caso.id = victima.id_caso) AND (persona.id = victima.id_persona));
 
 
@@ -1588,19 +1588,11 @@ CREATE VIEW public.cben2 AS
     clase.nombre AS clase_nombre
    FROM (((((public.cben1
      JOIN public.sivel2_gen_caso caso ON ((cben1.id_caso = caso.id)))
-<<<<<<< HEAD
      LEFT JOIN public.sip_ubicacion ubicacion ON ((caso.ubicacion_id = ubicacion.id)))
      LEFT JOIN public.sip_departamento departamento ON ((ubicacion.id_departamento = departamento.id)))
      LEFT JOIN public.sip_municipio municipio ON ((ubicacion.id_municipio = municipio.id)))
      LEFT JOIN public.sip_clase clase ON ((ubicacion.id_clase = clase.id)))
-  GROUP BY cben1.id_caso, cben1.id_victima, cben1.id_persona, cben1.npersona, cben1.total, ubicacion.id_departamento, departamento.nombre, ubicacion.id_municipio, municipio.nombre, ubicacion.id_clase, clase.nombre;
-=======
-     LEFT JOIN public.msip_ubicacion ubicacion ON ((caso.ubicacion_id = ubicacion.id)))
-     LEFT JOIN public.msip_departamento departamento ON ((ubicacion.id_departamento = departamento.id)))
-     LEFT JOIN public.msip_municipio municipio ON ((ubicacion.id_municipio = municipio.id)))
-     LEFT JOIN public.msip_clase clase ON ((ubicacion.id_clase = clase.id)))
   GROUP BY cben1.id_caso, cben1.id_victima, cben1.id_persona, cben1.npersona, cben1.total, ubicacion.id_departamento, departamento.id_deplocal, departamento.nombre, ubicacion.id_municipio, municipio.id_munlocal, municipio.nombre, ubicacion.id_clase, clase.id_clalocal, clase.nombre;
->>>>>>> 06daba17 (Validaciones y permisos)
 
 
 --
@@ -1650,48 +1642,6 @@ CREATE TABLE public.combatiente_presponsable (
 
 
 --
-<<<<<<< HEAD
--- Name: sip_persona_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public.sip_persona_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: sip_persona; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.sip_persona (
-    id integer DEFAULT nextval('public.sip_persona_id_seq'::regclass) NOT NULL,
-    nombres character varying(100) NOT NULL COLLATE public.es_co_utf_8,
-    apellidos character varying(100) NOT NULL COLLATE public.es_co_utf_8,
-    anionac integer,
-    mesnac integer,
-    dianac integer,
-    sexo character(1) NOT NULL,
-    numerodocumento character varying(100),
-    created_at timestamp without time zone,
-    updated_at timestamp without time zone,
-    id_pais integer,
-    nacionalde integer,
-    tdocumento_id integer,
-    id_departamento integer,
-    id_municipio integer,
-    id_clase integer,
-    CONSTRAINT persona_check CHECK (((dianac IS NULL) OR (((dianac >= 1) AND (((mesnac = 1) OR (mesnac = 3) OR (mesnac = 5) OR (mesnac = 7) OR (mesnac = 8) OR (mesnac = 10) OR (mesnac = 12)) AND (dianac <= 31))) OR (((mesnac = 4) OR (mesnac = 6) OR (mesnac = 9) OR (mesnac = 11)) AND (dianac <= 30)) OR ((mesnac = 2) AND (dianac <= 29))))),
-    CONSTRAINT persona_mesnac_check CHECK (((mesnac IS NULL) OR ((mesnac >= 1) AND (mesnac <= 12)))),
-    CONSTRAINT persona_sexo_check CHECK (((sexo = 'S'::bpchar) OR (sexo = 'F'::bpchar) OR (sexo = 'M'::bpchar)))
-);
-
-
---
-=======
->>>>>>> 06daba17 (Validaciones y permisos)
 -- Name: sivel2_gen_acto; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -1721,16 +1671,8 @@ CREATE VIEW public.cvt1 AS
      JOIN public.sivel2_gen_categoria categoria ON ((acto.id_categoria = categoria.id)))
      JOIN public.sivel2_gen_supracategoria supracategoria ON ((categoria.supracategoria_id = supracategoria.id)))
      JOIN public.sivel2_gen_victima victima ON (((victima.id_persona = acto.id_persona) AND (victima.id_caso = caso.id))))
-<<<<<<< HEAD
      JOIN public.sip_persona persona ON ((persona.id = acto.id_persona)))
-     LEFT JOIN public.sip_ubicacion ubicacion ON ((caso.ubicacion_id = ubicacion.id)))
-     LEFT JOIN public.sip_departamento departamento ON ((ubicacion.id_departamento = departamento.id)))
-     LEFT JOIN public.sivel2_gen_sectorsocial sectorsocial ON ((victima.id_sectorsocial = sectorsocial.id)))
-  WHERE ((caso.fecha >= '2020-01-01'::date) AND (caso.fecha <= '2022-06-30'::date));
-=======
-     JOIN public.msip_persona persona ON ((persona.id = acto.id_persona)))
-  WHERE (categoria.id = ANY (ARRAY[777, 297, 527, 397, 427, 197, 396, 526, 426, 776, 296, 196, 55, 35, 15, 73, 45, 25, 65, 92, 50, 40, 67, 801, 90, 46, 26, 37, 16, 57, 80, 85, 66, 64, 703, 706, 28, 59, 49, 38, 18, 501, 401, 904, 17, 231, 331, 402, 502, 705, 62, 906, 104, 713, 101, 302, 21, 11, 76, 102, 27, 902, 34, 903, 14, 24, 301, 10, 30, 20, 772, 292, 522, 392, 192, 422, 63, 93, 910, 395, 195, 425, 775, 295, 525, 714, 78, 774, 394, 194, 524, 294, 424, 89, 905, 86, 701, 68, 141, 341, 241, 715, 704, 702, 23, 43, 33, 53, 13, 88, 98, 84, 709, 711, 707, 708, 710, 87, 97, 717, 917, 716, 916, 91, 95, 718, 193, 523, 773, 423, 393, 293, 48, 58, 75, 69, 41, 74, 22, 36, 56, 72, 47, 12, 421, 391, 521, 291, 771, 191, 77, 520, 420, 29, 19, 39, 712]));
->>>>>>> 06daba17 (Validaciones y permisos)
+  WHERE (((supracategoria.id_tviolencia)::text = 'A'::text) AND (categoria.id = ANY (ARRAY[197, 397, 25, 35, 15, 16, 26, 37, 18, 28, 38, 331, 231, 17, 104, 101, 302, 21, 11, 102, 34, 27, 301, 24, 14, 30, 20, 10, 292, 392, 192, 195, 295, 395, 294, 194, 394, 141, 241, 341, 33, 13, 23, 193, 393, 293, 22, 12, 36, 191, 391, 291, 39, 29])));
 
 
 --
@@ -8697,14 +8639,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20221005165307'),
 ('20221102144613'),
 ('20221102145906'),
-<<<<<<< HEAD
-('20221118032223');
-=======
 ('20221118032223'),
-('20221201143440'),
-('20221201154025'),
-('20221208173349'),
 ('20221209142327');
->>>>>>> 06daba17 (Validaciones y permisos)
 
 
