@@ -32,9 +32,11 @@ module Sivel2Gen
 
       def filtra_por_tviolencia
         datos = []
-        if params[:tviolencia]
+        if params[:tviolencia] && Sivel2Gen::Supracategoria.where(
+            id_tviolencia: params[:tviolencia]).count > 0 
+
           supra = Sivel2Gen::Supracategoria.
-                  where(id_tviolencia: params[:tviolencia])[0]
+            where(id_tviolencia: params[:tviolencia])[0]
           @categorias = Sivel2Gen::Categoria.
                         habilitados.where(supracategoria_id: supra.id)
           datos[0] = @categorias.map { |cat| cat.id }
