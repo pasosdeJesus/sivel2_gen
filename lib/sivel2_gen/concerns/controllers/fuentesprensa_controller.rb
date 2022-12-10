@@ -10,7 +10,7 @@ module Sivel2Gen
           include ActionView::Helpers::AssetUrlHelper
 
           load_and_authorize_resource class: Sivel2Gen::Caso
-          before_action :setup_caso
+          before_action :prepara_caso
           # Responde a requerimiento AJAX generado por cocoon creando una
           # nueva fuente de prensa para el caso que recibe por parametro 
           # params[:caso_id].  Pone valores simples en los campos requeridos
@@ -28,7 +28,7 @@ module Sivel2Gen
 
           private
 
-          def setup_caso
+          def prepara_caso
             @caso = Sivel2Gen::Caso.new(caso_fuenteprensa: [Sivel2Gen::CasoFuenteprensa.new])
           end
         end # included
