@@ -77,7 +77,7 @@ module Sivel2Gen
       ['sivel2_gen', 'actocolectivo'],
       ['sivel2_gen', 'caso_categoria_presponsable'],
       #['Sivel2Gen', 'caso_fotra'],
-      #['Sivel2Gen', 'caso_fuenteprensa'],
+      ['Sivel2Gen', 'caso_fuenteprensa'],
       ['sivel2_gen', 'caso_solicitud'],
       ['sivel2_gen', 'combatiente'],
       #['Sivel2Gen', 'victima'],
@@ -276,6 +276,8 @@ module Sivel2Gen
       habilidad.can :nuevo, Sivel2Gen::Victima
 
       habilidad.can :nuevo, Sivel2Gen::Victimacolectiva
+
+      habilidad.can :manage, Sivel2Gen::CasoFuenteprensa
 
       if usuario && usuario.rol then
         case usuario.rol
