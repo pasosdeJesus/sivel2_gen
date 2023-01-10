@@ -11,7 +11,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/heb412_gen.git
-  revision: c0681184c852bf2310cf164d6712fc04c919ee23
+  revision: 5901ed2d3d0cfe717275cbca2a816163640a3b3c
   branch: msip
   specs:
     heb412_gen (2.1.0.beta1)
@@ -22,7 +22,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/mr519_gen.git
-  revision: 89181f22ac22bcd2e1b10ee4ec6393e3fdc88c23
+  revision: 6eeb618b63128874881eb5b1e990dc1bc5e466c3
   branch: msip
   specs:
     mr519_gen (2.1.0.beta1)
@@ -31,7 +31,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/msip.git
-  revision: 999528ab2edccc235757b09e7877fa3658884f5e
+  revision: afd94328d09d101a50e3c69d4456ba61ddbeb169
   branch: main
   specs:
     msip (2.2.0.alfa3)
@@ -228,7 +228,7 @@ GEM
     mime-types-data (3.2022.0105)
     mini_mime (1.1.2)
     mini_portile2 (2.8.1)
-    minitest (5.16.3)
+    minitest (5.17.0)
     msgpack (1.6.0)
     net-imap (0.3.4)
       date
@@ -242,8 +242,6 @@ GEM
     nio4r (2.5.8)
     nokogiri (1.13.10)
       mini_portile2 (~> 2.8.0)
-      racc (~> 1.4)
-    nokogiri (1.13.10-x86_64-linux)
       racc (~> 1.4)
     odf-report (0.7.3)
       mime-types
@@ -261,7 +259,7 @@ GEM
       prawn (>= 1.0.0)
       rails (>= 3.2)
     public_suffix (5.0.1)
-    puma (6.0.1)
+    puma (6.0.2)
       nio4r (~> 2.0)
     racc (1.6.2)
     rack (2.2.5)
@@ -431,4 +429,4 @@ DEPENDENCIES
   will_paginate
 
 BUNDLED WITH
-   2.4.1
+   2.4.3
