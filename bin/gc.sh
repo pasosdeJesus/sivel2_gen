@@ -40,6 +40,7 @@ if (test "$SINAC" != "1") then {
   } fi;
   NOKOGIRI_USE_SYSTEM_LIBRARIES=1 MAKE=gmake make=gmake QMAKE=qmake4 bundle update --bundler
   NOKOGIRI_USE_SYSTEM_LIBRARIES=1 MAKE=gmake make=gmake QMAKE=qmake4 bundle update
+  NOKOGIRI_USE_SYSTEM_LIBRARIES=1 MAKE=gmake make=gmake QMAKE=qmake4 bundle update --bundler
   if (test "$?" != "0") then {
     exit 1;
   } fi;
@@ -103,7 +104,7 @@ if (test "$MENSCONS" = "") then {
 git commit -m "$MENSCONS" -a
 git push origin ${b}
 if (test "$?" != "0") then {
-  echo "No pudo subirse el cambio a github";
+  echo "No pudo subirse el cambio a gitlab";
   exit 1;
 } fi;
 
