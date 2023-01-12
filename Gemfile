@@ -93,8 +93,6 @@ gem 'heb412_gen',  # Motor de nube y llenado de plantillas
 group :development do
   gem 'puma'
 
-  gem 'rails-erd' # Para generar modelo entidad asociación 
-
   gem "thor" # Requerido por rake
 
   gem 'web-console'
@@ -102,19 +100,35 @@ end
 
 
 group  :development, :test do
-  gem 'debug'
+  gem "brakeman"
 
-  gem 'compare-xml', '~> 0.5.2' # para validar xml
+  gem "bundler-audit"
 
-  gem 'colorize' # Colores en terminal
+  gem "code-scanning-rubocop"
 
-  gem 'dotenv-rails'
+  gem "colorize"
 
-  gem 'rails-controller-testing'
+  gem "debug", ">= 1.0.0", platforms: [:mri, :mingw, :x64_mingw]
 
-  gem 'simplecov'
+  gem "dotenv-rails"
+
+  gem "rails-erd"
+
+  gem "rubocop-minitest"
+
+  gem "rubocop-rails"
+
+  gem "rubocop-shopify"
 end
 
 group :test do
   gem 'cuprite'
+
+  gem "minitest", "~> 5.16"
+
+  gem "minitest-reporters"
+
+  gem "rails-controller-testing"
+
+  gem "simplecov"
 end

@@ -49,3 +49,6 @@ test/dummy/app/javascript/controllers/msip
 
 public/*/csv/actos_individuales.csv
 test/dummy/public/sivel2_2/csv
+cobertura-unitarias/
+test/dummy/cobertura-sistema/
+test/dummy/public/sivel2_2/cobertura/

@@ -1,6 +1,6 @@
 class LlaveCasoCategoriaPresponsable < ActiveRecord::Migration[7.0]
   def up
-    if !Msip::SqlHelper.existe_restricción_pg(
+    if !Msip::SqlHelper.existe_restricción_pg?(
         'sivel2_gen_caso_categoria_presponsable_pkey')
       execute <<~SQL.squish
         CREATE TABLE tmp_ccp (

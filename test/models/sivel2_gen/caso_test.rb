@@ -1,13 +1,7 @@
-require_relative '../../test_helper'
+require 'test_helper'
 
 module Sivel2Gen
   class CasoTest < ActiveSupport::TestCase
-
-    PRUEBA_CASO= {
-      fecha: "2014-11-05",
-      memo: "x",
-      created_at: "2014-11-05",
-    }
 
 
     test "valido" do

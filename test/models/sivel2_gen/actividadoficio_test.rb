@@ -1,13 +1,7 @@
-require_relative '../../test_helper'
+require 'test_helper'
 
 module Sivel2Gen
   class ActividadoficioTest < ActiveSupport::TestCase
-
-    PRUEBA_ACTIVIDADOFICIO= {
-      nombre:"n",
-      fechacreacion:"2014-08-05",
-      fechadeshabilitacion:nil
-    }
 
 
     test "valido" do
@@ -24,7 +18,7 @@ module Sivel2Gen
     end
 
     test "existente" do
-    	actividadoficio = Actividadoficio.where(id: 0).take
+      actividadoficio = Actividadoficio.where(id: 0).take
       assert_equal actividadoficio.nombre, "SIN INFORMACIÓN"
     end
 
