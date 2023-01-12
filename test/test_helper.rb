@@ -3,7 +3,6 @@ ENV['RAILS_ENV'] ||= 'test'
 
 require 'nokogiri'
 require 'simplecov'
-SimpleCov.start 'rails'
 require_relative 'dummy/config/environment'
 require 'rails/test_help'
 require 'rake'
@@ -52,6 +51,105 @@ class ActiveSupport::TestCase
 end
 
 
+PRUEBA_ACTIVIDADOFICIO= {
+  nombre:"n",
+  fechacreacion:"2014-08-05",
+  fechadeshabilitacion:nil
+}
+
+PRUEBA_ACTO = {
+  id_presponsable: 1,
+  id_categoria: 10
+}
+
+PRUEBA_ACTOCOLECTIVO = {
+  id_presponsable: 1,
+  id_categoria: 59
+}
+
+
+PRUEBA_ANEXO = {
+  descripcion: "x",
+  created_at: "2014-11-11",
+}
+
+PRUEBA_ANTECEDENTE = {
+  nombre:"n",
+  observaciones: "x",
+  fechacreacion:"2023-01-10",
+  fechadeshabilitacion:nil
+}
+
+
+PRUEBA_CASO= {
+  fecha: "2014-11-05",
+  memo: "x",
+  created_at: "2014-11-05",
+}
+
+PRUEBA_CATEGORIA= {
+  id: 1000, 
+  nombre: "Categoria",
+  supracategoria_id: 1,
+  fechacreacion: "2014-09-09",
+  created_at: "2014-09-09"
+}
+
+PRUEBA_COMBATIENTE = {
+  nombre: "x",
+  alias: 'a',
+  edad: 80,
+  sexo: 'F',
+  id_resagresion: 1, 
+  created_at: "2023-01-10",
+}
+
+PRUEBA_CONTEXTO = {
+  nombre: 'n',
+  observaciones: 'o',
+  fechacreacion: '2023-01-11'
+}
+
+PRUEBA_FUENTEPRENSA = {
+  id: 1000,
+  nombre: "Fuenteprensa",
+  fechacreacion: "2015-05-11",
+  created_at: "2015-05-11",
+}
+
+PRUEBA_GRUPOPER = {
+  id: 1,
+  nombre: 'grupoper1'
+}
+
+PRUEBA_ORGSOCIAL = {
+  id: 1,
+  grupoper_id: 1,
+  created_at: '2021-08-27',
+  updated_at: '2021-08-27'
+}
+
+PRUEBA_PERSONA = {
+  nombres: "Nombres",
+  apellidos: "Apellidos",
+
+  anionac: 1980,
+  mesnac: 2,
+  dianac: 2,
+  sexo: "M",
+  numerodocumento: "1061000000",
+}
+
+PRUEBA_SOLICITUD = {
+  id: 1,
+  usuario_id: 1,
+  fecha: "2022-06-24",
+  solicitud: "Especial",
+  estadosol_id: 1,
+  created_at: "2022-06-24",
+  updated_at: "2022-06-24",
+}
+
 # Usuario administrador para ingresar y hacer pruebas
 PRUEBA_USUARIO = {
   nusuario: "admin",
@@ -68,17 +166,33 @@ PRUEBA_USUARIO = {
   oficina_id: nil
 }
 
-
-
-PRUEBA_GRUPOPER = {
-  id: 1,
-  nombre: 'grupoper1'
+PRUEBA_VICTIMA = {
+  hijos: 0,
+  id_profesion: 1,
+  id_rangoedad: 1,
+  id_filiacion: 1,
+  id_sectorsocial: 1,
+  id_organizacion: 1,
+  id_vinculoestado: 1,
+  organizacionarmada: 1,
+  anotaciones: 'a',
+  id_etnia: 1,
+  id_iglesia: 1,
+  orientacionsexual: 'H'
 }
 
-PRUEBA_ORGSOCIAL = {
-  id: 1,
-  grupoper_id: 1,
-  created_at: '2021-08-27',
-  updated_at: '2021-08-27'
+PRUEBA_VICTIMACOLECTIVA = {
+  personasaprox: 100,
+  organizacionarmada: 1,
 }
+
+PRUEBA_VINCULOESTADO = {
+  id: 1000,
+  nombre: "v",
+  fechacreacion: "2023-01-10",
+  created_at: "2023-01-10",
+}
+
+
+
 
