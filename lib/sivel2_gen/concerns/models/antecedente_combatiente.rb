@@ -8,7 +8,7 @@ module Sivel2Gen
         included do
           belongs_to :antecedente, foreign_key: "id_antecedente", 
             validate: true, optional: false
-          belongs_to :combatiente, foreign_key: "id_victima", 
+          belongs_to :combatiente, foreign_key: "id_combatiente", 
             validate: true, optional: false
         end
       end
