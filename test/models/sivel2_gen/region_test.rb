@@ -1,22 +1,19 @@
-require_relative '../../test_helper'
+require 'test_helper'
 
 module Sivel2Gen
   class RegionTest < ActiveSupport::TestCase
 
-    PRUEBA_REGION= {
-      nombre: "Region",
-      fechacreacion: "2014-09-09",
-      created_at: "2014-09-09"
-    }
-
     test "valido" do
       region = Region.create PRUEBA_REGION
+
       assert region.valid?
       region.destroy
     end
 
     test "no valido" do
-      region = Region.new PRUEBA_REGION; region.nombre = ''
+      region = Region.new PRUEBA_REGION; 
+      region.nombre = ''
+
       assert_not region.valid?
       region.destroy
     end
