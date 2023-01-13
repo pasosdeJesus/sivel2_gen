@@ -3,35 +3,36 @@
 require "test_helper"
 
 module Sivel2Gen
-  class CasoContextoTest < ActiveSupport::TestCase
+  class CasoFotraTest < ActiveSupport::TestCase
     setup do
       Rails.application.config.x.formato_fecha = "yyyy-mm-dd"
     end
 
     test "valido" do
-      contexto = Contexto.create(PRUEBA_CONTEXTO)
+      fotra = Fotra.create(PRUEBA_FOTRA)
 
-      assert contexto.valid?
+      assert fotra.valid?
 
       caso = Caso.create(PRUEBA_CASO)
 
       assert caso.valid?
 
-      cc = Sivel2Gen::CasoContexto.create(
+      cf = Sivel2Gen::CasoFotra.create(
+        nombre: 'x',
         id_caso: caso.id,
-        id_contexto: contexto.id,
+        id_fotra: fotra.id,
+        fecha: '2023-01-11',
       )
-
-      assert cc.valid?
+      assert cf.valid?
 
       caso.destroy
-      contexto.destroy
+      fotra.destroy
     end
 
     test "no valido" do
-      ap = Sivel2Gen::CasoContexto.create
+      cf = Sivel2Gen::CasoFotra.create
 
-      assert_not ap.valid?
+      assert_not cf.valid?
     end
   end
 end

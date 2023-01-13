@@ -3,33 +3,33 @@
 require "test_helper"
 
 module Sivel2Gen
-  class CasoContextoTest < ActiveSupport::TestCase
+  class CasoFronteraTest < ActiveSupport::TestCase
     setup do
       Rails.application.config.x.formato_fecha = "yyyy-mm-dd"
     end
 
     test "valido" do
-      contexto = Contexto.create(PRUEBA_CONTEXTO)
+      frontera = Frontera.create(PRUEBA_FRONTERA)
 
-      assert contexto.valid?
+      assert frontera.valid?
 
       caso = Caso.create(PRUEBA_CASO)
 
       assert caso.valid?
 
-      cc = Sivel2Gen::CasoContexto.create(
+      cc = Sivel2Gen::CasoFrontera.create(
         id_caso: caso.id,
-        id_contexto: contexto.id,
+        id_frontera: frontera.id,
       )
 
       assert cc.valid?
 
       caso.destroy
-      contexto.destroy
+      frontera.destroy
     end
 
     test "no valido" do
-      ap = Sivel2Gen::CasoContexto.create
+      ap = Sivel2Gen::CasoFrontera.create
 
       assert_not ap.valid?
     end
