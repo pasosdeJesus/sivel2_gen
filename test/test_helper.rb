@@ -110,6 +110,51 @@ PRUEBA_CONTEXTO = {
   fechacreacion: '2023-01-11'
 }
 
+PRUEBA_CONTEXTOVICTIMA = {
+  nombre: 'n',
+  observaciones: 'o',
+  fechacreacion: '2023-01-11'
+}
+
+
+PRUEBA_DEPARTAMENTO = {
+  id: 1000,
+  nombre: "DEPARTAMENTO1",
+  latitud: 1.5,
+  longitud: 1.5,
+  fechacreacion: "2014-08-04",
+  fechadeshabilitacion: nil,
+  id_pais: 862,
+}
+
+PRUEBA_ESCOLARIDAD = {
+  nombre: "Esc",
+  observaciones: "O",
+  fechacreacion: "2023-01-12",
+}
+
+PRUEBA_ETIQUETA = {
+  id: 1000,
+  nombre: "Eti",
+  observaciones: "O",
+  fechacreacion: "2014-09-04",
+  created_at: "2014-09-04",
+}
+
+PRUEBA_FOTRA = {
+  nombre: 'Fotra'
+}
+
+PRUEBA_FORMULARIO = {
+  nombre: "n",
+  nombreinterno: "n",
+}
+
+PRUEBA_FRONTERA = {
+  nombre: 'Frontera',
+  fechacreacion: '2023-01-11',
+}
+
 PRUEBA_FUENTEPRENSA = {
   id: 1000,
   nombre: "Fuenteprensa",
@@ -120,6 +165,22 @@ PRUEBA_FUENTEPRENSA = {
 PRUEBA_GRUPOPER = {
   id: 1,
   nombre: 'grupoper1'
+}
+
+PRUEBA_MUNICIPIO = {
+  id: 100000,
+  nombre: "MUNICIPIO1",
+  latitud: 1.5,
+  longitud: 1.5,
+  fechacreacion: "2014-08-04",
+  fechadeshabilitacion: "2014-08-04",
+  id_departamento: 1,
+}
+
+PRUEBA_ORGANIZACION = {
+  nombre: "Org",
+  fechacreacion: "2023-01-12",
+  created_at: "2023-01-12"
 }
 
 PRUEBA_ORGSOCIAL = {
@@ -138,6 +199,24 @@ PRUEBA_PERSONA = {
   dianac: 2,
   sexo: "M",
   numerodocumento: "1061000000",
+}
+
+PRUEBA_PRESPONSABLE= {
+  id: 1000 ,
+  nombre: "Presponsable",
+  fechacreacion: "2014-09-09",
+  created_at: "2014-09-09"
+}
+
+PRUEBA_REGION= {
+  nombre: "Region",
+  fechacreacion: "2014-09-09",
+  created_at: "2014-09-09"
+}
+
+PRUEBA_RESPUESTAFOR = {
+  fechaini: "2018-12-19",
+  fechacambio: "2018-12-19",
 }
 
 PRUEBA_SOLICITUD = {
