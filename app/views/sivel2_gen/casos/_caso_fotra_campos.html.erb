@@ -5,9 +5,9 @@
 
     <div class="row">
       <div class="col-md-6">
-        <%= fp.input :fecha, 
-          :input_html => { "data-behaviour" => "datepicker" },
-          :as => :date, :label => "Fecha" %>
+        <%= fp.input :fecha,
+          :input_html => { type: "date" },
+          :as => :string, :label => "Fecha" %>
       </div>
       <div class="col-md-6">
         <%= fp.input :nombre %>
