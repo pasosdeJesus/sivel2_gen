@@ -20,7 +20,7 @@ class EliminaTablasTmp < ActiveRecord::Migration[7.0]
     execute <<~SQL.squish
       DROP SEQUENCE IF EXISTS combatiente_seq;
       DROP SEQUENCE IF EXISTS homonimosim_seq;
-      DROP SEQUENCE IF EXISTS resagresion_seq;
+      DROP SEQUENCE IF EXISTS resagresion_seq CASCADE;
     SQL
 
     if existe_restricción_pg?('anexo_id_fuente_directa_fkey')
