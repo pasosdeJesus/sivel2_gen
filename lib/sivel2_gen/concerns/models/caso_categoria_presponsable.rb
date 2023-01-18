@@ -12,10 +12,10 @@ module Sivel2Gen
           include Msip::FormatoFechaHelper
 
           belongs_to :categoria, foreign_key: "id_categoria", validate: true, 
-            class_name: 'Sivel2Gen::Categoria', optional: false
+            class_name: 'Sivel2Gen::Categoria', optional: false, inverse_of: :caso_categoria_presponsable
           belongs_to :caso_presponsable, foreign_key: "id_caso_presponsable", 
             validate: true, class_name: 'Sivel2Gen::CasoPresponsable', 
-            optional: false
+            optional: false, inverse_of: :caso_categoria_presponsable
 
         end # included
 
