@@ -10,9 +10,23 @@ GIT
       terrapin (~> 0.6.0)
 
 GIT
-  remote: https://github.com/pasosdeJesus/heb412_gen.git
-  revision: 9ec4cafd764c2fafaba12a598b7cbba320aa42ef
-  branch: msip
+  remote: https://github.com/styd/apexcharts.rb.git
+  revision: d72c88c265828c810ef0094d84e61825020f4dbc
+  branch: master
+  specs:
+    apexcharts (0.2.0)
+
+GIT
+  remote: https://github.com/vtamara/cocoon.git
+  revision: 9f1892403c3dbdb8f7d457a06f237ff58e7dfb07
+  branch: new_id_with_ajax
+  specs:
+    cocoon (1.2.11)
+
+GIT
+  remote: https://gitlab.com/pasosdeJesus/heb412_gen.git
+  revision: fb542620a496f00a0c2ac3e4110de56cfc3ad0c1
+  branch: main
   specs:
     heb412_gen (2.1.0.beta1)
       mr519_gen
@@ -21,16 +35,16 @@ GIT
       rspreadsheet
 
 GIT
-  remote: https://github.com/pasosdeJesus/mr519_gen.git
-  revision: c7baab5d73d729ade208716dc225fc491da9973d
-  branch: msip
+  remote: https://gitlab.com/pasosdeJesus/mr519_gen.git
+  revision: 96d3e8af49ae88ed4bcc7f6fbca73eec7b6ef045
+  branch: main
   specs:
-    mr519_gen (2.1.0.beta1)
+    mr519_gen (2.2.0.beta1)
       msip
       rails
 
 GIT
-  remote: https://github.com/pasosdeJesus/msip.git
+  remote: https://gitlab.com/pasosdeJesus/msip.git
   revision: 0f4dff0a6b63ea4acac59e70e189cfbfe3710033
   branch: main
   specs:
@@ -48,20 +62,6 @@ GIT
       stimulus-rails (~> 1)
       twitter_cldr (~> 6)
       will_paginate (~> 3)
-
-GIT
-  remote: https://github.com/styd/apexcharts.rb.git
-  revision: d72c88c265828c810ef0094d84e61825020f4dbc
-  branch: master
-  specs:
-    apexcharts (0.2.0)
-
-GIT
-  remote: https://github.com/vtamara/cocoon.git
-  revision: 9f1892403c3dbdb8f7d457a06f237ff58e7dfb07
-  branch: new_id_with_ajax
-  specs:
-    cocoon (1.2.11)
 
 GEM
   remote: https://rubygems.org/
