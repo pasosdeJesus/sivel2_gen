@@ -1,13 +1,12 @@
-<%= f.simple_fields_for :caso_fotra do |cfo| %>
-  <%= render 'sivel2_gen/casos/caso_fotra_campos', :f => cfo %>
+<div id="fotras_frame">
+<%= f.simple_fields_for :caso_fotra, child_index: params[:index] do |cfo| %>
+  <%= render '/sivel2_gen/casos/caso_fotra_campos', :fp => cfo %>
 <% end %>
-<div class="links">
-  <%= link_to_add_association 'Añadir Otra Fuente', f, :caso_fotra, 
-    { partial: 'sivel2_gen/casos/caso_fotra_campos',
-      class: 'btn btn-sm btn-primary' ,
-      "data-ajax" => File.join(Rails.configuration.relative_url_root, 
-                               "casofotras/nuevo"),
-      "data-ajaxdata" => "caso_id"
-    }
-  %>
 </div>
+
+<%= f.submit "Agregar otra fuente",
+      formaction: casos_fotra_path(index: @caso.caso_fotra.size),
+      formmethod: :post,
+      formnovalidate: true,
+      id: "add-casofotra" %>
+
