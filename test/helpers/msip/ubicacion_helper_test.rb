@@ -9,7 +9,7 @@ module Msip
     include Sivel2Gen::UbicacionHelper
 
     def contexto_p
-      @caso = Sivel2Gen::Caso.create Sivel2Gen::CasoTest::PRUEBA_CASO
+      @caso = Sivel2Gen::Caso.create PRUEBA_CASO
       @pais = Pais.find(862) 
       @ubicacion = Ubicacion.create({
         pais: @pais,
