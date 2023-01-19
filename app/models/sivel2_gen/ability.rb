@@ -265,8 +265,8 @@ module Sivel2Gen
       habilidad.can :victimizaciones, Sivel2Gen::Caso
       habilidad.can :filtra_por_tviolencia, Sivel2Gen::Categoria
 
-      habilidad.can :contar, Sip::Ubicacion
-      habilidad.can :nuevo, Sip::Ubicacion
+      habilidad.can :contar, Msip::Ubicacion
+      habilidad.can :nuevo, Msip::Ubicacion
 
       habilidad.can :nuevo, Sivel2Gen::Combatiente
 
