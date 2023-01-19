@@ -219,6 +219,12 @@ PRUEBA_RESPUESTAFOR = {
   fechacambio: "2018-12-19",
 }
 
+PRUEBA_SECTORSOCIAL = {
+  nombre: "Sec",
+  fechacreacion: "2023-01-18",
+  created_at: "2023-01-18"
+}
+
 PRUEBA_SOLICITUD = {
   id: 1,
   usuario_id: 1,

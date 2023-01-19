@@ -3,15 +3,15 @@
 require "test_helper"
 
 module Sivel2Gen
-  class AntecedenteVictimaAntecedenteTest < ActiveSupport::TestCase
+  class SectorsocialsecVictimaTest < ActiveSupport::TestCase
     setup do
       Rails.application.config.x.formato_fecha = "yyyy-mm-dd"
     end
 
     test "valido" do
-      antecedente = Antecedente.new(PRUEBA_ANTECEDENTE)
-      assert_predicate antecedente, :valid?
-      antecedente.save
+      sectorsocial = Sectorsocial.new(PRUEBA_SECTORSOCIAL)
+      assert_predicate sectorsocial, :valid?
+      sectorsocial.save
 
       caso = Caso.create PRUEBA_CASO
       assert caso.valid?
@@ -25,20 +25,20 @@ module Sivel2Gen
       )
       assert victima.valid?
 
-      av = Sivel2Gen::AntecedenteVictima.create(
-        id_victima: victima.id,
-        id_antecedente: antecedente.id,
+      av = SectorsocialsecVictima.create(
+        victima_id: victima.id,
+        sectorsocial_id: sectorsocial.id,
       )
       assert_predicate av, :valid?
 
       victima.destroy
       persona.destroy
       caso.destroy
-      antecedente.destroy
+      sectorsocial.destroy
     end
 
     test "no valido" do
-      ap = Sivel2Gen::AntecedenteVictima.create
+      ap = Sivel2Gen::Victima.create
 
       assert_not ap.valid?
     end
