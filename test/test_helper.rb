@@ -133,6 +133,14 @@ PRUEBA_ESCOLARIDAD = {
   fechacreacion: "2023-01-12",
 }
 
+
+PRUEBA_ETNIA= {
+  id: 1000 ,
+  nombre: "Etnia",
+  fechacreacion: "2014-09-09",
+  created_at: "2014-09-09"
+}
+
 PRUEBA_ETIQUETA = {
   id: 1000,
   nombre: "Eti",
@@ -141,8 +149,22 @@ PRUEBA_ETIQUETA = {
   created_at: "2014-09-04",
 }
 
+PRUEBA_FILIACION= {
+  id: 1000 ,
+  nombre: "Filiacion",
+  fechacreacion: "2014-09-09",
+  created_at: "2014-09-09",
+}
+
 PRUEBA_FOTRA = {
   nombre: 'Fotra'
+}
+
+PRUEBA_FRONTERA= {
+  id: 1000 ,
+  nombre: "Frontera",
+  fechacreacion: "2014-09-09",
+  created_at: "2014-09-09",
 }
 
 PRUEBA_FORMULARIO = {
