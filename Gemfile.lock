@@ -25,7 +25,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/heb412_gen.git
-  revision: fb542620a496f00a0c2ac3e4110de56cfc3ad0c1
+  revision: 2bae89116850b8f71432b3b6dc882f22a1108fac
   branch: main
   specs:
     heb412_gen (2.1.0.beta1)
@@ -36,7 +36,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/mr519_gen.git
-  revision: 96d3e8af49ae88ed4bcc7f6fbca73eec7b6ef045
+  revision: 2f178129e35681318e2c04162ce42fcfd7d7c33e
   branch: main
   specs:
     mr519_gen (2.2.0.beta1)
@@ -45,7 +45,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/msip.git
-  revision: 0f4dff0a6b63ea4acac59e70e189cfbfe3710033
+  revision: fee9a31d39b0b026a3fd34e97b56d367d1719160
   branch: main
   specs:
     msip (2.2.0.alfa3)
@@ -322,7 +322,7 @@ GEM
     rainbow (3.1.1)
     rake (13.0.6)
     redcarpet (3.5.1)
-    regexp_parser (2.6.1)
+    regexp_parser (2.6.2)
     reline (0.3.2)
       io-console (~> 0.5)
     responders (3.0.1)
