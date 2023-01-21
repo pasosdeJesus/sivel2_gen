@@ -23,7 +23,8 @@ module Sivel2Gen
             class_name: 'Sivel2Gen::Acto'
 
           has_many :caso_categoria_presponsable, foreign_key: 'id_categoria',
-            validate: true, class_name: 'Sivel2Gen::CasoCategoriaPresponsable'
+            validate: true, class_name: 'Sivel2Gen::CasoCategoriaPresponsable',
+            inverse_of: :categoria
           has_many :caso_presponsable, through: :caso_categoria_presponsable,
             class_name: 'Sivel2Gen::CasoPresponsable'
 

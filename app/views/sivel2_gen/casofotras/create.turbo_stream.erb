@@ -3,9 +3,8 @@
     <%= turbo_stream.replace "add-casofotra" do %>
       <%= form.submit "Agregar otra fuente", 
             formaction: casos_fotra_path(cfp_form.index.to_i + 1), 
-            formmethod: :post,
-            formnovalidate: true,
-            class: 'btn btn-sm btn-primary add-vic',
+            formmethod: :post, 
+            formnovalidate: true, 
             id: "add-casofotra" %>
     <% end %>
 

@@ -248,7 +248,6 @@ module Sivel2Gen
       habilidad.can [:read, :update], Mr519Gen::Encuestausuario
       habilidad.can :read, Msip::Orgsocial
 
-      habilidad.can :genvic, Sivel2Gen::Caso
       habilidad.can :personas, Sivel2Gen::Caso
 
       # Conteos
@@ -259,11 +258,6 @@ module Sivel2Gen
       habilidad.can :descarga_anexo, Msip::Anexo
       habilidad.can :mostrar_portada, Msip::Anexo
       habilidad.can :abre_anexo, Msip::Anexo
-
-      habilidad.can :genvic, Sivel2Gen::Caso
-      habilidad.can :personas, Sivel2Gen::Caso
-      habilidad.can :victimizaciones, Sivel2Gen::Caso
-      habilidad.can :filtra_por_tviolencia, Sivel2Gen::Categoria
 
       habilidad.can :contar, Msip::Ubicacion
       habilidad.can :nuevo, Msip::Ubicacion
@@ -277,6 +271,8 @@ module Sivel2Gen
       habilidad.can :nuevo, Sivel2Gen::Victima
 
       habilidad.can :nuevo, Sivel2Gen::Victimacolectiva
+
+      habilidad.can :manage, Sivel2Gen::CasoPresponsable
 
       habilidad.can :manage, Sivel2Gen::CasoFuenteprensa
 
