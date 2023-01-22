@@ -189,6 +189,21 @@ PRUEBA_GRUPOPER = {
   nombre: 'grupoper1'
 }
 
+PRUEBA_IGLESIA= {
+  id: 1000,
+  nombre: "Iglesia",
+  fechacreacion: "2014-09-09",
+  created_at: "2014-09-09"
+}
+
+PRUEBA_INTERVALO= {
+  id: 1000,
+  nombre: "Intervalo",
+  rango: 'r',
+  fechacreacion: "2014-09-09",
+  created_at: "2014-09-09"
+}
+
 PRUEBA_MUNICIPIO = {
   id: 100000,
   nombre: "MUNICIPIO1",
