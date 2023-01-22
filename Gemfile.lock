@@ -11,7 +11,7 @@ GIT
 
 GIT
   remote: https://github.com/styd/apexcharts.rb.git
-  revision: d72c88c265828c810ef0094d84e61825020f4dbc
+  revision: 9dc5c3e9bbeb0a98bcab8410794807fce3977ce4
   branch: master
   specs:
     apexcharts (0.2.0)
@@ -25,7 +25,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/heb412_gen.git
-  revision: 2bae89116850b8f71432b3b6dc882f22a1108fac
+  revision: d4b8ebdc32e2b259521c00430ff1bfce4180b934
   branch: main
   specs:
     heb412_gen (2.1.0.beta1)
@@ -36,7 +36,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/mr519_gen.git
-  revision: 2f178129e35681318e2c04162ce42fcfd7d7c33e
+  revision: 12faab0baca4d62483dea191c7aba09edf01dbd9
   branch: main
   specs:
     mr519_gen (2.2.0.beta1)
@@ -45,7 +45,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/msip.git
-  revision: fee9a31d39b0b026a3fd34e97b56d367d1719160
+  revision: 0705d5258c4ea443d231db1e53aec9fc3ddc75bc
   branch: main
   specs:
     msip (2.2.0.alfa3)
@@ -307,7 +307,7 @@ GEM
       activesupport (>= 4.2)
       choice (~> 0.2.0)
       ruby-graphviz (~> 1.2)
-    rails-html-sanitizer (1.4.4)
+    rails-html-sanitizer (1.5.0)
       loofah (~> 2.19, >= 2.19.1)
     rails-i18n (7.0.6)
       i18n (>= 0.7, < 2)
@@ -476,4 +476,4 @@ DEPENDENCIES
   will_paginate
 
 BUNDLED WITH
-   2.4.4
+   2.4.5
