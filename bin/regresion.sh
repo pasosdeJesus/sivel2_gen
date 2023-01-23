@@ -79,10 +79,14 @@ if (test -f "test/dummy/config/application.rb") then {
 echo "== Unificando resultados de pruebas en directorio clásico coverage"
 mkdir -p coverage/
 rm -rf coverage/{*,.*}
-if (test "$RUTA_RELATIVA" = "/msip/") then {
+if (test "$rutaap" = "test/dummy/") then {
   ${RAILS} app:msip:reporteregresion
 } else {
   ${RAILS} msip:reporteregresion
+} fi;
+r=$?
+if (test "$r" != "0") then {
+  exit $r;
 } fi;
 
 echo "== Copiando resultados para hacerlos visibles en el web en ruta cobertura"
