@@ -239,7 +239,9 @@
   Víctimas Combatientes:
   <% vcom.each do |vc| %>
     <br>
-    <%= vc.nombre %><br>
+    <%= vc.nombre %>
+    <%= vc.alias.to_s != "" ? "(Alias: #{vc.alias.to_s})" : "" %>
+    <br>
     <% resagre = Sivel2Gen::Resagresion.find(vc.id_resagresion) %>
     <%= resagre.nombre %><br>
     <% orgar = Sivel2Gen::Presponsable.find(vc.organizacionarmada).nombre %>
