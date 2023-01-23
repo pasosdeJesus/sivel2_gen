@@ -245,11 +245,33 @@ PRUEBA_PRESPONSABLE= {
   created_at: "2014-09-09"
 }
 
+PRUEBA_PROFESION= {
+  nombre: "Profesion",
+  fechacreacion: "2014-09-09",
+  created_at: "2014-09-09"
+}
+
+PRUEBA_RANGOEDAD= {
+  id: 1000,
+  nombre: "1-2",
+  limiteinferior: 1,
+  limitesuperior: 2,
+  fechacreacion: "2014-09-09",
+  created_at: "2014-09-09"
+}
+
 PRUEBA_REGION= {
   nombre: "Region",
   fechacreacion: "2014-09-09",
   created_at: "2014-09-09"
 }
+
+PRUEBA_RESAGRESION = {
+  nombre: "Resagresion",
+  fechacreacion: "2014-09-09",
+  created_at: "2014-09-09"
+}
+
 
 PRUEBA_RESPUESTAFOR = {
   fechaini: "2018-12-19",

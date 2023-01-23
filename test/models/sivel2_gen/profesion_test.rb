@@ -3,12 +3,6 @@ require_relative '../../test_helper'
 module Sivel2Gen
   class ProfesionTest < ActiveSupport::TestCase
 
-    PRUEBA_PROFESION= {
-      nombre: "Profesion",
-      fechacreacion: "2014-09-09",
-      created_at: "2014-09-09"
-    }
-
     test "valido" do
       profesion = Profesion.create PRUEBA_PROFESION
       assert profesion.valid?
