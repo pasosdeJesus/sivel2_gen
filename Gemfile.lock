@@ -166,7 +166,7 @@ GEM
     colorize (0.8.1)
     compare-xml (0.5.2)
       nokogiri (~> 1.6)
-    concurrent-ruby (1.1.10)
+    concurrent-ruby (1.2.0)
     crass (1.0.6)
     cuprite (0.14.3)
       capybara (~> 3.0)
