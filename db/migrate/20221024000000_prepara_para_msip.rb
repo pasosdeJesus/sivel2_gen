@@ -19,6 +19,11 @@ class PreparaParaMsip < ActiveRecord::Migration[7.0]
         renombrar_índice_pg(nomini, nomfin)
       end
     end
+
+    if existe_restricción_en_tabla_pg?("anexo_pkey", "sivel2_gen_anexo_caso")
+      renombra_restricción_pg(
+        "sivel2_gen_anexo_caso", "anexo_pkey", "sivel2_gen_anexo_caso_pkey")
+    end
   end
 
   def down
