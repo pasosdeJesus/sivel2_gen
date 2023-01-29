@@ -16,14 +16,14 @@ module Sivel2Gen
           end
 
           def set_region
-            Msip::Municipio.conf_presenta_nombre_con_origen = true
-            Msip::Departamento.conf_presenta_nombre_con_origen = true
+            #Msip::Municipio.conf_presenta_nombre_con_origen = true
+            #Msip::Departamento.conf_presenta_nombre_con_origen = true
             @basica = Region.find(params[:id])
           end
 
           def create
-            Msip::Municipio.conf_presenta_nombre_con_origen = true
-            Msip::Departamento.conf_presenta_nombre_con_origen = true
+            #Msip::Municipio.conf_presenta_nombre_con_origen = true
+            #Msip::Departamento.conf_presenta_nombre_con_origen = true
             @region.departamento_ids = params[:region][:departamento_ids]
             @region.municipio_ids = params[:region][:municipio_ids]
             create_gen

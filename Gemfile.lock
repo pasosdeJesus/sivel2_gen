@@ -25,7 +25,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/heb412_gen.git
-  revision: be65a9dde51940ad2a62ee056c29d30a579c887c
+  revision: 84099b7b866c6dd16c3f5cced82315007d31a260
   branch: main
   specs:
     heb412_gen (2.2.0.alfa1)
@@ -36,7 +36,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/mr519_gen.git
-  revision: 5ec914c25764529252701df1b5e6e1e6926b078d
+  revision: c80276ac1a0710728fb1e02864c41d658b3e33c8
   branch: main
   specs:
     mr519_gen (2.2.0.beta1)
@@ -45,7 +45,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/msip.git
-  revision: 918170d534e9d0e5fd3035b2e85fec797aa9c4d3
+  revision: 86ddbe0cb764c9e32b211d2b11c4a5427aef2058
   branch: main
   specs:
     msip (2.2.0.alfa3)
@@ -396,7 +396,7 @@ GEM
       camertron-eprun
       cldr-plurals-runtime-rb (~> 1.1)
       tzinfo
-    tzinfo (2.0.5)
+    tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
     unicode-display_width (2.4.2)
     warden (1.2.9)
