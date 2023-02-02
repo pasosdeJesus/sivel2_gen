@@ -1,4 +1,3 @@
-
 module Sivel2Gen
   module Concerns
     module Models
@@ -16,9 +15,9 @@ module Sivel2Gen
             optional: true
 
           campofecha_localizado :fecha
-          validates_presence_of :fecha
-          validates_presence_of :caso
-          validates_presence_of :nombre
+          validates :fecha, presence: true
+          validates :caso, presence: true
+          validates :nombre, presence: true
           validates :nombre, length: { maximum: 500 } 
           validates :anotacion, length: { maximum: 1024 } 
           validates :ubicacionfisica, length: { maximum: 1024 } 
