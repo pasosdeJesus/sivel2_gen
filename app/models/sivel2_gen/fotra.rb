@@ -1,10 +1,8 @@
+
+require 'sivel2_gen/concerns/models/fotra'
+
 module Sivel2Gen
   class Fotra < ActiveRecord::Base
-    has_many :caso_fotra, foreign_key: "id_fotra", validate: true,
-      class_name: 'Sivel2Gen::Fotra'
-    has_many :anexo, foreign_key: "id_fotra", validate: true,
-      class_name: 'Sivel2Gen::Anexo'
-
-    validates :nombre, presence: true
+    include Sivel2Gen::Concerns::Models::Fotra
   end
 end

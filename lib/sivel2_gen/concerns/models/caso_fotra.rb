@@ -12,14 +12,13 @@ module Sivel2Gen
           belongs_to :caso, class_name: "Sivel2Gen::Caso", 
             foreign_key: "id_caso", validate: true, optional: false
           belongs_to :anexo_caso, class_name: "Sivel2Gen::AnexoCaso", 
-            dependent: :destroy, foreign_key: "anexo_caso_id", optional: true
-          
+            dependent: :destroy, foreign_key: "anexo_caso_id", 
+            optional: true
 
           campofecha_localizado :fecha
-
-          validates :fecha, presence: true
-          validates :caso, presence: true
-          validates :nombre, presence: true
+          validates_presence_of :fecha
+          validates_presence_of :caso
+          validates_presence_of :nombre
           validates :nombre, length: { maximum: 500 } 
           validates :anotacion, length: { maximum: 1024 } 
           validates :ubicacionfisica, length: { maximum: 1024 } 
