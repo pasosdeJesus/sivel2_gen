@@ -11,7 +11,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sip.git
-  revision: 237f7b243a2dd75f615eb3e501ab2969d10a7cbf
+  revision: 2a6c5ef28c3c76eaba7f59b6033af67bf76995c8
   branch: v2.1
   specs:
     sip (2.1.0.beta1)
@@ -43,7 +43,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/heb412_gen.git
-  revision: d16b0f046fbea26ec20495604cd2760f77ce4d2c
+  revision: d5ac8515eacff486c4a150744c804307d2a4282b
   branch: v2.1
   specs:
     heb412_gen (2.1.0.beta1)
@@ -54,7 +54,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/mr519_gen.git
-  revision: 5818d597338d7ad80b00ff56c5f043e1d19b7395
+  revision: cb86fe51ccde572b771ab00826a9d47edfd88341
   branch: v2.1
   specs:
     mr519_gen (2.1.0.beta1)
@@ -213,7 +213,7 @@ GEM
     loofah (2.19.1)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
-    mail (2.8.0.1)
+    mail (2.8.1)
       mini_mime (>= 0.1.1)
       net-imap
       net-pop
@@ -238,10 +238,10 @@ GEM
     net-smtp (0.3.3)
       net-protocol
     nio4r (2.5.8)
-    nokogiri (1.14.0)
+    nokogiri (1.14.1)
       mini_portile2 (~> 2.8.0)
       racc (~> 1.4)
-    nokogiri (1.14.0-x86_64-linux)
+    nokogiri (1.14.1-x86_64-linux)
       racc (~> 1.4)
     odf-report (0.7.3)
       mime-types
@@ -304,13 +304,13 @@ GEM
       thor (~> 1.0)
       zeitwerk (~> 2.5)
     rake (13.0.6)
-    redcarpet (3.5.1)
+    redcarpet (3.6.0)
     regexp_parser (2.6.2)
     reline (0.3.2)
       io-console (~> 0.5)
-    responders (3.0.1)
-      actionpack (>= 5.0)
-      railties (>= 5.0)
+    responders (3.1.0)
+      actionpack (>= 5.2)
+      railties (>= 5.2)
     rexml (3.2.5)
     rspreadsheet (0.5.3)
       andand (>= 1.3)
@@ -326,7 +326,7 @@ GEM
       sprockets (> 3.0)
       sprockets-rails
       tilt
-    simple_form (5.1.0)
+    simple_form (5.2.0)
       actionpack (>= 5.2)
       activemodel (>= 5.2)
     simplecov (0.17.1)
@@ -349,7 +349,7 @@ GEM
     tilt (2.0.11)
     timeout (0.3.1)
     ttfunk (1.7.0)
-    turbo-rails (1.3.2)
+    turbo-rails (1.3.3)
       actionpack (>= 6.0.0)
       activejob (>= 6.0.0)
       railties (>= 6.0.0)
@@ -429,4 +429,4 @@ DEPENDENCIES
   will_paginate
 
 BUNDLED WITH
-   2.4.5
+   2.4.6
