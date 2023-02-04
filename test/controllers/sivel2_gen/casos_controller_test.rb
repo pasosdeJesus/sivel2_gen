@@ -126,5 +126,35 @@ module Sivel2Gen
       assert_redirected_to casos_url
     end
 
+    test "agrega fuente de prensa con turbo" do
+      @caso = Sivel2Gen::Caso.create(PRUEBA_CASO)
+      assert @caso.valid?
+      fuenteprensa = Msip::Fuenteprensa.create(PRUEBA_FUENTEPRENSA)
+      assert fuenteprensa.valid?
+      cf = Sivel2Gen::CasoFuenteprensa.create(
+        id_caso: @caso.id,
+        fuenteprensa_id: fuenteprensa.id,
+        fecha: '2023-01-11',
+      )
+      post casos_fuenteprensa_path(@caso, cf, format: :turbo_stream)
+      assert_response :success
+      cf.destroy
+      @caso.destroy
+      fuenteprensa.destroy
+    end
+
+    test "agrega otrafuente con turbo" do
+      @caso = Sivel2Gen::Caso.create(PRUEBA_CASO)
+      assert @caso.valid?
+      cof = Sivel2Gen::CasoFotra.create(
+        id_caso: @caso.id,
+        nombre: "otra fuente",
+        fecha: '2023-01-11',
+      )
+      post casos_fotra_path(@caso, cof, format: :turbo_stream)
+      assert_response :success
+      cof.destroy
+      @caso.destroy
+    end
   end
 end
