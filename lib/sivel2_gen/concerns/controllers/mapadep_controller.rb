@@ -12,6 +12,12 @@ module Sivel2Gen
           # Control de acceso no estándar en función
 
           def self.nomrango(fechaini, fechafin)
+            if !fechaini
+              return "Sin fechaini"
+            end
+            if !fechafin
+              return "Sin fechafin"
+            end
             if fechaini > fechafin
               return 'fechaini > fechafin'
             end
