@@ -29,9 +29,6 @@
       <div class="col-md-6">
         <%= fp.input :ubicacionfisica %>
       </div>
-      <% if fp.object.id_caso.nil? %>
-        <% fp.object.id_caso = params[:caso][:id].to_i %>
-      <% end %>
       <div class="col-md-6">
         <%= fp.association :anexo_caso,
           collection: Sivel2Gen::AnexoCaso.where(id_caso: fp.object.id_caso),
