@@ -21,7 +21,7 @@ class PreparaParaMsip < ActiveRecord::Migration[7.0]
     end
 
     if existe_restricción_en_tabla_pg?("anexo_pkey", "sivel2_gen_anexo_caso")
-      renombra_restricción_pg(
+      renombrar_restricción_pg(
         "sivel2_gen_anexo_caso", "anexo_pkey", "sivel2_gen_anexo_caso_pkey")
     end
   end
