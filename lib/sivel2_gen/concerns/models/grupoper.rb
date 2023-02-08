@@ -1,12 +1,12 @@
 
-require 'msip/concerns/models/grupoper'
+require 'sip/concerns/models/grupoper'
 
 module Sivel2Gen
   module Concerns
     module Models
       module Grupoper
         extend ActiveSupport::Concern
-        include Msip::Concerns::Models::Grupoper
+        include Sip::Concerns::Models::Grupoper
 
         included do
           has_many :actocolectivo, foreign_key: 'id_grupoper', validate: true,

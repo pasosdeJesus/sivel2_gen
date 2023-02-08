@@ -1,11 +1,11 @@
 module Sivel2Gen
-  class Ability < Msip::Ability
+  class Ability < Sip::Ability
     include CanCan::Ability
 
     ROLADMIN  = 1
     ROLOPERADOR = 5
 
-    ROLES = Msip::Ability::ROLES
+    ROLES = Sip::Ability::ROLES
 
     GRUPO_ANALISTA_CASOS = 20
     GRUPO_OBSERVADOR_CASOS = 21
@@ -56,8 +56,8 @@ module Sivel2Gen
     ]
 
     def tablasbasicas
-      r = (Msip::Ability::BASICAS_PROPIAS - 
-           [['Msip', 'oficina']]) + BASICAS_PROPIAS 
+      r = (Sip::Ability::BASICAS_PROPIAS - 
+           [['Sip', 'oficina']]) + BASICAS_PROPIAS 
       return r
     end
 
@@ -68,7 +68,7 @@ module Sivel2Gen
     ]
 
     def basicas_id_noauto
-      Msip::Ability::BASICAS_ID_NOAUTO + BASICAS_ID_NOAUTO
+      Sip::Ability::BASICAS_ID_NOAUTO + BASICAS_ID_NOAUTO
     end
 
     # Tablas no básicas pero que tienen índice
@@ -76,8 +76,8 @@ module Sivel2Gen
       ['sivel2_gen', 'caso'],
       ['sivel2_gen', 'actocolectivo'],
       ['sivel2_gen', 'caso_categoria_presponsable'],
-      ['Sivel2Gen', 'caso_fotra'],
-      ['Sivel2Gen', 'caso_fuenteprensa'],
+      #['Sivel2Gen', 'caso_fotra'],
+      #['Sivel2Gen', 'caso_fuenteprensa'],
       ['sivel2_gen', 'caso_solicitud'],
       ['sivel2_gen', 'combatiente'],
       #['Sivel2Gen', 'victima'],
@@ -86,7 +86,7 @@ module Sivel2Gen
 
     # Tablas no básicas pero que tienen índice con secuencia id_seq
     def nobasicas_indice_seq_con_id
-      Msip::Ability::NOBASICAS_INDSEQID + NOBASICAS_INDSEQID
+      Sip::Ability::NOBASICAS_INDSEQID + NOBASICAS_INDSEQID
     end
 
     # Tablas básicas que deben volcarse primero --por ser requeridas
@@ -103,7 +103,7 @@ module Sivel2Gen
       ['Sivel2Gen', 'contextovictima']
     ];
     def tablasbasicas_prio
-      Msip::Ability::BASICAS_PRIO + BASICAS_PRIO - [['Msip', 'grupo']]
+      Sip::Ability::BASICAS_PRIO + BASICAS_PRIO - [['Sip', 'grupo']]
     end
     def self.derechos
       'Creative Commons Atribución 2.5 Colombia. http://creativecommons.org/licenses/by/2.5/co/'
@@ -213,7 +213,7 @@ module Sivel2Gen
     # Establece autorizaciones con CanCanCan
     def self.initialize_sivel2_gen(habilidad, usuario = nil)
       # Sin autenticación puede consultarse información geográfica
-      habilidad.can :read, [Msip::Pais, Msip::Departamento, Msip::Municipio, Msip::Clase]
+      habilidad.can :read, [Sip::Pais, Sip::Departamento, Sip::Municipio, Sip::Clase]
 
       # Hacer conteos
       habilidad.can :cuenta, Sivel2Gen::Caso
@@ -223,7 +223,7 @@ module Sivel2Gen
         habilidad.can :buscar, Sivel2Gen::Caso
         habilidad.can :contar, Sivel2Gen::Caso
         habilidad.can :lista, Sivel2Gen::Caso
-        habilidad.can :read, Msip::Ubicacionpre
+        habilidad.can :read, Sip::Ubicacionpre
 
         # API público
         # Mostrar un caso con casos/101
@@ -246,41 +246,29 @@ module Sivel2Gen
       habilidad.can :lista, Sivel2Gen::Caso
       habilidad.can :exportaCSV, Sivel2Gen::Caso
       habilidad.can [:read, :update], Mr519Gen::Encuestausuario
-      habilidad.can :read, Msip::Orgsocial
+      habilidad.can :read, Sip::Orgsocial
 
-      habilidad.can :genvic, Sivel2Gen::Caso
-      habilidad.can :personas, Sivel2Gen::Caso
-
-      # Conteos
-      habilidad.can :victimizaciones, Sivel2Gen::Caso
-      habilidad.can :filtra_por_tviolencia, Sivel2Gen::Categoria
-      habilidad.can :genvic, Sivel2Gen::Caso
-
-      habilidad.can :descarga_anexo, Msip::Anexo
-      habilidad.can :mostrar_portada, Msip::Anexo
-      habilidad.can :abre_anexo, Msip::Anexo
+      habilidad.can :descarga_anexo, Sip::Anexo
+      habilidad.can :mostrar_portada, Sip::Anexo
+      habilidad.can :abre_anexo, Sip::Anexo
 
       habilidad.can :genvic, Sivel2Gen::Caso
       habilidad.can :personas, Sivel2Gen::Caso
       habilidad.can :victimizaciones, Sivel2Gen::Caso
       habilidad.can :filtra_por_tviolencia, Sivel2Gen::Categoria
 
-      habilidad.can :contar, Msip::Ubicacion
-      habilidad.can :nuevo, Msip::Ubicacion
+      habilidad.can :contar, Sip::Ubicacion
+      habilidad.can :nuevo, Sip::Ubicacion
 
       habilidad.can :nuevo, Sivel2Gen::Combatiente
 
       habilidad.can :nuevo, Sivel2Gen::Presponsable
 
-      habilidad.can :mundep, Msip::Ubicacionpre
+      habilidad.can :mundep, Sip::Ubicacionpre
 
       habilidad.can :nuevo, Sivel2Gen::Victima
 
       habilidad.can :nuevo, Sivel2Gen::Victimacolectiva
-
-      habilidad.can :manage, Sivel2Gen::CasoFuenteprensa
-
-      habilidad.can :manage, Sivel2Gen::CasoFotra
 
       if usuario && usuario.rol then
         case usuario.rol
@@ -291,14 +279,14 @@ module Sivel2Gen
           habilidad.can :read, Heb412Gen::Plantillahcr
           habilidad.can :index, Sivel2Gen::Victima
 
-          if usuario.grupo &&
-              usuario.grupo.pluck(:id).include?(GRUPO_ANALISTA_CASOS)
+          if usuario.sip_grupo &&
+              usuario.sip_grupo.pluck(:id).include?(GRUPO_ANALISTA_CASOS)
             habilidad.can [:read, :new, :edit, :update, :create],
-              Msip::Orgsocial
-            habilidad.can :create, Msip::Bitacora, usuario: { id: usuario.id }
-            habilidad.can :read, Msip::Bitacora, usuario: { id: usuario.id }
-            habilidad.can :manage, Msip::Persona
-            habilidad.can :manage, Msip::Grupoper
+              Sip::Orgsocial
+            habilidad.can :create, Sip::Bitacora, usuario: { id: usuario.id }
+            habilidad.can :read, Sip::Bitacora, usuario: { id: usuario.id }
+            habilidad.can :manage, Sip::Persona
+            habilidad.can :manage, Sip::Grupoper
 
             habilidad.can :manage, Sivel2Gen::Acto
             habilidad.can :manage, Sivel2Gen::Actocolectivo
@@ -310,18 +298,18 @@ module Sivel2Gen
 
             habilidad.can :read, Sivel2Gen::Victima
           else
-            habilidad.can :read, Msip::Orgsocial
-            habilidad.can :read, Msip::Bitacora, usuario: { id: usuario.id }
-            habilidad.can :read, Msip::Persona
-            habilidad.can :read, Msip::Grupoper
+            habilidad.can :read, Sip::Orgsocial
+            habilidad.can :read, Sip::Bitacora, usuario: { id: usuario.id }
+            habilidad.can :read, Sip::Persona
+            habilidad.can :read, Sip::Grupoper
 
             habilidad.can :read, Sivel2Gen::Acto
             habilidad.can :read, Sivel2Gen::Actocolectivo
             habilidad.cannot [:new, :create], Sivel2Gen::Caso
             habilidad.can :read, Sivel2Gen::Victima
 
-            if usuario.grupo &&
-                usuario.grupo.pluck(:id).
+            if usuario.sip_grupo &&
+                usuario.sip_grupo.pluck(:id).
                 include?(GRUPO_OBSERVADOR_PARTE_CASOS)
               dicc_filtro = {}
               if usuario.filtrodepartamento_ids.count > 0
@@ -354,12 +342,12 @@ module Sivel2Gen
           habilidad.can :manage, Mr519Gen::Formulario
           habilidad.can :manage, Mr519Gen::Encuestausuario 
 
-          habilidad.can :manage, Msip::Orgsocial
-          habilidad.can :manage, Msip::Bitacora
-          habilidad.can :manage, Msip::Persona
-          habilidad.can :manage, Msip::Grupoper
-          habilidad.can :manage, Msip::Respaldo7z
-          habilidad.can :manage, Msip::Ubicacionpre
+          habilidad.can :manage, Sip::Orgsocial
+          habilidad.can :manage, Sip::Bitacora
+          habilidad.can :manage, Sip::Persona
+          habilidad.can :manage, Sip::Grupoper
+          habilidad.can :manage, Sip::Respaldo7z
+          habilidad.can :manage, Sip::Ubicacionpre
 
           habilidad.can :manage, Sivel2Gen::Acto
           habilidad.can :manage, Sivel2Gen::Actocolectivo

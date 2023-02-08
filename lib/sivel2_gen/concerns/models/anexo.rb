@@ -1,12 +1,12 @@
 
-require 'msip/concerns/models/anexo'
+require 'sip/concerns/models/anexo'
 
 module Sivel2Gen
   module Concerns
     module Models
       module Anexo
         extend ActiveSupport::Concern
-        include Msip::Concerns::Models::Anexo
+        include Sip::Concerns::Models::Anexo
 
         included do
           has_many :anexo_caso, foreign_key: "id_anexo", 

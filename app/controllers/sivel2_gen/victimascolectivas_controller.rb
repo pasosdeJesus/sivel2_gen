@@ -7,7 +7,7 @@ module Sivel2Gen
     # params[:caso_id].  Pone valores simples en los campos requeridos
     def nuevo
       if params[:caso_id]
-        @grupoper = Msip::Grupoper.new
+        @grupoper = Sip::Grupoper.new
         @victimacolectiva = Victimacolectiva.new
         @grupoper.nombre = 'N'
         if !@grupoper.save

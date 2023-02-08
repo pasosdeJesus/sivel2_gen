@@ -1,5 +1,5 @@
 
-require 'msip/concerns/controllers/gruposper_controller'
+require 'sip/concerns/controllers/gruposper_controller'
 
 module Sivel2Gen
   module Concerns
@@ -8,7 +8,7 @@ module Sivel2Gen
         extend ActiveSupport::Concern
 
         included do
-          include Msip::Concerns::Controllers::GruposperController
+          include Sip::Concerns::Controllers::GruposperController
 
           def remplazar_antes_destruir_gp
           end 
@@ -18,7 +18,7 @@ module Sivel2Gen
 
           # Busca y lista grupo(s) de persona
           def remplazar
-            @grupoper = Msip::Grupoper.find(params[:id_grupoper].to_i)
+            @grupoper = Sip::Grupoper.find(params[:id_grupoper].to_i)
             @victimacolectiva = Sivel2Gen::Victimacolectiva.find(
               params[:id_victimacolectiva].to_i)
             grupoperant = @victimacolectiva.grupoper

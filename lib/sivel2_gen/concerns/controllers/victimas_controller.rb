@@ -40,7 +40,7 @@ module Sivel2Gen
           end
 
           def self.index_reordenar(c)
-            #c.reorder(['msip_persona.nombres', 'msip_persona.apellidos', :id_caso])
+            #c.reorder(['sip_persona.nombres', 'sip_persona.apellidos', :id_caso])
             c.reorder([:id_caso])
           end
 
@@ -48,7 +48,7 @@ module Sivel2Gen
           def index(c = nil)
             if c == nil
               c = Sivel2Gen::Victima.joins(:persona).all.order(
-                ['msip_persona.nombres', 'msip_persona.apellidos', :id_caso])
+                ['sip_persona.nombres', 'sip_persona.apellidos', :id_caso])
             end
             @titulo = 'Víctimas y Casos'
             @pconsolidado = Sivel2Gen::Pconsolidado.
@@ -64,11 +64,11 @@ module Sivel2Gen
           # params[:caso_id].  Pone valores simples en los campos requeridos
           def nuevo
             if params[:caso_id]
-              @persona = Msip::Persona.new
+              @persona = Sip::Persona.new
               @victima = Victima.new
               @persona.nombres = 'N'
               @persona.apellidos = 'N'
-              @persona.sexo = Msip::Persona::convencion_sexo[:sexo_sininformacion]
+              @persona.sexo = Sip::Persona::convencion_sexo[:sexo_sininformacion]
               if !@persona.save
                 respond_to do |format|
                   format.html { render inline: 'No pudo crear persona' }

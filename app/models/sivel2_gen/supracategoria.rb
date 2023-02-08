@@ -1,7 +1,7 @@
 
 module Sivel2Gen
   class Supracategoria < ActiveRecord::Base
-    include Msip::Basica
+    include Sip::Basica
 
     has_many :categoria, foreign_key: "supracategoria_id", 
       class_name: 'Sivel2Gen::Categoria'

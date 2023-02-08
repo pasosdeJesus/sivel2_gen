@@ -70,7 +70,7 @@
                 <% if hayind %>
                   </br>
                 <% end %>
-                <%= Msip::Grupoper.where(id: gps).pluck(:nombre).join(", ")%>
+                <%= Sip::Grupoper.where(id: gps).pluck(:nombre).join(", ")%>
               <% end %>
               <% com = Sivel2Gen::Combatiente.where(id_caso: caso.caso_id)%>
               <% if com.count > 0 %>

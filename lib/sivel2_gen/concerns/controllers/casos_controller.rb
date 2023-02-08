@@ -12,7 +12,7 @@ module Sivel2Gen
           #before_action :set_caso, only: [:show, :edit, :update, :destroy]
           #load_and_authorize_resource class: Sivel2Gen::Caso,
           #  except: [:index, :show]
-          helper Msip::UbicacionHelper
+          helper Sip::UbicacionHelper
 
           MAX_CASOS_REFRESCA_AUTOMATICO = 30000
 
@@ -288,7 +288,7 @@ module Sivel2Gen
             #  end
             #end
             if registrar_en_bitacora
-              Msip::Bitacora.a(request.remote_ip, current_usuario ?
+              Sip::Bitacora.a(request.remote_ip, current_usuario ?
                               current_usuario.id : nil,
                               request.url, params, 'Sivel2Gen::Caso',
                               0,  'listar', '')
@@ -354,7 +354,7 @@ module Sivel2Gen
                         if hayind 
                           vic += '. '
                         end 
-                        vic += Msip::Grupoper.where(id: gps).pluck(:nombre).join(", ")
+                        vic += Sip::Grupoper.where(id: gps).pluck(:nombre).join(", ")
                       end
                       com = Sivel2Gen::Combatiente.where(id_caso: caso.caso_id)
                       if com.count > 0
@@ -516,7 +516,7 @@ module Sivel2Gen
             cu.fechainicio = DateTime.now.strftime('%Y-%m-%d')
             cu.save!
             if registrar_en_bitacora
-              Msip::Bitacora.a(request.remote_ip, current_usuario.id,
+              Sip::Bitacora.a(request.remote_ip, current_usuario.id,
                               request.url, params, 'Sivel2Gen::Caso',
                               @caso.id,  'iniciar', '')
             end
@@ -534,17 +534,17 @@ module Sivel2Gen
             if params[:tabla]
               r = nil
               if (params[:tabla] == "departamento" && params[:id_pais].to_i > 0)
-                r = Msip::Departamento.where(fechadeshabilitacion: nil,
+                r = Sip::Departamento.where(fechadeshabilitacion: nil,
                                             id_pais: params[:id_pais].to_i).order(:nombre)
               elsif (params[:tabla] == "municipio" && params[:id_pais].to_i > 0 &&
                      params[:id_departamento].to_i > 0 )
-                r = Msip::Municipio.where(
+                r = Sip::Municipio.where(
                   id_departamento: params[:id_departamento].to_i,
                   fechadeshabilitacion: nil).order(:nombre)
               elsif (params[:tabla] == "clase" && params[:id_pais].to_i > 0 &&
                      params[:id_departamento].to_i > 0 &&
                      params[:id_municipio].to_i > 0)
-                r = Msip::Clase.where(
+                r = Sip::Clase.where(
                                      id_municipio: params[:id_municipio].to_i,
                                      fechadeshabilitacion: nil).order(:nombre)
               end
@@ -565,11 +565,12 @@ module Sivel2Gen
           end
 
           def cuenta
+            casoscontados = []
             fechasinicial = Sivel2Gen::Caso.all.order(fecha: :asc).pluck(:fecha).uniq
             fechafinal = params[:fechafin] ? params[:fechafin] : Date.today
             fechainicial = params[:fechaini] ? params[:fechaini] : 
               (fechasinicial.count > 0 ? fechasinicial[0] : '2001-01-01')
-            sql = "select fecha, count(distinct sivel2_gen_caso.id) AS cuenta, msip_departamento.nombre FROM sivel2_gen_caso LEFT JOIN msip_ubicacion ON sivel2_gen_caso.ubicacion_id = msip_ubicacion.id LEFT JOIN msip_departamento ON msip_ubicacion.id_departamento = msip_departamento.id WHERE sivel2_gen_caso.fecha BETWEEN '" + fechainicial.to_s + "' AND '" + fechafinal.to_s + "' group by 1,3 order by 1;"
+            sql = "select fecha, count(distinct sivel2_gen_caso.id) AS cuenta, sip_departamento.nombre FROM sivel2_gen_caso LEFT JOIN sip_ubicacion ON sivel2_gen_caso.ubicacion_id = sip_ubicacion.id LEFT JOIN sip_departamento ON sip_ubicacion.id_departamento = sip_departamento.id WHERE sivel2_gen_caso.fecha BETWEEN '" + fechainicial.to_s + "' AND '" + fechafinal.to_s + "' group by 1,3 order by 1;"
             array_cuentas = ActiveRecord::Base.connection.execute(sql)
             render 'cuenta.json', layout: 'application', locals: {casosc: array_cuentas}
           end
@@ -589,9 +590,9 @@ module Sivel2Gen
               Rails.configuration.x.sivel2_mapaosm_diasatras.to_i : 182
 
             @fechadesde = ENV['SIVEL2_MAPAOSM_FECHADESDE'] ? 
-              Date.parse(ENV['SIVEL2_MAPAOSM_FECHADESDE']) : Msip::FormatoFechaHelper.inicio_semestre(Date.today - diasatras)
+              Date.parse(ENV['SIVEL2_MAPAOSM_FECHADESDE']) : Sip::FormatoFechaHelper.inicio_semestre(Date.today - diasatras)
             @fechahasta = ENV['SIVEL2_MAPAOSM_FECHAHASTA'] ?
-              Date.parse(ENV['SIVEL2_MAPAOSM_FECHAHASTA']) : Msip::FormatoFechaHelper.fin_semestre(Date.today - diasatras)
+              Date.parse(ENV['SIVEL2_MAPAOSM_FECHAHASTA']) : Sip::FormatoFechaHelper.fin_semestre(Date.today - diasatras)
             @clase_divcontenido = ''
             @margensup_divcontenido = '-9x'
             render 'mapaosm', layout: 'application', 
@@ -627,7 +628,7 @@ module Sivel2Gen
                 { titulo: 'Etiquetas y Solicitudes', parcial: 'etiquetas'},
                 { titulo: 'Evaluación', parcial: 'evaluacion'}
               ]
-            else
+           else
               []
             end
           end
@@ -689,12 +690,10 @@ module Sivel2Gen
 
           # GET /casos/1/edit
           def edit
-            #@caso = Sivel2Gen::Caso.new(caso_fuenteprensa: [Sivel2Gen::CasoFuenteprensa.new])
-            #@fuenteprensa = @caso.caso_fuenteprensa.new
             self.class.asegura_camposdinamicos(@registro, current_usuario.id,
                                               pestanas_formulariocaso)
             if registrar_en_bitacora
-              Msip::Bitacora.a(request.remote_ip, current_usuario.id,
+              Sip::Bitacora.a(request.remote_ip, current_usuario.id,
                               request.url, params, 'Sivel2Gen::Caso',
                               @caso.id,  'editar', '')
             end
@@ -721,7 +720,7 @@ module Sivel2Gen
             respond_to do |format|
               if @caso.save
                 if registrar_en_bitacora
-                  Msip::Bitacora.a(request.remote_ip, current_usuario.id,
+                  Sip::Bitacora.a(request.remote_ip, current_usuario.id,
                                   request.url, params, 'Sivel2Gen::Caso',
                                   @caso.id,  'crear', '')
                 end
@@ -778,18 +777,18 @@ module Sivel2Gen
                   if v[:persona_attributes] &&
                       v[:persona_attributes][:persona_trelacion1_attributes]
                     v[:persona_attributes][:persona_trelacion1_attributes].each do |it, t|
-                      if t && (!t[:id] || t[:id] == '') &&
+                     if t && (!t[:id] || t[:id] == '') &&
                           t[:personados_attributes] &&
                           t[:personados_attributes][:id] &&
                           t[:personados_attributes][:id].to_i > 0 &&
-                          Msip::Persona.where(
+                          Sip::Persona.where(
                             id: t[:personados_attributes][:id].to_i).count == 1
-                          pt_e = Msip::PersonaTrelacion.where(
+                          pt_e = Sip::PersonaTrelacion.where(
                             persona1: v[:persona_attributes][:id],
                             persona2: t[:personados_attributes][:id]
                           )
                           if !pt_e
-                            pt = Msip::PersonaTrelacion.create({
+                            pt = Sip::PersonaTrelacion.create({
                               persona1: v[:persona_attributes][:id],
                               persona2: t[:personados_attributes][:id]
                             })
@@ -805,7 +804,7 @@ module Sivel2Gen
               end
               if @caso.update(caso_params)
                 if registrar_en_bitacora
-                  Msip::Bitacora.agregar_actualizar(
+                  Sip::Bitacora.agregar_actualizar(
                     request, :caso, :bitacora_cambio, 
                     current_usuario.id, params, 'Sivel2Gen::Caso',
                     @caso.id
@@ -873,7 +872,7 @@ module Sivel2Gen
             @caso.destroy
 
             if registrar_en_bitacora
-              Msip::Bitacora.a(request.remote_ip, current_usuario.id,
+              Sip::Bitacora.a(request.remote_ip, current_usuario.id,
                               request.url, params, 'Sivel2Gen::Caso',
                               tcaso_id,  'eliminar', '')
             end
@@ -931,7 +930,7 @@ module Sivel2Gen
               return
             end
             if registrar_en_bitacora
-              Msip::Bitacora.a(request.remote_ip, current_usuario ?
+              Sip::Bitacora.a(request.remote_ip, current_usuario ?
                               current_usuario.id : nil,
                               request.url, params, 'Sivel2Gen::Caso',
                               @registro.id,  'presentar', '')
@@ -1051,7 +1050,7 @@ module Sivel2Gen
                 puts "OJO total_importados=#{total_importados}"
                 @etiquetaImp = Sivel2Gen::CasoEtiqueta.new
                 @etiquetaImp.id_caso = @caso.id
-                @etiquetaImp.id_etiqueta = Msip::Etiqueta.where(
+                @etiquetaImp.id_etiqueta = Sip::Etiqueta.where(
                   nombre: "IMPORTA_RELATO").ids[0]
                 if !@etiquetaImp.id_etiqueta.nil?
                   @etiquetaImp.fecha = Date.today
@@ -1063,7 +1062,7 @@ module Sivel2Gen
                   total_errores += 1
                   @etiquetaErr = Sivel2Gen::CasoEtiqueta.new
                   @etiquetaErr.id_caso = @caso.id
-                  @etiquetaErr.id_etiqueta = Msip::Etiqueta.where(
+                  @etiquetaErr.id_etiqueta = Sip::Etiqueta.where(
                     nombre: "ERROR_IMPORTACIÓN").ids[0]
                   if !@etiquetaErr.id_etiqueta.nil?
                     @etiquetaErr.observaciones = menserror_uno
@@ -1121,7 +1120,7 @@ module Sivel2Gen
               flash[:success] = mensexito
               if registrar_en_bitacora
                 ids_importados.split(" ").each do |idcaso|
-                  Msip::Bitacora.a(request.remote_ip, current_usuario.id,
+                  Sip::Bitacora.a(request.remote_ip, current_usuario.id,
                                   request.url, params, 'Sivel2Gen::Caso',
                                   idcaso.to_i,  'importar', '')
                 end
@@ -1139,7 +1138,7 @@ module Sivel2Gen
               ruta_importados = casos_path + '?filtro[q]=&filtro[codigo]=' + 
                 ids_importados + '&filtro[inc_casoid]=1&filtro[inc_ubicaciones]=1&filtro[inc_fecha]=1&filtro[inc_presponsables]=1&filtro[inc_victimas]=1&filtro[inc_memo]=1&filtro[inc_tipificacion]=1'
               redirect_to ruta_importados
-            end
+              end
           end
 
           private
@@ -1192,7 +1191,7 @@ module Sivel2Gen
                   :fecha,
                   :fecha_localizada,
                   :_destroy,
-                  :msip_anexo_attributes => [
+                  :sip_anexo_attributes => [
                     :id, :descripcion, :adjunto, :_destroy
                   ]
                 ],

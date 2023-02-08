@@ -1,6 +1,6 @@
 module Sivel2Gen
   class Iglesia < ActiveRecord::Base
-    include Msip::Basica
+    include Sip::Basica
 
   end
 end

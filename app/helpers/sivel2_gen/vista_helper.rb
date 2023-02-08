@@ -202,15 +202,15 @@ module Sivel2Gen
 
       sindep = 0
       cantidadesdep.each do |iddep, v|
-        if Msip::Departamento.where(
-            id_pais: Msip.paisomision).
+        if Sip::Departamento.where(
+            id_pais: Sip.paisomision).
             where(id_deplocal: iddep).count == 0
           sindep += v.to_i
         end
       end
 
-      Msip::Departamento.where(
-        id_pais: Msip.paisomision).each do |dep|
+      Sip::Departamento.where(
+        id_pais: Sip.paisomision).each do |dep|
         cant = 0
         if cantidadesdep.keys.include?(dep.id_deplocal)
           cant = cantidadesdep[dep.id_deplocal].to_i

@@ -1,6 +1,6 @@
 module Sivel2Gen
   module Admin
-    class IglesiasController < Msip::Admin::BasicasController
+    class IglesiasController < Sip::Admin::BasicasController
       before_action :set_iglesia, only: [:show, :edit, :update, :destroy]
       load_and_authorize_resource class: Sivel2Gen::Iglesia
   

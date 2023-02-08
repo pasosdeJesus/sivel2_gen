@@ -6,7 +6,7 @@ module Sivel2Gen
         extend ActiveSupport::Concern
 
         included do
-          include Msip::Basica
+          include Sip::Basica
           
           has_many :supracategoria, foreign_key: "id_tviolencia", 
             validate: true, class_name: 'Sivel2Gen::Supracategoria'

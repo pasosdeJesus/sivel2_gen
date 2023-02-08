@@ -7,8 +7,8 @@ module Sivel2Gen
 
         included do
 
-          include Msip::Localizacion
-          include Msip::FormatoFechaHelper
+          include Sip::Localizacion
+          include Sip::FormatoFechaHelper
 
           belongs_to :filiacion, foreign_key: "id_filiacion", 
             class_name: 'Sivel2Gen::Filiacion', optional: false

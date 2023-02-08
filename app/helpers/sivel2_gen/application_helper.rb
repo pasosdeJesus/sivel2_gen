@@ -2,7 +2,7 @@
 module Sivel2Gen
   module ApplicationHelper
 
-    include Msip::PaginacionAjaxHelper
+    include Sip::PaginacionAjaxHelper
 
   end
 end

@@ -9,7 +9,7 @@ export default class Sivel2GenAutocompletaAjaxVictimas {
   // Elije una persona en autocompletación
   static operarElegida (eorig, cadpersona, id, otrosop) {
     let root = window
-    msip_arregla_puntomontaje(root)
+    sip_arregla_puntomontaje(root)
     const cs = id.split(';')
     const idPersona = cs[0]
     const divcp = eorig.target.closest('.' + 

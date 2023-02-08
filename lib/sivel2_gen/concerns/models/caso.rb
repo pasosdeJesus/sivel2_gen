@@ -6,9 +6,9 @@ module Sivel2Gen
         extend ActiveSupport::Concern
 
         included do
-          include Msip::Modelo
-          include Msip::Localizacion
-          include Msip::FormatoFechaHelper
+          include Sip::Modelo
+          include Sip::Localizacion
+          include Sip::FormatoFechaHelper
 
           @current_usuario = nil
           attr_accessor :current_usuario
@@ -27,11 +27,11 @@ module Sivel2Gen
             inverse_of: :caso
           accepts_nested_attributes_for :anexo_caso, allow_destroy: true, 
             reject_if: :all_blank
-          has_many :msip_anexo, :through => :anexo_caso, 
-            class_name: 'Msip::Anexo'
-          accepts_nested_attributes_for :msip_anexo,  reject_if: :all_blank
+          has_many :sip_anexo, :through => :anexo_caso, 
+            class_name: 'Sip::Anexo'
+          accepts_nested_attributes_for :sip_anexo,  reject_if: :all_blank
 
-          has_and_belongs_to_many :antecedente,
+          has_and_belongs_to_many :antecedente, 
             class_name: 'Sivel2Gen::Antecedente',
             foreign_key: :id_caso, 
             association_foreign_key: :id_antecedente,
@@ -46,7 +46,7 @@ module Sivel2Gen
           has_many :caso_etiqueta, foreign_key: "id_caso", validate: true, 
             dependent: :destroy, class_name: 'Sivel2Gen::CasoEtiqueta'
           has_many :etiqueta, through: :caso_etiqueta, 
-            class_name: 'Msip::Etiqueta'
+            class_name: 'Sip::Etiqueta'
           accepts_nested_attributes_for :caso_etiqueta, allow_destroy: true, 
             reject_if: :all_blank
           
@@ -55,7 +55,7 @@ module Sivel2Gen
             inverse_of: :caso
           accepts_nested_attributes_for :caso_fotra, allow_destroy: true, 
             reject_if: :all_blank
-          has_many :fotra, through: :caso_fotra, class_name: 'Msip::Fotra'
+          has_many :fotra, through: :caso_fotra, class_name: 'Sip::Fotra'
 
           has_many :caso_fuenteprensa, foreign_key: "id_caso", 
             validate: true, dependent: :destroy, 
@@ -63,7 +63,7 @@ module Sivel2Gen
           accepts_nested_attributes_for :caso_fuenteprensa, 
             allow_destroy: true, reject_if: :all_blank
           has_many :fuenteprensa, through: :caso_fuenteprensa, 
-            class_name: 'Msip::Fuenteprensa'
+            class_name: 'Sip::Fuenteprensa'
 
           has_and_belongs_to_many :frontera, 
             class_name: 'Sivel2Gen::Frontera',
@@ -99,7 +99,7 @@ module Sivel2Gen
           has_many :usuario, :through => :caso_usuario, class_name: 'Usuario'
 
           has_many :ubicacion, foreign_key: "id_caso", validate: true, 
-            dependent: :destroy, class_name: 'Msip::Ubicacion'
+            dependent: :destroy, class_name: 'Sip::Ubicacion'
           accepts_nested_attributes_for :ubicacion, allow_destroy: true, 
             reject_if: :all_blank
 
@@ -108,7 +108,7 @@ module Sivel2Gen
             foreign_key: 'caso_id'
           has_many :solicitud, through: :caso_solicitud, 
             dependent: :delete_all,
-            class_name: 'Msip::Solicitud'
+            class_name: 'Sip::Solicitud'
           accepts_nested_attributes_for :solicitud,
             allow_destroy: true, reject_if: :all_blank
           accepts_nested_attributes_for :caso_solicitud,
@@ -118,7 +118,7 @@ module Sivel2Gen
             class_name: 'Sivel2Gen::Victima' 
           #, validate: true Manejar en aplicaciones que usen este motor
 
-          has_many :persona, :through => :victima, class_name: 'Msip::Persona'
+          has_many :persona, :through => :victima, class_name: 'Sip::Persona'
           accepts_nested_attributes_for :persona,  reject_if: :all_blank
           accepts_nested_attributes_for :victima, allow_destroy: true, 
             reject_if: :all_blank
@@ -126,7 +126,7 @@ module Sivel2Gen
           has_many :victimacolectiva, foreign_key: "id_caso", validate: true, 
             dependent: :destroy, class_name: 'Sivel2Gen::Victimacolectiva' 
           has_many :grupoper, :through => :victimacolectiva, 
-            class_name: 'Msip::Grupoper'
+            class_name: 'Sip::Grupoper'
           accepts_nested_attributes_for :grupoper,  reject_if: :all_blank
           accepts_nested_attributes_for :victimacolectiva, 
             allow_destroy: true, 
@@ -144,7 +144,7 @@ module Sivel2Gen
             optional: true
 
           belongs_to :ubicacionprincipal, foreign_key: "ubicacion_id",
-            validate: false, class_name: 'Msip::Ubicacion',
+            validate: false, class_name: 'Sip::Ubicacion',
             optional: true
 
           campofecha_localizado :fecha
@@ -241,7 +241,6 @@ module Sivel2Gen
 
           def importa(datosent, datossal, formato_sexo,
                       menserror, opciones = {})
-            ## Datos básicos y memo 
             if datosent['fecha'].nil?
               self.fecha = Date.today
               menserror << "Falta fecha. "
@@ -257,27 +256,9 @@ module Sivel2Gen
               self.memo = datosent['hechos']
             end
             self.titulo = datosent['titulo'] if datosent['titulo']
-            if datosent["observaciones"]
-              datosent["observaciones"].each do |obs|
-                nombre = obs.split("_")
-                case nombre[0]
-                when "intervalo"
-                  inter = Sivel2Gen::Intervalo.where(nombre: nombre[1])
-                  self.intervalo = inter[0]
-                when "region"
-                  regiones = nombre[1].split("; ")
-                  regs = Sivel2Gen::Region.where(nombre: regiones)
-                  self.region.push(regs)
-                when "frontera"
-                  fronteras = nombre[1].split("; ")
-                  fron = Sivel2Gen::Frontera.where(nombre: fronteras)
-                  self.frontera.push(fron)
-                end
-              end
-            end
             self.save!(validate: false)
             #Importa ubicacion
-            ubicacion = Msip::Ubicacion.new
+            ubicacion = Sip::Ubicacion.new
             ubicacion.importa(datosent, datossal, menserror, opciones)
             ubicacion.id_caso = self.id
             ubicacion.save!(validate: false)
@@ -285,13 +266,13 @@ module Sivel2Gen
             if datosent['ubicacion_secundaria']
               if datosent['ubicacion_secundaria'].kind_of?(Array)
                 datosent['ubicacion_secundaria'].each do |ub|
-                  ubicacion = Msip::Ubicacion.new
+                  ubicacion = Sip::Ubicacion.new
                   ubicacion.importa(ub, datossal, menserror, opciones)
                   ubicacion.id_caso = self.id
                   ubicacion.save!(validate: false)
                 end
               else
-                  ubicacion = Msip::Ubicacion.new
+                  ubicacion = Sip::Ubicacion.new
                   ubicacion.importa(
                     datosent['ubicacion_secundaria'], datossal, menserror, 
                     opciones)
@@ -362,6 +343,7 @@ module Sivel2Gen
               end
             end
             #Importa combatientes
+            idsco = {}
             if datosent['combatiente']
               if datosent['combatiente'].kind_of?(Array)
                 datosent['combatiente'].each do |co|
@@ -496,7 +478,7 @@ module Sivel2Gen
                 if u.tsitio
                   r += 'Tip. Ub.: ' + u.tsitio.nombre + '; '
                 end
-                r += Msip::UbicacionHelper.formato_ubicacion(u, true, false) 
+                r += Sip::UbicacionHelper.formato_ubicacion(u, true, false) 
                 if u.lugar
                   r += '; ' + u.lugar
                 end
@@ -529,7 +511,7 @@ module Sivel2Gen
                   r += ' - ' + v.persona.sexo
                 end
                 if v.persona.id_pais 
-                  r += ' - ' + Msip::UbicacionHelper.formato_ubicacion_partes(
+                  r += ' - ' + Sip::UbicacionHelper.formato_ubicacion_partes(
                     v.persona.id_pais, v.persona.id_departamento,
                     v.persona.id_municipio, v.persona.id_clase, true, true)
                 end

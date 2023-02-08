@@ -5,7 +5,7 @@ module Sivel2Gen
       module Categoria
         extend ActiveSupport::Concern
 
-        include Msip::Basica
+        include Sip::Basica
         included do
           Nombresunicos=false
 
@@ -45,7 +45,7 @@ module Sivel2Gen
               return nombre
             end
             supracategoria.id_tviolencia + 
-              id.to_s + ' ' + nombre
+              id.to_s + ' ' +nombre
           end
 
           def presenta(atr)

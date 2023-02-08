@@ -4,7 +4,7 @@ export default class Sivel2GenAutocompletaAjaxColectivas {
   // Elije un grupo en autocompletación
   static operarElegida (eorig, cadgrupo, idGrupo, otrosop) {
     let root = window
-    window.msip_arregla_puntomontaje(root)
+    window.sip_arregla_puntomontaje(root)
     const divcp = eorig.target.closest('.' +
         Sivel2GenAutocompletaAjaxColectivas.claseEnvoltura)
     if (divcp == null) {

@@ -6,7 +6,7 @@ module Sivel2Gen
         extend ActiveSupport::Concern
 
         included do
-          include Msip::Basica
+          include Sip::Basica
         end
 
       end

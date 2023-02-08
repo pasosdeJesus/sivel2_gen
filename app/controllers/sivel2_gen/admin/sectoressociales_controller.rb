@@ -1,6 +1,6 @@
 module Sivel2Gen
   module Admin
-    class SectoressocialesController < Msip::Admin::BasicasController
+    class SectoressocialesController < Sip::Admin::BasicasController
       before_action :set_sectorsocial, only: [:show, :edit, :update, :destroy]
       load_and_authorize_resource class: Sivel2Gen::Sectorsocial
   

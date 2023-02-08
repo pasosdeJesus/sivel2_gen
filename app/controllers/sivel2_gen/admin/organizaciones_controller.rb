@@ -1,6 +1,6 @@
 module Sivel2Gen
   module Admin
-    class OrganizacionesController < Msip::Admin::BasicasController
+    class OrganizacionesController < Sip::Admin::BasicasController
       before_action :set_organizacion, only: [:show, :edit, :update, :destroy]
       load_and_authorize_resource class: Sivel2Gen::Organizacion
   

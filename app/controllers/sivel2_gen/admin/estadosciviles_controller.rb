@@ -1,6 +1,6 @@
 module Sivel2Gen
   module Admin
-    class EstadoscivilesController < Msip::Admin::BasicasController
+    class EstadoscivilesController < Sip::Admin::BasicasController
       before_action :set_estadocivil, only: [:show, :edit, :update, :destroy]
       load_and_authorize_resource class: Sivel2Gen::Estadocivil
 

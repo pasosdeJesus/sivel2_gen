@@ -40,15 +40,12 @@ test/dummy/archivos/
 test/dummy/node_modules/
 bin/c.sh
 test/dummy/bin/c.sh
-test/dummy/public/sivel2_2/assets/
+test/dummy/public/sivel2_1/assets/
 test/dummy/public/sivel2/assets/
 test/dummy/public/packs
 test/dummy/app/assets/builds
 .env
-test/dummy/app/javascript/controllers/msip
+test/dummy/app/javascript/controllers/sip
 
 public/*/csv/actos_individuales.csv
-test/dummy/public/sivel2_2/csv
-cobertura-unitarias/
-test/dummy/cobertura-sistema/
-test/dummy/public/sivel2_2/cobertura/
+test/dummy/public/sivel2_1/csv

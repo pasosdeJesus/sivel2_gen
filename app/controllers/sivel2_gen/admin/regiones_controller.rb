@@ -2,7 +2,7 @@ require 'sivel2_gen/concerns/controllers/regiones_controller'
 
 module Sivel2Gen
   module Admin
-    class RegionesController < Msip::Admin::BasicasController
+    class RegionesController < Sip::Admin::BasicasController
 
       before_action :set_region, only: [:show, :edit, :update, :destroy]
       load_and_authorize_resource class: Sivel2Gen::Region

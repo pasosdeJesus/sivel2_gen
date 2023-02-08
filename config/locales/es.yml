@@ -24,10 +24,10 @@ es:
         one: Otra fuente
         other: Otras fuentes
     attributes:
-      "msip/ubicacion":
+      "sip/ubicacion":
         tsitio: Tipo de sitio
         clase: Centro poblado
-      "msip/persona":
+      "sip/persona":
         anionac: Año de nacimiento
         clase: Centro poblado de nacimiento
         departamento: Estado/Departamento de nacimiento

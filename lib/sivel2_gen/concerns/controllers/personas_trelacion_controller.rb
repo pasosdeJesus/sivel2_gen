@@ -1,5 +1,5 @@
 
-require 'msip/concerns/controllers/personas_trelacion_controller'
+require 'sip/concerns/controllers/personas_trelacion_controller'
 
 module Sivel2Gen
   module Concerns
@@ -8,7 +8,7 @@ module Sivel2Gen
         extend ActiveSupport::Concern
 
         included do
-          include Msip::Concerns::Controllers::PersonasController
+          include Sip::Concerns::Controllers::PersonasController
         end # included
 
       end

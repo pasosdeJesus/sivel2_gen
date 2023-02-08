@@ -1,5 +1,5 @@
 module Sivel2Gen
-  class ApplicationController < Msip::ApplicationController
+  class ApplicationController < Sip::ApplicationController
 
     # No define control de acceso por ser utilidad
   end

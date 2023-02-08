@@ -5,7 +5,7 @@ module Sivel2Gen
       module Resagresion
         extend ActiveSupport::Concern
 
-        include Msip::Basica
+        include Sip::Basica
         included do
           has_many :combatiente, foreign_key: "id_resagresion", 
             validate: true, class_name: 'Sivel2Gen::Combatiente'

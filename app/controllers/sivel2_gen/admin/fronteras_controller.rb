@@ -1,6 +1,6 @@
 module Sivel2Gen
   module Admin
-    class FronterasController < Msip::Admin::BasicasController
+    class FronterasController < Sip::Admin::BasicasController
       before_action :set_frontera, only: [:show, :edit, :update, :destroy]
       load_and_authorize_resource class: Sivel2Gen::Frontera
   

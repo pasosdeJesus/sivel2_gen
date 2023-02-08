@@ -37,6 +37,8 @@ Sivel2Gen::Engine.routes.draw do
 
   get "/fichacasovertical" => 'hogar#fichacasovertical'
 
+  get "/fuentesprensa/nuevo", 'fuentesprensa#nuevo'
+
   get '/graficar/actos_individuales' => 'fil23_gen/graficar_plotly#actos_individuales', 
     :as => 'graficar_actos_individuales'
 
@@ -57,7 +59,7 @@ Sivel2Gen::Engine.routes.draw do
   get '/mapadep/victimizaciones' => 'mapadep#victimizaciones',
     as: :mapadepvic
 
-  get "/personas/remplazarfamiliar" => "/msip/personas#remplazarfamiliar"
+  get "/personas/remplazarfamiliar" => "/sip/personas#remplazarfamiliar"
 
   get "/tablasbasicas" => 'hogar#tablasbasicas'
 
@@ -73,20 +75,6 @@ Sivel2Gen::Engine.routes.draw do
 
   resources :casos, path_names: { new: 'nuevo', edit: 'edita' } do
       collection { post :importa }
-  end
-
-  resources :casos_fuenteprensa, only: [], param: :index do 
-    member do
-      delete '(:id)', to: "fuentesprensa#destroy", as: "eliminar"
-      post '/' => "fuentesprensa#create"
-    end
-  end
-
-  resources :casos_fotra, only: [], param: :index do 
-    member do
-      delete '(:id)', to: "casofotras#destroy", as: "eliminar"
-      post '/' => "casofotras#create"
-    end
   end
 
   namespace :admin do

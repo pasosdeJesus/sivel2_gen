@@ -5,7 +5,7 @@ module Sivel2Gen
       module Escolaridad
         extend ActiveSupport::Concern
 
-        include Msip::Basica
+        include Sip::Basica
         included do
 
         end
