@@ -12,8 +12,8 @@
   <% end %>
   <% ubprincipal = nil %>
   <% if caso.ubicacion_id %>
-    <% ubprincipal = Sip::Ubicacion.find(caso.ubicacion_id) %>
-    <%= "Tip. Ub: " + Sip::Tsitio.find(ubprincipal.id_tsitio).nombre %>
+    <% ubprincipal = Msip::Ubicacion.find(caso.ubicacion_id) %>
+    <%= "Tip. Ub: " + Msip::Tsitio.find(ubprincipal.id_tsitio).nombre %>
   <% end %>
   </p>
 
@@ -41,7 +41,7 @@
   <% end # if current_usuario %> 
 
   <p style="margin: 0; padding: 0">
-  <% if ubprincipal && ubprincipal.pais.id == Sip.paisomision %>
+  <% if ubprincipal && ubprincipal.pais.id == Msip.paisomision %>
     <%= ubprincipal.departamento.nombre if ubprincipal && ubprincipal.departamento%> / 
     <%= ubprincipal.municipio.nombre if ubprincipal && ubprincipal.municipio%> /
     <%= ubprincipal.clase.nombre if ubprincipal && ubprincipal.clase%>
@@ -102,9 +102,9 @@
       <ul>
       <% anexosc.each do |ac| %>
         <li>
-          <%= render partial: 'sip/anexos/con_vistaprevia',
+          <%= render partial: 'msip/anexos/con_vistaprevia',
             locals: {
-              anexo: ac.sip_anexo,
+              anexo: ac.msip_anexo,
               fecha: ac.fecha
             } %>
         </li>
@@ -177,9 +177,9 @@
       Etiquetas:  
       <% caso.caso_etiqueta.each do |e|  %>
         <p style="margin: 0; padding: 0;">
-        <%= Sip::Etiqueta.find(e.id_etiqueta).nombre %> -
+        <%= Msip::Etiqueta.find(e.id_etiqueta).nombre %> -
         <%= e.fecha %> -
-        <%= Sip::Usuario.find(e.id_usuario).nusuario if Sip::Usuario.where(id: e.id_usuario).count > 0 %> -
+        <%= Msip::Usuario.find(e.id_usuario).nusuario if Msip::Usuario.where(id: e.id_usuario).count > 0 %> -
         <%= e.observaciones %>
         </p>
       <% end %>
@@ -194,14 +194,14 @@
       # Se presenta una sola vez cada usuario que ha tocado, creado o
     # editado el caso con la fecha de la primera vez que lo tocó
     presentados = []
-    bitacora = Sip::Bitacora.
+    bitacora = Msip::Bitacora.
       where(modelo: 'Sivel2Gen::Caso').
       where(modelo_id: caso.id).
       where("operacion IN ('iniciar', 'actualizar', 'tocar')").
       order(:fecha).each do |b| %>
       <% if !presentados.include?(b.usuario_id) %>
-        <% if Sip::Usuario.where(id: b.usuario_id).count == 1 %> 
-          <%= Sip::Usuario.where(id: b.usuario_id)[0].nusuario %> 
+        <% if Msip::Usuario.where(id: b.usuario_id).count == 1 %> 
+          <%= Msip::Usuario.where(id: b.usuario_id)[0].nusuario %> 
         <% end %>
         <%= b.fecha %><br> 
         <% presentados << b.usuario_id %>

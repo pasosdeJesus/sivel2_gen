@@ -11,8 +11,8 @@ bundle
 make erd
 ```
 
-Podremos distinguir el modelo por grandes bloques según sus prefijos `Heb412Gen`, `Sip` y `Sivel2Gen` los cuales hacen referencia a los motores utilizados que la información de sus tablas trata de resumirse a continuación de manera general:
+Podremos distinguir el modelo por grandes bloques según sus prefijos `Heb412Gen`, `Msip` y `Sivel2Gen` los cuales hacen referencia a los motores utilizados que la información de sus tablas trata de resumirse a continuación de manera general:
 
 - `Heb412Gen`: Nube de documentos y plantillas por llenar (hojas de cálculo .ods y documentos .odt).
-- `Sip` : Ubicación geográfica, persona y grupos de personas, control de acceso y otros.
+- `Msip` : Ubicación geográfica, persona y grupos de personas, control de acceso y otros.
 - `Sivel2Gen`: Información directa sobre casos (víctimas, responsables, actos, entro otros).

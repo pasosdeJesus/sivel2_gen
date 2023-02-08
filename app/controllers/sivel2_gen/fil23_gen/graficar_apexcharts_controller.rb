@@ -11,14 +11,14 @@ module Sivel2Gen
 
         ## Valores de los filtros
         @vic_fechaini = params[:filtro] ? 
-          Sip::FormatoFechaHelper.fecha_local_estandar(
+          Msip::FormatoFechaHelper.fecha_local_estandar(
             params[:filtro][:fechaini]) : Sivel2Gen::Caso.minimum(:fecha).to_s
         @vic_fechafin = params[:filtro] ? 
-          Sip::FormatoFechaHelper.fecha_local_estandar(
+          Msip::FormatoFechaHelper.fecha_local_estandar(
             params[:filtro][:fechafin]) : Sivel2Gen::Caso.maximum(:fecha).to_s
 
-        ldep = Sip::Departamento.habilitados.where(
-          id_pais: Sip.paisomision).pluck(:id)
+        ldep = Msip::Departamento.habilitados.where(
+          id_pais: Msip.paisomision).pluck(:id)
         @vic_dep = params[:filtro] && params[:filtro][:departamento] ?
           ldep & params[:filtro][:departamento] : ldep
 
@@ -32,15 +32,15 @@ module Sivel2Gen
         @vic_categorias = params[:filtro] && params[:filtro][:categorias] ? 
           @categorias & params[:filtro][:categorias].map(&:to_i) : @categorias
 
-        lsexo = Sip::Persona::sexo_opciones.map{|se| se[1].to_s}
+        lsexo = Msip::Persona::sexo_opciones.map{|se| se[1].to_s}
         @vic_sexo = params[:filtro] && params[:filtro][:sexo] ? 
           lsexo & params[:filtro][:sexo] : lsexo
 
         def consulta_gen(desagregado, filtros)
           "select caso.fecha as fecha_caso, count(*) as total from cvt1 
           JOIN sivel2_gen_caso as caso ON caso.id=id_caso 
-          JOIN sip_persona AS persona ON persona.id=id_persona
-          JOIN sip_ubicacion as ubi ON ubi.id=caso.ubicacion_id
+          JOIN msip_persona AS persona ON persona.id=id_persona
+          JOIN msip_ubicacion as ubi ON ubi.id=caso.ubicacion_id
           JOIN sivel2_gen_categoria AS categoria ON categoria.id=id_categoria
           WHERE #{desagregado} 
           AND caso.fecha >='" + @vic_fechaini + "'
@@ -51,11 +51,11 @@ module Sivel2Gen
 
         def consulta_totsex
           "SELECT persona.sexo AS sexo_persona, COUNT(*) AS total FROM cvt1
-          JOIN sip_persona AS persona ON persona.id=id_persona 
+          JOIN msip_persona AS persona ON persona.id=id_persona 
           GROUP BY 1
-          ORDER BY persona.sexo='#{Sip::Persona::convencion_sexo[:sexo_sininformacion].to_s}', 
-          persona.sexo='#{Sip::Persona::convencion_sexo[:sexo_masculino].to_s}',
-          persona.sexo='#{Sip::Persona::convencion_sexo[:sexo_femenino].to_s}';"
+          ORDER BY persona.sexo='#{Msip::Persona::convencion_sexo[:sexo_sininformacion].to_s}', 
+          persona.sexo='#{Msip::Persona::convencion_sexo[:sexo_masculino].to_s}',
+          persona.sexo='#{Msip::Persona::convencion_sexo[:sexo_femenino].to_s}';"
         end
 
         def consulta_totcat
@@ -69,8 +69,8 @@ module Sivel2Gen
           "SELECT departamento.nombre AS departamento_nombre, COUNT(*) as total 
           FROM cvt1
           JOIN sivel2_gen_caso as caso ON caso.id=id_caso 
-          JOIN sip_ubicacion as ubi ON ubi.id=caso.ubicacion_id
-          JOIN sip_departamento as departamento ON departamento.id=ubi.id_departamento
+          JOIN msip_ubicacion as ubi ON ubi.id=caso.ubicacion_id
+          JOIN msip_departamento as departamento ON departamento.id=ubi.id_departamento
           GROUP BY 1;"
         end
 
@@ -79,7 +79,7 @@ module Sivel2Gen
           if (@vic_dep.count == 0) || (@vic_categorias.count == 0)
             flash.now[:info] = "Uno de los filros se encuentra vacío"
           else
-            Sip::Persona::sexo_opcoines.each do |sexo|
+            Msip::Persona::sexo_opcoines.each do |sexo|
               desagr = "persona.sexo ='#{sexo[1].to_s}'" 
               filtros= ""
               filtros << "
@@ -97,7 +97,7 @@ module Sivel2Gen
         if params[:filtro]
           if params[:filtro][:desagregar] == 'Sexo' 
             series_gen = graficar_sexo
-            sexos = Sip::Persona::sexo_opciones.to_h.invert
+            sexos = Msip::Persona::sexo_opciones.to_h.invert
             valores = ActiveRecord::Base.connection.execute(consulta_totsex).values.to_h
             @valores_tot= valores.to_a.map{|k| [sexos[k[0].to_sym], k[1]]}.to_h
             @opciones_tot = {
@@ -108,8 +108,8 @@ module Sivel2Gen
           end
           if params[:filtro][:desagregar] == 'Departamento' 
             series_gen= []
-            deps = Sip::Departamento.habilitados.where(
-              id_pais: Sip.paisomision)
+            deps = Msip::Departamento.habilitados.where(
+              id_pais: Msip.paisomision)
             if (@vic_sexo.count == 0) || (@vic_categorias.count == 0)
               flash.now[:info] = "Uno de los filtros se encuentra vacío"
             else
@@ -160,7 +160,7 @@ module Sivel2Gen
           end
         else 
           series_gen = graficar_sexo
-          sexos = Sip::Persona::sexo_opciones.to_h.invert
+          sexos = Msip::Persona::sexo_opciones.to_h.invert
           valores = ActiveRecord::Base.connection.execute(consulta_totsex).values.to_h
           @valores_tot= valores.to_a.map{|k| [sexos[k[0].to_sym], k[1]]}.to_h 
           @opciones_tot = {

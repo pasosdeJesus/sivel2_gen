@@ -1,6 +1,6 @@
 module Sivel2Gen
   module Admin
-    class RangosedadController < Sip::Admin::BasicasController
+    class RangosedadController < Msip::Admin::BasicasController
       before_action :set_rangoedad, only: [:show, :edit, :update, :destroy]
       load_and_authorize_resource class: Sivel2Gen::Rangoedad
   

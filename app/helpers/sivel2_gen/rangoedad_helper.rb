@@ -80,7 +80,7 @@ module Sivel2Gen
       end
 
       caso.take.victima.joins(
-        'JOIN sip_persona ON sip_persona.id=sivel2_gen_victima.id_persona').
+        'JOIN msip_persona ON msip_persona.id=sivel2_gen_victima.id_persona').
         each do |v|
         re = Sivel2Gen::RangoedadHelper.buscar_rango_edad(
           Sivel2Gen::RangoedadHelper.edad_de_fechanac_fecha(
@@ -108,7 +108,7 @@ module Sivel2Gen
       end
 
       caso.take.victima.joins(
-        'JOIN sip_persona ON sip_persona.id=sivel2_gen_victima.id_persona').
+        'JOIN msip_persona ON msip_persona.id=sivel2_gen_victima.id_persona').
         each do |v|
         re = Sivel2Gen::RangoedadHelper.buscar_rango_edad(
           Sivel2Gen::RangoedadHelper.edad_de_fechanac_fecha(

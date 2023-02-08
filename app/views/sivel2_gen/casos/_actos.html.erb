@@ -49,8 +49,8 @@
         Víctima</label>
       <%= 
         p = options_from_collection_for_select(
-          Sip::Persona.from('sivel2_gen_victima, sip_persona').where(
-            'sivel2_gen_victima.id_persona=sip_persona.id 
+          Msip::Persona.from('sivel2_gen_victima, msip_persona').where(
+            'sivel2_gen_victima.id_persona=msip_persona.id 
         AND sivel2_gen_victima.id_caso=?', @caso.id),
         "id",
         lambda {|t| (t.nombres == 'N' && t.apellidos == 'N') ? 
@@ -133,9 +133,9 @@
           Víctima Colectiva</label>
         <%= 
           p = options_from_collection_for_select(
-            Sip::Grupoper.from(
-              'sivel2_gen_victimacolectiva, sip_grupoper').where(
-                'sivel2_gen_victimacolectiva.id_grupoper=sip_grupoper.id 
+            Msip::Grupoper.from(
+              'sivel2_gen_victimacolectiva, msip_grupoper').where(
+                'sivel2_gen_victimacolectiva.id_grupoper=msip_grupoper.id 
                  AND sivel2_gen_victimacolectiva.id_caso=?', @caso.id),
                  "id",
                  lambda {|t| t.nombre}

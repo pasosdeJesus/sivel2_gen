@@ -12,8 +12,8 @@
   <% end %>
 <% end %>
 <% caso.victima.each do |v| %>
-  <% nvc = Sip::Persona.find(v.id_persona).nombres +
-    ' ' + Sip::Persona.find(v.id_persona).apellidos %> 
+  <% nvc = Msip::Persona.find(v.id_persona).nombres +
+    ' ' + Msip::Persona.find(v.id_persona).apellidos %> 
   <% sector = Sivel2Gen::Sectorsocial.find(v.id_sectorsocial).nombre %>
   <% # Agrega sector social principal %>
   <% if sector != "SIN INFORMACIÓN"  %>
@@ -51,7 +51,7 @@
   <% lvic['i'+ v.id_persona.to_s] = nvc %>
 <% end %>
 <% caso.victimacolectiva.each do |vc| %>
-  <% nvc = Sip::Grupoper.find(vc.id_grupoper).nombre %>
+  <% nvc = Msip::Grupoper.find(vc.id_grupoper).nombre %>
   <% if repgeneral %>
     <% etniasid =  Sivel2Gen::EtniaVictimacolectiva.where(victimacolectiva_id: vc.id).pluck(:etnia_id)%>
     <% etnias = etniasid.map{|e| Sivel2Gen::Etnia.find(e).nombre}.join(" / ")%>
@@ -197,7 +197,7 @@
           <%= tv_nombre %><br>
         <% end %>
         <% supra_nombre = Sivel2Gen::Supracategoria.find(supraid).nombre if supraid%>
-        <%= Sivel2Gen::Categoria.find(cti).nombre.titleize %> por <%= Sip::LocalizaHelper.capitaliza_titulo(supra_nombre) %><br>
+        <%= Sivel2Gen::Categoria.find(cti).nombre.titleize %> por <%= Msip::LocalizaHelper.capitaliza_titulo(supra_nombre) %><br>
       <% end %>
     <% end %>
     <br>

@@ -1,7 +1,7 @@
 <div class='control-group nested-fields'>
   <div class="controls">
     <% if !f.object.grupoper
-         f.object.grupoper = Sip::Grupoper.new
+         f.object.grupoper = Msip::Grupoper.new
     end %>
        
     <%= render 'colectivo_campos', :f => f %>

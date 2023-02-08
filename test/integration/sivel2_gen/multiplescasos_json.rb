@@ -40,7 +40,7 @@ module Sivel2Gen
       Sivel2Gen::Conscaso.refresca_conscaso
       caso1 = Sivel2Gen::Caso.create PRUEBA_CASO_BASICOS1
 
-      ubicacion1 = Sip::Ubicacion.create(
+      ubicacion1 = Msip::Ubicacion.create(
         longitud: 87.3423,
         latitud: 23.2342,
         id_pais: 170,
@@ -68,7 +68,7 @@ module Sivel2Gen
         updated_at: '2014-11-06'
       )
       caso2 = Sivel2Gen::Caso.create PRUEBA_CASO_BASICOS2
-      ubicacion2 = Sip::Ubicacion.create(
+      ubicacion2 = Msip::Ubicacion.create(
         longitud: 77.3847,
         latitud: 3.3483,
         id_pais: 170,

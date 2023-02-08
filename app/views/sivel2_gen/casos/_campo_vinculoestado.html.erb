@@ -1,5 +1,5 @@
 <%= f.association :vinculoestado,
-  collection: Sip::ModeloHelper.opciones_tabla_basica(
+  collection: Msip::ModeloHelper.opciones_tabla_basica(
     Sivel2Gen::Vinculoestado, f, :vinculoestado
   ),
   include_blank: false,

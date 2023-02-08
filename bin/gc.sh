@@ -40,6 +40,7 @@ if (test "$SINAC" != "1") then {
   } fi;
   NOKOGIRI_USE_SYSTEM_LIBRARIES=1 MAKE=gmake make=gmake QMAKE=qmake4 bundle update --bundler
   NOKOGIRI_USE_SYSTEM_LIBRARIES=1 MAKE=gmake make=gmake QMAKE=qmake4 bundle update
+  NOKOGIRI_USE_SYSTEM_LIBRARIES=1 MAKE=gmake make=gmake QMAKE=qmake4 bundle update --bundler
   if (test "$?" != "0") then {
     exit 1;
   } fi;
@@ -56,7 +57,7 @@ if (test "$SININS" != "1") then {
   } fi;
 
   echo "\n== Enlaza controladores stimulus de motores =="
-  (cd $rutaap; bin/rails sip:stimulus_motores)
+  (cd $rutaap; bin/rails msip:stimulus_motores)
   if (test "$?" != "0") then {
     exit 1;
   } fi;
@@ -68,7 +69,7 @@ if (test "$SININS" != "1") then {
 } fi;
 
 if (test "$SINMIG" != "1") then {
-  (cd $rutaap; bin/rails db:migrate sip:indices db:schema:dump)
+  (cd $rutaap; bin/rails db:migrate msip:indices db:schema:dump)
   if (test "$?" != "0") then {
     exit 1;
   } fi;
@@ -103,7 +104,7 @@ if (test "$MENSCONS" = "") then {
 git commit -m "$MENSCONS" -a
 git push origin ${b}
 if (test "$?" != "0") then {
-  echo "No pudo subirse el cambio a github";
+  echo "No pudo subirse el cambio a gitlab";
   exit 1;
 } fi;
 

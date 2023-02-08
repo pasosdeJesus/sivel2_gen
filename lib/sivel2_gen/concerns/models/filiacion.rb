@@ -5,7 +5,7 @@ module Sivel2Gen
       module Filiacion
         extend ActiveSupport::Concern
 
-        include Sip::Basica
+        include Msip::Basica
         included do
                 self.table_name = 'sivel2_gen_filiacion'
 

@@ -7,13 +7,13 @@ module Sivel2Gen
 
         included do
 
-          include Sip::Modelo
+          include Msip::Modelo
 
           belongs_to :presponsable, foreign_key: "id_presponsable", 
             validate: true, class_name: 'Sivel2Gen::Presponsable', 
             optional: false
           belongs_to :grupoper, foreign_key: "id_grupoper", 
-            validate: true, class_name: 'Sip::Grupoper', optional: false
+            validate: true, class_name: 'Msip::Grupoper', optional: false
           belongs_to :caso, foreign_key: "id_caso", validate: true, 
             class_name: 'Sivel2Gen::Caso', optional: false
           belongs_to :categoria, foreign_key: "id_categoria", 

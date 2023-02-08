@@ -5,7 +5,7 @@ module Sivel2Gen
       module Presponsable
         extend ActiveSupport::Concern
 
-        include Sip::Basica
+        include Msip::Basica
         included do
 
 

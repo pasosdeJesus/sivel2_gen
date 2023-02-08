@@ -1,6 +1,6 @@
 module Sivel2Gen
   module Admin
-    class MaternidadesController < Sip::Admin::BasicasController
+    class MaternidadesController < Msip::Admin::BasicasController
       before_action :set_maternidad, only: [:show, :edit, :update, :destroy]
       load_and_authorize_resource class: Sivel2Gen::Maternidad
 

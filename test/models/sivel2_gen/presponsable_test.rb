@@ -3,13 +3,6 @@ require_relative '../../test_helper'
 module Sivel2Gen
   class PresponsableTest < ActiveSupport::TestCase
 
-    PRUEBA_PRESPONSABLE= {
-      id: 1000 ,
-      nombre: "Presponsable",
-      fechacreacion: "2014-09-09",
-      created_at: "2014-09-09"
-    }
-
     test "valido" do
       presponsable = Presponsable.create PRUEBA_PRESPONSABLE
       #byebug

@@ -5,7 +5,7 @@ module Sivel2Gen
       module Profesion
         extend ActiveSupport::Concern
 
-        include Sip::Basica
+        include Msip::Basica
         included do
           has_many :profesion_victimacolectiva, foreign_key: "id_profesion", 
             validate: true, class_name: 'Sivel2Gen::ProfesionVictimacolectiva'

@@ -12,8 +12,8 @@
 <% if !caso.ubicacion || caso.ubicacion.count == 0 || !caso.ubicacion_id %>
   <div class='alerta'>Caso sin ubicación principal</div>
 <% elsif caso.ubicacion.count >= 1 %>
-  <% ubi_principal = Sip::Ubicacion.find(caso.ubicacion_id) %>
-  <% if ubi_principal.pais.id == Sip.paisomision %>
+  <% ubi_principal = Msip::Ubicacion.find(caso.ubicacion_id) %>
+  <% if ubi_principal.pais.id == Msip.paisomision %>
     <% if ubi_principal.departamento %>
       DEPARTAMENTO: 
       <%= ubi_principal.departamento.nombre%> 

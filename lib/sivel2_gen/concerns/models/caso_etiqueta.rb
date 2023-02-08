@@ -6,9 +6,9 @@ module Sivel2Gen
         extend ActiveSupport::Concern
 
         included do
-          include Sip::Modelo
-          include Sip::Localizacion
-          include Sip::FormatoFechaHelper
+          include Msip::Modelo
+          include Msip::Localizacion
+          include Msip::FormatoFechaHelper
 
           self.table_name = 'sivel2_gen_caso_etiqueta'
 
@@ -16,7 +16,7 @@ module Sivel2Gen
             class_name: 'Sivel2Gen::Caso', inverse_of: :caso_etiqueta, 
             optional: false
           belongs_to :etiqueta, foreign_key: "id_etiqueta", validate: false,
-            class_name: 'Sip::Etiqueta', optional: false
+            class_name: 'Msip::Etiqueta', optional: false
           belongs_to :usuario, foreign_key: "id_usuario", validate: false, 
             optional: false
 

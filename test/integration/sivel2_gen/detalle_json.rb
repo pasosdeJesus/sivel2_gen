@@ -58,7 +58,7 @@ module Sivel2Gen
 
     test 'Valida caso en JSON detallado' do
       caso = Sivel2Gen::Caso.create! PRUEBA_CASO_BASICOS
-      ubicaso = Sip::Ubicacion.create(
+      ubicaso = Msip::Ubicacion.create(
         lugar: 'VEREDA EL PAPAYO',
         sitio: 'UNO DE LOS EXTREMOS DEL RÍO YURUMANGUÍ EN LA RIVERA DEL RÍO',
         id_caso: caso.id,
@@ -74,7 +74,7 @@ module Sivel2Gen
       ubicaso.save!
       caso.ubicacion_id = ubicaso.id
       caso.save!
-      persona1 =  Sip::Persona.create! PRUEBA_PERSONA1
+      persona1 =  Msip::Persona.create! PRUEBA_PERSONA1
       rangoedad = Sivel2Gen::Rangoedad.create! PRUEBA_RANGOEDAD
       profesion = Sivel2Gen::Profesion.create! PRUEBA_PROFESION
       sectorsocial = Sivel2Gen::Sectorsocial.create! PRUEBA_SECTORSOCIAL

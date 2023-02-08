@@ -5,14 +5,14 @@ module Sivel2Gen
         extend ActiveSupport::Concern
 
         included do
-          include Sip::Localizacion
-          include Sip::FormatoFechaHelper
+          include Msip::Localizacion
+          include Msip::FormatoFechaHelper
 
           self.table_name = 'sivel2_gen_caso_solicitud'
           belongs_to :caso, 
             class_name: 'Sivel2Gen::Caso',
             validate: true, foreign_key: 'caso_id', optional: false
-          belongs_to :solicitud, class_name: 'Sip::Solicitud', validate: true,
+          belongs_to :solicitud, class_name: 'Msip::Solicitud', validate: true,
             foreign_key: 'solicitud_id', optional: false
           accepts_nested_attributes_for :solicitud, reject_if: :all_blank
 

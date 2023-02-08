@@ -2,15 +2,15 @@ require 'date'
 
 module Sivel2Gen
   class UbicacionesController < ApplicationController
-    load_and_authorize_resource class: Sip::Ubicacion
+    load_and_authorize_resource class: Msip::Ubicacion
 
     # Crea un nuevo registro para el caso que recibe por parametro 
     # params[:caso_id].  Pone valores simples en los campos requeridos
     def nuevo
       if !params[:caso_id].nil?
-        @ubicacion = Sip::Ubicacion.new
+        @ubicacion = Msip::Ubicacion.new
         @ubicacion.id_caso = params[:caso_id]
-        @ubicacion.id_pais = Sip.paisomision
+        @ubicacion.id_pais = Msip.paisomision
         if @ubicacion.save(validate: false)
           respond_to do |format|
             format.js { render text: @ubicacion.id.to_s }

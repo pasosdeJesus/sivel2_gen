@@ -7,9 +7,9 @@ module Sivel2Gen
 
         included do
 
-          include Sip::Modelo
-          include Sip::Localizacion
-          include Sip::FormatoFechaHelper
+          include Msip::Modelo
+          include Msip::Localizacion
+          include Msip::FormatoFechaHelper
 
           belongs_to :caso, foreign_key: "id_caso", validate: true,
             class_name: 'Sivel2Gen::Caso', optional: false

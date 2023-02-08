@@ -1,6 +1,6 @@
 
 module Sivel2Gen
-  class HogarController < Sip::HogarController
+  class HogarController < Msip::HogarController
 
     # No define control de acceso por ser usada por no autenticados
 

@@ -1,6 +1,6 @@
 module Sivel2Gen
   module Admin
-    class PconsolidadosController < Sip::Admin::BasicasController
+    class PconsolidadosController < Msip::Admin::BasicasController
       before_action :set_pconsolidado, only: [:show, :edit, :update, :destroy]
       load_and_authorize_resource class: Sivel2Gen::Pconsolidado
 

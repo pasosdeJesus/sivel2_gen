@@ -5,7 +5,7 @@ module Sivel2Gen
       module Organizacion
         extend ActiveSupport::Concern
 
-        include Sip::Basica
+        include Msip::Basica
         included do
            has_and_belongs_to_many :victimacolectiva, 
                    class_name: 'Sivel2Gen::Victimacolectiva',

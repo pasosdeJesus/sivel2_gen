@@ -3,10 +3,10 @@
     <div class="offset-sm-0 col-sm-4">
     Etiqueta del caso:
     <%= f.input :busetiqueta_caso,
-        collection: Sip::ModeloHelper.opciones_tabla_basica(
-          Sip::Etiqueta, f, :etiqueta_id
+        collection: Msip::ModeloHelper.opciones_tabla_basica(
+          Msip::Etiqueta, f, :etiqueta_id
         ),
-        selected: Sip::ModeloHelper.poromision(params, 
+        selected: Msip::ModeloHelper.poromision(params, 
                                                "busetiqueta_caso".to_sym),
         input_html: {
           class: 'chosen-select',
