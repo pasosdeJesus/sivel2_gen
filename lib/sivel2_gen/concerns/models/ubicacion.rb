@@ -67,6 +67,20 @@ module Sivel2Gen
             self.id_clase= cen if cen
             self.latitud= datosent['latitud'] if datosent['latitud']
             self.longitud= datosent['longitud'] if datosent['longitud']
+            if datosent["observaciones"]
+              datosent["observaciones"].each do |obs|
+                ob = obs.split("_")
+                case ob[0]
+                  when "sitio"
+                    self.sitio = ob[1]
+                  when "lugar"
+                    self.lugar = ob[1]
+                  when "tsitio"
+                    ts = Msip::Tsitio.where(nombre: ob[1])[0]
+                    self.tsitio = ts if ts
+                end
+              end
+            end
             return self
           end  
           

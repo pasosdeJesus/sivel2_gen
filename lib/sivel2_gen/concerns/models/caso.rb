@@ -241,6 +241,7 @@ module Sivel2Gen
 
           def importa(datosent, datossal, formato_sexo,
                       menserror, opciones = {})
+            ## Datos básicos y memo 
             if datosent['fecha'].nil?
               self.fecha = Date.today
               menserror << "Falta fecha. "
@@ -256,6 +257,24 @@ module Sivel2Gen
               self.memo = datosent['hechos']
             end
             self.titulo = datosent['titulo'] if datosent['titulo']
+            if datosent["observaciones"]
+              datosent["observaciones"].each do |obs|
+                nombre = obs.split("_")
+                case nombre[0]
+                when "intervalo"
+                  inter = Sivel2Gen::Intervalo.where(nombre: nombre[1])
+                  self.intervalo = inter[0]
+                when "region"
+                  regiones = nombre[1].split("; ")
+                  regs = Sivel2Gen::Region.where(nombre: regiones)
+                  self.region.push(regs)
+                when "frontera"
+                  fronteras = nombre[1].split("; ")
+                  fron = Sivel2Gen::Frontera.where(nombre: fronteras)
+                  self.frontera.push(fron)
+                end
+              end
+            end
             self.save!(validate: false)
             #Importa ubicacion
             ubicacion = Msip::Ubicacion.new
