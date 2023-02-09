@@ -59,8 +59,9 @@
 
     <%= f.submit "Eliminar", 
         formaction: eliminar_casos_presponsable_path(id: f.object.id, index: f.index),
-        formmethod: :delete, 
-        formnovalidate: true, 
+        formmethod: :delete,
+        formnovalidate: true,
+        class: 'btn btn-sm btn-danger',
         data: { turbo_frame: "caso_presponsable_#{f.index}" } %>
 
   </div>

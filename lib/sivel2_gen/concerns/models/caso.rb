@@ -177,10 +177,12 @@ module Sivel2Gen
             fuentesprensa = self.caso_fuenteprensa
             valfp = []
             fuentesprensa.each do |fp|
-              if valfp.include? [fp.fecha, fp.fuenteprensa.nombre]
+              if fp && fp.fuenteprensa && 
+                valfp.include?([fp.fecha, fp.fuenteprensa.nombre])
                 errors.add(:caso_fuenteprensa, "Fuente de prensa duplicada con misma fecha y fuente")
               else
-                valfp.push([fp.fecha, fp.fuenteprensa.nombre])
+                valfp.push([fp.fecha, fp.fuenteprensa ? 
+                            fp.fuenteprensa.nombre : ''])
               end
             end
           end
