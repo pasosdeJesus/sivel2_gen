@@ -1,0 +1,16 @@
+<%= simple_form_for @caso do |form| %>
+  <%= form.simple_fields_for :caso_presponsable, child_index: params[:index] do |cpr_form| %>
+    <%= turbo_stream.replace "add-casopresponsable" do %>
+      <%= form.submit "Agregar presunto responsable", 
+            formaction: casos_presponsable_path(cpr_form.index.to_i + 1), 
+            formmethod: :post,
+            formnovalidate: true,
+            class: 'btn btn-sm btn-primary add-vic',
+            id: "add-casopresponsable" %>
+    <% end %>
+
+    <%= turbo_stream.append "presponsables_frame" do %>
+      <%= render "/sivel2_gen/casos/caso_presponsable_campos", f: cpr_form %>
+    <% end %>
+  <% end %>
+<% end %>

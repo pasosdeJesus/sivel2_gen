@@ -20,7 +20,9 @@ module Sivel2Gen
 
           has_many :caso_categoria_presponsable, 
             foreign_key: :id_caso_presponsable,
-            dependent: :destroy, validate: true
+            dependent: :destroy, validate: true,
+            inverse_of: :caso_presponsable,
+            class_name: 'Sivel2Gen::CasoCategoriaPresponsable'
           has_many :categoria, through: :caso_categoria_presponsable,
             class_name: 'Sivel2Gen::Categoria'
 

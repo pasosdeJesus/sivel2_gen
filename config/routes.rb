@@ -89,6 +89,14 @@ Sivel2Gen::Engine.routes.draw do
     end
   end
 
+  resources :casos_presponsable, only: [], param: :index do 
+    member do
+      delete '(:id)', to: "casopresponsables#destroy", as: "eliminar"
+      post '/' => "casopresponsables#create"
+
+    end
+  end
+
   namespace :admin do
     ab=::Ability.new
     ab.tablasbasicas.each do |t|
