@@ -9,7 +9,7 @@ module Sivel2Gen
     end
 
     test "valido" do
-      fotra = Fotra.create(PRUEBA_FOTRA)
+      fotra = Sivel2Gen::Fotra.create(PRUEBA_FOTRA)
 
       assert fotra.valid?
 
@@ -17,8 +17,7 @@ module Sivel2Gen
     end
 
     test "no valido" do
-      fotra = Fotra.create
-
+      fotra = Sivel2Gen::Fotra.create
       assert_not fotra.valid?
     end
   end

@@ -8,6 +8,8 @@ module Sivel2Gen
           include Msip::Localizacion
           include Msip::FormatoFechaHelper
 
+          belongs_to :fotra, class_name: "Sivel2Gen::Fotra", 
+            foreign_key: "id_fotra", optional: true
           belongs_to :caso, class_name: "Sivel2Gen::Caso", 
             foreign_key: "id_caso", validate: true, optional: false
           belongs_to :anexo_caso, class_name: "Sivel2Gen::AnexoCaso", 
