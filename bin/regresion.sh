@@ -16,6 +16,7 @@ if (test -f $rutaap/.env) then {
   cd $dirac
 } else {
   echo "No existe $rutaap/.env";
+  exit 1;
 } fi;
 
 if (test "$RUTA_RELATIVA" = "") then {
@@ -24,9 +25,16 @@ if (test "$RUTA_RELATIVA" = "") then {
 } fi;
 
 echo "== Prepara"
+ 
+(cd $rutaap; RAILS_ENV=test bin/rails db:environment:set RAILS_ENV=test)
+if (test "$?" != "0") then {
+  echo "No pudo prepararse entorno para pruebas";
+  exit 1;
+} fi;
+
 (cd $rutaap; RAILS_ENV=test bin/rails db:drop db:setup db:seed msip:indices)
 if (test "$?" != "0") then {
-  echo "No puede preparse base de prueba";
+  echo "No pudo prepararse base de prueba";
   exit 1;
 } fi;
 
