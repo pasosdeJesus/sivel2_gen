@@ -156,5 +156,20 @@ module Sivel2Gen
       cof.destroy
       @caso.destroy
     end
+
+    test "agrega presponsable con turbo" do
+      @caso = Sivel2Gen::Caso.create(PRUEBA_CASO)
+      assert @caso.valid?
+      pr = Sivel2Gen::Presponsable.take
+      cof = Sivel2Gen::CasoPresponsable.create(
+        id_caso: @caso.id,
+        id_presponsable: pr.id,
+        tipo: 0
+      )
+      post casos_fotra_path(@caso, cof, format: :turbo_stream)
+      assert_response :success
+      cof.destroy
+      @caso.destroy
+    end
   end
 end

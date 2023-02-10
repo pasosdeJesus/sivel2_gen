@@ -157,7 +157,10 @@ PRUEBA_FILIACION= {
 }
 
 PRUEBA_FOTRA = {
-  nombre: 'Fotra'
+  id: 1000 ,
+  nombre: 'Fotra',
+  created_at: "2014-09-09",
+  created_at: "2014-09-09",
 }
 
 PRUEBA_FRONTERA= {
