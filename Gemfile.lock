@@ -11,7 +11,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/heb412_gen.git
-  revision: 48c6c9c1fa3fa3b31a8e61783910c17b2bcc29e6
+  revision: 6df65a09562b5119f4a5735ff46fcbac27eb4ce9
   branch: v2.0
   specs:
     heb412_gen (2.0)
@@ -22,7 +22,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/mr519_gen.git
-  revision: 1359dec5ebc19f738a4d9a5fbfdfb34a2ed6bdbc
+  revision: 14254f1453ea09c0921a2f0cafcfa584d154b76f
   branch: v2.0
   specs:
     mr519_gen (2.0)
@@ -344,7 +344,7 @@ GEM
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
     will_paginate (3.3.1)
-    zeitwerk (2.6.6)
+    zeitwerk (2.6.7)
 
 PLATFORMS
   x86_64-openbsd
