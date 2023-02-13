@@ -446,18 +446,23 @@ module Sivel2Gen
                   menserror << "Tabla básica Filiación no tiene '#{ele[1]}'. "
                 end
               when 'vinculoestado'
-                self.id_vinculoestado = Sivel2Gen::Vinculoestado.
-                  where('TRIM(nombre)=?', ele[1]).ids[0]
+                if Sivel2Gen::Vinculoestado.where(
+                    'TRIM(nombre)=?', ele[1].strip).count ==1
+                  self.id_vinculoestado = Sivel2Gen::Vinculoestado.
+                    where('TRIM(nombre)=?', ele[1].strip).ids[0]
+                else
+                  menserror << "Tabla básica Vinculo estado no tiene '#{ele[1]}'. "
+                end
               when 'organizacion_armada'
-                self.organizacionarmada = ele[1].to_i
-                # Debería ser referencia interna en archivo XRLAT
-                # if ele[1].to_i == 0
-                # self.organizacionarmada = Sivel2Gen::Presponsable.
-                #   where('TRIM(nombre)=?', 'SIN INFORMACIÓN').ids[0]
-                #elsif Sivel2Gen::Presponsable.where(id: ele[1]).count
-                #  self.organizacionarmada = Sivel2Gen::Presponsable.
-                #    find(id: ele[1].to_i).id
-                #end
+                if Sivel2Gen::Presponsable.where(
+                    'TRIM(unaccent(nombre))=unaccent(?)', 
+                    ele[1].strip).count == 1
+                  self.organizacionarmada = Sivel2Gen::Presponsable.where(
+                    'TRIM(unaccent(nombre))=unaccent(?)', 
+                    ele[1].strip).take.id
+                else
+                  menserror << "Tabla básica Presunto Responsable no tiene '#{ele[1]}'. "
+                end
               when 'rangoedad'
                 if Sivel2Gen::Rangoedad.where('TRIM(nombre)=?', ele[1].strip).count ==1
                   self.id_rangoedad = Sivel2Gen::Rangoedad.
