@@ -33,7 +33,7 @@ module Sivel2Gen
       assert :success
     end
 
-    
+
     test 'filtro de fecha valido por estar en rango' do
       Sivel2Gen::Conscaso.refresca_conscaso
       caso1 = Sivel2Gen::Caso.create PRUEBA_CASO_BASICOS1
@@ -44,14 +44,14 @@ module Sivel2Gen
       assert range === fechacaso1
       caso1.destroy
     end
- 
+
     test 'filtro de fecha no valido por fuera de rangoo' do
       Sivel2Gen::Conscaso.refresca_conscaso
       caso1 = Sivel2Gen::Caso.create PRUEBA_CASO_BASICOS1
       maniana = Time.now + (60 * 60 * 24)
       fechacaso1 = caso1.fecha.strftime("%F")
-      assert fechacaso1 < maniana 
+      assert fechacaso1 < maniana
       caso1.destroy
-    end  
+    end
   end
 end

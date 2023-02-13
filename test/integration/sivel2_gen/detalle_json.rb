@@ -33,29 +33,6 @@ module Sivel2Gen
       sexo: 'M'
     }
 
-    PRUEBA_PROFESION = {
-      id: 1000,
-      nombre: 'Profesion',
-      fechacreacion: '2014-09-09',
-      created_at: '2014-09-09'
-    }
-
-    PRUEBA_RANGOEDAD = {
-      id: 1000,
-      nombre: 'De 0 a 15 Años',
-      rango: '1-2',
-      limiteinferior: 1,
-      limitesuperior: 2,
-      fechacreacion: '2014-09-09',
-      created_at: '2014-09-09'
-    }
-
-    PRUEBA_SECTORSOCIAL = {
-      id: 1000,
-      nombre: 'Pruebaempleado',
-      fechacreacion: '2014-09-09'
-    }
-
     test 'Valida caso en JSON detallado' do
       caso = Sivel2Gen::Caso.create! PRUEBA_CASO_BASICOS
       ubicaso = Msip::Ubicacion.create(
@@ -114,7 +91,6 @@ module Sivel2Gen
       Sivel2Gen::CasoContexto.create(
         id_caso: caso.id,
         id_contexto: contexto.id,
-        created_at: '2014-09-09'
       )
       region1 = Sivel2Gen::Region.find(6)
       Sivel2Gen::CasoRegion.create(
@@ -138,9 +114,10 @@ module Sivel2Gen
             "titulo": "",
             "hechos":"Paramilitares hirieron con arma de fuego a Kevin Enrique Umaña Morantes, de 18 años de edad, mientras se desplazaba por una calle del barrio Nueva Esperanza, Comuna 5. Según la fuente: “El hecho se presentó el 10 de julio, hacia las 6:00 de la mañana, cuando Umaña Morantes, era perseguido por dos sujetos a bordo de una motocicleta, al percatarse del hecho se refugió una vivienda a donde ingresaron los agresores y le propinaron dos impactos de arma de fuego. La zona tiene presencia de grupos posdesmovilización que se disputan el control territorial”.",
             "fecha": "2018-01-01",
-            "departamento": "VALLE DEL CAUCA",
-            "municipio": "BUENAVENTURA",
-            "centro_poblado": "SAN JOSÉ",
+            "departamento": "Valle del Cauca",
+            "municipio": "Buenaventura",
+            "centro_poblado": "San José",
+            "lugar": "VEREDA EL PAPAYO",
             "presponsables":
               {
                 "14":"PARAMILITARES"
@@ -166,6 +143,8 @@ EOS
     end
 
     def compara(json_ob, json_es)
+      puts "json_ob=#{json_ob.to_s}"
+      puts "json_es=#{json_es.to_s}"
       assert(JsonUtilities.compare_json(json_ob,json_es), "Fallas en la comparación")
     end
   end

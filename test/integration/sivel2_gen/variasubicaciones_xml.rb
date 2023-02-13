@@ -15,17 +15,8 @@ module Sivel2Gen
       sign_in @current_usuario
     end
 
-    PRUEBA_CASO_BASICOS = {
-      fecha: '2014-11-19',
-      memo: '',
-      created_at: '2014-11-11',
-      titulo: 'Caso de prueba con datos basicos',
-      hora: '6 pm',
-      duracion: '1 hora'
-    }
-
-    test 'genera xml del caso y su ubicacion' do
-      caso = Sivel2Gen::Caso.create PRUEBA_CASO_BASICOS
+    test 'genera xml del caso con varias ubicaciones' do
+      caso = Sivel2Gen::Caso.create PRUEBA_CASO
       ubicaso1 = Msip::Ubicacion.create(
         lugar: 'VEREDA EL PAPAYO',
         sitio: 'UNO DE LOS EXTREMOS DEL RÍO YURUMANGUÍ EN LA RIVERA DEL RÍO',

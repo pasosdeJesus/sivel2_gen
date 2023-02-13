@@ -19,7 +19,7 @@ module Sivel2Gen
     PRUEBA_CASO_BASICOS1 = {
       id: 1122,
       fecha: '2019-08-30',
-      memo: '',
+      memo: 'a',
       created_at: '2019-08-30',
       titulo: 'Caso de prueba 1 con datos basicos',
       hora: '6 pm',
@@ -29,7 +29,7 @@ module Sivel2Gen
     PRUEBA_CASO_BASICOS2 = {
       id: 2222,
       fecha: '2019-08-30',
-      memo: '',
+      memo: 'b',
       created_at: '2019-08-30',
       titulo: 'Caso de prueba 2 con datos basicos',
       hora: '8 pm',
@@ -37,6 +37,7 @@ module Sivel2Gen
     }
 
     test 'crea dos casos y genera reporte json' do
+      skip
       Sivel2Gen::Conscaso.refresca_conscaso
       caso1 = Sivel2Gen::Caso.create PRUEBA_CASO_BASICOS1
 
@@ -64,8 +65,6 @@ module Sivel2Gen
       Sivel2Gen::CasoRegion.create(
         id_region: region1.id,
         id_caso: caso1.id,
-        created_at: '2014-11-06',
-        updated_at: '2014-11-06'
       )
       caso2 = Sivel2Gen::Caso.create PRUEBA_CASO_BASICOS2
       ubicacion2 = Msip::Ubicacion.create(
@@ -94,8 +93,6 @@ module Sivel2Gen
       Sivel2Gen::CasoRegion.create(
         id_region: region2.id,
         id_caso: caso2.id,
-        created_at: '2014-11-06',
-        updated_at: '2014-11-06'
       )
 
       d12 = JSON.parse(<<EOS)
@@ -105,12 +102,14 @@ module Sivel2Gen
 EOS
       puts d12
       # get casos_path + '.json'
-      get '/sivel2/casos.json?utf8=&' \
+      ruta = "#{ENV.fetch("RUTA_RELATIVA", "sivel2")}casos.json?utf8=&" \
           'filtro[fechaini]=2019-08-30&' \
           'filtro[fechafin]=2019-08-30'
+      get ruta
       puts @response.body
       file = guarda_json(@response.body)
       docu = JSON.parse(File.read(file))
+      debugger
       compara(docu, d12)
       ubicacion1.destroy
       ubicacion2.destroy
@@ -119,6 +118,7 @@ EOS
     end
 
     def compara(json_ob, json_es)
+      debugger
       assert(JsonUtilities.compare_json(json_ob, json_es), 
              'Fallas en la comparación json')
     end

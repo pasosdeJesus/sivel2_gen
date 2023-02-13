@@ -54,29 +54,6 @@ module Sivel2Gen
       sexo: 'S'
     }
 
-    PRUEBA_PROFESION = {
-      id: 1000,
-      nombre: 'Profesion',
-      fechacreacion: '2014-09-09',
-      created_at: '2014-09-09'
-    }
-
-    PRUEBA_RANGOEDAD = {
-      id: 1000,
-      nombre: 'De 0 a 15 Años',
-      nombre: '1-2',
-      limiteinferior: 1,
-      limitesuperior: 2,
-      fechacreacion: '2014-09-09',
-      created_at: '2014-09-09'
-    }
-
-    PRUEBA_SECTORSOCIAL = {
-      id: 1000,
-      nombre: 'Pruebaempleado',
-      fechacreacion: '2014-09-09'
-    }
-
     test 'Valida caso de prueba como uno de sivel12' do
       caso = Sivel2Gen::Caso.create! PRUEBA_CASO_BASICOS
       ubicaso = Msip::Ubicacion.create(

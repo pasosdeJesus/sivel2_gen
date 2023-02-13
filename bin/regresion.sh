@@ -24,7 +24,7 @@ if (test "$RUTA_RELATIVA" = "") then {
   exit 1
 } fi;
 
-echo "== Prepara"
+echo "== Prepara base"
  
 (cd $rutaap; RAILS_ENV=test bin/rails db:environment:set RAILS_ENV=test)
 if (test "$?" != "0") then {
@@ -38,7 +38,7 @@ if (test "$?" != "0") then {
   exit 1;
 } fi;
 
-echo "== Prepara entorno"
+echo "== Prepara herramientas"
 
 vm=`ruby -v | sed  -e "s/^ruby \([0-9]\.[0-9]\).[0-9]* .*/\1/g"`
 if (test "$vm" = "") then {
@@ -51,36 +51,43 @@ if (test "$vm" = "3.2") then {
   RAILS="ruby --yjit bin/rails"
 } fi;
 
-if (test -f "test/dummy/config/application.rb") then {
-  (cd test/dummy; ${RAILS} db:environment:set RAILS_ENV=test; RAILS_ENV=test ${RAILS} db:drop db:create db:setup db:seed msip:indices)
-} else {
-  ${RAILS} db:environment:set RAILS_ENV=test; 
-  RAILS_ENV=test ${RAILS} db:drop db:create db:setup db:seed msip:indices
+(cd $rutaap;  ${RAILS} db:environment:set RAILS_ENV=test; RAILS_ENV=test ${RAILS} db:drop db:create db:setup db:seed msip:indices)
+if (test "$?" != "0") then {
+  echo "No se pudo inicializar base de pruebas";
+  exit 1;
 } fi;
 
 echo "== Pruebas de regresión unitarias"
 mkdir -p cobertura-unitarias/
 rm -rf cobertura-unitarias/{*,.*}
 CONFIG_HOSTS=www.example.com ${RAILS} test
+if (test "$?" != "0") then {
+  echo "No pasaron pruebas de regresión unitarias";
+  exit 1;
+} fi;
+
+CONFIG_HOSTS=www.example.com bin/rails test `find test/integration -type f`
+if (test "$?" != "0") then {
+  echo "No pasaron pruebas de integración";
+  exit 1;
+} fi;
 
 echo "== Pruebas de regresión al sistema"
-if (test -f "test/dummy/config/application.rb") then {
-  mkdir -p test/dummy/cobertura-sistema/
-  rm -rf test/dummy/cobertura-sistema/{*,.*}
-  if (test "$CI" = "") then { # Por ahora no en gitlab-ci
-    (cd test/dummy; CONFIG_HOSTS=127.0.0.1 ${RAILS} msip:stimulus_motores test:system)
+mkdir -p $rutaap/cobertura-sistema/
+rm -rf $rutaap/cobertura-sistema/{*,.*}
+if (test "$CI" = "") then { # Por ahora no en gitlab-ci
+  (cd $rutaap; CONFIG_HOSTS=127.0.0.1 ${RAILS} msip:stimulus_motores test:system)
+  if (test "$?" != "0") then {
+    echo "No pasaron pruebas del sistema rails";
+    exit 1;
   } fi;
-  if (test -f test/dummy/bin/pruebasjs) then {
-    (cd test/dummy; CONFIG_HOSTS=127.0.0.1 ${RAILS} msip:stimulus_motores; bin/pruebasjs)
-  } fi;
-} else {
-  mkdir -p cobertura-sistema/
-  rm -rf cobertura-sistema/{*,.*}
-  if (test "$CI" = "") then { # Por ahora no en gitlab-ci
-    CONFIG_HOSTS=127.0.0.1 ${RAILS} msip:stimulus_motores test:system
-  } fi;
-  if (test -f bin/pruebasjs) then {
-    (CONFIG_HOSTS=127.0.0.1 ${RAILS} msip:stimulus_motores; bin/pruebasjs)
+} fi;
+
+if (test -f $rutaap/bin/pruebasjs) then {
+  (cd $rutaap; CONFIG_HOSTS=127.0.0.1 ${RAILS} msip:stimulus_motores; bin/pruebasjs)
+  if (test "$?" != "0") then {
+    echo "No pasaron pruebas del sistema js";
+    exit 1;
   } fi;
 } fi;
 

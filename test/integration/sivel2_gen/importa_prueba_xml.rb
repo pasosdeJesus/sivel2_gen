@@ -9,7 +9,8 @@ module Sivel2Gen
 
     setup do
       @routes = Engine.routes
-      @current_usuario = ::Usuario.create(PRUEBA_USUARIO)
+      ::Usuario.create!(PRUEBA_USUARIO)
+      @current_usuario = Usuario.where(nusuario: 'admin').take
       sign_in @current_usuario
     end
 
@@ -26,9 +27,13 @@ module Sivel2Gen
       verifica_dtd(docnoko.to_xml) #Pasa si es validado el dtd
       menserror = ''
       mensexito = ''
+      errsint = ""
       ids = ''
+      @current_usuario = Usuario.where(nusuario: 'admin').take
       Sivel2Gen::CasosController::importar_relato(
-        docnoko.to_xml, menserror, mensexito, ids, @current_usuario.id)    
+        docnoko.to_xml, menserror, errsint, mensexito, 
+        ids, @current_usuario.id, 'sexomfs'
+      )
       assert_equal 1, ids.split(' ').map(&:to_i).select {|x| x>0}.count
     end
 
@@ -45,9 +50,13 @@ module Sivel2Gen
       verifica_dtd(docnoko.to_xml) #Pasa si es validado el dtd
       menserror = ''
       mensexito = ''
+      errsint = ""
       ids = ''
+      @current_usuario = Usuario.where(nusuario: 'admin').take
       Sivel2Gen::CasosController::importar_relato(
-        docnoko.to_xml, menserror, mensexito, ids, @current_usuario.id)    
+        docnoko.to_xml, menserror, errsint, mensexito, 
+        ids, @current_usuario.id, 'sexomfs'
+      )
       assert_equal 9, ids.split(' ').map(&:to_i).select {|x| x>0}.count
 
     end

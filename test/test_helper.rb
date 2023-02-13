@@ -297,6 +297,14 @@ PRUEBA_SOLICITUD = {
   updated_at: "2022-06-24",
 }
 
+PRUEBA_TVIOLENCIA = {
+  id: 'S',
+  nombre: 'VIOLENCIA POLÍTICO SOCIAL',
+  nomcorto: 'nombrec',
+  fechacreacion: '2014-09-09',
+  created_at: '2014-09-09'
+}
+
 # Usuario administrador para ingresar y hacer pruebas
 PRUEBA_USUARIO = {
   nusuario: "admin",
