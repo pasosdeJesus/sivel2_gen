@@ -15,15 +15,9 @@ module Sivel2Gen
       sign_in @current_usuario
     end
 
-    PRUEBA_CASOV = {
-      fecha: '2014-11-19',
-      memo: '',
-      created_at: '2014-11-11'
-    }
-
     PRUEBA_CASO_BASICOS = {
       fecha: '2014-11-19',
-      memo: '',
+      memo: 'b',
       created_at: '2014-11-11',
       titulo: 'Caso de prueba con datos basicos',
       hora: '6 pm',
@@ -31,7 +25,7 @@ module Sivel2Gen
     }
 
     test 'caso valido' do
-      caso = Sivel2Gen::Caso.create! PRUEBA_CASOV
+      caso = Sivel2Gen::Caso.create! PRUEBA_CASO
       assert caso.valid?
       caso.destroy
     end
@@ -41,12 +35,13 @@ module Sivel2Gen
       ubicaso = Sip::Ubicacion.create(
         id_caso: caso.id,
         id_pais: 170,
+        id_departamento: 4,
         created_at: '2019-01-01',
       )
       ubicaso.save!
       caso.ubicacion_id = ubicaso.id
       caso.save!
-      get caso_path(caso) + '.xml'
+      get caso_path(caso) + '.xrlat'
       assert :success
       puts @response.body
       file = guarda_xml(@response.body)
@@ -68,7 +63,7 @@ module Sivel2Gen
       ubicacion1.save!
       caso.ubicacion_id = ubicacion1.id
       caso.save!
-      get caso_path(caso) + '.xml'
+      get caso_path(caso) + '.xrlat'
       puts @response.body
       file = guarda_xml(@response.body)
       docu = File.read(file)

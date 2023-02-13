@@ -988,8 +988,14 @@ module Sivel2Gen
             end
             ## Verifica si trae un enlace a un dtd válido (097, 098 o 099)
             enlace = docnoko_inicial.children[0].system_id
-            pre = "http://sincodh.pasosdejesus.org/relatos/relatos-"
-            aceptados = [pre + "097.dtd", pre + "098.dtd", pre + "099.dtd"]
+            http = "http://sincodh.pasosdejesus.org/relatos/relatos-"
+            pru = "test/dummy/public/relatos-"
+            aceptados = []
+            [http, pru].each do |pre|
+              aceptados += [
+                pre + "097.dtd", pre + "098.dtd", pre + "099.dtd",
+              ]
+            end
             if aceptados.include? enlace
               # Adaptado de respuesta de the Tin Man de 
               # https://nokogiri.org/tutorials/parsing_an_html_xml_document.html#encoding

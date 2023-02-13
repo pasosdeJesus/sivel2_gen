@@ -15,59 +15,12 @@ module Sivel2Gen
       sign_in @current_usuario
     end
 
-    PRUEBA_CASO_BASICOS = {
-      fecha: '2014-11-19',
-      memo: '',
-      created_at: '2014-11-11',
-      titulo: 'Caso de prueba con datos basicos',
-      hora: '6 pm',
-      duracion: '1 hora'
-    }
-
-    PRUEBA_PERSONA = {
-      nombres: 'Nombres',
-      apellidos: 'Apellidos',
-      anionac: 1974,
-      mesnac: 1,
-      dianac: 1,
-      sexo: 'F',
-      id_pais: 170,
-      id_departamento: 17,
-      id_municipio: 1152,
-      id_clase: 2626,
-      tdocumento_id: 1,
-      numerodocumento: '10000000',
-      nacionalde: 170
-    }
-
-    PRUEBA_PROFESION = {
-      id: 1000,
-      nombre: 'Profesion',
-      fechacreacion: '2014-09-09',
-      created_at: '2014-09-09'
-    }
-
-    PRUEBA_RANGOEDAD = {
-      id: 1000,
-      nombre: 'Rangoedad',
-      rango: '1-2',
-      limiteinferior: 1,
-      limitesuperior: 2,
-      fechacreacion: '2014-09-09',
-      created_at: '2014-09-09'
-    }
-
-    PRUEBA_SECTORSOCIAL = {
-      id: 1000,
-      nombre: 'Pruebaumpleado',
-      fechacreacion: '2014-09-09'
-    }
-
     test 'Valida caso con 1 victima' do
-      caso = Sivel2Gen::Caso.create! PRUEBA_CASO_BASICOS
+      caso = Sivel2Gen::Caso.create! PRUEBA_CASO
       ubicaso = Sip::Ubicacion.create(
         id_caso: caso.id,
         id_pais: 170,
+        id_departamento: 4,
         created_at: '2019-01-01',
       )
       ubicaso.save!
@@ -85,7 +38,7 @@ module Sivel2Gen
         id_profesion: profesion.id,
         id_sectorsocial: sectorsocial.id
       )
-      get caso_path(caso) + '.xml'
+      get caso_path(caso) + '.xrlat'
       puts @response.body
       file = guarda_xml(@response.body)
       docu = File.read(file)
@@ -97,10 +50,11 @@ module Sivel2Gen
     end
 
     test 'valida caso con 2 victimas' do
-      caso = Sivel2Gen::Caso.create! PRUEBA_CASO_BASICOS
+      caso = Sivel2Gen::Caso.create! PRUEBA_CASO
       ubicaso = Sip::Ubicacion.create(
         id_caso: caso.id,
         id_pais: 170,
+        id_departamento: 4,
         created_at: '2019-01-01',
       )
       ubicaso.save!
@@ -127,7 +81,7 @@ module Sivel2Gen
         id_sectorsocial: sectorsocial.id,
         id_profesion: profesion.id
       )
-      get caso_path(caso) + '.xml'
+      get caso_path(caso) + '.xrlat'
       # puts @response.body
       file = guarda_xml(@response.body)
       docu = File.read(file)
@@ -141,10 +95,11 @@ module Sivel2Gen
     end
 
     test 'valida caso con 1 victima colectiva' do
-      caso = Sivel2Gen::Caso.create! PRUEBA_CASO_BASICOS
+      caso = Sivel2Gen::Caso.create! PRUEBA_CASO
       ubicaso = Sip::Ubicacion.create(
         id_caso: caso.id,
         id_pais: 170,
+        id_departamento: 4,
         created_at: '2019-01-01',
       )
       ubicaso.save!
@@ -161,7 +116,7 @@ module Sivel2Gen
         personasaprox: 5,
         organizacionarmada: 5
       )
-      get caso_path(caso) + '.xml'
+      get caso_path(caso) + '.xrlat'
       # puts @response.body
       file = guarda_xml(@response.body)
       docu = File.read(file)
@@ -172,10 +127,11 @@ module Sivel2Gen
     end
 
     test 'valida caso con 2 victimas colectivas' do
-      caso = Sivel2Gen::Caso.create! PRUEBA_CASO_BASICOS
+      caso = Sivel2Gen::Caso.create! PRUEBA_CASO
       ubicaso = Sip::Ubicacion.create(
         id_caso: caso.id,
         id_pais: 170,
+        id_departamento: 4,
         created_at: '2019-01-01',
       )
       ubicaso.save!
@@ -203,7 +159,7 @@ module Sivel2Gen
         personasaprox: 5,
         organizacionarmada: 5
       )
-      get caso_path(caso) + '.xml'
+      get caso_path(caso) + '.xrlat'
       file = guarda_xml(@response.body)
       docu = File.read(file)
       verifica_dtd(docu)
@@ -215,10 +171,11 @@ module Sivel2Gen
     end
 
     test 'valida con 1 presunto responsable' do
-      caso = Sivel2Gen::Caso.create! PRUEBA_CASO_BASICOS
+      caso = Sivel2Gen::Caso.create! PRUEBA_CASO
       ubicaso = Sip::Ubicacion.create(
         id_caso: caso.id,
         id_pais: 170,
+        id_departamento: 4,
         created_at: '2019-01-01',
       )
       ubicaso.save!
@@ -233,11 +190,8 @@ module Sivel2Gen
       casopresponsable = Sivel2Gen::CasoPresponsable.create(
         id_caso: caso.id,
         id_presponsable: presponsable.id,
-        bloque: 'Bloque',
-        frente: 'Frente',
-        brigada: 'Brigada'
       )
-      get caso_path(caso) + '.xml'
+      get caso_path(caso) + '.xrlat'
       file = guarda_xml(@response.body)
       docu = File.read(file)
       verifica_dtd(docu)

@@ -15,17 +15,8 @@ module Sivel2Gen
       sign_in @current_usuario
     end
 
-    PRUEBA_CASO_BASICOS = {
-      fecha: '2014-11-19',
-      memo: '',
-      created_at: '2014-11-11',
-      titulo: 'Caso de prueba con datos basicos',
-      hora: '6 pm',
-      duracion: '1 hora'
-    }
-
     test 'Valida caso con 1 combatiente' do
-      caso = Sivel2Gen::Caso.create! PRUEBA_CASO_BASICOS
+      caso = Sivel2Gen::Caso.create! PRUEBA_CASO
       caso.save!
       combatiente = Sivel2Gen::Combatiente.create(
         id_caso: caso.id,

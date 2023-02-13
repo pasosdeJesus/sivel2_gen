@@ -86,6 +86,12 @@ if (test "$?" != "0") then {
   exit 1;
 } fi;
 
+CONFIG_HOSTS=www.example.com bin/rails test `find test/integration -type f`
+if (test "$?" != "0") then {
+  echo "No pasaron pruebas de integración";
+  exit 1;
+} fi;
+
 (cd $rutaap; CONFIG_HOSTS=127.0.0.1 bin/rails test:system)
 if (test "$?" != "0") then {
   echo "No pasaron pruebas del sistema";
