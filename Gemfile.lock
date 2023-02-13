@@ -25,7 +25,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/heb412_gen.git
-  revision: 8e93b9bedab1e46d375d318475595884b555e527
+  revision: 75b43073f9836691ea45a90b23e0b0c8e54b81ae
   branch: main
   specs:
     heb412_gen (2.2.0.alfa1)
@@ -36,7 +36,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/mr519_gen.git
-  revision: 3cb441983775b1e5d6ddad01e4923dfcabc4ddf2
+  revision: 8b35299dbf000a1f11ddf6ace9a178fccca56d7f
   branch: main
   specs:
     mr519_gen (2.2.0.beta1)
@@ -45,7 +45,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/msip.git
-  revision: 484be27d5f0cf08e39496b8f0c240c2f1556602c
+  revision: f5a5e59d51cd2f3bc818e39cd6f7d3fd5238ad7e
   branch: main
   specs:
     msip (2.2.0.beta1)
@@ -174,6 +174,8 @@ GEM
     coffee-script-source (1.12.2)
     color (1.8)
     colorize (0.8.1)
+    compare-xml (0.66)
+      nokogiri (~> 1.8)
     concurrent-ruby (1.2.0)
     crass (1.0.6)
     cuprite (0.14.3)
@@ -275,7 +277,7 @@ GEM
       prawn (>= 1.0.0)
       rails (>= 3.2)
     public_suffix (5.0.1)
-    puma (6.0.2)
+    puma (6.1.0)
       nio4r (~> 2.0)
     racc (1.6.2)
     rack (2.2.6.2)
@@ -342,8 +344,8 @@ GEM
       rubocop-ast (>= 1.24.1, < 2.0)
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 2.4.0, < 3.0)
-    rubocop-ast (1.24.1)
-      parser (>= 3.1.1.0)
+    rubocop-ast (1.26.0)
+      parser (>= 3.2.1.0)
     rubocop-minitest (0.27.0)
       rubocop (>= 0.90, < 2.0)
     rubocop-rails (2.17.4)
@@ -432,6 +434,7 @@ DEPENDENCIES
   coffee-rails
   color
   colorize
+  compare-xml
   cuprite
   debug (>= 1.0.0)
   devise

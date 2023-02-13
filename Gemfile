@@ -122,6 +122,8 @@ group  :development, :test do
 end
 
 group :test do
+  gem 'compare-xml'
+
   gem 'cuprite'
 
   gem "minitest", "~> 5.16"
