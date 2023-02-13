@@ -43,7 +43,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/heb412_gen.git
-  revision: f13a7033ebd95de35104d888b826a91da33d574b
+  revision: 975b20e437ed77d8c994b85054d62791fdf20bfc
   branch: v2.1
   specs:
     heb412_gen (2.1.0.beta1)
@@ -54,7 +54,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/mr519_gen.git
-  revision: b05fc57ba2c7f1ab49e3cc1085e398024ff2df96
+  revision: 10c5ecad4778f16e778dad7d1403c69fb6fdd736
   branch: v2.1
   specs:
     mr519_gen (2.1.0.beta1)
@@ -259,7 +259,7 @@ GEM
       prawn (>= 1.0.0)
       rails (>= 3.2)
     public_suffix (5.0.1)
-    puma (6.0.2)
+    puma (6.1.0)
       nio4r (~> 2.0)
     racc (1.6.2)
     rack (2.2.6.2)
