@@ -76,7 +76,7 @@ module Sivel2Gen
                   when "lugar"
                     self.lugar = ob[1]
                   when "tsitio"
-                    ts = Mmsip::Tsitio.where(nombre: ob[1])[0]
+                    ts = Msip::Tsitio.where(nombre: ob[1])[0]
                     self.tsitio = ts if ts
                 end
               end
