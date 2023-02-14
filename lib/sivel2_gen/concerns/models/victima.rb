@@ -335,6 +335,7 @@ module Sivel2Gen
                 end
 
                 def recorrer_observaciones_p(ele, per, menserror)
+                 self.save!
                  case ele[0]
                  when 'etnia'
                    self.id_etnia = Sivel2Gen::Etnia.where('TRIM(nombre)=?', ele[1]).ids[0]
@@ -445,17 +446,23 @@ module Sivel2Gen
                   menserror << "Tabla básica Filiación no tiene '#{ele[1]}'. "
                 end
               when 'vinculoestado'
-                self.id_vinculoestado = Sivel2Gen::Vinculoestado.
-                  where('TRIM(nombre)=?', ele[1]).ids[0]
+                if Sivel2Gen::Vinculoestado.where(
+                    'TRIM(nombre)=?', ele[1].strip).count ==1
+                  self.id_vinculoestado = Sivel2Gen::Vinculoestado.
+                    where('TRIM(nombre)=?', ele[1].strip).ids[0]
+                else
+                  menserror << "Tabla básica Vinculo estado no tiene '#{ele[1]}'. "
+                end
               when 'organizacion_armada'
-                # Debería ser referencia interna en archivo XRLAT
-                # if ele[1].to_i == 0
-                # self.organizacionarmada = Sivel2Gen::Presponsable.
-                #   where('TRIM(nombre)=?', 'SIN INFORMACIÓN').ids[0]
-                #elsif Sivel2Gen::Presponsable.where(id: ele[1]).count
-                #  self.organizacionarmada = Sivel2Gen::Presponsable.
-                #    find(id: ele[1].to_i).id
-                #end
+                if Sivel2Gen::Presponsable.where(
+                    'TRIM(unaccent(nombre))=unaccent(?)', 
+                    ele[1].strip).count == 1
+                  self.organizacionarmada = Sivel2Gen::Presponsable.where(
+                    'TRIM(unaccent(nombre))=unaccent(?)', 
+                    ele[1].strip).take.id
+                else
+                  menserror << "Tabla básica Presunto Responsable no tiene '#{ele[1]}'. "
+                end
               when 'rangoedad'
                 if Sivel2Gen::Rangoedad.where('TRIM(nombre)=?', ele[1].strip).count ==1
                   self.id_rangoedad = Sivel2Gen::Rangoedad.
@@ -467,8 +474,63 @@ module Sivel2Gen
                   self.hijos = ele[1]
               when 'anotaciones'
                   self.anotaciones = ele[1]
+              when 'sectorsocialsec'
+                ele[1].split(";").each do |sec|
+                  sectorsocial = Sivel2Gen::Sectorsocial.where(nombre: sec)
+                  if sectorsocial.count == 1
+                    ss = Sivel2Gen::SectorsocialsecVictima.new
+                    ss.sectorsocial_id = sectorsocial[0].id
+                    ss.victima_id = self.id
+                    ss.save!
+                  else
+                    menserror << "En la tabla básica Sector Social no está " +
+                      "'#{sec}'"
+                  end
+                end
+              when 'otraorga'
+                ele[1].split(";").each do |org|
+                  organizacion = Sivel2Gen::Organizacion.where(nombre: org)
+                  if organizacion.count == 1
+                    orgv = Sivel2Gen::OtraorgaVictima.new
+                    orgv.organizacion_id = organizacion[0].id
+                    orgv.victima_id = self.id
+                    orgv.save!
+                  else
+                    menserror << "En la tabla básica Organización no está " +
+                      "'#{org}'"
+                  end
+                end
+              when 'contexto'
+                ele[1].split(";").each do |cont|
+                  contexto = Sivel2Gen::Contextovictima.where(nombre: cont)
+                  if contexto.count == 1
+                    contv = Sivel2Gen::ContextovictimaVictima.new
+                    contv.contextovictima_id = contexto[0].id
+                    contv.victima_id = self.id
+                    contv.save!
+                  else
+                    menserror << "En la tabla básica Organización no está " +
+                      "'#{cont}'"
+                  end
+                end
+              when 'orientacionsexual'
+                self.orientacionsexual = ele[1]
+              when 'antecedente'
+                ele[1].split(";").each do |ante|
+                  antecedente = Sivel2Gen::Antecedente.where(nombre: ante)
+                  if antecedente.count == 1
+                    antv = Sivel2Gen::AntecedenteVictima.new
+                    antv.id_antecedente = antecedente[0].id
+                    antv.id_victima = self.id
+                    antv.save!
+                  else
+                    menserror << "En la tabla básica Organización no está " +
+                      "'#{ante}'"
+                  end
+                end
               end
-            end 
+            end
+
             if v['observaciones'].kind_of?(Array)
               v['observaciones'].each do |ob|
                 ele = ob.split(/\_([^_]*)$/)

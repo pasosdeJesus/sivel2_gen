@@ -44,9 +44,11 @@ xml.relato do
     xml.grupo do
       xml.id_grupo vc.grupoper.id
       xml.nombre_grupo vc.grupoper.nombre
-      ['personasaprox','organizacion_armada'].each do |ob|
-        xml.observaciones(vc[ob], {tipo: ob}) if vc[ob]
+      ['personasaprox','organizacionarmada'].each do |ob|
+        xml.observaciones(vc.send(ob), {tipo: ob}) if vc.send(ob)
       end
+      xml.observaciones(vc.grupoper.anotaciones,
+                        {tipo: 'anotaciones'}) if vc.grupoper
       xml.observaciones(vc.antecedente.map(&:nombre).join(";"), 
                         {tipo: 'antecedente'}) if vc.antecedente[0]
       xml.observaciones(vc.filiacion.map(&:nombre).join(";"), 
@@ -61,6 +63,8 @@ xml.relato do
                         {tipo: 'sectorsocial'}) if vc.sectorsocial[0]
       xml.observaciones(vc.vinculoestado.map(&:nombre).join(";"), 
                         {tipo: 'vinculoestado'}) if vc.vinculoestado[0]
+      xml.observaciones(vc.etnia.map(&:nombre).join(";"),
+                        {tipo: 'etnia'}) if vc.etnia[0]
     end
   end
 
@@ -88,8 +92,17 @@ xml.relato do
         xml.sector_condicion v.sectorsocial.nombre if v.sectorsocial
         xml.iglesia v.iglesia.nombre if v.iglesia
         xml.organizacion v.organizacion.nombre
+        xml.observaciones(v.contextovictima.map(&:nombre).join(";"), 
+                          {tipo: 'contexto'}) if v.contextovictima[0]
+        xml.observaciones(v.otraorga.map(&:nombre).join(";"), 
+                          {tipo: 'otraorga'}) if v.otraorga[0]
+        xml.observaciones(v.sectorsocialsec.map(&:nombre).join(";"), 
+                          {tipo: 'sectorsocialsec'}) if v.sectorsocialsec[0]
         xml.observaciones(
           v.filiacion.nombre, {tipo: 'filiacion'}) if v.filiacion
+        xml.observaciones(
+          v.orientacionsexual,
+                          {tipo: 'orientacionsexual'}) if v.orientacionsexual
         xml.observaciones(
           v.vinculoestado.nombre, {tipo: 'vinculoestado'}) if v.vinculoestado
         ['hijos', 'anotaciones'].each do |ob|
@@ -100,6 +113,8 @@ xml.relato do
         ) if v['organizacionarmada']
         xml.observaciones(
           v.rangoedad.nombre, {tipo: 'rangoedad'}) if v.rangoedad
+        xml.observaciones(v.antecedente.map(&:nombre).join(";"), 
+                          {tipo: 'antecedente'}) if v.antecedente[0]
       end
     end
   end
@@ -203,6 +218,9 @@ xml.relato do
     {tipo: 'intervalo'}) if caso.intervalo && caso.intervalo.nombre
   xml.observaciones(
     caso.region.map(&:nombre).join("; "), {tipo: 'region'}) if caso.region
+    xml.observaciones(
+      caso.frontera.map(&:nombre).join("; "),
+        {tipo: 'frontera'}) if caso.frontera
   if ub
     xml.observaciones(ub.sitio, {tipo: 'sitio'}) if ub.sitio
     xml.observaciones(ub.lugar, {tipo: 'lugar'}) if ub.lugar

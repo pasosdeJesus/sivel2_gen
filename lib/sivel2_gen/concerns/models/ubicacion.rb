@@ -48,7 +48,7 @@ module Sivel2Gen
             end
             return ''
           end
-          
+
           def importa(datosent, datossal, menserror, opciones = {})
             pais = Msip::Pais.
               where('nombre ILIKE ?', datosent['pais']).ids[0]
@@ -67,9 +67,23 @@ module Sivel2Gen
             self.id_clase= cen if cen
             self.latitud= datosent['latitud'] if datosent['latitud']
             self.longitud= datosent['longitud'] if datosent['longitud']
+            if datosent["observaciones"]
+              datosent["observaciones"].each do |obs|
+                ob = obs.split("_")
+                case ob[0]
+                  when "sitio"
+                    self.sitio = ob[1]
+                  when "lugar"
+                    self.lugar = ob[1]
+                  when "tsitio"
+                    ts = Mmsip::Tsitio.where(nombre: ob[1])[0]
+                    self.tsitio = ts if ts
+                end
+              end
+            end 
             return self
-          end  
-          
+          end
+
           validates_presence_of :caso
         end
       end
