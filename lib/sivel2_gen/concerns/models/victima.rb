@@ -335,7 +335,6 @@ module Sivel2Gen
                 end
 
                 def recorrer_observaciones_p(ele, per, menserror)
-                 self.save!
                  case ele[0]
                  when 'etnia'
                    self.id_etnia = Sivel2Gen::Etnia.where('TRIM(nombre)=?', ele[1]).ids[0]
@@ -365,6 +364,7 @@ module Sivel2Gen
                 end
                 per.save!
                 self.id_persona = per.id
+                self.save!
               end
             end
             if datosent[0]['persona'].kind_of?(Array)
@@ -454,14 +454,12 @@ module Sivel2Gen
                   menserror << "Tabla básica Vinculo estado no tiene '#{ele[1]}'. "
                 end
               when 'organizacion_armada'
-                if Sivel2Gen::Presponsable.where(
-                    'TRIM(unaccent(nombre))=unaccent(?)', 
-                    ele[1].strip).count == 1
+                if Sivel2Gen::Presponsable.where(id: ele[1].to_i).count == 1
                   self.organizacionarmada = Sivel2Gen::Presponsable.where(
-                    'TRIM(unaccent(nombre))=unaccent(?)', 
-                    ele[1].strip).take.id
+                    id: ele[1].to_i).take.id
                 else
-                  menserror << "Tabla básica Presunto Responsable no tiene '#{ele[1]}'. "
+                  menserror << "Tabla básica Presunto Responsable para organización
+                    armada de la víctima, no tiene '#{ele[1]}'. "
                 end
               when 'rangoedad'
                 if Sivel2Gen::Rangoedad.where('TRIM(nombre)=?', ele[1].strip).count ==1
