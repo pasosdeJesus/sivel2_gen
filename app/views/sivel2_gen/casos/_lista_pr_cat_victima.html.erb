@@ -160,16 +160,16 @@
 <% por.keys.each do |pr|%>
   <% if pr.is_a? Integer %>
     <br>
-    Presunto Responsable: <%= Sivel2Gen::Presponsable.find(pr).nombre_con_polo %> <br>
+    Presunto Responsable: <%= Sivel2Gen::Presponsable.find(pr).nombre %> <br>
   <% else %>
     <br>
     Presuntos Responsables:
     <% pr.each_with_index do |pri, i|%>
       <%= "Y" if i != 0 %>
       <% if pri.is_a? Array %>
-        <%= Sivel2Gen::Presponsable.find(pri).map(&:nombre_con_polo).join(" Y ") %> 
+        <%= Sivel2Gen::Presponsable.find(pri).map(&:nombre).join(" Y ") %> 
       <% else %>
-        <%= Sivel2Gen::Presponsable.find(pri).nombre_con_polo %> 
+        <%= Sivel2Gen::Presponsable.find(pri).nombre %> 
       <% end %>
     <% end %><br>
   <% end %>
