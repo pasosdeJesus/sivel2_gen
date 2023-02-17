@@ -1,13 +1,18 @@
-<div id="presponsables_frame">
-<%= f.simple_fields_for :caso_presponsable, child_index: params[:index] do |cpr| %>
-  <%= render '/sivel2_gen/casos/caso_presponsable_campos', :f => cpr %>
+<%= f.simple_fields_for :caso_presponsable do |caso_presponsable| %>
+  <%= render 'sivel2_gen/casos/caso_presponsable_campos', 
+    f:  caso_presponsable 
+  %>
 <% end %>
+<div class="links">
+  <%= link_to_add_association 'Añadir ' + 
+    Sivel2Gen::Presponsable.human_attribute_name(:presponsable), f, 
+    :caso_presponsable, 
+    {
+      partial: 'sivel2_gen/casos/caso_presponsable_campos',
+      class: 'btn btn-sm btn-primary', 
+      "data-ajax" => File.join(Rails.configuration.relative_url_root, 
+                             "admin/presponsables/nuevo"),
+      "data-ajaxdata" => "caso_id"
+    } 
+  %>
 </div>
-
-<%= f.submit "Agregar presunto responsable",
-      formaction: casos_presponsable_path(index: @caso.presponsable.size),
-      formmethod: :post,
-      formnovalidate: true,
-      class: 'btn btn-sm btn-primary add-vic',
-      id: "add-casopresponsable" %>
-

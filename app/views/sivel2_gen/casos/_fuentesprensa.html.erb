@@ -1,13 +1,14 @@
-<div id="fuentesprensa_frame">
-<%= f.simple_fields_for :caso_fuenteprensa, child_index: params[:index] do |cfp| %>
-  <%= render '/sivel2_gen/casos/caso_fuenteprensa_campos', :fp => cfp %>
+<%= f.simple_fields_for :caso_fuenteprensa do |cfp| %>
+  <%= render 'sivel2_gen/casos/caso_fuenteprensa_campos', :f => cfp %>
 <% end %>
+<div class="links">
+  <%= link_to_add_association 'Añadir Fuente Frecuente', f, :caso_fuenteprensa, 
+    { partial: 'sivel2_gen/casos/caso_fuenteprensa_campos',
+      class: 'btn btn-sm btn-primary',
+      "data-ajax" => File.join(Rails.configuration.relative_url_root, 
+                             "fuentesprensa/nuevo"),
+      "data-ajaxdata" => "caso_id"
+    } 
+      
+  %>
 </div>
-
-<%= f.submit "Agregar fuente",
-      formaction: casos_fuenteprensa_path(index: @caso.fuenteprensa.size),
-      formmethod: :post,
-      formnovalidate: true,
-      class: 'btn btn-sm btn-primary add-vic',
-      id: "add-casofuenteprensa" %>
-

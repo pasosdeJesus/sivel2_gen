@@ -37,6 +37,8 @@ Sivel2Gen::Engine.routes.draw do
 
   get "/fichacasovertical" => 'hogar#fichacasovertical'
 
+  get "/fuentesprensa/nuevo", 'fuentesprensa#nuevo'
+
   get '/graficar/actos_individuales' => 'fil23_gen/graficar_plotly#actos_individuales', 
     :as => 'graficar_actos_individuales'
 
