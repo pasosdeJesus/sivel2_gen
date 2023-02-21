@@ -34,6 +34,21 @@
          <observaciones tipo="etnia">INDÍGENA</observaciones>
       </persona>
     <!-- Grupos victimizados -->
+      <grupo>
+         <id_grupo>1</id_grupo>
+         <nombre_grupo>grupoper1</nombre_grupo>
+         <observaciones tipo="personasaprox">100</observaciones>
+         <observaciones tipo="organizacionarmada">1</observaciones>
+         <observaciones tipo="anotaciones">anotaciones</observaciones>
+         <observaciones tipo="antecedente">AMENAZA;ATENTADO</observaciones>
+         <observaciones tipo="filiacion">LIBERAL;CONSERVADOR</observaciones>
+         <observaciones tipo="organizacion">CAMPESINA;INDIGENA</observaciones>
+         <observaciones tipo="profesion">ABOGADO/A;EDUCADOR/A</observaciones>
+         <observaciones tipo="rangoedad">De 0 a 15 Años;De 16 a 25 Años</observaciones>
+         <observaciones tipo="sectorsocial">CAMPESINO;INDIGENA</observaciones>
+         <observaciones tipo="vinculoestado">CONGRESO;PRESIDENCIA</observaciones>
+         <observaciones tipo="etnia">SIN INFORMACIÓN;MESTIZO</observaciones>
+       </grupo>
     <!-- Presuntos responsables -->
       <grupo>
          <id_grupo>37</id_grupo>
@@ -45,10 +60,14 @@
          <ocupacion>SIN INFORMACIÓN</ocupacion>
          <sector_condicion>SIN INFORMACIÓN</sector_condicion>
          <organizacion>SIN INFORMACIÓN</organizacion>
+         <observaciones tipo="otraorga">CAMPESINA;INDIGENA</observaciones>
+         <observaciones tipo="sectorsocialsec">CAMPESINO;INDIGENA</observaciones>
          <observaciones tipo="filiacion">SIN INFORMACIÓN</observaciones>
+         <observaciones tipo="orientacionsexual">S</observaciones>
          <observaciones tipo="vinculoestado">SIN INFORMACIÓN</observaciones>
          <observaciones tipo="organizacion_armada">35</observaciones>
          <observaciones tipo="rangoedad">DE 0 A 15 AÑOS</observaciones>
+         <observaciones tipo="antecedente">AMENAZA;ATENTADO</observaciones> 
      </victima>
      <victima>
          <id_persona>249237</id_persona>
@@ -56,6 +75,7 @@
          <sector_condicion>SIN INFORMACIÓN</sector_condicion>
          <organizacion>SIN INFORMACIÓN</organizacion>
          <observaciones tipo="filiacion">SIN INFORMACIÓN</observaciones>
+         <observaciones tipo="orientacionsexual">S</observaciones>
          <observaciones tipo="vinculoestado">SIN INFORMACIÓN</observaciones>
          <observaciones tipo="organizacion_armada">35</observaciones>
          <observaciones tipo="rangoedad">DE 0 A 15 AÑOS</observaciones>
@@ -66,15 +86,16 @@
          <sector_condicion>SIN INFORMACIÓN</sector_condicion>
          <organizacion>SIN INFORMACIÓN</organizacion>
          <observaciones tipo="filiacion">SIN INFORMACIÓN</observaciones>
+         <observaciones tipo="orientacionsexual">S</observaciones>
          <observaciones tipo="vinculoestado">SIN INFORMACIÓN</observaciones>
          <observaciones tipo="organizacion_armada">35</observaciones>
          <observaciones tipo="rangoedad">DE 0 A 15 AÑOS</observaciones>
     </victima>
    <!-- Ubicacion -->
     <fecha>2018-01-01</fecha>
-    <departamento>VALLE DEL CAUCA</departamento>
-    <municipio>BUENAVENTURA</municipio>
-    <centro_poblado>SAN JOSÉ</centro_poblado>
+    <departamento>Valle del Cauca</departamento>
+    <municipio>Buenaventura</municipio>
+    <centro_poblado>San José</centro_poblado>
     <longitud>-77.0697417935442</longitud>
     <latitud>3.89381723858445</latitud>
    <!-- Actos con Victimas Individuales -->
@@ -111,13 +132,14 @@
       <observaciones tipo="rangoedad">De 26 a 45 Años</observaciones>
       <observaciones tipo="filiacion">SIN INFORMACIÓN</observaciones>
       <observaciones tipo="vinculo_estado">PROCURADURIA GENERAL</observaciones>
-      <observaciones tipo="contexto">ATENTADO</observaciones>
-      <observaciones tipo="contexto">AMNISTIA - INDULTO</observaciones>
       <observaciones tipo="contexto">ALLANAMIENTO</observaciones>
+      <observaciones tipo="contexto">AMNISTIA - INDULTO</observaciones>
+      <observaciones tipo="contexto">ATENTADO</observaciones>
     </combatiente>
    <!-- Otros -->
-    <observaciones tipo="intervalo">SIN INFORMACIÓN</observaciones>
-    <observaciones tipo="region">COSTA ATLANTICA; SUR OCCIDENTE</observaciones>
+    <observaciones tipo="intervalo">MAÑANA</observaciones>
+    <observaciones tipo="region">SUR OCCIDENTE; COSTA ATLANTICA </observaciones>
+    <observaciones tipo="frontera">Ecuador; Brasil</observaciones>
     <observaciones tipo="sitio">UNO DE LOS EXTREMOS DEL RÍO YURUMANGUÍ EN LA RIVERA DEL RÍO</observaciones>
     <observaciones tipo="lugar">VEREDA EL PAPAYO</observaciones>
     <observaciones tipo="tsitio">RURAL</observaciones>

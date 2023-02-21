@@ -78,6 +78,13 @@ module Sivel2Gen
       rangoedad = Sivel2Gen::Rangoedad.create! PRUEBA_RANGOEDAD
       profesion = Sivel2Gen::Profesion.create! PRUEBA_PROFESION
       sectorsocial = Sivel2Gen::Sectorsocial.create! PRUEBA_SECTORSOCIAL
+      organizacion1 = Sivel2Gen::Organizacion.find(1)
+      organizacion2 = Sivel2Gen::Organizacion.find(2)
+      antecedente1 = Sivel2Gen::Antecedente.find(1)
+      antecedente2 = Sivel2Gen::Antecedente.find(2)
+      sectorsocialsec1 = Sivel2Gen::Sectorsocial.find(1)
+      sectorsocialsec2 = Sivel2Gen::Sectorsocial.find(2)
+
       victima1 = Sivel2Gen::Victima.create(
         id_caso: caso.id,
         id_persona: persona1.id,
@@ -101,6 +108,18 @@ module Sivel2Gen
         id_iglesia: nil,
         orientacionsexual: 'S'
       )
+      otrasorg1 = Sivel2Gen::OtraorgaVictima.create(
+        organizacion_id: organizacion1.id, victima_id: victima1.id)
+      otrasorg2 = Sivel2Gen::OtraorgaVictima.create(
+        organizacion_id: organizacion2.id, victima_id: victima1.id)
+      antecedentevic1 = Sivel2Gen::AntecedenteVictima.create(
+        id_antecedente: antecedente1.id, id_victima: victima1.id)
+      antecedentevic2 = Sivel2Gen::AntecedenteVictima.create(
+        id_antecedente: antecedente2.id, id_victima: victima1.id)
+      sectorsocialsecvic1 = Sivel2Gen::SectorsocialsecVictima.create(
+        sectorsocial_id: sectorsocialsec1.id, victima_id: victima1.id)
+      sectorsocialsecvic2 = Sivel2Gen::SectorsocialsecVictima.create(
+        sectorsocial_id: sectorsocialsec2.id, victima_id: victima1.id)
       presponsable = Sivel2Gen::Presponsable.find(37)
       pr = Sivel2Gen::CasoPresponsable.create(
         id_caso: caso.id,
@@ -108,6 +127,83 @@ module Sivel2Gen
         tipo: 1
       )
       pr.save!
+      grupoper = Msip::Grupoper.create! PRUEBA_GRUPOPER
+      victimacolectiva1 = Sivel2Gen::Victimacolectiva.create PRUEBA_VICTIMACOLECTIVA
+      victimacolectiva1.id_grupoper = grupoper.id
+      victimacolectiva1.id_caso = caso.id
+      victimacolectiva1.save!
+      re = Sivel2Gen::RangoedadVictimacolectiva.new
+      re.id_rangoedad = Sivel2Gen::Rangoedad.find(1).id
+      re.victimacolectiva_id = victimacolectiva1.id
+      re.save!
+      re2 = Sivel2Gen::RangoedadVictimacolectiva.new
+      re2.id_rangoedad = Sivel2Gen::Rangoedad.find(2).id
+      re2.victimacolectiva_id = victimacolectiva1.id
+      re2.save!
+
+      fv = Sivel2Gen::FiliacionVictimacolectiva.new
+      fv.id_filiacion = Sivel2Gen::Filiacion.find(1).id
+      fv.victimacolectiva_id = victimacolectiva1.id
+      fv.save!
+      fv2 = Sivel2Gen::FiliacionVictimacolectiva.new
+      fv2.id_filiacion = Sivel2Gen::Filiacion.find(2).id
+      fv2.victimacolectiva_id = victimacolectiva1.id
+      fv2.save!
+
+      orgv = Sivel2Gen::OrganizacionVictimacolectiva.new
+      orgv.id_organizacion = Sivel2Gen::Organizacion.find(1).id
+      orgv.victimacolectiva_id = victimacolectiva1.id
+      orgv.save!
+      orgv2 = Sivel2Gen::OrganizacionVictimacolectiva.new
+      orgv2.id_organizacion = Sivel2Gen::Organizacion.find(2).id
+      orgv2.victimacolectiva_id = victimacolectiva1.id
+      orgv2.save!
+
+      ss = Sivel2Gen::SectorsocialVictimacolectiva.new
+      ss.id_sectorsocial = Sivel2Gen::Sectorsocial.find(1).id
+      ss.victimacolectiva_id = victimacolectiva1.id
+      ss.save!
+      ss2 = Sivel2Gen::SectorsocialVictimacolectiva.new
+      ss2.id_sectorsocial = Sivel2Gen::Sectorsocial.find(2).id
+      ss2.victimacolectiva_id = victimacolectiva1.id
+      ss2.save!
+
+      pr = Sivel2Gen::ProfesionVictimacolectiva.new
+      pr.id_profesion = Sivel2Gen::Profesion.find(1).id
+      pr.victimacolectiva_id = victimacolectiva1.id
+      pr.save!
+      pr2 = Sivel2Gen::ProfesionVictimacolectiva.new
+      pr2.id_profesion = Sivel2Gen::Profesion.find(2).id
+      pr2.victimacolectiva_id = victimacolectiva1.id
+      pr2.save!
+
+      ve = Sivel2Gen::VictimacolectivaVinculoestado.new
+      ve.id_vinculoestado = Sivel2Gen::Vinculoestado.find(1).id
+      ve.victimacolectiva_id = victimacolectiva1.id
+      ve.save!
+      ve2 = Sivel2Gen::VictimacolectivaVinculoestado.new
+      ve2.id_vinculoestado = Sivel2Gen::Vinculoestado.find(2).id
+      ve2.victimacolectiva_id = victimacolectiva1.id
+      ve2.save!
+
+      vant = Sivel2Gen::AntecedenteVictimacolectiva.new
+      vant.id_antecedente = Sivel2Gen::Antecedente.find(1).id
+      vant.victimacolectiva_id = victimacolectiva1.id
+      vant.save!
+      vant2 = Sivel2Gen::AntecedenteVictimacolectiva.new
+      vant2.id_antecedente = Sivel2Gen::Antecedente.find(2).id
+      vant2.victimacolectiva_id = victimacolectiva1.id
+      vant2.save!
+
+      vetn = Sivel2Gen::EtniaVictimacolectiva.new
+      vetn.etnia_id = Sivel2Gen::Etnia.find(1).id
+      vetn.victimacolectiva_id = victimacolectiva1.id
+      vetn.save!
+      vetn2 = Sivel2Gen::EtniaVictimacolectiva.new
+      vetn2.etnia_id = Sivel2Gen::Etnia.find(2).id
+      vetn2.victimacolectiva_id = victimacolectiva1.id
+      vetn2.save!
+
       categoria1 = Sivel2Gen::Categoria.find(97)
       categoria2 = Sivel2Gen::Categoria.find(98)
       acto1 = Sivel2Gen::Acto.create(
@@ -140,6 +236,9 @@ module Sivel2Gen
       )
       region1 = Sivel2Gen::Region.find(9)
       region2 = Sivel2Gen::Region.find(5)
+      frontera1 = Sivel2Gen::Frontera.find(1)
+      frontera2 = Sivel2Gen::Frontera.find(2)
+
       Sivel2Gen::CasoRegion.create(
         id_caso: caso.id,
         id_region: region1.id,
@@ -147,6 +246,14 @@ module Sivel2Gen
       Sivel2Gen::CasoRegion.create(
         id_caso: caso.id,
         id_region: region2.id,
+      )
+      Sivel2Gen::CasoFrontera.create(
+        id_caso: caso.id,
+        id_frontera: frontera1.id,
+      )
+      Sivel2Gen::CasoFrontera.create(
+        id_caso: caso.id,
+        id_frontera: frontera2.id,
       )
       combatiente = Sivel2Gen::Combatiente.create(
         id_caso: caso.id,
@@ -163,6 +270,7 @@ module Sivel2Gen
         organizacionarmada: 27,
         antecedente_ids: [6, 4, 2]
       )
+      caso.save!
       get caso_path(caso) + '.xrlat'
       d12 = 'test/dummy/public/relatos_ref.xrlat'
       puts @response.body
@@ -183,6 +291,7 @@ module Sivel2Gen
       rangoedad.destroy
       profesion.destroy
       sectorsocial.destroy
+      victimacolectiva1.destroy
       victima1.destroy
       victima2.destroy
       victima3.destroy
