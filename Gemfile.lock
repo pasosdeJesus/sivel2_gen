@@ -11,7 +11,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sip.git
-  revision: 2a6c5ef28c3c76eaba7f59b6033af67bf76995c8
+  revision: 77dfae7dbbd472fd3357c1001380af611b170436
   branch: v2.1
   specs:
     sip (2.1.0.beta1)
@@ -43,7 +43,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/heb412_gen.git
-  revision: 975b20e437ed77d8c994b85054d62791fdf20bfc
+  revision: ad99c780cde15dba542b621efe74b6d672299e1e
   branch: v2.1
   specs:
     heb412_gen (2.1.0.beta1)
@@ -54,7 +54,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/mr519_gen.git
-  revision: 10c5ecad4778f16e778dad7d1403c69fb6fdd736
+  revision: ee4bd4561dd1a63ea9f0f78d0896250264fc6d50
   branch: v2.1
   specs:
     mr519_gen (2.1.0.beta1)
@@ -175,14 +175,14 @@ GEM
     debug (1.7.1)
       irb (>= 1.5.0)
       reline (>= 0.3.1)
-    devise (4.8.1)
+    devise (4.9.0)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
-    devise-i18n (1.10.2)
-      devise (>= 4.8.0)
+    devise-i18n (1.11.0)
+      devise (>= 4.9.0)
     docile (1.4.0)
     dotenv (2.8.1)
     dotenv-rails (2.8.1)
@@ -223,7 +223,7 @@ GEM
     method_source (1.0.0)
     mime-types (3.4.1)
       mime-types-data (~> 3.2015)
-    mime-types-data (3.2022.0105)
+    mime-types-data (3.2023.0218.1)
     mini_mime (1.1.2)
     mini_portile2 (2.8.1)
     minitest (5.17.0)
@@ -238,10 +238,10 @@ GEM
     net-smtp (0.3.3)
       net-protocol
     nio4r (2.5.8)
-    nokogiri (1.14.1)
+    nokogiri (1.14.2)
       mini_portile2 (~> 2.8.0)
       racc (~> 1.4)
-    nokogiri (1.14.1-x86_64-linux)
+    nokogiri (1.14.2-x86_64-linux)
       racc (~> 1.4)
     odf-report (0.7.3)
       mime-types
@@ -346,8 +346,8 @@ GEM
     terrapin (0.6.0)
       climate_control (>= 0.0.3, < 1.0)
     thor (1.2.1)
-    tilt (2.0.11)
-    timeout (0.3.1)
+    tilt (2.1.0)
+    timeout (0.3.2)
     ttfunk (1.7.0)
     turbo-rails (1.3.3)
       actionpack (>= 6.0.0)
@@ -429,4 +429,4 @@ DEPENDENCIES
   will_paginate
 
 BUNDLED WITH
-   2.4.6
+   2.4.7
