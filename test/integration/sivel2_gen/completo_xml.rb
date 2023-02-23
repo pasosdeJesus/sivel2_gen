@@ -168,7 +168,7 @@ module Sivel2Gen
       puts @response.body
       file = guarda_xml(@response.body)
       docu = File.read(file)
-      verifica_dtd(open(d12))
+      verifica_dtd(File.open(d12))
       verifica_dtd(docu)
       compara(docu, d12)
       ubicaso.destroy
@@ -190,7 +190,7 @@ module Sivel2Gen
 
     def compara(doc2, doc12)
       doc1 = Nokogiri::XML(doc2)
-      doc2 = Nokogiri::XML(open(doc12))
+      doc2 = Nokogiri::XML(File.open(doc12))
       puts CompareXML.equivalent?(
         doc1, doc2, ignore_comments: false, verbose: true
       )
