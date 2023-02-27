@@ -68,3 +68,14 @@ cd test/dummy
 bin/rails sivel2:vuelcabasicas
 cp db/datos-basicas.sql ../../db/datos-basicas.sql
 ```
+
+## Inclusión de este motor en una aplicacíon
+
+Para habilitar/deshabilitar de manera independiente el botón
+"Validar y Guardar" del formulario de caso de los botones
+"Agregar" de las pestañas del mismo formulario, en 
+`config/application.rb` agrega:
+
+```
+config.action_view.automatically_disable_submit_tag = false
+```
