@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   id="svg2"
+   viewBox="0 0 760 1080"
+   version="1.1"
+   sodipodi:docname="plant_mapa_calor.svg"
+   inkscape:version="1.0.2 (e86c870879, 2021-01-15)"
+   width="760"
+   height="1080">
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1366"
+     inkscape:window-height="718"
+     id="namedview137"
+     showgrid="true"
+     inkscape:zoom="0.97531385"
+     inkscape:cx="-17.227177"
+     inkscape:cy="861.17224"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer13"
+     inkscape:document-rotation="0">
+    <inkscape:grid
+       type="xygrid"
+       id="grid219" />
+  </sodipodi:namedview>
+  <defs
+     id="defs149">
+    <rect
+       x="987.63312"
+       y="141.31071"
+       width="69.217918"
+       height="17.67337"
+       id="rect1042" />
+  </defs>
+
+
+    <text
+       id="titulo"
+       font-size="18px"
+       font-weight="500"
+       font-family="DejaVu Serif"
+       xml:space="preserve"
+       transform="scale(1.0194048,0.98096458)"
+       line-height="90%"
+       stroke="#000000"
+       y="40.748333"
+       x="136.61255"
+       stroke-width="0.749996"
+       fill="#000000"
+       >Agresiones a personas defensoras de derechos humanos</text>
+    <text
+       id="subtitulo"
+       font-size="16px"
+       font-weight="500"
+       font-family="DejaVu Serif"
+       xml:space="preserve"
+       transform="scale(1.0194048,0.98096458)"
+       line-height="90%"
+       stroke="#000000"
+       y="67.246864"
+       x="292.94159"
+       stroke-width="0.749996"
+       fill="#000000"
+       >Enero - Junio de 2021</text>
+    <text
+       id="titulo-rangos"
+       font-size="14px"
+       font-weight="500"
+       font-family="DejaVu Serif"
+       xml:space="preserve"
+       transform="scale(1.0194048,0.98096458)"
+       line-height="90%"
+       stroke="#000000"
+       y="861.28522"
+       x="40.144836"
+       stroke-width="0.749996"
+       fill="#000000"
+       >Rango de agresiones</text>
+
+    <rect
+     id="mixtidep0"
+     width="100"
+     height="50"
+     x="630"
+     y="900"
+     stroke="#000000"
+     stroke-miterlimit="4"
+     stroke-width="0.75"
+     fill-opacity="0"
+     />
+
+
+    <text
+       id="nomdep0"
+       font-size="8.08016px"
+       font-weight="500"
+       font-family="Ubuntu"
+       xml:space="preserve"
+       style="text-align:center;text-anchor:middle"
+       transform="scale(1.0194048,0.98096458)"
+       stroke="#000000"
+       line-height="90%"
+       y="940"
+       x="668"
+       stroke-width="0.749996"
+       fill="#000">SIN DEPARTAMENTO</text>
+
+    <text
+       id="numdep0"
+       font-size="8.08016px"
+       font-weight="500"
+       font-family="Ubuntu"
+       xml:space="preserve"
+       transform="scale(1.0194048,0.98096458)"
+       line-height="90%"
+       stroke="#000000"
+       y="955"
+       x="660"
+       stroke-width="0.749996"
+       fill="#000">0</text>
+
+    <text
+       id="rango0"
+       font-size="14px"
+       font-weight="500"
+       font-family="DejaVu Serif"
+       xml:space="preserve"
+       transform="scale(1.0194048,0.98096458)"
+       line-height="90%"
+       stroke="#000000"
+       y="909.41351"
+       x="103.95708"
+       stroke-width="0.2"
+       fill="#000000"
+       >Sin registro</text>
+    <text
+       id="rango1"
+       font-size="14px"
+       font-weight="500"
+       font-family="DejaVu Serif"
+       xml:space="preserve"
+       transform="scale(1.0194048,0.98096458)"
+       line-height="90%"
+       stroke="#000000"
+       y="937.82678"
+       x="102.63522"
+       stroke-width="0.2"
+       fill="#000000"
+       >1 - 10</text>
+    <text
+       id="rango2"
+       font-size="14px"
+       font-weight="500"
+       font-family="DejaVu Serif"
+       xml:space="preserve"
+       transform="scale(1.0194048,0.98096458)"
+       line-height="90%"
+       stroke="#000000"
+       y="964.33136"
+       x="102.63522"
+       stroke-width="0.2"
+       fill="#000000"
+       >11 - 30</text>
+    <text
+       id="rango3"
+       font-size="14px"
+       font-weight="500"
+       font-family="DejaVu Serif"
+       xml:space="preserve"
+       transform="scale(1.0194048,0.98096458)"
+       line-height="90%"
+       stroke="#000000"
+       y="992.87476"
+       x="102.63522"
+       stroke-width="0.2"
+       fill="#000000"
+       >31 - 60</text>
+    <text
+       id="rango4"
+       font-size="14px"
+       font-weight="500"
+       font-family="DejaVu Serif"
+       xml:space="preserve"
+       transform="scale(1.0194048,0.98096458)"
+       line-height="90%"
+       stroke="#000000"
+       y="1021.4181"
+       x="102.63522"
+       stroke-width="0.2"
+       fill="#000000"
+       >61 - 115</text>
+    <text
+       id="fuente"
+       font-size="10px"
+       font-weight="500"
+       font-family="DejaVu Serif"
+       xml:space="preserve"
+       transform="scale(1.0194048,0.98096458)"
+       line-height="90%"
+       stroke="#000000"
+       y="1070"
+       x="95%"
+       text-anchor="end"
+       stroke-width="0.749996"
+       fill="#000000"
+       >Fuente: SIADDHH  </text>
+
+    <rect
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-opacity:1"
+       id="rect-todo"
+       width="760"
+       height="1080"
+       x="9.5923269e-14"
+       y="3.5527137e-14" />
+  <rect
+     style="opacity:0;fill:#636765;stroke:#000000;stroke-width:3;stroke-opacity:1"
+     id="rect1593"
+     width="189.26851"
+     height="199.9697"
+     x="55.283405"
+     y="932.24347" />
+  <rect
+     style="opacity:0;fill:url(#linearGradient1605);fill-opacity:1;stroke:#000000;stroke-width:3;stroke-opacity:1"
+     id="rect1597"
+     width="217.12518"
+     height="168.88127"
+     x="55.283405"
+     y="932.24347" />
+  <rect
+     style="fill:#ffffff;fill-opacity:0;fill-rule:evenodd;stroke:#000000;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;image-rendering:auto"
+     id="rangos"
+     width="211.4959"
+     height="208.53322"
+     x="26.76647"
+     y="814.3692" />
+  <rect
+     style="fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;image-rendering:auto"
+     fill="#e8e8fb"
+     id="colorrango1"
+     width="42.20956"
+     height="18.892853"
+     x="55.283405"
+     y="904.74792" />
+  <rect
+     style="fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;image-rendering:auto"
+     fill="#a8a8fb"
+     id="colorrango2"
+     width="42.20956"
+     height="18.892853"
+     x="55.283405"
+     y="932.24347" />
+  <rect
+     style="fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;image-rendering:auto"
+     fill="#5656fb"
+     id="colorrango3"
+     width="42.20956"
+     height="18.892853"
+     x="55.574802"
+     y="960.07562" />
+  <rect
+     style="fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;image-rendering:auto"
+     fill="#0000f0"
+     id="colorrango4"
+     width="42.20956"
+     height="18.892853"
+     x="55.262959"
+     y="987.57117" />
+  <rect
+     style="fill:#ffffff;fill-opacity:0;fill-rule:evenodd;stroke:#000000;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;image-rendering:auto"
+     id="colorrango0"
+     width="42.20956"
+     height="18.892853"
+     x="55.516949"
+     y="878.12555" />
+  <metadata
+     id="metadata144">
+    <rdf:RDF>
+      <cc:Work>
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <cc:license
+           rdf:resource="http://creativecommons.org/publicdomain/zero/1.0/" />
+        <dc:publisher>
+          <cc:Agent
+             rdf:about="http://openclipart.org/">
+            <dc:title>Openclipart</dc:title>
+          </cc:Agent>
+        </dc:publisher>
+        <dc:title></dc:title>
+        <dc:date>2013-09-25T04:49:52</dc:date>
+        <dc:description>Mapa físico de Colombia con fronteras, divisiones departamentales y ubicación de ciudades capitales.</dc:description>
+        <dc:source>https://openclipart.org/detail/183878/mapa-físico-de-colombia-by-maoriveros-183878</dc:source>
+        <dc:creator>
+          <cc:Agent>
+            <dc:title>maoriveros</dc:title>
+          </cc:Agent>
+        </dc:creator>
+      </cc:Work>
+      <cc:License
+         rdf:about="http://creativecommons.org/publicdomain/zero/1.0/">
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#Reproduction" />
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#Distribution" />
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#DerivativeWorks" />
+      </cc:License>
+    </rdf:RDF>
+  </metadata>
+</svg>
