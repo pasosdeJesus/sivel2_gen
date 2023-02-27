@@ -189,7 +189,8 @@ PRUEBA_FUENTEPRENSA = {
 
 PRUEBA_GRUPOPER = {
   id: 1,
-  nombre: 'grupoper1'
+  nombre: 'grupoper1',
+  anotaciones: 'anotaciones'
 }
 
 PRUEBA_IGLESIA= {
@@ -256,7 +257,7 @@ PRUEBA_PROFESION= {
 
 PRUEBA_RANGOEDAD= {
   id: 1000,
-  nombre: "1-2",
+  nombre: "DE 0 a 15 AÑOS",
   limiteinferior: 1,
   limitesuperior: 2,
   fechacreacion: "2014-09-09",
