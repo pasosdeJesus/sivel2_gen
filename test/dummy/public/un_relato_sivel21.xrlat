@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE relatos SYSTEM "http://sincodh.pasosdejesus.org/relatos/relatos-099.dtd">
+<relatos>
+     <relato>
+       <organizacion_responsable>Banco de Datos del CINEP</organizacion_responsable>
+       <derechos>Creative Commons Atribución 2.5 Colombia. http://creativecommons.org/licenses/by/2.5/co/</derechos>
+       <id_relato>102</id_relato>
+       <forma_compartir>publico</forma_compartir>
+       <titulo>Titulo de caso</titulo>
+       <hechos>Una Descripcion</hechos>
+       <!-- Victimas personas individuales -->
+       <persona>
+         <id_persona>116</id_persona>
+         <nombre>Jose Luis</nombre>
+         <apellido>Pasos</apellido>
+         <docid>CC 234123121</docid>
+         <fecha_nacimiento>1996-05-04</fecha_nacimiento>
+         <sexo>M</sexo>
+         <observaciones tipo="etnia">PIJAO</observaciones>
+         <observaciones tipo="pais">Colombia</observaciones>
+         <observaciones tipo="departamento">Atlántico</observaciones>
+         <observaciones tipo="municipio">Piojó</observaciones>
+         <observaciones tipo="centro_poblado">El Cerrito</observaciones>
+       </persona>
+       <!-- Grupos victimizados -->
+       <grupo>
+         <id_grupo>119</id_grupo>
+         <nombre_grupo>una victima colectiva</nombre_grupo>
+         <observaciones tipo="personasaprox">4</observaciones>
+         <observaciones tipo="organizacionarmada">8</observaciones>
+         <observaciones tipo="anotaciones">anota</observaciones>
+         <observaciones tipo="antecedente">AMENAZA;AMNISTIA - INDULTO</observaciones>
+         <observaciones tipo="filiacion">ALIANZAS IZQUIERDA;CIVICO POLITICO ELECTORAL</observaciones>
+         <observaciones tipo="organizacion">AMBIENTALISTA;CIVICA</observaciones>
+         <observaciones tipo="profesion">AGRICULTOR/A;ADMINISTRADOR PUBLICO/A</observaciones>
+         <observaciones tipo="rangoedad">De 0 a 15 Años;De 26 a 45 Años</observaciones>
+         <observaciones tipo="sectorsocial">CAMPESINO;DESEMPLEADO (A)</observaciones>
+         <observaciones tipo="vinculoestado">ASAMBLEA DEPARTAMENTAL;ALCALDIA MENOR</observaciones>
+         <observaciones tipo="etnia">AMORUA;ANDOQUE</observaciones>
+       </grupo>
+       <!-- Presuntos responsables -->
+       <grupo>
+         <id_grupo>24</id_grupo>
+         <nombre_grupo>AGENTE EXTRANJERO</nombre_grupo>
+         <observaciones tipo="subdivision">div</observaciones>
+         <observaciones tipo="bloque">bloque</observaciones>
+         <observaciones tipo="frente">frente</observaciones>
+         <observaciones tipo="otro">otro</observaciones>
+       </grupo>
+       <!-- Victima Individual -->
+       <victima>
+         <id_persona>116</id_persona>
+         <ocupacion>DEFENSOR/A DE DDHH</ocupacion>
+         <sector_condicion>HACENDADO</sector_condicion>
+         <iglesia>IGLESIA REMANSO DE PAZ</iglesia>
+         <organizacion>PROFESIONAL</organizacion>
+         <observaciones tipo="contexto">FALSO POSITIVO</observaciones>
+         <observaciones tipo="otraorga">DERECHOS HUMANOS;GREMIAL</observaciones>
+         <observaciones tipo="sectorsocialsec">OBRERO;EMPLEADO</observaciones>
+         <observaciones tipo="filiacion">CONSERVADOR</observaciones>
+         <observaciones tipo="orientacionsexual">B</observaciones>
+         <observaciones tipo="vinculoestado">PROCURADURIA GENERAL</observaciones>
+         <observaciones tipo="hijos">3</observaciones>
+         <observaciones tipo="anotaciones">ewew</observaciones>
+         <observaciones tipo="organizacion_armada">7</observaciones>
+         <observaciones tipo="rangoedad">De 26 a 45 Años</observaciones>
+         <observaciones tipo="antecedente">AMENAZA;AMNISTIA - INDULTO</observaciones>
+       </victima>
+       <!-- Ubicacion -->
+       <fecha>2023-01-17</fecha>
+       <hora>6 pm</hora>
+       <duracion>2 horas</duracion>
+       <!-- Actos con Victimas Individuales -->
+       <acto>
+         <agresion>LIBERTAD</agresion>
+         <agresion_particular>SECUESTRO (41)</agresion_particular>
+         <id_victima_individual>116</id_victima_individual>
+         <id_presunto_responsable_individual>24</id_presunto_responsable_individual>
+       </acto>
+       <!-- Actos con Victimas Colectivas -->
+       <acto>
+         <agresion>OTRO</agresion>
+         <agresion_particular>COLECTIVO AMENAZADO (49)</agresion_particular>
+         <id_grupo_victima>119</id_grupo_victima>
+         <id_presunto_grupo_responsable>24</id_presunto_grupo_responsable>
+       </acto>
+       <!-- Combatientes -->
+       <combatiente>
+         <nombre>Un combatiente</nombre>
+         <alias>un alias de combatiente</alias>
+         <edad>35</edad>
+         <sexo>M</sexo>
+         <ocupacion>INVESTIGADOR/A SOCIAL</ocupacion>
+         <sector_condicion>EMPLEADO</sector_condicion>
+         <organizacion>GREMIAL</organizacion>
+         <organizacion_armada>INPEC</organizacion_armada>
+         <resultado_agresion>MUERTO</resultado_agresion>
+         <observaciones tipo="rangoedad">De 26 a 45 Años</observaciones>
+         <observaciones tipo="filiacion">COMUNISTA</observaciones>
+         <observaciones tipo="vinculo_estado">EMPRESAS PUBLICAS MPALES.</observaciones>
+         <observaciones tipo="contexto">AMENAZA</observaciones>
+         <observaciones tipo="contexto">ATENTADO</observaciones>
+       </combatiente>
+       <!-- Otros -->
+       <observaciones tipo="grconfiabilidad"></observaciones>
+       <observaciones tipo="gresclarecimiento"></observaciones>
+       <observaciones tipo="grimpunidad"></observaciones>
+       <observaciones tipo="grinformacion"></observaciones>
+       <observaciones tipo="bienes">bien afectado</observaciones>
+       <observaciones tipo="intervalo">MAÑANA</observaciones>
+       <observaciones tipo="region">COSTA ATLANTICA; CENTRO</observaciones>
+       <observaciones tipo="frontera">Ecuador; Brasil</observaciones>
+       <observaciones tipo="contexto">CONFLICTO ARMADO</observaciones>
+       <observaciones tipo="contexto">ACCIONES BÉLICAS</observaciones>
+     </relato>
+</relatos>
