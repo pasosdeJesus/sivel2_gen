@@ -36,7 +36,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/mr519_gen.git
-  revision: e239bb3b56f1a253f478945b36c33f4227eacd21
+  revision: 4addd31d8762753879f16a9ca4c66a4e3f0da2ea
   branch: main
   specs:
     mr519_gen (2.2.0.beta1)
@@ -45,7 +45,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/msip.git
-  revision: ce832af4e98368bf7a71a2da09f8bb9bd3b6f7e6
+  revision: 2cb580a670c021f1961d0d77047a99550c1f39de
   branch: main
   specs:
     msip (2.2.0.beta1)
@@ -182,7 +182,7 @@ GEM
       capybara (~> 3.0)
       ferrum (~> 0.13.0)
     date (3.3.3)
-    debug (1.7.1)
+    debug (1.7.2)
       irb (>= 1.5.0)
       reline (>= 0.3.1)
     devise (4.9.0)
@@ -242,7 +242,7 @@ GEM
       builder
       minitest (>= 5.0)
       ruby-progressbar
-    msgpack (1.6.1)
+    msgpack (1.7.0)
     net-imap (0.3.4)
       date
       net-protocol
@@ -255,8 +255,6 @@ GEM
     nio4r (2.5.8)
     nokogiri (1.14.2)
       mini_portile2 (~> 2.8.0)
-      racc (~> 1.4)
-    nokogiri (1.14.2-x86_64-linux)
       racc (~> 1.4)
     odf-report (0.7.3)
       mime-types
@@ -277,7 +275,7 @@ GEM
       prawn (>= 1.0.0)
       rails (>= 3.2)
     public_suffix (5.0.1)
-    puma (6.1.1)
+    puma (6.2.0)
       nio4r (~> 2.0)
     racc (1.6.2)
     rack (2.2.6.4)
@@ -418,7 +416,6 @@ GEM
     zeitwerk (2.6.7)
 
 PLATFORMS
-  x86_64-linux
   x86_64-openbsd
 
 DEPENDENCIES
