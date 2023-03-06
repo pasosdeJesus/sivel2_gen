@@ -11,7 +11,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/heb412_gen.git
-  revision: 88354c0d2ea3ce62abba2e5c7e0b447fcebd0e10
+  revision: 7e63d42c693fc793d822a3cf97ae3603e2f8cc01
   branch: v2.0
   specs:
     heb412_gen (2.0)
@@ -22,7 +22,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/mr519_gen.git
-  revision: 03f93aea12d555c2704ec845785683e9077efb3a
+  revision: 22c98acb539b7484b5f07e52097e8d05a261e785
   branch: v2.0
   specs:
     mr519_gen (2.0)
@@ -31,7 +31,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sip.git
-  revision: 6d75f4505c990cde0a31b6302dcad5391e51d10f
+  revision: 97d60de32cb58d564fd84901da1a3930f16b74e1
   branch: v2.0
   specs:
     sip (2.0)
@@ -123,7 +123,7 @@ GEM
       msgpack (~> 1.2)
     builder (3.2.4)
     camertron-eprun (1.1.1)
-    cancancan (3.4.0)
+    cancancan (3.5.0)
     choice (0.2.0)
     chosen-rails (1.10.0)
       coffee-rails (>= 3.2)
@@ -141,7 +141,7 @@ GEM
     colorize (0.8.1)
     compare-xml (0.5.2)
       nokogiri (~> 1.6)
-    concurrent-ruby (1.2.0)
+    concurrent-ruby (1.2.2)
     crass (1.0.6)
     date (3.3.3)
     debug (1.7.1)
@@ -196,8 +196,8 @@ GEM
       rake
     mini_mime (1.1.2)
     mini_portile2 (2.8.1)
-    minitest (5.17.0)
-    msgpack (1.6.0)
+    minitest (5.18.0)
+    msgpack (1.6.1)
     net-imap (0.3.4)
       date
       net-protocol
@@ -223,7 +223,7 @@ GEM
       mimemagic (~> 0.3.0)
       terrapin (~> 0.6.0)
     pdf-core (0.9.0)
-    pg (1.4.5)
+    pg (1.4.6)
     prawn (2.4.0)
       pdf-core (~> 0.9.0)
       ttfunk (~> 1.7)
@@ -232,10 +232,10 @@ GEM
     prawnto_2 (0.3.1)
       prawn (>= 1.0.0)
       rails (>= 3.2)
-    puma (6.1.0)
+    puma (6.1.1)
       nio4r (~> 2.0)
     racc (1.6.2)
-    rack (2.2.6.2)
+    rack (2.2.6.3)
     rack-proxy (0.7.6)
       rack
     rack-test (2.0.2)
