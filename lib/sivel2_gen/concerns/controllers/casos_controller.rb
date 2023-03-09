@@ -102,7 +102,7 @@ module Sivel2Gen
               [:departamento_id, :municipio_id, :clase_id,
                 :fechaini, :fechafin, :presponsable_id, :categoria_id,
                 :nombres, :apellidos, :victimacol, :sexo, :rangoedad_id,
-                :organizacion_id, :profesion_id, :descripcion,
+                :organizacion_id, :profesion_id, :filiacion_id, :descripcion,
                 :usuario_id, :fechaingini, :fechaingfin, :contexto_id, 
                 :contextovictima_id, :codigo, :orientacionsexual,
                 :sectorsocial_id 

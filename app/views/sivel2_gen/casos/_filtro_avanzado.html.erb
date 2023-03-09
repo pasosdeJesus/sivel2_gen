@@ -372,6 +372,37 @@
         <div class="offset-sm-0 col-sm-1 text-center">
         </div>
       </div>
+
+      <div class="row filtro-fila">
+        <div class="offset-sm-0 col-sm-2 offset-md-1 col-md-1">
+        </div>
+
+        <div class="offset-sm-0 col-sm-8 col-md-7">
+          <div class="row filtro-fila">
+            <div class="col-sm col-md">
+            <% if current_usuario %>
+              <%= f.input :filiacion_id,
+                collection: Msip::ModeloHelper.opciones_tabla_basica(
+                  Sivel2Gen::Filiacion, f, :filiacion_id
+                ),
+                label: false,
+                label_method: :nombre,
+                value_method: :id,
+                include_blank: '-- Filiación política'
+              %>
+            <% end %>
+            </div>
+            <div class="col-sm col-md">
+            </div>
+            <div class="col-sm col-md">
+            </div>
+          </div>
+        </div>
+        <div class="offset-sm-1 col-sm-1 offset-md-0 text-center">
+        </div>
+        <div class="offset-sm-0 col-sm-1 text-center">
+        </div>
+      </div>
       <% if current_usuario %>
       <div class="row filtro-fila">
         <div class="offset-sm-0 col-sm-2 offset-md-1 col-md-1">
