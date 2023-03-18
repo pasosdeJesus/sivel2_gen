@@ -302,7 +302,7 @@ module Sivel2Gen
             departamento.id_deplocal AS departamento_divipola,
             departamento.nombre AS departamento_nombre, 
             ubicacion.id_municipio, 
-            municipio.id_munlocal AS municipio_divipola,
+            departamento.id_deplocal*1000 + municipio.id_munlocal AS municipio_divipola,
             municipio.nombre AS municipio_nombre, 
             ubicacion.id_clase, 
             clase.id_clalocal AS clase_divipola,
@@ -862,7 +862,8 @@ module Sivel2Gen
 
             if (pMunicipio.to_i == 1) 
               que1 += ', ubicacion.id_municipio' +
-                ', INITCAP(municipio.nombre) AS municipio_nombre'
+                ', departamento.id_deplocal*1000+ municipio.id_munlocal AS municipio_divipola' +
+                ', municipio.nombre AS municipio_nombre'
               tablas1 += ' LEFT JOIN msip_municipio AS municipio ON ' +
                 ' ubicacion.id_municipio=municipio.id'
             end
@@ -981,6 +982,7 @@ module Sivel2Gen
             end
 
             if (pMunicipio.to_i == 1) 
+              que3 << ["municipio_divipola", "Cod. Municipio"]
               que3 << ["municipio_nombre", "Municipio"]
             end
 
