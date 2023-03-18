@@ -624,7 +624,7 @@ module Sivel2Gen
                     {"cat" => ['15&!73'],
                      "titulo" => "Victimizaciones por `Amenaza´ por agentes directos o indirectos del Estado por móviles de Persecución Política (Violaciones a los Derechos Humanos) que no constituyen Infracciones al Derecho Internacional Humanitario Consuetudinario."},
                     {"cat" => ['15&73'],
-                     "titulo" => "Victimizacioness que son simultáneamente `Amenaza´ por agentes directos o indirectos del Estado por móviles de Persecución Política (Violaciones a los Derechos Humanos) y `Amenaza´ que constituyen Infracciones al Derecho Internacional Humanitario Consuetudinario por parte de agentes directos o indirectos del Estado."},
+                     "titulo" => "Victimizaciones que son simultáneamente `Amenaza´ por agentes directos o indirectos del Estado por móviles de Persecución Política (Violaciones a los Derechos Humanos) y `Amenaza´ que constituyen Infracciones al Derecho Internacional Humanitario Consuetudinario por parte de agentes directos o indirectos del Estado."},
                     {"cat" => ['73&!15'],
                      "titulo" => "Victimizaciones por `Amenaza´ como Infracciones al Derecho Internacional Humanitario Consuetudinario por parte de la insurgencia."},
                      {"cat" => [45],
@@ -701,7 +701,7 @@ module Sivel2Gen
                          "titulo" => "Victimizaciones por `Profanación y Ocultamiento de Cadáveres´ DIHC."},
                          {"cat" => [716],
                           "titulo" => "Victimizaciones por `Negación de Derechos a Prisioneros de Guerra´ DIHC."}
-                    ], "Total victimizaciones por violencia sexual", where1
+                    ], "Total victimizaciones contra el derecho a la integridad", where1
                   ),
 
 
@@ -732,11 +732,11 @@ module Sivel2Gen
                     {"cat" => [14, 101],
                      "titulo" => "Victimizaciones por `Detención Arbitraria´  y `Deportación´ por móviles de Persecución Política (Violaciones a los Derechos Humanos)."},
                     {"cat" => ['141&!715'],
-                     "titulo" => "Victimizaciones por `Judicialización Arbitraria´ que no representan `Judicialización Arbitraría como Instrumento de Guerra´."},
+                     "titulo" => "Victimizaciones por `Judicialización Arbitraria´ que no representan `Judicialización Arbitraria como Instrumento de Guerra´."},
                      {"cat" => ['141&715'],
-                      "titulo" => "Victimizaciones que son simultaneamente `Judicialización Arbitraria´ y `Judicialización Arbitraría como Instrumento de Guerra´."},
+                      "titulo" => "Victimizaciones que son simultáneamente `Judicialización Arbitraria´ y `Judicialización Arbitraria como Instrumento de Guerra´."},
                       {"cat" => ['!141&715'],
-                       "titulo" => "Victimizaciones que son `Judicialización Arbitraría como Instrumento de Guerra´  pero que no son `Judicialización Arbitraria´."},
+                       "titulo" => "Victimizaciones que son `Judicialización Arbitraria como Instrumento de Guerra´  pero que no son `Judicialización Arbitraria´."},
                        {"cat" => [48],
                         "titulo" => "Victimizaciones por `Rapto´ por Móviles Políticos sin autor determinado."},
                         {"cat" => [41],
@@ -852,7 +852,7 @@ module Sivel2Gen
             if (pDepartamento.to_i == 1 || pMunicipio.to_i == 1) 
               que1 += ', ubicacion.id_departamento' +
                 ', departamento.id_deplocal AS departamento_divipola' +
-                ', INITCAP(departamento.nombre) AS departamento_nombre'
+                ', departamento.nombre AS departamento_nombre'
               # Tomamos ubicacion principal
               tablas1 += ' LEFT JOIN msip_ubicacion AS ubicacion ON' +
                 ' caso.ubicacion_id = ubicacion.id'

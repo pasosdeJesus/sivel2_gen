@@ -55,6 +55,11 @@ module Sivel2Gen
             end
           end
 
+          # A nombre se le quitan espacios de sobra (pero no se pasa a mayúsc.)
+          def nombre=(val)
+            self[:nombre] = val.squish if val
+          end
+
         end
 
       end
