@@ -41,7 +41,7 @@ test/dummy/node_modules/
 bin/c.sh
 test/dummy/bin/c.sh
 test/dummy/public/sivel2_2/assets/
-test/dummy/public/sivel2/assets/
+test/dummy/public/sivel2/
 test/dummy/public/packs
 test/dummy/app/assets/builds
 .env

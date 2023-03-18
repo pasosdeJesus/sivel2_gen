@@ -45,7 +45,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/msip.git
-  revision: 0a43287e615dbd5b907b4756c8fdc81d303bd78a
+  revision: 72093d806a4dfce0430c73a830cdb6eca506d7bf
   branch: main
   specs:
     msip (2.2.0.beta1)
@@ -281,7 +281,7 @@ GEM
       nio4r (~> 2.0)
     racc (1.6.2)
     rack (2.2.6.4)
-    rack-test (2.0.2)
+    rack-test (2.1.0)
       rack (>= 1.3)
     rails (7.0.4.3)
       actioncable (= 7.0.4.3)
