@@ -1,0 +1,89 @@
+<div class="page-header">
+  <h1>Victimizaciones individuales por municipio de Boyacá</h1>
+</div>
+
+<%= simple_form_for :filtro, 
+  { remote: true, 
+    url: sivel2_gen.mapamunvic_path,
+    method: "get" } do |f| 
+%>
+  <div class="container">
+    <div class="row filtro-fila">
+      <div class="offset-sm-0 col-sm-3 offset-md-1 col-md-1">
+        Filtrar por:
+      </div>
+      <div class="offset-sm-0 col-sm-4">
+        <%= f.input :fechaini,
+          maxlength: 10, 
+          size: 10,
+          label: false,
+          placeholder: 'Fecha Inicial',
+          input_html: {
+            "data-behaviour" => "datepicker",
+            "data-contarautomatico" => ""
+          }
+        %>
+      </div>
+      <div class="offset-sm-1 col-sm-4">
+        <%= f.input :fechafin,
+          maxlength: 10, 
+          size: 10,
+          label: false,
+          placeholder: 'Fecha Final',
+          input_html: {
+            "data-behaviour" => "datepicker",
+            "data-contarautomatico" => ""
+          }
+        %>
+      </div>
+    </div>
+
+    <div class="row filtro-fila">
+      <div class="offset-sm-2 col-sm-3">
+        <%= f.input :etiqueta1,
+          collection: Msip::Etiqueta.habilitados,
+          label_method: :nombre,
+          value_method: :id,
+          label: false,
+          include_blank: '-- Etiqueta 1',
+          input_html: { "data-contarautomatico" => "" }
+        %>
+      </div>
+      <div class="col-sm-3">
+        <%= f.input :etiqueta2,
+          collection: Msip::Etiqueta.habilitados,
+          label_method: :nombre,
+          value_method: :id,
+          label: false,
+          include_blank: '-- Etiqueta 2',
+          input_html: { "data-contarautomatico" => "" }
+        %>
+      </div>
+      <div class="col-sm-3">
+        <% pom = Msip::ModeloHelper.poromision(params, :colormax) %>
+        <%= f.input :colormax, 
+          label: false,
+          inline_label: 'Color más oscuro',
+          input_html: {
+            "data-contarautomatico" => "",
+            type: 'color',
+            width: '2em',
+            value: pom == '' ? '#00ff00' : pom
+          } %>
+      </div>
+    </div>
+
+    <%= render partial: 'sivel2_gen/mapadep/filtro_categorias', locals: {f: f} %>
+
+    <div class="row filtro-fila">
+      <div class="offset-md-5 col-md-2">
+        <%= f.button :submit, 'Contar', class: 'btn btn-default',
+          'data-turbo' => false %>
+      </div>
+    </div>
+<% end %>
+
+<div id="resultado" style='margin-top: 40px'>
+  <%= render 'mapamun' %>
+</div> <!-- id: resultado -->
+

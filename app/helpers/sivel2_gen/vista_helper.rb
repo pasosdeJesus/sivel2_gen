@@ -143,7 +143,7 @@ module Sivel2Gen
       l4 = (max * 0.75 > 1 ? max * 0.75 : 1).to_i
       l5 = (max > 1 ? max : 1).to_i
 
-      # Emplea números con más cerros en rangos
+      # Emplea números con más ceros en rangos
       if l5>10000
         l2 = ((l2/1000)+1)*1000
         l3 = ((l3/1000)+1)*1000
@@ -299,7 +299,9 @@ module Sivel2Gen
     #    poner color en atributo `fill`
     #  - Un elemento `<text id="nummun91" ..>` para poner el número de 
     #    victimizaciones 
-    #
+    # 
+    # @param depid Id de departamento
+    # @param depcad Cadena con departamento dividio en municipios en SVG
     # @param titulo Por centrar
     # @param subtitulo Por centrar
     # @param titulorangos Titulo del cuadro de rangos
@@ -312,7 +314,7 @@ module Sivel2Gen
     #
     # Tomo ideas para manipulación svg de 
     # https://thoughtbot.com/blog/organized-workflow-for-svg
-    def embeber_mapacalormuncol_svg(titulo, subtitulo, titulorangos, fuente,
+    def embeber_mapacalormuncol_svg(depid, depcad, titulo, subtitulo, titulorangos, fuente,
                                     cantidadesmun, opciones = {})
       # Color más oscuro (para rango4)
       cr = 0
@@ -351,10 +353,8 @@ module Sivel2Gen
         svg["class"] = opciones[:class]
       end
 
-      @registro = Msip::Departamento.find(11) # Boyaca
-      dep = render_to_string(partial: 'msip/admin/departamentos/show_svgruta')
-      debugger
-
+      siluetas = svg.at_css('#siluetas')
+      siluetas << depcad
 
       tit = svg.at_css('#titulo')
       if tit && titulo
@@ -458,32 +458,31 @@ module Sivel2Gen
 
       sinmun = 0
       cantidadesmun.each do |idmun, v|
-        if Msip::Departamento.where(
-            id_pais: Msip.paisomision).
-            where(id_munlocal: idmun).count == 0
+        if !idmun || Msip::Municipio.where(
+            id_departamento: depid).
+            where(id_munlocal: idmun % 1000).count == 0
           sinmun += v.to_i
         end
       end
 
-      Msip::Departamento.where(
-        id_pais: Msip.paisomision).each do |mun|
+      Msip::Municipio.where(
+        id_departamento: depid).each do |mun|
         cant = 0
-        if cantidadesmun.keys.include?(mun.id_munlocal)
-          cant = cantidadesmun[mun.id_munlocal].to_i
+        if cantidadesmun.keys.include?(mun.codlocal)
+          cant = cantidadesmun[mun.codlocal].to_i
         end
 
-        ud = svg.at_css('#nummun' + mun.id_munlocal.to_s)
+        ud = svg.at_css("#t-mixtimun#{mun.codlocal}")
         if ud
+          ud.content = mun.nombre
           if cant > 0
-            ud.content="#{cant}"
-          else
-            ud.content=''
+            ud.content += " - #{cant}"
           end
         else
           sinmun += cant
         end
 
-        md = svg.at_css('#mixtimun' + mun.id_munlocal.to_s)
+        md = svg.at_css("#r-mixtimun#{mun.codlocal}")
         if md && cant > 0
           if r4.include?(cant)
             md['fill'] = color4
@@ -500,7 +499,7 @@ module Sivel2Gen
 
         #      if nd
         #        nd['fill']='#0f0'
-        #        nd.content=mun.nombre + ' ' + mun.id_munlocal.to_s
+        #        nd.content=mun.nombre + ' ' + mun.codlocal.to_s
         #      end
       end
 

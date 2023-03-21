@@ -1,0 +1,14 @@
+<div id="mapamun-svg" style='text-align: center'>
+  <% s = Sivel2Gen::VistaHelper::embeber_mapacalormuncol_svg(11, 
+    @depcad,
+    @mapamun_titulo, @mapamun_subtitulo, @mapamun_titulorangos, 
+    @mapamun_fuente, @mapa_muncuenta, {
+      colormax_r: @mapamun_colormax_r,
+      colormax_v: @mapamun_colormax_v,
+      colormax_a: @mapamun_colormax_a
+    }) %>
+  <%= s %>
+</div>
+<div style='text-align: center; margin-bottom: 20px; margin-top: 10px'>
+  <a class='btn btn-sm' download='mapamun.svg' href='data:image/svg;base64,<%= Base64.encode64(s) %>'>Descargar</a>
+</div>
