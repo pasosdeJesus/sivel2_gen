@@ -25,7 +25,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/heb412_gen.git
-  revision: b84b7575310f98ea059e266d4ddc641c64f1f8ab
+  revision: 62c5c8f94e9edf167d27c3ee940361c0a644e320
   branch: main
   specs:
     heb412_gen (2.2.0.beta1)
@@ -36,7 +36,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/mr519_gen.git
-  revision: a7e30dd67c8266d6659a53e72f77be0406a75f43
+  revision: e239bb3b56f1a253f478945b36c33f4227eacd21
   branch: main
   specs:
     mr519_gen (2.2.0.beta1)
@@ -45,7 +45,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/msip.git
-  revision: 216f671cbf5e97742ab2d1cc6d90b42266ba401e
+  revision: ce832af4e98368bf7a71a2da09f8bb9bd3b6f7e6
   branch: main
   specs:
     msip (2.2.0.beta1)
@@ -325,7 +325,7 @@ GEM
     rake (13.0.6)
     redcarpet (3.6.0)
     regexp_parser (2.7.0)
-    reline (0.3.2)
+    reline (0.3.3)
       io-console (~> 0.5)
     responders (3.1.0)
       actionpack (>= 5.2)
@@ -344,7 +344,7 @@ GEM
       rubocop-ast (>= 1.26.0, < 2.0)
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 2.4.0, < 3.0)
-    rubocop-ast (1.27.0)
+    rubocop-ast (1.28.0)
       parser (>= 3.2.1.0)
     rubocop-minitest (0.29.0)
       rubocop (>= 1.39, < 2.0)
@@ -479,4 +479,4 @@ DEPENDENCIES
   will_paginate
 
 BUNDLED WITH
-   2.4.9
+   2.4.10
