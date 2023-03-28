@@ -11,7 +11,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/heb412_gen.git
-  revision: 8f9de5438ee07060517067ca9b3ba7e990c4a17b
+  revision: 356a88d7eaf70edca3f5e43d704b4fb848441353
   branch: v2.0
   specs:
     heb412_gen (2.0)
@@ -22,7 +22,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/mr519_gen.git
-  revision: 8fc47e995024d1a37650d3d890bb858beb85e131
+  revision: a0f9ef56467d127634a53b96d8e9b4bd2eb70636
   branch: v2.0
   specs:
     mr519_gen (2.0)
@@ -31,7 +31,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sip.git
-  revision: 281af9e4afb1c69e6d4dd2efb52eaceeb515641f
+  revision: 85a2c242678425ddb78bbac2c6c212ddc8cafc87
   branch: v2.0
   specs:
     sip (2.0)
@@ -280,7 +280,7 @@ GEM
       thor (~> 1.0)
     rake (13.0.6)
     redcarpet (3.6.0)
-    reline (0.3.2)
+    reline (0.3.3)
       io-console (~> 0.5)
     responders (3.1.0)
       actionpack (>= 5.2)
@@ -394,4 +394,4 @@ DEPENDENCIES
   will_paginate
 
 BUNDLED WITH
-   2.4.9
+   2.4.10
