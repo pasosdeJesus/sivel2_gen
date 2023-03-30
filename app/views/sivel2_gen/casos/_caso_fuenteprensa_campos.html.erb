@@ -1,16 +1,17 @@
+<%= turbo_frame_tag "caso_fuenteprensa_#{fp.index}" do %>
 <div class='control-group nested-fields'>
   <div class="controls">
-    <% f.object = Sivel2Gen::CasoFuenteprensa.new if !f.object %>
+    <%= fp.input :id, as: :hidden %>
     <div class="row">
       <div class="col-md-6">
-        <%= f.input :fecha_localizada, 
-          :input_html => { "data-behaviour" => "datepicker" },
+        <%= fp.input :fecha,
+          :input_html => { type: "date" },
           :as => :string, :label => "Fecha" %>
       </div>
       <div class="col-md-6">
-        <%= f.association :fuenteprensa,
+        <%= fp.association :fuenteprensa,
           collection: Msip::ModeloHelper.opciones_tabla_basica(
-            Msip::Fuenteprensa, f, :fuenteprensa
+            Msip::Fuenteprensa, fp, :fuenteprensa
           ),
           label_method: :nombre,
           value_method: :id %>
@@ -19,30 +20,30 @@
 
     <div class="row">
       <div class="col-md-6">
-        <%= f.input :ubicacion %>
+        <%= fp.input :ubicacion %>
       </div>
       <div class="col-md-6">
-        <%= f.input :clasificacion %>
+        <%= fp.input :clasificacion %>
       </div>
     </div>
 
     <div class="row">
       <div class="col-md-6">
-        <%= f.input :ubicacionfisica %>
+        <%= fp.input :ubicacionfisica %>
       </div>
       <div class="col-md-6">
-        <%= f.association :anexo_caso,
-          collection: Sivel2Gen::AnexoCaso.where(id_caso: f.object.id_caso),
+        <%= fp.association :anexo_caso,
+          collection: Sivel2Gen::AnexoCaso.where(id_caso: fp.object.id_caso),
           label_method: lambda { |t| t.msip_anexo.adjunto_file_name },
           value_method: :id %>
       </div>
     </div>
-
-    <%= f.input :id, as: :hidden %>
-
-    <%= link_to_remove_association "Eliminar Fuente Frecuente", f, 
-      :class => 'btn btn-sm btn-danger',
-      style: 'margin-bottom: 1em'
-    %> 
+    <%= fp.submit "Eliminar", 
+        formaction: eliminar_casos_fuenteprensa_path(id: fp.object.id, index: fp.index),
+        formmethod: :delete, 
+        formnovalidate: true, 
+        class: 'btn btn-sm btn-danger',
+        data: { turbo_frame: "caso_fuenteprensa_#{fp.index}" } %>
   </div>
 </div>
+<% end %>

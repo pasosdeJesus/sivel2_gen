@@ -1,6 +1,7 @@
+<%= turbo_frame_tag "caso_presponsable_#{f.index}" do %>
 <div class='control-group nested-fields'>
   <div class="controls">
-
+    <%= f.input :id, as: :hidden %>
     <div class="row">
       <div class="col-md-12">
         <% col1 = Sivel2Gen::Presponsable.habilitados.map(&:id) %>
@@ -54,15 +55,15 @@
         } %>
       </div>
     </div>
-
     <%= render 'sivel2_gen/casos/caso_presponsable_compf', f:  f %>
-    <%= f.input :id, as: :hidden %>
-    <%= link_to_remove_association "Eliminar " +
-      Sivel2Gen::Presponsable.human_attribute_name(:presponsable), f, {
-        class: 'btn btn-sm btn-danger', 
-        'data-existing': 'true',
-        style: 'margin-bottom: 1em'
-      } 
-    %> 
+
+    <%= f.submit "Eliminar", 
+        formaction: eliminar_casos_presponsable_path(id: f.object.id, index: f.index),
+        formmethod: :delete,
+        formnovalidate: true,
+        class: 'btn btn-sm btn-danger',
+        data: { turbo_frame: "caso_presponsable_#{f.index}" } %>
+
   </div>
 </div>
+<% end %>
