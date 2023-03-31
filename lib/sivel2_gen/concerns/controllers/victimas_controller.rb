@@ -69,11 +69,20 @@ module Sivel2Gen
               @persona.nombres = 'N'
               @persona.apellidos = 'N'
               @persona.sexo = Msip::Persona::convencion_sexo[:sexo_sininformacion]
+              if Rails.configuration.x.msip_docid_obligatorio === true
+                @persona.tdocumento_id = 11
+                numale = 10000+rand(10000)
+                @persona.numerodocumento = numale.to_s + 'X'
+              end
               if !@persona.save
                 respond_to do |format|
                   format.html { render inline: 'No pudo crear persona' }
                 end
                 return
+              end
+              if Rails.configuration.x.msip_docid_obligatorio === true
+                @persona.numerodocumento = @persona.id
+                @persona.save
               end
               @victima.id_caso = params[:caso_id]
               @victima.id_persona = @persona.id

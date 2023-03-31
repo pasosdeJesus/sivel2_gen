@@ -52,3 +52,6 @@ test/dummy/public/sivel2_2/csv
 cobertura-unitarias/
 test/dummy/cobertura-sistema/
 test/dummy/public/sivel2_2/cobertura/
+Gemfile.lock.cp
+test/dummy/db/structure.sql.cp
+test/dummy/yarn.lock.cp
