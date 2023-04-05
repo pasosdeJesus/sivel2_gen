@@ -4,24 +4,24 @@ module Sivel2Gen
       before_action :set_categoria, only: [:show, :edit, :update, :destroy]
       load_and_authorize_resource class: Sivel2Gen::Categoria
 
-      def clase 
+      def clase
         "Sivel2Gen::Categoria"
       end
-  
+
       def set_categoria
         @basica = Categoria.find(params[:id])
       end
-  
+
       def atributos_index
         [
-          :id, 
-          :nombre, 
+          :id,
+          :nombre,
           :supracategoria_id,
-          :contadaen, 
-          :tipocat, 
-          :pconsolidado_id, 
-          :observaciones, 
-          :fechacreacion_localizada, 
+          :contadaen,
+          :tipocat,
+          :pconsolidado_id,
+          :observaciones,
+          :fechacreacion_localizada,
           :habilitado
         ]
       end
@@ -33,7 +33,7 @@ module Sivel2Gen
       def filtra_por_tviolencia
         datos = []
         if params[:tviolencia] && Sivel2Gen::Supracategoria.where(
-            tviolencia_id: params[:tviolencia]).count > 0 
+            tviolencia_id: params[:tviolencia]).count > 0
 
           supra = Sivel2Gen::Supracategoria.
             where(tviolencia_id: params[:tviolencia])[0]

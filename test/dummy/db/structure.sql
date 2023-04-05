@@ -3085,16 +3085,6 @@ ALTER SEQUENCE public.sivel2_gen_combatiente_id_seq OWNED BY public.sivel2_gen_c
 
 
 --
--- Name: sivel2_gen_combatiente_presponsable; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.sivel2_gen_combatiente_presponsable (
-    presponsable_id integer NOT NULL,
-    combatiente_id integer NOT NULL
-);
-
-
---
 -- Name: sivel2_gen_presponsable_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
@@ -4840,14 +4830,6 @@ ALTER TABLE ONLY public.msip_vereda
 
 
 --
--- Name: sivel2_gen_combatiente_presponsable p_responsable_agrede_combatiente_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.sivel2_gen_combatiente_presponsable
-    ADD CONSTRAINT p_responsable_agrede_combatiente_pkey PRIMARY KEY (presponsable_id, combatiente_id);
-
-
---
 -- Name: sivel2_gen_pconsolidado pconsolidado_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -6214,14 +6196,6 @@ ALTER TABLE ONLY public.sivel2_gen_categoria
 
 
 --
--- Name: sivel2_gen_categoria categoria_contadaen_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.sivel2_gen_categoria
-    ADD CONSTRAINT categoria_contadaen_fkey FOREIGN KEY (contadaen) REFERENCES public.sivel2_gen_categoria(id);
-
-
---
 -- Name: sivel2_gen_contextovictima_victima contextovictima_victima_contextovictima_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -6899,14 +6873,6 @@ ALTER TABLE ONLY public.msip_persona
 
 ALTER TABLE ONLY public.msip_persona
     ADD CONSTRAINT persona_tdocumento_id_fkey FOREIGN KEY (tdocumento_id) REFERENCES public.msip_tdocumento(id);
-
-
---
--- Name: sivel2_gen_presponsable presponsable_papa_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.sivel2_gen_presponsable
-    ADD CONSTRAINT presponsable_papa_fkey FOREIGN KEY (papa_id) REFERENCES public.sivel2_gen_presponsable(id);
 
 
 --
@@ -7605,6 +7571,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20230301145222'),
 ('20230301212546'),
 ('20230404025025'),
-('20230405032350');
+('20230405032350'),
+('20230405141724');
 
 

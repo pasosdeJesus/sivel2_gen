@@ -87,11 +87,6 @@ class NomenclaturaRails < ActiveRecord::Migration[7.0]
     rename_column :sivel2_gen_combatiente, :id_sectorsocial, :sectorsocial_id
     rename_column :sivel2_gen_combatiente, :id_vinculoestado, :vinculoestado_id
 
-    rename_column :sivel2_gen_combatiente_presponsable, 
-      :id_combatiente, :combatiente_id
-    rename_column :sivel2_gen_combatiente_presponsable, 
-      :id_p_responsable, :presponsable_id
-
     rename_column :sivel2_gen_filiacion_victimacolectiva, 
       :id_filiacion, :filiacion_id
 
