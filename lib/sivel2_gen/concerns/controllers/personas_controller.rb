@@ -57,7 +57,7 @@ module Sivel2Gen
             end
           end
 
-          def remplazar
+          def remplazar_sivel2_gen
             @persona = Msip::Persona.find(params[:persona_id].to_i)
             @victima = Sivel2Gen::Victima.find(params[:victima_id].to_i)
             @personaant = @victima.persona
@@ -96,6 +96,10 @@ module Sivel2Gen
                 return
               }
             end
+          end
+
+          def remplazar
+            remplazar_sivel2_gen
           end
 
         end # included
