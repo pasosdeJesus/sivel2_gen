@@ -44,11 +44,11 @@ module Sivel2Gen
       ubicacion1 = Msip::Ubicacion.create(
         longitud: 87.3423,
         latitud: 23.2342,
-        id_pais: 170,
-        id_caso: caso1.id,
-        id_tsitio: 1,
-        id_departamento: 17,
-        id_municipio: 1152,
+        pais_id: 170,
+        caso_id: caso1.id,
+        tsitio_id: 1,
+        departamento_id: 17,
+        municipio_id: 1152,
         created_at: '2014-11-06'
       )
       ubicacion1.save!
@@ -56,25 +56,25 @@ module Sivel2Gen
       caso1.save!
       frontera1 = Sivel2Gen::Frontera.find(1)
       Sivel2Gen::CasoFrontera.create(
-        id_frontera: frontera1.id,
-        id_caso: caso1.id,
+        frontera_id: frontera1.id,
+        caso_id: caso1.id,
         created_at: '2014-11-06',
         updated_at: '2014-11-06'
       )
       region1 = Sivel2Gen::Region.find(9)
       Sivel2Gen::CasoRegion.create(
-        id_region: region1.id,
-        id_caso: caso1.id,
+        region_id: region1.id,
+        caso_id: caso1.id,
       )
       caso2 = Sivel2Gen::Caso.create PRUEBA_CASO_BASICOS2
       ubicacion2 = Msip::Ubicacion.create(
         longitud: 77.3847,
         latitud: 3.3483,
-        id_pais: 170,
-        id_caso: caso2.id,
-        id_tsitio: 1,
-        id_departamento: 17,
-        id_municipio: 1152,
+        pais_id: 170,
+        caso_id: caso2.id,
+        tsitio_id: 1,
+        departamento_id: 17,
+        municipio_id: 1152,
         created_at: '2014-11-06'
       )
       ubicacion2.save!
@@ -83,16 +83,16 @@ module Sivel2Gen
 
       frontera2 = Sivel2Gen::Frontera.find(1)
       Sivel2Gen::CasoFrontera.create(
-        id_frontera: frontera2.id,
-        id_caso: caso2.id,
+        frontera_id: frontera2.id,
+        caso_id: caso2.id,
         created_at: '2014-11-06',
         updated_at: '2014-11-06'
       )
       Sivel2Gen::Conscaso.refresca_conscaso
       region2 = Sivel2Gen::Region.find(9)
       Sivel2Gen::CasoRegion.create(
-        id_region: region2.id,
-        id_caso: caso2.id,
+        region_id: region2.id,
+        caso_id: caso2.id,
       )
 
       d12 = JSON.parse(<<EOS)

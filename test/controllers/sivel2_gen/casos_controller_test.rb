@@ -23,12 +23,12 @@ module Sivel2Gen
       created_at: "2014-11-11" 
     }
 
-    test "index: asigna todas los casos como @casos" do
-      #byebug
+    test "index: asigna todos los casos como @casos" do
       Sivel2Gen::Conscaso.refresca_conscaso
       Caso.create! PRUEBA_CASOV
       Sivel2Gen::Conscaso.refresca_conscaso
       get casos_path
+      #debugger
       assert_response :success
       puts @response.body
       assert_select "tr>td", text: '2014-11-19'
@@ -132,7 +132,7 @@ module Sivel2Gen
       fuenteprensa = Msip::Fuenteprensa.create(PRUEBA_FUENTEPRENSA)
       assert fuenteprensa.valid?
       cf = Sivel2Gen::CasoFuenteprensa.create(
-        id_caso: @caso.id,
+        caso_id: @caso.id,
         fuenteprensa_id: fuenteprensa.id,
         fecha: '2023-01-11',
       )
@@ -147,7 +147,7 @@ module Sivel2Gen
       @caso = Sivel2Gen::Caso.create(PRUEBA_CASO)
       assert @caso.valid?
       cof = Sivel2Gen::CasoFotra.create(
-        id_caso: @caso.id,
+        caso_id: @caso.id,
         nombre: "otra fuente",
         fecha: '2023-01-11',
       )
@@ -162,8 +162,8 @@ module Sivel2Gen
       assert @caso.valid?
       pr = Sivel2Gen::Presponsable.take
       cof = Sivel2Gen::CasoPresponsable.create(
-        id_caso: @caso.id,
-        id_presponsable: pr.id,
+        caso_id: @caso.id,
+        presponsable_id: pr.id,
         tipo: 0
       )
       post casos_fotra_path(@caso, cof, format: :turbo_stream)

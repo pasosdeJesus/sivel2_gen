@@ -8,7 +8,7 @@ module Sivel2Gen
         included do
           include Msip::Basica
           
-          has_many :supracategoria, foreign_key: "id_tviolencia", 
+          has_many :supracategoria, foreign_key: "tviolencia_id", 
             validate: true, class_name: 'Sivel2Gen::Supracategoria'
 
           validates :id, presence:true, length: { maximum: 1 }, 

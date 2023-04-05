@@ -10,9 +10,9 @@
   </head>
   <body>
     <% lbel = Sivel2Gen::CasoCategoriaPresponsable.joins(:caso_presponsable).
-      joins(:categoria).joins('JOIN sivel2_gen_supracategoria ON sivel2_gen_supracategoria.id=sivel2_gen_categoria.supracategoria_id').where('sivel2_gen_supracategoria.id_tviolencia=?', 'C').pluck(:id_caso).sort.uniq %>
+      joins(:categoria).joins('JOIN sivel2_gen_supracategoria ON sivel2_gen_supracategoria.id=sivel2_gen_categoria.supracategoria_id').where('sivel2_gen_supracategoria.tviolencia_id=?', 'C').pluck(:caso_id).sort.uniq %>
     <% conscaso2 = @conscaso.where.not(caso_id: lbel).
-      where('caso_id NOT in (SELECT id_caso FROM sivel2_gen_combatiente)')  %>
+      where('caso_id NOT in (SELECT caso_id FROM sivel2_gen_combatiente)')  %>
     <% conscaso2.try(:each) do |ccaso| %>
       <% @caso = caso = Sivel2Gen::Caso.find(ccaso.caso_id) %>
       <%= render partial: 'reporterevista', locals: {caso: caso} %>

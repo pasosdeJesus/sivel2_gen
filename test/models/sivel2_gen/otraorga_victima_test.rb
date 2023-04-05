@@ -20,8 +20,8 @@ module Sivel2Gen
       assert persona.valid?
 
       victima = Victima.create PRUEBA_VICTIMA.merge(
-        id_caso: caso.id,
-        id_persona: persona.id,
+        caso_id: caso.id,
+        persona_id: persona.id,
       )
       assert victima.valid?
 

@@ -42,7 +42,7 @@ module Sivel2Gen
               'DEPARTAMENTOS' => { 
                 nomfiltro: :departamentos,
                 coleccion: Msip::Departamento.where(
-                  id_pais: Msip.paisomision).order(:nombre),
+                  pais_id: Msip.paisomision).order(:nombre),
                 metodo_etiqueta: :nombre,
                 metodo_id: :id,
                 campocons: 'departamento.id'
@@ -69,7 +69,7 @@ module Sivel2Gen
 
             when "CATEGORIAS"
               que3 << ["nomcategoria", 'Cod. Categoria']
-              que3 << ["id_tviolencia", 'T. Violencia']
+              que3 << ["tviolencia_id", 'T. Violencia']
               que3 << ["categoria", 'Categoria']
 
             when "DEPARTAMENTOS"
@@ -94,28 +94,28 @@ module Sivel2Gen
 
           def inicializa(where1)
             # Para la vista cons1 emplear que1, tablas1 y where1
-            que1 = 'DISTINCT acto.id_caso, acto.id_persona, '\
-              'acto.id_categoria, '\
-              'supracategoria.id_tviolencia AS id_tviolencia, '\
+            que1 = 'DISTINCT acto.caso_id, acto.persona_id, '\
+              'acto.categoria_id, '\
+              'supracategoria.tviolencia_id AS tviolencia_id, '\
               'categoria.nombre AS categoria, '\
-              'supracategoria.id_tviolencia || categoria.id::text AS nomcategoria, '\
+              'supracategoria.tviolencia_id || categoria.id::text AS nomcategoria, '\
               'departamento.nombre AS departamento_nombre, '\
-              'departamento.id_deplocal AS departamento_divipola '
+              'departamento.deplocal_cod AS departamento_divipola '
             tablas1 = ' public.sivel2_gen_acto AS acto JOIN '\
-              'public.sivel2_gen_caso AS caso ON acto.id_caso=caso.id '\
+              'public.sivel2_gen_caso AS caso ON acto.caso_id=caso.id '\
               'JOIN public.sivel2_gen_categoria AS categoria '\
-              ' ON acto.id_categoria=categoria.id '\
+              ' ON acto.categoria_id=categoria.id '\
               'JOIN public.sivel2_gen_supracategoria AS supracategoria '\
               ' ON categoria.supracategoria_id=supracategoria.id '\
               'JOIN public.sivel2_gen_victima AS victima '\
-              ' ON victima.id_persona=acto.id_persona AND '\
-              ' victima.id_caso=caso.id '\
+              ' ON victima.persona_id=acto.persona_id AND '\
+              ' victima.caso_id=caso.id '\
               'JOIN public.msip_persona AS persona '\
-              ' ON persona.id=acto.id_persona '\
+              ' ON persona.id=acto.persona_id '\
               'JOIN public.msip_ubicacion AS ubicacion '\
               ' ON ubicacion.id=caso.ubicacion_id '\
               'LEFT JOIN public.msip_departamento AS departamento '\
-              ' ON departamento.id=ubicacion.id_departamento '
+              ' ON departamento.id=ubicacion.departamento_id '
 
             return [que1, tablas1, where1]
           end
@@ -143,7 +143,7 @@ module Sivel2Gen
 #                desagr = "persona.sexo ='#{sexo[1].to_s}'" 
 #                filtros= ""
 #                filtros << "
-#              AND ubi.id_departamento IN (#{(@vic_dep).join(', ')})" if @vic_dep.count >= 1
+#              AND ubi.departamento_id IN (#{(@vic_dep).join(', ')})" if @vic_dep.count >= 1
 #              filtros << "
 #              AND categoria.id IN (#{@vic_categorias.join(', ')})" if @vic_categorias.count >= 1
 #              valores_sex = ActiveRecord::Base.connection.execute(consulta_gen(desagr, filtros)).values.to_h 

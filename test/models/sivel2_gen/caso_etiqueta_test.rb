@@ -18,9 +18,9 @@ module Sivel2Gen
       usuario = ::Usuario.create(PRUEBA_USUARIO)
       assert usuario.valid?
       cs = Sivel2Gen::CasoEtiqueta.create(
-        id_caso: caso.id,
-        id_etiqueta: etiqueta.id,
-        id_usuario: usuario.id,
+        caso_id: caso.id,
+        etiqueta_id: etiqueta.id,
+        usuario_id: usuario.id,
         fecha: '2023-01-11',
       )
       assert_predicate cs, :valid?

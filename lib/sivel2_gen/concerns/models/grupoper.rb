@@ -9,9 +9,9 @@ module Sivel2Gen
         include Msip::Concerns::Models::Grupoper
 
         included do
-          has_many :actocolectivo, foreign_key: 'id_grupoper', validate: true,
+          has_many :actocolectivo, foreign_key: 'grupoper_id', validate: true,
             class_name: 'Sivel2Gen::Actocolectivo'
-          has_many :victimacolectiva, foreign_key: 'id_grupoper',
+          has_many :victimacolectiva, foreign_key: 'grupoper_id',
             validate: true, class_name: 'Sivel2Gen::Victimacolectiva'
           has_many :casos, :through => :victimacolectiva
 

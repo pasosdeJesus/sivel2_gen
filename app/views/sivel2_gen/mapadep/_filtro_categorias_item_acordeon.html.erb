@@ -49,7 +49,7 @@
     <% cats = Sivel2Gen::Categoria.habilitados.pluck(:id) %>
     <%= f.input :categoria, 
       collection: Sivel2Gen::Categoria.habilitados.group_by { |c| 
-        c.supracategoria.id_tviolencia
+        c.supracategoria.tviolencia_id
       },
       as: :grouped_select, 
       group_method: :last, 
@@ -59,7 +59,7 @@
       value_method: :id,
       label_method: lambda { |cat| 
         Sivel2Gen::Supracategoria.find(cat.supracategoria_id.to_i).
-          id_tviolencia + cat.id.to_s + ' ' + cat.nombre 
+          tviolencia_id + cat.id.to_s + ' ' + cat.nombre 
       },
       selected: cats,
       label: false,

@@ -202,7 +202,7 @@ es:
       "sivel2_gen/supracategoria": 
         Supracategoria: Supracategoria
         Supracategorias: Supracategorias
-        id_tviolencia: Tipo de Violencia
+        tviolencia_id: Tipo de Violencia
       "sivel2_gen/tclase":
         Tclase: Tipo de Centro Poblado
         Tclases: Tipos de Centros Poblados

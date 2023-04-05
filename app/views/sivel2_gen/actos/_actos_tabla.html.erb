@@ -12,7 +12,7 @@
     <% @caso.acto.try(:each) do |acto| %>
       <tr>
         <td><%= acto.presponsable.nombre %></td>
-        <td><%= acto.categoria.supracategoria.id_tviolencia + acto.categoria.id.to_s + ' ' + acto.categoria.nombre %></td>
+        <td><%= acto.categoria.supracategoria.tviolencia_id + acto.categoria.id.to_s + ' ' + acto.categoria.nombre %></td>
         <td>
           <%if acto.persona.nombres == 'N' && acto.persona.apellidos == 'N' %>
             <%= acto.persona.sin_identificacion %>

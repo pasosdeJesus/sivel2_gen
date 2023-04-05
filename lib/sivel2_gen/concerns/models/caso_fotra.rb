@@ -9,9 +9,9 @@ module Sivel2Gen
           include Msip::FormatoFechaHelper
 
           belongs_to :fotra, class_name: "Sivel2Gen::Fotra", 
-            foreign_key: "id_fotra", optional: true
+            foreign_key: "fotra_id", optional: true
           belongs_to :caso, class_name: "Sivel2Gen::Caso", 
-            foreign_key: "id_caso", validate: true, optional: false
+            foreign_key: "caso_id", validate: true, optional: false
           belongs_to :anexo_caso, class_name: "Sivel2Gen::AnexoCaso", 
             dependent: :destroy, foreign_key: "anexo_caso_id", 
             optional: true
@@ -24,7 +24,7 @@ module Sivel2Gen
           validates :anotacion, length: { maximum: 1024 } 
           validates :ubicacionfisica, length: { maximum: 1024 } 
           validates :tfuente, length: { maximum: 25 } 
-          validates :nombre, uniqueness: { scope: [ :fecha, :id_caso ] }
+          validates :nombre, uniqueness: { scope: [ :fecha, :caso_id ] }
 
         end
       end

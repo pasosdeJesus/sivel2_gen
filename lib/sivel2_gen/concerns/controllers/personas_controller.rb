@@ -42,12 +42,12 @@ module Sivel2Gen
           end 
 
           def remplazarfamiliar
-            @personados = Msip::Persona.find(params[:id_persona].to_i)
-            @caso = Sivel2Gen::Caso.find(params[:id_caso])
-            @victima = Sivel2Gen::Victima.find(params[:id_victima].to_i)
-            @victima_cocoon = params[:id_victcocoon]
+            @personados = Msip::Persona.find(params[:persona_id].to_i)
+            @caso = Sivel2Gen::Caso.find(params[:caso_id])
+            @victima = Sivel2Gen::Victima.find(params[:victima_id].to_i)
+            @victima_cocoon = params[:victcocoon_id]
             @caso.current_usuario = current_usuario
-            @trelacion1 = params[:id_trelacion1]
+            @trelacion1 = params[:trelacion_id1]
             respond_to do |format|
               format.html {
                 render("/msip/personas/remplazar_familiar",
@@ -58,8 +58,8 @@ module Sivel2Gen
           end
 
           def remplazar
-            @persona = Msip::Persona.find(params[:id_persona].to_i)
-            @victima = Sivel2Gen::Victima.find(params[:id_victima].to_i)
+            @persona = Msip::Persona.find(params[:persona_id].to_i)
+            @victima = Sivel2Gen::Victima.find(params[:victima_id].to_i)
             @personaant = @victima.persona
             @caso = @victima.caso
             @caso.current_usuario = current_usuario
@@ -67,8 +67,8 @@ module Sivel2Gen
             if !remplazar_antes_salvar_v
               return
             end
-            if Sivel2Gen::Victima.where(id_persona: @persona.id).
-                where(id_caso: @caso.id).count == 0
+            if Sivel2Gen::Victima.where(persona_id: @persona.id).
+                where(caso_id: @caso.id).count == 0
               @victima.save!
             else
               puts "Ya existe esa persona en el caso"

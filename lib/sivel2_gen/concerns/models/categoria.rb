@@ -11,7 +11,7 @@ module Sivel2Gen
 
           belongs_to :contada, foreign_key: "contadaen", 
             class_name: 'Sivel2Gen::Categoria', optional: true
-          belongs_to :pconsolidado, foreign_key: "id_pconsolidado", 
+          belongs_to :pconsolidado, foreign_key: "pconsolidado_id", 
             class_name: 'Sivel2Gen::Pconsolidado', optional: true
           belongs_to :supracategoria, foreign_key: "supracategoria_id", 
              class_name: 'Sivel2Gen::Supracategoria', validate: true,
@@ -19,10 +19,10 @@ module Sivel2Gen
 
 
 
-          has_many :acto, foreign_key: "id_categoria", validate: true,
+          has_many :acto, foreign_key: "categoria_id", validate: true,
             class_name: 'Sivel2Gen::Acto'
 
-          has_many :caso_categoria_presponsable, foreign_key: 'id_categoria',
+          has_many :caso_categoria_presponsable, foreign_key: 'categoria_id',
             validate: true, class_name: 'Sivel2Gen::CasoCategoriaPresponsable',
             inverse_of: :categoria
           has_many :caso_presponsable, through: :caso_categoria_presponsable,
@@ -38,14 +38,14 @@ module Sivel2Gen
             end
             sup = Sivel2Gen::Supracategoria.find(self.supracategoria_id)
             self.nombre + " (" + sup.nombre + " / " + 
-              Sivel2Gen::Tviolencia.find(sup.id_tviolencia).nombre + ")"
+              Sivel2Gen::Tviolencia.find(sup.tviolencia_id).nombre + ")"
           end
 
           def presenta_con_codigo
             if !supracategoria_id
               return nombre
             end
-            supracategoria.id_tviolencia + 
+            supracategoria.tviolencia_id + 
               id.to_s + ' ' + nombre
           end
 

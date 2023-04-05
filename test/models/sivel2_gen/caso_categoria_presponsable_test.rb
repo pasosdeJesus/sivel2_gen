@@ -16,8 +16,8 @@ module Sivel2Gen
       assert caso.valid?
 
       cp = CasoPresponsable.create(
-        id_caso: caso.id,
-        id_presponsable: presponsable.id,
+        caso_id: caso.id,
+        presponsable_id: presponsable.id,
         tipo: 0,
       )
       assert_predicate cp, :valid?
@@ -26,8 +26,8 @@ module Sivel2Gen
       assert_predicate cat, :valid?
 
       ccp = CasoCategoriaPresponsable.create(
-        id_categoria: cat.id,
-        id_caso_presponsable: cp.id
+        categoria_id: cat.id,
+        caso_presponsable_id: cp.id
       )
       assert_predicate ccp, :valid?
 

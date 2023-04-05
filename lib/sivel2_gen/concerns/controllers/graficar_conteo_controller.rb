@@ -17,7 +17,7 @@ module Sivel2Gen
           #      # No usuamos habilitados porque deben incluirse históricos
           #      metodo_etiqueta: :nombre,
           #      metodo_id: :id,
-          #      campocons: 'victima.id_etnia'
+          #      campocons: 'victima.etnia_id'
           #    }
           # O para colecciones como sexo:
           #   'SEXO' => { 
@@ -75,7 +75,7 @@ module Sivel2Gen
               'DEPARTAMENTO' => { 
                 nomfiltro: :departamentos,
                 coleccion: Msip::Departamento.where(
-                  id_pais: Msip.paisomision).order(:nombre),
+                  pais_id: Msip.paisomision).order(:nombre),
                 metodo_etiqueta: :nombre,
                 metodo_id: :id,
                 campocons: 'departamento.id'
@@ -183,7 +183,7 @@ module Sivel2Gen
         
             if (pTviolencia != '') 
               where1 = ampliar_where(
-                where1, "id_tviolencia", pTviolencia[0], "="
+                where1, "tviolencia_id", pTviolencia[0], "="
               )
             end
 
@@ -218,11 +218,11 @@ module Sivel2Gen
 
           def desagregarpor_tipico(tabla, nomtabla, que1, que3, tablas3, where3)
             que1 = agregar_tabla(
-              que1, "victima.id_#{tabla} AS id_#{tabla}")
+              que1, "victima.#{tabla}_id AS #{tabla}_id")
             tablas3 = agregar_tabla(
               tablas3, "public.sivel2_gen_#{tabla} AS #{tabla}")
             where3 = ampliar_where_sinap(
-              where3, "id_#{tabla}", "#{tabla}.id")
+              where3, "#{tabla}_id", "#{tabla}.id")
             que3 << ["#{tabla}.nombre", nomtabla]
             return [que1, que3, tablas3, where3]
           end
@@ -304,26 +304,26 @@ module Sivel2Gen
             end
 
             return ["CREATE VIEW #{cons2} AS SELECT #{cons1}.*,
-            ubicacion.id_departamento, 
-            departamento.id_deplocal AS departamento_divipola,
+            ubicacion.departamento_id, 
+            departamento.deplocal_cod AS departamento_divipola,
             departamento.nombre AS departamento_nombre, 
-            ubicacion.id_municipio, 
-            municipio.id_munlocal AS municipio_divipola,
+            ubicacion.municipio_id, 
+            municipio.munlocal_cod AS municipio_divipola,
             municipio.nombre AS municipio_nombre, 
-            ubicacion.id_clase, 
-            clase.id_clalocal AS clase_divipola,
+            ubicacion.clase_id, 
+            clase.clalocal_cod AS clase_divipola,
             clase.nombre AS clase_nombre
             FROM
             #{cons1} JOIN sivel2_gen_caso AS caso ON
-              (#{cons1}.id_caso = caso.id) 
+              (#{cons1}.caso_id = caso.id) 
             LEFT JOIN msip_ubicacion AS ubicacion ON
               (caso.ubicacion_id = ubicacion.id) 
             LEFT JOIN msip_departamento AS departamento ON 
-              (ubicacion.id_departamento=departamento.id) 
+              (ubicacion.departamento_id=departamento.id) 
             LEFT JOIN msip_municipio AS municipio ON 
-              (ubicacion.id_municipio=municipio.id)
+              (ubicacion.municipio_id=municipio.id)
             LEFT JOIN msip_clase AS clase ON 
-              (ubicacion.id_clase=clase.id)
+              (ubicacion.clase_id=clase.id)
             GROUP BY 1,2,3,4,5,6,7,8,9,10,11,12,13,14", que3, tablas3, where3]
           end
 
@@ -350,20 +350,20 @@ module Sivel2Gen
 
           def inicializa(where1)
             # Para la vista cons1 emplear que1, tablas1 y where1
-            que1 = 'DISTINCT acto.id_caso, acto.id_persona, acto.id_categoria,'\
-              'supracategoria.id_tviolencia AS id_tviolencia, '\
+            que1 = 'DISTINCT acto.caso_id, acto.persona_id, acto.categoria_id,'\
+              'supracategoria.tviolencia_id AS tviolencia_id, '\
               'categoria.nombre AS categoria'
             tablas1 = ' public.sivel2_gen_acto AS acto JOIN ' +
-            'public.sivel2_gen_caso AS caso ON acto.id_caso=caso.id ' +
+            'public.sivel2_gen_caso AS caso ON acto.caso_id=caso.id ' +
             'JOIN public.sivel2_gen_categoria AS categoria ' + 
-            ' ON acto.id_categoria=categoria.id ' +
+            ' ON acto.categoria_id=categoria.id ' +
             'JOIN public.sivel2_gen_supracategoria AS supracategoria ' + 
             ' ON categoria.supracategoria_id=supracategoria.id ' +
             'JOIN public.sivel2_gen_victima AS victima ' + 
-            ' ON victima.id_persona=acto.id_persona AND ' +
-            ' victima.id_caso=caso.id ' +
+            ' ON victima.persona_id=acto.persona_id AND ' +
+            ' victima.caso_id=caso.id ' +
             'JOIN public.msip_persona AS persona ' + 
-            ' ON persona.id=acto.id_persona'
+            ' ON persona.id=acto.persona_id'
             return [que1, tablas1, where1]
           end
 

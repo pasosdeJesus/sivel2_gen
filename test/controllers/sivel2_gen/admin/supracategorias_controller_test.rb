@@ -8,7 +8,7 @@ module Sivel2Gen
         created_at: '2021-07-29',
         fechacreacion: '2021-07-29',
         fechadeshabilitacion: nil,
-        id_tviolencia: 'C',
+        tviolencia_id: 'C',
         id: 1000,
         nombre: 'X',
         observaciones: 'y',

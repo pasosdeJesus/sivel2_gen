@@ -20,14 +20,14 @@ module Sivel2Gen
       assert persona.valid?
 
       victima = Victima.create PRUEBA_VICTIMA.merge(
-        id_caso: caso.id,
-        id_persona: persona.id,
+        caso_id: caso.id,
+        persona_id: persona.id,
       )
       assert victima.valid?
 
       av = Sivel2Gen::AntecedenteVictima.create(
-        id_victima: victima.id,
-        id_antecedente: antecedente.id,
+        victima_id: victima.id,
+        antecedente_id: antecedente.id,
       )
       assert_predicate av, :valid?
 

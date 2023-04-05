@@ -27,8 +27,8 @@ export default class Sivel2GenAutocompletaAjaxVictimas {
     }
     const idVictima = elemIdVictima.value
 
-    let d = 'id_persona=' + idPersona
-    d += "&id_victima=" + idVictima
+    let d = 'persona_id=' + idPersona
+    d += "&victima_id=" + idVictima
     const a = root.puntomontaje + 'personas/remplazar'
 
     window.Rails.ajax({

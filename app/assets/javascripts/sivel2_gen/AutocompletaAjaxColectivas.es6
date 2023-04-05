@@ -21,8 +21,8 @@ export default class Sivel2GenAutocompletaAjaxColectivas {
     }
     const idColectivo = elemIdColectivo.value
 
-    let d = 'id_victimacolectiva=' + idColectivo
-    d += '&id_grupoper=' + idGrupo
+    let d = 'victima_idcolectiva=' + idColectivo
+    d += '&grupoper_id=' + idGrupo
     const a = root.puntomontaje + 'gruposper/remplazar'
 
     window.Rails.ajax({

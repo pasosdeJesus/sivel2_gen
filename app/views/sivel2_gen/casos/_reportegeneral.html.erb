@@ -13,7 +13,7 @@
   <% ubprincipal = nil %>
   <% if caso.ubicacion_id %>
     <% ubprincipal = Msip::Ubicacion.find(caso.ubicacion_id) %>
-    <%= "Tip. Ub: " + Msip::Tsitio.find(ubprincipal.id_tsitio).nombre %>
+    <%= "Tip. Ub: " + Msip::Tsitio.find(ubprincipal.tsitio_id).nombre %>
   <% end %>
   </p>
 
@@ -62,7 +62,7 @@
   <% end # if current_usuario %> 
 
   <% if current_usuario %>
-    <% fuentes = Sivel2Gen::CasoFuenteprensa.where(id_caso: caso.id) %>
+    <% fuentes = Sivel2Gen::CasoFuenteprensa.where(caso_id: caso.id) %>
     <% unless fuentes.length == 0 %>
       <p style="margin: 0; padding: 0">
       Fuente: 
@@ -73,7 +73,7 @@
       <% end %>
       </p>
     <% end %>
-    <% otrasfuentes = Sivel2Gen::CasoFotra.where(id_caso: caso.id) %>
+    <% otrasfuentes = Sivel2Gen::CasoFotra.where(caso_id: caso.id) %>
     <% unless otrasfuentes.length == 0 %>
       Otras fuentes Prensa: 
       <p style="margin: 0; padding: 0">
@@ -96,7 +96,7 @@
   </table>
 
   <% if current_usuario %>
-    <% anexosc = Sivel2Gen::AnexoCaso.where(id_caso: caso.id) %>
+    <% anexosc = Sivel2Gen::AnexoCaso.where(caso_id: caso.id) %>
     <% unless anexosc.length == 0 %>
       ANEXO(S):
       <ul>
@@ -136,10 +136,10 @@
   <p>
   <% lcat = {} %>
   <% caso.acto.each  do |a| %>
-    <% lcat[a.id_categoria] = a.id_categoria %>
+    <% lcat[a.categoria_id] = a.categoria_id %>
   <% end %>
   <% caso.actocolectivo.each do |ac|  %>
-    <% lcat[ac.id_categoria] = ac.id_categoria %>
+    <% lcat[ac.categoria_id] = ac.categoria_id %>
   <% end %>
   <% caso.caso_presponsable.each do |cp| %>
     <% cp.categoria_ids.each do |ci| %>
@@ -148,7 +148,7 @@
   <% end %>
   <% lcat.keys.sort.each  do |idcat| %>
     <% dcategoria = Sivel2Gen::Categoria.find(idcat) %>
-    <%= dcategoria.supracategoria.id_tviolencia + dcategoria.id.to_s %>. 
+    <%= dcategoria.supracategoria.tviolencia_id + dcategoria.id.to_s %>. 
     <%= dcategoria.supracategoria.tviolencia.nombre %> - 
     <%= dcategoria.supracategoria.nombre %> - 
     <%= dcategoria.nombre %><br>
@@ -160,13 +160,13 @@
 
   <% if current_usuario %>
     <% caso.victima.each do |v| %>
-      <% if caso.acto.where(id_persona: v.id_persona).count == 0 %>
+      <% if caso.acto.where(persona_id: v.persona_id).count == 0 %>
         Víctima individual sin acto de violencia: 
         <%= v.persona.presenta_nombre %><br>
       <% end %>
     <% end %>
     <% caso.victimacolectiva.each do |vc| %>
-      <% if caso.actocolectivo.where(id_grupoper: vc.id_grupoper).count == 0 %>
+      <% if caso.actocolectivo.where(grupoper_id: vc.grupoper_id).count == 0 %>
         Víctima colectiva sin acto de violencia: 
         <%= vc.grupoper.presenta_nombre %><br>
       <% end %>
@@ -177,9 +177,9 @@
       Etiquetas:  
       <% caso.caso_etiqueta.each do |e|  %>
         <p style="margin: 0; padding: 0;">
-        <%= Msip::Etiqueta.find(e.id_etiqueta).nombre %> -
+        <%= Msip::Etiqueta.find(e.etiqueta_id).nombre %> -
         <%= e.fecha %> -
-        <%= Msip::Usuario.find(e.id_usuario).nusuario if Msip::Usuario.where(id: e.id_usuario).count > 0 %> -
+        <%= Msip::Usuario.find(e.usuario_id).nusuario if Msip::Usuario.where(id: e.usuario_id).count > 0 %> -
         <%= e.observaciones %>
         </p>
       <% end %>

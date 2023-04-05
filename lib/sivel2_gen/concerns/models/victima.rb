@@ -14,8 +14,8 @@ module Sivel2Gen
 
           has_and_belongs_to_many :antecedente, 
             class_name: 'Sivel2Gen::Antecedente',
-            foreign_key: :id_victima, 
-            association_foreign_key: 'id_antecedente',
+            foreign_key: :victima_id, 
+            association_foreign_key: 'antecedente_id',
             join_table: 'sivel2_gen_antecedente_victima'
 
           has_and_belongs_to_many :sectorsocialsec, 
@@ -39,27 +39,27 @@ module Sivel2Gen
             optional: true
 
           # En el orden de esquema en base
-          belongs_to :caso, foreign_key: "id_caso", validate: true,
+          belongs_to :caso, foreign_key: "caso_id", validate: true,
             class_name: "Sivel2Gen::Caso", optional: false
-          belongs_to :etnia, foreign_key: "id_etnia", validate: true,
+          belongs_to :etnia, foreign_key: "etnia_id", validate: true,
             class_name: "Sivel2Gen::Etnia", optional: true
-          belongs_to :filiacion, foreign_key: "id_filiacion",
+          belongs_to :filiacion, foreign_key: "filiacion_id",
             validate: true, class_name: "Sivel2Gen::Filiacion", optional: true
-          belongs_to :iglesia, foreign_key: "id_iglesia", validate: true,
+          belongs_to :iglesia, foreign_key: "iglesia_id", validate: true,
             class_name: "Sivel2Gen::Iglesia", optional: true
-          belongs_to :organizacion, foreign_key: "id_organizacion",
+          belongs_to :organizacion, foreign_key: "organizacion_id",
             validate: true, class_name: "Sivel2Gen::Organizacion", optional: true
-          belongs_to :persona, foreign_key: "id_persona", validate: true,
+          belongs_to :persona, foreign_key: "persona_id", validate: true,
             class_name: "Msip::Persona", optional: false
           accepts_nested_attributes_for :persona, reject_if: :all_blank
-          belongs_to :profesion, foreign_key: "id_profesion", validate: true,
+          belongs_to :profesion, foreign_key: "profesion_id", validate: true,
             class_name: "Sivel2Gen::Profesion", optional: true
-          belongs_to :rangoedad, foreign_key: "id_rangoedad", validate: true,
+          belongs_to :rangoedad, foreign_key: "rangoedad_id", validate: true,
             class_name: "Sivel2Gen::Rangoedad", optional: true
-          belongs_to :sectorsocial, foreign_key: "id_sectorsocial",
+          belongs_to :sectorsocial, foreign_key: "sectorsocial_id",
             validate: true, class_name: "Sivel2Gen::Sectorsocial",
             optional: true
-          belongs_to :vinculoestado, foreign_key: "id_vinculoestado",
+          belongs_to :vinculoestado, foreign_key: "vinculoestado_id",
             validate: true, class_name: "Sivel2Gen::Vinculoestado",
             optional: true
           belongs_to :presponsable, foreign_key: "organizacionarmada",
@@ -70,7 +70,7 @@ module Sivel2Gen
           validates :persona, presence: true
 
           before_destroy do
-            Sivel2Gen::Acto.where(id_caso: id_caso, id_persona: id_persona).
+            Sivel2Gen::Acto.where(caso_id: caso_id, persona_id: persona_id).
               delete_all
           end
           ## AUXILIARES PARA PRESENTAR INFORMACIÓN
@@ -78,7 +78,7 @@ module Sivel2Gen
           def departamento_caso
             r = ''
             if self.caso && self.caso.ubicacionprincipal
-              if self.caso.ubicacionprincipal.id_pais == Msip.paisomision
+              if self.caso.ubicacionprincipal.pais_id == Msip.paisomision
                 r += self.caso.ubicacionprincipal.departamento ?
                   self.caso.ubicacionprincipal.departamento.nombre : ''
               else
@@ -91,7 +91,7 @@ module Sivel2Gen
           def municipio_caso
             r = ''
             if self.caso && self.caso.ubicacionprincipal
-              if self.caso.ubicacionprincipal.id_pais == 170 # COLOMBIA
+              if self.caso.ubicacionprincipal.pais_id == 170 # COLOMBIA
                 r += self.caso.ubicacionprincipal.municipio ?
                   self.caso.ubicacionprincipal.municipio.nombre : ''
               else
@@ -126,7 +126,7 @@ module Sivel2Gen
           def ubicacion_caso
             r = ''
             if self.caso && self.caso.ubicacionprincipal
-              if self.caso.ubicacionprincipal.id_pais == 170
+              if self.caso.ubicacionprincipal.pais_id == 170
                 r += self.caso.ubicacionprincipal.departamento ?
                   self.caso.ubicacionprincipal.departamento.nombre : ''
                 r += ' - '
@@ -167,14 +167,14 @@ module Sivel2Gen
                 @pconsolidado = Sivel2Gen::Pconsolidado.
                   where(fechadeshabilitacion: nil).order(:id).map { |r|
                   [r.id, r.nombre, Sivel2Gen::Categoria.
-                   where(id_pconsolidado: r.id).map(&:id)]
+                   where(pconsolidado_id: r.id).map(&:id)]
                 }
               end
               return "" if num == 0 || num >= @pconsolidado.count
               p = @pconsolidado[num-1]
               cat = p[2]
-              if self.caso.acto.where(id_categoria: cat,
-                                    id_persona: self.persona.id).count > 0
+              if self.caso.acto.where(categoria_id: cat,
+                                    persona_id: self.persona.id).count > 0
                 1
               else
                 ""
@@ -203,17 +203,17 @@ module Sivel2Gen
               lcat = pcon.categoria.map(&:id)
               case v
               when 'Si'
-                r = r.where('(sivel2_gen_victima.id_persona,
-                    sivel2_gen_victima.id_caso) IN (
-                    SELECT DISTINCT id_persona, id_caso  FROM 
+                r = r.where('(sivel2_gen_victima.persona_id,
+                    sivel2_gen_victima.caso_id) IN (
+                    SELECT DISTINCT persona_id, caso_id  FROM 
                     sivel2_gen_acto AS acto WHERE 
-                        acto.id_categoria IN (?))', lcat)
+                        acto.categoria_id IN (?))', lcat)
               when 'No'
-                r = r.where('(sivel2_gen_victima.id_persona,
-                    sivel2_gen_victima.id_caso) NOT IN (
-                    SELECT DISTINCT id_persona, id_caso  FROM 
+                r = r.where('(sivel2_gen_victima.persona_id,
+                    sivel2_gen_victima.caso_id) NOT IN (
+                    SELECT DISTINCT persona_id, caso_id  FROM 
                     sivel2_gen_acto AS acto WHERE 
-                        acto.id_categoria IN (?))', lcat)
+                        acto.categoria_id IN (?))', lcat)
               end
             end
             return r
@@ -222,8 +222,8 @@ module Sivel2Gen
           scope :filtro_etiqueta_caso, lambda { |i|
             joins("JOIN sivel2_gen_caso_etiqueta
               AS casoetiqueta ON
-              sivel2_gen_victima.id_caso= casoetiqueta.id_caso").
-              where("casoetiqueta.id_etiqueta =?", i)
+              sivel2_gen_victima.caso_id= casoetiqueta.caso_id").
+              where("casoetiqueta.etiqueta_id =?", i)
           }
 
           scope :filtro_fecha_caso_localizadaini, lambda { |f|
@@ -236,14 +236,14 @@ module Sivel2Gen
             joins(:caso).where('sivel2_gen_caso.fecha<=?', f)
           }
 
-          scope :filtro_id_caso, lambda { |i|
-            where(id_caso: i)
+          scope :filtro_caso_id, lambda { |i|
+            where(caso_id: i)
           }
 
           scope :filtro_ubicacion_caso, lambda { |u|
-            joins('JOIN msip_ubicacion ON sivel2_gen_victima.id_caso=msip_ubicacion.id_caso').
-              joins('LEFT JOIN msip_departamento ON msip_ubicacion.id_departamento=msip_departamento.id').
-              joins('LEFT JOIN msip_municipio ON msip_ubicacion.id_municipio=msip_municipio.id').
+            joins('JOIN msip_ubicacion ON sivel2_gen_victima.caso_id=msip_ubicacion.caso_id').
+              joins('LEFT JOIN msip_departamento ON msip_ubicacion.departamento_id=msip_departamento.id').
+              joins('LEFT JOIN msip_municipio ON msip_ubicacion.municipio_id=msip_municipio.id').
               where("(unaccent(msip_departamento.nombre) || ' - ' || " +
                 "unaccent(msip_municipio.nombre))" +
                     " ILIKE '%' || unaccent(?) || '%'", u)
@@ -259,7 +259,7 @@ module Sivel2Gen
           def importa(datosent, datossal, formato_sexo, menserror, opciones = {})
             v = datosent[1]
             def crea_persona(p, v, menserror, formato_sexo)
-              if p['id_persona'].to_i == v['id_persona'].to_i
+              if p['persona_id'].to_i == v['persona_id'].to_i
                 per = Msip::Persona.new
                 if p['nombre'].nil?
                   per.nombres = 'N'
@@ -337,18 +337,18 @@ module Sivel2Gen
                 def recorrer_observaciones_p(ele, per, menserror)
                  case ele[0]
                  when 'etnia'
-                   self.id_etnia = Sivel2Gen::Etnia.where('TRIM(nombre)=?', ele[1]).ids[0]
+                   self.etnia_id = Sivel2Gen::Etnia.where('TRIM(nombre)=?', ele[1]).ids[0]
                  when 'pais'
-                   per.id_pais = Msip::Pais.where('TRIM(nombre)=?', ele[1]).ids[0]
+                   per.pais_id = Msip::Pais.where('TRIM(nombre)=?', ele[1]).ids[0]
                  when 'departamento'
-                   per.id_departamento = Msip::Departamento.
-                     where('TRIM(nombre)=?', ele[1]).where(id_pais: per.id_pais).ids[0]
+                   per.departamento_id = Msip::Departamento.
+                     where('TRIM(nombre)=?', ele[1]).where(pais_id: per.pais_id).ids[0]
                  when 'municipio'
-                   per.id_municipio = Msip::Municipio.
-                     where('TRIM(nombre)=?', ele[1]).where(id_departamento: per.id_departamento).ids[0]
+                   per.municipio_id = Msip::Municipio.
+                     where('TRIM(nombre)=?', ele[1]).where(departamento_id: per.departamento_id).ids[0]
                  when 'centro_poblado'
-                   per.id_clase = Msip::Clase.
-                     where('TRIM(nombre)=?', ele[1]).where(id_municipio: per.id_municipio).ids[0]
+                   per.clase_id = Msip::Clase.
+                     where('TRIM(nombre)=?', ele[1]).where(municipio_id: per.municipio_id).ids[0]
                  end
                 end
                 if p['observaciones']              
@@ -363,7 +363,7 @@ module Sivel2Gen
                   end
                 end
                 per.save!
-                self.id_persona = per.id
+                self.persona_id = per.id
                 self.save!
               end
             end
@@ -377,7 +377,7 @@ module Sivel2Gen
             end
             if v['ocupacion']
               if Sivel2Gen::Profesion.where('TRIM(nombre)=?', v['ocupacion'].strip).count == 1
-                self.id_profesion = Sivel2Gen::Profesion.where('TRIM(nombre)=?', v['ocupacion'].strip).ids[0]
+                self.profesion_id = Sivel2Gen::Profesion.where('TRIM(nombre)=?', v['ocupacion'].strip).ids[0]
               else
                 menserror << "En la tabla básica Profesion no existe " +
                   "'#{v['ocupacion']}'. "
@@ -386,13 +386,13 @@ module Sivel2Gen
                 if pr_sininf.count == 0
                   menserror << "No se encuentra profesión SIN INFORMACIÓN. "
                 else
-                  self.id_profesion = pr_sininf.ids[0]
+                  self.profesion_id = pr_sininf.ids[0]
                 end
               end
             end
             if v['sector_condicion']
               if Sivel2Gen::Sectorsocial.where('TRIM(nombre)=?', v['sector_condicion'].strip).count == 1
-                self.id_sectorsocial = Sivel2Gen::Sectorsocial.where('TRIM(nombre)=?', v['sector_condicion'].strip).ids[0]
+                self.sectorsocial_id = Sivel2Gen::Sectorsocial.where('TRIM(nombre)=?', v['sector_condicion'].strip).ids[0]
               else
                 menserror << "En la tabla básica Sector Social no existe " +
                   "'#{v['sector_condicion']}'. "
@@ -401,13 +401,13 @@ module Sivel2Gen
                 if ss_sininf.count == 0
                   menserror << "No se encuentra sector social SIN INFORMACIÓN. "
                 else
-                  self.id_sectorsocial = ss_sininf.ids[0]
+                  self.sectorsocial_id = ss_sininf.ids[0]
                 end
               end
             end
             if v['iglesia']
               if Sivel2Gen::Iglesia.where('TRIM(nombre)=?', v['iglesia'].strip).count == 1
-                self.id_iglesia = Sivel2Gen::Iglesia.where('TRIM(nombre)=?', v['iglesia'].strip).ids[0]
+                self.iglesia_id = Sivel2Gen::Iglesia.where('TRIM(nombre)=?', v['iglesia'].strip).ids[0]
               else
                 menserror << "En la tabla básica Iglesia no existe " +
                   "'#{v['iglesia']}'. "
@@ -416,13 +416,13 @@ module Sivel2Gen
                 if ig_sininf.count == 0
                   menserror << "No se encuentra iglesia SIN INFORMACIÓN. "
                 else
-                  self.id_iglesia= ig_sininf.ids[0]
+                  self.iglesia_id= ig_sininf.ids[0]
                 end
               end
             end
             if v['organizacion']
               if Sivel2Gen::Organizacion.where('TRIM(nombre)=?', v['organizacion'].strip).count == 1
-                self.id_organizacion = Sivel2Gen::Organizacion.where('TRIM(nombre)=?', v['organizacion'].strip).ids[0]
+                self.organizacion_id = Sivel2Gen::Organizacion.where('TRIM(nombre)=?', v['organizacion'].strip).ids[0]
               else
                 menserror << "En la tabla básica Organización no existe " +
                   "'#{v['organizacion']}'. "
@@ -431,7 +431,7 @@ module Sivel2Gen
                 if org_sininf.count == 0
                   menserror << "No se encuentra organización SIN INFORMACIÓN. "
                 else
-                  self.id_organizacion = org_sininf.ids[0]
+                  self.organizacion_id = org_sininf.ids[0]
                 end
               end
             end
@@ -440,7 +440,7 @@ module Sivel2Gen
               case ele[0]
               when 'filiacion'
                 if Sivel2Gen::Filiacion.where('TRIM(nombre)=?', ele[1].strip).count ==1
-                  self.id_filiacion = Sivel2Gen::Filiacion.
+                  self.filiacion_id = Sivel2Gen::Filiacion.
                     where('TRIM(nombre)=?', ele[1].strip).ids[0]
                 else
                   menserror << "Tabla básica Filiación no tiene '#{ele[1]}'. "
@@ -448,7 +448,7 @@ module Sivel2Gen
               when 'vinculoestado'
                 if Sivel2Gen::Vinculoestado.where(
                     'TRIM(nombre)=?', ele[1].strip).count ==1
-                  self.id_vinculoestado = Sivel2Gen::Vinculoestado.
+                  self.vinculoestado_id = Sivel2Gen::Vinculoestado.
                     where('TRIM(nombre)=?', ele[1].strip).ids[0]
                 else
                   menserror << "Tabla básica Vinculo estado no tiene '#{ele[1]}'. "
@@ -463,7 +463,7 @@ module Sivel2Gen
                 end
               when 'rangoedad'
                 if Sivel2Gen::Rangoedad.where('TRIM(nombre)=?', ele[1].strip).count ==1
-                  self.id_rangoedad = Sivel2Gen::Rangoedad.
+                  self.rangoedad_id = Sivel2Gen::Rangoedad.
                     where(nombre: ele[1].strip).ids[0]
                 else
                   menserror << "Tabla básica Rango Edad  no tiene '#{ele[1]}'. "
@@ -518,8 +518,8 @@ module Sivel2Gen
                   antecedente = Sivel2Gen::Antecedente.where(nombre: ante)
                   if antecedente.count == 1
                     antv = Sivel2Gen::AntecedenteVictima.new
-                    antv.id_antecedente = antecedente[0].id
-                    antv.id_victima = self.id
+                    antv.antecedente_id = antecedente[0].id
+                    antv.victima_id = self.id
                     antv.save!
                   else
                     menserror << "En la tabla básica Organización no está " +

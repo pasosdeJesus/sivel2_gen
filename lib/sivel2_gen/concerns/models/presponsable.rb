@@ -12,11 +12,11 @@ module Sivel2Gen
           belongs_to :papa, validate: false, 
             class_name: 'Sivel2Gen::Presponsable', optional: true
 
-          has_many :acto, foreign_key: "id_presponsable", validate: true, 
+          has_many :acto, foreign_key: "presponsable_id", validate: true, 
             class_name: 'Sivel2Gen::Acto'
-          has_many :actocolectivo, foreign_key: "id_presponsable", 
+          has_many :actocolectivo, foreign_key: "presponsable_id", 
             validate: true, class_name: 'Sivel2Gen::Actocolectivo'
-          has_many :caso_presponsable, foreign_key: "id_presponsable", 
+          has_many :caso_presponsable, foreign_key: "presponsable_id", 
             validate: true, class_name: 'Sivel2Gen::CasoPresponsable'
           has_many :caso_categoria_presponsable, 
             through: :caso_presponsable, 

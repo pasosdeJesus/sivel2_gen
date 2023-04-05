@@ -3,7 +3,7 @@ module Sivel2Gen
     include Msip::Basica
 
     Nombresunicos=false
-    has_many :categoria, foreign_key: "id_pconsolidado", validate: true, 
+    has_many :categoria, foreign_key: "pconsolidado_id", validate: true, 
       class_name: 'Sivel2Gen::Categoria'
 
     def presenta_nombre

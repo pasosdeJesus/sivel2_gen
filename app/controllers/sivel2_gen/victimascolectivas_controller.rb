@@ -16,8 +16,8 @@ module Sivel2Gen
           end
           return
         end
-        @victimacolectiva.id_caso = params[:caso_id]
-        @victimacolectiva.id_grupoper = @grupoper.id
+        @victimacolectiva.caso_id = params[:caso_id]
+        @victimacolectiva.grupoper_id = @grupoper.id
         if @victimacolectiva.save
           respond_to do |format|
             format.js { render json: {

@@ -8,7 +8,7 @@ module Sivel2Gen
 
         included do
 
-          belongs_to :vinculoestado, foreign_key: "id_vinculoestado", 
+          belongs_to :vinculoestado, foreign_key: "vinculoestado_id", 
             validate: true, 
             class_name: 'Sivel2Gen::Vinculoestado', optional: false
           belongs_to :victimacolectiva, foreign_key: "victimacolectiva_id", 

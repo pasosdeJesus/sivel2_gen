@@ -69,7 +69,7 @@ module Sivel2Gen
               caso.grimpunidad,
               caso.grinformacion,
               caso.bienes,
-              caso.id_intervalo,
+              caso.intervalo_id,
               caso.created_at,
               caso.updated_at
               FROM public.sivel2_gen_conscaso AS conscaso

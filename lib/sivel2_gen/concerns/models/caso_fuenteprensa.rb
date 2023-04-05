@@ -11,7 +11,7 @@ module Sivel2Gen
           include Msip::FormatoFechaHelper
 
           belongs_to :caso, class_name: "Sivel2Gen::Caso", 
-            foreign_key: "id_caso", validate: true, optional: false
+            foreign_key: "caso_id", validate: true, optional: false
           belongs_to :fuenteprensa, class_name: "Msip::Fuenteprensa", 
             foreign_key: "fuenteprensa_id", validate: true, optional: false
           belongs_to :anexo_caso, class_name: "Sivel2Gen::AnexoCaso", 
@@ -27,7 +27,7 @@ module Sivel2Gen
           validates :ubicacionfisica, length: { maximum: 1024 } 
 
           validates :fuenteprensa_id, uniqueness: { scope: [
-            :id_caso, :fecha
+            :caso_id, :fecha
           ] }
 
           def saltar_fuente_tras_caso?

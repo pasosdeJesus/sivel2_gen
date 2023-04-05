@@ -20,8 +20,8 @@ module Sivel2Gen
       assert_predicate caso, :valid?
 
       ac = Sivel2Gen::AnexoCaso.create(
-        id_caso: caso.id,
-        id_anexo: anexo.id,
+        caso_id: caso.id,
+        anexo_id: anexo.id,
         fecha: '2023-01-10'
       )
 

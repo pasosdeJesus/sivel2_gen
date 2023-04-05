@@ -5,10 +5,10 @@
       <th>
         <%= rotulo %>
         <% cons=@registros.where(
-          '(sivel2_gen_victima.id_persona, ' +
-          'sivel2_gen_victima.id_caso) IN (SELECT DISTINCT ' +
-          'id_persona, id_caso FROM sivel2_gen_acto AS acto WHERE ' +
-          'acto.id_categoria IN (?))', cat)  %>
+          '(sivel2_gen_victima.persona_id, ' +
+          'sivel2_gen_victima.caso_id) IN (SELECT DISTINCT ' +
+          'persona_id, caso_id FROM sivel2_gen_acto AS acto WHERE ' +
+          'acto.categoria_id IN (?))', cat)  %>
         <% #puts cons.to_sql %>
         <% #byebug %>
         <%= cons.count('DISTINCT sivel2_gen_victima.id') %>

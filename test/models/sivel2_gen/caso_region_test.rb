@@ -18,8 +18,8 @@ module Sivel2Gen
       assert caso.valid?
 
       cc = Sivel2Gen::CasoRegion.create(
-        id_caso: caso.id,
-        id_region: region.id,
+        caso_id: caso.id,
+        region_id: region.id,
       )
 
       assert cc.valid?

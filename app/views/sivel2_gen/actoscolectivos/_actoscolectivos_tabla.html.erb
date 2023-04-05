@@ -12,7 +12,7 @@
     <% @caso.actocolectivo.try(:each) do |actocolectivo| %>
       <tr>
         <td><%= actocolectivo.presponsable.nombre %></td>
-        <td><%= actocolectivo.categoria.supracategoria.id_tviolencia + actocolectivo.categoria.id.to_s + ' ' + actocolectivo.categoria.nombre %></td>
+        <td><%= actocolectivo.categoria.supracategoria.tviolencia_id + actocolectivo.categoria.id.to_s + ' ' + actocolectivo.categoria.nombre %></td>
         <td>
           <%= actocolectivo.grupoper.nombre %>
         </td>

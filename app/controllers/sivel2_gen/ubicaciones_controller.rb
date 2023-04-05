@@ -9,8 +9,8 @@ module Sivel2Gen
     def nuevo
       if !params[:caso_id].nil?
         @ubicacion = Msip::Ubicacion.new
-        @ubicacion.id_caso = params[:caso_id]
-        @ubicacion.id_pais = Msip.paisomision
+        @ubicacion.caso_id = params[:caso_id]
+        @ubicacion.pais_id = Msip.paisomision
         if @ubicacion.save(validate: false)
           respond_to do |format|
             format.js { render text: @ubicacion.id.to_s }
@@ -47,8 +47,8 @@ module Sivel2Gen
 
     def ubicacion_params
       params.require(:ubicacion).permit(
-        :id, :id_pais, :id_departamento, :id_municipio, :id_clase, 
-        :lugar, :sitio, :latitud, :longitud, :id_tsitio, 
+        :id, :pais_id, :departamento_id, :municipio_id, :clase_id, 
+        :lugar, :sitio, :latitud, :longitud, :tsitio_id, 
         :_destroy
       )
     end

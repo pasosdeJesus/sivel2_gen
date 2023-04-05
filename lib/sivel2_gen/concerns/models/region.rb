@@ -8,7 +8,7 @@ module Sivel2Gen
         include Msip::Basica
         included do
 
-          has_many :caso_region, foreign_key: "id_region", 
+          has_many :caso_region, foreign_key: "region_id", 
             dependent: :delete_all, class_name: 'Sivel2Gen::CasoRegion'
           has_many :caso, through: :caso_region, class_name: 'Sivel2Gen::Caso'
 
@@ -49,9 +49,9 @@ module Sivel2Gen
                 Msip::Municipio.where(id: municipio_id).count > 0
               dm = Msip::Municipio.find(municipio_id)
               if Sivel2Gen::DepartamentoRegion.where(
-                  departamento_id: dm.id_departamento).count > 0
+                  departamento_id: dm.departamento_id).count > 0
                 dr = Sivel2Gen::DepartamentoRegion.
-                  where(departamento_id: dm.id_departamento).take
+                  where(departamento_id: dm.departamento_id).take
                 return dr.region
               end
             end

@@ -10,14 +10,14 @@
       casos sin ubicación principal.</li>
     <% end %>
     <% pnvi = Msip::Persona.where(
-      'id NOT IN (SELECT id_persona FROM sivel2_gen_victima)').count %>
+      'id NOT IN (SELECT persona_id FROM sivel2_gen_victima)').count %>
     <% if pnvi > 0 %>
       <li>No se tienen en cuenta <%= pnvi %> personas que no aparecen como 
         víctimas (pueden ser familiares o desvinculadas de casos).</li>
     <% end %>
     <% vrep = Msip::Persona.connection.execute(
       'SELECT COUNT(*) FROM ' +
-      '(SELECT id_persona, count(id) FROM sivel2_gen_victima GROUP BY 1) ' +
+      '(SELECT persona_id, count(id) FROM sivel2_gen_victima GROUP BY 1) ' +
       'AS s WHERE count>1')[0]['count'] %>
     <% if vrep > 0 %>
       <li>No se sobre-cuentan <%= vrep %>  víctimas que se encuentran en más

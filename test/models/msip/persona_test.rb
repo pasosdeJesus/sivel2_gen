@@ -11,9 +11,9 @@ module Msip
       mesnac: 1,
       dianac: 1,
       sexo: "F",
-      id_pais: 170,
-      id_departamento: 15,
-      id_municipio: 610,
+      pais_id: 170,
+      departamento_id: 15,
+      municipio_id: 610,
       tdocumento_id: 1,
       numerodocumento: "10000000",
       nacionalde: 170

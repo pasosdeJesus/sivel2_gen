@@ -31,7 +31,7 @@
       </div>
       <div class="col-md-6">
         <%= fp.association :anexo_caso,
-          collection: Sivel2Gen::AnexoCaso.where(id_caso: fp.object.id_caso),
+          collection: Sivel2Gen::AnexoCaso.where(caso_id: fp.object.caso_id),
           label_method: lambda { |t| t.msip_anexo.adjunto_file_name },
           value_method: :id %>
       </div>

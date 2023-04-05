@@ -42,7 +42,7 @@
           </div>
           <div class="col-md-9 justify-center text-center" style="color: Tomato;">
             <h6 class="m-b-0">Total de victimizaciones</h6>
-            <h4 class="m-t-15 m-b-15"><%= ActiveRecord::Base.connection.execute("SELECT COUNT(*) FROM (select distinct id_categoria, id_persona, id_caso from sivel2_gen_acto) as sub").values[0][0] %></h4>
+            <h4 class="m-t-15 m-b-15"><%= ActiveRecord::Base.connection.execute("SELECT COUNT(*) FROM (select distinct categoria_id, persona_id, caso_id from sivel2_gen_acto) as sub").values[0][0] %></h4>
           </div>
         </div>
       </div>

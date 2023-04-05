@@ -30,7 +30,7 @@ module Msip
     def contexto_d
       contexto_p
       @departamento = Departamento.where(id: 1).take
-      @ubicacion.id_departamento = @departamento.id
+      @ubicacion.departamento_id = @departamento.id
     end
 
     test "nombre con pais y departamento" do
@@ -42,7 +42,7 @@ module Msip
     def contexto_m
       contexto_d
       @municipio = Municipio.where(id:25).take
-      @ubicacion.id_municipio = @municipio.id
+      @ubicacion.municipio_id = @municipio.id
     end
 
     test "nombre con municipio" do
@@ -53,8 +53,8 @@ module Msip
 
     def contexto_c
       contexto_m
-      @clase = Clase.where(id_municipio: 25).take
-      @ubicacion.id_clase = @clase.id
+      @clase = Clase.where(municipio_id: 25).take
+      @ubicacion.clase_id = @clase.id
     end
 
     test "no incluye clase" do

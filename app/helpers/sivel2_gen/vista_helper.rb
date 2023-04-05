@@ -203,20 +203,20 @@ module Sivel2Gen
       sindep = 0
       cantidadesdep.each do |iddep, v|
         if Msip::Departamento.where(
-            id_pais: Msip.paisomision).
-            where(id_deplocal: iddep).count == 0
+            pais_id: Msip.paisomision).
+            where(deplocal_cod: iddep).count == 0
           sindep += v.to_i
         end
       end
 
       Msip::Departamento.where(
-        id_pais: Msip.paisomision).each do |dep|
+        pais_id: Msip.paisomision).each do |dep|
         cant = 0
-        if cantidadesdep.keys.include?(dep.id_deplocal)
-          cant = cantidadesdep[dep.id_deplocal].to_i
+        if cantidadesdep.keys.include?(dep.deplocal_cod)
+          cant = cantidadesdep[dep.deplocal_cod].to_i
         end
 
-        ud = svg.at_css('#numdep' + dep.id_deplocal.to_s)
+        ud = svg.at_css('#numdep' + dep.deplocal_cod.to_s)
         if ud
           if cant > 0
             ud.content="#{cant}"
@@ -227,7 +227,7 @@ module Sivel2Gen
           sindep += cant
         end
 
-        md = svg.at_css('#mixtidep' + dep.id_deplocal.to_s)
+        md = svg.at_css('#mixtidep' + dep.deplocal_cod.to_s)
         if md && cant > 0
           if r4.include?(cant)
             md['fill'] = color4
@@ -244,7 +244,7 @@ module Sivel2Gen
 
         #      if nd
         #        nd['fill']='#0f0'
-        #        nd.content=dep.nombre + ' ' + dep.id_deplocal.to_s
+        #        nd.content=dep.nombre + ' ' + dep.deplocal_cod.to_s
         #      end
       end
 
@@ -459,14 +459,14 @@ module Sivel2Gen
       sinmun = 0
       cantidadesmun.each do |idmun, v|
         if !idmun || Msip::Municipio.where(
-            id_departamento: depid).
-            where(id_munlocal: idmun % 1000).count == 0
+            departamento_id: depid).
+            where(munlocal_cod: idmun % 1000).count == 0
           sinmun += v.to_i
         end
       end
 
       Msip::Municipio.where(
-        id_departamento: depid).each do |mun|
+        departamento_id: depid).each do |mun|
         cant = 0
         if cantidadesmun.keys.include?(mun.codlocal)
           cant = cantidadesmun[mun.codlocal].to_i

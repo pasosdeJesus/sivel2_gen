@@ -73,14 +73,14 @@ module Sivel2Gen
                 # No usuamos habilitados porque deben incluirse históricos
                 metodo_etiqueta: :nombre,
                 metodo_id: :id,
-                campocons: 'victima.id_etnia'
+                campocons: 'victima.etnia_id'
               },
               'FILIACIÓN' => { 
                 nomfiltro: :filiaciones,
                 coleccion: Sivel2Gen::Filiacion.all.order(:nombre),
                 metodo_etiqueta: :nombre,
                 metodo_id: :id,
-                campocons: 'victima.id_filiacion'
+                campocons: 'victima.filiacion_id'
               },
               'MES CASO' => { 
                 nomfiltro: :mesescasos,
@@ -95,7 +95,7 @@ module Sivel2Gen
                 coleccion: Sivel2Gen::Organizacion.all.order(:nombre),
                 metodo_etiqueta: :nombre,
                 metodo_id: :id,
-                campocons: 'victima.id_organizacion'
+                campocons: 'victima.organizacion_id'
 
               },
               'PROFESIÓN' => { 
@@ -103,7 +103,7 @@ module Sivel2Gen
                 coleccion: Sivel2Gen::Profesion.all.order(:nombre),
                 metodo_etiqueta: :nombre,
                 metodo_id: :id,
-                campocons: 'victima.id_profesion'
+                campocons: 'victima.profesion_id'
 
               },
               'RANGO DE EDAD' => { 
@@ -111,14 +111,14 @@ module Sivel2Gen
                 coleccion: Sivel2Gen::Rangoedad.all.order(:nombre),
                 metodo_etiqueta: :nombre,
                 metodo_id: :id,
-                campocons: 'victima.id_rangoedad'
+                campocons: 'victima.rangoedad_id'
               },
               'SECTOR SOCIAL' => { 
                 nomfiltro: :sectoresociales,
                 coleccion: Sivel2Gen::Sectorsocial.all.order(:nombre),
                 metodo_etiqueta: :nombre,
                 metodo_id: :id,
-                campocons: 'victima.id_sectorsocial'
+                campocons: 'victima.sectorsocial_id'
               },
               'SEXO' => { 
                 nomfiltro: :sexos,
@@ -132,7 +132,7 @@ module Sivel2Gen
                 coleccion: Sivel2Gen::Vinculoestado.all.order(:nombre),
                 metodo_etiqueta: :nombre,
                 metodo_id: :id,
-                campocons: 'victima.id_vinculoestado'
+                campocons: 'victima.vinculoestado_id'
 
               }
             }
@@ -194,11 +194,11 @@ module Sivel2Gen
 
           def personas_segun_tipico(tabla, nomtabla, que1, que3, tablas3, where3)
             que1 = agregar_tabla(
-              que1, "victima.id_#{tabla} AS id_#{tabla}")
+              que1, "victima.#{tabla}_id AS #{tabla}_id")
             tablas3 = agregar_tabla(
               tablas3, "public.sivel2_gen_#{tabla} AS #{tabla}")
             where3 = ampliar_where_sinap(
-              where3, "id_#{tabla}", "#{tabla}.id")
+              where3, "#{tabla}_id", "#{tabla}.id")
             que3 << ["#{tabla}.nombre", nomtabla]
             return [que1, que3, tablas3, where3]
           end
@@ -209,7 +209,7 @@ module Sivel2Gen
             tablas1 = agregar_tabla(tablas1, 'public.msip_persona AS persona')
             if (ctablas1 != tablas1)
               where1 = ampliar_where_sinap(
-                where1, "persona.id", "victima.id_persona")
+                where1, "persona.id", "victima.persona_id")
             end
 
             case @pSegun
@@ -298,26 +298,26 @@ module Sivel2Gen
             end
 
             return ["CREATE VIEW #{personas_cons2} AS SELECT #{personas_cons1}.*,
-            ubicacion.id_departamento, 
-            departamento.id_deplocal AS departamento_divipola,
+            ubicacion.departamento_id, 
+            departamento.deplocal_cod AS departamento_divipola,
             departamento.nombre AS departamento_nombre, 
-            ubicacion.id_municipio, 
-            departamento.id_deplocal*1000 + municipio.id_munlocal AS municipio_divipola,
+            ubicacion.municipio_id, 
+            departamento.deplocal_cod*1000 + municipio.munlocal_cod AS municipio_divipola,
             municipio.nombre AS municipio_nombre, 
-            ubicacion.id_clase, 
-            clase.id_clalocal AS clase_divipola,
+            ubicacion.clase_id, 
+            clase.clalocal_cod AS clase_divipola,
             clase.nombre AS clase_nombre
             FROM
                     #{personas_cons1} JOIN sivel2_gen_caso AS caso ON
-              (#{personas_cons1}.id_caso = caso.id) 
+              (#{personas_cons1}.caso_id = caso.id) 
             LEFT JOIN msip_ubicacion AS ubicacion ON
               (caso.ubicacion_id = ubicacion.id) 
             LEFT JOIN msip_departamento AS departamento ON 
-              (ubicacion.id_departamento=departamento.id) 
+              (ubicacion.departamento_id=departamento.id) 
             LEFT JOIN msip_municipio AS municipio ON 
-              (ubicacion.id_municipio=municipio.id)
+              (ubicacion.municipio_id=municipio.id)
             LEFT JOIN msip_clase AS clase ON 
-              (ubicacion.id_clase=clase.id)
+              (ubicacion.clase_id=clase.id)
             GROUP BY 1,2,3,4,5,6,7,8,9,10,11,12,13,14", que3, tablas3, where3]
           end
 
@@ -337,15 +337,15 @@ module Sivel2Gen
 
 
           def personas_inicializa1(where1)
-            que1 = 'caso.id AS id_caso, subv.id_victima AS id_victima, ' +
-              'subv.id_persona AS id_persona, 1 AS npersona'
+            que1 = 'caso.id AS caso_id, subv.victima_id AS victima_id, ' +
+              'subv.persona_id AS persona_id, 1 AS npersona'
             tablas1 = 'public.sivel2_gen_caso AS caso, ' +
               'public.sivel2_gen_victima AS victima, ' +
-              '(SELECT id_persona, ' +
-              ' MAX(id) AS id_victima' +
+              '(SELECT persona_id, ' +
+              ' MAX(id) AS victima_id' +
               ' FROM sivel2_gen_victima GROUP BY 1) AS subv '
-            where1 = ampliar_where_sinap(where1, "subv.id_victima", "victima.id")
-            where1 = ampliar_where_sinap(where1, "caso.id", "victima.id_caso")
+            where1 = ampliar_where_sinap(where1, "subv.victima_id", "victima.id")
+            where1 = ampliar_where_sinap(where1, "caso.id", "victima.caso_id")
             return que1, tablas1, where1
           end
 
@@ -503,24 +503,24 @@ module Sivel2Gen
 
           def cuenta_actos(cat, concat, sincat, where)
             w = where
-            w = ampliar_where(w, "sivel2_gen_acto.id_categoria", cat.to_i);
+            w = ampliar_where(w, "sivel2_gen_acto.categoria_id", cat.to_i);
             if concat > 0
-              w = "#{w} AND (sivel2_gen_acto.id_caso, sivel2_gen_acto.id_persona) IN 
-                (SELECT id_caso, id_persona FROM sivel2_gen_acto 
-                WHERE sivel2_gen_acto.id_categoria='" + concat.to_s + "') ";
+              w = "#{w} AND (sivel2_gen_acto.caso_id, sivel2_gen_acto.persona_id) IN 
+                (SELECT caso_id, persona_id FROM sivel2_gen_acto 
+                WHERE sivel2_gen_acto.categoria_id='" + concat.to_s + "') ";
             end
             if sincat > 0
-              w = "#{w} AND (sivel2_gen_acto.id_caso, sivel2_gen_acto.id_persona) NOT IN 
-                (SELECT id_caso, id_persona FROM sivel2_gen_acto 
-                WHERE sivel2_gen_acto.id_categoria='" + sincat.to_s + "')";
+              w = "#{w} AND (sivel2_gen_acto.caso_id, sivel2_gen_acto.persona_id) NOT IN 
+                (SELECT caso_id, persona_id FROM sivel2_gen_acto 
+                WHERE sivel2_gen_acto.categoria_id='" + sincat.to_s + "')";
             end
-            q = "SELECT count(*) FROM (SELECT DISTINCT sivel2_gen_acto.id_caso, 
-            sivel2_gen_acto.id_persona, sivel2_gen_acto.id_categoria 
+            q = "SELECT count(*) FROM (SELECT DISTINCT sivel2_gen_acto.caso_id, 
+            sivel2_gen_acto.persona_id, sivel2_gen_acto.categoria_id 
             FROM public.sivel2_gen_acto 
             JOIN public.sivel2_gen_caso AS caso
-              ON caso.id = sivel2_gen_acto.id_caso 
+              ON caso.id = sivel2_gen_acto.caso_id 
             LEFT JOIN public.sivel2_gen_caso_etiqueta AS casoetiqueta 
-              ON casoetiqueta.id_caso = caso.id
+              ON casoetiqueta.caso_id = caso.id
             WHERE #{w}) AS subcuentaactos;";
             r = ActiveRecord::Base.connection.select_all(q)
             #byebug
@@ -578,7 +578,7 @@ module Sivel2Gen
                 params[:filtro]['etiqueta_id'] != "") 
               @etiqueta_id = params[:filtro]['etiqueta_id']
               where1 = ampliar_where(
-                where1, "casoetiqueta.id_etiqueta", @etiqueta_id, "="
+                where1, "casoetiqueta.etiqueta_id", @etiqueta_id, "="
               )
             end
             @tablader = [
@@ -780,20 +780,20 @@ module Sivel2Gen
             #    por información por desplegar
 
             # Para la vista tcons1 emplear que1, tablas1 y where1
-            que1 = 'DISTINCT acto.id_caso, acto.id_persona, acto.id_categoria, 
-            supracategoria.id_tviolencia AS id_tviolencia, 
+            que1 = 'DISTINCT acto.caso_id, acto.persona_id, acto.categoria_id, 
+            supracategoria.tviolencia_id AS tviolencia_id, 
             categoria.nombre AS categoria'
             tablas1 = ' public.sivel2_gen_acto AS acto JOIN ' +
-            'public.sivel2_gen_caso AS caso ON acto.id_caso=caso.id ' +
+            'public.sivel2_gen_caso AS caso ON acto.caso_id=caso.id ' +
             'JOIN public.sivel2_gen_categoria AS categoria ' + 
-            ' ON acto.id_categoria=categoria.id ' +
+            ' ON acto.categoria_id=categoria.id ' +
             'JOIN public.sivel2_gen_supracategoria AS supracategoria ' + 
             ' ON categoria.supracategoria_id=supracategoria.id ' +
             'JOIN public.sivel2_gen_victima AS victima ' + 
-            ' ON victima.id_persona=acto.id_persona AND ' +
-            ' victima.id_caso=caso.id ' +
+            ' ON victima.persona_id=acto.persona_id AND ' +
+            ' victima.caso_id=caso.id ' +
             'JOIN public.msip_persona AS persona ' + 
-            ' ON persona.id=acto.id_persona'
+            ' ON persona.id=acto.persona_id'
             where1 = ''
 
             if (pFini != '')
@@ -814,7 +814,7 @@ module Sivel2Gen
             end
             if (pTviolencia != '') 
               where1 = ampliar_where(
-                where1, "id_tviolencia", pTviolencia[0], "="
+                where1, "tviolencia_id", pTviolencia[0], "="
               )
             end
 
@@ -836,36 +836,36 @@ module Sivel2Gen
             end
             if (pEtiqueta1 != '' || pEtiqueta2 != '')
               tablas1 += ' JOIN sivel2_gen_caso_etiqueta AS caso_etiqueta ON' +
-                ' caso.id=caso_etiqueta.id_caso' 
+                ' caso.id=caso_etiqueta.caso_id' 
               if (pEtiqueta1 != '') 
                 where1 = ampliar_where(
-                  where1, "caso_etiqueta.id_etiqueta", pEtiqueta1, "="
+                  where1, "caso_etiqueta.etiqueta_id", pEtiqueta1, "="
                 )
               end
               if (pEtiqueta2 != '') 
                 where1 = ampliar_where(
-                  where1, "caso_etiqueta.id_etiqueta", pEtiqueta2, "="
+                  where1, "caso_etiqueta.etiqueta_id", pEtiqueta2, "="
                 )
               end
             end
 
             if (pDepartamento.to_i == 1 || pMunicipio.to_i == 1) 
-              que1 += ', ubicacion.id_departamento' +
-                ', departamento.id_deplocal AS departamento_divipola' +
+              que1 += ', ubicacion.departamento_id' +
+                ', departamento.deplocal_cod AS departamento_divipola' +
                 ', departamento.nombre AS departamento_nombre'
               # Tomamos ubicacion principal
               tablas1 += ' LEFT JOIN msip_ubicacion AS ubicacion ON' +
                 ' caso.ubicacion_id = ubicacion.id'
               tablas1 += ' LEFT JOIN msip_departamento AS departamento ON ' +
-                ' ubicacion.id_departamento=departamento.id'
+                ' ubicacion.departamento_id=departamento.id'
             end
 
             if (pMunicipio.to_i == 1) 
-              que1 += ', ubicacion.id_municipio' +
-                ', departamento.id_deplocal*1000+ municipio.id_munlocal AS municipio_divipola' +
+              que1 += ', ubicacion.municipio_id' +
+                ', departamento.deplocal_cod*1000+ municipio.munlocal_cod AS municipio_divipola' +
                 ', municipio.nombre AS municipio_nombre'
               tablas1 += ' LEFT JOIN msip_municipio AS municipio ON ' +
-                ' ubicacion.id_municipio=municipio.id'
+                ' ubicacion.municipio_id=municipio.id'
             end
 
             if pSegun && pSegun != ''
@@ -873,12 +873,12 @@ module Sivel2Gen
               when "ACTOS PRESUNTOS RESPONSABLES"
                 que1 += ', presponsable.id, INITCAP(presponsable.nombre) AS presponsable_nombre' 
                 tablas1 += ' LEFT JOIN sivel2_gen_presponsable AS presponsable ON ' +
-                  ' acto.id_presponsable=presponsable.id'
+                  ' acto.presponsable_id=presponsable.id'
 
               when "FILIACIÓN"
                 que1 += ', filiacion.id, INITCAP(filiacion.nombre) AS filiacion_nombre' 
                 tablas1 += ' LEFT JOIN public.sivel2_gen_filiacion AS filiacion ON ' +
-                  ' victima.id_filiacion=filiacion.id'
+                  ' victima.filiacion_id=filiacion.id'
 
               when "MES CASO"
                 que1 += ", TO_CHAR(EXTRACT(YEAR FROM caso.fecha), '0000') || " +
@@ -888,28 +888,28 @@ module Sivel2Gen
               when "ORGANIZACIÓN SOCIAL"
                 que1 += ', organizacion.id, INITCAP(organizacion.nombre) AS organizacion_nombre' 
                 tablas1 += ' LEFT JOIN public.sivel2_gen_organizacion AS organizacion ON ' +
-                  ' victima.id_organizacion=organizacion.id'
+                  ' victima.organizacion_id=organizacion.id'
 
               when "PROFESIÓN"
                 que1 += ', profesion.id, INITCAP(profesion.nombre) AS profesion_nombre' 
                 tablas1 += ' LEFT JOIN public.sivel2_gen_profesion AS profesion ON ' +
-                  ' victima.id_profesion=profesion.id'
+                  ' victima.profesion_id=profesion.id'
 
               when "REGIÓN"
                 que1 += ", (SELECT r.nombre FROM  sivel2_gen_caso_region AS cr "\
-                  "  JOIN sivel2_gen_region AS r ON cr.id_region=r.id "\
-                  "  WHERE cr.id_caso=caso.id LIMIT 1) AS region "
+                  "  JOIN sivel2_gen_region AS r ON cr.region_id=r.id "\
+                  "  WHERE cr.caso_id=caso.id LIMIT 1) AS region "
 
               when "RANGO DE EDAD"
                 que1 += ', rangoedad.id, INITCAP(rangoedad.nombre) AS rangoedad_rango' 
                 tablas1 += ' LEFT JOIN public.sivel2_gen_rangoedad AS rangoedad ON ' +
-                  ' victima.id_rangoedad=rangoedad.id'
+                  ' victima.rangoedad_id=rangoedad.id'
 
               when "SECTOR SOCIAL"
                 que1 += ", sectorsocial.id, "\
                   "INITCAP(sectorsocial.nombre) AS sectorsocial_nombre" 
                 tablas1 += " LEFT JOIN public.sivel2_gen_sectorsocial "\
-                  "AS sectorsocial ON victima.id_sectorsocial=sectorsocial.id"
+                  "AS sectorsocial ON victima.sectorsocial_id=sectorsocial.id"
 
               when "SEXO"
                 que1 += ", CASE  WHEN persona.sexo='#{Msip::Persona::convencion_sexo[:sexo_femenino].to_s}' THEN '#{Msip::Persona::convencion_sexo[:nombre_femenino]}' "\
@@ -917,7 +917,7 @@ module Sivel2Gen
                   "  ELSE '#{Msip::Persona::convencion_sexo[:nombre_sininformacion]}' "\
                   "END AS sexo"
                 tablas1 += " LEFT JOIN public.sivel2_gen_profesion "\
-                  "AS profesion ON victima.id_profesion=profesion.id"
+                  "AS profesion ON victima.profesion_id=profesion.id"
               end
             end
 
@@ -972,8 +972,8 @@ module Sivel2Gen
             tablas3 = tcons1
             where3 = ''
 
-            que3 << ["id_tviolencia", 'T. Violencia']
-            que3 << ["id_categoria", 'Id. Categoria']
+            que3 << ["tviolencia_id", 'T. Violencia']
+            que3 << ["categoria_id", 'Id. Categoria']
             que3 << ["categoria", 'Categoria']
 
             if (pDepartamento.to_i == 1 || pMunicipio.to_i == 1) 
@@ -1020,18 +1020,18 @@ module Sivel2Gen
             end
 
             #          "CREATE VIEW #{tcons2} AS SELECT #{tcons1}.*,
-            #            ubicacion.id_departamento, departamento.nombre AS departamento_nombre, 
-            #            ubicacion.id_municipio, municipio.nombre AS municipio_nombre, 
-            #            ubicacion.id_clase, clase.nombre AS clase_nombre
+            #            ubicacion.departamento_id, departamento.nombre AS departamento_nombre, 
+            #            ubicacion.municipio_id, municipio.nombre AS municipio_nombre, 
+            #            ubicacion.clase_id, clase.nombre AS clase_nombre
             #            FROM
             #            #{tcons1} LEFT JOIN msip_ubicacion AS ubicacion ON
-            #              (#{tcons1}.id_caso = ubicacion.id_caso) 
+            #              (#{tcons1}.caso_id = ubicacion.caso_id) 
             #            LEFT JOIN msip_departamento AS departamento ON 
-            #              (ubicacion.id_departamento=departamento.id) 
+            #              (ubicacion.departamento_id=departamento.id) 
             #            LEFT JOIN msip_municipio AS municipio ON 
-            #              (ubicacion.id_municipio=municipio.id)
+            #              (ubicacion.municipio_id=municipio.id)
             #            LEFT JOIN msip_clase AS clase ON 
-            #              (ubicacion.id_clase=clase.id)"
+            #              (ubicacion.clase_id=clase.id)"
             #
             #
             puts que3
@@ -1052,11 +1052,11 @@ module Sivel2Gen
             if (gb != "") 
               gb ="GROUP BY #{gb}" #ORDER BY #{i} DESC"
             end
-            gb += " ORDER BY id_categoria"
+            gb += " ORDER BY categoria_id"
 
             twhere3 = where3 == "" ? "" : "WHERE " + where3
             q3 = "SELECT #{qc} \n"\
-              "COUNT(cast(#{tcons1}.id_caso as text)) \n"\
+              "COUNT(cast(#{tcons1}.caso_id as text)) \n"\
               "FROM #{tablas3} \n #{twhere3} \n #{gb}"
             puts "q3=#{q3}"
 
@@ -1131,18 +1131,18 @@ module Sivel2Gen
               end
             elsif pAgrucol == 'RÓTULO'
               totalesfila = true
-              sub = "SELECT DISTINCT id_caso, id_persona, id_categoria, "\
-                "c.id_pconsolidado, p.nombre FROM cvt1 "\
+              sub = "SELECT DISTINCT caso_id, persona_id, categoria_id, "\
+                "c.pconsolidado_id, p.nombre FROM cvt1 "\
                 " JOIN sivel2_gen_categoria AS c "\
-                "  ON cvt1.id_categoria=c.id "\
+                "  ON cvt1.categoria_id=c.id "\
                 "JOIN sivel2_gen_pconsolidado AS p "\
-                "  ON p.id=c.id_pconsolidado"
+                "  ON p.id=c.pconsolidado_id"
 
               if que3.count == 3
                 # Si no se desagrega, solo presenta tabla mínima con 
                 # categorías y conteos por categoría
                 numpersonas = ActiveRecord::Base.connection.select_all(
-                  "SELECT count(DISTINCT id_persona) FROM (#{sub}) AS sub"
+                  "SELECT count(DISTINCT persona_id) FROM (#{sub}) AS sub"
                 )[0]['count']
                 q4 = "SELECT nombre, count(*)" +
                   "FROM (#{sub}) AS sub GROUP BY 1 ORDER BY 1;"
@@ -1164,16 +1164,16 @@ module Sivel2Gen
                 fila = que3.last[0]
                 fila_hum = que3.last[1]
 
-                sub = "SELECT DISTINCT cvt1.id_caso, id_persona, id_categoria, "\
-                  "c.id_pconsolidado, p.nombre AS rotulo, "\
+                sub = "SELECT DISTINCT cvt1.caso_id, persona_id, categoria_id, "\
+                  "c.pconsolidado_id, p.nombre AS rotulo, "\
                   "(SELECT r.nombre FROM  sivel2_gen_caso_region AS cr "\
-                  "  JOIN sivel2_gen_region AS r ON cr.id_region=r.id "\
-                  "  WHERE cr.id_caso=cvt1.id_caso LIMIT 1) AS region "\
+                  "  JOIN sivel2_gen_region AS r ON cr.region_id=r.id "\
+                  "  WHERE cr.caso_id=cvt1.caso_id LIMIT 1) AS region "\
                   " FROM cvt1 "\
                   " JOIN sivel2_gen_categoria AS c "\
-                  "  ON cvt1.id_categoria=c.id "\
+                  "  ON cvt1.categoria_id=c.id "\
                   "JOIN sivel2_gen_pconsolidado AS p "\
-                  "  ON p.id=c.id_pconsolidado "
+                  "  ON p.id=c.pconsolidado_id "
 
                 q4 = "SELECT #{fila}, rotulo, count(*)::INTEGER " +
                   "FROM (#{sub}) AS sub GROUP BY 1, 2 ORDER BY 1, 2;"

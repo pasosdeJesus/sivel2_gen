@@ -1,20 +1,20 @@
 <% porVic = {} %>
 <% lvic = {}%>
-<% presponsables = Sivel2Gen::Acto.where(id_caso: caso_id).pluck(:id_presponsable) + Sivel2Gen::Actocolectivo.where(id_caso: caso_id).pluck(:id_presponsable) %>
+<% presponsables = Sivel2Gen::Acto.where(caso_id: caso_id).pluck(:presponsable_id) + Sivel2Gen::Actocolectivo.where(caso_id: caso_id).pluck(:presponsable_id) %>
 <% presponsables.uniq.each do |pr| %>
   <% h1 = {} %>
-  <% categorias = Sivel2Gen::Acto.where(id_caso: caso_id).where(id_presponsable: pr).pluck(:id_categoria) + Sivel2Gen::Actocolectivo.where(id_caso: caso_id).where(id_presponsable: pr).pluck(:id_categoria) %>
+  <% categorias = Sivel2Gen::Acto.where(caso_id: caso_id).where(presponsable_id: pr).pluck(:categoria_id) + Sivel2Gen::Actocolectivo.where(caso_id: caso_id).where(presponsable_id: pr).pluck(:categoria_id) %>
   <% categorias.uniq.each do |ca|%>
-    <% personas = Sivel2Gen::Acto.where(id_caso: caso_id).where(id_presponsable: pr).where(id_categoria: ca).pluck(:id_persona).map{|p| 'i'+ p.to_s } %>
-    <% grupoper = Sivel2Gen::Actocolectivo.where(id_caso: caso_id).where(id_presponsable: pr).where(id_categoria: ca).pluck(:id_grupoper).map{|g| 'c'+ g.to_s }%>
+    <% personas = Sivel2Gen::Acto.where(caso_id: caso_id).where(presponsable_id: pr).where(categoria_id: ca).pluck(:persona_id).map{|p| 'i'+ p.to_s } %>
+    <% grupoper = Sivel2Gen::Actocolectivo.where(caso_id: caso_id).where(presponsable_id: pr).where(categoria_id: ca).pluck(:grupoper_id).map{|g| 'c'+ g.to_s }%>
     <% h1[ca]= (personas.uniq + grupoper.uniq).sort %>
     <% porVic[pr] = h1%>
   <% end %>
 <% end %>
 <% caso.victima.each do |v| %>
-  <% nvc = Msip::Persona.find(v.id_persona).nombres +
-    ' ' + Msip::Persona.find(v.id_persona).apellidos %> 
-  <% sector = Sivel2Gen::Sectorsocial.find(v.id_sectorsocial).nombre %>
+  <% nvc = Msip::Persona.find(v.persona_id).nombres +
+    ' ' + Msip::Persona.find(v.persona_id).apellidos %> 
+  <% sector = Sivel2Gen::Sectorsocial.find(v.sectorsocial_id).nombre %>
   <% # Agrega sector social principal %>
   <% if sector != "SIN INFORMACIÓN"  %>
     <% nvc +=  ' - ' + sector %>
@@ -27,7 +27,7 @@
       <% nvc +=  ' - ' + sectoressec %>
     <% end %>
   <% end %>
-  <% prof = Sivel2Gen::Profesion.find(v.id_profesion).nombre %>
+  <% prof = Sivel2Gen::Profesion.find(v.profesion_id).nombre %>
   <% if prof != "SIN INFORMACIÓN" %>
     <% nvc += ' - ' + prof %>
   <% end %>
@@ -36,28 +36,28 @@
     <% if v.hijos %>
       <% nvc += ' - ' + v.hijos.to_s + 'hijos' %>
     <% end %>
-    <% fil = Sivel2Gen::Filiacion.find(v.id_filiacion).nombre %>
+    <% fil = Sivel2Gen::Filiacion.find(v.filiacion_id).nombre %>
     <% if fil != "SIN INFORMACIÓN" %>
       <% nvc += ' - ' + fil %>
     <% end %>
     <% if v.anotaciones && v.anotaciones != "" %>
       <% nvc += ' - ' + v.anotaciones %>
     <% end %>
-    <% org = Sivel2Gen::Organizacion.find(v.id_organizacion).nombre %>
+    <% org = Sivel2Gen::Organizacion.find(v.organizacion_id).nombre %>
     <% if org != "SIN INFORMACIÓN" %>
       <% nvc += ' - ' + org %>
     <% end %>
   <% end %>
-  <% lvic['i'+ v.id_persona.to_s] = nvc %>
+  <% lvic['i'+ v.persona_id.to_s] = nvc %>
 <% end %>
 <% caso.victimacolectiva.each do |vc| %>
-  <% nvc = Msip::Grupoper.find(vc.id_grupoper).nombre %>
+  <% nvc = Msip::Grupoper.find(vc.grupoper_id).nombre %>
   <% if repgeneral %>
     <% etniasid =  Sivel2Gen::EtniaVictimacolectiva.where(victimacolectiva_id: vc.id).pluck(:etnia_id)%>
     <% etnias = etniasid.map{|e| Sivel2Gen::Etnia.find(e).nombre}.join(" / ")%>
-    <% lvic['c'+ vc.id_grupoper.to_s] = nvc + " - " + etnias %>
+    <% lvic['c'+ vc.grupoper_id.to_s] = nvc + " - " + etnias %>
   <% else %>
-    <% lvic['c'+ vc.id_grupoper.to_s] = nvc %>
+    <% lvic['c'+ vc.grupoper_id.to_s] = nvc %>
   <% end %>
 <% end %>
 
@@ -102,16 +102,16 @@
 
 <!-- Categorias sin Victimas -->
 <% asinv = {} %>
-<% prs = Sivel2Gen::CasoPresponsable.where(id_caso: caso_id) %>
+<% prs = Sivel2Gen::CasoPresponsable.where(caso_id: caso_id) %>
 <% prs.each do |cpr|  %>
-  <% csinv = Sivel2Gen::CasoCategoriaPresponsable.where(id_caso_presponsable: cpr.id).pluck(:id_categoria) %>
+  <% csinv = Sivel2Gen::CasoCategoriaPresponsable.where(caso_presponsable_id: cpr.id).pluck(:categoria_id) %>
   <% if !csinv.empty? %>
     <% csinv.sort.each do |cv|%>
       <% if asinv[cv] %>
-        <% asinv[cv] += [cpr.id_presponsable] %>
+        <% asinv[cv] += [cpr.presponsable_id] %>
         <% asinv[cv] = asinv[cv].sort %>
       <% else %>
-        <% asinv[cv] = [cpr.id_presponsable] %>
+        <% asinv[cv] = [cpr.presponsable_id] %>
       <% end %>
     <% end %>
   <% end %>
@@ -179,7 +179,7 @@
   <% por[pr].keys.each do |ct|%>
     <% if ct.is_a? Integer %>
       <% supraid = Sivel2Gen::Categoria.find(ct).supracategoria_id%>
-      <% tviolencia = Sivel2Gen::Supracategoria.find(supraid).id_tviolencia if supraid%>
+      <% tviolencia = Sivel2Gen::Supracategoria.find(supraid).tviolencia_id if supraid%>
       <% tv_nombre = Sivel2Gen::Tviolencia.find(tviolencia).nombre if tviolencia%>
       <% supra_nombre = Sivel2Gen::Supracategoria.find(supraid).nombre if supraid%>
       <br><%= tv_nombre %><br>
@@ -188,7 +188,7 @@
       <br>
       <% ct.each do |cti| %>
         <% supraid = Sivel2Gen::Categoria.find(cti).supracategoria_id%>
-        <% tviolencia = Sivel2Gen::Supracategoria.find(supraid).id_tviolencia if supraid %>
+        <% tviolencia = Sivel2Gen::Supracategoria.find(supraid).tviolencia_id if supraid %>
         <% tv_compara = Sivel2Gen::Tviolencia.find(tviolencia).nombre if tviolencia %>
         <% if tv_nombre && tv_nombre == tv_compara %>
           <% tv_nombre = Sivel2Gen::Tviolencia.find(tviolencia).nombre if tviolencia %>
@@ -233,7 +233,7 @@
   <% end %>
 <% end %>
 
-<% vcom = Sivel2Gen::Combatiente.where(id_caso: caso_id) %>
+<% vcom = Sivel2Gen::Combatiente.where(caso_id: caso_id) %>
 <% if !vcom.empty? %>
   <p>
   Víctimas Combatientes:
@@ -242,7 +242,7 @@
     <%= vc.nombre %>
     <%= vc.alias.to_s != "" ? "(Alias: #{vc.alias.to_s})" : "" %>
     <br>
-    <% resagre = Sivel2Gen::Resagresion.find(vc.id_resagresion) %>
+    <% resagre = Sivel2Gen::Resagresion.find(vc.resagresion_id) %>
     <%= resagre.nombre %><br>
     <% orgar = Sivel2Gen::Presponsable.find(vc.organizacionarmada).nombre %>
     <%= "Organización Armada Víctima: #{orgar}" %>

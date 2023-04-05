@@ -15,7 +15,7 @@ module Sivel2Gen
       def atributos_index
         [:id, 
          :nombre, 
-         :id_tviolencia, 
+         :tviolencia_id, 
          :codigo, 
          :observaciones, 
          :fechacreacion_localizada, 

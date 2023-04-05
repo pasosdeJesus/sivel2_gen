@@ -20,8 +20,8 @@ module Sivel2Gen
       assert grupoper.valid?
 
       victimacolectiva = Victimacolectiva.create PRUEBA_VICTIMACOLECTIVA.merge(
-        id_caso: caso.id,
-        id_grupoper: grupoper.id,
+        caso_id: caso.id,
+        grupoper_id: grupoper.id,
       )
       assert victimacolectiva.valid?
 

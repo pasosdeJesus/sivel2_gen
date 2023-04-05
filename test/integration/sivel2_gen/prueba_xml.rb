@@ -33,9 +33,9 @@ module Sivel2Gen
     test 'genera xml de un caso con datos basicos' do
       caso = Sivel2Gen::Caso.create! PRUEBA_CASO_BASICOS
       ubicaso = Msip::Ubicacion.create(
-        id_caso: caso.id,
-        id_pais: 170,
-        id_departamento: 4,
+        caso_id: caso.id,
+        pais_id: 170,
+        departamento_id: 4,
         created_at: '2019-01-01',
       )
       ubicaso.save!
@@ -53,11 +53,11 @@ module Sivel2Gen
     test 'genera xml del caso y su ubicacion' do
       caso = Sivel2Gen::Caso.create PRUEBA_CASO_BASICOS
       ubicacion1 = Msip::Ubicacion.create(
-        id_pais: 170,
-        id_caso: caso.id,
-        id_tsitio: 1,
-        id_departamento: 17,
-        id_municipio: 1152,
+        pais_id: 170,
+        caso_id: caso.id,
+        tsitio_id: 1,
+        departamento_id: 17,
+        municipio_id: 1152,
         created_at: '2014-11-06'
       )
       ubicacion1.save!

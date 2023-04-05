@@ -20,14 +20,14 @@ module Sivel2Gen
       assert grupoper.valid?
 
       victimacolectiva = Victimacolectiva.create PRUEBA_VICTIMACOLECTIVA.merge(
-        id_caso: caso.id,
-        id_grupoper: grupoper.id,
+        caso_id: caso.id,
+        grupoper_id: grupoper.id,
       )
       assert victimacolectiva.valid?
 
       av = Sivel2Gen::SectorsocialVictimacolectiva.create(
         victimacolectiva_id: victimacolectiva.id,
-        id_sectorsocial: sectorsocial.id,
+        sectorsocial_id: sectorsocial.id,
       )
       assert_predicate av, :valid?
 

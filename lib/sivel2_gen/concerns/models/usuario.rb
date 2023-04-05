@@ -10,10 +10,10 @@ module Sivel2Gen
         included do
           include Msip::Concerns::Models::Usuario
 
-          has_many :caso_usuario, foreign_key: "id_usuario", validate: true,
+          has_many :caso_usuario, foreign_key: "usuario_id", validate: true,
             class_name: 'Sivel2Gen::CasoUsuario'
           
-          has_many :caso_etiqueta, foreign_key: "id_usuario", validate: true,
+          has_many :caso_etiqueta, foreign_key: "usuario_id", validate: true,
             class_name: 'Sivel2Gen::CasoEtiqueta'
 
           has_and_belongs_to_many :filtrodepartamento, 

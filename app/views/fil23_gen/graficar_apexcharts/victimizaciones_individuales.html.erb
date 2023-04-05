@@ -114,7 +114,7 @@
             params[:filtro][:departamentos].nil?
             dep_sel = Msip::Departamento.habilitados.
               where(
-                id_pais: Msip.paisomision).pluck(:id)
+                pais_id: Msip.paisomision).pluck(:id)
             estdep = "display: block"
           else
             dep_sel = params[:filtro][:departamentos]
@@ -123,7 +123,7 @@
         %>
         <%= f.input :departamentos,
           collection: Msip::Departamento.habilitados.where(
-            id_pais: Msip.paisomision), 
+            pais_id: Msip.paisomision), 
           label_method: :nombre,
           value_method: :id, 
           selected: dep_sel,
@@ -150,7 +150,7 @@
         %>
         <%= f.input :categorias,
           collection: @categorias_gen.group_by{ |c| 
-            c.supracategoria.id_tviolencia},
+            c.supracategoria.tviolencia_id},
           group_label_method: lambda { |ca| 
             Sivel2Gen::Tviolencia.find(ca[0]).nombre},
           as: :grouped_select, 
@@ -158,7 +158,7 @@
           selected: cat_sel,
           value_method: :id,
           label_method: lambda { |cat| 
-            "#{Sivel2Gen::Supracategoria.find(cat.supracategoria_id.to_i).id_tviolencia}#{cat.id.to_s} #{cat.nombre}" }, 
+            "#{Sivel2Gen::Supracategoria.find(cat.supracategoria_id.to_i).tviolencia_id}#{cat.id.to_s} #{cat.nombre}" }, 
           input_html: {
             class: 'chosen-select',
             multiple: true,

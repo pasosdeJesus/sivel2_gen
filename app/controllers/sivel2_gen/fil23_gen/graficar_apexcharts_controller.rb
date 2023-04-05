@@ -18,7 +18,7 @@ module Sivel2Gen
             params[:filtro][:fechafin]) : Sivel2Gen::Caso.maximum(:fecha).to_s
 
         ldep = Msip::Departamento.habilitados.where(
-          id_pais: Msip.paisomision).pluck(:id)
+          pais_id: Msip.paisomision).pluck(:id)
         @vic_dep = params[:filtro] && params[:filtro][:departamento] ?
           ldep & params[:filtro][:departamento] : ldep
 
@@ -27,7 +27,7 @@ module Sivel2Gen
           'sivel2_gen_supracategoria.id=sivel2_gen_categoria.supracategoria_id ').
           where('sivel2_gen_categoria.fechadeshabilitacion is NULL 
               AND sivel2_gen_categoria.tipocat=\'I\'').
-              reorder('sivel2_gen_supracategoria.id_tviolencia', :id)
+              reorder('sivel2_gen_supracategoria.tviolencia_id', :id)
         @categorias = @categorias_gen.pluck(:id).uniq 
         @vic_categorias = params[:filtro] && params[:filtro][:categorias] ? 
           @categorias & params[:filtro][:categorias].map(&:to_i) : @categorias
@@ -38,10 +38,10 @@ module Sivel2Gen
 
         def consulta_gen(desagregado, filtros)
           "select caso.fecha as fecha_caso, count(*) as total from cvt1 
-          JOIN sivel2_gen_caso as caso ON caso.id=id_caso 
-          JOIN msip_persona AS persona ON persona.id=id_persona
+          JOIN sivel2_gen_caso as caso ON caso.id=caso_id 
+          JOIN msip_persona AS persona ON persona.id=persona_id
           JOIN msip_ubicacion as ubi ON ubi.id=caso.ubicacion_id
-          JOIN sivel2_gen_categoria AS categoria ON categoria.id=id_categoria
+          JOIN sivel2_gen_categoria AS categoria ON categoria.id=categoria_id
           WHERE #{desagregado} 
           AND caso.fecha >='" + @vic_fechaini + "'
           AND caso.fecha <='" + @vic_fechafin + "'
@@ -51,7 +51,7 @@ module Sivel2Gen
 
         def consulta_totsex
           "SELECT persona.sexo AS sexo_persona, COUNT(*) AS total FROM cvt1
-          JOIN msip_persona AS persona ON persona.id=id_persona 
+          JOIN msip_persona AS persona ON persona.id=persona_id 
           GROUP BY 1
           ORDER BY persona.sexo='#{Msip::Persona::convencion_sexo[:sexo_sininformacion].to_s}', 
           persona.sexo='#{Msip::Persona::convencion_sexo[:sexo_masculino].to_s}',
@@ -61,16 +61,16 @@ module Sivel2Gen
         def consulta_totcat
           "SELECT categoria.nombre AS categoria_nom, COUNT(*) AS total 
           FROM cvt1
-          JOIN sivel2_gen_categoria AS categoria ON categoria.id=id_categoria
+          JOIN sivel2_gen_categoria AS categoria ON categoria.id=categoria_id
           GROUP BY 1;"
         end
 
         def consulta_totdep
           "SELECT departamento.nombre AS departamento_nombre, COUNT(*) as total 
           FROM cvt1
-          JOIN sivel2_gen_caso as caso ON caso.id=id_caso 
+          JOIN sivel2_gen_caso as caso ON caso.id=caso_id 
           JOIN msip_ubicacion as ubi ON ubi.id=caso.ubicacion_id
-          JOIN msip_departamento as departamento ON departamento.id=ubi.id_departamento
+          JOIN msip_departamento as departamento ON departamento.id=ubi.departamento_id
           GROUP BY 1;"
         end
 
@@ -83,7 +83,7 @@ module Sivel2Gen
               desagr = "persona.sexo ='#{sexo[1].to_s}'" 
               filtros= ""
               filtros << "
-              AND ubi.id_departamento IN (#{(@vic_dep).join(', ')})" if @vic_dep.count >= 1
+              AND ubi.departamento_id IN (#{(@vic_dep).join(', ')})" if @vic_dep.count >= 1
               filtros << "
               AND categoria.id IN (#{@vic_categorias.join(', ')})" if @vic_categorias.count >= 1
               valores_sex = ActiveRecord::Base.connection.execute(consulta_gen(desagr, filtros)).values.to_h 
@@ -109,12 +109,12 @@ module Sivel2Gen
           if params[:filtro][:desagregar] == 'Departamento' 
             series_gen= []
             deps = Msip::Departamento.habilitados.where(
-              id_pais: Msip.paisomision)
+              pais_id: Msip.paisomision)
             if (@vic_sexo.count == 0) || (@vic_categorias.count == 0)
               flash.now[:info] = "Uno de los filtros se encuentra vacío"
             else
               deps.each do |dep|
-                desagr = "ubi.id_departamento ='#{dep.id}'"
+                desagr = "ubi.departamento_id ='#{dep.id}'"
                 filtros = ""
                 filtros << ("
                   AND persona.sexo IN (" + (@vic_sexo).map{|k| "'" + k + "'"}.join(', ') + ")") if @vic_sexo.count >= 1
@@ -143,7 +143,7 @@ module Sivel2Gen
                 desagr = "categoria.id ='#{cat}'"
                 filtros= ""
                 filtros << "
-                  AND ubi.id_departamento IN (#{(@vic_dep).join(', ')})" if @vic_dep.count >= 1 
+                  AND ubi.departamento_id IN (#{(@vic_dep).join(', ')})" if @vic_dep.count >= 1 
                 filtros << ("
                   AND persona.sexo IN (" + (@vic_sexo).map{|k| "'" + k + "'"}.join(', ') + ')') if @vic_sexo.count >= 1
                 valores_cat = ActiveRecord::Base.connection.execute(consulta_gen(desagr, filtros)).values.to_h 

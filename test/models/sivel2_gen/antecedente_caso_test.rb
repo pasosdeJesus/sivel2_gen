@@ -17,8 +17,8 @@ module Sivel2Gen
       assert_predicate caso, :valid?
 
       ac = Sivel2Gen::AntecedenteCaso.create(
-        id_caso: caso.id,
-        id_antecedente: antecedente.id,
+        caso_id: caso.id,
+        antecedente_id: antecedente.id,
       )
       assert_predicate ac, :valid?
 

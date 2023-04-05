@@ -40,11 +40,11 @@ module Sivel2Gen
             )
 
             iddep = 11 # BOYACÁ
-            idmun = Msip::Municipio.where(id_departamento: iddep).take.id
+            idmun = Msip::Municipio.where(departamento_id: iddep).take.id
 
             r = ActiveRecord::Base.connection.select_all(
               "SELECT  municipio_divipola, count(*) FROM #{cons} "\
-              "WHERE id_departamento=#{iddep} "\
+              "WHERE departamento_id=#{iddep} "\
               "GROUP BY 1")
 
             @mapa_muncuenta = {}
@@ -75,7 +75,7 @@ module Sivel2Gen
                            pEtiqueta2, pColormax)
 
           
-            hermanos = Msip::Municipio.where(id_departamento: iddep)
+            hermanos = Msip::Municipio.where(departamento_id: iddep)
             @depcad = render_to_string(
               partial: 'msip/admin/departamentos/show_svgruta_con_hermanos',
               locals: {

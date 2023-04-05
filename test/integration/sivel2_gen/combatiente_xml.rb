@@ -19,18 +19,18 @@ module Sivel2Gen
       caso = Sivel2Gen::Caso.create! PRUEBA_CASO
       caso.save!
       combatiente = Sivel2Gen::Combatiente.create(
-        id_caso: caso.id,
+        caso_id: caso.id,
         nombre: "libio",
         alias: "alias combatiente",
         edad: 25,
         sexo: "M",
-        id_resagresion: Sivel2Gen::Resagresion.first.id,
-        id_profesion: Sivel2Gen::Profesion.first.id,
-        id_rangoedad: Sivel2Gen::Rangoedad.first.id,
-        id_filiacion: Sivel2Gen::Filiacion.first.id,
-        id_sectorsocial: Sivel2Gen::Sectorsocial.first.id,
-        id_organizacion: Sivel2Gen::Organizacion.first.id,
-        id_vinculoestado: Sivel2Gen::Vinculoestado.first.id,
+        resagresion_id: Sivel2Gen::Resagresion.first.id,
+        profesion_id: Sivel2Gen::Profesion.first.id,
+        rangoedad_id: Sivel2Gen::Rangoedad.first.id,
+        filiacion_id: Sivel2Gen::Filiacion.first.id,
+        sectorsocial_id: Sivel2Gen::Sectorsocial.first.id,
+        organizacion_id: Sivel2Gen::Organizacion.first.id,
+        vinculoestado_id: Sivel2Gen::Vinculoestado.first.id,
         organizacionarmada: Sivel2Gen::Presponsable.first.id
       )
       get caso_path(caso) + '.xrlat'

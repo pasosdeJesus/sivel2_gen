@@ -28,7 +28,7 @@ module Sivel2Gen
 
           def atributos_index
             r = [
-              :id_caso,
+              :caso_id,
               :fecha_caso_localizada,
               :ubicacion_caso,
               :nombre,
@@ -40,21 +40,21 @@ module Sivel2Gen
           end
 
           def self.index_reordenar(c)
-            #c.reorder(['msip_persona.nombres', 'msip_persona.apellidos', :id_caso])
-            c.reorder([:id_caso])
+            #c.reorder(['msip_persona.nombres', 'msip_persona.apellidos', :caso_id])
+            c.reorder([:caso_id])
           end
 
 
           def index(c = nil)
             if c == nil
               c = Sivel2Gen::Victima.joins(:persona).all.order(
-                ['msip_persona.nombres', 'msip_persona.apellidos', :id_caso])
+                ['msip_persona.nombres', 'msip_persona.apellidos', :caso_id])
             end
             @titulo = 'Víctimas y Casos'
             @pconsolidado = Sivel2Gen::Pconsolidado.
               where(fechadeshabilitacion: nil).order(:peso, :id).map { |r|
               [r.id, r.nombre, Sivel2Gen::Categoria.
-               where(id_pconsolidado: r.id).map(&:id)]
+               where(pconsolidado_id: r.id).map(&:id)]
             }
             super(c)
           end
@@ -84,8 +84,8 @@ module Sivel2Gen
                 @persona.numerodocumento = @persona.id
                 @persona.save
               end
-              @victima.id_caso = params[:caso_id]
-              @victima.id_persona = @persona.id
+              @victima.caso_id = params[:caso_id]
+              @victima.persona_id = @persona.id
               if @victima.save
                 respond_to do |format|
                   format.js { render json: {'victima' => @victima.id.to_s,

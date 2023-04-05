@@ -9,7 +9,7 @@ module Sivel2Gen
       assert caso.valid?
 
       combatiente = Combatiente.create PRUEBA_COMBATIENTE.merge(
-        id_caso: caso.id
+        caso_id: caso.id
       )
       assert combatiente.valid?
       combatiente.destroy

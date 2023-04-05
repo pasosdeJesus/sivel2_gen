@@ -17,7 +17,7 @@
           collection: Msip::ModeloHelper.opciones_tabla_basica(
             Msip::Departamento, f, :departamento_id
           ).where(
-            id_pais: Msip.paisomision),
+            pais_id: Msip.paisomision),
           label_method: :nombre,
           value_method: :id,
           label: false,
@@ -161,9 +161,9 @@
           <% col2 = Sivel2Gen::Categoria.habilitados.pluck(:id) %>
           <%= f.input :categoria_id,
             collection: Sivel2Gen::Categoria.where(id: col1 | col2).joins(:supracategoria).
-            reorder('sivel2_gen_supracategoria.id_tviolencia', :id),
+            reorder('sivel2_gen_supracategoria.tviolencia_id', :id),
             label_method: lambda {|t| 
-            t.supracategoria.id_tviolencia +
+            t.supracategoria.tviolencia_id +
               t.id.to_s + ' ' + t.nombre},
               value_method: :id,
               :include_hidden => false,
@@ -173,9 +173,9 @@
         <% else %>
           <%= f.input :categoria_id,
             collection: Sivel2Gen::Categoria.habilitados.joins(:supracategoria).
-            reorder('sivel2_gen_supracategoria.id_tviolencia', :id),
+            reorder('sivel2_gen_supracategoria.tviolencia_id', :id),
             label_method: lambda {|t| 
-            t.supracategoria.id_tviolencia +
+            t.supracategoria.tviolencia_id +
               t.id.to_s + ' ' + t.nombre},
               value_method: :id,
               label: false,

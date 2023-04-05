@@ -12,8 +12,8 @@ module Msip
     }
 
     PRUEBA_UBICACION= {
-      id_tsitio: 1,
-      id_pais: 862,
+      tsitio_id: 1,
+      pais_id: 862,
       created_at: "2014-11-06"
     }
 
@@ -39,8 +39,8 @@ module Msip
     test "no valido 2" do
       caso = Sivel2Gen::Caso.create PRUEBA_CASO
       ubicacion = Ubicacion.new PRUEBA_UBICACION
-      ubicacion.id_caso = caso.id
-      ubicacion.id_tsitio = nil 
+      ubicacion.caso_id = caso.id
+      ubicacion.tsitio_id = nil 
       assert_not ubicacion.valid?
       ubicacion.destroy
       caso.destroy

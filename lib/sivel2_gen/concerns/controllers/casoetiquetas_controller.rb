@@ -13,9 +13,9 @@ module Sivel2Gen
           def nueva
             if params[:caso_id]
               @casoetiqueta = Sivel2Gen::CasoEtiqueta.new
-              @casoetiqueta.id_caso = params[:caso_id]
-              @casoetiqueta.id_etiqueta = Msip::Etiqueta.count > 0 ? Msip::Etiqueta.take.id : 0
-              @casoetiqueta.id_usuario = current_usuario.id
+              @casoetiqueta.caso_id = params[:caso_id]
+              @casoetiqueta.etiqueta_id = Msip::Etiqueta.count > 0 ? Msip::Etiqueta.take.id : 0
+              @casoetiqueta.usuario_id = current_usuario.id
               @casoetiqueta.fecha = Date.today
               if @casoetiqueta.save
                 respond_to do |format|

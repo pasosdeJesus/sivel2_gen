@@ -22,8 +22,8 @@ if params && params[:filtro]
 end
 cons = @conscaso.joins('JOIN sivel2_gen_caso as caso ON caso.id=caso_id ' +
     'LEFT JOIN msip_ubicacion ON msip_ubicacion.id=caso.ubicacion_id ' +
-    'LEFT JOIN msip_departamento ON msip_departamento.id=msip_ubicacion.id_departamento ' +
-    'LEFT JOIN msip_municipio ON msip_municipio.id=msip_ubicacion.id_municipio '
+    'LEFT JOIN msip_departamento ON msip_departamento.id=msip_ubicacion.departamento_id ' +
+    'LEFT JOIN msip_municipio ON msip_municipio.id=msip_ubicacion.municipio_id '
     )
 pl = cons.pluck(*sol)
 r = pl.map {|l|

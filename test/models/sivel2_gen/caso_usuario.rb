@@ -18,8 +18,8 @@ module Sivel2Gen
       assert caso.valid?
 
       cs = Sivel2Gen::CasoUsuario.create(
-        id_caso: caso.id,
-        id_usuario: usuario.id,
+        caso_id: caso.id,
+        usuario_id: usuario.id,
         fechainicio: '2023-01-11',
       )
       assert_predicate cs, :valid?

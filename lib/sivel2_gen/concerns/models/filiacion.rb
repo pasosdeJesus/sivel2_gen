@@ -10,15 +10,15 @@ module Sivel2Gen
                 self.table_name = 'sivel2_gen_filiacion'
 
                 has_and_belongs_to_many :victimacolectiva, 
-                  foreign_key: 'id_filiacion', 
+                  foreign_key: 'filiacion_id', 
                   class: 'Sivel2Gen::Victimacolectiva',
                   join_table: 'sivel2_gen_filiacion_victimacolectiva'
 
-                has_many :victima, foreign_key: 'id_filiacion', 
+                has_many :victima, foreign_key: 'filiacion_id', 
                         class_name: 'Sivel2Gen::Victima'
 
                 has_many :combatiente, class_name: 'Sivel2Gen::Combatiente',
-                        foreign_key: 'id_profesion' 
+                        foreign_key: 'profesion_id' 
         end
       end
     end

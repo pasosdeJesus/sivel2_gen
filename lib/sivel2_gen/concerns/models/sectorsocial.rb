@@ -8,13 +8,13 @@ module Sivel2Gen
         include Msip::Basica
         included do
           has_many :sectorsocial_victimacolectiva, 
-                  foreign_key: "id_sectorsocial", 
+                  foreign_key: "sectorsocial_id", 
                   validate: true, 
                   class_name: 'Sivel2Gen::SectorsocialVictimacolectiva'
-          has_many :victima, foreign_key: "id_sectorsocial", validate: true, 
+          has_many :victima, foreign_key: "sectorsocial_id", validate: true, 
                   class_name: 'Sivel2Gen::Victima'
           has_many :combatiente, class_name: 'Sivel2Gen::Combatiente',
-            foreign_key: "id_sectorsocial" 
+            foreign_key: "sectorsocial_id" 
         end
       end
     end

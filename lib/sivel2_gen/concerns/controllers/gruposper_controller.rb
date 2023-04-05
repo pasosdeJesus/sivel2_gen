@@ -18,9 +18,9 @@ module Sivel2Gen
 
           # Busca y lista grupo(s) de persona
           def remplazar
-            @grupoper = Msip::Grupoper.find(params[:id_grupoper].to_i)
+            @grupoper = Msip::Grupoper.find(params[:grupoper_id].to_i)
             @victimacolectiva = Sivel2Gen::Victimacolectiva.find(
-              params[:id_victimacolectiva].to_i)
+              params[:victima_idcolectiva].to_i)
             grupoperant = @victimacolectiva.grupoper
             @caso = @victimacolectiva.caso
             @caso.current_usuario = current_usuario

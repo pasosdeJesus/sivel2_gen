@@ -7,7 +7,7 @@ module Sivel2Gen
 
         include Msip::Basica
         included do
-          has_many :combatiente, foreign_key: "id_resagresion", 
+          has_many :combatiente, foreign_key: "resagresion_id", 
             validate: true, class_name: 'Sivel2Gen::Combatiente'
         end
 

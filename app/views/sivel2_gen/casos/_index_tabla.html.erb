@@ -30,7 +30,7 @@
                 <%= caso[i] %>
                 <% haytip = true %>
               <% end %>
-              <% ids_catcol = Sivel2Gen::Actocolectivo.where(id_caso: caso.caso_id).pluck(:id_categoria)%>
+              <% ids_catcol = Sivel2Gen::Actocolectivo.where(caso_id: caso.caso_id).pluck(:categoria_id)%>
               <% if ids_catcol.count > 0 %>
                 <% haycatcol = true %>
                 <% if haytip %>
@@ -39,12 +39,12 @@
                 <% catcol = Sivel2Gen::Categoria.where(id: ids_catcol) %>
                 <%= catcol.inject("") {|memo, r| 
                   (memo == "" ? "" : memo + ", ") + 
-                    r.supracategoria.id_tviolencia + ':' +
+                    r.supracategoria.tviolencia_id + ':' +
                     r.supracategoria.codigo.to_s + ':' +
                     r.id.to_s + ' ' + r.nombre} %>
               <% end %>
-              <% ids_casopres = Sivel2Gen::CasoPresponsable.where(id_caso: caso.caso_id).pluck(:id) %>
-              <% ids_cat = Sivel2Gen::CasoCategoriaPresponsable.where(id_caso_presponsable: ids_casopres).pluck(:id_categoria) %>
+              <% ids_casopres = Sivel2Gen::CasoPresponsable.where(caso_id: caso.caso_id).pluck(:id) %>
+              <% ids_cat = Sivel2Gen::CasoCategoriaPresponsable.where(caso_presponsable_id: ids_casopres).pluck(:categoria_id) %>
               <% if ids_cat.count > 0 %>
                 <% if haytip || haycatcol%>
                   </br>
@@ -52,7 +52,7 @@
                 <% catsinv = Sivel2Gen::Categoria.where(id: ids_cat) %>
                 <%= catsinv.inject("") {|memo, r| 
                   (memo == "" ? "" : memo + ", ") + 
-                    r.supracategoria.id_tviolencia + ':' +
+                    r.supracategoria.tviolencia_id + ':' +
                     r.supracategoria.codigo.to_s + ':' +
                     r.id.to_s + ' ' + r.nombre} %>
 
@@ -62,7 +62,7 @@
               <%= caso[i] if caso[i] %>
               <% hayind = caso[i] && caso[i].strip.length > 0 %>
               <% haycol = false %>
-              <% gps = Sivel2Gen::Victimacolectiva.where(id_caso: caso.caso_id).pluck(:id_grupoper)%>
+              <% gps = Sivel2Gen::Victimacolectiva.where(caso_id: caso.caso_id).pluck(:grupoper_id)%>
               <% if gps.count> 0 && (!params || !params[:filtro] || 
                   !params[:filtro][:inc_victimacol] || 
                   params[:filtro][:inc_victimacol] != '0') %>
@@ -72,7 +72,7 @@
                 <% end %>
                 <%= Msip::Grupoper.where(id: gps).pluck(:nombre).join(", ")%>
               <% end %>
-              <% com = Sivel2Gen::Combatiente.where(id_caso: caso.caso_id)%>
+              <% com = Sivel2Gen::Combatiente.where(caso_id: caso.caso_id)%>
               <% if com.count > 0 %>
                 <% if hayind || haycol %>
                   </br>

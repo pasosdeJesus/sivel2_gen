@@ -10,7 +10,7 @@ module Sivel2Gen
 
         included do
           has_many :caso_etiqueta, class_name: 'Sivel2Gen::CasoEtiqueta',
-            foreign_key: 'id_etiqueta', dependent: :delete_all
+            foreign_key: 'etiqueta_id', dependent: :delete_all
           has_many :caso, class_name: 'Sivel2Gen::Caso',
             through: :caso_etiqueta
 

@@ -10,8 +10,8 @@ module Sivel2Gen
             
           has_and_belongs_to_many :caso, 
             class_name: 'Sivel2Gen::Contexto',
-            foreign_key: 'id_contexto', 
-            association_foreign_key: 'id_caso',
+            foreign_key: 'contexto_id', 
+            association_foreign_key: 'caso_id',
             join_table: 'sivel2_gen_caso_contexto'
 
         end

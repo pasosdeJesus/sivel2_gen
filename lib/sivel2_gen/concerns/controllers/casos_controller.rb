@@ -346,7 +346,7 @@ module Sivel2Gen
                       end 
                       hayind = caso[i] && caso[i].strip.length > 0
                       haycol = false 
-                      gps = Sivel2Gen::Victimacolectiva.where(id_caso: caso.caso_id).pluck(:id_grupoper)
+                      gps = Sivel2Gen::Victimacolectiva.where(caso_id: caso.caso_id).pluck(:grupoper_id)
                       if gps.count> 0 && (!params || !params[:filtro] || 
                         !params[:filtro][:inc_victimacol] || 
                        params[:filtro][:inc_victimacol] != '0') 
@@ -356,7 +356,7 @@ module Sivel2Gen
                         end 
                         vic += Msip::Grupoper.where(id: gps).pluck(:nombre).join(", ")
                       end
-                      com = Sivel2Gen::Combatiente.where(id_caso: caso.caso_id)
+                      com = Sivel2Gen::Combatiente.where(caso_id: caso.caso_id)
                       if com.count > 0
                         if hayind || haycol
                           vic += '. '
@@ -372,7 +372,7 @@ module Sivel2Gen
                         tip += caso[i]
                         haytip = true
                       end
-                      ids_catcol = Sivel2Gen::Actocolectivo.where(id_caso: caso.caso_id).pluck(:id_categoria)
+                      ids_catcol = Sivel2Gen::Actocolectivo.where(caso_id: caso.caso_id).pluck(:categoria_id)
                       if ids_catcol.count > 0
                         haycatcol = true 
                         if haytip 
@@ -381,12 +381,12 @@ module Sivel2Gen
                         catcol = Sivel2Gen::Categoria.where(id: ids_catcol) 
                         tip += catcol.inject("") {|memo, r| 
                          (memo == "" ? "" : memo + ", ") + 
-                         r.supracategoria.id_tviolencia + ':' +
+                         r.supracategoria.tviolencia_id + ':' +
                          r.supracategoria.codigo.to_s + ':' +
                          r.id.to_s + ' ' + r.nombre} 
                       end 
-                      ids_casopres = Sivel2Gen::CasoPresponsable.where(id_caso: caso.caso_id).pluck(:id) 
-                      ids_cat = Sivel2Gen::CasoCategoriaPresponsable.where(id_caso_presponsable: ids_casopres).pluck(:id_categoria)
+                      ids_casopres = Sivel2Gen::CasoPresponsable.where(caso_id: caso.caso_id).pluck(:id) 
+                      ids_cat = Sivel2Gen::CasoCategoriaPresponsable.where(caso_presponsable_id: ids_casopres).pluck(:categoria_id)
                       if ids_cat.count > 0 
                         if haytip || haycatcol
                           tip += '. '
@@ -394,7 +394,7 @@ module Sivel2Gen
                       catsinv = Sivel2Gen::Categoria.where(id: ids_cat) 
                       tip += catsinv.inject("") {|memo, r| 
                        (memo == "" ? "" : memo + ", ") + 
-                         r.supracategoria.id_tviolencia + ':' +
+                         r.supracategoria.tviolencia_id + ':' +
                          r.supracategoria.codigo.to_s + ':' +
                          r.id.to_s + ' ' + r.nombre}
                       end 
@@ -511,8 +511,8 @@ module Sivel2Gen
             @caso.save!
             @formulario_sin_titulo = true
             cu = CasoUsuario.new
-            cu.id_usuario = current_usuario.id
-            cu.id_caso = @caso.id
+            cu.usuario_id = current_usuario.id
+            cu.caso_id = @caso.id
             cu.fechainicio = DateTime.now.strftime('%Y-%m-%d')
             cu.save!
             if registrar_en_bitacora
@@ -533,19 +533,19 @@ module Sivel2Gen
           def lista
             if params[:tabla]
               r = nil
-              if (params[:tabla] == "departamento" && params[:id_pais].to_i > 0)
+              if (params[:tabla] == "departamento" && params[:pais_id].to_i > 0)
                 r = Msip::Departamento.where(fechadeshabilitacion: nil,
-                                            id_pais: params[:id_pais].to_i).order(:nombre)
-              elsif (params[:tabla] == "municipio" && params[:id_pais].to_i > 0 &&
-                     params[:id_departamento].to_i > 0 )
+                                            pais_id: params[:pais_id].to_i).order(:nombre)
+              elsif (params[:tabla] == "municipio" && params[:pais_id].to_i > 0 &&
+                     params[:departamento_id].to_i > 0 )
                 r = Msip::Municipio.where(
-                  id_departamento: params[:id_departamento].to_i,
+                  departamento_id: params[:departamento_id].to_i,
                   fechadeshabilitacion: nil).order(:nombre)
-              elsif (params[:tabla] == "clase" && params[:id_pais].to_i > 0 &&
-                     params[:id_departamento].to_i > 0 &&
-                     params[:id_municipio].to_i > 0)
+              elsif (params[:tabla] == "clase" && params[:pais_id].to_i > 0 &&
+                     params[:departamento_id].to_i > 0 &&
+                     params[:municipio_id].to_i > 0)
                 r = Msip::Clase.where(
-                                     id_municipio: params[:id_municipio].to_i,
+                                     municipio_id: params[:municipio_id].to_i,
                                      fechadeshabilitacion: nil).order(:nombre)
               end
               respond_to do |format|
@@ -569,7 +569,7 @@ module Sivel2Gen
             fechafinal = params[:fechafin] ? params[:fechafin] : Date.today
             fechainicial = params[:fechaini] ? params[:fechaini] : 
               (fechasinicial.count > 0 ? fechasinicial[0] : '2001-01-01')
-            sql = "select fecha, count(distinct sivel2_gen_caso.id) AS cuenta, msip_departamento.nombre FROM sivel2_gen_caso LEFT JOIN msip_ubicacion ON sivel2_gen_caso.ubicacion_id = msip_ubicacion.id LEFT JOIN msip_departamento ON msip_ubicacion.id_departamento = msip_departamento.id WHERE sivel2_gen_caso.fecha BETWEEN '" + fechainicial.to_s + "' AND '" + fechafinal.to_s + "' group by 1,3 order by 1;"
+            sql = "select fecha, count(distinct sivel2_gen_caso.id) AS cuenta, msip_departamento.nombre FROM sivel2_gen_caso LEFT JOIN msip_ubicacion ON sivel2_gen_caso.ubicacion_id = msip_ubicacion.id LEFT JOIN msip_departamento ON msip_ubicacion.departamento_id = msip_departamento.id WHERE sivel2_gen_caso.fecha BETWEEN '" + fechainicial.to_s + "' AND '" + fechafinal.to_s + "' group by 1,3 order by 1;"
             array_cuentas = ActiveRecord::Base.connection.execute(sql)
             render 'cuenta.json', layout: 'application', locals: {casosc: array_cuentas}
           end
@@ -765,8 +765,8 @@ module Sivel2Gen
               # En etiquetas pone usuario actual por omision
               if (!params[:caso][:caso_etiqueta_attributes].nil?)
                 params[:caso][:caso_etiqueta_attributes].each  do |k,v|
-                  if (v[:id_usuario].nil? || v[:id_usuario] == "")
-                    v[:id_usuario] = current_usuario.id
+                  if (v[:usuario_id].nil? || v[:usuario_id] == "")
+                    v[:usuario_id] = current_usuario.id
                   end
                 end
               end
@@ -880,7 +880,7 @@ module Sivel2Gen
           def sivel2_gen_destroy
             tcaso_id=@caso.id
             if @caso.id
-              CasoUsuario.where(id_caso: @caso.id).destroy_all
+              CasoUsuario.where(caso_id: @caso.id).destroy_all
             end
             @caso.destroy
 
@@ -1056,8 +1056,8 @@ module Sivel2Gen
                                         datossal, formato_sexo,
                                         menserror_uno, {})
               casousuario = Sivel2Gen::CasoUsuario.new
-              casousuario.id_usuario = usuario_id
-              casousuario.id_caso = importado.id
+              casousuario.usuario_id = usuario_id
+              casousuario.caso_id = importado.id
               casousuario.fechainicio = DateTime.now.strftime('%Y-%m-%d')
               casousuario.save!
               if importado.nil?
@@ -1068,25 +1068,25 @@ module Sivel2Gen
                 total_importados += 1
                 puts "OJO total_importados=#{total_importados}"
                 @etiquetaImp = Sivel2Gen::CasoEtiqueta.new
-                @etiquetaImp.id_caso = @caso.id
-                @etiquetaImp.id_etiqueta = Msip::Etiqueta.where(
+                @etiquetaImp.caso_id = @caso.id
+                @etiquetaImp.etiqueta_id = Msip::Etiqueta.where(
                   nombre: "IMPORTA_RELATO").ids[0]
-                if !@etiquetaImp.id_etiqueta.nil?
+                if !@etiquetaImp.etiqueta_id.nil?
                   @etiquetaImp.fecha = Date.today
-                  @etiquetaImp.id_usuario = usuario_id
+                  @etiquetaImp.usuario_id = usuario_id
                   @etiquetaImp.save!
                 end
                 ids_importados << "#{@caso.id} "
                 if menserror_uno != ''
                   total_errores += 1
                   @etiquetaErr = Sivel2Gen::CasoEtiqueta.new
-                  @etiquetaErr.id_caso = @caso.id
-                  @etiquetaErr.id_etiqueta = Msip::Etiqueta.where(
+                  @etiquetaErr.caso_id = @caso.id
+                  @etiquetaErr.etiqueta_id = Msip::Etiqueta.where(
                     nombre: "ERROR_IMPORTACIÓN").ids[0]
-                  if !@etiquetaErr.id_etiqueta.nil?
+                  if !@etiquetaErr.etiqueta_id.nil?
                     @etiquetaErr.observaciones = menserror_uno
                     @etiquetaErr.fecha = Date.today
-                    @etiquetaErr.id_usuario = usuario_id
+                    @etiquetaErr.usuario_id = usuario_id
                     @etiquetaErr.save!
                   end
                 end
@@ -1177,8 +1177,8 @@ module Sivel2Gen
                   :fecha,
                   :fecha_localizada,
                   :id,
-                  :id_etiqueta,
-                  :id_usuario,
+                  :etiqueta_id,
+                  :usuario_id,
                   :observaciones,
                   :_destroy
                 ]
@@ -1196,17 +1196,17 @@ module Sivel2Gen
                 :grinformacion,
                 :hora,
                 :id,
-                :id_intervalo,
+                :intervalo_id,
                 :memo,
                 :q,
                 :titulo,
                 :acto_attributes => [
-                  :id, :id_presponsable, :id_categoria,
-                  :id_persona, :_destroy
+                  :id, :presponsable_id, :categoria_id,
+                  :persona_id, :_destroy
                 ],
                 :anexo_caso_attributes => [
                   :id,
-                  :id_caso,
+                  :caso_id,
                   :fecha,
                   :fecha_localizada,
                   :_destroy,
@@ -1219,8 +1219,8 @@ module Sivel2Gen
                   :fecha,
                   :fecha_localizada,
                   :id,
-                  :id_etiqueta,
-                  :id_usuario,
+                  :etiqueta_id,
+                  :usuario_id,
                   :observaciones,
                   :_destroy
                 ],
@@ -1250,7 +1250,7 @@ module Sivel2Gen
                   :bloque,
                   :frente,
                   :id,
-                  :id_presponsable,
+                  :presponsable_id,
                   :otro,
                   :subdivision,
                   :tipo,
@@ -1274,13 +1274,13 @@ module Sivel2Gen
                   :alias,
                   :edad,
                   :id,
-                  :id_filiacion,
-                  :id_organizacion,
-                  :id_profesion,
-                  :id_rangoedad,
-                  :id_resagresion,
-                  :id_sectorsocial,
-                  :id_vinculoestado,
+                  :filiacion_id,
+                  :organizacion_id,
+                  :profesion_id,
+                  :rangoedad_id,
+                  :resagresion_id,
+                  :sectorsocial_id,
+                  :vinculoestado_id,
                   :nombre,
                   :organizacionarmada,
                   :sexo,
@@ -1300,11 +1300,11 @@ module Sivel2Gen
                 ],
                 :ubicacion_attributes => [
                     :id,
-                    :id_clase,
-                    :id_departamento,
-                    :id_municipio,
-                    :id_pais,
-                    :id_tsitio,
+                    :clase_id,
+                    :departamento_id,
+                    :municipio_id,
+                    :pais_id,
+                    :tsitio_id,
                     :latitud,
                     :longitud,
                     :lugar,
@@ -1316,15 +1316,15 @@ module Sivel2Gen
                   :anotaciones,
                   :hijos,
                   :id,
-                  :id_etnia,
-                  :id_filiacion,
-                  :id_iglesia,
-                  :id_organizacion,
-                  :id_persona,
-                  :id_profesion,
-                  :id_rangoedad,
-                  :id_sectorsocial,
-                  :id_vinculoestado,
+                  :etnia_id,
+                  :filiacion_id,
+                  :iglesia_id,
+                  :organizacion_id,
+                  :persona_id,
+                  :profesion_id,
+                  :rangoedad_id,
+                  :sectorsocial_id,
+                  :vinculoestado_id,
                   :organizacionarmada,
                   :orientacionsexual,
                   :_destroy,
@@ -1337,10 +1337,10 @@ module Sivel2Gen
                     :apellidos,
                     :dianac,
                     :id,
-                    :id_pais,
-                    :id_departamento,
-                    :id_municipio,
-                    :id_clase,
+                    :pais_id,
+                    :departamento_id,
+                    :municipio_id,
+                    :clase_id,
                     :mesnac,
                     :nombres,
                     :nacionalde,
@@ -1349,7 +1349,7 @@ module Sivel2Gen
                     :tdocumento_id,
                     :persona_trelacion1_attributes => [
                       :id,
-                      :id_trelacion,
+                      :trelacion_id,
                       :_destroy,
                       :personados_attributes => [
                         :id,

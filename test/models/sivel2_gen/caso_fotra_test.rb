@@ -19,8 +19,8 @@ module Sivel2Gen
 
       cf = Sivel2Gen::CasoFotra.create(
         nombre: 'x',
-        id_caso: caso.id,
-        id_fotra: fotra.id,
+        caso_id: caso.id,
+        fotra_id: fotra.id,
         fecha: '2023-01-11',
       )
       assert cf.valid?

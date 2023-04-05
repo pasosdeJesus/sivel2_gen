@@ -38,12 +38,12 @@ module Sivel2Gen
       ubicaso = Msip::Ubicacion.create(
         lugar: 'VEREDA EL PAPAYO',
         sitio: 'UNO DE LOS EXTREMOS DEL RÍO YURUMANGUÍ EN LA RIVERA DEL RÍO',
-        id_caso: caso.id,
-        id_tsitio: 3,
-        id_pais: 170,
-        id_departamento: 47,
-        id_municipio: 86,
-        id_clase: 11_737,
+        caso_id: caso.id,
+        tsitio_id: 3,
+        pais_id: 170,
+        departamento_id: 47,
+        municipio_id: 86,
+        clase_id: 11_737,
         created_at: '2019-01-01',
         longitud: -77.0697417935442,
         latitud: 3.89381723858445
@@ -56,51 +56,51 @@ module Sivel2Gen
       profesion = Sivel2Gen::Profesion.create! PRUEBA_PROFESION
       sectorsocial = Sivel2Gen::Sectorsocial.create! PRUEBA_SECTORSOCIAL
       victima1 = Sivel2Gen::Victima.create(
-        id_caso: caso.id,
-        id_persona: persona1.id,
-        id_etnia: 5,
-        id_iglesia: nil,
-        id_rangoedad: rangoedad.id
+        caso_id: caso.id,
+        persona_id: persona1.id,
+        etnia_id: 5,
+        iglesia_id: nil,
+        rangoedad_id: rangoedad.id
       )
 
       presponsable = Sivel2Gen::Presponsable.find(14)
       Sivel2Gen::CasoPresponsable.create(
-        id_caso: caso.id,
-        id_presponsable: presponsable.id,
+        caso_id: caso.id,
+        presponsable_id: presponsable.id,
         tipo: 1
       )
       categoria1 = Sivel2Gen::Categoria.find(13)
       categoria2 = Sivel2Gen::Categoria.find(702)
       acto1 = Sivel2Gen::Acto.create(
-        id_presponsable: presponsable.id,
-        id_categoria: categoria1.id,
-        id_persona: persona1.id,
-        id_caso: caso.id,
+        presponsable_id: presponsable.id,
+        categoria_id: categoria1.id,
+        persona_id: persona1.id,
+        caso_id: caso.id,
         created_at: '2019-01-01'
       )
       acto2 = Sivel2Gen::Acto.create(
-        id_presponsable: presponsable.id,
-        id_categoria: categoria2.id,
-        id_persona: persona1.id,
-        id_caso: caso.id,
+        presponsable_id: presponsable.id,
+        categoria_id: categoria2.id,
+        persona_id: persona1.id,
+        caso_id: caso.id,
         created_at: '2019-01-01'
       )
       intervalo = Sivel2Gen::Intervalo.find(2)
-      caso.id_intervalo = intervalo.id
+      caso.intervalo_id = intervalo.id
       contexto = Sivel2Gen::Contexto.find(28)
       Sivel2Gen::CasoContexto.create(
-        id_caso: caso.id,
-        id_contexto: contexto.id,
+        caso_id: caso.id,
+        contexto_id: contexto.id,
       )
       region1 = Sivel2Gen::Region.find(6)
       Sivel2Gen::CasoRegion.create(
-        id_caso: caso.id,
-        id_region: region1.id
+        caso_id: caso.id,
+        region_id: region1.id
       )
       frontera1= Sivel2Gen::Frontera.find(1)
       Sivel2Gen::CasoFrontera.create(
-        id_frontera: frontera1.id,
-        id_caso: caso.id
+        frontera_id: frontera1.id,
+        caso_id: caso.id
       )
       Sivel2Gen::Conscaso.refresca_conscaso
       get caso_path(caso) + '.json'

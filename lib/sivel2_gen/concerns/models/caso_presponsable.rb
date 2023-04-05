@@ -11,30 +11,30 @@ module Sivel2Gen
           include Msip::Localizacion
           include Msip::FormatoFechaHelper
 
-          belongs_to :caso, foreign_key: "id_caso", validate: true,
+          belongs_to :caso, foreign_key: "caso_id", validate: true,
             class_name: 'Sivel2Gen::Caso', optional: false
-          belongs_to :presponsable, foreign_key: "id_presponsable", 
+          belongs_to :presponsable, foreign_key: "presponsable_id", 
             validate: true, class_name: 'Sivel2Gen::Presponsable', 
             optional: false
           accepts_nested_attributes_for :presponsable, :reject_if => :all_blank
 
           has_many :caso_categoria_presponsable, 
-            foreign_key: :id_caso_presponsable,
+            foreign_key: :caso_presponsable_id,
             dependent: :destroy, validate: true,
             inverse_of: :caso_presponsable,
             class_name: 'Sivel2Gen::CasoCategoriaPresponsable'
           has_many :categoria, through: :caso_categoria_presponsable,
             class_name: 'Sivel2Gen::Categoria'
 
-          validates :id_presponsable, presence: true
-          validates :id_caso, presence: true
+          validates :presponsable_id, presence: true
+          validates :caso_id, presence: true
 
 
           def importa(datosent, datossal, menserror, opciones = {})
             pres = Sivel2Gen::Presponsable.
               where(nombre: datosent['nombre_grupo'])
             unless pres.empty?
-              self.id_presponsable = pres.ids[0]
+              self.presponsable_id = pres.ids[0]
               def recorrer_observaciones(ele)
                 case ele[0]
                 when 'bloque'

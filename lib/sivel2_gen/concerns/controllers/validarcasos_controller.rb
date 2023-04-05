@@ -13,7 +13,7 @@ module Sivel2Gen
                                     'Código', 'Fecha del Hecho', 'Usuario'],
                                  ordenapor = 'fecha')
             res = casos.joins('INNER JOIN public.sivel2_gen_iniciador 
-                              ON sivel2_gen_iniciador.id_caso=sivel2_gen_caso.id').
+                              ON sivel2_gen_iniciador.caso_id=sivel2_gen_caso.id').
                               where(where).order(ordenapor).select(atr)
             arr = ActiveRecord::Base.connection.select_all(res.to_sql)
             @validaciones << { 
@@ -57,9 +57,9 @@ module Sivel2Gen
                   id: params[:validarcaso][:etiqueta_id].to_i
                 ).count > 0
                )
-              casos = casos.where('sivel2_gen_caso.id IN (SELECT id_caso FROM 
+              casos = casos.where('sivel2_gen_caso.id IN (SELECT caso_id FROM 
                                   sivel2_gen_caso_etiqueta 
-                                  WHERE id_etiqueta=?)', 
+                                  WHERE etiqueta_id=?)', 
                                   params[:validarcaso][:etiqueta_id].to_i)
             end
            return casos 
@@ -83,7 +83,7 @@ module Sivel2Gen
 
           def valida_fecha_otra_fuente(c)
             c = c.joins('INNER JOIN public.sivel2_gen_caso_fotra
-                  ON sivel2_gen_caso_fotra.id_caso=sivel2_gen_caso.id')
+                  ON sivel2_gen_caso_fotra.caso_id=sivel2_gen_caso.id')
             validacion_estandar(
               c, 'Casos con fecha de otra fuente anterior a la del caso', 
               'sivel2_gen_caso_fotra.fecha < sivel2_gen_caso.fecha'
@@ -92,7 +92,7 @@ module Sivel2Gen
 
           def valida_fecha_fuente_frecuente(c)
             c = c.joins('INNER JOIN public.sivel2_gen_caso_fuenteprensa
-                  ON sivel2_gen_caso_fuenteprensa.id_caso=sivel2_gen_caso.id')
+                  ON sivel2_gen_caso_fuenteprensa.caso_id=sivel2_gen_caso.id')
             validacion_estandar(
               c, 'Casos con fecha de fuente frecuente anterior a la del caso', 
               'sivel2_gen_caso_fuenteprensa.fecha < sivel2_gen_caso.fecha'
@@ -102,7 +102,7 @@ module Sivel2Gen
           def valida_fecha_analista_antes(c)
             c = c.joins('INNER JOIN (SELECT c.id, min(cu.fechainicio) 
               FROM sivel2_gen_caso_usuario AS cu, sivel2_gen_caso AS c 
-              WHERE c.id=cu.id_caso GROUP BY c.id ORDER BY c.id) AS mf
+              WHERE c.id=cu.caso_id GROUP BY c.id ORDER BY c.id) AS mf
               ON sivel2_gen_caso.id=mf.id')
             validacion_estandar(
               c, 'Casos con fecha de analista anterior a la del caso', 
@@ -111,9 +111,9 @@ module Sivel2Gen
           end
 
           def valida_casos_sin_analista(c)
-            res = c.where('NOT EXISTS (SELECT id_caso 
+            res = c.where('NOT EXISTS (SELECT caso_id 
               FROM sivel2_gen_caso_usuario 
-              WHERE id_caso=sivel2_gen_caso.id)').
+              WHERE caso_id=sivel2_gen_caso.id)').
               order('sivel2_gen_caso.fecha').select([:id, :fecha])
             arr = ActiveRecord::Base.connection.select_all(res.to_sql)
             @validaciones << { 
@@ -133,9 +133,9 @@ module Sivel2Gen
 
           def valida_categorias_individuales(c)
             c = c.joins('INNER JOIN sivel2_gen_acto 
-              ON sivel2_gen_acto.id_caso=sivel2_gen_caso.id').
+              ON sivel2_gen_acto.caso_id=sivel2_gen_caso.id').
               joins('INNER JOIN sivel2_gen_categoria
-              ON sivel2_gen_categoria.id=sivel2_gen_acto.id_categoria')
+              ON sivel2_gen_categoria.id=sivel2_gen_acto.categoria_id')
             validacion_estandar(
               c, 'Casos con acto individual con categoria colectiva', 
               'sivel2_gen_categoria.tipocat <> \'I\''
@@ -145,9 +145,9 @@ module Sivel2Gen
 
           def valida_categorias_colectivas(c)
             c = c.joins('INNER JOIN sivel2_gen_actocolectivo
-              ON sivel2_gen_actocolectivo.id_caso=sivel2_gen_caso.id').
+              ON sivel2_gen_actocolectivo.caso_id=sivel2_gen_caso.id').
               joins('INNER JOIN sivel2_gen_categoria
-              ON sivel2_gen_categoria.id=sivel2_gen_actocolectivo.id_categoria')
+              ON sivel2_gen_categoria.id=sivel2_gen_actocolectivo.categoria_id')
             validacion_estandar(
               c, 'Casos con acto colectivo con categoria individual', 
               'sivel2_gen_categoria.tipocat <> \'C\''
@@ -156,31 +156,31 @@ module Sivel2Gen
 
           def valida_victima_individual_sin_acto(c)
             c = c.joins('INNER JOIN sivel2_gen_victima 
-              ON sivel2_gen_victima.id_caso=sivel2_gen_caso.id').
+              ON sivel2_gen_victima.caso_id=sivel2_gen_caso.id').
               joins('INNER JOIN msip_persona
-              ON sivel2_gen_victima.id_persona=msip_persona.id')
+              ON sivel2_gen_victima.persona_id=msip_persona.id')
             validacion_estandar(
               c, 'Víctima individual sin acto', 
-              'NOT EXISTS (SELECT id_persona FROM sivel2_gen_acto 
-              WHERE id_persona=msip_persona.id)')
+              'NOT EXISTS (SELECT persona_id FROM sivel2_gen_acto 
+              WHERE persona_id=msip_persona.id)')
           end
 
           def valida_victima_colectiva_sin_acto(c)
             c = c.joins('INNER JOIN sivel2_gen_victimacolectiva
-              ON sivel2_gen_victimacolectiva.id_caso=sivel2_gen_caso.id').
+              ON sivel2_gen_victimacolectiva.caso_id=sivel2_gen_caso.id').
               joins('INNER JOIN msip_grupoper
-              ON sivel2_gen_victimacolectiva.id_grupoper=msip_grupoper.id')
+              ON sivel2_gen_victimacolectiva.grupoper_id=msip_grupoper.id')
             validacion_estandar(
               c, 'Víctima colectiva sin acto', 
-              'NOT EXISTS (SELECT id_grupoper FROM sivel2_gen_actocolectivo
-              WHERE id_grupoper=msip_grupoper.id)')
+              'NOT EXISTS (SELECT grupoper_id FROM sivel2_gen_actocolectivo
+              WHERE grupoper_id=msip_grupoper.id)')
           end
 
           def valida_nombres_victimas_cortos(c)
             c = c.joins('INNER JOIN sivel2_gen_victima
-              ON sivel2_gen_victima.id_caso=sivel2_gen_caso.id').
+              ON sivel2_gen_victima.caso_id=sivel2_gen_caso.id').
               joins('INNER JOIN msip_persona
-              ON sivel2_gen_victima.id_persona=msip_persona.id')
+              ON sivel2_gen_victima.persona_id=msip_persona.id')
             validacion_estandar(
               c, 'Nombres de víctimas individuales muy cortos', 
               'length(msip_persona.nombres) <= 2 
@@ -190,9 +190,9 @@ module Sivel2Gen
 
           def valida_apellidos_victimas_cortos(c)
             c = c.joins('INNER JOIN sivel2_gen_victima
-              ON sivel2_gen_victima.id_caso=sivel2_gen_caso.id').
+              ON sivel2_gen_victima.caso_id=sivel2_gen_caso.id').
               joins('INNER JOIN msip_persona
-              ON sivel2_gen_victima.id_persona=msip_persona.id')
+              ON sivel2_gen_victima.persona_id=msip_persona.id')
             validacion_estandar(
               c, 'Apellidos de víctimas individuales muy cortos', 
               'length(msip_persona.apellidos) <= 2 
@@ -202,9 +202,9 @@ module Sivel2Gen
 
           def valida_nombres_victimas_colectivas_cortos(c)
             c = c.joins('INNER JOIN sivel2_gen_victimacolectiva
-              ON sivel2_gen_victimacolectiva.id_caso=sivel2_gen_caso.id').
+              ON sivel2_gen_victimacolectiva.caso_id=sivel2_gen_caso.id').
               joins('INNER JOIN msip_grupoper
-              ON sivel2_gen_victimacolectiva.id_grupoper=msip_grupoper.id')
+              ON sivel2_gen_victimacolectiva.grupoper_id=msip_grupoper.id')
             validacion_estandar(
               c, 'Nombres de víctimas colectivas muy cortos', 
               'LENGTH(msip_grupoper.nombre) <= 2'
@@ -232,23 +232,23 @@ module Sivel2Gen
           def crear_vista_iniciador
             ActiveRecord::Base.connection.execute("
        CREATE OR REPLACE VIEW public.sivel2_gen_iniciador AS (
-         SELECT s3.id_caso, s3.fechainicio, s3.id_usuario, usuario.nusuario 
-         FROM public.usuario, (SELECT s2.id_caso,
+         SELECT s3.caso_id, s3.fechainicio, s3.usuario_id, usuario.nusuario 
+         FROM public.usuario, (SELECT s2.caso_id,
             s2.fechainicio,
-            min(s2.id_usuario) AS id_usuario
+            min(s2.usuario_id) AS usuario_id
            FROM public.sivel2_gen_caso_usuario s2,
-            ( SELECT f1.id_caso,
+            ( SELECT f1.caso_id,
                     min(f1.fechainicio) AS m
                    FROM public.sivel2_gen_caso_usuario f1
-                  GROUP BY f1.id_caso) c
-          WHERE s2.id_caso = c.id_caso 
+                  GROUP BY f1.caso_id) c
+          WHERE s2.caso_id = c.caso_id 
             AND s2.fechainicio = c.m
-          GROUP BY s2.id_caso, 
+          GROUP BY s2.caso_id, 
             s2.fechainicio
-          ORDER BY s2.id_caso, 
+          ORDER BY s2.caso_id, 
             s2.fechainicio
           ) s3 
-          WHERE usuario.id=s3.id_usuario); ");
+          WHERE usuario.id=s3.usuario_id); ");
           end
 
           def validar_interno

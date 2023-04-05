@@ -3,7 +3,7 @@
 
     <div class="row">
       <div class="col-md-6">
-        <% idpais = f.object.id_pais ? f.object.id_pais : Msip.paisomision %>
+        <% idpais = f.object.pais_id ? f.object.pais_id : Msip.paisomision %>
         <%= f.association :pais,
           collection: Msip::Pais.where(fechadeshabilitacion: nil).order(:nombre),
           label_method: :nombre,
@@ -14,7 +14,7 @@
       <div class="col-md-6">
         <%= f.association :departamento,
           collection: (Msip::Departamento.where(
-           id_pais: idpais, 
+           pais_id: idpais, 
             fechadeshabilitacion: nil).order(:nombre)),
           label_method: :nombre,
           value_method: :id %>
@@ -25,7 +25,7 @@
       <div class="col-md-6">
         <%= f.association :municipio,
           collection: (Msip::Municipio.where(
-            id_departamento: f.object.id_departamento,
+            departamento_id: f.object.departamento_id,
             fechadeshabilitacion: nil).order(:nombre)),
           label_method: :nombre,
           value_method: :id %>
@@ -33,7 +33,7 @@
       <div class="col-md-6">
         <%= f.association :clase,
           collection: (Msip::Clase.where(
-            id_municipio: f.object.id_municipio,
+            municipio_id: f.object.municipio_id,
             fechadeshabilitacion: nil).order(:nombre)),
           label_method: :nombre,
           value_method: :id %>

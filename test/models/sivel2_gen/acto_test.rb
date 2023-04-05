@@ -19,15 +19,15 @@ module Sivel2Gen
       )
 
       victima = Sivel2Gen::Victima.create PRUEBA_VICTIMA.merge(
-        id_caso: caso.id,
-        id_persona: persona.id,
-        id_rangoedad: rango
+        caso_id: caso.id,
+        persona_id: persona.id,
+        rangoedad_id: rango
       )
       assert victima.valid?
 
       acto = Acto.create PRUEBA_ACTO.merge(
-        id_caso: caso.id,
-        id_persona: persona.id
+        caso_id: caso.id,
+        persona_id: persona.id
       )
       assert acto.valid?
 
@@ -39,7 +39,7 @@ module Sivel2Gen
 
     test "no valido" do
       acto = Acto.new PRUEBA_ACTO.merge(
-        id_caso: nil
+        caso_id: nil
       )
       assert_not acto.valid?
       acto.destroy

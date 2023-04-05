@@ -18,9 +18,9 @@ module Sivel2Gen
     test 'Valida caso con acto individual' do
       caso = Sivel2Gen::Caso.create! PRUEBA_CASO
       ubicaso = Msip::Ubicacion.create(
-        id_caso: caso.id,
-        id_pais: 170,
-        id_departamento: 4,
+        caso_id: caso.id,
+        pais_id: 170,
+        departamento_id: 4,
         created_at: '2019-01-01',
       )
       ubicaso.save!
@@ -32,18 +32,18 @@ module Sivel2Gen
       persona = Msip::Persona.create! PRUEBA_PERSONA
       persona.save!
       victima = Sivel2Gen::Victima.create(
-        id_caso: caso.id,
-        id_persona: persona.id,
-        id_etnia: 5,
-        id_iglesia: nil,
-        id_rangoedad: rangoedad.id
+        caso_id: caso.id,
+        persona_id: persona.id,
+        etnia_id: 5,
+        iglesia_id: nil,
+        rangoedad_id: rangoedad.id
       )
       acto = Sivel2Gen::Acto.create(
         id: 1000,
-        id_presponsable: presponsable.id,
-        id_categoria: categoria.id,
-        id_persona: persona.id,
-        id_caso: caso.id,
+        presponsable_id: presponsable.id,
+        categoria_id: categoria.id,
+        persona_id: persona.id,
+        caso_id: caso.id,
         created_at: '2014-09-09'
       )
       acto.save!
@@ -60,9 +60,9 @@ module Sivel2Gen
     test 'valida caso con 1 acto colectivo' do
       caso = Sivel2Gen::Caso.create! PRUEBA_CASO
       ubicaso = Msip::Ubicacion.create(
-        id_caso: caso.id,
-        id_pais: 170,
-        id_departamento: 4,
+        caso_id: caso.id,
+        pais_id: 170,
+        departamento_id: 4,
         created_at: '2019-01-01',
       )
       ubicaso.save!
@@ -77,10 +77,10 @@ module Sivel2Gen
       presponsable = Sivel2Gen::Presponsable.find(104)
       categoria = Sivel2Gen::Categoria.find(15)
       actocolectivo = Sivel2Gen::Actocolectivo.create(
-        id_presponsable: presponsable.id,
-        id_categoria: categoria.id,
-        id_grupoper: grupoper.id,
-        id_caso: caso.id,
+        presponsable_id: presponsable.id,
+        categoria_id: categoria.id,
+        grupoper_id: grupoper.id,
+        caso_id: caso.id,
         created_at: '2014-04-17'
       )
       actocolectivo.save!

@@ -11,7 +11,7 @@ json.caso do
     json.departamento ub.departamento.nombre if ub.departamento
     json.municipio ub.municipio.nombre if ub.municipio
     json.centro_poblado ub.clase.nombre if ub.clase
-    if ub.id_tsitio == 3
+    if ub.tsitio_id == 3
       json.lugar ub.lugar if ub.lugar
     end
   end

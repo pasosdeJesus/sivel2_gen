@@ -26,8 +26,8 @@
         </div>
       </div>
       <div class="col-md-4">
-        <div class="input string optional caso_caso_etiqueta_id_usuario">
-          <%= f.label :id_usuario, "Usuario", 
+        <div class="input string optional caso_caso_etiqueta_usuario_id">
+          <%= f.label :usuario_id, "Usuario", 
             class: "select optional control-label" %>
           <%= 
             if !f.object.usuario.nil?
@@ -43,10 +43,10 @@
     </div>
 
     <%= 
-      if !f.object.id_usuario.nil?
-        f.input :id_usuario, as: :hidden, value: f.object.id_usuario
+      if !f.object.usuario_id.nil?
+        f.input :usuario_id, as: :hidden, value: f.object.usuario_id
       else
-        f.input :id_usuario, as: :hidden, value: current_usuario.id
+        f.input :usuario_id, as: :hidden, value: current_usuario.id
       end
     %>
     <%= f.input :observaciones %>

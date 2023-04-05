@@ -10,7 +10,7 @@ module Sivel2Gen
           include Msip::Localizacion
           include Msip::FormatoFechaHelper
 
-          belongs_to :organizacion, foreign_key: "id_organizacion", 
+          belongs_to :organizacion, foreign_key: "organizacion_id", 
             validate: true, class_name: 'Sivel2Gen::Organizacion', 
             optional: false
           belongs_to :victimacolectiva, foreign_key: "victimacolectiva_id", 

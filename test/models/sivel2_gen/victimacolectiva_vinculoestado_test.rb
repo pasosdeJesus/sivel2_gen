@@ -13,14 +13,14 @@ module Sivel2Gen
 
       victimacolectiva = Sivel2Gen::Victimacolectiva.create(
         PRUEBA_VICTIMACOLECTIVA.merge(
-          id_caso: caso.id,
-          id_grupoper: grupoper.id,
+          caso_id: caso.id,
+          grupoper_id: grupoper.id,
         )
       )
       assert victimacolectiva.valid?
 
       vc = VictimacolectivaVinculoestado.create(
-        id_vinculoestado: 1,
+        vinculoestado_id: 1,
         victimacolectiva_id: victimacolectiva.id
       )
       assert vc.valid?
@@ -32,7 +32,7 @@ module Sivel2Gen
 
     test "no valido" do
       victimacolectiva = Victimacolectiva.new PRUEBA_VICTIMACOLECTIVA.merge(
-        id_caso: nil
+        caso_id: nil
       )
       assert_not victimacolectiva.valid?
     end

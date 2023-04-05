@@ -6,10 +6,10 @@ module Sivel2Gen
         extend ActiveSupport::Concern
 
         included do
-          has_many :caso_fotra, foreign_key: "id_fotra", 
+          has_many :caso_fotra, foreign_key: "fotra_id", 
             validate: true, dependent: :destroy,
             class_name: 'Sivel2Gen::CasoFotra'
-          has_many :anexocaso, foreign_key: "id_fotra", validate: true,
+          has_many :anexocaso, foreign_key: "fotra_id", validate: true,
             class_name: 'Sivel2Gen::AnexoCaso'
 
           validates :nombre, presence: true

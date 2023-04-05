@@ -6,7 +6,7 @@ module Sivel2Gen
 
     PRUEBA_SUPRACATEGORIA= {
       id: 1000 ,
-      id_tviolencia: 'A',
+      tviolencia_id: 'A',
       nombre: "Supracategoria",
       fechacreacion: "2014-09-09",
       created_at: "2014-09-09",

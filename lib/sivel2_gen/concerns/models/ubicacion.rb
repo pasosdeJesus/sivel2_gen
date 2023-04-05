@@ -9,20 +9,16 @@ module Sivel2Gen
         include Msip::Concerns::Models::Ubicacion
 
         included do
-          has_one :salidarefugio, validate: true, foreign_key: "id_salida",
-            class_name: "Sivel2Gen::Casosjr"
-          has_one :llegadarefugio, foreign_key: "id_llegada", validate: true, 
-            class_name: "Sivel2Gen::Casosjr"
           has_many :principalde, foreign_key: "ubicacion_id", 
             validate: false, dependent: :nullify, 
             class_name: "Sivel2Gen::Caso"
 
           belongs_to :caso, class_name: "Sivel2Gen::Caso", 
-            foreign_key: "id_caso", validate: true, optional: false
+            foreign_key: "caso_id", validate: true, optional: false
 
-          validates :id_departamento, presence: { 
+          validates :departamento_id, presence: { 
             message: "Ubicación del país debe tener departamento." 
-          }, if: -> {id_pais == Msip.paisomision}
+          }, if: -> {pais_id == Msip.paisomision}
 
           attr_accessor :principal
           attr_accessor :tclase
@@ -52,19 +48,19 @@ module Sivel2Gen
           def importa(datosent, datossal, menserror, opciones = {})
             pais = Msip::Pais.
               where('nombre ILIKE ?', datosent['pais']).ids[0]
-            self.id_pais = pais || Msip.paisomision 
+            self.pais_id = pais || Msip.paisomision 
             dep = Msip::Departamento.
               where('nombre ILIKE ?', datosent['departamento']).
-              where(id_pais: self.id_pais).ids[0]
+              where(pais_id: self.pais_id).ids[0]
             mun = Msip::Municipio.
               where('nombre ILIKE ?', datosent['municipio']).
-              where(id_departamento: dep).ids[0]
+              where(departamento_id: dep).ids[0]
             cen = Msip::Clase.
               where('nombre ILIKE ?', datosent['centro_poblado']).
-              where(id_municipio: mun).ids[0]
-            self.id_departamento= dep if dep
-            self.id_municipio= mun if mun
-            self.id_clase= cen if cen
+              where(municipio_id: mun).ids[0]
+            self.departamento_id= dep if dep
+            self.municipio_id= mun if mun
+            self.clase_id= cen if cen
             self.latitud= datosent['latitud'] if datosent['latitud']
             self.longitud= datosent['longitud'] if datosent['longitud']
             if datosent["observaciones"]

@@ -27,13 +27,13 @@ export default class Sivel2GenAutocompletaAjaxFamiliares {
       window.alert('No se ubico id de la víctima')
       return
     }
-    const id_victima = elemIdVictima
-    const id_trelacion1 = elemIdFamiliar.id.split("_")[9]
+    const victima_id = elemIdVictima
+    const trelacion_id1 = elemIdFamiliar.id.split("_")[9]
     caso = $("form")[0].id.split("_")[2]
-    let d = 'id_persona=' + idPersona
-    d += "&id_victima=" + id_victima + "&id_trelacion1=" + id_trelacion1
-    d += "&id_caso=" + caso
-    d += "&id_victcocoon=" + elemIdVictimaCocoon
+    let d = 'persona_id=' + idPersona
+    d += "&victima_id=" + victima_id + "&trelacion_id1=" + trelacion_id1
+    d += "&caso_id=" + caso
+    d += "&victcocoon_id=" + elemIdVictimaCocoon
     console.log(d)
     const a = root.puntomontaje + 'personas/remplazarfamiliar'
     window.Rails.ajax({

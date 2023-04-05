@@ -18,8 +18,8 @@ module Sivel2Gen
       assert caso.valid?
 
       cc = Sivel2Gen::CasoContexto.create(
-        id_caso: caso.id,
-        id_contexto: contexto.id,
+        caso_id: caso.id,
+        contexto_id: contexto.id,
       )
 
       assert cc.valid?

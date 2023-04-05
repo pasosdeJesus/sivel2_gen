@@ -17,13 +17,13 @@ module Sivel2Gen
       assert caso.valid?
 
       combatiente = Combatiente.create PRUEBA_COMBATIENTE.merge(
-        id_caso: caso.id
+        caso_id: caso.id
       )
       assert combatiente.valid?
 
       ac = Sivel2Gen::AntecedenteCombatiente.create(
-        id_combatiente: combatiente.id,
-        id_antecedente: antecedente.id,
+        combatiente_id: combatiente.id,
+        antecedente_id: antecedente.id,
       )
       assert_predicate ac, :valid?
 

@@ -134,7 +134,7 @@ module Sivel2Gen
           :grimpunidad,
           :grinformacion,
           :bienes,
-          :id_intervalo,
+          :intervalo_id,
           :created_at,
           :updated_at
         ],
@@ -323,7 +323,7 @@ module Sivel2Gen
               dicc_filtro = {}
               if usuario.filtrodepartamento_ids.count > 0
                 dicc_filtro[:ubicacion]={ 
-                  id_departamento: usuario.filtrodepartamento_ids
+                  departamento_id: usuario.filtrodepartamento_ids
                 }
               end
               fini = Sivel2Gen::Caso.all.minimum(:fecha) ?

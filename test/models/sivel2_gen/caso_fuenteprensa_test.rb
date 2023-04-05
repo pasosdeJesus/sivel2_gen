@@ -16,7 +16,7 @@ module Sivel2Gen
       assert caso.valid?
 
       cf = Sivel2Gen::CasoFuenteprensa.create(
-        id_caso: caso.id,
+        caso_id: caso.id,
         fuenteprensa_id: fuenteprensa.id,
         fecha: '2023-01-11',
       )

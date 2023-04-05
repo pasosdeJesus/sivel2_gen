@@ -11,9 +11,9 @@ module Sivel2Gen
           include Msip::Concerns::Models::Persona
           attr_accessor :sin_identificacion
 
-          has_many :acto, foreign_key: "id_persona", validate: true,
+          has_many :acto, foreign_key: "persona_id", validate: true,
             class_name: "Sivel2Gen::Acto"
-          has_many :victima, foreign_key: "id_persona", validate: true,
+          has_many :victima, foreign_key: "persona_id", validate: true,
             class_name: "Sivel2Gen::Victima"
           has_many :caso, :through => :victima,
             class_name: 'Sivel2Gen::Caso'
@@ -28,8 +28,8 @@ module Sivel2Gen
 
           def sin_identificacion
             if nombres == "N" && apellidos == "N"
-              caso = Sivel2Gen::Victima.where(id_persona: self.id)[0].id_caso
-              vics = Sivel2Gen::Victima.where(id_caso: caso)
+              caso = Sivel2Gen::Victima.where(persona_id: self.id)[0].caso_id
+              vics = Sivel2Gen::Victima.where(caso_id: caso)
               hv = {}
               ban = 1
               vics.each_with_index do |vi, index|
@@ -38,7 +38,7 @@ module Sivel2Gen
                   ban += 1
                 end
               end
-              return "PERSONA SIN IDENTIFICAR #{hv[Sivel2Gen::Victima.where(id_persona: self.id)[0].id]}"
+              return "PERSONA SIN IDENTIFICAR #{hv[Sivel2Gen::Victima.where(persona_id: self.id)[0].id]}"
             else
               "PERSONA IDENTIFICADA"
             end

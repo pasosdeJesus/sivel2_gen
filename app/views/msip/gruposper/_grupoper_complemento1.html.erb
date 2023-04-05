@@ -2,7 +2,7 @@
   <label class="string control-label">Casos en los que aparece: </label>
   <% r = "" %>
   <% sep = "" %>
-  <% v = Sivel2Gen::Victimacolectiva.where(id_grupoper: f.object.id).order(:id_grupoper) %>
+  <% v = Sivel2Gen::Victimacolectiva.where(grupoper_id: f.object.id).order(:grupoper_id) %>
   <% v.each do |vic| %>
     <% if @caso.id != vic.caso.id %>
            <%= link_to(vic.caso.id, sivel2_gen.caso_path(vic.caso), 

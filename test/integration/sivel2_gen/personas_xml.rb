@@ -18,9 +18,9 @@ module Sivel2Gen
     test 'Valida caso con 1 victima' do
       caso = Sivel2Gen::Caso.create! PRUEBA_CASO
       ubicaso = Msip::Ubicacion.create(
-        id_caso: caso.id,
-        id_pais: 170,
-        id_departamento: 4,
+        caso_id: caso.id,
+        pais_id: 170,
+        departamento_id: 4,
         created_at: '2019-01-01',
       )
       ubicaso.save!
@@ -31,12 +31,12 @@ module Sivel2Gen
       profesion = Sivel2Gen::Profesion.create! PRUEBA_PROFESION
       sectorsocial = Sivel2Gen::Sectorsocial.create! PRUEBA_SECTORSOCIAL
       victima = Sivel2Gen::Victima.create(
-        id_caso: caso.id,
-        id_persona: persona.id,
-        id_rangoedad: rangoedad.id,
-        id_etnia: 105,
-        id_profesion: profesion.id,
-        id_sectorsocial: sectorsocial.id
+        caso_id: caso.id,
+        persona_id: persona.id,
+        rangoedad_id: rangoedad.id,
+        etnia_id: 105,
+        profesion_id: profesion.id,
+        sectorsocial_id: sectorsocial.id
       )
       get caso_path(caso) + '.xrlat'
       puts @response.body
@@ -52,9 +52,9 @@ module Sivel2Gen
     test 'valida caso con 2 victimas' do
       caso = Sivel2Gen::Caso.create! PRUEBA_CASO
       ubicaso = Msip::Ubicacion.create(
-        id_caso: caso.id,
-        id_pais: 170,
-        id_departamento: 4,
+        caso_id: caso.id,
+        pais_id: 170,
+        departamento_id: 4,
         created_at: '2019-01-01',
       )
       ubicaso.save!
@@ -66,20 +66,20 @@ module Sivel2Gen
       sectorsocial = Sivel2Gen::Sectorsocial.create! PRUEBA_SECTORSOCIAL
       rangoedad = Sivel2Gen::Rangoedad.create! PRUEBA_RANGOEDAD
       victima1 = Sivel2Gen::Victima.create(
-        id_caso: caso.id,
-        id_persona: persona1.id,
-        id_rangoedad: rangoedad.id,
-        id_etnia: 105,
-        id_sectorsocial: sectorsocial.id,
-        id_profesion: profesion.id
+        caso_id: caso.id,
+        persona_id: persona1.id,
+        rangoedad_id: rangoedad.id,
+        etnia_id: 105,
+        sectorsocial_id: sectorsocial.id,
+        profesion_id: profesion.id
       )
       victima2 = Sivel2Gen::Victima.create(
-        id_caso: caso.id,
-        id_persona: persona2.id,
-        id_rangoedad: rangoedad.id,
-        id_etnia: 105,
-        id_sectorsocial: sectorsocial.id,
-        id_profesion: profesion.id
+        caso_id: caso.id,
+        persona_id: persona2.id,
+        rangoedad_id: rangoedad.id,
+        etnia_id: 105,
+        sectorsocial_id: sectorsocial.id,
+        profesion_id: profesion.id
       )
       get caso_path(caso) + '.xrlat'
       # puts @response.body
@@ -97,9 +97,9 @@ module Sivel2Gen
     test 'valida caso con 1 victima colectiva' do
       caso = Sivel2Gen::Caso.create! PRUEBA_CASO
       ubicaso = Msip::Ubicacion.create(
-        id_caso: caso.id,
-        id_pais: 170,
-        id_departamento: 4,
+        caso_id: caso.id,
+        pais_id: 170,
+        departamento_id: 4,
         created_at: '2019-01-01',
       )
       ubicaso.save!
@@ -111,8 +111,8 @@ module Sivel2Gen
         created_at: '2014-09-09'
       )
       victimacolectiva = Sivel2Gen::Victimacolectiva.create(
-        id_grupoper: grupoper.id,
-        id_caso: caso.id,
+        grupoper_id: grupoper.id,
+        caso_id: caso.id,
         personasaprox: 5,
         organizacionarmada: 5
       )
@@ -129,9 +129,9 @@ module Sivel2Gen
     test 'valida caso con 2 victimas colectivas' do
       caso = Sivel2Gen::Caso.create! PRUEBA_CASO
       ubicaso = Msip::Ubicacion.create(
-        id_caso: caso.id,
-        id_pais: 170,
-        id_departamento: 4,
+        caso_id: caso.id,
+        pais_id: 170,
+        departamento_id: 4,
         created_at: '2019-01-01',
       )
       ubicaso.save!
@@ -148,14 +148,14 @@ module Sivel2Gen
         created_at: '2014-09-09'
       )
       victimacolectiva1 = Sivel2Gen::Victimacolectiva.create(
-        id_grupoper: grupoper1.id,
-        id_caso: caso.id,
+        grupoper_id: grupoper1.id,
+        caso_id: caso.id,
         personasaprox: 5,
         organizacionarmada: 5
       )
       victimacolectiva2 = Sivel2Gen::Victimacolectiva.create(
-        id_grupoper: grupoper2.id,
-        id_caso: caso.id,
+        grupoper_id: grupoper2.id,
+        caso_id: caso.id,
         personasaprox: 5,
         organizacionarmada: 5
       )
@@ -173,9 +173,9 @@ module Sivel2Gen
     test 'valida con 1 presunto responsable' do
       caso = Sivel2Gen::Caso.create! PRUEBA_CASO
       ubicaso = Msip::Ubicacion.create(
-        id_caso: caso.id,
-        id_pais: 170,
-        id_departamento: 4,
+        caso_id: caso.id,
+        pais_id: 170,
+        departamento_id: 4,
         created_at: '2019-01-01',
       )
       ubicaso.save!
@@ -188,8 +188,8 @@ module Sivel2Gen
         created_at: '2014-09-09'
       )
       casopresponsable = Sivel2Gen::CasoPresponsable.create(
-        id_caso: caso.id,
-        id_presponsable: presponsable.id,
+        caso_id: caso.id,
+        presponsable_id: presponsable.id,
       )
       get caso_path(caso) + '.xrlat'
       file = guarda_xml(@response.body)

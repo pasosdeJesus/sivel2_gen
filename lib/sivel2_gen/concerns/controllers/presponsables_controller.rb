@@ -52,8 +52,8 @@ module Sivel2Gen
           def nuevo
             if !params[:caso_id].nil?
               @presponsable = CasoPresponsable.new
-              @presponsable.id_caso = params[:caso_id]
-              @presponsable.id_presponsable = 35
+              @presponsable.caso_id = params[:caso_id]
+              @presponsable.presponsable_id = 35
               @presponsable.tipo = 0
               if @presponsable.save
                 respond_to do |format|

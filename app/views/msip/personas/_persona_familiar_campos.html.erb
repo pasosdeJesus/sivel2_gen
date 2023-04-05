@@ -48,9 +48,9 @@
           label: false %>
       </td>
       <td>
-        <%= f.input :id_trelacion, 
+        <%= f.input :trelacion_id, 
           collection: Msip::ModeloHelper.opciones_tabla_basica(
-            Msip::Trelacion, f, :id_trelacion
+            Msip::Trelacion, f, :trelacion_id
           ),
           label_method: :nombre,
           value_method: :id,

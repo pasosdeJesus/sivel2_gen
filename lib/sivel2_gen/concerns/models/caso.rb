@@ -14,15 +14,15 @@ module Sivel2Gen
           attr_accessor :current_usuario
 
           # Ordenados por foreign_key para facilitar comparar con esquema en base
-          has_many :acto, foreign_key: "id_caso", validate: true, 
+          has_many :acto, foreign_key: "caso_id", validate: true, 
             dependent: :destroy, class_name: 'Sivel2Gen::Acto'
           accepts_nested_attributes_for :acto, allow_destroy: true, 
             reject_if: :all_blank
 
-          has_many :actocolectivo, foreign_key: "id_caso", validate: true, 
+          has_many :actocolectivo, foreign_key: "caso_id", validate: true, 
             dependent: :destroy, class_name: 'Sivel2Gen::Actocolectivo'
 
-          has_many :anexo_caso, foreign_key: "id_caso", validate: true, 
+          has_many :anexo_caso, foreign_key: "caso_id", validate: true, 
             dependent: :destroy, class_name: 'Sivel2Gen::AnexoCaso',
             inverse_of: :caso
           accepts_nested_attributes_for :anexo_caso, allow_destroy: true, 
@@ -33,31 +33,31 @@ module Sivel2Gen
 
           has_and_belongs_to_many :antecedente,
             class_name: 'Sivel2Gen::Antecedente',
-            foreign_key: :id_caso, 
-            association_foreign_key: :id_antecedente,
+            foreign_key: :caso_id, 
+            association_foreign_key: :antecedente_id,
             join_table: 'sivel2_gen_antecedente_caso'
 
           has_and_belongs_to_many :contexto, 
             class_name: 'Sivel2Gen::Contexto',
-            foreign_key: :id_caso, 
-            association_foreign_key: :id_contexto,
+            foreign_key: :caso_id, 
+            association_foreign_key: :contexto_id,
             join_table: 'sivel2_gen_caso_contexto'
 
-          has_many :caso_etiqueta, foreign_key: "id_caso", validate: true, 
+          has_many :caso_etiqueta, foreign_key: "caso_id", validate: true, 
             dependent: :destroy, class_name: 'Sivel2Gen::CasoEtiqueta'
           has_many :etiqueta, through: :caso_etiqueta, 
             class_name: 'Msip::Etiqueta'
           accepts_nested_attributes_for :caso_etiqueta, allow_destroy: true, 
             reject_if: :all_blank
           
-          has_many :caso_fotra, foreign_key: "id_caso", validate: true, 
+          has_many :caso_fotra, foreign_key: "caso_id", validate: true, 
             dependent: :destroy, class_name: 'Sivel2Gen::CasoFotra',
             inverse_of: :caso
           accepts_nested_attributes_for :caso_fotra, allow_destroy: true, 
             reject_if: :all_blank
           has_many :fotra, through: :caso_fotra, class_name: 'Msip::Fotra'
 
-          has_many :caso_fuenteprensa, foreign_key: "id_caso", 
+          has_many :caso_fuenteprensa, foreign_key: "caso_id", 
             validate: true, dependent: :destroy, 
             class_name: 'Sivel2Gen::CasoFuenteprensa', inverse_of: :caso
           accepts_nested_attributes_for :caso_fuenteprensa, 
@@ -67,11 +67,11 @@ module Sivel2Gen
 
           has_and_belongs_to_many :frontera, 
             class_name: 'Sivel2Gen::Frontera',
-            foreign_key: 'id_caso',
-            association_foreign_key: 'id_frontera',
+            foreign_key: 'caso_id',
+            association_foreign_key: 'frontera_id',
             join_table: 'sivel2_gen_caso_frontera'
 
-          has_many :caso_presponsable, foreign_key: "id_caso", 
+          has_many :caso_presponsable, foreign_key: "caso_id", 
             validate: true, 
             dependent: :destroy, 
             class_name: 'Sivel2Gen::CasoPresponsable'
@@ -82,8 +82,8 @@ module Sivel2Gen
 
           has_and_belongs_to_many :region, 
             class_name: 'Sivel2Gen::Region',
-            foreign_key: 'id_caso', 
-            association_foreign_key: 'id_region',
+            foreign_key: 'caso_id', 
+            association_foreign_key: 'region_id',
             join_table: 'sivel2_gen_caso_region'
 
           has_and_belongs_to_many :respuestafor, 
@@ -94,11 +94,11 @@ module Sivel2Gen
           accepts_nested_attributes_for :respuestafor, 
             allow_destroy: true, reject_if: :all_blank
 
-          has_many :caso_usuario, foreign_key: "id_caso", validate: true, 
+          has_many :caso_usuario, foreign_key: "caso_id", validate: true, 
             class_name: 'Sivel2Gen::CasoUsuario', dependent: :delete_all
           has_many :usuario, :through => :caso_usuario, class_name: 'Usuario'
 
-          has_many :ubicacion, foreign_key: "id_caso", validate: true, 
+          has_many :ubicacion, foreign_key: "caso_id", validate: true, 
             dependent: :destroy, class_name: 'Msip::Ubicacion'
           accepts_nested_attributes_for :ubicacion, allow_destroy: true, 
             reject_if: :all_blank
@@ -114,7 +114,7 @@ module Sivel2Gen
           accepts_nested_attributes_for :caso_solicitud,
             allow_destroy: true, reject_if: :all_blank
 
-          has_many :victima,  foreign_key: "id_caso", dependent: :destroy, 
+          has_many :victima,  foreign_key: "caso_id", dependent: :destroy, 
             class_name: 'Sivel2Gen::Victima' 
           #, validate: true Manejar en aplicaciones que usen este motor
 
@@ -123,7 +123,7 @@ module Sivel2Gen
           accepts_nested_attributes_for :victima, allow_destroy: true, 
             reject_if: :all_blank
 
-          has_many :victimacolectiva, foreign_key: "id_caso", validate: true, 
+          has_many :victimacolectiva, foreign_key: "caso_id", validate: true, 
             dependent: :destroy, class_name: 'Sivel2Gen::Victimacolectiva' 
           has_many :grupoper, :through => :victimacolectiva, 
             class_name: 'Msip::Grupoper'
@@ -132,14 +132,14 @@ module Sivel2Gen
             allow_destroy: true, 
             reject_if: :all_blank
 
-          has_many :combatiente, foreign_key: "id_caso", validate: true, 
+          has_many :combatiente, foreign_key: "caso_id", validate: true, 
             dependent: :destroy, class_name: 'Sivel2Gen::Combatiente' 
           accepts_nested_attributes_for :combatiente, allow_destroy: true, 
             reject_if: :all_blank
 
           has_one :sivel2_gen_conscaso, foreign_key: "caso_id"
 
-          belongs_to :intervalo, foreign_key: "id_intervalo", 
+          belongs_to :intervalo, foreign_key: "intervalo_id", 
             validate: true, class_name: 'Sivel2Gen::Intervalo', 
             optional: true
 
@@ -208,7 +208,7 @@ module Sivel2Gen
             actos = self.acto
 
             actos.each do |acto|
-              tv = acto.categoria.supracategoria.id_tviolencia
+              tv = acto.categoria.supracategoria.tviolencia_id
               pr = acto.presponsable.id
               cat = acto.categoria
               ce = cat.contadaen if cat
@@ -221,7 +221,7 @@ module Sivel2Gen
                   end
                 end
                 if !vale
-                  errors.add(:id_categoria, "Falta categoría #{ce} requerida por categoría #{cat.id}.")
+                  errors.add(:categoria_id, "Falta categoría #{ce} requerida por categoría #{cat.id}.")
                 end
               end
               if tv == "A" && !descpe_ids.include?(pr) then
@@ -278,7 +278,7 @@ module Sivel2Gen
             #Importa ubicacion
             ubicacion = Msip::Ubicacion.new
             ubicacion.importa(datosent, datossal, menserror, opciones)
-            ubicacion.id_caso = self.id
+            ubicacion.caso_id = self.id
             ubicacion.save!(validate: false)
             self.ubicacion_id = ubicacion.id
             if datosent['ubicacion_secundaria']
@@ -286,7 +286,7 @@ module Sivel2Gen
                 datosent['ubicacion_secundaria'].each do |ub|
                   ubicacion = Msip::Ubicacion.new
                   ubicacion.importa(ub, datossal, menserror, opciones)
-                  ubicacion.id_caso = self.id
+                  ubicacion.caso_id = self.id
                   ubicacion.save!(validate: false)
                 end
               else
@@ -294,7 +294,7 @@ module Sivel2Gen
                   ubicacion.importa(
                     datosent['ubicacion_secundaria'], datossal, menserror, 
                     opciones)
-                  ubicacion.id_caso = self.id
+                  ubicacion.caso_id = self.id
                   ubicacion.save!(validate: false)
               end
             end
@@ -305,8 +305,8 @@ module Sivel2Gen
                 datosent['grupo'].each do |pr|
                   casopresp = Sivel2Gen::CasoPresponsable.new
                   casopresp.importa(pr, datossal, menserror, opciones)
-                  if casopresp.id_presponsable
-                    casopresp.id_caso = self.id
+                  if casopresp.presponsable_id
+                    casopresp.caso_id = self.id
                     casopresp.save!(validate: false)
                   end
                 end
@@ -314,8 +314,8 @@ module Sivel2Gen
                 casopresp = Sivel2Gen::CasoPresponsable.new
                 casopresp.importa(
                   datosent['grupo'], datossal, menserror, opciones)
-                if casopresp.id_presponsable
-                  casopresp.id_caso = self.id
+                if casopresp.presponsable_id
+                  casopresp.caso_id = self.id
                   casopresp.save!(validate: false)
                 end
               end
@@ -327,16 +327,16 @@ module Sivel2Gen
               if datosent['grupo'].kind_of?(Array)
                 datosent['grupo'].each do |vc|
                   victcol = Sivel2Gen::Victimacolectiva.new
-                  victcol.id_caso = self.id
+                  victcol.caso_id = self.id
                   victcol.importa(vc, datossal, menserror, opciones)
-                  idsvcol[vc['id_grupo']] = victcol.id_grupoper
+                  idsvcol[vc['grupo_id']] = victcol.grupoper_id
                 end
               else
                 victcol = Sivel2Gen::Victimacolectiva.new
-                victcol.id_caso = self.id
+                victcol.caso_id = self.id
                 victcol.importa(
                   datosent['grupo'], datossal, menserror, opciones)
-                idsvcol[datosent['grupo']['id_grupo']] = victcol.id_grupoper
+                idsvcol[datosent['grupo']['grupo_id']] = victcol.grupoper_id
               end
             end
             #Importa victimas
@@ -345,19 +345,19 @@ module Sivel2Gen
               if datosent['victima'].kind_of?(Array)
                 datosent['victima'].each do |v|
                   vict = Sivel2Gen::Victima.new
-                  vict.id_caso = self.id
+                  vict.caso_id = self.id
                   vict.importa([datosent, v], datossal, formato_sexo,
                                menserror, opciones)
-                  idsv[v['id_persona']] = vict.id_persona
+                  idsv[v['persona_id']] = vict.persona_id
                 end
               else
                 vict = Sivel2Gen::Victima.new
-                vict.id_caso = self.id
+                vict.caso_id = self.id
                 vict.importa(
                               [datosent, datosent["victima"]], datossal,
                               formato_sexo, menserror, opciones
                             )
-                idsv[datosent['victima']['id_persona']] = vict.id_persona
+                idsv[datosent['victima']['persona_id']] = vict.persona_id
               end
             end
             #Importa combatientes
@@ -365,12 +365,12 @@ module Sivel2Gen
               if datosent['combatiente'].kind_of?(Array)
                 datosent['combatiente'].each do |co|
                   com = Sivel2Gen::Combatiente.new
-                  com.id_caso = self.id
+                  com.caso_id = self.id
                   com.importa([datosent, co], datossal, menserror, opciones)
                 end
               else
                 com = Sivel2Gen::Combatiente.new
-                com.id_caso = self.id
+                com.caso_id = self.id
                 com.importa(
                   [datosent, datosent['combatiente']], datossal, menserror, 
                   opciones)
@@ -381,13 +381,13 @@ module Sivel2Gen
               if datosent['acto'].kind_of?(Array)
                 datosent['acto'].each do |ac|
                   acto = Sivel2Gen::Acto.new
-                  acto.id_caso = self.id
+                  acto.caso_id = self.id
                   datosactos = [idsv, ac]
                   acto.importa(datosactos, datossal, menserror, opciones)
                 end
               else
                 acto = Sivel2Gen::Acto.new
-                acto.id_caso = self.id
+                acto.caso_id = self.id
                 datosactos = [idsv, datosent['acto']]
                 acto.importa(datosactos, datossal, menserror, opciones)
               end
@@ -397,13 +397,13 @@ module Sivel2Gen
               if datosent['acto'].kind_of?(Array)
                 datosent['acto'].each do |ac|
                   actocol = Sivel2Gen::Actocolectivo.new
-                  actocol.id_caso = self.id
+                  actocol.caso_id = self.id
                   datosactos = [idsvcol, ac]
                   actocol.importa(datosactos, datossal, menserror, opciones)
                 end
               else
                 actocol = Sivel2Gen::Actocolectivo.new
-                actocol.id_caso = self.id
+                actocol.caso_id = self.id
                 datosactos = [idsvcol, datosent['acto']]
                 actocol.importa(datosactos, datossal, menserror, opciones)
               end
@@ -480,7 +480,7 @@ module Sivel2Gen
                     r += ' '
                     r += pr.categoria.inject('') { |memo, c|
                       (memo == '' ? '' : memo + ', ') + 
-                        c.supracategoria.id_tviolencia + c.id.to_s
+                        c.supracategoria.tviolencia_id + c.id.to_s
                     }
                   end
                 end
@@ -527,10 +527,10 @@ module Sivel2Gen
                 if v.persona.sexo
                   r += ' - ' + v.persona.sexo
                 end
-                if v.persona.id_pais 
+                if v.persona.pais_id 
                   r += ' - ' + Msip::UbicacionHelper.formato_ubicacion_partes(
-                    v.persona.id_pais, v.persona.id_departamento,
-                    v.persona.id_municipio, v.persona.id_clase, true, true)
+                    v.persona.pais_id, v.persona.departamento_id,
+                    v.persona.municipio_id, v.persona.clase_id, true, true)
                 end
                 if v.profesion
                   r += ' - ' + v.profesion.presenta_nombre
@@ -651,7 +651,7 @@ module Sivel2Gen
                 |memo, a| 
                 r = (memo == '' ? '' : memo + '; ')
                 r += a.presponsable.nombre
-                r += " : " + a.categoria.supracategoria.id_tviolencia + 
+                r += " : " + a.categoria.supracategoria.tviolencia_id + 
                   a.categoria.id.to_s
                 r += " : " + a.persona.presenta_nombre
                 r
@@ -665,7 +665,7 @@ module Sivel2Gen
                 |memo, a| 
                 r = (memo == '' ? '' : memo + '; ')
                 r += a.presponsable.nombre
-                r += " : " + a.categoria.supracategoria.id_tviolencia + 
+                r += " : " + a.categoria.supracategoria.tviolencia_id + 
                   a.categoria.id.to_s
                 r += " : " + a.grupoper.presenta_nombre
                 r
@@ -689,7 +689,7 @@ module Sivel2Gen
  
             when 'tipificacion'
               ac = acto.map {|a|
-                a.categoria.supracategoria.id_tviolencia + 
+                a.categoria.supracategoria.tviolencia_id + 
                   a.categoria.id.to_s + ' ' +
                   a.categoria.nombre
               }.uniq.join('; ')
@@ -698,7 +698,7 @@ module Sivel2Gen
                 sep = '. '
               end
               col = actocolectivo.map {|a| 
-                a.categoria.supracategoria.id_tviolencia + 
+                a.categoria.supracategoria.tviolencia_id + 
                   a.categoria.id.to_s + ' ' +
                   a.categoria.nombre
               }.uniq.join('; ')

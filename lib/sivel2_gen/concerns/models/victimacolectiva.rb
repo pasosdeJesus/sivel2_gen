@@ -12,7 +12,7 @@ module Sivel2Gen
             class_name: 'Sivel2Gen::Antecedente',
             foreign_key: :victimacolectiva_id, 
             validate: true, 
-            association_foreign_key: 'id_antecedente',
+            association_foreign_key: 'antecedente_id',
             join_table: 'sivel2_gen_antecedente_victimacolectiva'
 
           has_and_belongs_to_many :etnia, 
@@ -25,46 +25,46 @@ module Sivel2Gen
           has_and_belongs_to_many :filiacion, 
             class_name: 'Sivel2Gen::Filiacion',
             foreign_key: :victimacolectiva_id, 
-            association_foreign_key: 'id_filiacion',
+            association_foreign_key: 'filiacion_id',
             join_table: 'sivel2_gen_filiacion_victimacolectiva'
 
           has_and_belongs_to_many :organizacion, 
             class_name: 'Sivel2Gen::Organizacion',
             foreign_key: :victimacolectiva_id, 
-            association_foreign_key: 'id_organizacion',
+            association_foreign_key: 'organizacion_id',
             join_table: 'sivel2_gen_organizacion_victimacolectiva'
 
           has_and_belongs_to_many :profesion,
             class_name: 'Sivel2Gen::Profesion',
             foreign_key: :victimacolectiva_id, 
-            association_foreign_key: :id_profesion,
+            association_foreign_key: :profesion_id,
             join_table: 'sivel2_gen_profesion_victimacolectiva'
 
           has_and_belongs_to_many :rangoedad,
             class_name: 'Sivel2Gen::Rangoedad',
             foreign_key: :victimacolectiva_id, 
-            association_foreign_key: :id_rangoedad,
+            association_foreign_key: :rangoedad_id,
             join_table: 'sivel2_gen_rangoedad_victimacolectiva'
 
           has_and_belongs_to_many :sectorsocial, 
             class_name: 'Sivel2Gen::Sectorsocial',
             foreign_key: :victimacolectiva_id, 
             validate: true, 
-            association_foreign_key: :id_sectorsocial,
+            association_foreign_key: :sectorsocial_id,
             join_table: 'sivel2_gen_sectorsocial_victimacolectiva'
 
           has_and_belongs_to_many :vinculoestado,
             class_name: 'Sivel2Gen::Vinculoestado',
             foreign_key: :victimacolectiva_id, 
             validate: true,
-            association_foreign_key: :id_vinculoestado,
+            association_foreign_key: :vinculoestado_id,
             join_table: 'sivel2_gen_victimacolectiva_vinculoestado'
 
           # En el orden de esquema en base 
-          belongs_to :grupoper, foreign_key: "id_grupoper", validate: true, 
+          belongs_to :grupoper, foreign_key: "grupoper_id", validate: true, 
             class_name: "Msip::Grupoper", optional: false
           accepts_nested_attributes_for :grupoper, reject_if: :all_blank
-          belongs_to :caso, foreign_key: "id_caso", validate: true, 
+          belongs_to :caso, foreign_key: "caso_id", validate: true, 
             class_name: "Sivel2Gen::Caso", optional: false
           belongs_to :presponsable, foreign_key: "organizacionarmada", 
             validate: true, class_name: "Sivel2Gen::Presponsable",
@@ -75,7 +75,7 @@ module Sivel2Gen
 
           before_destroy do
             Sivel2Gen::Actocolectivo.where(
-              id_caso: id_caso, id_grupoper: id_grupoper).delete_all
+              caso_id: caso_id, grupoper_id: grupoper_id).delete_all
           end
 
           def importa(g, datossal, menserror, opciones = {})
@@ -84,7 +84,7 @@ module Sivel2Gen
               gp = Msip::Grupoper.new
               gp.nombre = g['nombre_grupo']
               gp.save!
-              self.id_grupoper = gp.id
+              self.grupoper_id = gp.id
               self.save!
               array_obs = []
               if g['observaciones'].kind_of? String
@@ -107,7 +107,7 @@ module Sivel2Gen
                       filiacion = Sivel2Gen::Filiacion.where(nombre: fil)
                       if filiacion.count == 1
                         fv = Sivel2Gen::FiliacionVictimacolectiva.new
-                        fv.id_filiacion = filiacion[0].id
+                        fv.filiacion_id = filiacion[0].id
                         fv.victimacolectiva_id = self.id
                         fv.save!
                       else
@@ -120,7 +120,7 @@ module Sivel2Gen
                       organizacion = Sivel2Gen::Organizacion.where(nombre: org)
                       if organizacion.count == 1
                         orgv = Sivel2Gen::OrganizacionVictimacolectiva.new
-                        orgv.id_organizacion = organizacion[0].id
+                        orgv.organizacion_id = organizacion[0].id
                         orgv.victimacolectiva_id = self.id
                         orgv.save!
                       else
@@ -133,7 +133,7 @@ module Sivel2Gen
                       profesion = Sivel2Gen::Profesion.where(nombre: pro)
                       if profesion.count == 1
                         pr = Sivel2Gen::ProfesionVictimacolectiva.new
-                        pr.id_profesion = profesion[0].id
+                        pr.profesion_id = profesion[0].id
                         pr.victimacolectiva_id = self.id
                         pr.save!
                       else
@@ -146,7 +146,7 @@ module Sivel2Gen
                       rangoedad = Sivel2Gen::Rangoedad.where(nombre: ran)
                       if rangoedad.count == 1
                         re = Sivel2Gen::RangoedadVictimacolectiva.new
-                        re.id_rangoedad = rangoedad[0].id
+                        re.rangoedad_id = rangoedad[0].id
                         re.victimacolectiva_id = self.id
                         re.save!
                       else
@@ -159,7 +159,7 @@ module Sivel2Gen
                       sectorsocial = Sivel2Gen::Sectorsocial.where(nombre: sec)
                       if sectorsocial.count == 1
                         ss = Sivel2Gen::SectorsocialVictimacolectiva.new
-                        ss.id_sectorsocial = sectorsocial[0].id
+                        ss.sectorsocial_id = sectorsocial[0].id
                         ss.victimacolectiva_id = self.id
                         ss.save!
                       else
@@ -172,7 +172,7 @@ module Sivel2Gen
                       vinculoe = Sivel2Gen::Vinculoestado.where(nombre: ves)
                       if vinculoe.count == 1
                         ve = Sivel2Gen::VictimacolectivaVinculoestado.new
-                        ve.id_vinculoestado = vinculoe[0].id
+                        ve.vinculoestado_id = vinculoe[0].id
                         ve.victimacolectiva_id = self.id
                         ve.save!
                       else
@@ -185,7 +185,7 @@ module Sivel2Gen
                       antecedente = Sivel2Gen::Antecedente.where(nombre: ant)
                       if antecedente.count == 1
                         vant = Sivel2Gen::AntecedenteVictimacolectiva.new
-                        vant.id_antecedente = antecedente[0].id
+                        vant.antecedente_id = antecedente[0].id
                         vant.victimacolectiva_id = self.id
                         vant.save!
                       else

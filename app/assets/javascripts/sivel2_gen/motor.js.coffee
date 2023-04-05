@@ -23,7 +23,7 @@
   memo = $('#caso_memo').val()
   #ubicacion
   hay_departamentos = false
-  departamentos = $('select[id^=caso_][id$=id_departamento]')
+  departamentos = $('select[id^=caso_][id$=departamento_id]')
   departamentos.each(()->
     if $(this).val() != ''
       hay_departamentos = true
@@ -46,7 +46,7 @@
   contexto = $('#caso_contexto_ids').val()
   #presuntos responsble
   hay_presponsables = false
-  presponsables = $('select[id^=caso_][id$=id_presponsable]')
+  presponsables = $('select[id^=caso_][id$=presponsable_id]')
   presponsables.each(()->
     if $(this).val().length != 0
       hay_presponsables = true
@@ -73,7 +73,7 @@
       hay_combatientes = true
   )
   #acto
-  categoriaenacto = $('#caso_acto_id_categoria').val()
+  categoriaenacto = $('#caso_acto_categoria_id').val()
   #un adjunto en anexo
   hay_anexos = false
   anexos = $('input[id^=caso_anexo][id$=_adjunto]')
@@ -83,7 +83,7 @@
   )
   #etiquetas
   hay_etiquetas = false
-  etiquetas = $('select[id^=caso_caso_etiqueta][id$=id_etiqueta]')
+  etiquetas = $('select[id^=caso_caso_etiqueta][id$=etiqueta_id]')
   etiquetas.each(()->
     if $(this).val().length != 0
       hay_etiquetas = true
@@ -223,10 +223,10 @@
 
 # AUTOCOMPLETACIÓN PERSONA
 # Elije una persona en autocompletación
-@autocompleta_persona = (label, id, id_victima, divcp, root) ->
+@autocompleta_persona = (label, id, victima_id, divcp, root) ->
   msip_arregla_puntomontaje(root)
   cs = id.split(";")
-  id_persona = cs[0]
+  persona_id = cs[0]
   pl = []
   ini = 0
   for i in [0..cs.length] by 1
@@ -234,14 +234,14 @@
      pl[i] = label.substring(ini, ini + t)
      ini = ini + t + 1
   # pl[1] cnom, pl[2] es cape, pl[3] es cdoc
-  d = "id_victima=" + id_victima
-  d += "&id_persona=" + id_persona
+  d = "victima_id=" + victima_id
+  d += "&persona_id=" + persona_id
   a = root.puntomontaje + 'personas/remplazar'
   $.ajax(url: a, data: d, dataType: "html").fail( (jqXHR, texto) ->
     alert("Error: " + jqXHR.responseText)
   ).done( (e, r) ->
     divcp.html(e)
-    $(document).trigger("msip:autocompleto_persona", [id_victima, id_persona])
+    $(document).trigger("msip:autocompleto_persona", [victima_id, persona_id])
     return
   )
   return
@@ -277,7 +277,7 @@
 @sivel2_gen_autocompleta_familiar = (label, id, divcp, root) ->
   msip_arregla_puntomontaje(root)
   cs = id.split(";")
-  id_persona = cs[0]
+  persona_id = cs[0]
   pl = []
   ini = 0
   for i in [0..cs.length] by 1
@@ -285,7 +285,7 @@
      pl[i] = label.substring(ini, ini + t)
      ini = ini + t + 1
   # pl[1] es cnom, pl[2] es cape, pl[3] es cdoc
-  d = "&id_persona=" + id_persona
+  d = "&persona_id=" + persona_id
   a = root.puntomontaje + 'personas/datos'
   $.ajax(url: a, data: d, dataType: "json").fail( (jqXHR, texto) ->
     alert("Error con ajax " + texto)
@@ -297,7 +297,7 @@
     divcp.find('[id^=caso_victima_attributes][id$=personados_attributes_sexo]').val(e.sexo)
     divcp.find('[id^=caso_victima_attributes][id$=personados_attributes_tdocumento]').val(e.tdocumento)
     divcp.find('[id^=caso_victima_attributes][id$=personados_attributes_numerodocumento]').val(e.numerodocumento)
-    #$(document).trigger("msip:autocompleto_persona", [id_victima, id_persona])
+    #$(document).trigger("msip:autocompleto_persona", [victima_id, persona_id])
     return
   )
   return
@@ -369,7 +369,7 @@
   $("[id=" + prefIdPer+ "_dianac]").val('')
   $("[id=" + prefIdVic + "_edad]").val('')
   $("[id=" + prefIdVic + "_edadactual]").val('')
-  $("[id=" + prefIdVic + "_id_rangoedad]").prop('disabled', false)
+  $("[id=" + prefIdVic + "_rangoedad_id]").prop('disabled', false)
 
 
 # Retorna cantidad de años entre la fecha de nacimiento y
@@ -405,7 +405,7 @@
 # Establece rango de edad
 @ponerRangoEdad = (prefId) ->
   edad = $("[id=" + prefId + "_edad]").val()
-  r = $("[id=" + prefId + "_id_rangoedad]")
+  r = $("[id=" + prefId + "_rangoedad_id]")
   if (edad == '') 
     r.prop('disabled', false)
   else 
@@ -505,10 +505,10 @@ enviaFormularioContarPost= (root) ->
 @enviarFichaCaso = ->
   msip_enviarautomatico_formulario($('form'), 'POST', 'json', false)
   elimina_destruidos()
-  actualiza_presponsables($('#caso_acto_id_presponsable'))
-  actualiza_presponsables($('#caso_actocolectivo_id_presponsable'))
-  actualiza_victimas($('#caso_acto_id_persona'))
-  actualiza_gruposper($('#caso_actocolectivo_id_grupoper'))
+  actualiza_presponsables($('#caso_acto_presponsable_id'))
+  actualiza_presponsables($('#caso_actocolectivo_presponsable_id'))
+  actualiza_victimas($('#caso_acto_persona_id'))
+  actualiza_gruposper($('#caso_actocolectivo_grupoper_id'))
 
 @sivel2_idTemp60 = -1
 
@@ -520,8 +520,8 @@ enviaFormularioContarPost= (root) ->
 
 # A partir de datos de persona y fechas actual y del caso
 # llena campos edad, edadactual y rangoedad
-# @param prefIdVic de la forma caso_victima_attributes_123 donde 123 es id_victima
-# @param prefIdPer de la forma caso_victima_attributes_123_persona_attributes donde 123 es id_victima
+# @param prefIdVic de la forma caso_victima_attributes_123 donde 123 es victima_id
+# @param prefIdPer de la forma caso_victima_attributes_123_persona_attributes donde 123 es victima_id
 @sivel2_gen_llenar_edades = (root, prefIdVic, prefIdPer) ->
   ponerVariablesEdad(root)
   anionac= +$("[id=" + prefIdPer + "_anionac]").val();
@@ -577,7 +577,7 @@ enviaFormularioContarPost= (root) ->
  
   #En ubicación por omisión Colombia y actualiza departamentos 
   $('#ubicaciones').on('cocoon:after-insert', '', (e, ubicacion) ->
-    ubipais = 'select[id^=caso_][id$=id_pais]'
+    ubipais = 'select[id^=caso_][id$=pais_id]'
     $(ubipais).val(170).trigger('chosen:updated')
     llena_departamento($(ubicacion.find(ubipais)), root)
     if $(".ubicacion:visible").length == 1
@@ -618,34 +618,34 @@ enviaFormularioContarPost= (root) ->
   )
 
   # Al cambiar país se recalcula lista de departamentos
-  $(document).on('change', 'select[id^=caso_][id$=id_pais]', (e) ->
+  $(document).on('change', 'select[id^=caso_][id$=pais_id]', (e) ->
     llena_departamento($(this), root)
     # Exprimentando actualizar a medida que se modifica:
-    idfu = $(this).attr('id').replace('_id_pais', '_id');
+    idfu = $(this).attr('id').replace('_pais_id', '_id');
     idu = $('#' + idfu).val();
     #if (idu > 0)
     #   $.ajax(url: '/ubicacion/' + idu + '/update/'
   )
 
   # Al cambiar departamento se recalcula lista de municipios
-  $(document).on('change', 'select[id^=caso_][id$=id_departamento]', (e) ->
+  $(document).on('change', 'select[id^=caso_][id$=departamento_id]', (e) ->
     llena_municipio($(this), root)
   )
 
   # Al cambiar municipio se recalcula lista de centros poblados
-  $(document).on('change', 'select[id^=caso_][id$=id_municipio]', (e) ->
+  $(document).on('change', 'select[id^=caso_][id$=municipio_id]', (e) ->
     llena_clase($(this), root)
   )
   
   
   # Al cambiar centro poblado se muestra tipo
-  $(document).on('change', 'select[id^=caso_][id$=id_clase]', (e) ->
-    id_clase = $(this).val()
+  $(document).on('change', 'select[id^=caso_][id$=clase_id]', (e) ->
+    clase_id = $(this).val()
     select = $(this)
     b = root.puntomontaje + 'tipoclase'
     $.ajax({
       url: b, 
-      data: {id: id_clase}, 
+      data: {id: clase_id}, 
       dataType: "json", 
       success: (datos) ->
         tclase = datos.nombre
@@ -764,7 +764,7 @@ enviaFormularioContarPost= (root) ->
     if (!@sivel2_gen_procesa_eliminaracto)
       @sivel2_gen_procesa_eliminaracto = true
       f = $('form')
-      d = "id_acto=" + $(this).attr('data-eliminaracto')
+      d = "acto_id=" + $(this).attr('data-eliminaracto')
       a = root.puntomontaje + 'actos/eliminar'
       $.ajax(url: a, data: d, dataType: "script").fail( (jqXHR, texto) ->
         alert("Error: " + jqXHR.responseText)
@@ -781,7 +781,7 @@ enviaFormularioContarPost= (root) ->
     if (!@sivel2_gen_procesa_eliminaractocolectivo)
       @sivel2_gen_procesa_eliminaractocolectivo = true
       f = $('form')
-      d = "id_actocolectivo=" + $(this).attr('data-eliminaractocolectivo')
+      d = "actocolectivo_id=" + $(this).attr('data-eliminaractocolectivo')
       a = root.puntomontaje + 'actoscolectivos/eliminar'
       $.ajax(url: a, data: d, dataType: "script").fail( (jqXHR, texto) ->
         alert("Error: " + jqXHR.responseText)
@@ -899,7 +899,7 @@ enviaFormularioContarPost= (root) ->
 
   # Habilitar rangos de edad deshabilitados cuando se pone edad o año
   $(document).on('submit', 'form', (event) ->
-    $("[id$=_id_rangoedad]").prop('disabled', false)
+    $("[id$=_rangoedad_id]").prop('disabled', false)
   )
 
   # Al cambiar fecha del hecho 
@@ -947,22 +947,22 @@ enviaFormularioContarPost= (root) ->
       return event.preventDefault()
   ) 
 
-  $(document).on('msip:autocompleto_persona', (evento, id_victima, id_persona) -> 
+  $(document).on('msip:autocompleto_persona', (evento, victima_id, persona_id) -> 
     root =  window
     ponerVariablesEdad(root)
-    prefIdVic = 'caso_victima_attributes_' + id_victima
-    prefIdPer = 'caso_victima_attributes_' + id_victima + '_persona_attributes'
+    prefIdVic = 'caso_victima_attributes_' + victima_id
+    prefIdPer = 'caso_victima_attributes_' + victima_id + '_persona_attributes'
     sivel2_gen_llenar_edades(root, prefIdVic, prefIdPer)
   )
 
   $(document).on('change', '#filtro_tviolencia_id', (e) ->
-    id_tviolencia = $(this).val()
+    tviolencia_id = $(this).val()
     select = $(this)
-    if id_tviolencia != "Z"
+    if tviolencia_id != "Z"
       b = root.puntomontaje + 'admin/categorias/filtratviolencia'
       $.ajax({
         url: b,
-        data: {tviolencia: id_tviolencia}, 
+        data: {tviolencia: tviolencia_id}, 
         dataType: "json",
         success: (datos) ->
           div_padre = select.closest("div")
@@ -975,12 +975,12 @@ enviaFormularioContarPost= (root) ->
        })
   )
   $(document).on('change', '#filtro_categoria_id', (e) ->
-    id_categoria = $(this).val()
+    categoria_id = $(this).val()
     select = $(this)
     b = root.puntomontaje + 'admin/categorias/filtratviolencia'
     $.ajax({
       url: b,
-      data: {categorias_seleccionadas: id_categoria},
+      data: {categorias_seleccionadas: categoria_id},
       dataType: "json",
       success: (datos) ->
         if datos[0] == false

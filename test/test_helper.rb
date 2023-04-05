@@ -58,13 +58,13 @@ PRUEBA_ACTIVIDADOFICIO= {
 }
 
 PRUEBA_ACTO = {
-  id_presponsable: 1,
-  id_categoria: 10
+  presponsable_id: 1,
+  categoria_id: 10
 }
 
 PRUEBA_ACTOCOLECTIVO = {
-  id_presponsable: 1,
-  id_categoria: 59
+  presponsable_id: 1,
+  categoria_id: 59
 }
 
 
@@ -100,7 +100,7 @@ PRUEBA_COMBATIENTE = {
   alias: 'a',
   edad: 80,
   sexo: 'F',
-  id_resagresion: 1, 
+  resagresion_id: 1, 
   created_at: "2023-01-10",
 }
 
@@ -124,7 +124,7 @@ PRUEBA_DEPARTAMENTO = {
   longitud: 1.5,
   fechacreacion: "2014-08-04",
   fechadeshabilitacion: nil,
-  id_pais: 862,
+  pais_id: 862,
 }
 
 PRUEBA_ESCOLARIDAD = {
@@ -215,7 +215,7 @@ PRUEBA_MUNICIPIO = {
   longitud: 1.5,
   fechacreacion: "2014-08-04",
   fechadeshabilitacion: "2014-08-04",
-  id_departamento: 1,
+  departamento_id: 1,
 }
 
 PRUEBA_ORGANIZACION = {
@@ -324,16 +324,16 @@ PRUEBA_USUARIO = {
 
 PRUEBA_VICTIMA = {
   hijos: 0,
-  id_profesion: 1,
-  id_rangoedad: 1,
-  id_filiacion: 1,
-  id_sectorsocial: 1,
-  id_organizacion: 1,
-  id_vinculoestado: 1,
+  profesion_id: 1,
+  rangoedad_id: 1,
+  filiacion_id: 1,
+  sectorsocial_id: 1,
+  organizacion_id: 1,
+  vinculoestado_id: 1,
   organizacionarmada: 1,
   anotaciones: 'a',
-  id_etnia: 1,
-  id_iglesia: 1,
+  etnia_id: 1,
+  iglesia_id: 1,
   orientacionsexual: 'H'
 }
 

@@ -10,8 +10,8 @@ module Sivel2Gen
         @combatiente = Combatiente.new
         @combatiente.nombre = 'N'
         @combatiente.sexo = Msip::Persona.convencion_sexo[:sexo_masculino].to_s
-        @combatiente.id_resagresion = 1
-        @combatiente.id_caso = params[:caso_id]
+        @combatiente.resagresion_id = 1
+        @combatiente.caso_id = params[:caso_id]
         if @combatiente.save
           respond_to do |format|
             format.js { render json: {'combatiente' => @combatiente.id.to_s } }
