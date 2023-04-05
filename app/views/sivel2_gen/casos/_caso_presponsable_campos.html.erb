@@ -62,7 +62,10 @@
         formmethod: :delete,
         formnovalidate: true,
         class: 'btn btn-sm btn-danger',
-        data: { turbo_frame: "caso_presponsable_#{f.index}" } %>
+        data: { 
+          turbo_frame: "caso_presponsable_#{f.index}",
+          disable_with: false
+        } %>
 
   </div>
 </div>

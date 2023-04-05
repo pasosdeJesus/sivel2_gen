@@ -6,7 +6,7 @@ for i in `git ls-tree -r main --name-only`; do
   if (test "$i" == "-") then {
     excluye=1;
   } else {
-    for j in db/migrate db/structure.sql bin/act; do 
+    for j in db/migrate node_modules db/structure.sql bin/act; do 
       echo $i | grep "$j" > /dev/null 2>&1
       if (test "$?" = "0") then {
         excluye=1;

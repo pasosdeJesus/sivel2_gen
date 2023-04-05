@@ -1,12 +1,12 @@
 <%= simple_form_for @caso do |form| %>
   <%= form.simple_fields_for :caso_fotra, child_index: params[:index] do |cfp_form| %>
-    <%= turbo_stream.replace "add-casofotra" do %>
+    <%= turbo_stream.replace "agregar-casofotra" do %>
       <%= form.submit "Agregar otra fuente", 
             formaction: casos_fotra_path(cfp_form.index.to_i + 1), 
             formmethod: :post,
             formnovalidate: true,
-            class: 'btn btn-sm btn-primary add-vic',
-            id: "add-casofotra" %>
+            class: 'btn btn-sm btn-primary agregar-vic',
+            id: "agregar-casofotra" %>
     <% end %>
 
     <%= turbo_stream.append "fotras_frame" do %>
