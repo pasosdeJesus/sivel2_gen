@@ -25,10 +25,10 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/heb412_gen.git
-  revision: a3b97ba41ec5ce7d38fa38801aa08ca784ec3caf
+  revision: 4face5f255e8cad917567cd2b1ae67f256958fe4
   branch: conv2
   specs:
-    heb412_gen (2.2.0.beta1)
+    heb412_gen (2.2.0.beta2)
       mr519_gen
       msip
       redcarpet
@@ -36,16 +36,16 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/mr519_gen.git
-  revision: 324301b230bf4f0804ee68bba983813a62534a24
+  revision: 081cddb10db3dfbb404483e3d3a86db26ef25141
   branch: conv2
   specs:
-    mr519_gen (2.2.0.beta1)
+    mr519_gen (2.2.0.beta2)
       msip
       rails
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/msip.git
-  revision: 3f038fea927f1d9bdeaa3d87d2d657e04a79438a
+  revision: 6f8f1b56542081ac8bde03181289c5c0a4bdd154
   branch: conv2
   specs:
     msip (2.2.0.beta2)
