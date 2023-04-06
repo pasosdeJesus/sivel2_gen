@@ -13,8 +13,6 @@ class NomenclaturaRails < ActiveRecord::Migration[7.0]
     rename_column :sivel2_gen_victima, :id_sectorsocial, :sectorsocial_id
     rename_column :sivel2_gen_victima, :id_vinculoestado, :vinculoestado_id
 
-    rename_column :msip_ubicacion, :id_caso, :caso_id
-
     rename_column :sivel2_gen_acto, :id_presponsable, :presponsable_id
     rename_column :sivel2_gen_acto, :id_categoria, :categoria_id
     rename_column :sivel2_gen_acto, :id_persona, :persona_id
