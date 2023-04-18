@@ -261,16 +261,22 @@ module Sivel2Gen
                 nombre = obs.split("_")
                 case nombre[0]
                 when "intervalo"
-                  inter = Sivel2Gen::Intervalo.where(nombre: nombre[1])
-                  self.intervalo = inter[0]
+                  if nombre[1]
+                    inter = Sivel2Gen::Intervalo.where(nombre: nombre[1])
+                    self.intervalo = inter[0]
+                  end
                 when "region"
-                  regiones = nombre[1].split("; ")
-                  regs = Sivel2Gen::Region.where(nombre: regiones)
-                  self.region.push(regs)
+                  if nombre[1]
+                    regiones = nombre[1].split("; ")
+                    regs = Sivel2Gen::Region.where(nombre: regiones)
+                    self.region.push(regs)
+                  end
                 when "frontera"
-                  fronteras = nombre[1].split("; ")
-                  fron = Sivel2Gen::Frontera.where(nombre: fronteras)
-                  self.frontera.push(fron)
+                  if nombre[1]
+                    fronteras = nombre[1].split("; ")
+                    fron = Sivel2Gen::Frontera.where(nombre: fronteras)
+                    self.frontera.push(fron)
+                  end
                 end
               end
             end

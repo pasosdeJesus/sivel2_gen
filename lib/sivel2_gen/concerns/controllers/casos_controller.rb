@@ -195,7 +195,7 @@ module Sivel2Gen
           # Prefiltra de acuerdo a control de acceso
           def filtrar_ca(reg)
             f = Sivel2Gen::Caso.accessible_by(current_ability)
-            reg = reg.where("caso_id in (#{f.select(:id).to_sql})")
+            reg = reg.where("sivel2_gen_conscaso.caso_id in (#{f.select(:id).to_sql})")
             reg
           end
 
@@ -407,7 +407,7 @@ module Sivel2Gen
                 end
               end
               send_data r, filename: "casos-sivel2.csv" 
-              return true
+              #return
             }
             return false
           end
