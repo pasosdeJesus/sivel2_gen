@@ -11,7 +11,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/heb412_gen.git
-  revision: eb6561b99aa46fe23d46a0dc364c9a788118806c
+  revision: fcb3cd4e147c582fe929ff3e0a91f90e75a142f4
   branch: v2.0
   specs:
     heb412_gen (2.0)
@@ -22,7 +22,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/mr519_gen.git
-  revision: a71dcf72ea6bd5be791f4e5f8db26d7e6a63953b
+  revision: 8f3293d7aa95c07e6e574038cd467329899d3bff
   branch: v2.0
   specs:
     mr519_gen (2.0)
@@ -31,7 +31,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sip.git
-  revision: 85a2c242678425ddb78bbac2c6c212ddc8cafc87
+  revision: 1a9ec85b69fe3bc6094c7ca221e3aeed4969d062
   branch: v2.0
   specs:
     sip (2.0)
@@ -168,7 +168,7 @@ GEM
     i18n (1.12.0)
       concurrent-ruby (~> 1.0)
     io-console (0.6.0)
-    irb (1.6.3)
+    irb (1.6.4)
       reline (>= 0.3.0)
     jbuilder (2.11.5)
       actionview (>= 5.0.0)
@@ -208,7 +208,7 @@ GEM
     net-smtp (0.3.3)
       net-protocol
     nio4r (2.5.9)
-    nokogiri (1.14.2)
+    nokogiri (1.14.3)
       mini_portile2 (~> 2.8.0)
       racc (~> 1.4)
     odf-report (0.7.3)
@@ -232,7 +232,7 @@ GEM
     prawnto_2 (0.3.1)
       prawn (>= 1.0.0)
       rails (>= 3.2)
-    puma (6.2.1)
+    puma (6.2.2)
       nio4r (~> 2.0)
     racc (1.6.2)
     rack (2.2.6.4)
@@ -394,4 +394,4 @@ DEPENDENCIES
   will_paginate
 
 BUNDLED WITH
-   2.4.10
+   2.4.12
