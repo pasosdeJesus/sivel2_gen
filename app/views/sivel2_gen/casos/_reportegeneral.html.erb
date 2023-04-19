@@ -99,31 +99,18 @@
     <% anexosc = Sivel2Gen::AnexoCaso.where(caso_id: caso.id) %>
     <% unless anexosc.length == 0 %>
       ANEXO(S):
-      <% if @conscaso.count > 1 %>
-        <ul>
-        <% anexosc.each do |ac| %>
-          <li>
-            <%= render partial: 'msip/anexos/sin_vistaprevia',
-              locals: {
-                anexo: ac.msip_anexo,
-                fecha: ac.fecha
-              } %>
-          </li>
-        <% end %>
-        </ul>
-      <% else %>
-        <ul>
-        <% anexosc.each do |ac| %>
-          <li>
-            <%= render partial: 'msip/anexos/con_vistaprevia',
-              locals: {
-                anexo: ac.msip_anexo,
-                fecha: ac.fecha
-              } %>
-          </li>
-        <% end %>
-        </ul>
+      <ul>
+      <% anexosc.each do |ac| %>
+        <li>
+          <%= render partial: 'msip/anexos/vistaprevia',
+            locals: {
+              anexo: ac.msip_anexo,
+              fecha: ac.fecha,
+              total_casos: @conscaso.count
+            } %>
+        </li>
       <% end %>
+      </ul>
     <% end %>
 
     <% unless caso.contexto.empty? %>
