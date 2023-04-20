@@ -319,7 +319,6 @@ PRUEBA_USUARIO = {
   sign_in_count: 0,
   fechacreacion: "2014-08-05",
   fechadeshabilitacion: nil,
-  oficina_id: nil
 }
 
 PRUEBA_VICTIMA = {

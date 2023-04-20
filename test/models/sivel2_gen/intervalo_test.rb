@@ -1,24 +1,24 @@
 require_relative '../../test_helper'
 
 module Sivel2Gen
-  class IntervaloTest < ActiveSupport::TestCase
+  class AnuncioTest < ActiveSupport::TestCase
 
     test "valido" do
-      intervalo = Intervalo.create PRUEBA_INTERVALO
-      assert intervalo.valid?
-      intervalo.destroy
+      anuncio = Anuncio.create PRUEBA_ANUNCIO
+      assert anuncio.valid?
+      anuncio.destroy
     end
 
     test "no valido" do
-      intervalo = Intervalo.new PRUEBA_INTERVALO
-      intervalo.nombre = ''
-      assert_not intervalo.valid?
-      intervalo.destroy
+      anuncio = Anuncio.new PRUEBA_ANUNCIO
+      anuncio.nombre = ''
+      assert_not anuncio.valid?
+      anuncio.destroy
     end
 
     test "existente" do
-      intervalo = Sivel2Gen::Intervalo.where(id: 1).take
-      assert_equal "MADRUGADA", intervalo.nombre
+      anuncio = Sivel2Gen::Anuncio.where(id: 1).take
+      assert_equal "MADRUGADA", anuncio.nombre
     end
 
   end
