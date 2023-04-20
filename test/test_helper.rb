@@ -160,7 +160,7 @@ PRUEBA_FOTRA = {
   id: 1000 ,
   nombre: 'Fotra',
   created_at: "2014-09-09",
-  created_at: "2014-09-09",
+  updated_at: "2014-09-09",
 }
 
 PRUEBA_FRONTERA= {
