@@ -246,6 +246,8 @@ es:
         orientacionsexual: Orientación sexual
         otraorga: Otras organizaciones
         presponsable: Organización armada de la víctima
+        presponsables_caso: Presuntos responsables
+        presponsables_caso_ids: Ids. de presuntos responsables
         profesion: Profesión
         rangoedad: Rango de edad
         sectorsocial: Sector social principal
