@@ -102,10 +102,11 @@
       <ul>
       <% anexosc.each do |ac| %>
         <li>
-          <%= render partial: 'msip/anexos/con_vistaprevia',
+          <%= render partial: 'msip/anexos/vistaprevia',
             locals: {
               anexo: ac.msip_anexo,
-              fecha: ac.fecha
+              fecha: ac.fecha,
+              total_casos: @conscaso.count
             } %>
         </li>
       <% end %>

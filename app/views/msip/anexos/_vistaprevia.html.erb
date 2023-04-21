@@ -33,29 +33,36 @@
           <% end %>
         <% end %>
         </p>
-        <% if anexo.adjunto_content_type == "application/pdf" %>
-          <%= link_to msip.descarga_anexo_path(anexo.id),
-            'data-turbo' => :false do %>
-            <img src='<%= msip.mostrar_portada_path(anexo.id) %>'
-                 style='width: 100%; height: 100%; object-fit: scale-down;'>
-          <% end %>
-        <% elsif anexo.adjunto_content_type.split("/")[0] == "image" %>
-          <%= link_to msip.descarga_anexo_path(anexo.id),
-            'data-turbo' => :false do %>
-            <img src='<%= msip.descarga_anexo_path(anexo.id) %>'
-                 style='width: 100%; height: 100%; object-fit: scale-down;''>
-          <% end %>
-        <% else %>
+        <% if total_casos > 1 %>
           <%= link_to msip.descarga_anexo_path(anexo.id),
           'data-turbo' => :false do %>
             <%= Msip::Anexo.find(anexo.id).adjunto_file_name %>
+          <% end %>
+        <% else %>
+          <% if anexo.adjunto_content_type == "application/pdf" %>
+            <%= link_to msip.descarga_anexo_path(anexo.id),
+              'data-turbo' => :false do %>
+              <img src='<%= msip.mostrar_portada_path(anexo.id) %>'
+                   style='width: 100%; height: 100%; object-fit: scale-down;'>
+            <% end %>
+          <% elsif anexo.adjunto_content_type.split("/")[0] == "image" %>
+            <%= link_to msip.descarga_anexo_path(anexo.id),
+              'data-turbo' => :false do %>
+              <img src='<%= msip.descarga_anexo_path(anexo.id) %>'
+                   style='width: 100%; height: 100%; object-fit: scale-down;'>
+            <% end %>
+          <% else %>
+            <%= link_to msip.descarga_anexo_path(anexo.id),
+            'data-turbo' => :false do %>
+              <%= Msip::Anexo.find(anexo.id).adjunto_file_name %>
+            <% end %>
           <% end %>
         <% end %>
       </div>
       <div class="modal-footer">
         <p class="px-2">Fecha: <%= fecha if fecha %></p>
-        <button type="button" 
-                class="btn btn-secondary" 
+        <button type="button"
+                class="btn btn-secondary"
                 data-bs-dismiss="modal">
           Cerrar
         </button>
