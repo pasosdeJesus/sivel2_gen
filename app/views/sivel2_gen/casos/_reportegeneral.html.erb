@@ -106,7 +106,7 @@
             locals: {
               anexo: ac.msip_anexo,
               fecha: ac.fecha,
-              total_casos: @conscaso.count
+              total_casos: (@conscaso.nil? ? 1 : @conscaso.count)
             } %>
         </li>
       <% end %>
