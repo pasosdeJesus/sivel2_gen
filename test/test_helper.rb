@@ -99,7 +99,7 @@ PRUEBA_COMBATIENTE = {
   nombre: "x",
   alias: 'a',
   edad: 80,
-  sexo: 'F',
+  sexo: Msip::Persona::convencion_sexo[:sexo_femenino],
   resagresion_id: 1, 
   created_at: "2023-01-10",
 }
