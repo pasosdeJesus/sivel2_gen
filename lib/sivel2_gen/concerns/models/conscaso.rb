@@ -207,9 +207,9 @@ module Sivel2Gen
 
 
           scope :filtro_filiacion_id, lambda { |r|
-            where('caso_id IN (SELECT id_caso
+            where('caso_id IN (SELECT caso_id
                     FROM public.sivel2_gen_victima
-                    WHERE sivel2_gen_victima.id_filiacion IN (?))', r)
+                    WHERE sivel2_gen_victima.filiacion_id IN (?))', r)
           }
 
           scope :filtro_etiqueta, lambda { |c, e|
