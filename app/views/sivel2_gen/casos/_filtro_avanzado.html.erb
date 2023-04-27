@@ -382,7 +382,7 @@
             <div class="col-sm col-md">
             <% if current_usuario %>
               <%= f.input :filiacion_id,
-                collection: Msip::ModeloHelper.opciones_tabla_basica(
+                collection: Sip::ModeloHelper.opciones_tabla_basica(
                   Sivel2Gen::Filiacion, f, :filiacion_id
                 ),
                 label: false,
