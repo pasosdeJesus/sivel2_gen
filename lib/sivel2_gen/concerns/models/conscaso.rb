@@ -205,6 +205,13 @@ module Sivel2Gen
                     WHERE sivel2_gen_victima.id_profesion IN (?))', r)
           }
 
+
+          scope :filtro_filiacion_id, lambda { |r|
+            where('caso_id IN (SELECT id_caso
+                    FROM public.sivel2_gen_victima
+                    WHERE sivel2_gen_victima.id_filiacion IN (?))', r)
+          }
+
           scope :filtro_etiqueta, lambda { |c, e|
             if c 
               where('caso_id IN (SELECT id_caso 
