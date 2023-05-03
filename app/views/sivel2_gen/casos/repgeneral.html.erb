@@ -2,6 +2,15 @@
 <html>
   <head>
     <title>Reporte General</title>
+
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application", :media => "all", 
+      'data-turbo-track': 'reload' %>
+    <%= javascript_include_tag "application", defer: true %>
+    <%= javascript_include_tag "recursos_sprockets", defer: true %>
+
     <style>
       .alerta {
         color: red;
