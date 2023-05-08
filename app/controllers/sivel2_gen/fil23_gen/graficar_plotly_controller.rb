@@ -5,9 +5,16 @@ module Sivel2Gen
     class GraficarPlotlyController < ApplicationController
 
       # Control de acceso no estándar en función
-      
+
       def actos_individuales
         authorize! :contar, Sivel2Gen::Caso
+
+        @rutadircsv = File.join(
+          Rails.root, "public#{Rails.configuration.relative_url_root}" +
+          "csv").to_s
+        unless Dir.exist?(@rutadircsv)
+          Dir.mkdir(@rutadircsv)
+        end
 
         @rutacsv = File.join(
           Rails.root, "public#{Rails.configuration.relative_url_root}" +
@@ -41,6 +48,7 @@ module Sivel2Gen
           "GROUP BY 1,2,3,4,5,6,7,8,9,10,11) " \
           " TO '#{rutatmp}' DELIMITER ',' CSV HEADER;" 
         ActiveRecord::Base.connection.execute(sql)
+        @rutadircsv = "/"
         if File.exist?(@rutacsv)
           File.unlink(@rutacsv)
         end
