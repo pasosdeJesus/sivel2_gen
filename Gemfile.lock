@@ -25,7 +25,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/heb412_gen.git
-  revision: 6d1f1ed4bb6b48b2a69a520b3631f814b70d4306
+  revision: aba6ed600da4cae04ec17a2aa58be29c199a512a
   branch: main
   specs:
     heb412_gen (2.2.0.beta2)
@@ -36,7 +36,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/mr519_gen.git
-  revision: c4f78ce0a8e1661dee8da5ed33691dac121375b9
+  revision: f4fcc752e3b3337d06848dbeb7eb41f058f8ff62
   branch: main
   specs:
     mr519_gen (2.2.0.beta2)
@@ -45,7 +45,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/msip.git
-  revision: 9fed60ffa546afd694349cd647c84a60f12e1d3f
+  revision: c861392d72c15454dc6851714d022717413702d4
   branch: main
   specs:
     msip (2.2.0.beta2)
@@ -344,7 +344,7 @@ GEM
       unicode-display_width (>= 2.4.0, < 3.0)
     rubocop-ast (1.28.1)
       parser (>= 3.2.1.0)
-    rubocop-minitest (0.30.0)
+    rubocop-minitest (0.31.0)
       rubocop (>= 1.39, < 2.0)
     rubocop-rails (2.19.1)
       activesupport (>= 4.2.0)
