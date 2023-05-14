@@ -12,6 +12,10 @@ module Sivel2Gen
       return 'F'
     end
 
+    before_action :prepara_caso
+    # Crea un nuevo registro para el caso que recibe por parametro 
+    # params[:caso_id].  Pone valores simples en los campos requeridos
+    
     def nuevo
       if params[:caso_id]
         @grupoper = Msip::Grupoper.new
@@ -59,7 +63,6 @@ module Sivel2Gen
 
     def update
     end
-
 
     private
 
