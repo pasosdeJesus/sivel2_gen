@@ -10,7 +10,8 @@ module Sivel2Gen
         included do
           include ActionView::Helpers::AssetUrlHelper
 
-          load_and_authorize_resource class: Sivel2Gen::Victima
+          load_and_authorize_resource class: Sivel2Gen::Caso
+          before_action :prepara_caso
 
           def clase
             "Sivel2Gen::Victima"
@@ -110,6 +111,15 @@ module Sivel2Gen
             end
           end # nuevo
 
+          def destroy
+          end
+
+          def create
+          end
+
+          def update
+          end
+
           def set_victima
             @victima = Sivel2Gen::Victima.find(params[:id])
             @registro = @victima
@@ -117,6 +127,12 @@ module Sivel2Gen
 
           def vistas_manejadas
             ['Victima']
+          end
+
+          private
+
+          def prepara_caso
+            @caso = Sivel2Gen::Caso.new(victima: [Sivel2Gen::Victima.new])
           end
 
         end # included
