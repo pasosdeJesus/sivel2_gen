@@ -275,9 +275,9 @@ module Sivel2Gen
 
       habilidad.can :mundep, Msip::Ubicacionpre
 
-      habilidad.can :nuevo, Sivel2Gen::Victima
+      habilidad.can :manage, Sivel2Gen::Victima
 
-      habilidad.can :nuevo, Sivel2Gen::Victimacolectiva
+      habilidad.can :manage, Sivel2Gen::Victimacolectiva
 
       habilidad.can :manage, Sivel2Gen::CasoEtiqueta
 

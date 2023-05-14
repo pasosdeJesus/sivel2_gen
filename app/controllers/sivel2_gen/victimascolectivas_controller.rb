@@ -3,6 +3,7 @@ module Sivel2Gen
   class VictimascolectivasController < ApplicationController
     load_and_authorize_resource class: Sivel2Gen::Victimacolectiva
 
+    before_action :prepara_caso
     # Crea un nuevo registro para el caso que recibe por parametro 
     # params[:caso_id].  Pone valores simples en los campos requeridos
     def nuevo
@@ -43,5 +44,21 @@ module Sivel2Gen
         end
       end
     end
+
+    def destroy
+    end
+
+    def create
+    end
+
+    def update
+    end
+
+    private
+
+    def prepara_caso
+      @caso = Sivel2Gen::Caso.new(victimacolectiva: [Sivel2Gen::Victimacolectiva.new])
+    end
+
   end
 end

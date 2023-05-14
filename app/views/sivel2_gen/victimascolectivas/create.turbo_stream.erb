@@ -1,0 +1,16 @@
+<%= simple_form_for @caso do |form| %>
+  <%= form.simple_fields_for :victimacolectiva, child_index: params[:index] do |vic_form| %>
+    <%= turbo_stream.replace "agregar-victimacol" do %>
+      <%= form.submit "Agregar victima colectiva", 
+            formaction: crear_victimacolectiva_path(vic_form.index.to_i + 1), 
+            formmethod: :post,
+            formnovalidate: true,
+            class: 'btn btn-sm btn-primary agregar-vic',
+            id: "agregar-victima" %>
+    <% end %>
+
+    <%= turbo_stream.append "victimascolectivas_frame" do %>
+      <%= render "/sivel2_gen/casos/victimacolectiva_campos", f: vic_form %>
+    <% end %>
+  <% end %>
+<% end %>

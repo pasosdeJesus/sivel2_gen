@@ -1,6 +1,8 @@
-<%= f.simple_fields_for :victima do |victima| %>
-  <%= render 'victima_campos', :f => victima %>
+<div id="victimas_frame">
+<%= f.simple_fields_for :victima, child_index: params[:index] do |victima| %>
+  <%= render '/sivel2_gen/casos/victima_campos', :f => victima %>
 <% end %>
+</div>
 
 <datalist id='fuente-victimas'>
 </datalist>
@@ -9,13 +11,11 @@
 </datalist>
 
 <div class="links">
-  <%= link_to_add_association 'Añadir Víctima', f, :victima, { 
-    partial: 'sivel2_gen/casos/victima_campos',
-    class: 'btn btn-sm btn-primary agregar-vic',
-    "data-ajax" => File.join(
-      Rails.configuration.relative_url_root,
-      "victimas/nuevo"
-    ), 
-    "data-ajaxdata" => "caso_id" } 
-  %>
+  <%= f.submit "Agregar víctima",
+      formaction: crear_victima_path(index: @caso.victima.size),
+      formmethod: :post,
+      formnovalidate: true,
+      class: 'btn btn-sm btn-primary agregar-vic',
+      name: "agregar-victima",
+      id: "agregar-victima" %>
 </div>
