@@ -1,19 +1,27 @@
+<%= turbo_frame_tag "victima_#{f.index}" do %>
 <div class='control-group nested-fields seccionvictima'>
   <div class="controls">
     <% if f.object.persona.nil? %>
       <% f.object.persona = Msip::Persona.new %>
     <% end %>
 
-    <%= render partial: 'contacto_campos', locals: {f: f} %>
+    <%= render partial: 'sivel2_gen/casos/contacto_campos', locals: {f: f} %>
     <div style='margin-bottom: 1em'>
       <%= link_to t('Crea Copia'), '#',
         class: 'btn btn-sm',
         onclick: 'crea_copia_de_victima(this, event)' %>
-      <%= link_to_remove_association(
-        "Eliminar Víctima", f, {
-          class: 'btn btn-sm btn-danger', 
-          'data-existing': 'true'
-        }) %> 
+
+      <%= f.submit "Eliminar", 
+          formaction: eliminar_victima_path(id: f.object.id, index: f.index),
+          formmethod: :delete,
+          formnovalidate: true,
+          class: 'btn btn-sm btn-danger',
+          data: { 
+            turbo_frame: "victima_#{f.index}",
+            disable_with: false
+          } %>
+
     </div>
   </div>
 </div>
+<% end %>

@@ -1,0 +1,8 @@
+<%= fields model: @caso do |form| %>
+  <%= form.simple_fields_for :victimacolectiva, child_index: params[:index] do |vic_form| %>
+    <%= turbo_frame_tag "victimacolectiva_#{vic_form.index}" do %>
+      <%= vic_form.hidden_field :id, value: params[:id] %>
+      <%= vic_form.hidden_field :_destroy, value: true %>
+    <% end %>
+  <% end %>
+<% end %>
