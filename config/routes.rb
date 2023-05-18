@@ -147,6 +147,7 @@ Sivel2Gen::Engine.routes.draw do
   end
   get '/victimas' => 'victimas#index', as: "victimas"
 
+
   namespace :admin do
     ab=::Ability.new
     ab.tablasbasicas.each do |t|

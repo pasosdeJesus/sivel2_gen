@@ -5,8 +5,8 @@
     <% if f.object.persona.nil? %>
       <% f.object.persona = Msip::Persona.new %>
     <% end %>
-    <%= render partial: 'sivel2_gen/casos/contacto_campos', 
-      locals: {f: f} %>
+
+    <%= render partial: 'sivel2_gen/casos/contacto_campos', locals: {f: f} %>
     <div style='margin-bottom: 1em'>
       <%= link_to t('Crea Copia'), '#',
         class: 'btn btn-sm',
