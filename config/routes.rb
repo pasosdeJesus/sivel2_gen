@@ -13,6 +13,7 @@ Sivel2Gen::Engine.routes.draw do
   post "/buscarrepetidos" => 'buscarrepetidos#reportar', as: :envia_buscarrepetidos
   get "/casoetiquetas/nueva", 'casoetiquetas#nueva'
   get "/casofotras/nuevo", 'casofotras#nuevo'
+  get "/victimas/nuevo", 'victimas#nuevo'
 
   get "/casos/busca" => 'casos#busca'
   get "/casos/cuenta" => 'casos#cuenta'
@@ -69,8 +70,6 @@ Sivel2Gen::Engine.routes.draw do
   get "/validarcasos" => 'validarcasos#validar', as: :validarcasos
   post "/validarcasos" => 'validarcasos#validar', as: :envia_validarcasos
 
-  get '/victimas' => 'victimas#index', as: :victimas
-  get '/victimas/nuevo' => 'victimas#nuevo'
 
   get '/victimascolectivas/nuevo' => 'victimascolectivas#nuevo'
 
@@ -99,6 +98,22 @@ Sivel2Gen::Engine.routes.draw do
 
     end
   end
+
+  resources :victimas, only: [], param: :index do
+    member do
+      delete '(:id)', to: "victimas#destroy", as: "eliminar"
+      post '/', to: "victimas#create", as: "crear"
+    end
+  end
+
+  resources :victimascolectivas, only: [], param: :index do 
+    member do
+      delete '(:id)', to: "victimascolectivas#destroy", as: "eliminar"
+      post '/' => "victimascolectivas#create", as: "crear"
+    end
+  end
+  get '/victimas' => 'victimas#index', as: "victimas"
+
 
   namespace :admin do
     ab=::Ability.new
