@@ -40,6 +40,16 @@
 
     <div class="row filtro-fila">
       <div class="offset-sm-2 col-sm-3">
+        <%= f.input :departamento,
+          collection: Msip::Departamento.where(pais_id: 170).habilitados,
+          label_method: :nombre,
+          value_method: :id,
+          label: false,
+          include_blank: '-- Departamento',
+          input_html: { "data-contarautomatico" => "" }
+        %>
+      </div>
+      <div class="col-sm-3">
         <%= f.input :etiqueta1,
           collection: Msip::Etiqueta.habilitados,
           label_method: :nombre,
@@ -59,6 +69,13 @@
           input_html: { "data-contarautomatico" => "" }
         %>
       </div>
+    </div>
+
+    <%= render partial: 'sivel2_gen/mapadep/filtro_categorias', locals: {f: f} %>
+    <div class="row filtro-fila">
+      <div class="offset-sm-0 col-sm-3 offset-md-1 col-md-1">
+        Color más intenso:
+      </div>
       <div class="col-sm-3">
         <% pom = Msip::ModeloHelper.poromision(params, :colormax) %>
         <%= f.input :colormax, 
@@ -72,9 +89,7 @@
           } %>
       </div>
     </div>
-
-    <%= render partial: 'sivel2_gen/mapadep/filtro_categorias', locals: {f: f} %>
-
+ 
     <div class="row filtro-fila">
       <div class="offset-md-5 col-md-2">
         <%= f.button :submit, 'Contar', class: 'btn btn-default',
