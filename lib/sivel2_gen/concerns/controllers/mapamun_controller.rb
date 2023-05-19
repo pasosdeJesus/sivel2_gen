@@ -29,6 +29,7 @@ module Sivel2Gen
             pEtiqueta2 = escapar_param(params, [:filtro, 'etiqueta2'])
             pColormax = escapar_param(params, [:filtro, 'colormax'])
             pExcluirCateRep = escapar_param(params, [:filtro, 'excluircaterep'])
+            pDepartamento = escapar_param(params, [:filtro, 'departamento'])
 
             lcat = Sivel2Gen::Categoria.habilitados.pluck(:id)
             pCategoria = params[:filtro] && params[:filtro][:categoria] ?
@@ -39,12 +40,14 @@ module Sivel2Gen
               pExcluirCateRep, nil, 1, 1, pCategoria
             )
 
-            iddep = 11 # BOYACÁ
-            idmun = Msip::Municipio.where(departamento_id: iddep).take.id
+            @mapamun_depid = pDepartamento.to_i > 0 ? pDepartamento.to_i : 
+              11 # BOYACÁ
+            idmun = Msip::Municipio.where(
+              departamento_id: @mapamun_depid).take.id
 
             r = ActiveRecord::Base.connection.select_all(
               "SELECT  municipio_divipola, count(*) FROM #{cons} "\
-              "WHERE departamento_id=#{iddep} "\
+              "WHERE departamento_id=#{@mapamun_depid} "\
               "GROUP BY 1")
 
             @mapa_muncuenta = {}
@@ -69,13 +72,16 @@ module Sivel2Gen
             @mapamun_colormax_a = colormax.blue.to_i
 
             @mapamun_titulorangos = 'Rango de victimizaciones'
-            @mapamun_fuente = 'Fuente: Banco de Datos de Derechos Humanos, DIH y Violencia Política del CINEP www.nocheyniebla.org'
+            @mapamun_fuente = "Fuente: " + ENV.fetch(
+              "SIVEL2_MAPAFUENTE", 
+              "Banco de Datos de Derechos Humanos, DIH y "\
+              "Violencia Política del CINEP www.nocheyniebla.org")
 
             ajusta_titulos(pFini, pFfin, pTviolencia, pEtiqueta1,
                            pEtiqueta2, pColormax)
 
-          
-            hermanos = Msip::Municipio.where(departamento_id: iddep)
+
+            hermanos = Msip::Municipio.where(departamento_id: @mapamun_depid)
             @depcad = render_to_string(
               partial: 'msip/admin/departamentos/show_svgruta_con_hermanos',
               locals: {
@@ -87,7 +93,8 @@ module Sivel2Gen
             )
 
             respond_to do |format|
-              format.html { render 'mapamun_victimizaciones', layout: 'application' }
+              format.html { render 'mapamun_victimizaciones', 
+                            layout: 'application' }
               format.json { render head :no_content }
               format.js { render 'actualiza_mapa' }
             end
