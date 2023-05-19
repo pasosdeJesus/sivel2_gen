@@ -59,16 +59,15 @@ module Sivel2Gen
 
           def remplazar_sivel2_gen
             @persona = Msip::Persona.find(params[:persona_id].to_i)
-            @victima = Sivel2Gen::Victima.find(params[:victima_id].to_i)
-            @personaant = @victima.persona
-            @caso = @victima.caso
+            @caso = Sivel2Gen::Caso.find(params[:caso_id].to_i)
             @caso.current_usuario = current_usuario
-            @victima.persona = @persona
             if !remplazar_antes_salvar_v
               return
             end
             if Sivel2Gen::Victima.where(persona_id: @persona.id).
                 where(caso_id: @caso.id).count == 0
+              @victima = Sivel2Gen::Victima.create(persona_id: @persona.id,
+                                                   caso_id: @caso.id)
               @victima.save!
             else
               puts "Ya existe esa persona en el caso"
@@ -78,17 +77,6 @@ module Sivel2Gen
             end
             if !remplazar_despues_salvar_v
               return
-            end
-            if (@personaant.nombres == 'N' && 
-                @personaant.apellidos == 'N') ||
-              (@personaant.nombres == '' && @personaant.apellidos == '')
-              if !remplazar_antes_destruir_p
-                return
-              end
-              begin
-              @personaant.destroy
-              rescue e
-              end
             end
             respond_to do |format|
               format.html { 

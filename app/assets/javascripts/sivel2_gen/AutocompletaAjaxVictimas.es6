@@ -5,7 +5,6 @@ export default class Sivel2GenAutocompletaAjaxVictimas {
    * Más bien en esta todo static
    */
 
-
   // Elije una persona en autocompletación
   static operarElegida (eorig, cadpersona, id, otrosop) {
     let root = window
@@ -19,18 +18,15 @@ export default class Sivel2GenAutocompletaAjaxVictimas {
         Sivel2GenAutocompletaAjaxVictimas.claseEnvoltura)
       return
     }
-    const elemIdVictima = divcp.parentElement.querySelector('.caso_victima_id')
-      .querySelector('input')
-    if (elemIdVictima == null) {
-      window.alert('No se ubico .caso_victima_id')
+    const elemIdCaso = divcp.parentElement.querySelector('.caso_id')
+    if (elemIdCaso == null) {
+      window.alert('No se ubico .caso_id')
       return
     }
-    const idVictima = elemIdVictima.value
-
+    const idCaso = elemIdCaso.value
     let d = 'persona_id=' + idPersona
-    d += "&victima_id=" + idVictima
+    d += "&caso_id=" + idCaso
     const a = root.puntomontaje + 'personas/remplazar'
-
     window.Rails.ajax({
       type: 'GET',
       url: a,
