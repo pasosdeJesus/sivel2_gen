@@ -2,6 +2,41 @@
 // Este se convertirá a ES5 como módulo CommonJS
 // Para que no se quiebre antes debe crearse exports y modules
 
+
+//  Generic event abstractor
+function agregarEvento( obj, evt, fn ) {
+  if ( 'undefined' != typeof obj.addEventListener ) {
+    obj.addEventListener( evt, fn, false );
+  } else if ( 'undefined' != typeof obj.attachEvent ) {
+    obj.attachEvent( "on" + evt, fn );
+    }
+                    }
+
+// Basado en HoverListener de 
+// https://stackoverflow.com/questions/262740/javascript-onhover-event
+var EscuchadorHover = {
+  agregarElem: function( elem, retrollamada_ins, retrollamada_des, espera ) {
+    if ( espera === undefined ) {
+      espera = 1000;
+    }
+
+    var tempHover;
+
+    gid = elem.id.replace('t-', 'r-');
+    nelem = document.querySelector("#" + gid);
+    agregarEvento( nelem, 'mouseover', function() {
+      
+      tempHover = setTimeout( retrollamada_ins, espera );
+    } );
+
+    agregarEvento( nelem, 'mouseout', function() {
+      clearTimeout( tempHover );
+      retrollamada_des();
+    } );
+  }
+}
+
+
 export default class Sivel2GenMotorEs6 {
 
   static get MapaOSMLatInicial() { 
@@ -13,6 +48,7 @@ export default class Sivel2GenMotorEs6 {
 
   static iniciar() {
 
+    
      /**
      * Detecta eventos click.
      * @param {event} e evento
@@ -57,7 +93,17 @@ export default class Sivel2GenMotorEs6 {
           }
         })
       }
-    }, false);
+      }, false);
+
+      [...document.querySelectorAll('.ruta-hover-visible')].forEach(e => {
+        EscuchadorHover.agregarElem(e, () => {
+          e.style.visibility = "visible"
+          }, () => {
+          e.style.visibility = "hidden"
+          }, 10 );
+      })
+
+
   }
 
   static crea_copia_de_combatiente(obj, fobj){
