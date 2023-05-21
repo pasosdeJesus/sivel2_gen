@@ -314,8 +314,9 @@ module Sivel2Gen
     #
     # Tomo ideas para manipulación svg de 
     # https://thoughtbot.com/blog/organized-workflow-for-svg
-    def embeber_mapacalormuncol_svg(depid, depcad, titulo, subtitulo, titulorangos, fuente,
-                                    cantidadesmun, opciones = {})
+    def embeber_mapacalormuncol_svg(
+      depid, depcad, titulo, subtitulo, titulorangos, fuente, 
+      cantidadesmun, opciones = {})
       # Color más oscuro (para rango4)
       cr = 0
       cv = 255
