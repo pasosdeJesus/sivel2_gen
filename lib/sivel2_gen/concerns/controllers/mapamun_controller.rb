@@ -30,6 +30,9 @@ module Sivel2Gen
             pColormax = escapar_param(params, [:filtro, 'colormax'])
             pExcluirCateRep = escapar_param(params, [:filtro, 'excluircaterep'])
             pDepartamento = escapar_param(params, [:filtro, 'departamento'])
+            if pDepartamento.nil? || pDepartamento == '' 
+              pDepartamento = 11
+            end
 
             lcat = Sivel2Gen::Categoria.habilitados.pluck(:id)
             pCategoria = params[:filtro] && params[:filtro][:categoria] ?
