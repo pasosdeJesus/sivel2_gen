@@ -1,5 +1,5 @@
 <div class="page-header">
-  <h1>Victimizaciones individuales por municipio de Boyacá</h1>
+  <h1>Victimizaciones individuales por municipio</h1>
 </div>
 
 <%= simple_form_for :filtro, 
@@ -46,7 +46,11 @@
           value_method: :id,
           label: false,
           include_blank: '-- Departamento',
-          input_html: { "data-contarautomatico" => "" }
+          selected: Msip::ModeloHelper::poromision(
+            params, "departamento", 11),
+          input_html: { 
+            "data-contarautomatico" => ""
+          }
         %>
       </div>
       <div class="col-sm-3">
