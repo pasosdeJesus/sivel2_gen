@@ -186,6 +186,25 @@ module Sivel2Gen
             end
           end
 
+          def edad
+            if !persona || !caso || !persona.anionac || !caso.fecha
+              return nil
+            end
+            return Msip::EdadSexoHelper.edad_de_fechanac_fecha(
+              persona.anionac, persona.mesnac, persona.dianac, 
+              caso.fecha.year, caso.fecha.month, caso.fecha.day)
+          end
+
+          def edadactual
+            if !persona || !caso || !persona.anionac || !caso.fecha
+              return nil
+            end
+            return Msip::EdadSexoHelper.edad_de_fechanac_fecha(
+              persona.anionac, persona.mesnac, persona.dianac, 
+              Date.today.year, Date.today.month, Date.today.day)
+          end
+
+
           def presenta(atr)
             sivel2_gen_victima_presenta(atr)
           end
