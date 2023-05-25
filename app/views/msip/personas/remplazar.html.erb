@@ -3,8 +3,7 @@
   url: sivel2_gen.casos_path(@caso).sub(/\./,"/"),
   :html => { :class => 'form-horizontal' } do |c| %>
   <div class='campos-persona-con-victima-id'>
-    <%= c.simple_fields_for :victima, @victima,  include_id: false do |v| %> 
-      <% # El anterior con include_id: false para que no se genere un campo id escondido con victima_atributes_0_id que no sería remplazado %>
+    <%= c.simple_fields_for :victima, @victima do |v| %> 
       <div class='caso_victima_id'>
         <input type='hidden'
                name='caso[victima_attributes][<%= @victima.id.to_s %>][id]' 
