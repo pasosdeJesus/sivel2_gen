@@ -9,7 +9,7 @@
             id: "agregar-casofuenteprensa" %>
     <% end %>
 
-    <%= turbo_stream.append "fuentesprensa_frame" do %>
+    <%= turbo_stream.append "fuentesprensa_marco" do %>
       <%= render "/sivel2_gen/casos/caso_fuenteprensa_campos", fp: cfp_form %>
     <% end %>
   <% end %>

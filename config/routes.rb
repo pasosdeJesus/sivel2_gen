@@ -78,6 +78,13 @@ Sivel2Gen::Engine.routes.draw do
       collection { post :importa }
   end
 
+  resources :casos_fotra, only: [], param: :index do 
+    member do
+      delete '(:id)', to: "casofotras#destroy", as: "eliminar"
+      post '/' => "casofotras#create"
+    end
+  end
+
   resources :casos_fuenteprensa, only: [], param: :index do 
     member do
       delete '(:id)', to: "fuentesprensa#destroy", as: "eliminar"
@@ -85,10 +92,10 @@ Sivel2Gen::Engine.routes.draw do
     end
   end
 
-  resources :casos_fotra, only: [], param: :index do 
+  resources :casos_ubicacionpre, only: [], param: :index do 
     member do
-      delete '(:id)', to: "casofotras#destroy", as: "eliminar"
-      post '/' => "casofotras#create"
+      delete '(:id)', to: "ubicacionpre#destroy", as: "eliminar"
+      post '/' => "ubicacionpre#create"
     end
   end
 

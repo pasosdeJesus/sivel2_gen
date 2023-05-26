@@ -1,0 +1,15 @@
+<div id="ubicacionespre_marco">
+  <%= f.simple_fields_for :caso_ubicacionpre, 
+    child_index: params[:index] do |cfp| %>
+    <%= render '/sivel2_gen/casos/caso_ubicacionpre_campos', :fp => cfp %>
+  <% end %>
+</div>
+
+<%= f.submit "Agregar ubicación",
+      formaction: casos_ubicacionpre_path(index: @caso.ubicacionpre.size),
+      formmethod: :post,
+      formnovalidate: true,
+      class: 'btn btn-sm btn-primary agregar-vic',
+      name: "agregar-casoubicacionpre",
+      id: "agregar-casoubicacionpre" %>
+

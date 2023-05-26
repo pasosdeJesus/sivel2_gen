@@ -1,0 +1,39 @@
+<% htmlid = f.object && f.object.id ? f.object.id : 0 %>
+<%= render partial: 'msip/ubicacionespre/cuatro_filas', locals: {
+  f: f,
+  htmlid: "ubicacionpre-#{htmlid}",
+  estilogen: 'display: block',
+  campofecha: nil,
+  campofecha_etiqueta: nil,
+  campopais: :ubicacionpre_pais,
+  campopais_etiqueta: 'País',
+  campodepartamento: :ubicacionpre_departamento,
+  campodepartamento_etiqueta: 'Departamento',
+  campomunicipio: :ubicacionpre_municipio,
+  campomunicipio_etiqueta: 'Municipio',
+  idresto: 'restoubicacionpre',
+  campocentropoblado: :ubicacionpre_clase,
+  campocentropoblado_etiqueta: 'Centro poblado',
+  campolugar: :ubicacionpre_lugar,
+  campolugar_etiqueta: 'Barrio o vereda',
+  campoubicacionpre_id: :ubicacionpre_id,
+  campositio: :ubicacionpre_sitio,
+  campositio_etiqueta: 'Dirección o finca',
+  campotsitio: :ubicacionpre_tsitio,
+  campotsitio_etiqueta: 'Tipo de sitio',
+  campolatitud: :ubicacionpre_latitud_localizado,
+  campolatitud_etiqueta: 'Latitud',
+  campolongitud: :ubicacionpre_longitud_localizado,
+  campolongitud_etiqueta: 'Longitud'
+} %>
+
+
+<%= f.input :region, 
+  disabled: true,
+  include_blank: true,
+  collection: Sivel2Gen::Region.all,
+  selected: f.object.region_id,
+  label_method: :presenta_nombre,
+  input_html: {
+  }
+%>

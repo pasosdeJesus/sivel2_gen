@@ -1,0 +1,52 @@
+<%= turbo_frame_tag "caso_ubicacionpre_#{ubp.index}" do %>
+<div class='control-group nested-fields'>
+  <div class="controls">
+    <%= ubp.input :id, as: :hidden %>
+    <div class="row">
+      <div class="col-md-6">
+        <%= ubp.input :fecha,
+          :input_html => { type: "date" },
+          :as => :string, :label => "Fecha" %>
+      </div>
+      <div class="col-md-6">
+        <%= ubp.association :ubicacionpre,
+          collection: Msip::ModeloHelper.opciones_tabla_basica(
+            Msip::Ubicacionpre, ubp, :ubicacionpre
+          ),
+          label_method: :nombre,
+          value_method: :id %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <%= ubp.input :ubicacion %>
+      </div>
+      <div class="col-md-6">
+        <%= ubp.input :clasificacion %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <%= ubp.input :ubicacionfisica %>
+      </div>
+      <div class="col-md-6">
+        <%= ubp.association :anexo_caso,
+          collection: Sivel2Gen::AnexoCaso.where(caso_id: ubp.object.caso_id),
+          label_method: lambda { |t| t.msip_anexo.adjunto_file_name },
+          value_method: :id %>
+      </div>
+    </div>
+    <%= ubp.submit "Eliminar", 
+        formaction: eliminar_casos_ubicacionpre_path(id: ubp.object.id, index: ubp.index),
+        formmethod: :delete, 
+        formnovalidate: true, 
+        class: 'btn btn-sm btn-danger',
+        data: { 
+          turbo_frame: "caso_ubicacionpre_#{ubp.index}",
+          disable_with: false
+        } %>
+  </div>
+</div>
+<% end %>

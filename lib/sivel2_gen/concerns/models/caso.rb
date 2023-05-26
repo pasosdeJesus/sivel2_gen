@@ -65,6 +65,15 @@ module Sivel2Gen
           has_many :fuenteprensa, through: :caso_fuenteprensa, 
             class_name: 'Msip::Fuenteprensa'
 
+          has_many :caso_ubicacionpre, foreign_key: "caso_id", 
+            validate: true, dependent: :destroy, 
+            class_name: 'Sivel2Gen::CasoUbicacionpre', inverse_of: :caso
+          accepts_nested_attributes_for :caso_ubicacionpre, 
+            allow_destroy: true, reject_if: :all_blank
+          has_many :ubicacionpre, through: :caso_ubicacionpre, 
+            class_name: 'Msip::Ubicacionpre'
+
+
           has_and_belongs_to_many :frontera, 
             class_name: 'Sivel2Gen::Frontera',
             foreign_key: 'caso_id',
