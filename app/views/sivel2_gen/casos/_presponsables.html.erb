@@ -1,14 +1,14 @@
-<div id="presponsables_frame">
-<%= f.simple_fields_for :caso_presponsable, child_index: params[:index] do |cpr| %>
-  <%= render '/sivel2_gen/casos/caso_presponsable_campos', :f => cpr %>
-<% end %>
+<div id="presponsables_marco">
+  <%= f.simple_fields_for :caso_presponsable, child_index: params[:index] do |cpr| %>
+    <%= render '/sivel2_gen/casos/caso_presponsable_campos', :f => cpr %>
+  <% end %>
 </div>
 
 <%= f.submit "Agregar presunto responsable",
-      formaction: casos_presponsable_path(index: @caso.presponsable.size),
-      formmethod: :post,
-      formnovalidate: true,
-      class: 'btn btn-sm btn-primary agregar-vic',
-      name: "agregar-casopresponsable",
-      id: "agregar-casopresponsable" %>
+  formaction: casos_presponsable_path(index: @caso.presponsable.size),
+  formmethod: :post,
+  formnovalidate: true,
+  class: 'btn btn-sm btn-primary agregar-vic',
+  name: "agregar-casopresponsable",
+  id: "agregar-casopresponsable" %>
 

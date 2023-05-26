@@ -1,44 +1,45 @@
 <%= turbo_frame_tag "caso_fotra_#{fp.index}" do %>
-<div class='control-group nested-fields'>
-  <div class="controls">
-    <%= fp.input :id, as: :hidden %>
+  <div class='control-group nested-fields'>
+    <div class="controls">
+      <%= fp.input :id, as: :hidden %>
 
-    <div class="row">
-      <div class="col-md-6">
-        <%= fp.input :fecha,
-          :input_html => { type: "date" },
-          :as => :string, :label => "Fecha" %>
+      <div class="row">
+        <div class="col-md-6">
+          <%= fp.input :fecha,
+            :input_html => { type: "date" },
+            :as => :string, :label => "Fecha" %>
+        </div>
+        <div class="col-md-6">
+          <%= fp.input :nombre %>
+        </div>
       </div>
-      <div class="col-md-6">
-        <%= fp.input :nombre %>
-      </div>
-    </div>
 
-    <div class="row">
-      <div class="col-md-6">
-        <%= fp.input :anotacion %>
+      <div class="row">
+        <div class="col-md-6">
+          <%= fp.input :anotacion %>
+        </div>
+        <div class="col-md-6">
+          <%= fp.input(:tfuente, collection: [ 'Directa', 'Indirecta' ], 
+                       label: "Tipo de Fuente",
+                       include_blank: false ) %>
+        </div>
       </div>
-      <div class="col-md-6">
-        <%= fp.input(:tfuente, collection: [ 'Directa', 'Indirecta' ], 
-                    label: "Tipo de Fuente",
-                    include_blank: false ) %>
-      </div>
-    </div>
-  
-    <div class="row">
-      <div class="col-md-6">
-        <%= fp.input :ubicacionfisica %>
-      </div>
-      <div class="col-md-6">
-        <%= fp.association :anexo_caso,
-          collection: Sivel2Gen::AnexoCaso.where(caso_id: fp.object.caso_id),
-          label_method: lambda { |t| t.msip_anexo.adjunto_file_name },
-          value_method: :id %>
-      </div>
-    </div>
 
-    <%= fp.submit "Eliminar", 
-        formaction: eliminar_casos_fotra_path(id: fp.object.id, index: fp.index),
+      <div class="row">
+        <div class="col-md-6">
+          <%= fp.input :ubicacionfisica %>
+        </div>
+        <div class="col-md-6">
+          <%= fp.association :anexo_caso,
+            collection: Sivel2Gen::AnexoCaso.where(caso_id: fp.object.caso_id),
+            label_method: lambda { |t| t.msip_anexo.adjunto_file_name },
+            value_method: :id %>
+        </div>
+      </div>
+
+      <%= fp.submit "Eliminar", 
+        formaction: eliminar_casos_fotra_path(
+          id: fp.object.id, index: fp.index),
         formmethod: :delete, 
         formnovalidate: true, 
         class: 'btn btn-sm btn-danger',
@@ -47,6 +48,6 @@
           disable_with: false
         } %>
 
+    </div>
   </div>
-</div>
 <% end %>

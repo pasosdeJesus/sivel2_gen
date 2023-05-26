@@ -1,5 +1,6 @@
 <%= fields model: @caso do |form| %>
-  <%= form.simple_fields_for :caso_fuenteprensa, child_index: params[:index] do |cfp_form| %>
+  <%= form.simple_fields_for :caso_fuenteprensa, 
+    child_index: params[:index] do |cfp_form| %>
     <%= turbo_frame_tag "caso_fuenteprensa_#{cfp_form.index}" do %>
       <%= cfp_form.hidden_field :id, value: params[:id] %>
       <%= cfp_form.hidden_field :_destroy, value: true %>

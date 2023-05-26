@@ -1,14 +1,14 @@
-<div id="fotras_frame">
-<%= f.simple_fields_for :caso_fotra, child_index: params[:index] do |cfo| %>
-  <%= render '/sivel2_gen/casos/caso_fotra_campos', :fp => cfo %>
-<% end %>
+<div id="fotras_marco">
+  <%= f.simple_fields_for :caso_fotra, child_index: params[:index] do |cfo| %>
+    <%= render '/sivel2_gen/casos/caso_fotra_campos', :fp => cfo %>
+  <% end %>
 </div>
 
 <%= f.submit "Agregar otra fuente",
-      formaction: casos_fotra_path(index: @caso.caso_fotra.size),
-      formmethod: :post,
-      formnovalidate: true,
-      class: 'btn btn-sm btn-primary agregar-vic',
-      name: "agregar-casofotra",
-      id: "agregar-casofotra" %>
+  formaction: casos_fotra_path(index: @caso.caso_fotra.size),
+  formmethod: :post,
+  formnovalidate: true,
+  class: 'btn btn-sm btn-primary agregar-vic',
+  name: "agregar-casofotra",
+  id: "agregar-casofotra" %>
 
