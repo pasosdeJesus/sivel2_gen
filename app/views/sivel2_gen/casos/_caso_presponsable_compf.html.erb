@@ -1,8 +1,8 @@
 <% col1 = Sivel2Gen::Categoria.habilitados.where(tipocat: 'O').map(&:id) %>
 <% col2 = [] %>
-<% col2 = f.object.categoria_ids if f.object.categoria %>
+<% col2 = fp.object.categoria_ids if fp.object.categoria %>
 <% col = Sivel2Gen::Categoria.where(id: col1 | col2).joins(:supracategoria).order(['sivel2_gen_supracategoria.tviolencia_id', 'sivel2_gen_categoria.id']) %>
-<%= f.association :categoria, 
+<%= fp.association :categoria, 
   collection: col,
   label_method: lambda { 
     |c| c.supracategoria.tviolencia_id + c.id.to_s + ' ' + c.nombre },
