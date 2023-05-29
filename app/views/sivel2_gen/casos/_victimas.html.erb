@@ -15,7 +15,9 @@
       formaction: crear_victima_path(index: @caso.victima.size),
       formmethod: :post,
       formnovalidate: true,
-      class: 'btn btn-sm btn-primary agregar-vic',
+      class: 'btn btn-sm btn-primary',
       name: "agregar-victima",
-      id: "agregar-victima" %>
+      id: "agregar-victima",
+      data:  {
+        disable_with: false } %>
 </div>
