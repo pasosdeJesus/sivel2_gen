@@ -4,7 +4,7 @@ require 'date'
 module Sivel2Gen
   module Concerns
     module Controllers
-      module CasofotrasController
+      module CasoFotrasController
         extend ActiveSupport::Concern
 
         included do
