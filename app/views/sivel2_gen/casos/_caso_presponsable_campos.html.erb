@@ -1,15 +1,15 @@
-<%= turbo_frame_tag "caso_presponsable_#{f.index}" do %>
+<%= turbo_frame_tag "caso_presponsable_#{fp.index}" do %>
   <div class='control-group nested-fields'>
     <div class="controls">
-      <%= f.input :id, as: :hidden %>
+      <%= fp.input :id, as: :hidden %>
       <div class="row">
         <div class="col-md-12">
           <% col1 = Sivel2Gen::Presponsable.habilitados.map(&:id) %>
           <% col2 = [] %>
-          <% col2 = f.object.caso.presponsable_ids if f.object.caso %>
+          <% col2 = fp.object.caso.presponsable_ids if fp.object.caso %>
           <% col = Sivel2Gen::Presponsable.where(id: col1 | col2).
             order(:nombre) %>
-          <%= f.association :presponsable,
+          <%= fp.association :presponsable,
             collection: col,
             label_method: :nombre,
             value_method: :id,
@@ -24,7 +24,7 @@
 
       <div class="row">
         <div class="col-md-12">
-          <%= f.input :subdivision,
+          <%= fp.input :subdivision,
             label: "División / Brigada / Batallón",
             input_html: {
               "data-toggle" => 'tooltip',
@@ -35,40 +35,40 @@
 
       <div class="row">
         <div class="col-md-4">
-          <%= f.input :bloque,
+          <%= fp.input :bloque,
             input_html: {
               "data-toggle" => 'tooltip',
               "title" => 'En el caso de grupos paramilitares'
             } %>
         </div>
         <div class="col-md-4">
-          <%= f.input :frente,
+          <%= fp.input :frente,
             input_html: {
               "data-toggle" => 'tooltip',
               "title" => 'En el caso de grupos guerilleros'
             } %>
         </div>
         <div class="col-md-4">
-          <%= f.input :otro,
+          <%= fp.input :otro,
             input_html: {
               "data-toggle" => 'tooltip',
               "title" => 'Por ejemplo para incluir responsables individuales'
             } %>
         </div>
       </div>
-      <%= render 'sivel2_gen/casos/caso_presponsable_compf', f:  f %>
+      <%= render 'sivel2_gen/casos/caso_presponsable_compf', fp:  fp %>
 
-      <%= f.submit "Eliminar", 
-        formaction: eliminar_casos_presponsable_path(
-          id: f.object.id, index: f.index),
+      <%= fp.submit "Eliminar", 
+        formaction: eliminar_caso_presponsable_path(
+          id: fp.object.id, 
+          index: fp.index),
           formmethod: :delete,
           formnovalidate: true,
           class: 'btn btn-sm btn-danger',
           data: { 
-            turbo_frame: "caso_presponsable_#{f.index}",
+            turbo_frame: "caso_presponsable_#{fp.index}",
             disable_with: false
           } %>
-
     </div>
   </div>
 <% end %>

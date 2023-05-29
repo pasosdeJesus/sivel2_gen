@@ -3,7 +3,7 @@ require 'date'
 module Sivel2Gen
   module Concerns
     module Controllers
-      module CasopresponsablesController
+      module CasoPresponsablesController
         extend ActiveSupport::Concern
 
         included do
@@ -27,7 +27,8 @@ module Sivel2Gen
           private
 
           def prepara_caso
-            @caso = Sivel2Gen::Caso.new(caso_presponsable: [Sivel2Gen::CasoPresponsable.new])
+            @caso = Sivel2Gen::Caso.new(
+              caso_presponsable: [Sivel2Gen::CasoPresponsable.new])
           end
         end # included
 
