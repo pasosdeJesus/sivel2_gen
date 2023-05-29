@@ -1,0 +1,17 @@
+<%= simple_form_for @caso do |formu| %>
+  <%= formu.simple_fields_for :caso_fuenteprensa, 
+    child_index: params[:index] do |cfp_formu| %>
+    <%= turbo_stream.replace "agregar-caso-fuenteprensa" do %>
+      <%= formu.submit "Agregar fuente", 
+        formaction: caso_fuenteprensa_path(cfp_formu.index.to_i + 1), 
+        formmethod: :post, 
+        formnovalidate: true,
+        class: 'btn btn-sm btn-primary agregar-vic',
+        id: "agregar-caso-fuenteprensa" %>
+    <% end %>
+
+    <%= turbo_stream.append "caso_fuentesprensa_marco" do %>
+      <%= render "/sivel2_gen/casos/caso_fuenteprensa_campos", fp: cfp_formu %>
+    <% end %>
+  <% end %>
+<% end %>
