@@ -689,8 +689,6 @@ module Sivel2Gen
 
           # GET /casos/1/edit
           def edit
-            #@caso = Sivel2Gen::Caso.new(caso_fuenteprensa: [Sivel2Gen::CasoFuenteprensa.new])
-            #@fuenteprensa = @caso.caso_fuenteprensa.new
             self.class.asegura_camposdinamicos(@registro, current_usuario.id,
                                               pestanas_formulariocaso)
             if registrar_en_bitacora
@@ -806,9 +804,10 @@ module Sivel2Gen
 
               ## Por si cambia de pestania evita duplicidad de turbo
               if params[:_msip_enviarautomatico] == "1"
-                params_finales = caso_params.except(:caso_fuenteprensa_attributes,
-                                                    :caso_fotra_attributes,
-                                                   :caso_presponsable_attributes)
+                params_finales = caso_params.except(
+                  :caso_fuenteprensa_attributes,
+                  :caso_fotra_attributes,
+                  :caso_presponsable_attributes)
               else
                 params_finales = caso_params
               end

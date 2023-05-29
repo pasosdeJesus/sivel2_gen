@@ -1,9 +1,7 @@
-require 'date'
-
 module Sivel2Gen
   module Concerns
     module Controllers
-      module FuentesprensaController
+      module CasoFuentesprensaController
         extend ActiveSupport::Concern
 
         included do
@@ -27,7 +25,8 @@ module Sivel2Gen
           private
 
           def prepara_caso
-            @caso = Sivel2Gen::Caso.new(caso_fuenteprensa: [Sivel2Gen::CasoFuenteprensa.new])
+            @caso = Sivel2Gen::Caso.new(
+              caso_fuenteprensa: [Sivel2Gen::CasoFuenteprensa.new])
           end
         end # included
 

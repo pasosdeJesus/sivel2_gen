@@ -1,14 +1,15 @@
-<div id="fuentesprensa_marco">
-  <%= f.simple_fields_for :caso_fuenteprensa, child_index: params[:index] do |cfp| %>
+<div id="caso_fuentesprensa_marco">
+  <%= f.simple_fields_for :caso_fuenteprensa, 
+    child_index: params[:index] do |cfp| %>
     <%= render '/sivel2_gen/casos/caso_fuenteprensa_campos', :fp => cfp %>
   <% end %>
 </div>
 
 <%= f.submit "Agregar fuente",
-  formaction: casos_fuenteprensa_path(index: @caso.fuenteprensa.size),
+  formaction: caso_fuenteprensa_path(index: @caso.fuenteprensa.size),
   formmethod: :post,
   formnovalidate: true,
   class: 'btn btn-sm btn-primary agregar-vic',
-  name: "agregar-casofuenteprensa",
-  id: "agregar-casofuenteprensa" %>
+  name: "agregar-caso-fuenteprensa",
+  id: "agregar-caso-fuenteprensa" %>
 
