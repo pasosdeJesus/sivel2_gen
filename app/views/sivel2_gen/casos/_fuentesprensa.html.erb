@@ -9,7 +9,9 @@
   formaction: caso_fuenteprensa_path(index: @caso.fuenteprensa.size),
   formmethod: :post,
   formnovalidate: true,
-  class: 'btn btn-sm btn-primary agregar-vic',
+  class: 'btn btn-sm btn-primary',
   name: "agregar-caso-fuenteprensa",
-  id: "agregar-caso-fuenteprensa" %>
+  id: "agregar-caso-fuenteprensa",
+  data:  {
+    disable_with: false } %>
 
