@@ -9,7 +9,9 @@
   formaction: crear_caso_presponsable_path(index: @caso.presponsable.size),
   formmethod: :post,
   formnovalidate: true,
-  class: 'btn btn-sm btn-primary agregar-vic',
+  class: 'btn btn-sm btn-primary',
   name: "agregar-caso-presponsable",
-  id: "agregar-caso-presponsable" %>
+  id: "agregar-caso-presponsable",
+  data:  {
+    disable_with: false } %>
 
