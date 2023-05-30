@@ -802,17 +802,7 @@ module Sivel2Gen
                 end
               end
 
-              ## Por si cambia de pestania evita duplicidad de turbo
-              if params[:_msip_enviarautomatico] == "1"
-                params_finales = caso_params.except(
-                  :caso_fuenteprensa_attributes,
-                  :caso_fotra_attributes,
-                  :caso_presponsable_attributes)
-              else
-                params_finales = caso_params
-              end
-
-              if @caso.update(params_finales)
+              if @caso.update(caso_params)
 
 
                 if registrar_en_bitacora
