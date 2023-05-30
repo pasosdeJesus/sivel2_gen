@@ -6,7 +6,7 @@
 </div>
 
 <%= f.submit "Agregar presunto responsable",
-  formaction: caso_presponsable_path(index: @caso.presponsable.size),
+  formaction: crear_caso_presponsable_path(index: @caso.presponsable.size),
   formmethod: :post,
   formnovalidate: true,
   class: 'btn btn-sm btn-primary agregar-vic',
