@@ -802,7 +802,6 @@ module Sivel2Gen
                 end
               end
 
-
               params[:caso][:victima_attributes].each do |index, victima_params|
                 if !victima_params[:id].present?
                   vic = Sivel2Gen::Victima.create(victima_params)
