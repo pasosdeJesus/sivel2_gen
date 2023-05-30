@@ -3,7 +3,7 @@
     child_index: params[:index] do |cfp_formu| %>
     <%= turbo_stream.replace "agregar-caso-fuenteprensa" do %>
       <%= formu.submit "Agregar fuente", 
-        formaction: caso_fuenteprensa_path(cfp_formu.index.to_i + 1), 
+        formaction: crear_caso_fuenteprensa_path(cfp_formu.index.to_i + 1), 
         formmethod: :post, 
         formnovalidate: true,
         class: 'btn btn-sm btn-primary agregar-vic',

@@ -3,7 +3,7 @@
     child_index: params[:index] do |cpr_form| %>
     <%= turbo_stream.replace "agregar-caso-presponsable" do %>
       <%= form.submit "Agregar presunto responsable", 
-        formaction: caso_presponsable_path(cpr_form.index.to_i + 1), 
+        formaction: crear_caso_presponsable_path(cpr_form.index.to_i + 1), 
         formmethod: :post,
         formnovalidate: true,
         class: 'btn btn-sm btn-primary agregar-vic',
