@@ -25,7 +25,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/heb412_gen.git
-  revision: 34edd70dcddb486c4a4db33adeda1f180f5c9378
+  revision: 6cdb9623c87365d15accef41dd5af610d3f45cf3
   branch: main
   specs:
     heb412_gen (2.2.0.beta2)
@@ -36,7 +36,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/mr519_gen.git
-  revision: f9e2d3dd9300505067cf74d78a5d290c606218ec
+  revision: c29fc45dbc5bed1c239b13995f1ad68dcedaa5c0
   branch: main
   specs:
     mr519_gen (2.2.0.beta2)
@@ -45,7 +45,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/msip.git
-  revision: ce5c5cdfbc31eac6d995811a01b9320b50d155f5
+  revision: d4db20c2da70e902bddcbadbf2f8104c3c797a33
   branch: main
   specs:
     msip (2.2.0.beta2)
@@ -307,8 +307,9 @@ GEM
       activesupport (>= 4.2)
       choice (~> 0.2.0)
       ruby-graphviz (~> 1.2)
-    rails-html-sanitizer (1.5.0)
-      loofah (~> 2.19, >= 2.19.1)
+    rails-html-sanitizer (1.6.0)
+      loofah (~> 2.21)
+      nokogiri (~> 1.14)
     rails-i18n (7.0.7)
       i18n (>= 0.7, < 2)
       railties (>= 6.0.0, < 8)
