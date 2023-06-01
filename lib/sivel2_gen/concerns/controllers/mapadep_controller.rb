@@ -96,7 +96,12 @@ module Sivel2Gen
             @mapadep_colormax_a = colormax.blue.to_i
 
             @mapadep_titulorangos = 'Rango de victimizaciones'
-            @mapadep_fuente = 'Fuente: Banco de Datos de Derechos Humanos, DIH y Violencia Política del CINEP www.nocheyniebla.org'
+            @mapadep_fuente = "Fuente: " + ENV.fetch(
+              "SIVEL2_MAPAFUENTE", 
+              "Banco de Datos de Derechos Humanos, DIH y "\
+              "Violencia Política del CINEP www.nocheyniebla.org"
+            )
+
 
             ajusta_titulos(pFini, pFfin, pTviolencia, pEtiqueta1,
                            pEtiqueta2, pColormax)
