@@ -136,7 +136,7 @@ module Sivel2Gen
         fuenteprensa_id: fuenteprensa.id,
         fecha: '2023-01-11',
       )
-      post casos_fuenteprensa_path(@caso, cf, format: :turbo_stream)
+      post crear_caso_fuenteprensa_path(@caso, cf, format: :turbo_stream)
       assert_response :success
       cf.destroy
       @caso.destroy
@@ -151,7 +151,7 @@ module Sivel2Gen
         nombre: "otra fuente",
         fecha: '2023-01-11',
       )
-      post casos_fotra_path(@caso, cof, format: :turbo_stream)
+      post crear_caso_fotra_path(@caso, cof, format: :turbo_stream)
       assert_response :success
       cof.destroy
       @caso.destroy
@@ -166,7 +166,7 @@ module Sivel2Gen
         presponsable_id: pr.id,
         tipo: 0
       )
-      post casos_fotra_path(@caso, cof, format: :turbo_stream)
+      post crear_caso_fotra_path(@caso, cof, format: :turbo_stream)
       assert_response :success
       cof.destroy
       @caso.destroy
