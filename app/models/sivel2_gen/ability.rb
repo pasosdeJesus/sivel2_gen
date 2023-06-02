@@ -243,8 +243,9 @@ module Sivel2Gen
 
       habilidad.can :buscar, Sivel2Gen::Caso
       habilidad.can :contar, Sivel2Gen::Caso
-      habilidad.can :lista, Sivel2Gen::Caso
       habilidad.can :exportaCSV, Sivel2Gen::Caso
+      habilidad.can :lista, Sivel2Gen::Caso
+      habilidad.can :reportar, Sivel2Gen::Caso
       habilidad.can [:read, :update], Mr519Gen::Encuestausuario
       habilidad.can :read, Msip::Orgsocial
 
