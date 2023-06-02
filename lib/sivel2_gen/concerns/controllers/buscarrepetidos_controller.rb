@@ -31,7 +31,7 @@ module Sivel2Gen
                 " AND c2.fecha <= '#{pffd}'"
             end
             res = Sivel2Gen::Caso.connection.select_all("
-              SELECT DISTINCT gr
+              SELECT DISTINCT '[' || ARRAY_TO_STRING(gr, ',') || ']'
               FROM (SELECT id, ARRAY(SELECT id FROM sivel2_gen_caso AS c2
                     WHERE c2.memo=c1.memo#{rf}) AS gr
                     FROM sivel2_gen_caso AS c1 ORDER BY id) AS s

@@ -14,7 +14,15 @@
           <tr>
             <% i=0; fila.try(:each) do |campo| %>
               <td>
-                <%= CGI.escapeHTML(campo[1].to_s) if campo[1] %>
+                <% if campo[1] %>
+                  <% sep = "" %>
+                  <% JSON.parse(campo[1]).each do |id| %>
+                    <%= sep %>
+                    <%= link_to id, sivel2_gen.caso_path(id), 
+                      target: "_blank" %>
+                    <% sep = "," %>
+                  <% end %>
+                <% end %>
                 <% i += 1 %>
               </td>
             <% end %>
