@@ -864,6 +864,8 @@ module Sivel2Gen
                 params_finales = params[:caso].except(
                   :caso_etiqueta_attributes,
                   :caso_anexo_attributes,
+                  :victima_attributes,
+                  :victimacolectiva_attributes,
                   :caso_fuenteprensa_attributes,
                   :caso_fotra_attributes,
                   :caso_presponsable_attributes,
