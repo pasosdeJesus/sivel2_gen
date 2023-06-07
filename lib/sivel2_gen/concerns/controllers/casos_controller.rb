@@ -805,12 +805,15 @@ module Sivel2Gen
               end
 
               if params[:_msip_enviarautomatico] == "1"
+                debugger
                 params_finales = caso_params.except(
                   :caso_etiqueta_attributes,
                   :caso_anexo_attributes,
                   :caso_fuenteprensa_attributes,
                   :caso_fotra_attributes,
-                  :caso_presponsable_attributes
+                  :caso_presponsable_attributes,
+                  :victima_attributes,
+                  :victimacolectiva_attributes
                 )
               else
                 params_finales = caso_params
