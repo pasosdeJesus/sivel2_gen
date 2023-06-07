@@ -865,6 +865,8 @@ module Sivel2Gen
                   :caso_anexo_attributes,
                   :caso_etiqueta_attributes,
                   :caso_anexo_attributes,
+                  :victima_attributes,
+                  :victimacolectiva_attributes,
                   :caso_fuenteprensa_attributes,
                   :caso_fotra_attributes,
                   :caso_presponsable_attributes,
