@@ -1,11 +1,11 @@
 <%= turbo_frame_tag "victimacolectiva_#{f.index}" do %>
 <div class='control-group nested-fields'>
   <div class="controls">
-    <% if !f.object.grupoper
-         f.object.grupoper = Msip::Grupoper.new
-    end %>
-
-    <%= render 'sivel2_gen/casos/colectivo_campos', :f => f %>
+    <% if f.object.grupoper.nil? %>
+      <% f.object.grupoper = Msip::Grupoper.new %>
+    <% end %>
+    <%= render partial: 'sivel2_gen/casos/colectivo_campos',
+      locals: {f: f} %>
 
     <%= f.submit "Eliminar", 
         formaction: eliminar_victimacolectiva_path(id: f.object.id, index: f.index),

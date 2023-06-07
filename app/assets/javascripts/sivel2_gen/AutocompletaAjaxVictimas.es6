@@ -35,7 +35,6 @@ export default class Sivel2GenAutocompletaAjaxVictimas {
         const divcp = eorig.target.closest('.' + Sivel2GenAutocompletaAjaxVictimas.claseEnvoltura)
         let r = resp.querySelector('.' + Sivel2GenAutocompletaAjaxVictimas.claseEnvoltura)
         divcp.innerHTML=r.innerHTML
-        document.dispatchEvent(new Event('sivel2_gen:autocompletada-victima'))
       },
       error: (resp, estado, xhr) => {
         window.alert('Error: ' + resp)

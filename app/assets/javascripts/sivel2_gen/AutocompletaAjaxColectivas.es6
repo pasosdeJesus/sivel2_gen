@@ -12,30 +12,26 @@ export default class Sivel2GenAutocompletaAjaxColectivas {
           Sivel2GenAutocompletaAjaxColectivas.claseEnvoltura)
       return
     }
-    
-    const elemIdColectivo = divcp.parentElement.querySelector(
-        '.caso_victimacolectiva_id').querySelector('input')
-    if (elemIdColectivo== null) {
-      window.alert('No se ubico .caso_victimacolectiva_id')
+
+    const elemIdCaso = divcp.parentElement.querySelector('.caso_id')
+    if (elemIdCaso == null) {
+      window.alert('No se ubico .caso_id')
       return
     }
-    const idColectivo = elemIdColectivo.value
-
-    let d = 'victima_idcolectiva=' + idColectivo
+    const idCaso = elemIdCaso.value
+    let d = '&caso_id=' + idCaso
     d += '&grupoper_id=' + idGrupo
     const a = root.puntomontaje + 'gruposper/remplazar'
-
     window.Rails.ajax({
       type: 'GET',
       url: a,
       data: d,
       success: (resp, estado, xhr) => {
-        const divcp = eorig.target.closest('.campos_grupoper')
+        const divcp = eorig.target.closest('.' +
+          Sivel2GenAutocompletaAjaxColectivas.claseEnvoltura)
 
-        let r = resp.querySelector('.campos_grupoper')
+        let r = resp.querySelector('.' + Sivel2GenAutocompletaAjaxColectivas.claseEnvoltura)
         divcp.innerHTML=r.innerHTML
-        document.dispatchEvent(new Event('sivel2_gen:autocompleto_grupoper',
-          [idColectivo, idGrupo]))
       },
       error: (resp, estado, xhr) => {
         window.alert('Error: ' + resp)
@@ -57,5 +53,6 @@ export default class Sivel2GenAutocompletaAjaxColectivas {
 
 }
 
-Sivel2GenAutocompletaAjaxColectivas.claseEnvoltura = 'nested-fields'
+Sivel2GenAutocompletaAjaxColectivas.claseEnvoltura =
+  'campos-grupoper-con-victimacolectiva-id'
 Sivel2GenAutocompletaAjaxColectivas.idDatalist = 'fuente-victimascolectivas'
