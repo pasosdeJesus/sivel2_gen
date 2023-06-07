@@ -1,8 +1,11 @@
 <div id="victimascolectivas_frame">
-<%= f.simple_fields_for :victimacolectiva do |vc| %>
-  <%= render 'victimacolectiva_campos', :f => vc %>
+<%= f.simple_fields_for :victimacolectiva, child_index: params[:index] do |vc| %>
+  <%= render '/sivel2_gen/casos/victimacolectiva_campos', :f => vc %>
 <% end %>
 </div>
+
+<datalist id='fuente-victimascolectivas'>
+</datalist>
 
 <div class="links">
   <%= f.submit "Agregar víctima colectiva",
