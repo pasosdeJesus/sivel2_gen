@@ -759,6 +759,7 @@ module Sivel2Gen
           # PATCH/PUT /casos/1
           # PATCH/PUT /casos/1.json
           def update_gen
+
             respond_to do |format|
               # En etiquetas pone usuario actual por omision
               if (!params[:caso][:caso_etiqueta_attributes].nil?)
@@ -804,7 +805,10 @@ module Sivel2Gen
 
               ## Por si cambia de pestania evita duplicidad de turbo
               if params[:_msip_enviarautomatico] == "1"
+                debugger
                 params_finales = caso_params.except(
+                  :victima_attributes,
+                  :victimacolectiva_attributes,
                   :caso_fuenteprensa_attributes,
                   :caso_fotra_attributes,
                   :caso_presponsable_attributes)
@@ -813,8 +817,6 @@ module Sivel2Gen
               end
 
               if @caso.update(params_finales)
-
-
                 if registrar_en_bitacora
                   Msip::Bitacora.agregar_actualizar(
                     request, :caso, :bitacora_cambio, 

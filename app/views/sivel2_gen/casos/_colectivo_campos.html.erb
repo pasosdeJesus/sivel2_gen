@@ -1,10 +1,9 @@
-<%= f.input :id, as: :hidden %>
-
-<%= f.simple_fields_for :grupoper do |g| %>
-  <%= render partial: 'msip/gruposper/grupoper_campos', 
-    locals: {f: g, fvictimacolectiva: f} %>
-<% end %>
-
+<div class='campos-grupoper-con-victimacolectiva-id'>
+  <%= f.simple_fields_for :grupoper do |g| %>
+    <%= render partial: 'sivel2_gen/casos/grupoper_campos', 
+      locals: {f: g, fvictimacolectiva: f} %>
+  <% end %>
+</div>
 
 <div class="row">
   <div class="col-md-6">
@@ -109,3 +108,8 @@
     %>
   </div>
 </div>
+
+<% if params[:controller] == "sivel2_gen/victimascolectivas" %>
+  <%= f.hidden_field :caso_id, value: params[:caso][:id],
+    class: "caso_id" %>
+<% end %>
