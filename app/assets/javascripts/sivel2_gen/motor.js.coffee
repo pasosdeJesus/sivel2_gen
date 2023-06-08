@@ -658,7 +658,6 @@ enviaFormularioContarPost= (root) ->
               $(btneliminar).trigger('click')
   )
 
-
   # Antes de eliminar víctima confirmar si se eliminan dependientes
   $('#victimas').on('cocoon:before-remove', '', (e, papa) ->
     confirma_elim_dep_victima(root, papa, nomactospe)
