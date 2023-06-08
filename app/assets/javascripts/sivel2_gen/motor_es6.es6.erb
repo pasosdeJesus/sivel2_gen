@@ -106,6 +106,62 @@ export default class Sivel2GenMotorEs6 {
 
   }
 
+  static crea_copia_de_victima(obj, fobj){
+    div_victima = obj.parentElement.parentElement;
+    valores_input= []
+    valores_select= []
+    div_victima.querySelectorAll('input').forEach(elem => {
+      valores_input.push(elem.value)
+    });
+    div_victima.querySelectorAll('select').forEach(elem => {
+      if(elem.multiple){
+        opciones = elem.options
+        valores_multi= []
+        for (const opc of opciones){
+          if(opc.selected){
+            valores_multi.push(opc.value)
+          }
+        }
+        valores_select.push(valores_multi)
+      }
+      else{
+        valores_select.push(elem.value)
+      }
+    });
+    document.querySelector('.agregar-vic').click();
+    setTimeout(() =>{
+      victimas = document.querySelector("#victimas").
+        querySelectorAll(".seccionvictima")
+      vic_agregado = victimas[victimas.length- 1]
+      vic_agregado.querySelectorAll('input').forEach((elem, i) => {
+        if(i >= 0 && i !=35){
+          if(elem.type != "hidden"){
+            elem.value = valores_input[i]
+            elem.dispatchEvent(new Event('input'));
+          }
+        }
+      })
+      vic_agregado.querySelectorAll('select').forEach((elem, i) => {
+        if(i >= 0 && i !=35){
+          if(elem.multiple){
+            for(const val of valores_select[i]){
+              for (const opc of elem.options) {
+                if(opc.value == val){
+                  opc.selected = true;
+                }
+              }
+            }
+          }
+          else{
+            elem.value = valores_select[i]
+          }
+        }
+      })
+      }
+    , 1000);
+    return false;
+  }
+
   static crea_copia_de_combatiente(obj, fobj){
     div_combatiente = obj.parentElement.parentElement;
     valores_input= []
