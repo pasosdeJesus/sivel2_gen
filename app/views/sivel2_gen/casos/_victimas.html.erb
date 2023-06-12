@@ -1,3 +1,4 @@
+
 <div id="victimas_frame">
 <%= f.simple_fields_for :victima, child_index: params[:index] do |victima| %>
   <%= render '/sivel2_gen/casos/victima_campos', :f => victima %>
@@ -15,9 +16,17 @@
       formaction: crear_victima_path(index: @caso.victima.size),
       formmethod: :post,
       formnovalidate: true,
-      class: 'btn btn-sm btn-primary',
+      class: 'btn btn-sm btn-primary agregar-vic',
       name: "agregar-victima",
       id: "agregar-victima",
       data:  {
         disable_with: false } %>
+</div>
+
+<div style="display: none" id="mensaje-copia-vic" class="spinner-cargando">
+  <div class="spinner-container">
+    <div class="spinner-border text-primary" role="status">
+      <span class="sr-only"></span>
+    </div>
+  </div>
 </div>
