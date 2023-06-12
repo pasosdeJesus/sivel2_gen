@@ -658,23 +658,6 @@ enviaFormularioContarPost= (root) ->
               $(btneliminar).trigger('click')
   )
 
-  #Permite crear copias de victimas agregadas 
-  @crea_copia_de_victima = (obj, fobj) ->
-    div_victima = $(obj).parent().parent()
-    valores= []
-    div_victima.find(':input').each(()->
-      valores.push($(this).val())
-    )
-    $('.add-vic').trigger("click")
-    setTimeout(()->
-      vic_agregada = $("#victimas div.seccionvictima:last")
-      vic_agregada.find(':input').each((i)->
-        if(i != 0 && i !=35)
-          $(this).val(valores[i])
-      )
-    , 1000)
-
-    return false;
 
   # Antes de eliminar víctima confirmar si se eliminan dependientes
   $('#victimas').on('cocoon:before-remove', '', (e, papa) ->
