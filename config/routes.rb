@@ -83,7 +83,6 @@ Sivel2Gen::Engine.routes.draw do
     collection { post :importa }
   end
 
-
   resources :caso_etiqueta, only: [], param: :index do 
     member do
       delete '(:id)', to: "caso_etiquetas#destroy", as: "eliminar"
