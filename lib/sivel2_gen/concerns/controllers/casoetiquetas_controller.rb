@@ -7,7 +7,8 @@ module Sivel2Gen
 
         included do
           include ActionView::Helpers::AssetUrlHelper
-
+          load_and_authorize_resource class: Sivel2Gen::Caso
+          before_action :prepara_caso
           # Crea una nueva etiqueta para el caso que recibe por parametro
           # params[:caso_id].  Pone valores simples en los campos requeridos
           def nueva
@@ -38,6 +39,22 @@ module Sivel2Gen
               end
             end
           end # def nueva
+
+          def destroy
+          end
+
+          def create
+          end
+
+          def update
+          end
+
+          private
+
+          def prepara_caso
+            @caso = Sivel2Gen::Caso.new(caso_etiqueta: [Sivel2Gen::CasoEtiqueta.new])
+          end
+
 
         end # included
 

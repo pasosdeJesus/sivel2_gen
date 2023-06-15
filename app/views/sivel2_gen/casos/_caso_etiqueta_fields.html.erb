@@ -1,3 +1,4 @@
+<%= turbo_frame_tag "casoetiqueta_#{f.index}" do %>
 <div class='control-group nested-fields'>
   <div class="controls">
 
@@ -50,9 +51,16 @@
       end
     %>
     <%= f.input :observaciones %>
-    <%= link_to_remove_association "Eliminar Etiqueta", f, 
-      class: 'btn btn-sm btn-danger',
-      style: 'margin-bottom: 1em'
-    %> 
+
+    <%= f.submit "Eliminar", 
+    formaction: eliminar_casoetiqueta_path(id: f.object.id, index: f.index),
+    formmethod: :delete,
+    formnovalidate: true,
+    class: 'btn btn-sm btn-danger',
+    data: { 
+      turbo_frame: "casoetiqueta_#{f.index}",
+      disable_with: false
+    } %>
   </div>
 </div>
+<% end %>
