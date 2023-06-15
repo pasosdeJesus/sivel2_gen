@@ -11,7 +11,6 @@ Sivel2Gen::Engine.routes.draw do
 
   get "/buscarrepetidos" => 'buscarrepetidos#reportar', as: :buscarrepetidos
   post "/buscarrepetidos" => 'buscarrepetidos#reportar', as: :envia_buscarrepetidos
-  get "/casoetiquetas/nueva", 'casoetiquetas#nueva'
   get "/casofotras/nuevo", 'casofotras#nuevo'
 
   get "/casos/busca" => 'casos#busca'
@@ -82,6 +81,13 @@ Sivel2Gen::Engine.routes.draw do
     member do
       delete '(:id)', to: "caso_fotras#destroy", as: "eliminar"
       post '/' => "caso_fotras#create", as: "crear"
+    end
+  end
+
+  resources :casoetiquetas, only: [], param: :index do 
+    member do
+      delete '(:id)', to: "casoetiquetas#destroy", as: "eliminar"
+      post '/' => "casoetiquetas#create", as: "crear"
     end
   end
 

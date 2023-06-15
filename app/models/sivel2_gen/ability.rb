@@ -280,6 +280,8 @@ module Sivel2Gen
 
       habilidad.can :manage, Sivel2Gen::CasoFotra
 
+      habilidad.can :manage, Sivel2Gen::CasoEtiqueta
+
       if usuario && usuario.rol then
         case usuario.rol
         when Ability::ROLANALI
