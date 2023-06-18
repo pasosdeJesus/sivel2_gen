@@ -161,8 +161,6 @@ module Sivel2Gen
           validate :caso_no_vacio, on: :update  # Con función para posibilitar sobrecargar
           validate :fuenteprensa_fecha_y_fuente_unicas
           validate :fecha_no_futura 
-          validate :hijos_valido
-
 
           def categoria_presponsable
             consl= "WITH RECURSIVE cteRecursion AS (
