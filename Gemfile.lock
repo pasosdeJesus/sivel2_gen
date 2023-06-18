@@ -43,7 +43,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/heb412_gen.git
-  revision: 545e813e120a1aed6f33d32ddf83a437372718e8
+  revision: 9a03320d8a0b842788340f3d2a12467d4a488e1f
   branch: v2.1
   specs:
     heb412_gen (2.1.0.beta1)
@@ -54,7 +54,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/mr519_gen.git
-  revision: cdaf09b16765f6c8b790d5f355e3c230185fcf32
+  revision: 5fa29ad770416bae1be77cc2ae0ada24d38111e3
   branch: v2.1
   specs:
     mr519_gen (2.1.0.beta1)
@@ -226,7 +226,7 @@ GEM
     mime-types-data (3.2023.0218.1)
     mini_mime (1.1.2)
     mini_portile2 (2.8.2)
-    minitest (5.18.0)
+    minitest (5.18.1)
     msgpack (1.7.1)
     net-imap (0.3.6)
       date
