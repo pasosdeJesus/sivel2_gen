@@ -111,7 +111,9 @@ export default class Sivel2GenMotorEs6 {
     valores_input= []
     valores_select= []
     div_victima.querySelectorAll('input').forEach(elem => {
-      valores_input.push(elem.value)
+      if(elem.type != 'submit'){
+        valores_input.push(elem.value)
+      }
     });
     div_victima.querySelectorAll('select').forEach(elem => {
       if(elem.multiple){
@@ -138,7 +140,7 @@ export default class Sivel2GenMotorEs6 {
       vic_agregado = victimas[victimas.length- 1]
       vic_agregado.querySelectorAll('input').forEach((elem, i) => {
         if(i >= 0 && i !=35){
-          if(elem.type != "hidden"){
+          if(elem.type != "hidden" && elem.type != 'submit' ){
             elem.value = valores_input[i]
             elem.dispatchEvent(new Event('input'));
           }
