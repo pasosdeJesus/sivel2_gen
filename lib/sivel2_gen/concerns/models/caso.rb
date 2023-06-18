@@ -115,7 +115,7 @@ module Sivel2Gen
             allow_destroy: true, reject_if: :all_blank
 
           has_many :victima,  foreign_key: "caso_id", dependent: :destroy, 
-            class_name: 'Sivel2Gen::Victima' 
+            class_name: 'Sivel2Gen::Victima'
           #, validate: true Manejar en aplicaciones que usen este motor
 
           has_many :persona, :through => :victima, class_name: 'Msip::Persona'
@@ -158,37 +158,13 @@ module Sivel2Gen
           validates :grimpunidad, length: { maximum: 8 }
           validates :grinformacion, length: { maximum: 8 }
           validate :categoria_presponsable
+          validate :caso_no_vacio, on: :update  # Con función para posibilitar sobrecargar
           validate :fuenteprensa_fecha_y_fuente_unicas
           validate :fecha_no_futura 
-          validate :caso_no_vacio, on: :update  # Con función para posibilitar sobrecargar
+          validate :hijos_valido
 
-          def caso_no_vacio
-            if self.memo.nil? || self.memo == ''
-              errors.add(:memo, 'La descripción del caso no debe estar vacía')
-            end
-          end
-
-          def fecha_no_futura
-            if self.fecha && self.fecha > Date.today
-            end
-          end
-
-          def fuenteprensa_fecha_y_fuente_unicas
-            fuentesprensa = self.caso_fuenteprensa
-            valfp = []
-            fuentesprensa.each do |fp|
-              if fp && fp.fuenteprensa && 
-                valfp.include?([fp.fecha, fp.fuenteprensa.nombre])
-                errors.add(:caso_fuenteprensa, "Fuente de prensa duplicada con misma fecha y fuente")
-              else
-                valfp.push([fp.fecha, fp.fuenteprensa ? 
-                            fp.fuenteprensa.nombre : ''])
-              end
-            end
-          end
 
           def categoria_presponsable
-
             consl= "WITH RECURSIVE cteRecursion AS (
                SELECT id, 1 AS Level
                    FROM public.sivel2_gen_presponsable
@@ -234,7 +210,31 @@ module Sivel2Gen
                            "no puede ser del Polo Estatal")
               end
             end
+          end
 
+          def caso_no_vacio
+            if self.memo.nil? || self.memo == ''
+              errors.add(:memo, 'La descripción del caso no debe estar vacía')
+            end
+          end
+
+          def fecha_no_futura
+            if self.fecha && self.fecha > Date.today
+            end
+          end
+
+          def fuenteprensa_fecha_y_fuente_unicas
+            fuentesprensa = self.caso_fuenteprensa
+            valfp = []
+            fuentesprensa.each do |fp|
+              if fp && fp.fuenteprensa && 
+                valfp.include?([fp.fecha, fp.fuenteprensa.nombre])
+                errors.add(:caso_fuenteprensa, "Fuente de prensa duplicada con misma fecha y fuente")
+              else
+                valfp.push([fp.fecha, fp.fuenteprensa ? 
+                            fp.fuenteprensa.nombre : ''])
+              end
+            end
           end
 
           require 'active_support/core_ext/hash' 
