@@ -22,7 +22,7 @@
         <% end %>
       <% end %>
       <%= despliega_abajo "Reportes y conteos" do %>
-        <%= opcion_menu "Conteo demografía víctimas", 
+        <%= opcion_menu "Conteo por demografía de víctimas", 
           sivel2_gen.conteos_personas_path, desplegable: true %>
         <%= opcion_menu "Listado de víctimas y casos", 
           sivel2_gen.victimas_path, desplegable: true %>
@@ -30,11 +30,11 @@
           sivel2_gen.conteos_victimizaciones_path, desplegable: true %>
         <%= opcion_menu "Conteo general de victimizaciones", 
           sivel2_gen.conteos_genvic_path, desplegable: true %>
-        <%= opcion_menu "Grafica de actos individuales", 
+        <%= opcion_menu "Gráfica de actos individuales", 
           sivel2_gen.graficar_actos_individuales_path,
           'data-turbo' => false,
           desplegable: true %>
-        <%= opcion_menu "Grafica de victimizaciones individuales", 
+        <%= opcion_menu "Gráfica de victimizaciones individuales", 
           sivel2_gen.graficar_victimizaciones_individuales_path,
           'data-turbo' => false,
           desplegable: true %>
@@ -75,7 +75,7 @@
         <%= opcion_menu "Clave y tema del usuario", main_app.editar_registro_usuario_path,
             desplegable: true %>
         <% if session[:capturacaso_acordeon] %>
-          <%= opcion_menu 'Desactivar ficha caso vertical ✓', 
+          <%= opcion_menu 'Desactivar ficha caso vertical', 
             sivel2_gen.fichacasovertical_path,
             desplegable: true, id: 'fichacasovertical' 
           %>
