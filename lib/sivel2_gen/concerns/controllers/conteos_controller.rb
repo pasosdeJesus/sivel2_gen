@@ -29,7 +29,7 @@ module Sivel2Gen
           # @titulo_personas_fecha y otras nuevas relacionads con filtros
           # (prefijo p)
           def personas_filtros_especializados
-            @titulo_personas = 'Demografía de Víctimas'
+            @titulo_personas = 'Conteo por demografía de víctimas'
             @titulo_personas_fecha = 'Fecha del Caso'
             @filtrosegun = personas_arma_filtros()
             @opsegun =  [''] + @filtrosegun.keys
@@ -453,7 +453,8 @@ module Sivel2Gen
             personas_post_consulta_final
 
             respond_to do |format|
-              format.html { render 'sivel2_gen/conteos/personas', layout: 'application' }
+              format.html { render 'sivel2_gen/conteos/personas', 
+                            layout: 'application' }
               format.json { head :no_content }
               format.js   { render 'sivel2_gen/conteos/personas' }
             end

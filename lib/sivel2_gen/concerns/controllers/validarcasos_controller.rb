@@ -259,7 +259,7 @@ module Sivel2Gen
           def validar
             authorize! :contar, Sivel2Gen::Caso
             @rango_fechas = 'Fecha del hecho'
-            @titulo_validarcasos = 'Reporte de Validaciones'
+            @titulo_validarcasos = 'Reporte de validación de casos'
             @validaciones = []
 
             validar_interno
