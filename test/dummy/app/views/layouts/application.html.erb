@@ -1,5 +1,5 @@
 <% content_for :titulo do %>
-    <%= Sivel2Gen.titulo %>
+    <%= Msip.titulo %>
 <% end %>
 
 <% content_for :menu do %>
@@ -8,16 +8,16 @@
       <%= despliega_abajo "Casos" do %>
         <%= opcion_menu "Listado", sivel2_gen.casos_path, desplegable: true %>
         <% if can?(:new, Sivel2Gen::Caso) %>
-          <%= opcion_menu "Nuevo Caso", sivel2_gen.new_caso_path,
+          <%= opcion_menu "Nuevo caso", sivel2_gen.new_caso_path,
             desplegable: true %>
-          <%= opcion_menu "Refrescar Listado de Casos", 
+          <%= opcion_menu "Refrescar listado", 
             sivel2_gen.casos_refresca_path,
             desplegable: true %>
-          <%= opcion_menu "Validar casos", sivel2_gen.validarcasos_path,
+          <%= opcion_menu "Reporte de validación", sivel2_gen.validarcasos_path,
             desplegable: true %>
-          <%= opcion_menu "Buscar Repetidos", sivel2_gen.buscarrepetidos_path,
+          <%= opcion_menu "Reporte de repetidos", sivel2_gen.buscarrepetidos_path,
             desplegable: true %>
-          <%= opcion_menu "Importar Relatos XRLAT", 
+          <%= opcion_menu "Importar relatos XRLAT", 
             sivel2_gen.casos_importarrelatos_path, desplegable: true %>
         <% end %>
       <% end %>
@@ -30,17 +30,17 @@
           sivel2_gen.conteos_victimizaciones_path, desplegable: true %>
         <%= opcion_menu "Conteo general de victimizaciones", 
           sivel2_gen.conteos_genvic_path, desplegable: true %>
-        <%= opcion_menu "Graficar actos individuales", 
+        <%= opcion_menu "Grafica de actos individuales", 
           sivel2_gen.graficar_actos_individuales_path,
           'data-turbo' => false,
           desplegable: true %>
-        <%= opcion_menu "Graficar victimizaciones individuales", 
+        <%= opcion_menu "Grafica de victimizaciones individuales", 
           sivel2_gen.graficar_victimizaciones_individuales_path,
           'data-turbo' => false,
           desplegable: true %>
       <% end %>
       <%= despliega_abajo "Mapas" do %>
-        <%= opcion_menu "Casos sobre Open Street Maps", 
+        <%= opcion_menu "Casos sobre OpenStreetMap", 
           sivel2_gen.casos_mapaosm_path, desplegable: true %>
         <%= opcion_menu "Victimizaciones individuales por departamento", 
           sivel2_gen.mapadepvic_path, desplegable: true %>
@@ -56,12 +56,12 @@
         <%= opcion_menu "Nube", heb412_gen.sisini_path,
             desplegable: true %>
         <% if can? :manage, ::Heb412Gen::Plantillahcm %>
-          <%= opcion_menu "Plantillas para listado en hojas de calculo",
+          <%= opcion_menu "Plantillas para un listado",
             heb412_gen.plantillashcm_path,
             desplegable: true %>
         <% end %>
         <% if can? :manage, ::Heb412Gen::Plantillahcr %>
-          <%= opcion_menu "Plantillas para un registro en hoja de calculo",
+          <%= opcion_menu "Plantillas para un registro",
             heb412_gen.plantillashcr_path,
             desplegable: true %>
         <% end %>
@@ -72,15 +72,15 @@
         <% end %>
       <% end %>
       <%= despliega_abajo "Administrar" do %>
-        <%= opcion_menu "Clave y Tema", main_app.editar_registro_usuario_path,
+        <%= opcion_menu "Clave y tema del usuario", main_app.editar_registro_usuario_path,
             desplegable: true %>
         <% if session[:capturacaso_acordeon] %>
-          <%= opcion_menu 'Ficha caso vertical ✓', 
+          <%= opcion_menu 'Desactivar ficha caso vertical ✓', 
             sivel2_gen.fichacasovertical_path,
             desplegable: true, id: 'fichacasovertical' 
           %>
         <% else %>
-          <%= opcion_menu 'Ficha caso vertical', 
+          <%= opcion_menu 'Activar ficha caso vertical', 
             sivel2_gen.fichacasovertical_path,
             desplegable: true, id: 'fichacasovertical' %>
         <% end %>
@@ -96,7 +96,7 @@
         <%= opcion_menu "Árbol de presuntos responsables",
           sivel2_gen.arbol_presponsables_path, desplegable: true %>
         <% if current_usuario.rol == Ability::ROLADMIN %>
-          <%= opcion_menu "Tablas Básicas", sivel2_gen.tablasbasicas_path,
+          <%= opcion_menu "Tablas básicas", sivel2_gen.tablasbasicas_path,
             desplegable: true %>
         <% end %>
         <% if can? :manage, Msip::Bitacora %>
@@ -112,7 +112,7 @@
         main_app.sign_out_path %>
     <% else %>
       <%= opcion_menu "Acerca de", sivel2_gen.acercade_path %>
-      <%= opcion_menu "Iniciar Sesión", main_app.new_usuario_session_path %> 
+      <%= opcion_menu "Iniciar sesión", main_app.new_usuario_session_path %> 
     <% end %>
   <% end %>
 <% end %>
@@ -120,9 +120,12 @@
 <% content_for :piedepagina do %>
   <span class='derechos'>
     Sistema de información de 
-    <a href='https://github.com/pasosdeJesus/si_iap/'>código abierto</a>.
+    <a href='https://gitlab.com/pasosdeJesus/si_iap/'>código abierto</a>.
     <br/>
-    Desarrollado por <a id='pasosdeJesus' href="http://www.pasosdeJesus.org" target="_blank">Pasos de Jesús</a>. 2023. 
+    Desarrollado por 
+    <a id='pasosdeJesus' href="http://www.pasosdeJesus.org" target="_blank">
+      Pasos de Jesús
+    </a>. 2023. 
   </span>
 <% end %>
 

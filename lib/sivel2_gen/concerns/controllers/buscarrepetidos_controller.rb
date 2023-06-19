@@ -10,7 +10,7 @@ module Sivel2Gen
           def reportar
             authorize! :read, Sivel2Gen::Caso
             @rango_fechas = 'Fecha del hecho'
-            @titulo = 'Reporte de Repetidos'
+            @titulo = 'Reporte de casos repetidos'
             @repetidos = []
 
             rf=""

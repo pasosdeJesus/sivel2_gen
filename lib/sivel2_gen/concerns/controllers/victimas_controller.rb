@@ -50,7 +50,7 @@ module Sivel2Gen
               c = Sivel2Gen::Victima.joins(:persona).all.order(
                 ['msip_persona.nombres', 'msip_persona.apellidos', :caso_id])
             end
-            @titulo = 'Víctimas y Casos'
+            @titulo = 'Listado de víctimas y casos'
             @pconsolidado = Sivel2Gen::Pconsolidado.
               where(fechadeshabilitacion: nil).order(:peso, :id).map { |r|
               [r.id, r.nombre, Sivel2Gen::Categoria.
