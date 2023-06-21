@@ -24,9 +24,9 @@ p.derechos {
 	color: #000000;
 	background-color: #f8f8f8;
 	border-top: 1px solid #e7e7e7;
-} 
+}
 
-.anexosdiv { 
+.anexosdiv {
 	border: 1px solid #e7e7e7;
 	border-radius: 5px;
 }
@@ -35,3 +35,24 @@ ul.heb412 {
 	list-style-type: none;
 }
 
+/* Estilo tabla de
+ * https://stackoverflow.com/questions/3053205/how-create-table-only-using-div-tag-and-css
+ */
+.div-tabla {
+  width: 100%;
+  display: table;
+}
+.div-tabla-cuerpo {
+  display: table-row-group;
+}
+
+.div-tabla-fila {
+  display: table-row;
+}
+
+.div-tabla-celda {
+  display: table-cell;
+  border: 1px solid #dddddd;
+  padding: 8px;
+  vertical-align: top;
+}
