@@ -31,11 +31,7 @@ module Sivel2Gen
 
         end # included
 
-<<<<<<< HEAD
       end
-=======
-      end 
->>>>>>> 9b9f8cb7 (En formulario caso las solicitudes usan turbo en lugar de coccon y jquery)
     end
   end
 end

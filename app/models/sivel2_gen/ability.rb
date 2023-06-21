@@ -269,7 +269,8 @@ module Sivel2Gen
       habilidad.can :contar, Msip::Ubicacion
       habilidad.can :nuevo, Msip::Ubicacion
       habilidad.can :mundep, Msip::Ubicacionpre
-      
+
+
       habilidad.can :manage, Sivel2Gen::CasoEtiqueta
 
       habilidad.can :manage, Sivel2Gen::CasoFuenteprensa
