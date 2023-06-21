@@ -1,0 +1,10 @@
+<%= fields model: @caso do |f| %>
+  <%= f.simple_fields_for :caso_solicitud, 
+    child_index: params[:index] do |subf| %>
+    <%= turbo_frame_tag "caso_solicitud_#{subf.index}" do %>
+      <%= subf.hidden_field :id, value: params[:id] %>
+      <%= subf.hidden_field :_destroy, value: true %>
+    <% end %>
+  <% end %>
+<% end %>
+
