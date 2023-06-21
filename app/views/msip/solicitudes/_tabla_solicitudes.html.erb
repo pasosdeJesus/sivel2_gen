@@ -20,15 +20,15 @@
       <% end %>
     </div>
   </div>
-  <div class="enlace-agregar-solicitud">
-    <%= f.submit "Agregar #{Msip::Solicitud.human_attribute_name(:Solicitud)}",
-      formaction: sivel2_gen.crear_caso_solicitud_path(index: @caso.caso_solicitud.size),
-      formmethod: :post,
-      formnovalidate: true,
-      class: 'btn btn-sm btn-primary',
-      name: "agregar-caso-solicitud",
-      id: "agregar-caso-solicitud", 
-      data:  {
-        disable_with: false } %>
-  </div>
+</div>
+<div class="enlace-agregar-solicitud">
+  <%= f.submit "Agregar #{Msip::Solicitud.human_attribute_name(:Solicitud)}",
+    formaction: sivel2_gen.crear_caso_solicitud_path(index: @caso.caso_solicitud.size),
+    formmethod: :post,
+    formnovalidate: true,
+    class: 'btn btn-sm btn-primary',
+    name: "agregar-caso-solicitud",
+    id: "agregar-caso-solicitud", 
+    data:  {
+      disable_with: false } %>
 </div>

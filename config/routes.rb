@@ -90,6 +90,13 @@ Sivel2Gen::Engine.routes.draw do
     end
   end
 
+  resources :caso_etiquetas, only: [], param: :index do 
+    member do
+      delete '(:id)', to: "caso_etiquetas#destroy", as: "eliminar"
+      post '/' => "caso_etiquetas#create", as: "crear"
+    end
+  end
+
   resources :caso_fotra, only: [], param: :index do 
     member do
       delete '(:id)', to: "caso_fotras#destroy", as: "eliminar"
@@ -140,7 +147,6 @@ Sivel2Gen::Engine.routes.draw do
     end
   end
   get '/victimas' => 'victimas#index', as: "victimas"
-
 
   namespace :admin do
     ab=::Ability.new

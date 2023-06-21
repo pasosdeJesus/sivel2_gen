@@ -275,8 +275,6 @@ module Sivel2Gen
 
       habilidad.can :mundep, Msip::Ubicacionpre
 
-      habilidad.can :manage, Sivel2Gen::CasoEtiqueta
-
       habilidad.can :manage, Sivel2Gen::CasoFuenteprensa
 
       habilidad.can :manage, Sivel2Gen::CasoFotra
