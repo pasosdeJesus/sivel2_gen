@@ -5,20 +5,19 @@
 
 <div id="solicitud" class="panel-body table-responsive" >
   <div class="div-tabla"> 
-      <div id="caso_solicitudes_marco" class="div-tabla-cuerpo">
-        <div class="div-tabla-fila"> 
-          <div class="div-tabla-celda">Solicitante</div>
-          <div class="div-tabla-celda">Fecha</div>
-          <div class="div-tabla-celda"><%= Msip::Solicitud.human_attribute_name(:Solicitud) %></div>
-          <div class="div-tabla-celda">Estado</div>
-          <div class="div-tabla-celda">Destinatario(s)</div>
-          <div class="div-tabla-celda">Acciones</div>
-        </div>
-        <%= f.simple_fields_for relacion do |op| %>
-          <%= render partial: 'msip/solicitudes/solicitud_campos', 
-            locals: {f: op} %>
-        <% end %>
+    <div id="caso_solicitudes_marco" class="div-tabla-cuerpo">
+      <div class="div-tabla-fila"> 
+        <div class="div-tabla-celda">Solicitante</div>
+        <div class="div-tabla-celda">Fecha</div>
+        <div class="div-tabla-celda"><%= Msip::Solicitud.human_attribute_name(:Solicitud) %></div>
+        <div class="div-tabla-celda">Estado</div>
+        <div class="div-tabla-celda">Destinatario(s)</div>
+        <div class="div-tabla-celda">Acciones</div>
       </div>
+      <%= f.simple_fields_for relacion do |op| %>
+        <%= render partial: 'msip/solicitudes/solicitud_campos', 
+          locals: {f: op} %>
+      <% end %>
     </div>
   </div>
   <div class="enlace-agregar-solicitud">
