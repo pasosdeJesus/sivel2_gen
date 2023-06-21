@@ -1,0 +1,17 @@
+<%= simple_form_for @caso do |form| %>
+  <%= form.simple_fields_for :caso_solicitud, 
+    child_index: params[:index] do |cfp_form| %>
+    <%= turbo_stream.replace "agregar-caso-solicitud" do %>
+      <%= form.submit "Agregar otra solicitud", 
+            formaction: crear_caso_solicitud_path(cfp_form.index.to_i + 1), 
+            formmethod: :post,
+            formnovalidate: true,
+            class: 'btn btn-sm btn-primary agregar-vic',
+            id: "agregar-caso-solicitud" %>
+    <% end %>
+
+    <%= turbo_stream.append "caso_solicitudes_marco" do %>
+      <%= render "/msip/solicitudes/solicitud_campos", f: cfp_form %>
+    <% end %>
+  <% end %>
+<% end %>
