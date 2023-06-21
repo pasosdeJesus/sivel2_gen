@@ -40,6 +40,7 @@ ActiveSupport::Inflector.inflections do |inflect|
 	inflect.irregular 'perfilorgsocial', 'perfilesorgsocial'
 	inflect.irregular 'sectorsocial', 'sectoressociales'
 	inflect.irregular 'ubicacion', 'ubicaciones'
+	inflect.irregular 'ubicacionpre', 'ubicacionespre'
 	inflect.irregular 'vinculoestado', 'vinculosestado'
 	inflect.irregular 'victimacolectiva', 'victimascolectivas'
 end

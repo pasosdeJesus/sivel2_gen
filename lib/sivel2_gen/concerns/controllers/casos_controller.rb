@@ -608,7 +608,7 @@ module Sivel2Gen
             elsif current_usuario && can?(:update, Sivel2Gen::Caso)
               [
                 { titulo: 'Datos Básicos', parcial: 'basicos'},
-                { titulo: 'Ubicación', parcial: 'ubicaciones'},
+                { titulo: 'Ubicación', parcial: 'ubicacionespre'},
                 { titulo: 'Fuentes Frecuentes', parcial: 'fuentesprensa'},
                 { titulo: 'Otras Fuentes', parcial: 'fotras'},
                 { titulo: 'Contexto', parcial: 'contextos'},

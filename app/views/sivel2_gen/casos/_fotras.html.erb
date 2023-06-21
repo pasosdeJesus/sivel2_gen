@@ -1,5 +1,6 @@
 <div id="caso_fotras_marco">
-  <%= f.simple_fields_for :caso_fotra, child_index: params[:index] do |cfo| %>
+  <%= f.simple_fields_for :caso_fotra, 
+    child_index: params[:index] do |cfo| %>
     <%= render '/sivel2_gen/casos/caso_fotra_campos', :fp => cfo %>
   <% end %>
 </div>

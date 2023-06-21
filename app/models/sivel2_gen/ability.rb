@@ -284,6 +284,8 @@ module Sivel2Gen
 
       habilidad.can :manage, Sivel2Gen::CasoSolicitud
 
+      habilidad.can :manage, Sivel2Gen::CasoUbicacionpre
+
 
       if usuario && usuario.rol then
         case usuario.rol

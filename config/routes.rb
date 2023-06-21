@@ -113,6 +113,13 @@ Sivel2Gen::Engine.routes.draw do
     end
   end
 
+  resources :caso_ubicacionpre, only: [], param: :index do 
+    member do
+      delete '(:id)', to: "caso_ubicacionespre#destroy", as: "eliminar"
+      post '/' => "caso_ubicacionespre#create", as: "crear"
+    end
+  end
+
 
   namespace :admin do
     ab=::Ability.new
