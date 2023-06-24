@@ -1,0 +1,17 @@
+<%= simple_form_for @caso do |form| %>
+  <%= form.simple_fields_for :anexo_caso,
+    child_index: params[:index] do |ca_form| %>
+    <%= turbo_stream.replace "agregar-caso-anexo" do %>
+      <%= form.submit "Añadir Anexo", 
+            formaction: crear_caso_anexo_path(ca_form.index.to_i + 1), 
+            formmethod: :post,
+            formnovalidate: true,
+            class: 'btn btn-sm btn-primary agregar-ca',
+            id: "agregar-caso-anexo" %>
+    <% end %>
+
+    <%= turbo_stream.append "caso_anexos_marco" do %>
+      <%= render "/sivel2_gen/casos/caso_anexo_campos", f: ca_form %>
+    <% end %>
+  <% end %>
+<% end %>
