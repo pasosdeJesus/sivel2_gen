@@ -263,6 +263,7 @@ module Sivel2Gen
       habilidad.can :descarga_anexo, Msip::Anexo
       habilidad.can :mostrar_portada, Msip::Anexo
       habilidad.can :abre_anexo, Msip::Anexo
+      habilidad.can :manage, Sivel2Gen::AnexoCaso
 
 
       habilidad.can :contar, Msip::Ubicacion
