@@ -884,7 +884,8 @@ module Sivel2Gen
 
                 if params[:_msip_enviarautomatico] == "1"
                   params_finales = caso_params.except(
-                    :caso_etiqueta_attributes)
+                    :caso_etiqueta_attributes
+                  )
                  else
                    params_finales = caso_params
                  end
