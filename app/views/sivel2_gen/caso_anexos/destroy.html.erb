@@ -1,0 +1,9 @@
+<%= fields model: @caso do |form| %>
+  <%= form.simple_fields_for :msip_anexo, 
+    child_index: params[:index] do |ca_form| %>
+    <%= turbo_frame_tag "caso_anexo_#{ca_form.index}" do %>
+      <%= ca_form.hidden_field :id, value: params[:id] %>
+      <%= ca_form.hidden_field :_destroy, value: true %>
+    <% end %>
+  <% end %>
+<% end %>
