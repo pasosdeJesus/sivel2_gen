@@ -9,8 +9,8 @@
             id: "agregar-casoetiqueta" %>
     <% end %>
 
-    <%= turbo_stream.append "casoetiqueta_frame" do %>
-      <%= render "/sivel2_gen/casos/caso_etiqueta_fields", f: ce_form %>
+    <%= turbo_stream.append "casoetiqueta_marco" do %>
+      <%= render "/sivel2_gen/casos/caso_etiqueta_campos", f: ce_form %>
     <% end %>
   <% end %>
 <% end %>
