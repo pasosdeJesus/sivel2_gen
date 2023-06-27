@@ -84,10 +84,10 @@ Sivel2Gen::Engine.routes.draw do
     end
   end
 
-  resources :casoetiquetas, only: [], param: :index do 
+  resources :caso_etiquetas, only: [], param: :index do 
     member do
-      delete '(:id)', to: "casoetiquetas#destroy", as: "eliminar"
-      post '/' => "casoetiquetas#create", as: "crear"
+      delete '(:id)', to: "caso_etiquetas#destroy", as: "eliminar"
+      post '/' => "caso_etiquetas#create", as: "crear"
     end
   end
 
