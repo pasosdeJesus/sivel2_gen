@@ -124,13 +124,6 @@ Sivel2Gen::Engine.routes.draw do
     end
   end
 
-  resources :caso_solicitud, only: [], param: :index do 
-    member do
-      delete '(:id)', to: "caso_solicitudes#destroy", as: "eliminar"
-      post '/' => "caso_solicitudes#create", as: "crear"
-    end
-  end
-
   resources :victimas, only: [], param: :index do
     member do
       delete '(:id)', to: "victimas#destroy", as: "eliminar"
