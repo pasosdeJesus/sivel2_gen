@@ -1,6 +1,7 @@
 <%= fields model: @caso do |form| %>
-  <%= form.simple_fields_for :casoetiqueta, child_index: params[:index] do |ce_form| %>
-    <%= turbo_frame_tag "casoetiqueta_#{ce_form.index}" do %>
+  <%= form.simple_fields_for :caso_etiqueta,
+    child_index: params[:index] do |ce_form| %>
+    <%= turbo_frame_tag "caso_etiqueta_#{ce_form.index}" do %>
       <%= ce_form.hidden_field :id, value: params[:id] %>
       <%= ce_form.hidden_field :_destroy, value: true %>
     <% end %>

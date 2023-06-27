@@ -1,4 +1,4 @@
-<div id="casoetiqueta_marco">
+<div id="caso_etiquetas_marco">
   <%= f.simple_fields_for :caso_etiqueta do |cetiqueta| %>
     <%= render 'sivel2_gen/casos/caso_etiqueta_campos', :f => cetiqueta %>
   <% end %>
@@ -10,8 +10,8 @@
       formmethod: :post,
       formnovalidate: true,
       class: 'btn btn-sm btn-primary agregar-ce',
-      name: "agregar-casoetiqueta",
-      id: "agregar-casoetiqueta", 
+      name: "agregar-caso-etiqueta",
+      id: "agregar-caso-etiqueta", 
       data:  {
         disable_with: false } %>
 </div>
