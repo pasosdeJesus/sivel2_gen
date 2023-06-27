@@ -22,52 +22,27 @@
       %> 
     </div>
     <div class="col-sm-6">
-      <% # Estilo con base en https://codepen.io/Davide_sd/pen/AmazD %>
-      <%= f.input :mostrar_cats, 
-      collection: [
-        [1, 'Todas'], [2, 'Algunas'], [0, 'Ninguna']
-      ], 
-      label_method: :last, 
-      value_method: :first,
-      as: :radio_buttons, 
-      item_wrapper_class: 'form-check-inline',
-      disabled: 2,
-      checked: 1,
-      required: false,
-      label: '',
-      input_html:  {
-        'data-contarautomatico' => ''
-      },
-      wrapper_html: {
-        style: 'width: 20rem; height: 2rem; position: relative; '\
-        'margin-left: auto; border-radius: 2rem; background: gray'
-      }
-    %>
+      <%= render partial: 'msip/controles/filtro_todos_algunos_ninguno/botones_radio',
+        locals: { f: f, atr: :mostrar_cats }%>
     </div>
   </div> <!-- row -->
   <div class='row'>
-    <% cats = Sivel2Gen::Categoria.habilitados.pluck(:id) %>
-    <%= f.input :categoria, 
-      collection: Sivel2Gen::Categoria.habilitados.group_by { |c| 
-        c.supracategoria.tviolencia_id
-      },
-      as: :grouped_select, 
-      group_method: :last, 
-      group_label_method: lambda { |ca| 
-        Sivel2Gen::Tviolencia.find(ca[0]).nombre
-      }, 
-      value_method: :id,
-      label_method: lambda { |cat| 
-        Sivel2Gen::Supracategoria.find(cat.supracategoria_id.to_i).
-          tviolencia_id + cat.id.to_s + ' ' + cat.nombre 
-      },
-      selected: cats,
-      label: false,
-      input_html: { 
-        "data-contarautomatico" => "",
-        class: 'chosen-select',
-        multiple: true
-      }
-    %>
+    <% col_en_grupos = Sivel2Gen::Categoria.habilitados.group_by { |c| 
+      c.supracategoria.tviolencia_id } %>
+    <% col_ids = Sivel2Gen::Categoria.habilitados.pluck(:id) %>
+    <%= render partial: 'msip/controles/filtro_todos_algunos_ninguno/cuadro_de_seleccion',
+      locals: { 
+        f: f, atr: :categoria, 
+        col_en_grupos: col_en_grupos,
+        col_ids: col_ids,
+        metodo_etiqueta_agrupamiento: lambda { |ca| 
+          Sivel2Gen::Tviolencia.find(ca[0]).nombre
+        },
+        metodo_valor: :id,
+        metodo_etiqueta: lambda { |cat| 
+          Sivel2Gen::Supracategoria.find(cat.supracategoria_id.to_i).
+            tviolencia_id + cat.id.to_s + ' ' + cat.nombre 
+        }
+      }%>
   </div> <!-- row -->
 <% end %>
