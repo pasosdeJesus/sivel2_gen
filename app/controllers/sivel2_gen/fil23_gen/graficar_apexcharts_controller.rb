@@ -37,10 +37,10 @@ module Sivel2Gen
           lsexo & params[:filtro][:sexo] : lsexo
 
         def consulta_gen(desagregado, filtros)
-          "select caso.fecha as fecha_caso, count(*) as total from cvt1 
-          JOIN sivel2_gen_caso as caso ON caso.id=caso_id 
+          "SELECT caso.fecha AS fecha_caso, count(*) AS total FROM cvt1 
+          JOIN sivel2_gen_caso AS caso ON caso.id=cvt1.caso_id 
           JOIN msip_persona AS persona ON persona.id=persona_id
-          JOIN msip_ubicacion as ubi ON ubi.id=caso.ubicacion_id
+          JOIN msip_ubicacion AS ubi ON ubi.id=caso.ubicacion_id
           JOIN sivel2_gen_categoria AS categoria ON categoria.id=categoria_id
           WHERE #{desagregado} 
           AND caso.fecha >='" + @vic_fechaini + "'
@@ -66,9 +66,9 @@ module Sivel2Gen
         end
 
         def consulta_totdep
-          "SELECT departamento.nombre AS departamento_nombre, COUNT(*) as total 
+          "SELECT departamento.nombre AS departamento_nombre, COUNT(*) AS total
           FROM cvt1
-          JOIN sivel2_gen_caso as caso ON caso.id=caso_id 
+          JOIN sivel2_gen_caso as caso ON caso.id=cvt1.caso_id 
           JOIN msip_ubicacion as ubi ON ubi.id=caso.ubicacion_id
           JOIN msip_departamento as departamento ON departamento.id=ubi.departamento_id
           GROUP BY 1;"
