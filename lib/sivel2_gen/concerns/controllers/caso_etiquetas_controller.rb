@@ -2,7 +2,7 @@
 module Sivel2Gen
   module Concerns
     module Controllers
-      module CasoetiquetasController
+      module CasoEtiquetasController
         extend ActiveSupport::Concern
 
         included do
