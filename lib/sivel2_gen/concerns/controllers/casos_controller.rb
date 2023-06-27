@@ -208,7 +208,7 @@ module Sivel2Gen
             begin
               @conscasocount = Conscaso.count
             rescue
-              puts Conscaso.refresca_conscaso
+              Conscaso.refresca_conscaso
               @conscasocount = Conscaso.count
             end
             #byebug
@@ -269,6 +269,7 @@ module Sivel2Gen
             end
 
             # Cuenta y Paginación
+            #Rails.logger.info @conscaso.to_sql
             @numconscaso = @conscaso.size
             @paginar = !params || !params[:filtro] ||
               !params[:filtro][:paginar] ||

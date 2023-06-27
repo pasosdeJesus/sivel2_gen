@@ -20,7 +20,8 @@ if params && params[:filtro]
     sol << :memo
   end
 end
-cons = @conscaso.joins('JOIN sivel2_gen_caso as caso ON caso.id=caso_id ' +
+cons = @conscaso.joins('JOIN sivel2_gen_caso as caso ' +
+    'ON caso.id=sivel2_gen_conscaso.caso_id ' +
     'LEFT JOIN msip_ubicacion ON msip_ubicacion.id=caso.ubicacion_id ' +
     'LEFT JOIN msip_departamento ON msip_departamento.id=msip_ubicacion.departamento_id ' +
     'LEFT JOIN msip_municipio ON msip_municipio.id=msip_ubicacion.municipio_id '

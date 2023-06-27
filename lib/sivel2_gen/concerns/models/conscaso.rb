@@ -87,10 +87,10 @@ module Sivel2Gen
 
           scope :filtro_categoria_id, lambda { |id|
             if id.is_a? Array
-              where('caso_id IN (SELECT caso_id
+              where('sivel2_gen_conscaso.caso_id IN (SELECT caso_id
                     FROM public.sivel2_gen_acto
                     WHERE sivel2_gen_acto.categoria_id IN (?)) OR
-                    caso_id IN (
+                    sivel2_gen_conscaso.caso_id IN (
                     SELECT caso_id FROM public.sivel2_gen_caso_presponsable
                     INNER JOIN public.sivel2_gen_caso_categoria_presponsable ON
                      public.sivel2_gen_caso_presponsable.id =
@@ -99,10 +99,10 @@ module Sivel2Gen
                    )',
                     id, id)
             else
-              where('caso_id IN (SELECT caso_id
+              where('sivel2_gen_conscaso.caso_id IN (SELECT caso_id
                     FROM public.sivel2_gen_acto
                     WHERE sivel2_gen_acto.categoria_id = ?) OR
-                    caso_id IN (
+                    sivel2_gen_conscaso.caso_id IN (
                     SELECT caso_id FROM public.sivel2_gen_caso_presponsable
                     INNER JOIN public.sivel2_gen_caso_categoria_presponsable ON
                      public.sivel2_gen_caso_presponsable.id =
@@ -115,14 +115,14 @@ module Sivel2Gen
           }
 
           scope :filtro_contexto_id, lambda { |idc|
-            where('caso_id IN (SELECT caso_id
+            where('sivel2_gen_conscaso.caso_id IN (SELECT caso_id
                   FROM public.sivel2_gen_caso_contexto
                   WHERE sivel2_gen_caso_contexto.contexto_id IN (?))',
                   idc)
           }
           
           scope :filtro_contextovictima_id, lambda { |idc|
-            where('caso_id IN (SELECT caso_id
+            where('sivel2_gen_conscaso.caso_id IN (SELECT caso_id
                   FROM public.sivel2_gen_victima INNER JOIN
                   public.sivel2_gen_contextovictima_victima ON
                   public.sivel2_gen_victima.id = public.sivel2_gen_contextovictima_victima.victima_id WHERE sivel2_gen_contextovictima_victima.contextovictima_id IN (?))',
@@ -135,7 +135,7 @@ module Sivel2Gen
           }
 
           scope :filtro_apellidos, lambda { |d|
-            where("caso_id IN (SELECT caso_id
+            where("sivel2_gen_conscaso.caso_id IN (SELECT caso_id
                     FROM public.sivel2_gen_victima 
                     INNER JOIN public.msip_persona
                     ON sivel2_gen_victima.persona_id=msip_persona.id
@@ -144,7 +144,7 @@ module Sivel2Gen
           }
 
           scope :filtro_nombres, lambda { |d|
-            where("caso_id IN (SELECT caso_id
+            where("sivel2_gen_conscaso.caso_id IN (SELECT caso_id
                     FROM public.sivel2_gen_victima 
                     INNER JOIN public.msip_persona
                     ON sivel2_gen_victima.persona_id=msip_persona.id
@@ -153,7 +153,7 @@ module Sivel2Gen
           }
 
           scope :filtro_victimacol, lambda { |d|
-            where("caso_id IN (SELECT caso_id
+            where("sivel2_gen_conscaso.caso_id IN (SELECT caso_id
                     FROM public.sivel2_gen_victimacolectiva 
                     INNER JOIN public.msip_grupoper
                     ON sivel2_gen_victimacolectiva.grupoper_id=msip_grupoper.id
@@ -162,7 +162,7 @@ module Sivel2Gen
           }
 
           scope :filtro_sexo, lambda { |s|
-            where('caso_id IN (SELECT caso_id
+            where('sivel2_gen_conscaso.caso_id IN (SELECT caso_id
                     FROM public.sivel2_gen_victima 
                     INNER JOIN public.msip_persona
                     ON sivel2_gen_victima.persona_id=msip_persona.id
@@ -170,19 +170,19 @@ module Sivel2Gen
           }
 
           scope :filtro_orientacionsexual, lambda { |s|
-            where('caso_id IN (SELECT caso_id
+            where('sivel2_gen_conscaso.caso_id IN (SELECT caso_id
                     FROM public.sivel2_gen_victima 
                     WHERE orientacionsexual=?)', s)
           }
 
           scope :filtro_rangoedad_id, lambda { |r|
-            where('caso_id IN (SELECT caso_id
+            where('sivel2_gen_conscaso.caso_id IN (SELECT caso_id
                     FROM public.sivel2_gen_victima 
                     WHERE sivel2_gen_victima.rangoedad_id = ?)', r)
           }
 
           scope :filtro_sectorsocial_id, lambda { |r|
-            where('caso_id IN (SELECT caso_id
+            where('sivel2_gen_conscaso.caso_id IN (SELECT caso_id
                     FROM public.sivel2_gen_victima
                     WHERE sivel2_gen_victima.sectorsocial_id = ? UNION 
                     SELECT caso_id FROM public.sivel2_gen_victima 
@@ -191,7 +191,7 @@ module Sivel2Gen
           }
 
           scope :filtro_organizacion_id, lambda { |r|
-            where('caso_id IN (SELECT caso_id
+            where('sivel2_gen_conscaso.caso_id IN (SELECT caso_id
                     FROM public.sivel2_gen_victima
                     WHERE sivel2_gen_victima.organizacion_id = ? UNION 
                     SELECT caso_id FROM public.sivel2_gen_victima 
@@ -200,38 +200,38 @@ module Sivel2Gen
           }
 
           scope :filtro_profesion_id, lambda { |r|
-            where('caso_id IN (SELECT caso_id
+            where('sivel2_gen_conscaso.caso_id IN (SELECT caso_id
                     FROM public.sivel2_gen_victima
                     WHERE sivel2_gen_victima.profesion_id IN (?))', r)
           }
 
 
           scope :filtro_filiacion_id, lambda { |r|
-            where('caso_id IN (SELECT caso_id
+            where('sivel2_gen_conscaso.caso_id IN (SELECT caso_id
                     FROM public.sivel2_gen_victima
                     WHERE sivel2_gen_victima.filiacion_id IN (?))', r)
           }
 
           scope :filtro_etiqueta, lambda { |c, e|
             if c 
-              where('caso_id IN (SELECT caso_id 
+              where('sivel2_gen_conscaso.caso_id IN (SELECT caso_id 
                 FROM public.sivel2_gen_caso_etiqueta
                 WHERE etiqueta_id = ?)', e)
             else
-              where('caso_id NOT IN (SELECT caso_id 
+              where('sivel2_gen_conscaso.caso_id NOT IN (SELECT caso_id 
                 FROM public.sivel2_gen_caso_etiqueta
                 WHERE etiqueta_id = ?)', e)
             end
           }
 
           scope :filtro_usuario_id, lambda { |u|
-            where('caso_id IN (SELECT caso_id
+            where('sivel2_gen_conscaso.caso_id IN (SELECT caso_id
                     FROM public.sivel2_gen_caso_usuario
                     WHERE sivel2_gen_caso_usuario.usuario_id = ?)', u)
           }
 
           scope :filtro_fechaingini, lambda { |f|
-            where('caso_id IN (SELECT id
+            where('sivel2_gen_conscaso.caso_id IN (SELECT id
                     FROM public.sivel2_gen_caso
                     WHERE created_at >= ?)', 
                   Msip::FormatoFechaHelper.fecha_local_estandar(f)
@@ -239,7 +239,7 @@ module Sivel2Gen
           }
 
           scope :filtro_fechaingfin, lambda { |f|
-            where('caso_id IN (SELECT id FROM public.sivel2_gen_caso
+            where('sivel2_gen_conscaso.caso_id IN (SELECT id FROM public.sivel2_gen_caso
               WHERE created_at <= ?)',
               Msip::FormatoFechaHelper.fecha_local_estandar(f)
                  )
@@ -247,7 +247,7 @@ module Sivel2Gen
           }
 
           scope :filtro_codigo, lambda { |c|
-            where(caso_id: c.split(' '))
+            where('sivel2_gen_conscaso.caso_id' => c.split(' '))
           }
 
         end
@@ -255,7 +255,7 @@ module Sivel2Gen
         module ClassMethods
 
           def consulta_base_sivel2_gen
-            "SELECT caso.id as caso_id, caso.fecha, caso.memo, 
+            r = "SELECT caso.id as caso_id, caso.fecha, caso.memo, 
         ARRAY_TO_STRING(ARRAY(SELECT COALESCE(departamento.nombre, '') ||  
         ' / ' || COALESCE(municipio.nombre, '')
         FROM public.msip_ubicacion AS ubicacion 
@@ -281,12 +281,14 @@ module Sivel2Gen
           categoria.supracategoria_id || ':' || categoria.id || ' ' ||
           categoria.nombre FROM public.sivel2_gen_categoria AS categoria, 
           public.sivel2_gen_supracategoria AS supracategoria,
-          public.sivel2_gen_acto AS acto
-          WHERE categoria.id=acto.categoria_id
+          public.sivel2_gen_acto
+          WHERE categoria.id=sivel2_gen_acto.categoria_id
           AND supracategoria.id=categoria.supracategoria_id
-          AND acto.caso_id=caso.id), ', ')
+          AND sivel2_gen_acto.caso_id=caso.id), ', ')
         AS tipificacion
         FROM public.sivel2_gen_caso AS caso"
+          #Rails.logger.info r
+          return r
           end
           
           def consulta_base
