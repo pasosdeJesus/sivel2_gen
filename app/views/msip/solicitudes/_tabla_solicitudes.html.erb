@@ -22,7 +22,7 @@
   </div>
   <div class="enlace-agregar-solicitud">
     <%= f.submit "Agregar #{Msip::Solicitud.human_attribute_name(:Solicitud)}",
-      formaction: crear_caso_solicitud_path(index: @caso.caso_solicitud.size),
+      formaction: sivel2_gen.crear_caso_solicitud_path(index: @caso.caso_solicitud.size),
       formmethod: :post,
       formnovalidate: true,
       class: 'btn btn-sm btn-primary',
