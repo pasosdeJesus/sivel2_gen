@@ -33,11 +33,13 @@
     <%= render partial: 'msip/controles/filtro_todos_algunos_ninguno/cuadro_de_seleccion',
       locals: { 
         f: f, atr: :categoria, 
+        como: :grouped_select,
         col_en_grupos: col_en_grupos,
         col_ids: col_ids,
         metodo_etiqueta_agrupamiento: lambda { |ca| 
           Sivel2Gen::Tviolencia.find(ca[0]).nombre
         },
+        metodo_grupo: :last,
         metodo_valor: :id,
         metodo_etiqueta: lambda { |cat| 
           Sivel2Gen::Supracategoria.find(cat.supracategoria_id.to_i).
