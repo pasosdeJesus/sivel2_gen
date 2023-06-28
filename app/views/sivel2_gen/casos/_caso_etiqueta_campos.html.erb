@@ -53,7 +53,7 @@
     <%= f.input :observaciones %>
 
     <%= f.submit "Eliminar", 
-      formaction: eliminar_caso_etiqueta_path(
+      formaction: sivel2_gen.eliminar_caso_etiqueta_path(
         id: f.object.id, index: f.index),
       formmethod: :delete,
       formnovalidate: true,

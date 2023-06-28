@@ -59,7 +59,7 @@
       <%= render 'sivel2_gen/casos/caso_presponsable_compf', fp:  fp %>
 
       <%= fp.submit "Eliminar", 
-        formaction: eliminar_caso_presponsable_path(
+        formaction: sivel2_gen.eliminar_caso_presponsable_path(
           id: fp.object.id, 
           index: fp.index),
           formmethod: :delete,
