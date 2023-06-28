@@ -6,7 +6,7 @@
 
 <div class="links">
   <%= f.submit "Agregar Etiqueta",
-      formaction: crear_caso_etiqueta_path(index: @caso.caso_etiqueta.size),
+      formaction: sivel2_gen.crear_caso_etiqueta_path(index: @caso.caso_etiqueta.size),
       formmethod: :post,
       formnovalidate: true,
       class: 'btn btn-sm btn-primary agregar-ce',
