@@ -1,15 +1,16 @@
 <%= simple_form_for @caso do |form| %>
-  <%= form.simple_fields_for :caso_etiqueta, child_index: params[:index] do |ce_form| %>
-    <%= turbo_stream.replace "agregar-casoetiqueta" do %>
+  <%= form.simple_fields_for :caso_etiqueta, 
+    child_index: params[:index] do |ce_form| %>
+    <%= turbo_stream.replace "agregar-caso-etiqueta" do %>
       <%= form.submit "Agregar Etiqueta", 
-            formaction: crear_casoetiqueta_path(ce_form.index.to_i + 1), 
+            formaction: crear_caso_etiqueta_path(ce_form.index.to_i + 1), 
             formmethod: :post,
             formnovalidate: true,
             class: 'btn btn-sm btn-primary agregar-ce',
-            id: "agregar-casoetiqueta" %>
+            id: "agregar-caso-etiqueta" %>
     <% end %>
 
-    <%= turbo_stream.append "casoetiqueta_marco" do %>
+    <%= turbo_stream.append "caso_etiquetas_marco" do %>
       <%= render "/sivel2_gen/casos/caso_etiqueta_campos", f: ce_form %>
     <% end %>
   <% end %>

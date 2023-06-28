@@ -40,6 +40,9 @@ module Sivel2Gen
             end
           end # def nueva
 
+          def new
+          end
+
           def destroy
           end
 
@@ -52,7 +55,8 @@ module Sivel2Gen
           private
 
           def prepara_caso
-            @caso = Sivel2Gen::Caso.new(caso_etiqueta: [Sivel2Gen::CasoEtiqueta.new])
+            @caso = Sivel2Gen::Caso.new(
+              caso_etiqueta: [Sivel2Gen::CasoEtiqueta.new])
           end
 
 
