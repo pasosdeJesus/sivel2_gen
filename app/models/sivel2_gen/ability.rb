@@ -220,10 +220,14 @@ module Sivel2Gen
 
       # La consulta web es publica dependiendo de
       if !usuario && Rails.application.config.x.sivel2_consulta_web_publica
+        habilidad.can :read, Msip::Ubicacionpre
+
         habilidad.can :buscar, Sivel2Gen::Caso
         habilidad.can :contar, Sivel2Gen::Caso
         habilidad.can :lista, Sivel2Gen::Caso
-        habilidad.can :read, Msip::Ubicacionpre
+        
+        habilidad.can [:read, :filtra_por_tviolencia], Sivel2Gen::Categoria
+        
 
         # API público
         # Mostrar un caso con casos/101
