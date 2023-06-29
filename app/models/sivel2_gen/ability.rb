@@ -223,6 +223,9 @@ module Sivel2Gen
         habilidad.can :buscar, Sivel2Gen::Caso
         habilidad.can :contar, Sivel2Gen::Caso
         habilidad.can :lista, Sivel2Gen::Caso
+
+        habilidad.can [:read, :filtra_por_tviolencia], Sivel2Gen::Categoria
+
         habilidad.can :read, Sip::Ubicacionpre
 
         # API público
