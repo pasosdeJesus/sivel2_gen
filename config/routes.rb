@@ -122,7 +122,6 @@ Sivel2Gen::Engine.routes.draw do
     member do
       delete '(:id)', to: "caso_presponsables#destroy", as: "eliminar"
       post '/' => "caso_presponsables#create", as: "crear"
-
     end
   end
 
