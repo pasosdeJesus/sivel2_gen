@@ -103,10 +103,10 @@ Sivel2Gen::Engine.routes.draw do
     end
   end
 
-  resources :caso_anexos, only: [], param: :index do 
+  resources :anexo_casos, only: [], param: :index do 
     member do
-      delete '(:id)', to: "caso_anexos#destroy", as: "eliminar"
-      post '/' => "caso_anexos#create", as: "crear"
+      delete '(:id)', to: "anexo_casos#destroy", as: "eliminar"
+      post '/' => "anexo_casos#create", as: "crear"
     end
   end
 
