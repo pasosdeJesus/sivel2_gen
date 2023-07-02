@@ -1,4 +1,3 @@
-
 require 'sivel2_gen/concerns/models/anexo'
 
 module Msip
