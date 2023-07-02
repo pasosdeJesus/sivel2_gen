@@ -1,17 +1,18 @@
-<div id="caso_anexos_marco">
-  <%= f.simple_fields_for :anexo_caso, child_index: params[:index] do |anexo| %>
-    <%= render 'sivel2_gen/casos/caso_anexo_campos', :f => anexo %>
+<div id="anexo_casos_marco">
+  <%= f.simple_fields_for :anexo_caso, child_index: params[:index],
+     :html => { :multipart => true } do |anexo| %>
+    <%= render 'sivel2_gen/casos/anexo_caso_campos', :f => anexo %>
   <% end %>
 </div>
 
 <div class="links">
   <%= f.submit "Añadir Anexo",
-      formaction: crear_caso_anexo_path(index: @caso.anexo_caso.size),
+      formaction: crear_anexo_caso_path(index: @caso.anexo_caso.size),
       formmethod: :post,
       formnovalidate: true,
       class: 'btn btn-sm btn-primary agregar-ca',
-      name: "agregar-caso-anexo",
-      id: "agregar-caso-anexo", 
+      name: "agregar-anexo-caso",
+      id: "agregar-anexo-caso",
       data:  {
         disable_with: false } %>
 </div>

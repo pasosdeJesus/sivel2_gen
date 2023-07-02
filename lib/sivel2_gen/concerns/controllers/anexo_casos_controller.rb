@@ -3,7 +3,7 @@ require 'date'
 module Sivel2Gen
   module Concerns
     module Controllers
-      module CasoAnexosController
+      module AnexoCasosController
         extend ActiveSupport::Concern
 
         included do
@@ -13,7 +13,7 @@ module Sivel2Gen
           before_action :prepara_caso
 
           def clase
-            "Sivel2Gen::CasoAnexo"
+            "Sivel2Gen::AnexoCaso"
           end
 
 
