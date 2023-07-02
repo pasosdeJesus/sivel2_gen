@@ -1,6 +1,5 @@
 <div id="anexo_casos_marco">
-  <%= f.simple_fields_for :anexo_caso, child_index: params[:index],
-     :html => { :multipart => true } do |anexo| %>
+  <%= f.simple_fields_for :anexo_caso, child_index: params[:index] do |anexo| %>
     <%= render 'sivel2_gen/casos/anexo_caso_campos', :f => anexo %>
   <% end %>
 </div>

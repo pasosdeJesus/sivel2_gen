@@ -10,12 +10,16 @@
           <%= a.input :id, as: :hidden %>
           <%= f.input :fecha,
             :input_html => { type: "date" },
-            :as => :string, :label => "Fecha" %>
+            :as => :string, 
+            :label => "Fecha" %>
           </div>
 
           <div class="col-md-6">
             <% if !a.object || !a.object.adjunto_file_name || !a.object.id %>
-              <%= a.input :adjunto, as: :file, label: 'Archivo' %>
+              <%= a.input :adjunto, as: :file, 
+                label: 'Archivo',
+                data:  {
+                  disable_with: false } %>
             <% else %>
               <div class="msip_anexo_adjunto">
                 <label for="msip_anexo_attributes_<%=a.object.id%>_adjunto">
