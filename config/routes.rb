@@ -72,6 +72,13 @@ Sivel2Gen::Engine.routes.draw do
 
   get '/victimascolectivas/nuevo' => 'victimascolectivas#nuevo'
 
+  resources :anexo_casos, only: [], param: :index do 
+    member do
+      delete '(:id)', to: "anexo_casos#destroy", as: "eliminar"
+      post '/' => "anexo_casos#create", as: "crear"
+    end
+  end
+
   resources :casos, path_names: { new: 'nuevo', edit: 'edita' } do
       collection { post :importa }
   end
@@ -108,7 +115,6 @@ Sivel2Gen::Engine.routes.draw do
     member do
       delete '(:id)', to: "caso_presponsables#destroy", as: "eliminar"
       post '/' => "caso_presponsables#create", as: "crear"
-
     end
   end
 

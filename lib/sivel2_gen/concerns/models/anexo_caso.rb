@@ -14,7 +14,7 @@ module Sivel2Gen
             class_name: "Sivel2Gen::Caso", inverse_of: :anexo_caso, 
             optional: false
           belongs_to :msip_anexo, foreign_key: "anexo_id", validate: true, 
-            class_name: "Msip::Anexo", optional: false
+            class_name: "Msip::Anexo", optional: false, inverse_of: :anexo_caso
           accepts_nested_attributes_for :msip_anexo, reject_if: :all_blank
 
           has_many :caso_fuenteprensa, foreign_key: "anexo_caso_id",

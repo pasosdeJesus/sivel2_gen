@@ -1,4 +1,4 @@
-<%= turbo_frame_tag "caso_anexo_#{f.index}" do %>
+<%= turbo_frame_tag "anexo_caso_#{f.index}" do %>
   <div class='control-group nested-fields'>
     <div class="controls">
       <% if f.object.msip_anexo.nil? %>
@@ -37,12 +37,12 @@
       <% end %> <!-- f.simple_fields_for :msip_anexo -->
 
       <%= f.submit "Eliminar", 
-        formaction: eliminar_caso_anexo_path(id: f.object.id, index: f.index),
+        formaction: eliminar_anexo_caso_path(id: f.object.id, index: f.index),
         formmethod: :delete,
         formnovalidate: true,
         class: 'btn btn-sm btn-danger',
         data: { 
-          turbo_frame: "caso_anexo_#{f.index}",
+          turbo_frame: "anexo_caso_#{f.index}",
           disable_with: false
         } %>
     </div>
