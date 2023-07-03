@@ -66,9 +66,44 @@
         <%= item_acordeon_bs(
           'filtros', "mfiltros_#{nomfiltro}", o.capitalize, false) do %>
           <div class="row filtro-fila">
+            <div class="offset-sm-6 col-sm-6">
+              <%= render partial: 'msip/controles/filtro_todos_algunos_ninguno/botones_radio',
+                locals: { f: f, atr: :botones_tan_departamentos} %>
+            </div>
+          </div>
+          <div class="row filtro-fila">
             <div class="offset-sm-0 col-sm-12 form-inline">
-              <%= f.input nomfiltro,
-                  collection: @estfiltrosm[o][:coleccion],
+              <% col_en_grupos = @estfiltrosm[o][:coleccion] %>
+              <!--% col_ids = col_en_grupos.pluck(:id) %-->
+              <% if @estfiltrosm[o][:metodo_id] %>
+                <% col_ids = @estfiltrosm[o][:coleccion].map(
+                  &@estfiltrosm[o][:metodo_id]) %>
+              <% else %>
+                <% col_ids = @estfiltrosm[o][:coleccion].map(&:last) %>
+              <% end %>
+              <!--
+                  como: nil,
+                  col_en_grupos: col_en_grupos,
+                  col_ids: col_ids,
+                  metodo_etiqueta_agrupamiento: nil,
+                  metodo_grupo: nil,
+                  metodo_valor: @estfiltrosm[o][:metodo_id],
+                  metodo_etiqueta: @estfiltrosm[o][:metodo_etiqueta]
+                 } %-->
+               <% dic = {
+                 collection: col_en_grupos,
+                 value_method: @estfiltrosm[o][:metodo_id],
+                 label_method: @estfiltrosm[o][:metodo_etiqueta],
+                 selected: col_ids,
+                 label: false,
+                 input_html: { 
+                   "data-contarautomatico" => "",
+                   class: 'chosen-select',
+                   multiple: true } 
+                 } %>
+
+               <%= f.input nomfiltro, dic %>
+<!--                  collection: @estfiltrosm[o][:coleccion],
                   label_method: @estfiltrosm[o][:metodo_etiqueta],
                   value_method: @estfiltrosm[o][:metodo_id],
                   label: false,
@@ -78,7 +113,7 @@
                     multiple: true,
                     'data-contarautomatico-post' => ''
                   }
-                %>
+                %-->
               </div> <!-- col -->
             </div> <!-- row -->
           <% end %> <!-- if @estfiltrosm[o] -->

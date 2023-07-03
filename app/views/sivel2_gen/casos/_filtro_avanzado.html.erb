@@ -158,9 +158,11 @@
       <div class="offset-sm-0 col-sm-10 offset-md-0 col-md-7">
         <% col1 = Sivel2Gen::Categoria.habilitados.where(tipocat: 'O').pluck(:id) %>
         <% col2 = Sivel2Gen::Categoria.habilitados.pluck(:id) %>
+        <% col3 = Sivel2Gen::Categoria.where(id: col1 | col2).joins(:supracategoria).
+          reorder('sivel2_gen_supracategoria.tviolencia_id', :id) %>
+
         <%= f.input :categoria_id,
-          collection: Sivel2Gen::Categoria.where(id: col1 | col2).joins(:supracategoria).
-          reorder('sivel2_gen_supracategoria.id_tviolencia', :id),
+          collection: col3,
           label_method: lambda {|t| 
             t.supracategoria.id_tviolencia + t.id.to_s + ' ' + t.nombre
           },
