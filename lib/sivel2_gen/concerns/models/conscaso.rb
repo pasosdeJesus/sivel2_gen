@@ -6,6 +6,9 @@ module Sivel2Gen
         extend ActiveSupport::Concern
 
         included do
+
+          self.primary_key = 'caso_id'
+
           belongs_to :caso, class_name: 'Sivel2Gen::Caso', optional: false
 
           has_many :ubicacion, through: :caso,
@@ -85,33 +88,22 @@ module Sivel2Gen
             end
           }
 
-          scope :filtro_categoria_id, lambda { |id|
-            if id.is_a? Array
-              where('sivel2_gen_conscaso.caso_id IN (SELECT caso_id
-                    FROM public.sivel2_gen_acto
-                    WHERE sivel2_gen_acto.categoria_id IN (?)) OR
-                    sivel2_gen_conscaso.caso_id IN (
-                    SELECT caso_id FROM public.sivel2_gen_caso_presponsable
-                    INNER JOIN public.sivel2_gen_caso_categoria_presponsable ON
-                     public.sivel2_gen_caso_presponsable.id =
-                    public.sivel2_gen_caso_categoria_presponsable.caso_presponsable_id WHERE
-                    public.sivel2_gen_caso_categoria_presponsable.categoria_id IN (?) 
-                   )',
-                    id, id)
-            else
-              where('sivel2_gen_conscaso.caso_id IN (SELECT caso_id
-                    FROM public.sivel2_gen_acto
-                    WHERE sivel2_gen_acto.categoria_id = ?) OR
-                    sivel2_gen_conscaso.caso_id IN (
-                    SELECT caso_id FROM public.sivel2_gen_caso_presponsable
-                    INNER JOIN public.sivel2_gen_caso_categoria_presponsable ON
-                     public.sivel2_gen_caso_presponsable.id =
-                    public.sivel2_gen_caso_categoria_presponsable.caso_presponsable_id WHERE
-                    public.sivel2_gen_caso_categoria_presponsable.categoria_id = ? 
-                   )',
-                    id, id)
-
+          scope :filtro_categoria_id, lambda { |ids|
+            if !ids.is_a? Array
+              ids = [ids]
             end
+            where('sivel2_gen_conscaso.caso_id IN (SELECT caso_id '\
+                  '  FROM public.sivel2_gen_acto '\
+                  '  WHERE sivel2_gen_acto.categoria_id IN (?) '\
+                  ') OR sivel2_gen_conscaso.caso_id IN ( '\
+                  '  SELECT caso_id FROM public.sivel2_gen_caso_presponsable '\
+                  '  INNER JOIN public.sivel2_gen_caso_categoria_presponsable ON '\
+                  '  public.sivel2_gen_caso_presponsable.id = '\
+                  '    public.sivel2_gen_caso_categoria_presponsable.caso_presponsable_id '\
+                  '  WHERE '\
+                  '    public.sivel2_gen_caso_categoria_presponsable.categoria_id IN (?) '\
+                  ')',
+                  ids, ids)
           }
 
           scope :filtro_contexto_id, lambda { |idc|
