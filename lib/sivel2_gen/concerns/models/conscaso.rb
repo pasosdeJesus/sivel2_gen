@@ -95,6 +95,9 @@ module Sivel2Gen
             where('sivel2_gen_conscaso.caso_id IN (SELECT caso_id '\
                   '  FROM public.sivel2_gen_acto '\
                   '  WHERE sivel2_gen_acto.id_categoria IN (?) '\
+                  ') OR sivel2_gen_conscaso.caso_id IN (SELECT caso_id '\
+                  '  FROM public.sivel2_gen_actocolectivo '\
+                  '  WHERE sivel2_gen_actocolectivo.id_categoria IN (?) '\
                   ') OR sivel2_gen_conscaso.caso_id IN ( '\
                   '  SELECT caso_id FROM public.sivel2_gen_caso_presponsable '\
                   '  INNER JOIN public.sivel2_gen_caso_categoria_presponsable ON '\
@@ -103,7 +106,7 @@ module Sivel2Gen
                   '  WHERE '\
                   '    public.sivel2_gen_caso_categoria_presponsable.id_categoria IN (?) '\
                   ')',
-                  ids, ids)
+                  ids, ids, ids)
           }
 
           scope :filtro_contexto_id, lambda { |idc|
