@@ -74,6 +74,12 @@
             </div>
           </div>
           <div class="row filtro-fila">
+            <div class="offset-sm-6 col-sm-6">
+              <%= render partial: 'msip/controles/filtro_todos_algunos_ninguno/botones_radio',
+                locals: { f: f, atr: :botones_tan_departamentos} %>
+            </div>
+          </div>
+          <div class="row filtro-fila">
             <div class="offset-sm-0 col-sm-12 form-inline">
               <% col_en_grupos = @estfiltrosm[o][:coleccion] %>
               <!--% col_ids = col_en_grupos.pluck(:id) %-->
@@ -86,14 +92,32 @@
               <%= render partial: 'msip/controles/filtro_tan/cuadro_de_seleccion',
                 locals: { 
                   f: f, atr: nomfiltro, 
-                  como: nil,
-                  col_en_grupos: col_en_grupos,
-                  col_ids: col_ids,
-                  metodo_etiqueta_agrupamiento: nil,
-                  metodo_grupo: nil,
-                  metodo_valor: @estfiltrosm[o][:metodo_id],
-                  metodo_etiqueta: @estfiltrosm[o][:metodo_etiqueta]
                 }%>
+               <% dic = {
+                 collection: col_en_grupos,
+                 value_method: @estfiltrosm[o][:metodo_id],
+                 label_method: @estfiltrosm[o][:metodo_etiqueta],
+                 selected: col_ids,
+                 label: false,
+                 input_html: { 
+                   "data-contarautomatico" => "",
+                   class: 'chosen-select',
+                   multiple: true } 
+                 } %>
+
+               <%= f.input nomfiltro, dic %>
+<!--                  collection: @estfiltrosm[o][:coleccion],
+                  label_method: @estfiltrosm[o][:metodo_etiqueta],
+                  value_method: @estfiltrosm[o][:metodo_id],
+                  label: false,
+                  selected: sel,
+                  input_html: {
+                    class: 'chosen-select',
+                    multiple: true,
+                    'data-contarautomatico-post' => ''
+                  }
+                %-->
+>>>>>>> 99d571b8 (Filtro avanzado al filtrar por tipo de violencia ahora si presenta todos los del tipo. Avanza #456.)
               </div> <!-- col -->
             </div> <!-- row -->
           <% end %> <!-- if @estfiltrosm[o] -->
