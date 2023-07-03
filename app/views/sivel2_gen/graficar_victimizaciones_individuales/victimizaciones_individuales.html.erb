@@ -74,12 +74,6 @@
             </div>
           </div>
           <div class="row filtro-fila">
-            <div class="offset-sm-6 col-sm-6">
-              <%= render partial: 'msip/controles/filtro_tan/botones_radio',
-                locals: { f: f, atr: :botones_tan_departamentos} %>
-            </div>
-          </div>
-          <div class="row filtro-fila">
             <div class="offset-sm-0 col-sm-12 form-inline">
               <% col_en_grupos = @estfiltrosm[o][:coleccion] %>
               <!--% col_ids = col_en_grupos.pluck(:id) %-->
@@ -92,31 +86,6 @@
               <%= render partial: 'msip/controles/filtro_tan/cuadro_de_seleccion',
                 locals: { 
                   f: f, atr: nomfiltro, 
-                }%>
-               <% dic = {
-                 collection: col_en_grupos,
-                 value_method: @estfiltrosm[o][:metodo_id],
-                 label_method: @estfiltrosm[o][:metodo_etiqueta],
-                 selected: col_ids,
-                 label: false,
-                 input_html: { 
-                   "data-contarautomatico" => "",
-                   class: 'chosen-select',
-                   multiple: true } 
-                 } %>
-
-               <%= f.input nomfiltro, dic %>
-<!--                  collection: @estfiltrosm[o][:coleccion],
-                  label_method: @estfiltrosm[o][:metodo_etiqueta],
-                  value_method: @estfiltrosm[o][:metodo_id],
-                  label: false,
-                  selected: sel,
-                  input_html: {
-                    class: 'chosen-select',
-                    multiple: true,
-                    'data-contarautomatico-post' => ''
-                  }
-                %-->
                   como: nil,
                   col_en_grupos: col_en_grupos,
                   col_ids: col_ids,
@@ -132,7 +101,7 @@
       <% end %> <!-- item_acordeon_bs -->
     </div> <!-- accordion filtro -->
 
-    <div class="row">
+  <div class="row">
       <div class="offset-sm-0 col-sm-3">
         <% des = Msip::ModeloHelper::poromision(
           params, :desagregarpor, @opdesagregarpor.first) %>
