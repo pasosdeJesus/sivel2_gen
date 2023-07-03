@@ -92,14 +92,14 @@ module Sivel2Gen
             if !ids.is_a? Array
               ids = [ids]
             end
-            where('sivel2_gen_conscaso.caso_id IN (SELECT caso_id '\
+            where('sivel2_gen_conscaso.caso_id IN (SELECT id_caso '\
                   '  FROM public.sivel2_gen_acto '\
                   '  WHERE sivel2_gen_acto.id_categoria IN (?) '\
-                  ') OR sivel2_gen_conscaso.caso_id IN (SELECT caso_id '\
+                  ') OR sivel2_gen_conscaso.caso_id IN (SELECT id_caso '\
                   '  FROM public.sivel2_gen_actocolectivo '\
                   '  WHERE sivel2_gen_actocolectivo.id_categoria IN (?) '\
                   ') OR sivel2_gen_conscaso.caso_id IN ( '\
-                  '  SELECT caso_id FROM public.sivel2_gen_caso_presponsable '\
+                  '  SELECT id_caso FROM public.sivel2_gen_caso_presponsable '\
                   '  INNER JOIN public.sivel2_gen_caso_categoria_presponsable ON '\
                   '  public.sivel2_gen_caso_presponsable.id = '\
                   '    public.sivel2_gen_caso_categoria_presponsable.id_caso_presponsable '\
