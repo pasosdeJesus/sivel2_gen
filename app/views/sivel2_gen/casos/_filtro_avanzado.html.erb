@@ -159,7 +159,7 @@
         <% col1 = Sivel2Gen::Categoria.habilitados.where(tipocat: 'O').pluck(:id) %>
         <% col2 = Sivel2Gen::Categoria.habilitados.pluck(:id) %>
         <% col3 = Sivel2Gen::Categoria.where(id: col1 | col2).joins(:supracategoria).
-          reorder('sivel2_gen_supracategoria.tviolencia_id', :id) %>
+          reorder('sivel2_gen_supracategoria.id_tviolencia', :id) %>
 
         <%= f.input :categoria_id,
           collection: col3,

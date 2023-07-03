@@ -37,10 +37,10 @@ module Sivel2Gen
           def filtra_por_tviolencia
             datos = []
             if params[:tviolencia] && Sivel2Gen::Supracategoria.where(
-                tviolencia_id: params[:tviolencia]).count > 0
+                id_tviolencia: params[:tviolencia]).count > 0
 
               supras = Sivel2Gen::Supracategoria.
-                where(tviolencia_id: params[:tviolencia])
+                where(id_tviolencia: params[:tviolencia])
               @categorias = Sivel2Gen::Categoria.
                 habilitados.where(supracategoria_id: supras.pluck(:id))
               datos[0] = @categorias.map { |cat| cat.id }
@@ -51,11 +51,11 @@ module Sivel2Gen
                 params[:categorias_seleccionadas] != ''
               categorias = Sivel2Gen::Categoria.where(
                 id: params[:categorias_seleccionadas]
-              ).map { |cat| cat.supracategoria.tviolencia_id }
+              ).map { |cat| cat.supracategoria.id_tviolencia}
               datos[0] = false
               if categorias.uniq.size <= 1
                 supras = Sivel2Gen::Supracategoria.
-                  where(tviolencia_id: categorias.uniq[0])
+                  where(id_tviolencia: categorias.uniq[0])
                 total_categorias = Sivel2Gen::Categoria.
                   habilitados.where(
                     supracategoria_id: supras.pluck(:id)

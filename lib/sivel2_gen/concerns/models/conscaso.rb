@@ -94,14 +94,14 @@ module Sivel2Gen
             end
             where('sivel2_gen_conscaso.caso_id IN (SELECT caso_id '\
                   '  FROM public.sivel2_gen_acto '\
-                  '  WHERE sivel2_gen_acto.categoria_id IN (?) '\
+                  '  WHERE sivel2_gen_acto.id_categoria IN (?) '\
                   ') OR sivel2_gen_conscaso.caso_id IN ( '\
                   '  SELECT caso_id FROM public.sivel2_gen_caso_presponsable '\
                   '  INNER JOIN public.sivel2_gen_caso_categoria_presponsable ON '\
                   '  public.sivel2_gen_caso_presponsable.id = '\
-                  '    public.sivel2_gen_caso_categoria_presponsable.caso_presponsable_id '\
+                  '    public.sivel2_gen_caso_categoria_presponsable.id_caso_presponsable '\
                   '  WHERE '\
-                  '    public.sivel2_gen_caso_categoria_presponsable.categoria_id IN (?) '\
+                  '    public.sivel2_gen_caso_categoria_presponsable.id_categoria IN (?) '\
                   ')',
                   ids, ids)
           }

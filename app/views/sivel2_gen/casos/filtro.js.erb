@@ -1,4 +1,5 @@
 $("#numconscaso").html("<%= @numconscaso %>");
+
 <%if @numconscaso <= Rails.configuration.x.sivel2_consweb_max.to_i || 
     current_usuario %>
   $("#casos").html("<%= escape_javascript(
