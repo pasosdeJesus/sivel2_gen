@@ -23,7 +23,7 @@ module Sivel2Gen
               :supracategoria_id,
               :contadaen,
               :tipocat,
-              :pconsolidado_id,
+              :id_pconsolidado,
               :observaciones,
               :fechacreacion_localizada,
               :habilitado
