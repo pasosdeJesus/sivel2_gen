@@ -6,30 +6,32 @@
       'clase_accordion-body': 'table-responsive',
       'estilo_accordion-body': 'overflow-x:scroll'
     }) do %>
-      <div id="familiares_marco_<%= index_vic %>">
-        <div class="row"> 
-          <div class="col">Nombres</div>
-          <div class="col">Apellidos</div>
-          <div class="col">Sexo</div>
-          <div class="col">Tipo Id.</div>
-          <div class="col">Número .Id</div>
-          <div class="col">Parentesco</div>
-          <div class="col">Acciones</div>
-        </div>
-        <%= f.simple_fields_for :persona_trelacion1,
-          child_index: params[:index] do |pt| %>
-          <%= render 'msip/personas/persona_familiar_campos', f: pt, per: f %>
-        <% end %>
+    <div id="familiares_marco_<%= index_vic %>">
+      <div class="row"> 
+        <div class="col">Nombres</div>
+        <div class="col">Apellidos</div>
+        <div class="col">Sexo</div>
+        <div class="col">Tipo Id.</div>
+        <div class="col">Número .Id</div>
+        <div class="col">Parentesco</div>
+        <div class="col">Acciones</div>
       </div>
+      <%= f.simple_fields_for :persona_trelacion1,
+        child_index: params[:index] do |pt| %>
+        <%= render 'msip/personas/persona_familiar_campos', f: pt, per: f %>
+      <% end %>
+    </div>
 
-      <%= f.submit "Añadir Familiar",
-          formaction: sivel2_gen.crear_familiar_path(index: f.object.personados.size, index_vic: index_vic),
-          formmethod: :post,
-          formnovalidate: true,
-          class: 'btn btn-sm btn-primary',
-          name: "agregar-familiar",
-          id: "agregar-familiar",
-          data:  {
-            disable_with: false } %>
+    <%= f.submit "Añadir Familiar",
+      formaction: sivel2_gen.crear_familiar_path(
+        index: f.object.personados.size, index_vic: index_vic),
+      formmethod: :post,
+      formnovalidate: true,
+      class: 'btn btn-sm btn-primary',
+      name: "agregar-familiar",
+      id: "agregar-familiar",
+      data:  {
+        disable_with: false } %>
+      } %>
   <% end %>
 </div> <!-- accordion -->

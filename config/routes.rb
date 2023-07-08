@@ -69,7 +69,6 @@ Sivel2Gen::Engine.routes.draw do
   get "/validarcasos" => 'validarcasos#validar', as: :validarcasos
   post "/validarcasos" => 'validarcasos#validar', as: :envia_validarcasos
 
-
   get '/victimascolectivas/nuevo' => 'victimascolectivas#nuevo'
 
   resources :anexo_casos, only: [], param: :index do 

@@ -1,16 +1,20 @@
 <%= simple_form_for @caso do |form| %>
-  <%= form.simple_fields_for :victima, child_index: params[:index_vic] do |vic_form| %>
+  <%= form.simple_fields_for :victima, 
+    child_index: params[:index_vic] do |vic_form| %>
     <%= vic_form.simple_fields_for :persona do |per| %>
       <%= per.simple_fields_for :persona_trelacion1 , 
         child_index: params[:index] do |pt| %>
         <%= pt.input :id, as: :hidden %>
         <%= turbo_stream.replace "agregar-familiar" do %>
           <%= vic_form.submit "Añadir Familiar",
-              formaction: crear_familiar_path(index: params[:index].to_i + 1, index_vic: params[:index_vic].to_i),
-              formmethod: :post,
-              formnovalidate: true,
-              class: 'btn btn-sm btn-primary agregar-vic',
-              id: "agregar-familiar" %>
+            formaction: sivel2_gen.crear_familiar_path(
+              index: params[:index].to_i + 1, 
+              index_vic: params[:index_vic].to_i
+            ),
+            formmethod: :post,
+            formnovalidate: true,
+            class: 'btn btn-sm btn-primary agregar-vic',
+            id: "agregar-familiar" %>
         <% end %>
         <%= turbo_stream.append "familiares_marco_#{params[:index_vic]}" do %>
           <%= render "/msip/personas/persona_familiar_campos", f: pt, per: per %>
