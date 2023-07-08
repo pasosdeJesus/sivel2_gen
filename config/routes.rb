@@ -84,6 +84,13 @@ Sivel2Gen::Engine.routes.draw do
     end
   end
 
+  resources :familiar, only: [], param: :index do 
+    member do
+      delete '(:id)', to: "familiares#eliminar_familiar", as: "eliminar"
+      post '/', to: "familiares#crear_familiar", as: "crear"
+    end
+  end
+
   resources :caso_fuentesprensa, only: [], param: :index do 
     member do
       delete '(:id)', to: "caso_fuentesprensa#destroy", as: "eliminar"
