@@ -72,16 +72,17 @@ Sivel2Gen::Engine.routes.draw do
 
   get '/victimascolectivas/nuevo' => 'victimascolectivas#nuevo'
 
-  resources :casos, path_names: { new: 'nuevo', edit: 'edita' } do
-      collection { post :importa }
-  end
-
-  resources :caso_fotra, only: [], param: :index do 
+  resources :anexo_casos, only: [], param: :index do 
     member do
-      delete '(:id)', to: "caso_fotras#destroy", as: "eliminar"
-      post '/' => "caso_fotras#create", as: "crear"
+      delete '(:id)', to: "anexo_casos#destroy", as: "eliminar"
+      post '/' => "anexo_casos#create", as: "crear"
     end
   end
+
+  resources :casos, path_names: { new: 'nuevo', edit: 'edita' } do
+    collection { post :importa }
+  end
+
 
   resources :caso_etiqueta, only: [], param: :index do 
     member do
@@ -90,10 +91,10 @@ Sivel2Gen::Engine.routes.draw do
     end
   end
 
-  resources :anexo_casos, only: [], param: :index do 
+  resources :caso_fotra, only: [], param: :index do 
     member do
-      delete '(:id)', to: "anexo_casos#destroy", as: "eliminar"
-      post '/' => "anexo_casos#create", as: "crear"
+      delete '(:id)', to: "caso_fotras#destroy", as: "eliminar"
+      post '/' => "caso_fotras#create", as: "crear"
     end
   end
 
@@ -116,6 +117,13 @@ Sivel2Gen::Engine.routes.draw do
     member do
       delete '(:id)', to: "caso_solicitudes#destroy", as: "eliminar"
       post '/' => "caso_solicitudes#create", as: "crear"
+    end
+  end
+
+  resources :familiar, only: [], param: :index do 
+    member do
+      delete '(:id)', to: "familiares#eliminar_familiar", as: "eliminar"
+      post '/', to: "familiares#crear_familiar", as: "crear"
     end
   end
 

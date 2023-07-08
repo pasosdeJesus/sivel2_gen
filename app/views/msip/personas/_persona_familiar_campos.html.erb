@@ -1,18 +1,16 @@
-<% return if !f.object %>
-<% if Rails.configuration.x.msip_docid_obligatorio === true %>
-  <% cont = "msip--sindocaut" %>
-<% end %>
-<tr class='nested-fields campos_personados' data-controller='<%= cont %>'>
-    <% if f.object.personados.nil? %>
-      <% f.object.personados = Msip::Persona.new %>
-    <% end %>
-    <%= f.simple_fields_for :personados do |p| %>
-      <td>
-        <%= p.input :id, as: :hidden,
-          input_html: {"data-msip--sindocaut-target": "id"} %>
+<%= turbo_frame_tag "familiar_#{f.index}" do %>
+  <% if f.object.personados.nil? %>
+    <% f.object.personados = Msip::Persona.new %>
+  <% end %>
+  <%= f.simple_fields_for :personados do |p| %>
+    <div class="row">
+      <div class="col">
+        <datalist id="fuente-familiares">
+        </datalist>
+        <%= p.input :id, as: :hidden %>
         <% ph = 'N'
         ac = {'data-autocompleta' => 'no',
-               style: 'width: 9em' }
+              style: 'width: 9em' }
         if (!p.object.nombres || p.object.nombres == 'N' || 
             p.object.nombres == '')
           ph = 'Buscar'
@@ -24,17 +22,17 @@
           value_method: lambda {|t| '' if t.nombres == 'N'},
           input_html: ac,
           label: false %>
-      </td>
-      <td>
+      </div>
+      <div class="col">
         <%= p.input :apellidos, label: false %>
-      </td>
-      <td>
+      </div>
+      <div class="col">
         <%= p.input :sexo, 
-          collection: ::Msip::Persona::sexo_opciones,
+          collection: Msip::Persona::sexo_opciones,
           include_blank: false,
           label: false %>
-      </td>
-      <td>
+      </div>
+      <div class="col">
         <%= p.input :tdocumento_id,
           collection: Msip::ModeloHelper.opciones_tabla_basica(
             Msip::Tdocumento, p, :tdocumento_id
@@ -42,23 +40,14 @@
           label_method: :sigla,
           value_method: :id ,
           label: false,
-          input_html: { 
-            style: 'width: 5em',
-            'data-action': "change->msip--sindocaut#cambia_tdocumento"
-          }
+          input_html: { style: 'width: 5em' }
         %>
-      </td>
-      <td>
-        <%= p.input :numerodocumento,
-          label: false,
-          input_html: {
-            title: "Si el tipo de documento es cédula de ciudadania "\
-            "teclee solo digitos",
-            "data-toggle": "tooltip",
-            "data-msip--sindocaut-target": "numerodocumento"
-          } %>
-      </td>
-      <td>
+      </div> 
+      <div class="col">
+        <%= p.input :numerodocumento, 
+          label: false %>
+      </div>
+      <div class="col">
         <%= f.input :trelacion_id, 
           collection: Msip::ModeloHelper.opciones_tabla_basica(
             Msip::Trelacion, f, :trelacion_id
@@ -66,13 +55,19 @@
           label_method: :nombre,
           value_method: :id,
           label: false %>
-      </td>
-    <% end %>
-      <td>
-    <%= link_to_remove_association(
-      "Eliminar", f, 
-      {:class => 'btn btn-sm btn-danger', 
-       :'wrapper-class' => 'campos_personados',
-       :'data-existing' => 'true'}) %> 
-      </td>
-</tr>
+      </div>
+      <div class="col">
+        <%= p.submit "Eliminar", 
+          formaction: eliminar_familiar_path(
+            id: f.object.id, index: f.index),
+            formmethod: :delete, 
+            formnovalidate: true, 
+            class: 'btn btn-sm btn-danger',
+            data: { 
+              turbo_frame: "familiar_#{f.index}",
+              disable_with: false
+            } %>
+      </div>
+    </div>
+  <% end %>
+<% end %>
