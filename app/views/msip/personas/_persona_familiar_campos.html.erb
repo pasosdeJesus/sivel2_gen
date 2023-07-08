@@ -14,16 +14,14 @@
         </datalist>
         <%= p.input :id, as: :hidden,
           input_html: {"data-msip--sindocaut-target": "id"} %>
-        <% ph = 'N'
-        ac = {'data-autocompleta' => 'no',
-        style: 'width: 9em' }
-        if (!p.object.nombres || p.object.nombres == 'N' ||
-        p.object.nombres == '')
-        ph = 'Buscar'
-        ac = { list: "fuente-familiares",
-        <% ph = 'N'
-        ac = {'data-autocompleta' => 'no',
-        end %>
+        <% ph = 'N' %>
+        <% ac = {'data-autocompleta' => 'no',
+                 list: "fuente-familiares",
+                 style: 'width: 9em' } %>
+        <% if (!p.object.nombres || p.object.nombres == 'N' || 
+            p.object.nombres == '') %>
+          <% ph = 'Buscar' %>
+        <% end %>
 
         <%= p.input :nombres, placeholder: ph,
           value_method: lambda {|t| '' if t.nombres == 'N'},
