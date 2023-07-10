@@ -885,7 +885,8 @@ CREATE VIEW public.cvt1 AS
     categoria.nombre AS categoria,
     ((supracategoria.tviolencia_id)::text || (categoria.id)::text) AS nomcategoria,
     departamento.nombre AS departamento_nombre,
-    departamento.deplocal_cod AS departamento_divipola
+    departamento.deplocal_cod AS departamento_divipola,
+    'total'::text AS total
    FROM (((((((public.sivel2_gen_acto acto
      JOIN public.sivel2_gen_caso caso ON ((acto.caso_id = caso.id)))
      JOIN public.sivel2_gen_categoria categoria ON ((acto.categoria_id = categoria.id)))
@@ -894,7 +895,7 @@ CREATE VIEW public.cvt1 AS
      JOIN public.msip_persona persona ON ((persona.id = acto.persona_id)))
      JOIN public.msip_ubicacion ubicacion ON ((ubicacion.id = caso.ubicacion_id)))
      LEFT JOIN public.msip_departamento departamento ON ((departamento.id = ubicacion.departamento_id)))
-  WHERE ((caso.fecha >= '1999-12-01'::date) AND (caso.fecha <= '2023-06-18'::date) AND ((supracategoria.tviolencia_id)::text = 'B'::text) AND (categoria.id = ANY (ARRAY[427, 527, 426, 526, 45, 55, 40, 50, 46, 57, 59, 49, 401, 501, 502, 402, 522, 422, 425, 525, 524, 424, 53, 43, 523, 423, 58, 48, 41, 56, 47, 421, 521, 520, 420])) AND (departamento.id = ANY (ARRAY[4, 7, 11, 13, 15, 17, 20, 24, 27, 29, 32, 33, 34, 35, 37, 38, 39, 41, 42, 43, 45, 46, 47, 48, 50, 51, 52, 53, 55, 56, 57, 58, 59])) AND (persona.sexo = ANY (ARRAY['F'::bpchar, 'M'::bpchar, 'S'::bpchar])));
+  WHERE ((caso.fecha >= '1999-12-01'::date) AND (caso.fecha <= '2023-06-18'::date) AND (categoria.id = ANY (ARRAY[777, 197, 427, 397, 527, 297, 196, 396, 296, 776, 426, 526, 45, 25, 35, 15, 73, 55, 65, 92, 40, 50, 67, 801, 90, 16, 37, 26, 46, 57, 80, 85, 66, 64, 703, 706, 18, 59, 38, 49, 28, 501, 401, 904, 502, 402, 17, 331, 231, 705, 62, 906, 104, 713, 101, 302, 11, 76, 21, 27, 34, 102, 903, 902, 24, 301, 14, 30, 10, 20, 422, 192, 522, 292, 392, 772, 63, 93, 910, 395, 525, 295, 775, 425, 195, 714, 78, 394, 194, 424, 774, 294, 524, 89, 905, 86, 701, 68, 141, 341, 241, 715, 704, 702, 53, 43, 33, 23, 13, 88, 98, 84, 709, 711, 707, 708, 710, 87, 97, 717, 917, 716, 916, 91, 95, 718, 523, 193, 423, 773, 293, 393, 58, 48, 75, 69, 41, 74, 56, 47, 72, 12, 36, 22, 191, 771, 291, 521, 391, 421, 520, 420, 77, 19, 39, 29, 712])) AND (departamento.id = 48) AND (persona.sexo = ANY (ARRAY['F'::bpchar, 'M'::bpchar, 'S'::bpchar])));
 
 
 --
@@ -6203,14 +6204,6 @@ ALTER TABLE ONLY public.sivel2_gen_categoria
 
 
 --
--- Name: sivel2_gen_categoria categoria_contadaen_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.sivel2_gen_categoria
-    ADD CONSTRAINT categoria_contadaen_fkey FOREIGN KEY (contadaen) REFERENCES public.sivel2_gen_categoria(id);
-
-
---
 -- Name: sivel2_gen_contextovictima_victima contextovictima_victima_contextovictima_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -6928,14 +6921,6 @@ ALTER TABLE ONLY public.msip_persona
 
 ALTER TABLE ONLY public.msip_persona
     ADD CONSTRAINT persona_tdocumento_id_fkey FOREIGN KEY (tdocumento_id) REFERENCES public.msip_tdocumento(id);
-
-
---
--- Name: sivel2_gen_presponsable presponsable_papa_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.sivel2_gen_presponsable
-    ADD CONSTRAINT presponsable_papa_fkey FOREIGN KEY (papa_id) REFERENCES public.sivel2_gen_presponsable(id);
 
 
 --

@@ -64,10 +64,12 @@
         <% end %>
 
         <%= item_acordeon_bs(
-          'filtros', "mfiltros_#{nomfiltro}", o.capitalize, false) do %>
+          "filtros", "mfiltros_#{nomfiltro}", o.capitalize, false,
+          {"datos_accordion-item" => {controller: "msip--filtro-tan"}}
+        ) do %>
           <div class="row filtro-fila">
             <div class="offset-sm-6 col-sm-6">
-              <%= render partial: 'msip/controles/filtro_todos_algunos_ninguno/botones_radio',
+              <%= render partial: 'msip/controles/filtro_tan/botones_radio',
                 locals: { f: f, atr: :botones_tan_departamentos} %>
             </div>
           </div>
@@ -81,7 +83,9 @@
               <% else %>
                 <% col_ids = @estfiltrosm[o][:coleccion].map(&:last) %>
               <% end %>
-              <!--
+              <%= render partial: 'msip/controles/filtro_tan/cuadro_de_seleccion',
+                locals: { 
+                  f: f, atr: nomfiltro, 
                   como: nil,
                   col_en_grupos: col_en_grupos,
                   col_ids: col_ids,
@@ -89,31 +93,7 @@
                   metodo_grupo: nil,
                   metodo_valor: @estfiltrosm[o][:metodo_id],
                   metodo_etiqueta: @estfiltrosm[o][:metodo_etiqueta]
-                 } %-->
-               <% dic = {
-                 collection: col_en_grupos,
-                 value_method: @estfiltrosm[o][:metodo_id],
-                 label_method: @estfiltrosm[o][:metodo_etiqueta],
-                 selected: col_ids,
-                 label: false,
-                 input_html: { 
-                   "data-contarautomatico" => "",
-                   class: 'chosen-select',
-                   multiple: true } 
-                 } %>
-
-               <%= f.input nomfiltro, dic %>
-<!--                  collection: @estfiltrosm[o][:coleccion],
-                  label_method: @estfiltrosm[o][:metodo_etiqueta],
-                  value_method: @estfiltrosm[o][:metodo_id],
-                  label: false,
-                  selected: sel,
-                  input_html: {
-                    class: 'chosen-select',
-                    multiple: true,
-                    'data-contarautomatico-post' => ''
-                  }
-                %-->
+                }%>
               </div> <!-- col -->
             </div> <!-- row -->
           <% end %> <!-- if @estfiltrosm[o] -->
