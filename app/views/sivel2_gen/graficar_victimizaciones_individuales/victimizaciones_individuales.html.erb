@@ -75,7 +75,7 @@
           </div>
           <div class="row filtro-fila">
             <div class="offset-sm-6 col-sm-6">
-              <%= render partial: 'msip/controles/filtro_todos_algunos_ninguno/botones_radio',
+              <%= render partial: 'msip/controles/filtro_tan/botones_radio',
                 locals: { f: f, atr: :botones_tan_departamentos} %>
             </div>
           </div>
@@ -117,7 +117,14 @@
                     'data-contarautomatico-post' => ''
                   }
                 %-->
->>>>>>> 99d571b8 (Filtro avanzado al filtrar por tipo de violencia ahora si presenta todos los del tipo. Avanza #456.)
+                  como: nil,
+                  col_en_grupos: col_en_grupos,
+                  col_ids: col_ids,
+                  metodo_etiqueta_agrupamiento: nil,
+                  metodo_grupo: nil,
+                  metodo_valor: @estfiltrosm[o][:metodo_id],
+                  metodo_etiqueta: @estfiltrosm[o][:metodo_etiqueta]
+                }%>
               </div> <!-- col -->
             </div> <!-- row -->
           <% end %> <!-- if @estfiltrosm[o] -->
