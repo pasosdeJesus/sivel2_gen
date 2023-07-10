@@ -43,7 +43,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/heb412_gen.git
-  revision: 7f641f6288d70123b8d9debd30d0348f8d1b4a99
+  revision: cca905c8f7b22283efa0d89eb88404d288c6dc79
   branch: v2.1
   specs:
     heb412_gen (2.1.0.beta1)
@@ -54,7 +54,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/mr519_gen.git
-  revision: e083737e4d182b51c5c5032ea6ad94b12ac7b9b2
+  revision: 37d4450d00a581a587de28a33f515055f7bf7fe9
   branch: v2.1
   specs:
     mr519_gen (2.1.0.beta1)
@@ -308,7 +308,7 @@ GEM
     rake (13.0.6)
     redcarpet (3.6.0)
     regexp_parser (2.8.1)
-    reline (0.3.5)
+    reline (0.3.6)
       io-console (~> 0.5)
     responders (3.1.0)
       actionpack (>= 5.2)
@@ -431,4 +431,4 @@ DEPENDENCIES
   will_paginate
 
 BUNDLED WITH
-   2.4.15
+   2.4.16
