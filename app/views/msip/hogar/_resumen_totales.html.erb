@@ -66,3 +66,17 @@
     </div>
   </div>
 </div>
+<div>
+  <%
+      a = discousado_OpenBSD(ENV.fetch('MSIP_RUTA_ANEXOS'))
+    r = discousado_OpenBSD(ENV.fetch('MSIP_RUTA_VOLCADOS'))
+    rh = ENV.fetch('HEB412_RUTA', '')
+    n = rh == '' ? 0 : discousado_OpenBSD(rh)
+    t = a+r+n
+  %>
+<%= render partial: 'barra_espacio', locals: {
+  t:t, 
+  ep: Msip::HogarController::espacioenplan,
+  enlace: true
+} %>
+</div>
