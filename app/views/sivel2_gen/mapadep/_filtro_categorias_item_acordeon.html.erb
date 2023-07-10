@@ -22,7 +22,7 @@
       %> 
     </div>
     <div class="col-sm-6">
-      <%= render partial: 'msip/controles/filtro_todos_algunos_ninguno/botones_radio',
+      <%= render partial: 'msip/controles/filtro_tan/botones_radio',
         locals: { f: f, atr: :mostrar_cats }%>
     </div>
   </div> <!-- row -->
@@ -30,7 +30,7 @@
     <% col_en_grupos = Sivel2Gen::Categoria.habilitados.group_by { |c| 
       c.supracategoria.tviolencia_id } %>
     <% col_ids = Sivel2Gen::Categoria.habilitados.pluck(:id) %>
-    <%= render partial: 'msip/controles/filtro_todos_algunos_ninguno/cuadro_de_seleccion',
+    <%= render partial: 'msip/controles/filtro_tan/cuadro_de_seleccion',
       locals: { 
         f: f, atr: :categoria, 
         como: :grouped_select,
