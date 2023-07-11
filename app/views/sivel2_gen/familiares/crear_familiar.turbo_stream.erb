@@ -14,7 +14,7 @@
               id: "agregar-familiar" %>
         <% end %>
         <%= turbo_stream.append "familiares_marco" do %>
-          <%= render "/msip/personas/persona_familiar_campos", f: pt %>
+          <%= render "/msip/personas/persona_familiar_campos", f: pt, per: per %>
         <% end %>
       <% end %>
     <% end %>

@@ -802,7 +802,6 @@ module Sivel2Gen
                   end
                 end
               end
-
               ## Por si cambia de pestania evita duplicidad de turbo
               if params[:_msip_enviarautomatico] == "1"
                 params_finales = caso_params.except(
