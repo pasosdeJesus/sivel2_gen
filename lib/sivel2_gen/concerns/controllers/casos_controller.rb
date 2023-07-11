@@ -862,6 +862,7 @@ module Sivel2Gen
               ## Por si cambia de pestania evita duplicidad de turbo
               if params[:_msip_enviarautomatico] == "1"
                 params_finales = params[:caso].except(
+                  :caso_etiqueta_attributes,
                   :caso_fuenteprensa_attributes,
                   :caso_fotra_attributes,
                   :caso_presponsable_attributes,
@@ -881,15 +882,12 @@ module Sivel2Gen
                   )
                 end
 
-<<<<<<< HEAD
-=======
                 if params[:_msip_enviarautomatico] == "1"
                   params_finales = caso_params.except(
                     :caso_etiqueta_attributes)
                  else
                    params_finales = caso_params
                  end
->>>>>>> 114a02fa (etiquetas con turbo)
                 #if request.params[:enviarFichaCaso] == '1'
                 #  head :no_content
                 #  return
