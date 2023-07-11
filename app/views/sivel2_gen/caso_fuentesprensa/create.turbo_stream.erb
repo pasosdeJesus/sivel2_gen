@@ -7,7 +7,9 @@
         formmethod: :post, 
         formnovalidate: true,
         class: 'btn btn-sm btn-primary agregar-vic',
-        id: "agregar-caso-fuenteprensa" %>
+        id: "agregar-caso-fuenteprensa",
+        data:  {
+          disable_with: false } %>
     <% end %>
 
     <%= turbo_stream.append "caso_fuentesprensa_marco" do %>
