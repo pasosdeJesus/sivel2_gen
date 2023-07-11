@@ -23,12 +23,6 @@ module Sivel2Gen
             return 'F'
           end
 
-          def destroy
-          end
-
-          def create
-          end
-
           def update
           end
 
@@ -37,8 +31,10 @@ module Sivel2Gen
           def prepara_familiar
             @victima = Sivel2Gen::Victima.new(persona: Msip::Persona.new)
             @ptrelacion = Msip::PersonaTrelacion.new
+            @ptrelacion.personauno = @victima.persona
             @caso = Sivel2Gen::Caso.new(victima: [@victima])
             @victima.persona.personados = [Msip::Persona.new()]
+            @ptrelacion.save
             @caso.save
           end
 

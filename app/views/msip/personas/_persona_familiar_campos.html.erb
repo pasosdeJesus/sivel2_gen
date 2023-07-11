@@ -2,6 +2,7 @@
   <% if f.object.personados.nil? %>
     <% f.object.personados = Msip::Persona.new %>
   <% end %>
+  <%= f.input :id, as: :hidden %>
   <%= f.simple_fields_for :personados do |p| %>
     <div class="row">
       <div class="col">

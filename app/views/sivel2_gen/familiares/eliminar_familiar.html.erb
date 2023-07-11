@@ -1,10 +1,14 @@
-<%= fields model: @caso do |form| %>
-  <%= form.simple_fields_for :victima, child_index: params[:index] do |vic_form| %>
-    <%= vic_form.simple_fields_for @persona_victima, 
-      child_index: params[:index] do |pt| %>
-      <%= turbo_frame_tag "familiar_#{pt.index}" do %>
-        <%= pt.hidden_field :id, value: params[:id] %>
-        <%= pt.hidden_field :_destroy, value: true %>
+<%= simple_form_for @caso do |form| %>
+  <%= form.simple_fields_for :victima, 
+    child_index: params[:index] do |vic_form| %>
+    <%= vic_form.simple_fields_for :persona, 
+      child_index: params[:index] do |per| %>
+      <%= per.simple_fields_for :persona_trelacion1 , 
+        child_index: params[:index] do |pt| %>
+        <%= turbo_frame_tag "familiar_#{pt.index}" do %>
+          <%= pt.hidden_field :id, value: params[:id] %>
+          <%= pt.hidden_field :_destroy, value: true %>
+        <% end %>
       <% end %>
     <% end %>
   <% end %>

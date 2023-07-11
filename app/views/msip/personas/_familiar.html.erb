@@ -16,7 +16,7 @@
           <div class="col">Parentesco</div>
         </div>
         <%= f.simple_fields_for :persona_trelacion1, child_index: params[:index] do |pt| %>
-          <%= render 'msip/personas/persona_familiar_campos', f: pt %>
+          <%= render 'msip/personas/persona_familiar_campos', f: pt, per: f %>
         <% end %>
       </div>
 
