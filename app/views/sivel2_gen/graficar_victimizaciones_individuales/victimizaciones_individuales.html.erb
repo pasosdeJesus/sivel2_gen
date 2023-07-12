@@ -70,7 +70,7 @@
           <div class="row filtro-fila">
             <div class="offset-sm-6 col-sm-6">
               <%= render partial: 'msip/controles/filtro_tan/botones_radio',
-                locals: { f: f, atr: :botones_tan_departamentos} %>
+                locals: { f: f, atr: "botones_tan_#{nomfiltro}"} %>
             </div>
           </div>
           <div class="row filtro-fila">
