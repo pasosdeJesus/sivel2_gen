@@ -43,7 +43,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/heb412_gen.git
-  revision: cca905c8f7b22283efa0d89eb88404d288c6dc79
+  revision: 672cbde5bb096889a0cedf5438918c47e1ea63de
   branch: v2.1
   specs:
     heb412_gen (2.1.0.beta1)
@@ -54,7 +54,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/mr519_gen.git
-  revision: 37d4450d00a581a587de28a33f515055f7bf7fe9
+  revision: c67975f9b82518ad27e7d9fb43f41ca6a2cb7941
   branch: v2.1
   specs:
     mr519_gen (2.1.0.beta1)
@@ -201,8 +201,8 @@ GEM
     i18n (1.14.1)
       concurrent-ruby (~> 1.0)
     io-console (0.6.0)
-    irb (1.7.1)
-      reline (>= 0.3.0)
+    irb (1.7.3)
+      reline (>= 0.3.6)
     jbuilder (2.11.5)
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
@@ -258,7 +258,7 @@ GEM
     prawnto_2 (0.3.1)
       prawn (>= 1.0.0)
       rails (>= 3.2)
-    public_suffix (5.0.1)
+    public_suffix (5.0.3)
     puma (6.3.0)
       nio4r (~> 2.0)
     racc (1.7.1)
