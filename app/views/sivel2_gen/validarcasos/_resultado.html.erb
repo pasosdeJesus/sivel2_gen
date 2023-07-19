@@ -18,6 +18,12 @@
                   <%= link_to(
                     campo[1].to_i, 
                     sivel2_gen.edit_caso_path(campo[1].to_i)) if campo[1] %>
+                <% elsif campo[0] == 'caso_ids' %>
+                  <% campo[1].split(',').each do |cid| %>
+                    <%= link_to(
+                      cid.to_i, 
+                      sivel2_gen.edit_caso_path(cid.to_i)) %>
+                  <% end %>
                 <% else %>
                   <%= CGI.escapeHTML(campo[1].to_s) if campo[1] %>
                 <% end %>
