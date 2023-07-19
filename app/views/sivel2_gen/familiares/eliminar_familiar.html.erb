@@ -1,8 +1,6 @@
 <%= simple_form_for @caso do |form| %>
-  <%= form.simple_fields_for :victima, 
-    child_index: params[:index] do |vic_form| %>
-    <%= vic_form.simple_fields_for :persona, 
-      child_index: params[:index] do |per| %>
+  <%= form.simple_fields_for :victima do |vic_form| %>
+    <%= vic_form.simple_fields_for :persona do |per| %>
       <%= per.simple_fields_for :persona_trelacion1 , 
         child_index: params[:index] do |pt| %>
         <%= turbo_frame_tag "familiar_#{pt.index}" do %>

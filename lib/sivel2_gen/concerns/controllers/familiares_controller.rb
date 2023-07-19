@@ -14,6 +14,7 @@ module Sivel2Gen
           before_action :prepara_familiar
 
           def crear_familiar
+            @caso.id = params[:caso]
           end
 
           def eliminar_familiar
@@ -30,12 +31,8 @@ module Sivel2Gen
 
           def prepara_familiar
             @victima = Sivel2Gen::Victima.new(persona: Msip::Persona.new)
-            @ptrelacion = Msip::PersonaTrelacion.new
-            @ptrelacion.personauno = @victima.persona
             @caso = Sivel2Gen::Caso.new(victima: [@victima])
             @victima.persona.personados = [Msip::Persona.new()]
-            @ptrelacion.save
-            @caso.save
           end
 
         end # included

@@ -1,6 +1,7 @@
 <%= turbo_frame_tag "victima_#{f.index}" do %>
 <div class='control-group nested-fields seccionvictima'>
   <div class="controls">
+    <%= f.input :id, as: :hidden %>
     <% if f.object.persona.nil? %>
       <% f.object.persona = Msip::Persona.new %>
     <% end %>

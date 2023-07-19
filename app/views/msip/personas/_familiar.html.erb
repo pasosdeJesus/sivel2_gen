@@ -6,7 +6,7 @@
       'clase_accordion-body': 'table-responsive',
       'estilo_accordion-body': 'overflow-x:scroll'
     }) do %>
-      <div id="familiares_marco">
+      <div id="familiares_marco_<%= index_vic %>">
         <div class="row"> 
           <div class="col">Nombres</div>
           <div class="col">Apellidos</div>
@@ -21,7 +21,7 @@
       </div>
 
       <%= f.submit "Añadir Familiar",
-          formaction: crear_familiar_path(index: f.object.personados.size),
+          formaction: crear_familiar_path(index: f.object.personados.size, index_vic: index_vic),
           formmethod: :post,
           formnovalidate: true,
           class: 'btn btn-sm btn-primary',
