@@ -759,7 +759,6 @@ module Sivel2Gen
           # PATCH/PUT /casos/1
           # PATCH/PUT /casos/1.json
           def update_gen
-
             respond_to do |format|
               # En etiquetas pone usuario actual por omision
               if (!params[:caso][:caso_etiqueta_attributes].nil?)
@@ -802,16 +801,30 @@ module Sivel2Gen
                   end
                 end
               end
+
+
+              params[:caso][:victima_attributes].each do |index, victima_params|
+                if !victima_params[:id].present?
+                  vic = Sivel2Gen::Victima.create(victima_params)
+                  vic.caso_id = @caso.id
+                  params[:caso][:victima_attributes].delete(index)
+                  @caso.victima.push(vic)
+                  vic.persona.persona_trelacion1.each do |pt1|
+                    pt1.personauno = vic.persona
+                    pt1.persona1 = vic.persona.id
+                  end
+                end
+              end
               ## Por si cambia de pestania evita duplicidad de turbo
               if params[:_msip_enviarautomatico] == "1"
-                params_finales = caso_params.except(
+                params_finales = params[:caso].except(
                   :victima_attributes,
                   :victimacolectiva_attributes,
                   :caso_fuenteprensa_attributes,
                   :caso_fotra_attributes,
                   :caso_presponsable_attributes)
               else
-                params_finales = caso_params
+                params_finales = params[:caso]
               end
 
               if @caso.update(params_finales)
@@ -1326,7 +1339,6 @@ module Sivel2Gen
                   :vinculoestado_id,
                   :organizacionarmada,
                   :orientacionsexual,
-                  :_destroy,
                   :sectorsocialsec_ids => [],
                   :otraorga_ids => [],
                   :contextovictima_ids => [],
