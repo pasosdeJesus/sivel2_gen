@@ -6,6 +6,7 @@
   <div data-controller='<%= cont %>'>
     <%= f.input :id, as: :hidden,
       input_html: {"data-msip--sindocaut-target": "id"} %>
+
     <div class="row">
       <div class="col-md-6">
         <%= render partial: 'msip/personas/campo_nombres',
@@ -24,9 +25,10 @@
       </div>
       <div class="col-md-6">
         <%= render partial: 'msip/personas/campo_numerodocumento_nobusca',
-          locals: { f: f,
-                    titulo_tooltip: "Si el tipo de documento es cédula de ciudadania "\
-                    "teclee solo digitos"
+          locals: {
+            f: f,
+            titulo_tooltip: "Si el tipo de documento es cédula de ciudadania "\
+            "teclee solo digitos"
           } %>
       </div>
     </div>

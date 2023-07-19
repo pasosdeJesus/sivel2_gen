@@ -862,10 +862,8 @@ module Sivel2Gen
               ## Por si cambia de pestania evita duplicidad de turbo
               if params[:_msip_enviarautomatico] == "1"
                 params_finales = params[:caso].except(
-                  :caso_etiqueta_attributes,
                   :caso_anexo_attributes,
-                  :victima_attributes,
-                  :victimacolectiva_attributes,
+                  :caso_etiqueta_attributes,
                   :caso_fuenteprensa_attributes,
                   :caso_fotra_attributes,
                   :caso_presponsable_attributes,
