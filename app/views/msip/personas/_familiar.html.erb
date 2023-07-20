@@ -14,6 +14,7 @@
           <div class="col">Tipo Id.</div>
           <div class="col">Número .Id</div>
           <div class="col">Parentesco</div>
+          <div class="col">Acciones</div>
         </div>
         <%= f.simple_fields_for :persona_trelacion1, child_index: params[:index] do |pt| %>
           <%= render 'msip/personas/persona_familiar_campos', f: pt, per: f %>
