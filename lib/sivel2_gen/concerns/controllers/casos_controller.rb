@@ -864,6 +864,7 @@ module Sivel2Gen
                 params_finales = params[:caso].except(
                   :caso_anexo_attributes,
                   :caso_etiqueta_attributes,
+                  :caso_anexo_attributes,
                   :caso_fuenteprensa_attributes,
                   :caso_fotra_attributes,
                   :caso_presponsable_attributes,
@@ -883,13 +884,6 @@ module Sivel2Gen
                   )
                 end
 
-                if params[:_msip_enviarautomatico] == "1"
-                  params_finales = caso_params.except(
-                    :caso_etiqueta_attributes
-                  )
-                 else
-                   params_finales = caso_params
-                 end
                 #if request.params[:enviarFichaCaso] == '1'
                 #  head :no_content
                 #  return
