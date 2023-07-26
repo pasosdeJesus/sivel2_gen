@@ -1,5 +1,5 @@
 <%= fields model: @caso do |form| %>
-  <%= form.simple_fields_for :msip_anexo, 
+  <%= form.simple_fields_for :anexo_caso, 
     child_index: params[:index] do |ca_form| %>
     <%= turbo_frame_tag "anexo_caso_#{ca_form.index}" do %>
       <%= ca_form.hidden_field :id, value: params[:id] %>

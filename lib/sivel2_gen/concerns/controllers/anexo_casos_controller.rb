@@ -38,7 +38,8 @@ module Sivel2Gen
           private
 
           def prepara_caso
-            @caso = Sivel2Gen::Caso.new(anexo_caso: [Sivel2Gen::AnexoCaso.new])
+            @caso = Sivel2Gen::Caso.new(
+              anexo_caso: [Sivel2Gen::AnexoCaso.new])
           end
         end # included
 
