@@ -1,9 +1,9 @@
-<%= simple_form_for @caso do |form| %>
-  <%= form.simple_fields_for :anexo_caso, :html => { :multipart => true },
+<%= simple_form_for @caso , multipart: true do |form| %>
+  <%= form.simple_fields_for :anexo_caso,
     child_index: params[:index] do |ca_form| %>
     <%= turbo_stream.replace "agregar-anexo-caso" do %>
       <%= form.submit "Añadir Anexo", 
-            formaction: crear_anexo_caso_path(ca_form.index.to_i + 1), 
+            formaction: sivel2_gen.crear_anexo_caso_path(ca_form.index.to_i + 1),
             formmethod: :post,
             formnovalidate: true,
             class: 'btn btn-sm btn-primary agregar-ca',

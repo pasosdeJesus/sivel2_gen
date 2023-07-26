@@ -6,7 +6,7 @@
 
 <div class="links">
   <%= f.submit "Añadir Anexo",
-      formaction: crear_anexo_caso_path(index: @caso.anexo_caso.size),
+      formaction: sivel2_gen.crear_anexo_caso_path(index: @caso.anexo_caso.size),
       formmethod: :post,
       formnovalidate: true,
       class: 'btn btn-sm btn-primary agregar-ca',
