@@ -38,12 +38,8 @@ module Sivel2Gen
           private
 
           def prepara_caso
-<<<<<<< HEAD
             @caso = Sivel2Gen::Caso.new(
               anexo_caso: [Sivel2Gen::AnexoCaso.new])
-=======
-            @caso = Sivel2Gen::Caso.new(anexo_caso: [Sivel2Gen::AnexoCaso.new])
->>>>>>> 9e7dedf2 (avanza anexos con turbo)
           end
         end # included
 
