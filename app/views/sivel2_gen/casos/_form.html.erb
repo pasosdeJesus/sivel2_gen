@@ -9,7 +9,8 @@
     </script-->
   <% @pestanas_formulariocaso = controller.pestanas_formulariocaso %>
   <%= simple_form_for @caso, 
-    url: sivel2_gen.casos_path(@caso).sub(/\./,"/"), 
+    url: sivel2_gen.casos_path(@caso).sub(/\./,"/"),
+    multipart: true,
     html: { class: 'form-horizontal' } do |f| 
   %>
     <div data-role="content" class="form-inputs">
