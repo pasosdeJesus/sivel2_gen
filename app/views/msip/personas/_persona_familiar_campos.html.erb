@@ -75,14 +75,15 @@
       <div class="col">
         <%= p.submit "Eliminar", 
           formaction: sivel2_gen.eliminar_familiar_path(
-            id: f.object.id, index: f.index),
-            formmethod: :delete, 
-            formnovalidate: true, 
-            class: 'btn btn-sm btn-danger',
-            data: { 
-              turbo_frame: "familiar_#{f.index}",
-              disable_with: false
-            } %>
+            id: f.object.id, index: f.index
+          ),
+          formmethod: :delete, 
+          formnovalidate: true, 
+          class: 'btn btn-sm btn-danger',
+          data: { 
+            turbo_frame: "familiar_#{f.index}",
+            disable_with: false
+          } %>
       </div>
     </div>
   <% end %>
