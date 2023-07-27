@@ -1344,6 +1344,7 @@ module Sivel2Gen
                   :vinculoestado_id,
                   :organizacionarmada,
                   :orientacionsexual,
+                  :_destroy,
                   :sectorsocialsec_ids => [],
                   :otraorga_ids => [],
                   :contextovictima_ids => [],
