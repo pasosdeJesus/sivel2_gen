@@ -24,14 +24,15 @@
 
     <%= f.submit "Añadir Familiar",
       formaction: sivel2_gen.crear_familiar_path(
-        index: f.object.personados.size, index_vic: index_vic),
+        index: f.object.personados.size, index_vic: index_vic
+      ),
       formmethod: :post,
       formnovalidate: true,
       class: 'btn btn-sm btn-primary',
       name: "agregar-familiar",
       id: "agregar-familiar",
       data:  {
-        disable_with: false } %>
+        disable_with: false 
       } %>
   <% end %>
 </div> <!-- accordion -->
