@@ -809,9 +809,11 @@ module Sivel2Gen
                   vic.caso_id = @caso.id
                   params[:caso][:victima_attributes].delete(index)
                   @caso.victima.push(vic)
-                  vic.persona.persona_trelacion1.each do |pt1|
-                    pt1.personauno = vic.persona
-                    pt1.persona1 = vic.persona.id
+                  if vic.persona
+                    vic.persona.persona_trelacion1.each do |pt1|
+                      pt1.personauno = vic.persona
+                      pt1.persona1 = vic.persona.id
+                    end
                   end
                 end
               end
