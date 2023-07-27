@@ -22,7 +22,7 @@
       </div>
 
       <%= f.submit "Añadir Familiar",
-          formaction: crear_familiar_path(index: f.object.personados.size, index_vic: index_vic),
+          formaction: sivel2_gen.crear_familiar_path(index: f.object.personados.size, index_vic: index_vic),
           formmethod: :post,
           formnovalidate: true,
           class: 'btn btn-sm btn-primary',

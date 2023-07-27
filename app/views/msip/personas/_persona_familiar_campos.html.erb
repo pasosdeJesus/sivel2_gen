@@ -59,7 +59,7 @@
       </div>
       <div class="col">
         <%= p.submit "Eliminar", 
-          formaction: eliminar_familiar_path(
+          formaction: sivel2_gen.eliminar_familiar_path(
             id: f.object.id, index: f.index),
             formmethod: :delete, 
             formnovalidate: true, 

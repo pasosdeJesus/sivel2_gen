@@ -13,15 +13,15 @@
         onclick: 'Sivel2GenMotorEs6.crea_copia_de_victima(this, event)' %>
 
       <%= f.submit "Eliminar", 
-          formaction: eliminar_victima_path(id: f.object.id, index: f.index),
-          formmethod: :delete,
-          formnovalidate: true,
-          class: 'btn btn-sm btn-danger',
-          data: { 
-            turbo_frame: "victima_#{f.index}",
-            disable_with: false
-          } %>
-
+        formaction: sivel2_gen.eliminar_victima_path(
+          id: f.object.id, index: f.index),
+        formmethod: :delete,
+        formnovalidate: true,
+        class: 'btn btn-sm btn-danger',
+        data: { 
+          turbo_frame: "victima_#{f.index}",
+          disable_with: false
+        } %>
     </div>
   </div>
 </div>
