@@ -772,47 +772,89 @@ module Sivel2Gen
 
               # En familiares si falta crear trelacion_persona para personas
               # autocompletadas los crea
-              if caso_params[:victima_attributes]
-                caso_params[:victima_attributes].each do |iv, v|
-                  if v[:persona_attributes] &&
-                      v[:persona_attributes][:persona_trelacion1_attributes]
-                    v[:persona_attributes][:persona_trelacion1_attributes].each do |it, t|
-                      if t && (!t[:id] || t[:id] == '') &&
-                          t[:personados_attributes] &&
-                          t[:personados_attributes][:id] &&
-                          t[:personados_attributes][:id].to_i > 0 &&
-                          Msip::Persona.where(
-                            id: t[:personados_attributes][:id].to_i).count == 1
-                          pt_e = Msip::PersonaTrelacion.where(
-                            persona1: v[:persona_attributes][:id],
-                            persona2: t[:personados_attributes][:id]
-                          )
-                          if !pt_e
-                            pt = Msip::PersonaTrelacion.create({
-                              persona1: v[:persona_attributes][:id],
-                              persona2: t[:personados_attributes][:id]
-                            })
-                            pt.save!(validate: false)
-                            params[:caso][:victima_attributes][iv][:persona_attributes][:persona_trelacion1_attributes][it][:id] = pt.id
+
+              def asignar_id_personatrelacion(params, index, victima_params)
+                if victima_params[:persona_attributes]
+                  if victima_params[:persona_attributes][:persona_trelacion1_attributes]
+                    victima_params[:persona_attributes][:persona_trelacion1_attributes].each do |index_pt, pt_params|
+                      if pt_params[:id] == ""
+                        p2_id = pt_params[:personados_attributes][:id]
+                        if p2_id != ""
+                          if victima_params[:id] != ""
+                            vic = Sivel2Gen::Victima.find(victima_params[:id].to_i)
                           else
-                            params[:caso][:victima_attributes][iv][:persona_attributes][:persona_trelacion1_attributes][it][:id] = pt_e[0].id
+                            victima_params_filtrado = victima_params.deep_dup.tap do |params|
+                              params[:persona_attributes].delete(:persona_trelacion1_attributes)
+                            end
+                            vic = Sivel2Gen::Victima.create(victima_params_filtrado)
+                            vic.caso_id = @caso.id
+                            @caso.victima.push(vic)
+                            vic.save!
                           end
+                          pt = Msip::PersonaTrelacion.where(persona1: vic.persona.id , persona2: p2_id)
+                          if pt.count > 0
+                            params[:caso][:victima_attributes][index][:persona_attributes][:persona_trelacion1_attributes][index_pt][:id] = pt[0].id
+                          else
+                            ptn = Msip::PersonaTrelacion.create(persona1: vic.persona.id , persona2: p2_id)
+                            ptn.save!
+                            params[:caso][:victima_attributes][index][:persona_attributes][:persona_trelacion1_attributes][index_pt][:id] = ptn.id
+                          end
+                        else
+                          if victima_params[:id] == ""
+                            vic = Sivel2Gen::Victima.create(victima_params)
+                            vic.caso_id = @caso.id
+                            if vic.persona
+                              vic.persona.persona_trelacion1.each do |pt1|
+                                pt1.personauno = vic.persona
+                                pt1.persona1 = vic.persona.id
+                              end
+                            end
+                            @caso.victima.push(vic)
+                          else
+                            vic = Sivel2Gen::Victima.find(victima_params[:id].to_i)
+                            p2_id = Msip::Persona.create(pt_params[:personados_attributes])
+                            ptn = Msip::PersonaTrelacion.create(persona1: vic.persona.id , persona2: p2_id.id)
+                            ptn.save!
+                            params[:caso][:victima_attributes][index][:persona_attributes][:persona_trelacion1_attributes][index_pt][:id] = ptn.id
+                          end
+                        end
+                        params[:caso][:victima_attributes].delete(index)
                       end
                     end
                   end
                 end
               end
 
-              params[:caso][:victima_attributes].each do |index, victima_params|
-                if !victima_params[:id].present?
-                  vic = Sivel2Gen::Victima.create(victima_params)
-                  vic.caso_id = @caso.id
-                  params[:caso][:victima_attributes].delete(index)
-                  @caso.victima.push(vic)
-                  if vic.persona
-                    vic.persona.persona_trelacion1.each do |pt1|
-                      pt1.personauno = vic.persona
-                      pt1.persona1 = vic.persona.id
+              if params[:caso][:victima_attributes] 
+                params[:caso][:victima_attributes].each do |index, victima_params|
+                  if victima_params[:_destroy] != "true"
+                    if !victima_params[:id].present?
+                      if victima_params[:persona_attributes]
+                        if victima_params[:persona_attributes][:id] != ""
+                          vics = Sivel2Gen::Victima.where(
+                            persona_id: victima_params[:persona_attributes][:id])
+                          if vics.count > 0
+                            vic = vics[0]
+                          else
+                            vic = Sivel2Gen::Victima.create(victima_params)
+                            @caso.victima.push(vic)
+                          end
+                          vic.caso_id = @caso.id
+                          if vic.persona
+                            vic.persona.persona_trelacion1.each do |pt1|
+                              pt1.personauno = vic.persona
+                              pt1.persona1 = vic.persona.id
+                            end
+                          end
+                          params[:caso][:victima_attributes].delete(index)
+                        else
+                          if victima_params[:persona_attributes][:persona_trelacion1_attributes]
+                            asignar_id_personatrelacion(params, index, victima_params)
+                          end
+                        end
+                      end
+                    else
+                      asignar_id_personatrelacion(params, index, victima_params)
                     end
                   end
                 end

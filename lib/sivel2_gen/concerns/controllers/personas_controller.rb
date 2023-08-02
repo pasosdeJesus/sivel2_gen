@@ -42,12 +42,27 @@ module Sivel2Gen
           end 
 
           def remplazarfamiliar
-            @personados = Msip::Persona.find(params[:persona_id].to_i)
             @caso = Sivel2Gen::Caso.find(params[:caso_id])
-            @victima = Sivel2Gen::Victima.find(params[:victima_id].to_i)
-            @victima_cocoon = params[:victcocoon_id]
             @caso.current_usuario = current_usuario
-            @trelacion1 = params[:trelacion_id1]
+            @personados = Msip::Persona.find(params[:persona_id].to_i)
+            @index_familiar = params[:trelacion_id1]
+            if params[:victima_id].to_i == 0
+              @victima = Sivel2Gen::Victima.new
+              @personatr = Msip::PersonaTrelacion.new
+            else
+              @victima = Sivel2Gen::Victima.find(params[:victima_id].to_i)
+              personatrcons = Msip::PersonaTrelacion.where(
+                persona1: @victima.persona.id,
+                persona2: @personados.id)
+              if personatrcons.count > 0
+                @personatr = personatrcons[0]
+              else
+                @personatr = Msip::PersonaTrelacion.create(
+                  persona1: @victima.persona.id,
+                  persona2: @personados.id)
+                @personatr.save!
+              end
+            end
             respond_to do |format|
               format.html {
                 render("/msip/personas/remplazar_familiar",

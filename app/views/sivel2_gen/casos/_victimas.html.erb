@@ -1,7 +1,7 @@
-
 <div id="victimas_frame">
-<%= f.simple_fields_for :victima, child_index: params[:index] do |victima| %>
-  <%= render '/sivel2_gen/casos/victima_campos', :f => victima %>
+  <%= f.simple_fields_for :victima, child_index: params[:index] do |victima| %>
+    <%= victima.input :id, as: :hidden %>
+    <%= render '/sivel2_gen/casos/victima_campos', :f => victima %>
 <% end %>
 </div>
 
