@@ -6,11 +6,7 @@
   <div data-controller='<%= cont %>'>
     <%= f.input :id, as: :hidden,
       input_html: {"data-msip--sindocaut-target": "id"} %>
-<<<<<<< HEAD
     <div class="row">
-=======
-      <div class="row">
->>>>>>> d7814b99 (posibilita numero de documento automatico para los SIN DOCUMENTO. https://gitlab.com/pasosdeJesus/si_fasol/-/issues/209)
       <div class="col-md-6">
         <%= render partial: 'msip/personas/campo_nombres',
           locals: {f: f, nombre_fuente: "fuente-victimas"} %>
@@ -20,11 +16,7 @@
           locals: {f: f, nombre_fuente: "fuente-victimas"} %>
       </div>
     </div>
-<<<<<<< HEAD
 
-=======
-  
->>>>>>> d7814b99 (posibilita numero de documento automatico para los SIN DOCUMENTO. https://gitlab.com/pasosdeJesus/si_fasol/-/issues/209)
     <div class="row">
       <div class="col-md-6">
         <%= render partial: 'msip/personas/campo_tdocumento_nobusca',
@@ -38,7 +30,7 @@
           } %>
       </div>
     </div>
-  
+
     <div class="input string">
       <label class="string control-label">Casos en los que aparece: </label>
       <% r = "" %>
@@ -47,16 +39,16 @@
         order(:persona_id) %>
       <% v.each do |vic| %>
         <% if @caso.id != vic.caso.id %>
-          <%= link_to vic.caso.id, sivel2_gen.caso_path(vic.caso), 
+          <%= link_to vic.caso.id, sivel2_gen.caso_path(vic.caso),
             target:"_blank" %>
         <% end %>
       <% end %>
     </div>
-  
-  
-    <%= render partial: "msip/personas/fila_edad", 
+
+
+    <%= render partial: "msip/personas/fila_edad",
       locals: { f: f, fvictima: fvictima} %>
-  
+
     <% @meses = [
       ["ENERO", 1],
       ["FEBRERO", 2],
@@ -71,7 +63,7 @@
       ["NOVIEMBRE", 11],
       ["DICIEMBRE", 12]] %>
     <% @dias = *(1..31) %>
-  
+
     <div class="row">
       <div class="col-md-4">
         <%= f.input :mesnac, collection: @meses %>
@@ -83,7 +75,7 @@
         <%= render partial: 'msip/personas/campo_sexo', locals: {f: f} %>
       </div>
     </div>
-  
+
     <div class="row">
       <div class="col-md-6">
         <%= f.association :pais,
@@ -105,7 +97,7 @@
           value_method: :id %>
       </div>
     </div>
-  
+
     <div class="row">
       <div class="col-md-6">
         <%= f.association :municipio,
@@ -128,7 +120,7 @@
       </div>
     </div>
 
-    <%= render partial: 'msip/personas/familiar', 
+    <%= render partial: 'msip/personas/familiar',
       locals: {f: f, index_vic: params[:index]} %>
   </div>
 </div>
