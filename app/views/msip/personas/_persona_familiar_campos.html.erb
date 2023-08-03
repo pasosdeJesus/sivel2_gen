@@ -15,13 +15,15 @@
         <%= p.input :id, as: :hidden,
           input_html: {"data-msip--sindocaut-target": "id"} %>
         <% ph = 'N' %>
-        <% ac = {'data-autocompleta' => 'no',
-                 style: 'width: 9em' } %>
+        <% ac = {
+          'data-autocompleta' => 'no',
+          style: 'width: 9em' } %>
         <% if (!p.object.nombres || p.object.nombres == 'N' || 
             p.object.nombres == '') %>
           <% ph = 'Buscar' %>
-          <% ac = { list: "fuente-familiares",
-                    style: 'width: 9em' } %>
+          <% ac = {
+            list: "fuente-familiares",
+            style: 'width: 9em' } %>
         <% end %>
 
         <%= p.input :nombres, placeholder: ph, 
@@ -60,7 +62,6 @@
             "teclee solo digitos",
             "data-toggle": "tooltip",
             "data-msip--sindocaut-target": "numerodocumento"
-          } %>
       </div>
       <div class="col">
         <%= f.input :trelacion_id, 
