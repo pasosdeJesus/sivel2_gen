@@ -1,5 +1,8 @@
 <% return if !f.object %>
-<tr class='nested-fields campos_personados'>
+<% if Rails.configuration.x.msip_docid_obligatorio === true %>
+  <% cont = "msip--sindocaut" %>
+<% end %>
+<tr class='nested-fields campos_personados' data-controller='<%= cont %>'>
     <% if f.object.personados.nil? %>
       <% f.object.personados = Msip::Persona.new %>
     <% end %>
@@ -7,7 +10,8 @@
       <td>
         <datalist id="fuente-familiares">
         </datalist>
-        <%= p.input :id, as: :hidden %>
+        <%= p.input :id, as: :hidden,
+          input_html: {"data-msip--sindocaut-target": "id"} %>
         <% ph = 'N'
         ac = {'data-autocompleta' => 'no',
                style: 'width: 9em' }
@@ -40,12 +44,21 @@
           label_method: :sigla,
           value_method: :id ,
           label: false,
-          input_html: { style: 'width: 5em' }
+          input_html: { 
+            style: 'width: 5em',
+            'data-action': "change->msip--sindocaut#cambia_tdocumento"
+          }
         %>
       </td>
       <td>
-        <%= p.input :numerodocumento, 
-          label: false %>
+        <%= p.input :numerodocumento,
+          label: false,
+          input_html: {
+            title: "Si el tipo de documento es cédula de ciudadania "\
+            "teclee solo digitos",
+            "data-toggle": "tooltip",
+            "data-msip--sindocaut-target": "numerodocumento"
+          } %>
       </td>
       <td>
         <%= f.input :trelacion_id, 

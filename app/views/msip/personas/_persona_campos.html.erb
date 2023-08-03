@@ -2,126 +2,124 @@
 <% if Rails.configuration.x.msip_docid_obligatorio === true %>
   <% cont = "msip--sindocaut" %>
 <% end %>
-<div class='campos_persona' data-controller='<%= cont %>'>
-  <%= f.input :id, as: :hidden,
-    input_html: {"data-msip--sindocaut-target": "id"}
-  %>
-  <div class="row">
-    <div class="col-md-6">
-      <%= render partial: 'msip/personas/campo_nombres',
-        locals: {f: f, nombre_fuente: "fuente-victimas"} %>
+<div class='campos_persona'>
+  <div data-controller='<%= cont %>'>
+    <%= f.input :id, as: :hidden,
+      input_html: {"data-msip--sindocaut-target": "id"} %>
+      <div class="row">
+      <div class="col-md-6">
+        <%= render partial: 'msip/personas/campo_nombres',
+          locals: {f: f, nombre_fuente: "fuente-victimas"} %>
+      </div>
+      <div class="col-md-6">
+        <%= render partial: 'msip/personas/campo_apellidos',
+          locals: {f: f, nombre_fuente: "fuente-victimas"} %>
+      </div>
     </div>
-    <div class="col-md-6">
-      <%= render partial: 'msip/personas/campo_apellidos',
-        locals: {f: f, nombre_fuente: "fuente-victimas"} %>
+  
+    <div class="row">
+      <div class="col-md-6">
+        <%= render partial: 'msip/personas/campo_tdocumento_nobusca',
+          locals: {f: f} %>
+      </div>
+      <div class="col-md-6">
+        <%= render partial: 'msip/personas/campo_numerodocumento_nobusca',
+          locals: { f: f,
+                    titulo_tooltip: "Si el tipo de documento es cédula de ciudadania "\
+                    "teclee solo digitos"
+          } %>
+      </div>
     </div>
+  
+    <div class="input string">
+      <label class="string control-label">Casos en los que aparece: </label>
+      <% r = "" %>
+      <% sep = "" %>
+      <% v = Sivel2Gen::Victima.where(persona_id: f.object.id).
+        order(:persona_id) %>
+      <% v.each do |vic| %>
+        <% if @caso.id != vic.caso.id %>
+          <%= link_to vic.caso.id, sivel2_gen.caso_path(vic.caso), 
+            target:"_blank" %>
+        <% end %>
+      <% end %>
+    </div>
+  
+  
+    <%= render partial: "msip/personas/fila_edad", 
+      locals: { f: f, fvictima: fvictima} %>
+  
+    <% @meses = [
+      ["ENERO", 1],
+      ["FEBRERO", 2],
+      ["MARZO", 3],
+      ["ABRIL", 4],
+      ["MAYO", 5],
+      ["JUNIO", 6],
+      ["JULIO", 7],
+      ["AGOSTO", 8],
+      ["SEPTIEMBRE", 9],
+      ["OCTUBRE", 10],
+      ["NOVIEMBRE", 11],
+      ["DICIEMBRE", 12]] %>
+    <% @dias = *(1..31) %>
+  
+    <div class="row">
+      <div class="col-md-4">
+        <%= f.input :mesnac, collection: @meses %>
+      </div>
+      <div class="col-md-4">
+        <%= f.input :dianac, collection: @dias %>
+      </div>
+      <div class="col-md-4">
+        <%= render partial: 'msip/personas/campo_sexo', locals: {f: f} %>
+      </div>
+    </div>
+  
+    <div class="row">
+      <div class="col-md-6">
+        <%= f.association :pais,
+          collection: Msip::ModeloHelper.opciones_tabla_basica(
+            Msip::Pais, f, :pais
+          ),
+          label_method: :nombre,
+          value_method: :id %>
+      </div>
+      <div class="col-md-6">
+        <%= f.association :departamento,
+          collection: (
+            Msip::ModeloHelper.opciones_tabla_basica(
+              Msip::Departamento, f, :departamento
+            ).where(
+              pais_id: f.object.pais_id)
+          ),
+          label_method: :nombre,
+          value_method: :id %>
+      </div>
+    </div>
+  
+    <div class="row">
+      <div class="col-md-6">
+        <%= f.association :municipio,
+          collection: (
+            Msip::ModeloHelper.opciones_tabla_basica(
+              Msip::Municipio, f, :municipio
+            ).where(departamento_id: f.object.departamento_id)
+          ),
+          label_method: :nombre, value_method: :id %>
+      </div>
+      <div class="col-md-6">
+        <%= f.association :clase,
+          collection: (
+            Msip::ModeloHelper.opciones_tabla_basica(
+              Msip::Clase, f, :clase
+            ).where(municipio_id: f.object.municipio_id)
+          ),
+          label_method: :nombre,
+          value_method: :id %>
+      </div>
+    </div>
+  
+    <%= render partial: 'msip/personas/familiar', locals: {f: f} %>
   </div>
-
-  <div class="row">
-    <div class="col-md-6">
-      <%= render partial: 'msip/personas/campo_tdocumento_nobusca',
-        locals: {f: f} %>
-    </div>
-    <div class="col-md-6">
-      <%= render partial: 'msip/personas/campo_numerodocumento_nobusca',
-        locals: { f: f,
-          titulo_tooltip: "Si el tipo de documento es cédula de ciudadania "\
-          "teclee solo digitos"
-        } %>
-    </div>
-  </div>
-
-  <div class="input string">
-    <label class="string control-label">Casos en los que aparece: </label>
-    <%
-      r = ""
-      sep = ""
-      v = Sivel2Gen::Victima.where(persona_id: f.object.id).order(:persona_id)
-      v.each do |vic|
-        if @caso.id != vic.caso.id
-      %>
-      <%= link_to vic.caso.id, sivel2_gen.caso_path(vic.caso), target:"_blank" %>
-      <%
-        end
-      end
-    %>
-  </div>
-
-
-  <%= render partial: "msip/personas/fila_edad", 
-    locals: { f: f, fvictima: fvictima} 
-  %>
-
-  <% @meses = [
-    ["ENERO", 1],
-    ["FEBRERO", 2],
-    ["MARZO", 3],
-    ["ABRIL", 4],
-    ["MAYO", 5],
-    ["JUNIO", 6],
-    ["JULIO", 7],
-    ["AGOSTO", 8],
-    ["SEPTIEMBRE", 9],
-    ["OCTUBRE", 10],
-    ["NOVIEMBRE", 11],
-    ["DICIEMBRE", 12]] %>
-  <% @dias = *(1..31) %>
-
-  <div class="row">
-    <div class="col-md-4">
-      <%= f.input :mesnac, collection: @meses %>
-    </div>
-    <div class="col-md-4">
-      <%= f.input :dianac, collection: @dias %>
-    </div>
-    <div class="col-md-4">
-      <%= render partial: 'msip/personas/campo_sexo', locals: {f: f} %>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-md-6">
-      <%= f.association :pais,
-        collection: Msip::ModeloHelper.opciones_tabla_basica(
-          Msip::Pais, f, :pais
-        ),
-        label_method: :nombre,
-        value_method: :id %>
-    </div>
-    <div class="col-md-6">
-      <%= f.association :departamento,
-        collection: (
-          Msip::ModeloHelper.opciones_tabla_basica(
-            Msip::Departamento, f, :departamento
-          ).where(
-            pais_id: f.object.pais_id)
-        ),
-        label_method: :nombre,
-        value_method: :id %>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-md-6">
-      <%= f.association :municipio,
-        collection: (
-          Msip::ModeloHelper.opciones_tabla_basica(
-            Msip::Municipio, f, :municipio
-          ).where(departamento_id: f.object.departamento_id)
-        ),
-        label_method: :nombre, value_method: :id %>
-    </div>
-    <div class="col-md-6">
-      <%= f.association :clase,
-        collection: (
-          Msip::ModeloHelper.opciones_tabla_basica(
-            Msip::Clase, f, :clase
-          ).where(municipio_id: f.object.municipio_id)
-        ),
-        label_method: :nombre,
-        value_method: :id %>
-    </div>
-  </div>
-
-  <%= render partial: 'msip/personas/familiar', locals: {f: f} %>
 </div>
