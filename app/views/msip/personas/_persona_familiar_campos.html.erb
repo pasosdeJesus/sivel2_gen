@@ -1,21 +1,28 @@
+<% return if !f.object %>
+<% if Rails.configuration.x.msip_docid_obligatorio === true %>
+  <% cont = "msip--sindocaut" %>
+<% end %>
 <%= turbo_frame_tag "familiar_#{f.index}" do %>
   <% if f.object.personados.nil? %>
     <% f.object.personados = Msip::Persona.new %>
   <% end %>
   <%= f.input :id, as: :hidden %>
   <%= f.simple_fields_for :personados do |p| %>
-  <div class="row campos_personados">
-    <div class="col">
-      <%= p.input :id, as: :hidden %>
-      <% ph = 'N'
-      ac = {'data-autocompleta' => 'no',
-             style: 'width: 9em' }
-      if (!p.object.nombres || p.object.nombres == 'N' || 
-          p.object.nombres == '')
-        ph = 'Buscar'
-        ac = { list: "fuente-familiares",
-               style: 'width: 9em' }
-      end %>
+    <div class="row campos-personados" data-controller='<%= cont %>'>
+      <div class="col">
+        <datalist id="fuente-familiares">
+        </datalist>
+        <%= p.input :id, as: :hidden,
+          input_html: {"data-msip--sindocaut-target": "id"} %>
+        <% ph = 'N' %>
+        <% ac = {'data-autocompleta' => 'no',
+                 style: 'width: 9em' } %>
+        <% if (!p.object.nombres || p.object.nombres == 'N' || 
+            p.object.nombres == '') %>
+          <% ph = 'Buscar' %>
+          <% ac = { list: "fuente-familiares",
+                    style: 'width: 9em' } %>
+        <% end %>
 
         <%= p.input :nombres, placeholder: ph, 
           value_method: lambda {|t| '' if t.nombres == 'N'},
@@ -39,12 +46,21 @@
           label_method: :sigla,
           value_method: :id ,
           label: false,
-          input_html: { style: 'width: 5em' }
+          input_html: { 
+            style: 'width: 5em',
+            'data-action': "change->msip--sindocaut#cambia_tdocumento"
+          }
         %>
       </div> 
       <div class="col">
-        <%= p.input :numerodocumento, 
-          label: false %>
+        <%= p.input :numerodocumento,
+          label: false,
+          input_html: {
+            title: "Si el tipo de documento es cédula de ciudadania "\
+            "teclee solo digitos",
+            "data-toggle": "tooltip",
+            "data-msip--sindocaut-target": "numerodocumento"
+          } %>
       </div>
       <div class="col">
         <%= f.input :trelacion_id, 

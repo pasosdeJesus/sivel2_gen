@@ -45,7 +45,6 @@
       <% end %>
     </div>
 
-
     <%= render partial: "msip/personas/fila_edad", 
       locals: { f: f, fvictima: fvictima} %>
 
@@ -120,7 +119,7 @@
       </div>
     </div>
 
-    <%= render partial: 'msip/personas/familiar', locals: {f: f} %>
+    <%= render partial: 'msip/personas/familiar', 
+      locals: {f: f, index_vic: params[:index]} %>
   </div>
-
 </div>
