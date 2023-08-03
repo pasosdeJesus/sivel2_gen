@@ -8,9 +8,13 @@
     });
     </script-->
   <% @pestanas_formulariocaso = controller.pestanas_formulariocaso %>
-  <%= simple_form_for @caso, 
-    url: sivel2_gen.casos_path(@caso).sub(/\./,"/"), 
-    html: { class: 'form-horizontal' } do |f| 
+  <%= simple_form_for @caso,
+    url: sivel2_gen.casos_path(@caso).sub(/\./,"/"),
+    html: { 
+      class: 'form-horizontal', 
+      "data-controller": "msip--bitacoraap",
+      "data-action": "submit->msip--bitacoraap#enviarFormulario"
+    } do |f| 
   %>
     <div data-role="content" class="form-inputs">
 
