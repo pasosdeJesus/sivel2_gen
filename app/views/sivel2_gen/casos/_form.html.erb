@@ -10,6 +10,7 @@
   <% @pestanas_formulariocaso = controller.pestanas_formulariocaso %>
   <%= simple_form_for @caso,
     url: sivel2_gen.casos_path(@caso).sub(/\./,"/"),
+    multipart: true,
     html: { 
       class: 'form-horizontal', 
       "data-controller": "msip--bitacoraap",

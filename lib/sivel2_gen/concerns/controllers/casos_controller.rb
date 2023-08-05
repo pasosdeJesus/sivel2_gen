@@ -806,6 +806,7 @@ module Sivel2Gen
               if params[:_msip_enviarautomatico] == "1"
                 params_finales = caso_params.except(
                   :caso_etiqueta_attributes,
+                  :caso_anexo_attributes,
                   :caso_fuenteprensa_attributes,
                   :caso_fotra_attributes,
                   :caso_presponsable_attributes
@@ -1209,6 +1210,7 @@ module Sivel2Gen
                 :anexo_caso_attributes => [
                   :id,
                   :caso_id,
+                  :anexo_id,
                   :fecha,
                   :fecha_localizada,
                   :_destroy,

@@ -10,6 +10,8 @@ module Sivel2Gen
           include Msip::Localizacion
           include Msip::FormatoFechaHelper
 
+          self.table_name = 'sivel2_gen_anexo_caso'
+
           belongs_to :caso, foreign_key: "caso_id", validate: true, 
             class_name: "Sivel2Gen::Caso", inverse_of: :anexo_caso, 
             optional: false
