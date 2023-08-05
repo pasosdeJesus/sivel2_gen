@@ -1,4 +1,5 @@
 <div class='campos-persona-con-victima-id'>
+  <%= f.input :id, as: :hidden %>
   <%= f.simple_fields_for :persona do |p| %>
     <%= render partial: 'msip/personas/persona_campos', 
       locals: {f: p, fvictima: f}  %>
@@ -36,7 +37,7 @@
   </div>
 </div>
 
-<%= render partial: 'sectorsocial_campos', locals: {f: f} %>
+<%= render partial: 'sivel2_gen/casos/sectorsocial_campos', locals: {f: f} %>
 
 <div class="row">
   <div class="col-md-6">

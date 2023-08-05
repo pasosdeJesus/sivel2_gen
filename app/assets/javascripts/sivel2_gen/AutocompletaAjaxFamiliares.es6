@@ -19,21 +19,15 @@ export default class Sivel2GenAutocompletaAjaxFamiliares {
         Sivel2GenAutocompletaAjaxFamiliares.claseEnvoltura)
       return
     }
-    const campo_oculto = $(eorig.target.closest(".seccionvictima")).find(".caso_victima_id").find("input[id^=caso_victima_attributes][id$=id]")[0]
+    const campo_oculto = $(eorig.target.closest(".seccionvictima")).find(".campos-persona-con-victima-id").find(".caso_victima_id").find("input[id^=caso_victima_attributes][id$=id]")[0]
     const elemIdVictima = campo_oculto.value
-    const elemIdVictimaCocoon = campo_oculto.id.split("_")[3]
     const elemIdFamiliar = divcpf.querySelector('input')
-    if (elemIdVictima == null) {
-      window.alert('No se ubico id de la víctima')
-      return
-    }
     const victima_id = elemIdVictima
     const trelacion_id1 = elemIdFamiliar.id.split("_")[9]
     caso = $("form")[0].id.split("_")[2]
     let d = 'persona_id=' + idPersona
     d += "&victima_id=" + victima_id + "&trelacion_id1=" + trelacion_id1
     d += "&caso_id=" + caso
-    d += "&victcocoon_id=" + elemIdVictimaCocoon
     console.log(d)
     const a = root.puntomontaje + 'personas/remplazarfamiliar'
     window.Rails.ajax({
@@ -42,6 +36,7 @@ export default class Sivel2GenAutocompletaAjaxFamiliares {
       data: d,
       success: (resp, estado, xhr) => {
         const divcp = eorig.target.closest('.' + Sivel2GenAutocompletaAjaxFamiliares.claseEnvoltura)
+
         let r = resp.querySelector('.' + Sivel2GenAutocompletaAjaxFamiliares.claseEnvoltura)
         divcp.innerHTML=r.innerHTML
       },
