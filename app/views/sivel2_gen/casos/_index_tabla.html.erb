@@ -94,7 +94,9 @@
               sivel2_gen.edit_caso_path(caso.caso_id), :class => 'btn btn-sm' %>
           <% elsif vcaso && can?(:edit, vcaso) %>
             <%= link_to t('.edit', :default => t("helpers.links.edit")),
-              sivel2_gen.edit_caso_path(caso.caso_id), :class => 'btn btn-sm' %>
+              sivel2_gen.edit_caso_path(caso.caso_id), 
+              "data-turbo": false,
+              :class => 'btn btn-sm' %>
           <% end %>
           <%= render partial: 'sivel2_gen/casos/index_mas_acciones', 
             locals: {caso: caso, registro: caso} %>
