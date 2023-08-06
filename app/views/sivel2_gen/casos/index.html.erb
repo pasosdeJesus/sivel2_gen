@@ -1,6 +1,6 @@
 <%- model_class = Sivel2Gen::Caso -%>
 <div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+  <h1><%=t '.title', default: model_class.model_name.human.pluralize.titleize %></h1>
 </div>
 
 <%= simple_form_for :filtro, 
@@ -52,7 +52,7 @@
         <div class="float-end" id="botones_finfiltro"> 
           <%= f.button :submit, 'Filtrar', id: 'sivel2_gen-filtrar-casos',
             class: 'btn btn-default',
-            'data-turbo' => false %>
+            'data-turbo': false %>
           <button class="btn btn-default" type="reset">
             Limpiar
           </button>
