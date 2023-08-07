@@ -8,8 +8,6 @@
     <% end %>
     <%= f.simple_fields_for :personados do |p| %>
       <td>
-        <datalist id="fuente-familiares">
-        </datalist>
         <%= p.input :id, as: :hidden,
           input_html: {"data-msip--sindocaut-target": "id"} %>
         <% ph = 'N'
