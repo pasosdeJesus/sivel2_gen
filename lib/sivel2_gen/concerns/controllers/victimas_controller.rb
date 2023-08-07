@@ -64,6 +64,7 @@ module Sivel2Gen
           # Crea un nuevo registro para el caso que recibe por parametro 
           # params[:caso_id].  Pone valores simples en los campos requeridos
           def nuevo
+            debugger
             if params[:caso_id]
               @persona = Msip::Persona.new
               @victima = Victima.new
