@@ -90,22 +90,17 @@
           <% vcaso = Sivel2Gen::Caso.where(id: caso.caso_id).take %>
           <% if can?(:solocambiaretiquetas, Sivel2Gen::Caso) ||
               can?(:solocambiaretiquetas, caso) %>
-            <%= link_to 'Cambiar etiquetas',
-              sivel2_gen.edit_caso_path(caso.caso_id), :class => 'btn btn-sm' %>
+            <%= render partial: 'msip/modelos/boton_editar',
+              locals: {registro: vcaso, mas_clases: 'btn-sm'} %>
           <% elsif vcaso && can?(:edit, vcaso) %>
-            <%= link_to t('.edit', :default => t("helpers.links.edit")),
-              sivel2_gen.edit_caso_path(caso.caso_id), 
-              "data-turbo": false,
-              :class => 'btn btn-sm' %>
+            <%= render partial: 'msip/modelos/boton_editar',
+              locals: {registro: vcaso, mas_clases: 'btn-sm'} %>
           <% end %>
           <%= render partial: 'sivel2_gen/casos/index_mas_acciones', 
             locals: {caso: caso, registro: caso} %>
           <% if vcaso && can?(:destroy, vcaso) %>
-            <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-              sivel2_gen.caso_path(caso.caso_id),
-              :method => :delete,
-              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Está seguro(a)?')) },
-              :class => 'btn btn-sm btn-danger' %>
+            <%= render partial: 'msip/modelos/boton_eliminar',
+              locals: {registro: vcaso, mas_clases: 'btn-sm'} %>
           <% end %>
         </td>
       </tr>

@@ -13,10 +13,8 @@
       <div class="offset-md-0 col-md-1"> 
         <% if @conscaso.size > 0 && current_usuario &&
             can?(:new, Sivel2Gen::Caso) %>
-          <%= link_to t('.new', :default => t("helpers.links.new")),
-            sivel2_gen.new_caso_path,
-            :class => 'btn btn-primary' 
-          %>
+          <%= render partial: 'msip/modelos/boton_nuevo',
+            locals: {ruta: sivel2_gen.new_caso_path} %>
         <% end %>
       </div>
       <div class="offset-md-3 col-md-1"> 
@@ -90,7 +88,6 @@
   <% end %>
 </div>
 <% if current_usuario && can?(:new, Sivel2Gen::Caso) %>
-  <%= link_to t('.new', :default => t("helpers.links.new")),
-    sivel2_gen.new_caso_path,
-    :class => 'btn btn-primary' %>
+  <%= render partial: 'msip/modelos/boton_nuevo',
+    locals: {ruta: sivel2_gen.new_caso_path} %>
 <% end %>
