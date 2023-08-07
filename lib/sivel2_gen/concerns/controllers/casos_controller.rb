@@ -789,7 +789,7 @@ module Sivel2Gen
                             vic = Sivel2Gen::Victima.create(victima_params_filtrado)
                             vic.caso_id = @caso.id
                             @caso.victima.push(vic)
-                            vic.save!
+                            vic.save!(validate: false)
                           end
                           pt = Msip::PersonaTrelacion.where(persona1: vic.persona.id , persona2: p2_id)
                           if pt.count > 0
