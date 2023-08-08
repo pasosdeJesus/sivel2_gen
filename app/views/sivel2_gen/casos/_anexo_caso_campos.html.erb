@@ -41,7 +41,7 @@
       <% end %> <!-- f.simple_fields_for :msip_anexo -->
 
       <%= f.submit "Eliminar", 
-        formaction: eliminar_anexo_caso_path(id: f.object.id, index: f.index),
+        formaction: sivel2_gen.eliminar_anexo_caso_path(id: f.object.id, index: f.index),
         formmethod: :delete,
         formnovalidate: true,
         class: 'btn btn-sm btn-danger',
