@@ -812,11 +812,13 @@ module Sivel2Gen
                             @caso.victima.push(vic)
                           end
                         end
+                        params[:caso][:victima_attributes].delete(index)
                       end
                     end
                   end
                 end
               end
+
               if params[:caso][:victima_attributes] 
                 params[:caso][:victima_attributes].each do |index, victima_params|
                   if victima_params[:_destroy] != "true"
@@ -841,7 +843,6 @@ module Sivel2Gen
                       else
                         if victima_params[:persona_attributes][:persona_trelacion1_attributes]
                           asignar_id_personatrelacion(params, index, victima_params)
-                          params[:caso][:victima_attributes].delete(index)
                         end
                       end
                     else
