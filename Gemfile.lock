@@ -11,7 +11,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/heb412_gen.git
-  revision: 2797d4a74eb89d1c916a358dcd473f392bb3fd53
+  revision: 3b962c4e14641e4f1d43d92dcf18cfc10535c7fe
   branch: v2.0
   specs:
     heb412_gen (2.0)
@@ -22,7 +22,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/mr519_gen.git
-  revision: fd852113d03b43f9dd27af8d3b78bdb0805a50e1
+  revision: c0dfe62bea6d29d99b22b6efb20f680f0ae70d52
   branch: v2.0
   specs:
     mr519_gen (2.0)
@@ -190,11 +190,11 @@ GEM
     method_source (1.0.0)
     mime-types (3.5.0)
       mime-types-data (~> 3.2015)
-    mime-types-data (3.2023.0218.1)
+    mime-types-data (3.2023.0808)
     mimemagic (0.3.10)
       nokogiri (~> 1)
       rake
-    mini_mime (1.1.2)
+    mini_mime (1.1.5)
     mini_portile2 (2.8.4)
     minitest (5.19.0)
     msgpack (1.7.2)
@@ -208,7 +208,7 @@ GEM
     net-smtp (0.3.3)
       net-protocol
     nio4r (2.5.9)
-    nokogiri (1.15.3)
+    nokogiri (1.15.4)
       mini_portile2 (~> 2.8.2)
       racc (~> 1.4)
     odf-report (0.7.3)
