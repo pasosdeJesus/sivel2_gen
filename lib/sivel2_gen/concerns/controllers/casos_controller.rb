@@ -777,7 +777,7 @@ module Sivel2Gen
                 if victima_params[:persona_attributes]
                   if victima_params[:persona_attributes][:persona_trelacion1_attributes]
                     victima_params[:persona_attributes][:persona_trelacion1_attributes].each do |index_pt, pt_params|
-                      if pt_params[:id] == ""
+                      if pt_params[:id] == "" and pt_params[:_destroy] != "true"
                         p2_id = pt_params[:personados_attributes][:id]
                         if p2_id != ""
                           if victima_params[:id] != ""
@@ -812,11 +812,13 @@ module Sivel2Gen
                             @caso.victima.push(vic)
                           end
                         end
+                        params[:caso][:victima_attributes].delete(index)
                       end
                     end
                   end
                 end
               end
+
               if params[:caso][:victima_attributes] 
                 params[:caso][:victima_attributes].each do |index, victima_params|
                   if victima_params[:_destroy] != "true"
@@ -839,8 +841,9 @@ module Sivel2Gen
                         end
                         params[:caso][:victima_attributes].delete(index)
                       else
-                        asignar_id_personatrelacion(params, index, victima_params)
-                        params[:caso][:victima_attributes].delete(index)
+                        if victima_params[:persona_attributes][:persona_trelacion1_attributes]
+                          asignar_id_personatrelacion(params, index, victima_params)
+                        end
                       end
                     else
                       asignar_id_personatrelacion(params, index, victima_params)
