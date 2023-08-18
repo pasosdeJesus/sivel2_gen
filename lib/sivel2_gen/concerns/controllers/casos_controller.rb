@@ -808,7 +808,8 @@ module Sivel2Gen
                   :caso_etiqueta_attributes,
                   :caso_fuenteprensa_attributes,
                   :caso_fotra_attributes,
-                  :caso_presponsable_attributes
+                  :caso_presponsable_attributes,
+                  :caso_ubicacionpre_attributes
                 )
               else
                 params_finales = caso_params
@@ -1270,6 +1271,23 @@ module Sivel2Gen
                     :solicitud,
                     :estadosol_id,
                     :usuarionotificar_ids => []
+                  ]
+                ],
+                :caso_ubicacionpre_attributes => [
+                  :id,
+                  :ubicacionpre_id,
+                  :_destroy,
+                  :ubicacionpre_attributes => [
+                    :clase_id,
+                    :departamento_id,
+                    :id,
+                    :latitud,
+                    :longitud,
+                    :lugar,
+                    :municipio_id,
+                    :pais_id,
+                    :sitio,
+                    :tsitio_id,
                   ]
                 ],
                 :combatiente_attributes => [

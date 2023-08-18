@@ -278,17 +278,6 @@ module Sivel2Gen
 
       habilidad.can :nuevo, Sivel2Gen::Victimacolectiva
 
-      habilidad.can :manage, Sivel2Gen::CasoEtiqueta
-
-      habilidad.can :manage, Sivel2Gen::CasoFuenteprensa
-
-      habilidad.can :manage, Sivel2Gen::CasoFotra
-
-      habilidad.can :manage, Sivel2Gen::CasoPresponsable
-
-      habilidad.can :manage, Sivel2Gen::CasoSolicitud
-
-
       if usuario && usuario.rol then
         case usuario.rol
         when Ability::ROLANALI
@@ -311,6 +300,12 @@ module Sivel2Gen
             habilidad.can :manage, Sivel2Gen::Actocolectivo
             habilidad.can [:read, :new, :edit, :update, :create, 
                            :nuevo, :nueva, :destroy], Sivel2Gen::Caso
+            habilidad.can :manage, Sivel2Gen::CasoEtiqueta
+            habilidad.can :manage, Sivel2Gen::CasoFuenteprensa
+            habilidad.can :manage, Sivel2Gen::CasoFotra
+            habilidad.can :manage, Sivel2Gen::CasoPresponsable
+            habilidad.can :manage, Sivel2Gen::CasoSolicitud
+            habilidad.can :manage, Sivel2Gen::CasoUbicacionpre
 
             habilidad.cannot :solocambiaretiquetas, Sivel2Gen::Caso
             habilidad.can [:refresca, :validar], Sivel2Gen::Caso
@@ -372,7 +367,13 @@ module Sivel2Gen
           habilidad.can :manage, Sivel2Gen::Actocolectivo
           habilidad.can :manage, Sivel2Gen::Caso
           habilidad.cannot :solocambiaretiquetas, Sivel2Gen::Caso
-          habilidad.can :read, Sivel2Gen::Victima
+          habilidad.can :manage, Sivel2Gen::CasoEtiqueta
+          habilidad.can :manage, Sivel2Gen::CasoFuenteprensa
+          habilidad.can :manage, Sivel2Gen::CasoFotra
+          habilidad.can :manage, Sivel2Gen::CasoPresponsable
+          habilidad.can :manage, Sivel2Gen::CasoSolicitud
+          habilidad.can :manage, Sivel2Gen::CasoUbicacionpre
+          habilidad.can :manage, Sivel2Gen::Victima
 
           habilidad.can :manage, Usuario
           habilidad.can :manage, :tablasbasicas
