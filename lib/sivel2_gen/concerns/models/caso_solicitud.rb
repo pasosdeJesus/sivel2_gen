@@ -9,12 +9,19 @@ module Sivel2Gen
           include Msip::FormatoFechaHelper
 
           self.table_name = 'sivel2_gen_caso_solicitud'
+
           belongs_to :caso, 
             class_name: 'Sivel2Gen::Caso',
-            validate: true, foreign_key: 'caso_id', optional: false
-          belongs_to :solicitud, class_name: 'Msip::Solicitud', validate: true,
-            foreign_key: 'solicitud_id', optional: false
-          accepts_nested_attributes_for :solicitud, reject_if: :all_blank
+            foreign_key: 'caso_id', 
+            validate: true, 
+            optional: false
+          belongs_to :solicitud, 
+            class_name: 'Msip::Solicitud', 
+            validate: true,
+            foreign_key: 'solicitud_id', 
+            optional: false
+          accepts_nested_attributes_for :solicitud, 
+            reject_if: :all_blank
 
 
         end # included

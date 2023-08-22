@@ -1,5 +1,3 @@
-require 'date'
-
 module Sivel2Gen
   module Concerns
     module Controllers
@@ -33,7 +31,7 @@ module Sivel2Gen
 
         end # included
 
-      end 
+      end
     end
   end
 end
