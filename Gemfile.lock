@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/kreeti/kt-paperclip.git
-  revision: edd1d9d6c6a9e66f5a31bf2068fc6777bfeade0a
+  revision: 743979bb57f5a680d9bc17399149a759d1e0b873
   specs:
     kt-paperclip (7.2.0)
       activemodel (>= 4.2.0)
@@ -11,7 +11,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/heb412_gen.git
-  revision: 3b962c4e14641e4f1d43d92dcf18cfc10535c7fe
+  revision: d8b50844c047647cbcaa2a8f2e311d4d7ae1484e
   branch: v2.0
   specs:
     heb412_gen (2.0)
@@ -22,7 +22,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/mr519_gen.git
-  revision: c0dfe62bea6d29d99b22b6efb20f680f0ae70d52
+  revision: 542fabd50c6f9f2f39a758a407bbc555b322e6f2
   branch: v2.0
   specs:
     mr519_gen (2.0)
@@ -31,7 +31,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sip.git
-  revision: fd72faeccf51c21926c1185c7e47d2398b37c493
+  revision: 6f2d24eb20b60f13e4cd7fcb73b2d09efc146629
   branch: v2.0
   specs:
     sip (2.0)
@@ -232,7 +232,7 @@ GEM
     prawnto_2 (0.3.1)
       prawn (>= 1.0.0)
       rails (>= 3.2)
-    puma (6.3.0)
+    puma (6.3.1)
       nio4r (~> 2.0)
     racc (1.7.1)
     rack (2.2.8)
@@ -271,7 +271,7 @@ GEM
     rails-html-sanitizer (1.6.0)
       loofah (~> 2.21)
       nokogiri (~> 1.14)
-    rails-i18n (7.0.7)
+    rails-i18n (7.0.8)
       i18n (>= 0.7, < 2)
       railties (>= 6.0.0, < 8)
     railties (6.1.7.4)
@@ -282,7 +282,7 @@ GEM
       thor (~> 1.0)
     rake (13.0.6)
     redcarpet (3.6.0)
-    reline (0.3.7)
+    reline (0.3.8)
       io-console (~> 0.5)
     responders (3.1.0)
       actionpack (>= 5.2)
@@ -396,4 +396,4 @@ DEPENDENCIES
   will_paginate
 
 BUNDLED WITH
-   2.4.18
+   2.4.19
