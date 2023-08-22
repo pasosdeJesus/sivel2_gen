@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/kreeti/kt-paperclip.git
-  revision: edd1d9d6c6a9e66f5a31bf2068fc6777bfeade0a
+  revision: 743979bb57f5a680d9bc17399149a759d1e0b873
   specs:
     kt-paperclip (7.2.0)
       activemodel (>= 4.2.0)
@@ -43,7 +43,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/heb412_gen.git
-  revision: a813d7037a1e0db053fd997e24c2ecc2831dac14
+  revision: 28cc1c344f60bbc9c6ab06e669ac265f5f76b2f3
   branch: v2.1
   specs:
     heb412_gen (2.1.0.beta1)
@@ -54,7 +54,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/mr519_gen.git
-  revision: 85166ffff5fdd0f8fdf579562efa6c8c3fd59746
+  revision: dba6433298de7a98d3f3814fe8c3e923428ecec7
   branch: v2.1
   specs:
     mr519_gen (2.1.0.beta1)
@@ -259,7 +259,7 @@ GEM
       prawn (>= 1.0.0)
       rails (>= 3.2)
     public_suffix (5.0.3)
-    puma (6.3.0)
+    puma (6.3.1)
       nio4r (~> 2.0)
     racc (1.7.1)
     rack (2.2.8)
@@ -295,7 +295,7 @@ GEM
     rails-html-sanitizer (1.6.0)
       loofah (~> 2.21)
       nokogiri (~> 1.14)
-    rails-i18n (7.0.7)
+    rails-i18n (7.0.8)
       i18n (>= 0.7, < 2)
       railties (>= 6.0.0, < 8)
     railties (7.0.7)
@@ -308,7 +308,7 @@ GEM
     rake (13.0.6)
     redcarpet (3.6.0)
     regexp_parser (2.8.1)
-    reline (0.3.7)
+    reline (0.3.8)
       io-console (~> 0.5)
     responders (3.1.0)
       actionpack (>= 5.2)
@@ -431,4 +431,4 @@ DEPENDENCIES
   will_paginate
 
 BUNDLED WITH
-   2.4.18
+   2.4.19
