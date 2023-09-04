@@ -11,7 +11,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/heb412_gen.git
-  revision: 6b0ef0f2555c3e39aba10fa601cbf368f5755971
+  revision: c420f1537745f9326b08be909aa292aab691cc3f
   branch: v2.0
   specs:
     heb412_gen (2.0)
@@ -22,7 +22,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/mr519_gen.git
-  revision: ba066013657a3a77f750afcd11c1388ff3b1514b
+  revision: 31c655cb528e027561593490510d95cf33f28742
   branch: v2.0
   specs:
     mr519_gen (2.0)
@@ -163,12 +163,13 @@ GEM
     erubi (1.12.0)
     execjs (2.8.1)
     ffi (1.15.5)
-    globalid (1.1.0)
-      activesupport (>= 5.0)
+    globalid (1.2.0)
+      activesupport (>= 6.1)
     i18n (1.14.1)
       concurrent-ruby (~> 1.0)
     io-console (0.6.0)
-    irb (1.7.4)
+    irb (1.8.0)
+      rdoc (~> 6.5)
       reline (>= 0.3.6)
     jbuilder (2.11.5)
       actionview (>= 5.0.0)
@@ -223,7 +224,7 @@ GEM
       mimemagic (~> 0.3.0)
       terrapin (~> 0.6.0)
     pdf-core (0.9.0)
-    pg (1.5.3)
+    pg (1.5.4)
     prawn (2.4.0)
       pdf-core (~> 0.9.0)
       ttfunk (~> 1.7)
@@ -232,11 +233,13 @@ GEM
     prawnto_2 (0.3.1)
       prawn (>= 1.0.0)
       rails (>= 3.2)
+    psych (5.1.0)
+      stringio
     puma (6.3.1)
       nio4r (~> 2.0)
     racc (1.7.1)
     rack (2.2.8)
-    rack-proxy (0.7.6)
+    rack-proxy (0.7.7)
       rack
     rack-test (2.1.0)
       rack (>= 1.3)
@@ -281,6 +284,8 @@ GEM
       rake (>= 12.2)
       thor (~> 1.0)
     rake (13.0.6)
+    rdoc (6.5.0)
+      psych (>= 4.0.0)
     redcarpet (3.6.0)
     reline (0.3.8)
       io-console (~> 0.5)
@@ -318,13 +323,14 @@ GEM
       actionpack (>= 5.2)
       activesupport (>= 5.2)
       sprockets (>= 3.0.0)
+    stringio (3.0.8)
     terrapin (0.6.0)
       climate_control (>= 0.0.3, < 1.0)
     thor (1.2.2)
     tilt (2.2.0)
     timeout (0.4.0)
     ttfunk (1.7.0)
-    twitter_cldr (6.11.5)
+    twitter_cldr (6.12.0)
       camertron-eprun
       cldr-plurals-runtime-rb (~> 1.1)
       tzinfo
