@@ -11,7 +11,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/heb412_gen.git
-  revision: 4754673ef5491afaf6e69bfc66d503ab93d7fc08
+  revision: 4214dc35be79c31bb701ee5ba02c9f0a8ad07335
   branch: v2.0
   specs:
     heb412_gen (2.0)
@@ -161,7 +161,7 @@ GEM
       dotenv (= 2.8.1)
       railties (>= 3.2)
     erubi (1.12.0)
-    execjs (2.9.0)
+    execjs (2.9.1)
     ffi (1.15.5)
     globalid (1.2.1)
       activesupport (>= 6.1)
