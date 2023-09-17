@@ -202,7 +202,7 @@ module Sivel2Gen
 
     }
 
-    def campos_plantillas
+    def self.campos_plantillas
       n = Heb412Gen::Ability::CAMPOS_PLANTILLAS_PROPIAS.
         clone.merge(CAMPOS_PLANTILLAS_PROPIAS)
       #byebug
