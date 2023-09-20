@@ -2,7 +2,7 @@
   <%= f.input :id, as: :hidden %>
   <%= f.simple_fields_for :persona do |p| %>
     <%= render partial: 'msip/personas/persona_campos', 
-      locals: {f: p, fvictima: f}  %>
+      locals: {f: p, fvictima: f, index_vic: index_vic}  %>
   <% end %>
 </div>
 
