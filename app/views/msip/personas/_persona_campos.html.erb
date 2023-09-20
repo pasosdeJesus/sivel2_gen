@@ -120,8 +120,12 @@
           value_method: :id %>
       </div>
     </div>
-
+    <% if params[:index] == nil %>
+      <% ivix = index_vic %>
+    <% else %>
+      <% ivix = params[:index] %>
+    <% end %>
     <%= render partial: 'msip/personas/familiar',
-      locals: {f: f, index_vic: params[:index]} %>
+      locals: {f: f, index_vic: ivix } %>
   </div>
 </div>
