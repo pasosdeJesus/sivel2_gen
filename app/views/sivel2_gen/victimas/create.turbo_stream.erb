@@ -10,7 +10,7 @@
     <% end %>
 
     <%= turbo_stream.append "victimas_frame" do %>
-      <%= render "/sivel2_gen/casos/victima_campos", f: vic_form %>
+      <%= render "/sivel2_gen/casos/victima_campos", f: vic_form, index_vic: params[:index] %>
     <% end %>
   <% end %>
 <% end %>
