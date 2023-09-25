@@ -102,6 +102,10 @@
         <% if can? :manage, Msip::Bitacora %>
           <%= opcion_menu "Bitácoras", msip.bitacoras_path, desplegable: true %>
         <% end %>
+        <% if can? :manage, Msip::Respaldo7z %>
+          <%= opcion_menu "Respaldo cifrado", msip.respaldo7z_path,
+            desplegable: true %>
+        <% end %>
         <% if can? :manage, Mr519Gen::Formulario %>
           <%= opcion_menu "Formularios", 
             mr519_gen.formularios_path,
