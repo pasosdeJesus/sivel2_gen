@@ -45,7 +45,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/msip.git
-  revision: 76a5fc04d1c6d26e52d4f15e1e0c68b499f96db2
+  revision: c95727016f9175a871e8fb8cc8d7aa3b47b18ee6
   branch: main
   specs:
     msip (2.2.0.beta4)
@@ -206,7 +206,7 @@ GEM
       concurrent-ruby (~> 1.1)
       webrick (~> 1.7)
       websocket-driver (>= 0.6, < 0.8)
-    ffi (1.15.5)
+    ffi (1.16.1)
     globalid (1.2.1)
       activesupport (>= 6.1)
     i18n (1.14.1)
@@ -356,7 +356,7 @@ GEM
       unicode-display_width (>= 2.4.0, < 3.0)
     rubocop-ast (1.29.0)
       parser (>= 3.2.1.0)
-    rubocop-minitest (0.31.1)
+    rubocop-minitest (0.32.1)
       rubocop (>= 1.39, < 2.0)
     rubocop-rails (2.21.1)
       activesupport (>= 4.2.0)
