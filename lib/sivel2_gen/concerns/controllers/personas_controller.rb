@@ -20,7 +20,7 @@ module Sivel2Gen
           end
 
           def atributos_form
-            atributos_show - [:id, :caso_ids]
+            atributos_form_msip - [:caso_ids]
           end
 
           def remplazar_antes_destruir_p

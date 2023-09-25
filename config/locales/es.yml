@@ -28,6 +28,8 @@ es:
         tsitio: Tipo de sitio
         clase: Centro poblado
       "msip/persona":
+        Persona: Víctima
+        Personas: Víctimas
         anionac: Año de nacimiento
         clase: Centro poblado de nacimiento
         departamento: Estado/Departamento de nacimiento
