@@ -11,6 +11,7 @@
 // about supported directives.
 //
 //= require msip/motor
+//= require msip/motor_es5
 //= require heb412_gen/motor
 //= require mr519_gen/motor
 //= require sivel2_gen/motor
