@@ -12,6 +12,18 @@
       <div class="offset-sm-0 col-sm-2 offset-md-1 col-md-1">
         Ubicación
       </div>
+      <div class="offset-sm-0 col-sm-2 col-md-2">
+        <%= f.input :pais_id,
+          collection: Msip::ModeloHelper.opciones_tabla_basica(
+            Msip::Pais, f, :pais_id
+          ),
+          label_method: :nombre,
+          value_method: :id,
+          selected: [Msip.paisomision],
+          label: false,
+          include_blank: "-- Pais"
+        %>
+      </div>
       <div class="offset-sm-0 col-sm-3 col-md-3">
         <%= f.input :departamento_id,
           collection: Msip::ModeloHelper.opciones_tabla_basica(
@@ -33,18 +45,6 @@
           value_method: :id,
           label: false,
           include_blank: "-- Municipio",
-          input_html: {disabled: :disabled }
-        %>
-      </div>
-      <div class="col-md-2">
-        <%= f.input :clase_id,
-          collection: Msip::ModeloHelper.opciones_tabla_basica(
-            Msip::Clase, f, :clase_id
-          ),
-          label_method: :nombre,
-          value_method: :id,
-          label: false,
-          include_blank: "-- Clase",
           input_html: {disabled: :disabled }
         %>
       </div>
