@@ -40,6 +40,12 @@ module Sivel2Gen
             order(critord)
           }
 
+          scope :filtro_pais_id, lambda { |id|
+            where('caso_id IN (SELECT caso_id
+                    FROM public.msip_ubicacion
+                    WHERE msip_ubicacion.pais_id = ?)', id)
+          }
+
           scope :filtro_departamento_id, lambda { |id|
             where('caso_id IN (SELECT caso_id
                     FROM public.msip_ubicacion

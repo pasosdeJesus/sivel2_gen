@@ -99,7 +99,7 @@ module Sivel2Gen
 
           def campos_filtro1
             if current_usuario
-              [:departamento_id, :municipio_id, :clase_id,
+              [:pais_id, :departamento_id, :municipio_id, :clase_id,
                 :fechaini, :fechafin, :presponsable_id, :categoria_id,
                 :nombres, :apellidos, :victimacol, :sexo, :rangoedad_id,
                 :organizacion_id, :profesion_id, :filiacion_id, :descripcion,
