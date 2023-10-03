@@ -43,7 +43,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/heb412_gen.git
-  revision: da2eaab390ee7687fd788eb6989e02e2b9fb937c
+  revision: ea8309a7c460988d0578a9e38250c50fb882a11a
   branch: v2.1
   specs:
     heb412_gen (2.1.0.beta1)
@@ -54,7 +54,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/mr519_gen.git
-  revision: 52734af51df0051c18e91f94c8b3b68c582a3db0
+  revision: 5148450f6024c0c716250deec95198034d29df63
   branch: v2.1
   specs:
     mr519_gen (2.1.0.beta1)
@@ -181,7 +181,7 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
-    devise-i18n (1.11.0)
+    devise-i18n (1.11.1)
       devise (>= 4.9.0)
     docile (1.4.0)
     dotenv (2.8.1)
@@ -195,7 +195,7 @@ GEM
       concurrent-ruby (~> 1.1)
       webrick (~> 1.7)
       websocket-driver (>= 0.6, < 0.8)
-    ffi (1.15.5)
+    ffi (1.16.2)
     globalid (1.2.1)
       activesupport (>= 6.1)
     i18n (1.14.1)
@@ -381,7 +381,7 @@ GEM
     will_paginate (4.0.0)
     xpath (3.2.0)
       nokogiri (~> 1.8)
-    zeitwerk (2.6.11)
+    zeitwerk (2.6.12)
 
 PLATFORMS
   x86_64-linux
@@ -437,4 +437,4 @@ DEPENDENCIES
   will_paginate
 
 BUNDLED WITH
-   2.4.19
+   2.4.20
