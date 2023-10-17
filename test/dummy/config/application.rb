@@ -1,6 +1,19 @@
-
 require_relative 'boot'
-require 'rails/all'
+
+require "rails"
+# Pick the frameworks you want:
+require "active_model/railtie"
+require "active_job/railtie"
+require "active_record/railtie"
+# require "active_storage/engine"
+require "action_controller/railtie"
+require "action_mailer/railtie"
+# require "action_mailbox/engine"
+# require "action_text/engine"
+require "action_view/railtie"
+#require "action_cable/engine"
+require "rails/test_unit/railtie"
+
 
 # Requiere gemas listas en el Gemfile, incluyendo las
 # limitadas a :test, :development, o :production.
@@ -11,7 +24,9 @@ require 'sivel2_gen'
 module Dummy
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
-    config.load_defaults 7.0
+    config.load_defaults 7.1
+
+    config.autoload_lib(ignore: %w(assets tasks))
 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers
@@ -35,7 +50,8 @@ module Dummy
 
     puts "CONFIG_HOSTS="+ENV.fetch('CONFIG_HOSTS', 'defensor.info').to_s
     config.hosts.concat(
-      ENV.fetch('CONFIG_HOSTS', 'defensor.info').downcase.split(";"))
+      ENV.fetch('CONFIG_HOSTS', 'defensor.info').downcase.split(";")
+    )
 
     # msip
     #Evita deshabilitar butones en formularios anidados dinámicos
