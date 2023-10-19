@@ -8,6 +8,8 @@ export default class Sivel2GenAutocompletaAjaxFamiliares {
 
   // Elije una persona en autocompletación
   static operarElegida (eorig, cadpersona, id, otrosop) {
+    vic_position = eorig.target.id.split("_")[3]
+    fam_position = eorig.target.id.split("_")[9]
     let root = window
     msip_arregla_puntomontaje(root)
     const cs = id.split(';')
@@ -23,11 +25,12 @@ export default class Sivel2GenAutocompletaAjaxFamiliares {
     const elemIdVictima = campo_oculto.value
     const elemIdFamiliar = divcpf.querySelector('input')
     const victima_id = elemIdVictima
-    const trelacion_id1 = elemIdFamiliar.id.split("_")[9]
     caso = $("form")[0].id.split("_")[2]
     let d = 'persona_id=' + idPersona
-    d += "&victima_id=" + victima_id + "&trelacion_id1=" + trelacion_id1
+    d += "&victima_id=" + victima_id
     d += "&caso_id=" + caso
+    d += "&vic_position=" + vic_position
+    d += "&fam_position=" + fam_position
     console.log(d)
     const a = root.puntomontaje + 'personas/remplazarfamiliar'
     window.Rails.ajax({

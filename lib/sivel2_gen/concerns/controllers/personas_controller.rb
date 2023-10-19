@@ -45,7 +45,8 @@ module Sivel2Gen
             @caso = Sivel2Gen::Caso.find(params[:caso_id])
             @caso.current_usuario = current_usuario
             @personados = Msip::Persona.find(params[:persona_id].to_i)
-            @index_familiar = params[:trelacion_id1]
+            @vic_position = params[:vic_position].to_i
+            @fam_position = params[:fam_position].to_i
             if params[:victima_id].to_i == 0
               @victima = Sivel2Gen::Victima.new
               @personatr = Msip::PersonaTrelacion.new
@@ -76,6 +77,7 @@ module Sivel2Gen
             @persona = Msip::Persona.find(params[:persona_id].to_i)
             @caso = Sivel2Gen::Caso.find(params[:caso_id].to_i)
             @caso.current_usuario = current_usuario
+            @vic_position = params[:vic_position].to_i
             if !remplazar_antes_salvar_v
               return
             end
