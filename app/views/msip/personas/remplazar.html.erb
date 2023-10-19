@@ -3,11 +3,11 @@
   url: sivel2_gen.casos_path(@caso).sub(/\./,"/"),
   :html => { :class => 'form-horizontal' } do |c| %>
   <div class='campos-persona-con-victima-id'>
-    <%= c.simple_fields_for :victima, @victima, child_index: params[:index] do |v| %>
+    <%= c.simple_fields_for :victima, @victima, child_index: @vic_position do |v| %>
       <%= v.input :id, as: :hidden, value: @victima.id.to_s %>
       <%= v.simple_fields_for :persona do |p| %>
         <% s = render partial: 'msip/personas/persona_campos', 
-            locals: { f: p, fvictima: v }  %>
+            locals: { f: p, fvictima: v, index_vic: @vic_position }  %>
         <%= s.html_safe %>
       <% end %>
     <% end %>

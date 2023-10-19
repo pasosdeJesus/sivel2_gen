@@ -9,6 +9,7 @@ export default class Sivel2GenAutocompletaAjaxVictimas {
   static operarElegida (eorig, cadpersona, id, otrosop) {
     let root = window
     msip_arregla_puntomontaje(root)
+    vic_position = eorig.target.id.split("_")[3]
     const cs = id.split(';')
     const idPersona = cs[0]
     const divcp = eorig.target.closest('.' + 
@@ -25,7 +26,8 @@ export default class Sivel2GenAutocompletaAjaxVictimas {
     }
     const idCaso = elemIdCaso.value
     let d = 'persona_id=' + idPersona
-    d += "&caso_id=" + idCaso
+    d += '&caso_id=' + idCaso
+    d += "&vic_position=" + vic_position
     const a = root.puntomontaje + 'personas/remplazar'
     window.Rails.ajax({
       type: 'GET',
