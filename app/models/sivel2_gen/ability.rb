@@ -272,21 +272,13 @@ module Sivel2Gen
 
 
       habilidad.can :manage, Sivel2Gen::CasoEtiqueta
-
       habilidad.can :manage, Sivel2Gen::CasoFuenteprensa
-
       habilidad.can :manage, Sivel2Gen::CasoFotra
-
       habilidad.can :manage, Sivel2Gen::CasoPresponsable
-
       habilidad.can :manage, Sivel2Gen::CasoSolicitud
-
       habilidad.can :nuevo, Sivel2Gen::Combatiente
-
       habilidad.can :nuevo, Sivel2Gen::Presponsable
-
       habilidad.can :manage, Sivel2Gen::Victima
-
       habilidad.can :manage, Sivel2Gen::Victimacolectiva
 
       if usuario && usuario.rol then

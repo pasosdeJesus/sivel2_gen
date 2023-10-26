@@ -1,3 +1,6 @@
+<% if !defined?(nombre_fuente_familiares) %>
+  <% nombre_fuente_familiares = "fuente-familiares" %>
+<% end %>
 <div class="accordion" id="acordeonlc-<%= f.object.id %>">
   <%= item_acordeon_bs(
     'acordeonlc', "colapsalc-#{f.object.id}", 
@@ -18,7 +21,8 @@
       </div>
       <%= f.simple_fields_for :persona_trelacion1,
         child_index: params[:index] do |pt| %>
-        <%= render 'msip/personas/persona_familiar_campos', f: pt, per: f %>
+        <%= render partial: 'msip/personas/persona_familiar_campos', 
+          locals: {f: pt, per: f, datalist: nombre_fuente_familiares } %>
       <% end %>
     </div>
 

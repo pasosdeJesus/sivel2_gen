@@ -69,4 +69,4 @@ export default class Sivel2GenAutocompletaAjaxFamiliares {
 // Sobrellevamos imposibilidad de hacer static claseEnvoltura y
 // static idDatalist dentro de la clase Sivel2GenAutocompletaAjaxFamiliares asi:
 Sivel2GenAutocompletaAjaxFamiliares.claseEnvoltura = 'campos_personados'
-Sivel2GenAutocompletaAjaxFamiliares.idDatalist = 'fuente-familiares'
+Sivel2GenAutocompletaAjaxFamiliares.idDatalist = 'fuente-familiares-victima'

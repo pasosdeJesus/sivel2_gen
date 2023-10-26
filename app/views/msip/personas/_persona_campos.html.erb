@@ -1,3 +1,9 @@
+<% if !defined?(nombre_fuente) %>
+  <% nombre_fuente = "fuente-personas" %>
+<% end %>
+<% if !defined?(nombre_fuente_familiares) %>
+  <% nombre_fuente_familiares = "fuente-familiares" %>
+<% end %>
 <% cont = "" %>
 <% if Rails.configuration.x.msip_docid_obligatorio === true %>
   <% cont = "msip--sindocaut" %>
@@ -10,11 +16,11 @@
     <div class="row">
       <div class="col-md-6">
         <%= render partial: 'msip/personas/campo_nombres',
-          locals: {f: f, nombre_fuente: "fuente-victimas"} %>
+          locals: {f: f, nombre_fuente: nombre_fuente} %>
       </div>
       <div class="col-md-6">
         <%= render partial: 'msip/personas/campo_apellidos',
-          locals: {f: f, nombre_fuente: "fuente-victimas"} %>
+          locals: {f: f, nombre_fuente: nombre_fuente} %>
       </div>
     </div>
 
@@ -126,6 +132,10 @@
       <% ivix = params[:index] %>
     <% end %>
     <%= render partial: 'msip/personas/familiar',
-      locals: {f: f, index_vic: ivix } %>
+      locals: {
+        f: f, 
+        index_vic: ivix, 
+        nombre_fuente_familiares: nombre_fuente_familiares
+      } %>
   </div>
 </div>

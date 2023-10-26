@@ -1,8 +1,14 @@
 <div class='campos-persona-con-victima-id'>
   <%= f.input :id, as: :hidden %>
   <%= f.simple_fields_for :persona do |p| %>
-    <%= render partial: 'msip/personas/persona_campos', 
-      locals: {f: p, fvictima: f, index_vic: index_vic}  %>
+    <%= render partial: 'msip/personas/persona_campos',
+      locals: {
+        f: p,
+        fvictima: f,
+        index_vic: index_vic,
+        nombre_fuente: "fuente-victimas",
+        nombre_fuente_familiares: "fuente-familiares-victima"
+      }  %>
   <% end %>
 </div>
 
@@ -15,7 +21,7 @@
         Sivel2Gen::Profesion, f, :profesion
       ),
       include_blank: false,
-      label_method: :nombre, 
+      label_method: :nombre,
       value_method: :id %>
   </div>
   <div class="col-md-4">
@@ -28,11 +34,11 @@
         Sivel2Gen::Filiacion, f, :filiacion
       ),
       include_blank: false,
-      label_method: :nombre, 
+      label_method: :nombre,
       value_method: :id,
       input_html: {
         "data-toggle" => 'tooltip',
-        "title" => 'Partido o filiación política en el momento del hecho' 
+        "title" => 'Partido o filiación política en el momento del hecho'
       } %>
   </div>
 </div>
@@ -46,7 +52,7 @@
         Sivel2Gen::Contextovictima, f, :contextovictima
       ),
       include_blank: false,
-      label_method: :nombre, 
+      label_method: :nombre,
       value_method: :id,
       include_blank: false,
       input_html: {
@@ -70,7 +76,7 @@
         Sivel2Gen::Organizacion, f, :organizacion
       ),
       include_blank: false,
-      label_method: :nombre, 
+      label_method: :nombre,
       value_method: :id,
       input_html: {
         "data-toggle" => 'tooltip',
@@ -82,7 +88,7 @@
       collection: Msip::ModeloHelper.opciones_tabla_basica(
         Sivel2Gen::Organizacion, f, :otraorga
       ),
-      label_method: :nombre, 
+      label_method: :nombre,
       value_method: :id,
       include_blank: false,
       input_html: {
@@ -100,7 +106,7 @@
         Sivel2Gen::Presponsable, f, :presponsable
       ),
       include_blank: false,
-      label_method: :nombre, 
+      label_method: :nombre,
       value_method: :id,
       input_html: {
         "data-toggle" => 'tooltip',
@@ -115,7 +121,7 @@
         Sivel2Gen::Etnia, f, :etnia
       ),
       include_blank: false,
-      label_method: :nombre, 
+      label_method: :nombre,
       value_method: :id %>
    </div>
 </div>
@@ -127,8 +133,8 @@
         Sivel2Gen::Iglesia, f, :iglesia
       ),
       include_blank: false,
-      label_method: :nombre, 
-      value_method: :id 
+      label_method: :nombre,
+      value_method: :id
     %>
   </div>
   <div class="col-md-6">
@@ -146,7 +152,7 @@
       collection: Msip::ModeloHelper.opciones_tabla_basica(
         Sivel2Gen::Antecedente, f, :antecedente
       ),
-      label_method: :nombre, 
+      label_method: :nombre,
       value_method: :id,
       include_blank: false %>
   </div>

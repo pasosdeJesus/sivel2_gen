@@ -17,7 +17,12 @@
             id: "agregar-familiar" %>
         <% end %>
         <%= turbo_stream.append "familiares_marco_#{params[:index_vic]}" do %>
-          <%= render "/msip/personas/persona_familiar_campos", f: pt, per: per %>
+          <%= render partial: "/msip/personas/persona_familiar_campos", 
+            locals: {
+              f: pt, 
+              per: per, 
+              nombre_fuente_familiares: "fuente-familiares-victima"
+            } %>
         <% end %>
       <% end %>
     <% end %>

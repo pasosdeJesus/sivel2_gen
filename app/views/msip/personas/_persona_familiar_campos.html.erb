@@ -1,4 +1,7 @@
 <% return if !f.object %>
+<% if !defined?(nombre_fuente_familiares) %>
+  <% nombre_fuente_familiares = "fuente-familiares" %>
+<% end %>
 <% if Rails.configuration.x.msip_docid_obligatorio === true %>
   <% cont = "msip--sindocaut" %>
 <% end %>
@@ -20,7 +23,7 @@
             p.object.nombres == '') %>
           <% ph = 'Buscar' %>
           <% ac = {
-            list: "fuente-familiares",
+            list: nombre_fuente_familiares,
             style: 'width: 9em' } %>
         <% end %>
 
