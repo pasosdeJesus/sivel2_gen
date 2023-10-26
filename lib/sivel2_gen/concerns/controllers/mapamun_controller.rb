@@ -45,8 +45,9 @@ module Sivel2Gen
 
             @mapamun_depid = pDepartamento.to_i > 0 ? pDepartamento.to_i : 
               11 # BOYACÁ
-            idmun = Msip::Municipio.where(
-              departamento_id: @mapamun_depid).take.id
+            if Msip::Municipio.where(departamento_id: @mapamun_depid).take.nil?
+              puts "Sin municipios en departamento #{@mapamun_depid}"
+            end
 
             r = ActiveRecord::Base.connection.select_all(
               "SELECT  municipio_divipola, count(*) FROM #{cons} "\

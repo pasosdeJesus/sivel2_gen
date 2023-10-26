@@ -107,5 +107,5 @@ class NomenclaturaRails < ActiveRecord::Migration[7.0]
      rename_column :sivel2_gen_victimacolectiva_vinculoestado, 
       :id_vinculoestado, :vinculoestado_id
 
- end
+  end
 end

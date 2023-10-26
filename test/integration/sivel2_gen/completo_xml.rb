@@ -110,16 +110,22 @@ module Sivel2Gen
       )
       otrasorg1 = Sivel2Gen::OtraorgaVictima.create(
         organizacion_id: organizacion1.id, victima_id: victima1.id)
+      assert !otrasorg1.nil?
       otrasorg2 = Sivel2Gen::OtraorgaVictima.create(
         organizacion_id: organizacion2.id, victima_id: victima1.id)
+      assert !otrasorg2.nil?
       antecedentevic1 = Sivel2Gen::AntecedenteVictima.create(
         antecedente_id: antecedente1.id, victima_id: victima1.id)
+      assert !antecedentevic1 .nil?
       antecedentevic2 = Sivel2Gen::AntecedenteVictima.create(
         antecedente_id: antecedente2.id, victima_id: victima1.id)
+      assert !antecedentevic2 .nil?
       sectorsocialsecvic1 = Sivel2Gen::SectorsocialsecVictima.create(
         sectorsocial_id: sectorsocialsec1.id, victima_id: victima1.id)
+      assert !sectorsocialsecvic1.nil?
       sectorsocialsecvic2 = Sivel2Gen::SectorsocialsecVictima.create(
         sectorsocial_id: sectorsocialsec2.id, victima_id: victima1.id)
+      assert !sectorsocialsecvic2.nil?
       presponsable = Sivel2Gen::Presponsable.find(37)
       pr = Sivel2Gen::CasoPresponsable.create(
         caso_id: caso.id,
