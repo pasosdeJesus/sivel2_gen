@@ -53,33 +53,51 @@
       <% end %>
     </div>
 
-    <%= render partial: "msip/personas/fila_edad",
-      locals: { f: f, fvictima: fvictima} %>
-
-    <% @meses = [
-      ["ENERO", 1],
-      ["FEBRERO", 2],
-      ["MARZO", 3],
-      ["ABRIL", 4],
-      ["MAYO", 5],
-      ["JUNIO", 6],
-      ["JULIO", 7],
-      ["AGOSTO", 8],
-      ["SEPTIEMBRE", 9],
-      ["OCTUBRE", 10],
-      ["NOVIEMBRE", 11],
-      ["DICIEMBRE", 12]] %>
-    <% @dias = *(1..31) %>
-
-    <div class="row">
-      <div class="col-md-4">
-        <%= f.input :mesnac, collection: @meses %>
-      </div>
-      <div class="col-md-4">
-        <%= f.input :dianac, collection: @dias %>
-      </div>
-      <div class="col-md-4">
-        <%= render partial: 'msip/personas/campo_sexo', locals: {f: f} %>
+    <div class="div-edad" data-controller="edad">
+      <%= render partial: "msip/personas/fila_edad", 
+        locals: { f: f, fvictima: fvictima} %>
+  
+      <% @meses = [
+        ["ENERO", 1],
+        ["FEBRERO", 2],
+        ["MARZO", 3],
+        ["ABRIL", 4],
+        ["MAYO", 5],
+        ["JUNIO", 6],
+        ["JULIO", 7],
+        ["AGOSTO", 8],
+        ["SEPTIEMBRE", 9],
+        ["OCTUBRE", 10],
+        ["NOVIEMBRE", 11],
+        ["DICIEMBRE", 12]] %>
+      <% @dias = *(1..31) %>
+  
+      <div class="row">
+        <div class="col-md-4">
+          <%= f.input :mesnac,
+            collection: @meses,
+            input_html:{
+              data: { 
+                action: "change->edad#actualizarEdad",
+              },
+              "data-edad-target" => "mesnac"
+            }
+          %>
+        </div>
+        <div class="col-md-4">
+          <%= f.input :dianac, 
+            collection: @dias, 
+            input_html:{
+              data: { 
+                action: "change->edad#actualizarEdad",
+              },
+              "data-edad-target" => "dianac"
+            }
+          %>
+        </div>
+        <div class="col-md-4">
+          <%= render partial: 'msip/personas/campo_sexo', locals: {f: f} %>
+        </div>
       </div>
     </div>
 

@@ -461,20 +461,6 @@ enviaFormularioContarPost= (root) ->
 @sivel2_detenerEnviarCada60 = ->
   window.clearInterval(@sivel2_idTemp60)
 
-# A partir de datos de persona y fechas actual y del caso
-# llena campos edad, edadactual y rangoedad
-# @param prefIdVic de la forma caso_victima_attributes_123 donde 123 es victima_id
-# @param prefIdPer de la forma caso_victima_attributes_123_persona_attributes donde 123 es victima_id
-@sivel2_gen_llenar_edades = (root, prefIdVic, prefIdPer) ->
-  ponerVariablesEdad(root)
-  anionac= +$("[id=" + prefIdPer + "_anionac]").val();
-  if anionac != 0
-    $('[id=' + prefIdVic + '_edad]').val(
-      edadDeFechaNac(prefIdPer, root.aniocaso, root.mescaso, root.diacaso))
-    $('[id=' + prefIdVic + '_edadactual]').val(
-     edadDeFechaNac(prefIdPer, root.anioactual, root.mesactual, root.diaactual))
-    ponerRangoEdad(prefIdVic);
-
 @consultar_nns = () -> 
   victimas = $(".seccionvictima")
   sin_id = []
@@ -771,74 +757,6 @@ enviaFormularioContarPost= (root) ->
     language: 'es'
   })
 
-  # Variables para calcular edad y rango
-  ponerVariablesEdad(root)
-  root.mesactual = 0
-  root.diaactual = 0
-
-  $(document).on('change', 
-  '[id^=caso_victima_attributes][id$=persona_attributes_anionac]', (event) ->
-    root =  window
-    anionac = $(this).val();
-    prefIdVic = $(this).attr('id').slice(0, -27)
-    prefIdPer = $(this).attr('id').slice(0, -8)
-    sivel2_gen_llenar_edades(root, prefIdVic, prefIdPer)
-  );
-
-  $(document).on('change', 
-  "[id^=caso_victima_attributes][id$=persona_attributes_mesnac]", (event) ->
-    root =  window
-    prefIdVic = $(this).attr('id').slice(0, -26)
-    prefIdPer = $(this).attr('id').slice(0, -7)
-    sivel2_gen_llenar_edades(root, prefIdVic, prefIdPer)
-  )
-
-  $(document).on('change', 
-  "[id^=caso_victima_attributes][id$=persona_attributes_dianac]", (event) ->
-    root =  window
-    prefIdVic = $(this).attr('id').slice(0, -26)
-    prefIdPer = $(this).attr('id').slice(0, -7)
-    sivel2_gen_llenar_edades(root, prefIdVic, prefIdPer)
-  )
-
-  $(document).on('change', 
-  "[id^=caso_victima_attributes][id$=_edad]", (event) ->
-    root =  window
-    edad = $(this).val();
-    prefIdVic = $(this).attr('id').slice(0, -5)
-    prefIdPer = prefIdVic + '_persona_attributes'
-    ponerVariablesEdad(root)
-    if (edad == '') 
-      limpiarFechaNac(prefIdPer, prefIdVic);
-    else
-      $("[id=" + prefIdPer + "_anionac]").val((+root.aniocaso) - (+edad));
-      $("[id=" + prefIdPer + "_mesnac]").val('');
-      $("[id=" + prefIdPer + "_dianac]").val('');
-      $('[id=' + prefIdVic + '_edadactual]').val(
-        edadDeFechaNac(prefIdPer, root.anioactual, root.mesactual, root.diaactual))
-
-    ponerRangoEdad(prefIdVic);
-  )
-
-  $(document).on('change', 
-  "[id^=caso_victima_attributes][id$=_edadactual]", (event) ->
-    root =  window
-    edadactual = $(this).val();
-    prefIdVic = $(this).attr('id').slice(0, -11)
-    prefIdPer = prefIdVic + '_persona_attributes'
-    ponerVariablesEdad(root)
-    if (edadactual == '')
-      limpiarFechaNac(prefIdPer, prefIdVic);
-    else
-      $("[id=" + prefIdPer + "_anionac]").val((+root.anioactual) - 
-      (+edadactual));
-      $("[id=" + prefIdPer + "_mesnac]").val('');
-      $("[id=" + prefIdPer + "_dianac]").val('');
-      $('[id=' + prefIdVic + '_edad]').val(
-        edadDeFechaNac(prefIdPer, root.aniocaso, root.mescaso, root.diacaso))
-
-    ponerRangoEdad(prefIdVic);
-  )
 
   # Habilitar rangos de edad deshabilitados cuando se pone edad o año
   $(document).on('submit', 'form', (event) ->
@@ -889,14 +807,6 @@ enviaFormularioContarPost= (root) ->
     if (event.target.getAttribute('href').charAt(0) == '#') 
       return event.preventDefault()
   ) 
-
-  $(document).on('msip:autocompleto_persona', (evento, victima_id, persona_id) -> 
-    root =  window
-    ponerVariablesEdad(root)
-    prefIdVic = 'caso_victima_attributes_' + victima_id
-    prefIdPer = 'caso_victima_attributes_' + victima_id + '_persona_attributes'
-    sivel2_gen_llenar_edades(root, prefIdVic, prefIdPer)
-  )
 
   $(document).on('change', '#filtro_tviolencia_id', (e) ->
     tviolencia_id = $(this).val()

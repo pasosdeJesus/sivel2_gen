@@ -4,6 +4,9 @@
 
 import { application } from "./application"
 
+import EdadController from "./edad_controller"
+application.register("edad", EdadController)
+
 import Msip__BitacoraapController from "./msip/bitacoraap_controller"
 application.register("msip--bitacoraap", Msip__BitacoraapController)
 
