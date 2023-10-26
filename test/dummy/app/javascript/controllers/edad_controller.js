@@ -53,4 +53,14 @@ export default class extends Controller {
         return meses.indexOf(nombreMes.toLowerCase());
         }
   }
+  blanquearFechanac(){
+    const targetPersona = event.target.closest(".div-edad")
+    const campo_anionac = targetPersona.querySelector('[data-edad-target="anionac"]');
+    const campo_mesnac = targetPersona.querySelector('[data-edad-target="mesnac"]');
+    const campo_dianac = targetPersona.querySelector('[data-edad-target="dianac"]');
+
+    campo_anionac.value = null
+    campo_mesnac.value = null
+    campo_dianac.value = null
+  }
 }

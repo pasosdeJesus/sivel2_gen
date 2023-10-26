@@ -4,7 +4,7 @@
     <%= f.input :anionac,
       collection: @anios,
       input_html: {
-        data: { action: "change->edad#actualizarEdad"},  
+        data: { action: "change->edad#actualizarEdad"},
         "data-edad-target" => "anionac"
       }
     %>
@@ -12,6 +12,7 @@
   <div class="col-sm-3">
     <%= fvictima.input :edad, 
       input_html: {
+        data: { action: "change->edad#blanquearFechanac"},
         "data-edad-target" => "edad"
       },
       as: :integer %>
@@ -19,6 +20,7 @@
   <div class="col-sm-3">
     <%= fvictima.input :edadactual, 
       input_html: {
+        data: { action: "change->edad#blanquearFechanac"},
         "data-edad-target" => "edadactual"
       },
       as: :integer %>
