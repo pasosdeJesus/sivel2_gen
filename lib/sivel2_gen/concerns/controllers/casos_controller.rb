@@ -1331,6 +1331,15 @@ module Sivel2Gen
                     :usuarionotificar_ids => []
                   ]
                 ],
+                :caso_ubicacionpre_attributes => [
+                  :id, 
+                  :ubicacionpre_id,
+                  :_destroy,
+                  :ubicacionpre_attributes => [
+                    :id,
+                    :pais_id, 
+                  ]
+                ],
                 :combatiente_attributes => [
                   :alias,
                   :edad,

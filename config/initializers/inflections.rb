@@ -21,6 +21,7 @@ ActiveSupport::Inflector.inflections do |inflect|
 	inflect.irregular 'caso_fotra', 'caso_fotras' # Tocó porque no permite otro plural
 	inflect.irregular 'caso_presponsable', 'caso_presponsables' # Tocó porque no permite otro plural
 	inflect.irregular 'caso_anexo', 'caso_anexos' # Tocó porque no permite otro plural
+	inflect.irregular 'caso_ubicacionpre', 'caso_ubicacionespre'
 	inflect.irregular 'clase', 'clases'
 	inflect.irregular 'contextovictima', 'contextosvictima'
 	inflect.irregular 'estadocivil', 'estadosciviles'
