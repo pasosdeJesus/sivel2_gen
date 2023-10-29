@@ -9,7 +9,6 @@ module Sivel2Gen
     end
 
     test "valido" do
-      debugger
       ubicacionpre = Msip::Ubicacionpre.find(1)
       assert_predicate ubicacionpre, :valid?
 
@@ -27,7 +26,6 @@ module Sivel2Gen
     end
 
     test "no valido" do
-      debugger
       cs = Sivel2Gen::CasoUbicacionpre.create
 
       assert_not cs.valid?
