@@ -859,6 +859,24 @@ module Sivel2Gen
                   end
                 end
               end
+
+              if params[:caso][:caso_ubicacionpre_attributes] 
+                params[:caso][:caso_ubicacionpre_attributes].each do |index, ubp|
+                  ubi_id = Msip::Ubicacionpre::buscar_o_agregar(
+                    ubp[:ubicacionpre_pais_id], 
+                    ubp[:ubicacionpre_departamento_id],
+                    ubp[:ubicacionpre_municipio_id], 
+                    ubp[:ubicacionpre_clase_id],
+                    ubp[:ubicacionpre_lugar], 
+                    ubp[:ubicacionpre_sitio], 
+                    ubp[:ubicacionpre_tsitio_id],
+                    ubp[:ubicacionpre_latitud], 
+                    ubp[:ubicacionpre_longitud]
+                  )
+                  ubp[:ubicacionpre_id] = ubi_id
+                end
+              end
+
               ## Por si cambia de pestania evita duplicidad de turbo
               if params[:_msip_enviarautomatico] == "1"
                 params_finales = params[:caso].except(
@@ -1334,6 +1352,15 @@ module Sivel2Gen
                 :caso_ubicacionpre_attributes => [
                   :id, 
                   :ubicacionpre_id,
+                  :ubicacionpre_pais_id,
+                  :ubicacionpre_departamento_id,
+                  :ubicacionpre_municipio_id,
+                  :ubicacionpre_clase_id,
+                  :ubicacionpre_latitud,
+                  :ubicacionpre_longitud,
+                  :ubicacionpre_lugar,
+                  :ubicacionpre_sitio,
+                  :ubicacionpre_tsitio_id,
                   :_destroy,
                   :ubicacionpre_attributes => [
                     :id,

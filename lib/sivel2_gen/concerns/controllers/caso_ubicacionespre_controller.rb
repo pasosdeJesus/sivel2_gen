@@ -13,7 +13,6 @@ module Sivel2Gen
           end
 
           def destroy
-            debugger
           end
 
           def create
