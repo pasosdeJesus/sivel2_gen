@@ -8,13 +8,20 @@ export default class extends Controller {
   }
   actualizarEdad(){
     const targetPersona = event.target.closest(".div-edad")
-    const anio = parseInt(targetPersona.querySelector('[data-edad-target="anionac"]').value);
-    const mes = parseInt(targetPersona.querySelector('[data-edad-target="mesnac"]').value) - 1;
-    const dia = parseInt(targetPersona.querySelector('[data-edad-target="dianac"]').value);
+    let anio = parseInt(targetPersona.querySelector('[data-edad-target="anionac"]').value);
+    let mes = parseInt(targetPersona.querySelector('[data-edad-target="mesnac"]').value) - 1;
+    let dia = parseInt(targetPersona.querySelector('[data-edad-target="dianac"]').value);
 
+    if(isNaN(mes)){
+      mes = 0
+    }
+    if(isNaN(dia)){
+      dia = 1
+    }
     const campo_fecha_caso = document.querySelector('#caso_fecha_localizada');
     const campo_edad = targetPersona.querySelector('[data-edad-target="edad"]');
     const campo_edadactual = targetPersona.querySelector('[data-edad-target="edadactual"]');
+    const campo_rangoedad = targetPersona.querySelector('[data-edad-target="rangoedad"]');
 
     const anio_caso = parseInt(campo_fecha_caso.value.split("/")[2])
     const mes_caso = parseInt(obtenerNumeroMes(campo_fecha_caso.value.split("/")[1]))
@@ -34,9 +41,9 @@ export default class extends Controller {
             edadactual--;
           }
     if (
-            hoy.getMonth() < fechaCaso.getMonth() ||
-            (hoy.getMonth() === fechaCaso.getMonth() &&
-                      hoy.getDate() < fechaCaso.getDate())
+            fechaCaso.getMonth() < fechaNacimiento.getMonth() ||
+            (fechaCaso.getMonth() === fechaNacimiento.getMonth() &&
+                      fechaCaso.getDate() < fechaNacimiento.getDate())
           ) {
             edad--;
           }
@@ -52,13 +59,41 @@ export default class extends Controller {
       'sep', 'oct', 'nov', 'dic'];
         return meses.indexOf(nombreMes.toLowerCase());
         }
+    const opciones_rangoedad = campo_rangoedad.options;
+    for (var i = 0; i < opciones_rangoedad.length; i++) {
+      var opcion = campo_rangoedad.options[i].text;
+      var rango = opcion.match(/\d+/g).map(Number);
+      if (rango.length == 2 && edadactual >= rango[0] && edadactual <= rango[1]) {
+            campo_rangoedad.selectedIndex = i;
+            break;
+      }
+      if (rango.length == 1 && edadactual >= rango[0]) {
+            campo_rangoedad.selectedIndex = i;
+            break;
+      }
+    }
   }
   blanquearFechanac(){
     const targetPersona = event.target.closest(".div-edad")
     const campo_anionac = targetPersona.querySelector('[data-edad-target="anionac"]');
     const campo_mesnac = targetPersona.querySelector('[data-edad-target="mesnac"]');
     const campo_dianac = targetPersona.querySelector('[data-edad-target="dianac"]');
+    const campo_rangoedad = targetPersona.querySelector('[data-edad-target="rangoedad"]');
+    const campo_edad = targetPersona.querySelector('[data-edad-target="edad"]');
+    const campo_edadactual = targetPersona.querySelector('[data-edad-target="edadactual"]');
 
+    if(event.target.dataset.edadTarget == "rangoedad"){
+      campo_edad.value = null
+      campo_edadactual.value = null
+    }
+    if(event.target.dataset.edadTarget == "edad"){
+      campo_rangoedad.value = null
+      campo_edadactual.value = null
+    }
+    if(event.target.dataset.edadTarget == "edadactual"){
+      campo_edad.value = null
+      campo_rangoedad.value = null
+    }
     campo_anionac.value = null
     campo_mesnac.value = null
     campo_dianac.value = null

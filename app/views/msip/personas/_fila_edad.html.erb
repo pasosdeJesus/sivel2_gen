@@ -30,6 +30,10 @@
       collection: Msip::ModeloHelper.opciones_tabla_basica(
         Sivel2Gen::Rangoedad, fvictima, :rangoedad
       ),
+      input_html: {
+        data: { action: "change->edad#blanquearFechanac"},
+        "data-edad-target" => "rangoedad"
+      },
       include_blank: false,
       label_method: :nombre,
       value_method: :id
