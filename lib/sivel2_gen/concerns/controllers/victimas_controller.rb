@@ -10,7 +10,7 @@ module Sivel2Gen
         included do
           include ActionView::Helpers::AssetUrlHelper
 
-          load_and_authorize_resource class: Sivel2Gen::Caso
+          # Autorizaciones en controlador
           before_action :prepara_caso
 
           def clase
