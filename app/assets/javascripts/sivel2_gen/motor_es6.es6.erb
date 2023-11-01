@@ -111,26 +111,35 @@ export default class Sivel2GenMotorEs6 {
     valores_input= []
     valores_select= []
     div_victima.querySelectorAll('input').forEach(elem => {
-      if(elem.type != 'submit'){
+      if(elem.type != "hidden" && elem.type != 'submit' && 
+        !elem.id.includes('personados') && !elem.classList.contains('chosen-search-input')){
         valores_input.push(elem.value)
       }
     });
     div_victima.querySelectorAll('select').forEach(elem => {
-      if(elem.multiple){
-        opciones = elem.options
-        valores_multi= []
-        for (const opc of opciones){
-          if(opc.selected){
-            valores_multi.push(opc.value)
+      if(elem.type != "hidden" && elem.type != 'submit' && 
+        !elem.id.includes('personados') && !elem.id.includes('persona_trelacion1')){
+        console.log([elem.value, elem.type, elem.id])
+        if(elem.multiple){
+          opciones = elem.options
+          valores_multi= []
+          for (const opc of opciones){
+            if(opc.selected){
+              valores_multi.push(opc.value)
+            }
           }
+          valores_select.push(valores_multi)
         }
-        valores_select.push(valores_multi)
-      }
-      else{
-        valores_select.push(elem.value)
+        else{
+          valores_select.push(elem.value)
+        }
       }
     });
 
+    console.log("valores_input")
+    console.log(valores_input)
+    console.log("valores_select")
+    console.log(valores_select)
     document.querySelector('.agregar-vic').click();
     const mensajeElement = document.getElementById('mensaje-copia-vic');
     mensajeElement.style.display = 'block'; // Mostrar el mensaje antes de setTimeout()
@@ -138,27 +147,34 @@ export default class Sivel2GenMotorEs6 {
     setTimeout(() =>{
       victimas = document.querySelector("#victimas").querySelectorAll(".seccionvictima")
       vic_agregado = victimas[victimas.length- 1]
+      index = 0; 
       vic_agregado.querySelectorAll('input').forEach((elem, i) => {
         if(i >= 0 && i !=35){
-          if(elem.type != "hidden" && elem.type != 'submit' ){
-            elem.value = valores_input[i]
+          if(elem.type != "hidden" && elem.type != 'submit' &&
+            !elem.id.includes('personados') && !elem.classList.contains('chosen-search-input')){
+            elem.value = valores_input[index]
             elem.dispatchEvent(new Event('input'));
+            index += 1;
           }
         }
       })
+      indexs = 0; 
       vic_agregado.querySelectorAll('select').forEach((elem, i) => {
         if(i >= 0 && i !=35){
-          if(elem.multiple){
-            for(const val of valores_select[i]){
-              for (const opc of elem.options) {
-                if(opc.value == val){
-                  opc.selected = true;
+          if(elem.type != "hidden" && elem.type != 'submit' && !elem.id.includes('personados')){
+            if(elem.multiple){
+              for(const val of valores_select[indexs]){
+                for (const opc of elem.options) {
+                  if(opc.value == val){
+                    opc.selected = true;
+                  }
                 }
               }
             }
-          }
-          else{
-            elem.value = valores_select[i]
+            else{
+              elem.value = valores_select[indexs]
+            }
+            indexs += 1;
           }
         }
       })
