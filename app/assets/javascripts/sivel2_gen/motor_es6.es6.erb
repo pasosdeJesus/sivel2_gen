@@ -136,10 +136,6 @@ export default class Sivel2GenMotorEs6 {
       }
     });
 
-    console.log("valores_input")
-    console.log(valores_input)
-    console.log("valores_select")
-    console.log(valores_select)
     document.querySelector('.agregar-vic').click();
     const mensajeElement = document.getElementById('mensaje-copia-vic');
     mensajeElement.style.display = 'block'; // Mostrar el mensaje antes de setTimeout()
@@ -147,23 +143,23 @@ export default class Sivel2GenMotorEs6 {
     setTimeout(() =>{
       victimas = document.querySelector("#victimas").querySelectorAll(".seccionvictima")
       vic_agregado = victimas[victimas.length- 1]
-      index = 0; 
+      indice_tipo_input = 0; 
       vic_agregado.querySelectorAll('input').forEach((elem, i) => {
         if(i >= 0 && i !=35){
           if(elem.type != "hidden" && elem.type != 'submit' &&
             !elem.id.includes('personados') && !elem.classList.contains('chosen-search-input')){
-            elem.value = valores_input[index]
+            elem.value = valores_input[indice_tipo_input]
             elem.dispatchEvent(new Event('input'));
-            index += 1;
+            indice_tipo_input += 1;
           }
         }
       })
-      indexs = 0; 
+      indice_tipo_select = 0; 
       vic_agregado.querySelectorAll('select').forEach((elem, i) => {
         if(i >= 0 && i !=35){
           if(elem.type != "hidden" && elem.type != 'submit' && !elem.id.includes('personados')){
             if(elem.multiple){
-              for(const val of valores_select[indexs]){
+              for(const val of valores_select[indice_tipo_select]){
                 for (const opc of elem.options) {
                   if(opc.value == val){
                     opc.selected = true;
@@ -172,9 +168,9 @@ export default class Sivel2GenMotorEs6 {
               }
             }
             else{
-              elem.value = valores_select[indexs]
+              elem.value = valores_select[indice_tipo_select]
             }
-            indexs += 1;
+            indice_tipo_select += 1;
           }
         }
       })
