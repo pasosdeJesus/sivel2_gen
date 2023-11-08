@@ -1,6 +1,6 @@
 import { Controller } from "@hotwired/stimulus"
 
-// Connects to data-controller="edad"
+// Conecta con data-controller="sivel2-gen--edad"
 export default class extends Controller {
   static targets = ["anionac", "mesnac", "dianac", "edad", "edadactual"]
   connect() {

@@ -53,7 +53,7 @@
       <% end %>
     </div>
 
-    <div class="div-edad" data-controller="edad">
+    <div class="div-edad" data-controller="sivel2-gen--edad">
       <%= render partial: "msip/personas/fila_edad", 
         locals: { f: f, fvictima: fvictima} %>
   
@@ -78,7 +78,7 @@
             collection: @meses,
             input_html:{
               data: { 
-                action: "change->edad#actualizarEdad",
+                action: "change->sivel2-gen--edad#actualizarEdad",
               },
               "data-edad-target" => "mesnac"
             }
@@ -89,7 +89,7 @@
             collection: @dias, 
             input_html:{
               data: { 
-                action: "change->edad#actualizarEdad",
+                action: "change->sivel2-gen--edad#actualizarEdad",
               },
               "data-edad-target" => "dianac"
             }
