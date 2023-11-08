@@ -1,6 +1,3 @@
-
-require 'date'
-
 module Sivel2Gen
   module Concerns
     module Controllers

@@ -2,8 +2,7 @@
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-gem "apexcharts",
-  git: "https://github.com/styd/apexcharts.rb.git", branch: :master
+gem "apexcharts"#, git: "https://github.com/styd/apexcharts.rb.git", branch: :master
 
 gem "babel-transpiler"
 
@@ -20,28 +19,28 @@ gem "coffee-rails" # CoffeeScript para recuersos .js.coffee y vistas
 
 gem "color" # Maneja colores RGB
 
-gem "jbuilder" # API JSON facil. Ver: https://github.com/rails/jbuilder
-
-gem "jsbundling-rails"
-
 gem "devise" # Autenticación 
 
 gem "devise-i18n"
+
+gem "jbuilder" # API JSON facil. Ver: https://github.com/rails/jbuilder
+
+gem "jsbundling-rails"
 
 gem "kt-paperclip",                 # Anexos
   git: "https://github.com/kreeti/kt-paperclip.git"
 
 gem "libxml-ruby" # Genera ODS
 
-gem "odf-report" # Genera ODT
-
 gem 'nokogiri'
+
+gem "odf-report" # Genera ODT
 
 gem "pg" # Postgresql
 
 gem "prawn" # Generación de PDF
 
-gem "prawnto_2",  :require => "prawnto"
+gem "prawnto_2",  require: "prawnto"
 
 gem "prawn-table"
 
