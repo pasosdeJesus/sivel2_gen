@@ -12,7 +12,7 @@
   <div class="col-sm-3">
     <%= fvictima.input :edad, 
       input_html: {
-        data: { action: "change->sivel2-gen--edad#blanquearFechanac"},
+        data: { action: "change->sivel2-gen--edad#actualizarEdad"},
         "data-edad-target" => "edad"
       },
       as: :integer %>
@@ -20,7 +20,7 @@
   <div class="col-sm-3">
     <%= fvictima.input :edadactual, 
       input_html: {
-        data: { action: "change->sivel2-gen--edad#blanquearFechanac"},
+        data: { action: "change->sivel2-gen--edad#actualizarEdad"},
         "data-edad-target" => "edadactual"
       },
       as: :integer %>

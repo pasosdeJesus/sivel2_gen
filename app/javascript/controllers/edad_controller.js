@@ -6,11 +6,14 @@ export default class extends Controller {
   connect() {
     console.log("Conexion de controlador edades establecida")
   }
-  actualizarEdad(){
+  actualizarEdad(event){
     const targetPersona = event.target.closest(".div-edad")
-    let anio = parseInt(targetPersona.querySelector('[data-edad-target="anionac"]').value);
-    let mes = parseInt(targetPersona.querySelector('[data-edad-target="mesnac"]').value) - 1;
-    let dia = parseInt(targetPersona.querySelector('[data-edad-target="dianac"]').value);
+    const campo_anionac = targetPersona.querySelector('[data-edad-target="anionac"]');
+    const campo_mesnac = targetPersona.querySelector('[data-edad-target="mesnac"]');
+    const campo_dianac = targetPersona.querySelector('[data-edad-target="dianac"]');
+    let anio = parseInt(campo_anionac.value);
+    let mes = parseInt(campo_mesnac.value) - 1;
+    let dia = parseInt(campo_dianac.value);
 
     if(isNaN(mes)){
       mes = 0
@@ -26,12 +29,34 @@ export default class extends Controller {
     const anio_caso = parseInt(campo_fecha_caso.value.split("/")[2])
     const mes_caso = parseInt(obtenerNumeroMes(campo_fecha_caso.value.split("/")[1]))
     const dia_caso = parseInt(campo_fecha_caso.value.split("/")[0])
-    const fechaNacimiento = new Date(anio, mes, dia);
-    const fechaCaso = new Date(anio_caso, mes_caso, dia_caso);
     const hoy = new Date();
 
-    let edadactual = hoy.getFullYear() - fechaNacimiento.getFullYear();
-    let edad = fechaCaso.getFullYear() - fechaNacimiento.getFullYear();
+    let fechaCaso = new Date(anio_caso, mes_caso, dia_caso);
+    let fechaNacimiento = new Date(anio, mes, dia);
+    // El campo cambiado fue edad
+    if(event.target.dataset.edadTarget == 'edad'){
+      let edad = parseInt(campo_edad.value)
+      anio = fechaCaso.getFullYear() - edad
+      mes = 0
+      dia = 1
+      campo_anionac.value = anio
+      campo_mesnac.value = mes + 1
+      campo_dianac.value = dia
+    }
+    // El campo cambiado fue edadactual
+    if(event.target.dataset.edadTarget == 'edadactual'){
+      let edadactual = parseInt(campo_edadactual.value)
+      debugger
+      anio = hoy.getFullYear() - edadactual 
+      mes = 0
+      dia = 1
+      campo_anionac.value = anio
+      campo_mesnac.value = mes + 1
+      campo_dianac.value = dia
+    }
+    fechaNacimiento = new Date(anio, mes, dia);
+    let edadactual = hoy.getFullYear() - anio;
+    let edad = fechaCaso.getFullYear() - anio;
 
     if (
             hoy.getMonth() < fechaNacimiento.getMonth() ||
@@ -49,9 +74,13 @@ export default class extends Controller {
           }
     if (edad > 0){
       campo_edad.value = edad;
+    }else{
+      campo_edad.value = 0;
     }
     if (edadactual > 0){
       campo_edadactual.value = edadactual;
+    }else{
+      campo_edadactual.value = 0;
     }
 
     function obtenerNumeroMes(nombreMes) {
@@ -73,6 +102,7 @@ export default class extends Controller {
       }
     }
   }
+
   blanquearFechanac(){
     const targetPersona = event.target.closest(".div-edad")
     const campo_anionac = targetPersona.querySelector('[data-edad-target="anionac"]');
@@ -95,7 +125,5 @@ export default class extends Controller {
       campo_rangoedad.value = null
     }
     campo_anionac.value = null
-    campo_mesnac.value = null
-    campo_dianac.value = null
   }
 }
