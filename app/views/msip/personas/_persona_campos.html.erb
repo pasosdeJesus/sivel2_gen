@@ -134,10 +134,10 @@
           label_method: :nombre, value_method: :id %>
       </div>
       <div class="col-md-6">
-        <%= f.association :clase,
+        <%= f.association :centropoblado,
           collection: (
             Msip::ModeloHelper.opciones_tabla_basica(
-              Msip::Clase, f, :clase
+              Msip::Centropoblado, f, :centropoblado
             ).where(municipio_id: f.object.municipio_id)
           ),
           label_method: :nombre,

@@ -366,7 +366,7 @@ module Sivel2Gen
                    per.municipio_id = Msip::Municipio.
                      where('TRIM(nombre)=?', ele[1]).where(departamento_id: per.departamento_id).ids[0]
                  when 'centro_poblado'
-                   per.clase_id = Msip::Clase.
+                   per.centropoblado_id = Msip::Centropoblado.
                      where('TRIM(nombre)=?', ele[1]).where(municipio_id: per.municipio_id).ids[0]
                  end
                 end

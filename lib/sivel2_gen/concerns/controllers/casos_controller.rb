@@ -99,7 +99,7 @@ module Sivel2Gen
 
           def campos_filtro1
             if current_usuario
-              [:pais_id, :departamento_id, :municipio_id, :clase_id,
+              [:pais_id, :departamento_id, :municipio_id, :centropoblado_id,
                 :fechaini, :fechafin, :presponsable_id, :categoria_id,
                 :nombres, :apellidos, :victimacol, :sexo, :rangoedad_id,
                 :organizacion_id, :profesion_id, :filiacion_id, :descripcion,
@@ -108,7 +108,7 @@ module Sivel2Gen
                 :sectorsocial_id 
               ]
             else
-              [:departamento_id, :municipio_id, :clase_id,
+              [:departamento_id, :municipio_id, :centropoblado_id,
                 :fechaini, :fechafin, :presponsable_id, :categoria_id,
                 :nombres, :apellidos, :sexo, :rangoedad_id, :descripcion, 
                 :sectorsocial_id 
@@ -542,10 +542,10 @@ module Sivel2Gen
                 r = Msip::Municipio.where(
                   departamento_id: params[:departamento_id].to_i,
                   fechadeshabilitacion: nil).order(:nombre)
-              elsif (params[:tabla] == "clase" && params[:pais_id].to_i > 0 &&
+              elsif (params[:tabla] == "centropoblado" && params[:pais_id].to_i > 0 &&
                      params[:departamento_id].to_i > 0 &&
                      params[:municipio_id].to_i > 0)
-                r = Msip::Clase.where(
+                r = Msip::Centropoblado.where(
                                      municipio_id: params[:municipio_id].to_i,
                                      fechadeshabilitacion: nil).order(:nombre)
               end
@@ -1361,7 +1361,7 @@ module Sivel2Gen
                 ],
                 :ubicacion_attributes => [
                     :id,
-                    :clase_id,
+                    :centropoblado_id,
                     :departamento_id,
                     :municipio_id,
                     :pais_id,
@@ -1401,7 +1401,7 @@ module Sivel2Gen
                     :pais_id,
                     :departamento_id,
                     :municipio_id,
-                    :clase_id,
+                    :centropoblado_id,
                     :mesnac,
                     :nombres,
                     :nacionalde,

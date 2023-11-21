@@ -34,8 +34,8 @@ xml.relato do
                           {tipo: 'departamento'}) if v.persona.departamento
         xml.observaciones(v.persona.municipio.nombre, 
                           {tipo: 'municipio'}) if v.persona.municipio
-        xml.observaciones(v.persona.clase.nombre, 
-                          {tipo: 'centro_poblado'}) if v.persona.clase
+        xml.observaciones(v.persona.centropoblado.nombre, 
+                          {tipo: 'centro_poblado'}) if v.persona.centropoblado
       end
     end
   end
@@ -131,7 +131,7 @@ xml.relato do
         xml.ubicacion_secundaria do
           xml.departamento ub.departamento.nombre if ub.departamento
           xml.municipio ub.municipio.nombre if ub.municipio
-          xml.centro_poblado ub.clase.nombre if ub.clase
+          xml.centro_poblado ub.centropoblado.nombre if ub.centropoblado
           xml.longitud ub.longitud  if ub.longitud
           xml.latitud ub.latitud  if ub.latitud
           xml.observaciones(ub.sitio, {tipo: 'sitio'}) if ub.sitio
@@ -143,7 +143,7 @@ xml.relato do
     ub = Msip::Ubicacion.find(caso.ubicacion_id)
     xml.departamento ub.departamento.nombre if ub.departamento
     xml.municipio ub.municipio.nombre if ub.municipio
-    xml.centro_poblado ub.clase.nombre if ub.clase
+    xml.centro_poblado ub.centropoblado.nombre if ub.centropoblado
     xml.longitud ub.longitud  if ub.longitud
     xml.latitud ub.latitud  if ub.latitud
   end

@@ -304,9 +304,9 @@ module Sivel2Gen
             ubicacion.municipio_id, 
             departamento.deplocal_cod*1000 + municipio.munlocal_cod AS municipio_divipola,
             municipio.nombre AS municipio_nombre, 
-            ubicacion.clase_id, 
-            clase.clalocal_cod AS clase_divipola,
-            clase.nombre AS clase_nombre
+            ubicacion.centropoblado_id, 
+            centropoblado.cplocal_cod AS centropoblado_divipola,
+            centropoblado.nombre AS centropoblado_nombre
             FROM
                     #{personas_cons1} JOIN sivel2_gen_caso AS caso ON
               (#{personas_cons1}.caso_id = caso.id) 
@@ -316,8 +316,8 @@ module Sivel2Gen
               (ubicacion.departamento_id=departamento.id) 
             LEFT JOIN msip_municipio AS municipio ON 
               (ubicacion.municipio_id=municipio.id)
-            LEFT JOIN msip_clase AS clase ON 
-              (ubicacion.clase_id=clase.id)
+            LEFT JOIN msip_centropoblado AS centropoblado ON 
+              (ubicacion.centropoblado_id=centropoblado.id)
             GROUP BY 1,2,3,4,5,6,7,8,9,10,11,12,13,14", que3, tablas3, where3]
           end
 
@@ -1023,7 +1023,7 @@ module Sivel2Gen
             #          "CREATE VIEW #{tcons2} AS SELECT #{tcons1}.*,
             #            ubicacion.departamento_id, departamento.nombre AS departamento_nombre, 
             #            ubicacion.municipio_id, municipio.nombre AS municipio_nombre, 
-            #            ubicacion.clase_id, clase.nombre AS clase_nombre
+            #            ubicacion.centropoblado_id, centropoblado.nombre AS centropoblado_nombre
             #            FROM
             #            #{tcons1} LEFT JOIN msip_ubicacion AS ubicacion ON
             #              (#{tcons1}.caso_id = ubicacion.caso_id) 
@@ -1031,8 +1031,8 @@ module Sivel2Gen
             #              (ubicacion.departamento_id=departamento.id) 
             #            LEFT JOIN msip_municipio AS municipio ON 
             #              (ubicacion.municipio_id=municipio.id)
-            #            LEFT JOIN msip_clase AS clase ON 
-            #              (ubicacion.clase_id=clase.id)"
+            #            LEFT JOIN msip_centropoblado AS centropoblado ON 
+            #              (ubicacion.centropoblado_id=centropoblado.id)"
             #
             #
             puts que3

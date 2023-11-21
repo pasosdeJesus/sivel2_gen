@@ -53,17 +53,17 @@ module Msip
 
     def contexto_c
       contexto_m
-      @clase = Clase.where(municipio_id: 25).take
-      @ubicacion.clase_id = @clase.id
+      @centropoblado = Centropoblado.where(municipio_id: 25).take
+      @ubicacion.centropoblado_id = @centropoblado.id
     end
 
-    test "no incluye clase" do
+    test "no incluye centropoblado" do
       contexto_c
       assert_equal formato_ubicacion(@ubicacion, false),
         "Venezuela / Distrito Capital / Bolivariano Libertador"
     end
 
-    test "incluye clase" do
+    test "incluye centropoblado" do
       contexto_c
       assert_equal formato_ubicacion(@ubicacion),
         "Venezuela / Distrito Capital / Bolivariano Libertador / Caracas"

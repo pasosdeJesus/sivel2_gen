@@ -21,7 +21,7 @@ module Sivel2Gen
           }, if: -> {pais_id == Msip.paisomision}
 
           attr_accessor :principal
-          attr_accessor :tclase
+          attr_accessor :tcentropoblado
 
           def principal
             self.id && self.caso && (self.caso.ubicacion_id == self.id ||
@@ -38,9 +38,9 @@ module Sivel2Gen
             end
           end
 
-          def tclase
-            if self.clase && self.clase.tclase
-              return self.clase.tclase.nombre 
+          def tcentropoblado
+            if self.centropoblado && self.centropoblado.tcentropoblado
+              return self.centropoblado.tcentropoblado.nombre 
             end
             return ''
           end
@@ -55,12 +55,12 @@ module Sivel2Gen
             mun = Msip::Municipio.
               where('nombre ILIKE ?', datosent['municipio']).
               where(departamento_id: dep).ids[0]
-            cen = Msip::Clase.
+            cen = Msip::Centropoblado.
               where('nombre ILIKE ?', datosent['centro_poblado']).
               where(municipio_id: mun).ids[0]
             self.departamento_id= dep if dep
             self.municipio_id= mun if mun
-            self.clase_id= cen if cen
+            self.centropoblado_id= cen if cen
             self.latitud= datosent['latitud'] if datosent['latitud']
             self.longitud= datosent['longitud'] if datosent['longitud']
             if datosent["observaciones"]

@@ -213,7 +213,7 @@ module Sivel2Gen
     # Establece autorizaciones con CanCanCan
     def self.initialize_sivel2_gen(habilidad, usuario = nil)
       # Sin autenticación puede consultarse información geográfica
-      habilidad.can :read, [Msip::Pais, Msip::Departamento, Msip::Municipio, Msip::Clase]
+      habilidad.can :read, [Msip::Pais, Msip::Departamento, Msip::Municipio, Msip::Centropoblado]
 
       # Hacer conteos
       habilidad.can :cuenta, Sivel2Gen::Caso

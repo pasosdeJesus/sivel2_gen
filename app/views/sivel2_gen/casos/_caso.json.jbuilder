@@ -10,7 +10,7 @@ json.caso do
     ub = Msip::Ubicacion.find(@caso.ubicacion_id)
     json.departamento ub.departamento.nombre if ub.departamento
     json.municipio ub.municipio.nombre if ub.municipio
-    json.centro_poblado ub.clase.nombre if ub.clase
+    json.centro_poblado ub.centropoblado.nombre if ub.centropoblado
     if ub.tsitio_id == 3
       json.lugar ub.lugar if ub.lugar
     end

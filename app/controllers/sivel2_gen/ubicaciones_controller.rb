@@ -47,7 +47,7 @@ module Sivel2Gen
 
     def ubicacion_params
       params.require(:ubicacion).permit(
-        :id, :pais_id, :departamento_id, :municipio_id, :clase_id, 
+        :id, :pais_id, :departamento_id, :municipio_id, :centropoblado_id, 
         :lugar, :sitio, :latitud, :longitud, :tsitio_id, 
         :_destroy
       )

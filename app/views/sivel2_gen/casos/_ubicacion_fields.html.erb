@@ -31,13 +31,13 @@
           value_method: :id %>
       </div>
       <div class="col-md-6">
-        <%= f.association :clase,
-          collection: (Msip::Clase.where(
+        <%= f.association :centropoblado,
+          collection: (Msip::Centropoblado.where(
             municipio_id: f.object.municipio_id,
             fechadeshabilitacion: nil).order(:nombre)),
           label_method: :nombre,
           value_method: :id %>
-        <%= f.input :tclase, 
+        <%= f.input :tcentropoblado, 
           readonly: true %> 
       </div>
     </div>

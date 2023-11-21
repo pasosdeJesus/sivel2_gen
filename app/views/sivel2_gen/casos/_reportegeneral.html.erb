@@ -44,7 +44,7 @@
   <% if ubprincipal && ubprincipal.pais.id == Msip.paisomision %>
     <%= ubprincipal.departamento.nombre if ubprincipal && ubprincipal.departamento%> / 
     <%= ubprincipal.municipio.nombre if ubprincipal && ubprincipal.municipio%> /
-    <%= ubprincipal.clase.nombre if ubprincipal && ubprincipal.clase%>
+    <%= ubprincipal.centropoblado.nombre if ubprincipal && ubprincipal.centropoblado%>
   <% elsif ubprincipal && ubprincipal.pais.id.to_i > 0 %>
     Exterior /  <%= ubprincipal.pais.nombre %>
   <% end %>
@@ -55,7 +55,7 @@
       <p style="margin: 0; padding: 0">
       <%= ub.departamento.nombre if ub.departamento%> / 
       <%= ub.municipio.nombre if ub.municipio%> /
-      <%= ub.clase.nombre if ub.clase%>
+      <%= ub.centropoblado.nombre if ub.centropoblado%>
       (Secundaria)
       </p>
     <% end %>

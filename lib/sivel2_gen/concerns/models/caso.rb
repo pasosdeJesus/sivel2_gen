@@ -534,7 +534,7 @@ module Sivel2Gen
                 if v.persona.pais_id 
                   r += ' - ' + Msip::UbicacionHelper.formato_ubicacion_partes(
                     v.persona.pais_id, v.persona.departamento_id,
-                    v.persona.municipio_id, v.persona.clase_id, true, true)
+                    v.persona.municipio_id, v.persona.centropoblado_id, true, true)
                 end
                 if v.profesion
                   r += ' - ' + v.profesion.presenta_nombre

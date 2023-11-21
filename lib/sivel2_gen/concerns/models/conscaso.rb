@@ -58,10 +58,10 @@ module Sivel2Gen
                     WHERE msip_ubicacion.municipio_id = ?)', id)
           }
 
-          scope :filtro_clase_id, lambda { |id|
+          scope :filtro_centropoblado_id, lambda { |id|
             where('caso_id IN (SELECT caso_id
                     FROM public.msip_ubicacion
-                    WHERE msip_ubicacion.clase_id = ?)', id)
+                    WHERE msip_ubicacion.centropoblado_id = ?)', id)
           }
 
           scope :filtro_fechaini, lambda { |fecha_ref|

@@ -25,7 +25,7 @@ module Sivel2Gen
         pais_id: 170,
         departamento_id: 47,
         municipio_id: 86,
-        clase_id: 11_737,
+        centropoblado_id: 11_737,
         created_at: '2019-01-01',
         longitud: -77.0697417935442,
         latitud: 3.89381723858445
@@ -39,7 +39,7 @@ module Sivel2Gen
         pais_id: 170,
         departamento_id: 57,
         municipio_id: 335,
-        clase_id: 13_117,
+        centropoblado_id: 13_117,
         created_at: '2019-01-01',
         longitud: -71.9515773351967,
         latitud: 1.33679247514188

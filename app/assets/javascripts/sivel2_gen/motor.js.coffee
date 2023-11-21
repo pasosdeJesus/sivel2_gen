@@ -563,25 +563,25 @@ enviaFormularioContarPost= (root) ->
 
   # Al cambiar municipio se recalcula lista de centros poblados
   $(document).on('change', 'select[id^=caso_][id$=municipio_id]', (e) ->
-    llena_clase($(this), root)
+    llena_centropoblado($(this), root)
   )
   
   
   # Al cambiar centro poblado se muestra tipo
-  $(document).on('change', 'select[id^=caso_][id$=clase_id]', (e) ->
-    clase_id = $(this).val()
+  $(document).on('change', 'select[id^=caso_][id$=centropoblado_id]', (e) ->
+    centropoblado_id = $(this).val()
     select = $(this)
-    b = root.puntomontaje + 'tipoclase'
+    b = root.puntomontaje + 'tipocentropoblado'
     $.ajax({
       url: b, 
-      data: {id: clase_id}, 
+      data: {id: centropoblado_id}, 
       dataType: "json", 
       success: (datos) ->
-        tclase = datos.nombre
+        tcentropoblado = datos.nombre
         div_padre = select.closest("div")
         div_tipo = div_padre.next()
-        input_tipo = div_tipo.find("input[id^=caso_ubicacion][id$=tclase]")
-        input_tipo.val(tclase)
+        input_tipo = div_tipo.find("input[id^=caso_ubicacion][id$=tcentropoblado]")
+        input_tipo.val(tcentropoblado)
       error: (jqXHR, texto) ->
         alert("Error: " + jqXHR.responseText)
    })
