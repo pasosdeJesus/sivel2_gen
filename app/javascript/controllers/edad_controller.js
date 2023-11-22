@@ -40,8 +40,6 @@ export default class extends Controller {
       mes = 0
       dia = 1
       campo_anionac.value = anio
-      campo_mesnac.value = mes + 1
-      campo_dianac.value = dia
     }
     // El campo cambiado fue edadactual
     if(event.target.dataset.edadTarget == 'edadactual'){
@@ -51,8 +49,6 @@ export default class extends Controller {
       mes = 0
       dia = 1
       campo_anionac.value = anio
-      campo_mesnac.value = mes + 1
-      campo_dianac.value = dia
     }
     fechaNacimiento = new Date(anio, mes, dia);
     let edadactual = hoy.getFullYear() - anio;
