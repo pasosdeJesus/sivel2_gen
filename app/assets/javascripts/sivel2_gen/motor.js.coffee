@@ -135,6 +135,7 @@
   c = $('#contacto')
   lc = c.add('#victimas .control-group[style!="display: none;"]')
   lcg = lc.add('#datosbasicos')
+  debugger
   sinid = 0
   lcg.each((k, v) ->
     id = $(v).find('div').filter( () -> 
@@ -207,7 +208,6 @@
     nh = nh + "<option value='" + id + "'"
     if id == sel 
       nh = nh + ' selected'
-    # texto: nombre
     nom = $(v).find('div').filter( () -> 
       this.attributes.class.value.match(/caso_victimacolectiva[_0-9]*grupoper_nombre/)
     ).find('input').val()
@@ -448,9 +448,9 @@ enviaFormularioContarPost= (root) ->
 @enviarFichaCaso = ->
   msip_enviarautomatico_formulario($('form'), 'POST', 'json', false)
   elimina_destruidos()
-  actualiza_presponsables($('#caso_acto_presponsable_id'))
-  actualiza_presponsables($('#caso_actocolectivo_presponsable_id'))
-  actualiza_victimas($('#caso_acto_persona_id'))
+  #actualiza_presponsables($('#caso_acto_presponsable_id'))
+  #actualiza_presponsables($('#caso_actocolectivo_presponsable_id'))
+  #actualiza_victimas($('#caso_acto_persona_id'))
   actualiza_gruposper($('#caso_actocolectivo_grupoper_id'))
 
 @sivel2_idTemp60 = -1

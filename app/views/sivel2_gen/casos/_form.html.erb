@@ -17,7 +17,8 @@
       "data-action": "submit->msip--bitacoraap#enviarFormulario"
     } do |f| 
   %>
-    <div data-role="content" class="form-inputs">
+    <div data-role="content" class="form-inputs"
+      data-controller="sivel2-gen--enviar-ficha-caso">
 
       <%= render partial: 'msip/hogar/errores', locals: { f: f } %>
       <%= render partial: 'sivel2_gen/casos/datos_interjs', locals: { f: f } %>
