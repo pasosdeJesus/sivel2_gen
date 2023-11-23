@@ -38,7 +38,8 @@ export default class extends Controller {
   cambiarficha(){
     if(event.target.dataset.enviarFichaCasoTarget == 'actos-pestana'){
       let casoId = this.idcasoTarget.value
-      let url = '/sivel22/casos/' + casoId + '/guardar_y_editar'
+      let puntomontaje = window.puntomontaje
+      let url = puntomontaje + 'casos/' + casoId + '/guardar_y_editar'
       let formData = new FormData(document.querySelector('form'));
       let formObject = Object.fromEntries(formData);
       for (let [key, value] of formData.entries()) {
@@ -71,7 +72,7 @@ export default class extends Controller {
           }).then(response => {
               if (response.ok) {
                 localStorage.setItem('pestanaActiva', 'actos-pestana');
-                window.location = '/sivel22/casos/' + casoId + '/edita';
+                window.location = puntomontaje + 'casos/' + casoId + '/edita';
               }
            });
 
@@ -83,7 +84,8 @@ export default class extends Controller {
     actualizarPresponsables(campo_presponsables_acto)
     actualizarPresponsables(campo_presponsables_actocol)
     actualizarVictimas(campo_victimas_acto)
-    actualizarGruposper(campo_victimascol_acto)
+    // Si funciona el otro enfoque ya no es necesario
+    //actualizarGruposper(campo_victimascol_acto)
 
     function actualizarPresponsables(s) {
       var sel = s.value;
@@ -132,6 +134,7 @@ export default class extends Controller {
     function actualizarGruposper(s) {
           var sel = s.value;
           var nh = '';
+          var lcg = document.querySelectorAll('#victimascolectivas .control-group[style!="display: none;"]');
           lcg.each(function(k, v) {
             var id = $(v).find('div').filter(function() {
                   return this.attributes.class.value.match(/caso_victimacolectiva[_0-9]*grupoper_id/);
