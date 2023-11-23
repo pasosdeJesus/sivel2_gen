@@ -46,7 +46,6 @@ export default class extends Controller {
     // El campo cambiado fue edadactual
     if(event.target.dataset.edadTarget == 'edadactual'){
       let edadactual = parseInt(campo_edadactual.value)
-      debugger
       anio = hoy.getFullYear() - edadactual 
       mes = 0
       dia = 1

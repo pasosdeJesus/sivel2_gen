@@ -5,7 +5,12 @@
       :as => :string %>
   </div>
   <div class="col-md-6">
-    <%= f.input :id, readonly: true%>
+    <%= f.input :id, 
+      readonly: true,
+      input_html: {
+        "data-sivel2-gen--enviar-ficha-caso-target" => "idcaso"
+      }
+    %>
   </div>
 </div>
 
