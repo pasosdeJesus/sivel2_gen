@@ -171,5 +171,21 @@ module Sivel2Gen
       cof.destroy
       @caso.destroy
     end
+
+    test "agrega victima con turbo" do
+      @caso = Sivel2Gen::Caso.create(PRUEBA_CASO)
+      assert @caso.valid?
+      persona = Msip::Persona.create(
+        PRUEBA_PERSONA 
+      )
+      vic = Sivel2Gen::Victima.create(
+        persona_id: persona.id,
+        caso_id: @caso.id 
+      )
+      post crear_victima_path(caso: @caso, index: @caso.victima.size, format: :turbo_stream)
+      vic.destroy
+      @caso.destroy
+      persona.destroy
+    end
   end
 end
