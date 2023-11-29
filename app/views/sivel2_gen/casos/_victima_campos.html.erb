@@ -13,7 +13,7 @@
 
       <%= f.submit "Eliminar", 
         formaction: sivel2_gen.eliminar_victima_path(
-          id: f.object.id, index: f.index),
+           index: f.index, id: f.object.id),
         formmethod: :delete,
         formnovalidate: true,
         class: 'btn btn-sm btn-danger',

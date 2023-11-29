@@ -109,7 +109,5 @@
   </div>
 </div>
 
-<% if params[:controller] == "sivel2_gen/victimascolectivas" %>
-  <%= f.hidden_field :caso_id, value: params[:caso][:id],
-    class: "caso_id" %>
-<% end %>
+<%= f.hidden_field :caso_id, value: @caso.id,
+  class: "caso_id" %>
