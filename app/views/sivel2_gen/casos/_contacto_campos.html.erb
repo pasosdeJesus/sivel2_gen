@@ -159,9 +159,7 @@
 </div>
 
 <%= render partial: 'sivel2_gen/casos/contacto_complemento_n', locals: {f: f} %>
-<% if params[:controller] == "sivel2_gen/victimas" %>
-  <%= f.hidden_field :caso_id, value: params[:caso][:id],
-    class: "caso_id" %>
-<% end %>
+<%= f.hidden_field :caso_id, value: @caso.id,
+  class: "caso_id" %>
 
 <%= f.input :id, as: :hidden %>

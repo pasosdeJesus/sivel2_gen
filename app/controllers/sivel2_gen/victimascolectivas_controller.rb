@@ -1,7 +1,7 @@
 require 'date'
 module Sivel2Gen
   class VictimascolectivasController < ApplicationController
-    load_and_authorize_resource class: Sivel2Gen::Caso
+    load_and_authorize_resource class: Sivel2Gen::Victimacolectiva
     before_action :prepara_caso
 
     def clase
