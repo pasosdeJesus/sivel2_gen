@@ -135,7 +135,6 @@
   c = $('#contacto')
   lc = c.add('#victimas .control-group[style!="display: none;"]')
   lcg = lc.add('#datosbasicos')
-  debugger
   sinid = 0
   lcg.each((k, v) ->
     id = $(v).find('div').filter( () -> 
