@@ -80,6 +80,10 @@ Sivel2Gen::Engine.routes.draw do
 
   resources :casos, path_names: { new: 'nuevo', edit: 'edita' } do
     collection { post :importa }
+    member do
+      patch :guardar_y_editar
+    end
+
   end
 
   resources :caso_etiqueta, only: [], param: :index do 

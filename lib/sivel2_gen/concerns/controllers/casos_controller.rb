@@ -531,6 +531,21 @@ module Sivel2Gen
             redirect_to edit_caso_path(@registro)
           end
 
+          def guardar_y_editar
+            @caso = Caso.find(params[:id])
+            @caso.assign_attributes(caso_params)
+            @caso.memo = @caso.memo == "" ? " " : @caso.memo
+            if @caso.save
+              @caso.save!
+            else
+              render json: @caso.errors, status:
+              :unprocessable_entity
+            end
+          rescue ActionController::ParameterMissing => e
+            render json: { error: e.message }, status:
+            :bad_request
+          end
+
           def lista
             if params[:tabla]
               r = nil
