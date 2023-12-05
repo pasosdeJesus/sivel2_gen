@@ -13,7 +13,7 @@ export default class Sivel2GenAutocompletaAjaxColectivas {
       return
     }
 
-    const elemIdCaso = divcp.parentElement.querySelector('.caso_id')
+    const elemIdCaso = document.querySelector('#caso_id')
     if (elemIdCaso == null) {
       window.alert('No se ubico .caso_id')
       return
