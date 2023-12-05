@@ -45,7 +45,7 @@ export default class extends Controller {
       for (let [key, value] of datosFormulario.entries()) {
         let coincidencia = key.match(/^caso\[(.+?)\]$/);
         if (coincidencia) {
-          let ruta = match[1].split(/\]\[|\[|\]/).filter(p => p !== "");
+          let ruta = coincidencia[1].split(/\]\[|\[|\]/).filter(p => p !== "");
           let actual = objetoFormulario;
 
           for (let i = 0; i < ruta.length; i++) {
