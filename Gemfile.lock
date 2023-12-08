@@ -38,7 +38,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/msip.git
-  revision: 64e8d7fec274570f73a41f19fded74d236fa413f
+  revision: b6b6b67bbad7571843b1f5d9838e4a3cfadd176a
   branch: main
   specs:
     msip (2.2.0.beta4)
@@ -229,7 +229,7 @@ GEM
     method_source (1.0.0)
     mime-types (3.5.1)
       mime-types-data (~> 3.2015)
-    mime-types-data (3.2023.1003)
+    mime-types-data (3.2023.1205)
     mini_mime (1.1.5)
     mini_portile2 (2.8.5)
     minitest (5.20.0)
