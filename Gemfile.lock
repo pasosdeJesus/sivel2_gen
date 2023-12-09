@@ -43,7 +43,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/heb412_gen.git
-  revision: 333172508f79a46ff9d4fb1a03aef6d73d0597f3
+  revision: 8e3ae1d5326a547caaf0a927fbc022d9533ba5f8
   branch: v2.1
   specs:
     heb412_gen (2.1.0.beta1)
@@ -54,7 +54,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/mr519_gen.git
-  revision: f4f509080ca9f14a20ecc25fdf773594fdfd9817
+  revision: d40a200d78ea4f34df5590150c6e4f402059bfd3
   branch: v2.1
   specs:
     mr519_gen (2.1.0.beta1)
@@ -138,7 +138,7 @@ GEM
       minitest (>= 5.1)
       mutex_m
       tzinfo (~> 2.0)
-    addressable (2.8.5)
+    addressable (2.8.6)
       public_suffix (>= 2.0.2, < 6.0)
     andand (1.3.3)
     babel-source (5.8.35)
