@@ -109,8 +109,7 @@ export default class extends Controller {
       var sel = s.value;
       var cadena = '';
       var sinid = 0;
-      var marcosTurbo = document.querySelectorAll('#victimas_frame turbo-frame');
-
+      var marcosTurbo = document.querySelectorAll('#victimas_frame turbo-frame[id^="victima"]');
       marcosTurbo.forEach(function(frame) {
         var inputId = frame.querySelector('input[id^="caso_victima_attributes_"][id$="_persona_attributes_id"]');
         var id = inputId ? inputId.value : '';
