@@ -3,23 +3,12 @@
   url: sivel2_gen.casos_path(@caso).sub(/\./,"/"),
   :html => { :class => 'form-horizontal' } do |c| %>
   <div class='campos-grupoper-con-victimacolectiva-id'>
-    <%= c.simple_fields_for :victimacolectiva, @victimacolectiva do |vc| %>
-      <div class='caso_victimacolectiva_id'>
-        <input type='hidden'
-               name='caso[victimacolectiva_attributes][<%= @victimacolectiva.id.to_s %>][id]'
-               id='caso_victimacolectiva_attributes_<%=@victimacolectiva.id.to_s %>_id'
-               value='<%= @victimacolectiva.id.to_s %>' >
-        </input>
-      </div>
+    <%= c.simple_fields_for :victimacolectiva, @victimacolectiva, 
+      child_index: @vicol_position do |vc| %>
+      <%= vc.input :id, as: :hidden, value: @victimacolectiva.id.to_s %>
       <%= vc.simple_fields_for :grupoper do |g| %>
         <% s = render partial: 'sivel2_gen/casos/grupoper_campos',
-          locals: { f: g }  %>
-        <% s.gsub!(
-          'victimacolectiva_attributes_0', 
-          'victimacolectiva_attributes_' + @victimacolectiva.id.to_s ) %>
-        <% s.gsub!(
-          'victimacolectiva_attributes][0]', 
-          'victimacolectiva_attributes][' + @victimacolectiva.id.to_s + ']') %>
+          locals: { f: g, fvictimacolectiva: vc }  %>
         <%= s.html_safe %>
       <% end %>
     <% end %>
