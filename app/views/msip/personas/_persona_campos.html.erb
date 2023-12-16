@@ -9,7 +9,6 @@
   <% cont = "msip--sindocaut" %>
 <% end %>
 <div class='campos_persona'>
-  <div data-controller='<%= cont %>'>
     <%= f.input :id, as: :hidden,
       input_html: {"data-msip--sindocaut-target": "id"} %>
 
@@ -79,8 +78,8 @@
             input_html:{
               data: { 
                 action: "change->sivel2-gen--edad#actualizarEdad",
-              },
-              "data-edad-target" => "mesnac"
+                "sivel2-gen--edad-target": "mesnac"
+              }
             }
           %>
         </div>
@@ -90,8 +89,8 @@
             input_html:{
               data: { 
                 action: "change->sivel2-gen--edad#actualizarEdad",
+                "sivel2-gen--edad-target": "dianac"
               },
-              "data-edad-target" => "dianac"
             }
           %>
         </div>
@@ -155,5 +154,4 @@
         index_vic: ivix, 
         nombre_fuente_familiares: nombre_fuente_familiares
       } %>
-  </div>
 </div>
