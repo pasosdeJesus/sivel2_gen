@@ -1,13 +1,13 @@
 GIT
   remote: https://github.com/kreeti/kt-paperclip.git
-  revision: 8a6631b598eb8a248927ab39acd1b10c0c4cf445
+  revision: 1c6dfe65e73fb6bdd7a1ae326b551b45c501e5c5
   specs:
     kt-paperclip (7.2.1)
       activemodel (>= 4.2.0)
       activesupport (>= 4.2.0)
       marcel (~> 1.0.1)
       mime-types
-      terrapin (~> 0.6.0)
+      terrapin (>= 0.6.0, < 2.0)
 
 GIT
   remote: https://github.com/vtamara/cocoon.git
@@ -38,7 +38,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/msip.git
-  revision: e54ff9f4a722a4a056e78c8b1414e1ec1de02263
+  revision: 292925daa20d839fd7be519e162731e986443339
   branch: main
   specs:
     msip (2.2.0.beta4)
@@ -156,7 +156,7 @@ GEM
       xpath (~> 3.2)
     choice (0.2.0)
     cldr-plurals-runtime-rb (1.1.0)
-    climate_control (0.2.0)
+    climate_control (1.2.0)
     code-scanning-rubocop (0.6.1)
       rubocop (~> 1.0)
     coffee-rails (5.0.0)
@@ -176,9 +176,9 @@ GEM
       capybara (~> 3.0)
       ferrum (~> 0.14.0)
     date (3.3.4)
-    debug (1.8.0)
-      irb (>= 1.5.0)
-      reline (>= 0.3.1)
+    debug (1.9.0)
+      irb (~> 1.10)
+      reline (>= 0.3.8)
     devise (4.9.3)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -204,7 +204,7 @@ GEM
       activesupport (>= 6.1)
     i18n (1.14.1)
       concurrent-ruby (~> 1.0)
-    io-console (0.6.0)
+    io-console (0.7.1)
     irb (1.10.1)
       rdoc
       reline (>= 0.3.8)
@@ -239,7 +239,7 @@ GEM
       minitest (>= 5.0)
       ruby-progressbar
     msgpack (1.7.2)
-    net-imap (0.4.7)
+    net-imap (0.4.8)
       date
       net-protocol
     net-pop (0.1.2)
@@ -257,7 +257,7 @@ GEM
       nokogiri (>= 1.10.0)
       rubyzip (>= 1.3.0)
     orm_adapter (0.5.0)
-    parallel (1.23.0)
+    parallel (1.24.0)
     parser (3.2.2.4)
       ast (~> 2.4.1)
       racc
@@ -271,7 +271,7 @@ GEM
     prawnto_2 (0.3.1)
       prawn (>= 1.0.0)
       rails (>= 3.2)
-    psych (5.1.1.1)
+    psych (5.1.2)
       stringio
     public_suffix (5.0.4)
     puma (6.4.0)
@@ -322,7 +322,7 @@ GEM
       zeitwerk (~> 2.5)
     rainbow (3.1.1)
     rake (13.1.0)
-    rdoc (6.6.1)
+    rdoc (6.6.2)
       psych (>= 4.0.0)
     redcarpet (3.6.0)
     regexp_parser (2.8.3)
@@ -335,7 +335,7 @@ GEM
     rspreadsheet (0.5.3)
       andand (>= 1.3)
       rubyzip (>= 1.3)
-    rubocop (1.58.0)
+    rubocop (1.59.0)
       json (~> 2.3)
       language_server-protocol (>= 3.17.0)
       parallel (~> 1.10)
@@ -348,9 +348,10 @@ GEM
       unicode-display_width (>= 2.4.0, < 3.0)
     rubocop-ast (1.30.0)
       parser (>= 3.2.1.0)
-    rubocop-minitest (0.33.0)
+    rubocop-minitest (0.34.1)
       rubocop (>= 1.39, < 2.0)
-    rubocop-rails (2.22.2)
+      rubocop-ast (>= 1.30.0, < 2.0)
+    rubocop-rails (2.23.0)
       activesupport (>= 4.2.0)
       rack (>= 1.1)
       rubocop (>= 1.33.0, < 2.0)
@@ -388,8 +389,8 @@ GEM
     stimulus-rails (1.3.0)
       railties (>= 6.0.0)
     stringio (3.1.0)
-    terrapin (0.6.0)
-      climate_control (>= 0.0.3, < 1.0)
+    terrapin (1.0.1)
+      climate_control
     thor (1.3.0)
     tilt (2.3.0)
     timeout (0.4.1)
@@ -482,4 +483,4 @@ DEPENDENCIES
   will_paginate
 
 BUNDLED WITH
-   2.4.22
+   2.5.1

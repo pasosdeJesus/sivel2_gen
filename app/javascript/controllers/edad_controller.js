@@ -1,6 +1,8 @@
 import { Controller } from "@hotwired/stimulus"
 // Calcula edad, edadactual y rango dada fecha de nacimiento o viceversa
 
+import MsipMotor from "../msip/motor"
+
 // Conecta con data-controller="sivel2-gen--edad"
 export default class extends Controller {
 
@@ -18,9 +20,7 @@ export default class extends Controller {
   }
 
   obtenerNumeroMes(nombreMes) {
-    const meses = ['ene', 'feb', 'mar', 'abr', 'may', 'jun', 'jul', 'ago',
-      'sep', 'oct', 'nov', 'dic'];
-    return meses.indexOf(nombreMes.toLowerCase());
+    return MsipMotor.MESES.indexOf(nombreMes.toLowerCase());
   }
 
 
@@ -35,13 +35,19 @@ export default class extends Controller {
     if (isNaN(dia)) {
       dia = 1
     }
-    const campoFechaCaso = document.querySelector('#caso_fecha_localizada');
-
-    const anioCaso = parseInt(campoFechaCaso.value.split("/")[2])
-    const mesCaso = parseInt(this.obtenerNumeroMes(
-      campoFechaCaso.value.split("/")[1]
-    ))
-    const diaCaso = parseInt(campoFechaCaso.value.split("/")[0])
+    let formatoFecha = window.formato_fecha;
+    let campoFechaCaso = document.querySelector('#caso_fecha_localizada');
+    if (campoFechaCaso == null) {
+      campoFechaCaso = document.querySelector('#caso_fecha');
+      formatoFecha = "yyyy-mm-dd"
+    }
+    if (campoFechaCaso == null) {
+      alert("No se encontró campo con la fecha del caso");
+    }
+    let anioCaso, mesCaso, diaCaso;
+    [anioCaso, mesCaso, diaCaso] = MsipMotor.partirFechaLocalizada(
+      campoFechaCaso.value, formatoFecha
+    );
     const hoy = new Date();
 
     let fechaCaso = new Date(anioCaso, mesCaso, diaCaso);
@@ -90,9 +96,9 @@ export default class extends Controller {
     }
 
     const opcionesRangoedad = this.rangoedadTarget.options;
-    for (var i = 0; i < opcionesRangoedad.length; i++) {
-      var opcion = this.rangoedadTarget.options[i].text;
-      var rango = opcion.match(/\d+/g).map(Number);
+    for (let i = 0; i < opcionesRangoedad.length; i++) {
+      let opcion = this.rangoedadTarget.options[i].text;
+      let rango = opcion.match(/\d+/g).map(Number);
       if (rango.length == 2 && edadactual >= rango[0] &&
         edadactual <= rango[1]) {
         this.rangoedadTarget.selectedIndex = i;
