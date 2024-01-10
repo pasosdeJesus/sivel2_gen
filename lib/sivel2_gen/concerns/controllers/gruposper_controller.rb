@@ -26,7 +26,7 @@ module Sivel2Gen
           def remplazar
             @grupoper = Msip::Grupoper.find(params[:grupoper_id].to_i)
             @caso = Sivel2Gen::Caso.find(params[:caso_id].to_i)
-            @vicol_position = params[:vicol_position].to_i
+            @vicol_posicion = params[:vicol_posicion].to_i
             @caso.current_usuario = current_usuario
             if !remplazar_antes_salvar_vc
               return

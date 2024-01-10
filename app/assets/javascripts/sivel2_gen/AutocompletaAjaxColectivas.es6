@@ -5,7 +5,7 @@ export default class Sivel2GenAutocompletaAjaxColectivas {
   static operarElegida (eorig, cadgrupo, idGrupo, otrosop) {
     let root = window
     window.msip_arregla_puntomontaje(root)
-    vicol_position = eorig.target.id.split("_")[3]
+    vicol_posicion = eorig.target.id.split("_")[3]
     const divcp = eorig.target.closest('.' +
         Sivel2GenAutocompletaAjaxColectivas.claseEnvoltura)
     if (divcp == null) {
@@ -22,7 +22,7 @@ export default class Sivel2GenAutocompletaAjaxColectivas {
     const idCaso = elemIdCaso.value
     let d = '&caso_id=' + idCaso
     d += '&grupoper_id=' + idGrupo
-    d += "&vicol_position=" + vicol_position
+    d += "&vicol_posicion=" + vicol_posicion
     const a = root.puntomontaje + 'gruposper/remplazar'
     window.Rails.ajax({
       type: 'GET',

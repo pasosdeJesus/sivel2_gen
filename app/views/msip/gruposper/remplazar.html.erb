@@ -4,7 +4,7 @@
   :html => { :class => 'form-horizontal' } do |c| %>
   <div class='campos-grupoper-con-victimacolectiva-id'>
     <%= c.simple_fields_for :victimacolectiva, @victimacolectiva, 
-      child_index: @vicol_position do |vc| %>
+      child_index: @vicol_posicion do |vc| %>
       <%= vc.input :id, as: :hidden, value: @victimacolectiva.id.to_s %>
       <%= vc.simple_fields_for :grupoper do |g| %>
         <% s = render partial: 'sivel2_gen/casos/grupoper_campos',
