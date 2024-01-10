@@ -4,14 +4,8 @@ module Sivel2Gen
   class ActosController < ApplicationController
     load_and_authorize_resource class: Sivel2Gen::Acto
 
-    # Crea nuevos actos procesando parámetros
-    def agregar
+    def create
       params2 = {}
-      if params[:_json]
-        # Este es el formato generado por fetch
-        params2 = Msip::ControladorHelper.convertir_arrnomval_diccionario(
-          params[:_json])
-      end
       if (!params[:caso] && !params2['caso'])
         respond_to do |format|
           format.html { render inline: 'Faltan paramétros de caso' }
@@ -67,42 +61,27 @@ module Sivel2Gen
                 caso_id: @caso.id
               }
               if Sivel2Gen::Acto.where(cacto).count == 0
-                Sivel2Gen::Acto.create!(
+                acto = Sivel2Gen::Acto.new(
                   presponsable_id: presp,
                   categoria_id: cat,
                   persona_id: vic,
-                  caso_id: @caso.id
                 )
+                acto.caso = @caso
+                acto.save!
               end
             end
           end
-        end
-
-        respond_to do |format|
-          format.js { 
-            debugger # Con fetch ya no opera js, mejor no usar
-            render partial: 'sivel2_gen/actos/actos_tabla' 
-          }
-          format.json { 
-            # Con fetch llega aquí --no se ha lograr html
-            render partial: 'sivel2_gen/actos/actos_tabla' 
-          }
-          format.html { 
-            render partial: 'sivel2_gen/actos/actos_tabla' 
-          }
         end
       end
     end
 
 
-    def eliminar
-      acto = Acto.where(id: params[:acto_id].to_i).take
+    def destroy
+      acto_id = params[:id]
+      acto = Acto.where(id: acto_id).take
       if acto
         @caso = acto.caso
         acto.destroy!
-      end
-      respond_to do |format|
-        format.js { render 'refrescar' }
       end
     end
 

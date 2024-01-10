@@ -1,8 +1,6 @@
 
 Sivel2Gen::Engine.routes.draw do
 
-  patch "/actos/agregar" => 'actos#agregar'
-  get "/actos/eliminar" => 'actos#eliminar'
 
   patch "/actoscolectivos/agregar" => 'actoscolectivos#agregar'
   get "/actoscolectivos/eliminar" => 'actoscolectivos#eliminar'
@@ -71,6 +69,13 @@ Sivel2Gen::Engine.routes.draw do
 
   get '/victimascolectivas/nuevo' => 'victimascolectivas#nuevo'
 
+  resources :actos, only: [], param: :index do 
+    member do
+      delete '(:id)', to: "actos#destroy", as: "eliminar"
+      post '/' => "actos#create", as: "crear"
+    end
+  end
+  
   resources :anexo_casos, only: [], param: :index do 
     member do
       delete '(:id)', to: "anexo_casos#destroy", as: "eliminar"
