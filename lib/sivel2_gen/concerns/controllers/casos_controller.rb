@@ -537,6 +537,7 @@ module Sivel2Gen
             @caso.memo = @caso.memo == "" ? " " : @caso.memo
             if @caso.save
               @caso.save!
+              head :ok
             else
               render json: @caso.errors, status:
               :unprocessable_entity

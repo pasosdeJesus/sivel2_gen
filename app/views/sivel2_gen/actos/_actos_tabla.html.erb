@@ -1,36 +1,37 @@
-<table class="table table-striped table-bordered" border='1'>
-  <thead>
-    <tr>
-      <th><%= Sivel2Gen::Acto.human_attribute_name(:presponsable) %></th>
-      <th><%= Sivel2Gen::Acto.human_attribute_name(:categoria) %></th>
-      <th><%= Sivel2Gen::Acto.human_attribute_name(:victima) %></th>
-      <th><%=t '.actions', :default => t("helpers.actions") %></th>
-    </tr>
-  </thead>
-  <tbody>
+<%= fields model: @caso do |form| %>
   <% if @caso && @caso.acto %>
+    <% index = 0 %>
     <% @caso.acto.try(:each) do |acto| %>
-      <tr>
-        <td><%= acto.presponsable.nombre %></td>
-        <td><%= acto.categoria.supracategoria.tviolencia_id + acto.categoria.id.to_s + ' ' + acto.categoria.nombre %></td>
-        <td>
+
+      <div class="div-tabla-fila">
+        <div class="div-tabla-celda" style="max-width: 10em">
+          <%= acto.presponsable.nombre %>
+        </div>
+        <div class="div-tabla-celda" style="max-width: 10em">
+          <%= acto.categoria.supracategoria.tviolencia_id + acto.categoria.id.to_s + ' ' + acto.categoria.nombre %>
+        </div>
+        <div class="div-tabla-celda" style="max-width: 10em">
           <%if acto.persona.nombres == 'N' && acto.persona.apellidos == 'N' %>
             <%= acto.persona.sin_identificacion %>
           <% else %> 
             <%= acto.persona.nombres + ' ' + acto.persona.apellidos %>
           <% end %> 
-        </td>
-        <td>
-          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-            '#',
-            'data-eliminaracto'  => "#{acto.id}",
-            :class => 'btn btn-sm btn-danger eliminaracto' 
-          %>
-        </td>
-      </tr>
+        </div>
+        <div class="div-tabla-celda" style="max-width: 10em">
+          <%= link_to "Eliminar", 
+            sivel2_gen.eliminar_acto_path(id: acto.id, index: index),
+            formmethod: :delete,
+            formnovalidate: true,
+            class: 'btn btn-sm btn-danger',
+            data: { 
+              turbo_frame: "acto_#{index}",
+              "turbo-stream": "turbo-stream",
+              "turbo-method": :delete,
+              turbo: true,
+            } %>
+        </div>
+      </div>
+      <% index += 1 %>
     <% end %>
   <% end %>
-  </tbody>
-</table>
-
-
+<% end %>
