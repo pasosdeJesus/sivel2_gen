@@ -270,13 +270,48 @@ CREATE FUNCTION public.msip_nombre_vereda() RETURNS character varying
 
 
 --
+-- Name: msip_ubicacionpre_dpa_nomenclatura(character varying, character varying, character varying, character varying, character varying); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION public.msip_ubicacionpre_dpa_nomenclatura(pais character varying, departamento character varying, municipio character varying, vereda character varying, centropoblado character varying) RETURNS text[]
+    LANGUAGE sql
+    AS $$
+        SELECT CASE
+        WHEN pais IS NULL OR pais = '' THEN
+          array[NULL, NULL]
+        WHEN departamento IS NULL OR departamento = '' THEN
+          array[pais, NULL]
+        WHEN municipio IS NULL OR municipio = '' THEN
+          array[departamento || ' / ' || pais, departamento]
+        WHEN (vereda IS NULL OR vereda = '') AND
+        (centropoblado IS NULL OR centropoblado = '') THEN
+          array[
+            municipio || ' / ' || departamento || ' / ' || pais,
+            municipio || ' / ' || departamento ]
+        WHEN vereda IS NOT NULL THEN
+          array[
+            msip_nombre_vereda() || vereda || ' / ' ||
+            municipio || ' / ' || departamento || ' / ' || pais,
+            msip_nombre_vereda() || vereda || ' / ' ||
+            municipio || ' / ' || departamento ]
+        ELSE
+          array[
+            centropoblado || ' / ' ||
+            municipio || ' / ' || departamento || ' / ' || pais,
+            centropoblado || ' / ' ||
+            municipio || ' / ' || departamento ]
+         END
+      $$;
+
+
+--
 -- Name: msip_ubicacionpre_id_rtablabasica(); Type: FUNCTION; Schema: public; Owner: -
 --
 
 CREATE FUNCTION public.msip_ubicacionpre_id_rtablabasica() RETURNS integer
     LANGUAGE sql
     AS $$
-        SELECT min(id+1) FROM msip_ubicacionpre WHERE 
+        SELECT max(id+1) FROM msip_ubicacionpre WHERE 
           (id+1) NOT IN (SELECT id FROM msip_ubicacionpre) AND 
           id<10000000
       $$;
@@ -290,60 +325,24 @@ CREATE FUNCTION public.msip_ubicacionpre_nomenclatura(pais character varying, de
     LANGUAGE sql
     AS $$
         SELECT CASE
-        WHEN pais IS NULL OR pais = '' THEN
-          array[NULL, NULL]
-        WHEN departamento IS NULL OR departamento = '' THEN
-          array[pais, NULL]
-        WHEN municipio IS NULL OR municipio = '' THEN
-          array[departamento || ' / ' || pais, departamento]
-        WHEN (vereda IS NULL OR vereda = '') AND 
-          (centropoblado IS NULL OR centropoblado = '') THEN
-          array[ municipio || ' / ' || departamento || ' / ' || pais,
-            municipio || ' / ' || departamento ]
-        WHEN (vereda IS NULL OR vereda = '') AND 
-          (lugar IS NULL OR lugar = '') THEN
-          array[ centropoblado || ' / ' || municipio || ' / ' || 
-            departamento || ' / ' || pais,
-            centropoblado || ' / ' || municipio || ' / ' || 
-            departamento ]
         WHEN (lugar IS NULL OR lugar = '') THEN
-          array[ msip_nombre_vereda() || vereda || ' / ' || 
-            municipio || ' / ' ||
-            departamento || ' / ' || pais,
-            msip_nombre_vereda() || vereda || ' / ' || 
-            municipio || ' / ' || departamento]
-        WHEN (vereda IS NULL OR vereda = '') AND 
-          (sitio IS NULL OR sitio = '') THEN
-          array[ lugar || ' / ' || centropoblado || ' / ' ||
-            municipio || ' / ' || departamento || ' / ' || pais,
-            lugar || ' / ' || centropoblado || ' / ' ||
-            municipio || ' / ' || departamento]
-        WHEN (sitio IS NULL OR sitio = '') THEN
-          array[ lugar || ' / ' || 
-            msip_nombre_vereda() || vereda || ' / ' ||
-            municipio || ' / ' || departamento || ' / ' || pais,
-            lugar || ' / ' || 
-            msip_nombre_vereda() || vereda || ' / ' ||
-            municipio || ' / ' || departamento]
-        WHEN (vereda IS NULL OR vereda = '') THEN
-          array[ sitio || ' / ' || lugar || ' / ' ||
-            centropoblado || ' / ' || 
-            municipio || ' / ' ||
-            departamento || ' / ' || pais,
-            sitio || ' / ' || lugar || ' / ' ||
-            centropoblado || ' / ' || 
-            municipio || ' / ' ||
-            departamento ]
+          msip_ubicacionpre_dpa_nomenclatura(pais, departamento,
+          municipio, vereda, centropoblado)
+        WHEN (sitio IS NULL OR sitio= '') THEN
+          array[lugar || ' / ' || 
+            (msip_ubicacionpre_dpa_nomenclatura(pais, departamento,
+              municipio, vereda, centropoblado))[0],
+          lugar || ' / ' || 
+            (msip_ubicacionpre_dpa_nomenclatura(pais, departamento,
+              municipio, vereda, centropoblado))[1] ]
         ELSE
-          array[ sitio || ' / ' || lugar || ' / ' ||
-            msip_nombre_vereda() || vereda || ' / ' ||
-            municipio || ' / ' ||
-            departamento || ' / ' || pais,
-            sitio || ' / ' || lugar || ' / ' ||
-            msip_nombre_vereda() || vereda || ' / ' ||
-            municipio || ' / ' ||
-            departamento ]
-         END
+          array[sitio || ' / ' || lugar || ' / ' || 
+            (msip_ubicacionpre_dpa_nomenclatura(pais, departamento,
+              municipio, vereda, centropoblado))[0],
+          sitio || ' / ' || lugar || ' / ' || 
+            (msip_ubicacionpre_dpa_nomenclatura(pais, departamento,
+              municipio, vereda, centropoblado))[1] ]
+        END
       $$;
 
 
@@ -2761,15 +2760,6 @@ CREATE MATERIALIZED VIEW public.nmujeres AS
   GROUP BY s.nombre
   ORDER BY (count(*))
   WITH NO DATA;
-
-
---
--- Name: num2; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.num2 (
-    count bigint
-);
 
 
 --
@@ -5673,6 +5663,13 @@ CREATE INDEX index_msip_ubicacion_on_municipio_id ON public.msip_ubicacion USING
 --
 
 CREATE INDEX index_msip_ubicacion_on_pais_id ON public.msip_ubicacion USING btree (pais_id);
+
+
+--
+-- Name: index_msip_ubicacionpre_on_vereda_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_msip_ubicacionpre_on_vereda_id ON public.msip_ubicacionpre USING btree (vereda_id);
 
 
 --
