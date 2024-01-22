@@ -63,6 +63,8 @@ config.autoload_lib(ignore: %w(assets tasks))
       ENV.fetch('HEB412_RUTA', Rails.root.join('public', 'heb412').to_s)
     )
 
+    config.relative_url_root = ENV.fetch( 'RUTA_RELATIVA', '/sivel2_2')
+
     # sivel2
     config.x.sivel2_consulta_web_publica = 
       (ENV['SIVEL2_CONSWEB_PUBLICA'] && ENV['SIVEL2_CONSWEB_PUBLICA'] != '')
