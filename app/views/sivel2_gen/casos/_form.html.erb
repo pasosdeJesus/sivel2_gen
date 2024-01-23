@@ -1,6 +1,28 @@
 <%- if current_usuario.nil?  %>
   <li><a href="usuarios/sign_in">Iniciar Sesión</a>
-<%- else  %>
+  <%- else  %>
+  <style>
+    .cargando {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.7);
+      z-index: 1050;
+      display: none;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+
+  </style>
+  <div id="cargando" class="cargando">
+    <div class="spinner-border text-primary" role="status">
+      <span class="sr-only">Cargando...</span>
+    </div>
+    <p>Cargando...</p>
+  </div>
   <article>
   <!--script>
     $(document).ready(function() {
