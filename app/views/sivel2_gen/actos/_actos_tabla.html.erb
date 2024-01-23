@@ -1,23 +1,25 @@
 <%= fields model: @caso do |form| %>
+  <div class="div-tabla">
+    <div class="div-tabla-cuerpo">
   <% if @caso && @caso.acto %>
     <% index = 0 %>
     <% @caso.acto.try(:each) do |acto| %>
 
       <div class="div-tabla-fila">
-        <div class="div-tabla-celda" style="max-width: 10em">
+        <div class="div-tabla-celda" style="width: 10em">
           <%= acto.presponsable.nombre %>
         </div>
-        <div class="div-tabla-celda" style="max-width: 10em">
+        <div class="div-tabla-celda" style="width: 10em">
           <%= acto.categoria.supracategoria.tviolencia_id + acto.categoria.id.to_s + ' ' + acto.categoria.nombre %>
         </div>
-        <div class="div-tabla-celda" style="max-width: 10em">
+        <div class="div-tabla-celda" style="width: 10em">
           <%if acto.persona.nombres == 'N' && acto.persona.apellidos == 'N' %>
             <%= acto.persona.sin_identificacion %>
           <% else %> 
             <%= acto.persona.nombres + ' ' + acto.persona.apellidos %>
           <% end %> 
         </div>
-        <div class="div-tabla-celda" style="max-width: 10em">
+        <div class="div-tabla-celda" style="width: 10em">
           <%= link_to "Eliminar", 
             sivel2_gen.eliminar_acto_path(id: acto.id, index: index),
             formmethod: :delete,
@@ -34,4 +36,6 @@
       <% index += 1 %>
     <% end %>
   <% end %>
+    </div>
+  </div>
 <% end %>

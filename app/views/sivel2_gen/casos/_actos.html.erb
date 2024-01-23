@@ -3,10 +3,10 @@
   <div class="div-tabla">
     <div class="div-tabla-cuerpo">
       <div class="div-tabla-fila">
-        <div class="div-tabla-celda" style="max-width: 10em">Presunto Responsable</div>
-        <div class="div-tabla-celda" style="max-width: 10em">Categoría</div>
-        <div class="div-tabla-celda" style="max-width: 10em">Víctima</div>
-        <div class="div-tabla-celda" style="max-width: 10em">Acciones</div>
+        <div class="div-tabla-celda" style="width: 10em">Presunto Responsable</div>
+        <div class="div-tabla-celda" style="width: 10em">Categoría</div>
+        <div class="div-tabla-celda" style="width: 10em">Víctima</div>
+        <div class="div-tabla-celda" style="width: 10em">Acciones</div>
       </div>
       <div class='div-tabla-fila'>
         <div class="div-tabla-celda" style="max-width: 10em">
@@ -71,11 +71,11 @@
                   disable_with: false } %>
           </div>
       </div> <!-- tabla-fila -->
-      <%= turbo_frame_tag "actos_marco" do %>
-          <%= render partial: 'sivel2_gen/actos/actos_tabla', :f => f %>
-        <% end %>
     </div> <!-- tabla-cuerpo -->
   </div> <!-- tabla -->
+  <%= turbo_frame_tag "actos_marco" do %>
+    <%= render partial: 'sivel2_gen/actos/actos_tabla', :f => f %>
+  <% end %>
 </div> <!-- panel -->
 
 <div class="panel panel-default">

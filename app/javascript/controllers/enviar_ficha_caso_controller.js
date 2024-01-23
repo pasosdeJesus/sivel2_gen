@@ -5,6 +5,7 @@ export default class extends Controller {
   static targets = ["idcaso"]
 
   connect() {
+    document.getElementById("cargando").style.display = 'none';
     console.log("Conexion de controlador enviar ficha caso establecida")
     const pestanias = document.querySelectorAll('.fichacambia');
     pestanias.forEach(function(pestania) {
@@ -37,6 +38,7 @@ export default class extends Controller {
 
   cambiarficha(){
     if(event.target.dataset.enviarFichaCasoTarget == 'actos-pestana'){
+      document.getElementById("cargando").style.display = 'flex';
       let casoId = this.idcasoTarget.value
       let puntomontaje = window.puntomontaje
       let url = puntomontaje + 'casos/' + casoId + '/guardar_y_editar'
