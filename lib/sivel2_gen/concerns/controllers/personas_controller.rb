@@ -20,7 +20,11 @@ module Sivel2Gen
           end
 
           def atributos_form
-            atributos_form_msip - [:caso_ids]
+            a = atributos_form_msip - [:caso_ids]
+            if a.index(:familiares)
+              a[a.index(:familiares)] = :persona_trelacion1
+            end
+            return a
           end
 
           def remplazar_antes_destruir_p
