@@ -1,0 +1,49 @@
+<!-- Este es muy similar a 
+  app/views/msip/personas/_campo_persona_trelacion1.html.erb de msip, 
+  solo que aquel supone que una sola persona se edita, mientras
+  que este supone que pueden editarse simultaneamente muchas 
+  personas en un mismo formulario 
+-->
+
+<% if !defined?(nombre_fuente_familiares) %>
+  <% nombre_fuente_familiares = "fuente-familiares" %>
+<% end %>
+<div class="accordion" id="acordeonlc-<%= f.object.id %>">
+  <%= item_acordeon_bs(
+    'acordeonlc', "colapsalc-#{f.object.id}", 
+    'Familiares (Ingrese aquí familiares de esta víctima)', false, {
+      'estilo_accordion-header': 'text-align: center',
+      'clase_accordion-body': 'table-responsive',
+      'estilo_accordion-body': 'overflow-x:scroll'
+    }) do %>
+    <div id="familiares_marco_<%= index_vic %>" class="panel-body table responsive">
+      <div class="row"> 
+        <div class="col">Nombres</div>
+        <div class="col">Apellidos</div>
+        <div class="col">Sexo</div>
+        <div class="col">Tipo Id.</div>
+        <div class="col">Número .Id</div>
+        <div class="col">Parentesco</div>
+        <div class="col">Acciones</div>
+      </div>
+      <%= f.simple_fields_for :persona_trelacion1,
+        child_index: params[:index] do |pt| %>
+        <%= render partial: 'msip/personas/persona_trelacion1_campos', 
+          locals: {f: pt, per: f, datalist: nombre_fuente_familiares } %>
+      <% end %>
+    </div>
+
+    <%= f.submit "Añadir Familiar",
+      formaction: sivel2_gen.crear_familiar_path(
+        index: f.object.personados.size, index_vic: index_vic
+      ),
+      formmethod: :post,
+      formnovalidate: true,
+      class: 'btn btn-sm btn-primary',
+      name: "agregar-familiar",
+      id: "agregar-familiar",
+      data:  {
+        disable_with: false 
+      } %>
+  <% end %>
+</div> <!-- accordion -->

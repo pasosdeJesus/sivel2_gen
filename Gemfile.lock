@@ -18,7 +18,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/heb412_gen.git
-  revision: b08ea2fccc9a63cf890f4037360a786b783eea55
+  revision: 1fb4ec862836e856151504f4084fb4701c1b990d
   branch: main
   specs:
     heb412_gen (2.2.0.beta4)
@@ -29,7 +29,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/mr519_gen.git
-  revision: 1f15fbbb2e262f2c92192fa805da509a5ce742f6
+  revision: 895934c4f2b780b943cbd4a1aae6139f132cf32e
   branch: main
   specs:
     mr519_gen (2.2.0.beta4)
@@ -38,7 +38,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/msip.git
-  revision: aafe487e6d7c568918452f6104d54d84927d317d
+  revision: aa0e08be022d58340ed7b96bf45fc6d2487e6fac
   branch: main
   specs:
     msip (2.2.0.beta4)
@@ -147,7 +147,7 @@ GEM
     bcrypt (3.1.20)
     bigdecimal (3.1.6)
     bindex (0.8.1)
-    bootsnap (1.17.1)
+    bootsnap (1.18.3)
       msgpack (~> 1.2)
     brakeman (6.1.1)
       racc
@@ -157,11 +157,11 @@ GEM
       thor (~> 1.0)
     camertron-eprun (1.1.1)
     cancancan (3.5.0)
-    capybara (3.39.2)
+    capybara (3.40.0)
       addressable
       matrix
       mini_mime (>= 0.1.3)
-      nokogiri (~> 1.8)
+      nokogiri (~> 1.11)
       rack (>= 1.6.0)
       rack-test (>= 0.6.3)
       regexp_parser (>= 1.5, < 3.0)
@@ -226,7 +226,7 @@ GEM
     jbuilder (2.11.5)
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
-    jsbundling-rails (1.2.2)
+    jsbundling-rails (1.3.0)
       railties (>= 6.0.0)
     json (2.7.1)
     language_server-protocol (3.17.0.3)
@@ -273,7 +273,7 @@ GEM
       rubyzip (>= 1.3.0)
     orm_adapter (0.5.0)
     parallel (1.24.0)
-    parser (3.3.0.4)
+    parser (3.3.0.5)
       ast (~> 2.4.1)
       racc
     pdf-core (0.9.0)
@@ -356,7 +356,7 @@ GEM
     rspreadsheet (0.5.3)
       andand (>= 1.3)
       rubyzip (>= 1.3)
-    rubocop (1.60.1)
+    rubocop (1.60.2)
       json (~> 2.3)
       language_server-protocol (>= 3.17.0)
       parallel (~> 1.10)
