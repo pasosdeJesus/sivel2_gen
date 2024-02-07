@@ -28,8 +28,13 @@
       </div>
       <%= f.simple_fields_for :persona_trelacion1,
         child_index: params[:index] do |pt| %>
-        <%= render partial: 'msip/personas/persona_trelacion1_campos', 
-          locals: {f: pt, per: f, datalist: nombre_fuente_familiares } %>
+        <%= render partial: 'msip/personas/persona_familiar_campos', 
+          locals: {
+            f: pt, 
+            per: f, 
+            index_per: params[:index], 
+            datalist: nombre_fuente_familiares 
+          } %>
       <% end %>
     </div>
 

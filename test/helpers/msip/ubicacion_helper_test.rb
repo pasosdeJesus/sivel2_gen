@@ -1,7 +1,6 @@
 
 require_relative '../../test_helper'
 require_relative '../../models/sivel2_gen/caso_test'
-require 'msip/ubicacion_helper'
 
 module Msip
   class UbicacionHelperTest < ActionView::TestCase
