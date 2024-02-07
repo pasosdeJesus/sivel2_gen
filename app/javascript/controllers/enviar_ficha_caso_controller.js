@@ -75,6 +75,8 @@ export default class extends Controller {
               if (response.ok) {
                 localStorage.setItem('pestanaActiva', 'actos-pestana');
                 window.location = puntomontaje + 'casos/' + casoId + '/edita';
+              } else {
+                document.getElementById("cargando").style.display = 'none';
               }
            });
 
