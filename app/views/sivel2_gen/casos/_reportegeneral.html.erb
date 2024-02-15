@@ -46,7 +46,7 @@
     <%= ubprincipal.municipio.nombre if ubprincipal && ubprincipal.municipio%> /
     <%= ubprincipal.centropoblado.nombre if ubprincipal && ubprincipal.centropoblado%>
   <% elsif ubprincipal && ubprincipal.pais.id.to_i > 0 %>
-    Exterior /  <%= ubprincipal.pais.nombre %>
+    País:  <%= ubprincipal.pais.nombre %>
   <% end %>
   </p>
   <% if current_usuario %>
