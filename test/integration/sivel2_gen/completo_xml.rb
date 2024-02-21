@@ -88,7 +88,6 @@ module Sivel2Gen
       victima1 = Sivel2Gen::Victima.create(
         caso_id: caso.id,
         persona_id: persona1.id,
-        etnia_id: 5,
         iglesia_id: nil,
         rangoedad_id: rangoedad.id
       )
@@ -96,7 +95,6 @@ module Sivel2Gen
         caso_id: caso.id,
         persona_id: persona2.id,
         rangoedad_id: rangoedad.id,
-        etnia_id: 5,
         iglesia_id: nil,
         orientacionsexual: 'S'
       )
@@ -104,7 +102,6 @@ module Sivel2Gen
         caso_id: caso.id,
         persona_id: persona3.id,
         rangoedad_id: rangoedad.id,
-        etnia_id: 5,
         iglesia_id: nil,
         orientacionsexual: 'S'
       )
@@ -202,11 +199,11 @@ module Sivel2Gen
       vant2.save!
 
       vetn = Sivel2Gen::EtniaVictimacolectiva.new
-      vetn.etnia_id = Sivel2Gen::Etnia.find(1).id
+      vetn.etnia_id = Msip::Etnia.find(1).id
       vetn.victimacolectiva_id = victimacolectiva1.id
       vetn.save!
       vetn2 = Sivel2Gen::EtniaVictimacolectiva.new
-      vetn2.etnia_id = Sivel2Gen::Etnia.find(2).id
+      vetn2.etnia_id = Msip::Etnia.find(2).id
       vetn2.victimacolectiva_id = victimacolectiva1.id
       vetn2.save!
 

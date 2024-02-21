@@ -26,8 +26,8 @@ xml.relato do
           xml.observaciones(v.persona[ob], 
                             {tipo: ob}) if v.persona[ob]
         end
-        xml.observaciones(v.etnia.nombre, 
-                          {tipo: 'etnia'}) if v.etnia
+        xml.observaciones(v.persona.etnia.nombre, 
+                          {tipo: 'etnia'}) if v.persona.etnia
         xml.observaciones(v.persona.pais.nombre, 
                           {tipo: 'pais'}) if v.persona.pais
         xml.observaciones(v.persona.departamento.nombre, 
