@@ -222,9 +222,13 @@ module Sivel2Gen
               que3 << ["anionac", "Año de Nacimiento"]
 
             when 'ETNIA'
-              que1, que3, tablas3, where3 = personas_segun_tipico(
-                'etnia', 'Etnia', que1, que3, tablas3, where3
-              )
+              que1 = agregar_tabla(que1, 'persona.etnia_id AS etnia_id')
+              tablas3 = agregar_tabla(
+                tablas3, "public.msip_etnia AS etnia")
+              where3 = ampliar_where_sinap(
+                where3, "etnia_id", "etnia.id")
+              que3 << ["etnia.nombre", 'Etnia']
+
 
             when 'FILIACIÓN'
               que1, que3, tablas3, where3 = personas_segun_tipico(
