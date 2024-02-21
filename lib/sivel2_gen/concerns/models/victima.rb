@@ -41,8 +41,6 @@ module Sivel2Gen
           # En el orden de esquema en base
           belongs_to :caso, foreign_key: "caso_id", validate: true,
             class_name: "Sivel2Gen::Caso", optional: false
-          belongs_to :etnia, foreign_key: "etnia_id", validate: true,
-            class_name: "Sivel2Gen::Etnia", optional: true
           belongs_to :filiacion, foreign_key: "filiacion_id",
             validate: true, class_name: "Sivel2Gen::Filiacion", optional: true
           belongs_to :iglesia, foreign_key: "iglesia_id", validate: true,
@@ -356,7 +354,7 @@ module Sivel2Gen
                 def recorrer_observaciones_p(ele, per, menserror)
                  case ele[0]
                  when 'etnia'
-                   self.etnia_id = Sivel2Gen::Etnia.where('TRIM(nombre)=?', ele[1]).ids[0]
+                   self.persona.etnia_id = Msip::Etnia.where('TRIM(nombre)=?', ele[1]).ids[0]
                  when 'pais'
                    per.pais_id = Msip::Pais.where('TRIM(nombre)=?', ele[1]).ids[0]
                  when 'departamento'

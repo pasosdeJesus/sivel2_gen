@@ -16,7 +16,7 @@ module Sivel2Gen
             join_table: 'sivel2_gen_antecedente_victimacolectiva'
 
           has_and_belongs_to_many :etnia, 
-            class_name: 'Sivel2Gen::Etnia',
+            class_name: 'Msip::Etnia',
             foreign_key: :victimacolectiva_id, 
             validate: true, 
             association_foreign_key: 'etnia_id',
@@ -195,7 +195,7 @@ module Sivel2Gen
                     end
                   when 'etnia'
                     ele[1].split(";").each do |etn|
-                      etnia = Sivel2Gen::Etnia.where(nombre: etn)
+                      etnia = Msip::Etnia.where(nombre: etn)
                       if etnia.count == 1
                         vetn = Sivel2Gen::EtniaVictimacolectiva.new
                         vetn.etnia_id = etnia[0].id

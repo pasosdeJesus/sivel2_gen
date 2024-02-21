@@ -9,7 +9,7 @@ module Sivel2Gen
     end
 
     test "valido" do
-      etnia = Etnia.new(PRUEBA_ETNIA)
+      etnia = Msip::Etnia.new(PRUEBA_ETNIA)
       assert_predicate etnia, :valid?
       etnia.save
 

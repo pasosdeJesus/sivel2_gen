@@ -72,7 +72,7 @@
       <% @dias = *(1..31) %>
   
       <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-6">
           <%= f.input :mesnac,
             collection: @meses,
             input_html:{
@@ -83,7 +83,7 @@
             }
           %>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-6">
           <%= f.input :dianac, 
             collection: @dias, 
             input_html:{
@@ -94,12 +94,23 @@
             }
           %>
         </div>
-        <div class="col-md-4">
-          <%= render partial: 'msip/personas/campo_sexo', locals: {f: f} %>
-        </div>
       </div>
     </div>
 
+    <div class="row">
+      <div class="col-md-6">
+        <%= render partial: 'msip/personas/campo_sexo', locals: {f: f} %>
+      </div>
+      <div class="col-md-6">
+        <%= f.association :etnia,
+          collection: Msip::ModeloHelper.opciones_tabla_basica(
+            Msip::Etnia, f, :etnia
+          ),
+          include_blank: false,
+          label_method: :nombre,
+          value_method: :id %>
+      </div>
+    </div>
     <div class="row">
       <div class="col-md-6">
         <%= f.association :pais,

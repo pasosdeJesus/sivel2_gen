@@ -100,7 +100,7 @@
   <div class="col-md-6">
     <%= f.association :etnia,
       collection: Msip::ModeloHelper.opciones_tabla_basica(
-        Sivel2Gen::Etnia, f, :etnia
+        Msip::Etnia, f, :etnia
       ),
       include_blank: false,
       label_method: :nombre, 

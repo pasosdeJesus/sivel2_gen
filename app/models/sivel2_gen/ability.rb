@@ -36,7 +36,6 @@ module Sivel2Gen
       ['Sivel2Gen', 'contexto'],
       ['Sivel2Gen', 'escolaridad'],
       ['Sivel2Gen', 'estadocivil'],
-      ['Sivel2Gen', 'etnia'],
       ['Sivel2Gen', 'filiacion'],
       ['Sivel2Gen', 'frontera'],
       ['Sivel2Gen', 'iglesia'],

@@ -29,7 +29,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/mr519_gen.git
-  revision: 44446bcafef7dac19ac2a47c807950b10dbfe21a
+  revision: 257869ab3ba9ff0ec262a63309abac3e333f6769
   branch: main
   specs:
     mr519_gen (2.2.0.beta4)
@@ -38,10 +38,10 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/msip.git
-  revision: 0f184ae0dd0979cdd79328f2886b58b15c417e08
+  revision: de7c6e64be94c8fb2f18952cdb7565b5b9c15fb4
   branch: main
   specs:
-    msip (2.2.0.beta4)
+    msip (2.2.0.beta5)
       cancancan (~> 3)
       devise (~> 4)
       devise-i18n (~> 1)
@@ -201,10 +201,10 @@ GEM
     devise-i18n (1.12.0)
       devise (>= 4.9.0)
     docile (1.4.0)
-    dotenv (2.8.1)
-    dotenv-rails (2.8.1)
-      dotenv (= 2.8.1)
-      railties (>= 3.2)
+    dotenv (3.0.2)
+    dotenv-rails (3.0.2)
+      dotenv (= 3.0.2)
+      railties (>= 6.1)
     drb (2.2.0)
       ruby2_keywords
     erubi (1.12.0)
@@ -220,7 +220,7 @@ GEM
     i18n (1.14.1)
       concurrent-ruby (~> 1.0)
     io-console (0.7.2)
-    irb (1.11.1)
+    irb (1.11.2)
       rdoc
       reline (>= 0.4.2)
     jbuilder (2.11.5)
@@ -246,7 +246,7 @@ GEM
     mime-types-data (3.2024.0206)
     mini_mime (1.1.5)
     mini_portile2 (2.8.5)
-    minitest (5.22.1)
+    minitest (5.22.2)
     minitest-reporters (1.6.1)
       ansi
       builder
@@ -277,7 +277,7 @@ GEM
       ast (~> 2.4.1)
       racc
     pdf-core (0.9.0)
-    pg (1.5.4)
+    pg (1.5.5)
     prawn (2.4.0)
       pdf-core (~> 0.9.0)
       ttfunk (~> 1.7)
@@ -377,7 +377,7 @@ GEM
       rack (>= 1.1)
       rubocop (>= 1.33.0, < 2.0)
       rubocop-ast (>= 1.30.0, < 2.0)
-    rubocop-shopify (2.14.0)
+    rubocop-shopify (2.15.1)
       rubocop (~> 1.51)
     ruby-graphviz (1.2.5)
       rexml
@@ -417,7 +417,7 @@ GEM
     tilt (2.3.0)
     timeout (0.4.1)
     ttfunk (1.7.0)
-    turbo-rails (1.5.0)
+    turbo-rails (2.0.3)
       actionpack (>= 6.0.0)
       activejob (>= 6.0.0)
       railties (>= 6.0.0)

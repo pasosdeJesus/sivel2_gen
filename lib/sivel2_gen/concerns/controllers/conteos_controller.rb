@@ -69,11 +69,11 @@ module Sivel2Gen
               },
               'ETNIA' => { 
                 nomfiltro: :etnias,
-                coleccion: Sivel2Gen::Etnia.all.order(:nombre), 
+                coleccion: Msip::Etnia.all.order(:nombre), 
                 # No usuamos habilitados porque deben incluirse históricos
                 metodo_etiqueta: :nombre,
                 metodo_id: :id,
-                campocons: 'victima.etnia_id'
+                campocons: 'persona.etnia_id'
               },
               'FILIACIÓN' => { 
                 nomfiltro: :filiaciones,

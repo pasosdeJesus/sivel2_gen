@@ -1393,7 +1393,6 @@ module Sivel2Gen
                   :anotaciones,
                   :hijos,
                   :id,
-                  :etnia_id,
                   :filiacion_id,
                   :iglesia_id,
                   :organizacion_id,
@@ -1423,6 +1422,7 @@ module Sivel2Gen
                     :nacionalde,
                     :numerodocumento,
                     :sexo,
+                    :etnia_id,
                     :tdocumento_id,
                     :persona_trelacion1_attributes => [
                       :id,

@@ -557,8 +557,8 @@ module Sivel2Gen
                 if v.vinculoestado
                   r += ' - ' + v.vinculoestado.presenta_nombre
                 end
-                if v.etnia
-                  r += ' - ' + v.etnia.presenta_nombre
+                if v.persona.etnia
+                  r += ' - ' + v.persona.etnia.presenta_nombre
                 end
                 if v.iglesia
                   r += ' - ' + v.iglesia.presenta_nombre

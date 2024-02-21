@@ -53,8 +53,9 @@
 <% caso.victimacolectiva.each do |vc| %>
   <% nvc = Msip::Grupoper.find(vc.grupoper_id).nombre %>
   <% if repgeneral %>
-    <% etniasid =  Sivel2Gen::EtniaVictimacolectiva.where(victimacolectiva_id: vc.id).pluck(:etnia_id)%>
-    <% etnias = etniasid.map{|e| Sivel2Gen::Etnia.find(e).nombre}.join(" / ")%>
+    <% etniasid =  Sivel2Gen::EtniaVictimacolectiva.where(
+      victimacolectiva_id: vc.id).pluck(:etnia_id)%>
+    <% etnias = etniasid.map{|e| Msip::Etnia.find(e).nombre}.join(" / ")%>
     <% lvic['c'+ vc.grupoper_id.to_s] = nvc + " - " + etnias %>
   <% else %>
     <% lvic['c'+ vc.grupoper_id.to_s] = nvc %>
