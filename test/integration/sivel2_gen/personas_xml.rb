@@ -34,7 +34,6 @@ module Sivel2Gen
         caso_id: caso.id,
         persona_id: persona.id,
         rangoedad_id: rangoedad.id,
-        etnia_id: 105,
         profesion_id: profesion.id,
         sectorsocial_id: sectorsocial.id
       )
@@ -69,7 +68,6 @@ module Sivel2Gen
         caso_id: caso.id,
         persona_id: persona1.id,
         rangoedad_id: rangoedad.id,
-        etnia_id: 105,
         sectorsocial_id: sectorsocial.id,
         profesion_id: profesion.id
       )
@@ -77,7 +75,6 @@ module Sivel2Gen
         caso_id: caso.id,
         persona_id: persona2.id,
         rangoedad_id: rangoedad.id,
-        etnia_id: 105,
         sectorsocial_id: sectorsocial.id,
         profesion_id: profesion.id
       )

@@ -34,7 +34,6 @@ module Sivel2Gen
       victima = Sivel2Gen::Victima.create(
         caso_id: caso.id,
         persona_id: persona.id,
-        etnia_id: 5,
         iglesia_id: nil,
         rangoedad_id: rangoedad.id
       )

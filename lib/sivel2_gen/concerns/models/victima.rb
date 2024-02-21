@@ -354,7 +354,7 @@ module Sivel2Gen
                 def recorrer_observaciones_p(ele, per, menserror)
                  case ele[0]
                  when 'etnia'
-                   self.persona.etnia_id = Msip::Etnia.where('TRIM(nombre)=?', ele[1]).ids[0]
+                   per.etnia_id = Msip::Etnia.where('TRIM(nombre)=?', ele[1]).ids[0]
                  when 'pais'
                    per.pais_id = Msip::Pais.where('TRIM(nombre)=?', ele[1]).ids[0]
                  when 'departamento'
