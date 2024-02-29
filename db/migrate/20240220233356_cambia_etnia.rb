@@ -14,7 +14,9 @@ class CambiaEtnia < ActiveRecord::Migration[7.1]
       UPDATE msip_persona SET etnia_id=sivel2_gen_victima.etnia_id 
         FROM sivel2_gen_victima WHERE persona_id=msip_persona.id;
     SQL
-    remove_column :sivel2_gen_victima, :etnia_id
+    execute <<-SQL
+      ALTER TABLE sivel2_gen_victima DROP COLUMN etnia_id CASCADE;
+    SQL
     rename_column :sivel2_gen_etnia_victimacolectiva, :etnia_id, :msip_etnia_id
     add_column :sivel2_gen_etnia_victimacolectiva, :etnia_id, 
       :integer, null: false, default: 1
@@ -24,7 +26,9 @@ class CambiaEtnia < ActiveRecord::Migration[7.1]
       UPDATE sivel2_gen_etnia_victimacolectiva 
         SET etnia_id=msip_etnia_id;
     SQL
-    remove_column :sivel2_gen_etnia_victimacolectiva, :msip_etnia_id
+    execute <<-SQL
+      ALTER TABLE sivel2_gen_victimacolectiva DROP COLUMN etnia_id CASCADE;
+    SQL
     execute <<-SQL
       ALTER TABLE ONLY public.sivel2_gen_etnia_victimacolectiva
         ADD CONSTRAINT sivel2_gen_etnia_victimacolectiva_pkey1 
