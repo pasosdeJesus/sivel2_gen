@@ -27,7 +27,7 @@ class CambiaEtnia < ActiveRecord::Migration[7.1]
         SET etnia_id=msip_etnia_id;
     SQL
     execute <<-SQL
-      ALTER TABLE sivel2_gen_victimacolectiva DROP COLUMN etnia_id CASCADE;
+      ALTER TABLE sivel2_gen_etnia_victimacolectiva DROP COLUMN etnia_id CASCADE;
     SQL
     execute <<-SQL
       ALTER TABLE ONLY public.sivel2_gen_etnia_victimacolectiva
