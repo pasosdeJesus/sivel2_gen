@@ -1,6 +1,5 @@
 
 require 'msip/concerns/controllers/personas_controller'
-require 'date'
 
 module Sivel2Gen
   module Concerns
