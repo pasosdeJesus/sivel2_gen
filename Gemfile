@@ -1,4 +1,3 @@
-
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
@@ -10,18 +9,20 @@ gem "bcrypt"
 
 gem 'bootsnap', require: false
 
-gem "cancancan"# Roles
+gem "cancancan" # Roles
 
 gem "cocoon", git: "https://github.com/vtamara/cocoon.git", 
   branch: "new_id_with_ajax"# Formularios anidados (algunos con ajax)
 
-gem "coffee-rails" # CoffeeScript para recuersos .js.coffee y vistas
+gem "coffee-rails" # CoffeeScript mientras reemplazamos por Javascript
 
-gem "color" # Maneja colores RGB
+gem "color"
 
 gem "devise" # Autenticación 
 
 gem "devise-i18n"
+
+gem "hotwire-rails"
 
 gem "jbuilder" # API JSON facil. Ver: https://github.com/rails/jbuilder
 
@@ -30,7 +31,7 @@ gem "jsbundling-rails"
 gem "kt-paperclip",                 # Anexos
   git: "https://github.com/kreeti/kt-paperclip.git"
 
-gem "libxml-ruby" # Genera ODS
+gem "libxml-ruby"
 
 gem 'nokogiri'
 
@@ -44,14 +45,14 @@ gem "prawnto_2",  require: "prawnto"
 
 gem "prawn-table"
 
-  gem "rack", "~> 2"
+gem "rack", "~> 2"
 
-  gem "rails", ">= 7.1", "<7.2"
+gem "rails", ">= 7.1", "<7.2"
   #git: 'https://github.com/rails/rails.git', branch: '6-1-stable'
 
 gem "rails-i18n"
 
-gem "redcarpet" # Opera Markdown
+gem "redcarpet" # Markdown
 
 gem "rspreadsheet"
 
@@ -90,16 +91,6 @@ gem "heb412_gen",  # Motor de nube y llenado de plantillas
   git: "https://gitlab.com/pasosdeJesus/heb412_gen.git", branch: "main"
   #path: "../heb412_gen"
 
-
-group :development do
-  gem "puma"
-
-  gem "thor" # Requerido por rake
-
-  gem "web-console"
-end
-
-
 group  :development, :test do
   gem "brakeman"
 
@@ -109,7 +100,7 @@ group  :development, :test do
 
   gem "colorize"
 
-  gem "debug", platforms: [:mri, :mingw, :x64_mingw]
+  gem "debug" # Depurar
 
   gem "dotenv-rails"
 
@@ -122,7 +113,19 @@ group  :development, :test do
   gem "rubocop-shopify"
 end
 
+group :development do
+  gem "erd"
+
+  gem "puma"
+
+  gem "thor" # Requerido por rake
+
+  gem "web-console"
+end
+
 group :test do
+  gem "capybara"
+
   gem "compare-xml"
 
   gem "cuprite"

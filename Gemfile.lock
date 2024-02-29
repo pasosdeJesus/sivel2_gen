@@ -207,6 +207,9 @@ GEM
       railties (>= 6.1)
     drb (2.2.0)
       ruby2_keywords
+    erd (0.8.2)
+      nokogiri
+      ruby-graphviz
     erubi (1.12.0)
     execjs (2.9.1)
     ferrum (0.14)
@@ -217,6 +220,10 @@ GEM
     ffi (1.16.3)
     globalid (1.2.1)
       activesupport (>= 6.1)
+    hotwire-rails (0.1.3)
+      rails (>= 6.0.0)
+      stimulus-rails
+      turbo-rails
     i18n (1.14.1)
       concurrent-ruby (~> 1.0)
     io-console (0.7.2)
@@ -455,6 +462,7 @@ DEPENDENCIES
   brakeman
   bundler-audit
   cancancan
+  capybara
   cocoon!
   code-scanning-rubocop
   coffee-rails
@@ -466,7 +474,9 @@ DEPENDENCIES
   devise
   devise-i18n
   dotenv-rails
+  erd
   heb412_gen!
+  hotwire-rails
   jbuilder
   jsbundling-rails
   kt-paperclip!
