@@ -9,14 +9,15 @@
           <div class="col-md-6">
           <%= a.input :id, as: :hidden %>
           <%= f.input :fecha,
-            :input_html => { type: "date" },
-            :as => :string, 
-            :label => "Fecha" %>
+            input_html: { type: "date" },
+            as: :string, 
+            label: "Fecha" %>
           </div>
 
           <div class="col-md-6">
             <% if !a.object || !a.object.adjunto_file_name || !a.object.id %>
-              <%= a.input :adjunto, as: :file, 
+              <%= a.input :adjunto, 
+                as: :file, 
                 label: 'Archivo',
                 data:  {
                   disable_with: false } %>
