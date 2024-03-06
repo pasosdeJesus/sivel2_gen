@@ -1,47 +1,48 @@
-<div class="panel-heading">Actos Individuales</div>
-<div class="panel-body table-responsive" style="min-height: 20em">
-  <div class="div-tabla">
-    <div class="div-tabla-cuerpo">
-      <div class="div-tabla-fila">
-        <div class="div-tabla-celda" style="width: 10em"><b>Presunto Responsable</b></div>
-        <div class="div-tabla-celda" style="width: 10em"><b>Categoría</b></div>
-        <div class="div-tabla-celda" style="width: 10em"><b>Víctima</b></div>
-        <div class="div-tabla-celda" style="width: 10em"><b>Acciones</b></div>
-      </div>
-      <div class='div-tabla-fila'>
-        <div class="div-tabla-celda" style="max-width: 10em">
-          <% p = options_from_collection_for_select(
-            Sivel2Gen::Presponsable.from(
-              'sivel2_gen_caso_presponsable, sivel2_gen_presponsable').where(
-                'sivel2_gen_caso_presponsable.presponsable_id = '\
-                ' sivel2_gen_presponsable.id '\
-                ' AND sivel2_gen_caso_presponsable.caso_id=?', @caso.id
-              ), 
-              "id", "nombre") 
-            %>
-          <%= select_tag "caso_acto_presponsable_id", p, 
+<div class="panel">
+  <div class="panel-heading">Actos Individuales</div>
+  <div class="panel-body table-responsive" style="min-height: 20em">
+    <div class="div-tabla">
+      <div class="div-tabla-cuerpo">
+        <div class="div-tabla-fila">
+          <div class="div-tabla-celda" style="width: 10em"><b>Presunto Responsable</b></div>
+          <div class="div-tabla-celda" style="width: 10em"><b>Categoría</b></div>
+          <div class="div-tabla-celda" style="width: 10em"><b>Víctima</b></div>
+          <div class="div-tabla-celda" style="width: 10em"><b>Acciones</b></div>
+        </div>
+        <div class='div-tabla-fila'>
+          <div class="div-tabla-celda" style="max-width: 10em">
+            <% p = options_from_collection_for_select(
+              Sivel2Gen::Presponsable.from(
+                'sivel2_gen_caso_presponsable, sivel2_gen_presponsable').where(
+                  'sivel2_gen_caso_presponsable.presponsable_id = '\
+                  ' sivel2_gen_presponsable.id '\
+                  ' AND sivel2_gen_caso_presponsable.caso_id=?', @caso.id
+                ), 
+                "id", "nombre") 
+              %>
+            <%= select_tag "caso_acto_presponsable_id", p, 
             multiple: true, 
             class: 'chosen-select',
             "data-toggle" => 'tooltip',
             "title" => 'Seleccione de aquellos que añadió en la pestaña Presuntos Responsables' 
           %>
-        </div>
-        <div class="div-tabla-celda" style="max-width: 10em">
-          <%= c = options_from_collection_for_select(
-                    Sivel2Gen::Categoria.from(
-                      'sivel2_gen_categoria, sivel2_gen_supracategoria').
-                      where('sivel2_gen_supracategoria.id=sivel2_gen_categoria.supracategoria_id 
+          </div>
+          <div class="div-tabla-celda" style="max-width: 10em">
+            <%= c = options_from_collection_for_select(
+              Sivel2Gen::Categoria.from(
+                'sivel2_gen_categoria, sivel2_gen_supracategoria').
+                where('sivel2_gen_supracategoria.id=sivel2_gen_categoria.supracategoria_id 
                         AND sivel2_gen_categoria.fechadeshabilitacion is NULL 
                         AND sivel2_gen_categoria.tipocat=\'I\'').
-                        reorder('sivel2_gen_supracategoria.tviolencia_id', :id), 
-                        "id", 
-                        lambda {|t| t.supracategoria.tviolencia_id + t.id.to_s + ' ' + t.nombre }
-          )
-        select_tag "caso_acto_categoria_id", c, multiple: true, class: 'chosen-select', 
-          "data-toggle" => 'tooltip',
-          "title" => 'Seleccione el(los) tipo(s) de violencia que asociados al 
-      presunto responsable() y víctima(s). Para seleccionar varios presione 
-      CTRL y pulse en las categorías que desee.'
+                          reorder('sivel2_gen_supracategoria.tviolencia_id', :id), 
+                          "id", 
+                          lambda {|t| t.supracategoria.tviolencia_id + t.id.to_s + ' ' + t.nombre }
+            )
+            select_tag "caso_acto_categoria_id", c, multiple: true, class: 'chosen-select', 
+              "data-toggle" => 'tooltip',
+              "title" => 'Seleccione el(los) tipo(s) de violencia que asociados al 
+            presunto responsable() y víctima(s). Para seleccionar varios presione 
+            CTRL y pulse en las categorías que desee.'
           %>
           </div>
           <div class="div-tabla-celda" style="max-width: 10em">
@@ -76,13 +77,16 @@
                 disable_with: false 
               } %>
           </div>
-      </div> <!-- tabla-fila -->
-    </div> <!-- tabla-cuerpo -->
-  </div> <!-- tabla -->
-  <%= turbo_frame_tag "actos_marco" do %>
-    <%= render partial: 'sivel2_gen/actos/actos_tabla', :f => f %>
-  <% end %>
+        </div> <!-- tabla-fila -->
+      </div> <!-- tabla-cuerpo -->
+    </div> <!-- tabla -->
+    <%= turbo_frame_tag "actos_marco" do %>
+      <%= render partial: 'sivel2_gen/actos/actos_tabla', :f => f %>
+    <% end %>
+  </div> <!-- panel-body -->
 </div> <!-- panel -->
+
+<hr/>
 
 <div class="panel panel-default">
   <div class="panel-heading">Actos Colectivos</div><div class="panel-body">
