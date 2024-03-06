@@ -3,26 +3,27 @@
   <div class="div-tabla">
     <div class="div-tabla-cuerpo">
       <div class="div-tabla-fila">
-        <div class="div-tabla-celda" style="width: 10em">Presunto Responsable</div>
-        <div class="div-tabla-celda" style="width: 10em">Categoría</div>
-        <div class="div-tabla-celda" style="width: 10em">Víctima</div>
-        <div class="div-tabla-celda" style="width: 10em">Acciones</div>
+        <div class="div-tabla-celda" style="width: 10em"><b>Presunto Responsable</b></div>
+        <div class="div-tabla-celda" style="width: 10em"><b>Categoría</b></div>
+        <div class="div-tabla-celda" style="width: 10em"><b>Víctima</b></div>
+        <div class="div-tabla-celda" style="width: 10em"><b>Acciones</b></div>
       </div>
       <div class='div-tabla-fila'>
         <div class="div-tabla-celda" style="max-width: 10em">
           <% p = options_from_collection_for_select(
-                      Sivel2Gen::Presponsable.from(
-                        'sivel2_gen_caso_presponsable, sivel2_gen_presponsable').where(
-                          'sivel2_gen_caso_presponsable.presponsable_id=
-                           sivel2_gen_presponsable.id 
-                         AND sivel2_gen_caso_presponsable.caso_id=?', @caso.id
-                        ), 
-                        "id", "nombre"
-                ) %>
-          <%= select_tag "caso_acto_presponsable_id", p, multiple: true, class: 'chosen-select',
-              "data-toggle" => 'tooltip',
-              "title" => 
-            'Seleccione de aquellos que añadió en la pestaña Presuntos Responsables' 
+            Sivel2Gen::Presponsable.from(
+              'sivel2_gen_caso_presponsable, sivel2_gen_presponsable').where(
+                'sivel2_gen_caso_presponsable.presponsable_id = '\
+                ' sivel2_gen_presponsable.id '\
+                ' AND sivel2_gen_caso_presponsable.caso_id=?', @caso.id
+              ), 
+              "id", "nombre") 
+            %>
+          <%= select_tag "caso_acto_presponsable_id", p, 
+            multiple: true, 
+            class: 'chosen-select',
+            "data-toggle" => 'tooltip',
+            "title" => 'Seleccione de aquellos que añadió en la pestaña Presuntos Responsables' 
           %>
         </div>
         <div class="div-tabla-celda" style="max-width: 10em">
@@ -44,31 +45,36 @@
           %>
           </div>
           <div class="div-tabla-celda" style="max-width: 10em">
-          <%= p = options_from_collection_for_select(
-          Msip::Persona.from('sivel2_gen_victima, msip_persona').where(
-            'sivel2_gen_victima.persona_id=msip_persona.id 
-        AND sivel2_gen_victima.caso_id=?', @caso.id),
-        "id",
-        lambda {|t| (t.nombres == 'N' && t.apellidos == 'N') ? 
-                t.sin_identificacion : (t.nombres + ' ' + t.apellidos)}
-        )
-        select_tag "caso_acto_persona_id", p, multiple: true, class: 'chosen-select',
-          "data-toggle" => 'tooltip',
-          "title" => 'Seleccione los nombres de una o más víctimas asociadas al
-      presunto responsable y a la categoria de violencia elegida. 
-      Después no olvide presionar el botón Añadir Acto(s).'
-    %>
+            <% p = options_from_collection_for_select(
+              Msip::Persona.from('sivel2_gen_victima, msip_persona').where(
+                'sivel2_gen_victima.persona_id=msip_persona.id '\
+                'AND sivel2_gen_victima.caso_id=?', @caso.id),
+                "id",
+                lambda {
+                  |t| (t.nombres == 'N' && t.apellidos == 'N') ? 
+                  t.sin_identificacion : (t.nombres + ' ' + t.apellidos)
+                }) %>
+              <%= select_tag "caso_acto_persona_id", p, 
+                multiple: true, 
+                class: 'chosen-select',
+                "data-toggle": 'tooltip',
+                title: "Seleccione los nombres de una o más víctimas "\
+                "asociadas al presunto responsable y a la categoria "\
+                "de violencia elegida. "\
+                "Después no olvide presionar el botón Añadir Acto(s)."
+              %>
           </div>
           <div class="div-tabla-celda" style="max-width: 10em">
             <%= f.submit "Agregar Acto",
-                formaction: sivel2_gen.crear_acto_path(index: @caso.acto.size),
-                formmethod: :post,
-                formnovalidate: true,
-                class: 'btn btn-sm btn-primary agregar-acto',
-                name: "agregar-acto",
-                id: "agregar-acto", 
-                data:  {
-                  disable_with: false } %>
+              formaction: sivel2_gen.crear_acto_path(index: @caso.acto.size),
+              formmethod: :post,
+              formnovalidate: true,
+              class: 'btn btn-sm btn-primary agregar-acto',
+              name: "agregar-acto",
+              id: "agregar-acto", 
+              data:  {
+                disable_with: false 
+              } %>
           </div>
       </div> <!-- tabla-fila -->
     </div> <!-- tabla-cuerpo -->

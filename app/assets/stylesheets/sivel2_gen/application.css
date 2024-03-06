@@ -35,6 +35,21 @@ ul.heb412 {
 	list-style-type: none;
 }
 
+/* Estilo para capa superpuesta Cargando por Luis Alejandro Cruz */
+.capa-cargando {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.7);
+  z-index: 1050;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
 /* Estilo tabla de
  * https://stackoverflow.com/questions/3053205/how-create-table-only-using-div-tag-and-css
  */
