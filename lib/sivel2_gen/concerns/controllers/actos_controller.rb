@@ -69,6 +69,7 @@ module Sivel2Gen
                         categoria_id: cat,
                         persona_id: vic,
                       )
+                      acto.caso = @caso
                       if !acto.valid?
                         merr = ""
                         if acto.errors.messages[:acto].count > 0
@@ -84,7 +85,6 @@ module Sivel2Gen
 #                        end
                         return
                       end
-                      acto.caso = @caso
                       acto.save!
                     end
                   end
