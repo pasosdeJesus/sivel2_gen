@@ -16,6 +16,7 @@
 # end
 ActiveSupport::Inflector.inflections do |inflect|
 	inflect.irregular 'actividad', 'actividades'
+	inflect.irregular 'actocolectivo', 'actoscolectivos'
 	inflect.irregular 'categoria', 'categorias'
 	inflect.irregular 'caso_fuenteprensa', 'caso_fuentesprensa' # Tocó porque no permite otro plural
 	inflect.irregular 'caso_fotra', 'caso_fotras' # Tocó porque no permite otro plural
