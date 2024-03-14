@@ -49,6 +49,15 @@ module Sivel2Gen
                        grupoper_id: vicc,
                      )
                      actocolectivo.caso = @caso
+                     if !actocolectivo.valid?
+                       merr = ""
+                       if actocolectivo.errors.messages[:actocolectivo].count > 0
+                         merr = actocolectivo.errors.messages[:actocolectivo].join(". ")
+                       end
+                       render inline: "Problema. " + merr, 
+                         status: :unprocessable_entity
+                       return
+                     end
                      actocolectivo.save!
                    end
                  end
