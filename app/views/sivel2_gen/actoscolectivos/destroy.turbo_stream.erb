@@ -1,0 +1,8 @@
+<%= simple_form_for @caso, url: sivel2_gen.caso_path(@caso) do |form| %>
+  <%= turbo_stream.replace "actoscolectivos_marco" do %>
+    <%= turbo_frame_tag "actoscolectivos_marco" do %>
+      <% s = render 'sivel2_gen/actoscolectivos/actoscolectivos_tabla' %>
+      <%= s %>
+    <% end %>
+  <% end %>
+<% end %>

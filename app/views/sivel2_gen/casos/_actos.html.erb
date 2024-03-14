@@ -89,85 +89,93 @@
 <hr/>
 
 <div class="panel panel-default">
-  <div class="panel-heading">Actos Colectivos</div><div class="panel-body">
-
-    <div style="padding-bottom: 18px;" 
-         class="input select caso_actocolectivo_presponsable">
-      <label class="select required control-label" 
-             for="caso_actocolectivo_presponsable_id">
-        Presunto Responsable</label>
-      <%= 
-        p = options_from_collection_for_select(
-          Sivel2Gen::Presponsable.from(
-            'sivel2_gen_caso_presponsable, sivel2_gen_presponsable').where(
-              'sivel2_gen_caso_presponsable.presponsable_id=
-                 sivel2_gen_presponsable.id 
-               AND sivel2_gen_caso_presponsable.caso_id=?', @caso.id), 
-               "id", "nombre"
-        )
-        select_tag "caso_actocolectivo_presponsable_id", p, multiple: true,
-          "data-toggle" => 'tooltip',
-          "title" => 
-        'Seleccione de aquellos que añadió en la pestaña Presuntos Responsables'
-      %>
+  <div class="panel-heading">Actos Colectivos</div>
+    <div class="panel-body">
+      <div class="panel-body table-responsive" style="min-height: 20em">
+        <div class="div-tabla">
+          <div class="div-tabla-cuerpo">
+            <div class="div-tabla-fila">
+              <div class="div-tabla-celda" style="width: 10em"><b>Presunto Responsable</b></div>
+              <div class="div-tabla-celda" style="width: 10em"><b>Categoría</b></div>
+              <div class="div-tabla-celda" style="width: 10em"><b>Víctima</b></div>
+              <div class="div-tabla-celda" style="width: 10em"><b>Acciones</b></div>
+            </div>
+            <div class='div-tabla-fila'>
+              <div class="div-tabla-celda" style="max-width: 10em">
+                <%= 
+                  p = options_from_collection_for_select(
+                    Sivel2Gen::Presponsable.from(
+                      'sivel2_gen_caso_presponsable, sivel2_gen_presponsable').where(
+                        'sivel2_gen_caso_presponsable.presponsable_id=
+                           sivel2_gen_presponsable.id 
+                         AND sivel2_gen_caso_presponsable.caso_id=?', @caso.id), 
+                         "id", "nombre"
+                  )
+                  select_tag "caso_actocolectivo_presponsable_id", p, multiple: true,
+                    class: 'chosen-select',
+                    "data-toggle" => 'tooltip',
+                    "title" => 
+                  'Seleccione de aquellos que añadió en la pestaña Presuntos Responsables'
+                %>
+              </div>
+              <div class="div-tabla-celda" style="max-width: 10em">
+                <%= 
+                  c = options_from_collection_for_select(
+                    Sivel2Gen::Categoria.from(
+                  'sivel2_gen_categoria, sivel2_gen_supracategoria').
+                  where('sivel2_gen_supracategoria.id=sivel2_gen_categoria.supracategoria_id 
+                      AND sivel2_gen_categoria.fechadeshabilitacion is NULL 
+                      AND sivel2_gen_categoria.tipocat=\'C\'').
+                      reorder('sivel2_gen_supracategoria.tviolencia_id', :id), 
+                      "id", 
+                      lambda {|t| t.supracategoria.tviolencia_id + t.id.to_s + 
+                              ' ' + t.nombre }
+                  )
+                  select_tag "caso_actocolectivo_categoria_id", c, multiple: true,
+                    "data-toggle" => 'tooltip',
+                    class: 'chosen-select',
+                    "title" => 'Seleccione el(los) tipo(s) de violencia que asociados 
+                    al presunto responsable() y víctima(s). Para seleccionar varios 
+                    presione CTRL y pulse en las categorías que desee.'
+                  %>
+              </div>
+              <div class="div-tabla-celda" style="max-width: 10em">
+                <%= 
+                  p = options_from_collection_for_select(
+                    Msip::Grupoper.from(
+                      'sivel2_gen_victimacolectiva, msip_grupoper').where(
+                        'sivel2_gen_victimacolectiva.grupoper_id=msip_grupoper.id 
+                         AND sivel2_gen_victimacolectiva.caso_id=?', @caso.id),
+                         "id",
+                         lambda {|t| t.nombre}
+                  )
+                  select_tag "caso_actocolectivo_grupoper_id", p, multiple: true,
+                    "data-toggle" => 'tooltip',
+                    class: 'chosen-select',
+                    "title" => 'Seleccione los nombres de uno o más víctimas colectivas
+                      asociadas al presunto responsable y a la categoria de violencia 
+                      elegida.  Después no olvide presionar el botón Añadir Acto(s) Colectivo.'
+                %>
+              </div>
+              <div class="div-tabla-celda" style="max-width: 10em">
+                <%= f.submit "Agregar Acto colectivo",
+                  formaction: sivel2_gen.crear_actocolectivo_path(index: @caso.actocolectivo.size),
+                  formmethod: :post,
+                  formnovalidate: true,
+                  class: 'btn btn-sm btn-primary agregar-actocolectivo',
+                  name: "agregar-actocolectivo",
+                  id: "agregar-actocolectivo", 
+                  data:  {
+                    disable_with: false 
+                  } %>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div style="padding-bottom: 18px;" 
-        class="input select caso_actocolectivo_categoria">
-        <label class="select required control-label" 
-          for="caso_actocolectivo_categoria_id">
-          Categoria Colectiva</label>
-        <%= 
-          c = options_from_collection_for_select(
-            Sivel2Gen::Categoria.from(
-          'sivel2_gen_categoria, sivel2_gen_supracategoria').
-          where('sivel2_gen_supracategoria.id=sivel2_gen_categoria.supracategoria_id 
-              AND sivel2_gen_categoria.fechadeshabilitacion is NULL 
-              AND sivel2_gen_categoria.tipocat=\'C\'').
-              reorder('sivel2_gen_supracategoria.tviolencia_id', :id), 
-              "id", 
-              lambda {|t| t.supracategoria.tviolencia_id + t.id.to_s + 
-                      ' ' + t.nombre }
-          )
-          select_tag "caso_actocolectivo_categoria_id", c, multiple: true,
-            "data-toggle" => 'tooltip',
-            "title" => 'Seleccione el(los) tipo(s) de violencia que asociados 
-            al presunto responsable() y víctima(s). Para seleccionar varios 
-            presione CTRL y pulse en las categorías que desee.'
-          %>
-      </div>
-      <div style="padding-bottom: 18px;" 
-        class="input select caso_actocolectivo_persona">
-        <label class="select required control-label" 
-          for="caso_actocolectivo_persona_id">
-          Víctima Colectiva</label>
-        <%= 
-          p = options_from_collection_for_select(
-            Msip::Grupoper.from(
-              'sivel2_gen_victimacolectiva, msip_grupoper').where(
-                'sivel2_gen_victimacolectiva.grupoper_id=msip_grupoper.id 
-                 AND sivel2_gen_victimacolectiva.caso_id=?', @caso.id),
-                 "id",
-                 lambda {|t| t.nombre}
-          )
-          select_tag "caso_actocolectivo_grupoper_id", p, multiple: true,
-            "data-toggle" => 'tooltip',
-            "title" => 'Seleccione los nombres de uno o más víctimas colectivas
-              asociadas al presunto responsable y a la categoria de violencia 
-              elegida.  Después no olvide presionar el botón Añadir Acto(s) Colectivo.'
-    %>
-    </div>
-
-    <div style='display: flex; justify-content: center; margin-bottom: 1em'>
-      <button id='boton-añadir-actoscolectivos'
-              class='agregaractoscolectivos btn btn-primary btn-sm'>
-        Añadir Acto(s) Colectivo(s)
-      </button>
-    </div>
-
-    <div id="actoscolectivos_tabla">
-      <%= render 'sivel2_gen/actoscolectivos/actoscolectivos_tabla'  %>
-    </div>
-
+    <%= turbo_frame_tag "actoscolectivos_marco" do %>
+      <%= render partial: 'sivel2_gen/actoscolectivos/actoscolectivos_tabla', :f => f %>
+    <% end %>
   </div> <!-- panel-body -->  
 </div> <!-- panel panel-default --> 
 
