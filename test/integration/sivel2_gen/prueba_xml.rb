@@ -31,6 +31,7 @@ module Sivel2Gen
     end
 
     test 'genera xml de un caso con datos basicos' do
+      #debugger
       caso = Sivel2Gen::Caso.create! PRUEBA_CASO_BASICOS
       ubicaso = Sip::Ubicacion.create(
         id_caso: caso.id,

@@ -9,7 +9,9 @@ module Sivel2Gen
 
     setup do
       @routes = Engine.routes
-      ::Usuario.create!(PRUEBA_USUARIO)
+      if ::Usuario.where(nusuario: PRUEBA_USUARIO[:nusuario]).count == 0
+        ::Usuario.create!(PRUEBA_USUARIO)
+      end
       @current_usuario = Usuario.where(nusuario: 'admin').take
       sign_in @current_usuario
     end
