@@ -11,7 +11,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sip.git
-  revision: 9307e800d9a99f0ff918d294751c49d58c7e8053
+  revision: 9d8cc2703087de0e3ae25623130e51d23c950a5b
   branch: v2.1
   specs:
     sip (2.1.0.beta1)
@@ -43,7 +43,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/heb412_gen.git
-  revision: 6f7031b1d74ac2b5af972b972f1010717ad914b4
+  revision: 1e3b5658c93140d10ab224177c36a1cdcc4a76d2
   branch: v2.1
   specs:
     heb412_gen (2.1.0.beta1)
@@ -54,7 +54,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/mr519_gen.git
-  revision: 03960f9eff0aed1074391d4a488d8a0778f2291a
+  revision: 945129b6f783b7243ee0919bdfa5f4f2dca3f5c9
   branch: v2.1
   specs:
     mr519_gen (2.1.0.beta1)
@@ -255,9 +255,9 @@ GEM
       racc (~> 1.4)
     nokogiri (1.16.3-x86_64-linux)
       racc (~> 1.4)
-    odf-report (0.7.3)
+    odf-report (0.8.0)
       mime-types
-      nokogiri (>= 1.10.0)
+      nokogiri (>= 1.12.0)
       rubyzip (>= 1.3.0)
     orm_adapter (0.5.0)
     pdf-core (0.10.0)
