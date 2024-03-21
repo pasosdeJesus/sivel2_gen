@@ -1,37 +1,36 @@
 <%= fields model: @caso do |form| %>
   <div class="div-tabla">
     <div class="div-tabla-cuerpo">
-  <% if @caso && @caso.actocolectivo %>
-    <% index = 0 %>
-    <% @caso.actocolectivo.try(:each) do |actocolectivo| %>
-
-      <div class="div-tabla-fila">
-        <div class="div-tabla-celda" style="width: 10em">
-          <%= actocolectivo.presponsable.nombre %>
+    <% if @caso && @caso.actocolectivo %>
+      <% index = 0 %>
+      <% @caso.actocolectivo.try(:each) do |actocolectivo| %>
+        <div class="div-tabla-fila">
+          <div class="div-tabla-celda" style="width: 10em">
+            <%= actocolectivo.presponsable.nombre %>
+          </div>
+          <div class="div-tabla-celda" style="width: 10em">
+            <%=actocolectivo.categoria.supracategoria.tviolencia_id + actocolectivo.categoria.id.to_s + ' ' + actocolectivo.categoria.nombre %>
+          </div>
+          <div class="div-tabla-celda" style="width: 10em">
+            <%= actocolectivo.grupoper.nombre %>
+          </div>
+          <div class="div-tabla-celda" style="width: 10em">
+            <%= link_to "Eliminar", 
+              sivel2_gen.eliminar_actocolectivo_path(id: actocolectivo.id, index: index),
+              formmethod: :delete,
+              formnovalidate: true,
+              class: 'btn btn-sm btn-danger',
+              data: { 
+                turbo_frame: "actocolectivo_#{index}",
+                "turbo-stream": "turbo-stream",
+                "turbo-method": :delete,
+                turbo: true,
+              } %>
+          </div>
         </div>
-        <div class="div-tabla-celda" style="width: 10em">
-          <%=actocolectivo.categoria.supracategoria.tviolencia_id + actocolectivo.categoria.id.to_s + ' ' + actocolectivo.categoria.nombre %>
-        </div>
-        <div class="div-tabla-celda" style="width: 10em">
-          <%= actocolectivo.grupoper.nombre %>
-        </div>
-        <div class="div-tabla-celda" style="width: 10em">
-          <%= link_to "Eliminar", 
-            sivel2_gen.eliminar_actocolectivo_path(id: actocolectivo.id, index: index),
-            formmethod: :delete,
-            formnovalidate: true,
-            class: 'btn btn-sm btn-danger',
-            data: { 
-              turbo_frame: "actocolectivo_#{index}",
-              "turbo-stream": "turbo-stream",
-              "turbo-method": :delete,
-              turbo: true,
-            } %>
-        </div>
-      </div>
-      <% index += 1 %>
+        <% index += 1 %>
+      <% end %>
     <% end %>
-  <% end %>
     </div>
   </div>
 <% end %>

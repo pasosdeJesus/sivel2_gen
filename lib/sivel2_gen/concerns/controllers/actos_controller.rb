@@ -71,21 +71,13 @@ module Sivel2Gen
                       )
                       acto.caso = @caso
                       if !acto.valid?
-                        merr = ""
+                        @merr = ""
                         if acto.errors.messages[:acto].count > 0
-                          merr = acto.errors.messages[:acto].join(". ")
+                          @merr = acto.errors.messages[:acto].join(". ")
                         end
-                        render inline: "Problema. " + merr, 
-                          status: :unprocessable_entity
-#                        respond_to do |format|
-#                          redirect_to :root,
-#                          format.html { 
-#                            render inline: "Problema con acto. " + merr
-#                          }
-#                        end
-                        return
+                      else
+                        acto.save!
                       end
-                      acto.save!
                     end
                   end
                 end

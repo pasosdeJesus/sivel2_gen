@@ -49,7 +49,14 @@ module Sivel2Gen
                        grupoper_id: vicc,
                      )
                      actocolectivo.caso = @caso
-                     actocolectivo.save!
+                     if !actocolectivo.valid?
+                       @merr = ""
+                       if actocolectivo.errors.messages[:actocolectivo].count > 0
+                         @merr = actocolectivo.errors.messages[:actocolectivo].join(". ")
+                       end
+                     else
+                       actocolectivo.save!
+                     end
                    end
                  end
                end
