@@ -572,7 +572,14 @@ module Sivel2Gen
               (fechasinicial.count > 0 ? fechasinicial[0] : '2001-01-01')
             sql = "select fecha, count(distinct sivel2_gen_caso.id) AS cuenta, sip_departamento.nombre FROM sivel2_gen_caso LEFT JOIN sip_ubicacion ON sivel2_gen_caso.ubicacion_id = sip_ubicacion.id LEFT JOIN sip_departamento ON sip_ubicacion.id_departamento = sip_departamento.id WHERE sivel2_gen_caso.fecha BETWEEN '" + fechainicial.to_s + "' AND '" + fechafinal.to_s + "' group by 1,3 order by 1;"
             array_cuentas = ActiveRecord::Base.connection.execute(sql)
-            render 'cuenta.json', layout: 'application', locals: {casosc: array_cuentas}
+            respond_to do |format|
+              format.html  { return }
+              format.json  { 
+                render layout: false, locals: {casosc: array_cuentas}
+              }
+            end
+            #render 'cuenta.json.jbuilder', layout: false,
+            #  locals: {casosc: array_cuentas}, formats: [:json]
           end
 
           # GET casos/importarrelatos
