@@ -1,9 +1,9 @@
 <%= turbo_stream.prepend "flash" do %>
   <script type="text/javascript">
     var mensaje = "<%= j @merr %>";
-      if (mensaje) {
-        alert(mensaje);
-      }
+    if (mensaje) {
+    alert(mensaje);
+    }
   </script>
 <% end %>
 <%= simple_form_for @caso, url: sivel2_gen.caso_path(@caso) do |form| %>
