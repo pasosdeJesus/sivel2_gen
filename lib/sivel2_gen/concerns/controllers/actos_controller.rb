@@ -80,6 +80,7 @@ module Sivel2Gen
                       acto.caso = @caso
                       completar_acto(acto, params)
                       if !acto.valid?
+                        @merr = ""
                         if acto.errors.messages[:acto].count > 0
                           @merr = acto.errors.messages[:acto].join(". ")
                         end
