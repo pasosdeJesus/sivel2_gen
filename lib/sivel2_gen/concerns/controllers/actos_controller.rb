@@ -87,8 +87,9 @@ module Sivel2Gen
                         if acto.errors.messages[:acto].count > 0
                           @merr = acto.errors.messages[:acto].join(". ")
                         end
+                      else
+                        acto.save!
                       end
-                      acto.save!
                     end
                   end
                 end

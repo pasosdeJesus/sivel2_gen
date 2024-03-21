@@ -50,15 +50,13 @@ module Sivel2Gen
                      )
                      actocolectivo.caso = @caso
                      if !actocolectivo.valid?
-                       merr = ""
+                       @merr = ""
                        if actocolectivo.errors.messages[:actocolectivo].count > 0
-                         merr = actocolectivo.errors.messages[:actocolectivo].join(". ")
+                         @merr = actocolectivo.errors.messages[:actocolectivo].join(". ")
                        end
-                       render inline: "Problema. " + merr, 
-                         status: :unprocessable_entity
-                       return
+                     else
+                       actocolectivo.save!
                      end
-                     actocolectivo.save!
                    end
                  end
                end
