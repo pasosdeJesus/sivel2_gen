@@ -47,10 +47,10 @@ module Sivel2Gen
             ce = cat.contadaen if cat
             actos = Sivel2Gen::Acto.all
             if ce != nil
-              actos_hermanos = actos.where.not(id: acto.id)
+              actos_hermanos = actos.where.not(id: self.id)
               vale = false
               actos_hermanos.each do |ah|
-                if ah.persona == acto.persona && ah.presponsable == acto.presponsable && ah.categoria.id == ce
+                if ah.persona == self.persona && ah.presponsable == self.presponsable && ah.categoria.id == ce
                   vale = true
                 end
               end

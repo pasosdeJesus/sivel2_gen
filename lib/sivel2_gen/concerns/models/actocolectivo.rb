@@ -44,10 +44,10 @@ module Sivel2Gen
             ce = cat.contadaen if cat
             actoscolectivos = Sivel2Gen::Actocolectivo.all
             if ce != nil
-              colectivos_hermanos = actoscolectivos.where.not(id: actocolectivo.id)
+              colectivos_hermanos = actoscolectivos.where.not(id: self.id)
               vale = false
               colectivos_hermanos.each do |ah|
-                if ah.persona == actocolectivo.grupoper && ah.presponsable == actocolectivo.presponsable && ah.categoria.id == ce
+                if ah.persona == self.grupoper && ah.presponsable == self.presponsable && ah.categoria.id == ce
                   vale = true
                 end
               end
