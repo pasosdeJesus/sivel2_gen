@@ -266,7 +266,6 @@ module Sivel2Gen
 
 
       habilidad.can :contar, Msip::Ubicacion
-      habilidad.can :nuevo, Msip::Ubicacion
       habilidad.can :mundep, Msip::Ubicacionpre
 
 
@@ -281,6 +280,7 @@ module Sivel2Gen
       habilidad.can :manage, Sivel2Gen::Victimacolectiva
 
       if usuario && usuario.rol then
+        habilidad.can :nuevo, Msip::Ubicacion
         case usuario.rol
         when Ability::ROLANALI
           habilidad.can :read, Heb412Gen::Doc
