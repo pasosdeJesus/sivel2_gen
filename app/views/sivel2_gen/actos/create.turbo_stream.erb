@@ -1,6 +1,6 @@
 <%= turbo_stream.prepend "flash" do %>
   <script type="text/javascript">
-    const mensaje = "<%= j @merr %>";
+    var mensaje = "<%= j @merr %>";
       if (mensaje) {
         alert(mensaje);
       }
