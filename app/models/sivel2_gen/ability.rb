@@ -300,8 +300,10 @@ module Sivel2Gen
 
             habilidad.can :manage, Sivel2Gen::Acto
             habilidad.can :manage, Sivel2Gen::Actocolectivo
-            habilidad.can [:read, :new, :edit, :update, :create, 
-                           :nuevo, :nueva, :destroy], Sivel2Gen::Caso
+            habilidad.can [
+              :read, :new, :edit, :update, :create, 
+              :importa, :importarrelatos, :errores_importacion,
+              :nuevo, :nueva, :destroy], Sivel2Gen::Caso
 
             habilidad.cannot :solocambiaretiquetas, Sivel2Gen::Caso
             habilidad.can [:refresca, :validar], Sivel2Gen::Caso

@@ -1190,7 +1190,7 @@ module Sivel2Gen
           end
 
           def importa
-            authorize! :update, Sivel2Gen::Caso
+            authorize! :create, Sivel2Gen::Caso
             arc = params[:arc]
             doc = nil
             begin
