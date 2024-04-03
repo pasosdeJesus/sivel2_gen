@@ -21,34 +21,30 @@ module Sivel2Gen
             params2 = {}
             if (!params[:caso] && !params2['caso'])
               @merr = 'Faltan paramétros de caso'
-              render inline: @merr
+              render inline: @merr, status: :unprocessable_entity
               return
             elsif (params[:caso] && params[:caso][:id].nil?) ||
               (params2['caso'] && params2['caso']['id'].nil?)
               @merr = 'Falta identificacion del caso'
-              render inline: @merr
+              render inline: @merr, status: :unprocessable_entity
               return
             elsif (params[:caso] && !params[:caso_acto_presponsable_id]) ||
               (params2['caso'] && !params2['caso_acto_presponsable_id'])
               @merr = 'Debe tener Presunto Responsable' 
-              render inline: @merr
+              render inline: @merr, status: :unprocessable_entity
               return
-              #respond_to do |format|
-              #  format.html { render inline: 'Debe tener Presunto Responsable' }
-              #end
-              #return
             elsif (params[:caso] && !params[:caso_acto_categoria_id]) ||
               (params2['caso'] && !params2['caso_acto_categoria_id'])
               @merr =  'Debe tener Categoria'
-              render inline: @merr
+              render inline: @merr, status: :unprocessable_entity
               return
             elsif (params[:caso] && !params[:caso_acto_persona_id]) ||
               (params2['caso'] && !params2['caso_acto_persona_id'])
               @merr = 'Debe tener Víctima'
-              render inline: @merr
+              render inline: @merr, status: :unprocessable_entity
               return
             elsif !pasan_validaciones_create?(@merr)
-              render inline: @merr
+              render inline: @merr, status: :unprocessable_entity
               return
             else
               lpresp = params[:caso] ? params[:caso_acto_presponsable_id] :
