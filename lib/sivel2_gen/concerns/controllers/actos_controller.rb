@@ -33,6 +33,10 @@ module Sivel2Gen
               @merr = 'Debe tener Presunto Responsable' 
               render inline: @merr, status: :unprocessable_entity
               return
+              #respond_to do |format|
+              #  format.html { render inline: 'Debe tener Presunto Responsable' }
+              #end
+              #return
             elsif (params[:caso] && !params[:caso_acto_categoria_id]) ||
               (params2['caso'] && !params2['caso_acto_categoria_id'])
               @merr =  'Debe tener Categoria'
