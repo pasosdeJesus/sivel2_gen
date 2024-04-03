@@ -1,0 +1,11 @@
+
+    <% @anios = *(1900..Date.today.year) %>
+    <%= f.input :anionac,
+      collection: @anios,
+      input_html: {
+        data: { 
+          action: "change->sivel2-gen--edad#actualizarEdad",
+          "sivel2-gen--edad-target": "anionac"
+        }
+      }
+    %>
