@@ -7,36 +7,48 @@ module Sivel2Gen
 
         included do
 
-          def create
+          # @param merr colchón para mensajes de error en caso de retornar fals
+          # @return true sii pasan validaciones extra
+          def pasan_validaciones_create?(merr)
+            return true
+          end
+
+          def completar_acto(acto, params)
+          end
+
+          def create_sivel2_gen
+            @merr = ""
             params2 = {}
             if (!params[:caso] && !params2['caso'])
-              respond_to do |format|
-                format.html { render inline: 'Faltan paramétros de caso' }
-              end
+              @merr = 'Faltan paramétros de caso'
+              render inline: @merr
               return
             elsif (params[:caso] && params[:caso][:id].nil?) ||
               (params2['caso'] && params2['caso']['id'].nil?)
-              respond_to do |format|
-                format.html { render inline: 'Falta identificacion del caso' }
-              end
+              @merr = 'Falta identificacion del caso'
+              render inline: @merr
               return
             elsif (params[:caso] && !params[:caso_acto_presponsable_id]) ||
               (params2['caso'] && !params2['caso_acto_presponsable_id'])
-              respond_to do |format|
-                format.html { render inline: 'Debe tener Presunto Responsable' }
-              end
+              @merr = 'Debe tener Presunto Responsable' 
+              render inline: @merr
               return
+              #respond_to do |format|
+              #  format.html { render inline: 'Debe tener Presunto Responsable' }
+              #end
+              #return
             elsif (params[:caso] && !params[:caso_acto_categoria_id]) ||
               (params2['caso'] && !params2['caso_acto_categoria_id'])
-              respond_to do |format|
-                format.html { render inline: 'Debe tener Categoria' }
-              end
+              @merr =  'Debe tener Categoria'
+              render inline: @merr
               return
             elsif (params[:caso] && !params[:caso_acto_persona_id]) ||
               (params2['caso'] && !params2['caso_acto_persona_id'])
-              respond_to do |format|
-                format.html { render inline: 'Debe tener Víctima' }
-              end
+              @merr = 'Debe tener Víctima'
+              render inline: @merr
+              return
+            elsif !pasan_validaciones_create?(@merr)
+              render inline: @merr
               return
             else
               lpresp = params[:caso] ? params[:caso_acto_presponsable_id] :
@@ -70,8 +82,8 @@ module Sivel2Gen
                         persona_id: vic,
                       )
                       acto.caso = @caso
+                      completar_acto(acto, params)
                       if !acto.valid?
-                        @merr = ""
                         if acto.errors.messages[:acto].count > 0
                           @merr = acto.errors.messages[:acto].join(". ")
                         end
@@ -85,14 +97,21 @@ module Sivel2Gen
             end
           end
 
+          def create
+            create_sivel2_gen
+          end
 
-          def destroy
+          def destroy_sivel2_gen
             acto_id = params[:id]
             acto = Acto.where(id: acto_id).take
             if acto
               @caso = acto.caso
               acto.destroy!
             end
+          end
+
+          def destroy
+            destroy_sivel2_gen
           end
 
         end
