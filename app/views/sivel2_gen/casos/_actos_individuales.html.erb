@@ -1,6 +1,6 @@
-<<<<<<< HEAD
 <div class="panel">
   <div class="panel-heading">Actos Individuales</div>
+
   <div class="panel-body table-responsive" style="min-height: 20em">
     <div class="div-tabla">
       <div class="div-tabla-cuerpo">
@@ -8,6 +8,7 @@
           <div class="div-tabla-celda" style="width: 10em"><b>Presunto Responsable</b></div>
           <div class="div-tabla-celda" style="width: 10em"><b>Categoría</b></div>
           <div class="div-tabla-celda" style="width: 10em"><b>Víctima</b></div>
+          <%= render partial: 'sivel2_gen/actos/resto_enc_tabla', :f => f %>
           <div class="div-tabla-celda" style="width: 10em"><b>Acciones</b></div>
         </div>
         <div class='div-tabla-fila'>
@@ -66,6 +67,7 @@
                 "Después no olvide presionar el botón Añadir Acto(s)."
               %>
           </div>
+          <%= render partial: 'sivel2_gen/actos/resto_campos_tabla', :f => f %>
           <div class="div-tabla-celda" style="max-width: 10em">
             <%= f.submit "Agregar Acto",
               formaction: sivel2_gen.crear_acto_path(index: @caso.acto.size),
@@ -86,13 +88,4 @@
     <% end %>
   </div> <!-- panel-body -->
 </div> <!-- panel -->
-=======
-<div id="flash"></div>
-
-<%= render partial: "actos_individuales", locals: {f: f} %>
->>>>>>> 8ba8e7ff (Modularidad en pestaña actos)
-
-<hr/>
-
-<%= render partial: "actos_colectivos", locals: {f: f} %>
 
