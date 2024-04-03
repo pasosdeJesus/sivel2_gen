@@ -89,10 +89,12 @@ export default class extends Controller {
     } else {
       this.edadTarget.value = 0;
     }
-    if (edadactual > 0) {
-      this.edadactualTarget.value = edadactual;
-    } else {
-      this.edadactualTarget.value = 0;
+    if (this.hasEdadactualTarget) {
+      if (edadactual > 0 ) {
+        this.edadactualTarget.value = edadactual;
+      } else {
+        this.edadactualTarget.value = 0;
+      }
     }
 
     const opcionesRangoedad = this.rangoedadTarget.options;

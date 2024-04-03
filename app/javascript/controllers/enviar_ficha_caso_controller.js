@@ -92,6 +92,9 @@ export default class extends Controller {
     //actualizarGruposper(campo_victimascol_acto)
 
     function actualizarPresponsables(s) {
+      if (s == null) {
+        return
+      }
       var sel = s.value;
       var cadena = '';
       var campo = document.querySelectorAll('#presponsables .control-group:not([style="display: none;"])');

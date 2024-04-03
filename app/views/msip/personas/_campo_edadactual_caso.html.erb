@@ -1,0 +1,8 @@
+    <%= fvictima.input :edadactual, 
+      input_html: {
+        data: { 
+          action: "change->sivel2-gen--edad#actualizarEdad",
+          "sivel2-gen--edad-target": "edadactual"
+        },
+      },
+      as: :integer %>

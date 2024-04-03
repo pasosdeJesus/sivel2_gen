@@ -1,51 +1,19 @@
 <div class="row">
   <div class="col-sm-3">
-    <% @anios = *(1900..Date.today.year) %>
-    <%= f.input :anionac,
-      collection: @anios,
-      input_html: {
-        data: { 
-          action: "change->sivel2-gen--edad#actualizarEdad",
-          "sivel2-gen--edad-target": "anionac"
-        }
-      }
-    %>
+    <%= render partial: "msip/personas/campo_anionac_caso", 
+      locals: { f: f, fvictima: fvictima } %>
   </div>
   <div class="col-sm-3">
-    <%= fvictima.input :edad, 
-      input_html: {
-        data: { 
-          action: "change->sivel2-gen--edad#actualizarEdad",
-          "sivel2-gen--edad-target": "edad"
-        }
-      },
-      as: :integer %>
+    <%= render partial: "msip/personas/campo_edad_caso", 
+      locals: { f: f, fvictima: fvictima } %>
   </div>
   <div class="col-sm-3">
-    <%= fvictima.input :edadactual, 
-      input_html: {
-        data: { 
-          action: "change->sivel2-gen--edad#actualizarEdad",
-          "sivel2-gen--edad-target": "edadactual"
-        },
-      },
-      as: :integer %>
+    <%= render partial: "msip/personas/campo_edadactual_caso", 
+      locals: { f: f, fvictima: fvictima } %>
   </div>
   <div class="col-sm-3">
-    <%= fvictima.association :rangoedad,
-      collection: Msip::ModeloHelper.opciones_tabla_basica(
-        Sivel2Gen::Rangoedad, fvictima, :rangoedad
-      ),
-      input_html: {
-        data: { 
-          action: "change->sivel2-gen--edad#blanquearFechanac",
-          "sivel2-gen--edad-target": "rangoedad"
-        }
-      },
-      include_blank: false,
-      label_method: :nombre,
-      value_method: :id
-    %>
+    <%= render partial: "msip/personas/campo_rangoedad_caso", 
+      locals: { f: f, fvictima: fvictima } %>
   </div>
 </div>
 
