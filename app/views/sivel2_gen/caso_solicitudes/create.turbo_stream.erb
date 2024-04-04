@@ -11,7 +11,13 @@
     <% end %>
 
     <%= turbo_stream.append "caso_solicitudes_marco" do %>
-      <%= render "/msip/solicitudes/solicitud_campos", f: cfp_form %>
+      <% if controller.solicitud_simplificada %>
+        <%= render partial: "/msip/solicitudes/solicitud_simplificada_campos",
+          locals: { f: cfp_form } %>
+      <% else %>
+        <%= render partial: "/msip/solicitudes/solicitud_campos", 
+          locals: { f: cfp_form } %>
+      <% end %>
     <% end %>
   <% end %>
 <% end %>
