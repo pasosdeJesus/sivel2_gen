@@ -8,7 +8,7 @@
 <% if Rails.configuration.x.msip_docid_obligatorio === true %>
   <% cont = "msip--sindocaut" %>
 <% end %>
-<div class='campos_persona'>
+<div class='campos_persona' data-controller="<%= cont %>">
     <%= f.input :id, as: :hidden,
       input_html: {"data-msip--sindocaut-target": "id"} %>
 

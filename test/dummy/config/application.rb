@@ -56,7 +56,11 @@ config.autoload_lib(ignore: %w(assets tasks))
     # msip
     #Evita deshabilitar butones en formularios anidados dinámicos
     config.action_view.automatically_disable_submit_tag = false
-    config.x.formato_fecha = ENV.fetch('FORMATO_FECHA', 'dd/M/yyyy')
+    config.x.formato_fecha = ENV.fetch('MSIP_FORMATO_FECHA', 'dd/M/yyyy')
+
+    config.x.msip_docid_obligatorio = 
+      (ENV.fetch('MSIP_DOCID_OBLIGATORIO', '0') != '0')
+
 
     # heb412
     config.x.heb412_ruta = Pathname(
