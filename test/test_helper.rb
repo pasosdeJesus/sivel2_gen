@@ -64,7 +64,7 @@ PRUEBA_ACTO = {
 
 PRUEBA_ACTOCOLECTIVO = {
   presponsable_id: 1,
-  categoria_id: 59
+  categoria_id: 19
 }
 
 
