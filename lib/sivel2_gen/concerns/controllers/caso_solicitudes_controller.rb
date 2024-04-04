@@ -9,16 +9,14 @@ module Sivel2Gen
 
           before_action :prepara_caso
 
-          def new
-          end 
-
           def destroy
           end
 
           def create
           end
 
-          def update
+          def solicitud_simplificada
+            false
           end
 
           private
