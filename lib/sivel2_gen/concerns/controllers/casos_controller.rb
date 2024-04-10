@@ -833,7 +833,7 @@ module Sivel2Gen
                               end
                             end
                             @caso.victima.push(vic)
-                          else
+                          elsif pt_params[:personados_attributes][:nombres] != "" && pt_params[:personados_attributes][:apellidos] != ""
                             vic = Sivel2Gen::Victima.find(victima_params[:id].to_i)
                             p2_id = Msip::Persona.create(pt_params[:personados_attributes])
                             ptn = Msip::PersonaTrelacion.create(persona1: vic.persona.id , persona2: p2_id.id)
