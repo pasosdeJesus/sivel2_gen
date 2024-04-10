@@ -38,7 +38,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/msip.git
-  revision: 00d275ebf69abb6ad7280b8706713c64820f790c
+  revision: 707b66b873109230cb5b8ac51b85424fa9befe37
   branch: v2.2
   specs:
     msip (2.2.0.beta5)
@@ -192,7 +192,7 @@ GEM
     debug (1.9.2)
       irb (~> 1.10)
       reline (>= 0.3.8)
-    devise (4.9.3)
+    devise (4.9.4)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
       railties (>= 4.1.0)
