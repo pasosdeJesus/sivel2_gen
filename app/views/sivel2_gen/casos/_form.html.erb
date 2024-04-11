@@ -63,7 +63,16 @@
     </div> <!-- form-inputs -->
 
     <div class="form-actions" style="text-align: center">
-      <input class='bitacora_cambio' id='caso_bitacora_cambio' name='caso[bitacora_cambio]' type='hidden'>
+      <%= f.input :created_at, as: :hidden %>
+      <%= f.input :updated_at, as: :hidden %>
+      <input id='caso_bitacora_inicialmente_valido'
+        name='caso[bitacora_inicialmente_valido]'
+        value='<%= f.object.valid? %>'
+        type='hidden'>
+      <input class='bitacora_cambio' 
+         id='caso_bitacora_cambio' 
+         name='caso[bitacora_cambio]' 
+         type='hidden'>
       <%= f.button :submit, 'Validar y Guardar',
         class: 'btn btn-primary',
         onclick: 'window.sivel2_detenerEnviarCada60()',
