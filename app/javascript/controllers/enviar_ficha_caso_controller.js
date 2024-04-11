@@ -14,72 +14,94 @@ export default class extends Controller {
     });
 
     const pestanaActiva = localStorage.getItem('pestanaActiva');
-      if (pestanaActiva != null) {
-        pestanias.forEach(function(pestania) {
-          if (pestania.id == pestanaActiva) {
-            pestania.classList.add('active');
-            const atributoId = pestania.getAttribute('data-bs-target');
-            const atributo = document.querySelector(atributoId);
-            if (atributo) {
-              atributo.classList.add('show', 'active');
-            }
-          } else {
-            pestania.classList.remove('active');
-            const atributoId = pestania.getAttribute('data-bs-target');
-            const atributo = document.querySelector(atributoId);
-            if (atributo) {
-              atributo.classList.remove('show', 'active');
-            }
+    if (pestanaActiva != null) {
+      pestanias.forEach(function(pestania) {
+        if (pestania.id == pestanaActiva) {
+          pestania.classList.add('active');
+          const atributoId = pestania.getAttribute('data-bs-target');
+          const atributo = document.querySelector(atributoId);
+          if (atributo) {
+            atributo.classList.add('show', 'active');
           }
-        });
-       localStorage.removeItem('pestanaActiva');
-     }
+        } else {
+          pestania.classList.remove('active');
+          const atributoId = pestania.getAttribute('data-bs-target');
+          const atributo = document.querySelector(atributoId);
+          if (atributo) {
+            atributo.classList.remove('show', 'active');
+          }
+        }
+      });
+      localStorage.removeItem('pestanaActiva');
+    }
   }
 
+  requiereGuardar() {
+    // Si las fechas de creación y actualización son la misma debe ser
+    // un caso nuevo que requiere validarse y guardarse así no tenga ediciones
+    let created_at = document.querySelector('input#caso_created_at').value
+    let updated_at = document.querySelector('input#caso_updated_at').value
+    let c = new Date(created_at)
+    let u = new Date(updated_at)
+    let diffechas = Math.abs(c-u)
+    // Si el caso inicialmente no es válido debe validarse y guardarse
+    let inicialmente_valido = document.querySelector(
+      'input#caso_bitacora_inicialmente_valido').value
+    // Si tiene cambios (excepto en controles para crear actividad)
+    // debe validarse y guardarse
+    let cambios = MsipCalcularCambiosParaBitacora()
+    return ( Object.keys(cambios).length > 0 || diffechas < 1000 ||
+      inicialmente_valido != 'true');
+  }
   cambiarficha(){
     if(event.target.dataset.enviarFichaCasoTarget == 'actos-pestana'){
       document.getElementById("capa-cargando").style.display = 'flex';
-      let casoId = this.idcasoTarget.value
-      let puntomontaje = window.puntomontaje
-      let url = puntomontaje + 'casos/' + casoId + '/guardar_y_editar'
-      let datosFormulario = new FormData(document.querySelector('form'));
-      let objetoFormulario = Object.fromEntries(datosFormulario);
-      for (let [key, value] of datosFormulario.entries()) {
-        let coincidencia = key.match(/^caso\[(.+?)\]$/);
-        if (coincidencia) {
-          let ruta = coincidencia[1].split(/\]\[|\[|\]/).filter(p => p !== "");
-          let actual = objetoFormulario;
+      if(this.requiereGuardar()){
+        let casoId = this.idcasoTarget.value
+        let puntomontaje = window.puntomontaje
+        let url = puntomontaje + 'casos/' + casoId + '/guardar_y_editar'
+        let datosFormulario = new FormData(document.querySelector('form'));
+        let objetoFormulario = Object.fromEntries(datosFormulario);
+        for (let [key, value] of datosFormulario.entries()) {
+          let coincidencia = key.match(/^caso\[(.+?)\]$/);
+          if (coincidencia) {
+            let ruta = coincidencia[1].split(/\]\[|\[|\]/).filter(p => p !== "");
+            let actual = objetoFormulario;
 
-          for (let i = 0; i < ruta.length; i++) {
-            if (i === ruta.length - 1) {
-                  actual[ruta[i]] = value;
-            } else {
+            for (let i = 0; i < ruta.length; i++) {
+              if (i === ruta.length - 1) {
+                actual[ruta[i]] = value;
+              } else {
                 if (!actual[ruta[i]]) {
                   actual[ruta[i]] = (ruta[i + 1].match(/^\d+$/) ? [] : {});
                 }
                 actual = actual[ruta[i]];
+              }
             }
           }
         }
+
+        let datosCaso = { caso: objetoFormulario };
+        fetch(url, {
+          method: 'PATCH',
+          headers: {
+            'X-CSRF-Token': Rails.csrfToken(),
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(datosCaso)
+        }).then(response => {
+          if (response.ok) {
+            localStorage.setItem('pestanaActiva', 'actos-pestana');
+            window.location = puntomontaje + 'casos/' + casoId + '/edita';
+          } else {
+            document.getElementById("capa-cargando").style.display = 'none';
+          }
+        });
+
       }
-
-      let datosCaso = { caso: objetoFormulario };
-      fetch(url, {
-            method: 'PATCH',
-            headers: {
-                    'X-CSRF-Token': Rails.csrfToken(),
-                    'Content-Type': 'application/json'
-                  },
-            body: JSON.stringify(datosCaso)
-          }).then(response => {
-              if (response.ok) {
-                localStorage.setItem('pestanaActiva', 'actos-pestana');
-                window.location = puntomontaje + 'casos/' + casoId + '/edita';
-              } else {
-                document.getElementById("capa-cargando").style.display = 'none';
-              }
-           });
-
+      else{
+        console.log("No requiere guardar caso")
+      }
     }
     const campo_presponsables_acto = document.querySelector('#caso_acto_presponsable_id');
     const campo_presponsables_actocol = document.querySelector('#caso_actocolectivo_presponsable_id');
@@ -100,14 +122,14 @@ export default class extends Controller {
       var campo = document.querySelectorAll('#presponsables .control-group:not([style="display: none;"])');
 
       campo.forEach(function(v) {
-                var id = v.querySelector('select[data-actualiza="presponsable"]').value;
-                cadena += "<option value='" + id + "'";
-                if (id === sel) {
-                              cadena += ' selected';
-                          }
-                var tx = v.querySelector('select[data-actualiza="presponsable"] option[value="' + id + '"]').textContent;
-                cadena += ">" + tx + "</option>";
-            });
+        var id = v.querySelector('select[data-actualiza="presponsable"]').value;
+        cadena += "<option value='" + id + "'";
+        if (id === sel) {
+          cadena += ' selected';
+        }
+        var tx = v.querySelector('select[data-actualiza="presponsable"] option[value="' + id + '"]').textContent;
+        cadena += ">" + tx + "</option>";
+      });
 
       s.innerHTML = cadena;
     }
@@ -127,45 +149,45 @@ export default class extends Controller {
         cadena += "<option value='" + id + "'";
         var tx;
         if (nom === 'N' && ap === 'N') {
-                sinid += 1;
-                tx = "PERSONA SIN IDENTIFICAR " + sinid;
-              } else {
-                      tx = (nom + " " + ap).trim();
-                    }
+          sinid += 1;
+          tx = "PERSONA SIN IDENTIFICAR " + sinid;
+        } else {
+          tx = (nom + " " + ap).trim();
+        }
         cadena += ">" + tx + "</option>"; 
-          });
+      });
       s.innerHTML = cadena;
     }
 
     function actualizarGruposper(s) {
-          var sel = s.value;
-          var cadena = '';
-          var campo = document.querySelectorAll('#victimascolectivas .control-group[style!="display: none;"]');
-          campo.each(function(k, v) {
-            var id = $(v).find('div').filter(function() {
-                  return this.attributes.class.value.match(/caso_victimacolectiva[_0-9]*grupoper_id/);
-              }).find('input').val();
-            if (typeof id === 'undefined') {
-              id = $(v).find('div').filter(function() {
-                    return this.attributes.class.value.match(/grupoper_id/);
-                }).find('input').val();
-            }
-            cadena += "<option value='" + id + "'";
-            if (id === sel) {
-              cadena += ' selected';
-            }
-            var nom = $(v).find('div').filter(function() {
-                          return this.attributes.class.value.match(/caso_victimacolectiva[_0-9]*grupoper_nombre/);
-                      }).find('input').val();
-            if (typeof nom === 'undefined') {
-              nom = $(v).find('div').filter(function() {
-                      return this.attributes.class.value.match(/grupoper_nombre/);
-                    }).find('input').val();
-            }
-            var tx = nom.trim();
-            cadena += ">" + tx + "</option>";
-                });
-          s.innerHTML = cadena;
+      var sel = s.value;
+      var cadena = '';
+      var campo = document.querySelectorAll('#victimascolectivas .control-group[style!="display: none;"]');
+      campo.each(function(k, v) {
+        var id = $(v).find('div').filter(function() {
+          return this.attributes.class.value.match(/caso_victimacolectiva[_0-9]*grupoper_id/);
+        }).find('input').val();
+        if (typeof id === 'undefined') {
+          id = $(v).find('div').filter(function() {
+            return this.attributes.class.value.match(/grupoper_id/);
+          }).find('input').val();
+        }
+        cadena += "<option value='" + id + "'";
+        if (id === sel) {
+          cadena += ' selected';
+        }
+        var nom = $(v).find('div').filter(function() {
+          return this.attributes.class.value.match(/caso_victimacolectiva[_0-9]*grupoper_nombre/);
+        }).find('input').val();
+        if (typeof nom === 'undefined') {
+          nom = $(v).find('div').filter(function() {
+            return this.attributes.class.value.match(/grupoper_nombre/);
+          }).find('input').val();
+        }
+        var tx = nom.trim();
+        cadena += ">" + tx + "</option>";
+      });
+      s.innerHTML = cadena;
     };
   }
 
