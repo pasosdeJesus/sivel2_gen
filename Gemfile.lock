@@ -18,7 +18,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/heb412_gen.git
-  revision: 9c6f38132a51415236c2bc8b11615a5a38d31987
+  revision: a3baaf388bacfb32a41b1b19827162ea58fc5814
   branch: v2.2
   specs:
     heb412_gen (2.2.0.beta4)
@@ -29,7 +29,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/mr519_gen.git
-  revision: e3a9946bd7806be25ae2b0a99cab462117822b6c
+  revision: d8313cfeb2f5a63be2fd6ad9b9ca3116b9d7be93
   branch: v2.2
   specs:
     mr519_gen (2.2.0.beta4)
@@ -38,7 +38,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/msip.git
-  revision: 707b66b873109230cb5b8ac51b85424fa9befe37
+  revision: 89594aaf2613cc4c6dde69c1a7954941b59b0d75
   branch: v2.2
   specs:
     msip (2.2.0.beta5)
@@ -270,7 +270,7 @@ GEM
     net-smtp (0.5.0)
       net-protocol
     nio4r (2.7.1)
-    nokogiri (1.16.3)
+    nokogiri (1.16.4)
       mini_portile2 (~> 2.8.2)
       racc (~> 1.4)
     odf-report (0.8.1)
@@ -516,4 +516,4 @@ DEPENDENCIES
   will_paginate
 
 BUNDLED WITH
-   2.5.7
+   2.5.9
