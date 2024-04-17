@@ -3,12 +3,7 @@ echo "=== Pruebas de regresión al sistema con Javascript"
 # Para ejecutar en navegador visible ejecutar con
 #  CONCABEZA=1 bin/pruebasjs
 
-if (test "$PUERTODES" = "") then {
-	export PUERTODES=33001;
-} fi;
-if (test "$IPDES" = "") then {
-	export IPDES=127.0.0.1
-} fi;
+export IPDES=127.0.0.1
 if (test "$RAILS_ENV" = "") then {
 # Si ejecutamos en RAILS_ENV=test RUTA_RELATIVA será / por
 # https://github.com/rails/rails/issues/49688
@@ -19,18 +14,23 @@ if (test "$CONFIG_HOSTS" = "") then {
 	export CONFIG_HOSTS=127.0.0.1
 } fi;
 
-fstat | grep ":${PUERTODES}" 
+. ./.env
+if (test "$PUERTOPRU" = "") then {
+  export PUERTOPRU=33001;
+} fi;
+fstat | grep ":${PUERTOPRU}" 
 if (test "$?" = "0") then {
-  echo "Ya está corriendo un proceso en el puerto $PUERTODES, detengalo antes";
+  echo "Ya está corriendo un proceso en el puerto $PUERTOPRU, detengalo antes";
   exit 1;
 } fi;
 if (test ! -f .env) then {
   echo "Falta .env"
   exit 1;
 } fi;
-. ./.env
 
+export PUERTODES=$PUERTOPRU
 echo "IPDES=$IPDES"
+echo "PUERTODES=$PUERTODES"
 
 if (test "$IPDES" = "127.0.0.1") then {
 	echo "=== Deteniendo"
