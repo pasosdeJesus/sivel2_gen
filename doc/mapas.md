@@ -36,7 +36,7 @@ El mapa de SIVeL 2 se ha implementado con Leaflet, cuya documentación está en 
 
 La siguiente imagen ilustra esta implementación: 
 
-![Open Street Maps](https://github.com/pasosdeJesus/sivel2_gen/raw/main/doc/img/imagenosm.png)
+![Open Street Maps](https://gitlab.com/pasosdeJesus/sivel2_gen/-/raw/main/doc/img/imagenosm.png)
 
 
 ## Mapbox
@@ -48,7 +48,7 @@ Se trata de un servicio comercial que emplea la información geográfica de Open
 
 La siguiente imagen ilustra esta implementación:
 
-![Mapbox](https://github.com/pasosdeJesus/sivel2_gen/raw/main/doc/img/mapa_mapbox.png)
+![Mapbox](https://gitlab.com/pasosdeJesus/sivel2_gen/-/raw/main/doc/img/mapa_mapbox.png)
 
 ## Google Maps
 
@@ -63,4 +63,4 @@ La implementación en SIVeL 2 (heredada de la implementación en SIVeL 1) se com
 
 La siguiente imagen ilustra esta implementación:
 
-![Google maps](https://github.com/pasosdeJesus/sivel2_gen/raw/main/doc/img/imagengm.png)
+![Google maps](https://gitlab.com/pasosdeJesus/sivel2_gen/-/raw/main/doc/img/imagengm.png)

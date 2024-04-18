@@ -2,25 +2,19 @@
 
 [![Revisado por Hound](https://img.shields.io/badge/Reviewed_by-Hound-8E64B0.svg)](https://houndci.com) Pruebas y seguridad:[![Estado Construcción](https://gitlab.com/pasosdeJesus/sivel2_gen/badges/main/pipeline.svg)](https://gitlab.com/pasosdeJesus/sivel2_gen/-/pipelines?page=1&scope=all&ref=main) [![Clima del Código](https://codeclimate.com/github/pasosdeJesus/sivel2_gen/badges/gpa.svg)](https://codeclimate.com/github/pasosdeJesus/sivel2_gen) [![Cobertura de Pruebas](https://codeclimate.com/github/pasosdeJesus/sivel2_gen/badges/coverage.svg)](https://codeclimate.com/github/pasosdeJesus/sivel2_gen)
 
-![Logo de sivel2_gen](https://raw.githubusercontent.com/pasosdeJesus/sivel2_gen/master/test/dummy/app/assets/images/logo.jpg)
+![Logo de sivel2_gen](https://gitlab.com/pasosdeJesus/sivel2_gen/-/raw/main/test/dummy/app/assets/images/logo.jpg)
 
 Este es el motor central de SIVeL 2 para manejar casos de violencia socio política.
 
 Es para desarrolladores. Si estás interesado en desplegar la aplicación SIVeL mejor revisa:
-<https://github.com/pasosdeJesus/sivel2>
-
-## Organización de los requerimientos
-Los manejamos mediante 3 proyectos en github:
-- [Funcionalidad completa de SIVeL 1.2 pero más estructurada](https://github.com/pasosdeJesus/sivel2_gen/projects/1)
-- [Mejorar usabilidad](https://github.com/pasosdeJesus/sivel2_gen/projects/2)
-- [Nueva funcionalidad para investigadores](https://github.com/pasosdeJesus/sivel2_gen/projects/3)
+<https://gitlab.com/pasosdeJesus/sivel2>
 
 ## Diseño
 
 Mira más sobre la arquitectura actual en:
-<https://github.com/pasosdeJesus/sivel2/wiki>
+<https://gitlab.com/pasosdeJesus/sivel2_gen/-/wiki/home>
 
-[Tablas incluidas y modelo entidad-asociación](https://github.com/pasosdeJesus/sivel2_gen/blob/master/doc/modelo-entidad-asociacion.md)
+[Tablas incluidas y modelo entidad-asociación](https://gitlab.com/pasosdeJesus/sivel2_gen/-/blob/master/doc/modelo-entidad-asociacion.md)
 
 Respecto a la funcionalidad un diseño histórico y prototipo inicial de la
 versión 2 está disponible la rama dis2 de SIVeL 1.2:
@@ -34,13 +28,13 @@ y editar casos.
 
 ### Requisitos tecnológicos
 
-Ver <https://github.com/pasosdeJesus/msip/blob/master/doc/requisitos.md>
+Ver <https://gitlab.com/pasosdeJesus/msip/-/blob/master/doc/requisitos.md>
 
 ### Aplicación de prueba
 
 Este motor incluye una aplicación mínima de prueba cuya configuración
 es como la descrita en:
-<https://github.com/pasosdeJesus/msip/blob/master/doc/aplicacion-de-prueba.md>
+<https://gitlab.com/pasosdeJesus/msip/-/blob/master/doc/aplicacion-de-prueba.md>
 
 Si ya habías lanzado la aplicación de prueba del motor **msip**, podrás utilizar
 el mismo usuario y basta que configures la clave
@@ -51,14 +45,14 @@ en ```test/dummy/config/database.yml```
 Se han implementado algunas pruebas con `minitest` a modelos y  controladores.
 Si pudiste ver la aplicación de prueba en un navegador, las siguientes
 instrucciones aplican:
-<https://github.com/pasosdeJesus/msip/blob/master/doc/pruebas-con-minitest.md>
+<https://gitlab.com/pasosdeJesus/msip/-/blob/master/doc/pruebas-con-minitest.md>
 
 ## Desarrollo
 
 ### Convenciones de Desarrollo
 
 Consúltalas en
-<https://github.com/pasosdeJesus/msip/blob/master/doc/convenciones.md>
+<https://gitlab.com/pasosdeJesus/msip/-/blob/master/doc/convenciones.md>
 
 ### Generación de datos de tablas básicas
 
