@@ -1,5 +1,5 @@
 Puede verlo en el archivo
-![doc/erd.pdf](https://github.com/pasosdeJesus/sivel2_gen/blob/master/doc/erd.pdf)
+![doc/erd.pdf](https://gitlab.com/pasosdeJesus/sivel2_gen/-/blob/master/doc/erd.pdf)
 
 Este archivo se generó con graphviz y `rails-erd`. En adJ, usted puede instalar `graphviz` con:
 ```sh
