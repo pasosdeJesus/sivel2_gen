@@ -101,6 +101,7 @@ export default class extends Controller {
       }
       else{
         console.log("No requiere guardar caso")
+        document.getElementById("capa-cargando").style.display = 'none';
       }
     }
     const campo_presponsables_acto = document.querySelector('#caso_acto_presponsable_id');
