@@ -3,11 +3,11 @@
 
 
 "@babel/code-frame@^7.0.0":
-  version "7.24.1"
-  resolved "https://registry.yarnpkg.com/@babel/code-frame/-/code-frame-7.24.1.tgz#8f4027f85a6e84a695276080e864215318f95c19"
-  integrity sha512-bC49z4spJQR3j8vFtJBLqzyzFV0ciuL5HYX7qfSl3KEqeMVV+eTquRvmXxpvB0AMubRrvv7y5DILiLLPi57Ewg==
+  version "7.24.2"
+  resolved "https://registry.yarnpkg.com/@babel/code-frame/-/code-frame-7.24.2.tgz#718b4b19841809a58b29b68cde80bc5e1aa6d9ae"
+  integrity sha512-y5+tLQyV8pg3fsiln67BVLD1P13Eg4lh5RW9mF0zUuvLrv9uIQ4MCL+CRT+FTsBlBjcIan6PGsLcBN0m3ClUyQ==
   dependencies:
-    "@babel/highlight" "^7.24.1"
+    "@babel/highlight" "^7.24.2"
     picocolors "^1.0.0"
 
 "@babel/helper-validator-identifier@^7.22.20":
@@ -15,10 +15,10 @@
   resolved "https://registry.yarnpkg.com/@babel/helper-validator-identifier/-/helper-validator-identifier-7.22.20.tgz#c4ae002c61d2879e724581d96665583dbc1dc0e0"
   integrity sha512-Y4OZ+ytlatR8AI+8KZfKuL5urKp7qey08ha31L8b3BwewJAoJamTzyvxPR/5D+KkdJCGPq/+8TukHBlY10FX9A==
 
-"@babel/highlight@^7.24.1":
-  version "7.24.1"
-  resolved "https://registry.yarnpkg.com/@babel/highlight/-/highlight-7.24.1.tgz#21f3f5391c793b3f0d6dbb40f898c48cc6ad4215"
-  integrity sha512-EPmDPxidWe/Ex+HTFINpvXdPHRmgSF3T8hGvzondYjmgzTQ/0EbLpSxyt+w3zzlYSk9cNBQNF9k0dT5Z2NiBjw==
+"@babel/highlight@^7.24.2":
+  version "7.24.2"
+  resolved "https://registry.yarnpkg.com/@babel/highlight/-/highlight-7.24.2.tgz#3f539503efc83d3c59080a10e6634306e0370d26"
+  integrity sha512-Yac1ao4flkTxTteCDZLEvdxg2fZfz1v8M4QpaGypq/WPDqg3ijHYbDfs+LG5hvzSoqaSZ9/Z9lKSP3CjZjv+pA==
   dependencies:
     "@babel/helper-validator-identifier" "^7.22.20"
     chalk "^2.4.2"
@@ -26,9 +26,9 @@
     picocolors "^1.0.0"
 
 "@babel/runtime@^7.12.5":
-  version "7.24.1"
-  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.24.1.tgz#431f9a794d173b53720e69a6464abc6f0e2a5c57"
-  integrity sha512-+BIznRzyqBf+2wCTxcKE3wDjfGeCoVE61KSHGpkzqrLi8qxqFwBeUFyId2cxkTmm55fzDGnm0+yCxaxygrLUnQ==
+  version "7.24.4"
+  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.24.4.tgz#de795accd698007a66ba44add6cc86542aff1edd"
+  integrity sha512-dkxf7+hn8mFBwKjs9bvBlArzLVxVbS8usaPUDd5p2a9JCL9tB8OaOVN1isD4+Xyk4ns89/xeOmbQvgdK7IIVdA==
   dependencies:
     regenerator-runtime "^0.14.0"
 
@@ -148,9 +148,9 @@
   integrity sha512-T1QyPSDCyMXaO3pzBkF96E8xMkiRYbUEZADd29SyPGabqxMViNoii+NcK7eWJAEoU6RZyEm5lVSIjTmcdoB9HA==
 
 "@fortawesome/fontawesome-free@^6.4.2":
-  version "6.5.1"
-  resolved "https://registry.yarnpkg.com/@fortawesome/fontawesome-free/-/fontawesome-free-6.5.1.tgz#55cc8410abf1003b726324661ce5b0d1c10de258"
-  integrity sha512-CNy5vSwN3fsUStPRLX7fUYojyuzoEMSXPl7zSLJ8TgtRfjv24LOnOWKT2zYwaHZCJGkdyRnTmstR0P+Ah503Gw==
+  version "6.5.2"
+  resolved "https://registry.yarnpkg.com/@fortawesome/fontawesome-free/-/fontawesome-free-6.5.2.tgz#310fe90cb5a8dee9698833171b98e7835404293d"
+  integrity sha512-hRILoInAx8GNT5IMkrtIt9blOdrqHOnPBH+k70aWUAqPZPgopb9G5EQJFpaBx/S8zp2fC+mPW349Bziuk1o28Q==
 
 "@hotwired/stimulus@^3.2.2":
   version "3.2.2"
@@ -207,9 +207,9 @@ ansi-styles@^3.2.1:
     color-convert "^1.9.0"
 
 apexcharts@^3.28.3:
-  version "3.47.0"
-  resolved "https://registry.yarnpkg.com/apexcharts/-/apexcharts-3.47.0.tgz#887db702b7246119d3e9077a45bbe05f236fbe84"
-  integrity sha512-s/fgNCA69b8lJdhI3R7Z+/Df47RPplLyHwuvttecR+aaZ3/Pm6wHYPiAGjqDNbVsMGXhuA9mcOpIYU5ZWeSdeg==
+  version "3.49.0"
+  resolved "https://registry.yarnpkg.com/apexcharts/-/apexcharts-3.49.0.tgz#b359fc9be8ffe45de3e8b553ebdcf18ad2a67e7e"
+  integrity sha512-2T9HnbQFLCuYRPndQLmh+bEQFoz0meUbvASaGgiSKDuYhWcLBodJtIpKql2aOtMx4B/sHrWW0dm90HsW4+h2PQ==
   dependencies:
     "@yr/monotone-cubic-spline" "^1.0.3"
     svg.draggable.js "^2.2.2"
@@ -464,13 +464,13 @@ popper.js@^2.0.0-next.4:
   integrity sha512-rwX+OiRozGJyNzo+b39WE1yh1VE7+FuDAbMIP1j3hUQN4DP0WEOEbRlHC7dDgoIDpBQSm5rr+nCoPktbQCNhFQ==
 
 postcss@^8.2.10:
-  version "8.4.36"
-  resolved "https://registry.yarnpkg.com/postcss/-/postcss-8.4.36.tgz#dba513c3c3733c44e0288a712894f8910bbaabc6"
-  integrity sha512-/n7eumA6ZjFHAsbX30yhHup/IMkOmlmvtEi7P+6RMYf+bGJSUHc3geH4a0NSZxAz/RJfiS9tooCTs9LAVYUZKw==
+  version "8.4.38"
+  resolved "https://registry.yarnpkg.com/postcss/-/postcss-8.4.38.tgz#b387d533baf2054288e337066d81c6bee9db9e0e"
+  integrity sha512-Wglpdk03BSfXkHoQa3b/oulrotAkwrlLDRSOb9D0bN86FdRyE9lppSp33aHNPgBa0JKCoB+drFLZkQoRRYae5A==
   dependencies:
     nanoid "^3.3.7"
     picocolors "^1.0.0"
-    source-map-js "^1.1.0"
+    source-map-js "^1.2.0"
 
 regenerator-runtime@^0.14.0:
   version "0.14.1"
@@ -491,10 +491,10 @@ resolve@^1.19.0:
     path-parse "^1.0.7"
     supports-preserve-symlinks-flag "^1.0.0"
 
-source-map-js@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/source-map-js/-/source-map-js-1.1.0.tgz#9e7d5cb46f0689fb6691b30f226937558d0fa94b"
-  integrity sha512-9vC2SfsJzlej6MAaMPLu8HiBSHGdRAJ9hVFYN1ibZoNkeanmDmLUcIrj6G9DGL7XMJ54AKg/G75akXl1/izTOw==
+source-map-js@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/source-map-js/-/source-map-js-1.2.0.tgz#16b809c162517b5b8c3e7dcd315a2a5c2612b2af"
+  integrity sha512-itJW8lvSA0TXEphiRoawsCksnlf8SyvmFzIhltqAHluXd88pkCd+cXJVHTDwdCr0IzwptSm035IHQktUu1QUMg==
 
 supports-color@^5.3.0:
   version "5.5.0"
