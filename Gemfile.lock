@@ -11,7 +11,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sip.git
-  revision: 6c50edec40d24e648073936d33a998d2774643c8
+  revision: 8f703ea5b12078a7dcec3ce2822f6b871280323f
   branch: v2.1
   specs:
     sip (2.1.0.beta1)
@@ -43,7 +43,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/heb412_gen.git
-  revision: b161915b816cefdb82cde6b59732da18ab0c22db
+  revision: b83949fab540a122040930f6e2771b75005d101e
   branch: v2.1
   specs:
     heb412_gen (2.1.0.beta1)
@@ -54,7 +54,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/mr519_gen.git
-  revision: 4f386fc0e41baa539c764d1f13efed99f30040d4
+  revision: 7227296a1384a90bb51e17d54765c09687ec5009
   branch: v2.1
   specs:
     mr519_gen (2.1.0.beta1)
@@ -176,7 +176,7 @@ GEM
     debug (1.9.2)
       irb (~> 1.10)
       reline (>= 0.3.8)
-    devise (4.9.3)
+    devise (4.9.4)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
       railties (>= 4.1.0)
@@ -210,7 +210,7 @@ GEM
       activesupport (>= 5.0.0)
     jsbundling-rails (1.3.0)
       railties (>= 6.0.0)
-    json (2.7.1)
+    json (2.7.2)
     libxml-ruby (5.0.3)
     loofah (2.22.0)
       crass (~> 1.0.2)
@@ -222,12 +222,12 @@ GEM
       net-smtp
     marcel (1.0.4)
     matrix (0.4.2)
-    method_source (1.0.0)
+    method_source (1.1.0)
     mime-types (3.5.2)
       mime-types-data (~> 3.2015)
     mime-types-data (3.2024.0305)
     mini_mime (1.1.5)
-    mini_portile2 (2.8.5)
+    mini_portile2 (2.8.6)
     minitest (5.22.3)
     msgpack (1.7.2)
     net-imap (0.4.10)
@@ -240,20 +240,20 @@ GEM
     net-smtp (0.5.0)
       net-protocol
     nio4r (2.7.1)
-    nokogiri (1.16.3)
+    nokogiri (1.16.4)
       mini_portile2 (~> 2.8.2)
       racc (~> 1.4)
-    nokogiri (1.16.3-aarch64-linux)
+    nokogiri (1.16.4-aarch64-linux)
       racc (~> 1.4)
-    nokogiri (1.16.3-arm-linux)
+    nokogiri (1.16.4-arm-linux)
       racc (~> 1.4)
-    nokogiri (1.16.3-arm64-darwin)
+    nokogiri (1.16.4-arm64-darwin)
       racc (~> 1.4)
-    nokogiri (1.16.3-x86-linux)
+    nokogiri (1.16.4-x86-linux)
       racc (~> 1.4)
-    nokogiri (1.16.3-x86_64-darwin)
+    nokogiri (1.16.4-x86_64-darwin)
       racc (~> 1.4)
-    nokogiri (1.16.3-x86_64-linux)
+    nokogiri (1.16.4-x86_64-linux)
       racc (~> 1.4)
     odf-report (0.8.1)
       mime-types
@@ -320,12 +320,12 @@ GEM
       rake (>= 12.2)
       thor (~> 1.0)
       zeitwerk (~> 2.5)
-    rake (13.2.0)
+    rake (13.2.1)
     rdoc (6.6.3.1)
       psych (>= 4.0.0)
     redcarpet (3.6.0)
     regexp_parser (2.9.0)
-    reline (0.5.0)
+    reline (0.5.3)
       io-console (~> 0.5)
     responders (3.1.1)
       actionpack (>= 5.2)
@@ -456,4 +456,4 @@ DEPENDENCIES
   will_paginate
 
 BUNDLED WITH
-   2.5.7
+   2.5.9
