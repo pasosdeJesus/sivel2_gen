@@ -60,15 +60,14 @@ if (test "$SALTAUNITARIAS" != "1") then {
 
 if (test -d test/integration -a "$SALTAINTEGRACION" != "1") then {
   echo "== Pruebas de integración unitarias"
-  pwd
   for i in `find test/integration -name "*rb" -type f`; do
     echo $i;
     CONFIG_HOSTS=www.example.com RUTA_RELATIVA=/ bin/rails test $i
     if (test "$?" != "0") then {
-      echo "No pasaron pruebas de integración";
+      echo "No pasó prueba de integración $i";
       exit 1;
     } fi;
-done;
+  done;
 } fi;
 
 echo "== PRUEBAS DE REGRESIÓN AL SISTEMA"
@@ -83,7 +82,7 @@ if (test "$CI" = "" -a "$SALTACAPYBARA" != "1") then { # Por ahora no en gitlab-
   } fi;
 } fi;
 
-if (test -f $rutaap/bin/pruebasjs.sh -a "x$NOPRUEBAJS" != "x1") then {
+if (test -f $rutaap/bin/pruebasjs.sh -a -d $rutaap/test/puppeteer -a "x$NOPRUEBAJS" != "x1") then {
   echo "== Con puppeteer"
   (cd $rutaap; ${RAILS} msip:stimulus_motores; bin/pruebasjs.sh)
   if (test "$?" != "0") then {
@@ -96,15 +95,12 @@ echo "== Unificando resultados de pruebas en directorio clásico coverage"
 mkdir -p coverage/
 rm -rf coverage/{*,.*}
 
-if (test "$rutaap" = "test/dummy/" -a "$RC" != "heb412_gen") then {
-  ${RAILS} app:msip:reporteregresion
-} else {
-  ${RAILS} msip:reporteregresion
-} fi;
+${RAILS} ${MSIP_REPORTEREGRESION}
 r=$?
 if (test "$r" != "0") then {
   exit $r;
 } fi;
+
 
 echo "== Copiando resultados para hacerlos visibles en el web en ruta cobertura"
 # Copiar resultados para hacerlos visibles en web
