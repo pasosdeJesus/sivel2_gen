@@ -11,7 +11,12 @@ module Sivel2Gen
 
     setup do
       @routes = Engine.routes
-      @current_usuario = ::Usuario.create(PRUEBA_USUARIO)
+      @current_usuario = Usuario.where(email: "usuario1@localhost").take
+      if @current_usuario.nil?
+        @current_usuario = ::Usuario.create(PRUEBA_USUARIO)
+      else
+        #debugger
+      end
       sign_in @current_usuario
     end
 
