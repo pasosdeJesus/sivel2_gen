@@ -12,11 +12,11 @@ export IPDES=127.0.0.1
 if (test "$RAILS_ENV" = "") then {
 # Si ejecutamos en RAILS_ENV=test RUTA_RELATIVA será / por
 # https://github.com/rails/rails/issues/49688
- 	export RAILS_ENV=development
- 	#export RAILS_ENV=test
+   export RAILS_ENV=development
+   #export RAILS_ENV=test
 } fi;
 if (test "$CONFIG_HOSTS" = "") then {
-	export CONFIG_HOSTS=127.0.0.1
+  export CONFIG_HOSTS=127.0.0.1
 } fi;
 
 . ./.env
@@ -38,8 +38,8 @@ echo "IPDES=$IPDES"
 echo "PUERTODES=$PUERTODES"
 
 if (test "$IPDES" = "127.0.0.1") then {
-	echo "=== Deteniendo"
-	bin/detiene
+  echo "=== Deteniendo"
+  bin/detiene
 
   if (test "$SALTAPRECOMPILA" != "1") then {
     echo "=== Precompilando"
@@ -48,7 +48,7 @@ if (test "$IPDES" = "127.0.0.1") then {
     bin/rails assets:precompile
   } fi;
 
-	echo "=== Iniciando servidor"
+  echo "=== Iniciando servidor"
   # La siguiente puede fallar mientras reline no arregle situación.
   # Ver https://github.com/ruby/reline/issues/690
   # Extra-temporal modificar lib/reline como se describe en ese incidente.
