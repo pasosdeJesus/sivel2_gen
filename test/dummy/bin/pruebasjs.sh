@@ -3,6 +3,11 @@ echo "=== Pruebas de regresión al sistema con Javascript"
 # Para ejecutar en navegador visible ejecutar con
 #  CONCABEZA=1 bin/pruebasjs
 
+if (test ! -d test/puppeteer) then {
+  echo "No hay pruebas puppeteer"
+  exit 0;
+} fi;
+
 export IPDES=127.0.0.1
 if (test "$RAILS_ENV" = "") then {
 # Si ejecutamos en RAILS_ENV=test RUTA_RELATIVA será / por
@@ -44,9 +49,12 @@ if (test "$IPDES" = "127.0.0.1") then {
   } fi;
 
 	echo "=== Iniciando servidor"
-	CONFIG_HOSTS=127.0.0.1 R=f bin/corre &
+  # La siguiente puede fallar mientras reline no arregle situación.
+  # Ver https://github.com/ruby/reline/issues/690
+  # Extra-temporal modificar lib/reline como se describe en ese incidente.
+  CONFIG_HOSTS=127.0.0.1 R=f bin/corre &
   CORRE_PID=$!
-	sleep 5;
+  sleep 5;
   echo "CORRE_PID=$CORRE_PID"
 } fi;
 
