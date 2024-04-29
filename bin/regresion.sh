@@ -51,10 +51,26 @@ if (test "$SALTAUNITARIAS" != "1") then {
   echo "== Pruebas de regresión unitarias"
   mkdir -p cobertura-unitarias/
   rm -rf cobertura-unitarias/{*,.*}
-  CONFIG_HOSTS=www.example.com RUTA_RELATIVA=/ ${RAILS} test test/models test/controllers test/helpers
-  if (test "$?" != "0") then {
-    echo "No pasaron pruebas de regresión unitarias";
-    exit 1;
+  if (test -d test/models) then {
+    RUTA_RELATIVA=/ ${RAILS} test test/models
+    if (test "$?" != "0") then {
+      echo "No pasaron pruebas de regresión unitarias a modelos";
+      exit 1;
+    } fi;
+  } fi;
+  if (test -d test/controllers) then {
+    CONFIG_HOSTS=www.example.com RUTA_RELATIVA=/ ${RAILS} test test/controllers
+    if (test "$?" != "0") then {
+      echo "No pasaron pruebas de regresión unitarias a controladores";
+      exit 1;
+    } fi;
+  } fi;
+  if (test -d test/helpers) then {
+    CONFIG_HOSTS=www.example.com RUTA_RELATIVA=/ ${RAILS} test test/helpers
+    if (test "$?" != "0") then {
+      echo "No pasaron pruebas de regresión unitarias a auxiliares";
+      exit 1;
+    } fi;
   } fi;
 } fi;
 
@@ -73,7 +89,7 @@ if (test -d test/integration -a "$SALTAINTEGRACION" != "1") then {
 echo "== PRUEBAS DE REGRESIÓN AL SISTEMA"
 mkdir -p $rutaap/cobertura-sistema/
 rm -rf $rutaap/cobertura-sistema/{*,.*}
-if (test "$CI" = "" -a "$SALTACAPYBARA" != "1") then { # Por ahora no en gitlab-ci
+if (test "$CI" = "" -a "$SALTACAPYBARA" != "1" -a -d $rutaap/test/system) then { # Por ahora no en gitlab-ci
   echo "== Con capybara $SALTACAPYBARA"
   (cd $rutaap; RUTA_RELATIVA="/" CONFIG_HOSTS=127.0.0.1 ${RAILS} msip:stimulus_motores test:system)
   if (test "$?" != "0") then {
