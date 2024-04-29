@@ -18,10 +18,10 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/heb412_gen.git
-  revision: 37b3deab7dfe2e0853e6a42d969feb53358af561
+  revision: d8384cabfb55646440d6b578b291d64992ceb11a
   branch: v2.2
   specs:
-    heb412_gen (2.2.0.beta5)
+    heb412_gen (2.2.0.beta6)
       mr519_gen
       msip
       redcarpet
@@ -29,19 +29,19 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/mr519_gen.git
-  revision: bf7e47135f9f6c6dd6d8b856cf3adf0ac3a109d3
+  revision: 96a9848e5aa7caf38a9d802e1d11a2ead37d4626
   branch: v2.2
   specs:
-    mr519_gen (2.2.0.beta5)
+    mr519_gen (2.2.0.beta6)
       msip
       rails
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/msip.git
-  revision: 7773600029b4414aaf7e71fd44428cf124c3f642
+  revision: 36cf49d8dfee4295d7b6300d469d1cf378c6bfdc
   branch: v2.2
   specs:
-    msip (2.2.0.beta5)
+    msip (2.2.0.beta6)
       cancancan (~> 3)
       devise (~> 4)
       devise-i18n (~> 1)
