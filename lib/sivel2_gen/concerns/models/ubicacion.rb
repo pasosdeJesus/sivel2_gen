@@ -63,7 +63,8 @@ module Sivel2Gen
             self.centropoblado_id= cen if cen
             self.latitud= datosent['latitud'] if datosent['latitud']
             self.longitud= datosent['longitud'] if datosent['longitud']
-            if datosent["observaciones"]
+            if datosent["observaciones"] &&
+                datosent["observaciones"].class == "Array"
               datosent["observaciones"].each do |obs|
                 ob = obs.split("_")
                 case ob[0]
