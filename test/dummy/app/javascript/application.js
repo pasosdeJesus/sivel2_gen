@@ -3,7 +3,7 @@
 console.log('Hola Mundo desde ESM')
 
 import Rails from "@rails/ujs";
-if (typeof window.Rails == 'undefined') { 
+if (typeof window.Rails == 'undefined') {
   Rails.start();
   window.Rails = Rails;
 }
@@ -19,6 +19,17 @@ import * as bootstrap from 'bootstrap'              // Maquetacion y elementos d
 import 'chosen-js/chosen.jquery';       // Cuadros de seleccion potenciados
 import 'bootstrap-datepicker'
 import 'bootstrap-datepicker/dist/locales/bootstrap-datepicker.es.min.js'
+
+import TomSelect from 'tom-select';
+window.TomSelect = TomSelect;
+window.configuracionTomSelect = {
+  create: false,
+  diacritics: true, //no sensitivo a acentos
+  sortField: {
+    field: "text",
+    direction: "asc"
+  }
+}
 
 // Apexcharts
 import ApexCharts from 'apexcharts'
@@ -64,14 +75,18 @@ promesaRecursosSprocketsYDocumento.then((mensaje) => {
   sivel2_gen_prepara_eventos_comunes(root);
   sivel2_gen_prepara_eventos_unicos(root);
 
+  document.querySelectorAll('.tom-select').forEach((el)=>{
+    new TomSelect(el, window.configuracionTomSelect)
+  })
+
   var p = new URL(document.URL).pathname.split('/')
   var p2ult = ''
-  if (p.length>2) { 
+  if (p.length>2) {
     p2ult = p[p.length - 2] + "/" + p[p.length - 1]
   }
   console.log("p2ult=" + p2ult)
   if (p2ult == 'graficar/actos_individuales') {
-    plotly_serietiempo_actos() 
+    plotly_serietiempo_actos()
   }
 
 })
