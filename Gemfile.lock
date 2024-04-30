@@ -11,7 +11,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sip.git
-  revision: 8f703ea5b12078a7dcec3ce2822f6b871280323f
+  revision: 531805772e4e75e087dc582d74a5e4379d0e0ecb
   branch: v2.1
   specs:
     sip (2.1.0.beta1)
@@ -43,7 +43,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/heb412_gen.git
-  revision: b83949fab540a122040930f6e2771b75005d101e
+  revision: 9a46e373b061b8a329946e2b1f020f2c9978c560
   branch: v2.1
   specs:
     heb412_gen (2.1.0.beta1)
@@ -54,7 +54,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/mr519_gen.git
-  revision: 7227296a1384a90bb51e17d54765c09687ec5009
+  revision: 0f73ee35dc8442ee83abaea8f7cfc6a165863ef4
   branch: v2.1
   specs:
     mr519_gen (2.1.0.beta1)
@@ -185,9 +185,9 @@ GEM
     devise-i18n (1.12.0)
       devise (>= 4.9.0)
     docile (1.4.0)
-    dotenv (3.1.0)
-    dotenv-rails (3.1.0)
-      dotenv (= 3.1.0)
+    dotenv (3.1.1)
+    dotenv-rails (3.1.1)
+      dotenv (= 3.1.1)
       railties (>= 6.1)
     erubi (1.12.0)
     execjs (2.9.1)
@@ -205,7 +205,7 @@ GEM
     irb (1.12.0)
       rdoc
       reline (>= 0.4.2)
-    jbuilder (2.11.5)
+    jbuilder (2.12.0)
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
     jsbundling-rails (1.3.0)
@@ -325,7 +325,7 @@ GEM
       psych (>= 4.0.0)
     redcarpet (3.6.0)
     regexp_parser (2.9.0)
-    reline (0.5.3)
+    reline (0.5.4)
       io-console (~> 0.5)
     responders (3.1.1)
       actionpack (>= 5.2)
@@ -374,7 +374,7 @@ GEM
       actionpack (>= 6.0.0)
       activejob (>= 6.0.0)
       railties (>= 6.0.0)
-    twitter_cldr (6.12.0)
+    twitter_cldr (6.12.1)
       camertron-eprun
       cldr-plurals-runtime-rb (~> 1.1)
       tzinfo
