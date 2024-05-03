@@ -780,6 +780,74 @@ module Sivel2Gen
             render 'refresca', layout: 'application'
           end
 
+          # En familiares si falta crear trelacion_persona para personas
+          # autocompletadas los crea
+          # Completa listad de indices de víctimas por borrar de los
+          # parámetros porque se crearon o actualizaron completamente
+          def asignar_id_personatrelacion(
+            params, victima_indice, victima_params, victimas_por_borrar
+          )
+            if victima_params[:persona_attributes]
+              if victima_params[:persona_attributes][:persona_trelacion1_attributes]
+                victima_params[:persona_attributes][:persona_trelacion1_attributes].each do |persona_indice, persona_params|
+                  if persona_params[:id] == "" and persona_params[:_destroy] != "true"
+                    p2_id = persona_params[:personados_attributes][:id]
+                    if p2_id != ""
+                      if victima_params[:id] != ""
+                        vic = Sivel2Gen::Victima.find(victima_params[:id].to_i)
+                      else
+                        victima_params_filtrado = victima_params.deep_dup.tap do |params|
+                          params[:persona_attributes].delete(:persona_trelacion1_attributes)
+                        end
+                        vic = Sivel2Gen::Victima.create(
+                          victima_params_filtrado
+                        )
+                        vic.caso_id = @caso.id
+                        @caso.victima.push(vic)
+                        vic.save!(validate: false)
+                        victimas_por_borrar << victima_indice
+                      end
+                      pt = Msip::PersonaTrelacion.where(
+                        persona1: vic.persona.id , persona2: p2_id
+                      )
+                      if pt.count > 0
+                        params[:caso][:victima_attributes][victima_indice][:persona_attributes][:persona_trelacion1_attributes][persona_indice][:id] = pt[0].id
+                      else
+                        ptn = Msip::PersonaTrelacion.create(
+                          persona1: vic.persona.id , persona2: p2_id
+                        )
+                        ptn.save!
+                        params[:caso][:victima_attributes][victima_indice][:persona_attributes][:persona_trelacion1_attributes][persona_indice][:id] = ptn.id
+                      end
+                    else
+                      if victima_params[:id] == ""
+                        vic = Sivel2Gen::Victima.create(victima_params)
+                        vic.caso_id = @caso.id
+                        if vic.persona
+                          vic.persona.persona_trelacion1.each do |pt1|
+                            pt1.personauno = vic.persona
+                            pt1.persona1 = vic.persona.id
+                          end
+                        end
+                        @caso.victima.push(vic)
+                        victimas_por_borrar << victima_indice
+                      elsif persona_params[:personados_attributes][:nombres] != "" && persona_params[:personados_attributes][:apellidos] != ""
+                        vic = Sivel2Gen::Victima.find(victima_params[:id].to_i)
+                        p2 = Msip::Persona.create(persona_params[:personados_attributes])
+                        params[:caso][:victima_attributes][victima_indice][:persona_attributes][:persona_trelacion1_attributes][persona_indice][:personados_attributes][:id] = p2.id
+                        ptn = Msip::PersonaTrelacion.create(persona1: vic.persona.id , persona2: p2.id, trelacion_id: persona_params[:trelacion_id])
+                        ptn.save!
+                        params[:caso][:victima_attributes][victima_indice][:persona_attributes][:persona_trelacion1_attributes][persona_indice][:id] = ptn.id
+                      end
+                    end
+                  end
+                end
+              end
+            end
+
+          end
+
+
           # PATCH/PUT /casos/1
           # PATCH/PUT /casos/1.json
           def update_gen
@@ -793,63 +861,12 @@ module Sivel2Gen
                 end
               end
 
-              # En familiares si falta crear trelacion_persona para personas
-              # autocompletadas los crea
-
-              def asignar_id_personatrelacion(params, index, victima_params)
-                if victima_params[:persona_attributes]
-                  if victima_params[:persona_attributes][:persona_trelacion1_attributes]
-                    victima_params[:persona_attributes][:persona_trelacion1_attributes].each do |index_pt, pt_params|
-                      if pt_params[:id] == "" and pt_params[:_destroy] != "true"
-                        p2_id = pt_params[:personados_attributes][:id]
-                        if p2_id != ""
-                          if victima_params[:id] != ""
-                            vic = Sivel2Gen::Victima.find(victima_params[:id].to_i)
-                          else
-                            victima_params_filtrado = victima_params.deep_dup.tap do |params|
-                              params[:persona_attributes].delete(:persona_trelacion1_attributes)
-                            end
-                            vic = Sivel2Gen::Victima.create(victima_params_filtrado)
-                            vic.caso_id = @caso.id
-                            @caso.victima.push(vic)
-                            vic.save!(validate: false)
-                          end
-                          pt = Msip::PersonaTrelacion.where(persona1: vic.persona.id , persona2: p2_id)
-                          if pt.count > 0
-                            params[:caso][:victima_attributes][index][:persona_attributes][:persona_trelacion1_attributes][index_pt][:id] = pt[0].id
-                          else
-                            ptn = Msip::PersonaTrelacion.create(persona1: vic.persona.id , persona2: p2_id)
-                            ptn.save!
-                            params[:caso][:victima_attributes][index][:persona_attributes][:persona_trelacion1_attributes][index_pt][:id] = ptn.id
-                          end
-                        else
-                          if victima_params[:id] == ""
-                            vic = Sivel2Gen::Victima.create(victima_params)
-                            vic.caso_id = @caso.id
-                            if vic.persona
-                              vic.persona.persona_trelacion1.each do |pt1|
-                                pt1.personauno = vic.persona
-                                pt1.persona1 = vic.persona.id
-                              end
-                            end
-                            @caso.victima.push(vic)
-                          elsif pt_params[:personados_attributes][:nombres] != "" && pt_params[:personados_attributes][:apellidos] != ""
-                            vic = Sivel2Gen::Victima.find(victima_params[:id].to_i)
-                            p2_id = Msip::Persona.create(pt_params[:personados_attributes])
-                            ptn = Msip::PersonaTrelacion.create(persona1: vic.persona.id , persona2: p2_id.id, trelacion_id: pt_params[:trelacion_id])
-                            ptn.save!
-                            params[:caso][:victima_attributes][index][:persona_attributes][:persona_trelacion1_attributes][index_pt][:id] = ptn.id
-                          end
-                        end
-                        params[:caso][:victima_attributes].delete(index)
-                      end
-                    end
-                  end
-                end
-              end
+              # Procesa antes datos demasiado completjos para el update de rails
+              victimas_por_borrar = []
 
               if params[:caso][:victima_attributes] 
-                params[:caso][:victima_attributes].each do |index, victima_params|
+                params[:caso][:victima_attributes].each do 
+                  |victima_indice, victima_params|
                   if victima_params[:_destroy] != "true"
                     if !victima_params[:id].present?
                       if victima_params[:persona_attributes]
@@ -861,6 +878,7 @@ module Sivel2Gen
                           else
                             vic = Sivel2Gen::Victima.create(victima_params)
                             @caso.victima.push(vic)
+                            victimas_por_borrar << victima_indice
                           end
                           vic.caso_id = @caso.id
                           if vic.persona
@@ -869,19 +887,29 @@ module Sivel2Gen
                               pt1.persona1 = vic.persona.id
                             end
                           end
-                          params[:caso][:victima_attributes].delete(index)
                         else
                           if victima_params[:persona_attributes][:persona_trelacion1_attributes]
-                            asignar_id_personatrelacion(params, index, victima_params)
+                              asignar_id_personatrelacion(
+                                params, victima_indice, victima_params, 
+                                victima_por_borrar
+                              )
                           end
                         end
                       end
                     else
-                      asignar_id_personatrelacion(params, index, victima_params)
+                        asignar_id_personatrelacion(
+                          params, victima_indice, victima_params, 
+                          victimas_por_borrar
+                        )
                     end
                   end
                 end
               end
+
+              victimas_por_borrar.uniq.each do |i|
+                params[:caso][:victima_attributes].delete(i)
+              end
+
               ## Por si cambia de pestania evita duplicidad de turbo
               if params[:_msip_enviarautomatico] == "1"
                 params_finales = params[:caso].except(
@@ -905,11 +933,6 @@ module Sivel2Gen
                     @caso.id
                   )
                 end
-
-                #if request.params[:enviarFichaCaso] == '1'
-                #  head :no_content
-                #  return
-                #end
 
                 notificacion = 'Caso actualizado.'
                 if Sivel2Gen::Caso.count > MAX_CASOS_REFRESCA_AUTOMATICO
