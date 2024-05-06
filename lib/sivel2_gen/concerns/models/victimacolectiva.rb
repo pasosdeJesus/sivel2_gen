@@ -80,7 +80,7 @@ module Sivel2Gen
 
           def importa(g, datossal, menserror, opciones = {})
             #Se verifica que el grupo no sea un presunto responsable
-            if Sivel2Gen::Presponsable.where(nombre: g['nombre_grupo']).empty?
+            if Sivel2Gen::Presponsable.where(nombre: g['nombre_grupo'].upcase).empty?
               gp = Msip::Grupoper.new
               gp.nombre = g['nombre_grupo']
               gp.save!
