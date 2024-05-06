@@ -333,7 +333,7 @@ module Sivel2Gen
                   victcol = Sivel2Gen::Victimacolectiva.new
                   victcol.caso_id = self.id
                   victcol.importa(vc, datossal, menserror, opciones)
-                  idsvcol[vc['grupo_id']] = victcol.grupoper_id
+                  idsvcol[vc['id_grupo']] = victcol.grupoper_id
                 end
               else
                 victcol = Sivel2Gen::Victimacolectiva.new
@@ -352,7 +352,7 @@ module Sivel2Gen
                   vict.caso_id = self.id
                   vict.importa([datosent, v], datossal, formato_sexo,
                                menserror, opciones)
-                  idsv[v['persona_id']] = vict.persona_id
+                  idsv[v['id_persona']] = vict.persona_id
                 end
               else
                 vict = Sivel2Gen::Victima.new
@@ -361,7 +361,7 @@ module Sivel2Gen
                               [datosent, datosent["victima"]], datossal,
                               formato_sexo, menserror, opciones
                             )
-                idsv[datosent['victima']['persona_id']] = vict.persona_id
+                idsv[datosent['victima']['id_persona']] = vict.persona_id
               end
             end
             #Importa combatientes
