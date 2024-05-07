@@ -32,7 +32,7 @@ module Sivel2Gen
 
           def importa(datosent, datossal, menserror, opciones = {})
             pres = Sivel2Gen::Presponsable.
-              where(nombre: datosent['nombre_grupo'].upcase)
+              where('upper(nombre COLLATE es_co_utf_8)=upper(? COLLATE es_co_utf_8)', datosent['nombre_grupo'])
             unless pres.empty?
               self.presponsable_id = pres.ids[0]
               def recorrer_observaciones(ele)
