@@ -891,7 +891,7 @@ module Sivel2Gen
                           if victima_params[:persona_attributes][:persona_trelacion1_attributes]
                               asignar_id_personatrelacion(
                                 params, victima_indice, victima_params, 
-                                victima_por_borrar
+                                victimas_por_borrar
                               )
                           end
                         end
