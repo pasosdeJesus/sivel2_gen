@@ -276,7 +276,7 @@ module Sivel2Gen
           def importa(datosent, datossal, formato_sexo, menserror, opciones = {})
             v = datosent[1]
             def crea_persona(p, v, menserror, formato_sexo)
-              if p['persona_id'].to_i == v['persona_id'].to_i
+              if p['id_persona'].to_i == v['id_persona'].to_i
                 per = Msip::Persona.new
                 if p['nombre'].nil?
                   per.nombres = 'N'
@@ -385,8 +385,8 @@ module Sivel2Gen
               end
             end
             if datosent[0]['persona'].kind_of?(Array)
-              datosent[0]['persona'].each do |p|
-                crea_persona(p, v, menserror, formato_sexo)
+              datosent[0]['persona'].each do |per|
+                crea_persona(per, v, menserror, formato_sexo)
               end
             else
               p = datosent[0]['persona']

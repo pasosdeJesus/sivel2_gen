@@ -16,6 +16,10 @@
 
 <div class="row">
   <div class="col-md-4">
+    <%= render partial: 'sivel2_gen/victimas/campo_hijos',
+      locals: {f: f} %>
+  </div>
+  <div class="col-md-4">
     <%= f.association :profesion,
       collection: Msip::ModeloHelper.opciones_tabla_basica(
         Sivel2Gen::Profesion, f, :profesion
@@ -23,10 +27,6 @@
       include_blank: false,
       label_method: :nombre,
       value_method: :id %>
-  </div>
-  <div class="col-md-4">
-    <%= render partial: 'sivel2_gen/victimas/campo_hijos',
-      locals: {f: f} %>
   </div>
   <div class="col-md-4">
     <%= f.association :filiacion,
