@@ -789,6 +789,8 @@ module Sivel2Gen
           )
             if victima_params[:persona_attributes]
               if victima_params[:persona_attributes][:persona_trelacion1_attributes]
+                vic = nil
+                victima_creada = false
                 victima_params[:persona_attributes][:persona_trelacion1_attributes].each do |persona_indice, persona_params|
                   if persona_params[:id] == "" and persona_params[:_destroy] != "true"
                     p2_id = persona_params[:personados_attributes][:id]
@@ -821,7 +823,10 @@ module Sivel2Gen
                       end
                     else
                       if victima_params[:id] == ""
-                        vic = Sivel2Gen::Victima.create(victima_params)
+                        if victima_creada == false
+                          vic = Sivel2Gen::Victima.create(victima_params)
+                          victima_creada = true
+                        end
                         vic.caso_id = @caso.id
                         if vic.persona
                           vic.persona.persona_trelacion1.each do |pt1|
@@ -864,7 +869,7 @@ module Sivel2Gen
               # Procesa antes datos demasiado completjos para el update de rails
               victimas_por_borrar = []
 
-              if params[:caso][:victima_attributes] 
+              if params[:caso][:victima_attributes]
                 params[:caso][:victima_attributes].each do 
                   |victima_indice, victima_params|
                   if victima_params[:_destroy] != "true"
