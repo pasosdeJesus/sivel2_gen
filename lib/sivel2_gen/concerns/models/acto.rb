@@ -73,8 +73,8 @@ module Sivel2Gen
           def importa(datosent, datossal, menserror, opciones = {})
             victimas = datosent[0]
             d = datosent[1]
-            if d['victima_individual_id']
-              self.presponsable_id = d['presunto_responsable_individual_id'].to_i
+            if d['id_victima_individual']
+              self.presponsable_id = d['id_presunto_responsable_individual'].to_i
               if Sivel2Gen::Presponsable.where(id: self.presponsable_id).count == 0
                 menserror << "No pudo crear acto porque no existe presunto responsable #{self.presponsable_id}. "
                 return
@@ -85,7 +85,7 @@ module Sivel2Gen
                 menserror << "No pudo crear acto porque no existe categoria #{self.categoria_id}. "
                 return
               end
-              self.persona_id = victimas[d['victima_individual_id']]
+              self.persona_id = victimas[d['id_victima_individual']]
               if self.save
                 self.save!          
               else
