@@ -31,9 +31,12 @@ module Sivel2Gen
 
 
           def importa(datosent, datossal, menserror, opciones = {})
+            ## Verifica que sí es un presunto responsable
+            obs = datosent["observaciones"].map{|k| k.split("_")[0]}
+            es_presponsable = obs.any? {|elemento| ["subdivision", "bloque", "frente", "otro"].include?(elemento) }
             pres = Sivel2Gen::Presponsable.
               where('upper(nombre COLLATE es_co_utf_8)=upper(? COLLATE es_co_utf_8)', datosent['nombre_grupo'])
-            unless pres.empty?
+            unless !es_presponsable
               self.presponsable_id = pres.ids[0]
               def recorrer_observaciones(ele)
                 case ele[0]
