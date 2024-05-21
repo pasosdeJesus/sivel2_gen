@@ -303,44 +303,64 @@ module Sivel2Gen
               end
             end
 
+            actos_individuales = []
+            actos_colectivos = []
+            datosent['acto'].each do |acto|
+              if !acto['id_victima_individual'].nil?
+                actos_individuales.append(acto)
+              end
+              if !acto['id_grupo_victima'].nil?
+                actos_colectivos.append(acto)
+              end
+            end
             #Importa presunto responsable
+            prs_acolectivos = actos_colectivos.map{|prs| prs["id_presunto_grupo_responsable"]}
             if datosent['grupo']
               if datosent['grupo'].kind_of?(Array)
                 datosent['grupo'].each do |pr|
+                  if prs_acolectivos.include? pr['id_grupo']
+                    casopresp = Sivel2Gen::CasoPresponsable.new
+                    casopresp.importa(pr, datossal, menserror, opciones)
+                    if casopresp.presponsable_id
+                      casopresp.caso_id = self.id
+                      casopresp.save!(validate: false)
+                    end
+                  end
+                end
+              else
+                if prs_acolectivos.include? datosent['grupo']['id_grupo']
                   casopresp = Sivel2Gen::CasoPresponsable.new
-                  casopresp.importa(pr, datossal, menserror, opciones)
+                  casopresp.importa(
+                    datosent['grupo'], datossal, menserror, opciones)
                   if casopresp.presponsable_id
                     casopresp.caso_id = self.id
                     casopresp.save!(validate: false)
                   end
-                end
-              else
-                casopresp = Sivel2Gen::CasoPresponsable.new
-                casopresp.importa(
-                  datosent['grupo'], datossal, menserror, opciones)
-                if casopresp.presponsable_id
-                  casopresp.caso_id = self.id
-                  casopresp.save!(validate: false)
                 end
               end
             end
 
             #Importa grupos victimizados
             idsvcol = {}
+            vicol_acolectivos = actos_colectivos.map{|prs| prs["id_grupo_victima"]}
             if datosent['grupo']
               if datosent['grupo'].kind_of?(Array)
                 datosent['grupo'].each do |vc|
-                  victcol = Sivel2Gen::Victimacolectiva.new
-                  victcol.caso_id = self.id
-                  victcol.importa(vc, datossal, menserror, opciones)
-                  idsvcol[vc['id_grupo']] = victcol.grupoper_id
+                  if vicol_acolectivos.include? vc['id_grupo']
+                    victcol = Sivel2Gen::Victimacolectiva.new
+                    victcol.caso_id = self.id
+                    victcol.importa(vc, datossal, menserror, opciones)
+                    idsvcol[vc['id_grupo']] = victcol.grupoper_id
+                  end
                 end
               else
-                victcol = Sivel2Gen::Victimacolectiva.new
-                victcol.caso_id = self.id
-                victcol.importa(
-                  datosent['grupo'], datossal, menserror, opciones)
-                idsvcol[datosent['grupo']['grupo_id']] = victcol.grupoper_id
+                if vicol_acolectivos.include? datosent['grupo']['id_grupo']
+                  victcol = Sivel2Gen::Victimacolectiva.new
+                  victcol.caso_id = self.id
+                  victcol.importa(
+                    datosent['grupo'], datossal, menserror, opciones)
+                  idsvcol[datosent['grupo']['grupo_id']] = victcol.grupoper_id
+                end
               end
             end
             #Importa victimas
