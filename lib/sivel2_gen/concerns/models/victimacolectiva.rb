@@ -80,139 +80,135 @@ module Sivel2Gen
 
           def importa(g, datossal, menserror, opciones = {})
             #Se verifica que el grupo no sea un presunto responsable
-            obs = g["observaciones"].map{|k| k.split("_")[0]} 
-            es_presponsable = obs.any? {|elemento| ["subdivision", "bloque", "frente", "otro"].include?(elemento) }
-            if !es_presponsable
-              gp = Msip::Grupoper.new
-              gp.nombre = g['nombre_grupo']
-              gp.save!
-              self.grupoper_id = gp.id
-              self.save!
-              array_obs = []
-              if g['observaciones'].kind_of? String
-                array_obs.push(g['observaciones'])
-              else
-                array_obs = g['observaciones']
-              end
-              if array_obs
-                array_obs.each do |ob|
-                  ele = ob.split(/\_([^_]*)$/)
-                  case ele[0]
-                  when 'anotaciones'
-                    self.grupoper.anotaciones = ele[1] if self.grupoper
-                  when 'personasaprox'
-                    self.personasaprox = ele[1].to_i
-                  when 'organizacionarmada'
-                    self.organizacionarmada = ele[1].to_i
-                  when 'filiacion'
-                    ele[1].split(";").each do |fil|
-                      filiacion = Sivel2Gen::Filiacion.where(nombre: fil)
-                      if filiacion.count == 1
-                        fv = Sivel2Gen::FiliacionVictimacolectiva.new
-                        fv.filiacion_id = filiacion[0].id
-                        fv.victimacolectiva_id = self.id
-                        fv.save!
-                      else
-                        menserror << "En la tabla básica Organización no está " +
-                          "'#{fil}'"
-                      end
+            gp = Msip::Grupoper.new
+            gp.nombre = g['nombre_grupo']
+            gp.save!
+            self.grupoper_id = gp.id
+            self.save!
+            array_obs = []
+            if g['observaciones'].kind_of? String
+              array_obs.push(g['observaciones'])
+            else
+              array_obs = g['observaciones']
+            end
+            if array_obs
+              array_obs.each do |ob|
+                ele = ob.split(/\_([^_]*)$/)
+                case ele[0]
+                when 'anotaciones'
+                  self.grupoper.anotaciones = ele[1] if self.grupoper
+                when 'personasaprox'
+                  self.personasaprox = ele[1].to_i
+                when 'organizacionarmada'
+                  self.organizacionarmada = ele[1].to_i
+                when 'filiacion'
+                  ele[1].split(";").each do |fil|
+                    filiacion = Sivel2Gen::Filiacion.where(nombre: fil)
+                    if filiacion.count == 1
+                      fv = Sivel2Gen::FiliacionVictimacolectiva.new
+                      fv.filiacion_id = filiacion[0].id
+                      fv.victimacolectiva_id = self.id
+                      fv.save!
+                    else
+                      menserror << "En la tabla básica Organización no está " +
+                        "'#{fil}'"
                     end
-                  when 'organizacion'
-                    ele[1].split(";").each do |org|
-                      organizacion = Sivel2Gen::Organizacion.where(nombre: org)
-                      if organizacion.count == 1
-                        orgv = Sivel2Gen::OrganizacionVictimacolectiva.new
-                        orgv.organizacion_id = organizacion[0].id
-                        orgv.victimacolectiva_id = self.id
-                        orgv.save!
-                      else
-                        menserror << "En la tabla básica Organización no está " +
-                          "'#{org}'"
-                      end
+                  end
+                when 'organizacion'
+                  ele[1].split(";").each do |org|
+                    organizacion = Sivel2Gen::Organizacion.where(nombre: org)
+                    if organizacion.count == 1
+                      orgv = Sivel2Gen::OrganizacionVictimacolectiva.new
+                      orgv.organizacion_id = organizacion[0].id
+                      orgv.victimacolectiva_id = self.id
+                      orgv.save!
+                    else
+                      menserror << "En la tabla básica Organización no está " +
+                        "'#{org}'"
                     end
-                  when 'profesion'
-                    ele[1].split(";").each do |pro|
-                      profesion = Sivel2Gen::Profesion.where(nombre: pro)
-                      if profesion.count == 1
-                        pr = Sivel2Gen::ProfesionVictimacolectiva.new
-                        pr.profesion_id = profesion[0].id
-                        pr.victimacolectiva_id = self.id
-                        pr.save!
-                      else
-                        menserror << "En la tabla básica Profesión no está " +
-                          "'#{pro}'"
-                      end
+                  end
+                when 'profesion'
+                  ele[1].split(";").each do |pro|
+                    profesion = Sivel2Gen::Profesion.where(nombre: pro)
+                    if profesion.count == 1
+                      pr = Sivel2Gen::ProfesionVictimacolectiva.new
+                      pr.profesion_id = profesion[0].id
+                      pr.victimacolectiva_id = self.id
+                      pr.save!
+                    else
+                      menserror << "En la tabla básica Profesión no está " +
+                        "'#{pro}'"
                     end
-                  when 'rangoedad'
-                    ele[1].split(";").each do |ran|
-                      rangoedad = Sivel2Gen::Rangoedad.where(nombre: ran)
-                      if rangoedad.count == 1
-                        re = Sivel2Gen::RangoedadVictimacolectiva.new
-                        re.rangoedad_id = rangoedad[0].id
-                        re.victimacolectiva_id = self.id
-                        re.save!
-                      else
-                        menserror << "En la tabla básica Rango Edad no está " +
-                          "'#{ran}'"
-                      end
+                  end
+                when 'rangoedad'
+                  ele[1].split(";").each do |ran|
+                    rangoedad = Sivel2Gen::Rangoedad.where(nombre: ran)
+                    if rangoedad.count == 1
+                      re = Sivel2Gen::RangoedadVictimacolectiva.new
+                      re.rangoedad_id = rangoedad[0].id
+                      re.victimacolectiva_id = self.id
+                      re.save!
+                    else
+                      menserror << "En la tabla básica Rango Edad no está " +
+                        "'#{ran}'"
                     end
-                  when 'sectorsocial'
-                    ele[1].split(";").each do |sec|
-                      sectorsocial = Sivel2Gen::Sectorsocial.where(nombre: sec)
-                      if sectorsocial.count == 1
-                        ss = Sivel2Gen::SectorsocialVictimacolectiva.new
-                        ss.sectorsocial_id = sectorsocial[0].id
-                        ss.victimacolectiva_id = self.id
-                        ss.save!
-                      else
-                        menserror << "En la tabla básica Sector Social no está " +
-                          "'#{sec}'"
-                      end
+                  end
+                when 'sectorsocial'
+                  ele[1].split(";").each do |sec|
+                    sectorsocial = Sivel2Gen::Sectorsocial.where(nombre: sec)
+                    if sectorsocial.count == 1
+                      ss = Sivel2Gen::SectorsocialVictimacolectiva.new
+                      ss.sectorsocial_id = sectorsocial[0].id
+                      ss.victimacolectiva_id = self.id
+                      ss.save!
+                    else
+                      menserror << "En la tabla básica Sector Social no está " +
+                        "'#{sec}'"
                     end
-                  when 'vinculoestado'
-                    ele[1].split(";").each do |ves|
-                      vinculoe = Sivel2Gen::Vinculoestado.where(nombre: ves)
-                      if vinculoe.count == 1
-                        ve = Sivel2Gen::VictimacolectivaVinculoestado.new
-                        ve.vinculoestado_id = vinculoe[0].id
-                        ve.victimacolectiva_id = self.id
-                        ve.save!
-                      else
-                        menserror << "En la tabla básica Vínculo Estado no está " +
-                          "'#{ves}'"
-                      end
+                  end
+                when 'vinculoestado'
+                  ele[1].split(";").each do |ves|
+                    vinculoe = Sivel2Gen::Vinculoestado.where(nombre: ves)
+                    if vinculoe.count == 1
+                      ve = Sivel2Gen::VictimacolectivaVinculoestado.new
+                      ve.vinculoestado_id = vinculoe[0].id
+                      ve.victimacolectiva_id = self.id
+                      ve.save!
+                    else
+                      menserror << "En la tabla básica Vínculo Estado no está " +
+                        "'#{ves}'"
                     end
-                  when 'antecedente'
-                    ele[1].split(";").each do |ant|
-                      antecedente = Sivel2Gen::Antecedente.where(nombre: ant)
-                      if antecedente.count == 1
-                        vant = Sivel2Gen::AntecedenteVictimacolectiva.new
-                        vant.antecedente_id = antecedente[0].id
-                        vant.victimacolectiva_id = self.id
-                        vant.save!
-                      else
-                        menserror << "En la tabla básica Vínculo Estado no está " +
-                          "'#{ant}'"
-                      end
+                  end
+                when 'antecedente'
+                  ele[1].split(";").each do |ant|
+                    antecedente = Sivel2Gen::Antecedente.where(nombre: ant)
+                    if antecedente.count == 1
+                      vant = Sivel2Gen::AntecedenteVictimacolectiva.new
+                      vant.antecedente_id = antecedente[0].id
+                      vant.victimacolectiva_id = self.id
+                      vant.save!
+                    else
+                      menserror << "En la tabla básica Vínculo Estado no está " +
+                        "'#{ant}'"
                     end
-                  when 'etnia'
-                    ele[1].split(";").each do |etn|
-                      etnia = Msip::Etnia.where(nombre: etn)
-                      if etnia.count == 1
-                        vetn = Sivel2Gen::EtniaVictimacolectiva.new
-                        vetn.etnia_id = etnia[0].id
-                        vetn.victimacolectiva_id = self.id
-                        vetn.save!
-                      else
-                        menserror << "En la tabla básica Vínculo Estado no está " +
-                          "'#{etn}'"
-                      end
+                  end
+                when 'etnia'
+                  ele[1].split(";").each do |etn|
+                    etnia = Msip::Etnia.where(nombre: etn)
+                    if etnia.count == 1
+                      vetn = Sivel2Gen::EtniaVictimacolectiva.new
+                      vetn.etnia_id = etnia[0].id
+                      vetn.victimacolectiva_id = self.id
+                      vetn.save!
+                    else
+                      menserror << "En la tabla básica Vínculo Estado no está " +
+                        "'#{etn}'"
                     end
                   end
                 end
               end
-              self.save!
             end
+            self.save!
           end
         end
       end
