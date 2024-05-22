@@ -11,7 +11,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sip.git
-  revision: 1c1e202f09cafba182854137dd518023833f4dd2
+  revision: 400dec6c79d2923d23c421a2a60ddc8a47dd10fb
   branch: v2.1
   specs:
     sip (2.1.0.beta1)
@@ -43,7 +43,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/heb412_gen.git
-  revision: cabe02e291a694d14fecb2517d802c9b234c9576
+  revision: 08fd88200532f8f72ca13bfd6808ace4d906fb27
   branch: v2.1
   specs:
     heb412_gen (2.1.0.beta1)
@@ -54,7 +54,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/mr519_gen.git
-  revision: 16570018cc0697ba8d01de97baaeb41df3454497
+  revision: 910d30d4a5752c75550b42bf78a3356146988d9a
   branch: v2.1
   specs:
     mr519_gen (2.1.0.beta1)
@@ -228,7 +228,7 @@ GEM
     mime-types-data (3.2024.0507)
     mini_mime (1.1.5)
     mini_portile2 (2.8.6)
-    minitest (5.23.0)
+    minitest (5.23.1)
     msgpack (1.7.2)
     net-imap (0.4.11)
       date
