@@ -46,6 +46,7 @@ test/dummy/public/packs
 test/dummy/app/assets/builds
 .env
 test/dummy/app/javascript/controllers/sip
+test/dummy/app/javascript/controllers/sivel2_gen
 
 public/*/csv/actos_individuales.csv
 test/dummy/public/sivel2_1/csv
