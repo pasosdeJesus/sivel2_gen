@@ -31,6 +31,7 @@ module Sivel2Gen
 
 
           def importa(datosent, datossal, menserror, opciones = {})
+            ## Verifica que sí es un presunto responsable
             pres = Sivel2Gen::Presponsable.
               where('upper(nombre COLLATE es_co_utf_8)=upper(? COLLATE es_co_utf_8)', datosent['nombre_grupo'])
             unless pres.empty?
