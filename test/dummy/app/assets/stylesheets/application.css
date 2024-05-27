@@ -12,6 +12,5 @@
  *
  *= require_tree .
  *= require sivel2_gen/application.css
- *= require tom-select/dist/css/tom-select.bootstrap5.min.css
  *= require_self
  */

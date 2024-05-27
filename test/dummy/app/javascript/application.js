@@ -20,16 +20,6 @@ import 'chosen-js/chosen.jquery';       // Cuadros de seleccion potenciados
 import 'bootstrap-datepicker'
 import 'bootstrap-datepicker/dist/locales/bootstrap-datepicker.es.min.js'
 
-import TomSelect from 'tom-select';
-window.TomSelect = TomSelect;
-window.configuracionTomSelect = {
-  create: false,
-  diacritics: true, //no sensitivo a acentos
-  sortField: {
-    field: "text",
-    direction: "asc"
-  }
-}
 
 // Apexcharts
 import ApexCharts from 'apexcharts'
@@ -74,10 +64,6 @@ promesaRecursosSprocketsYDocumento.then((mensaje) => {
   heb412_gen_prepara_eventos_comunes(root);
   sivel2_gen_prepara_eventos_comunes(root);
   sivel2_gen_prepara_eventos_unicos(root);
-
-  document.querySelectorAll('.tom-select').forEach((el)=>{
-    new TomSelect(el, window.configuracionTomSelect)
-  })
 
   var p = new URL(document.URL).pathname.split('/')
   var p2ult = ''
