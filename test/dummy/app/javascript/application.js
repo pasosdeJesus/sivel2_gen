@@ -32,7 +32,7 @@ window.configuracionTomSelect = {
 
 import Msip__Motor from "./controllers/msip/motor"
 window.Msip__Motor = Msip__Motor
-Msip__Motor.iniciar()  // Este se ejecuta una vez cuando se está cargando la aplicación tal vez antes que la página completa o los recursos
+Msip__Motor.iniciar()
 import Mr519Gen__Motor from "./controllers/mr519_gen/motor"
 window.Mr519Gen__Motor = Mr519Gen__Motor
 import Heb412Gen__Motor from "./controllers/heb412_gen/motor"
