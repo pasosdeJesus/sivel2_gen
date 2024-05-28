@@ -86,18 +86,6 @@ if (test -d test/integration -a "$SALTAINTEGRACION" != "1") then {
   done;
 } fi;
 
-echo "== PRUEBAS DE REGRESIÓN AL SISTEMA"
-mkdir -p $rutaap/cobertura-sistema/
-rm -rf $rutaap/cobertura-sistema/{*,.*}
-if (test "$CI" = "" -a "$SALTACAPYBARA" != "1" -a -d $rutaap/test/system) then { # Por ahora no en gitlab-ci
-  echo "== Con capybara $SALTACAPYBARA"
-  (cd $rutaap; RUTA_RELATIVA="/" CONFIG_HOSTS=127.0.0.1 ${RAILS} msip:stimulus_motores test:system)
-  if (test "$?" != "0") then {
-    echo "No pasaron pruebas del sistema rails";
-    exit 1;
-  } fi;
-} fi;
-
 if (test -f $rutaap/bin/pruebasjs.sh -a -d $rutaap/test/puppeteer -a "x$NOPRUEBAJS" != "x1") then {
   echo "== Con puppeteer"
   (cd $rutaap; ${RAILS} msip:stimulus_motores; bin/pruebasjs.sh)

@@ -1,7 +1,7 @@
 import { Controller } from "@hotwired/stimulus"
 // Calcula edad, edadactual y rango dada fecha de nacimiento o viceversa
 
-import MsipMotor from "../msip/motor"
+import Msip__Motor from "../msip/motor"
 
 // Conecta con data-controller="sivel2-gen--edad"
 export default class extends Controller {
@@ -20,7 +20,7 @@ export default class extends Controller {
   }
 
   obtenerNumeroMes(nombreMes) {
-    return MsipMotor.MESES.indexOf(nombreMes.toLowerCase());
+    return Msip__Motor.MESES.indexOf(nombreMes.toLowerCase());
   }
 
 
@@ -45,7 +45,7 @@ export default class extends Controller {
       alert("No se encontró campo con la fecha del caso");
     }
     let anioCaso, mesCaso, diaCaso;
-    [anioCaso, mesCaso, diaCaso] = MsipMotor.partirFechaLocalizada(
+    [anioCaso, mesCaso, diaCaso] = Msip__Motor.partirFechaLocalizada(
       campoFechaCaso.value, formatoFecha
     );
     const hoy = new Date();
