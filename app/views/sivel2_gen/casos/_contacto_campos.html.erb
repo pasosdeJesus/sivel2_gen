@@ -47,19 +47,7 @@
 
 <div class="row">
   <div class="col-md-6">
-    <%= f.association :contextovictima,
-      collection: Msip::ModeloHelper.opciones_tabla_basica(
-        Sivel2Gen::Contextovictima, f, :contextovictima
-      ),
-      include_blank: false,
-      label_method: :nombre,
-      value_method: :id,
-      include_blank: false,
-      input_html: {
-        "data-toggle" => 'tooltip',
-        multiple: true,
-        class: 'chosen-select'
-      } %>
+    <%= render partial: "sivel2_gen/casos/contextovictima", locals: {f: f} %>
   </div>
   <div class="col-md-6">
     <%= render partial: 'sivel2_gen/casos/campo_vinculoestado',

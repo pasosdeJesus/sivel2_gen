@@ -1,0 +1,13 @@
+    <%= f.association :contextovictima,
+      collection: Msip::ModeloHelper.opciones_tabla_basica(
+        Sivel2Gen::Contextovictima, f, :contextovictima
+      ),
+      include_blank: false,
+      label_method: :nombre,
+      value_method: :id,
+      include_blank: false,
+      input_html: {
+        "data-toggle" => 'tooltip',
+        multiple: true,
+        class: 'chosen-select'
+      } %>
