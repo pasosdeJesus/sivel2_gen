@@ -100,7 +100,7 @@
           label: 'Sexo:',
           selected: sex_sel,
           input_html: {
-            class: 'chosen-select',
+            class: 'tom-select',
             multiple: true,
             'data-enviarautomatico' => ''},
           wrapper_html: { "style" => estdes }
@@ -128,7 +128,7 @@
           value_method: :id, 
           selected: dep_sel,
           input_html: {
-            class: 'chosen-select',
+            class: 'tom-select',
             multiple: true,
             'data-enviarautomatico' => ''
           },
@@ -160,7 +160,7 @@
           label_method: lambda { |cat| 
             "#{Sivel2Gen::Supracategoria.find(cat.supracategoria_id.to_i).tviolencia_id}#{cat.id.to_s} #{cat.nombre}" }, 
           input_html: {
-            class: 'chosen-select',
+            class: 'tom-select',
             multiple: true,
             'data-enviarautomatico' => ''
           },
