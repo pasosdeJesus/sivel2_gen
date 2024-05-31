@@ -500,13 +500,13 @@ enviaFormularioContarPost= (root) ->
       todayHighlight: true
       language: 'es'
     })
-    $('.chosen-select').chosen()
+    Msip__Motor.configurarElementosTomSelect()
   )
  
   #En ubicación por omisión Colombia y actualiza departamentos 
   $('#ubicaciones').on('cocoon:after-insert', '', (e, ubicacion) ->
     ubipais = 'select[id^=caso_][id$=pais_id]'
-    $(ubipais).val(170).trigger('chosen:updated')
+    Msip__Motor.configurarElementoTomSelect(e.target)
     llena_departamento($(ubicacion.find(ubipais)), root)
     if $(".ubicacion:visible").length == 1
       principal = $('input[type="checkbox"][name$="[principal]"]:visible')
@@ -698,7 +698,7 @@ enviaFormularioContarPost= (root) ->
         alert("Error: " + jqXHR.responseText)
       ).done( (e) ->
         @sivel2_gen_procesa_eliminaracto = false
-        $('.chosen-select').chosen()
+        Msip__Motor.configurarElementosTomSelect()
       )
   )
 
@@ -821,7 +821,7 @@ enviaFormularioContarPost= (root) ->
           div_grid = div_padre.parent()
           div_filtro = div_grid.parent().parent()
           input_cat = div_filtro.find("select[id=filtro_categoria_id]")
-          input_cat.val(datos[0]).trigger('chosen:updated')
+          Msip__Motor.configurarElementoTomSelect(input_cat.val(datos[0]))
         error: (jqXHR, texto) ->
           alert("Error: " + jqXHR.responseText)
        })
@@ -840,7 +840,7 @@ enviaFormularioContarPost= (root) ->
           div_grid = div_padre.parent()
           div_filtro = div_grid.parent().parent()
           input_tipo = div_filtro.find("select[id=filtro_tviolencia_id]")
-          input_tipo.val("Z").trigger('chosen:updated')
+          Msip__Motor.configurarElementoTomSelect(input_tipo.val("Z"))
       error: (jqXHR, texto) ->
         alert("Error: " + jqXHR.responseText)
      })
