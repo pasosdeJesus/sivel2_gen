@@ -20,9 +20,20 @@ import 'chosen-js/chosen.jquery';       // Cuadros de seleccion potenciados
 import 'bootstrap-datepicker'
 import 'bootstrap-datepicker/dist/locales/bootstrap-datepicker.es.min.js'
 
+import TomSelect from 'tom-select';
+window.TomSelect = TomSelect;
+window.configuracionTomSelect = {
+  create: false,
+  diacritics: true, //no sensitivo a acentos
+  sortField: {
+    field: "text",
+    direction: "asc"
+  }
+}
 
 import Msip__Motor from "./controllers/msip/motor"
 window.Msip__Motor = Msip__Motor
+Msip__Motor.iniciar()  // Este se ejecuta una vez cuando se está cargando la aplicación tal vez antes que la página completa o los recursos
 import Mr519Gen__Motor from "./controllers/mr519_gen/motor"
 window.Mr519Gen__Motor = Mr519Gen__Motor
 import Heb412Gen__Motor from "./controllers/heb412_gen/motor"
