@@ -20,6 +20,10 @@ import 'chosen-js/chosen.jquery';       // Cuadros de seleccion potenciados
 import 'bootstrap-datepicker'
 import 'bootstrap-datepicker/dist/locales/bootstrap-datepicker.es.min.js'
 
+import Msip__Motor from "./controllers/msip/motor"
+window.Msip__Motor = Msip__Motor
+Msip__Motor.iniciar()  // Este se ejecuta una vez cuando se está cargando la aplicación tal vez antes que la página completa o los recursos
+
 import TomSelect from 'tom-select';
 window.TomSelect = TomSelect;
 window.configuracionTomSelect = {
@@ -100,6 +104,7 @@ document.addEventListener('turbo:load', (e) => {
 
   console.log('Escuchador turbo:load')
 
+  Msip__Motor.ejecutarAlCargarPagina()  // Este puede ejecutarse varias veces consecutivas cada vez que se termina de cargar una página que incluso pudiera estar en cache
   msip_ejecutarAlCargarPagina(window)
 })
 
