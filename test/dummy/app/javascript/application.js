@@ -79,9 +79,7 @@ promesaRecursosSprocketsYDocumento.then((mensaje) => {
   sivel2_gen_prepara_eventos_comunes(root);
   sivel2_gen_prepara_eventos_unicos(root);
 
-  document.querySelectorAll('.tom-select').forEach((el)=>{
-    new TomSelect(el, window.configuracionTomSelect)
-  })
+  Msip__Motor.ejecutarAlCargarDocumentoYRecursos()  // Este se ejecuta cada vez que se carga una página que no está en cache y tipicamente después de que se ha cargado la página completa y los recursos
 
   var p = new URL(document.URL).pathname.split('/')
   var p2ult = ''
