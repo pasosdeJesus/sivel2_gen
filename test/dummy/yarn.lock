@@ -266,11 +266,6 @@ chalk@^2.4.2:
     escape-string-regexp "^1.0.5"
     supports-color "^5.3.0"
 
-chosen-js@^1.8.7:
-  version "1.8.7"
-  resolved "https://registry.yarnpkg.com/chosen-js/-/chosen-js-1.8.7.tgz#9bfa5597f5081d602ff4ae904af9aef33265bb1d"
-  integrity sha512-eVdrZJ2U5ISdObkgsi0od5vIJdLwq1P1Xa/Vj/mgxkMZf14DlgobfB6nrlFi3kW4kkvKLsKk4NDqZj1MU1DCpw==
-
 color-convert@^1.9.0:
   version "1.9.3"
   resolved "https://registry.yarnpkg.com/color-convert/-/color-convert-1.9.3.tgz#bb71850690e1f136567de629d2d5471deda4c1e8"
