@@ -75,7 +75,8 @@ let esperarRecursosSprocketsYDocumento = function (resolver) {
 let promesaRecursosSprocketsYDocumento = new Promise((resolver, rechazar) => {
   esperarRecursosSprocketsYDocumento(resolver)
 })
-
+// Este se ejecuta cada vez que se carga una página que no está en cache y 
+// tipicamente después de que se ha cargado la página completa y los recursos
 promesaRecursosSprocketsYDocumento.then((mensaje) => {
   console.log(mensaje)
   var root = window;
@@ -84,6 +85,8 @@ promesaRecursosSprocketsYDocumento.then((mensaje) => {
   heb412_gen_prepara_eventos_comunes(root);
   sivel2_gen_prepara_eventos_comunes(root);
   sivel2_gen_prepara_eventos_unicos(root);
+
+  Msip__Motor.ejecutarAlCargarDocumentoYRecursos()
 
   var p = new URL(document.URL).pathname.split('/')
   var p2ult = ''
