@@ -18,7 +18,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/heb412_gen.git
-  revision: bdba4fa0e479d99c5c2046da08327c923bfd0d7d
+  revision: bb840e15c8b51235d3f2c0d0adce820db5b3e96a
   branch: tomselect
   specs:
     heb412_gen (2.2.0.beta6)
@@ -29,7 +29,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/mr519_gen.git
-  revision: 5a570f92e6c4958a22f86b739027c5fcea40784f
+  revision: 719c27930fb55fee27c3f98fbf8ed16eeb7b767f
   branch: tomselect
   specs:
     mr519_gen (2.2.0.beta6)
@@ -38,7 +38,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/msip.git
-  revision: 136684529d3b838d2436ef54591ef8396b7c625a
+  revision: 198221dbde182b30cb64f06b3f5c60160b232ab5
   branch: tomselect
   specs:
     msip (2.2.0.beta6)
@@ -411,9 +411,9 @@ GEM
     sprockets (4.2.1)
       concurrent-ruby (~> 1.0)
       rack (>= 2.2.4, < 4)
-    sprockets-rails (3.4.2)
-      actionpack (>= 5.2)
-      activesupport (>= 5.2)
+    sprockets-rails (3.5.1)
+      actionpack (>= 6.1)
+      activesupport (>= 6.1)
       sprockets (>= 3.0.0)
     stimulus-rails (1.3.3)
       railties (>= 6.0.0)
