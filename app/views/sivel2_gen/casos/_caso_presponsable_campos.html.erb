@@ -1,7 +1,10 @@
 <%= turbo_frame_tag "caso_presponsable_#{fp.index}" do %>
   <div class='control-group nested-fields'>
     <div class="controls">
-      <%= fp.input :id, as: :hidden %>
+      <%= fp.input :id, as: :hidden, 
+        input_html: {
+          "data-controller": "sivel2-gen--motor"
+        }%>
       <div class="row">
         <div class="col-md-12">
           <% col1 = Sivel2Gen::Presponsable.habilitados.map(&:id) %>
