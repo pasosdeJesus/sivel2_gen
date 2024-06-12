@@ -6,15 +6,19 @@
         Sivel2Gen::Contexto, f, :contexto
       ),
       label_method: :nombre, 
-      value_method: :id %>
+      value_method: :id, 
+      input_html: {class: "tom-select"}
+    %>
   </div>
   <div class="col-md-6">
     <%= f.association :antecedente, 
       collection: Msip::ModeloHelper.opciones_tabla_basica(
         Sivel2Gen::Antecedente, f, :antecedente
       ),
-      label_method: :nombre, 
-      value_method: :id %>
+      label_method: :nombre,
+      value_method: :id,
+      input_html: {class: "tom-select"}
+    %>
   </div>
 </div>
 

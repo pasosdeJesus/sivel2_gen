@@ -10,7 +10,10 @@
 <% end %>
 <div class='campos_persona' data-controller="<%= cont %>">
     <%= f.input :id, as: :hidden,
-      input_html: {"data-msip--sindocaut-target": "id"} %>
+      input_html: {
+        "data-msip--sindocaut-target": "id",
+        "data-controller": "sivel2-gen--motor"
+      } %>
 
     <div class="row">
       <div class="col-md-6">
