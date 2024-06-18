@@ -1,8 +1,10 @@
 <div class='control-group nested-fields seccioncombatiente'>
   <div class="controls">
-    
-    <%= f.input :id, as: :hidden %>
-
+    <%= f.input :id, as: :hidden,
+        input_html: {
+          "data-controller": "sivel2-gen--motor"
+        }
+    %>
     <div class="row">
       <div class="col-md-6">
         <%= f.input :nombre %>
@@ -112,7 +114,10 @@
           ),
         include_blank: false,
         label_method: :nombre, 
-        value_method: :id %>
+        value_method: :id,
+        input_html: {
+          class: "tom-select"
+        }%>
        </div>
     </div>
     <div style='margin-bottom: 1em'>

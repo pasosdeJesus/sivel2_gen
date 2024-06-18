@@ -28,7 +28,10 @@
       ),
       include_blank: false,
       label_method: :nombre, 
-      value_method: :id 
+      value_method: :id, 
+      input_html: {
+        class: 'tom-select'
+      }
     %>
   </div>
   <div class="col-md-6">
@@ -38,7 +41,11 @@
       ),
       include_blank: false,
       label_method: :nombre, 
-      value_method: :id %>
+      value_method: :id, 
+      input_html: {
+        class: 'tom-select'
+      }
+    %>
   </div>
 </div>
 
@@ -51,7 +58,11 @@
       ),
       include_blank: false,
       label_method: :nombre, 
-      value_method: :id %>
+      value_method: :id,
+      input_html: {
+        class: 'tom-select'
+      }
+    %>
   </div>
   <div class="col-md-6">
     <%= f.association :sectorsocial,
@@ -60,7 +71,10 @@
       ),
       include_blank: false,
       label_method: :nombre, 
-      value_method: :id
+      value_method: :id,
+      input_html: {
+        class: 'tom-select'
+      }
     %>
   </div>
 </div>
@@ -74,7 +88,10 @@
       ),
       include_blank: false,
       label_method: :nombre, 
-      value_method: :id
+      value_method: :id,
+      input_html: {
+        class: 'tom-select'
+      }
     %>
   </div>
   <div class="col-md-6">
@@ -84,7 +101,11 @@
       ),
       include_blank: false,
       label_method: :nombre, 
-      value_method: :id %>
+      value_method: :id,
+      input_html: {
+        class: 'tom-select'
+      }
+    %>
   </div>
 </div>
 <div class="row">
@@ -95,7 +116,11 @@
       ),
       label_method: :nombre, 
       value_method: :id,
-      include_blank: false %>
+      include_blank: false,
+      input_html: {
+        class: 'tom-select'
+      }
+    %>
   </div>
   <div class="col-md-6">
     <%= f.association :etnia,
@@ -104,7 +129,10 @@
       ),
       include_blank: false,
       label_method: :nombre, 
-      value_method: :id
+      value_method: :id,
+      input_html: {
+        class: 'tom-select'
+      }
     %>
   </div>
 </div>
