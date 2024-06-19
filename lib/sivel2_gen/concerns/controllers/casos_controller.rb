@@ -1434,6 +1434,7 @@ module Sivel2Gen
                   :_destroy,
                   :sectorsocialsec_ids => [],
                   :otraorga_ids => [],
+                  :profesionsec_ids => [],
                   :contextovictima_ids => [],
                   :antecedente_ids => [],
                   :persona_attributes => [
