@@ -15,20 +15,34 @@
 <%= render partial: 'sivel2_gen/casos/contacto_complemento_1', locals: {f: f} %>
 
 <div class="row">
-  <div class="col-md-4">
+  <div class="col-md-3">
     <%= render partial: 'sivel2_gen/victimas/campo_hijos',
       locals: {f: f} %>
   </div>
-  <div class="col-md-4">
+  <div class="col-md-3">
     <%= f.association :profesion,
       collection: Msip::ModeloHelper.opciones_tabla_basica(
         Sivel2Gen::Profesion, f, :profesion
       ),
+      label: "Profesión principal",
       include_blank: false,
       label_method: :nombre,
       value_method: :id %>
   </div>
-  <div class="col-md-4">
+  <div class="col-md-3">
+    <%= f.association :profesionsec,
+      collection: Msip::ModeloHelper.opciones_tabla_basica(
+        Sivel2Gen::Organizacion, f, :profesion),
+        label_method: :nombre,
+        value_method: :id,
+        include_blank: false,
+        input_html: {
+          "data-toggle" => 'tooltip',
+          multiple: true,
+          class: 'chosen-select'
+        } %>
+  </div>
+  <div class="col-md-3">
     <%= f.association :filiacion,
       collection: Msip::ModeloHelper.opciones_tabla_basica(
         Sivel2Gen::Filiacion, f, :filiacion
