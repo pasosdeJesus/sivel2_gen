@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-sol = [:caso_id]
+sol = ['sivel2_gen_conscaso.caso_id']
 if params && params[:filtro]
   if params[:filtro][:inc_ubicaciones]
     sol << 'msip_ubicacion.latitud'
@@ -20,13 +20,17 @@ if params && params[:filtro]
     sol << :memo
   end
 end
-cons = @conscaso.joins('JOIN sivel2_gen_caso as caso ' +
+
+cons = 'SELECT '+ sol.join(", ") + ' FROM sivel2_gen_conscaso ' +
+    'JOIN sivel2_gen_caso as caso ' +
     'ON caso.id=sivel2_gen_conscaso.caso_id ' +
     'LEFT JOIN msip_ubicacion ON msip_ubicacion.id=caso.ubicacion_id ' +
     'LEFT JOIN msip_departamento ON msip_departamento.id=msip_ubicacion.departamento_id ' +
-    'LEFT JOIN msip_municipio ON msip_municipio.id=msip_ubicacion.municipio_id '
-    )
-pl = cons.pluck(*sol)
+    'LEFT JOIN msip_municipio ON msip_municipio.id=msip_ubicacion.municipio_id ' +
+    'WHERE sivel2_gen_conscaso.caso_id IN (' + @conscaso.pluck(:caso_id).join(",") + ')'
+
+pl = ActiveRecord::Base.connection.execute(cons).values
+
 r = pl.map {|l|
       h = {}
       if params && params[:filtro]
