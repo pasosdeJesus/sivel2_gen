@@ -32,7 +32,8 @@
   <div class="col-md-3">
     <%= f.association :profesionsec,
       collection: Msip::ModeloHelper.opciones_tabla_basica(
-        Sivel2Gen::Organizacion, f, :profesion),
+        Sivel2Gen::Profesion, f, :profesion),
+        label: "Profesión secundaria",
         label_method: :nombre,
         value_method: :id,
         include_blank: false,
