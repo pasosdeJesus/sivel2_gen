@@ -36,7 +36,7 @@
             label: false,
             placeholder: 'Inicial',
             input_html: {
-              "data-behaviour" => "datepicker",
+              type: "date",
               value: (params[:validarcaso] ? 
                       params[:validarcaso][:fechaini] :
                       Msip::FormatoFechaHelper.fecha_estandar_local(fpred)
@@ -51,7 +51,7 @@
             label: false,
             placeholder: 'Final',
             input_html: {
-              "data-behaviour" => "datepicker",
+              type: "date",
               value: params[:validarcaso] ? 
                 params[:validarcaso][:fechafin] : ''
             }

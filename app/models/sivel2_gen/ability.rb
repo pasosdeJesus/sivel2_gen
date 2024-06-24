@@ -145,7 +145,7 @@ module Sivel2Gen
           'sivel2_gen_victima') ?
           (Sivel2Gen::Victima.column_names + [
             :departamento_caso,
-            :fecha_caso_localizada,
+            :fecha_caso,
             :municipio_caso,
             :nombre,
             :contextovictima,

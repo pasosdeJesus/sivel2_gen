@@ -1,16 +1,16 @@
-<%= f.input :busfecha_caso_localizadaini,
+<%= f.input :busfecha_casoini,
   label: false,
   input_html: {
-    value: Msip::ModeloHelper.poromision(params, :busfecha_caso_localizadaini),
+    value: Msip::ModeloHelper.poromision(params, :busfecha_casoini),
     type: "date",
     "data-enviarautomatico" => "",
     placeholder: 'Inicial',
   },
   :as => :string %> -
- <%= f.input :busfecha_caso_localizadafin,
+ <%= f.input :busfecha_casofin,
   label: false,
   input_html: {
-    value: Msip::ModeloHelper.poromision(params, :busfecha_caso_localizadafin),
+    value: Msip::ModeloHelper.poromision(params, :busfecha_casofin),
     type: "date",
     "data-enviarautomatico" => "",
     placeholder: 'Final',

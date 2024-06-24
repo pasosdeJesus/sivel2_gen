@@ -17,13 +17,13 @@ module Sivel2Gen
          :nombre, 
          :nomcorto, 
          :observaciones,
-         :fechacreacion_localizada, 
+         :fechacreacion, 
          :habilitado]
       end
 
       def atributos_form # Se requiere id
         atributos_index - [:habilitado] +
-          [:fechadeshabilitacion_localizada]
+          [:fechadeshabilitacion]
       end
       
       def genclase

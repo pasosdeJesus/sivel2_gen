@@ -18,7 +18,7 @@ module Sivel2Gen
 
       def atributos_index
         ["id",  "nombre", "rango", "observaciones",
-         "fechacreacion_localizada", "habilitado"]
+         "fechacreacion", "habilitado"]
       end
       
       def intervalo_params
