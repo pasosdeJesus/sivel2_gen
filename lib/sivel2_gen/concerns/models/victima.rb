@@ -159,8 +159,8 @@ module Sivel2Gen
 
           def sivel2_gen_victima_presenta(atr)
             case atr.to_s
-            when 'fecha_caso_localizada'
-              self.caso ? self.caso.fecha_localizada : ''
+            when 'fecha_caso'
+              self.caso ? self.caso.fecha : ''
             when 'nombre'
               self.persona ? self.persona.presenta_nombre : ''
             when 'profesion'
@@ -249,12 +249,12 @@ module Sivel2Gen
               where("casoetiqueta.etiqueta_id =?", i)
           }
 
-          scope :filtro_fecha_caso_localizadaini, lambda { |f|
+          scope :filtro_fecha_casoini, lambda { |f|
             # En realidad no llega localizada
             joins(:caso).where('sivel2_gen_caso.fecha>=?', f)
           }
 
-          scope :filtro_fecha_caso_localizadafin, lambda { |f|
+          scope :filtro_fecha_casofin, lambda { |f|
             # En realidad no llega localizada
             joins(:caso).where('sivel2_gen_caso.fecha<=?', f)
           }

@@ -35,7 +35,7 @@
             label: false,
             placeholder: 'Inicial',
             input_html: {
-              "data-behaviour" => "datepicker",
+              type: "date",
               value: params[:validarcaso] ? 
                 params[:validarcaso][:fechaini] : ''
             }
@@ -48,7 +48,7 @@
             label: false,
             placeholder: 'Final',
             input_html: {
-              "data-behaviour" => "datepicker",
+              type: "date",
               value: params[:validarcaso] ? 
                 params[:validarcaso][:fechafin] : ''
             }

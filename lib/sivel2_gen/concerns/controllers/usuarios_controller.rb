@@ -69,8 +69,8 @@ module Sivel2Gen
 
           def lista_params_sivel2_gen
             lista_params_msip + [
-              :observadorffechaini_localizada,
-              :observadorffechafin_localizada,
+              :observadorffechaini,
+              :observadorffechafin,
               filtrodepartamento_ids: []
             ]
           end
