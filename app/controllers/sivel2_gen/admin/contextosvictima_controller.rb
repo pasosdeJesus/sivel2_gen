@@ -16,7 +16,7 @@ module Sivel2Gen
         ["id",
          "nombre",
          "observaciones",
-         "fechacreacion_localizada",
+         "fechacreacion",
          "habilitado"]
       end
 

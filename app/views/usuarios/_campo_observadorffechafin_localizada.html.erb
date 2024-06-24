@@ -3,7 +3,7 @@
 <% else %>
   <% estipo = "display: none" %>
 <% end %>
-<%= f.input :observadorffechafin_localizada, 
-  :input_html => { "data-behaviour" => "datepicker" },
+<%= f.input :observadorffechafin, 
+  :input_html => { type: "date" },
   :wrapper_html => { "style" => estipo },
   :as => :string %>

@@ -275,20 +275,20 @@
 
 @ponerVariablesEdad = (root) ->
     if typeof root.campo_fecha_ref_edad == 'undefined'
-      root.campo_fecha_ref_edad = 'caso_fecha_localizada'
+      root.campo_fecha_ref_edad = 'caso_fecha'
     fechac = $('[id=' +  root.campo_fecha_ref_edad + ']')
     if (fechac.length == 0) 
-      root.campo_fecha_ref_edad = 'caso_fecha_localizada'
+      root.campo_fecha_ref_edad = 'caso_fecha'
     fechac = $('[id=' +  root.campo_fecha_ref_edad + ']')
     if (fechac.length == 0) 
       root.campo_fecha_ref_edad = 'caso_fecha'
     fechac = $('[id=' +  root.campo_fecha_ref_edad + ']')
     if (fechac.length >0) 
       vp = []
-      if root.campo_fecha_ref_edad.endsWith('_localizada')
-        vp = @msip_partes_fecha_localizada(fechac.val(), root.formato_fecha)
+      if root.campo_fecha_ref_edad.endsWith('')
+        vp = @msip_partes_fecha(fechac.val(), root.formato_fecha)
       else
-        vp = @msip_partes_fecha_localizada(fechac.val(), 'yyyy-mm-dd')
+        vp = @msip_partes_fecha(fechac.val(), 'yyyy-mm-dd')
       root.aniocaso = vp[0]
       root.mescaso = vp[1]
       root.diacaso = vp[2]
@@ -492,14 +492,7 @@ enviaFormularioContarPost= (root) ->
   if root.puntomontaje[root.puntomontaje.length - 1] != '/'
     root.puntomontaje = root.puntomontaje + '/'
 
-  # Formato de campos de fecha con datepicker
   $(document).on('cocoon:after-insert', (e) ->
-    $('[data-behaviour~=datepicker]').datepicker({
-      format: 'yyyy-mm-dd'
-      autoclose: true
-      todayHighlight: true
-      language: 'es'
-    })
     Msip__Motor.configurarElementosTomSelect()
   )
  
@@ -748,29 +741,14 @@ enviaFormularioContarPost= (root) ->
   )
 
 
-  # Activar datepicker en campos que lo requieren
-  $("input[data-behaviour='datepicker']").datepicker({
-    format: 'yyyy-mm-dd'
-    autoclose: true
-    todayHighlight: true
-    language: 'es'
-  })
-
-
   # Habilitar rangos de edad deshabilitados cuando se pone edad o año
   $(document).on('submit', 'form', (event) ->
     $("[id$=_rangoedad_id]").prop('disabled', false)
   )
 
   # Al cambiar fecha del hecho 
-  # Método para detectar cambios en datepicker de
   # http://stackoverflow.com/questions/17009354/detect-change-to-selected-date-with-bootstrap-datepicker
-  $('#caso_fecha').datepicker({
-    format: 'yyyy-mm-dd'
-    autoclose: true
-    todayHighlight: true
-    language: 'es'
-  }).on('changeDate', (ev) ->
+  $(document).on('change', '#caso_fecha', (ev) ->
     #  Cambiar edades
     $('[id^=caso_victima_attributes][id$=persona_attributes_anionac]').change()
   )

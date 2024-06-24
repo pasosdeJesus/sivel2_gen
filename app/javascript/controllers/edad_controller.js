@@ -36,7 +36,7 @@ export default class extends Controller {
       dia = 1
     }
     let formatoFecha = window.formato_fecha;
-    let campoFechaCaso = document.querySelector('#caso_fecha_localizada');
+    let campoFechaCaso = document.querySelector('#caso_fecha');
     if (campoFechaCaso == null) {
       campoFechaCaso = document.querySelector('#caso_fecha');
       formatoFecha = "yyyy-mm-dd"

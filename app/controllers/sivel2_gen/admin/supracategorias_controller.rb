@@ -18,13 +18,13 @@ module Sivel2Gen
          :tviolencia_id, 
          :codigo, 
          :observaciones, 
-         :fechacreacion_localizada, 
+         :fechacreacion, 
          :habilitado]
       end
 
       def atributos_form # Requiere id
         atributos_index - [:habilitado] + 
-          [:fechadeshabilitacion_localizada]
+          [:fechadeshabilitacion]
       end
 
       def supracategoria_params

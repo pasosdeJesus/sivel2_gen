@@ -9,7 +9,7 @@
                class="campo-mapa-osm form-control seleccion-mapa-osm"
                placeholder= "Desde" 
                id="campo-desde"
-               data-behaviour="datepicker" 
+               type="date" 
                value="<%= Msip::FormatoFechaHelper::
                  fecha_estandar_local(@fechadesde) %>"
                size="11"/>
@@ -20,7 +20,7 @@
                class="campo-mapa-osm form-control seleccion-mapa-osm"
                placeholder= "Hasta" 
                id="campo-hasta"
-               data-behaviour="datepicker" 
+               type="date" 
                value="<%= Msip::FormatoFechaHelper::
                  fecha_estandar_local(@fechahasta) %>"
                size="11"/>

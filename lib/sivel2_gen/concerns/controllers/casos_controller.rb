@@ -1286,7 +1286,6 @@ module Sivel2Gen
               [
                 :caso_etiqueta_attributes => [
                   :fecha,
-                  :fecha_localizada,
                   :id,
                   :etiqueta_id,
                   :usuario_id,
@@ -1300,7 +1299,6 @@ module Sivel2Gen
                 #:bitacora_cambio,
                 :duracion,
                 :fecha,
-                :fecha_localizada,
                 :grconfiabilidad,
                 :gresclarecimiento,
                 :grimpunidad,
@@ -1320,7 +1318,6 @@ module Sivel2Gen
                   :caso_id,
                   :anexo_id,
                   :fecha,
-                  :fecha_localizada,
                   :_destroy,
                   :msip_anexo_attributes => [
                     :id, :descripcion, :adjunto, :_destroy
@@ -1329,7 +1326,6 @@ module Sivel2Gen
                 :antecedente_ids => [],
                 :caso_etiqueta_attributes => [
                   :fecha,
-                  :fecha_localizada,
                   :id,
                   :etiqueta_id,
                   :usuario_id,
@@ -1340,7 +1336,6 @@ module Sivel2Gen
                   :anexo_caso_id,
                   :anotacion,
                   :fecha,
-                  :fecha_localizada,
                   :id,
                   :nombre,
                   :tfuente,
@@ -1351,7 +1346,6 @@ module Sivel2Gen
                   :anexo_caso_id,
                   :clasificacion,
                   :fecha,
-                  :fecha_localizada,
                   :fuenteprensa_id,
                   :id,
                   :ubicacion,
@@ -1376,7 +1370,6 @@ module Sivel2Gen
                     :id,
                     :usuario_id, 
                     :fecha,
-                    :fecha_localizada,
                     :solicitud,
                     :estadosol_id,
                     :usuarionotificar_ids => []
