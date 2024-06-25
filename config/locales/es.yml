@@ -251,6 +251,7 @@ es:
         presponsables_caso: Presuntos responsables
         presponsables_caso_ids: Ids. de presuntos responsables
         profesion: Profesión
+        profesionsec: Profesión Secundaria
         rangoedad: Rango de edad
         sectorsocial: Sector social principal
         sectorsocialsec: Sectores sociales secundarios
