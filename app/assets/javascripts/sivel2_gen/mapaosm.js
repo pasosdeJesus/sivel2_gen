@@ -143,9 +143,9 @@ function descargarUrl(url, retrollamada) {
 function armarRutaConsulta(rutaSinPuntomontaje, usuarioAutenticado) {
   var ruta = window.puntomontaje + rutaSinPuntomontaje
   var desde = $('#campo-desde').val()
-  var desdep = msip_partes_fecha(desde, window.formato_fecha)
+  var desdep = desde
   var hasta = $('#campo-hasta').val();
-  var hastap = msip_partes_fecha(hasta, window.formato_fecha)
+  var hastap = hasta
   var departamento = $('#departamento').val()
   var prresp = $('#presponsable').val()
   var tvio = $('#tvio').val();
