@@ -4,25 +4,21 @@
     <div>
       <div>Fecha:</div>
       <div>
-        <input type="text" 
-               name="desde" 
+        <input name="desde" 
                class="campo-mapa-osm form-control seleccion-mapa-osm"
                placeholder= "Desde" 
                id="campo-desde"
                type="date" 
-               value="<%= Msip::FormatoFechaHelper::
-                 fecha_estandar_local(@fechadesde) %>"
+               value="<%= @fechadesde %>"
                size="11"/>
       </div>
       <div>
-        <input type="text" 
-               name="hasta" 
+        <input name="hasta" 
                class="campo-mapa-osm form-control seleccion-mapa-osm"
                placeholder= "Hasta" 
                id="campo-hasta"
                type="date" 
-               value="<%= Msip::FormatoFechaHelper::
-                 fecha_estandar_local(@fechahasta) %>"
+               value="<%= @fechahasta %>"
                size="11"/>
       </div>
     </div>

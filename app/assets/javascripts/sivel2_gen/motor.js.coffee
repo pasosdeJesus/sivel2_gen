@@ -286,9 +286,9 @@
     if (fechac.length >0) 
       vp = []
       if root.campo_fecha_ref_edad.endsWith('')
-        vp = @msip_partes_fecha(fechac.val(), root.formato_fecha)
+        vp = @msip_partes_fecha_localizada(fechac.val(), root.formato_fecha)
       else
-        vp = @msip_partes_fecha(fechac.val(), 'yyyy-mm-dd')
+        vp = @msip_partes_fecha_localizada(fechac.val(), 'yyyy-mm-dd')
       root.aniocaso = vp[0]
       root.mescaso = vp[1]
       root.diacaso = vp[2]
