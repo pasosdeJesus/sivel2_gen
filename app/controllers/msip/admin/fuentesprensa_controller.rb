@@ -18,7 +18,7 @@ module Msip
       def atributos_index
         [
           "id", "nombre", "observaciones", "tfuente", 
-          "fechacreacion", 
+          "fechacreacion_localizada", 
           "habilitado"
         ]
       end

@@ -17,7 +17,7 @@ module Sivel2Gen
          :nombre, 
          :nomcorto, 
          :observaciones,
-         :fechacreacion, 
+         :fechacreacion_localizada, 
          :habilitado]
       end
 
