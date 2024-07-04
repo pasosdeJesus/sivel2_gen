@@ -305,7 +305,15 @@ module Sivel2Gen
 
             actos_individuales = []
             actos_colectivos = []
-            datosent['acto'].each do |acto|
+
+            # Nokogiri pasa varios actos como una lista,
+            # pero uno solo como un Hash
+            if datosent['acto'].kind_of?(Array)
+              lactos = datosent['acto']
+            else
+              lactos = [datosent['acto']]
+            end
+            lactos.each do |acto|
               if !acto['id_victima_individual'].nil?
                 actos_individuales.append(acto)
               end
