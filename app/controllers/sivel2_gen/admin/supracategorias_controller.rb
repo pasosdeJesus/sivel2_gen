@@ -18,7 +18,7 @@ module Sivel2Gen
          :tviolencia_id, 
          :codigo, 
          :observaciones, 
-         :fechacreacion, 
+         :fechacreacion_localizada, 
          :habilitado]
       end
 
