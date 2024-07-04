@@ -43,7 +43,7 @@ module Sivel2Gen
     end
 
     def verifica_formulario
-      assert_select "input#caso_fecha_localizada[name=?]", "caso[fecha_localizada]"
+      assert_select "input#caso_fecha[name=?]", "caso[fecha]"
       assert_select "textarea#caso_memo[name=?]", "caso[memo]"
     end
 

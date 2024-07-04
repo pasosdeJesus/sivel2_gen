@@ -23,7 +23,7 @@ module Sivel2Gen
 
       def atributos_form # Se requiere id
         atributos_index - [:habilitado] +
-          [:fechadeshabilitacion_localizada]
+          [:fechadeshabilitacion]
       end
       
       def genclase

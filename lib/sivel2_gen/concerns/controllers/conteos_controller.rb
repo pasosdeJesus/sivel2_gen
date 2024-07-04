@@ -7,7 +7,6 @@ module Sivel2Gen
 
         included do
 
-          include Msip::FormatoFechaHelper
           include Msip::SqlHelper
 
           @pDepartamento = ''
@@ -382,12 +381,12 @@ module Sivel2Gen
             @fechafin = '';
             if (params[:filtro] && params[:filtro]['fechaini'] && 
                 params[:filtro]['fechaini'] != "") 
-              @fechaini = fecha_local_estandar(params[:filtro]['fechaini'])
+              @fechaini = params[:filtro]['fechaini']
               where1 = personas_fecha_inicial(where1)
             end
             if (params[:filtro] && params[:filtro]['fechafin'] && 
                 params[:filtro]['fechafin'] != "") 
-              @fechafin = fecha_local_estandar(params[:filtro]['fechafin'])
+              @fechafin = params[:filtro]['fechafin']
               where1 = personas_fecha_final(where1)
             end
 
@@ -571,12 +570,12 @@ module Sivel2Gen
             @fechafin = '';
             if (params[:filtro] && params[:filtro]['fechaini'] && 
                 params[:filtro]['fechaini'] != "") 
-              @fechaini = fecha_local_estandar(params[:filtro]['fechaini'])
+              @fechaini = params[:filtro]['fechaini']
               where1 = personas_fecha_inicial(where1)
             end
             if (params[:filtro] && params[:filtro]['fechafin'] && 
                 params[:filtro]['fechafin'] != "") 
-              @fechafin = fecha_local_estandar(params[:filtro]['fechafin'])
+              @fechafin = params[:filtro]['fechafin']
               where1 = personas_fecha_final(where1)
             end
             if (params[:filtro] && params[:filtro]['etiqueta_id'] && 
@@ -802,7 +801,7 @@ module Sivel2Gen
             where1 = ''
 
             if (pFini != '')
-              @fechaini = Msip::FormatoFechaHelper.fecha_local_estandar pFini
+              @fechaini = pFini
               if @fechaini
                 where1 = ampliar_where(
                   where1, "caso.fecha", @fechaini, ">="
@@ -810,7 +809,7 @@ module Sivel2Gen
               end
             end
             if (pFfin != '') 
-              @fechafin = Msip::FormatoFechaHelper.fecha_local_estandar pFfin
+              @fechafin = pFfin
               if @fechafin
                 where1 = ampliar_where(
                   where1, "caso.fecha", @fechafin, "<="
