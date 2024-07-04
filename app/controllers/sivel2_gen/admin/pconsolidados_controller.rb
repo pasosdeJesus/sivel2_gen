@@ -20,7 +20,7 @@ module Sivel2Gen
          :peso, 
          :observaciones, 
          :categoria_ids,
-         :fechacreacion, 
+         :fechacreacion_localizada, 
          :habilitado
         ]
       end
