@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/kreeti/kt-paperclip.git
-  revision: ff04ddc779102550b46aa6bb86b1632e36423574
+  revision: 254b5fe1c4e93964265183e554bca57614e51f06
   specs:
     kt-paperclip (7.2.2)
       activemodel (>= 4.2.0)
@@ -18,10 +18,10 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/heb412_gen.git
-  revision: 14cb063c0370fbdb4df5400cd9ece8077750f404
+  revision: 306057d4fa51202a3ef5aac13628639fb6c99d7e
   branch: main
   specs:
-    heb412_gen (2.2.0.beta4)
+    heb412_gen (2.3.0.alfa1)
       mr519_gen
       msip
       redcarpet
@@ -29,19 +29,19 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/mr519_gen.git
-  revision: ca8b8e82313374119355a57e21e2bbdf615f9f34
+  revision: 3a519eab6b8ed59c538023b7fb90d26689ec7eb9
   branch: main
   specs:
-    mr519_gen (2.2.0.beta4)
+    mr519_gen (2.2.0.beta5)
       msip
       rails
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/msip.git
-  revision: 9d6954b1f8e0b41124f549ae385a904543494db2
+  revision: 5ffdd2b1ee041d2097d947f63bf06fdb07bb0392
   branch: main
   specs:
-    msip (2.2.0.beta5)
+    msip (2.3.0.alfa1)
       cancancan (~> 3)
       devise (~> 4)
       devise-i18n (~> 1)
@@ -156,7 +156,7 @@ GEM
       bundler (>= 1.2.0, < 3)
       thor (~> 1.0)
     camertron-eprun (1.1.1)
-    cancancan (3.5.0)
+    cancancan (3.6.1)
     capybara (3.40.0)
       addressable
       matrix
@@ -192,13 +192,13 @@ GEM
     debug (1.9.2)
       irb (~> 1.10)
       reline (>= 0.3.8)
-    devise (4.9.3)
+    devise (4.9.4)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
-    devise-i18n (1.12.0)
+    devise-i18n (1.12.1)
       devise (>= 4.9.0)
     docile (1.4.0)
     dotenv (3.1.0)
@@ -229,7 +229,7 @@ GEM
     irb (1.12.0)
       rdoc
       reline (>= 0.4.2)
-    jbuilder (2.11.5)
+    jbuilder (2.12.0)
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
     jsbundling-rails (1.3.0)
@@ -252,8 +252,8 @@ GEM
     mime-types-data (3.2024.0305)
     mini_mime (1.1.5)
     mini_portile2 (2.8.5)
-    minitest (5.22.3)
-    minitest-reporters (1.6.1)
+    minitest (5.24.1)
+    minitest-reporters (1.7.1)
       ansi
       builder
       minitest (>= 5.0)
@@ -270,7 +270,7 @@ GEM
     net-smtp (0.5.0)
       net-protocol
     nio4r (2.7.1)
-    nokogiri (1.16.3)
+    nokogiri (1.16.6)
       mini_portile2 (~> 2.8.2)
       racc (~> 1.4)
     odf-report (0.8.1)
@@ -379,7 +379,7 @@ GEM
     rubocop-minitest (0.35.0)
       rubocop (>= 1.61, < 2.0)
       rubocop-ast (>= 1.31.1, < 2.0)
-    rubocop-rails (2.24.1)
+    rubocop-rails (2.25.1)
       activesupport (>= 4.2.0)
       rack (>= 1.1)
       rubocop (>= 1.33.0, < 2.0)
@@ -398,7 +398,7 @@ GEM
       sprockets (> 3.0)
       sprockets-rails
       tilt
-    simple_form (5.3.0)
+    simple_form (5.3.1)
       actionpack (>= 5.2)
       activemodel (>= 5.2)
     simplecov (0.22.0)
@@ -410,9 +410,9 @@ GEM
     sprockets (4.2.1)
       concurrent-ruby (~> 1.0)
       rack (>= 2.2.4, < 4)
-    sprockets-rails (3.4.2)
-      actionpack (>= 5.2)
-      activesupport (>= 5.2)
+    sprockets-rails (3.5.1)
+      actionpack (>= 6.1)
+      activesupport (>= 6.1)
       sprockets (>= 3.0.0)
     stimulus-rails (1.3.3)
       railties (>= 6.0.0)
@@ -428,7 +428,7 @@ GEM
       actionpack (>= 6.0.0)
       activejob (>= 6.0.0)
       railties (>= 6.0.0)
-    twitter_cldr (6.12.0)
+    twitter_cldr (6.12.1)
       camertron-eprun
       cldr-plurals-runtime-rb (~> 1.1)
       tzinfo
@@ -516,4 +516,4 @@ DEPENDENCIES
   will_paginate
 
 BUNDLED WITH
-   2.5.7
+   2.5.14

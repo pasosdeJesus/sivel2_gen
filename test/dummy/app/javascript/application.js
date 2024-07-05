@@ -16,8 +16,6 @@ import './jquery'
 
 import 'popper.js'              // Dialogos emergentes usados por bootstrap
 import * as bootstrap from 'bootstrap'              // Maquetacion y elementos de diseño
-import 'bootstrap-datepicker'
-import 'bootstrap-datepicker/dist/locales/bootstrap-datepicker.es.min.js'
 
 import Msip__Motor from "./controllers/msip/motor"
 window.Msip__Motor = Msip__Motor
