@@ -24,7 +24,9 @@ module Sivel2Gen
 
       def atributos_form # Requiere id
         atributos_index - [:habilitado] + 
-          [:fechadeshabilitacion]
+          [:fechadeshabilitacion] -
+          [:fechacreacion_localizada] +
+          [:fechacreacion]
       end
 
       def supracategoria_params

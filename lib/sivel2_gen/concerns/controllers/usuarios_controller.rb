@@ -48,8 +48,8 @@ module Sivel2Gen
               :tema,
               :idioma,
               :encrypted_password,
-              :fechacreacion_localizada,
-              :fechadeshabilitacion_localizada,
+              :fechacreacion,
+              :fechadeshabilitacion,
               :failed_attempts,
               :unlock_token,
               :locked_at
@@ -58,7 +58,11 @@ module Sivel2Gen
           end
 
           def atributos_show
-            [:id] + atributos_form
+            [:id] + atributos_form +
+              [:fechacreacion_localizada] +
+              [:fechadeshabilitacion_localizada] -
+              [:fechacreacion]-
+              [:fechadeshabilitacion]
           end
 
           def vistas_manejadas
