@@ -27,7 +27,8 @@ module Sivel2Gen
 
       # Campos que se presentar en formulario
       def atributos_form
-        r = atributos_show - 
+        r = atributos_show -  [:fechacreacion_localizada] + [:fechacereacion] -
+         [:fechadeshabilitacion_localizada] + [:fechadeshabilitacion] - 
           ["id", :id, 'created_at', :created_at, 'updated_at', :updated_at]
         r[r.index(:categoria_ids)] = { 'categoria_ids' => [] }
         return r
