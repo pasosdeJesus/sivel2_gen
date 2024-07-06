@@ -66,15 +66,13 @@ module Sivel2Gen
 
           scope :filtro_fechaini, lambda { |fecha_ref|
             where('sivel2_gen_conscaso.fecha >= ?', 
-                  Msip::FormatoFechaHelper.
-                  fecha_local_estandar(fecha_ref)
+                  fecha_ref
                  )
           }
 
           scope :filtro_fechafin, lambda { |fecha_ref|
             where('sivel2_gen_conscaso.fecha <= ?', 
-                   Msip::FormatoFechaHelper.
-                  fecha_local_estandar(fecha_ref)
+                  fecha_ref
                  )
           }
 
