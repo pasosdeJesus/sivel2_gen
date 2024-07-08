@@ -31,7 +31,11 @@ module Sivel2Gen
           end
 
           def atributos_form
-            atributos_show
+            atributos_show -
+              [:fechacreacion_localizada]-
+              [:fechadeshabilitacion_localizada] +
+              [:fechacreacion] +
+              [:fechadeshabilitacion]
           end
 
           def filtra_por_tviolencia
