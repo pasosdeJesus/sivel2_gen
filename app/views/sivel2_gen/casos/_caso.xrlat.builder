@@ -96,6 +96,8 @@ xml.relato do
                           {tipo: 'contexto'}) if v.contextovictima[0]
         xml.observaciones(v.otraorga.map(&:nombre).join(";"), 
                           {tipo: 'otraorga'}) if v.otraorga[0]
+        xml.observaciones(v.profesionsec.map(&:nombre).join(";"), 
+                          {tipo: 'profesionsec'}) if v.profesionsec[0]
         xml.observaciones(v.sectorsocialsec.map(&:nombre).join(";"), 
                           {tipo: 'sectorsocialsec'}) if v.sectorsocialsec[0]
         xml.observaciones(

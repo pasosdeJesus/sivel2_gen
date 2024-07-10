@@ -77,6 +77,8 @@ module Sivel2Gen
       persona3 =  Msip::Persona.create! PRUEBA_PERSONA3
       rangoedad = Sivel2Gen::Rangoedad.create! PRUEBA_RANGOEDAD
       profesion = Sivel2Gen::Profesion.create! PRUEBA_PROFESION
+      profesion1 = Sivel2Gen::Profesion.find(1)
+      profesion2 = Sivel2Gen::Profesion.find(2)
       sectorsocial = Sivel2Gen::Sectorsocial.create! PRUEBA_SECTORSOCIAL
       organizacion1 = Sivel2Gen::Organizacion.find(1)
       organizacion2 = Sivel2Gen::Organizacion.find(2)
@@ -105,6 +107,12 @@ module Sivel2Gen
         iglesia_id: nil,
         orientacionsexual: 'S'
       )
+      profesec1 = Sivel2Gen::ProfesionVictima.create(
+        profesion_id: profesion1.id, victima_id: victima1.id)
+      assert !profesec1.nil?
+      profesec2 = Sivel2Gen::ProfesionVictima.create(
+        profesion_id: profesion2.id, victima_id: victima1.id)
+      assert !profesec2.nil?
       otrasorg1 = Sivel2Gen::OtraorgaVictima.create(
         organizacion_id: organizacion1.id, victima_id: victima1.id)
       assert !otrasorg1.nil?
