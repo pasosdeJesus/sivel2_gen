@@ -21,7 +21,7 @@
                 class: 'form-control'
             else
               f.date_field :fecha, label: false, readonly: true, 
-                value: Time.now.strftime("%d/%m/%Y"), class: 'form-control'
+                value: Msip::FormatoFechaHelper::fecha_estandar_local(Date.today), class: 'form-control'
             end
           %>
         </div>
