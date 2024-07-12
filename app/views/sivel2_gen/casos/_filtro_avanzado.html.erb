@@ -497,6 +497,23 @@
    
       <div class="row filtro-fila">
         <div class="offset-sm-0 col-sm-2 offset-md-1 col-md-1">
+          Solicitudes
+        </div>
+        <div class="offset-sm-0 col-sm-3">
+          <%= f.input :estadosol_id,
+            collection: Msip::ModeloHelper.opciones_tabla_basica(
+              Msip::Estadosol, f, :estadosol_id
+            ),
+            label_method: :nombre,
+            value_method: :id,
+            label: false,
+            include_blank: '-- Estado de solicitud'
+          %>
+        </div>
+      </div>
+
+      <div class="row filtro-fila">
+        <div class="offset-sm-0 col-sm-2 offset-md-1 col-md-1">
           Ingreso a Sistema
         </div>
         <div class="offset-sm-0 col-sm-2">

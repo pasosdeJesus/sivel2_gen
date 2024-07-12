@@ -105,6 +105,7 @@ module Sivel2Gen
                 :organizacion_id, :profesion_id, :filiacion_id, :descripcion,
                 :usuario_id, :fechaingini, :fechaingfin, :contexto_id, 
                 :contextovictima_id, :codigo, :orientacionsexual,
+                :estadosol_id,
                 :sectorsocial_id 
               ]
             else

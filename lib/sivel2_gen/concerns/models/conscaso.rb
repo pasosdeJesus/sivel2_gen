@@ -223,6 +223,15 @@ module Sivel2Gen
             end
           }
 
+
+          scope :filtro_estadosol_id, lambda { |e|
+            where('sivel2_gen_conscaso.caso_id IN (SELECT caso_id
+                    FROM public.sivel2_gen_caso_solicitud AS cs
+                    JOIN public.msip_solicitud AS s ON cs.solicitud_id=s.id
+                    WHERE s.estadosol_id=?)', e)
+          }
+
+
           scope :filtro_usuario_id, lambda { |u|
             where('sivel2_gen_conscaso.caso_id IN (SELECT caso_id
                     FROM public.sivel2_gen_caso_usuario
