@@ -521,6 +521,19 @@ module Sivel2Gen
                       "'#{org}'"
                   end
                 end
+              when 'profesionsec'
+                ele[1].split(";").each do |prof|
+                  profesion = Sivel2Gen::Profesion.where(nombre: prof)
+                  if profesion.count == 1
+                    prov = Sivel2Gen::ProfesionVictima.new
+                    prov.profesion_id = profesion[0].id
+                    prov.victima_id = self.id
+                    prov.save!
+                  else
+                    menserror << "En la tabla básica Organización no está " +
+                      "'#{org}'"
+                  end
+                end
               when 'contexto'
                 ele[1].split(";").each do |cont|
                   contexto = Sivel2Gen::Contextovictima.where(nombre: cont)
