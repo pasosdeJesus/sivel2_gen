@@ -17,11 +17,11 @@
           <%= f.label :fecha, "Fecha", class: "select optional control-label" %>
           <%= 
             if !f.object.fecha.nil?
-              f.text_field :fecha, label: false, readonly: true, 
+              f.date_field :fecha, label: false, readonly: true, 
                 class: 'form-control'
             else
-              f.text_field :fecha, label: false, readonly: true, 
-                value: Time.now.strftime("%Y-%m-%d"), class: 'form-control'
+              f.date_field :fecha, label: false, readonly: true, 
+                value: Time.now.strftime("%d/%m/%Y"), class: 'form-control'
             end
           %>
         </div>
