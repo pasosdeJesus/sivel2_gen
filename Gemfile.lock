@@ -18,7 +18,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/heb412_gen.git
-  revision: a6fe20558f67d4127e43ee2e63f193cb2a5dabd0
+  revision: 09647d7674e9d0072f897b951fcb365fa5dd7fde
   branch: tomselect
   specs:
     heb412_gen (2.2.0.beta6)
@@ -29,7 +29,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/mr519_gen.git
-  revision: c3523f67ba6c6828d6de1b3606a744fee5c38c1d
+  revision: 216da5462a98f6cdd2d0eeb785e352c746899630
   branch: tomselect
   specs:
     mr519_gen (2.2.0.beta6)
@@ -377,7 +377,7 @@ GEM
       unicode-display_width (>= 2.4.0, < 3.0)
     rubocop-ast (1.31.3)
       parser (>= 3.3.1.0)
-    rubocop-minitest (0.35.0)
+    rubocop-minitest (0.35.1)
       rubocop (>= 1.61, < 2.0)
       rubocop-ast (>= 1.31.1, < 2.0)
     rubocop-rails (2.25.1)
@@ -518,4 +518,4 @@ DEPENDENCIES
   will_paginate
 
 BUNDLED WITH
-   2.5.14
+   2.5.15
