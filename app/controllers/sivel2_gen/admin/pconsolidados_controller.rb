@@ -1,46 +1,12 @@
+require 'sivel2_gen/concerns/controllers/pconsolidados_controller'
+
 module Sivel2Gen
   module Admin
     class PconsolidadosController < Msip::Admin::BasicasController
       before_action :set_pconsolidado, only: [:show, :edit, :update, :destroy]
       load_and_authorize_resource class: Sivel2Gen::Pconsolidado
 
-      def clase 
-        "Sivel2Gen::Pconsolidado"
-      end
-
-      def set_pconsolidado
-        @basica = Pconsolidado.find(params[:id])
-      end
-
-      def atributos_index
-        [:id, 
-         :nombre, 
-         :tipoviolencia, 
-         :clasificacion, 
-         :peso, 
-         :observaciones, 
-         :categoria_ids,
-         :fechacreacion_localizada, 
-         :habilitado
-        ]
-      end
-
-      # Campos que se presentar en formulario
-      def atributos_form
-        r = atributos_show -  [:fechacreacion_localizada] + [:fechacereacion] -
-         [:fechadeshabilitacion_localizada] + [:fechadeshabilitacion] - 
-          ["id", :id, 'created_at', :created_at, 'updated_at', :updated_at]
-        r[r.index(:categoria_ids)] = { 'categoria_ids' => [] }
-        return r
-      end
-
-      def index_reordenar(c)
-        c.reorder(:id)
-      end
-
-      def pconsolidado_params
-        params.require(:pconsolidado).permit(*atributos_form)
-      end
+      include Sivel2Gen::Concerns::Controllers::PconsolidadosController
 
     end
   end
