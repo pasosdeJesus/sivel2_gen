@@ -25,7 +25,6 @@
             <%= select_tag "caso_acto_presponsable_id", 
               p,
               multiple: true, 
-              class: 'tom-select',
               "data-toggle" => 'tooltip',
               "title" => 'Seleccione de aquellos que añadió en la pestaña Presuntos Responsables' %>
           </div>
@@ -45,7 +44,7 @@
             <%= select_tag "caso_acto_categoria_id", 
               c, 
               multiple: true, 
-              class: 'tom-select', 
+              class: 'chosen-select', 
               "data-toggle" => 'tooltip',
               "title" => 'Seleccione el(los) tipo(s) de violencia que '\
               'asociados al presunto responsable() y víctima(s). '\
@@ -65,7 +64,7 @@
               <%= select_tag "caso_acto_persona_id", 
                 p,
                 multiple: true, 
-                #class: 'tom-select',
+                #class: 'chosen-select',
                 "data-toggle": 'tooltip',
                 title: "Seleccione los nombres de una o más víctimas "\
                 "asociadas al presunto responsable y a la categoria "\
