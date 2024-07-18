@@ -305,7 +305,11 @@ module Sivel2Gen
 
             actos_individuales = []
             actos_colectivos = []
-            datosent['acto'].each do |acto|
+            actos = datosent['acto']
+            if !datosent['acto'].kind_of?(Array)
+              actos = [datosent['acto']]
+            end
+            actos.each do |acto|
               if !acto['id_victima_individual'].nil?
                 actos_individuales.append(acto)
               end
