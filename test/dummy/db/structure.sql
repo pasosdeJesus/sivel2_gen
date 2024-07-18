@@ -1694,9 +1694,9 @@ ALTER SEQUENCE public.mr519_gen_valorcampo_id_seq OWNED BY public.mr519_gen_valo
 CREATE TABLE public.msip_anexo (
     id integer NOT NULL,
     descripcion character varying(1500) NOT NULL COLLATE public.es_co_utf_8,
-    adjunto_file_name character varying(255),
-    adjunto_content_type character varying(255),
-    adjunto_file_size integer,
+    adjunto_file_name character varying(255) NOT NULL,
+    adjunto_content_type character varying(255) NOT NULL,
+    adjunto_file_size integer NOT NULL,
     adjunto_updated_at timestamp without time zone,
     created_at timestamp without time zone,
     updated_at timestamp without time zone
@@ -6631,6 +6631,14 @@ ALTER TABLE ONLY public.sivel2_gen_categoria
 
 
 --
+-- Name: sivel2_gen_categoria categoria_contadaen_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.sivel2_gen_categoria
+    ADD CONSTRAINT categoria_contadaen_fkey FOREIGN KEY (contadaen) REFERENCES public.sivel2_gen_categoria(id);
+
+
+--
 -- Name: sivel2_gen_contextovictima_victima contextovictima_victima_contextovictima_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -7415,6 +7423,14 @@ ALTER TABLE ONLY public.msip_persona
 
 
 --
+-- Name: sivel2_gen_presponsable presponsable_papa_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.sivel2_gen_presponsable
+    ADD CONSTRAINT presponsable_papa_fkey FOREIGN KEY (papa_id) REFERENCES public.sivel2_gen_presponsable(id);
+
+
+--
 -- Name: sivel2_gen_caso_presponsable presuntos_responsables_caso_id_caso_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -7733,6 +7749,7 @@ ALTER TABLE ONLY public.sivel2_gen_victimacolectiva_vinculoestado
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20240715230510'),
 ('20240619170550'),
 ('20240424122935'),
 ('20240423143517'),
