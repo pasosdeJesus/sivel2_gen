@@ -7,38 +7,27 @@
 <link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v1.0.0/MarkerCluster.Default.css' rel='stylesheet' />
 <link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v1.0.0/MarkerCluster.css' rel='stylesheet' />
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css"
-  integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
-  crossorigin=""/>
-<div id="filtro-osm">
-  <div class="card border-primary">
-    <div class="card-body">
-      <h4 class="card-title">Casos sobre OpenStreetMap</h4>
-      <form name="configuracion" onsubmit="agregarCasosOsm(true); return false;">
-        <%= render :partial => "sivel2_gen/casos/filtroybotones_mapaosm" %>
-      </form>
+                       integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+                       crossorigin=""/>
+<div data-controller="sivel2-gen--mapaosm"
+  data-sivel2-gen--mapaosm-usuario-autenticado="<%= current_usuario ? 'true' : 'false' %>">
+  <div id="filtro-osm">
+    <div class="card border-primary">
+      <div class="card-body">
+        <h4 class="card-title">Casos sobre OpenStreetMap</h4>
+        <form name="configuracion" onsubmit="agregarCasosOsm(true); return false;">
+          <%= render :partial => "sivel2_gen/casos/filtroybotones_mapaosm" %>
+        </form>
+      </div>
     </div>
   </div>
+  <div id="mapa-osm"></div>
+  <% if current_usuario %>
+    <div id="agrega-capa">
+      <button id="agregar-capa" type="button" data-action="sivel2-gen--mapaosm#agregarCapaGeojson" class="btn btn-primary btn-sm">Agregar capa GeoJSON (&lt;100K)</button>
+    </div>
+    <div id="descarga-mapa">
+      <button id="descargar-mapa" type="button" data-action="sivel2-gen--mapaosm#descargarCapaCasos" class="btn btn-primary btn-sm"><a id= "enlace-descarga">Descargar capa de casos</a></button>
+    </div>
+  <% end %>
 </div>
-<div id="mapa-osm"></div>
-<% if current_usuario %>
-  <div id="agrega-capa">
-    <button id="agregar-capa" type="button" class="btn btn-primary btn-sm">Agregar capa GeoJSON (&lt;100K)</button>
-  </div>
-  <div id="descarga-mapa">
-    <button id="descargar-mapa" type="button" class="btn btn-primary btn-sm"><a id= "enlace-descarga">Descargar capa de casos</a></button>
-  </div>
-<% end %>
-
-<% if current_usuario %>
- <script defer="true">
-   document.addEventListener('msip:cargado', function (e) {  
-     presentarMapaOsm(true)
-   }, false);
- </script>
-<% else %>
-  <script defer="true">
-    document.addEventListener('msip:cargado', function (e) {  
-     presentarMapaOsm(false)
-    }, false);
-  </script>
-<% end %>
