@@ -42,8 +42,8 @@ Apex.chart = {
 }
 
 // Leaflet
-var L = require('leaflet');
-var mc= require('leaflet.markercluster');
+import L from 'leaflet';
+import 'leaflet.markercluster';
 
 import plotly_serietiempo_actos from './plotly_actos'
 
