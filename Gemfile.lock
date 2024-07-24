@@ -18,7 +18,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/heb412_gen.git
-  revision: 09647d7674e9d0072f897b951fcb365fa5dd7fde
+  revision: 33143bff650419b56deb7d407d799fad4a501358
   branch: tomselect
   specs:
     heb412_gen (2.2.0.beta6)
@@ -29,7 +29,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/mr519_gen.git
-  revision: 216da5462a98f6cdd2d0eeb785e352c746899630
+  revision: 2277c5b7cfa29667e0f64357155d3efa4b6c7780
   branch: tomselect
   specs:
     mr519_gen (2.2.0.beta6)
@@ -38,7 +38,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/msip.git
-  revision: 049ed9053e9ffcc312f07da347b31d53d878032a
+  revision: a68758a78ec5cd6c5076f9799c2124afc877dc5f
   branch: tomselect
   specs:
     msip (2.2.0.beta6)
@@ -426,7 +426,7 @@ GEM
     timeout (0.4.1)
     ttfunk (1.8.0)
       bigdecimal (~> 3.1)
-    turbo-rails (2.0.5)
+    turbo-rails (2.0.6)
       actionpack (>= 6.0.0)
       activejob (>= 6.0.0)
       railties (>= 6.0.0)
@@ -518,4 +518,4 @@ DEPENDENCIES
   will_paginate
 
 BUNDLED WITH
-   2.5.15
+   2.5.16
