@@ -308,6 +308,132 @@ CREATE FUNCTION public.msip_ubicacionpre_actualiza_nombre() RETURNS trigger
 
 
 --
+-- Name: msip_ubicacionpre_antes_de_eliminar_centropoblado(); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION public.msip_ubicacionpre_antes_de_eliminar_centropoblado() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+      BEGIN
+        ASSERT(TG_OP = 'DELETE');
+        RAISE NOTICE 'Eliminando centropoblado';
+        RAISE NOTICE 'TG_OP = %', TG_OP;
+        RAISE NOTICE 'OLD.id = %', OLD.id;
+        RAISE NOTICE 'OLD.nombre = %', OLD.nombre;
+
+        DELETE FROM public.msip_ubicacionpre WHERE 
+          municipio_id=OLD.municipio_id
+          AND centropoblado_id=OLD.id
+          AND vereda_id IS NULL
+          AND lugar IS NULL;
+        RETURN OLD;
+      END ;
+      $$;
+
+
+--
+-- Name: msip_ubicacionpre_antes_de_eliminar_departamento(); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION public.msip_ubicacionpre_antes_de_eliminar_departamento() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+      BEGIN
+        ASSERT(TG_OP = 'DELETE');
+        RAISE NOTICE 'Eliminando departamento';
+        RAISE NOTICE 'TG_OP = %', TG_OP;
+        RAISE NOTICE 'OLD.id = %', OLD.id;
+        RAISE NOTICE 'OLD.nombre = %', OLD.nombre;
+
+        DELETE FROM public.msip_ubicacionpre WHERE pais_id=OLD.pais_id 
+          AND departamento_id=OLD.id
+          AND municipio_id IS NULL
+          AND centropoblado_id IS NULL
+          AND vereda_id IS NULL
+          AND lugar IS NULL;
+        RETURN OLD;
+      END ;
+      $$;
+
+
+--
+-- Name: msip_ubicacionpre_antes_de_eliminar_municipio(); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION public.msip_ubicacionpre_antes_de_eliminar_municipio() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+      BEGIN
+        ASSERT(TG_OP = 'DELETE');
+        RAISE NOTICE 'Eliminando municipio';
+        RAISE NOTICE 'TG_OP = %', TG_OP;
+        RAISE NOTICE 'OLD.id = %', OLD.id;
+        RAISE NOTICE 'OLD.nombre = %', OLD.nombre;
+
+        DELETE FROM public.msip_ubicacionpre WHERE 
+          departamento_id=OLD.departamento_id
+          AND municipio_id=OLD.id
+          AND centropoblado_id IS NULL
+          AND vereda_id IS NULL
+          AND lugar IS NULL;
+        RETURN OLD;
+      END ;
+      $$;
+
+
+--
+-- Name: msip_ubicacionpre_antes_de_eliminar_pais(); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION public.msip_ubicacionpre_antes_de_eliminar_pais() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+      BEGIN
+        ASSERT(TG_OP = 'DELETE');
+        RAISE NOTICE 'Eliminando país';
+        RAISE NOTICE 'TG_OP = %', TG_OP;
+        RAISE NOTICE 'OLD.id = %', OLD.id;
+        RAISE NOTICE 'OLD.nombre = %', OLD.nombre;
+
+        -- Pero no elimina en cascada
+        DELETE FROM public.msip_ubicacionpre WHERE pais_id=OLD.id
+          AND departamento_id IS NULL 
+          AND municipio_id IS NULL
+          AND centropoblado_id IS NULL
+          AND vereda_id IS NULL
+          AND lugar IS NULL
+          AND sitio IS NULL;
+
+        RETURN OLD;
+      END ;
+      $$;
+
+
+--
+-- Name: msip_ubicacionpre_antes_de_eliminar_vereda(); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION public.msip_ubicacionpre_antes_de_eliminar_vereda() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+      BEGIN
+        ASSERT(TG_OP = 'DELETE');
+        RAISE NOTICE 'Eliminando vereda';
+        RAISE NOTICE 'TG_OP = %', TG_OP;
+        RAISE NOTICE 'OLD.id = %', OLD.id;
+        RAISE NOTICE 'OLD.nombre = %', OLD.nombre;
+
+        DELETE FROM public.msip_ubicacionpre WHERE 
+          municipio_id=OLD.municipio_id
+          AND vereda_id=OLD.id
+          AND centropoblado_id IS NULL
+          AND lugar IS NULL;
+        RETURN OLD;
+      END ;
+      $$;
+
+
+--
 -- Name: msip_ubicacionpre_dpa_nomenclatura(character varying, character varying, character varying, character varying, character varying); Type: FUNCTION; Schema: public; Owner: -
 --
 
@@ -386,6 +512,583 @@ CREATE FUNCTION public.msip_ubicacionpre_nomenclatura(pais character varying, de
           ];
         END IF;
       END
+      $$;
+
+
+--
+-- Name: msip_ubicacionpre_tras_actualizar_centropoblado(); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION public.msip_ubicacionpre_tras_actualizar_centropoblado() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+      DECLARE
+        dpa TEXT[];
+        mi_pais_id INTEGER;
+        mi_departamento_id INTEGER;
+        nompais TEXT;
+        nomdepartamento TEXT;
+        nommunicipio TEXT;
+      BEGIN
+        ASSERT(TG_OP = 'UPDATE');
+        RAISE NOTICE 'Actualizando centropoblado';
+        RAISE NOTICE 'TG_OP = %', TG_OP;
+        RAISE NOTICE 'NEW.id = %', NEW.id;
+        RAISE NOTICE 'NEW.nombre = %', NEW.nombre;
+        RAISE NOTICE 'NEW.latitud = %', NEW.latitud;
+        RAISE NOTICE 'NEW.longitud = %', NEW.longitud;
+        RAISE NOTICE 'NEW.observaciones = %', NEW.observaciones;
+
+        mi_departamento_id := (SELECT departamento_id 
+          FROM public.msip_municipio
+          WHERE id=NEW.municipio_id LIMIT 1);
+        mi_pais_id := (SELECT pais_id FROM public.msip_departamento
+          WHERE id=mi_departamento_id LIMIT 1);
+        nompais := (SELECT nombre FROM public.msip_pais 
+          WHERE id=mi_pais_id LIMIT 1);
+        nomdepartamento := (SELECT nombre FROM public.msip_departamento
+          WHERE id=mi_departamento_id LIMIT 1);
+        nommunicipio := (SELECT nombre FROM public.msip_municipio
+          WHERE id=NEW.municipio_id LIMIT 1);
+
+        dpa := public.msip_ubicacionpre_dpa_nomenclatura(
+          nompais, nomdepartamento, nommunicipio, '', NEW.nombre
+        );
+
+        UPDATE public.msip_ubicacionpre SET
+          nombre=dpa[1],
+          nombre_sin_pais=dpa[2],
+          latitud=NEW.latitud,
+          longitud=NEW.longitud,
+          updated_at=NOW()
+        WHERE pais_id=mi_pais_id
+            AND departamento_id=mi_departamento_id
+            AND municipio_id=NEW.municipio_id
+            AND centropoblado_id=NEW.id
+            AND vereda_id IS NULL
+            AND lugar IS NULL
+            AND sitio IS NULL;
+
+        -- Actualizamos lo que está dentro del centropoblado en cascada (esperamos
+        -- llamada al trigger de nomenclatura para arreglar nombre_sin_pais por
+        -- ejemplo)
+        UPDATE public.msip_ubicacionpre SET
+          nombre=REPLACE(nombre, OLD.nombre, NEW.nombre),
+          updated_at=NOW()
+        WHERE pais_id=mi_pais_id
+          AND departamento_id=mi_departamento_id
+          AND municipio_id=NEW.municipio_id
+          AND centropoblado_id=NEW.id
+          AND NOT (vereda_id IS NULL
+            AND lugar IS NULL
+            AND sitio IS NULL);
+
+        RETURN NULL;
+      END ;
+    $$;
+
+
+--
+-- Name: msip_ubicacionpre_tras_actualizar_departamento(); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION public.msip_ubicacionpre_tras_actualizar_departamento() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+      DECLARE 
+        dpa TEXT[];
+        nompais TEXT;
+      BEGIN
+        ASSERT(TG_OP = 'UPDATE');
+        RAISE NOTICE 'Actualizando departamento';
+        RAISE NOTICE 'TG_OP = %', TG_OP;
+        RAISE NOTICE 'NEW.id = %', NEW.id;
+        RAISE NOTICE 'NEW.nombre = %', NEW.nombre;
+        RAISE NOTICE 'NEW.latitud = %', NEW.latitud;
+        RAISE NOTICE 'NEW.longitud = %', NEW.longitud;
+        RAISE NOTICE 'NEW.observaciones = %', NEW.observaciones;
+
+        nompais := COALESCE((SELECT nombre FROM public.msip_pais WHERE id=new.pais_id LIMIT 1), '');
+        dpa := public.msip_ubicacionpre_dpa_nomenclatura(
+         nompais, NEW.nombre, '', '', ''
+        );
+        UPDATE public.msip_ubicacionpre SET
+          nombre=dpa[1],
+          nombre_sin_pais=dpa[2],
+          latitud=NEW.latitud,
+          longitud=NEW.longitud,
+          updated_at=NOW()
+        WHERE pais_id=OLD.pais_id
+            AND departamento_id=OLD.id
+            AND municipio_id IS NULL
+            AND centropoblado_id IS NULL
+            AND vereda_id IS NULL
+            AND lugar IS NULL
+            AND sitio IS NULL;
+
+        -- Actualizamos lo que está dentro del departamento en cascada (esperamos 
+        -- llamada al trigger de nomenclatura para arreglar nombre_sin_pais por 
+        -- ejemplo)
+        UPDATE public.msip_ubicacionpre SET
+          nombre=REPLACE(nombre, OLD.nombre, NEW.nombre),
+          updated_at=NOW()
+        WHERE pais_id=OLD.pais_id 
+          AND departamento_id=OLD.id 
+          AND NOT (municipio_id IS NULL
+            AND centropoblado_id IS NULL
+            AND vereda_id IS NULL
+            AND lugar IS NULL
+            AND sitio IS NULL);
+
+        RETURN NULL;
+      END ;
+    $$;
+
+
+--
+-- Name: msip_ubicacionpre_tras_actualizar_municipio(); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION public.msip_ubicacionpre_tras_actualizar_municipio() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+      DECLARE
+        dpa TEXT[];
+        mi_pais_id INTEGER;
+        nompais TEXT;
+        nomdepartamento TEXT;
+      BEGIN
+        ASSERT(TG_OP = 'UPDATE');
+        RAISE NOTICE 'Actualizando municipio';
+        RAISE NOTICE 'TG_OP = %', TG_OP;
+        RAISE NOTICE 'NEW.id = %', NEW.id;
+        RAISE NOTICE 'NEW.nombre = %', NEW.nombre;
+        RAISE NOTICE 'NEW.latitud = %', NEW.latitud;
+        RAISE NOTICE 'NEW.longitud = %', NEW.longitud;
+        RAISE NOTICE 'NEW.observaciones = %', NEW.observaciones;
+
+        mi_pais_id := (SELECT pais_id FROM public.msip_departamento
+          WHERE id=new.departamento_id LIMIT 1);
+        nompais := (SELECT nombre FROM public.msip_pais 
+          WHERE id=mi_pais_id LIMIT 1);
+        nomdepartamento := (SELECT nombre FROM public.msip_departamento
+          WHERE id=new.departamento_id LIMIT 1);
+        dpa := public.msip_ubicacionpre_dpa_nomenclatura(
+          nompais, nomdepartamento, NEW.nombre, '', ''
+        );
+
+        UPDATE public.msip_ubicacionpre SET
+          nombre=dpa[1],
+          nombre_sin_pais=dpa[2],
+          latitud=NEW.latitud,
+          longitud=NEW.longitud,
+          updated_at=NOW()
+        WHERE pais_id=mi_pais_id
+            AND departamento_id=OLD.departamento_id
+            AND municipio_id=OLD.id
+            AND centropoblado_id IS NULL
+            AND vereda_id IS NULL
+            AND lugar IS NULL
+            AND sitio IS NULL;
+
+        -- Actualizamos lo que está dentro del departamento en cascada (esperamos
+        -- llamada al trigger de nomenclatura para arreglar nombre_sin_pais por
+        -- ejemplo)
+        UPDATE public.msip_ubicacionpre SET
+          nombre=REPLACE(nombre, OLD.nombre, NEW.nombre),
+          updated_at=NOW()
+        WHERE pais_id=mi_pais_id
+          AND departamento_id=OLD.departamento_id
+          AND municipio_id=OLD.id
+          AND NOT (centropoblado_id IS NULL
+            AND vereda_id IS NULL
+            AND lugar IS NULL
+            AND sitio IS NULL);
+
+        RETURN NULL;
+      END ;
+    $$;
+
+
+--
+-- Name: msip_ubicacionpre_tras_actualizar_pais(); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION public.msip_ubicacionpre_tras_actualizar_pais() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+      DECLARE 
+        dpa TEXT[];
+      BEGIN
+        ASSERT(TG_OP = 'UPDATE');
+        RAISE NOTICE 'Actualizando pais';
+        RAISE NOTICE 'TG_OP = %', TG_OP;
+        RAISE NOTICE 'NEW.id = %', NEW.id;
+        RAISE NOTICE 'NEW.nombre = %', NEW.nombre;
+        RAISE NOTICE 'NEW.latitud = %', NEW.latitud;
+        RAISE NOTICE 'NEW.longitud = %', NEW.longitud;
+        RAISE NOTICE 'NEW.observaciones = %', NEW.observaciones;
+
+        -- Actualizamos pais
+        dpa := public.msip_ubicacionpre_dpa_nomenclatura(
+          NEW.nombre, '', '', '', ''
+        );
+        UPDATE public.msip_ubicacionpre SET
+          nombre=dpa[1],
+          latitud=NEW.latitud,
+          longitud=NEW.longitud,
+          updated_at=NOW()
+        WHERE pais_id=OLD.id
+            AND departamento_id IS NULL 
+            AND municipio_id IS NULL
+            AND centropoblado_id IS NULL
+            AND vereda_id IS NULL
+            AND lugar IS NULL
+            AND sitio IS NULL;
+        
+        -- Actualizamos lo que está dentro del país en cascada (esperamos 
+        -- llamada al trigger de nomenclatura para arreglar nombre_sin_pais por 
+        -- ejemplo)
+        UPDATE public.msip_ubicacionpre SET
+          nombre=REPLACE(nombre, OLD.nombre, NEW.nombre),
+          updated_at=NOW()
+        WHERE pais_id=OLD.id
+            AND NOT (departamento_id IS NULL 
+            AND municipio_id IS NULL
+            AND centropoblado_id IS NULL
+            AND vereda_id IS NULL
+            AND lugar IS NULL
+            AND sitio IS NULL);
+
+        RETURN NULL;
+      END ;
+    $$;
+
+
+--
+-- Name: msip_ubicacionpre_tras_actualizar_vereda(); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION public.msip_ubicacionpre_tras_actualizar_vereda() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+      DECLARE
+        dpa TEXT[];
+        mi_pais_id INTEGER;
+        mi_departamento_id INTEGER;
+        nompais TEXT;
+        nomdepartamento TEXT;
+        nommunicipio TEXT;
+      BEGIN
+        ASSERT(TG_OP = 'UPDATE');
+        RAISE NOTICE 'Actualizando vereda';
+        RAISE NOTICE 'TG_OP = %', TG_OP;
+        RAISE NOTICE 'NEW.id = %', NEW.id;
+        RAISE NOTICE 'NEW.nombre = %', NEW.nombre;
+        RAISE NOTICE 'NEW.latitud = %', NEW.latitud;
+        RAISE NOTICE 'NEW.longitud = %', NEW.longitud;
+        RAISE NOTICE 'NEW.observaciones = %', NEW.observaciones;
+
+        mi_departamento_id := (SELECT departamento_id 
+          FROM public.msip_municipio
+          WHERE id=NEW.municipio_id LIMIT 1);
+        mi_pais_id := (SELECT pais_id FROM public.msip_departamento
+          WHERE id=mi_departamento_id LIMIT 1);
+        nompais := (SELECT nombre FROM public.msip_pais 
+          WHERE id=mi_pais_id LIMIT 1);
+        nomdepartamento := (SELECT nombre FROM public.msip_departamento
+          WHERE id=mi_departamento_id LIMIT 1);
+        nommunicipio := (SELECT nombre FROM public.msip_municipio
+          WHERE id=NEW.municipio_id LIMIT 1);
+
+        dpa := public.msip_ubicacionpre_dpa_nomenclatura(
+          nompais, nomdepartamento, nommunicipio, '', NEW.nombre
+        );
+
+        UPDATE public.msip_ubicacionpre SET
+          nombre=dpa[1],
+          nombre_sin_pais=dpa[2],
+          latitud=NEW.latitud,
+          longitud=NEW.longitud,
+          updated_at=NOW()
+        WHERE pais_id=mi_pais_id
+            AND departamento_id=mi_departamento_id
+            AND municipio_id=NEW.municipio_id
+            AND vereda_id=NEW.id
+            AND centropoblado_id IS NULL
+            AND lugar IS NULL
+            AND sitio IS NULL;
+
+        -- Actualizamos lo que está dentro de la vereda en cascada (esperamos
+        -- llamada al trigger de nomenclatura para arreglar nombre_sin_pais por
+        -- ejemplo)
+        UPDATE public.msip_ubicacionpre SET
+          nombre=REPLACE(nombre, OLD.nombre, NEW.nombre),
+          updated_at=NOW()
+        WHERE pais_id=mi_pais_id
+          AND departamento_id=mi_departamento_id
+          AND municipio_id=NEW.municipio_id
+          AND vereda_id=NEW.id
+          AND NOT (centropoblado_id IS NULL
+            AND lugar IS NULL
+            AND sitio IS NULL);
+
+        RETURN NULL;
+      END ;
+    $$;
+
+
+--
+-- Name: msip_ubicacionpre_tras_crear_centropoblado(); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION public.msip_ubicacionpre_tras_crear_centropoblado() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+      DECLARE
+        dpa TEXT[];
+        mi_pais_id INTEGER;
+        mi_departamento_id INTEGER;
+        nompais TEXT;
+        nomdepartamento TEXT;
+        nommunicipio TEXT;
+      BEGIN
+        ASSERT(TG_OP = 'INSERT');
+        -- Los comunes se insertan manualmente con ids. diseñadas
+        IF NEW.id > 1000000 THEN
+          RAISE NOTICE 'Insertando centro poblado propio';
+          RAISE NOTICE 'TG_OP = %', TG_OP;
+          RAISE NOTICE 'NEW.id = %', NEW.id;
+          RAISE NOTICE 'NEW.municipio_id = %', NEW.municipio_id;
+          RAISE NOTICE 'NEW.nombre = %', NEW.nombre;
+          RAISE NOTICE 'NEW.latitud = %', NEW.latitud;
+          RAISE NOTICE 'NEW.longitud = %', NEW.longitud;
+          RAISE NOTICE 'NEW.observaciones = %', NEW.observaciones;
+
+          mi_departamento_id := (SELECT departamento_id 
+            FROM public.msip_municipio
+            WHERE id=NEW.municipio_id LIMIT 1);
+          mi_pais_id := (SELECT pais_id FROM public.msip_departamento
+            WHERE id=mi_departamento_id LIMIT 1);
+          nompais := (SELECT nombre FROM public.msip_pais 
+            WHERE id=mi_pais_id LIMIT 1);
+          nomdepartamento := (SELECT nombre FROM public.msip_departamento
+            WHERE id=mi_departamento_id LIMIT 1);
+          nommunicipio := (SELECT nombre FROM public.msip_municipio
+            WHERE id=NEW.municipio_id LIMIT 1);
+          dpa := public.msip_ubicacionpre_dpa_nomenclatura(
+            nompais, nomdepartamento, nommunicipio, NEW.nombre, ''
+          );
+          INSERT INTO public.msip_ubicacionpre (nombre, pais_id,
+            departamento_id, municipio_id, centropoblado_id, vereda_id,
+            lugar, sitio, tsitio_id, latitud, longitud,
+            nombre_sin_pais, observaciones,
+            fechacreacion, fechadeshabilitacion, created_at, updated_at)
+          VALUES (dpa[1], mi_pais_id, 
+            mi_departamento_id, NEW.municipio_id, NEW.id, NULL,
+            NULL, NULL, NULL, NEW.latitud, NEW.longitud,
+            dpa[2], NULL,
+            NEW.fechacreacion, NULL, NOW(), NOW());
+        END IF;
+        RETURN NULL;
+      END ;
+      $$;
+
+
+--
+-- Name: msip_ubicacionpre_tras_crear_departamento(); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION public.msip_ubicacionpre_tras_crear_departamento() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+      DECLARE
+        dpa TEXT[];
+        nompais TEXT;
+      BEGIN
+        ASSERT(TG_OP = 'INSERT');
+        -- Los comunes se insertan manualmente con ids. diseñadas
+        IF NEW.id > 10000 THEN
+          RAISE NOTICE 'Insertando departamento propio';
+          RAISE NOTICE 'TG_OP = %', TG_OP;
+          RAISE NOTICE 'NEW.id = %', NEW.id;
+          RAISE NOTICE 'NEW.pais_id = %', NEW.pais_id;
+          RAISE NOTICE 'NEW.nombre = %', NEW.nombre;
+          RAISE NOTICE 'NEW.latitud = %', NEW.latitud;
+          RAISE NOTICE 'NEW.longitud = %', NEW.longitud;
+          RAISE NOTICE 'NEW.observaciones = %', NEW.observaciones;
+
+          nompais := COALESCE((SELECT nombre FROM public.msip_pais WHERE id=new.pais_id LIMIT 1), '');
+          dpa := public.msip_ubicacionpre_dpa_nomenclatura(
+           nompais, NEW.nombre, '', '', ''
+          );
+          INSERT INTO public.msip_ubicacionpre (nombre, pais_id,
+            departamento_id, municipio_id, centropoblado_id, vereda_id,
+            lugar, sitio, tsitio_id, latitud, longitud,
+            nombre_sin_pais, observaciones,
+            fechacreacion, fechadeshabilitacion, created_at, updated_at)
+          VALUES (dpa[1], NEW.pais_id, NEW.id,
+            NULL, NULL, NULL,
+            NULL, NULL, NULL, NEW.latitud, NEW.longitud,
+            dpa[2], NULL,
+            NEW.fechacreacion, NULL, NOW(), NOW());
+        END IF;
+        RETURN NULL;
+      END ;
+      $$;
+
+
+--
+-- Name: msip_ubicacionpre_tras_crear_municipio(); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION public.msip_ubicacionpre_tras_crear_municipio() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+      DECLARE
+        dpa TEXT[];
+        mi_pais_id INTEGER;
+        nompais TEXT;
+        nomdepartamento TEXT;
+      BEGIN
+        ASSERT(TG_OP = 'INSERT');
+        -- Los comunes se insertan manualmente con ids. diseñadas
+        IF NEW.id > 100000 THEN
+          RAISE NOTICE 'Insertando departamento propio';
+          RAISE NOTICE 'TG_OP = %', TG_OP;
+          RAISE NOTICE 'NEW.id = %', NEW.id;
+          RAISE NOTICE 'NEW.departamento_id = %', NEW.departamento_id;
+          RAISE NOTICE 'NEW.nombre = %', NEW.nombre;
+          RAISE NOTICE 'NEW.latitud = %', NEW.latitud;
+          RAISE NOTICE 'NEW.longitud = %', NEW.longitud;
+          RAISE NOTICE 'NEW.observaciones = %', NEW.observaciones;
+
+          mi_pais_id := (SELECT pais_id FROM public.msip_departamento
+            WHERE id=new.departamento_id LIMIT 1);
+          nompais := (SELECT nombre FROM public.msip_pais 
+            WHERE id=mi_pais_id LIMIT 1);
+          nomdepartamento := (SELECT nombre FROM public.msip_departamento
+            WHERE id=new.departamento_id LIMIT 1);
+          dpa := public.msip_ubicacionpre_dpa_nomenclatura(
+            nompais, nomdepartamento, NEW.nombre, '', ''
+          );
+          INSERT INTO public.msip_ubicacionpre (nombre, pais_id,
+            departamento_id, municipio_id, centropoblado_id, vereda_id,
+            lugar, sitio, tsitio_id, latitud, longitud,
+            nombre_sin_pais, observaciones,
+            fechacreacion, fechadeshabilitacion, created_at, updated_at)
+          VALUES (dpa[1], mi_pais_id, 
+            NEW.departamento_id, NEW.id, NULL, NULL,
+            NULL, NULL, NULL, NEW.latitud, NEW.longitud,
+            dpa[2], NULL,
+            NEW.fechacreacion, NULL, NOW(), NOW());
+        END IF;
+        RETURN NULL;
+      END ;
+      $$;
+
+
+--
+-- Name: msip_ubicacionpre_tras_crear_pais(); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION public.msip_ubicacionpre_tras_crear_pais() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+      DECLARE
+        dpa TEXT[];
+      BEGIN
+        ASSERT(TG_OP = 'INSERT');
+        -- Los comunes se insertan manualmente con ids. diseñadas
+        IF NEW.id > 1000 THEN
+          RAISE NOTICE 'Insertando pais propio';
+          RAISE NOTICE 'TG_OP = %', TG_OP;
+          RAISE NOTICE 'NEW.id = %', NEW.id;
+          RAISE NOTICE 'NEW.nombre = %', NEW.nombre;
+          RAISE NOTICE 'NEW.latitud = %', NEW.latitud;
+          RAISE NOTICE 'NEW.longitud = %', NEW.longitud;
+          RAISE NOTICE 'NEW.observaciones = %', NEW.observaciones;
+
+          dpa := public.msip_ubicacionpre_dpa_nomenclatura(
+           NEW.nombre, '', '', '', ''
+          );
+          INSERT INTO public.msip_ubicacionpre (nombre, pais_id,
+            departamento_id, municipio_id, centropoblado_id, vereda_id,
+            lugar, sitio, tsitio_id, latitud, longitud,
+            nombre_sin_pais, observaciones,
+            fechacreacion, fechadeshabilitacion, created_at, updated_at)
+          VALUES (dpa[1], NEW.id,
+            NULL, NULL, NULL, NULL,
+            NULL, NULL, NULL, NEW.latitud, NEW.longitud,
+            NULL, NULL,
+            NEW.fechacreacion, NULL, NOW(), NOW());
+        END IF;
+        RETURN NULL;
+      END ;
+      $$;
+
+
+--
+-- Name: msip_ubicacionpre_tras_crear_vereda(); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION public.msip_ubicacionpre_tras_crear_vereda() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+      DECLARE
+        dpa TEXT[];
+        mi_pais_id INTEGER;
+        mi_departamento_id INTEGER;
+        nompais TEXT;
+        nomdepartamento TEXT;
+        nommunicipio TEXT;
+      BEGIN
+        ASSERT(TG_OP = 'INSERT');
+        -- Los comunes se insertan manualmente con ids. diseñadas
+        IF NEW.id > 1000000 THEN
+          RAISE NOTICE 'Insertando centro poblado propio';
+          RAISE NOTICE 'TG_OP = %', TG_OP;
+          RAISE NOTICE 'NEW.id = %', NEW.id;
+          RAISE NOTICE 'NEW.municipio_id = %', NEW.municipio_id;
+          RAISE NOTICE 'NEW.nombre = %', NEW.nombre;
+          RAISE NOTICE 'NEW.latitud = %', NEW.latitud;
+          RAISE NOTICE 'NEW.longitud = %', NEW.longitud;
+          RAISE NOTICE 'NEW.observaciones = %', NEW.observaciones;
+
+          mi_departamento_id := (SELECT departamento_id 
+            FROM public.msip_municipio
+            WHERE id=NEW.municipio_id LIMIT 1);
+          RAISE NOTICE 'mi_departamento_id = %', mi_departamento_id;
+          mi_pais_id := (SELECT pais_id FROM public.msip_departamento
+            WHERE id=mi_departamento_id LIMIT 1);
+          RAISE NOTICE 'mi_pais_id = %', mi_pais_id;
+          nompais := (SELECT nombre FROM public.msip_pais 
+            WHERE id=mi_pais_id LIMIT 1);
+          RAISE NOTICE 'nompais = %', nompais;
+          nomdepartamento := (SELECT nombre FROM public.msip_departamento
+            WHERE id=mi_departamento_id LIMIT 1);
+          RAISE NOTICE 'nomdepartamento = %', nomdepartamento;
+          nommunicipio := (SELECT nombre FROM public.msip_municipio
+            WHERE id=NEW.municipio_id LIMIT 1);
+          RAISE NOTICE 'nommunicipio = %', nommunicipio;
+          dpa := public.msip_ubicacionpre_dpa_nomenclatura(
+            nompais, nomdepartamento, nommunicipio, NEW.nombre, ''
+          );
+          RAISE NOTICE 'dpa[0] = %', dpa[0];
+          RAISE NOTICE 'dpa[1] = %', dpa[1];
+          INSERT INTO public.msip_ubicacionpre (nombre, pais_id,
+            departamento_id, municipio_id, centropoblado_id, vereda_id,
+            lugar, sitio, tsitio_id, latitud, longitud,
+            nombre_sin_pais, observaciones,
+            fechacreacion, fechadeshabilitacion, created_at, updated_at)
+          VALUES (dpa[1], mi_pais_id, 
+            mi_departamento_id, NEW.municipio_id, NULL, NEW.id,
+            NULL, NULL, NULL, NEW.latitud, NEW.longitud,
+            dpa[2], NULL,
+            NEW.fechacreacion, NULL, NOW(), NOW());
+        END IF;
+        RETURN NULL;
+      END ;
       $$;
 
 
@@ -6186,6 +6889,41 @@ CREATE UNIQUE INDEX usuario_nusuario ON public.usuario USING btree (nusuario);
 
 
 --
+-- Name: msip_centropoblado msip_antes_de_eliminar_centropoblado; Type: TRIGGER; Schema: public; Owner: -
+--
+
+CREATE TRIGGER msip_antes_de_eliminar_centropoblado BEFORE DELETE ON public.msip_centropoblado FOR EACH ROW EXECUTE FUNCTION public.msip_ubicacionpre_antes_de_eliminar_centropoblado();
+
+
+--
+-- Name: msip_departamento msip_antes_de_eliminar_departamento; Type: TRIGGER; Schema: public; Owner: -
+--
+
+CREATE TRIGGER msip_antes_de_eliminar_departamento BEFORE DELETE ON public.msip_departamento FOR EACH ROW EXECUTE FUNCTION public.msip_ubicacionpre_antes_de_eliminar_departamento();
+
+
+--
+-- Name: msip_municipio msip_antes_de_eliminar_municipio; Type: TRIGGER; Schema: public; Owner: -
+--
+
+CREATE TRIGGER msip_antes_de_eliminar_municipio BEFORE DELETE ON public.msip_municipio FOR EACH ROW EXECUTE FUNCTION public.msip_ubicacionpre_antes_de_eliminar_municipio();
+
+
+--
+-- Name: msip_pais msip_antes_de_eliminar_pais; Type: TRIGGER; Schema: public; Owner: -
+--
+
+CREATE TRIGGER msip_antes_de_eliminar_pais BEFORE DELETE ON public.msip_pais FOR EACH ROW EXECUTE FUNCTION public.msip_ubicacionpre_antes_de_eliminar_pais();
+
+
+--
+-- Name: msip_vereda msip_antes_de_eliminar_vereda; Type: TRIGGER; Schema: public; Owner: -
+--
+
+CREATE TRIGGER msip_antes_de_eliminar_vereda BEFORE DELETE ON public.msip_vereda FOR EACH ROW EXECUTE FUNCTION public.msip_ubicacionpre_antes_de_eliminar_vereda();
+
+
+--
 -- Name: msip_persona_trelacion msip_eliminar_familiar; Type: TRIGGER; Schema: public; Owner: -
 --
 
@@ -6200,10 +6938,80 @@ CREATE TRIGGER msip_insertar_familiar AFTER INSERT OR UPDATE ON public.msip_pers
 
 
 --
+-- Name: msip_centropoblado msip_tras_actualizar_centropoblado; Type: TRIGGER; Schema: public; Owner: -
+--
+
+CREATE TRIGGER msip_tras_actualizar_centropoblado AFTER UPDATE OF nombre, latitud, longitud ON public.msip_centropoblado FOR EACH ROW EXECUTE FUNCTION public.msip_ubicacionpre_tras_actualizar_centropoblado();
+
+
+--
+-- Name: msip_departamento msip_tras_actualizar_departamento; Type: TRIGGER; Schema: public; Owner: -
+--
+
+CREATE TRIGGER msip_tras_actualizar_departamento AFTER UPDATE OF nombre, latitud, longitud ON public.msip_departamento FOR EACH ROW EXECUTE FUNCTION public.msip_ubicacionpre_tras_actualizar_departamento();
+
+
+--
+-- Name: msip_municipio msip_tras_actualizar_municipio; Type: TRIGGER; Schema: public; Owner: -
+--
+
+CREATE TRIGGER msip_tras_actualizar_municipio AFTER UPDATE OF nombre, latitud, longitud ON public.msip_municipio FOR EACH ROW EXECUTE FUNCTION public.msip_ubicacionpre_tras_actualizar_municipio();
+
+
+--
+-- Name: msip_pais msip_tras_actualizar_pais; Type: TRIGGER; Schema: public; Owner: -
+--
+
+CREATE TRIGGER msip_tras_actualizar_pais AFTER UPDATE OF nombre, latitud, longitud ON public.msip_pais FOR EACH ROW EXECUTE FUNCTION public.msip_ubicacionpre_tras_actualizar_pais();
+
+
+--
+-- Name: msip_vereda msip_tras_actualizar_vereda; Type: TRIGGER; Schema: public; Owner: -
+--
+
+CREATE TRIGGER msip_tras_actualizar_vereda AFTER UPDATE OF nombre, latitud, longitud ON public.msip_vereda FOR EACH ROW EXECUTE FUNCTION public.msip_ubicacionpre_tras_actualizar_vereda();
+
+
+--
+-- Name: msip_centropoblado msip_tras_crear_centropoblado; Type: TRIGGER; Schema: public; Owner: -
+--
+
+CREATE TRIGGER msip_tras_crear_centropoblado AFTER INSERT ON public.msip_centropoblado FOR EACH ROW EXECUTE FUNCTION public.msip_ubicacionpre_tras_crear_centropoblado();
+
+
+--
+-- Name: msip_departamento msip_tras_crear_departamento; Type: TRIGGER; Schema: public; Owner: -
+--
+
+CREATE TRIGGER msip_tras_crear_departamento AFTER INSERT ON public.msip_departamento FOR EACH ROW EXECUTE FUNCTION public.msip_ubicacionpre_tras_crear_departamento();
+
+
+--
+-- Name: msip_municipio msip_tras_crear_municipio; Type: TRIGGER; Schema: public; Owner: -
+--
+
+CREATE TRIGGER msip_tras_crear_municipio AFTER INSERT ON public.msip_municipio FOR EACH ROW EXECUTE FUNCTION public.msip_ubicacionpre_tras_crear_municipio();
+
+
+--
+-- Name: msip_pais msip_tras_crear_pais; Type: TRIGGER; Schema: public; Owner: -
+--
+
+CREATE TRIGGER msip_tras_crear_pais AFTER INSERT ON public.msip_pais FOR EACH ROW EXECUTE FUNCTION public.msip_ubicacionpre_tras_crear_pais();
+
+
+--
+-- Name: msip_vereda msip_tras_crear_vereda; Type: TRIGGER; Schema: public; Owner: -
+--
+
+CREATE TRIGGER msip_tras_crear_vereda AFTER INSERT ON public.msip_vereda FOR EACH ROW EXECUTE FUNCTION public.msip_ubicacionpre_tras_crear_vereda();
+
+
+--
 -- Name: msip_ubicacionpre tras_crear_o_actualizar_ubicacionpre; Type: TRIGGER; Schema: public; Owner: -
 --
 
-CREATE TRIGGER tras_crear_o_actualizar_ubicacionpre BEFORE INSERT OR UPDATE OF pais_id, departamento_id, municipio_id, centropoblado_id, vereda_id, lugar, sitio ON public.msip_ubicacionpre FOR EACH ROW EXECUTE FUNCTION public.msip_ubicacionpre_actualiza_nombre();
+CREATE TRIGGER tras_crear_o_actualizar_ubicacionpre BEFORE INSERT OR UPDATE OF pais_id, departamento_id, municipio_id, centropoblado_id, vereda_id, lugar, sitio, nombre ON public.msip_ubicacionpre FOR EACH ROW EXECUTE FUNCTION public.msip_ubicacionpre_actualiza_nombre();
 
 
 --
@@ -7749,6 +8557,12 @@ ALTER TABLE ONLY public.sivel2_gen_victimacolectiva_vinculoestado
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20240723152453'),
+('20240723140427'),
+('20240722133233'),
+('20240719195316'),
+('20240718234057'),
+('20240718234030'),
 ('20240715230510'),
 ('20240619170550'),
 ('20240424122935'),

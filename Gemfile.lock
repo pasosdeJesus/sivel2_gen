@@ -18,7 +18,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/heb412_gen.git
-  revision: 306057d4fa51202a3ef5aac13628639fb6c99d7e
+  revision: 146a18e00f22f5b747639df564f9e3e6e5186a0f
   branch: main
   specs:
     heb412_gen (2.3.0.alfa1)
@@ -38,7 +38,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/msip.git
-  revision: b8d0e5fab0cc4604e0bcbde1c73aff7dabd3f809
+  revision: 13213534f99c2a4886579a0e2cc4da90de17049b
   branch: main
   specs:
     msip (2.3.0.alfa1)
@@ -424,7 +424,7 @@ GEM
     timeout (0.4.1)
     ttfunk (1.8.0)
       bigdecimal (~> 3.1)
-    turbo-rails (2.0.5)
+    turbo-rails (2.0.6)
       actionpack (>= 6.0.0)
       activejob (>= 6.0.0)
       railties (>= 6.0.0)
