@@ -257,6 +257,7 @@ export default class extends Controller {
       if (data === null || data.charAt(0) !== '{') {
         document.getElementById('cargador').style.display = 'none';
         document.getElementById('nrcasos').innerHTML = "0";
+        window.alert("El URL " + urlSolicitud + " no retornó información JSON.\n\n" + data);
         return;
       }
       var listaMarcadores = [];
