@@ -1,6 +1,7 @@
 <% @validaciones.try(:each) do |tabla| %>
   <h3><%= CGI.escapeHTML(tabla[:titulo]) %>: <%= tabla[:cuerpo].count %></h3>
   <% if tabla[:cuerpo].count > 0 %>
+    <% filas = 0 %>
     <table class="table table-striped">
       <thead>
         <tr>
@@ -31,9 +32,16 @@
               </td>
             <% end %>
           </tr>
+          <% filas += 1 %>
+          <% if filas > 5000 %>
+            <% break %>
+          <% end %>
         <% end %>
       </tbody>
     </table>
+    <% if filas < tabla[:cuerpo].count %>
+      <p>... otros <%= tabla[:cuerpo].count - filas %> registros.</p>
+    <% end %>
   <% end %>
 <% end %>
 
