@@ -18,7 +18,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/heb412_gen.git
-  revision: 639b5c11609f22a378c438ca5b7ed230b59ba966
+  revision: 231c943cc19e223b5efd0c6fe1218a9c1a9c523a
   branch: v2.2
   specs:
     heb412_gen (2.2.0.beta6)
@@ -38,7 +38,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/msip.git
-  revision: 3b4556e60dbac919320e23d24dc7f26dc18b7d69
+  revision: ccb0bc20ba4a6947eeb8dbe532266b4801396773
   branch: v2.2
   specs:
     msip (2.2.0.beta6)
@@ -147,7 +147,7 @@ GEM
     bcrypt (3.1.20)
     bigdecimal (3.1.8)
     bindex (0.8.1)
-    bootsnap (1.18.3)
+    bootsnap (1.18.4)
       msgpack (~> 1.2)
     brakeman (6.1.2)
       racc

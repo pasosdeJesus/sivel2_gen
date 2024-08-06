@@ -7023,6 +7023,14 @@ ALTER TABLE ONLY public.mr519_gen_valorcampo
 
 
 --
+-- Name: sivel2_gen_anexo_caso fk_rails_825547f886; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.sivel2_gen_anexo_caso
+    ADD CONSTRAINT fk_rails_825547f886 FOREIGN KEY (anexo_id) REFERENCES public.msip_anexo(id);
+
+
+--
 -- Name: mr519_gen_encuestapersona fk_rails_83755e20b9; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -7749,6 +7757,7 @@ ALTER TABLE ONLY public.sivel2_gen_victimacolectiva_vinculoestado
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20240806082036'),
 ('20240715230510'),
 ('20240619170550'),
 ('20240424122935'),
