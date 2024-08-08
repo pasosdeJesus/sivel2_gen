@@ -101,12 +101,12 @@ export default class extends Controller {
     for (let i = 0; i < opcionesRangoedad.length; i++) {
       let opcion = this.rangoedadTarget.options[i].text;
       let rango = opcion.match(/\d+/g).map(Number);
-      if (rango.length == 2 && edadactual >= rango[0] &&
-        edadactual <= rango[1]) {
+      if (rango.length == 2 && edad >= rango[0] &&
+        edad <= rango[1]) {
         this.rangoedadTarget.selectedIndex = i;
         break;
       }
-      if (rango.length == 1 && edadactual >= rango[0]) {
+      if (rango.length == 1 && edad > = rango[0]) {
         this.rangoedadTarget.selectedIndex = i;
         break;
       }
