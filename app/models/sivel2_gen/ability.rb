@@ -265,6 +265,7 @@ module Sivel2Gen
       habilidad.can :manage, Sivel2Gen::AnexoCaso
 
 
+      habilidad.can :manage, Msip::PersonaTrelacion
       habilidad.can :contar, Msip::Ubicacion
       habilidad.can :mundep, Msip::Ubicacionpre
 
