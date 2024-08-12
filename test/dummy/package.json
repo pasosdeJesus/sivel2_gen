@@ -6,7 +6,7 @@
     "node": "14.8.0"
   },
   "scripts": {
-    "build": "esbuild app/javascript/*.* --preserve-symlinks --bundle --sourcemap --outdir=app/assets/builds",
+    "build": "esbuild app/javascript/*.* --preserve-symlinks --bundle --sourcemap --outdir=app/assets/builds --loader:.png=file --loader:.jpg=file --loader:.svg=file",
     "start": "node esbuild-des.config.mjs"
   },
   "dependencies": {
