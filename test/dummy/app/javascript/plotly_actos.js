@@ -50,9 +50,9 @@
 
 //DATOS DEL CSV REORGANIZADOS
 var datosr = {} // Reorganiza datos de CSV en este diccionario cuyas
-  // llaves son fechas donde hay datos, el valor en cada fecha es
-  // un diccioneario indexado por las categorias de la variable y 
-  // el valor en cada una es la suma de cuenta por categoria
+// llaves son fechas donde hay datos, el valor en cada fecha es
+// un diccioneario indexado por las categorias de la variable y 
+// el valor en cada una es la suma de cuenta por categoria
 var datosrFechamin; // Fecha minima en CSV
 var datosrFechamax; // Fecha máxima en CSV
 var datosrEtiquetas = []  // Etiquetas o categorias posibles en CSV para la variable
@@ -108,8 +108,8 @@ function actualizarTrazosPresentados(etiquetas) {
       //mode: 'lines',
       name: e,
       //line: {
-        //color: colores[e],
-       // width: 1
+      //color: colores[e],
+      // width: 1
       //}
     })
   })
@@ -171,7 +171,7 @@ function recalcularSeriesPresentadas(fechaini, fechafin, etiquetas) {
       })
     }
   })
-  
+
   actualizarTrazosPresentados(etiquetas) 
 }
 
@@ -189,7 +189,7 @@ function seleccionmAsignarOpciones(selector, opciones, seltodo = true) {
     opcionActual.text = opciones[i];
     selector.appendChild(opcionActual);
   }
-  $(selector).trigger('chosen:updated')
+  Msip__Motor.refrescarElementoTomSelect(selector)
 }
 
 
@@ -241,13 +241,12 @@ function procesar_datos(filas, variable) {
   })
 
   datosrEtiquetas = Object.keys(dicEtiquetas)
-
   seleccionmAsignarOpciones(selectorCategoria, datosrEtiquetas, true);
-  var fechaminLoc = msip_retorna_fecha(datosrFechamin, 'yyyy-mm-dd')
+  var fechaminLoc = datosrFechamin
 
-  campoFechaini.value = msip_retorna_fecha(datosrFechamin, 'yyyy-mm-dd')
+  campoFechaini.value = datosrFechamin
 
-  campoFechafin.value = msip_retorna_fecha(datosrFechamax, 'yyyy-mm-dd')
+  campoFechafin.value = datosrFechamax
 
 
   /*var colores = {
@@ -258,8 +257,8 @@ function procesar_datos(filas, variable) {
 
   function actualizarGraficaFechas() {
     var opelegidas = seleccionmOpcionesElegidas(selectorCategoria)
-    var fechaini = msip_partes_fecha(campoFechaini.value, "dd/M/yyyy").join('-')
-    var fechafin = msip_partes_fecha(campoFechafin.value, "dd/M/yyyy").join('-')
+    var fechaini = campoFechaini.value
+    var fechafin = campoFechafin.value
     recalcularSeriesPresentadas(fechaini, fechafin, opelegidas);
   }
 
@@ -271,28 +270,24 @@ function procesar_datos(filas, variable) {
 
 
   actualizarGraficaFechas()
+  selectorCategoria.addEventListener('change', function() {
+    actualizarGraficaEtiquetas();
+  });
+  campoFechaini.addEventListener('change', function() {
+    actualizarGraficaFechas();
+  });
 
-
-  $(selectorCategoria).chosen().change(actualizarGraficaEtiquetas)
-  $(campoFechaini).datepicker({    
-    format: window.formato_fecha, 
-    autoclose: true, 
-    todayHighlight: true, 
-    language: 'es' 
-  }).on('changeDate', (ev) => actualizarGraficaFechas())
-  $(campoFechafin).datepicker({    
-    format: window.formato_fecha, 
-    autoclose: true, 
-    todayHighlight: true, 
-    language: 'es' 
-  }).on('changeDate', (ev) => actualizarGraficaFechas())
+  campoFechafin.addEventListener('change', function() {
+    actualizarGraficaFechas();
+  });
 
 
 }
 
 
 function plotly_serietiempo_actos() {
-  Plotly.d3.csv("../csv/actos_individuales.csv", function(err, datos) { 
+  ruta_relativa = window.location.pathname.split("/")[1]
+  Plotly.d3.csv("/" + ruta_relativa + "/" + ruta_relativa + "/csv/actos_individuales.csv", function(err, datos) { 
     procesar_datos(datos, 'presponsable') 
   });
 };
