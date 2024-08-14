@@ -106,7 +106,7 @@ export default class extends Controller {
         this.rangoedadTarget.selectedIndex = i;
         break;
       }
-      if (rango.length == 1 && edad > = rango[0]) {
+      if (rango.length == 1 && edad >= rango[0]) {
         this.rangoedadTarget.selectedIndex = i;
         break;
       }
