@@ -45,6 +45,14 @@ Apex.chart = {
 import L from 'leaflet';
 import 'leaflet.markercluster';
 
+
+L.Icon.Default.mergeOptions({
+    iconUrl: "marker-icon.png",
+    iconRetinaUrl: "marker-icon-2x.png",
+    shadowUrl: "marker-shadow.png"
+});
+
+
 import plotly_serietiempo_actos from './plotly_actos'
 
 import {AutocompletaAjaxExpreg} from '@pasosdejesus/autocompleta_ajax'
