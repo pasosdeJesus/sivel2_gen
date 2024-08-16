@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/kreeti/kt-paperclip.git
-  revision: 254b5fe1c4e93964265183e554bca57614e51f06
+  revision: f35ca58fad8ae4681b26240adc4eb43d2b0d767f
   specs:
     kt-paperclip (7.2.2)
       activemodel (>= 4.2.0)
@@ -18,7 +18,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/heb412_gen.git
-  revision: 231c943cc19e223b5efd0c6fe1218a9c1a9c523a
+  revision: 16e3c3c8c5ced9320abb7b59257865ced97414ae
   branch: v2.2
   specs:
     heb412_gen (2.2.0.beta6)
@@ -29,7 +29,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/mr519_gen.git
-  revision: 8eefff9ced139625fd9c1dc8eb3247118be150ea
+  revision: 4b02af976ae1ca6e0e309f9774aebd5d8c2f25c2
   branch: v2.2
   specs:
     mr519_gen (2.2.0.beta6)
@@ -38,7 +38,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/msip.git
-  revision: ccb0bc20ba4a6947eeb8dbe532266b4801396773
+  revision: ae47e85a7fabed7fcccc8031c2dbea7c7fd1f1ad
   branch: v2.2
   specs:
     msip (2.2.0.beta6)
@@ -252,7 +252,7 @@ GEM
     mime-types-data (3.2024.0702)
     mini_mime (1.1.5)
     mini_portile2 (2.8.7)
-    minitest (5.24.1)
+    minitest (5.25.0)
     minitest-reporters (1.7.1)
       ansi
       builder
