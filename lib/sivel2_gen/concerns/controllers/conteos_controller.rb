@@ -906,7 +906,7 @@ module Sivel2Gen
                   "  WHERE cr.caso_id=caso.id LIMIT 1) AS region "
 
               when "RANGO DE EDAD"
-                que1 += ', rangoedad.id, INITCAP(rangoedad.nombre) AS rangoedad_rango' 
+                que1 += ', rangoedad.id, rangoedad.nombre AS rangoedad_rango' 
                 tablas1 += ' LEFT JOIN public.sivel2_gen_rangoedad AS rangoedad ON ' +
                   ' victima.rangoedad_id=rangoedad.id'
 
@@ -1065,6 +1065,7 @@ module Sivel2Gen
               "FROM #{tablas3} \n #{twhere3} \n #{gb}"
             puts "q3=#{q3}"
 
+            debugger
             if pAgrucol == 'CATEGORÍA'
               totalesfila = true
 
