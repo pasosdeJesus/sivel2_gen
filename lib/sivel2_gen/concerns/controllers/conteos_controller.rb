@@ -1064,7 +1064,6 @@ module Sivel2Gen
               "FROM #{tablas3} \n #{twhere3} \n #{gb}"
             puts "q3=#{q3}"
 
-            debugger
             if pAgrucol == 'CATEGORÍA'
               totalesfila = true
 
