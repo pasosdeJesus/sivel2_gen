@@ -49,7 +49,7 @@
     País:  <%= ubprincipal.pais.nombre %>
   <% end %>
   </p>
-  <% if current_usuario %>
+  <% if current_usuario && caso.ubicacion_id %>
     <% caso.ubicacion.each do |ub| %>
       <% next if ub.id == caso.ubicacion_id %>
       <p style="margin: 0; padding: 0">

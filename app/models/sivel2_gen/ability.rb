@@ -269,11 +269,14 @@ module Sivel2Gen
       habilidad.can :mundep, Msip::Ubicacionpre
 
 
-      habilidad.can :manage, Sivel2Gen::CasoEtiqueta
-      habilidad.can :manage, Sivel2Gen::CasoFuenteprensa
-      habilidad.can :manage, Sivel2Gen::CasoFotra
-      habilidad.can :manage, Sivel2Gen::CasoPresponsable
-      habilidad.can :manage, Sivel2Gen::CasoSolicitud
+      habilidad.can :manage, [
+        Sivel2Gen::CasoEtiqueta,
+        Sivel2Gen::CasoFuenteprensa,
+        Sivel2Gen::CasoFotra,
+        Sivel2Gen::CasoPresponsable,
+        Sivel2Gen::CasoSolicitud,
+        Sivel2Gen::CasoUbicacionpre,
+      ]
       habilidad.can :nuevo, Sivel2Gen::Combatiente
       habilidad.can :nuevo, Sivel2Gen::Presponsable
       habilidad.can :manage, Sivel2Gen::Victima

@@ -85,14 +85,6 @@ Sivel2Gen::Engine.routes.draw do
     end
   end
 
-  resources :casos, path_names: { new: 'nuevo', edit: 'edita' } do
-    collection { post :importa }
-    member do
-      patch :guardar_y_editar
-    end
-
-  end
-
   resources :caso_etiqueta, only: [], param: :index do 
     member do
       delete '(:id)', to: "caso_etiquetas#destroy", as: "eliminar"
@@ -127,6 +119,22 @@ Sivel2Gen::Engine.routes.draw do
       post '/' => "caso_solicitudes#create", as: "crear"
     end
   end
+
+  resources :caso_ubicacionpre, only: [], param: :index do 
+    member do
+      delete '(:id)', to: "caso_ubicacionespre#destroy", as: "eliminar"
+      post '/' => "caso_ubicacionespre#create", as: "crear"
+    end
+  end
+
+  resources :casos, path_names: { new: 'nuevo', edit: 'edita' } do
+    collection { post :importa }
+    member do
+      patch :guardar_y_editar
+    end
+
+  end
+
 
   resources :familiar, only: [], param: :index do 
     member do
