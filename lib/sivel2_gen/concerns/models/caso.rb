@@ -111,6 +111,11 @@ module Sivel2Gen
             allow_destroy: true, 
             reject_if: :all_blank
 
+          has_many :ubicacion, foreign_key: "caso_id", validate: true, 
+            dependent: :destroy, class_name: 'Msip::Ubicacion'
+          accepts_nested_attributes_for :ubicacion, allow_destroy: true, 
+            reject_if: :all_blank
+
           has_many :caso_solicitud, dependent: :delete_all,
             class_name: 'Sivel2Gen::CasoSolicitud',
             foreign_key: 'caso_id'

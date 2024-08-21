@@ -103,16 +103,16 @@ module Sivel2Gen
                 :fechaini, :fechafin, :presponsable_id, :categoria_id,
                 :nombres, :apellidos, :victimacol, :sexo, :rangoedad_id,
                 :organizacion_id, :profesion_id, :filiacion_id, :descripcion,
-                :usuario_id, :fechaingini, :fechaingfin, :contexto_id, 
+                :usuario_id, :fechaingini, :fechaingfin, :contexto_id,
                 :contextovictima_id, :codigo, :orientacionsexual,
                 :estadosol_id,
-                :sectorsocial_id 
+                :sectorsocial_id
               ]
             else
               [:departamento_id, :municipio_id, :centropoblado_id,
                 :fechaini, :fechafin, :presponsable_id, :categoria_id,
-                :nombres, :apellidos, :sexo, :rangoedad_id, :descripcion, 
-                :sectorsocial_id 
+                :nombres, :apellidos, :sexo, :rangoedad_id, :descripcion,
+                :sectorsocial_id
               ]
             end
           end
@@ -321,12 +321,12 @@ module Sivel2Gen
           end
 
           def error_plantilla_no_autenticado
-            redirect_back fallback_location: Rails.configuration.relative_url_root, flash:{ 
+            redirect_back fallback_location: Rails.configuration.relative_url_root, flash:{
               error: "La generación de este reporte permite máximo "\
               "#{Rails.configuration.x.sivel2_consweb_max ?
               Rails.configuration.x.sivel2_consweb_max.to_s : '0' }"\
               " registros. "\
-              " #{Rails.configuration.x.sivel2_consweb_epilogo ? 
+              " #{Rails.configuration.x.sivel2_consweb_epilogo ?
               Rails.configuration.x.sivel2_consweb_epilogo : ''}"
             }
           end
@@ -345,17 +345,17 @@ module Sivel2Gen
                       vic = ''
                       if caso[i]
                         vic += caso[i]
-                      end 
+                      end
                       hayind = caso[i] && caso[i].strip.length > 0
-                      haycol = false 
+                      haycol = false
                       gps = Sivel2Gen::Victimacolectiva.where(caso_id: caso.caso_id).pluck(:grupoper_id)
-                      if gps.count> 0 && (!params || !params[:filtro] || 
-                        !params[:filtro][:inc_victimacol] || 
-                       params[:filtro][:inc_victimacol] != '0') 
+                      if gps.count> 0 && (!params || !params[:filtro] ||
+                        !params[:filtro][:inc_victimacol] ||
+                       params[:filtro][:inc_victimacol] != '0')
                         haycol = true
-                        if hayind 
+                        if hayind
                           vic += '. '
-                        end 
+                        end
                         vic += Msip::Grupoper.where(id: gps).pluck(:nombre).join(", ")
                       end
                       com = Sivel2Gen::Combatiente.where(caso_id: caso.caso_id)
@@ -368,7 +368,7 @@ module Sivel2Gen
                       fila << vic
                     when 'tipificacion'
                       tip = ''
-                      haytip = false 
+                      haytip = false
                       haycatcol = false
                       if caso[i] && caso[i].strip.length > 0
                         tip += caso[i]
@@ -376,30 +376,30 @@ module Sivel2Gen
                       end
                       ids_catcol = Sivel2Gen::Actocolectivo.where(caso_id: caso.caso_id).pluck(:categoria_id)
                       if ids_catcol.count > 0
-                        haycatcol = true 
-                        if haytip 
+                        haycatcol = true
+                        if haytip
                           tip += '. '
-                        end 
-                        catcol = Sivel2Gen::Categoria.where(id: ids_catcol) 
-                        tip += catcol.inject("") {|memo, r| 
-                         (memo == "" ? "" : memo + ", ") + 
-                         r.supracategoria.tviolencia_id + ':' +
-                         r.supracategoria.codigo.to_s + ':' +
-                         r.id.to_s + ' ' + r.nombre} 
-                      end 
-                      ids_casopres = Sivel2Gen::CasoPresponsable.where(caso_id: caso.caso_id).pluck(:id) 
-                      ids_cat = Sivel2Gen::CasoCategoriaPresponsable.where(caso_presponsable_id: ids_casopres).pluck(:categoria_id)
-                      if ids_cat.count > 0 
-                        if haytip || haycatcol
-                          tip += '. '
-                        end 
-                      catsinv = Sivel2Gen::Categoria.where(id: ids_cat) 
-                      tip += catsinv.inject("") {|memo, r| 
-                       (memo == "" ? "" : memo + ", ") + 
+                        end
+                        catcol = Sivel2Gen::Categoria.where(id: ids_catcol)
+                        tip += catcol.inject("") {|memo, r|
+                         (memo == "" ? "" : memo + ", ") +
                          r.supracategoria.tviolencia_id + ':' +
                          r.supracategoria.codigo.to_s + ':' +
                          r.id.to_s + ' ' + r.nombre}
-                      end 
+                      end
+                      ids_casopres = Sivel2Gen::CasoPresponsable.where(caso_id: caso.caso_id).pluck(:id)
+                      ids_cat = Sivel2Gen::CasoCategoriaPresponsable.where(caso_presponsable_id: ids_casopres).pluck(:categoria_id)
+                      if ids_cat.count > 0
+                        if haytip || haycatcol
+                          tip += '. '
+                        end
+                      catsinv = Sivel2Gen::Categoria.where(id: ids_cat)
+                      tip += catsinv.inject("") {|memo, r|
+                       (memo == "" ? "" : memo + ", ") +
+                         r.supracategoria.tviolencia_id + ':' +
+                         r.supracategoria.codigo.to_s + ':' +
+                         r.id.to_s + ' ' + r.nombre}
+                      end
                       fila << tip
                     else
                       fila << caso.send(i)
@@ -408,7 +408,7 @@ module Sivel2Gen
                   csv << fila
                 end
               end
-              send_data r, filename: "casos-sivel2.csv" 
+              send_data r, filename: "casos-sivel2.csv"
               #return
             }
             return false
@@ -423,7 +423,7 @@ module Sivel2Gen
                   if (params['idplantilla'])
                     #byebug
                     case params['idplantilla']
-                    when 'reprevista', 'reprevistanobelicas', 
+                    when 'reprevista', 'reprevistanobelicas',
                       'repgeneral'
                       render params['idplantilla'], layout: nil
                     else
@@ -445,7 +445,7 @@ module Sivel2Gen
                   gen_formato('.xlsx')
                   return
                 }
-                if request.format.symbol == :ods || 
+                if request.format.symbol == :ods ||
                     request.format.symbol == :xlsx
                   # En caso de que no funcionen anteriores
                   gen_formato(".#{request.format.symbol.to_s}")
@@ -465,7 +465,7 @@ module Sivel2Gen
                   render 'reprevista'
                   return
                 }
-                
+
                 r = presenta_mas_index(format)
                 if !r
                   format.any {
@@ -585,13 +585,13 @@ module Sivel2Gen
           def cuenta
             fechasinicial = Sivel2Gen::Caso.all.order(fecha: :asc).pluck(:fecha).uniq
             fechafinal = params[:fechafin] ? params[:fechafin] : Date.today
-            fechainicial = params[:fechaini] ? params[:fechaini] : 
+            fechainicial = params[:fechaini] ? params[:fechaini] :
               (fechasinicial.count > 0 ? fechasinicial[0] : '2001-01-01')
             sql = "select fecha, count(distinct sivel2_gen_caso.id) AS cuenta, msip_departamento.nombre FROM sivel2_gen_caso LEFT JOIN msip_ubicacion ON sivel2_gen_caso.ubicacion_id = msip_ubicacion.id LEFT JOIN msip_departamento ON msip_ubicacion.departamento_id = msip_departamento.id WHERE sivel2_gen_caso.fecha BETWEEN '" + fechainicial.to_s + "' AND '" + fechafinal.to_s + "' group by 1,3 order by 1;"
             array_cuentas = ActiveRecord::Base.connection.execute(sql)
             respond_to do |format|
               format.html  { return }
-              format.json  { 
+              format.json  {
                 render layout: false, locals: {casosc: array_cuentas}
               }
             end
@@ -613,13 +613,13 @@ module Sivel2Gen
             diasatras = Rails.configuration.x.sivel2_mapaosm_diasatras ?
               Rails.configuration.x.sivel2_mapaosm_diasatras.to_i : 182
 
-            @fechadesde = ENV['SIVEL2_MAPAOSM_FECHADESDE'] ? 
+            @fechadesde = ENV['SIVEL2_MAPAOSM_FECHADESDE'] ?
               Date.parse(ENV['SIVEL2_MAPAOSM_FECHADESDE']) : Msip::FormatoFechaHelper.inicio_semestre(Date.today - diasatras)
             @fechahasta = ENV['SIVEL2_MAPAOSM_FECHAHASTA'] ?
               Date.parse(ENV['SIVEL2_MAPAOSM_FECHAHASTA']) : Msip::FormatoFechaHelper.fin_semestre(Date.today - diasatras)
             @clase_divcontenido = ''
             @margensup_divcontenido = '-9x'
-            render 'mapaosm', layout: 'application', 
+            render 'mapaosm', layout: 'application',
               locals: {clasedivcontenido: '', margensupdivcontenido: '-9px'}
           end
 
@@ -633,13 +633,14 @@ module Sivel2Gen
             elsif current_usuario && can?(:update, Sivel2Gen::Caso)
               [
                 { titulo: 'Datos Básicos', parcial: 'basicos'},
-                { titulo: 'Ubicación', parcial: 'ubicaciones'},
+                { titulo: 'Ubicación-pre', parcial: 'ubicaciones'},
+                { titulo: 'Ubicación-ant', parcial: 'ubicacionesant'},
                 { titulo: 'Fuentes Frecuentes', parcial: 'fuentesprensa'},
                 { titulo: 'Otras Fuentes', parcial: 'fotras'},
                 { titulo: 'Contexto', parcial: 'contextos'},
                 { titulo: 'Presuntos Responsables', parcial: 'presponsables'},
                 { titulo: 'Víctimas', parcial: 'victimas'}] +
-              (Rails.configuration.x.sivel2_desaparicion && 
+              (Rails.configuration.x.sivel2_desaparicion &&
                can?(:pestanadesaparicion, Sivel2Gen::Caso) ?
                [{titulo: 'Desaparición', parcial: 'Formulario::desaparicion'}]:
                []) +
@@ -670,7 +671,7 @@ module Sivel2Gen
                 if mf.count == 1
                   f = mf.take
                   vfid << f.id
-                  aw = caso.respuestafor.where(formulario_id: f.id) 
+                  aw = caso.respuestafor.where(formulario_id: f.id)
                   if  aw.count == 0
                     rf = Mr519Gen::Respuestafor.create(
                       formulario_id: f.id,
@@ -706,7 +707,7 @@ module Sivel2Gen
               rb = cr.map(&:respuestafor_id)
               Sivel2Gen::CasoRespuestafor.connection.
                 execute("DELETE FROM sivel2_gen_caso_respuestafor
-                        WHERE caso_id=#{caso.id} 
+                        WHERE caso_id=#{caso.id}
                         AND respuestafor_id IN (#{rb.join(', ')})")
               Mr519Gen::Respuestafor.where(id: rb).destroy_all
             end
@@ -858,6 +859,26 @@ module Sivel2Gen
           # PATCH/PUT /casos/1.json
           def update_gen
             respond_to do |format|
+              if (caso_params[:caso_ubicacionpre_attributes])
+                caso_params[:caso_ubicacionpre_attributes].each do |clave, cu|
+                  if cu[:ubicacionpre_pais_id]
+                    upid = Msip::Ubicacionpre::buscar_o_agregar(
+                      cu[:ubicacionpre_pais_id], 
+                      cu[:ubicacionpre_departamento_id],
+                      cu[:ubicacionpre_municipio_id], 
+                      cu[:ubicacionpre_centropoblado_id],
+                      cu[:ubicacionpre_lugar], 
+                      cu[:ubicacionpre_sitio], 
+                      cu[:ubicacionpre_tsitio_id],
+                      cu[:ubicacionpre_latitud], 
+                      cu[:ubicacionpre_longitud]
+                    )
+                    params[:caso][:caso_ubicacionpre_attributes][clave]["ubicacionpre_id"] = upid
+                  end
+                end
+
+              end
+
               # En etiquetas pone usuario actual por omision
               if (!params[:caso][:caso_etiqueta_attributes].nil?)
                 params[:caso][:caso_etiqueta_attributes].each  do |k,v|
@@ -871,7 +892,7 @@ module Sivel2Gen
               victimas_por_borrar = []
 
               if params[:caso][:victima_attributes]
-                params[:caso][:victima_attributes].each do 
+                params[:caso][:victima_attributes].each do
                   |victima_indice, victima_params|
                   if victima_params[:_destroy] != "true"
                     if !victima_params[:id].present?
@@ -896,7 +917,7 @@ module Sivel2Gen
                         else
                           if victima_params[:persona_attributes][:persona_trelacion1_attributes]
                               asignar_id_personatrelacion(
-                                params, victima_indice, victima_params, 
+                                params, victima_indice, victima_params,
                                 victimas_por_borrar
                               )
                           end
@@ -904,7 +925,7 @@ module Sivel2Gen
                       end
                     else
                         asignar_id_personatrelacion(
-                          params, victima_indice, victima_params, 
+                          params, victima_indice, victima_params,
                           victimas_por_borrar
                         )
                     end
@@ -934,7 +955,7 @@ module Sivel2Gen
               if @caso.update(params_finales)
                 if registrar_en_bitacora
                   Msip::Bitacora.agregar_actualizar(
-                    request, :caso, :bitacora_cambio, 
+                    request, :caso, :bitacora_cambio,
                     current_usuario.id, params, 'Sivel2Gen::Caso',
                     @caso.id
                   )
@@ -1028,13 +1049,13 @@ module Sivel2Gen
               authorize! :read, Sivel2Gen::Caso
             end
 
-            if (!params[:id] || params[:id].to_i <= 0 || 
+            if (!params[:id] || params[:id].to_i <= 0 ||
                 clase.constantize.where(id: params[:id].to_i)==0)
               merr = "No existe caso con id #{params[:id].to_i}"
               respond_to do |format|
                 format.html {
-                  render(inline: merr, 
-                         status: :unprocessable_entity, 
+                  render(inline: merr,
+                         status: :unprocessable_entity,
                          layout: 'application')
                 }
                 format.json {
@@ -1122,7 +1143,7 @@ module Sivel2Gen
               ]
             end
             if aceptados.include? enlace
-              # Adaptado de respuesta de the Tin Man de 
+              # Adaptado de respuesta de the Tin Man de
               # https://nokogiri.org/tutorials/parsing_an_html_xml_document.html#encoding
               nuevo_doc = Nokogiri::XML('<relatos/>') do |config|
                 config.strict.noent
@@ -1136,11 +1157,11 @@ module Sivel2Gen
               ## Verifica si sigue correctamente el dtd
               options = Nokogiri::XML::ParseOptions::DTDVALID
               doc_val = Nokogiri::XML::Document.parse(nuevo_doc.to_s, nil, nil, options)
-              if doc_val.nil? 
+              if doc_val.nil?
                 menserror << " Imposible importar relato(s). No pudo reconocer XML de #{nuevo_doc.to_s}}."
                 return false
               end
-              if !doc_val.external_subset.nil? 
+              if !doc_val.external_subset.nil?
                 errores_dtd = doc_val.external_subset.validate(doc_val)
                 if errores_dtd.count > 0
                   menserror << " Imposible importar relato(s). Su contenido no sigue el dtd: #{errores_dtd.join('. ')}."
@@ -1153,7 +1174,7 @@ module Sivel2Gen
               menserror << " Imposible importar relato(s). El enlace al dtd #{enlace} no corresponde a los aceptados."
               return false
             end
-            docnoko = nuevo_doc 
+            docnoko = nuevo_doc
             docnoko.search('observaciones').each do |obs|
               obs.content = obs['tipo'] + '_' + obs.text
             end
@@ -1245,7 +1266,7 @@ module Sivel2Gen
 
             if sintaxis_errores.length > 0
               redirect_to casos_errores_importacion_path(errores: sintaxis_errores)
-              return 
+              return
             end
             if mensexito != ''
               flash[:success] = mensexito
@@ -1258,15 +1279,15 @@ module Sivel2Gen
               end
             end
             if menserror != ''
-              flash[:error]  = menserror.length > 1000 ? 
+              flash[:error]  = menserror.length > 1000 ?
                 (menserror[0..1000] + '...') : menserror
               puts "OJO menserror=#{menserror}"
             end
             if importa_exito != true
               redirect_to casos_path
-            else 
+            else
               Conscaso.refresca_conscaso
-              ruta_importados = casos_path + '?filtro[q]=&filtro[codigo]=' + 
+              ruta_importados = casos_path + '?filtro[q]=&filtro[codigo]=' +
                 ids_importados + '&filtro[inc_casoid]=1&filtro[inc_ubicaciones]=1&filtro[inc_fecha]=1&filtro[inc_presponsables]=1&filtro[inc_victimas]=1&filtro[inc_memo]=1&filtro[inc_tipificacion]=1'
               redirect_to ruta_importados
             end
@@ -1365,16 +1386,31 @@ module Sivel2Gen
                   :categoria_ids => []
                 ],
                 :caso_solicitud_attributes => [
-                  :id, 
+                  :id,
                   :_destroy,
                   :solicitud_attributes => [
                     :id,
-                    :usuario_id, 
+                    :usuario_id,
                     :fecha,
                     :solicitud,
                     :estadosol_id,
                     :usuarionotificar_ids => []
                   ]
+                ],
+                :caso_ubicacionpre_attributes => [
+                  :id,
+                  :ubicacionpre_id,
+                  :ubicacionpre_centropoblado_id,
+                  :ubicacionpre_departamento_id,
+                  :ubicacionpre_municipio_id,
+                  :ubicacionpre_pais_id,
+                  :ubicacionpre_tsitio_id,
+                  :ubicacionpre_latitud,
+                  :ubicacionpre_longitud,
+                  :ubicacionpre_lugar,
+                  :ubicacionpre_principal,
+                  :ubicacionpre_sitio,
+                  :_destroy,
                 ],
                 :combatiente_attributes => [
                   :alias,
@@ -1398,10 +1434,10 @@ module Sivel2Gen
                 :region_ids => [],
                 respuestafor_attributes: [
                   :id,
-                  valorcampo_attributes: [ 
+                  valorcampo_attributes: [
                     :valor,
                     :campo_id,
-                    :id ] + 
+                    :id ] +
                     [:valor_ids => []]
                 ],
                 :ubicacion_attributes => [
