@@ -7,59 +7,60 @@
   { remote: true, 
     url: sivel2_gen.casos_path, 
     method: "get" } do |f| 
-%>
-  <div class="container">
-    <div class="row align-items-center">
-      <div class="offset-md-0 col-md-1"> 
-        <% if @conscaso.size > 0 && current_usuario &&
-            can?(:new, Sivel2Gen::Caso) %>
-          <%= render partial: 'msip/modelos/boton_nuevo',
-            locals: {ruta: sivel2_gen.new_caso_path} %>
-        <% end %>
-      </div>
-      <div class="offset-md-3 col-md-1"> 
-        Casos: <span id="numconscaso"><%= @conscaso.count %></span>
-      </div>
-      <div class="offset-md-2 col-md-2"> 
-        <%= f.input :q,
-          label: false,
-          placeholder: 'Búsqueda aproximada'
-        %>
-      </div>
-      <div class="col">
-        <button type='buton' 
-                class="btn btn-default btn-sm float-end" 
-                role="button" 
-                data-bs-toggle="collapse" 
-                data-bs-target="#filtro_avanzado" 
-                aria-expanded="false" 
-                aria-controls="filtro_avanzado" 
-                id="boton_filtro_avanzado"> 
-          Búsqueda Avanzada
-        </button>
-      </div>
+  %>
+<div class="container" data-controller="sivel2-gen--filtro-avanzado">
+  <div class="row align-items-center">
+    <div class="offset-md-0 col-md-1"> 
+      <% if @conscaso.size > 0 && current_usuario &&
+          can?(:new, Sivel2Gen::Caso) %>
+        <%= render partial: 'msip/modelos/boton_nuevo',
+          locals: {ruta: sivel2_gen.new_caso_path} %>
+      <% end %>
     </div>
-    <div class="row">
-      <div class="offset-md-0 col-md-12">
-        <div class="collapse" id="filtro_avanzado">
-          </br>
-          <%= render partial: 'filtro_avanzado', locals: {f: f} %>
-        </div>
-      </div>
+    <div class="offset-md-3 col-md-1"> 
+      Casos: <span id="numconscaso"><%= @conscaso.count %></span>
     </div>
-    <div class="row">
-      <div class="col-md-12">
-        <div class="float-end" id="botones_finfiltro"> 
-          <%= f.button :submit, 'Filtrar', id: 'sivel2_gen-filtrar-casos',
-            class: 'btn btn-default',
-            'data-turbo': false %>
-          <button class="btn btn-default" type="reset">
-            Limpiar
-          </button>
-        </div>
+    <div class="offset-md-2 col-md-2"> 
+      <%= f.input :q,
+        label: false,
+        placeholder: 'Búsqueda aproximada'
+      %>
+    </div>
+    <div class="col">
+      <button type='button' 
+              class="btn btn-default btn-sm float-end" 
+              role="button"
+              data-action="click->sivel2-gen--filtro-avanzado#abrir"
+              data-bs-toggle="collapse" 
+              data-bs-target="#filtro_avanzado" 
+              aria-expanded="false" 
+              aria-controls="filtro_avanzado" 
+              id="boton_filtro_avanzado"> 
+        Búsqueda Avanzada
+      </button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="offset-md-0 col-md-12">
+      <div class="collapse" id="filtro_avanzado">
+        </br>
+        <%= render partial: 'filtro_avanzado', locals: {f: f} %>
       </div>
     </div>
   </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="float-end" id="botones_finfiltro" data-sivel2-gen--filtro-avanzado-target="botonesFin"> 
+        <%= f.button :submit, 'Filtrar', id: 'sivel2_gen-filtrar-casos',
+          class: 'btn btn-default',
+          'data-turbo': false %>
+        <button class="btn btn-default" type="reset">
+          Limpiar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
 <% end %>
 
 <div id="casos">
