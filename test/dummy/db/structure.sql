@@ -1052,6 +1052,36 @@ CREATE TABLE public.sivel2_gen_categoria (
 
 
 --
+-- Name: sivel2_gen_rangoedad_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.sivel2_gen_rangoedad_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: sivel2_gen_rangoedad; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.sivel2_gen_rangoedad (
+    id integer DEFAULT nextval('public.sivel2_gen_rangoedad_id_seq'::regclass) NOT NULL,
+    nombre character varying(500) NOT NULL COLLATE public.es_co_utf_8,
+    limiteinferior integer DEFAULT 0 NOT NULL,
+    limitesuperior integer DEFAULT 0 NOT NULL,
+    fechacreacion date DEFAULT '2001-01-01'::date NOT NULL,
+    fechadeshabilitacion date,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone,
+    observaciones character varying(5000),
+    CONSTRAINT rango_edad_check CHECK (((fechadeshabilitacion IS NULL) OR (fechadeshabilitacion >= fechacreacion)))
+);
+
+
+--
 -- Name: sivel2_gen_supracategoria_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
@@ -1091,19 +1121,16 @@ CREATE VIEW public.cvt1 AS
     acto.categoria_id,
     supracategoria.tviolencia_id,
     categoria.nombre AS categoria,
-    ((supracategoria.tviolencia_id)::text || (categoria.id)::text) AS nomcategoria,
-    departamento.nombre AS departamento_nombre,
-    departamento.deplocal_cod AS departamento_divipola,
-    'total'::text AS total
-   FROM (((((((public.sivel2_gen_acto acto
+    rangoedad.id,
+    rangoedad.nombre AS rangoedad_rango
+   FROM ((((((public.sivel2_gen_acto acto
      JOIN public.sivel2_gen_caso caso ON ((acto.caso_id = caso.id)))
      JOIN public.sivel2_gen_categoria categoria ON ((acto.categoria_id = categoria.id)))
      JOIN public.sivel2_gen_supracategoria supracategoria ON ((categoria.supracategoria_id = supracategoria.id)))
      JOIN public.sivel2_gen_victima victima ON (((victima.persona_id = acto.persona_id) AND (victima.caso_id = caso.id))))
      JOIN public.msip_persona persona ON ((persona.id = acto.persona_id)))
-     JOIN public.msip_ubicacion ubicacion ON ((ubicacion.id = caso.ubicacion_id)))
-     LEFT JOIN public.msip_departamento departamento ON ((departamento.id = ubicacion.departamento_id)))
-  WHERE ((caso.fecha >= '1999-12-01'::date) AND (caso.fecha <= '2023-08-17'::date) AND (categoria.id = ANY (ARRAY[777, 197, 427, 397, 527, 297, 196, 396, 296, 776, 426, 526, 45, 25, 35, 15, 73, 55, 65, 92, 40, 50, 67, 801, 90, 16, 37, 26, 46, 57, 80, 85, 66, 64, 703, 706, 18, 59, 38, 49, 28, 501, 401, 904, 502, 402, 17, 331, 231, 705, 62, 906, 104, 713, 101, 302, 11, 76, 21, 27, 34, 102, 903, 902, 24, 301, 14, 30, 10, 20, 422, 192, 522, 292, 392, 772, 63, 93, 910, 395, 525, 295, 775, 425, 195, 714, 78, 394, 194, 424, 774, 294, 524, 89, 905, 86, 701, 68, 141, 341, 241, 715, 704, 702, 53, 43, 33, 23, 13, 88, 98, 84, 709, 711, 707, 708, 710, 87, 97, 717, 917, 716, 916, 91, 95, 718, 523, 193, 423, 773, 293, 393, 58, 48, 75, 69, 41, 74, 56, 47, 72, 12, 36, 22, 191, 771, 291, 521, 391, 421, 520, 420, 77, 19, 39, 29, 712])));
+     LEFT JOIN public.sivel2_gen_rangoedad rangoedad ON ((victima.rangoedad_id = rangoedad.id)))
+  WHERE (categoria.id = ANY (ARRAY[427, 397, 527, 297, 777, 197, 196, 526, 396, 296, 776, 426, 15, 45, 73, 55, 25, 35, 65, 92, 40, 50, 67, 801, 90, 37, 57, 26, 46, 16, 80, 85, 66, 64, 703, 59, 28, 18, 38, 49, 706, 501, 401, 125, 135, 115, 904, 331, 17, 402, 502, 231, 705, 62, 906, 104, 503, 403, 713, 101, 76, 302, 21, 11, 102, 27, 902, 903, 34, 301, 14, 24, 10, 20, 30, 292, 192, 422, 772, 522, 392, 63, 93, 910, 525, 295, 425, 195, 395, 775, 714, 78, 294, 194, 424, 774, 524, 394, 89, 905, 86, 701, 68, 141, 241, 341, 715, 704, 702, 23, 13, 33, 43, 53, 88, 98, 84, 709, 711, 707, 708, 710, 87, 97, 717, 917, 716, 916, 91, 95, 718, 193, 393, 523, 293, 773, 423, 48, 58, 75, 69, 41, 74, 22, 56, 72, 47, 12, 36, 771, 291, 191, 521, 421, 391, 19, 420, 520, 77, 29, 39, 712]));
 
 
 --
@@ -3990,36 +4017,6 @@ ALTER SEQUENCE public.sivel2_gen_profesion_victima_id_seq OWNED BY public.sivel2
 CREATE TABLE public.sivel2_gen_profesion_victimacolectiva (
     profesion_id integer NOT NULL,
     victimacolectiva_id integer NOT NULL
-);
-
-
---
--- Name: sivel2_gen_rangoedad_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public.sivel2_gen_rangoedad_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: sivel2_gen_rangoedad; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.sivel2_gen_rangoedad (
-    id integer DEFAULT nextval('public.sivel2_gen_rangoedad_id_seq'::regclass) NOT NULL,
-    nombre character varying(500) NOT NULL COLLATE public.es_co_utf_8,
-    limiteinferior integer DEFAULT 0 NOT NULL,
-    limitesuperior integer DEFAULT 0 NOT NULL,
-    fechacreacion date DEFAULT '2001-01-01'::date NOT NULL,
-    fechadeshabilitacion date,
-    created_at timestamp without time zone,
-    updated_at timestamp without time zone,
-    observaciones character varying(5000),
-    CONSTRAINT rango_edad_check CHECK (((fechadeshabilitacion IS NULL) OR (fechadeshabilitacion >= fechacreacion)))
 );
 
 
