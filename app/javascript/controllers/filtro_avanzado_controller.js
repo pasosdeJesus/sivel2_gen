@@ -76,7 +76,6 @@ export default class extends Controller {
           if (xhr.status === 200) {
             var datos = xhr.response;
             if (datos[0] === false) {
-              debugger
               var div_padre = select.closest('div');
               var div_grid = div_padre.parentElement;
               var div_filtro = div_grid.parentElement.parentElement;
