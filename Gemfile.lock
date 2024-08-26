@@ -18,7 +18,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/heb412_gen.git
-  revision: d970efd3e37514fa1716a5b0cd3e250f7e5355be
+  revision: 9021c64021e286cb2e87963a5203906adf4df813
   branch: v2.2
   specs:
     heb412_gen (2.2.0.beta6)
@@ -29,7 +29,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/mr519_gen.git
-  revision: d783f08b9d2bc8b24182af69361c85f0a93973ce
+  revision: 4734125ead78f8c1d681822b1700c888ea0a63d6
   branch: v2.2
   specs:
     mr519_gen (2.2.0.beta6)
@@ -38,7 +38,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/msip.git
-  revision: 22fd60e8743c31d4c38e4ac6c70f445365d4dd75
+  revision: 2889ccf5005f5f5f63ff776c1bae3dbc38f45ab5
   branch: v2.2
   specs:
     msip (2.2.0.beta6)
@@ -518,4 +518,4 @@ DEPENDENCIES
   will_paginate
 
 BUNDLED WITH
-   2.5.17
+   2.5.18
