@@ -665,17 +665,6 @@ enviaFormularioContarPost= (root) ->
     root.elempe = []
   )
 
-  $(document).on('click', 'button#boton_filtro_avanzado', (e) ->
-    if $(this).attr("aria-expanded") == 'true'
-      $('#botones_finfiltro').removeClass("float-end").addClass("d-flex justify-content-center")
-    else
-      $('#botones_finfiltro').removeClass("d-flex justify-content-center").addClass("float-end")
-    if $('#conscasos_q').is(':visible')
-      $('#conscasos_q').hide()
-    else
-      $('#conscasos_q').show()
-  )
-
   Sivel2GenMotorEs6.iniciar()
 
   # Elimina acto
@@ -785,44 +774,6 @@ enviaFormularioContarPost= (root) ->
       return event.preventDefault()
   ) 
 
-  $(document).on('change', '#filtro_tviolencia_id', (e) ->
-    tviolencia_id = $(this).val()
-    select = $(this)
-    if tviolencia_id != "Z"
-      b = root.puntomontaje + 'admin/categorias/filtratviolencia'
-      $.ajax({
-        url: b,
-        data: {tviolencia: tviolencia_id}, 
-        dataType: "json",
-        success: (datos) ->
-          div_padre = select.closest("div")
-          div_grid = div_padre.parent()
-          div_filtro = div_grid.parent().parent()
-          input_cat = div_filtro.find("select[id=filtro_categoria_id]")
-          Msip__Motor.configurarElementoTomSelect(input_cat.val(datos[0]))
-        error: (jqXHR, texto) ->
-          alert("Error: " + jqXHR.responseText)
-       })
-  )
-  $(document).on('change', '#filtro_categoria_id', (e) ->
-    categoria_id = $(this).val()
-    select = $(this)
-    b = root.puntomontaje + 'admin/categorias/filtratviolencia'
-    $.ajax({
-      url: b,
-      data: {categorias_seleccionadas: categoria_id},
-      dataType: "json",
-      success: (datos) ->
-        if datos[0] == false
-          div_padre = select.closest("div")
-          div_grid = div_padre.parent()
-          div_filtro = div_grid.parent().parent()
-          input_tipo = div_filtro.find("select[id=filtro_tviolencia_id]")
-          Msip__Motor.configurarElementoTomSelect(input_tipo.val("Z"))
-      error: (jqXHR, texto) ->
-        alert("Error: " + jqXHR.responseText)
-     })
-  )
   return
 
 @sivel2_gen_prepara_eventos_unicos = (root) ->
