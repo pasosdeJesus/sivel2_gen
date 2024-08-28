@@ -18,7 +18,7 @@ export default class extends Controller {
     data += '&commit=Contar';
     const root = window
     if (!root.dant || root.dant !== data) {
-      msip_enviarautomatico_formulario(form, 'POST', 'script', true, 'Contar');
+      Msip__Motor.enviarAutomaticoFormulario(form, 'POST', 'script', true, 'Contar');
     }
     root.dant = data;
   }
