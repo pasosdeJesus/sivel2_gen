@@ -36,11 +36,10 @@ export default class extends Controller {
       dia = 1
     }
     let formatoFecha = window.formato_fecha;
-    let campoFechaCaso = document.querySelector('#caso_fecha');
-    if (campoFechaCaso == null) {
-      campoFechaCaso = document.querySelector('#caso_fecha');
-      formatoFecha = "yyyy-mm-dd"
-    }
+    let selectorCampoFechaCaso =
+      typeof window.selectorCampoFechaCaso != "undefined" ? 
+      window.selectorCampoFechaCaso : "#caso_fecha"
+    let campoFechaCaso = document.querySelector(selectorCampoFechaCaso);
     if (campoFechaCaso == null) {
       alert("No se encontró campo con la fecha del caso");
     }
