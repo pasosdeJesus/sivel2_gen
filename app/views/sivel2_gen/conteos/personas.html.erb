@@ -7,7 +7,7 @@
     url: conteos_personas_path,
     method: "post" } do |f| 
   %>
-<div class="container" data-controller="sivel2-gen--motor">
+<div class="container" data-controller="sivel2-gen--contar-automatico">
   <div class="row filtro-fila">
     <div class="offset-sm-0 col-sm-3 offset-md-1 col-md-1">
       Filtrar por:
@@ -21,7 +21,7 @@
         input_html: {
           type: "date",
           "autocomplete" => "off",
-          "data-action": "change->sivel2-gen--motor#contar_automatico"
+          "data-action": "change->sivel2-gen--contar-automatico#contar"
         }
       %>
     </div>
@@ -34,7 +34,7 @@
         input_html: {
           type: "date",
           "autocomplete" => "off",
-          "data-action": "change->sivel2-gen--motor#contar_automatico"
+          "data-action": "change->sivel2-gen--contar-automatico#contar"
         }
       %>
     </div>
@@ -70,7 +70,7 @@
                 input_html: {
                   class: 'tom-select',
                   multiple: true,
-                  "data-action": "change->sivel2-gen--motor#contar_automatico"
+                  "data-action": "change->sivel2-gen--contar-automatico#contar"
                 }
               %>
             </div> <!-- col -->
@@ -90,7 +90,7 @@
         label: false,
         include_blank: false,
         input_html: { 
-          "data-action": "change->sivel2-gen--motor#contar_automatico"
+          "data-action": "change->sivel2-gen--contar-automatico#contar"
         }
       %>
     </div>
@@ -101,8 +101,9 @@
         label: false,
         inline_label: 'Departamento',
         input_html: { style: 'margin-left: 15px',
-                      "data-action": "change->sivel2-gen--motor#contar_automatico"}
-                    %>
+                      "data-action": "change->sivel2-gen--contar-automatico#contar"
+                    }
+      %>
     </div>
     <div class="col-sm-3">
       <%= f.input :municipio, 
@@ -111,7 +112,7 @@
         label: false,
         inline_label: 'Municipio',
         input_html: { 
-          "data-action": "change->sivel2-gen--motor#contar_automatico"
+          "data-action": "change->sivel2-gen--contar-automatico#contar"
         }
       %>
     </div>
