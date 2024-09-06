@@ -20,7 +20,7 @@ module Sivel2Gen
             @merr = ""
             params2 = {}
             if (!params[:caso] && !params2['caso'])
-              @merr = 'Faltan paramétros de caso'
+              @merr = 'Faltan parámetros de caso'
               render inline: @merr, status: :unprocessable_entity
               return
             elsif (params[:caso] && params[:caso][:id].nil?) ||
