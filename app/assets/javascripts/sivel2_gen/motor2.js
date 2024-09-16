@@ -29,7 +29,10 @@ function desenvolver(objetivos)
 function csDeseleccionarTodas(id) {
   document.querySelectorAll("#"+ id + " option:checked").
     forEach( op => op.selected = false )
-  document.querySelector('#'+id).dispatchEvent(new Event("chosen:updated"));
+  let el = document.querySelector('#'+id)
+  if (el) {
+    el.dispatchEvent(new Event("chosen:updated"));
+  }
 }
 
 // Seleccionar todas las opciones de un cuadro de selección con la id dada
@@ -38,7 +41,10 @@ function csSeleccionarTodasSinSpan(id) {
     forEach( op => op.selected = true )
   document.querySelectorAll("#"+ id + " span option").
     forEach( op => op.selected = false )
-  document.querySelector('#'+id).dispatchEvent(new Event("chosen:updated"));
+  let el = document.querySelector('#'+id)
+  if (el) {
+    el.dispatchEvent(new Event("chosen:updated"));
+  }
 }
 
 
@@ -69,8 +75,12 @@ document.addEventListener('change', function(e) {
         }
         csSeleccionarTodasSinSpan('filtro_categoria')
         rb = document.querySelector('#filtro_mostrar_cats_1')
-        rb.checked = true
-        fc.dispatchEvent(new Event("chosen:updated"));
+        if (rb) {
+          rb.checked = true
+        }
+        if (fc) {
+          fc.dispatchEvent(new Event("chosen:updated"));
+        }
         break;
 
       default:
