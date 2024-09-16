@@ -1,5 +1,6 @@
 //= link application.css
 //= link application.js
+
 //= link recursos_sprockets.js
 //= link recursos_sprockets.js.map
 //= link logo.jpg
