@@ -11,10 +11,10 @@ Msip.setup do |config|
   end
   config.titulo = "Motor SIVeL " + Sivel2Gen::VERSION
   config.descripcion = "Motor para manejar casos de violencia socio política"
-  config.codigofuente = "https://gitlab.com/pasosdeJesus/sivel2_gen/-/tree/v2.2"
-  config.urlcontribuyentes = "https://gitlab.com/pasosdeJesus/sivel2_gen/-/graphs/v2.2"
-  config.urllicencia = "https://gitlab.com/pasosdeJesus/sivel2_gen/-/blob/v2.2/LICENCIA.md"
-  config.urlcreditos = "https://gitlab.com/pasosdeJesus/sivel2_gen/-/blob/v2.2/CREDITOS.md"
+  config.codigofuente = "https://gitlab.com/pasosdeJesus/sivel2_gen/-/tree/main"
+  config.urlcontribuyentes = "https://gitlab.com/pasosdeJesus/sivel2_gen/-/graphs/main"
+  config.urllicencia = "https://gitlab.com/pasosdeJesus/sivel2_gen/-/blob/main/LICENCIA.md"
+  config.urlcreditos = "https://gitlab.com/pasosdeJesus/sivel2_gen/-/blob/main/CREDITOS.md"
   config.agradecimientoDios = "<p>
 El mayor agradecimiento al Dios trino, el de la Biblia, a quien dedicamos 
 este trabajo y a quien oramos para que no sea usado por estructuras armadas
