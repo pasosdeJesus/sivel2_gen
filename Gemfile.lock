@@ -18,7 +18,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/heb412_gen.git
-  revision: c9dd4bf948848cc9e66809c821ed551b10168794
+  revision: 2b147472a5c20744343886deed03ecbb0d647d1a
   branch: main
   specs:
     heb412_gen (2.3.0.alfa2)
@@ -29,7 +29,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/mr519_gen.git
-  revision: 0ce1654df53e29e4eb336f730279c4e87ece3fe3
+  revision: 9a1973bdb7beec016923dc244e788442f350fff0
   branch: main
   specs:
     mr519_gen (2.3.0.alfa2)
@@ -38,7 +38,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/msip.git
-  revision: 6d3f1163d6f06071e332cf1f0ed8ce8e1a4370fc
+  revision: 216c62b9faece183f4b40cec57dad1ca138e2085
   branch: main
   specs:
     msip (2.3.0.alfa2)
@@ -292,7 +292,7 @@ GEM
     psych (5.1.2)
       stringio
     public_suffix (6.0.1)
-    puma (6.4.2)
+    puma (6.4.3)
       nio4r (~> 2.0)
     racc (1.8.1)
     rack (2.2.9)
@@ -420,9 +420,8 @@ GEM
     timeout (0.4.1)
     ttfunk (1.8.0)
       bigdecimal (~> 3.1)
-    turbo-rails (2.0.7)
+    turbo-rails (2.0.9)
       actionpack (>= 6.0.0)
-      activejob (>= 6.0.0)
       railties (>= 6.0.0)
     twitter_cldr (6.12.1)
       camertron-eprun
@@ -513,4 +512,4 @@ DEPENDENCIES
   will_paginate
 
 BUNDLED WITH
-   2.5.18
+   2.5.19
