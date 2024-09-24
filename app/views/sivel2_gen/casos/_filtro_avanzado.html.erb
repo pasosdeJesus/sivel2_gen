@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" data-controller="msip--geodep">
   <!--%= simple_form_for :reporte, { url: '/reporte' } do |f| %-->
     <div class="row filtro-fila">
       <div class="text-center offset-sm-0 col-sm-10 offset-md-1 col-md-8">
@@ -7,7 +7,7 @@
       <div class="offset-sm-0 col-sm-1">Incluir</div>
       <div class="offset-sm-0 col-sm-1">Ordenar por</div>
     </div>
- 
+
     <div class="row filtro-fila" style="border: 1px solid lightgray">
       <div class="offset-sm-0 col-sm-2 offset-md-1 col-md-1">
         Ubicación
@@ -17,11 +17,17 @@
           collection: Msip::ModeloHelper.opciones_tabla_basica(
             Msip::Pais, f, :pais_id
           ),
-          label_method: :nombre,
-          value_method: :id,
-          selected: [Msip.paisomision],
+          include_blank: "-- Pais",
+          input_html: {
+            class: "tom-select",
+            data: {
+              action: "change->msip--geodep#cambiar_pais"
+            }
+          },
           label: false,
-          include_blank: "-- Pais"
+          label_method: :nombre,
+          selected: [Msip.paisomision],
+          value_method: :id
         %>
       </div>
       <div class="offset-sm-0 col-sm-3 col-md-3">
@@ -30,10 +36,17 @@
             Msip::Departamento, f, :departamento_id
           ).where(
             pais_id: Msip.paisomision),
-          label_method: :nombre,
-          value_method: :id,
+          include_blank: "-- Departamento",
+          input_html: {
+            class: "tom-select",
+            data: {
+              action: "change->msip--geodep#cambiar_departamento",
+              "msip--geodep-target": "departamento"
+            }
+          },
           label: false,
-          include_blank: "-- Departamento"
+          label_method: :nombre,
+          value_method: :id
         %>
       </div>
       <div class="col-md-2">
@@ -41,24 +54,32 @@
           collection: Msip::ModeloHelper.opciones_tabla_basica(
             Msip::Municipio, f, :municipio_id
           ),
-          label_method: :nombre,
-          value_method: :id,
-          label: false,
           include_blank: "-- Municipio",
-          input_html: {disabled: :disabled }
+          input_html: {
+            class: "tom-select",
+            data: {
+              action: "change->msip--geodep#cambiar_municipio",
+              "msip--geodep-target": "municipio"
+            }
+          },
+          label: false,
+          label_method: :nombre,
+          value_method: :id
         %>
       </div>
       <div class="offset-sm-0 col-sm-1 text-center">
-        <%= f.input :inc_ubicaciones, 
-          as: :boolean, 
+        <%= f.input :inc_ubicaciones,
+          as: :boolean,
           label: false,
           input_html: { checked: 'checked' }
         %>
       </div>
       <div class="offset-sm-0 col-sm-1 text-center">
-        A <%= f.radio_button :orden, :ubicacion, 
+        A
+        <%= f.radio_button :orden, :ubicacion,
           checked: @campoord == 'ubicacion' %>
-        D <%= f.radio_button :orden, :ubicaciondesc, 
+        D
+        <%= f.radio_button :orden, :ubicaciondesc,
           checked: @campoord == 'ubicaciondesc' %>
       </div>
     </div>
@@ -68,62 +89,71 @@
       </div>
       <div class="offset-sm-0 col-sm-4 offset-md-0 col-md-3">
         <%= f.input :fechaini,
-          maxlength: 11, 
-          size: 11,
-          label: false,
-          placeholder: 'Desde',
           input_html: {
             type: "date"
-          }
+          },
+          label: false,
+          maxlength: 11,
+          placeholder: 'Desde',
+          size: 11
         %>
       </div>
       <div class="offset-sm-0 col-sm-4 offset-md-1 col-md-3">
         <%= f.input :fechafin,
-          maxlength: 10, 
-          size: 10,
-          label: false,
-          placeholder: 'Hasta',
           input_html: {
            type: "date"
-          }
+          },
+          label: false,
+          maxlength: 10,
+          placeholder: 'Hasta',
+          size: 10
         %>
     </div>
     <div class="offset-sm-0 col-sm-1 text-center">
-        <%= f.input :inc_fecha, 
-          as: :boolean, 
-          label: false,
-          input_html: {checked: 'checked'}
+        <%= f.input :inc_fecha,
+          as: :boolean,
+          input_html: {checked: 'checked'},
+          label: false
         %>
       </div>
       <div class="offset-sm-0 col-sm-1 text-center">
-        A <%= f.radio_button(:orden, :fecha, 
-                             checked: @campoord == 'fecha' ) %>
-        D <%= f.radio_button(:orden, :fechadesc, 
-                             checked: @campoord == 'fechadesc' ) %>
+        A
+        <%= f.radio_button(
+          :orden, :fecha, checked: @campoord == 'fecha'
+        ) %>
+        D
+        <%= f.radio_button(
+          :orden, :fechadesc, checked: @campoord == 'fechadesc'
+        ) %>
       </div>
     </div>
 
     <div class="row filtro-fila">
       <div class="offset-sm-0 col-sm-2 offset-md-1 col-md-1">
-        Presunto Responsable  
+        Presunto Responsable
       </div>
       <div class="offset-sm-0 col-sm-10 offset-md-0 col-md-7">
         <%= f.input :presponsable_id,
           collection: Msip::ModeloHelper.opciones_tabla_basica(
             Sivel2Gen::Presponsable, f, :presponsable_id
           ),
-          label_method: :nombre,
-          value_method: :id,
-          input_html: { :class => "tom-select", multiple: true },
+          include_blank: true,
+          input_html: {
+            class: "tom-select",
+            multiple: true
+          },
           label: false,
-          include_blank: true
+          label_method: :nombre,
+          value_method: :id
         %>
       </div>
       <div class="offset-sm-0 col-sm-1 text-center">
-        <%= f.input :inc_presponsables, 
-          as: :boolean, 
-          label: false,
-          input_html: { :checked => "checked" }
+        <%= f.input :inc_presponsables,
+          as: :boolean,
+          input_html: {
+            checked: "checked"
+          },
+          label: false
         %>
       </div>
       <div class="offset-sm-0 col-sm-1 text-center">
@@ -138,18 +168,18 @@
            col << Sivel2Gen::Tviolencia.new(id: "Z", nombre: "Otro")
            col += Msip::ModeloHelper.opciones_tabla_basica(
             Sivel2Gen::Tviolencia, f, :tviolencia_id
-        ) 
+        )
       %>
         <%= f.input :tviolencia_id,
           collection: col,
-          label_method: :nombre,
-          value_method: :id,
-          selected: "Z",
-          label: false,
           include_blank: false,
           input_html: {
             "data-action": "change->sivel2-gen--filtro-avanzado#filtrar_tviolencia",
-          }
+          },
+          label: false,
+          label_method: :nombre,
+          selected: "Z",
+          value_method: :id
         %>
 
       </div>
@@ -161,29 +191,34 @@
       <div class="offset-sm-0 col-sm-10 offset-md-0 col-md-7">
         <% col1 = Sivel2Gen::Categoria.habilitados.where(tipocat: 'O').pluck(:id) %>
         <% col2 = Sivel2Gen::Categoria.habilitados.pluck(:id) %>
-        <% col3 = Sivel2Gen::Categoria.where(id: col1 | col2).joins(:supracategoria).
+        <% col3 = Sivel2Gen::Categoria.where(id: col1 | col2).
+          joins(:supracategoria).
           reorder('sivel2_gen_supracategoria.tviolencia_id', :id) %>
 
         <%= f.input :categoria_id,
           collection: col3,
-          label_method: lambda {|t| 
+          include_hidden: false,
+          input_html: {
+            class: "tom-select",
+            "data-action": "change->sivel2-gen--filtro-avanzado#filtrar_categoria",
+            multiple: true
+          },
+          label: false,
+          label_method: lambda {|t|
             t.supracategoria.tviolencia_id +
               t.id.to_s + ' ' + t.nombre
           },
-          value_method: :id,
-          :include_hidden => false,
-          input_html: { :class => "tom-select",
-                        "data-action": "change->sivel2-gen--filtro-avanzado#filtrar_categoria",
-                        multiple: true },
-          label: false
+          value_method: :id
         %>
       </div>
 
       <div class="offset-sm-0 col-sm-1 text-center">
         <%= f.input :inc_tipificacion,
           as: :boolean,
-          label: false,
-          input_html: {checked: 'checked'}
+          input_html: {
+            checked: 'checked'
+          },
+          label: false
         %>
       </div>
       <div class="offset-sm-0 col-sm-1 text-center">
@@ -202,22 +237,31 @@
                 collection: Msip::ModeloHelper.opciones_tabla_basica(
                   Sivel2Gen::Contexto, f, :contexto_id
                 ),
+                include_hidden: false,
+                input_html: {
+                  class: "tom-select",
+                  multiple: true,
+                  "data-placeholder": "Contexto de Caso"
+                },
+                label: false,
                 label_method: :nombre,
-                value_method: :id,
-                :include_hidden => false,
-                input_html: { :class => "tom-select", multiple: true, "data-placeholder": "Contexto de Caso"},
-                label: false
+                value_method: :id
               %>
             </div>
             <div class="col-sm-6">
               <%= f.input :contextovictima_id,
                 collection: Msip::ModeloHelper.opciones_tabla_basica(
-                  Sivel2Gen::Contextovictima, f, :contextovictima_id),
+                  Sivel2Gen::Contextovictima, f, :contextovictima_id
+                ),
+                include_hidden: false,
+                input_html: {
+                  class: "tom-select",
+                  multiple: true,
+                  "data-placeholder": "Contexto de Victima"
+                },
+                label: false,
                 label_method: :nombre,
-                value_method: :id,
-                :include_hidden => false,
-                input_html: { :class => "tom-select", multiple: true, "data-placeholder": "Contexto de Victima"},
-                label: false
+                value_method: :id
               %>
             </div>
           </div>
@@ -230,25 +274,27 @@
       </div>
       <div class="offset-sm-0 col-sm-4 offset-md-0 col-md-3">
         <%= f.input :nombres,
-          maxlength: 50, 
-          size: 10,
           label: false,
-          placeholder: 'Nombre(s)'
+          maxlength: 50,
+          placeholder: 'Nombre(s)',
+          size: 10
         %>
       </div>
       <div class="offset-sm-0 col-sm-4 offset-md-1 col-md-3">
         <%= f.input :apellidos,
-          maxlength: 50, 
-          size: 10,
           label: false,
-          placeholder: 'Apellido(s)'
+          maxlength: 50,
+          placeholder: 'Apellido(s)',
+          size: 10
         %>
       </div>
       <div class="offset-sm-0 col-sm-1 text-center">
-        <%= f.input :inc_victimas, 
-          as: :boolean, 
-          label: false,
-          input_html: { :checked => "checked" }
+        <%= f.input :inc_victimas,
+          as: :boolean,
+          input_html: {
+            checked: "checked"
+          },
+          label: false
         %>
       </div>
       <div class="offset-sm-0 col-sm-1 text-center">
@@ -264,51 +310,51 @@
       <div class="offset-sm-0 col-sm-8 col-md-7">
         <div class="row filtro-fila">
           <div class="col-sm col-md">
-            <%= f.input :sexo, 
+            <%= f.input :sexo,
               collection: Msip::Persona::sexo_opciones,
-              label: false,
-              include_blank: '-- Sexo'
+              include_blank: '-- Sexo',
+              label: false
             %>
           </div>
           <div class="col-sm col-md">
             <% if current_usuario %>
               <%= f.input :orientacionsexual,
                 collection: Msip::Persona::ORIENTACION_OPCIONES,
-                label: false,
-                include_blank: '-- Orientación Sexual'
+                include_blank: '-- Orientación Sexual',
+                label: false
               %>
           <% else %>
-            <%= f.input :rangoedad_id, 
+            <%= f.input :rangoedad_id,
               collection: Msip::ModeloHelper.opciones_tabla_basica(
                 Sivel2Gen::Rangoedad, f, :rangoedad_id
               ),
+              include_blank: '-- Rango de Edad',
               label: false,
               label_method: :nombre,
-              value_method: :id,
-              include_blank: '-- Rango de Edad'
+              value_method: :id
             %>
             <% end %>
           </div>
           <div class="col-sm col-md">
           <% if current_usuario %>
-            <%= f.input :rangoedad_id, 
+            <%= f.input :rangoedad_id,
               collection: Msip::ModeloHelper.opciones_tabla_basica(
                 Sivel2Gen::Rangoedad, f, :rangoedad_id
               ),
+              include_blank: '-- Rango de Edad',
               label: false,
               label_method: :nombre,
-              value_method: :id,
-              include_blank: '-- Rango de Edad'
+              value_method: :id
             %>
           <% else %>
             <%= f.input :sectorsocial_id,
               collection: Msip::ModeloHelper.opciones_tabla_basica(
                 Sivel2Gen::Sectorsocial, f, :sectorsocial_id
               ),
+              include_blank: '-- Sector Social',
               label: false,
               label_method: :nombre,
-              value_method: :id,
-              include_blank: '-- Sector Social'
+              value_method: :id
             %>
           <% end %>
           </div>
@@ -331,10 +377,10 @@
                 collection: Msip::ModeloHelper.opciones_tabla_basica(
                   Sivel2Gen::Sectorsocial, f, :sectorsocial_id
                 ),
+                include_blank: '-- Sector Social',
                 label: false,
                 label_method: :nombre,
-                value_method: :id,
-                include_blank: '-- Sector Social'
+                value_method: :id
               %>
             <% end %>
             </div>
@@ -344,10 +390,10 @@
                 collection: Msip::ModeloHelper.opciones_tabla_basica(
                   Sivel2Gen::Organizacion, f, :organizacion_id
                 ),
+                include_blank: '-- Organizacion',
                 label: false,
                 label_method: :nombre,
-                value_method: :id,
-                include_blank: '-- Organizacion'
+                value_method: :id
               %>
             <% end %>
             </div>
@@ -357,10 +403,10 @@
                 collection: Msip::ModeloHelper.opciones_tabla_basica(
                   Sivel2Gen::Profesion, f, :profesion_id
                 ),
+                include_blank: '-- Profesion',
                 label: false,
                 label_method: :nombre,
-                value_method: :id,
-                include_blank: '-- Profesion'
+                value_method: :id
               %>
             <% end %>
             </div>
@@ -384,10 +430,10 @@
                 collection: Msip::ModeloHelper.opciones_tabla_basica(
                   Sivel2Gen::Filiacion, f, :filiacion_id
                 ),
+                include_blank: '-- Filiación política',
                 label: false,
                 label_method: :nombre,
-                value_method: :id,
-                include_blank: '-- Filiación política'
+                value_method: :id
               %>
             <% end %>
             </div>
@@ -409,19 +455,21 @@
         </div>
         <div class="offset-sm-0 col-sm-4 offset-md-0 col-md-4">
           <%= f.input :victimacol,
-            maxlength: 50, 
-            size: 10,
+            maxlength: 50,
             label: false,
-            placeholder: 'Nombre'
+            placeholder: 'Nombre',
+            size: 10
           %>
         </div>
         <div class="offset-sm-0 col-sm-4 offset-md-0 col-md-3">
         </div>
         <div class="offset-sm-0 col-sm-1 text-center">
-          <%= f.input :inc_victimacol, 
-            as: :boolean, 
-            label: false,
-            input_html: {checked: 'checked'}
+          <%= f.input :inc_victimacol,
+            as: :boolean,
+            input_html: {
+              checked: 'checked'
+            },
+            label: false
           %>
         </div>
         <div class="offset-sm-0 col-sm-1 text-center">
@@ -436,20 +484,22 @@
       </div>
       <div class="offset-sm-0 col-sm-9 offset-md-0 col-md-7">
         <%= f.input :descripcion,
-          maxlength: 500, 
           label: false,
+          maxlength: 500,
           placeholder: 'Descripción'
         %>
       </div>
         <!--%= select_tag "contexto", options_from_collection_for_select(
           Sivel2Gen::Contexto.habilitados,
-          "id", "nombre") 
+          "id", "nombre")
         %-->
       <div class="offset-sm-0 col-sm-1 text-center">
-        <%= f.input :inc_memo, 
-          as: :boolean, 
-          label: false,
-          input_html: { :checked => "checked" }
+        <%= f.input :inc_memo,
+          as: :boolean,
+          input_html: {
+            checked: "checked"
+          },
+          label: false
         %>
       </div>
       <div class="offset-sm-0 col-sm-1 text-center">
@@ -461,10 +511,10 @@
           Etiqueta
         </div>
         <div class="offset-sm-0 col-sm-1">
-          <%= f.input :conetiqueta1, 
-            collection: [ ["TIENE", true], ["NO TIENE", false] ], 
-            label: false,
-            include_blank: false
+          <%= f.input :conetiqueta1,
+            collection: [ ["TIENE", true], ["NO TIENE", false] ],
+            include_blank: false,
+            label: false
           %>
         </div>
         <div class="offset-sm-0 col-sm-2">
@@ -472,17 +522,17 @@
             collection: Msip::ModeloHelper.opciones_tabla_basica(
               Msip::Etiqueta, f, :etiqueta1
             ),
+            include_blank: '-- Etiqueta 1',
             label_method: :nombre,
-            value_method: :id,
             label: false,
-            include_blank: '-- Etiqueta 1'
+            value_method: :id
           %>
         </div>
         <div class="offset-sm-1 col-sm-1">
-          <%= f.input :conetiqueta2, 
-            collection: [ ["TIENE", true], ["NO TIENE", false] ], 
-            label: false,
-            include_blank: false
+          <%= f.input :conetiqueta2,
+            collection: [ ["TIENE", true], ["NO TIENE", false] ],
+            include_blank: false,
+            label: false
           %>
         </div>
         <div class="offset-sm-0 col-sm-2">
@@ -490,16 +540,16 @@
             collection: Msip::ModeloHelper.opciones_tabla_basica(
               Msip::Etiqueta, f, :etiqueta2
             ),
-            label_method: :nombre,
-            value_method: :id,
+            include_blank: '-- Etiqueta 1',
             label: false,
-            include_blank: '-- Etiqueta 1'
+            label_method: :nombre,
+            value_method: :id
           %>
         </div>
         <div class="offset-sm-0 col-sm-1 text-center">
         </div>
       </div>
-   
+
       <div class="row filtro-fila">
         <div class="offset-sm-0 col-sm-2 offset-md-1 col-md-1">
           Solicitudes
@@ -509,91 +559,97 @@
             collection: Msip::ModeloHelper.opciones_tabla_basica(
               Msip::Estadosol, f, :estadosol_id
             ),
-            label_method: :nombre,
-            value_method: :id,
+            include_blank: '-- Estado de solicitud',
             label: false,
-            include_blank: '-- Estado de solicitud'
+            label_method: :nombre,
+            value_method: :id
           %>
         </div>
       </div>
 
       <div class="row filtro-fila">
         <div class="offset-sm-0 col-sm-2 offset-md-1 col-md-1">
-          Ingreso a Sistema
+          Ingreso al Sistema
         </div>
         <div class="offset-sm-0 col-sm-2">
           <%= f.input :usuario_id,
             collection: Msip::ModeloHelper.opciones_tabla_basica(
               ::Usuario, f, :usuario_id
             ),
-            label_method: lambda {|t| (t.nombre ? t.nombre : '') + ' - ' + 
-              t.nusuario
-          },
-            value_method: :id,
+            include_blank: '-- Usuario',
+            label_method: lambda { |t|
+              (t.nombre ? t.nombre : '') + ' - ' + t.nusuario
+            },
             label: false,
-            include_blank: '-- Usuario'
+            value_method: :id
           %>
         </div>
         <div class="offset-md-1 col-sm-2">
           <%= f.input :fechaingini,
-            maxlength: 10, 
-            size: 10,
-            label: false,
-            placeholder: 'Fecha Inicial',
             input_html: {
              type: "date"
-            }
+            },
+            label: false,
+            maxlength: 10,
+            placeholder: 'Fecha Inicial',
+            size: 10
           %>
         </div>
         <div class="col-sm-2">
           <%= f.input :fechaingfin,
-            maxlength: 10, 
-            size: 10,
-            label: false,
-            placeholder: 'Fecha Final',
             input_html: {
              type: "date"
-            }
+            },
+            label: false,
+            maxlength: 10,
+            placeholder: 'Fecha Final',
+            size: 10
           %>
         </div>
       </div>
       <div class="row filtro-fila">
         <div class="offset-sm-0 col-sm-2 offset-md-1 col-md-1">
-         Código(s) 
+         Código(s)
         </div>
         <div class="offset-sm-0 col-sm-2 offset-md-0 col-md-7">
-          <%= f.input :codigo, 
-            placeholder: 'Código(s)',
-            label: false
+          <%= f.input :codigo,
+            label: false,
+            placeholder: 'Código(s)'
           %>
         </div>
         <div class="offset-sm-0 col-sm-1 text-center">
           <%= f.input :inc_casoid,
-            as: :boolean, 
-            label: false,
-            input_html: { :checked => "checked" }
+            as: :boolean,
+            input_html: {
+              checked: "checked"
+            },
+            label: false
           %>
         </div>
         <div class="offset-sm-0 col-sm-1 text-center">
-          A <%= f.radio_button(:orden, :codigo, 
-                               checked: @campoord == 'codigo') %>
-          D <%= f.radio_button(:orden, :codigodesc, 
-                               checked: @campoord == 'codigodesc') %>
+          A
+          <%= f.radio_button(
+            :orden, :codigo, checked: @campoord == 'codigo') %>
+          D
+          <%= f.radio_button(
+            :orden, :codigodesc, checked: @campoord == 'codigodesc') %>
         </div>
       </div>
       <div class="row filtro-fila">
         <div class="offset-sm-0 col-sm-2 offset-md-1 col-md-1">
-          Presentación  
+          Presentación
         </div>
         <div class="offset-sm-0 col-sm-2 offset-md-0 col-md-7">
         </div>
         <div class="col-sm-2">
         </div>
         <div class="col-sm-1">
-          <%= f.input :paginar, 
-            as: :boolean, 
-            label: 'Paginar',
-            input_html: { checked: "checked" }
+          <%= f.input :paginar,
+            as: :boolean,
+            input_html: {
+              checked: "checked"
+            },
+            label: 'Paginar'
           %>
         </div>
       </div> <!-- row -->
@@ -608,23 +664,21 @@
           <div class="offset-sm-1 col-sm-4">
             <%= f.input :disgenera,
               collection: @plantillas,
-              label: false,
-              include_blank: false
+              include_blank: false,
+              label: false
             %>
           </div>
           <div class="col-sm-2">
-            <%= link_to t('Generar'), 
-              '#',
-              class: 'btn', 
-              target: '_blank', 
-              onclick: 'heb412_gen_completa_generarp(this, "#filtro_disgenera",
-                "casos", "casos")' %>
-            <%= link_to t('Generar XLSX'), 
-              '#',
-              class: 'btn', 
-              target: '_blank', 
-              onclick: 'heb412_gen_completa_generarp(this, "#filtro_disgenera",
-                "casos", "casos", "xlsx")' %>
+            <%= link_to t('Generar'), '#',
+              class: 'btn',
+              onclick: 'heb412_gen_completa_generarp(this, "#filtro_disgenera", "casos", "casos")',
+              target: '_blank'
+            %>
+            <%= link_to t('Generar XLSX'), '#',
+              class: 'btn',
+              onclick: 'heb412_gen_completa_generarp(this, "#filtro_disgenera", "casos", "casos", "xlsx")',
+              target: '_blank'
+            %>
           </div>
           <div class="col-sm-3">
           </div>
@@ -634,11 +688,3 @@
 
   <!--% end %-->
 </div>
-  <script>
-    //Permite limpiar los campos que usan multiple select con chosen select
-    $('button[type=reset]').on('click', function() {
-      setTimeout(function() {
-        $('.tom-select').trigger('chosen:updated');
-      }, 0);
-    });
-  </script>
