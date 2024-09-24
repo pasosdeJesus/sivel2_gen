@@ -18,7 +18,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/heb412_gen.git
-  revision: 1506ad35c0e3559b56477b631fc12eecf130cf83
+  revision: 04ceefed06d2614afd7d76e94f5c58051b01a631
   branch: tomselect
   specs:
     heb412_gen (2.2.0.beta6)
@@ -29,7 +29,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/mr519_gen.git
-  revision: 14704cbd535b6af994c4f4a0654c27754496db8e
+  revision: 84c046911ac5c05ae04fe088592bec01d7e4b726
   branch: tomselect
   specs:
     mr519_gen (2.2.0.beta6)
@@ -38,7 +38,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/msip.git
-  revision: 9eb58a3c2904e8ea83b77678cd59d39d986ec5cd
+  revision: be592997647a379db03bcfb26205b3819dcdbe66
   branch: tomselect
   specs:
     msip (2.2.0.beta6)
@@ -292,7 +292,7 @@ GEM
     psych (5.1.2)
       stringio
     public_suffix (6.0.1)
-    puma (6.4.2)
+    puma (6.4.3)
       nio4r (~> 2.0)
     racc (1.8.1)
     rack (2.2.9)
@@ -376,7 +376,7 @@ GEM
     rubocop-minitest (0.36.0)
       rubocop (>= 1.61, < 2.0)
       rubocop-ast (>= 1.31.1, < 2.0)
-    rubocop-rails (2.26.1)
+    rubocop-rails (2.26.2)
       activesupport (>= 4.2.0)
       rack (>= 1.1)
       rubocop (>= 1.52.0, < 2.0)
@@ -423,9 +423,8 @@ GEM
     timeout (0.4.1)
     ttfunk (1.8.0)
       bigdecimal (~> 3.1)
-    turbo-rails (2.0.7)
+    turbo-rails (2.0.10)
       actionpack (>= 6.0.0)
-      activejob (>= 6.0.0)
       railties (>= 6.0.0)
     twitter_cldr (6.12.1)
       camertron-eprun
@@ -516,4 +515,4 @@ DEPENDENCIES
   will_paginate
 
 BUNDLED WITH
-   2.5.18
+   2.5.19
