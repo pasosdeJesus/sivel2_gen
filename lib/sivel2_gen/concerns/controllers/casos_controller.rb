@@ -1112,13 +1112,15 @@ module Sivel2Gen
               config.strict.noent
             end
             ## Verifica si trae un enlace a un dtd válido (097, 098 o 099)
-            enlace = docnoko_inicial.children[0].system_id
             http = "http://sincodh.pasosdejesus.org/relatos/relatos-"
             pru = "test/dummy/public/relatos-"
+            enlace = docnoko_inicial.children[0].respond_to?(:system_id) ?
+              docnoko_inicial.children[0].system_id :
+              http + "099.dtd"
             aceptados = []
             [http, pru].each do |pre|
               aceptados += [
-                pre + "097.dtd", pre + "098.dtd", pre + "099.dtd",
+                pre + "097.dtd", pre + "098.dtd", pre + "099.dtd"
               ]
             end
             if aceptados.include? enlace
