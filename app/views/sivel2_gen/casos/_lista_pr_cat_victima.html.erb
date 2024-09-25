@@ -168,7 +168,7 @@
     <% pr.each_with_index do |pri, i|%>
       <%= "Y" if i != 0 %>
       <% if pri.is_a? Array %>
-        <%= Sivel2Gen::Presponsable.find(pri).map(&:nombre_con_polo).join(" Y ") %> 
+        <%= Sivel2Gen::Presponsable.find(pri.flatten).map(&:nombre_con_polo).join(" Y ") %> 
       <% else %>
         <%= Sivel2Gen::Presponsable.find(pri).nombre_con_polo %> 
       <% end %>
