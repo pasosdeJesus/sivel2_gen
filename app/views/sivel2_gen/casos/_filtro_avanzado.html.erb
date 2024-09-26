@@ -629,11 +629,3 @@
 
   <!--% end %-->
 </div>
-  <script>
-    //Permite limpiar los campos que usan multiple select con chosen select
-    $('button[type=reset]').on('click', function() {
-      setTimeout(function() {
-        $('.chosen-select').trigger('chosen:updated');
-      }, 0);
-    });
-  </script>
