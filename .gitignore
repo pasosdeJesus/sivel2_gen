@@ -46,6 +46,8 @@ test/dummy/app/assets/builds
 .env
 test/dummy/app/javascript/controllers/msip
 test/dummy/app/javascript/controllers/sivel2_gen
+test/dummy/app/javascript/controllers/heb412_gen
+test/dummy/app/javascript/controllers/mr519_gen
 
 public/*/csv/actos_individuales.csv
 test/dummy/public/sivel2_2/csv

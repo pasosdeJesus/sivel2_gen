@@ -19,7 +19,17 @@ import * as bootstrap from 'bootstrap'              // Maquetacion y elementos d
 
 import Msip__Motor from "./controllers/msip/motor"
 window.Msip__Motor = Msip__Motor
-Msip__Motor.iniciar()  // Este se ejecuta una vez cuando se está cargando la aplicación tal vez antes que la página completa o los recursos
+Msip__Motor.iniciar()
+import Mr519Gen__Motor from "./controllers/mr519_gen/motor"
+window.Mr519Gen__Motor = Mr519Gen__Motor
+Mr519Gen__Motor.iniciar()
+import Heb412Gen__Motor from "./controllers/heb412_gen/motor"
+window.Heb412Gen__Motor = Heb412Gen__Motor
+Heb412Gen__Motor.iniciar()
+import Sivel2Gen__Motor from "./controllers/sivel2_gen/motor"
+window.Sivel2Gen__Motor = Sivel2Gen__Motor
+Sivel2Gen__Motor.iniciar()
+
 
 import TomSelect from 'tom-select';
 window.TomSelect = TomSelect;
@@ -40,11 +50,6 @@ Apex.chart = {
   locales: [apexes],
   defaultLocale: 'es',
 }
-
-import Sivel2Gen__Motor from "./controllers/sivel2_gen/motor"
-window.Sivel2Gen__Motor = Sivel2Gen__Motor
-Sivel2Gen__Motor.iniciar()  // Este cargará leaflet en window.L
-
 
 import plotly_serietiempo_actos from './plotly_actos'
 
@@ -68,6 +73,8 @@ let promesaRecursosSprocketsYDocumento = new Promise((resolver, rechazar) => {
   esperarRecursosSprocketsYDocumento(resolver)
 })
 
+// Este se ejecuta cada vez que se carga una página que no está en cache 
+// y tipicamente después de que se ha cargado la página completa y los recursos
 promesaRecursosSprocketsYDocumento.then((mensaje) => {
   console.log(mensaje)
   var root = window;
@@ -77,7 +84,9 @@ promesaRecursosSprocketsYDocumento.then((mensaje) => {
   sivel2_gen_prepara_eventos_comunes(root);
   sivel2_gen_prepara_eventos_unicos(root);
 
-  Msip__Motor.ejecutarAlCargarDocumentoYRecursos()  // Este se ejecuta cada vez que se carga una página que no está en cache y tipicamente después de que se ha cargado la página completa y los recursos
+  Msip__Motor.ejecutarAlCargarDocumentoYRecursos()
+  Mr519Gen__Motor.ejecutarAlCargarDocumentoYRecursos()
+  Heb412Gen__Motor.ejecutarAlCargarDocumentoYRecursos()
   Sivel2Gen__Motor.ejecutarAlCargarDocumentoYRecursos()
 
   var p = new URL(document.URL).pathname.split('/')
@@ -101,8 +110,10 @@ document.addEventListener('turbo:load', (e) => {
 
   console.log('Escuchador turbo:load')
 
-  msip_ejecutarAlCargarPagina(window)
-  Msip__Motor.ejecutarAlCargarPagina()  // Este puede ejecutarse varias veces consecutivas cada vez que se termina de cargar una página que incluso pudiera estar en cache
+  msip_ejecutarAlCargarPagina(window) // Establece root.puntomontaje
+  Msip__Motor.ejecutarAlCargarPagina()
+  Mr519Gen__Motor.ejecutarAlCargarPagina()
+  Heb412Gen__Motor.ejecutarAlCargarPagina()
   Sivel2Gen__Motor.ejecutarAlCargarPagina()
 })
 

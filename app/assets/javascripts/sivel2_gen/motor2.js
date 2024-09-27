@@ -47,6 +47,7 @@ function csSeleccionarTodasSinSpan(id) {
   }
 }
 
+console.log("* En sivel2_gen/motor2.js creando escuchadores de eventos")
 
 
 // FILTRO DE CATEGORÍAS
