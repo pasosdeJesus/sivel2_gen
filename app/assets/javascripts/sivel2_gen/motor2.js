@@ -47,6 +47,7 @@ function csSeleccionarTodasSinSpan(id) {
   }
 }
 
+console.log("* En sivel2_gen/motor2.js creando escuchadores de eventos")
 
 document.getElementById('limpiar-campos-filtro').addEventListener('click', function(e) {
   // Obtiene todos los campos con la clase 'chosen-select'
