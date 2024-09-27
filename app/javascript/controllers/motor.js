@@ -26,10 +26,10 @@ export default class Sivel2Gen__Motor{
    *
    */
 
-  // Por ejecuatr cuando se haya cargado el documento
-  // y los recurso sprockets
+  // Se ejecuta cada vez que se carga una página que no está en cache
+  // y tipicamente después de que se ha cargado la página y los recursos.
   static ejecutarAlCargarDocumentoYRecursos() {
-
+    console.log("* Corriendo Sivel2Gen__Motor::ejecutarAlCargarDocumentoYRecursos()")
   }
 
   // Llamar cada vez que se cargue una página detectada con turbo:load
@@ -38,12 +38,13 @@ export default class Sivel2Gen__Motor{
   // Podría ser llamada varias veces consecutivas por lo que debe detectarlo
   // para no ejecutar dos veces lo que no conviene.
   static ejecutarAlCargarPagina() {
-
+    console.log("* Corriendo Sivel2Gen__Motor::ejecutarAlCargarPagina()")
   }
 
   // Llamada desde application.js tal vez antes de cargar el documento,
   // paquetes javascript y recursos sprockets
   static iniciar() {
+    console.log("* Corriendo Sivel2Gen__Motor::iniciar()")
     // Para usar mapa sobre OpenStreetMap cargue leaflet antes de llamar
     // esta función an application.js asi:
     // import L from 'leaflet'
