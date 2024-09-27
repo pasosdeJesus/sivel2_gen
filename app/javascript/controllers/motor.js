@@ -63,6 +63,20 @@ export default class Sivel2Gen__Motor{
         shadowUrl: "../assets/leaflet/dist/images/marker-shadow-a2d94406ba198f61f68a71ed8f9f9c701122c0c33b775d990edceae4aece567f.png"
       });
     }
+
+    Msip__Motor.configurarElementosTomSelect()
+
+    // En filtro avanzado del listado de casos maneja botón Limpiar
+    if (document.getElementById('limpiar-campos-filtro')) {
+      document.getElementById('limpiar-campos-filtro').addEventListener('click', function(e) {
+        // Obtiene todos los campos con la clase 'chosen-select'
+        const selectores = document.querySelectorAll('.chosen-select');
+        selectores.forEach(select => {
+          csDeseleccionarTodas(select.id);
+        });
+      });
+    }
+
   }
 
 }
