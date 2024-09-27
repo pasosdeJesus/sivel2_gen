@@ -45,6 +45,19 @@ export default class Sivel2Gen__Motor {
     }
 
     Msip__Motor.configurarElementosTomSelect()
+
+    // En filtro avanzado del listado de casos maneja botón Limpiar
+    if (document.getElementById('limpiar-campos-filtro')) {
+      document.getElementById('limpiar-campos-filtro').addEventListener('click', function(e) {
+        // Obtiene todos los campos con la clase 'chosen-select'
+        const selectores = document.querySelectorAll('.chosen-select');
+        selectores.forEach(select => {
+          csDeseleccionarTodas(select.id);
+        });
+      });
+    }
+
+>>>>>>> e0b9a241 (Mueve limpieza de cateogiras en filtro avanzado, para que se cargue aun cuando la pagina este en cache. Closes https://gitlab.com/pasosdeJesus/sivel2_gen/-/issues/707)
   }
 
 }
