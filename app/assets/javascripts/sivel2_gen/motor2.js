@@ -41,6 +41,7 @@ function csSeleccionarTodasSinSpan(id) {
   document.querySelector('#'+id).dispatchEvent(new Event("chosen:updated"));
 }
 
+console.log("* En sivel2_gen/motor2.js creando escuchadores de eventos")
 
 
 // FILTRO DE CATEGORÍAS
