@@ -80,8 +80,36 @@
                 <%= com.pluck(:nombre).join(", ")%>
               <% end %>
 
+            <% elsif i == 'solicitudes' %>
+              <% solicitudes = caso.caso.solicitud %> 
+              <% if solicitudes and current_usuario %> 
+                <ul  class="list-group"> 
+                <% for sol in solicitudes %>
+                  <% creado_por = Msip::Usuario.find(sol.usuario_id) %>
+                  <% destinatarios = sol.usuarionotificar.to_a %>
+                  <% usuario = Msip::Usuario.find(current_usuario.id) %>
+                  <% if usuario == creado_por or destinatarios.include? usuario or [1, 3].include? usuario.rol %>
+                    <% usuario = creado_por %>
+                    <li class="list-group-item list-group-item-action" 
+                        data-toggle="tooltip" 
+                        title="<%= sol.solicitud %>">
+                        <span> 
+                          <%= usuario.nusuario %> 
+                        </span>
+                        <% if sol.estadosol_id == 1 %> 
+                          <%= link_to 'Resolver', sivel2_gen.resolver_solicitud_caso_path(caso.id, solicitud_id: sol.id), method: :patch, class: 'btn btn-sm' %>
+                        <% end %> 
+                        <% if sol.estadosol_id == 2 %> 
+                          <%= link_to 'Resuelta', "#", class: 'btn btn-sm disabled' %>
+                        <% end %> 
+
+                    </li> 
+                  <% end %> 
+                <% end %>
+                </ul>
+              <% end %> 
             <% else %>
-              <% #byebug %>
+              <% #debugger %>
               <%= caso[i] if caso[i] %>
             <% end %>
           </td>
