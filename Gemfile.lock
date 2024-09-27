@@ -11,7 +11,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sip.git
-  revision: 123037b8fac3b07c2587437a4047d7c91d88276f
+  revision: cfb99afece5512dca3d2c9241290ab38822887a5
   branch: v2.1
   specs:
     sip (2.1.0.beta1)
@@ -29,7 +29,7 @@ GIT
 
 GIT
   remote: https://github.com/styd/apexcharts.rb.git
-  revision: 3c04fbc3eecc07f2b5fd433dae03798f329b1692
+  revision: e5eff19526123252347cc53b85a15db052eb24dd
   branch: master
   specs:
     apexcharts (0.2.0)
@@ -43,7 +43,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/heb412_gen.git
-  revision: 8b5785e114e3a21f1b4b3aef93e3d2a59eb742af
+  revision: 8fd8e9e9ddd48d9126be22a263c984e39f7ff336
   branch: v2.1
   specs:
     heb412_gen (2.1.0.beta1)
@@ -54,7 +54,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/mr519_gen.git
-  revision: 7c64173ddd37b42d03b43a5d78215b87fd3b77f8
+  revision: 35618313abcf995922c08d553474fe5d574eaa01
   branch: v2.1
   specs:
     mr519_gen (2.1.0.beta1)
@@ -208,7 +208,7 @@ GEM
     i18n (1.14.6)
       concurrent-ruby (~> 1.0)
     io-console (0.7.2)
-    irb (1.14.0)
+    irb (1.14.1)
       rdoc (>= 4.0.0)
       reline (>= 0.4.2)
     jbuilder (2.13.0)
@@ -462,4 +462,4 @@ DEPENDENCIES
   will_paginate
 
 BUNDLED WITH
-   2.5.19
+   2.5.20
