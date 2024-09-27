@@ -120,7 +120,7 @@ module Sivel2Gen
           # Todas las columnas que pueden presentarse
           def incluir_inicial
             ['casoid', 'fecha', 'ubicaciones', 'presponsables',
-              'tipificacion', 'victimas', 'memo']
+              'tipificacion', 'victimas', 'memo', 'solicitudes']
           end
 
           # Ordenamiento inicial por este campo
@@ -1094,6 +1094,23 @@ module Sivel2Gen
             show_sivel2_gen
           end
 
+          def resolver_solicitud
+            if params[:solicitud_id]
+              usuario = Msip::Usuario.find(current_usuario.id)
+              solicitud = Msip::Solicitud.find(params[:solicitud_id])
+              creado_por = Msip::Usuario.find(solicitud.usuario_id) 
+              destinatarios = solicitud.usuarionotificar.to_a
+              if usuario == creado_por or destinatarios.include? usuario
+                solicitud.estadosol_id = 2
+                solicitud.save!
+                redirect_back(fallback_location: sivel2_gen.casos_path, notice: 'Solicitud resuelta exitosamente.')
+                return
+              end
+              redirect_back(fallback_location: sivel2_gen.casos_path, aslert: 'No tiene permisos para resolver solicitud')
+              return
+            end
+          end
+          
           # DELETE /casos/1
           # DELETE /casos/1.json
           def destroy
@@ -1504,6 +1521,7 @@ module Sivel2Gen
           def caso_params
             params.require(:caso).permit(lista_params)
           end
+
         end
 
         module ClassMethods

@@ -89,8 +89,8 @@ Sivel2Gen::Engine.routes.draw do
     collection { post :importa }
     member do
       patch :guardar_y_editar
+      patch :resolver_solicitud
     end
-
   end
 
   resources :caso_etiqueta, only: [], param: :index do 
