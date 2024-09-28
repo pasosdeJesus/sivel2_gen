@@ -1,4 +1,3 @@
-
 export default class Sivel2Gen__Motor {
   /* 
    * Librería de funciones comunes.
@@ -45,6 +44,7 @@ export default class Sivel2Gen__Motor {
       });
     }
 
+    Msip__Motor.configurarElementosTomSelect()
   }
 
 }
