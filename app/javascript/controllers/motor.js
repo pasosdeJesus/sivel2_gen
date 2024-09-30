@@ -57,7 +57,6 @@ export default class Sivel2Gen__Motor {
       });
     }
 
->>>>>>> e0b9a241 (Mueve limpieza de cateogiras en filtro avanzado, para que se cargue aun cuando la pagina este en cache. Closes https://gitlab.com/pasosdeJesus/sivel2_gen/-/issues/707)
   }
 
 }
