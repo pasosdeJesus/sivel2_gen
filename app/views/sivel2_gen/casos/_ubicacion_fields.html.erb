@@ -1,4 +1,4 @@
-<div class='control-group nested-fields ubicacion'>
+<div class='control-group nested-fields ubicacion' data-controllers="msip--geodep">
   <div class="controls">
 
     <div class="row">
@@ -6,16 +6,30 @@
         <% idpais = f.object.pais_id ? f.object.pais_id : Msip.paisomision %>
         <%= f.association :pais,
           collection: Msip::Pais.where(fechadeshabilitacion: nil).order(:nombre),
+          input_html: {
+            class: "tom-select",
+            data: {
+              action: "change->msip--geodep#cambiar_pais"
+            }
+          },
           label_method: :nombre,
-          value_method: :id,
-          selected: idpais
-           %>
+          selected: idpais,
+          value_method: :id %>
       </div>
       <div class="col-md-6">
         <%= f.association :departamento,
-          collection: (Msip::Departamento.where(
-           pais_id: idpais, 
-            fechadeshabilitacion: nil).order(:nombre)),
+          collection: (
+            Msip::Departamento.where(
+              pais_id: idpais, 
+              fechadeshabilitacion: nil).order(:nombre)
+          ),
+          input_html: {
+            class: "tom-select",
+            data: {
+              action: "change->msip--geodep#cambiar_departamento",
+              "msip--geodep-target": "departamento"
+            }
+          },
           label_method: :nombre,
           value_method: :id %>
       </div>
@@ -24,17 +38,35 @@
     <div class="row">
       <div class="col-md-6">
         <%= f.association :municipio,
-          collection: (Msip::Municipio.where(
-            departamento_id: f.object.departamento_id,
-            fechadeshabilitacion: nil).order(:nombre)),
+          collection: (
+            Msip::Municipio.where(
+              departamento_id: f.object.departamento_id,
+              fechadeshabilitacion: nil).order(:nombre)
+          ),
+          input_html: {
+            class: "tom-select",
+            data: {
+              action: "change->msip--geodep#cambiar_municipio",
+              "msip--geodep-target": "municipio"
+            }
+          },
           label_method: :nombre,
           value_method: :id %>
       </div>
       <div class="col-md-6">
         <%= f.association :centropoblado,
-          collection: (Msip::Centropoblado.where(
-            municipio_id: f.object.municipio_id,
-            fechadeshabilitacion: nil).order(:nombre)),
+          collection: (
+            Msip::Centropoblado.where(
+              municipio_id: f.object.municipio_id,
+              fechadeshabilitacion: nil).order(:nombre)
+          ),
+          input_html: {
+            class: "tom-select",
+            data: {
+              action: "change->msip--geodep#cambiar_centropoblado",
+              "msip--geodep-target": "centropoblado"
+            }
+          },
           label_method: :nombre,
           value_method: :id %>
         <%= f.input :tcentropoblado, 
