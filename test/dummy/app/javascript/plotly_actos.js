@@ -242,11 +242,20 @@ function procesar_datos(filas, variable) {
 
   datosrEtiquetas = Object.keys(dicEtiquetas)
   seleccionmAsignarOpciones(selectorCategoria, datosrEtiquetas, true);
-  var fechaminLoc = datosrFechamin
 
-  campoFechaini.value = datosrFechamin
+  function saneaFechaEstandar(fecha) {
+    if (/^[0-9][0-9][0-9][0-9]-[0-9][0-9]?-[0-9][0-9]?$/.test(fecha)) {
+      return fecha
+    } else {
+      return "";
+    }
+  }
 
-  campoFechafin.value = datosrFechamax
+  var fechaminLoc = saneaFechaEstandar(datosrFechamin)
+
+  campoFechaini.value = saneaFechaEstandar(datosrFechamin)
+
+  campoFechafin.value = saneaFechaEstandar(datosrFechamax)
 
 
   /*var colores = {
@@ -281,13 +290,11 @@ function procesar_datos(filas, variable) {
     actualizarGraficaFechas();
   });
 
-
 }
 
 
 function plotly_serietiempo_actos() {
-  ruta_relativa = window.location.pathname.split("/")[1]
-  Plotly.d3.csv("/" + ruta_relativa + "/" + ruta_relativa + "/csv/actos_individuales.csv", function(err, datos) { 
+  Plotly.d3.csv("../assets/csv/actos_individuales.csv", function(err, datos) { 
     procesar_datos(datos, 'presponsable') 
   });
 };
