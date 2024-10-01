@@ -11,14 +11,14 @@ module Sivel2Gen
 
         @rutadircsv = File.join(
           Rails.root, "public#{Rails.configuration.relative_url_root}" +
-          "csv").to_s
+          "assets/csv").to_s
         unless Dir.exist?(@rutadircsv)
           Dir.mkdir(@rutadircsv)
         end
 
         @rutacsv = File.join(
           Rails.root, "public#{Rails.configuration.relative_url_root}" +
-          "csv/actos_individuales.csv").to_s
+          "assets/csv/actos_individuales.csv").to_s
 
         tarc = Tempfile.new(['actos_individuales', '.csv'], '/var/www/tmp/')
         rutatmp = tarc.path
