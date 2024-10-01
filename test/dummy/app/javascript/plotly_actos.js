@@ -243,11 +243,20 @@ function procesar_datos(filas, variable) {
   datosrEtiquetas = Object.keys(dicEtiquetas)
 
   seleccionmAsignarOpciones(selectorCategoria, datosrEtiquetas, true);
-  var fechaminLoc = msip_retorna_fecha(datosrFechamin, 'yyyy-mm-dd')
 
-  campoFechaini.value = msip_retorna_fecha(datosrFechamin, 'yyyy-mm-dd')
+  function saneaFechaEstandar(fecha) {
+    if (/^[0-9][0-9][0-9][0-9]-[0-9][0-9]?-[0-9][0-9]?$/.test(fecha)) {
+      return fecha
+    } else {
+      return "";
+    }
+  }
 
-  campoFechafin.value = msip_retorna_fecha(datosrFechamax, 'yyyy-mm-dd')
+  var fechaminLoc = saneaFechaEstandar(datosrFechamin)
+
+  campoFechaini.value = saneaFechaEstandar(datosrFechamin)
+
+  campoFechafin.value = saneaFechaEstandar(datosrFechamax)
 
 
   /*var colores = {
@@ -258,8 +267,12 @@ function procesar_datos(filas, variable) {
 
   function actualizarGraficaFechas() {
     var opelegidas = seleccionmOpcionesElegidas(selectorCategoria)
-    var fechaini = msip_partes_fecha(campoFechaini.value, "dd/M/yyyy").join('-')
-    var fechafin = msip_partes_fecha(campoFechafin.value, "dd/M/yyyy").join('-')
+    var fechaini = msip_partes_fecha_localizada(
+      campoFechaini.value, "yyyy-mm-dd"
+    ).join('-')
+    var fechafin = msip_partes_fecha_localizada(
+      campoFechafin.value, "yyyy-mm-dd"
+    ).join('-')
     recalcularSeriesPresentadas(fechaini, fechafin, opelegidas);
   }
 
@@ -273,7 +286,8 @@ function procesar_datos(filas, variable) {
   actualizarGraficaFechas()
 
 
-  $(selectorCategoria).chosen().change(actualizarGraficaEtiquetas)
+  /* Eventos deben manejarse con stimulus
+   $(selectorCategoria).chosen().change(actualizarGraficaEtiquetas)
   $(campoFechaini).datepicker({    
     format: window.formato_fecha, 
     autoclose: true, 
@@ -285,14 +299,14 @@ function procesar_datos(filas, variable) {
     autoclose: true, 
     todayHighlight: true, 
     language: 'es' 
-  }).on('changeDate', (ev) => actualizarGraficaFechas())
+  }).on('changeDate', (ev) => actualizarGraficaFechas()) */
 
 
 }
 
 
 function plotly_serietiempo_actos() {
-  Plotly.d3.csv("../csv/actos_individuales.csv", function(err, datos) { 
+  Plotly.d3.csv("../assets/csv/actos_individuales.csv", function(err, datos) { 
     procesar_datos(datos, 'presponsable') 
   });
 };
