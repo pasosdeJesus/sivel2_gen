@@ -42,16 +42,17 @@ class CompletaOrganizacion < ActiveRecord::Migration[7.2]
 
 
   def up
-    if Sivel2Gen::Organizacion.where("nombre ILIKE 'DESPLAZADOS'").count == 1
-      desp = Sivel2Gen::Organizacion.where("nombre ILIKE 'DESPLAZADOS'").take
+    if Sivel2Gen::Organizacion.where("TRIM(nombre) ILIKE 'DESPLAZADOS'").count == 1
+      desp = Sivel2Gen::Organizacion.where("TRIM(nombre) ILIKE 'DESPLAZADOS'").take
       desp.nombre += "cadena_loca¿"
       desp.save!
       crea_desplazados
       renumera_organizacion(desp.id, 19)
-      desp.destroy_all
+      desp.delete
     else
       crea_desplazados
     end
+
 
     if Sivel2Gen::Organizacion.where(id: 17).count == 0 
       execute <<-SQL
@@ -79,7 +80,7 @@ class CompletaOrganizacion < ActiveRecord::Migration[7.2]
       vic.nombre += "cadena_loca¿"
       vic.save!
       renumera_organizacion(vic.id, 17)
-      vic.destroy_all
+      vic.delete
     end
 
     if Sivel2Gen::Organizacion.where("nombre ILIKE 'PAZ'").count == 1
@@ -88,7 +89,7 @@ class CompletaOrganizacion < ActiveRecord::Migration[7.2]
       paz.save!
       crea_paz
       renumera_organizacion(paz.id, 20)
-      paz.destroy_all
+      paz.delete
     else
       crea_paz
     end
@@ -98,7 +99,7 @@ class CompletaOrganizacion < ActiveRecord::Migration[7.2]
       comunal.save!
       crea_comunal
       renumera_organizacion(comunal.id, 21)
-      comunal.destroy_all
+      comunal.delete
     else
       crea_comunal
     end

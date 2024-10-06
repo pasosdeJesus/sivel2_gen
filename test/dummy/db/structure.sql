@@ -1052,6 +1052,36 @@ CREATE TABLE public.sivel2_gen_categoria (
 
 
 --
+-- Name: sivel2_gen_rangoedad_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.sivel2_gen_rangoedad_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: sivel2_gen_rangoedad; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.sivel2_gen_rangoedad (
+    id integer DEFAULT nextval('public.sivel2_gen_rangoedad_id_seq'::regclass) NOT NULL,
+    nombre character varying(500) NOT NULL COLLATE public.es_co_utf_8,
+    limiteinferior integer DEFAULT 0 NOT NULL,
+    limitesuperior integer DEFAULT 0 NOT NULL,
+    fechacreacion date DEFAULT '2001-01-01'::date NOT NULL,
+    fechadeshabilitacion date,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone,
+    observaciones character varying(5000),
+    CONSTRAINT rango_edad_check CHECK (((fechadeshabilitacion IS NULL) OR (fechadeshabilitacion >= fechacreacion)))
+);
+
+
+--
 -- Name: sivel2_gen_supracategoria_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
@@ -1091,19 +1121,16 @@ CREATE VIEW public.cvt1 AS
     acto.categoria_id,
     supracategoria.tviolencia_id,
     categoria.nombre AS categoria,
-    ((supracategoria.tviolencia_id)::text || (categoria.id)::text) AS nomcategoria,
-    departamento.nombre AS departamento_nombre,
-    departamento.deplocal_cod AS departamento_divipola,
-    'total'::text AS total
-   FROM (((((((public.sivel2_gen_acto acto
+    rangoedad.id,
+    rangoedad.nombre AS rangoedad_rango
+   FROM ((((((public.sivel2_gen_acto acto
      JOIN public.sivel2_gen_caso caso ON ((acto.caso_id = caso.id)))
      JOIN public.sivel2_gen_categoria categoria ON ((acto.categoria_id = categoria.id)))
      JOIN public.sivel2_gen_supracategoria supracategoria ON ((categoria.supracategoria_id = supracategoria.id)))
      JOIN public.sivel2_gen_victima victima ON (((victima.persona_id = acto.persona_id) AND (victima.caso_id = caso.id))))
      JOIN public.msip_persona persona ON ((persona.id = acto.persona_id)))
-     JOIN public.msip_ubicacion ubicacion ON ((ubicacion.id = caso.ubicacion_id)))
-     LEFT JOIN public.msip_departamento departamento ON ((departamento.id = ubicacion.departamento_id)))
-  WHERE ((caso.fecha >= '1999-11-02'::date) AND (caso.fecha <= '2024-08-02'::date) AND (categoria.id = ANY (ARRAY[427, 397, 527, 297, 777, 197, 196, 526, 396, 296, 776, 426, 15, 45, 73, 55, 25, 35, 65, 92, 40, 50, 67, 801, 90, 37, 57, 26, 46, 16, 80, 85, 66, 64, 703, 59, 28, 18, 38, 49, 706, 501, 401, 125, 135, 115, 904, 331, 17, 402, 502, 231, 705, 62, 906, 104, 503, 403, 713, 101, 76, 302, 21, 11, 102, 27, 902, 903, 34, 301, 14, 24, 10, 20, 30, 292, 192, 422, 772, 522, 392, 63, 93, 910, 525, 295, 425, 195, 395, 775, 714, 78, 294, 194, 424, 774, 524, 394, 89, 905, 86, 701, 68, 141, 241, 341, 715, 704, 702, 23, 13, 33, 43, 53, 88, 98, 84, 709, 711, 707, 708, 710, 87, 97, 717, 917, 716, 916, 91, 95, 718, 193, 393, 523, 293, 773, 423, 48, 58, 75, 69, 41, 74, 22, 56, 72, 47, 12, 36, 771, 291, 191, 521, 421, 391, 19, 420, 520, 77, 29, 39, 712])));
+     LEFT JOIN public.sivel2_gen_rangoedad rangoedad ON ((victima.rangoedad_id = rangoedad.id)))
+  WHERE (categoria.id = ANY (ARRAY[427, 397, 527, 297, 777, 197, 196, 526, 396, 296, 776, 426, 15, 45, 73, 55, 25, 35, 65, 92, 40, 50, 67, 801, 90, 37, 57, 26, 46, 16, 80, 85, 66, 64, 703, 59, 28, 18, 38, 49, 706, 501, 401, 125, 135, 115, 904, 331, 17, 402, 502, 231, 705, 62, 906, 104, 503, 403, 713, 101, 76, 302, 21, 11, 102, 27, 902, 903, 34, 301, 14, 24, 10, 20, 30, 292, 192, 422, 772, 522, 392, 63, 93, 910, 525, 295, 425, 195, 395, 775, 714, 78, 294, 194, 424, 774, 524, 394, 89, 905, 86, 701, 68, 141, 241, 341, 715, 704, 702, 23, 13, 33, 43, 53, 88, 98, 84, 709, 711, 707, 708, 710, 87, 97, 717, 917, 716, 916, 91, 95, 718, 193, 393, 523, 293, 773, 423, 48, 58, 75, 69, 41, 74, 22, 56, 72, 47, 12, 36, 771, 291, 191, 521, 421, 391, 19, 420, 520, 77, 29, 39, 712]));
 
 
 --
@@ -3994,36 +4021,6 @@ CREATE TABLE public.sivel2_gen_profesion_victimacolectiva (
 
 
 --
--- Name: sivel2_gen_rangoedad_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public.sivel2_gen_rangoedad_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: sivel2_gen_rangoedad; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.sivel2_gen_rangoedad (
-    id integer DEFAULT nextval('public.sivel2_gen_rangoedad_id_seq'::regclass) NOT NULL,
-    nombre character varying(500) NOT NULL COLLATE public.es_co_utf_8,
-    limiteinferior integer DEFAULT 0 NOT NULL,
-    limitesuperior integer DEFAULT 0 NOT NULL,
-    fechacreacion date DEFAULT '2001-01-01'::date NOT NULL,
-    fechadeshabilitacion date,
-    created_at timestamp without time zone,
-    updated_at timestamp without time zone,
-    observaciones character varying(5000),
-    CONSTRAINT rango_edad_check CHECK (((fechadeshabilitacion IS NULL) OR (fechadeshabilitacion >= fechacreacion)))
-);
-
-
---
 -- Name: sivel2_gen_rangoedad_victimacolectiva; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -6631,14 +6628,6 @@ ALTER TABLE ONLY public.sivel2_gen_categoria
 
 
 --
--- Name: sivel2_gen_categoria categoria_contadaen_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.sivel2_gen_categoria
-    ADD CONSTRAINT categoria_contadaen_fkey FOREIGN KEY (contadaen) REFERENCES public.sivel2_gen_categoria(id);
-
-
---
 -- Name: sivel2_gen_contextovictima_victima contextovictima_victima_contextovictima_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -7423,14 +7412,6 @@ ALTER TABLE ONLY public.msip_persona
 
 
 --
--- Name: sivel2_gen_presponsable presponsable_papa_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.sivel2_gen_presponsable
-    ADD CONSTRAINT presponsable_papa_fkey FOREIGN KEY (papa_id) REFERENCES public.sivel2_gen_presponsable(id);
-
-
---
 -- Name: sivel2_gen_caso_presponsable presuntos_responsables_caso_id_caso_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -7444,6 +7425,14 @@ ALTER TABLE ONLY public.sivel2_gen_caso_presponsable
 
 ALTER TABLE ONLY public.sivel2_gen_caso_presponsable
     ADD CONSTRAINT presuntos_responsables_caso_id_p_responsable_fkey FOREIGN KEY (presponsable_id) REFERENCES public.sivel2_gen_presponsable(id);
+
+
+--
+-- Name: sivel2_gen_presponsable presuntos_responsables_id_papa_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.sivel2_gen_presponsable
+    ADD CONSTRAINT presuntos_responsables_id_papa_fkey FOREIGN KEY (papa_id) REFERENCES public.sivel2_gen_presponsable(id);
 
 
 --
@@ -7741,6 +7730,7 @@ ALTER TABLE ONLY public.sivel2_gen_victimacolectiva_vinculoestado
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20241006115708'),
 ('20241005013833'),
 ('20241005013800'),
 ('20240806082036'),
@@ -7823,6 +7813,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20220713200101'),
 ('20220613224844'),
 ('20220608044102'),
+('20220601111520'),
 ('20220525122150'),
 ('20220428145059'),
 ('20220422190546'),
