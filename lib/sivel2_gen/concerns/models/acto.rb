@@ -28,7 +28,7 @@ module Sivel2Gen
             consl= "WITH RECURSIVE cteRecursion AS (
                SELECT id, 1 AS Level
                    FROM public.sivel2_gen_presponsable
-                   WHERE id = 39
+                   WHERE id = 42
                UNION ALL
                SELECT t.id, c.Level+1
                    FROM public.sivel2_gen_presponsable t
@@ -38,9 +38,9 @@ module Sivel2Gen
                SELECT id, Level
                    FROM cteRecursion
                    ORDER BY Level, id;"
-            descendientes_poloe = ActiveRecord::Base.connection.select_all(
+            descendientes_psei = ActiveRecord::Base.connection.select_all(
               consl)
-            descpe_ids = descendientes_poloe.to_a.map{|de| de["id"]} 
+            descpsei_ids = descendientes_psei.to_a.map{|de| de["id"]} 
             tv = self.categoria.supracategoria.tviolencia_id
             pr = self.presponsable.id
             cat = self.categoria
@@ -50,7 +50,9 @@ module Sivel2Gen
               actos_hermanos = actos.where.not(id: self.id)
               vale = false
               actos_hermanos.each do |ah|
-                if ah.persona == self.persona && ah.presponsable == self.presponsable && ah.categoria.id == ce
+                if ah.persona == self.persona &&
+                    ah.presponsable == self.presponsable &&
+                    ah.categoria.id == ce
                   vale = true
                 end
               end
@@ -58,14 +60,14 @@ module Sivel2Gen
                 errors.add(:categoria_id, "Falta categoría #{ce} requerida por categoría #{cat.id}.")
               end
             end
-            if tv == "A" && !descpe_ids.include?(pr) then
+            if tv == "A" && !descpsei_ids.include?(pr) then
               errors.add(:acto, "Si el tipo de violencia es "\
                          "Derechos Humanos el presunto responsable debe "\
-                         "ser del Polo Estatal")
-            elsif tv == "B" && descpe_ids.include?(pr) then
+                         "ser del PSEI")
+            elsif tv == "B" && descpsei_ids.include?(pr) then
               errors.add(:acto, "Si el tipo de violencia es "\
                          "Violencia Socio Política el presunto responsable "\
-                         "no puede ser del Polo Estatal")
+                         "no puede ser del PSEI")
             end
           end
 
