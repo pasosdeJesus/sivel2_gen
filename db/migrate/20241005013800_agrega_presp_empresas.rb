@@ -25,13 +25,13 @@ class AgregaPrespEmpresas < ActiveRecord::Migration[7.2]
         UPDATE sivel2_gen_victima SET organizacionarmada='41' 
           WHERE organizacionarmada=#{acemp.id};
         UPDATE sivel2_gen_acto SET presponsable_id='41' 
-          WHERE presponsablea_id=#{acemp.id};
+          WHERE presponsable_id=#{acemp.id};
         UPDATE sivel2_gen_actocolectivo SET presponsable_id='41' 
-          WHERE presponsablea_id=#{acemp.id};
+          WHERE presponsable_id=#{acemp.id};
         UPDATE sivel2_gen_combatiente SET organizacionarmada='41' 
           WHERE organizacionarmada=#{acemp.id};
       SQL
-      acemp.destroy_all
+      acemp.delete
     else
       crea_empresas
     end

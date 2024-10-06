@@ -8250,6 +8250,14 @@ ALTER TABLE ONLY public.sivel2_gen_caso_presponsable
 
 
 --
+-- Name: sivel2_gen_presponsable presuntos_responsables_id_papa_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.sivel2_gen_presponsable
+    ADD CONSTRAINT presuntos_responsables_id_papa_fkey FOREIGN KEY (papa_id) REFERENCES public.sivel2_gen_presponsable(id);
+
+
+--
 -- Name: sivel2_gen_profesion_victimacolectiva profesion_victimacolectiva_id_profesion_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -8544,6 +8552,7 @@ ALTER TABLE ONLY public.sivel2_gen_victimacolectiva_vinculoestado
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20241006115708'),
 ('20241005013833'),
 ('20241005013800'),
 ('20240806082036'),
@@ -8632,6 +8641,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20220713200101'),
 ('20220613224844'),
 ('20220608044102'),
+('20220601111520'),
 ('20220525122150'),
 ('20220428145059'),
 ('20220422190546'),
