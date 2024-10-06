@@ -8544,6 +8544,8 @@ ALTER TABLE ONLY public.sivel2_gen_victimacolectiva_vinculoestado
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20241005013833'),
+('20241005013800'),
 ('20240806082036'),
 ('20240723152453'),
 ('20240723140427'),
