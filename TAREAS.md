@@ -1,3 +1,6 @@
+* Datos iniciales de tablas básicas: 
+ Confilctos: sectorsocial, contexto, profesion
+
 * Verificar si aun hay error cuando se agrega un acto con victima NN y después se quiere autocompletar la víctima.
 
 Las tablas básicas que tengan relaciones has_many, no pueden borrarse 
