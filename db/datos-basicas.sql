@@ -6,6 +6,8 @@ ALTER TABLE ONLY public.sivel2_gen_categoria
 ALTER TABLE ONLY public.sivel2_gen_presponsable
   DROP CONSTRAINT IF EXISTS presponsable_papa_fkey;
 ALTER TABLE ONLY public.sivel2_gen_presponsable
+  DROP CONSTRAINT IF EXISTS presuntos_responsables_id_papa_fkey;
+ALTER TABLE ONLY public.sivel2_gen_presponsable
   DROP CONSTRAINT IF EXISTS presponsable_papa_id_fkey;
 
 --
