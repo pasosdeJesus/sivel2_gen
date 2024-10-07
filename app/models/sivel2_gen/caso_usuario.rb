@@ -1,5 +1,7 @@
 
 module Sivel2Gen
+  # Relación n:n entre Caso y Usuario (usuarios del sistema que han
+  # interactuado con el caso)
   class CasoUsuario < ActiveRecord::Base
     belongs_to :usuario, foreign_key: "usuario_id", validate: true,
        class_name: 'Usuario', optional: false
