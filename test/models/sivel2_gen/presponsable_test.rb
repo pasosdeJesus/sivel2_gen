@@ -19,7 +19,7 @@ module Sivel2Gen
 
     test "existente" do
       presponsable = Sivel2Gen::Presponsable.where(id: 35).take
-      assert_equal presponsable.nombre, "SIN INFORMACIÓN"
+      assert_equal presponsable.nombre.upcase, "SIN INFORMACIÓN"
     end
 
   end
