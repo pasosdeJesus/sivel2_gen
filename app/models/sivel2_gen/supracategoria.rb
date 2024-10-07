@@ -1,5 +1,9 @@
 
 module Sivel2Gen
+  # Tabla básica Supracategoría (una supracategoría está en un único tipo
+  # de violencia, y puede tener varias categorias).
+  # Es como un bosque cuyo primer nivel son Tipos de Violencia, el 
+  # segundo nivel son supracategorías y el tercer nivel son Categorias
   class Supracategoria < ActiveRecord::Base
     include Msip::Basica
 

@@ -1,4 +1,5 @@
 module Sivel2Gen
+  # Permisos
   class Ability < Msip::Ability
     include CanCan::Ability
 

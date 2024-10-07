@@ -1,5 +1,6 @@
 
 module Sivel2Gen
+  # Relación n:n entre Caso y Contexto
   class CasoContexto < ActiveRecord::Base
     belongs_to :caso, foreign_key: "caso_id", 
       class_name: 'Sivel2Gen::Caso', optional: false
