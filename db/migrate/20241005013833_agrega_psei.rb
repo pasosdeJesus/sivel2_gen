@@ -1,7 +1,8 @@
 class AgregaPsei < ActiveRecord::Migration[7.2]
   def up
+    debugger
     if Sivel2Gen::Presponsable.where(id: 39).count == 0 ||
-      Sivel2Gen::Presponsable.find(39).nombre != 'Polo Estatal'
+        Sivel2Gen::Presponsable.find(39).nombre.split.map(&:capitalize).join(" ") != 'Polo Estatal'
       puts "Presunto responsable 39 no es Polo Estatal";
       exit 1
     end
