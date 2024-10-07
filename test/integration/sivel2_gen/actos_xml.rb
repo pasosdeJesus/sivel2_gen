@@ -27,7 +27,7 @@ module Sivel2Gen
       caso.ubicacion_id = ubicaso.id
       caso.save!
       categoria = Sivel2Gen::Categoria.find(15)
-      presponsable = Sivel2Gen::Presponsable.find(104)
+      presponsable = Sivel2Gen::Presponsable.find(39) # Polo Estatal
       rangoedad = Sivel2Gen::Rangoedad.create! PRUEBA_RANGOEDAD
       persona = Msip::Persona.create! PRUEBA_PERSONA
       persona.save!
@@ -73,7 +73,7 @@ module Sivel2Gen
         created_at: '2014-09-09'
       )
       grupoper.save!
-      presponsable = Sivel2Gen::Presponsable.find(104)
+      presponsable = Sivel2Gen::Presponsable.find(39)
       categoria = Sivel2Gen::Categoria.find(15)
       actocolectivo = Sivel2Gen::Actocolectivo.create(
         presponsable_id: presponsable.id,
