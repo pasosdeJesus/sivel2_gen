@@ -1,4 +1,5 @@
 module Sivel2Gen
+  # Tabla básica Frontera
   class Frontera < ActiveRecord::Base
     include Msip::Basica
 

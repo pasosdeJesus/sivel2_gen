@@ -1,5 +1,6 @@
 
 module Sivel2Gen
+  # Relación n:n entre Caso y Frontera
   class CasoFrontera < ActiveRecord::Base
     belongs_to :frontera, foreign_key: "frontera_id", 
       class_name: 'Sivel2Gen::Frontera', optional: false

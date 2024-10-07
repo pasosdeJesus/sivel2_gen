@@ -1,4 +1,5 @@
 module Sivel2Gen
+  # Tabla básica Parametros de Reporte Consolidado
   class Pconsolidado < ActiveRecord::Base
     include Msip::Basica
 

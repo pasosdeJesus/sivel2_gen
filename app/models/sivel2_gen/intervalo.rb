@@ -1,4 +1,5 @@
 module Sivel2Gen
+  # Tabla básica Intervalo
   class Intervalo < ActiveRecord::Base
     include Msip::Basica
 

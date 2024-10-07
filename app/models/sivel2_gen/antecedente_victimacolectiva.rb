@@ -1,5 +1,6 @@
 
 module Sivel2Gen
+  # Relación n:n entre Antecedente y Víctima Colectiva
   class AntecedenteVictimacolectiva < ActiveRecord::Base
     belongs_to :antecedente, foreign_key: "antecedente_id", validate: true, 
       class_name: 'Sivel2Gen::Antecedente', optional: false
