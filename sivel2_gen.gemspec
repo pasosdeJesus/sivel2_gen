@@ -13,7 +13,7 @@ Gem::Specification.new do |s|
   s.homepage    = "http://sivel.sf.net"
   s.summary     = "SIVeL 2 Genérico"
   s.description = "Motor para personalizar su propia versión de SIVeL."
-  s.license     = "Dominio Público de acuerdo a legislación colombiana"
+  s.license     = "ISC"
 
   s.files = Dir["{app,config,db,lib}/**/*", "LICENCIA.md", "Rakefile", "README.md"]
   s.test_files = Dir["test/**/*"]
