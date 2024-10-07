@@ -5,6 +5,8 @@ ALTER TABLE ONLY public.sivel2_gen_categoria
   DROP CONSTRAINT IF EXISTS categoria_contadaen_fkey; 
 ALTER TABLE ONLY public.sivel2_gen_presponsable
   DROP CONSTRAINT IF EXISTS presponsable_papa_fkey;
+ALTER TABLE ONLY public.sivel2_gen_presponsable
+  DROP CONSTRAINT IF EXISTS presponsable_papa_id_fkey;
 
 --
 -- PostgreSQL database dump
@@ -1268,5 +1270,5 @@ ALTER TABLE ONLY public.sivel2_gen_categoria
   ADD CONSTRAINT categoria_contadaen_fkey FOREIGN KEY (contadaen) 
   REFERENCES public.sivel2_gen_categoria(id); 
 ALTER TABLE ONLY public.sivel2_gen_presponsable
-  ADD CONSTRAINT presponsable_papa_fkey FOREIGN KEY (papa_id) 
+  ADD CONSTRAINT presponsable_papa_id_fkey FOREIGN KEY (papa_id) 
   REFERENCES public.sivel2_gen_presponsable(id);
