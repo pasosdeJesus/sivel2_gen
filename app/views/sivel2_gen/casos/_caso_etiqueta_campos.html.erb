@@ -14,14 +14,21 @@
       </div>
       <div class="col-md-4">
         <div class="input string optional caso_caso_etiqueta_fecha">
-          <%= f.label :fecha, "Fecha", class: "select optional control-label" %>
+          <%= f.label :fecha, 
+            "Fecha", 
+            class: "select optional control-label" %>
           <%= 
             if !f.object.fecha.nil?
-              f.date_field :fecha, label: false, readonly: true, 
-                class: 'form-control'
+              f.date_field :fecha,
+                class: 'form-control',
+                label: false,
+                readonly: true
             else
-              f.date_field :fecha, label: false, readonly: true, 
-                value: Msip::FormatoFechaHelper::fecha_estandar_local(Date.today), class: 'form-control'
+              f.date_field :fecha,
+                class: 'form-control',
+                label: false,
+                readonly: true,
+                value: Date.today.to_s
             end
           %>
         </div>
@@ -50,11 +57,11 @@
         f.input :usuario_id, as: :hidden, value: current_usuario.id
       end
     %>
-    <%= f.input :observaciones %>
+  <%= f.input :observaciones %>
 
-    <%= f.submit "Eliminar", 
-      formaction: sivel2_gen.eliminar_caso_etiqueta_path(
-        id: f.object.id, index: f.index),
+  <%= f.submit "Eliminar", 
+    formaction: sivel2_gen.eliminar_caso_etiqueta_path(
+      id: f.object.id, index: f.index),
       formmethod: :delete,
       formnovalidate: true,
       class: 'btn btn-sm btn-danger',

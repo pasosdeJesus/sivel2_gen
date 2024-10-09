@@ -6,14 +6,18 @@
 
 <div class="links">
   <%= f.submit "Agregar Etiqueta",
-      formaction: sivel2_gen.crear_caso_etiqueta_path(index: @caso.caso_etiqueta.size),
-      formmethod: :post,
-      formnovalidate: true,
-      class: 'btn btn-sm btn-primary agregar-ce',
-      name: "agregar-caso-etiqueta",
-      id: "agregar-caso-etiqueta", 
-      data:  {
-        disable_with: false } %>
+    class: 'btn btn-sm btn-primary agregar-ce',
+    data:  {
+      disable_with: false 
+    },
+    formaction: sivel2_gen.crear_caso_etiqueta_path(
+      index: @caso.caso_etiqueta.size
+    ),
+    formmethod: :post,
+    formnovalidate: true,
+    id: "agregar-caso-etiqueta",
+    name: "agregar-caso-etiqueta"
+  %>
 </div>
 
 <% if f.object && f.object.id && !can?(:solocambiaretiquetas, Sivel2Gen::Caso) %>
