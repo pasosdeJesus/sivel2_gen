@@ -58,3 +58,5 @@ Gemfile.lock.cp
 test/dummy/db/structure.sql.cp
 test/dummy/yarn.lock.cp
 reflocal
+.yardoc
+yard_doc
