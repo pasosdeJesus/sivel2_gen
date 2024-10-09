@@ -73,3 +73,12 @@ Para habilitar/deshabilitar de manera independiente el botón
 ```
 config.action_view.automatically_disable_submit_tag = false
 ```
+
+## Documentación
+
+La documentación técnica de las clases de este motor está disponible en
+  <https://rubydoc.info/github/pasosdeJesus/sivel2_gen/>
+
+Aunque antes le podría resultar útil la documentación de `msip` disponible en:
+<https://gitlab.com/pasosdeJesus/msip/-/blob/main/doc/README.md>
+
