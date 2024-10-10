@@ -111,7 +111,7 @@ class CompletaOrganizacion < ActiveRecord::Migration[7.2]
       DELETE FROM sivel2_gen_organizacion WHERE id=18 AND nombre='LGTB';
       DELETE FROM sivel2_gen_organizacion WHERE id=19 AND nombre ilike 'DESPLAZADOS';
       DELETE FROM sivel2_gen_organizacion WHERE id=20 AND nombre='PAZ';
-      DELETE FROM sivel2_gen_organizacion WHERE id=20 AND nombre='COMUNAL';
+      DELETE FROM sivel2_gen_organizacion WHERE id=21 AND nombre='COMUNAL';
     SQL
   end
 end
