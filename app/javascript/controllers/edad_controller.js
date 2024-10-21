@@ -38,8 +38,7 @@ export default class extends Controller {
     let formatoFecha = window.formato_fecha;
     let campoFechaCaso = document.querySelector('#caso_fecha');
     if (campoFechaCaso == null) {
-      campoFechaCaso = document.querySelector('#caso_fecha');
-      formatoFecha = "yyyy-mm-dd"
+      campoFechaCaso = document.querySelector('#caso_casosjr_attributes_fecharec');
     }
     if (campoFechaCaso == null) {
       alert("No se encontró campo con la fecha del caso");
