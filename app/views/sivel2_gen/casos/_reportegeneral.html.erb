@@ -50,7 +50,7 @@
   <% end %>
   </p>
   <% if current_usuario %>
-    <% caso.ubicacion.each do |ub| %>
+    <% caso.ubicacionpre.each do |ub| %>
       <% next if ub.id == caso.ubicacion_id %>
       <p style="margin: 0; padding: 0">
       <%= ub.departamento.nombre if ub.departamento%> / 

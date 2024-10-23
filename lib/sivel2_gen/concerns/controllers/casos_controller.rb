@@ -858,6 +858,27 @@ module Sivel2Gen
           # PATCH/PUT /casos/1.json
           def update_gen
             respond_to do |format|
+
+              if (caso_params[:caso_ubicacionpre_attributes])
+                # Usa ubicacionepre existente o agrega si hace falta
+                caso_params[:caso_ubicacionpre_attributes].each do |clave, cu|
+                  if cu[:ubicacionpre_pais_id]
+                    upid = Msip::Ubicacionpre::buscar_o_agregar(
+                      cu[:ubicacionpre_pais_id], 
+                      cu[:ubicacionpre_departamento_id],
+                      cu[:ubicacionpre_municipio_id], 
+                      cu[:ubicacionpre_centropoblado_id],
+                      cu[:ubicacionpre_lugar], 
+                      cu[:ubicacionpre_sitio], 
+                      cu[:ubicacionpre_tsitio_id],
+                      cu[:ubicacionpre_latitud], 
+                      cu[:ubicacionpre_longitud]
+                    )
+                    params[:caso][:caso_ubicacionpre_attributes][clave]["ubicacionpre_id"] = upid
+                  end
+                end
+              end
+
               # En etiquetas pone usuario actual por omision
               if (!params[:caso][:caso_etiqueta_attributes].nil?)
                 params[:caso][:caso_etiqueta_attributes].each  do |k,v|
@@ -1394,6 +1415,21 @@ module Sivel2Gen
                     :estadosol_id,
                     :usuarionotificar_ids => []
                   ]
+                ],
+                :caso_ubicacionpre_attributes => [
+                  :id,
+                  :ubicacionpre_id,
+                  :ubicacionpre_centropoblado_id,
+                  :ubicacionpre_departamento_id,
+                  :ubicacionpre_municipio_id,
+                  :ubicacionpre_pais_id,
+                  :ubicacionpre_tsitio_id,
+                  :ubicacionpre_latitud,
+                  :ubicacionpre_longitud,
+                  :ubicacionpre_lugar,
+                  :ubicacionpre_principal,
+                  :ubicacionpre_sitio,
+                  :_destroy,
                 ],
                 :combatiente_attributes => [
                   :alias,

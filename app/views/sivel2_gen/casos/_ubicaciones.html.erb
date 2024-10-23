@@ -1,13 +1,21 @@
-<%= f.simple_fields_for :ubicacion do |ubicacion| %>
-	<%= render 'ubicacion_fields', :f => ubicacion %>
-<% end %>
-<div class="links">
-	<%= link_to_add_association 'Añadir Ubicación', f, :ubicacion, { 
-                :class => 'btn btn-sm btn-primary',
-                "data-ajax" => File.join(
-                        Rails.configuration.relative_url_root , 
-                        "ubicaciones/nuevo"
-                ), 
-                "data-ajaxdata" => "caso_id" 
-	} %>
+<div id="caso_ubicacionespre_marco">
+  <%= f.simple_fields_for :caso_ubicacionpre, 
+    f.object.caso_ubicacionpre.order(:id),
+    child_index: params[:index] do |cubi| %>
+    <%= render 'sivel2_gen/casos/caso_ubicacionpre_campos', :f => cubi %>
+  <% end %>
 </div>
+
+<%= f.submit "Agregar ubicacion",
+  formaction: sivel2_gen.crear_caso_ubicacionpre_path(
+    index: @caso.caso_ubicacionpre.size
+  ),
+  formmethod: :post,
+  formnovalidate: true,
+  class: 'btn btn-sm btn-primary',
+  name: "agregar-caso-ubicacionpre",
+  id: "agregar-caso-ubicacionpre",
+  data:  {
+    disable_with: false
+  } 
+%>
