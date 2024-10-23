@@ -131,7 +131,7 @@ module Sivel2Gen
       sectorsocialsecvic2 = Sivel2Gen::SectorsocialsecVictima.create(
         sectorsocial_id: sectorsocialsec2.id, victima_id: victima1.id)
       assert !sectorsocialsecvic2.nil?
-      presponsable = Sivel2Gen::Presponsable.find(37)
+      presponsable = Sivel2Gen::Presponsable.find(39) # Polo Estatal
       pr = Sivel2Gen::CasoPresponsable.create(
         caso_id: caso.id,
         presponsable_id: presponsable.id,
