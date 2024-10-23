@@ -1,0 +1,53 @@
+<%= turbo_frame_tag "caso_ubicacionpre_#{f.index}" do %>
+  <div class="control-group nested-fields seccionubicacionpre">
+    <div class="controls">
+      <%= f.input :id, as: :hidden %>
+      <% if f.object.ubicacionpre.nil? %>
+        <% f.object.ubicacionpre = Msip::Ubicacionpre.new %>
+      <% end %>
+
+      <%= f.input :ubicacionpre_id, as: :hidden %>
+
+      <% htmlid = f.index %>
+      <%= render partial: "msip/ubicacionespre/cuatro_filas", locals: {
+        f: f,
+        htmlid: "ubicacionpre-#{htmlid}",
+        estilogen: "",
+        campopais: :ubicacionpre_pais,
+        campopais_etiqueta: "País",
+        campodepartamento: :ubicacionpre_departamento,
+        campodepartamento_etiqueta: "Departamento",
+        campomunicipio: :ubicacionpre_municipio,
+        campomunicipio_etiqueta: "Municipio",
+        idresto: "restoubicacionpre",
+        campocentropoblado: :ubicacionpre_centropoblado,
+        campocentropoblado_etiqueta: "Centro poblado",
+        campolugar: :ubicacionpre_lugar,
+        campolugar_etiqueta: "Barrio o vereda",
+        campoubicacionpre_id: :ubicacionpre_id,
+        campositio: :ubicacionpre_sitio,
+        campositio_etiqueta: "Dirección o finca",
+        campotsitio: :ubicacionpre_tsitio,
+        campotsitio_etiqueta: "Tipo de sitio",
+        campolatitud: :ubicacionpre_latitud,
+        campolatitud_etiqueta: "Latitud",
+        campolongitud: :ubicacionpre_longitud,
+        campolongitud_etiqueta: "Longitud"
+      } %>
+
+      <div class="links">
+        <%= f.submit "Eliminar", 
+          formaction: sivel2_gen.eliminar_caso_ubicacionpre_path(
+            id: f.object.id, index: f.index),
+            formmethod: :delete,
+            formnovalidate: true,
+            class: "btn btn-sm btn-danger",
+            data: {
+              disable_with: false,
+              turbo_frame: "caso_ubicacionpre_#{f.index}",
+              turbo_method: :delete
+            } %>
+      </div>
+    </div>
+  </div>
+<% end %>

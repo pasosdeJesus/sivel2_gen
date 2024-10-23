@@ -484,7 +484,6 @@ enviaFormularioContar= (root) ->
   $('#ubicaciones').on('cocoon:after-insert', '', (e, ubicacion) ->
     ubipais = 'select[id^=caso_][id$=pais_id]'
     Msip__Motor.configurarElementoTomSelect(e.target)
-    llena_departamento($(ubicacion.find(ubipais)), root)
     if $(".ubicacion:visible").length == 1
       principal = $('input[type="checkbox"][name$="[principal]"]:visible')
       principal.prop('checked', true)
@@ -522,47 +521,6 @@ enviaFormularioContar= (root) ->
       otros.prop('checked', false)
   )
 
-  # Al cambiar país se recalcula lista de departamentos
-  $(document).on('change', 'select[id^=caso_][id$=pais_id]', (e) ->
-    llena_departamento($(this), root)
-    # Exprimentando actualizar a medida que se modifica:
-    idfu = $(this).attr('id').replace('_pais_id', '_id');
-    idu = $('#' + idfu).val();
-    #if (idu > 0)
-    #   $.ajax(url: '/ubicacion/' + idu + '/update/'
-  )
-
-  # Al cambiar departamento se recalcula lista de municipios
-  $(document).on('change', 'select[id^=caso_][id$=departamento_id]', (e) ->
-    llena_municipio($(this), root)
-  )
-
-  # Al cambiar municipio se recalcula lista de centros poblados
-  $(document).on('change', 'select[id^=caso_][id$=municipio_id]', (e) ->
-    llena_centropoblado($(this), root)
-  )
-  
-  
-  # Al cambiar centro poblado se muestra tipo
-  $(document).on('change', 'select[id^=caso_][id$=centropoblado_id]', (e) ->
-    centropoblado_id = $(this).val()
-    select = $(this)
-    b = root.puntomontaje + 'tipocentropoblado'
-    $.ajax({
-      url: b, 
-      data: {id: centropoblado_id}, 
-      dataType: "json", 
-      success: (datos) ->
-        tcentropoblado = datos.nombre
-        div_padre = select.closest("div")
-        div_tipo = div_padre.next()
-        input_tipo = div_tipo.find("input[id^=caso_ubicacion][id$=tcentropoblado]")
-        input_tipo.val(tcentropoblado)
-      error: (jqXHR, texto) ->
-        alert("Error: " + jqXHR.responseText)
-   })
-  )
-  
   # Tras eliminar presponsable, eliminar dependientes
   $('#presponsables').on('cocoon:after-remove', '', (e, presponsable) ->
     elimina_pendientes(root.elempe);

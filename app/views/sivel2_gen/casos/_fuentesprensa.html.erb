@@ -6,12 +6,16 @@
 </div>
 
 <%= f.submit "Agregar fuente",
-  formaction: sivel2_gen.crear_caso_fuenteprensa_path(index: @caso.fuenteprensa.size),
+  formaction: sivel2_gen.crear_caso_fuenteprensa_path(
+    index: @caso.fuenteprensa.size
+  ),
   formmethod: :post,
   formnovalidate: true,
   class: 'btn btn-sm btn-primary',
   name: "agregar-caso-fuenteprensa",
   id: "agregar-caso-fuenteprensa",
   data:  {
-    disable_with: false } %>
+    disable_with: false 
+  } 
+%>
 

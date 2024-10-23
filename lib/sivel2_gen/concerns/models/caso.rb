@@ -98,6 +98,19 @@ module Sivel2Gen
             class_name: 'Sivel2Gen::CasoUsuario', dependent: :delete_all
           has_many :usuario, :through => :caso_usuario, class_name: 'Usuario'
 
+          has_many :caso_ubicacionpre, 
+            class_name: "Sivel2Gen::CasoUbicacionpre",
+            dependent: :delete_all,
+            foreign_key: "caso_id"
+          accepts_nested_attributes_for :caso_ubicacionpre, 
+            allow_destroy: true, 
+            reject_if: :all_blank
+          has_many :ubicacionpre, through: :caso_ubicacionpre,
+            class_name: 'Msip::Ubicacionpre'
+          accepts_nested_attributes_for :ubicacionpre, 
+            allow_destroy: true, 
+            reject_if: :all_blank
+
           has_many :ubicacion, foreign_key: "caso_id", validate: true, 
             dependent: :destroy, class_name: 'Msip::Ubicacion'
           accepts_nested_attributes_for :ubicacion, allow_destroy: true, 
