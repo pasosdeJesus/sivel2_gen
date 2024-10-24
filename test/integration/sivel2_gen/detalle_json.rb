@@ -120,7 +120,7 @@ module Sivel2Gen
             "lugar": "VEREDA EL PAPAYO",
             "presponsables":
               {
-                "14":"PARAMILITARES"
+                "14":"Paramilitares"
               },
             "victimas": 
               {

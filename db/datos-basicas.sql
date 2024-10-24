@@ -5,6 +5,8 @@ ALTER TABLE ONLY public.sivel2_gen_categoria
   DROP CONSTRAINT IF EXISTS categoria_contadaen_fkey; 
 ALTER TABLE ONLY public.sivel2_gen_presponsable
   DROP CONSTRAINT IF EXISTS presponsable_papa_fkey;
+ALTER TABLE ONLY public.sivel2_gen_presponsable
+  DROP CONSTRAINT IF EXISTS presuntos_responsables_id_papa_fkey;
 
 --
 -- PostgreSQL database dump
