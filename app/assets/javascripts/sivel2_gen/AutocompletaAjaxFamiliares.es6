@@ -11,7 +11,7 @@ export default class Sivel2GenAutocompletaAjaxFamiliares {
     vic_position = eorig.target.id.split("_")[3]
     fam_position = eorig.target.id.split("_")[9]
     let root = window
-    msip_arregla_puntomontaje(root)
+    Msip__Motor.arreglarPuntomontaje(root)
     const cs = id.split(';')
     const idPersona = cs[0]
     const divcpf = eorig.target.closest('.' + 
