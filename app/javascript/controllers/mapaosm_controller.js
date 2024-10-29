@@ -247,7 +247,7 @@ export default class extends Controller {
 
   agregarCasosOsm(usuario_autenticado) {
     if (typeof window.formato_fecha === 'undefined') {
-      msip_prepara_eventos_comunes(window);
+      Msip__Mootr.preparaEventosComunes(window);
     }
     var urlSolicitud = this.armarRutaConsulta('casos.json', usuario_autenticado);
     this.mostrarCargador();
@@ -293,7 +293,7 @@ export default class extends Controller {
     const self = this;
     function clicMarcadorCaso() {
       self.mostrarCargador();
-      msip_arregla_puntomontaje(window);
+      Msip__Motor.arreglarPuntomontaje(window);
       var ruta = window.puntomontaje + 'casos/';
       var urlSolicitud = ruta + codigo + ".json";  
       self.descargarUrl(urlSolicitud, function(req) {
