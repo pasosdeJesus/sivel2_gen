@@ -11,7 +11,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sip.git
-  revision: d4f38a1445a415179a57ca9fc8d855e64f254ca1
+  revision: 07917fc240341c908a2868f00729942c42dd18ef
   branch: v2.1
   specs:
     sip (2.1.0.beta1)
@@ -43,7 +43,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/heb412_gen.git
-  revision: 39cc8bc9cb0264fd029f7cbb9eadb3e6a22a44eb
+  revision: 876ba59248e03ac9654b8619749a76d4fa52fed7
   branch: v2.1
   specs:
     heb412_gen (2.1.0.beta1)
@@ -54,7 +54,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/mr519_gen.git
-  revision: 00e05d0c59c4d1a8ac2bdc5bcf5f8cb3296683e2
+  revision: 2784ea0c9f133e430add66cba899decdea3c1d5f
   branch: v2.1
   specs:
     mr519_gen (2.1.0.beta1)
@@ -172,7 +172,7 @@ GEM
     cuprite (0.15.1)
       capybara (~> 3.0)
       ferrum (~> 0.15.0)
-    date (3.3.4)
+    date (3.4.0)
     debug (1.9.2)
       irb (~> 1.10)
       reline (>= 0.3.8)
@@ -216,7 +216,7 @@ GEM
       activesupport (>= 5.0.0)
     jsbundling-rails (1.3.1)
       railties (>= 6.0.0)
-    json (2.7.4)
+    json (2.8.1)
     libxml-ruby (5.0.3)
     logger (1.6.1)
     loofah (2.23.1)
@@ -233,12 +233,12 @@ GEM
     mime-types (3.6.0)
       logger
       mime-types-data (~> 3.2015)
-    mime-types-data (3.2024.1001)
+    mime-types-data (3.2024.1105)
     mini_mime (1.1.5)
     mini_portile2 (2.8.7)
     minitest (5.25.1)
     msgpack (1.7.3)
-    net-imap (0.5.0)
+    net-imap (0.5.1)
       date
       net-protocol
     net-pop (0.1.2)
@@ -279,7 +279,7 @@ GEM
     prawnto_2 (0.3.1)
       prawn (>= 1.0.0)
       rails (>= 3.2)
-    psych (5.1.2)
+    psych (5.2.0)
       stringio
     public_suffix (6.0.1)
     puma (6.4.3)
@@ -333,7 +333,7 @@ GEM
       psych (>= 4.0.0)
     redcarpet (3.6.0)
     regexp_parser (2.9.2)
-    reline (0.5.10)
+    reline (0.5.11)
       io-console (~> 0.5)
     responders (3.1.1)
       actionpack (>= 5.2)
@@ -370,12 +370,12 @@ GEM
       sprockets (>= 3.0.0)
     stimulus-rails (1.3.4)
       railties (>= 6.0.0)
-    stringio (3.1.1)
+    stringio (3.1.2)
     terrapin (1.0.1)
       climate_control
     thor (1.3.2)
     tilt (2.4.0)
-    timeout (0.4.1)
+    timeout (0.4.2)
     ttfunk (1.8.0)
       bigdecimal (~> 3.1)
     turbo-rails (1.5.0)
@@ -395,7 +395,7 @@ GEM
       activemodel (>= 6.0.0)
       bindex (>= 0.4.0)
       railties (>= 6.0.0)
-    webrick (1.8.2)
+    webrick (1.9.0)
     websocket-driver (0.7.6)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
@@ -464,4 +464,4 @@ DEPENDENCIES
   will_paginate
 
 BUNDLED WITH
-   2.5.22
+   2.5.23
