@@ -18,6 +18,14 @@ module Sivel2Gen
             class_name: "Sivel2Gen::Caso",
             inverse_of: :anexo_caso,
             optional: false
+          belongs_to :fuenteprensa,
+            foreign_key: "fuenteprensa_id",
+            class_name: "Msip::Fuenteprensa",
+            optional: true
+          belongs_to :fotra,
+            foreign_key: "fotra_id",
+            class_name: "Sivel2Gen::Fotra",
+            optional: true
           belongs_to :msip_anexo,
             foreign_key: "anexo_id",
             validate: true,
