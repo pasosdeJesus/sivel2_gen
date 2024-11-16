@@ -223,7 +223,7 @@
 # AUTOCOMPLETACIÓN PERSONA
 # Elije una persona en autocompletación
 @autocompleta_persona = (label, id, victima_id, divcp, root) ->
-  msip_arregla_puntomontaje(root)
+  Msip__Motor.arreglarPuntomontaje(root)
   cs = id.split(";")
   persona_id = cs[0]
   pl = []
@@ -248,7 +248,7 @@
 # Busca persona por nombre, apellido o identificación
 # s es objeto con foco donde se busca persona
 @busca_persona_nombre = (s, root) ->
-  msip_arregla_puntomontaje(root)
+  Msip__Motor.arreglarPuntomontaje(root)
   cnom = s.attr('id')
   v = $("#" + cnom).data('autocompleta')
   if (v != 1 && v != "no") 
@@ -286,9 +286,9 @@
     if (fechac.length >0) 
       vp = []
       if root.campo_fecha_ref_edad.endsWith('')
-        vp = @msip_partes_fecha_localizada(fechac.val(), root.formato_fecha)
+        vp = Msip__Motor.partirFechaLocalizada(fechac.val(), root.formato_fecha)
       else
-        vp = @msip_partes_fecha_localizada(fechac.val(), 'yyyy-mm-dd')
+        vp = Msip__Motor.partirFechaLocalizada(fechac.val(), 'yyyy-mm-dd')
       root.aniocaso = vp[0]
       root.mescaso = vp[1]
       root.diacaso = vp[2]
@@ -321,7 +321,7 @@
   mesnac= +$("[id=" + prefId + "_mesnac]").val();
   dianac= +$("[id=" + prefId + "_dianac]").val();
   #alert("OJO edad_de_fechanac anionac=" + anionac + ", anioref=" + anioref+ ", mesnac=" + mesnac + ", mesref=" + mesref+ ", dianac=" + dianac + ", diaref=" + diaref);
-  msip_edadDeFechaNacFechaRef(anionac, mesnac, dianac, anioref, mesref, diaref)
+  Msip__Motor.edadDeFechaNacFechaRef(anionac, mesnac, dianac, anioref, mesref, diaref)
 
 # Utiliza campos escondidos para calcular el rango al cual corresponde una edad
 @buscarRangoEdad = (edad) ->
@@ -429,7 +429,7 @@ enviaFormularioContar= (root) ->
 
 # Envía datos de la ficha del caso para guardar 
 @enviarFichaCaso = ->
-  msip_enviarautomatico_formulario($('form'), 'POST', 'json', false)
+  Msip__Motor.enviarAutomaticoFormulario($('form'), 'POST', 'json', false)
   elimina_destruidos()
   #actualiza_presponsables($('#caso_acto_presponsable_id'))
   #actualiza_presponsables($('#caso_actocolectivo_presponsable_id'))
@@ -469,7 +469,6 @@ enviaFormularioContar= (root) ->
 # nomactospe es nombre por dar a actos 
 #   (por ejemplo en sivel2_sjr es antecedentes/causas)
 @sivel2_gen_prepara_eventos_comunes = (root, nomactospe) ->
-  # root.putomontaje lo pudo poner msip_prepara_eventos_comunes
   if typeof root.puntomontaje == 'undefined'
     root.puntomontaje = '/'
  
@@ -722,7 +721,7 @@ enviaFormularioContar= (root) ->
     return
   )
 
-  @msip_registra_cambios_para_bitacora(root)
+  Msip__Motor.registraCambiosParaBitacora(root)
   return
 
 

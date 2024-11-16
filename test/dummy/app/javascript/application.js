@@ -78,7 +78,7 @@ let promesaRecursosSprocketsYDocumento = new Promise((resolver, rechazar) => {
 promesaRecursosSprocketsYDocumento.then((mensaje) => {
   console.log(mensaje)
   var root = window;
-  msip_prepara_eventos_comunes(root);
+  Msip__Motor.preparaEventosComunes(root);
   mr519_gen_prepara_eventos_comunes(root);
   heb412_gen_prepara_eventos_comunes(root);
   sivel2_gen_prepara_eventos_comunes(root);
@@ -109,9 +109,7 @@ document.addEventListener('turbo:load', (e) => {
  */
 
   console.log('Escuchador turbo:load')
-
-  msip_ejecutarAlCargarPagina(window) // Establece root.puntomontaje
-  Msip__Motor.ejecutarAlCargarPagina()
+  Msip__Motor.ejecutarAlCargarPagina(window)
   Mr519Gen__Motor.ejecutarAlCargarPagina()
   Heb412Gen__Motor.ejecutarAlCargarPagina()
   Sivel2Gen__Motor.ejecutarAlCargarPagina()
