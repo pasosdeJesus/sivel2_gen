@@ -18,7 +18,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/heb412_gen.git
-  revision: 597d8d560bdaf73bfc5aa2a3a0bad9403755530f
+  revision: 0f832793301564e680121bac0fffe02b6943f74a
   branch: main
   specs:
     heb412_gen (2.3.0.alfa2)
@@ -38,7 +38,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/msip.git
-  revision: 1988385b522e329552aee0035df1e20fc9b22a34
+  revision: 0f0744e234622ee0a3f197a0e78cb88e057ac729
   branch: main
   specs:
     msip (2.3.0.alfa2)
@@ -279,7 +279,7 @@ GEM
       ast (~> 2.4.1)
       racc
     pdf-core (0.10.0)
-    pg (1.5.8)
+    pg (1.5.9)
     prawn (2.5.0)
       matrix (~> 0.4)
       pdf-core (~> 0.10.0)
@@ -333,7 +333,7 @@ GEM
     rails-html-sanitizer (1.6.0)
       loofah (~> 2.21)
       nokogiri (~> 1.14)
-    rails-i18n (7.0.9)
+    rails-i18n (7.0.10)
       i18n (>= 0.7, < 2)
       railties (>= 6.0.0, < 8)
     railties (7.2.1)
@@ -374,7 +374,7 @@ GEM
     rubocop-minitest (0.36.0)
       rubocop (>= 1.61, < 2.0)
       rubocop-ast (>= 1.31.1, < 2.0)
-    rubocop-rails (2.26.2)
+    rubocop-rails (2.27.0)
       activesupport (>= 4.2.0)
       rack (>= 1.1)
       rubocop (>= 1.52.0, < 2.0)
@@ -512,4 +512,4 @@ DEPENDENCIES
   will_paginate
 
 BUNDLED WITH
-   2.5.22
+   2.5.23
