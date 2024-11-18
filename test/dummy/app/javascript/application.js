@@ -49,7 +49,9 @@ Apex.chart = {
   defaultLocale: 'es',
 }
 
-import plotly_serietiempo_actos from './plotly_actos'
+// Leaflet
+var L = require('leaflet');
+var mc= require('leaflet.markercluster');
 
 import {AutocompletaAjaxExpreg} from '@pasosdejesus/autocompleta_ajax'
 window.AutocompletaAjaxExpreg = AutocompletaAjaxExpreg
@@ -85,10 +87,6 @@ promesaRecursosSprocketsYDocumento.then((mensaje) => {
   var p2ult = ''
   if (p.length>2) {
     p2ult = p[p.length - 2] + "/" + p[p.length - 1]
-  }
-  console.log("p2ult=" + p2ult)
-  if (p2ult == 'graficar/actos_individuales') {
-    plotly_serietiempo_actos()
   }
 
 })
