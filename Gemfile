@@ -3,18 +3,11 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 gem "apexcharts"#, git: "https://github.com/styd/apexcharts.rb.git", branch: :master
 
-gem "babel-transpiler"
-
 gem "bcrypt"
 
 gem 'bootsnap', require: false
 
 gem "cancancan" # Roles
-
-gem "cocoon", git: "https://github.com/vtamara/cocoon.git", 
-  branch: "new_id_with_ajax"# Formularios anidados (algunos con ajax)
-
-gem "coffee-rails" # CoffeeScript mientras reemplazamos por Javascript
 
 gem "color"
 
@@ -124,11 +117,7 @@ group :development do
 end
 
 group :test do
-  gem "capybara"
-
   gem "compare-xml"
-
-  gem "cuprite"
 
   gem "minitest"
 

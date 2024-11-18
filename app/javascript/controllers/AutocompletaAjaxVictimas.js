@@ -6,16 +6,15 @@ export default class Sivel2Gen__AutocompletaAjaxVictimas {
 
   // Elije una persona en autocompletación
   static operarElegida (eorig, cadpersona, id, otrosop) {
-    let root = window
-    Msip__Motor.arreglarPuntomontaje(root)
+    Msip__Motor.arreglarPuntomontaje()
     vic_position = eorig.target.id.split("_")[3]
     const cs = id.split(';')
     const idPersona = cs[0]
     const divcp = eorig.target.closest('.' + 
-      Sivel2GenAutocompletaAjaxVictimas.claseEnvoltura)
+      Sivel2Gen__AutocompletaAjaxVictimas.claseEnvoltura)
     if (divcp == null) {
       window.alert('No se ubico ' +
-        Sivel2GenAutocompletaAjaxVictimas.claseEnvoltura)
+        Sivel2Gen__AutocompletaAjaxVictimas.claseEnvoltura)
       return
     }
     const elemIdCaso = document.querySelector('#caso_id')
@@ -27,14 +26,14 @@ export default class Sivel2Gen__AutocompletaAjaxVictimas {
     let d = 'persona_id=' + idPersona
     d += '&caso_id=' + idCaso
     d += "&vic_position=" + vic_position
-    const a = root.puntomontaje + 'personas/remplazar'
+    const a = window.puntoMontaje + 'personas/remplazar'
     window.Rails.ajax({
       type: 'GET',
       url: a,
       data: d,
       success: (resp, estado, xhr) => {
-        const divcp = eorig.target.closest('.' + Sivel2GenAutocompletaAjaxVictimas.claseEnvoltura)
-        let r = resp.querySelector('.' + Sivel2GenAutocompletaAjaxVictimas.claseEnvoltura)
+        const divcp = eorig.target.closest('.' + Sivel2Gen__AutocompletaAjaxVictimas.claseEnvoltura)
+        let r = resp.querySelector('.' + Sivel2Gen__AutocompletaAjaxVictimas.claseEnvoltura)
         divcp.innerHTML=r.innerHTML
       },
       error: (resp, estado, xhr) => {
@@ -44,15 +43,15 @@ export default class Sivel2Gen__AutocompletaAjaxVictimas {
   }
 
   static iniciar() {
-    console.log("Sivel2GenAutocompletaAjaxVictimas")
-    let url = window.puntomontaje + 'personas.json'
+    console.log("Sivel2Gen__AutocompletaAjaxVictimas")
+    let url = window.puntoMontaje + 'personas.json'
     var asistentes = new window.AutocompletaAjaxExpreg(
       [ /^caso_victima_attributes_[0-9]*_persona_attributes_nombres$/,
         /^caso_victima_attributes_[0-9]*_persona_attributes_apellidos$/,
         /^caso_victima_attributes_[0-9]*_persona_attributes_numerodocumento$/ ],
       url,
-      Sivel2GenAutocompletaAjaxVictimas.idDatalist,
-      Sivel2GenAutocompletaAjaxVictimas.operarElegida
+      Sivel2Gen__AutocompletaAjaxVictimas.idDatalist,
+      Sivel2Gen__AutocompletaAjaxVictimas.operarElegida
     )
     asistentes.iniciar()
   }
@@ -60,6 +59,6 @@ export default class Sivel2Gen__AutocompletaAjaxVictimas {
 }
 
 // Sobrellevamos imposibilidad de hacer static claseEnvoltura y
-// static idDatalist dentro de la clase Sivel2GenAutocompletaAjaxVictimas asi: 
-Sivel2GenAutocompletaAjaxVictimas.claseEnvoltura = 'campos-persona-con-victima-id'
-Sivel2GenAutocompletaAjaxVictimas.idDatalist = 'fuente-victimas'
+// static idDatalist dentro de la clase Sivel2Gen__AutocompletaAjaxVictimas asi: 
+Sivel2Gen__AutocompletaAjaxVictimas.claseEnvoltura = 'campos-persona-con-victima-id'
+Sivel2Gen__AutocompletaAjaxVictimas.idDatalist = 'fuente-victimas'
