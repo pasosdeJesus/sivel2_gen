@@ -1,3 +1,12 @@
+import Sivel2Gen__AutocompletaAjaxColectivas from "./AutocompletaAjaxColectivas"
+window.Sivel2Gen__AutocompletaAjaxColectivas = Sivel2Gen__AutocompletaAjaxColectivas 
+
+import Sivel2Gen__AutocompletaAjaxFamiliares from "./AutocompletaAjaxFamiliares"
+window.Sivel2Gen__AutocompletaAjaxFamiliares = Sivel2Gen__AutocompletaAjaxFamiliares 
+
+import Sivel2Gen__AutocompletaAjaxVictimas from "./AutocompletaAjaxVictimas"
+window.Sivel2Gen__AutocompletaAjaxVictimas = Sivel2Gen__AutocompletaAjaxVictimas 
+
 export default class Sivel2Gen__Motor{
 
   /* 
@@ -39,9 +48,9 @@ export default class Sivel2Gen__Motor{
     }
 
     // En victimas permite autocompletar nombres de victima
-    Sivel2GenAutocompletaAjaxVictimas.iniciar()
-    Sivel2GenAutocompletaAjaxFamiliares.iniciar()
-    Sivel2GenAutocompletaAjaxColectivas.iniciar()
+    Sivel2Gen__AutocompletaAjaxVictimas.iniciar()
+    Sivel2Gen__AutocompletaAjaxFamiliares.iniciar()
+    Sivel2Gen__AutocompletaAjaxColectivas.iniciar()
 
     document.addEventListener('change', e => {
       if (e.target.matches("#victimas input[id^=caso_victima][id$=_nombres]")) {
@@ -56,7 +65,6 @@ export default class Sivel2Gen__Motor{
     //    window.elempe = []
     //  )
 
-    Sivel2GenMotorEs6.iniciar()
 
     // En formulario usuario, cambia visibilidad de filtro para casos
     // dependiendo de si el grupo incluye 
@@ -108,28 +116,33 @@ export default class Sivel2Gen__Motor{
     Msip__Motor.registraCambiosParaBitacora(window)
 
 
-    document.addEventListener('change', '#filtro_desagregar', e => {
-      let valor = e.value
-      let fil_cat = document.selectorQuery("#filtro_categorias")
-      let fil_dep = document.selectorQuery("#filtro_departamentos")
-      let fil_sex = document.selectorQuery("#filtro_sexo")
-      if (valor == 'Departamento') {
-        fil_cat.parentElement.style.display = "block"
-        fil_dep.parentElement.style.display = "none"
-        fil_sex.parentElement.style.display = "block"
-      }
-      if (valor == 'Categoria') {
-        fil_cat.parentElement.style.display = "none"
-        fil_dep.parentElement.style.display = "block"
-        fil_sex.parentElement.style.display = "block"
-      }
-      if (valor == 'Sexo') {
-        fil_cat.parentElement.style.display = "block"
-        fil_dep.parentElement.style.display = "block"
-        fil_sex.parentElement.style.display = "none"
+    document.addEventListener('change', e => {
+      if (e.target.matches('#filtro_desagregar')) {
+        let valor = e.value
+        let fil_cat = document.selectorQuery("#filtro_categorias")
+        let fil_dep = document.selectorQuery("#filtro_departamentos")
+        let fil_sex = document.selectorQuery("#filtro_sexo")
+        if (valor == 'Departamento') {
+          fil_cat.parentElement.style.display = "block"
+          fil_dep.parentElement.style.display = "none"
+          fil_sex.parentElement.style.display = "block"
+        }
+        if (valor == 'Categoria') {
+          fil_cat.parentElement.style.display = "none"
+          fil_dep.parentElement.style.display = "block"
+          fil_sex.parentElement.style.display = "block"
+        }
+        if (valor == 'Sexo') {
+          fil_cat.parentElement.style.display = "block"
+          fil_dep.parentElement.style.display = "block"
+          fil_sex.parentElement.style.display = "none"
+        }
       }
     })
 
+    Sivel2Gen__AutocompletaAjaxColectivas.iniciar()
+    Sivel2Gen__AutocompletaAjaxFamiliares.iniciar() // Conflicto con el de msip?
+    Sivel2Gen__AutocompletaAjaxVictimas.iniciar()
 
   }
 
@@ -255,11 +268,13 @@ export default class Sivel2Gen__Motor{
 
 
   static get MapaOSMLatInicial() { 
-    return +(<%= ENV.fetch('SIVEL2_MAPAOSM_LATINICIAL', 4.6682) %>)
+    return window.Sivel2Gen__ServConfig ?
+        window.Sivel2Gen__ServConfig.mapaosmLatInicial : 4.6682
   }
 
   static get MapaOSMLongInicial() {
-    return +(<%= ENV.fetch('SIVEL2_MAPAOSM_LONGINICIAL', -74.071) %>)
+    return window.Sivel2Gen__ServConfig ?
+        window.Sivel2Gen__ServConfig.mapaosmLongInicial : -74.071
   }
 
   // Responde a boton para crear copia de víctima
@@ -394,9 +409,7 @@ export default class Sivel2Gen__Motor{
     return false
   }
 
-}
-
-
-
 
 }
+
+

@@ -80,7 +80,6 @@ promesaRecursosSprocketsYDocumento.then((mensaje) => {
   Mr519Gen__Motor.ejecutarAlCargarDocumentoYRecursos()
   Heb412Gen__Motor.ejecutarAlCargarDocumentoYRecursos()
   Sivel2Gen__Motor.ejecutarAlCargarDocumentoYRecursos()
-  sivel2_gen_prepara_eventos_unicos();
 
   var p = new URL(document.URL).pathname.split('/')
   var p2ult = ''
