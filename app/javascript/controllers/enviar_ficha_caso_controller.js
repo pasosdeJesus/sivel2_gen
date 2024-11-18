@@ -49,7 +49,7 @@ export default class extends Controller {
       'input#caso_bitacora_inicialmente_valido').value
     // Si tiene cambios (excepto en controles para crear actividad)
     // debe validarse y guardarse
-    let cambios = MsipCalcularCambiosParaBitacora()
+    let cambios = Msip__Motor.calcularCambiosParaBitacora()
     return ( Object.keys(cambios).length > 0 || diffechas < 1000 ||
       inicialmente_valido != 'true');
   }
@@ -58,8 +58,8 @@ export default class extends Controller {
       document.getElementById("capa-cargando").style.display = 'flex';
       if(this.requiereGuardar()){
         let casoId = this.idcasoTarget.value
-        let puntomontaje = window.puntomontaje
-        let url = puntomontaje + 'casos/' + casoId + '/guardar_y_editar'
+        let puntoMontaje = window.puntoMontaje
+        let url = puntoMontaje + 'casos/' + casoId + '/guardar_y_editar'
         let datosFormulario = new FormData(document.querySelector('form'));
         let objetoFormulario = Object.fromEntries(datosFormulario);
         for (let [key, value] of datosFormulario.entries()) {
@@ -92,7 +92,7 @@ export default class extends Controller {
         }).then(response => {
           if (response.ok) {
             localStorage.setItem('pestanaActiva', 'actos-pestana');
-            window.location = puntomontaje + 'casos/' + casoId + '/edita';
+            window.location = puntoMontaje + 'casos/' + casoId + '/edita';
           } else {
             document.getElementById("capa-cargando").style.display = 'none';
           }

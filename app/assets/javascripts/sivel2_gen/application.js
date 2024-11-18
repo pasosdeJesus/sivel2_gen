@@ -10,13 +10,6 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require msip/motor
-//= require msip/motor_es5
-//= require heb412_gen/motor
-//= require mr519_gen/motor
-//= require sivel2_gen/motor
-//= require sivel2_gen/motor2
-//= require sivel2_gen/motor_es6
 //= require_tree .
 
 
