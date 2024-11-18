@@ -12,8 +12,6 @@ import "@hotwired/turbo-rails";
 
 import 'gridstack'
 
-import './jquery'
-
 import 'popper.js'              // Dialogos emergentes usados por bootstrap
 import * as bootstrap from 'bootstrap'              // Maquetacion y elementos de diseño
 
@@ -57,7 +55,7 @@ import {AutocompletaAjaxExpreg} from '@pasosdejesus/autocompleta_ajax'
 window.AutocompletaAjaxExpreg = AutocompletaAjaxExpreg
 
 let esperarRecursosSprocketsYDocumento = function (resolver) {
-  if (typeof window.puntomontaje == 'undefined') {
+  if (typeof window.puntoMontaje == 'undefined') {
     setTimeout(esperarRecursosSprocketsYDocumento, 100, resolver)
     return false
   }
@@ -77,17 +75,12 @@ let promesaRecursosSprocketsYDocumento = new Promise((resolver, rechazar) => {
 // y tipicamente después de que se ha cargado la página completa y los recursos
 promesaRecursosSprocketsYDocumento.then((mensaje) => {
   console.log(mensaje)
-  var root = window;
-  Msip__Motor.preparaEventosComunes(root);
-  mr519_gen_prepara_eventos_comunes(root);
-  heb412_gen_prepara_eventos_comunes(root);
-  sivel2_gen_prepara_eventos_comunes(root);
-  sivel2_gen_prepara_eventos_unicos(root);
 
   Msip__Motor.ejecutarAlCargarDocumentoYRecursos()
   Mr519Gen__Motor.ejecutarAlCargarDocumentoYRecursos()
   Heb412Gen__Motor.ejecutarAlCargarDocumentoYRecursos()
   Sivel2Gen__Motor.ejecutarAlCargarDocumentoYRecursos()
+  sivel2_gen_prepara_eventos_unicos();
 
   var p = new URL(document.URL).pathname.split('/')
   var p2ult = ''
@@ -109,7 +102,7 @@ document.addEventListener('turbo:load', (e) => {
  */
 
   console.log('Escuchador turbo:load')
-  Msip__Motor.ejecutarAlCargarPagina(window)
+  Msip__Motor.ejecutarAlCargarPagina()
   Mr519Gen__Motor.ejecutarAlCargarPagina()
   Heb412Gen__Motor.ejecutarAlCargarPagina()
   Sivel2Gen__Motor.ejecutarAlCargarPagina()

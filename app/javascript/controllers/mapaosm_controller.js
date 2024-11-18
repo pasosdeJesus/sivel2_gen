@@ -204,10 +204,10 @@ export default class extends Controller {
   }
 
   // Construye URL para consulta agregando el punto de montaje antes de
-  // // ruta_sin_puntomontaje y los filtros acordes a lo elegido a continuación
+  // // ruta_sin_puntoMontaje y los filtros acordes a lo elegido a continuación
 
   armarRutaConsulta(rutaSinPuntomontaje, usuarioAutenticado) {
-    var ruta = window.puntomontaje + rutaSinPuntomontaje;
+    var ruta = window.puntoMontaje + rutaSinPuntomontaje;
     var desde = document.getElementById('campo-desde').value;
     var hasta = document.getElementById('campo-hasta').value;
     var departamento = document.getElementById('departamento').value;
@@ -247,7 +247,7 @@ export default class extends Controller {
 
   agregarCasosOsm(usuario_autenticado) {
     if (typeof window.formato_fecha === 'undefined') {
-      Msip__Mootr.preparaEventosComunes(window);
+      Msip__Mootr.preparaEventosComunes();
     }
     var urlSolicitud = this.armarRutaConsulta('casos.json', usuario_autenticado);
     this.mostrarCargador();
@@ -293,8 +293,8 @@ export default class extends Controller {
     const self = this;
     function clicMarcadorCaso() {
       self.mostrarCargador();
-      Msip__Motor.arreglarPuntomontaje(window);
-      var ruta = window.puntomontaje + 'casos/';
+      Msip__Motor.arreglarPuntomontaje();
+      var ruta = window.puntoMontaje + 'casos/';
       var urlSolicitud = ruta + codigo + ".json";  
       self.descargarUrl(urlSolicitud, function(req) {
         var data = req.responseText;

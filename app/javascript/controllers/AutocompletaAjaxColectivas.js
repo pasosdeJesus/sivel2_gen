@@ -1,4 +1,4 @@
-export default class Sivel2GenAutocompletaAjaxColectivas {
+export default class Sivel2Gen__AutocompletaAjaxColectivas {
 
 
   // Elije un grupo en autocompletación

@@ -1,5 +1,4 @@
-
-export default class Sivel2GenAutocompletaAjaxVictimas {
+export default class Sivel2Gen__AutocompletaAjaxVictimas {
   /* No usamos constructor ni this porque en operaElegida sería
    * del objeto AutocompletaAjaxExpreg y no esta clase.
    * Más bien en esta todo static

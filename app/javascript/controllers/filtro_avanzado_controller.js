@@ -34,7 +34,7 @@ export default class extends Controller {
       var select = e.target;
 
       if (tviolencia_id !== "Z") {
-        var url = window.puntomontaje + 'admin/categorias/filtratviolencia';
+        var url = window.puntoMontaje + 'admin/categorias/filtratviolencia';
 
         var xhr = new XMLHttpRequest();
         xhr.open('GET', url + '?tviolencia=' + encodeURIComponent(tviolencia_id), true);
@@ -65,7 +65,7 @@ export default class extends Controller {
     if (e.target && e.target.id === 'filtro_categoria_id') {
       var categoria_id = e.target.value;
       var select = e.target;
-      var url = window.puntomontaje + 'admin/categorias/filtratviolencia';
+      var url = window.puntoMontaje + 'admin/categorias/filtratviolencia';
 
       var xhr = new XMLHttpRequest();
       xhr.open('GET', url + '?categorias_seleccionadas=' + encodeURIComponent(categoria_id), true);

@@ -13,11 +13,10 @@ export default class extends Controller {
     const formData = new FormData(form);
     let data = new URLSearchParams(formData).toString();
     data += '&commit=Contar';
-    const root = window
-    if (!root.dant || root.dant !== data) {
+    if (!window.dant || window.dant !== data) {
       Msip__Motor.enviarAutomaticoFormulario(form, 'POST', 'script', true, 'Contar');
     }
-    root.dant = data;
+    window.dant = data;
   }
 
 }
