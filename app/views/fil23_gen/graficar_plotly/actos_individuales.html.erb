@@ -4,23 +4,23 @@
 <h1>Grafica de actos individuales</h1>
 <div class="row">
   <div class="col-sm-4">
-    <div class="card filtros">
+    <div class="card filtros" data-controller="sivel2-gen--plotly-actos">
       <h5 class="card-title">Filtro</h5>
       <div id="rango" class="form-group">
         <label class="control-label" for="rango">Rango de fechas</label>
         <div class="input-daterange input-group">
           <div class="input string required">
-            <input type="date" class="string required form-control" placeholder="Desde" maxlength="10" size="10" type="text" name="fechaini" id="fechaini">
+            <input type="date" class="string required form-control" placeholder="Desde" maxlength="10" size="10" type="text" name="fechaini" id="fechaini" data-sivel2-gen--plotly-actos-target="fechaini"  data-action="change->sivel2-gen--plotly-actos#actualizarGraficaFechas">
           </div>
           <span class="input-group-addon"> - </span>
           <div class="input string required">
-            <input type="date" class="string required form-control" placeholder="Hasta" maxlength="10" size="10" type="text" name="fechafin" id="fechafin">
+            <input type="date" class="string required form-control" placeholder="Hasta" maxlength="10" size="10" type="text" name="fechafin" id="fechafin" data-sivel2-gen--plotly-actos-target="fechafin"  data-action="change->sivel2-gen--plotly-actos#actualizarGraficaFechas">
           </div>
         </div>
       </div>
       <div class="form-group">
         <label class="control-label" for="presponsable">Presuntos responsables incluidos</label>
-          <select id="presponsable" class="presponsableselect tom-select" multiple="multiple" >
+        <select id="presponsable" class="presponsableselect tom-select" multiple="multiple" data-sivel2-gen--plotly-actos-target="presponsable" data-action="change->sivel2-gen--plotly-actos#actualizarGraficaEtiquetas" >
           </select>
             <script type="application/json" data-for="presponsable">{}</script>
       </div>
