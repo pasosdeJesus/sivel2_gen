@@ -1,15 +1,18 @@
-<%= f.simple_fields_for :combatiente do |vc| %>
-  <%= render 'combatiente_campos', f: vc %>
-<% end %>
-<div class="links">
-  <%= link_to_add_association 'Añadir Combatiente', f, 
-    :combatiente, 
-    partial: 'combatiente_campos',
-    class: 'btn btn-sm btn-primary agrega-comb',
-    "data-ajax": File.join(
-      Rails.configuration.relative_url_root,
-      "combatientes/nuevo"
-    ), 
-    "data-ajaxdata": "caso_id"
-  %>
+<div id="combatientes_marco">
+  <%= f.simple_fields_for :combatiente, 
+    child_index: params[:index] do |com| %>
+    <%= render '/sivel2_gen/casos/combatiente_campos', :f => com %>
+  <% end %>
 </div>
+
+<%= f.submit "Agregar Combatiente",
+  formaction: sivel2_gen.crear_combatiente_path(index: @caso.combatiente.size),
+  formmethod: :post,
+  formnovalidate: true,
+  class: 'btn btn-sm btn-primary',
+  name: "agregar-combatiente",
+  id: "agregar-combatiente",
+  input_html: {class: "tom-select"},
+  data:  {
+    disable_with: false } %>
+
