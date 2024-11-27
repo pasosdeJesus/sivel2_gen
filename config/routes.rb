@@ -135,6 +135,13 @@ Sivel2Gen::Engine.routes.draw do
     end
   end
 
+  resources :combatiente, only: [], param: :index do 
+    member do
+      delete '(:id)', to: "combatientes#destroy", as: "eliminar"
+      post '/' => "combatientes#create", as: "crear"
+    end
+  end
+
   resources :familiar, only: [], param: :index do 
     member do
       delete '(:id)', to: "familiares#eliminar_familiar", as: "eliminar"

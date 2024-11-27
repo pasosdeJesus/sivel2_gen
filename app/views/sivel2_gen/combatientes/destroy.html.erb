@@ -1,0 +1,9 @@
+<%= fields model: @caso do |form| %>
+  <%= form.simple_fields_for :combatiente, 
+    child_index: params[:index] do |com_form| %>
+    <%= turbo_frame_tag "combatiente_#{com_form.index}" do %>
+      <%= com_form.hidden_field :id, value: params[:id] %>
+      <%= com_form.hidden_field :_destroy, value: true %>
+    <% end %>
+  <% end %>
+<% end %>
