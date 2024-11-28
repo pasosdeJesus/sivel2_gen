@@ -1,0 +1,19 @@
+<%= simple_form_for @caso do |form| %>
+  <%= form.simple_fields_for :combatiente, 
+    child_index: params[:index] do |com_form| %>
+    <%= turbo_stream.replace "agregar-combatiente" do %>
+      <%= form.submit "Agregar Combatiente", 
+        formaction: sivel2_gen.crear_combatiente_path(com_form.index.to_i + 1), 
+        formmethod: :post,
+        formnovalidate: true,
+        class: 'btn btn-sm btn-primary agregar-vic',
+        id: "agregar-combatiente",
+        data:  {
+          disable_with: false } %>
+    <% end %>
+
+    <%= turbo_stream.append "combatientes_marco" do %>
+      <%= render "/sivel2_gen/casos/combatiente_campos", f: com_form %>
+    <% end %>
+  <% end %>
+<% end %>
