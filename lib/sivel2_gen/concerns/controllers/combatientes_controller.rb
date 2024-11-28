@@ -50,9 +50,6 @@ module Sivel2Gen
           def create
           end
 
-          def update
-          end
-
           private
 
           def prepara_caso
