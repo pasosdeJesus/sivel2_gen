@@ -263,8 +263,12 @@ export default class extends Controller {
         return;
       }
       var listaMarcadores = [];
-      var o = JSON.parse(data);
-      console.log(o)
+      var datos = JSON.parse(data);
+      var total_casos = datos.casos;
+      var total_victimas = datos.victimas;
+      var total_victimizaciones = datos.victimizaciones;
+      var total_actos = datos.actos;
+      var o = datos.respuesta;
       var numResultados = 0;
       for (var codigo in o) {
         if (o.hasOwnProperty(codigo)) {
@@ -284,10 +288,10 @@ export default class extends Controller {
       self.constructor.marcadores.addLayers(listaMarcadores);
       self.constructor.mapa.addLayer(self.constructor.marcadores);
       document.getElementById('nrcasos').innerHTML = numResultados + ' Casos mostrados';
-      document.getElementById('resumen-casos').innerHTML = numResultados;
-      document.getElementById('resumen-victimas').innerHTML = numResultados;
-      document.getElementById('resumen-victimizaciones').innerHTML = numResultados;
-      document.getElementById('resumen-actos').innerHTML = numResultados;
+      document.getElementById('resumen-casos').innerHTML = total_casos;
+      document.getElementById('resumen-victimas').innerHTML = total_victimas;
+      document.getElementById('resumen-victimizaciones').innerHTML = total_victimizaciones;
+      document.getElementById('resumen-actos').innerHTML = total_actos;
       self.ocultarCargador();
     });
   }
