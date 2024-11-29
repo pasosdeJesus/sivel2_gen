@@ -1,66 +1,98 @@
 <div class= "row">
-  <div class="col-sm-3">
-    <input class= "campo-mapa-osm" name="num" type="hidden" value="200" />
-    <div>
-      <div>Fecha:</div>
-      <div>
-        <input name="desde" 
-               class="campo-mapa-osm form-control seleccion-mapa-osm"
-               placeholder= "Desde" 
-               id="campo-desde"
-               type="date" 
-               value="<%= @fechadesde %>"
-               size="11"/>
-      </div>
-      <div>
-        <input name="hasta" 
-               class="campo-mapa-osm form-control seleccion-mapa-osm"
-               placeholder= "Hasta" 
-               id="campo-hasta"
-               type="date" 
-               value="<%= @fechahasta %>"
-               size="11"/>
+  <div class="col-lg-2 col-md-6">
+    <div class="card">
+      <div class="card-body">
+        <h6 class="card-title text-primary">Desde</h6>
+        <div class="mb-3">
+          <input 
+            name="desde" 
+            id="campo-desde" 
+            type="date" 
+            class="form-control" 
+            value="<%= @fechadesde %>">
+        </div>
       </div>
     </div>
   </div>
-  <div class="col-sm-3">
-    <div>
-      <div>Departamento:</div>
-      <div>
-        <select name="departamento" class="seleccion-mapa-osm form-control"
-          id="departamento" style="width:140px;">
+
+  <div class="col-lg-2 col-md-6">
+    <div class="card">
+      <div class="card-body">
+        <h6 class="card-title text-primary">Hasta</h6>
+        <div class="mb-3">
+          <input 
+            name="hasta" 
+            id="campo-hasta" 
+            type="date" 
+            class="form-control" 
+            value="<%= @fechahasta %>">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Departamento -->
+  <div class="col-lg-2 col-md-6">
+    <div class="card">
+      <div class="card-body">
+        <h6 class="card-title text-success">Departamento</h6>
+        <select 
+          name="departamento" 
+          id="departamento" 
+          class="form-select">
           <option value="0">Mostrar todos</option>
           <option value="">-----------------------</option>
-          <%= options_for_select(Msip::Departamento.habilitados.where(
-            pais_id: Msip.paisomision).
-          all.collect { |d| [d.nombre, d.id ] }) %> 
+          <%= options_for_select(Msip::Departamento.habilitados
+            .where(pais_id: Msip.paisomision)
+            .all.collect { |d| [d.nombre, d.id] }) %>
         </select>
       </div>
     </div>
   </div>
-  <div class="col-sm-3">
-    <div>
-      <div>P. Responsable:</div>
-      <div>
-        <select name="prresp" class="seleccion-mapa-osm form-control" id="presponsable" style="width:150px;">
+
+
+  <!-- P. Responsable -->
+  <div class="col-lg-2 col-md-6">
+    <div class="card">
+      <div class="card-body">
+        <h6 class="card-title text-danger">P. Responsable</h6>
+        <select 
+          name="prresp" 
+          id="presponsable" 
+          class="form-select">
           <option value="0">Mostrar todos</option>
           <option value="">-----------------------</option>
-          <%= options_for_select(Sivel2Gen::Presponsable.all.collect { |d| [d.nombre, d.id ] }) %>
+          <%= options_for_select(Sivel2Gen::Presponsable.all.collect { |d|
+[d.nombre, d.id] }) %>
         </select>
       </div>
     </div>
   </div>
-  <div class="col-sm-3">
-    <div>
-      <div>Violencia:</div>
-      <div>
-        <select name="tvio" class="seleccion-mapa-osm form-control" id="tvio" style="width:150px;">
+
+  <div class="col-lg-2 col-md-6">
+    <div class="card">
+      <div class="card-body">
+        <h6 class="card-title text-info">Violencia</h6>
+        <select 
+          name="tvio" 
+          id="tvio" 
+          class="form-select">
           <option value="0">Mostrar todos</option>
           <option value="">-----------------------</option>
           <%= options_for_select(Sivel2Gen::Categoria.all.collect { |d|
-            [d.presenta_con_codigo, d.id ] }.sort)%>
+[d.presenta_con_codigo, d.id] }.sort) %>
         </select>
       </div>
     </div>
+  </div>
+
+  <div class="col-lg-2 col-md-6">
+
+                  <button 
+                    data-action="click->sivel2-gen--mapaosm#filtrar" 
+                    type="button" 
+                    class="btn btn-primary">
+                    Filtrar
+                  </button>
   </div>
 </div>

@@ -1,5 +1,4 @@
 # frozen_string_literal: true
-debugger
 sol = ['sivel2_gen_conscaso.caso_id']
 if params && params[:filtro]
   if params[:filtro][:inc_ubicaciones]
@@ -34,8 +33,24 @@ cons = 'SELECT '+ sol.join(", ") + ' FROM sivel2_gen_conscaso ' +
     'LEFT JOIN msip_municipio ON msip_municipio.id=msip_ubicacion.municipio_id ' +
     'WHERE ' + cond
 
-pl = ActiveRecord::Base.connection.execute(cons).values
+cons2 = 'SELECT '+ 
+  'COUNT(DISTINCT sivel2_gen_conscaso.caso_id) AS numero_casos, '+
+  'COUNT(sivel2_gen_victima.id) AS numero_victimas ' +
+        'FROM ' + 
+  'sivel2_gen_conscaso '+
+  'JOIN '+
+ 
+  'sivel2_gen_caso AS caso ' +
+  'ON caso.id = sivel2_gen_conscaso.caso_id '+
+  'LEFT JOIN ' +
+  'sivel2_gen_victima ' +
+  'ON sivel2_gen_victima.caso_id = caso.id '+
+  'WHERE '+ cond
 
+pl = ActiveRecord::Base.connection.execute(cons).values
+pl2 = ActiveRecord::Base.connection.execute(cons2).values
+
+debugger
 r = pl.map {|l|
       h = {}
       if params && params[:filtro]
