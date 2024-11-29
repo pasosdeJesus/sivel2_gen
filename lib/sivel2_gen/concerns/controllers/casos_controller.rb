@@ -414,6 +414,64 @@ module Sivel2Gen
             return false
           end
 
+          def presenta_datos_mapaosm
+            if !Rails.configuration.x.sivel2_consulta_web_publica
+              authorize! :index, Sivel2Gen::Caso
+            end
+            begin
+              @conscasocount = Conscaso.count
+            rescue
+              Conscaso.refresca_conscaso
+              @conscasocount = Conscaso.count
+            end
+            @cortamemo = cortamemo
+
+            @incluir = incluir_inicial
+            @campoord = campoord_inicial
+            @conscaso = Sivel2Gen::Conscaso.all
+            @conscaso = filtrar_ca(@conscaso)
+            @conscasocount = @conscaso.count
+            inicializa_index
+
+            # Filtro
+            if params && params[:filtro]
+              # Avanzado
+              @conscaso = filtro_avanzado @conscaso, params[:filtro]
+              # Columnas por incluir
+              nincluir = []
+              for i in @incluir do
+                s = 'inc_' + i
+                if params[:filtro][s.to_sym] && params[:filtro][s.to_sym] == '1'
+                  nincluir.push(i)
+                end
+              end
+              @incluir = nincluir
+              # Cambiar Ordenamiento
+              if params[:filtro][:orden]
+                @campoord = params[:filtro][:orden]
+              end
+              # Otros (puede cambiar consulta, @incluir o @campoord)
+              @conscaso = filtro_particular @conscaso, params[:filtro]
+            end
+
+            # Ordenamiento y control de acceso
+            if defined? @conscaso.ordenar_por
+              @conscaso = @conscaso.ordenar_por @campoord
+            end
+            @numconscaso = @conscaso.size
+            if registrar_en_bitacora
+              Msip::Bitacora.a(request.remote_ip, current_usuario ?
+                              current_usuario.id : nil,
+                              request.url, params, 'Sivel2Gen::Caso',
+                              0,  'listar', '')
+            end
+            respond_to do |format|
+                format.json {
+                  render 'repmapaosm'
+                  return
+                }
+            end
+          end
           def presenta_index
             # Presentación
             respond_to do |format|

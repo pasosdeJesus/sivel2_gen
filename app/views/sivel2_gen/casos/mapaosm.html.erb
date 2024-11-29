@@ -4,41 +4,95 @@
   // Financiado por CINEP/PPP con recursos de la Universidad de Sheffield
   // Cedido al dominio publico de acuerdo a la legislacion colombiana 
 -->
-<link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v1.0.0/MarkerCluster.Default.css' rel='stylesheet' />
-<link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v1.0.0/MarkerCluster.css' rel='stylesheet' />
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css"
-  integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
-  crossorigin=""/>
-<div id="filtro-osm">
-  <div class="card border-primary">
-    <div class="card-body">
-      <h4 class="card-title">Casos sobre OpenStreetMap</h4>
-      <form name="configuracion" onsubmit="agregarCasosOsm(true); return false;">
-        <%= render :partial => "sivel2_gen/casos/filtroybotones_mapaosm" %>
-      </form>
+<style>
+#div_contenido{
+  --bs-gutter-x: 0rem !important;
+}
+</style>
+<div data-controller="sivel2-gen--mapaosm" 
+  data-sivel2-gen--mapaosm-usuario-autenticado="<%= current_usuario ? 'true' : 'false' %>">
+  <div id="filtro-osm" class="container">
+    <div class="card border-primary shadow-sm">
+      <div class="card-header bg-primary text-white">
+        <h4 class="card-title mb-0">Casos sobre OpenStreetMap</h4>
+      </div>
+      <div class="card-body">
+        <div class="row p-2">
+          <div class="col-8 shadow p-2" style="border-color: #008cba;">
+            <div class="row">
+              <div class="col-xl-3 col-md-6">
+                <div class="card-body p-1 text-center">
+                  <h4 class="mt-2" id="resumen-casos"><%= Sivel2Gen::Caso.all.count %></h4>
+                  <h6 class="mt-3">Casos</h6>
+                </div>
+              </div>
+
+              <!-- Card: Total de víctimas -->
+              <div class="col-xl-3 col-md-6">
+                <div class="card-body p-1 text-center">
+                  <h4 class="mt-2" id="resumen-victimas"><%= Sivel2Gen::Victima.all.count %></h4>
+                  <h6 class="mt-3">Víctimas</h6>
+                </div>
+              </div>
+
+              <!-- Card: Total de victimizaciones -->
+              <div class="col-xl-3 col-md-6">
+                <div class="card-body p-1 text-center">
+                  <h4 class="mt-2" id="resumen-victimizaciones"><%= ActiveRecord::Base.connection.execute("SELECT COUNT(*) FROM (select distinct categoria_id, persona_id, caso_id from sivel2_gen_acto) as sub").values[0][0] %></h4>
+                  <h6 class="mt-3">Victimizaciones</h6>
+                </div>
+              </div>
+
+              <!-- Card: Total de actos -->
+              <div class="col-xl-3 col-md-6">
+                <div class="card-body p-1 text-center">
+                  <h4 class="mt-2" id="resumen-actos"><%= Sivel2Gen::Acto.all.count %></h4>
+                  <h6 class="mt-3">Actos</h6>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="card-body px-5 py-1 text-center justify-content-center align-items-center">
+              <div class="alert alert-success" role="alert">
+                <span class="nrcasos fs-5" id="nrcasos"></span>
+              </div>
+            </div>
+            <!-- Contenido adicional del parcial -->
+            <div class="mb-3">
+              <%= render partial: 'mapaosm_masbotones' %>
+            </div>
+            <!-- Indicador de carga -->
+            <div id="cargador" class=" justify-content-center align-items-center">
+              <div class="spinner-border text-secondary" role="status">
+                <span class="visually-hidden">Cargando...</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <form name="configuracion" onsubmit="agregarCasosOsm(true); return false;">
+          <%= render :partial => "sivel2_gen/casos/filtroybotones_mapaosm" %>
+        </form>
+      </div>
     </div>
   </div>
+  <div id="mapa-osm"></div>
+  <% if current_usuario %>
+    <div id="agrega-capa">
+      <button id="agregar-capa" type="button" data-action="sivel2-gen--mapaosm#agregarCapaGeojson" class="btn btn-primary btn-sm">Agregar capa GeoJSON (&lt;100K)</button>
+    </div>
+    <div id="descarga-mapa">
+      <button id="descargar-mapa" type="button" data-action="sivel2-gen--mapaosm#descargarCapaCasos" class="btn btn-primary btn-sm"><a id= "enlace-descarga">Descargar capa de casos</a></button>
+    </div>
+  <% end %>
 </div>
-<div id="mapa-osm"></div>
-<% if current_usuario %>
-  <div id="agrega-capa">
-    <button id="agregar-capa" type="button" class="btn btn-primary btn-sm">Agregar capa GeoJSON (&lt;100K)</button>
-  </div>
-  <div id="descarga-mapa">
-    <button id="descargar-mapa" type="button" class="btn btn-primary btn-sm"><a id= "enlace-descarga">Descargar capa de casos</a></button>
-  </div>
-<% end %>
-
-<% if current_usuario %>
- <script defer="true">
-   document.addEventListener('msip:cargado', function (e) {  
-     presentarMapaOsm(true)
-   }, false);
- </script>
-<% else %>
-  <script defer="true">
-    document.addEventListener('msip:cargado', function (e) {  
-     presentarMapaOsm(false)
-    }, false);
-  </script>
-<% end %>
+<script>
+  window.Sivel2Gen__ServConfig = { 
+      mapaosmLatInicial: <%= ENV.fetch(
+        'SIVEL2_MAPAOSM_LATINICIAL', 4.6682
+      ) %>,
+      mapaosmLongInicial: <%= ENV.fetch(
+        'SIVEL2_MAPAOSM_LATINICIAL', 4.6682
+      ) %>
+  }
+</script>
