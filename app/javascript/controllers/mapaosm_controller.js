@@ -304,7 +304,7 @@ export default class extends Controller {
     const self = this;
     function clicMarcadorCaso() {
       self.mostrarCargador();
-      Msip__Motor.arreglaPuntomontaje();
+      Msip__Motor.arreglarPuntomontaje();
       var ruta = window.puntoMontaje + 'casos/';
       var urlSolicitud = ruta + codigo + ".json";  
       self.descargarUrl(urlSolicitud, function(req) {

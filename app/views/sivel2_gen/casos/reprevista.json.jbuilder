@@ -1,5 +1,4 @@
 # frozen_string_literal: true
-debugger
 sol = ['sivel2_gen_conscaso.caso_id']
 if params && params[:filtro]
   if params[:filtro][:inc_ubicaciones]
