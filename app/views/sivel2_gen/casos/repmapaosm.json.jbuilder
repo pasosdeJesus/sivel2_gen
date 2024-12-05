@@ -30,16 +30,6 @@ if @conscaso.count > 0
     cond2 = "#{@conscaso.pluck(:caso_id).join(",")}"
 end
 
-cons = 'SELECT '+ sol.join(", ") + ' FROM sivel2_gen_conscaso ' +
-    'JOIN sivel2_gen_caso as caso ' +
-    'ON caso.id=sivel2_gen_conscaso.caso_id ' +
-    'LEFT JOIN msip_ubicacion ON msip_ubicacion.id=caso.ubicacion_id ' +
-    'LEFT JOIN msip_departamento ON msip_departamento.id=msip_ubicacion.departamento_id ' +
-    'LEFT JOIN msip_municipio ON msip_municipio.id=msip_ubicacion.municipio_id ' +
-    'WHERE ' + cond +
-    ' AND msip_ubicacion.latitud IS NOT NULL '+ 
-    'AND msip_ubicacion.longitud IS NOT NULL;'
-
 pl = calcularCasos(sol, cond)
 
 pl2 = calcularActos(cond2)
