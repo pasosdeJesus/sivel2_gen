@@ -14,7 +14,7 @@ Es para desarrolladores. Si estás interesado en desplegar la aplicación SIVeL 
 Mira más sobre la arquitectura actual en:
 <https://gitlab.com/pasosdeJesus/sivel2_gen/-/wiki/home>
 
-[Tablas incluidas y modelo entidad-asociación](https://gitlab.com/pasosdeJesus/sivel2_gen/-/blob/master/doc/modelo-entidad-asociacion.md)
+[Tablas incluidas y modelo entidad-asociación](https://gitlab.com/pasosdeJesus/sivel2_gen/-/blob/main/doc/modelo-entidad-asociacion.md)
 
 Respecto a la funcionalidad un diseño histórico y prototipo inicial de la
 versión 2 está disponible la rama dis2 de SIVeL 1.2:
@@ -28,13 +28,13 @@ y editar casos.
 
 ### Requisitos tecnológicos
 
-Ver <https://gitlab.com/pasosdeJesus/msip/-/blob/master/doc/requisitos.md>
+Ver <https://gitlab.com/pasosdeJesus/msip/-/blob/main/doc/requisitos.md>
 
 ### Aplicación de prueba
 
 Este motor incluye una aplicación mínima de prueba cuya configuración
 es como la descrita en:
-<https://gitlab.com/pasosdeJesus/msip/-/blob/master/doc/aplicacion-de-prueba.md>
+<https://gitlab.com/pasosdeJesus/msip/-/blob/main/doc/aplicacion-de-prueba.md>
 
 Si ya habías lanzado la aplicación de prueba del motor **msip**, podrás utilizar
 el mismo usuario y basta que configures la clave
@@ -45,14 +45,14 @@ en ```test/dummy/config/database.yml```
 Se han implementado algunas pruebas con `minitest` a modelos y  controladores.
 Si pudiste ver la aplicación de prueba en un navegador, las siguientes
 instrucciones aplican:
-<https://gitlab.com/pasosdeJesus/msip/-/blob/master/doc/pruebas-con-minitest.md>
+<https://gitlab.com/pasosdeJesus/msip/-/blob/main/doc/pruebas-con-minitest.md>
 
 ## Desarrollo
 
 ### Convenciones de Desarrollo
 
 Consúltalas en
-<https://gitlab.com/pasosdeJesus/msip/-/blob/master/doc/convenciones.md>
+<https://gitlab.com/pasosdeJesus/msip/-/blob/main/doc/convenciones.md>
 
 ### Generación de datos de tablas básicas
 
