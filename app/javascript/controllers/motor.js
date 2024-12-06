@@ -307,15 +307,33 @@ export default class Sivel2Gen__Motor{
         }
       }
     });
+    event.preventDefault(); // Evita el comportamiento predeterminado del link.
 
-    document.querySelector('.agregar-vic').click();
+    // Encuentra el botón de "Agregar Combatiente"
+    const agregarBoton = document.querySelector('#agregar-victima');
+
+    if (!agregarBoton) {
+      console.error("No se encontró el botón de agregar víctima.");
+      return;
+    }
+
+    // Encuentra el formulario que contiene el botón
+    const form = agregarBoton.closest('form');
+
+    if (!form) {
+      console.error("No se encontró el formulario asociado.");
+      return;
+    }
+
+    // Envía el formulario usando el botón actual
+    form.requestSubmit(agregarBoton);
     const mensajeElement = document.getElementById('mensaje-copia-vic');
     mensajeElement.style.display = 'block'; // Mostrar el mensaje antes de setTimeout()
 
     setTimeout(() =>{
-      victimas = document.querySelector("#victimas").querySelectorAll(".seccionvictima")
-      vic_agregado = victimas[victimas.length- 1]
-      indice_tipo_input = 0; 
+      let victimas = document.querySelector("#victimas_frame").querySelectorAll(".seccionvictima")
+      let vic_agregado = victimas[victimas.length- 1]
+      let indice_tipo_input = 0; 
       vic_agregado.querySelectorAll('input').forEach((elem, i) => {
         if(i >= 0 && i !=35){
           if(elem.type != "hidden" && elem.type != 'submit' &&
@@ -326,7 +344,7 @@ export default class Sivel2Gen__Motor{
           }
         }
       })
-      indice_tipo_select = 0; 
+      let indice_tipo_select = 0; 
       vic_agregado.querySelectorAll('select').forEach((elem, i) => {
         if(i >= 0 && i !=35){
           if(elem.type != "hidden" && elem.type != 'submit' && !elem.id.includes('personados')){
@@ -375,7 +393,27 @@ export default class Sivel2Gen__Motor{
         valores_select.push(elem.value)
       }
     });
-    document.querySelector('.agrega-comb').click();
+    event.preventDefault(); // Evita el comportamiento predeterminado del link.
+
+    // Encuentra el botón de "Agregar Combatiente"
+    const agregarBoton = document.querySelector('#agregar-combatiente');
+
+    if (!agregarBoton) {
+      console.error("No se encontró el botón de agregar combatiente.");
+      return;
+    }
+
+    // Encuentra el formulario que contiene el botón
+    const form = agregarBoton.closest('form');
+
+    if (!form) {
+      console.error("No se encontró el formulario asociado.");
+      return;
+    }
+
+    // Envía el formulario usando el botón actual
+    form.requestSubmit(agregarBoton);
+
     setTimeout(() =>{
       let combatientes = document.querySelector("#combatientes").
         querySelectorAll(".seccioncombatiente")
