@@ -413,7 +413,8 @@ export default class Sivel2Gen__Motor{
 
     // Envía el formulario usando el botón actual
     form.requestSubmit(agregarBoton);
-
+    const mensajeElement = document.getElementById('mensaje-copia-com');
+    mensajeElement.style.display = 'block'; // Mostrar el mensaje antes de setTimeout()
     setTimeout(() =>{
       let combatientes = document.querySelector("#combatientes").
         querySelectorAll(".seccioncombatiente")
@@ -442,6 +443,7 @@ export default class Sivel2Gen__Motor{
           }
         }
       })
+      mensajeElement.style.display = 'none'; 
       }
     , 1000);
     return false
