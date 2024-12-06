@@ -310,15 +310,15 @@ export default class Sivel2Gen__Motor{
     event.preventDefault(); // Evita el comportamiento predeterminado del link.
 
     // Encuentra el botón de "Agregar Combatiente"
-    const agregarButton = document.querySelector('#agregar-victima');
+    const agregarBoton = document.querySelector('#agregar-victima');
 
-    if (!agregarButton) {
-      console.error("No se encontró el botón de agregar combatiente.");
+    if (!agregarBoton) {
+      console.error("No se encontró el botón de agregar víctima.");
       return;
     }
 
     // Encuentra el formulario que contiene el botón
-    const form = agregarButton.closest('form');
+    const form = agregarBoton.closest('form');
 
     if (!form) {
       console.error("No se encontró el formulario asociado.");
@@ -326,7 +326,7 @@ export default class Sivel2Gen__Motor{
     }
 
     // Envía el formulario usando el botón actual
-    form.requestSubmit(agregarButton);
+    form.requestSubmit(agregarBoton);
     const mensajeElement = document.getElementById('mensaje-copia-vic');
     mensajeElement.style.display = 'block'; // Mostrar el mensaje antes de setTimeout()
 
@@ -396,15 +396,15 @@ export default class Sivel2Gen__Motor{
     event.preventDefault(); // Evita el comportamiento predeterminado del link.
 
     // Encuentra el botón de "Agregar Combatiente"
-    const agregarButton = document.querySelector('#agregar-combatiente');
+    const agregarBoton = document.querySelector('#agregar-combatiente');
 
-    if (!agregarButton) {
+    if (!agregarBoton) {
       console.error("No se encontró el botón de agregar combatiente.");
       return;
     }
 
     // Encuentra el formulario que contiene el botón
-    const form = agregarButton.closest('form');
+    const form = agregarBoton.closest('form');
 
     if (!form) {
       console.error("No se encontró el formulario asociado.");
@@ -412,7 +412,7 @@ export default class Sivel2Gen__Motor{
     }
 
     // Envía el formulario usando el botón actual
-    form.requestSubmit(agregarButton);
+    form.requestSubmit(agregarBoton);
 
     setTimeout(() =>{
       let combatientes = document.querySelector("#combatientes").
