@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 sol = ['sivel2_gen_conscaso.caso_id']
 if params && params[:filtro]
   if params[:filtro][:inc_ubicaciones]
@@ -21,8 +22,12 @@ if params && params[:filtro]
 end
 
 cond = "FALSE"
+cond2 = "NULL"
 if @conscaso.count > 0
     cond = "sivel2_gen_conscaso.caso_id IN (#{@conscaso.pluck(:caso_id).join(",")})"
+end
+if @conscaso.count > 0
+    cond2 = "#{@conscaso.pluck(:caso_id).join(",")}"
 end
 
 cons = 'SELECT '+ sol.join(", ") + ' FROM sivel2_gen_conscaso ' +
@@ -31,9 +36,13 @@ cons = 'SELECT '+ sol.join(", ") + ' FROM sivel2_gen_conscaso ' +
     'LEFT JOIN msip_ubicacion ON msip_ubicacion.id=caso.ubicacion_id ' +
     'LEFT JOIN msip_departamento ON msip_departamento.id=msip_ubicacion.departamento_id ' +
     'LEFT JOIN msip_municipio ON msip_municipio.id=msip_ubicacion.municipio_id ' +
-    'WHERE ' + cond
+    'WHERE ' + cond +
+    ' AND msip_ubicacion.latitud IS NOT NULL '+ 
+    'AND msip_ubicacion.longitud IS NOT NULL;'
 
-pl = ActiveRecord::Base.connection.execute(cons).values
+pl = calcularCasos(sol, cond)
+
+pl2 = calcularActos(cond2)
 
 r = pl.map {|l|
       h = {}
@@ -66,4 +75,12 @@ r = pl.map {|l|
       end
       [l[0], h]
     }
-json.merge!(r.to_h)
+
+datos = {
+          "casos": pl2[0],
+          "victimas": pl2[1],
+          "actos": pl2[2],
+          "victimizaciones": pl2[3],
+          "respuesta": r.to_h
+          }
+json.merge!(datos)

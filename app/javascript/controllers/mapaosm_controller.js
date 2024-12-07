@@ -245,13 +245,15 @@ export default class extends Controller {
     return urlSolicitud;
   }
 
+
   agregarCasosOsm(usuario_autenticado) {
     if (typeof window.formato_fecha === 'undefined') {
-      Msip__Mootr.preparaEventosComunes();
+      Msip__Motor.ejecutarAlCargarPagina()
     }
-    var urlSolicitud = this.armarRutaConsulta('casos.json', usuario_autenticado);
+    var urlSolicitud = this.armarRutaConsulta('casos/datos-osm.json', usuario_autenticado);
     this.mostrarCargador();
     const self = this;
+    console.log(urlSolicitud)
     this.descargarUrl(urlSolicitud, function(req) {
       var data = req.responseText;
       if (data === null || data.charAt(0) !== '{') {
@@ -261,7 +263,12 @@ export default class extends Controller {
         return;
       }
       var listaMarcadores = [];
-      var o = JSON.parse(data);
+      var datos = JSON.parse(data);
+      var total_casos = datos.casos;
+      var total_victimas = datos.victimas;
+      var total_victimizaciones = datos.victimizaciones;
+      var total_actos = datos.actos;
+      var o = datos.respuesta;
       var numResultados = 0;
       for (var codigo in o) {
         if (o.hasOwnProperty(codigo)) {
@@ -281,6 +288,10 @@ export default class extends Controller {
       self.constructor.marcadores.addLayers(listaMarcadores);
       self.constructor.mapa.addLayer(self.constructor.marcadores);
       document.getElementById('nrcasos').innerHTML = numResultados + ' Casos mostrados';
+      document.getElementById('resumen-casos').innerHTML = total_casos;
+      document.getElementById('resumen-victimas').innerHTML = total_victimas;
+      document.getElementById('resumen-victimizaciones').innerHTML = total_victimizaciones;
+      document.getElementById('resumen-actos').innerHTML = total_actos;
       self.ocultarCargador();
     });
   }

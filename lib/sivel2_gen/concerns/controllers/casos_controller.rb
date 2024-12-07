@@ -13,6 +13,7 @@ module Sivel2Gen
           #load_and_authorize_resource class: Sivel2Gen::Caso,
           #  except: [:index, :show]
           helper Msip::UbicacionHelper
+          helper Sivel2Gen::ConteosHelper
 
           MAX_CASOS_REFRESCA_AUTOMATICO = 30000
 
@@ -200,9 +201,7 @@ module Sivel2Gen
             reg
           end
 
-          # GET /casos
-          # GET /casos.json
-          def index
+          def parte_inicial_index
             if !Rails.configuration.x.sivel2_consulta_web_publica
               authorize! :index, Sivel2Gen::Caso
             end
@@ -295,6 +294,12 @@ module Sivel2Gen
                               request.url, params, 'Sivel2Gen::Caso',
                               0,  'listar', '')
             end
+
+          end
+          # GET /casos
+          # GET /casos.json
+          def index
+            parte_inicial_index
             presenta_index
           end
 
@@ -414,6 +419,15 @@ module Sivel2Gen
             return false
           end
 
+          def presenta_datos_mapaosm
+            parte_inicial_index
+            respond_to do |format|
+                format.json {
+                  render 'repmapaosm'
+                  return
+                }
+            end
+          end
           def presenta_index
             # Presentación
             respond_to do |format|

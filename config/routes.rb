@@ -9,6 +9,7 @@ Sivel2Gen::Engine.routes.draw do
 
   get "/casos/busca" => 'casos#busca'
   get "/casos/cuenta" => 'casos#cuenta'
+  get "/casos/datos-osm" => 'casos#presenta_datos_mapaosm'
   get '/casos/errores_importacion' => 'casos#errores_importacion',
     as: :casos_errores_importacion
   get '/casos/importarrelatos' => 'casos#importarrelatos'
