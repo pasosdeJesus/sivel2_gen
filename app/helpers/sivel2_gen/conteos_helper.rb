@@ -13,7 +13,7 @@ module Sivel2Gen
           'WHERE ' + cond +
           ' AND msip_ubicacion.latitud IS NOT NULL '+ 
           'AND msip_ubicacion.longitud IS NOT NULL;'
-      pl = ActiveRecord::Base.connection.execute(cons).values
+      return ActiveRecord::Base.connection.execute(cons).values
     end
 
     def calcularActos(cond)
@@ -30,7 +30,7 @@ module Sivel2Gen
               "WHERE sivel2_gen_conscaso.caso_id IN (SELECT DISTINCT caso_id " +
               "FROM sivel2_gen_acto WHERE caso_id IN (" + cond + ")) " +
               "AND msip_ubicacion.latitud IS NOT NULL AND msip_ubicacion.longitud IS NOT NULL;"
-      pl = ActiveRecord::Base.connection.execute(cons).values[0]
+      return ActiveRecord::Base.connection.execute(cons).values[0]
     end
 
   end
