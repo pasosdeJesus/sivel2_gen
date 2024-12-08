@@ -356,8 +356,13 @@ module Sivel2Gen
           habilidad.can :manage, Heb412Gen::Plantillahcm
           habilidad.can :manage, Heb412Gen::Plantillahcr
 
-          habilidad.can :manage, Mr519Gen::Formulario
-          habilidad.can :manage, Mr519Gen::Encuestausuario 
+          habilidad.can :manage, [
+            Mr519Gen::Encuestausuario,
+            Mr519Gen::Formulario,
+            Mr519Gen::Campo,
+            Mr519Gen::Opcioncs,
+            Mr519Gen::Planencuesta
+          ]
 
           habilidad.can :manage, Msip::Orgsocial
           habilidad.can :manage, Msip::Bitacora
