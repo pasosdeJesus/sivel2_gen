@@ -11,7 +11,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/heb412_gen.git
-  revision: a82e2e3d3bac953e630a2bbe408b8880b86d3fc7
+  revision: 29bd5ca98f332753618c9e588225581d22c81a02
   branch: main
   specs:
     heb412_gen (2.3.0.alfa3)
@@ -22,15 +22,17 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/mr519_gen.git
-  revision: f0b8d5c3c38f57bc7f1c0617bc415594873ea3a9
+  revision: b9918dbd1feeead98f389c7d3934684e4cd39c52
   branch: main
   specs:
     mr519_gen (2.3.0.alfa3)
       msip
       rails
 
-PATH
-  remote: ../msip
+GIT
+  remote: https://gitlab.com/pasosdeJesus/msip.git
+  revision: 50fcaf96a97f7855363a84f8eb6648b943d752af
+  branch: main
   specs:
     msip (2.3.0.alfa3)
       cancancan (~> 3)
