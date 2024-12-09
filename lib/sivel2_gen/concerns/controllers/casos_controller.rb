@@ -13,7 +13,6 @@ module Sivel2Gen
           #load_and_authorize_resource class: Sivel2Gen::Caso,
           #  except: [:index, :show]
           helper Msip::UbicacionHelper
-          helper Sivel2Gen::ConteosHelper
 
           MAX_CASOS_REFRESCA_AUTOMATICO = 30000
 
