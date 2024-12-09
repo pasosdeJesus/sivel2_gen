@@ -15,6 +15,7 @@ module Sivel2Gen
           'AND msip_ubicacion.longitud IS NOT NULL;'
       return ActiveRecord::Base.connection.execute(cons).values
     end
+    module_function :calcularCasos
 
     def calcularActos(cond)
       cons = "SELECT COUNT(DISTINCT sivel2_gen_conscaso.caso_id) AS numero_casos, " +
@@ -32,6 +33,7 @@ module Sivel2Gen
               "AND msip_ubicacion.latitud IS NOT NULL AND msip_ubicacion.longitud IS NOT NULL;"
       return ActiveRecord::Base.connection.execute(cons).values[0]
     end
+    module_function :calcularActos
 
   end
 end

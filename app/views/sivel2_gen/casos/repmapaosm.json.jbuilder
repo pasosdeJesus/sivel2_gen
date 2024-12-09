@@ -40,9 +40,9 @@ cons = 'SELECT '+ sol.join(", ") + ' FROM sivel2_gen_conscaso ' +
     ' AND msip_ubicacion.latitud IS NOT NULL '+ 
     'AND msip_ubicacion.longitud IS NOT NULL;'
 
-pl = calcularCasos(sol, cond)
+pl = Sivel2Gen::ConteosHelper.calcularCasos(sol, cond)
 
-pl2 = calcularActos(cond2)
+pl2 = Sivel2Gen::ConteosHelper.calcularActos(cond2)
 
 r = pl.map {|l|
       h = {}
