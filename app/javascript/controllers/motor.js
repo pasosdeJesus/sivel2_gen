@@ -7,7 +7,7 @@ window.Sivel2Gen__AutocompletaAjaxFamiliares = Sivel2Gen__AutocompletaAjaxFamili
 import Sivel2Gen__AutocompletaAjaxVictimas from "./AutocompletaAjaxVictimas"
 window.Sivel2Gen__AutocompletaAjaxVictimas = Sivel2Gen__AutocompletaAjaxVictimas 
 
-export default class Sivel2Gen__Motor{
+export default class Sivel2Gen__Motor {
 
   /* 
    * Librería de funciones comunes.
@@ -38,7 +38,7 @@ export default class Sivel2Gen__Motor{
   // Se ejecuta cada vez que se carga una página que no está en cache
   // y tipicamente después de que se ha cargado la página y los recursos.
   static ejecutarAlCargarDocumentoYRecursos() {
-    console.log("* Corriendo Sivel2Gen__Motor::ejecutarAlCargarDocumentoYRecursos()")
+    console.log("* Corriendo Sivel2Gen__Motor.ejecutarAlCargarDocumentoYRecursos()")
 
     if (typeof window.puntoMontaje == 'undefined') {
       window.puntoMontaje = '/'
@@ -94,7 +94,7 @@ export default class Sivel2Gen__Motor{
   // Podría ser llamada varias veces consecutivas por lo que debe detectarlo
   // para no ejecutar dos veces lo que no conviene.
   static ejecutarAlCargarPagina() {
-    console.log("* Corriendo Sivel2Gen__Motor::ejecutarAlCargarPagina()")
+    console.log("* Corriendo Sivel2Gen__Motor.ejecutarAlCargarPagina()")
   
     // Envia formulario al presionar botones con clase fichacambia 
     // con más de 5 segundos de diferencia entre un click y el siguiente
@@ -107,7 +107,7 @@ export default class Sivel2Gen__Motor{
           d = (tn - window.tfichacambia)/1000
         }
         if (d == -1 || d>5) {
-          enviarFichaCaso()
+          Sivel2Gen__Motor.enviarFichaCaso()
           window.tfichacambia = Date.now()
         }
       }

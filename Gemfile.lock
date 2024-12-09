@@ -29,10 +29,8 @@ GIT
       msip
       rails
 
-GIT
-  remote: https://gitlab.com/pasosdeJesus/msip.git
-  revision: 24b22aa84b33db3431943ebd6b6a05c159600a58
-  branch: main
+PATH
+  remote: ../msip
   specs:
     msip (2.3.0.alfa3)
       cancancan (~> 3)
