@@ -5,7 +5,9 @@
       <div class="col-md-6">
         <% idpais = f.object.pais_id ? f.object.pais_id : Msip.paisomision %>
         <%= f.association :pais,
-          collection: Msip::Pais.where(fechadeshabilitacion: nil).order(:nombre),
+          collection: Msip::Pais.where(
+            fechadeshabilitacion: nil
+          ).order(:nombre),
           input_html: {
             class: "tom-select",
             data: {
@@ -21,7 +23,8 @@
           collection: (
             Msip::Departamento.where(
               pais_id: idpais, 
-              fechadeshabilitacion: nil).order(:nombre)
+              fechadeshabilitacion: nil
+            ).order(:nombre)
           ),
           input_html: {
             class: "tom-select",
@@ -41,7 +44,8 @@
           collection: (
             Msip::Municipio.where(
               departamento_id: f.object.departamento_id,
-              fechadeshabilitacion: nil).order(:nombre)
+              fechadeshabilitacion: nil
+            ).order(:nombre)
           ),
           input_html: {
             class: "tom-select",
@@ -58,7 +62,8 @@
           collection: (
             Msip::Centropoblado.where(
               municipio_id: f.object.municipio_id,
-              fechadeshabilitacion: nil).order(:nombre)
+              fechadeshabilitacion: nil
+            ).order(:nombre)
           ),
           input_html: {
             class: "tom-select",
@@ -86,7 +91,6 @@
       <div class="col-md-2">
         <%= f.input :principal, 
           as: :boolean, 
-          #label: false,
           input_html: { }
         %>
       </div>
@@ -96,7 +100,8 @@
       <div class="col-md-4">
         <%= f.association :tsitio,
           collection: Msip::Tsitio.where(
-            fechadeshabilitacion: nil).order(:nombre),
+            fechadeshabilitacion: nil
+          ).order(:nombre),
           label_method: :nombre, 
           value_method: :id,
           include_blank: false %>
