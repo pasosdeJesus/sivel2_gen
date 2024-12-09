@@ -31,20 +31,6 @@ COMMENT ON EXTENSION fuzzystrmatch IS 'determine similarities and distance betwe
 
 
 --
--- Name: postgis; Type: EXTENSION; Schema: -; Owner: -
---
-
-CREATE EXTENSION IF NOT EXISTS postgis WITH SCHEMA public;
-
-
---
--- Name: EXTENSION postgis; Type: COMMENT; Schema: -; Owner: -
---
-
-COMMENT ON EXTENSION postgis IS 'PostGIS geometry and geography spatial types and functions';
-
-
---
 -- Name: unaccent; Type: EXTENSION; Schema: -; Owner: -
 --
 
@@ -270,44 +256,6 @@ CREATE FUNCTION public.msip_nombre_vereda() RETURNS character varying
 
 
 --
--- Name: msip_ubicacionpre_actualiza_nombre(); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION public.msip_ubicacionpre_actualiza_nombre() RETURNS trigger
-    LANGUAGE plpgsql
-    AS $$
-      DECLARE
-        temp TEXT[];
-        nompais TEXT;
-        nomdep TEXT;
-        nommun TEXT;
-        nomver TEXT;
-        nomcp TEXT;
-      BEGIN
-        RAISE NOTICE 'Al comienzo new.nombre=%', new.nombre;
-        nompais := COALESCE((SELECT nombre FROM public.msip_pais WHERE id=new.pais_id LIMIT 1), '');
-        RAISE NOTICE 'nompais=%', nompais;
-        nomdep := COALESCE((SELECT nombre FROM public.msip_departamento WHERE id=new.departamento_id LIMIT 1), '');
-        RAISE NOTICE 'nomdep=%', nomdep;
-        nommun := COALESCE((SELECT nombre FROM public.msip_municipio WHERE id=new.municipio_id LIMIT 1), '');
-        RAISE NOTICE 'nommun=%', nommun;
-        nomcp := COALESCE((SELECT nombre FROM public.msip_centropoblado WHERE id=new.centropoblado_id LIMIT 1), '');
-        RAISE NOTICE 'nomcp=%', nomcp;
-        nomver := COALESCE((SELECT nombre FROM public.msip_vereda WHERE id=new.vereda_id LIMIT 1), '');
-        RAISE NOTICE 'nomver=%', nomver;
-
-        temp = public.msip_ubicacionpre_nomenclatura(nompais,
-          nomdep, nommun, nomver, nomcp, new.lugar, new.sitio);
-        new.nombre := temp[1];
-        RAISE NOTICE 'new.nombre=%', new.nombre;
-        new.nombre_sin_pais := temp[2];
-        RAISE NOTICE 'new.nombre_sin_pais=%', new.nombre_sin_pais;
-        RETURN new;
-      END
-      $$;
-
-
---
 -- Name: msip_ubicacionpre_dpa_nomenclatura(character varying, character varying, character varying, character varying, character varying); Type: FUNCTION; Schema: public; Owner: -
 --
 
@@ -315,32 +263,29 @@ CREATE FUNCTION public.msip_ubicacionpre_dpa_nomenclatura(pais character varying
     LANGUAGE sql
     AS $$
         SELECT CASE
-        WHEN pais IS NULL OR TRIM(pais) = '' THEN
-          array['', '']
-        WHEN departamento IS NULL OR TRIM(departamento) = '' THEN
-          array[TRIM(pais), '']
-        WHEN municipio IS NULL OR TRIM(municipio) = '' THEN
-          array[TRIM(departamento) || ' / ' || TRIM(pais), TRIM(departamento)]
-        WHEN (vereda IS NULL OR TRIM(vereda) = '') AND
-        (centropoblado IS NULL OR TRIM(centropoblado) = '') THEN
+        WHEN pais IS NULL OR pais = '' THEN
+          array[NULL, NULL]
+        WHEN departamento IS NULL OR departamento = '' THEN
+          array[pais, NULL]
+        WHEN municipio IS NULL OR municipio = '' THEN
+          array[departamento || ' / ' || pais, departamento]
+        WHEN (vereda IS NULL OR vereda = '') AND
+        (centropoblado IS NULL OR centropoblado = '') THEN
           array[
-            TRIM(municipio) || ' / ' || TRIM(departamento) || ' / ' || 
-              TRIM(pais),
-            TRIM(municipio) || ' / ' || TRIM(departamento) ]
-        WHEN (vereda IS NOT NULL AND TRIM(vereda)<>'') THEN
+            municipio || ' / ' || departamento || ' / ' || pais,
+            municipio || ' / ' || departamento ]
+        WHEN vereda IS NOT NULL THEN
           array[
-            public.msip_nombre_vereda() || TRIM(vereda) || ' / ' ||
-              TRIM(municipio) || ' / ' || TRIM(departamento) || ' / ' || 
-              TRIM(pais),
-            public.msip_nombre_vereda() || TRIM(vereda) || ' / ' ||
-              TRIM(municipio) || ' / ' || TRIM(departamento) ]
+            msip_nombre_vereda() || vereda || ' / ' ||
+            municipio || ' / ' || departamento || ' / ' || pais,
+            msip_nombre_vereda() || vereda || ' / ' ||
+            municipio || ' / ' || departamento ]
         ELSE
           array[
-            TRIM(centropoblado) || ' / ' ||
-              TRIM(municipio) || ' / ' || TRIM(departamento) || ' / ' || 
-              TRIM(pais),
-            TRIM(centropoblado) || ' / ' ||
-            TRIM(municipio) || ' / ' || TRIM(departamento) ]
+            centropoblado || ' / ' ||
+            municipio || ' / ' || departamento || ' / ' || pais,
+            centropoblado || ' / ' ||
+            municipio || ' / ' || departamento ]
          END
       $$;
 
@@ -363,29 +308,27 @@ CREATE FUNCTION public.msip_ubicacionpre_id_rtablabasica() RETURNS integer
 --
 
 CREATE FUNCTION public.msip_ubicacionpre_nomenclatura(pais character varying, departamento character varying, municipio character varying, vereda character varying, centropoblado character varying, lugar character varying, sitio character varying) RETURNS text[]
-    LANGUAGE plpgsql
+    LANGUAGE sql
     AS $$
-      DECLARE
-        dpa TEXT[];
-      BEGIN
-        dpa := public.msip_ubicacionpre_dpa_nomenclatura(pais, departamento,
-            municipio, vereda, centropoblado);
-        --RAISE NOTICE 'dpa[1]=%', dpa[1];
-        --RAISE NOTICE 'dpa[2]=%', dpa[2];
-        IF (lugar IS NULL OR lugar = '') THEN
-          return dpa;
-        ELSEIF (sitio IS NULL OR sitio= '') THEN
-          return array[
-              lugar || ' / ' || dpa[1],
-              lugar || ' / ' || dpa[2]
-            ];
+        SELECT CASE
+        WHEN (lugar IS NULL OR lugar = '') THEN
+          msip_ubicacionpre_dpa_nomenclatura(pais, departamento,
+          municipio, vereda, centropoblado)
+        WHEN (sitio IS NULL OR sitio= '') THEN
+          array[lugar || ' / ' || 
+            (msip_ubicacionpre_dpa_nomenclatura(pais, departamento,
+              municipio, vereda, centropoblado))[0],
+          lugar || ' / ' || 
+            (msip_ubicacionpre_dpa_nomenclatura(pais, departamento,
+              municipio, vereda, centropoblado))[1] ]
         ELSE
-          return array[
-              sitio || ' / ' || lugar || ' / ' || dpa[1],
-              sitio || ' / ' || lugar || ' / ' || dpa[2] 
-          ];
-        END IF;
-      END
+          array[sitio || ' / ' || lugar || ' / ' || 
+            (msip_ubicacionpre_dpa_nomenclatura(pais, departamento,
+              municipio, vereda, centropoblado))[0],
+          sitio || ' / ' || lugar || ' / ' || 
+            (msip_ubicacionpre_dpa_nomenclatura(pais, departamento,
+              municipio, vereda, centropoblado))[1] ]
+        END
       $$;
 
 
@@ -475,6 +418,15 @@ CREATE FUNCTION public.probmujer(in_text text) RETURNS numeric
 			divarr(string_to_array(trim($1), ' ')) AS p) 
 		AS s) AS s2) AS s3;
 $_$;
+
+
+--
+-- Name: rand(); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION public.rand() RETURNS double precision
+    LANGUAGE sql
+    AS $$SELECT random();$$;
 
 
 --
@@ -654,6 +606,15 @@ CREATE FUNCTION public.soundexespm(entrada text) RETURNS text
 
 
 --
+-- Name: substring_index(text, text, integer); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION public.substring_index(text, text, integer) RETURNS text
+    LANGUAGE sql
+    AS $_$SELECT array_to_string((string_to_array($1, $2)) [1:$3], $2);$_$;
+
+
+--
 -- Name: first(anyelement); Type: AGGREGATE; Schema: public; Owner: -
 --
 
@@ -798,19 +759,19 @@ CREATE TABLE public.sivel2_gen_victima (
 --
 
 CREATE VIEW public.cben1 AS
- SELECT caso.id AS caso_id,
-    subv.victima_id,
-    subv.persona_id,
+ SELECT caso.id AS id_caso,
+    subv.id_victima,
+    subv.id_persona,
     1 AS npersona,
-    persona.etnia_id
+    'total'::text AS total
    FROM public.sivel2_gen_caso caso,
     public.sivel2_gen_victima victima,
-    ( SELECT sivel2_gen_victima.persona_id,
-            max(sivel2_gen_victima.id) AS victima_id
+    ( SELECT sivel2_gen_victima.persona_id AS id_persona,
+            max(sivel2_gen_victima.id) AS id_victima
            FROM public.sivel2_gen_victima
           GROUP BY sivel2_gen_victima.persona_id) subv,
     public.msip_persona persona
-  WHERE ((subv.victima_id = victima.id) AND (caso.id = victima.caso_id) AND ((persona.anionac IS NULL) OR (persona.anionac = ANY (ARRAY[1906, 1907, 1910, 1911, 1912, 1914, 1915, 1916, 1917, 1918, 1919, 1920, 1921, 1922, 1923, 1924, 1925, 1926, 1927, 1928, 1929, 1930, 1931, 1932, 1933, 1934, 1935, 1936, 1937, 1938, 1939, 1940, 1941, 1942, 1943, 1944, 1945, 1946, 1947, 1948, 1949, 1950, 1951, 1952, 1953, 1954, 1955, 1956, 1957, 1958, 1959, 1960, 1961, 1962, 1963, 1964, 1965, 1966, 1967, 1968, 1969, 1970, 1971, 1972, 1973, 1974, 1975, 1976, 1977, 1978, 1979, 1980, 1981, 1982, 1983, 1984, 1985, 1986, 1987, 1988, 1989, 1990, 1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020]))) AND (persona.etnia_id = ANY (ARRAY[2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117])) AND (victima.filiacion_id = ANY (ARRAY[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 101, 102, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117])) AND ((((EXTRACT(year FROM caso.fecha))::text || '-'::text) || lpad((EXTRACT(month FROM caso.fecha))::text, 2, '0'::text)) = ANY (ARRAY['1999-12'::text, '2000-01'::text, '2000-02'::text, '2000-03'::text, '2000-04'::text, '2000-05'::text, '2000-06'::text, '2000-07'::text, '2000-08'::text, '2000-09'::text, '2000-10'::text, '2000-11'::text, '2000-12'::text, '2001-01'::text, '2001-02'::text, '2001-03'::text, '2001-04'::text, '2001-05'::text, '2001-06'::text, '2001-07'::text, '2001-08'::text, '2001-09'::text, '2001-10'::text, '2001-11'::text, '2001-12'::text, '2002-01'::text, '2002-02'::text, '2002-03'::text, '2002-04'::text, '2002-05'::text, '2002-06'::text, '2002-07'::text, '2002-08'::text, '2002-09'::text, '2002-10'::text, '2002-11'::text, '2002-12'::text, '2003-01'::text, '2003-02'::text, '2003-03'::text, '2003-04'::text, '2003-05'::text, '2003-06'::text, '2003-07'::text, '2003-08'::text, '2003-09'::text, '2003-10'::text, '2003-11'::text, '2003-12'::text, '2004-01'::text, '2004-02'::text, '2004-03'::text, '2004-04'::text, '2004-05'::text, '2004-06'::text, '2004-07'::text, '2004-08'::text, '2004-09'::text, '2004-10'::text, '2004-11'::text, '2004-12'::text, '2005-01'::text, '2005-02'::text, '2005-03'::text, '2005-04'::text, '2005-05'::text, '2005-06'::text, '2005-07'::text, '2005-08'::text, '2005-09'::text, '2005-10'::text, '2005-11'::text, '2005-12'::text, '2006-01'::text, '2006-02'::text, '2006-03'::text, '2006-04'::text, '2006-05'::text, '2006-06'::text, '2006-07'::text, '2006-08'::text, '2006-09'::text, '2006-10'::text, '2006-11'::text, '2006-12'::text, '2007-01'::text, '2007-02'::text, '2007-03'::text, '2007-04'::text, '2007-05'::text, '2007-06'::text, '2007-07'::text, '2007-08'::text, '2007-09'::text, '2007-10'::text, '2007-11'::text, '2007-12'::text, '2008-01'::text, '2008-02'::text, '2008-03'::text, '2008-04'::text, '2008-05'::text, '2008-06'::text, '2008-07'::text, '2008-08'::text, '2008-09'::text, '2008-10'::text, '2008-11'::text, '2008-12'::text, '2009-01'::text, '2009-02'::text, '2009-03'::text, '2009-04'::text, '2009-05'::text, '2009-06'::text, '2009-07'::text, '2009-08'::text, '2009-09'::text, '2009-10'::text, '2009-11'::text, '2009-12'::text, '2010-01'::text, '2010-02'::text, '2010-03'::text, '2010-04'::text, '2010-05'::text, '2010-06'::text, '2010-07'::text, '2010-08'::text, '2010-09'::text, '2010-10'::text, '2010-11'::text, '2010-12'::text, '2011-01'::text, '2011-02'::text, '2011-03'::text, '2011-04'::text, '2011-05'::text, '2011-06'::text, '2011-07'::text, '2011-08'::text, '2011-09'::text, '2011-10'::text, '2011-11'::text, '2011-12'::text, '2012-01'::text, '2012-02'::text, '2012-03'::text, '2012-04'::text, '2012-05'::text, '2012-06'::text, '2012-07'::text, '2012-08'::text, '2012-09'::text, '2012-10'::text, '2012-11'::text, '2012-12'::text, '2013-01'::text, '2013-02'::text, '2013-03'::text, '2013-04'::text, '2013-05'::text, '2013-06'::text, '2013-07'::text, '2013-08'::text, '2013-09'::text, '2013-10'::text, '2013-11'::text, '2013-12'::text, '2014-01'::text, '2014-02'::text, '2014-03'::text, '2014-04'::text, '2014-05'::text, '2014-06'::text, '2014-07'::text, '2014-08'::text, '2014-09'::text, '2014-10'::text, '2014-11'::text, '2014-12'::text, '2015-01'::text, '2015-02'::text, '2015-03'::text, '2015-04'::text, '2015-05'::text, '2015-06'::text, '2015-07'::text, '2015-08'::text, '2015-09'::text, '2015-10'::text, '2015-11'::text, '2015-12'::text, '2016-01'::text, '2016-02'::text, '2016-03'::text, '2016-04'::text, '2016-05'::text, '2016-06'::text, '2016-07'::text, '2016-08'::text, '2016-09'::text, '2016-10'::text, '2016-11'::text, '2016-12'::text, '2017-01'::text, '2017-02'::text, '2017-03'::text, '2017-04'::text, '2017-05'::text, '2017-06'::text, '2017-07'::text, '2017-08'::text, '2017-09'::text, '2017-10'::text, '2017-11'::text, '2017-12'::text, '2018-01'::text, '2018-02'::text, '2018-03'::text, '2018-04'::text, '2018-05'::text, '2018-06'::text, '2018-07'::text, '2018-08'::text, '2018-09'::text, '2018-10'::text, '2018-11'::text, '2018-12'::text, '2019-01'::text, '2019-02'::text, '2019-03'::text, '2019-04'::text, '2019-05'::text, '2019-06'::text, '2019-07'::text, '2019-08'::text, '2019-09'::text, '2019-10'::text, '2019-11'::text, '2019-12'::text, '2020-01'::text, '2020-02'::text, '2020-03'::text, '2020-04'::text, '2020-05'::text, '2020-06'::text, '2020-07'::text, '2020-08'::text, '2020-09'::text, '2020-10'::text, '2020-11'::text, '2020-12'::text, '2021-01'::text, '2021-02'::text, '2021-03'::text, '2021-04'::text, '2021-05'::text, '2021-06'::text, '2021-07'::text, '2021-08'::text, '2021-09'::text, '2021-10'::text, '2021-11'::text, '2021-12'::text, '2022-01'::text, '2022-02'::text, '2022-03'::text, '2022-04'::text, '2022-05'::text, '2022-06'::text, '2023-01'::text, '2023-02'::text, '2023-03'::text, '2023-04'::text, '2023-05'::text, '2023-06'::text, '2023-07'::text, '2023-08'::text, '2024-05'::text])) AND (victima.organizacion_id = ANY (ARRAY[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 101, 102, 103])) AND (victima.profesion_id = ANY (ARRAY[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 101, 102, 103, 104, 105, 106, 108, 109, 110, 111, 112, 113, 114, 115, 116])) AND (victima.rangoedad_id = ANY (ARRAY[1, 2, 3, 4, 5, 6])) AND (victima.sectorsocial_id = ANY (ARRAY[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 101, 102, 103, 104, 105, 106, 107, 108])) AND (persona.sexo = ANY (ARRAY['F'::bpchar, 'M'::bpchar, 'S'::bpchar])) AND (victima.vinculoestado_id = ANY (ARRAY[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 42, 43, 44, 45])) AND (persona.id = victima.persona_id));
+  WHERE ((subv.id_victima = victima.id) AND (caso.id = victima.caso_id) AND (persona.id = victima.persona_id));
 
 
 --
@@ -980,130 +941,27 @@ CREATE TABLE public.msip_ubicacion (
 --
 
 CREATE VIEW public.cben2 AS
- SELECT cben1.caso_id,
-    cben1.victima_id,
-    cben1.persona_id,
+ SELECT cben1.id_caso,
+    cben1.id_victima,
+    cben1.id_persona,
     cben1.npersona,
-    cben1.etnia_id,
-    ubicacion.departamento_id,
+    cben1.total,
+    ubicacion.departamento_id AS id_departamento,
     departamento.deplocal_cod AS departamento_divipola,
     departamento.nombre AS departamento_nombre,
-    ubicacion.municipio_id,
-    ((departamento.deplocal_cod * 1000) + municipio.munlocal_cod) AS municipio_divipola,
+    ubicacion.municipio_id AS id_municipio,
+    municipio.munlocal_cod AS municipio_divipola,
     municipio.nombre AS municipio_nombre,
-    ubicacion.centropoblado_id,
-    centropoblado.cplocal_cod AS centropoblado_divipola,
-    centropoblado.nombre AS centropoblado_nombre
+    ubicacion.centropoblado_id AS id_clase,
+    clase.cplocal_cod AS clase_divipola,
+    clase.nombre AS clase_nombre
    FROM (((((public.cben1
-     JOIN public.sivel2_gen_caso caso ON ((cben1.caso_id = caso.id)))
+     JOIN public.sivel2_gen_caso caso ON ((cben1.id_caso = caso.id)))
      LEFT JOIN public.msip_ubicacion ubicacion ON ((caso.ubicacion_id = ubicacion.id)))
      LEFT JOIN public.msip_departamento departamento ON ((ubicacion.departamento_id = departamento.id)))
      LEFT JOIN public.msip_municipio municipio ON ((ubicacion.municipio_id = municipio.id)))
-     LEFT JOIN public.msip_centropoblado centropoblado ON ((ubicacion.centropoblado_id = centropoblado.id)))
-  GROUP BY cben1.caso_id, cben1.victima_id, cben1.persona_id, cben1.npersona, cben1.etnia_id, ubicacion.departamento_id, departamento.deplocal_cod, departamento.nombre, ubicacion.municipio_id, ((departamento.deplocal_cod * 1000) + municipio.munlocal_cod), municipio.nombre, ubicacion.centropoblado_id, centropoblado.cplocal_cod, centropoblado.nombre;
-
-
---
--- Name: sivel2_gen_acto_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public.sivel2_gen_acto_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: sivel2_gen_acto; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.sivel2_gen_acto (
-    presponsable_id integer NOT NULL,
-    categoria_id integer NOT NULL,
-    persona_id integer NOT NULL,
-    caso_id integer NOT NULL,
-    created_at timestamp without time zone,
-    updated_at timestamp without time zone,
-    id integer DEFAULT nextval('public.sivel2_gen_acto_id_seq'::regclass) NOT NULL
-);
-
-
---
--- Name: sivel2_gen_categoria; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.sivel2_gen_categoria (
-    id integer NOT NULL,
-    fechacreacion date DEFAULT CURRENT_DATE NOT NULL,
-    fechadeshabilitacion date,
-    pconsolidado_id integer,
-    contadaen integer,
-    tipocat character(1) DEFAULT 'I'::bpchar,
-    nombre character varying(500) COLLATE public.es_co_utf_8,
-    created_at timestamp without time zone,
-    updated_at timestamp without time zone,
-    observaciones character varying(5000),
-    supracategoria_id integer,
-    CONSTRAINT "$3" CHECK (((fechadeshabilitacion IS NULL) OR (fechadeshabilitacion >= fechacreacion))),
-    CONSTRAINT categoria_tipocat_check CHECK (((tipocat = 'I'::bpchar) OR (tipocat = 'C'::bpchar) OR (tipocat = 'O'::bpchar)))
-);
-
-
---
--- Name: sivel2_gen_supracategoria_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public.sivel2_gen_supracategoria_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: sivel2_gen_supracategoria; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.sivel2_gen_supracategoria (
-    codigo integer,
-    nombre character varying(500) NOT NULL COLLATE public.es_co_utf_8,
-    fechacreacion date NOT NULL,
-    fechadeshabilitacion date,
-    tviolencia_id character varying(1) NOT NULL,
-    created_at timestamp without time zone,
-    updated_at timestamp without time zone,
-    observaciones character varying(5000),
-    id integer DEFAULT nextval('public.sivel2_gen_supracategoria_id_seq'::regclass) NOT NULL,
-    CONSTRAINT supracategoria_check CHECK (((fechadeshabilitacion IS NULL) OR (fechadeshabilitacion >= fechacreacion)))
-);
-
-
---
--- Name: cvt1; Type: VIEW; Schema: public; Owner: -
---
-
-CREATE VIEW public.cvt1 AS
- SELECT DISTINCT acto.caso_id,
-    acto.persona_id,
-    acto.categoria_id,
-    supracategoria.tviolencia_id,
-    categoria.nombre AS categoria,
-    ((supracategoria.tviolencia_id)::text || (categoria.id)::text) AS nomcategoria,
-    departamento.nombre AS departamento_nombre,
-    departamento.deplocal_cod AS departamento_divipola,
-    'total'::text AS total
-   FROM (((((((public.sivel2_gen_acto acto
-     JOIN public.sivel2_gen_caso caso ON ((acto.caso_id = caso.id)))
-     JOIN public.sivel2_gen_categoria categoria ON ((acto.categoria_id = categoria.id)))
-     JOIN public.sivel2_gen_supracategoria supracategoria ON ((categoria.supracategoria_id = supracategoria.id)))
-     JOIN public.sivel2_gen_victima victima ON (((victima.persona_id = acto.persona_id) AND (victima.caso_id = caso.id))))
-     JOIN public.msip_persona persona ON ((persona.id = acto.persona_id)))
-     JOIN public.msip_ubicacion ubicacion ON ((ubicacion.id = caso.ubicacion_id)))
-     LEFT JOIN public.msip_departamento departamento ON ((departamento.id = ubicacion.departamento_id)))
-  WHERE ((caso.fecha >= '1999-11-02'::date) AND (caso.fecha <= '2024-08-02'::date) AND (categoria.id = ANY (ARRAY[427, 397, 527, 297, 777, 197, 196, 526, 396, 296, 776, 426, 15, 45, 73, 55, 25, 35, 65, 92, 40, 50, 67, 801, 90, 37, 57, 26, 46, 16, 80, 85, 66, 64, 703, 59, 28, 18, 38, 49, 706, 501, 401, 125, 135, 115, 904, 331, 17, 402, 502, 231, 705, 62, 906, 104, 503, 403, 713, 101, 76, 302, 21, 11, 102, 27, 902, 903, 34, 301, 14, 24, 10, 20, 30, 292, 192, 422, 772, 522, 392, 63, 93, 910, 525, 295, 425, 195, 395, 775, 714, 78, 294, 194, 424, 774, 524, 394, 89, 905, 86, 701, 68, 141, 241, 341, 715, 704, 702, 23, 13, 33, 43, 53, 88, 98, 84, 709, 711, 707, 708, 710, 87, 97, 717, 917, 716, 916, 91, 95, 718, 193, 393, 523, 293, 773, 423, 48, 58, 75, 69, 41, 74, 22, 56, 72, 47, 12, 36, 771, 291, 191, 521, 421, 391, 19, 420, 520, 77, 29, 39, 712])));
+     LEFT JOIN public.msip_centropoblado clase ON ((ubicacion.centropoblado_id = clase.id)))
+  GROUP BY cben1.id_caso, cben1.id_victima, cben1.id_persona, cben1.npersona, cben1.total, ubicacion.departamento_id, departamento.deplocal_cod, departamento.nombre, ubicacion.municipio_id, municipio.munlocal_cod, municipio.nombre, ubicacion.centropoblado_id, clase.cplocal_cod, clase.nombre;
 
 
 --
@@ -2896,6 +2754,33 @@ ALTER SEQUENCE public.sivel2_gen_actividadoficio_id_seq OWNED BY public.sivel2_g
 
 
 --
+-- Name: sivel2_gen_acto_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.sivel2_gen_acto_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: sivel2_gen_acto; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.sivel2_gen_acto (
+    presponsable_id integer NOT NULL,
+    categoria_id integer NOT NULL,
+    persona_id integer NOT NULL,
+    caso_id integer NOT NULL,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone,
+    id integer DEFAULT nextval('public.sivel2_gen_acto_id_seq'::regclass) NOT NULL
+);
+
+
+--
 -- Name: sivel2_gen_actocolectivo_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
@@ -3236,36 +3121,6 @@ ALTER SEQUENCE public.sivel2_gen_caso_solicitud_id_seq OWNED BY public.sivel2_ge
 
 
 --
--- Name: sivel2_gen_caso_ubicacionpre; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.sivel2_gen_caso_ubicacionpre (
-    id bigint NOT NULL,
-    caso_id integer,
-    ubicacionpre_id integer
-);
-
-
---
--- Name: sivel2_gen_caso_ubicacionpre_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public.sivel2_gen_caso_ubicacionpre_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: sivel2_gen_caso_ubicacionpre_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE public.sivel2_gen_caso_ubicacionpre_id_seq OWNED BY public.sivel2_gen_caso_ubicacionpre.id;
-
-
---
 -- Name: sivel2_gen_caso_usuario; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -3275,6 +3130,27 @@ CREATE TABLE public.sivel2_gen_caso_usuario (
     fechainicio date,
     created_at timestamp without time zone,
     updated_at timestamp without time zone
+);
+
+
+--
+-- Name: sivel2_gen_categoria; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.sivel2_gen_categoria (
+    id integer NOT NULL,
+    fechacreacion date DEFAULT CURRENT_DATE NOT NULL,
+    fechadeshabilitacion date,
+    pconsolidado_id integer,
+    contadaen integer,
+    tipocat character(1) DEFAULT 'I'::bpchar,
+    nombre character varying(500) COLLATE public.es_co_utf_8,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone,
+    observaciones character varying(5000),
+    supracategoria_id integer,
+    CONSTRAINT "$3" CHECK (((fechadeshabilitacion IS NULL) OR (fechadeshabilitacion >= fechacreacion))),
+    CONSTRAINT categoria_tipocat_check CHECK (((tipocat = 'I'::bpchar) OR (tipocat = 'C'::bpchar) OR (tipocat = 'O'::bpchar)))
 );
 
 
@@ -3352,6 +3228,36 @@ CREATE TABLE public.sivel2_gen_presponsable (
 
 
 --
+-- Name: sivel2_gen_supracategoria_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.sivel2_gen_supracategoria_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: sivel2_gen_supracategoria; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.sivel2_gen_supracategoria (
+    codigo integer,
+    nombre character varying(500) NOT NULL COLLATE public.es_co_utf_8,
+    fechacreacion date NOT NULL,
+    fechadeshabilitacion date,
+    tviolencia_id character varying(1) NOT NULL,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone,
+    observaciones character varying(5000),
+    id integer DEFAULT nextval('public.sivel2_gen_supracategoria_id_seq'::regclass) NOT NULL,
+    CONSTRAINT supracategoria_check CHECK (((fechadeshabilitacion IS NULL) OR (fechadeshabilitacion >= fechacreacion)))
+);
+
+
+--
 -- Name: sivel2_gen_conscaso1; Type: VIEW; Schema: public; Owner: -
 --
 
@@ -3375,8 +3281,8 @@ CREATE VIEW public.sivel2_gen_conscaso1 AS
     array_to_string(ARRAY( SELECT (((((((supracategoria.tviolencia_id)::text || ':'::text) || categoria.supracategoria_id) || ':'::text) || categoria.id) || ' '::text) || (categoria.nombre)::text)
            FROM public.sivel2_gen_categoria categoria,
             public.sivel2_gen_supracategoria supracategoria,
-            public.sivel2_gen_acto acto
-          WHERE ((categoria.id = acto.categoria_id) AND (supracategoria.id = categoria.supracategoria_id) AND (acto.caso_id = caso.id))), ', '::text) AS tipificacion
+            public.sivel2_gen_acto
+          WHERE ((categoria.id = sivel2_gen_acto.categoria_id) AND (supracategoria.id = categoria.supracategoria_id) AND (sivel2_gen_acto.caso_id = caso.id))), ', '::text) AS tipificacion
    FROM public.sivel2_gen_caso caso;
 
 
@@ -3687,80 +3593,6 @@ CREATE TABLE public.sivel2_gen_iglesia (
     observaciones character varying(5000),
     CONSTRAINT iglesia_check CHECK (((fechadeshabilitacion IS NULL) OR (fechadeshabilitacion >= fechacreacion)))
 );
-
-
---
--- Name: usuario_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public.usuario_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: usuario; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.usuario (
-    nusuario character varying(15) NOT NULL,
-    nombre character varying(50) COLLATE public.es_co_utf_8,
-    descripcion character varying(50),
-    rol integer DEFAULT 4,
-    password character varying(64) DEFAULT ''::character varying,
-    idioma character varying(6) DEFAULT 'es_CO'::character varying NOT NULL,
-    id integer DEFAULT nextval('public.usuario_id_seq'::regclass) NOT NULL,
-    fechacreacion date DEFAULT CURRENT_DATE NOT NULL,
-    fechadeshabilitacion date,
-    email character varying(255) DEFAULT ''::character varying NOT NULL,
-    encrypted_password character varying(255) DEFAULT ''::character varying NOT NULL,
-    sign_in_count integer DEFAULT 0 NOT NULL,
-    failed_attempts integer,
-    unlock_token character varying(64),
-    locked_at timestamp without time zone,
-    reset_password_token character varying,
-    reset_password_sent_at timestamp without time zone,
-    remember_created_at timestamp without time zone,
-    current_sign_in_at timestamp without time zone,
-    last_sign_in_at timestamp without time zone,
-    current_sign_in_ip character varying,
-    last_sign_in_ip character varying,
-    created_at timestamp without time zone,
-    updated_at timestamp without time zone,
-    oficina_id integer,
-    tema_id integer,
-    observadorffechaini date,
-    observadorffechafin date,
-    CONSTRAINT usuario_check CHECK (((fechadeshabilitacion IS NULL) OR (fechadeshabilitacion >= fechacreacion))),
-    CONSTRAINT usuario_rol_check CHECK ((rol >= 1))
-);
-
-
---
--- Name: sivel2_gen_iniciador; Type: VIEW; Schema: public; Owner: -
---
-
-CREATE VIEW public.sivel2_gen_iniciador AS
- SELECT s3.caso_id,
-    s3.fechainicio,
-    s3.usuario_id,
-    usuario.nusuario
-   FROM public.usuario,
-    ( SELECT s2.caso_id,
-            s2.fechainicio,
-            min(s2.usuario_id) AS usuario_id
-           FROM public.sivel2_gen_caso_usuario s2,
-            ( SELECT f1.caso_id,
-                    min(f1.fechainicio) AS m
-                   FROM public.sivel2_gen_caso_usuario f1
-                  GROUP BY f1.caso_id) c
-          WHERE ((s2.caso_id = c.caso_id) AND (s2.fechainicio = c.m))
-          GROUP BY s2.caso_id, s2.fechainicio
-          ORDER BY s2.caso_id, s2.fechainicio) s3
-  WHERE (usuario.id = s3.usuario_id);
 
 
 --
@@ -4227,6 +4059,56 @@ CREATE TABLE public.sivel2_gen_vinculoestado (
 
 
 --
+-- Name: usuario_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.usuario_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: usuario; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.usuario (
+    nusuario character varying(15) NOT NULL,
+    nombre character varying(50) COLLATE public.es_co_utf_8,
+    descripcion character varying(50),
+    rol integer DEFAULT 4,
+    password character varying(64) DEFAULT ''::character varying,
+    idioma character varying(6) DEFAULT 'es_CO'::character varying NOT NULL,
+    id integer DEFAULT nextval('public.usuario_id_seq'::regclass) NOT NULL,
+    fechacreacion date DEFAULT CURRENT_DATE NOT NULL,
+    fechadeshabilitacion date,
+    email character varying(255) DEFAULT ''::character varying NOT NULL,
+    encrypted_password character varying(255) DEFAULT ''::character varying NOT NULL,
+    sign_in_count integer DEFAULT 0 NOT NULL,
+    failed_attempts integer,
+    unlock_token character varying(64),
+    locked_at timestamp without time zone,
+    reset_password_token character varying,
+    reset_password_sent_at timestamp without time zone,
+    remember_created_at timestamp without time zone,
+    current_sign_in_at timestamp without time zone,
+    last_sign_in_at timestamp without time zone,
+    current_sign_in_ip character varying,
+    last_sign_in_ip character varying,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone,
+    oficina_id integer,
+    tema_id integer,
+    observadorffechaini date,
+    observadorffechafin date,
+    CONSTRAINT usuario_check CHECK (((fechadeshabilitacion IS NULL) OR (fechadeshabilitacion >= fechacreacion))),
+    CONSTRAINT usuario_rol_check CHECK ((rol >= 1))
+);
+
+
+--
 -- Name: heb412_gen_campohc id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -4518,13 +4400,6 @@ ALTER TABLE ONLY public.sivel2_gen_actividadoficio ALTER COLUMN id SET DEFAULT n
 --
 
 ALTER TABLE ONLY public.sivel2_gen_caso_solicitud ALTER COLUMN id SET DEFAULT nextval('public.sivel2_gen_caso_solicitud_id_seq'::regclass);
-
-
---
--- Name: sivel2_gen_caso_ubicacionpre id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.sivel2_gen_caso_ubicacionpre ALTER COLUMN id SET DEFAULT nextval('public.sivel2_gen_caso_ubicacionpre_id_seq'::regclass);
 
 
 --
@@ -5369,14 +5244,6 @@ ALTER TABLE ONLY public.sivel2_gen_caso_solicitud
 
 
 --
--- Name: sivel2_gen_caso_ubicacionpre sivel2_gen_caso_ubicacionpre_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.sivel2_gen_caso_ubicacionpre
-    ADD CONSTRAINT sivel2_gen_caso_ubicacionpre_pkey PRIMARY KEY (id);
-
-
---
 -- Name: sivel2_gen_combatiente sivel2_gen_combatiente_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -6200,13 +6067,6 @@ CREATE TRIGGER msip_insertar_familiar AFTER INSERT OR UPDATE ON public.msip_pers
 
 
 --
--- Name: msip_ubicacionpre tras_crear_o_actualizar_ubicacionpre; Type: TRIGGER; Schema: public; Owner: -
---
-
-CREATE TRIGGER tras_crear_o_actualizar_ubicacionpre BEFORE INSERT OR UPDATE OF pais_id, departamento_id, municipio_id, centropoblado_id, vereda_id, lugar, sitio ON public.msip_ubicacionpre FOR EACH ROW EXECUTE FUNCTION public.msip_ubicacionpre_actualiza_nombre();
-
-
---
 -- Name: sivel2_gen_supracategoria $1; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -6807,14 +6667,6 @@ ALTER TABLE ONLY public.heb412_gen_campohc
 
 
 --
--- Name: sivel2_gen_caso_ubicacionpre fk_rails_1f53ddb66f; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.sivel2_gen_caso_ubicacionpre
-    ADD CONSTRAINT fk_rails_1f53ddb66f FOREIGN KEY (caso_id) REFERENCES public.sivel2_gen_caso(id);
-
-
---
 -- Name: mr519_gen_encuestausuario fk_rails_2cb09d778a; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -7023,6 +6875,14 @@ ALTER TABLE ONLY public.mr519_gen_valorcampo
 
 
 --
+-- Name: sivel2_gen_anexo_caso fk_rails_825547f886; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.sivel2_gen_anexo_caso
+    ADD CONSTRAINT fk_rails_825547f886 FOREIGN KEY (anexo_id) REFERENCES public.msip_anexo(id);
+
+
+--
 -- Name: mr519_gen_encuestapersona fk_rails_83755e20b9; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -7068,14 +6928,6 @@ ALTER TABLE ONLY public.msip_departamento
 
 ALTER TABLE ONLY public.sivel2_gen_combatiente
     ADD CONSTRAINT fk_rails_95f4a0b8f6 FOREIGN KEY (profesion_id) REFERENCES public.sivel2_gen_profesion(id);
-
-
---
--- Name: sivel2_gen_caso_ubicacionpre fk_rails_983730b4f0; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.sivel2_gen_caso_ubicacionpre
-    ADD CONSTRAINT fk_rails_983730b4f0 FOREIGN KEY (ubicacionpre_id) REFERENCES public.msip_ubicacionpre(id);
 
 
 --
@@ -7750,7 +7602,6 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20240806082036'),
 ('20240715230510'),
 ('20240619170550'),
-('20240424122935'),
 ('20240423143517'),
 ('20240319141612'),
 ('20240312182320'),
@@ -7783,8 +7634,9 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20230622205529'),
 ('20230616203948'),
 ('20230613111532'),
-('20230526153207'),
 ('20230504084246'),
+('20230421211837'),
+('20230420155555'),
 ('20230418194845'),
 ('20230406021624'),
 ('20230405141724'),
@@ -7812,7 +7664,6 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20221024000000'),
 ('20221005165307'),
 ('20220822132754'),
-('20220808141102'),
 ('20220805181901'),
 ('20220722192214'),
 ('20220722000850'),
@@ -7827,6 +7678,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20220713200101'),
 ('20220613224844'),
 ('20220608044102'),
+('20220601111520'),
 ('20220525122150'),
 ('20220428145059'),
 ('20220422190546'),
