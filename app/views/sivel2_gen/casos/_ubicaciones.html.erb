@@ -2,7 +2,8 @@
   <%= f.simple_fields_for :caso_ubicacionpre, 
     f.object.caso_ubicacionpre.order(:id),
     child_index: params[:index] do |cubi| %>
-    <%= render 'sivel2_gen/casos/caso_ubicacionpre_campos', :f => cubi %>
+    <%= render partial: 'sivel2_gen/casos/caso_ubicacionpre_campos', 
+      locals: {f: cubi, formupapa: f} %>
   <% end %>
 </div>
 

@@ -107,7 +107,7 @@ export default class Sivel2Gen__Motor {
           d = (tn - window.tfichacambia)/1000
         }
         if (d == -1 || d>5) {
-          Sivel2Gen__Motor.enviarFichaCaso()
+          //Sivel2Gen__Motor.enviarFichaCaso()
           window.tfichacambia = Date.now()
         }
       }
@@ -149,7 +149,7 @@ export default class Sivel2Gen__Motor {
   // Llamada desde application.js tal vez antes de cargar el documento,
   // paquetes javascript y recursos sprockets
   static iniciar() {
-    console.log("* Corriendo Sivel2Gen__Motor::iniciar()")
+    console.log("* Corriendo Sivel2Gen__Motor.iniciar()")
     // Para usar mapa sobre OpenStreetMap cargue leaflet antes de llamar
     // esta función an application.js asi:
     // import L from 'leaflet'
