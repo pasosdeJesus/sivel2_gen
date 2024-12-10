@@ -30,9 +30,8 @@ if @conscaso.count > 0
     cond2 = "#{@conscaso.pluck(:caso_id).join(",")}"
 end
 
-pl = calcularCasos(sol, cond)
-
-pl2 = calcularActos(cond2)
+pl2 = Sivel2Gen::ConteosHelper.calcularConteosActos(cond2)
+pl = Sivel2Gen::ConteosHelper.calcularDatosActos(sol, cond2)
 
 r = pl.map {|l|
       h = {}
