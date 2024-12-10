@@ -222,12 +222,18 @@ module Sivel2Gen
       if !usuario && Rails.application.config.x.sivel2_consulta_web_publica
         habilidad.can :read, Msip::Ubicacionpre
 
-        habilidad.can :buscar, Sivel2Gen::Caso
-        habilidad.can :contar, Sivel2Gen::Caso
-        habilidad.can :lista, Sivel2Gen::Caso
-        
+        habilidad.can(
+          [
+            :buscar, 
+            :contar,
+            :lista,
+            :presenta_datos_mapaosm 
+          ], 
+          Sivel2Gen::Caso
+        )
+
         habilidad.can [:read, :filtra_por_tviolencia], Sivel2Gen::Categoria
-        
+
 
         # API público
         # Mostrar un caso con casos/101
@@ -245,11 +251,17 @@ module Sivel2Gen
 
       # Los siguientes son para todo autenticado
 
-      habilidad.can :buscar, Sivel2Gen::Caso
-      habilidad.can :contar, Sivel2Gen::Caso
-      habilidad.can :exportaCSV, Sivel2Gen::Caso
-      habilidad.can :lista, Sivel2Gen::Caso
-      habilidad.can :reportar, Sivel2Gen::Caso
+      habilidad.can(
+        [
+          :buscar,
+          :contar,
+          :exportaCSV, 
+          :lista,
+          :presenta_datos_mapaosm,
+          :reportar
+        ],
+        Sivel2Gen::Caso
+      )
       habilidad.can [:read, :update], Mr519Gen::Encuestausuario
       habilidad.can :read, Msip::Orgsocial
 
