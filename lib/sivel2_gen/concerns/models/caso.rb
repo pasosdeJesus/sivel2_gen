@@ -13,6 +13,24 @@ module Sivel2Gen
           @current_usuario = nil
           attr_accessor :current_usuario
 
+
+          attr_accessor :principal
+
+          def principal
+            #self.id && self.caso && (self.caso.ubicacion_id == self.id ||
+            #                         self.caso.ubicacion_id.nil?)
+          end
+
+          def principal=(v)
+            #if self.id && self.caso
+            #  if v.to_i == 1
+            #    self.caso.update_attribute('ubicacion_id', self.id)
+            #  elsif self.caso.ubicacion_id == self.id
+            #    self.caso.update_attribute('ubicacion_id', nil)
+            #  end
+            #end
+          end
+
           # Ordenados por foreign_key para facilitar comparar con esquema en base
           has_many :acto, foreign_key: "caso_id", validate: true, 
             dependent: :destroy, class_name: 'Sivel2Gen::Acto'

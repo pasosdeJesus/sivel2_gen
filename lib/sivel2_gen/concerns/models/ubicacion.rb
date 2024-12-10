@@ -13,6 +13,7 @@ module Sivel2Gen
             validate: false, dependent: :nullify, 
             class_name: "Sivel2Gen::Caso"
 
+
           belongs_to :caso, class_name: "Sivel2Gen::Caso", 
             foreign_key: "caso_id", validate: true, optional: false
 
