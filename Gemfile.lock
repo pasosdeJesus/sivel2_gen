@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/kreeti/kt-paperclip.git
-  revision: f35ca58fad8ae4681b26240adc4eb43d2b0d767f
+  revision: 26139d89d34bcfefae0e9c724c4573a8fae089ab
   specs:
     kt-paperclip (7.2.2)
       activemodel (>= 4.2.0)
@@ -231,7 +231,7 @@ GEM
     net-smtp (0.5.0)
       net-protocol
     nio4r (2.7.4)
-    nokogiri (1.17.0)
+    nokogiri (1.17.1)
       mini_portile2 (~> 2.8.2)
       racc (~> 1.4)
     odf-report (0.8.1)
