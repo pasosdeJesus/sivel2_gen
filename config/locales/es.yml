@@ -76,16 +76,13 @@ es:
         id: Caso No.
         memo: Descripción
         otrasfuentes: Otras fuentes
+        posprincipal: Principal
         presponsables: P. Responsables
         tipificacion: Tipificacion
         titulo: Título
         victimas: Víctimas
         victimascolectivas: Víctimas colectivas
         region: Región
-      "sivel2_gen/casosjr":
-        fecharec: F. Recepción
-        regionsjr: Oficina
-        contacto: Solicitante Principal
       "sivel2_gen/caso_etiqueta":
         etiqueta: Etiqueta 
       "sivel2_gen/caso_fotra":

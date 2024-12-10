@@ -1,4 +1,8 @@
-<% upid = formupapa.object.ubicacionpreprincipal_id || params[:caso][:ubicacionpreprincipal_id] %>
-<%= formupapa.radio_button :posprincipal, indice,
-  checked: upid == f.object.ubicacionpre_id
-%>
+<div>
+  <span>Principal</span>
+  <% upid = formupapa.object.ubicacionpreprincipal_id || 
+    params[:caso][:ubicacionpreprincipal_id] %>
+  <%= formupapa.radio_button :posprincipal, indice,
+    checked: upid == f.object.ubicacionpre_id,
+    label: Sivel2Gen::Caso.human_attribute_name(:posprincipal) %>
+</div>
