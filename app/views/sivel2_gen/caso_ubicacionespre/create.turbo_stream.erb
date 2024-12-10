@@ -14,7 +14,8 @@
     <% end %>
 
     <%= turbo_stream.append "caso_ubicacionespre_marco" do %>
-      <%= render "/sivel2_gen/casos/caso_ubicacionpre_campos", f: subf %>
+      <%= render "/sivel2_gen/casos/caso_ubicacionpre_campos", 
+        f: subf, formupapa: form %>
     <% end %>
   <% end %>
 <% end %>
