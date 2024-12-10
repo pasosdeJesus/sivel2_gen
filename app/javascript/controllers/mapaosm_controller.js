@@ -207,7 +207,8 @@ export default class extends Controller {
   // // ruta_sin_puntoMontaje y los filtros acordes a lo elegido a continuación
 
   armarRutaConsulta(rutaSinPuntomontaje, usuarioAutenticado) {
-    var ruta = window.puntoMontaje + rutaSinPuntomontaje;
+    msip_arregla_puntomontaje(window) 
+    var ruta = window.puntomontaje + rutaSinPuntomontaje;
     var desde = document.getElementById('campo-desde').value;
     var hasta = document.getElementById('campo-hasta').value;
     var departamento = document.getElementById('departamento').value;
@@ -287,7 +288,7 @@ export default class extends Controller {
       //Crea los cúmulos de casos y agrega casos
       self.constructor.marcadores.addLayers(listaMarcadores);
       self.constructor.mapa.addLayer(self.constructor.marcadores);
-      document.getElementById('nrcasos').innerHTML = numResultados + ' Casos mostrados';
+      document.getElementById('nrcasos').innerHTML = total_casos + ' Casos mostrados';
       document.getElementById('resumen-casos').innerHTML = total_casos;
       document.getElementById('resumen-victimas').innerHTML = total_victimas;
       document.getElementById('resumen-victimizaciones').innerHTML = total_victimizaciones;
@@ -304,8 +305,8 @@ export default class extends Controller {
     const self = this;
     function clicMarcadorCaso() {
       self.mostrarCargador();
-      Msip__Motor.arreglarPuntomontaje();
-      var ruta = window.puntoMontaje + 'casos/';
+      msip_arregla_puntomontaje;
+      var ruta = window.puntomontaje + 'casos/';
       var urlSolicitud = ruta + codigo + ".json";  
       self.descargarUrl(urlSolicitud, function(req) {
         var data = req.responseText;
