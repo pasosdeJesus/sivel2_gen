@@ -1,0 +1,4 @@
+<% upid = formupapa.object.ubicacionpreprincipal_id || params[:caso][:ubicacionpreprincipal_id] %>
+<%= formupapa.radio_button :posprincipal, indice,
+  checked: upid == f.object.ubicacionpre_id
+%>

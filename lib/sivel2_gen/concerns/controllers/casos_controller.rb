@@ -872,9 +872,9 @@ module Sivel2Gen
           def update_gen
             respond_to do |format|
 
-              if (caso_params[:caso_ubicacionpre_attributes])
+               if (caso_params[:caso_ubicacionpre_attributes])
                 # Usa ubicacionepre existente o agrega si hace falta
-                caso_params[:caso_ubicacionpre_attributes].each do |clave, cu|
+                caso_params[:caso_ubicacionpre_attributes].each do |indice, cu|
                   if cu[:ubicacionpre_pais_id]
                     upid = Msip::Ubicacionpre::buscar_o_agregar(
                       cu[:ubicacionpre_pais_id], 
@@ -887,7 +887,13 @@ module Sivel2Gen
                       cu[:ubicacionpre_latitud], 
                       cu[:ubicacionpre_longitud]
                     )
-                    params[:caso][:caso_ubicacionpre_attributes][clave]["ubicacionpre_id"] = upid
+                    params[:caso][:caso_ubicacionpre_attributes][indice]["ubicacionpre_id"] = upid
+                    if ((params[:caso][:posprincipal].nil? && 
+                        indice.to_i == 0) || 
+                       (!params[:caso][:posprincipal].nil? && 
+                        params[:caso][:posprincipal].to_i == indice.to_i) )
+                      params[:caso][:ubicacionpreprincipal_id] = upid
+                    end
                   end
                 end
               end
@@ -1361,8 +1367,10 @@ module Sivel2Gen
                 :id,
                 :intervalo_id,
                 :memo,
+                :posprincipal,
                 :q,
                 :titulo,
+                :ubicacionpreprincipal_id,
                 :acto_attributes => [
                   :id, :presponsable_id, :categoria_id,
                   :persona_id, :_destroy
@@ -1440,7 +1448,6 @@ module Sivel2Gen
                   :ubicacionpre_latitud,
                   :ubicacionpre_longitud,
                   :ubicacionpre_lugar,
-                  :ubicacionpre_principal,
                   :ubicacionpre_sitio,
                   :_destroy,
                 ],

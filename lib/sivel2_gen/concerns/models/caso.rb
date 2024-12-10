@@ -14,14 +14,14 @@ module Sivel2Gen
           attr_accessor :current_usuario
 
 
-          attr_accessor :principal
+          attr_accessor :posprincipal
 
-          def principal
+          def posprincipal
             #self.id && self.caso && (self.caso.ubicacion_id == self.id ||
             #                         self.caso.ubicacion_id.nil?)
           end
 
-          def principal=(v)
+          def posprincipal=(v)
             #if self.id && self.caso
             #  if v.to_i == 1
             #    self.caso.update_attribute('ubicacion_id', self.id)
@@ -174,9 +174,18 @@ module Sivel2Gen
             validate: true, class_name: 'Sivel2Gen::Intervalo', 
             optional: true
 
-          belongs_to :ubicacionprincipal, foreign_key: "ubicacion_id",
-            validate: false, class_name: 'Msip::Ubicacion',
+          belongs_to :ubicacionprincipal,
+            foreign_key: "ubicacion_id",
+            validate: false,
+            class_name: 'Msip::Ubicacion',
             optional: true
+
+          belongs_to :ubicacionpreprincipal,
+            foreign_key: "ubicacionpreprincipal_id",
+            validate: false,
+            class_name: 'Msip::Ubicacionpre',
+            optional: true
+
 
           campofecha_localizado :fecha
 
