@@ -17,8 +17,8 @@ module Sivel2Gen
     end
     module_function :calcularCasos
 
-    def calcularActos(cond)
-      cons = "SELECT COUNT(DISTINCT sivel2_gen_conscaso.caso_id) AS numero_casos, " +
+    def calcularConteosActos(cond)
+      cons = 'SELECT COUNT(DISTINCT sivel2_gen_conscaso.caso_id) AS numero_casos, ' +
               "COUNT(DISTINCT sivel2_gen_victima.persona_id) AS numero_victimas, " +
               "COUNT(sivel2_gen_acto.id) AS numero_actos, " +
               "(SELECT COUNT(*) FROM (SELECT DISTINCT categoria_id, persona_id, caso_id " +
@@ -33,7 +33,23 @@ module Sivel2Gen
               "AND msip_ubicacion.latitud IS NOT NULL AND msip_ubicacion.longitud IS NOT NULL;"
       return ActiveRecord::Base.connection.execute(cons).values[0]
     end
-    module_function :calcularActos
+    module_function :calcularConteosActos
+
+    def calcularDatosActos(sol, cond)
+      cons = 'SELECT '+ sol.join(", ") + ' FROM sivel2_gen_conscaso ' +
+              "JOIN sivel2_gen_caso AS caso ON caso.id = sivel2_gen_conscaso.caso_id " +
+              "LEFT JOIN sivel2_gen_victima ON sivel2_gen_victima.caso_id = caso.id " +
+              "LEFT JOIN sivel2_gen_acto ON sivel2_gen_acto.caso_id = caso.id " +
+              "LEFT JOIN msip_ubicacion ON msip_ubicacion.id = caso.ubicacion_id " +
+              'LEFT JOIN msip_departamento ON msip_departamento.id=msip_ubicacion.departamento_id ' +
+              'LEFT JOIN msip_municipio ON msip_municipio.id=msip_ubicacion.municipio_id ' +
+              "WHERE sivel2_gen_conscaso.caso_id IN (SELECT DISTINCT caso_id " +
+              "FROM sivel2_gen_acto WHERE caso_id IN (" + cond + ")) " +
+              "AND msip_ubicacion.latitud IS NOT NULL AND msip_ubicacion.longitud IS NOT NULL;"
+      return ActiveRecord::Base.connection.execute(cons).values
+    end
+    module_function :calcularDatosActos
+
 
   end
 end

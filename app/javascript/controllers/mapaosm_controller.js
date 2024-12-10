@@ -287,7 +287,7 @@ export default class extends Controller {
       //Crea los cúmulos de casos y agrega casos
       self.constructor.marcadores.addLayers(listaMarcadores);
       self.constructor.mapa.addLayer(self.constructor.marcadores);
-      document.getElementById('nrcasos').innerHTML = numResultados + ' Casos mostrados';
+      document.getElementById('nrcasos').innerHTML = total_casos + ' Casos mostrados';
       document.getElementById('resumen-casos').innerHTML = total_casos;
       document.getElementById('resumen-victimas').innerHTML = total_victimas;
       document.getElementById('resumen-victimizaciones').innerHTML = total_victimizaciones;
@@ -304,7 +304,7 @@ export default class extends Controller {
     const self = this;
     function clicMarcadorCaso() {
       self.mostrarCargador();
-      Msip__Motor.arreglarPuntomontaje();
+      Msip__Motor.arreglarPuntoMontaje();
       var ruta = window.puntoMontaje + 'casos/';
       var urlSolicitud = ruta + codigo + ".json";  
       self.descargarUrl(urlSolicitud, function(req) {
