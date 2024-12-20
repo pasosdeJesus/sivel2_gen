@@ -308,7 +308,7 @@ module Sivel2Gen
               Msip::Orgsocial
             habilidad.can :create, Msip::Bitacora, usuario: { id: usuario.id }
             habilidad.can :read, Msip::Bitacora, usuario: { id: usuario.id }
-            habilidad.can :manage, Msip::Persona
+            habilidad.can :manage, Msip::Ability::lista_modelos_persona
             habilidad.can :manage, Msip::Grupoper
 
             habilidad.can :manage, Sivel2Gen::Acto
@@ -325,7 +325,7 @@ module Sivel2Gen
           else
             habilidad.can :read, Msip::Orgsocial
             habilidad.can :read, Msip::Bitacora, usuario: { id: usuario.id }
-            habilidad.can :read, Msip::Persona
+            habilidad.can :read, Msip::Ability::lista_modelos_persona
             habilidad.can :read, Msip::Grupoper
 
             habilidad.can :read, Sivel2Gen::Acto
@@ -369,7 +369,7 @@ module Sivel2Gen
 
           habilidad.can :manage, Msip::Orgsocial
           habilidad.can :manage, Msip::Bitacora
-          habilidad.can :manage, Msip::Persona
+          habilidad.can :manage, Msip::Ability::lista_modelos_persona
           habilidad.can :manage, Msip::Grupoper
           habilidad.can :manage, Msip::Respaldo7z
           habilidad.can :manage, Msip::Ubicacionpre
