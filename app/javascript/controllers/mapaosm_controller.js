@@ -4,7 +4,6 @@ import Msip__Motor from "../msip/motor"
 
 
 export default class extends Controller {
-
   connect() {
     console.log("Conexion de controlador Mapa osm");
     const usuarioAutenticado = this.data.get("usuarioAutenticado") === 'true';
@@ -208,6 +207,11 @@ export default class extends Controller {
 
   armarRutaConsulta(rutaSinPuntomontaje, usuarioAutenticado) {
     var ruta = window.puntoMontaje + rutaSinPuntomontaje;
+    /*let root = window 
+    Msip__Motor.ejecutarAlCargarPagina()
+    msip_ejecutarAlCargarPagina(root)
+    msip_arregla_puntomontaje(root) 
+    var ruta = root.puntomontaje + rutaSinPuntomontaje; */
     var desde = document.getElementById('campo-desde').value;
     var hasta = document.getElementById('campo-hasta').value;
     var departamento = document.getElementById('departamento').value;
@@ -258,7 +262,6 @@ export default class extends Controller {
       var data = req.responseText;
       if (data === null || data.charAt(0) !== '{') {
         document.getElementById('cargador').style.display = 'none';
-        document.getElementById('nrcasos').innerHTML = "0";
         window.alert("El URL " + urlSolicitud + " no retornó información JSON.\n\n" + data);
         return;
       }
@@ -287,7 +290,6 @@ export default class extends Controller {
       //Crea los cúmulos de casos y agrega casos
       self.constructor.marcadores.addLayers(listaMarcadores);
       self.constructor.mapa.addLayer(self.constructor.marcadores);
-      document.getElementById('nrcasos').innerHTML = total_casos + ' Casos mostrados';
       document.getElementById('resumen-casos').innerHTML = total_casos;
       document.getElementById('resumen-victimas').innerHTML = total_victimas;
       document.getElementById('resumen-victimizaciones').innerHTML = total_victimizaciones;
@@ -489,5 +491,6 @@ export default class extends Controller {
       this.constructor.agregaCapaDiv.remove(this.constructor.mapa);
     }
   };
+
 
 }
