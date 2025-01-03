@@ -11,7 +11,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sip.git
-  revision: 5d3cef2df0b3006563ffbee95a36484be82ca7b4
+  revision: 720edf5cea82713329f3046b4ffc561b3c32ffb7
   branch: v2.1
   specs:
     sip (2.1.0.beta1)
@@ -43,7 +43,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/heb412_gen.git
-  revision: cfd678ef6f068a5f96147250a5b7fc1ba5eda8b1
+  revision: 497d95a80a32d565277b4fd13267abd826f0909e
   branch: v2.1
   specs:
     heb412_gen (2.1.0.beta1)
@@ -54,7 +54,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/mr519_gen.git
-  revision: fbe9c6a5b5327a3670ad3468894e67fad94cbdc9
+  revision: a65bbbe12358b770d5d27fba47699ef400c883c9
   branch: v2.1
   specs:
     mr519_gen (2.1.0.beta1)
@@ -137,7 +137,7 @@ GEM
       babel-source (>= 4.0, < 6)
       execjs (~> 2.0)
     bcrypt (3.1.20)
-    bigdecimal (3.1.8)
+    bigdecimal (3.1.9)
     bindex (0.8.1)
     bootsnap (1.18.4)
       msgpack (~> 1.2)
@@ -173,7 +173,7 @@ GEM
       capybara (~> 3.0)
       ferrum (~> 0.15.0)
     date (3.4.1)
-    debug (1.9.2)
+    debug (1.10.0)
       irb (~> 1.10)
       reline (>= 0.3.8)
     devise (4.9.4)
@@ -189,20 +189,20 @@ GEM
     dotenv-rails (3.1.7)
       dotenv (= 3.1.7)
       railties (>= 6.1)
-    erubi (1.13.0)
+    erubi (1.13.1)
     execjs (2.10.0)
     ferrum (0.15)
       addressable (~> 2.5)
       concurrent-ruby (~> 1.1)
       webrick (~> 1.7)
       websocket-driver (~> 0.7)
-    ffi (1.17.0)
-    ffi (1.17.0-aarch64-linux-gnu)
-    ffi (1.17.0-arm-linux-gnu)
-    ffi (1.17.0-arm64-darwin)
-    ffi (1.17.0-x86-linux-gnu)
-    ffi (1.17.0-x86_64-darwin)
-    ffi (1.17.0-x86_64-linux-gnu)
+    ffi (1.17.1)
+    ffi (1.17.1-aarch64-linux-gnu)
+    ffi (1.17.1-arm-linux-gnu)
+    ffi (1.17.1-arm64-darwin)
+    ffi (1.17.1-x86-linux-gnu)
+    ffi (1.17.1-x86_64-darwin)
+    ffi (1.17.1-x86_64-linux-gnu)
     globalid (1.2.1)
       activesupport (>= 6.1)
     i18n (1.14.6)
@@ -216,10 +216,10 @@ GEM
       activesupport (>= 5.0.0)
     jsbundling-rails (1.3.1)
       railties (>= 6.0.0)
-    json (2.9.0)
+    json (2.9.1)
     libxml-ruby (5.0.3)
-    logger (1.6.3)
-    loofah (2.23.1)
+    logger (1.6.4)
+    loofah (2.24.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
     mail (2.8.1)
@@ -238,7 +238,7 @@ GEM
     mini_portile2 (2.8.8)
     minitest (5.25.4)
     msgpack (1.7.5)
-    net-imap (0.5.2)
+    net-imap (0.5.4)
       date
       net-protocol
     net-pop (0.1.2)
@@ -248,20 +248,18 @@ GEM
     net-smtp (0.5.0)
       net-protocol
     nio4r (2.7.4)
-    nokogiri (1.17.2)
+    nokogiri (1.18.1)
       mini_portile2 (~> 2.8.2)
       racc (~> 1.4)
-    nokogiri (1.17.2-aarch64-linux)
+    nokogiri (1.18.1-aarch64-linux-gnu)
       racc (~> 1.4)
-    nokogiri (1.17.2-arm-linux)
+    nokogiri (1.18.1-arm-linux-gnu)
       racc (~> 1.4)
-    nokogiri (1.17.2-arm64-darwin)
+    nokogiri (1.18.1-arm64-darwin)
       racc (~> 1.4)
-    nokogiri (1.17.2-x86-linux)
+    nokogiri (1.18.1-x86_64-darwin)
       racc (~> 1.4)
-    nokogiri (1.17.2-x86_64-darwin)
-      racc (~> 1.4)
-    nokogiri (1.17.2-x86_64-linux)
+    nokogiri (1.18.1-x86_64-linux-gnu)
       racc (~> 1.4)
     odf-report (0.8.1)
       mime-types
@@ -287,7 +285,7 @@ GEM
       nio4r (~> 2.0)
     racc (1.8.1)
     rack (2.2.10)
-    rack-test (2.1.0)
+    rack-test (2.2.0)
       rack (>= 1.3)
     rails (7.0.8.7)
       actioncable (= 7.0.8.7)
@@ -333,7 +331,7 @@ GEM
     rdoc (6.10.0)
       psych (>= 4.0.0)
     redcarpet (3.6.0)
-    regexp_parser (2.9.3)
+    regexp_parser (2.10.0)
     reline (0.6.0)
       io-console (~> 0.5)
     responders (3.1.1)
@@ -375,7 +373,7 @@ GEM
     terrapin (1.0.1)
       climate_control
     thor (1.3.2)
-    tilt (2.4.0)
+    tilt (2.5.0)
     timeout (0.4.3)
     ttfunk (1.8.0)
       bigdecimal (~> 3.1)
@@ -465,4 +463,4 @@ DEPENDENCIES
   will_paginate
 
 BUNDLED WITH
-   2.6.1
+   2.6.2
