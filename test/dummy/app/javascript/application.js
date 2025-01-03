@@ -39,6 +39,8 @@ import Heb412Gen__Motor from "./controllers/heb412_gen/motor"
 window.Heb412Gen__Motor = Heb412Gen__Motor
 import Sivel2Gen__Motor from "./controllers/sivel2_gen/motor"
 window.Sivel2Gen__Motor = Sivel2Gen__Motor
+import PlotlyActosController from "./controllers/sivel2_gen/plotly_actos_controller"
+
 
 // Apexcharts
 import ApexCharts from 'apexcharts'
@@ -91,6 +93,10 @@ promesaRecursosSprocketsYDocumento.then((mensaje) => {
     p2ult = p[p.length - 2] + "/" + p[p.length - 1]
   }
 
+  if (p2ult == 'graficar/actos_individuales') {
+    const plotlycontroller = new PlotlyActosController()
+    plotlycontroller.plotly_serietiempo_actos();
+  }
 })
 
 

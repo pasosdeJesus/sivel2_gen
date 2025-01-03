@@ -254,8 +254,7 @@ export default class extends Controller {
 
   plotly_serietiempo_actos() {
     const self = this;
-    const ruta_relativa = window.location.pathname.split("/")[1]
-    Plotly.d3.csv("/" + ruta_relativa + "/" + ruta_relativa + "/csv/actos_individuales.csv", function(err, datos) { 
+    Plotly.d3.csv("../assets/csv/actos_individuales.csv", function(err, datos) { 
       if (err) {
         console.error("Error al cargar el archivo CSV:", err);
       } else {
