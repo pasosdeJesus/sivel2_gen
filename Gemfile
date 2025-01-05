@@ -11,6 +11,8 @@ gem "cancancan" # Roles
 
 gem "color"
 
+gem "csv"
+
 gem "devise" # Autenticación 
 
 gem "devise-i18n"
