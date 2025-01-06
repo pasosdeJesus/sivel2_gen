@@ -9,6 +9,10 @@ gem 'babel-transpiler'
 
 gem 'bcrypt'
 
+gem "benchmark"
+
+gem "bigdecimal"
+
 gem 'bootsnap', '>=1.1.0', require: false
 
 gem 'cancancan'# Roles
@@ -19,6 +23,10 @@ gem 'cocoon', git: 'https://github.com/vtamara/cocoon.git',
 gem 'coffee-rails' # CoffeeScript para recuersos .js.coffee y vistas
 
 gem 'color' # Maneja colores RGB
+
+gem "csv"
+
+gem "drb"
 
 gem 'jbuilder' # API JSON facil. Ver: https://github.com/rails/jbuilder
 
@@ -32,6 +40,8 @@ gem 'kt-paperclip',                 # Anexos
   git: 'https://github.com/kreeti/kt-paperclip.git'
 
 gem 'libxml-ruby' # Genera ODS
+
+gem "mutex_m"
 
 gem 'odf-report' # Genera ODT
 

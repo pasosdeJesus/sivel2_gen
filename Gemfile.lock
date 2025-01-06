@@ -11,7 +11,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sip.git
-  revision: 720edf5cea82713329f3046b4ffc561b3c32ffb7
+  revision: 20de6989ca7942888fb61c3ba0b06caac715ba47
   branch: v2.1
   specs:
     sip (2.1.0.beta1)
@@ -43,7 +43,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/heb412_gen.git
-  revision: 497d95a80a32d565277b4fd13267abd826f0909e
+  revision: f405e3b9159b64ce4f30017db466282351c8ba46
   branch: v2.1
   specs:
     heb412_gen (2.1.0.beta1)
@@ -54,7 +54,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/mr519_gen.git
-  revision: a65bbbe12358b770d5d27fba47699ef400c883c9
+  revision: c59b5cf166d0a1d76539d17ae565e32d488511be
   branch: v2.1
   specs:
     mr519_gen (2.1.0.beta1)
@@ -136,7 +136,9 @@ GEM
     babel-transpiler (0.7.0)
       babel-source (>= 4.0, < 6)
       execjs (~> 2.0)
+    base64 (0.2.0)
     bcrypt (3.1.20)
+    benchmark (0.4.0)
     bigdecimal (3.1.9)
     bindex (0.8.1)
     bootsnap (1.18.4)
@@ -189,6 +191,7 @@ GEM
     dotenv-rails (3.1.7)
       dotenv (= 3.1.7)
       railties (>= 6.1)
+    drb (2.2.1)
     erubi (1.13.1)
     execjs (2.10.0)
     ferrum (0.15)
@@ -238,7 +241,8 @@ GEM
     mini_portile2 (2.8.8)
     minitest (5.25.4)
     msgpack (1.7.5)
-    net-imap (0.5.4)
+    mutex_m (0.3.0)
+    net-imap (0.5.5)
       date
       net-protocol
     net-pop (0.1.2)
@@ -343,7 +347,7 @@ GEM
       rubyzip (>= 1.3)
     ruby-graphviz (1.2.5)
       rexml
-    rubyzip (2.3.2)
+    rubyzip (2.4.1)
     sassc (2.4.0)
       ffi (~> 1.9)
     sassc-rails (2.1.2)
@@ -395,7 +399,8 @@ GEM
       bindex (>= 0.4.0)
       railties (>= 6.0.0)
     webrick (1.9.1)
-    websocket-driver (0.7.6)
+    websocket-driver (0.7.7)
+      base64
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
     will_paginate (4.0.1)
@@ -417,6 +422,8 @@ DEPENDENCIES
   apexcharts!
   babel-transpiler
   bcrypt
+  benchmark
+  bigdecimal
   bootsnap (>= 1.1.0)
   cancancan
   cocoon!
@@ -429,12 +436,14 @@ DEPENDENCIES
   devise
   devise-i18n
   dotenv-rails
+  drb
   heb412_gen!
   jbuilder
   jsbundling-rails
   kt-paperclip!
   libxml-ruby
   mr519_gen!
+  mutex_m
   nokogiri (>= 1.11.1)
   odf-report
   pg
