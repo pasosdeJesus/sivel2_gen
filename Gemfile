@@ -7,11 +7,13 @@ gem "babel-transpiler"
 
 gem "bcrypt"
 
+gem "benchmark"
+
 gem 'bootsnap', require: false
 
 gem "cancancan" # Roles
 
-gem "cocoon", git: "https://github.com/vtamara/cocoon.git", 
+gem "cocoon", git: "https://github.com/vtamara/cocoon.git",
   branch: "new_id_with_ajax"# Formularios anidados (algunos con ajax)
 
 gem "coffee-rails" # CoffeeScript mientras reemplazamos por Javascript
@@ -20,7 +22,7 @@ gem "color"
 
 gem "csv"
 
-gem "devise" # Autenticación 
+gem "devise" # Autenticación
 
 gem "devise-i18n"
 
@@ -62,7 +64,7 @@ gem 'rubyzip'
 
 gem "sassc-rails" # Hojas de estilo con SCSS
 
-gem "simple_form" # Formularios simples 
+gem "simple_form" # Formularios simples
 
 gem "sprockets-rails"
 
@@ -78,8 +80,8 @@ gem "will_paginate" # Listados en páginas
 
 
 #####
-# Motores que se sobrecargan vistas (deben ponerse en orden de apilamiento 
-# lógico y no alfabetico como las gemas anteriores) 
+# Motores que se sobrecargan vistas (deben ponerse en orden de apilamiento
+# lógico y no alfabetico como las gemas anteriores)
 
 gem "msip", # Motor generico,
   git: "https://gitlab.com/pasosdeJesus/msip.git", branch: "v2.2"
@@ -120,17 +122,11 @@ group :development do
 
   gem "puma"
 
-  gem "thor" # Requerido por rake
-
   gem "web-console"
 end
 
 group :test do
-  gem "capybara"
-
   gem "compare-xml"
-
-  gem "cuprite"
 
   gem "minitest"
 

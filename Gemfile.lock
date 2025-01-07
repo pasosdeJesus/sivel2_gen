@@ -129,8 +129,6 @@ GEM
       minitest (>= 5.1)
       securerandom (>= 0.3)
       tzinfo (~> 2.0, >= 2.0.5)
-    addressable (2.8.7)
-      public_suffix (>= 2.0.2, < 7.0)
     andand (1.3.3)
     ansi (1.5.0)
     apexcharts (0.2.0)
@@ -141,6 +139,7 @@ GEM
       execjs (~> 2.0)
     base64 (0.2.0)
     bcrypt (3.1.20)
+    benchmark (0.4.0)
     bigdecimal (3.1.8)
     bindex (0.8.1)
     bootsnap (1.18.4)
@@ -153,15 +152,6 @@ GEM
       thor (~> 1.0)
     camertron-eprun (1.1.1)
     cancancan (3.6.1)
-    capybara (3.40.0)
-      addressable
-      matrix
-      mini_mime (>= 0.1.3)
-      nokogiri (~> 1.11)
-      rack (>= 1.6.0)
-      rack-test (>= 0.6.3)
-      regexp_parser (>= 1.5, < 3.0)
-      xpath (~> 3.2)
     choice (0.2.0)
     cldr-plurals-runtime-rb (1.1.0)
     climate_control (1.2.0)
@@ -182,9 +172,6 @@ GEM
     connection_pool (2.4.1)
     crass (1.0.6)
     csv (3.3.2)
-    cuprite (0.15.1)
-      capybara (~> 3.0)
-      ferrum (~> 0.15.0)
     date (3.3.4)
     debug (1.10.0)
       irb (~> 1.10)
@@ -208,11 +195,6 @@ GEM
       ruby-graphviz
     erubi (1.13.0)
     execjs (2.9.1)
-    ferrum (0.15)
-      addressable (~> 2.5)
-      concurrent-ruby (~> 1.1)
-      webrick (~> 1.7)
-      websocket-driver (~> 0.7)
     ffi (1.17.0)
     ffi (1.17.0-aarch64-linux-gnu)
     ffi (1.17.0-aarch64-linux-musl)
@@ -319,7 +301,6 @@ GEM
       rails (>= 3.2)
     psych (5.1.2)
       stringio
-    public_suffix (6.0.1)
     puma (6.5.0)
       nio4r (~> 2.0)
     racc (1.8.1)
@@ -471,8 +452,6 @@ GEM
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
     will_paginate (3.3.1)
-    xpath (3.2.0)
-      nokogiri (~> 1.8)
     zeitwerk (2.6.18)
 
 PLATFORMS
@@ -497,11 +476,11 @@ DEPENDENCIES
   apexcharts
   babel-transpiler
   bcrypt
+  benchmark
   bootsnap
   brakeman
   bundler-audit
   cancancan
-  capybara
   cocoon!
   code-scanning-rubocop
   coffee-rails
@@ -509,7 +488,6 @@ DEPENDENCIES
   colorize
   compare-xml
   csv
-  cuprite
   debug
   devise
   devise-i18n
@@ -548,7 +526,6 @@ DEPENDENCIES
   simplecov
   sprockets-rails
   stimulus-rails
-  thor
   turbo-rails
   twitter_cldr
   tzinfo
