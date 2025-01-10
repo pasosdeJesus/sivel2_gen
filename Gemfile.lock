@@ -11,7 +11,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/heb412_gen.git
-  revision: bbfaad4d70adeb6eeb3eb02cf482701974bf4ac9
+  revision: 1cbbac1df10e3579f5803aa3af76e8331e913668
   branch: main
   specs:
     heb412_gen (2.3.0.alfa3)
@@ -22,7 +22,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/mr519_gen.git
-  revision: 82d7c11b5fa478757928bfe0edf45625770f0f88
+  revision: e6acee925e758d2741b0cb141431ca5452133df4
   branch: main
   specs:
     mr519_gen (2.3.0.alfa3)
@@ -31,7 +31,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/msip.git
-  revision: 08d275ebea019da674b2b4e049bd4890784de702
+  revision: 6c36f722658676faa5b895aac1be7de12ce8600a
   branch: main
   specs:
     msip (2.3.0.alfa3)
@@ -350,7 +350,7 @@ GEM
     ruby-graphviz (1.2.5)
       rexml
     ruby-progressbar (1.13.0)
-    rubyzip (2.4)
+    rubyzip (2.4.1)
     sassc (2.4.0)
       ffi (~> 1.9)
     sassc-rails (2.1.2)
