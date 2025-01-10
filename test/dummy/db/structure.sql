@@ -31,20 +31,6 @@ COMMENT ON EXTENSION fuzzystrmatch IS 'determine similarities and distance betwe
 
 
 --
--- Name: postgis; Type: EXTENSION; Schema: -; Owner: -
---
-
-CREATE EXTENSION IF NOT EXISTS postgis WITH SCHEMA public;
-
-
---
--- Name: EXTENSION postgis; Type: COMMENT; Schema: -; Owner: -
---
-
-COMMENT ON EXTENSION postgis IS 'PostGIS geometry and geography spatial types and functions';
-
-
---
 -- Name: unaccent; Type: EXTENSION; Schema: -; Owner: -
 --
 
@@ -1797,8 +1783,11 @@ CREATE VIEW public.cvt1 AS
     categoria.nombre AS categoria,
     ubicacion.departamento_id,
     departamento.deplocal_cod AS departamento_divipola,
-    departamento.nombre AS departamento_nombre
-   FROM (((((((public.sivel2_gen_acto acto
+    departamento.nombre AS departamento_nombre,
+    ubicacion.municipio_id,
+    ((departamento.deplocal_cod * 1000) + municipio.munlocal_cod) AS municipio_divipola,
+    municipio.nombre AS municipio_nombre
+   FROM ((((((((public.sivel2_gen_acto acto
      JOIN public.sivel2_gen_caso caso ON ((acto.caso_id = caso.id)))
      JOIN public.sivel2_gen_categoria categoria ON ((acto.categoria_id = categoria.id)))
      JOIN public.sivel2_gen_supracategoria supracategoria ON ((categoria.supracategoria_id = supracategoria.id)))
@@ -1806,6 +1795,7 @@ CREATE VIEW public.cvt1 AS
      JOIN public.msip_persona persona ON ((persona.id = acto.persona_id)))
      LEFT JOIN public.msip_ubicacion ubicacion ON ((caso.ubicacion_id = ubicacion.id)))
      LEFT JOIN public.msip_departamento departamento ON ((ubicacion.departamento_id = departamento.id)))
+     LEFT JOIN public.msip_municipio municipio ON ((ubicacion.municipio_id = municipio.id)))
   WHERE (categoria.id = ANY (ARRAY[427, 397, 527, 297, 777, 197, 196, 526, 396, 296, 776, 426, 15, 45, 73, 55, 25, 35, 65, 92, 40, 50, 67, 801, 90, 37, 57, 26, 46, 16, 80, 85, 66, 64, 703, 59, 28, 18, 38, 49, 706, 501, 401, 125, 135, 115, 904, 331, 17, 402, 502, 231, 705, 62, 906, 104, 503, 403, 713, 101, 76, 302, 21, 11, 102, 27, 902, 903, 34, 301, 14, 24, 10, 20, 30, 292, 192, 422, 772, 522, 392, 63, 93, 910, 525, 295, 425, 195, 395, 775, 714, 78, 294, 194, 424, 774, 524, 394, 89, 905, 86, 701, 68, 141, 241, 341, 715, 704, 702, 23, 13, 33, 43, 53, 88, 98, 84, 709, 711, 707, 708, 710, 87, 97, 717, 917, 716, 916, 91, 95, 718, 193, 393, 523, 293, 773, 423, 48, 58, 75, 69, 41, 74, 22, 56, 72, 47, 12, 36, 771, 291, 191, 521, 421, 391, 19, 420, 520, 77, 29, 39, 712]));
 
 
@@ -8247,11 +8237,11 @@ ALTER TABLE ONLY public.msip_persona
 
 
 --
--- Name: sivel2_gen_presponsable presponsable_papa_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: sivel2_gen_presponsable presponsable_papa_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.sivel2_gen_presponsable
-    ADD CONSTRAINT presponsable_papa_fkey FOREIGN KEY (papa_id) REFERENCES public.sivel2_gen_presponsable(id);
+    ADD CONSTRAINT presponsable_papa_id_fkey FOREIGN KEY (papa_id) REFERENCES public.sivel2_gen_presponsable(id);
 
 
 --
@@ -8268,14 +8258,6 @@ ALTER TABLE ONLY public.sivel2_gen_caso_presponsable
 
 ALTER TABLE ONLY public.sivel2_gen_caso_presponsable
     ADD CONSTRAINT presuntos_responsables_caso_id_p_responsable_fkey FOREIGN KEY (presponsable_id) REFERENCES public.sivel2_gen_presponsable(id);
-
-
---
--- Name: sivel2_gen_presponsable presuntos_responsables_id_papa_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.sivel2_gen_presponsable
-    ADD CONSTRAINT presuntos_responsables_id_papa_fkey FOREIGN KEY (papa_id) REFERENCES public.sivel2_gen_presponsable(id);
 
 
 --
