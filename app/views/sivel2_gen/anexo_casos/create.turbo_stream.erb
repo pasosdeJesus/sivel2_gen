@@ -3,14 +3,17 @@
     child_index: params[:index] do |ca_form| %>
     <%= turbo_stream.replace "agregar-anexo-caso" do %>
       <%= form.submit "Añadir Anexo", 
-            formaction: sivel2_gen.crear_anexo_caso_path(ca_form.index.to_i + 1),
-            formmethod: :post,
-            formnovalidate: true,
-            class: 'btn btn-sm btn-primary agregar-ca',
-            id: "agregar-anexo-caso" %>
+        class: 'btn btn-sm btn-primary agregar-ca',
+        data:  {
+          disable_with: false 
+        },
+        formaction: sivel2_gen.crear_anexo_caso_path(ca_form.index.to_i + 1),
+        formmethod: :post,
+        formnovalidate: true,
+        id: "agregar-anexo-caso" %>
     <% end %>
 
-    <%= turbo_stream.append "anexo_casos_marco" do %>
+    <%= turbo_stream.append "anexos_caso_marco" do %>
       <%= render "/sivel2_gen/casos/anexo_caso_campos", f: ca_form %>
     <% end %>
   <% end %>
