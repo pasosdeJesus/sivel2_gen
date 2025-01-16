@@ -24,6 +24,8 @@ gem 'coffee-rails' # CoffeeScript para recuersos .js.coffee y vistas
 
 gem 'color' # Maneja colores RGB
 
+gem "concurrent-ruby", "1.3.4" #https://stackoverflow.com/questions/79360526/uninitialized-constant-activesupportloggerthreadsafelevellogger-nameerror
+
 gem "csv"
 
 gem "drb"
