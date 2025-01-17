@@ -14,7 +14,8 @@
     <% end %>
 
     <%= turbo_stream.append "anexos_caso_marco" do %>
-      <%= render "/sivel2_gen/casos/anexo_caso_campos", f: ca_form %>
+      <%= render partial: "/sivel2_gen/casos/anexo_caso_campos", 
+        locals: {f: ca_form} %>
     <% end %>
   <% end %>
 <% end %>
