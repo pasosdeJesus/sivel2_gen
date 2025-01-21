@@ -27,6 +27,7 @@ Heb412Gen__Motor.iniciar()
 import Sivel2Gen__Motor from "./controllers/sivel2_gen/motor"
 window.Sivel2Gen__Motor = Sivel2Gen__Motor
 Sivel2Gen__Motor.iniciar()
+import PlotlyActosController from "./controllers/sivel2_gen/plotly_actos_controller"
 
 
 import TomSelect from 'tom-select';
@@ -89,6 +90,10 @@ promesaRecursosSprocketsYDocumento.then((mensaje) => {
     p2ult = p[p.length - 2] + "/" + p[p.length - 1]
   }
 
+  if (p2ult == 'graficar/actos_individuales') {
+    const plotlycontroller = new PlotlyActosController()
+    plotlycontroller.plotly_serietiempo_actos();
+  }
 })
 
 
