@@ -180,7 +180,7 @@ module Sivel2Gen
             lcat = Sivel2Gen::Categoria.habilitados.pluck(:id)
             pCategoria = params[:filtro] && params[:filtro][:categoria] ?
               lcat & params[:filtro][:categoria].map(&:to_i) : lcat
-        
+
             if (pTviolencia != '') 
               where1 = ampliar_where(
                 where1, "tviolencia_id", pTviolencia[0], "="
@@ -383,7 +383,7 @@ module Sivel2Gen
 
             # Validaciones todo caso tiene victima
             # Validaciones todo caso tiene ubicacion
-            where1 = '';
+            where1 = ''
             que1, tablas1, where1 = inicializa(where1)
 
             where1 = procesa_filtros_fechas(where1)
