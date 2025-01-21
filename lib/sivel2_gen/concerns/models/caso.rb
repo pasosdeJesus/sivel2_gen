@@ -353,7 +353,7 @@ module Sivel2Gen
               if !acto['id_victima_individual'].nil?
                 actos_individuales.append(acto)
               end
-              if !acto['id_grupo_victima'].nil?
+              if acto && !acto['id_grupo_victima'].nil?
                 actos_colectivos.append(acto)
               end
             end
