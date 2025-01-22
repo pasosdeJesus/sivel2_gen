@@ -295,6 +295,7 @@ module Sivel2Gen
         Sivel2Gen::Victima,
         Sivel2Gen::Victimacolectiva,
       ]
+      habilidad.can :guardar_y_editar, Sivel2Gen::Caso
 
       if usuario && usuario.rol then
         habilidad.can :nuevo, Msip::Ubicacion
