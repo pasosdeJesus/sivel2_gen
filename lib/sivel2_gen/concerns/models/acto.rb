@@ -8,15 +8,30 @@ module Sivel2Gen
 
           include Msip::Modelo
 
-          belongs_to :presponsable, class_name: 'Sivel2Gen::Presponsable',
-            foreign_key: "presponsable_id", validate: true, optional: false
+          belongs_to :presponsable, 
+            class_name: 'Sivel2Gen::Presponsable',
+            foreign_key: "presponsable_id", 
+            optional: false,
+            validate: true
           accepts_nested_attributes_for :presponsable
-          belongs_to :persona, class_name: 'Msip::Persona',
-            foreign_key: "persona_id", validate: true, optional: false
-          belongs_to :caso, class_name: 'Sivel2Gen::Caso', 
-            foreign_key: "caso_id", validate: true, optional: false
-          belongs_to :categoria, class_name: 'Sivel2Gen::Categoria',
-            foreign_key: "categoria_id", validate: true, optional: false
+
+          belongs_to :persona, 
+            class_name: 'Msip::Persona',
+            foreign_key: "persona_id", 
+            optional: false,
+            validate: true
+
+          belongs_to :caso, 
+            class_name: 'Sivel2Gen::Caso', 
+            foreign_key: "caso_id", 
+            optional: false,
+            validate: true
+
+          belongs_to :categoria, 
+            class_name: 'Sivel2Gen::Categoria',
+            foreign_key: "categoria_id", 
+            optional: false,
+            validate: true
 
           validates_presence_of :presponsable
           validates_presence_of :persona
@@ -44,22 +59,6 @@ module Sivel2Gen
             tv = self.categoria.supracategoria.tviolencia_id
             pr = self.presponsable.id
             cat = self.categoria
-            ce = cat.contadaen if cat
-            actos = Sivel2Gen::Acto.all
-            if ce != nil
-              actos_hermanos = actos.where.not(id: self.id)
-              vale = false
-              actos_hermanos.each do |ah|
-                if ah.persona == self.persona &&
-                    ah.presponsable == self.presponsable &&
-                    ah.categoria.id == ce
-                  vale = true
-                end
-              end
-              if !vale
-                errors.add(:categoria_id, "Falta categoría #{ce} requerida por categoría #{cat.id}.")
-              end
-            end
             if tv == "A" && !descpoloe_ids.include?(pr) then
               errors.add(:acto, "Si el tipo de violencia es "\
                          "Derechos Humanos el presunto responsable debe "\
