@@ -350,7 +350,7 @@ module Sivel2Gen
               actos = [datosent['acto']]
             end
             actos.each do |acto|
-              if !acto['id_victima_individual'].nil?
+              if acto && !acto['id_victima_individual'].nil?
                 actos_individuales.append(acto)
               end
               if acto && !acto['id_grupo_victima'].nil?
