@@ -321,25 +321,23 @@ module Sivel2Gen
                 actos_colectivos.append(acto)
               end
             end
-            #Importa presunto responsable
-            prs_acolectivos = actos_colectivos.map{|prs| prs["id_presunto_grupo_responsable"]}
+
+            #Importa presuntos responsables
+            prs = actos_colectivos.map{|prs| 
+              prs["id_presunto_grupo_responsable"]
+            } | actos_individuales.map{|prs| 
+              prs["id_presunto_responsable_individual"]
+            }
             if datosent['grupo']
               if datosent['grupo'].kind_of?(Array)
-                datosent['grupo'].each do |pr|
-                  if prs_acolectivos.include? pr['id_grupo']
-                    casopresp = Sivel2Gen::CasoPresponsable.new
-                    casopresp.importa(pr, datossal, menserror, opciones)
-                    if casopresp.presponsable_id
-                      casopresp.caso_id = self.id
-                      casopresp.save!(validate: false)
-                    end
-                  end
-                end
+                ldgrupo = datosent['grupo']
               else
-                if prs_acolectivos.include? datosent['grupo']['id_grupo']
+                ldgrupo = [datosent['grupo']]
+              end
+              ldgrupo.each do |pr|
+                if prs.include? pr['id_grupo']
                   casopresp = Sivel2Gen::CasoPresponsable.new
-                  casopresp.importa(
-                    datosent['grupo'], datossal, menserror, opciones)
+                  casopresp.importa(pr, datossal, menserror, opciones)
                   if casopresp.presponsable_id
                     casopresp.caso_id = self.id
                     casopresp.save!(validate: false)
