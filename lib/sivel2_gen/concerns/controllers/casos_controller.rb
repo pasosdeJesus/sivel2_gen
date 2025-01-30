@@ -1157,8 +1157,8 @@ module Sivel2Gen
             sivel2_gen_destroy
           end
 
-          def self.importar_relato(doc, menserror, sintaxis_errores, mensexito, ids_importados,
-                                   usuario_id, formato_sexo)
+          def self.importar_relato(doc, menserror, sintaxis_errores, mensexito,
+                                   ids_importados, usuario_id, formato_sexo)
             if !Nokogiri::XML(doc).errors.empty?
               Nokogiri::XML(doc).errors.each do |error|
                 sintaxis_errores.push(error.message)
