@@ -60,3 +60,4 @@ test/dummy/yarn.lock.cp
 reflocal
 .yardoc
 yard_doc
+test/dummy/public/assets
