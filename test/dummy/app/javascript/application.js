@@ -15,6 +15,8 @@ import 'gridstack'
 import 'popper.js'              // Dialogos emergentes usados por bootstrap
 import * as bootstrap from 'bootstrap'              // Maquetacion y elementos de diseño
 
+import "./custom/companion"
+
 import Msip__Motor from "./controllers/msip/motor"
 window.Msip__Motor = Msip__Motor
 Msip__Motor.iniciar()

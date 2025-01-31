@@ -56,6 +56,10 @@ Sivel2Gen::Engine.routes.draw do
 
   get "/personas/remplazarfamiliar" => "/msip/personas#remplazarfamiliar"
 
+  get "/service-worker.js" => "service_worker#service_worker"
+
+  get "/manifest.json" => "service_worker#manifest"
+
   get "/tablasbasicas" => 'hogar#tablasbasicas'
 
   get '/ubicaciones/nuevo' => 'ubicaciones#nuevo'
