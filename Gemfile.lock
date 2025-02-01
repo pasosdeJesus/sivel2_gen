@@ -11,11 +11,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/heb412_gen.git
-<<<<<<< HEAD
   revision: 839d306f2abfd39750241f5ea99f054dac08d9de
-=======
-  revision: 0f832793301564e680121bac0fffe02b6943f74a
->>>>>>> e5d0d368 (Actualiza)
   branch: main
   specs:
     heb412_gen (2.3.0.alfa3)
@@ -35,11 +31,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/msip.git
-<<<<<<< HEAD
   revision: 9757c0a55a75c051fbc296b61de2f7c4cdf0b0d9
-=======
-  revision: 0f0744e234622ee0a3f197a0e78cb88e057ac729
->>>>>>> e5d0d368 (Actualiza)
   branch: main
   specs:
     msip (2.3.0.alfa3)
@@ -255,11 +247,8 @@ GEM
       racc
     pdf-core (0.10.0)
     pg (1.5.9)
-<<<<<<< HEAD
     pp (0.6.2)
       prettyprint
-=======
->>>>>>> e5d0d368 (Actualiza)
     prawn (2.5.0)
       matrix (~> 0.4)
       pdf-core (~> 0.10.0)
@@ -313,11 +302,7 @@ GEM
       ruby-graphviz (~> 1.2)
     rails-html-sanitizer (1.6.2)
       loofah (~> 2.21)
-<<<<<<< HEAD
       nokogiri (>= 1.15.7, != 1.16.7, != 1.16.6, != 1.16.5, != 1.16.4, != 1.16.3, != 1.16.2, != 1.16.1, != 1.16.0.rc1, != 1.16.0)
-=======
-      nokogiri (~> 1.14)
->>>>>>> e5d0d368 (Actualiza)
     rails-i18n (7.0.10)
       i18n (>= 0.7, < 2)
       railties (>= 6.0.0, < 8)
@@ -359,11 +344,7 @@ GEM
     rubocop-minitest (0.36.0)
       rubocop (>= 1.61, < 2.0)
       rubocop-ast (>= 1.31.1, < 2.0)
-<<<<<<< HEAD
     rubocop-rails (2.29.1)
-=======
-    rubocop-rails (2.27.0)
->>>>>>> e5d0d368 (Actualiza)
       activesupport (>= 4.2.0)
       rack (>= 1.1)
       rubocop (>= 1.52.0, < 2.0)
