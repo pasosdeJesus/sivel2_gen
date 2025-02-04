@@ -51,7 +51,7 @@ module Sivel2Gen
             if self.id == polo_id
               self.nombre
             else
-              polo_nombre + " - " + self.nombre
+              polo_nombre.to_s + " - " + self.nombre
             end
           end
 
