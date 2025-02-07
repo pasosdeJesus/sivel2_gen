@@ -43,6 +43,8 @@ Sivel2Gen::Engine.routes.draw do
 
   get "/hogar" => 'hogar#index'
 
+  get "/noconexion" => 'hogar#noconexion'
+
   get '/admin/presponsables/nuevo' => 'admin/presponsables#nuevo'
 
   get '/admin/presponsables/arbol' => 'admin/presponsables#arbol',

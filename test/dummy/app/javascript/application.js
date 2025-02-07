@@ -15,7 +15,6 @@ import 'gridstack'
 import 'popper.js'              // Dialogos emergentes usados por bootstrap
 import * as bootstrap from 'bootstrap'              // Maquetacion y elementos de diseño
 
-import "./custom/companion"
 
 import Msip__Motor from "./controllers/msip/motor"
 window.Msip__Motor = Msip__Motor
@@ -30,6 +29,7 @@ import Sivel2Gen__Motor from "./controllers/sivel2_gen/motor"
 window.Sivel2Gen__Motor = Sivel2Gen__Motor
 Sivel2Gen__Motor.iniciar()
 import PlotlyActosController from "./controllers/sivel2_gen/plotly_actos_controller"
+import Asistente from "./personalizado/asistente"
 
 
 import TomSelect from 'tom-select';
@@ -110,6 +110,7 @@ document.addEventListener('turbo:load', (e) => {
   Mr519Gen__Motor.ejecutarAlCargarPagina()
   Heb412Gen__Motor.ejecutarAlCargarPagina()
   Sivel2Gen__Motor.ejecutarAlCargarPagina()
+  Asistente.conectar()
 })
 
 import "./controllers"
