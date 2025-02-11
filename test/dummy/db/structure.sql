@@ -4119,13 +4119,7 @@ CREATE MATERIALIZED VIEW public.sivel2_gen_consexpcaso AS
           WHERE ((sivel2_gen_conscaso.caso_id IN ( SELECT sivel2_gen_caso.id
                    FROM public.sivel2_gen_caso)) AND (sivel2_gen_conscaso.caso_id IN ( SELECT msip_ubicacion.caso_id
                    FROM public.msip_ubicacion
-                  WHERE (msip_ubicacion.pais_id = 170))) AND (sivel2_gen_conscaso.caso_id IN ( SELECT sivel2_gen_victima.caso_id
-                   FROM (public.sivel2_gen_victima
-                     JOIN public.msip_persona ON ((sivel2_gen_victima.persona_id = msip_persona.id)))
-                  WHERE (public.unaccent((msip_persona.nombres)::text) ~~* (('%'::text || public.unaccent('WILFRIDO '::text)) || '%'::text)))) AND (sivel2_gen_conscaso.caso_id IN ( SELECT sivel2_gen_victima.caso_id
-                   FROM (public.sivel2_gen_victima
-                     JOIN public.msip_persona ON ((sivel2_gen_victima.persona_id = msip_persona.id)))
-                  WHERE (public.unaccent((msip_persona.apellidos)::text) ~~* (('%'::text || public.unaccent('ARROYO'::text)) || '%'::text)))))
+                  WHERE (msip_ubicacion.pais_id = 170))) AND (sivel2_gen_conscaso.fecha >= '2024-10-01'::date) AND (sivel2_gen_conscaso.fecha <= '2024-10-31'::date))
           ORDER BY sivel2_gen_conscaso.fecha, sivel2_gen_conscaso.caso_id))
   ORDER BY conscaso.fecha, conscaso.caso_id
   WITH NO DATA;
@@ -7462,14 +7456,6 @@ ALTER TABLE ONLY public.sivel2_gen_categoria
 
 
 --
--- Name: sivel2_gen_categoria categoria_contadaen_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.sivel2_gen_categoria
-    ADD CONSTRAINT categoria_contadaen_fkey FOREIGN KEY (contadaen) REFERENCES public.sivel2_gen_categoria(id);
-
-
---
 -- Name: sivel2_gen_contextovictima_victima contextovictima_victima_contextovictima_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -8254,14 +8240,6 @@ ALTER TABLE ONLY public.msip_persona
 
 
 --
--- Name: sivel2_gen_presponsable presponsable_papa_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.sivel2_gen_presponsable
-    ADD CONSTRAINT presponsable_papa_id_fkey FOREIGN KEY (papa_id) REFERENCES public.sivel2_gen_presponsable(id);
-
-
---
 -- Name: sivel2_gen_caso_presponsable presuntos_responsables_caso_id_caso_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -8275,6 +8253,14 @@ ALTER TABLE ONLY public.sivel2_gen_caso_presponsable
 
 ALTER TABLE ONLY public.sivel2_gen_caso_presponsable
     ADD CONSTRAINT presuntos_responsables_caso_id_p_responsable_fkey FOREIGN KEY (presponsable_id) REFERENCES public.sivel2_gen_presponsable(id);
+
+
+--
+-- Name: sivel2_gen_presponsable presuntos_responsables_id_papa_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.sivel2_gen_presponsable
+    ADD CONSTRAINT presuntos_responsables_id_papa_fkey FOREIGN KEY (papa_id) REFERENCES public.sivel2_gen_presponsable(id);
 
 
 --
@@ -8632,7 +8618,6 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20240219221519'),
 ('20240219220944'),
 ('20231208162022'),
-('20231205205600'),
 ('20231205205549'),
 ('20231205202418'),
 ('20231125230000'),
