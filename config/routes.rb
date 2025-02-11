@@ -43,6 +43,8 @@ Sivel2Gen::Engine.routes.draw do
 
   get "/hogar" => 'hogar#index'
 
+  get "/noconexion" => 'hogar#noconexion'
+
   get '/admin/presponsables/nuevo' => 'admin/presponsables#nuevo'
 
   get '/admin/presponsables/arbol' => 'admin/presponsables#arbol',
@@ -55,6 +57,10 @@ Sivel2Gen::Engine.routes.draw do
     as: :mapamunvic
 
   get "/personas/remplazarfamiliar" => "/msip/personas#remplazarfamiliar"
+
+  get "/service-worker.js" => "service_worker#service_worker"
+
+  get "/manifest.json" => "service_worker#manifest"
 
   get "/tablasbasicas" => 'hogar#tablasbasicas'
 
