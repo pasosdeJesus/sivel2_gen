@@ -113,7 +113,7 @@ export default class Sivel2Gen__Motor {
       }
     })
 
-    Msip__Motor.registraCambiosParaBitacora(window)
+    Msip__Motor.registrarCambiosParaBitacora(window)
 
 
     document.addEventListener('change', e => {
