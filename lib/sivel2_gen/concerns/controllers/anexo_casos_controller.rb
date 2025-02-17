@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Sivel2Gen
   module Concerns
     module Controllers
@@ -17,13 +19,11 @@ module Sivel2Gen
 
           def prepara_caso
             @caso = Sivel2Gen::Caso.new(
-              anexo_caso: [Sivel2Gen::AnexoCaso.new]
+              anexo_caso: [Sivel2Gen::AnexoCaso.new],
             )
           end
         end # included
-
-      end 
+      end
     end
   end
 end
-

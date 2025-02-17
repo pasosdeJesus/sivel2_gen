@@ -1,4 +1,6 @@
-require 'sivel2_gen/concerns/controllers/familiares_controller'
+# frozen_string_literal: true
+
+require "sivel2_gen/concerns/controllers/familiares_controller"
 
 module Sivel2Gen
   class FamiliaresController < Heb412Gen::ModelosController

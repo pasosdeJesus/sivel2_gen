@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 module Sivel2Gen
   module Admin
     class EstadoscivilesController < Msip::Admin::BasicasController
       before_action :set_estadocivil, only: [:show, :edit, :update, :destroy]
       load_and_authorize_resource class: Sivel2Gen::Estadocivil
 
-      def clase 
+      def clase
         "Sivel2Gen::Estadocivil"
       end
 
@@ -14,14 +16,13 @@ module Sivel2Gen
       end
 
       def genclase
-        return 'M';
+        "M"
       end
 
       # Never trust parameters from the scary internet, only allow the white list through.
       def estadocivil_params
         params.require(:estadocivil).permit(*atributos_form)
       end
-
     end
   end
 end

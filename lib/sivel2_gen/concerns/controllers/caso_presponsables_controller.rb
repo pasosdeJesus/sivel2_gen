@@ -1,4 +1,6 @@
-require 'date'
+# frozen_string_literal: true
+
+require "date"
 
 module Sivel2Gen
   module Concerns
@@ -28,11 +30,11 @@ module Sivel2Gen
 
           def prepara_caso
             @caso = Sivel2Gen::Caso.new(
-              caso_presponsable: [Sivel2Gen::CasoPresponsable.new])
+              caso_presponsable: [Sivel2Gen::CasoPresponsable.new],
+            )
           end
         end # included
-
-      end 
+      end
     end
   end
 end

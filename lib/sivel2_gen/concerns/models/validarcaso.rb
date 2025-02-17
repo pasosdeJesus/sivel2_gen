@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 
 module Sivel2Gen
   module Concerns
@@ -11,7 +12,6 @@ module Sivel2Gen
           attr_accessor :fechafin
           attr_accessor :etiqueta_id
         end
-
       end
     end
   end

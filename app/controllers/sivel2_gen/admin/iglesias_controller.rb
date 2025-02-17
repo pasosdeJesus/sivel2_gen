@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 module Sivel2Gen
   module Admin
     class IglesiasController < Msip::Admin::BasicasController
       before_action :set_iglesia, only: [:show, :edit, :update, :destroy]
       load_and_authorize_resource class: Sivel2Gen::Iglesia
-  
-      def clase 
+
+      def clase
         "Sivel2Gen::Iglesia"
       end
 
@@ -15,11 +17,10 @@ module Sivel2Gen
       def set_iglesia
         @basica = Iglesia.find(params[:id])
       end
-  
+
       def iglesia_params
         params.require(:iglesia).permit(*atributos_form)
       end
-  
     end
   end
 end

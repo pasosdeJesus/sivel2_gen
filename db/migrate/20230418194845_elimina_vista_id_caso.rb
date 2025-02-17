@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class EliminaVistaIdCaso < ActiveRecord::Migration[7.0]
   def up
-    execute <<-SQL
+    execute(<<-SQL)
       DROP VIEW IF EXISTS public.sivel2_gen_iniciador;
       DROP VIEW IF EXISTS public.cvt1;
       DROP VIEW IF EXISTS public.iniciador;
@@ -9,6 +11,7 @@ class EliminaVistaIdCaso < ActiveRecord::Migration[7.0]
       DROP MATERIALIZED VIEW IF EXISTS public.sivel2_gen_consexpcaso;
     SQL
   end
+
   def down
   end
 end

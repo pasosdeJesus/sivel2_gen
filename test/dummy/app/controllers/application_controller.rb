@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ApplicationController < Sivel2Gen::ApplicationController
   # Previene ataques CSRF lanzando una excepción
   # Para APIs, más bien puede usar :null_session

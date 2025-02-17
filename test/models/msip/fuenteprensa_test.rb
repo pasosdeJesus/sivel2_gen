@@ -21,7 +21,7 @@ module Msip
     end
 
     test "existente" do
-      fuenteprensa = Msip::Fuenteprensa.where(id: 1).take
+      fuenteprensa = Msip::Fuenteprensa.find_by(id: 1)
 
       assert_equal("EL TIEMPO", fuenteprensa.nombre)
     end

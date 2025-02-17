@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 class EliminaSivel2GenEtnia < ActiveRecord::Migration[7.1]
   def up
-    drop_table :sivel2_gen_etnia
+    drop_table(:sivel2_gen_etnia)
   end
-  def down
 
+  def down
   end
 end

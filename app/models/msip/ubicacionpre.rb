@@ -1,5 +1,6 @@
+# frozen_string_literal: true
 
-require 'sivel2_gen/concerns/models/ubicacionpre'
+require "sivel2_gen/concerns/models/ubicacionpre"
 
 module Msip
   class Ubicacionpre < ActiveRecord::Base

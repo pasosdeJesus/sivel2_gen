@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Sivel2Gen
   module Concerns
     module Controllers
@@ -11,7 +13,7 @@ module Sivel2Gen
           before_action :prepara_caso
 
           def new
-          end 
+          end
 
           def destroy
           end
@@ -28,9 +30,7 @@ module Sivel2Gen
             @caso = Sivel2Gen::Caso.new(caso_fotra: [Sivel2Gen::CasoFotra.new])
           end
         end # included
-
-      end 
+      end
     end
   end
 end
-

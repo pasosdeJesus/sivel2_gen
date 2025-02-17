@@ -1,5 +1,6 @@
+# frozen_string_literal: true
 
-require 'sivel2_gen/concerns/models/filiacion'
+require "sivel2_gen/concerns/models/filiacion"
 
 module Sivel2Gen
   # Tabla básica filiación política

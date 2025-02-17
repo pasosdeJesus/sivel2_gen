@@ -1,5 +1,6 @@
+# frozen_string_literal: true
 
-require 'msip/concerns/controllers/personas_controller'
+require "msip/concerns/controllers/personas_controller"
 
 module Sivel2Gen
   module Concerns
@@ -9,9 +10,9 @@ module Sivel2Gen
 
         included do
           include Msip::Concerns::Controllers::PersonasController
- 
+
           def atributos_show_sivel2_gen
-            atributos_show_msip + [ :caso_ids ]
+            atributos_show_msip + [:caso_ids]
           end
 
           def atributos_show
@@ -23,12 +24,12 @@ module Sivel2Gen
             if a.index(:familiares)
               a[a.index(:familiares)] = :persona_trelacion1
             end
-            return a
+            a
           end
 
           def remplazar_antes_destruir_p
             true
-          end 
+          end
 
           # Están llenas @persona, @victima, @personaant, @caso
           # Y está listo para salvar la nueva persona @persona en
@@ -38,11 +39,11 @@ module Sivel2Gen
           # y que retorne false.
           def remplazar_antes_salvar_v
             true
-          end 
+          end
 
           def remplazar_despues_salvar_v
             true
-          end 
+          end
 
           def remplazarfamiliar
             @caso = Sivel2Gen::Caso.find(params[:caso_id])
@@ -57,22 +58,26 @@ module Sivel2Gen
               @victima = Sivel2Gen::Victima.find(params[:victima_id].to_i)
               personatrcons = Msip::PersonaTrelacion.where(
                 persona1: @victima.persona.id,
-                persona2: @personados.id)
+                persona2: @personados.id,
+              )
               if personatrcons.count > 0
                 @personatr = personatrcons[0]
               else
                 @personatr = Msip::PersonaTrelacion.create(
                   persona1: @victima.persona.id,
-                  persona2: @personados.id)
+                  persona2: @personados.id,
+                )
                 @personatr.save!
               end
             end
             respond_to do |format|
-              format.html {
-                render("/msip/personas/remplazar_familiar",
-                       layout: false)
+              format.html do
+                render(
+                  "/msip/personas/remplazar_familiar",
+                  layout: false,
+                )
                 return
-              }
+              end
             end
           end
 
@@ -81,37 +86,41 @@ module Sivel2Gen
             @caso = Sivel2Gen::Caso.find(params[:caso_id].to_i)
             @caso.current_usuario = current_usuario
             @vic_position = params[:vic_position].to_i
-            if !remplazar_antes_salvar_v
+            unless remplazar_antes_salvar_v
               return
             end
-            if Sivel2Gen::Victima.where(persona_id: @persona.id).
-                where(caso_id: @caso.id).count == 0
-              @victima = Sivel2Gen::Victima.create(persona_id: @persona.id,
-                                                   caso_id: @caso.id)
+
+            if Sivel2Gen::Victima.where(persona_id: @persona.id)
+                .where(caso_id: @caso.id).count == 0
+              @victima = Sivel2Gen::Victima.create(
+                persona_id: @persona.id,
+                caso_id: @caso.id,
+              )
               @victima.save!
             else
               puts "Ya existe esa persona en el caso"
-              render json: "Ya existe esa persona en el caso",
-                status: :unprocessable_entity
-              return 
-            end
-            if !remplazar_despues_salvar_v
+              render(
+                json: "Ya existe esa persona en el caso",
+                status: :unprocessable_entity,
+              )
               return
             end
+            unless remplazar_despues_salvar_v
+              return
+            end
+
             respond_to do |format|
-              format.html { 
-                render('/msip/personas/remplazar', layout: false) 
+              format.html do
+                render("/msip/personas/remplazar", layout: false)
                 return
-              }
+              end
             end
           end
 
           def remplazar
             remplazar_sivel2_gen
           end
-
         end # included
-
 
         class_methods do
         end # class_methods

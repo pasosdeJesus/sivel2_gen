@@ -1,4 +1,6 @@
-require 'sivel2_gen/concerns/controllers/caso_etiquetas_controller'
+# frozen_string_literal: true
+
+require "sivel2_gen/concerns/controllers/caso_etiquetas_controller"
 
 module Sivel2Gen
   class CasoEtiquetasController < ApplicationController

@@ -1,5 +1,6 @@
+# frozen_string_literal: true
 
-require 'sivel2_gen/concerns/models/anexo_caso'
+require "sivel2_gen/concerns/models/anexo_caso"
 
 module Sivel2Gen
   # Relación n:n entre casos y anexo

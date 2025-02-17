@@ -1,5 +1,6 @@
+# frozen_string_literal: true
 
-require 'sivel2_gen/concerns/models/profesion'
+require "sivel2_gen/concerns/models/profesion"
 
 module Sivel2Gen
   # Tabla básica Profesión

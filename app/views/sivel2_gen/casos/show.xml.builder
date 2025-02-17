@@ -1,15 +1,17 @@
+# frozen_string_literal: true
+
 xml.instruct!
-if ENV['RAILS_ENV'] == 'test'
-  rdtd = 'test/dummy/public/relatos-099.dtd'
+rdtd = if ENV["RAILS_ENV"] == "test"
+  "test/dummy/public/relatos-099.dtd"
 else
-  rdtd = 'http://sincodh.pasosdejesus.org/relatos/relatos-099.dtd'
+  "http://sincodh.pasosdejesus.org/relatos/relatos-099.dtd"
 end
 
-xml.declare! :DOCTYPE, :relatos, :SYSTEM, rdtd
+xml.declare!(:DOCTYPE, :relatos, :SYSTEM, rdtd)
 xml.relatos do
-  xml << render(:partial => 'sivel2_gen/casos/caso',
-                format: [:xrlat],
-                :locals => { :caso => caso} ).gsub(/^/, '     ')
-
+  xml << render(
+    partial: "sivel2_gen/casos/caso",
+    format: [:xrlat],
+    locals: { caso: caso },
+  ).gsub(/^/, "     ")
 end
-

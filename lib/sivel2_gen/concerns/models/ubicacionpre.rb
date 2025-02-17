@@ -1,4 +1,6 @@
-require 'msip/concerns/models/ubicacionpre'
+# frozen_string_literal: true
+
+require "msip/concerns/models/ubicacionpre"
 
 module Sivel2Gen
   module Concerns
@@ -10,4 +12,3 @@ module Sivel2Gen
     end
   end
 end
-

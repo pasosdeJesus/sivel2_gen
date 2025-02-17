@@ -18,11 +18,12 @@ module Sivel2Gen
       assert caso.valid?
 
       cf = Sivel2Gen::CasoFotra.create(
-        nombre: 'x',
+        nombre: "x",
         caso_id: caso.id,
         fotra_id: fotra.id,
-        fecha: '2023-01-11',
+        fecha: "2023-01-11",
       )
+
       assert cf.valid?
 
       cf.destroy

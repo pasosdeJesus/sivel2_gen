@@ -1,4 +1,6 @@
-require 'sivel2_gen/concerns/models/anexo'
+# frozen_string_literal: true
+
+require "sivel2_gen/concerns/models/anexo"
 
 module Msip
   class Anexo < ActiveRecord::Base

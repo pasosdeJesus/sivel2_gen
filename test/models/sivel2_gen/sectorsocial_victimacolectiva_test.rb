@@ -10,25 +10,30 @@ module Sivel2Gen
 
     test "valido" do
       sectorsocial = Sectorsocial.new(PRUEBA_SECTORSOCIAL)
+
       assert_predicate sectorsocial, :valid?
       sectorsocial.save
 
-      caso = Caso.create PRUEBA_CASO
+      caso = Caso.create(PRUEBA_CASO)
+
       assert caso.valid?
 
-      grupoper = Msip::Grupoper.create PRUEBA_GRUPOPER
+      grupoper = Msip::Grupoper.create(PRUEBA_GRUPOPER)
+
       assert grupoper.valid?
 
-      victimacolectiva = Victimacolectiva.create PRUEBA_VICTIMACOLECTIVA.merge(
+      victimacolectiva = Victimacolectiva.create(PRUEBA_VICTIMACOLECTIVA.merge(
         caso_id: caso.id,
         grupoper_id: grupoper.id,
-      )
+      ))
+
       assert victimacolectiva.valid?
 
       av = Sivel2Gen::SectorsocialVictimacolectiva.create(
         victimacolectiva_id: victimacolectiva.id,
         sectorsocial_id: sectorsocial.id,
       )
+
       assert_predicate av, :valid?
 
       victimacolectiva.destroy

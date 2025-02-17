@@ -1,6 +1,8 @@
-require 'date'
+# frozen_string_literal: true
 
-require 'sivel2_gen/concerns/controllers/caso_presponsables_controller'
+require "date"
+
+require "sivel2_gen/concerns/controllers/caso_presponsables_controller"
 
 module Sivel2Gen
   class CasoPresponsablesController < ApplicationController

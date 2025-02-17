@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class AgCasoUbicacionpreSiFalta < ActiveRecord::Migration[7.2]
   def up
-    execute <<-SQL
+    execute(<<-SQL)
       CREATE SEQUENCE public.sivel2_gen_caso_ubicacionpre_id_seq
           START WITH 1
           INCREMENT BY 1
@@ -17,8 +19,9 @@ class AgCasoUbicacionpreSiFalta < ActiveRecord::Migration[7.2]
       );
     SQL
   end
+
   def down
-    execute <<-SQL
+    execute(<<-SQL)
       DROP TABLE public.sivel2_gen_caso_ubicacionpre;
       DROP SEQUENCE public.sivel2_gen_caso_ubicacionpre_id_seq;
     SQL

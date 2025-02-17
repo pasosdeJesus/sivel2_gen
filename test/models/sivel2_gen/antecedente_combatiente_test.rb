@@ -10,21 +10,25 @@ module Sivel2Gen
 
     test "valido" do
       antecedente = Antecedente.new(PRUEBA_ANTECEDENTE)
+
       assert_predicate antecedente, :valid?
       antecedente.save
 
-      caso = Caso.create PRUEBA_CASO
+      caso = Caso.create(PRUEBA_CASO)
+
       assert caso.valid?
 
-      combatiente = Combatiente.create PRUEBA_COMBATIENTE.merge(
-        caso_id: caso.id
-      )
+      combatiente = Combatiente.create(PRUEBA_COMBATIENTE.merge(
+        caso_id: caso.id,
+      ))
+
       assert combatiente.valid?
 
       ac = Sivel2Gen::AntecedenteCombatiente.create(
         combatiente_id: combatiente.id,
         antecedente_id: antecedente.id,
       )
+
       assert_predicate ac, :valid?
 
       combatiente.destroy

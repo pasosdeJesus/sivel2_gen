@@ -1,4 +1,6 @@
-require 'sivel2_gen/concerns/models/profesion_victima'
+# frozen_string_literal: true
+
+require "sivel2_gen/concerns/models/profesion_victima"
 
 module Sivel2Gen
   # Relación n:n entre Profesión y Víctima

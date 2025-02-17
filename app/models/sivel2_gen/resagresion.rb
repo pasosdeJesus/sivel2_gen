@@ -1,5 +1,6 @@
+# frozen_string_literal: true
 
-require 'sivel2_gen/concerns/models/resagresion'
+require "sivel2_gen/concerns/models/resagresion"
 
 module Sivel2Gen
   # Tabla básica Resultado de Agresión (aplica a combatientes solamente)

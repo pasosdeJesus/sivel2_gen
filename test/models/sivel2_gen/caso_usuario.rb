@@ -20,8 +20,9 @@ module Sivel2Gen
       cs = Sivel2Gen::CasoUsuario.create(
         caso_id: caso.id,
         usuario_id: usuario.id,
-        fechainicio: '2023-01-11',
+        fechainicio: "2023-01-11",
       )
+
       assert_predicate cs, :valid?
 
       caso.destroy

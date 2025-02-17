@@ -1,4 +1,6 @@
-require 'sivel2_gen/concerns/models/organizacion_victimacolectiva'
+# frozen_string_literal: true
+
+require "sivel2_gen/concerns/models/organizacion_victimacolectiva"
 
 module Sivel2Gen
   # Relación n:n entre Organización y Victima Colectiva

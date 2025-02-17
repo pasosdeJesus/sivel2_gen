@@ -22,9 +22,9 @@ module Sivel2Gen
     end
 
     test "existente" do
-      sectorsocial = Sectorsocial.where(id: 1).take
-      assert_equal sectorsocial.nombre, "CAMPESINO"
-    end
+      sectorsocial = Sectorsocial.find_by(id: 1)
 
+      assert_equal "CAMPESINO", sectorsocial.nombre
+    end
   end
 end

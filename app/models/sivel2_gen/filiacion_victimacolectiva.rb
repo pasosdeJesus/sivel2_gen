@@ -1,4 +1,6 @@
-require 'sivel2_gen/concerns/models/filiacion_victimacolectiva'
+# frozen_string_literal: true
+
+require "sivel2_gen/concerns/models/filiacion_victimacolectiva"
 
 module Sivel2Gen
   # Relación n:n entre Filiación política y víctima colectiva

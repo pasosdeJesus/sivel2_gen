@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 
 module Sivel2Gen
   module Concerns
@@ -6,10 +7,9 @@ module Sivel2Gen
         extend ActiveSupport::Concern
 
         included do
-
           include ActionView::Helpers::AssetUrlHelper
 
-          def clase 
+          def clase
             "Sivel2Gen::Pconsolidado"
           end
 
@@ -18,25 +18,26 @@ module Sivel2Gen
           end
 
           def atributos_index
-            [:id, 
-             :nombre, 
-             :tipoviolencia, 
-             :clasificacion, 
-             :peso, 
-             :observaciones, 
-             :categoria_ids,
-             :fechacreacion_localizada, 
-             :habilitado
+            [
+              :id,
+              :nombre,
+              :tipoviolencia,
+              :clasificacion,
+              :peso,
+              :observaciones,
+              :categoria_ids,
+              :fechacreacion_localizada,
+              :habilitado,
             ]
           end
 
           # Campos que se presentar en formulario
           def atributos_form
-            r = atributos_show -  [:fechacreacion_localizada] + [:fechacreacion] -
-              [:fechadeshabilitacion_localizada] + [:fechadeshabilitacion] - 
-              ["id", :id, 'created_at', :created_at, 'updated_at', :updated_at]
-            r[r.index(:categoria_ids)] = { 'categoria_ids' => [] }
-            return r
+            r = atributos_show - [:fechacreacion_localizada] + [:fechacreacion] -
+              [:fechadeshabilitacion_localizada] + [:fechadeshabilitacion] -
+              ["id", :id, "created_at", :created_at, "updated_at", :updated_at]
+            r[r.index(:categoria_ids)] = { "categoria_ids" => [] }
+            r
           end
 
           def index_reordenar(c)
@@ -46,9 +47,7 @@ module Sivel2Gen
           def pconsolidado_params
             params.require(:pconsolidado).permit(*atributos_form)
           end
-
         end # included
-
       end
     end
   end

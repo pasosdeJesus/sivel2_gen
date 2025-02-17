@@ -1,5 +1,6 @@
+# frozen_string_literal: true
 
-require 'sivel2_gen/concerns/models/actividadoficio'
+require "sivel2_gen/concerns/models/actividadoficio"
 
 module Sivel2Gen
   # Tabla básica Actividad u Oficio

@@ -10,25 +10,30 @@ module Sivel2Gen
 
     test "valido" do
       rangoedad = Rangoedad.new(PRUEBA_RANGOEDAD)
+
       assert_predicate rangoedad, :valid?
       rangoedad.save
 
-      caso = Caso.create PRUEBA_CASO
+      caso = Caso.create(PRUEBA_CASO)
+
       assert caso.valid?
 
-      grupoper = Msip::Grupoper.create PRUEBA_GRUPOPER
+      grupoper = Msip::Grupoper.create(PRUEBA_GRUPOPER)
+
       assert grupoper.valid?
 
-      victimacolectiva = Victimacolectiva.create PRUEBA_VICTIMACOLECTIVA.merge(
+      victimacolectiva = Victimacolectiva.create(PRUEBA_VICTIMACOLECTIVA.merge(
         caso_id: caso.id,
         grupoper_id: grupoper.id,
-      )
+      ))
+
       assert victimacolectiva.valid?
 
       av = Sivel2Gen::RangoedadVictimacolectiva.create(
         victimacolectiva_id: victimacolectiva.id,
         rangoedad_id: rangoedad.id,
       )
+
       assert_predicate av, :valid?
 
       victimacolectiva.destroy

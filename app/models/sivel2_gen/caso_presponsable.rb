@@ -1,5 +1,6 @@
+# frozen_string_literal: true
 
-require 'sivel2_gen/concerns/models/caso_presponsable'
+require "sivel2_gen/concerns/models/caso_presponsable"
 
 module Sivel2Gen
   # Relación n:n entre Caso y Presunto Responsable

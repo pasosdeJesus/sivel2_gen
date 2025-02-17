@@ -1,5 +1,6 @@
+# frozen_string_literal: true
 
-require 'sivel2_gen/concerns/models/antecedente'
+require "sivel2_gen/concerns/models/antecedente"
 
 module Sivel2Gen
   # Tabla básica Antecedente

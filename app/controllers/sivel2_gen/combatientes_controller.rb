@@ -1,6 +1,8 @@
-require 'date'
+# frozen_string_literal: true
 
-require 'sivel2_gen/concerns/controllers/combatientes_controller'
+require "date"
+
+require "sivel2_gen/concerns/controllers/combatientes_controller"
 
 module Sivel2Gen
   class CombatientesController < ApplicationController

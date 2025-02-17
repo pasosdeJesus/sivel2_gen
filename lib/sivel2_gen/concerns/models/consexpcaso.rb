@@ -1,42 +1,53 @@
+# frozen_string_literal: true
 
 module Sivel2Gen
   module Concerns
     module Models
-      module Consexpcaso 
+      module Consexpcaso
         extend ActiveSupport::Concern
 
         included do
-          belongs_to :conscaso, class_name: 'Sivel2Gen::Conscaso',
-            primary_key: 'caso_id', foreign_key: 'caso_id', optional: false
-          
-          belongs_to :caso, class_name: 'Sivel2Gen::Caso',
-            primary_key: 'id', optional: false
-          
-          has_many :ubicacion, through: :caso,
-            class_name: 'Msip::Ubicacion'
+          belongs_to :conscaso,
+            class_name: "Sivel2Gen::Conscaso",
+            primary_key: "caso_id",
+            foreign_key: "caso_id",
+            optional: false
 
-          has_many :caso_presponsable, through: :caso,
-            class_name: 'Sivel2Gen::CasoPresponsable'
+          belongs_to :caso,
+            class_name: "Sivel2Gen::Caso",
+            primary_key: "id",
+            optional: false
 
-          has_many :acto, through: :caso,
-            class_name: 'Sivel2Gen::Acto'
+          has_many :ubicacion,
+            through: :caso,
+            class_name: "Msip::Ubicacion"
 
-          has_many :victima, through: :caso,
-            class_name: 'Sivel2Gen::Victima'
+          has_many :caso_presponsable,
+            through: :caso,
+            class_name: "Sivel2Gen::CasoPresponsable"
 
-          has_many :persona, through: :victima,
-            class_name: 'Msip::Persona'
+          has_many :acto,
+            through: :caso,
+            class_name: "Sivel2Gen::Acto"
 
-          has_many :caso_etiqueta, through: :caso,
-            class_name: 'Sivel2Gen::CasoEtiqueta'
+          has_many :victima,
+            through: :caso,
+            class_name: "Sivel2Gen::Victima"
 
-          has_many :caso_usuario, through: :caso,
-            class_name: 'Sivel2Gen::CasoUsuario'
+          has_many :persona,
+            through: :victima,
+            class_name: "Msip::Persona"
 
+          has_many :caso_etiqueta,
+            through: :caso,
+            class_name: "Sivel2Gen::CasoEtiqueta"
+
+          has_many :caso_usuario,
+            through: :caso,
+            class_name: "Sivel2Gen::CasoUsuario"
         end
 
         module ClassMethods
-
           def interpreta_ordenar_por(campo)
             critord = ""
             case campo.to_s
@@ -53,13 +64,13 @@ module Sivel2Gen
             when /^codigo/
               critord = "conscaso.caso_id asc"
             else
-              raise(ArgumentError, "Ordenamiento invalido: #{ campo.inspect }")
+              raise(ArgumentError, "Ordenamiento invalido: #{campo.inspect}")
             end
             critord += ", conscaso.caso_id"
-            return critord
+            critord
           end
 
-          def consulta_consexpcaso 
+          def consulta_consexpcaso
             "SELECT conscaso.*,
               caso.titulo,
               caso.hora,
@@ -81,28 +92,28 @@ module Sivel2Gen
             if ARGV.include?("db:migrate")
               return
             end
-            if !ActiveRecord::Base.connection.data_source_exists? 'sivel2_gen_conscaso'
+
+            unless ActiveRecord::Base.connection.data_source_exists?("sivel2_gen_conscaso")
               Sivel2Gen::Conscaso.refresca_conscaso
             end
-            if ActiveRecord::Base.connection.data_source_exists? 'sivel2_gen_consexpcaso'
+            if ActiveRecord::Base.connection.data_source_exists?("sivel2_gen_consexpcaso")
               ActiveRecord::Base.connection.execute(
-                "DROP MATERIALIZED VIEW IF EXISTS sivel2_gen_consexpcaso;")
+                "DROP MATERIALIZED VIEW IF EXISTS sivel2_gen_consexpcaso;",
+              )
             end
             w = "WHERE TRUE=FALSE"
             if conscaso && conscaso.count > 0
               w = "WHERE conscaso.caso_id IN (#{conscaso.select(:caso_id).to_sql})"
             end
             if ordenar_por
-              w += ' ORDER BY ' + self.interpreta_ordenar_por(ordenar_por)
+              w += " ORDER BY " + interpreta_ordenar_por(ordenar_por)
             end
-            ActiveRecord::Base.connection.execute("CREATE 
+            ActiveRecord::Base.connection.execute("CREATE
               MATERIALIZED VIEW sivel2_gen_consexpcaso AS
-              #{self.consulta_consexpcaso}
+              #{consulta_consexpcaso}
               #{w} ;")
           end # def crea_consexpcaso
-
         end # module ClassMethods
-
       end
     end
   end

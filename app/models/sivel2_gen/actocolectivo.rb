@@ -1,5 +1,6 @@
+# frozen_string_literal: true
 
-require 'sivel2_gen/concerns/models/actocolectivo'
+require "sivel2_gen/concerns/models/actocolectivo"
 
 module Sivel2Gen
   # Acto de violencia contra un colectivo, basado en modelo de datos

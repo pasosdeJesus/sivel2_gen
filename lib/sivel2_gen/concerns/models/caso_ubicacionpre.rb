@@ -1,5 +1,5 @@
-
-require 'msip/accesores_ubicacionpre'
+# frozen_string_literal: true
+require "msip/accesores_ubicacionpre"
 
 module Sivel2Gen
   module Concerns
@@ -14,20 +14,16 @@ module Sivel2Gen
 
           accesores_ubicacionpre :ubicacionpre
 
-          belongs_to :caso, 
+          belongs_to :caso,
             class_name: "Sivel2Gen::Caso",
-            foreign_key: "caso_id",
             validate: false,
             inverse_of: :caso_ubicacionpre,
             optional: false
-          belongs_to :ubicacionpre, 
-            class_name: 'Msip::Ubicacionpre', 
-            foreign_key: "ubicacionpre_id", 
-            validate: false, 
+          belongs_to :ubicacionpre,
+            class_name: "Msip::Ubicacionpre",,
+            validate: false,
             optional: false
-
         end # included
-
       end
     end
   end

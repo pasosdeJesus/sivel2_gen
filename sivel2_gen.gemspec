@@ -1,5 +1,7 @@
-# encoding: UTF-8
-$:.push File.expand_path("../lib", __FILE__)
+# encoding: utf-8
+# frozen_string_literal: true
+
+$:.push(File.expand_path("../lib", __FILE__))
 
 # Maintain your gem's version:
 require "sivel2_gen/version"
@@ -16,10 +18,8 @@ Gem::Specification.new do |s|
   s.license     = "Dominio Público de acuerdo a legislación colombiana"
 
   s.files = Dir["{app,config,db,lib}/**/*", "LICENCIA.md", "Rakefile", "README.md"]
-  s.test_files = Dir["test/**/*"]
 
-  s.add_runtime_dependency "color"
-  s.add_runtime_dependency "devise"
-  s.add_runtime_dependency "rails"
-
+  s.add_dependency("color")
+  s.add_dependency("devise")
+  s.add_dependency("rails")
 end
