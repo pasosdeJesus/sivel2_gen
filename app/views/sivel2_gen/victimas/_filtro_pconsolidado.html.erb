@@ -1,16 +1,16 @@
 <!-- Ya viene un <td> abierto de index.html -->
 <% @pconsolidado.each do |p| %>
-  <% #byebug %>
   <%= f.input "buspconsolidado_#{p[0]}".to_sym,
     collection: {'Todos': "Todos", 'Si': "Si", 'No': "No"},
-    label: false,
-    selected: Msip::ModeloHelper.poromision(params, 
-                                           "buspconsolidado_#{p[0]}".to_sym),
+    include_blank: false,
     input_html: {
       class: 'tom-select',
-      'data-enviarautomatico' => '',
+      'data-action': 'change->msip--enviarautomatico#enviar'
     },
-    include_blank: false
+    label: false,
+    selected: Msip::ModeloHelper.poromision(
+      params, "buspconsolidado_#{p[0]}".to_sym
+    )
   %>
   </td><td>
 <% end %>

@@ -1,21 +1,23 @@
 <div class="container">
   <div class="row filtro-fila">
     <div class="offset-sm-0 col-sm-4">
-    Etiqueta del caso:
-    <%= f.input :busetiqueta_caso,
+      Etiqueta del caso:
+      <%= f.input(
+        :busetiqueta_caso,
         collection: Msip::ModeloHelper.opciones_tabla_basica(
           Msip::Etiqueta, f, :etiqueta_id
         ),
-        selected: Msip::ModeloHelper.poromision(params, 
-                                               "busetiqueta_caso".to_sym),
+        include_blank: true,
         input_html: {
           class: 'tom-select',
-          'data-enviarautomatico' => '',
+          'data-action': 'change->msip--enviarautomatico#enviar'
         },
-        include_blank: true,
-        label_method: :presenta_nombre, 
-        label: false
-      %>
+        label_method: :presenta_nombre,
+        label: false,
+        selected: Msip::ModeloHelper.poromision(
+          params, "busetiqueta_caso".to_sym
+        )
+      )%>
     </div>
   </div>
 </div>

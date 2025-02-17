@@ -4,7 +4,7 @@
    title: 'Victimizaciones',
    xtitle: 'Fecha',
    ytitle: 'Victimizaciones',
-   stacked: true 
+   stacked: true
   }
 
   series_tot= [
@@ -29,7 +29,7 @@
     <div class="row">
       <div class="offset-sm-0 col-3">
       <%
-        if params.nil? || params[:filtro].nil? || 
+        if params.nil? || params[:filtro].nil? ||
           params[:filtro][:fechaini].nil?
           vfi = fecha_estandar_local(@vic_fechaini)
         else
@@ -39,7 +39,7 @@
         end
       %>
         <%= f.input :fechaini,
-          maxlength: 10, 
+          maxlength: 10,
           size: 10,
           label: 'Fecha Inicial',
           input_html: {
@@ -49,7 +49,7 @@
         %>
       </div>
       <%
-        if params.nil? || params[:filtro].nil? || 
+        if params.nil? || params[:filtro].nil? ||
           params[:filtro][:fechafin].nil?
           vff = fecha_estandar_local(@vic_fechafin)
         else
@@ -60,7 +60,7 @@
       %>
       <div class="offset-sm-0 col-3">
         <%= f.input :fechafin,
-          maxlength: 10, 
+          maxlength: 10,
           size: 10,
           label: 'Fecha Final',
           input_html: {
@@ -69,25 +69,26 @@
           } %>
       </div>
       <div class="offset-sm-0 col-3">
-        <% 
-          if params.nil? || params[:filtro].nil? || 
+        <%
+          if params.nil? || params[:filtro].nil? ||
             params[:filtro][:desagregar].nil?
-            ops= 'Sexo' 
+            ops= 'Sexo'
           else
             ops= params[:filtro][:desagregar]
-          end 
+          end
         %>
         <%= f.input :desagregar,
-          collection: ['Sexo', 'Departamento', 'Categoria'], 
-          label: 'Desagregar por:',
-          selected: ops,
+          collection: ['Sexo', 'Departamento', 'Categoria'],
           input_html: {
-            'data-enviarautomatico' => ''}
-         %>
+            'data-action': 'change->msip--enviarautomatico#enviar'
+          },
+          label: 'Desagregar por:',
+          selected: ops
+        %>
       </div>
       <div class="offset-sm-0 col-3">
-        <% if params.nil? || params[:filtro].nil? || 
-            params[:filtro][:desagregar].nil? || 
+        <% if params.nil? || params[:filtro].nil? ||
+            params[:filtro][:desagregar].nil? ||
             params[:filtro][:desagregar]== 'Sexo' %>
           <% sex_sel = Msip::Persona::SEXO_OPCIONES.map{|k| k[1]} %>
           <% estdes = "display: none" %>
@@ -96,13 +97,14 @@
           <% estdes = "display: block" %>
         <% end %>
         <%= f.input :sexo,
-          collection: Msip::Persona::sexo_opciones, 
-          label: 'Sexo:',
-          selected: sex_sel,
+          collection: Msip::Persona::sexo_opciones,
           input_html: {
             class: 'tom-select',
             multiple: true,
-            'data-enviarautomatico' => ''},
+            'data-action': 'change->msip--enviarautomatico#enviar'
+          },
+          label: 'Sexo:',
+          selected: sex_sel,
           wrapper_html: { "style" => estdes }
          %>
       </div>
@@ -110,7 +112,7 @@
     <div class="row">
       <div class="offset-sm-0 col-12">
         <%
-          if params.nil? || params[:filtro].nil? || 
+          if params.nil? || params[:filtro].nil? ||
             params[:filtro][:departamentos].nil?
             dep_sel = Msip::Departamento.habilitados.
               where(
@@ -123,15 +125,15 @@
         %>
         <%= f.input :departamentos,
           collection: Msip::Departamento.habilitados.where(
-            pais_id: Msip.paisomision), 
-          label_method: :nombre,
-          value_method: :id, 
-          selected: dep_sel,
+            pais_id: Msip.paisomision),
           input_html: {
             class: 'tom-select',
             multiple: true,
-            'data-enviarautomatico' => ''
+            'data-action': 'change->msip--enviarautomatico#enviar'
           },
+          label_method: :nombre,
+          selected: dep_sel,
+          value_method: :id,
           wrapper_html: { 'style': estdep}
         %>
       </div>
@@ -139,7 +141,7 @@
     <div class="row">
       <div class="offset-sm-0 col-12">
         <%
-          if params.nil? || params[:filtro].nil? || 
+          if params.nil? || params[:filtro].nil? ||
             params[:filtro][:categorias].nil?
             cat_sel = @vic_categorias
             estcat = "display: block"
@@ -149,21 +151,24 @@
           end
         %>
         <%= f.input :categorias,
-          collection: @categorias_gen.group_by{ |c| 
-            c.supracategoria.tviolencia_id},
-          group_label_method: lambda { |ca| 
-            Sivel2Gen::Tviolencia.find(ca[0]).nombre},
-          as: :grouped_select, 
+          as: :grouped_select,
+          collection: @categorias_gen.group_by{ |c|
+            c.supracategoria.tviolencia_id
+          },
+          group_label_method: lambda { |ca|
+            Sivel2Gen::Tviolencia.find(ca[0]).nombre
+          },
           group_method: :last,
-          selected: cat_sel,
-          value_method: :id,
-          label_method: lambda { |cat| 
-            "#{Sivel2Gen::Supracategoria.find(cat.supracategoria_id.to_i).tviolencia_id}#{cat.id.to_s} #{cat.nombre}" }, 
           input_html: {
             class: 'tom-select',
             multiple: true,
-            'data-enviarautomatico' => ''
+            'data-action': 'change->msip--enviarautomatico#enviar'
           },
+          label_method: lambda { |cat|
+            "#{Sivel2Gen::Supracategoria.find(cat.supracategoria_id.to_i).tviolencia_id}#{cat.id.to_s} #{cat.nombre}"
+          },
+          selected: cat_sel,
+          value_method: :id,
           wrapper_html: { 'style': estcat}
         %>
       </div>
@@ -177,12 +182,12 @@
 <% end %>
 <div class="row">
   <div class="col-12">
-    <%= line_chart(series_gen, opciones_gen) %>  
+    <%= line_chart(series_gen, opciones_gen) %>
   </div>
 </div>
 </br>
 <div class="row">
   <div class="col-12">
-    <%= column_chart(series_tot, opciones_tot) %>  
+    <%= column_chart(series_tot, opciones_tot) %>
   </div>
 </div>
