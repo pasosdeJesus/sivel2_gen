@@ -872,7 +872,7 @@ module Sivel2Gen
           def update_gen
             respond_to do |format|
 
-               if (caso_params[:caso_ubicacionpre_attributes])
+              if (caso_params[:caso_ubicacionpre_attributes])
                 # Usa ubicacionepre existente o agrega si hace falta
                 caso_params[:caso_ubicacionpre_attributes].each do |indice, cu|
                   if cu[:ubicacionpre_pais_id]
@@ -935,18 +935,18 @@ module Sivel2Gen
                           end
                         else
                           if victima_params[:persona_attributes][:persona_trelacion1_attributes]
-                              asignar_id_personatrelacion(
-                                params, victima_indice, victima_params, 
-                                victimas_por_borrar
-                              )
+                            asignar_id_personatrelacion(
+                              params, victima_indice, victima_params, 
+                              victimas_por_borrar
+                            )
                           end
                         end
                       end
                     else
-                        asignar_id_personatrelacion(
-                          params, victima_indice, victima_params, 
-                          victimas_por_borrar
-                        )
+                      asignar_id_personatrelacion(
+                        params, victima_indice, victima_params, 
+                        victimas_por_borrar
+                      )
                     end
                   end
                 end
@@ -1012,8 +1012,8 @@ module Sivel2Gen
                 puts Conscaso.refresca_conscaso
               end
             rescue
-               puts Conscaso.refresca_conscaso
-               @conscasocount = Conscaso.count
+              puts Conscaso.refresca_conscaso
+              @conscasocount = Conscaso.count
             end
           end
 

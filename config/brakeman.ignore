@@ -1,0 +1,1138 @@
+{
+  "ignored_warnings": [
+    {
+      "warning_type": "SQL Injection",
+      "warning_code": 0,
+      "fingerprint": "00bbb7ea4832fe1210cac5d948307f2d0acd62c2904d52c287dec30f1592bfce",
+      "check_name": "SQL",
+      "message": "Possible SQL injection",
+      "file": "lib/sivel2_gen/concerns/controllers/buscarrepetidos_controller.rb",
+      "line": 36,
+      "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
+      "code": "Sivel2Gen::Caso.connection.select_all(\"\\n              SELECT DISTINCT '[' || ARRAY_TO_STRING(gr, ',') || ']'\\n              FROM (SELECT id, ARRAY(SELECT id FROM sivel2_gen_caso AS c2\\n                    WHERE c2.memo=c1.memo#{((\"\" + (\" AND c1.fecha >= '#{Msip::FormatoFechaHelper.fecha_local_estandar(params[:buscarrepetido][:fechaini])}'\" + \" AND c2.fecha >= '#{Msip::FormatoFechaHelper.fecha_local_estandar(params[:buscarrepetido][:fechaini])}'\")) + (\" AND c1.fecha <= '#{Msip::FormatoFechaHelper.fecha_local_estandar(params[:buscarrepetido][:fechafin])}'\" + \" AND c2.fecha <= '#{Msip::FormatoFechaHelper.fecha_local_estandar(params[:buscarrepetido][:fechafin])}'\"))}) AS gr\\n                    FROM sivel2_gen_caso AS c1 ORDER BY id) AS s\\n              WHERE array_length(gr, 1) > 1\")",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "Sivel2Gen::Concerns::Controllers::BuscarrepetidosController",
+        "method": "reportar"
+      },
+      "user_input": "params[:buscarrepetido][:fechaini]",
+      "confidence": "High",
+      "cwe_id": [
+        89
+      ],
+      "note": ""
+    },
+    {
+      "warning_type": "SQL Injection",
+      "warning_code": 0,
+      "fingerprint": "1072b24fbf1d0766a11a5b7725ed01faf1212c617a7edfd1de93f7172be94c1a",
+      "check_name": "SQL",
+      "message": "Possible SQL injection",
+      "file": "lib/sivel2_gen/concerns/controllers/casos_controller.rb",
+      "line": 723,
+      "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
+      "code": "Sivel2Gen::CasoRespuestafor.connection.execute(\"DELETE FROM sivel2_gen_caso_respuestafor\\n                        WHERE caso_id=#{caso.id} \\n                        AND respuestafor_id IN (#{(Sivel2Gen::CasoRespuestafor.where(:caso_id => caso.id).joins(:respuestafor).where(\"formulario_id NOT IN (#{\"#{Mr519Gen::Formulario.where(:nombreinterno => p[:parcial][(12..-1)]).take.id}\"})\") or Sivel2Gen::CasoRespuestafor.where(:caso_id => caso.id)).map(&:respuestafor_id).join(\", \")})\")",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "Sivel2Gen::Concerns::Controllers::CasosController",
+        "method": "s(:self).asegura_camposdinamicos"
+      },
+      "user_input": "Sivel2Gen::CasoRespuestafor.where(:caso_id => caso.id).joins(:respuestafor)",
+      "confidence": "High",
+      "cwe_id": [
+        89
+      ],
+      "note": ""
+    },
+    {
+      "warning_type": "SQL Injection",
+      "warning_code": 0,
+      "fingerprint": "15a803eff7eceef8057ee9a0cad58fa94463364d241e94794855ad7e6b7869ab",
+      "check_name": "SQL",
+      "message": "Possible SQL injection",
+      "file": "app/helpers/sivel2_gen/conteos_helper.rb",
+      "line": 16,
+      "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
+      "code": "ActiveRecord::Base.connection.execute(((((\"SELECT \" + sol.join(\", \")) + \" FROM sivel2_gen_conscaso WHERE \") + cond) + \" AND msip_ubicacion.latitud IS NOT NULL \"))",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "Sivel2Gen::ConteosHelper",
+        "method": "calcularCasos"
+      },
+      "user_input": "sol.join(\", \")",
+      "confidence": "Medium",
+      "cwe_id": [
+        89
+      ],
+      "note": ""
+    },
+    {
+      "warning_type": "Cross-Site Scripting",
+      "warning_code": 84,
+      "fingerprint": "180eea32ad5f540773240886f3add567d521edde390a2e06d3d34b63d84e8407",
+      "check_name": "RenderInline",
+      "message": "Unescaped model attribute rendered inline",
+      "file": "app/controllers/sivel2_gen/actoscolectivos_controller.rb",
+      "line": 38,
+      "link": "https://brakemanscanner.org/docs/warning_types/cross-site_scripting/",
+      "code": "render(inline => (\"\" or Sivel2Gen::Actocolectivo.new(:presponsable_id => cpresp.to_i, :categoria_id => ccat.to_i, :grupoper_id => cvicc.to_i).errors.messages[:actocolectivo].join(\". \")), { :status => :unprocessable_entity })",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "Sivel2Gen::ActoscolectivosController",
+        "method": "create_sivel2_gen"
+      },
+      "user_input": "Sivel2Gen::Actocolectivo.new(:presponsable_id => cpresp.to_i, :categoria_id => ccat.to_i, :grupoper_id => cvicc.to_i).errors.messages[:actocolectivo].join(\". \")",
+      "confidence": "Medium",
+      "cwe_id": [
+        79
+      ],
+      "note": ""
+    },
+    {
+      "warning_type": "SQL Injection",
+      "warning_code": 0,
+      "fingerprint": "1b46a14a39c578b337b953f3dd0c824910e7744085aa49af96ae99137e308c09",
+      "check_name": "SQL",
+      "message": "Possible SQL injection",
+      "file": "app/controllers/sivel2_gen/graficar_victimizaciones_individuales_controller.rb",
+      "line": 416,
+      "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
+      "code": "ActiveRecord::Base.connection.execute(\"CREATE VIEW #{cons1} AS \\n              SELECT #{que1}\\n              FROM #{tablas1} #{(procesa_filtros_fechas(\"\") or (\"WHERE \" + procesa_filtros_fechas(\"\")))}\\n            \")",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "Sivel2Gen::GraficarVictimizacionesIndividualesController",
+        "method": "consulta"
+      },
+      "user_input": "cons1",
+      "confidence": "Medium",
+      "cwe_id": [
+        89
+      ],
+      "note": ""
+    },
+    {
+      "warning_type": "SQL Injection",
+      "warning_code": 0,
+      "fingerprint": "1ddf0be8726df13ac6a485cd843fade125ec774fccd39b9f27294f34be313981",
+      "check_name": "SQL",
+      "message": "Possible SQL injection",
+      "file": "app/controllers/sivel2_gen/conteos_controller.rb",
+      "line": 407,
+      "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
+      "code": "ActiveRecord::Base.connection.execute(\"DROP VIEW  IF EXISTS #{personas_cons2} CASCADE\")",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "Sivel2Gen::ConteosController",
+        "method": "personas"
+      },
+      "user_input": "personas_cons2",
+      "confidence": "Medium",
+      "cwe_id": [
+        89
+      ],
+      "note": ""
+    },
+    {
+      "warning_type": "SQL Injection",
+      "warning_code": 0,
+      "fingerprint": "2a8d1643e5da708ae477336a300d8da4f7db442cf543591aea42480aee35e0fe",
+      "check_name": "SQL",
+      "message": "Possible SQL injection",
+      "file": "lib/sivel2_gen/concerns/controllers/conteos_controller.rb",
+      "line": 937,
+      "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
+      "code": "ActiveRecord::Base.connection.execute(\"CREATE VIEW #{\"cvt1\"} AS \\n              SELECT #{(\"DISTINCT acto.caso_id, acto.persona_id, acto.categoria_id, \\n            supracategoria.tviolencia_id AS tviolencia_id, \\n            categoria.nombre AS categoria\" + \", CASE  WHEN persona.sexo='#{Msip::Persona.convencion_sexo[:sexo_femenino].to_s}' THEN '#{Msip::Persona.convencion_sexo[:nombre_femenino]}'   WHEN persona.sexo='#{Msip::Persona.convencion_sexo[:sexo_masculino].to_s}' THEN '#{Msip::Persona.convencion_sexo[:nombre_masculino]}'   ELSE '#{Msip::Persona.convencion_sexo[:nombre_sininformacion]}' END AS sexo\")}\\n              FROM #{\" public.sivel2_gen_acto AS acto JOIN \"} #{where1} \")",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "Sivel2Gen::Concerns::Controllers::ConteosController",
+        "method": "genconsulta_victimizaciones"
+      },
+      "user_input": "Msip::Persona.convencion_sexo[:sexo_femenino]",
+      "confidence": "High",
+      "cwe_id": [
+        89
+      ],
+      "note": ""
+    },
+    {
+      "warning_type": "SQL Injection",
+      "warning_code": 0,
+      "fingerprint": "3cac056c70a45e404879161f4ce44c96c253de4ccd8596b76a6fb2d12a4fa00b",
+      "check_name": "SQL",
+      "message": "Possible SQL injection",
+      "file": "lib/sivel2_gen/concerns/controllers/graficar_conteo_controller.rb",
+      "line": 416,
+      "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
+      "code": "ActiveRecord::Base.connection.execute(\"CREATE VIEW #{cons1} AS \\n              SELECT #{que1}\\n              FROM #{tablas1} #{(procesa_filtros_fechas(\"\") or (\"WHERE \" + procesa_filtros_fechas(\"\")))}\\n            \")",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "Sivel2Gen::Concerns::Controllers::GraficarConteoController",
+        "method": "consulta"
+      },
+      "user_input": "cons1",
+      "confidence": "Medium",
+      "cwe_id": [
+        89
+      ],
+      "note": ""
+    },
+    {
+      "warning_type": "Cross-Site Scripting",
+      "warning_code": 2,
+      "fingerprint": "451bd94d5c4be3a14a23ed5fde75f3052e8989ee2374744b27a43ed112d3de24",
+      "check_name": "CrossSiteScripting",
+      "message": "Unescaped model attribute",
+      "file": "app/views/sivel2_gen/casos/_reporterevista.html.erb",
+      "line": 45,
+      "link": "https://brakemanscanner.org/docs/warning_types/cross_site_scripting",
+      "code": "Redcarpet::Markdown.new(Redcarpet::Render::HTML, :autolink => true, :space_after_headers => true, :fenced_code_blocks => true, :underline => true, :highlight => true, :tables => true).render(Sivel2Gen::Caso.find(ccaso.caso_id).memo)",
+      "render_path": [
+        {
+          "type": "template",
+          "name": "sivel2_gen/casos/reprevista",
+          "line": 14,
+          "file": "app/views/sivel2_gen/casos/reprevista.html.erb",
+          "rendered": {
+            "name": "sivel2_gen/casos/_reporterevista",
+            "file": "app/views/sivel2_gen/casos/_reporterevista.html.erb"
+          }
+        }
+      ],
+      "location": {
+        "type": "template",
+        "template": "sivel2_gen/casos/_reporterevista"
+      },
+      "user_input": "Sivel2Gen::Caso.find(ccaso.caso_id).memo",
+      "confidence": "Weak",
+      "cwe_id": [
+        79
+      ],
+      "note": ""
+    },
+    {
+      "warning_type": "SQL Injection",
+      "warning_code": 0,
+      "fingerprint": "4831564e94fdfe8ae7155d9ee7ee4bf9a37af02ca50b258aa382db03a31272df",
+      "check_name": "SQL",
+      "message": "Possible SQL injection",
+      "file": "app/controllers/sivel2_gen/conteos_controller.rb",
+      "line": 421,
+      "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
+      "code": "ActiveRecord::Base.connection.execute(\"CREATE VIEW #{personas_cons1} AS \\n              SELECT #{que1}\\n              FROM #{tablas1} #{(((\"\" or personas_fecha_inicial(\"\")) or personas_fecha_final((\"\" or personas_fecha_inicial(\"\")))) or (\"WHERE \" + ((\"\" or personas_fecha_inicial(\"\")) or personas_fecha_final((\"\" or personas_fecha_inicial(\"\"))))))}\\n            \")",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "Sivel2Gen::ConteosController",
+        "method": "personas"
+      },
+      "user_input": "personas_cons1",
+      "confidence": "Medium",
+      "cwe_id": [
+        89
+      ],
+      "note": ""
+    },
+    {
+      "warning_type": "SQL Injection",
+      "warning_code": 0,
+      "fingerprint": "4b0a0be734d8bb77e53ad1cf428070e206e188366ec04a25b2f3722d114e5bf0",
+      "check_name": "SQL",
+      "message": "Possible SQL injection",
+      "file": "lib/sivel2_gen/concerns/controllers/mapamun_controller.rb",
+      "line": 53,
+      "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
+      "code": "ActiveRecord::Base.connection.select_all(\"SELECT  municipio_divipola, count(*) FROM #{Sivel2Gen::ConteosController.genconsulta_victimizaciones(escapar_param(params, [:filtro, \"fechaini\"]), escapar_param(params, [:filtro, \"fechafin\"]), escapar_param(params, [:filtro, \"tviolencia_id\"]), escapar_param(params, [:filtro, \"etiqueta1\"]), escapar_param(params, [:filtro, \"etiqueta2\"]), escapar_param(params, [:filtro, \"excluircaterep\"]), nil, 1, 1, ((Sivel2Gen::Categoria.habilitados.pluck(:id) & params[:filtro][:categoria].map(&:to_i)) or Sivel2Gen::Categoria.habilitados.pluck(:id)))} WHERE departamento_id=#{((escapar_param(params, [:filtro, \"departamento\"]) or 11).to_i or 11)} GROUP BY 1\")",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "Sivel2Gen::Concerns::Controllers::MapamunController",
+        "method": "victimizaciones"
+      },
+      "user_input": "Sivel2Gen::Categoria.habilitados.pluck(:id)",
+      "confidence": "High",
+      "cwe_id": [
+        89
+      ],
+      "note": ""
+    },
+    {
+      "warning_type": "SQL Injection",
+      "warning_code": 0,
+      "fingerprint": "4e056035888aee2df022ab3d0b8ecbdfbfa63d15c39d02697146f5176d73888f",
+      "check_name": "SQL",
+      "message": "Possible SQL injection",
+      "file": "lib/sivel2_gen/concerns/controllers/validarcasos_controller.rb",
+      "line": 40,
+      "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
+      "code": "casos.where(\"#{cfecha} >= ?\", (((\"\" or Msip::FormatoFechaHelper.fecha_local_estandar(params[:validarcaso][:fechaini])) or nil) or Msip::FormatoFechaHelper.inicio_semestre(Date.today).to_s))",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "Sivel2Gen::Concerns::Controllers::ValidarcasosController",
+        "method": "filtro_fechas"
+      },
+      "user_input": "cfecha",
+      "confidence": "Weak",
+      "cwe_id": [
+        89
+      ],
+      "note": ""
+    },
+    {
+      "warning_type": "SQL Injection",
+      "warning_code": 0,
+      "fingerprint": "505554f0a6b67b0108582d96695aa2e807100a523fd5f5d28c19eb87f17f49cf",
+      "check_name": "SQL",
+      "message": "Possible SQL injection",
+      "file": "app/controllers/sivel2_gen/buscarrepetidos_controller.rb",
+      "line": 36,
+      "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
+      "code": "Sivel2Gen::Caso.connection.select_all(\"\\n              SELECT DISTINCT '[' || ARRAY_TO_STRING(gr, ',') || ']'\\n              FROM (SELECT id, ARRAY(SELECT id FROM sivel2_gen_caso AS c2\\n                    WHERE c2.memo=c1.memo#{((\"\" + (\" AND c1.fecha >= '#{Msip::FormatoFechaHelper.fecha_local_estandar(params[:buscarrepetido][:fechaini])}'\" + \" AND c2.fecha >= '#{Msip::FormatoFechaHelper.fecha_local_estandar(params[:buscarrepetido][:fechaini])}'\")) + (\" AND c1.fecha <= '#{Msip::FormatoFechaHelper.fecha_local_estandar(params[:buscarrepetido][:fechafin])}'\" + \" AND c2.fecha <= '#{Msip::FormatoFechaHelper.fecha_local_estandar(params[:buscarrepetido][:fechafin])}'\"))}) AS gr\\n                    FROM sivel2_gen_caso AS c1 ORDER BY id) AS s\\n              WHERE array_length(gr, 1) > 1\")",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "Sivel2Gen::BuscarrepetidosController",
+        "method": "reportar"
+      },
+      "user_input": "params[:buscarrepetido][:fechaini]",
+      "confidence": "High",
+      "cwe_id": [
+        89
+      ],
+      "note": ""
+    },
+    {
+      "warning_type": "SQL Injection",
+      "warning_code": 0,
+      "fingerprint": "505554f0a6b67b0108582d96695aa2e807100a523fd5f5d28c19eb87f17f49cf",
+      "check_name": "SQL",
+      "message": "Possible SQL injection",
+      "file": "app/controllers/sivel2_gen/buscarrepetidos_controller.rb",
+      "line": 43,
+      "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
+      "code": "Sivel2Gen::Caso.connection.select_all(\"\\n              SELECT DISTINCT '[' || ARRAY_TO_STRING(gr, ',') || ']'\\n              FROM (SELECT id, ARRAY(SELECT id FROM sivel2_gen_caso AS c2\\n                    WHERE c2.memo=c1.memo#{((\"\" + (\" AND c1.fecha >= '#{Msip::FormatoFechaHelper.fecha_local_estandar(params[:buscarrepetido][:fechaini])}'\" + \" AND c2.fecha >= '#{Msip::FormatoFechaHelper.fecha_local_estandar(params[:buscarrepetido][:fechaini])}'\")) + (\" AND c1.fecha <= '#{Msip::FormatoFechaHelper.fecha_local_estandar(params[:buscarrepetido][:fechafin])}'\" + \" AND c2.fecha <= '#{Msip::FormatoFechaHelper.fecha_local_estandar(params[:buscarrepetido][:fechafin])}'\"))}) AS gr\\n                    FROM sivel2_gen_caso AS c1 ORDER BY id) AS s\\n              WHERE array_length(gr, 1) > 1\")",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "Sivel2Gen::BuscarrepetidosController",
+        "method": "reportar"
+      },
+      "user_input": "params[:buscarrepetido][:fechaini]",
+      "confidence": "High",
+      "cwe_id": [
+        89
+      ],
+      "note": ""
+    },
+    {
+      "warning_type": "SQL Injection",
+      "warning_code": 0,
+      "fingerprint": "520679d1ce95e62d5fd6f3244508d2f2578f36405fee81281160c72348e37b49",
+      "check_name": "SQL",
+      "message": "Possible SQL injection",
+      "file": "lib/sivel2_gen/concerns/controllers/conteos_controller.rb",
+      "line": 529,
+      "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
+      "code": "ActiveRecord::Base.connection.select_all(\"SELECT count(*) FROM (SELECT DISTINCT sivel2_gen_acto.caso_id, \\n            sivel2_gen_acto.persona_id, sivel2_gen_acto.categoria_id \\n            FROM public.sivel2_gen_acto \\n            JOIN public.sivel2_gen_caso AS caso\\n              ON caso.id = sivel2_gen_acto.caso_id \\n            LEFT JOIN public.sivel2_gen_caso_etiqueta AS casoetiqueta \\n              ON casoetiqueta.caso_id = caso.id\\n            WHERE #{((ampliar_where(where, \"sivel2_gen_acto.categoria_id\", cat.to_i) or ((\"#{ampliar_where(where, \"sivel2_gen_acto.categoria_id\", cat.to_i)} AND (sivel2_gen_acto.caso_id, sivel2_gen_acto.persona_id) IN \\n                (SELECT caso_id, persona_id FROM sivel2_gen_acto \\n                WHERE sivel2_gen_acto.categoria_id='\" + concat.to_s) + \"') \")) or ((\"#{(ampliar_where(where, \"sivel2_gen_acto.categoria_id\", cat.to_i) or ((\"#{ampliar_where(where, \"sivel2_gen_acto.categoria_id\", cat.to_i)} AND (sivel2_gen_acto.caso_id, sivel2_gen_acto.persona_id) IN \\n                (SELECT caso_id, persona_id FROM sivel2_gen_acto \\n                WHERE sivel2_gen_acto.categoria_id='\" + concat.to_s) + \"') \"))} AND (sivel2_gen_acto.caso_id, sivel2_gen_acto.persona_id) NOT IN \\n                (SELECT caso_id, persona_id FROM sivel2_gen_acto \\n                WHERE sivel2_gen_acto.categoria_id='\" + sincat.to_s) + \"')\"))}) AS subcuentaactos;\")",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "Sivel2Gen::Concerns::Controllers::ConteosController",
+        "method": "cuenta_actos"
+      },
+      "user_input": "ampliar_where(where, \"sivel2_gen_acto.categoria_id\", cat.to_i)",
+      "confidence": "Medium",
+      "cwe_id": [
+        89
+      ],
+      "note": ""
+    },
+    {
+      "warning_type": "SQL Injection",
+      "warning_code": 0,
+      "fingerprint": "6092641956236650ddc1b501ab45ef9fe4b4441a69befd45eb63c9fb9284cc5f",
+      "check_name": "SQL",
+      "message": "Possible SQL injection",
+      "file": "app/controllers/sivel2_gen/mapadep_controller.rb",
+      "line": 75,
+      "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
+      "code": "ActiveRecord::Base.connection.select_all(\"SELECT  departamento_divipola, count(*) FROM #{Sivel2Gen::ConteosController.genconsulta_victimizaciones(escapar_param(params, [:filtro, \"fechaini\"]), escapar_param(params, [:filtro, \"fechafin\"]), escapar_param(params, [:filtro, \"tviolencia_id\"]), escapar_param(params, [:filtro, \"etiqueta1\"]), escapar_param(params, [:filtro, \"etiqueta2\"]), escapar_param(params, [:filtro, \"excluircaterep\"]), nil, 1, nil, ((Sivel2Gen::Categoria.habilitados.pluck(:id) & params[:filtro][:categoria].map(&:to_i)) or Sivel2Gen::Categoria.habilitados.pluck(:id)))} GROUP BY 1\")",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "Sivel2Gen::MapadepController",
+        "method": "victimizaciones"
+      },
+      "user_input": "Sivel2Gen::Categoria.habilitados.pluck(:id)",
+      "confidence": "High",
+      "cwe_id": [
+        89
+      ],
+      "note": ""
+    },
+    {
+      "warning_type": "SQL Injection",
+      "warning_code": 0,
+      "fingerprint": "6092641956236650ddc1b501ab45ef9fe4b4441a69befd45eb63c9fb9284cc5f",
+      "check_name": "SQL",
+      "message": "Possible SQL injection",
+      "file": "app/controllers/sivel2_gen/mapadep_controller.rb",
+      "line": 78,
+      "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
+      "code": "ActiveRecord::Base.connection.select_all(\"SELECT  departamento_divipola, count(*) FROM #{Sivel2Gen::ConteosController.genconsulta_victimizaciones(escapar_param(params, [:filtro, \"fechaini\"]), escapar_param(params, [:filtro, \"fechafin\"]), escapar_param(params, [:filtro, \"tviolencia_id\"]), escapar_param(params, [:filtro, \"etiqueta1\"]), escapar_param(params, [:filtro, \"etiqueta2\"]), escapar_param(params, [:filtro, \"excluircaterep\"]), nil, 1, nil, ((Sivel2Gen::Categoria.habilitados.pluck(:id) & params[:filtro][:categoria].map(&:to_i)) or Sivel2Gen::Categoria.habilitados.pluck(:id)))} GROUP BY 1\")",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "Sivel2Gen::MapadepController",
+        "method": "victimizaciones"
+      },
+      "user_input": "Sivel2Gen::Categoria.habilitados.pluck(:id)",
+      "confidence": "High",
+      "cwe_id": [
+        89
+      ],
+      "note": ""
+    },
+    {
+      "warning_type": "SQL Injection",
+      "warning_code": 0,
+      "fingerprint": "61bc1aab57ed9320575b406a6085b8ce2bd7d375ddb81f512c2d37a49bb0bae6",
+      "check_name": "SQL",
+      "message": "Possible SQL injection",
+      "file": "app/controllers/sivel2_gen/mapamun_controller.rb",
+      "line": 53,
+      "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
+      "code": "ActiveRecord::Base.connection.select_all(\"SELECT  municipio_divipola, count(*) FROM #{Sivel2Gen::ConteosController.genconsulta_victimizaciones(escapar_param(params, [:filtro, \"fechaini\"]), escapar_param(params, [:filtro, \"fechafin\"]), escapar_param(params, [:filtro, \"tviolencia_id\"]), escapar_param(params, [:filtro, \"etiqueta1\"]), escapar_param(params, [:filtro, \"etiqueta2\"]), escapar_param(params, [:filtro, \"excluircaterep\"]), nil, 1, 1, ((Sivel2Gen::Categoria.habilitados.pluck(:id) & params[:filtro][:categoria].map(&:to_i)) or Sivel2Gen::Categoria.habilitados.pluck(:id)))} WHERE departamento_id=#{((escapar_param(params, [:filtro, \"departamento\"]) or 11).to_i or 11)} GROUP BY 1\")",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "Sivel2Gen::MapamunController",
+        "method": "victimizaciones"
+      },
+      "user_input": "Sivel2Gen::Categoria.habilitados.pluck(:id)",
+      "confidence": "High",
+      "cwe_id": [
+        89
+      ],
+      "note": ""
+    },
+    {
+      "warning_type": "SQL Injection",
+      "warning_code": 0,
+      "fingerprint": "61bc1aab57ed9320575b406a6085b8ce2bd7d375ddb81f512c2d37a49bb0bae6",
+      "check_name": "SQL",
+      "message": "Possible SQL injection",
+      "file": "app/controllers/sivel2_gen/mapamun_controller.rb",
+      "line": 58,
+      "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
+      "code": "ActiveRecord::Base.connection.select_all(\"SELECT  municipio_divipola, count(*) FROM #{Sivel2Gen::ConteosController.genconsulta_victimizaciones(escapar_param(params, [:filtro, \"fechaini\"]), escapar_param(params, [:filtro, \"fechafin\"]), escapar_param(params, [:filtro, \"tviolencia_id\"]), escapar_param(params, [:filtro, \"etiqueta1\"]), escapar_param(params, [:filtro, \"etiqueta2\"]), escapar_param(params, [:filtro, \"excluircaterep\"]), nil, 1, 1, ((Sivel2Gen::Categoria.habilitados.pluck(:id) & params[:filtro][:categoria].map(&:to_i)) or Sivel2Gen::Categoria.habilitados.pluck(:id)))} WHERE departamento_id=#{((escapar_param(params, [:filtro, \"departamento\"]) or 11).to_i or 11)} GROUP BY 1\")",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "Sivel2Gen::MapamunController",
+        "method": "victimizaciones"
+      },
+      "user_input": "Sivel2Gen::Categoria.habilitados.pluck(:id)",
+      "confidence": "High",
+      "cwe_id": [
+        89
+      ],
+      "note": ""
+    },
+    {
+      "warning_type": "SQL Injection",
+      "warning_code": 0,
+      "fingerprint": "661d1295466a0db5d03cb3a6849177f79a64ebff805247cb13a452f2a497029d",
+      "check_name": "SQL",
+      "message": "Possible SQL injection",
+      "file": "lib/sivel2_gen/concerns/controllers/graficar_conteo_controller.rb",
+      "line": 402,
+      "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
+      "code": "ActiveRecord::Base.connection.execute(\"DROP VIEW  IF EXISTS #{cons2} CASCADE\")",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "Sivel2Gen::Concerns::Controllers::GraficarConteoController",
+        "method": "consulta"
+      },
+      "user_input": "cons2",
+      "confidence": "Medium",
+      "cwe_id": [
+        89
+      ],
+      "note": ""
+    },
+    {
+      "warning_type": "SQL Injection",
+      "warning_code": 0,
+      "fingerprint": "67ea49a24004f996d780441697c2664862801868445498042032079fb16c8337",
+      "check_name": "SQL",
+      "message": "Possible SQL injection",
+      "file": "lib/sivel2_gen/concerns/controllers/graficar_conteo_controller.rb",
+      "line": 403,
+      "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
+      "code": "ActiveRecord::Base.connection.execute(\"DROP VIEW  IF EXISTS #{cons1} CASCADE\")",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "Sivel2Gen::Concerns::Controllers::GraficarConteoController",
+        "method": "consulta"
+      },
+      "user_input": "cons1",
+      "confidence": "Medium",
+      "cwe_id": [
+        89
+      ],
+      "note": ""
+    },
+    {
+      "warning_type": "Cross-Site Scripting",
+      "warning_code": 84,
+      "fingerprint": "6eceb0f729b35e9b4c3bf0e6dff32f0c5a9fa9a7b44112a8fcddb49c8ce1b4bd",
+      "check_name": "RenderInline",
+      "message": "Unescaped model attribute rendered inline",
+      "file": "app/controllers/sivel2_gen/caso_etiquetas_controller.rb",
+      "line": 30,
+      "link": "https://brakemanscanner.org/docs/warning_types/cross-site_scripting/",
+      "code": "render(inline => \"error: #{Sivel2Gen::CasoEtiqueta.new.errors.messages} \", {})",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "Sivel2Gen::CasoEtiquetasController",
+        "method": "nueva"
+      },
+      "user_input": "Sivel2Gen::CasoEtiqueta.new.errors.messages",
+      "confidence": "Medium",
+      "cwe_id": [
+        79
+      ],
+      "note": ""
+    },
+    {
+      "warning_type": "SQL Injection",
+      "warning_code": 0,
+      "fingerprint": "6fd4101e52f83e045f58d6d53c766eb29892efc541d2e402536d8ae7dac5b2fa",
+      "check_name": "SQL",
+      "message": "Possible SQL injection",
+      "file": "lib/sivel2_gen/concerns/models/conscaso.rb",
+      "line": 315,
+      "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
+      "code": "ActiveRecord::Base.connection.execute(\"CREATE OR REPLACE \\n        VIEW sivel2_gen_conscaso1 AS #{consulta_base};\")",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "Sivel2Gen::Concerns::Models::Conscaso::ClassMethods",
+        "method": "refresca_conscaso"
+      },
+      "user_input": "consulta_base",
+      "confidence": "Medium",
+      "cwe_id": [
+        89
+      ],
+      "note": ""
+    },
+    {
+      "warning_type": "Unmaintained Dependency",
+      "warning_code": 123,
+      "fingerprint": "715ee6d743a8af33c7b930d728708ce19c765fb40e2ad9d2b974db04d92dc7d1",
+      "check_name": "EOLRuby",
+      "message": "Support for Ruby 3.1.2 ends on 2025-03-31",
+      "file": ".ruby-version",
+      "line": 1,
+      "link": "https://brakemanscanner.org/docs/warning_types/unmaintained_dependency/",
+      "code": null,
+      "render_path": null,
+      "location": null,
+      "user_input": null,
+      "confidence": "Weak",
+      "cwe_id": [
+        1104
+      ],
+      "note": ""
+    },
+    {
+      "warning_type": "SQL Injection",
+      "warning_code": 0,
+      "fingerprint": "7a3c6053eac8ad99dc69df1d4b2cea72af90c4413c894068599026395229c1c3",
+      "check_name": "SQL",
+      "message": "Possible SQL injection",
+      "file": "lib/sivel2_gen/concerns/controllers/validarcasos_controller.rb",
+      "line": 47,
+      "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
+      "code": "casos.where(\"#{cfecha} >= ?\", (((\"\" or Msip::FormatoFechaHelper.fecha_local_estandar(params[:validarcaso][:fechaini])) or nil) or Msip::FormatoFechaHelper.inicio_semestre(Date.today).to_s)).where(\"#{cfecha} <= ?\", Msip::FormatoFechaHelper.fecha_local_estandar(params[:validarcaso][:fechafin]))",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "Sivel2Gen::Concerns::Controllers::ValidarcasosController",
+        "method": "filtro_fechas"
+      },
+      "user_input": "cfecha",
+      "confidence": "Weak",
+      "cwe_id": [
+        89
+      ],
+      "note": ""
+    },
+    {
+      "warning_type": "SQL Injection",
+      "warning_code": 0,
+      "fingerprint": "7b6991f86a02c66d1b735eb0defdd7677d47beb58a9c350a4044106e1413bfb9",
+      "check_name": "SQL",
+      "message": "Possible SQL injection",
+      "file": "lib/sivel2_gen/concerns/controllers/conteos_controller.rb",
+      "line": 408,
+      "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
+      "code": "ActiveRecord::Base.connection.execute(\"DROP VIEW  IF EXISTS #{personas_cons1} CASCADE\")",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "Sivel2Gen::Concerns::Controllers::ConteosController",
+        "method": "personas"
+      },
+      "user_input": "personas_cons1",
+      "confidence": "Medium",
+      "cwe_id": [
+        89
+      ],
+      "note": ""
+    },
+    {
+      "warning_type": "SQL Injection",
+      "warning_code": 0,
+      "fingerprint": "7ce5030a5af8e83a6e5dec30e6693de852cea0c71954c1b8bb1c8a0917a08d6c",
+      "check_name": "SQL",
+      "message": "Possible SQL injection",
+      "file": "app/controllers/sivel2_gen/casos_controller.rb",
+      "line": 604,
+      "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
+      "code": "ActiveRecord::Base.connection.execute(((((\"select fecha, count(distinct sivel2_gen_caso.id) AS cuenta, msip_departamento.nombre FROM sivel2_gen_caso LEFT JOIN msip_ubicacion ON sivel2_gen_caso.ubicacion_id = msip_ubicacion.id LEFT JOIN msip_departamento ON msip_ubicacion.departamento_id = msip_departamento.id WHERE sivel2_gen_caso.fecha BETWEEN '\" + (params[:fechaini] or if (Sivel2Gen::Caso.all.order(:fecha => :asc).pluck(:fecha).uniq.count > 0) then\n  Sivel2Gen::Caso.all.order(:fecha => :asc).pluck(:fecha).uniq[0]\nelse\n  \"2001-01-01\"\nend).to_s) + \"' AND '\") + (params[:fechafin] or Date.today).to_s) + \"' group by 1,3 order by 1;\"))",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "Sivel2Gen::CasosController",
+        "method": "cuenta"
+      },
+      "user_input": "Sivel2Gen::Caso.all.order(:fecha => :asc)",
+      "confidence": "High",
+      "cwe_id": [
+        89
+      ],
+      "note": ""
+    },
+    {
+      "warning_type": "SQL Injection",
+      "warning_code": 0,
+      "fingerprint": "7ce5030a5af8e83a6e5dec30e6693de852cea0c71954c1b8bb1c8a0917a08d6c",
+      "check_name": "SQL",
+      "message": "Possible SQL injection",
+      "file": "app/controllers/sivel2_gen/casos_controller.rb",
+      "line": 608,
+      "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
+      "code": "ActiveRecord::Base.connection.execute(((((\"select fecha, count(distinct sivel2_gen_caso.id) AS cuenta, msip_departamento.nombre FROM sivel2_gen_caso LEFT JOIN msip_ubicacion ON sivel2_gen_caso.ubicacion_id = msip_ubicacion.id LEFT JOIN msip_departamento ON msip_ubicacion.departamento_id = msip_departamento.id WHERE sivel2_gen_caso.fecha BETWEEN '\" + (params[:fechaini] or if (Sivel2Gen::Caso.all.order(:fecha => :asc).pluck(:fecha).uniq.count > 0) then\n  Sivel2Gen::Caso.all.order(:fecha => :asc).pluck(:fecha).uniq[0]\nelse\n  \"2001-01-01\"\nend).to_s) + \"' AND '\") + (params[:fechafin] or Date.today).to_s) + \"' group by 1,3 order by 1;\"))",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "Sivel2Gen::CasosController",
+        "method": "cuenta"
+      },
+      "user_input": "Sivel2Gen::Caso.all.order(:fecha => :asc)",
+      "confidence": "High",
+      "cwe_id": [
+        89
+      ],
+      "note": ""
+    },
+    {
+      "warning_type": "SQL Injection",
+      "warning_code": 0,
+      "fingerprint": "862ea5ae2e95f1c49bbbde3928dc9ceaeeb2a9381dc005deb561974a778cebe1",
+      "check_name": "SQL",
+      "message": "Possible SQL injection",
+      "file": "app/controllers/sivel2_gen/conteos_controller.rb",
+      "line": 529,
+      "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
+      "code": "ActiveRecord::Base.connection.select_all(\"SELECT count(*) FROM (SELECT DISTINCT sivel2_gen_acto.caso_id, \\n            sivel2_gen_acto.persona_id, sivel2_gen_acto.categoria_id \\n            FROM public.sivel2_gen_acto \\n            JOIN public.sivel2_gen_caso AS caso\\n              ON caso.id = sivel2_gen_acto.caso_id \\n            LEFT JOIN public.sivel2_gen_caso_etiqueta AS casoetiqueta \\n              ON casoetiqueta.caso_id = caso.id\\n            WHERE #{((ampliar_where(where, \"sivel2_gen_acto.categoria_id\", cat.to_i) or ((\"#{ampliar_where(where, \"sivel2_gen_acto.categoria_id\", cat.to_i)} AND (sivel2_gen_acto.caso_id, sivel2_gen_acto.persona_id) IN \\n                (SELECT caso_id, persona_id FROM sivel2_gen_acto \\n                WHERE sivel2_gen_acto.categoria_id='\" + concat.to_s) + \"') \")) or ((\"#{(ampliar_where(where, \"sivel2_gen_acto.categoria_id\", cat.to_i) or ((\"#{ampliar_where(where, \"sivel2_gen_acto.categoria_id\", cat.to_i)} AND (sivel2_gen_acto.caso_id, sivel2_gen_acto.persona_id) IN \\n                (SELECT caso_id, persona_id FROM sivel2_gen_acto \\n                WHERE sivel2_gen_acto.categoria_id='\" + concat.to_s) + \"') \"))} AND (sivel2_gen_acto.caso_id, sivel2_gen_acto.persona_id) NOT IN \\n                (SELECT caso_id, persona_id FROM sivel2_gen_acto \\n                WHERE sivel2_gen_acto.categoria_id='\" + sincat.to_s) + \"')\"))}) AS subcuentaactos;\")",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "Sivel2Gen::ConteosController",
+        "method": "cuenta_actos"
+      },
+      "user_input": "ampliar_where(where, \"sivel2_gen_acto.categoria_id\", cat.to_i)",
+      "confidence": "Medium",
+      "cwe_id": [
+        89
+      ],
+      "note": ""
+    },
+    {
+      "warning_type": "SQL Injection",
+      "warning_code": 0,
+      "fingerprint": "862ea5ae2e95f1c49bbbde3928dc9ceaeeb2a9381dc005deb561974a778cebe1",
+      "check_name": "SQL",
+      "message": "Possible SQL injection",
+      "file": "app/controllers/sivel2_gen/conteos_controller.rb",
+      "line": 531,
+      "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
+      "code": "ActiveRecord::Base.connection.select_all(\"SELECT count(*) FROM (SELECT DISTINCT sivel2_gen_acto.caso_id, \\n            sivel2_gen_acto.persona_id, sivel2_gen_acto.categoria_id \\n            FROM public.sivel2_gen_acto \\n            JOIN public.sivel2_gen_caso AS caso\\n              ON caso.id = sivel2_gen_acto.caso_id \\n            LEFT JOIN public.sivel2_gen_caso_etiqueta AS casoetiqueta \\n              ON casoetiqueta.caso_id = caso.id\\n            WHERE #{((ampliar_where(where, \"sivel2_gen_acto.categoria_id\", cat.to_i) or ((\"#{ampliar_where(where, \"sivel2_gen_acto.categoria_id\", cat.to_i)} AND (sivel2_gen_acto.caso_id, sivel2_gen_acto.persona_id) IN \\n                (SELECT caso_id, persona_id FROM sivel2_gen_acto \\n                WHERE sivel2_gen_acto.categoria_id='\" + concat.to_s) + \"') \")) or ((\"#{(ampliar_where(where, \"sivel2_gen_acto.categoria_id\", cat.to_i) or ((\"#{ampliar_where(where, \"sivel2_gen_acto.categoria_id\", cat.to_i)} AND (sivel2_gen_acto.caso_id, sivel2_gen_acto.persona_id) IN \\n                (SELECT caso_id, persona_id FROM sivel2_gen_acto \\n                WHERE sivel2_gen_acto.categoria_id='\" + concat.to_s) + \"') \"))} AND (sivel2_gen_acto.caso_id, sivel2_gen_acto.persona_id) NOT IN \\n                (SELECT caso_id, persona_id FROM sivel2_gen_acto \\n                WHERE sivel2_gen_acto.categoria_id='\" + sincat.to_s) + \"')\"))}) AS subcuentaactos;\")",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "Sivel2Gen::ConteosController",
+        "method": "cuenta_actos"
+      },
+      "user_input": "ampliar_where(where, \"sivel2_gen_acto.categoria_id\", cat.to_i)",
+      "confidence": "Medium",
+      "cwe_id": [
+        89
+      ],
+      "note": ""
+    },
+    {
+      "warning_type": "SQL Injection",
+      "warning_code": 0,
+      "fingerprint": "8a8cf8f997d3dc8635f714b4b901f32691f2908d4bfceff9a01f1d5da265132d",
+      "check_name": "SQL",
+      "message": "Possible SQL injection",
+      "file": "lib/sivel2_gen/concerns/controllers/mapadep_controller.rb",
+      "line": 75,
+      "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
+      "code": "ActiveRecord::Base.connection.select_all(\"SELECT  departamento_divipola, count(*) FROM #{Sivel2Gen::ConteosController.genconsulta_victimizaciones(escapar_param(params, [:filtro, \"fechaini\"]), escapar_param(params, [:filtro, \"fechafin\"]), escapar_param(params, [:filtro, \"tviolencia_id\"]), escapar_param(params, [:filtro, \"etiqueta1\"]), escapar_param(params, [:filtro, \"etiqueta2\"]), escapar_param(params, [:filtro, \"excluircaterep\"]), nil, 1, nil, ((Sivel2Gen::Categoria.habilitados.pluck(:id) & params[:filtro][:categoria].map(&:to_i)) or Sivel2Gen::Categoria.habilitados.pluck(:id)))} GROUP BY 1\")",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "Sivel2Gen::Concerns::Controllers::MapadepController",
+        "method": "victimizaciones"
+      },
+      "user_input": "Sivel2Gen::Categoria.habilitados.pluck(:id)",
+      "confidence": "High",
+      "cwe_id": [
+        89
+      ],
+      "note": ""
+    },
+    {
+      "warning_type": "SQL Injection",
+      "warning_code": 0,
+      "fingerprint": "8b37860fa5fb10ce4c589df511f87119c20a2a99c14b71056bd70f44a04e4e80",
+      "check_name": "SQL",
+      "message": "Possible SQL injection",
+      "file": "lib/sivel2_gen/concerns/models/consexpcaso.rb",
+      "line": 100,
+      "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
+      "code": "ActiveRecord::Base.connection.execute(\"CREATE \\n              MATERIALIZED VIEW sivel2_gen_consexpcaso AS\\n              #{self.consulta_consexpcaso}\\n              #{((\"WHERE TRUE=FALSE\" or \"WHERE conscaso.caso_id IN (#{conscaso.select(:caso_id).to_sql})\") + (\" ORDER BY \" + self.interpreta_ordenar_por(ordenar_por)))} ;\")",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "Sivel2Gen::Concerns::Models::Consexpcaso::ClassMethods",
+        "method": "crea_consexpcaso"
+      },
+      "user_input": "self.consulta_consexpcaso",
+      "confidence": "Medium",
+      "cwe_id": [
+        89
+      ],
+      "note": ""
+    },
+    {
+      "warning_type": "SQL Injection",
+      "warning_code": 0,
+      "fingerprint": "8b6cc6ca172ee4993d12b655a9376d9a1f40ffe49af83050071565c3f05da7ad",
+      "check_name": "SQL",
+      "message": "Possible SQL injection",
+      "file": "lib/sivel2_gen/concerns/controllers/conteos_controller.rb",
+      "line": 421,
+      "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
+      "code": "ActiveRecord::Base.connection.execute(\"CREATE VIEW #{personas_cons1} AS \\n              SELECT #{que1}\\n              FROM #{tablas1} #{(((\"\" or personas_fecha_inicial(\"\")) or personas_fecha_final((\"\" or personas_fecha_inicial(\"\")))) or (\"WHERE \" + ((\"\" or personas_fecha_inicial(\"\")) or personas_fecha_final((\"\" or personas_fecha_inicial(\"\"))))))}\\n            \")",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "Sivel2Gen::Concerns::Controllers::ConteosController",
+        "method": "personas"
+      },
+      "user_input": "personas_cons1",
+      "confidence": "Medium",
+      "cwe_id": [
+        89
+      ],
+      "note": ""
+    },
+    {
+      "warning_type": "SQL Injection",
+      "warning_code": 0,
+      "fingerprint": "8ec0b3d7164fa74d514374a2a7faeb0ae5b3f7af00e61c3d64f0eca0f74203a1",
+      "check_name": "SQL",
+      "message": "Possible SQL injection",
+      "file": "app/helpers/sivel2_gen/conteos_helper.rb",
+      "line": 49,
+      "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
+      "code": "ActiveRecord::Base.connection.execute(((((\"SELECT \" + sol.join(\", \")) + \" FROM sivel2_gen_conscaso \") + cond) + \")) \"))",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "Sivel2Gen::ConteosHelper",
+        "method": "calcularDatosActos"
+      },
+      "user_input": "sol.join(\", \")",
+      "confidence": "Medium",
+      "cwe_id": [
+        89
+      ],
+      "note": ""
+    },
+    {
+      "warning_type": "Cross-Site Scripting",
+      "warning_code": 84,
+      "fingerprint": "aaf42e4698557dd8fe036f5ba938f123cabfd86d54ec4a3a92afefbe96a3ba2b",
+      "check_name": "RenderInline",
+      "message": "Unescaped model attribute rendered inline",
+      "file": "app/controllers/sivel2_gen/actos_controller.rb",
+      "line": 47,
+      "link": "https://brakemanscanner.org/docs/warning_types/cross-site_scripting/",
+      "code": "render(inline => (\"\" or Sivel2Gen::Acto.new(:presponsable_id => cpresp.to_i, :categoria_id => ccat.to_i, :persona_id => cvic.to_i).errors.messages[:acto].join(\". \")), { :status => :unprocessable_entity })",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "Sivel2Gen::ActosController",
+        "method": "create_sivel2_gen"
+      },
+      "user_input": "Sivel2Gen::Acto.new(:presponsable_id => cpresp.to_i, :categoria_id => ccat.to_i, :persona_id => cvic.to_i).errors.messages[:acto].join(\". \")",
+      "confidence": "Medium",
+      "cwe_id": [
+        79
+      ],
+      "note": ""
+    },
+    {
+      "warning_type": "SQL Injection",
+      "warning_code": 0,
+      "fingerprint": "b287a87d7905ec118a65e9ca04d45bec3b18a2761cf6d0c996402eff761f06a4",
+      "check_name": "SQL",
+      "message": "Possible SQL injection",
+      "file": "lib/sivel2_gen/concerns/controllers/conteos_controller.rb",
+      "line": 1230,
+      "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
+      "code": "ActiveRecord::Base.connection.select_all(\"SELECT #{(\"\" + (t[0] + \", \"))} \\nCOUNT(cast(#{self.filtros_victimizaciones_gen(pFini, pFfin, pTviolencia, pEtiqueta1, pEtiqueta2, pExcluirCateRep, pSegun, pDepartamento, pMunicipio, nil, pCategoria)}.caso_id as text)) \\nFROM #{self.filtros_victimizaciones_gen(pFini, pFfin, pTviolencia, pEtiqueta1, pEtiqueta2, pExcluirCateRep, pSegun, pDepartamento, pMunicipio, nil, pCategoria)} \\n #{\"\"} \\n #{(((\"\" + (\"\" + 1.to_s)) or \"GROUP BY #{(\"\" + (\"\" + 1.to_s))}\") + \" ORDER BY categoria_id\")}\")",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "Sivel2Gen::Concerns::Controllers::ConteosController",
+        "method": "victimizaciones_gen_tabla"
+      },
+      "user_input": "t[0]",
+      "confidence": "Medium",
+      "cwe_id": [
+        89
+      ],
+      "note": ""
+    },
+    {
+      "warning_type": "SQL Injection",
+      "warning_code": 0,
+      "fingerprint": "b4736f686b1ce5ea4684deaf3d0b1273bf8b24a86f88b74da909e6a476e8b020",
+      "check_name": "SQL",
+      "message": "Possible SQL injection",
+      "file": "app/controllers/sivel2_gen/conteos_controller.rb",
+      "line": 408,
+      "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
+      "code": "ActiveRecord::Base.connection.execute(\"DROP VIEW  IF EXISTS #{personas_cons1} CASCADE\")",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "Sivel2Gen::ConteosController",
+        "method": "personas"
+      },
+      "user_input": "personas_cons1",
+      "confidence": "Medium",
+      "cwe_id": [
+        89
+      ],
+      "note": ""
+    },
+    {
+      "warning_type": "SQL Injection",
+      "warning_code": 0,
+      "fingerprint": "ba2656158a15a8957dc1423021ed53e87f146b8202e1c33ee5441b31c9097b9f",
+      "check_name": "SQL",
+      "message": "Possible SQL injection",
+      "file": "lib/sivel2_gen/concerns/controllers/conteos_controller.rb",
+      "line": 407,
+      "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
+      "code": "ActiveRecord::Base.connection.execute(\"DROP VIEW  IF EXISTS #{personas_cons2} CASCADE\")",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "Sivel2Gen::Concerns::Controllers::ConteosController",
+        "method": "personas"
+      },
+      "user_input": "personas_cons2",
+      "confidence": "Medium",
+      "cwe_id": [
+        89
+      ],
+      "note": ""
+    },
+    {
+      "warning_type": "SQL Injection",
+      "warning_code": 0,
+      "fingerprint": "c0ccf755790a93d4b344714e871c15bd69cb1af23bc7675da1b56d49a5180587",
+      "check_name": "SQL",
+      "message": "Possible SQL injection",
+      "file": "lib/sivel2_gen/concerns/controllers/casos_controller.rb",
+      "line": 604,
+      "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
+      "code": "ActiveRecord::Base.connection.execute(((((\"select fecha, count(distinct sivel2_gen_caso.id) AS cuenta, msip_departamento.nombre FROM sivel2_gen_caso LEFT JOIN msip_ubicacion ON sivel2_gen_caso.ubicacion_id = msip_ubicacion.id LEFT JOIN msip_departamento ON msip_ubicacion.departamento_id = msip_departamento.id WHERE sivel2_gen_caso.fecha BETWEEN '\" + (params[:fechaini] or if (Sivel2Gen::Caso.all.order(:fecha => :asc).pluck(:fecha).uniq.count > 0) then\n  Sivel2Gen::Caso.all.order(:fecha => :asc).pluck(:fecha).uniq[0]\nelse\n  \"2001-01-01\"\nend).to_s) + \"' AND '\") + (params[:fechafin] or Date.today).to_s) + \"' group by 1,3 order by 1;\"))",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "Sivel2Gen::Concerns::Controllers::CasosController",
+        "method": "cuenta"
+      },
+      "user_input": "Sivel2Gen::Caso.all.order(:fecha => :asc)",
+      "confidence": "High",
+      "cwe_id": [
+        89
+      ],
+      "note": ""
+    },
+    {
+      "warning_type": "SQL Injection",
+      "warning_code": 0,
+      "fingerprint": "cb34322969e3f91e6889ded28a01bd3d304ca5eed1f44cec01f62ecebd7e923b",
+      "check_name": "SQL",
+      "message": "Possible SQL injection",
+      "file": "app/controllers/sivel2_gen/graficar_victimizaciones_individuales_controller.rb",
+      "line": 403,
+      "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
+      "code": "ActiveRecord::Base.connection.execute(\"DROP VIEW  IF EXISTS #{cons1} CASCADE\")",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "Sivel2Gen::GraficarVictimizacionesIndividualesController",
+        "method": "consulta"
+      },
+      "user_input": "cons1",
+      "confidence": "Medium",
+      "cwe_id": [
+        89
+      ],
+      "note": ""
+    },
+    {
+      "warning_type": "SQL Injection",
+      "warning_code": 0,
+      "fingerprint": "d49476819a4296afaba312d4ae54fa076d808694b867300ef26551b55f47e11a",
+      "check_name": "SQL",
+      "message": "Possible SQL injection",
+      "file": "app/controllers/sivel2_gen/fil23_gen/graficar_plotly_controller.rb",
+      "line": 50,
+      "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
+      "code": "ActiveRecord::Base.connection.execute(\"COPY (SELECT DISTINCT caso.fecha, supracategoria.tviolencia_id AS tviolencia_id,categoria.id AS categoria_id, categoria.nombre AS categoria_nombre, supracategoria.tviolencia_id || categoria.id || ' ' || categoria.nombre AS categoria_rotulo, acto.presponsable_id AS presponsable_id, presponsable.nombre AS presponsable, ubicacion.departamento_id AS departamento_id, ubicacion.municipio_id AS municipio_id, departamento.nombre AS departamento, municipio.nombre AS municipio, COUNT(*) as cuenta FROM sivel2_gen_acto AS acto JOIN sivel2_gen_caso AS caso ON caso.id = acto.caso_id JOIN sivel2_gen_categoria AS categoria ON categoria.id=acto.categoria_id JOIN sivel2_gen_supracategoria AS supracategoria ON supracategoria.id = categoria.supracategoria_id JOIN sivel2_gen_presponsable AS presponsable ON presponsable.id=acto.presponsable_id LEFT JOIN msip_ubicacion AS ubicacion ON ubicacion.id=caso.ubicacion_id LEFT JOIN msip_departamento AS departamento ON ubicacion.departamento_id=departamento.id LEFT JOIN msip_municipio AS municipio ON ubicacion.municipio_id=municipio.id GROUP BY 1,2,3,4,5,6,7,8,9,10,11)  TO '#{Tempfile.new([\"actos_individuales\", \".csv\"], \"/var/www/tmp/\").path}' DELIMITER ',' CSV HEADER;\")",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "Sivel2Gen::Fil23Gen::GraficarPlotlyController",
+        "method": "actos_individuales"
+      },
+      "user_input": "Tempfile.new([\"actos_individuales\", \".csv\"], \"/var/www/tmp/\").path",
+      "confidence": "Medium",
+      "cwe_id": [
+        89
+      ],
+      "note": ""
+    },
+    {
+      "warning_type": "SQL Injection",
+      "warning_code": 0,
+      "fingerprint": "e32ca9220f7030773296ec28cef3f0c496dbee7d485f178dd41616ae9d0557c4",
+      "check_name": "SQL",
+      "message": "Possible SQL injection",
+      "file": "app/controllers/sivel2_gen/graficar_victimizaciones_individuales_controller.rb",
+      "line": 402,
+      "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
+      "code": "ActiveRecord::Base.connection.execute(\"DROP VIEW  IF EXISTS #{cons2} CASCADE\")",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "Sivel2Gen::GraficarVictimizacionesIndividualesController",
+        "method": "consulta"
+      },
+      "user_input": "cons2",
+      "confidence": "Medium",
+      "cwe_id": [
+        89
+      ],
+      "note": ""
+    },
+    {
+      "warning_type": "SQL Injection",
+      "warning_code": 0,
+      "fingerprint": "e5488d04a103fe0e325b0294f7f527591f9f82837149d3481229931adc05402b",
+      "check_name": "SQL",
+      "message": "Possible SQL injection",
+      "file": "lib/sivel2_gen/concerns/controllers/conteos_controller.rb",
+      "line": 1075,
+      "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
+      "code": "ActiveRecord::Base.connection.select_all((\"SELECT categoria, SUM(count)::INTEGER \" + \"FROM (#{\"SELECT #{(\"\" + (t[0] + \", \"))} \\nCOUNT(cast(#{self.filtros_victimizaciones_gen(pFini, pFfin, pTviolencia, pEtiqueta1, pEtiqueta2, pExcluirCateRep, pSegun, pDepartamento, pMunicipio, nil, pCategoria)}.caso_id as text)) \\nFROM #{self.filtros_victimizaciones_gen(pFini, pFfin, pTviolencia, pEtiqueta1, pEtiqueta2, pExcluirCateRep, pSegun, pDepartamento, pMunicipio, nil, pCategoria)} \\n #{\"\"} \\n #{(((\"\" + (\"\" + 1.to_s)) or \"GROUP BY #{(\"\" + (\"\" + 1.to_s))}\") + \" ORDER BY categoria_id\")}\"}) AS sub GROUP BY 1 ORDER BY 1;\"))",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "Sivel2Gen::Concerns::Controllers::ConteosController",
+        "method": "victimizaciones_gen_tabla"
+      },
+      "user_input": "t[0]",
+      "confidence": "Medium",
+      "cwe_id": [
+        89
+      ],
+      "note": ""
+    },
+    {
+      "warning_type": "SQL Injection",
+      "warning_code": 0,
+      "fingerprint": "e8c399dddfb7708cc83af7dd9bd6ae47fb8cd25fd1ab5ad18cd9100a239fbabc",
+      "check_name": "SQL",
+      "message": "Possible SQL injection",
+      "file": "app/controllers/sivel2_gen/casos_controller.rb",
+      "line": 723,
+      "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
+      "code": "Sivel2Gen::CasoRespuestafor.connection.execute(\"DELETE FROM sivel2_gen_caso_respuestafor\\n                        WHERE caso_id=#{caso.id} \\n                        AND respuestafor_id IN (#{(Sivel2Gen::CasoRespuestafor.where(:caso_id => caso.id).joins(:respuestafor).where(\"formulario_id NOT IN (#{\"#{Mr519Gen::Formulario.where(:nombreinterno => p[:parcial][(12..-1)]).take.id}\"})\") or Sivel2Gen::CasoRespuestafor.where(:caso_id => caso.id)).map(&:respuestafor_id).join(\", \")})\")",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "Sivel2Gen::CasosController",
+        "method": "Sivel2Gen::CasosController.asegura_camposdinamicos"
+      },
+      "user_input": "Sivel2Gen::CasoRespuestafor.where(:caso_id => caso.id).joins(:respuestafor)",
+      "confidence": "High",
+      "cwe_id": [
+        89
+      ],
+      "note": ""
+    },
+    {
+      "warning_type": "SQL Injection",
+      "warning_code": 0,
+      "fingerprint": "ec600e14667b1f0e65a42473d804ff34ded9578d73d4ec26da3a85eeeee4101a",
+      "check_name": "SQL",
+      "message": "Possible SQL injection",
+      "file": "lib/sivel2_gen/concerns/controllers/conteos_controller.rb",
+      "line": 1094,
+      "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
+      "code": "ActiveRecord::Base.connection.select_all((\"SELECT #{[[\"tviolencia_id\", \"T. Violencia\"], [\"categoria_id\", \"Id. Categoria\"], [\"categoria\", \"Categoria\"], [\"departamento_divipola\", \"Cod. Departamento\"], [\"departamento_nombre\", \"Departamento\"], [\"municipio_divipola\", \"Cod. Municipio\"], [\"municipio_nombre\", \"Municipio\"], [\"presponsable_nombre\", \"P. Responsable\"], [\"filiacion_nombre\", \"Filiacion\"], [\"mes_anio\", \"Mes\"], [\"organizacion_nombre\", \"Organizaci\\u00F3n\"], [\"profesion_nombre\", \"Profesi\\u00F3n\"], [\"rangoedad_rango\", \"Rango de edad\"], [\"region\", \"Regi\\u00F3n\"], [\"sectorsocial_nombre\", \"Sector social\"], [\"sexo\", \"Sexo\"]].last[0]}, categoria, SUM(count)::INTEGER \" + \"FROM (#{\"SELECT #{(\"\" + (t[0] + \", \"))} \\nCOUNT(cast(#{self.filtros_victimizaciones_gen(pFini, pFfin, pTviolencia, pEtiqueta1, pEtiqueta2, pExcluirCateRep, pSegun, pDepartamento, pMunicipio, nil, pCategoria)}.caso_id as text)) \\nFROM #{self.filtros_victimizaciones_gen(pFini, pFfin, pTviolencia, pEtiqueta1, pEtiqueta2, pExcluirCateRep, pSegun, pDepartamento, pMunicipio, nil, pCategoria)} \\n #{\"\"} \\n #{(((\"\" + (\"\" + 1.to_s)) or \"GROUP BY #{(\"\" + (\"\" + 1.to_s))}\") + \" ORDER BY categoria_id\")}\"}) AS sub GROUP BY 1, 2 ORDER BY 1, 2;\"))",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "Sivel2Gen::Concerns::Controllers::ConteosController",
+        "method": "victimizaciones_gen_tabla"
+      },
+      "user_input": "t[0]",
+      "confidence": "Medium",
+      "cwe_id": [
+        89
+      ],
+      "note": ""
+    },
+    {
+      "warning_type": "SQL Injection",
+      "warning_code": 0,
+      "fingerprint": "f013c3272525e9a3a09a539dc4c0874baf7cc54a15717bd245b46b52606e4825",
+      "check_name": "SQL",
+      "message": "Possible SQL injection",
+      "file": "app/controllers/sivel2_gen/validarcasos_controller.rb",
+      "line": 40,
+      "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
+      "code": "casos.where(\"#{cfecha} >= ?\", (((\"\" or Msip::FormatoFechaHelper.fecha_local_estandar(params[:validarcaso][:fechaini])) or nil) or Msip::FormatoFechaHelper.inicio_semestre(Date.today).to_s))",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "Sivel2Gen::ValidarcasosController",
+        "method": "filtro_fechas"
+      },
+      "user_input": "cfecha",
+      "confidence": "Weak",
+      "cwe_id": [
+        89
+      ],
+      "note": ""
+    },
+    {
+      "warning_type": "SQL Injection",
+      "warning_code": 0,
+      "fingerprint": "f013c3272525e9a3a09a539dc4c0874baf7cc54a15717bd245b46b52606e4825",
+      "check_name": "SQL",
+      "message": "Possible SQL injection",
+      "file": "app/controllers/sivel2_gen/validarcasos_controller.rb",
+      "line": 47,
+      "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
+      "code": "casos.where(\"#{cfecha} >= ?\", (((\"\" or Msip::FormatoFechaHelper.fecha_local_estandar(params[:validarcaso][:fechaini])) or nil) or Msip::FormatoFechaHelper.inicio_semestre(Date.today).to_s))",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "Sivel2Gen::ValidarcasosController",
+        "method": "filtro_fechas"
+      },
+      "user_input": "cfecha",
+      "confidence": "Weak",
+      "cwe_id": [
+        89
+      ],
+      "note": ""
+    },
+    {
+      "warning_type": "SQL Injection",
+      "warning_code": 0,
+      "fingerprint": "f013c3272525e9a3a09a539dc4c0874baf7cc54a15717bd245b46b52606e4825",
+      "check_name": "SQL",
+      "message": "Possible SQL injection",
+      "file": "app/controllers/sivel2_gen/validarcasos_controller.rb",
+      "line": 50,
+      "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
+      "code": "casos.where(\"#{cfecha} >= ?\", (((\"\" or Msip::FormatoFechaHelper.fecha_local_estandar(params[:validarcaso][:fechaini])) or nil) or Msip::FormatoFechaHelper.inicio_semestre(Date.today).to_s))",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "Sivel2Gen::ValidarcasosController",
+        "method": "filtro_fechas"
+      },
+      "user_input": "cfecha",
+      "confidence": "Weak",
+      "cwe_id": [
+        89
+      ],
+      "note": ""
+    },
+    {
+      "warning_type": "SQL Injection",
+      "warning_code": 0,
+      "fingerprint": "ffacff19fd06ffe96f9dbc965e396c77c7ac88e78ee834be11ccb3a059066aca",
+      "check_name": "SQL",
+      "message": "Possible SQL injection",
+      "file": "app/helpers/sivel2_gen/conteos_helper.rb",
+      "line": 34,
+      "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
+      "code": "ActiveRecord::Base.connection.execute(((((\"SELECT COUNT(DISTINCT sivel2_gen_conscaso.caso_id) AS numero_casos, \" + cond) + \")) FROM sivel2_gen_acto WHERE caso_id IN (\") + cond) + \")) \"))",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "Sivel2Gen::ConteosHelper",
+        "method": "calcularConteosActos"
+      },
+      "user_input": "cond",
+      "confidence": "Medium",
+      "cwe_id": [
+        89
+      ],
+      "note": ""
+    }
+  ],
+  "brakeman_version": "7.0.0"
+}

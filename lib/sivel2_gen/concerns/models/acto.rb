@@ -58,7 +58,6 @@ module Sivel2Gen
             descpoloe_ids = descendientes_poloe.to_a.map{|de| de["id"]} 
             tv = self.categoria.supracategoria.tviolencia_id
             pr = self.presponsable.id
-            cat = self.categoria
             if tv == "A" && !descpoloe_ids.include?(pr) then
               errors.add(:acto, "Si el tipo de violencia es "\
                          "Derechos Humanos el presunto responsable debe "\
