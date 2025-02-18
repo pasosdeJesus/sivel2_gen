@@ -29,7 +29,6 @@ module Sivel2Gen
       Caso.create!(PRUEBA_CASOV)
       Sivel2Gen::Conscaso.refresca_conscaso
       get casos_path
-      # debugger
       assert_response :success
       puts @response.body
 
@@ -46,11 +45,6 @@ module Sivel2Gen
       assert_select "p", text: /Fecha:[ \n]*2014-11-19[ \n]*SIN INFORMACIÓN/
     end
 
-    def test_verifica_formulario
-      assert_select("input#caso_fecha[name=?]", "caso[fecha]")
-      assert_select("textarea#caso_memo[name=?]", "caso[memo]")
-    end
-
     test "new: asigna un nuevo caso como @caso" do
       get new_caso_url
 
@@ -61,7 +55,9 @@ module Sivel2Gen
       assert_redirected_to controller: "casos", action: :edit, id: ncaso
       follow_redirect!
       assert_select "form" do
-        verifica_formulario
+        assert_select("input#caso_fecha[name=?]", "caso[fecha]")
+        assert_select("textarea#caso_memo[name=?]", "caso[memo]")
+        #verifica_formulario
       end
     end
 
@@ -73,10 +69,9 @@ module Sivel2Gen
       assert_select "form[action=?][method=?]",
         caso_path(caso),
         "post" do
-        verifica_formulario
-        #  assert_select "input#caso_fecha[name=?]", "caso[fecha]"
-        #  assert_select "textarea#caso_memo[name=?]", "caso[memo]"
-      end
+          assert_select("input#caso_fecha[name=?]", "caso[fecha]")
+          assert_select("textarea#caso_memo[name=?]", "caso[memo]")
+        end
     end
 
     test "put update: actualiza el caso requerida" do
