@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require "msip/concerns/models/ubicacion"
 
 module Sivel2Gen
@@ -9,43 +10,44 @@ module Sivel2Gen
         include Msip::Concerns::Models::Ubicacion
 
         included do
-          has_many :principalde, 
-foreign_key: "ubicacion_id",
-            validate: false, 
-dependent: :nullify,
+          has_many :principalde,
+            foreign_key: "ubicacion_id",
+            validate: false,
+            dependent: :nullify,
             class_name: "Sivel2Gen::Caso"
 
-          belongs_to :caso, 
-class_name: "Sivel2Gen::Caso",, 
-validate: true, 
-optional: false
+          belongs_to :caso,
+            class_name: "Sivel2Gen::Caso",
+            validate: true,
+            optional: false
 
-          validates :departamento_id, 
-presence: {
-            message: "Ubicación del país debe tener departamento.",
-          }, if: -> { pais_id == Msip.paisomision }
+          validates :departamento_id,
+            presence: {
+              message: "Ubicación del país debe tener departamento.",
+            },
+            if: -> { pais_id == Msip.paisomision }
 
           attr_accessor :principal
           attr_accessor :tcentropoblado
 
           def principal
-            self.id && self.caso && (self.caso.ubicacion_id == self.id ||
-                                     self.caso.ubicacion_id.nil?)
+            id && caso && (caso.ubicacion_id == id ||
+                                     caso.ubicacion_id.nil?)
           end
 
           def principal=(v)
-            if self.id && self.caso
+            if id && caso
               if v.to_i == 1
-                self.caso.update_attribute("ubicacion_id", self.id)
-              elsif self.caso.ubicacion_id == self.id
-                self.caso.update_attribute("ubicacion_id", nil)
+                caso.update_attribute("ubicacion_id", id)
+              elsif caso.ubicacion_id == id
+                caso.update_attribute("ubicacion_id", nil)
               end
             end
           end
 
           def tcentropoblado
-            if self.centropoblado && self.centropoblado.tcentropoblado
-              return self.centropoblado.tcentropoblado.nombre
+            if centropoblado && centropoblado.tcentropoblado
+              return centropoblado.tcentropoblado.nombre
             end
 
             ""
@@ -57,7 +59,7 @@ presence: {
             self.pais_id = pais || Msip.paisomision
             dep = Msip::Departamento
               .where("nombre ILIKE ?", datosent["departamento"])
-              .where(pais_id: self.pais_id).ids[0]
+              .where(pais_id: pais_id).ids[0]
             mun = Msip::Municipio
               .where("nombre ILIKE ?", datosent["municipio"])
               .where(departamento_id: dep).ids[0]
@@ -75,12 +77,12 @@ presence: {
                 ob = obs.split("_")
                 case ob[0]
                 when "sitio"
-                    self.sitio = ob[1]
+                  self.sitio = ob[1]
                 when "lugar"
-                    self.lugar = ob[1]
+                  self.lugar = ob[1]
                 when "tsitio"
-                    ts = Msip::Tsitio.where(nombre: ob[1])[0]
-                    self.tsitio = ts if ts
+                  ts = Msip::Tsitio.where(nombre: ob[1])[0]
+                  self.tsitio = ts if ts
                 end
               end
             end

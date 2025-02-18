@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module Sivel2Gen
   module Concerns
     module Models
@@ -19,7 +20,7 @@ module Sivel2Gen
             validate: true
 
           belongs_to :caso,
-            class_name: "Sivel2Gen::Caso",,
+            class_name: "Sivel2Gen::Caso",
             optional: false,
             validate: true
 
@@ -49,19 +50,19 @@ module Sivel2Gen
                    FROM cteRecursion
                    ORDER BY Level, id;"
             descendientes_poloe = ActiveRecord::Base.connection.select_all(
-              consl
-)
-            descpoloe_ids = descendientes_poloe.to_a.map {|de| de["id"]}
+              consl,
+            )
+            descpoloe_ids = descendientes_poloe.to_a.map { |de| de["id"] }
             tv = categoria.supracategoria.tviolencia_id
             pr = presponsable.id
             if tv == "A" && !descpoloe_ids.include?(pr)
               errors.add(:acto, "Si el tipo de violencia es " \
                 "Derechos Humanos el presunto responsable debe " \
-                         "ser del Polo Estatal")
+                "ser del Polo Estatal")
             elsif tv == "B" && descpoloe_ids.include?(pr)
               errors.add(:acto, "Si el tipo de violencia es " \
                 "Violencia Socio Política el presunto responsable " \
-                         "no puede ser del Polo Estatal")
+                "no puede ser del Polo Estatal")
             end
           end
 

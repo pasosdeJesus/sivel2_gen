@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require "msip/accesores_ubicacionpre"
 
 module Sivel2Gen
@@ -20,7 +21,7 @@ module Sivel2Gen
             inverse_of: :caso_ubicacionpre,
             optional: false
           belongs_to :ubicacionpre,
-            class_name: "Msip::Ubicacionpre",,
+            class_name: "Msip::Ubicacionpre",
             validate: false,
             optional: false
         end # included

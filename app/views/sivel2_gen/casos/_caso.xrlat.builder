@@ -17,11 +17,13 @@ xml.relato do
         xml.apellido(v.persona.apellidos)
         unless v.persona.numerodocumento.nil? ||
             v.persona.numerodocumento.empty?
-          xml.docid((if v.persona.tdocumento
-                       v.persona.tdocumento.sigla
-                     else
-                       ""
-          end) + " " + v.persona.numerodocumento)
+          xml.docid((
+            if v.persona.tdocumento
+              v.persona.tdocumento.sigla
+            else
+              ""
+            end
+          ) + " " + v.persona.numerodocumento)
         end
         xml.fecha_nacimiento(
           v.persona.anionac,
@@ -213,7 +215,7 @@ xml.relato do
         xml.agresion(!ac.categoria.pconsolidado.nil? ? ac.categoria.pconsolidado.clasificacion : "OTRA")
         unless ac.categoria.nombre.nil? || ac.categoria.nombre.empty?
           xml.agresion_particular(ac.categoria.nombre + " (" +
-            ac.categoria.id.to_s + ")")
+                                  ac.categoria.id.to_s + ")")
         end
         xml.id_victima_individual(ac.persona.id)
         xml.id_presunto_responsable_individual(ac.presponsable.id)
@@ -231,7 +233,7 @@ xml.relato do
       end
       unless acol.categoria.nombre.nil? || acol.categoria.nombre.empty?
         xml.agresion_particular(acol.categoria.nombre + " (" +
-          acol.categoria.id.to_s + ")")
+                                acol.categoria.id.to_s + ")")
       end
       xml.id_grupo_victima(acol.grupoper.id)
       xml.id_presunto_grupo_responsable(acol.presponsable.id) if acol.presponsable

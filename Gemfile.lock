@@ -11,10 +11,10 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/heb412_gen.git
-  revision: d82b04a63972b4c8fdeba696a9df926fedc45a13
+  revision: d777099ed196be10dadb011fdbba1445562cb670
   branch: main
   specs:
-    heb412_gen (2.3.0.alfa3)
+    heb412_gen (2.3.0.alfa4)
       mr519_gen
       msip
       redcarpet
@@ -22,19 +22,19 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/mr519_gen.git
-  revision: 89074774cff7affc12ae309ea7528dd7dac07a28
+  revision: 0f89249a6f7d6b7d3a1bc34289eeddafe10e5943
   branch: main
   specs:
-    mr519_gen (2.3.0.alfa3)
+    mr519_gen (2.3.0.alfa4)
       msip
       rails
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/msip.git
-  revision: 90af35902c9d86c4a52241d6cf25bf97d58a8fdd
+  revision: 7faa8b395d7f8f6d24fc9315b1dbd6c3cc69c0f4
   branch: main
   specs:
-    msip (2.3.0.alfa3)
+    msip (2.3.0.alfa4)
       cancancan (~> 3)
       devise (~> 4)
       devise-i18n (~> 1)
@@ -199,6 +199,7 @@ GEM
     json (2.9.1)
     language_server-protocol (3.17.0.4)
     libxml-ruby (5.0.3)
+    lint_roller (1.1.0)
     logger (1.6.5)
     loofah (2.24.0)
       crass (~> 1.0.2)
@@ -265,7 +266,7 @@ GEM
     puma (6.6.0)
       nio4r (~> 2.0)
     racc (1.8.1)
-    rack (2.2.10)
+    rack (2.2.11)
     rack-session (1.0.2)
       rack (< 3)
     rack-test (2.2.0)
@@ -341,9 +342,10 @@ GEM
       unicode-display_width (>= 2.4.0, < 4.0)
     rubocop-ast (1.38.0)
       parser (>= 3.3.1.0)
-    rubocop-minitest (0.36.0)
+    rubocop-minitest (0.37.0)
+      lint_roller (~> 1.1)
       rubocop (>= 1.61, < 2.0)
-      rubocop-ast (>= 1.31.1, < 2.0)
+      rubocop-ast (>= 1.38.0, < 2.0)
     rubocop-rails (2.29.1)
       activesupport (>= 4.2.0)
       rack (>= 1.1)
