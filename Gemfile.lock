@@ -22,7 +22,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/mr519_gen.git
-  revision: 0f89249a6f7d6b7d3a1bc34289eeddafe10e5943
+  revision: 44e630bd2038c58dd2cd05227d69e58bdf0ebd94
   branch: main
   specs:
     mr519_gen (2.3.0.alfa4)
@@ -31,7 +31,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/msip.git
-  revision: 7faa8b395d7f8f6d24fc9315b1dbd6c3cc69c0f4
+  revision: 5ca1d38be5070ae0de27b97d73fca602528b64d9
   branch: main
   specs:
     msip (2.3.0.alfa4)
@@ -330,27 +330,29 @@ GEM
     rspreadsheet (0.5.3)
       andand (>= 1.3)
       rubyzip (>= 1.3)
-    rubocop (1.71.0)
+    rubocop (1.72.2)
       json (~> 2.3)
-      language_server-protocol (>= 3.17.0)
+      language_server-protocol (~> 3.17.0.2)
+      lint_roller (~> 1.1.0)
       parallel (~> 1.10)
       parser (>= 3.3.0.2)
       rainbow (>= 2.2.2, < 4.0)
       regexp_parser (>= 2.9.3, < 3.0)
-      rubocop-ast (>= 1.36.2, < 2.0)
+      rubocop-ast (>= 1.38.0, < 2.0)
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 2.4.0, < 4.0)
     rubocop-ast (1.38.0)
       parser (>= 3.3.1.0)
-    rubocop-minitest (0.37.0)
+    rubocop-minitest (0.37.1)
       lint_roller (~> 1.1)
-      rubocop (>= 1.61, < 2.0)
+      rubocop (>= 1.72.1, < 2.0)
       rubocop-ast (>= 1.38.0, < 2.0)
-    rubocop-rails (2.29.1)
+    rubocop-rails (2.30.1)
       activesupport (>= 4.2.0)
+      lint_roller (~> 1.1)
       rack (>= 1.1)
-      rubocop (>= 1.52.0, < 2.0)
-      rubocop-ast (>= 1.31.1, < 2.0)
+      rubocop (>= 1.72.1, < 2.0)
+      rubocop-ast (>= 1.38.0, < 2.0)
     rubocop-shopify (2.15.1)
       rubocop (~> 1.51)
     ruby-graphviz (1.2.5)
@@ -482,4 +484,4 @@ DEPENDENCIES
   will_paginate
 
 BUNDLED WITH
-   2.6.3
+   2.6.4
