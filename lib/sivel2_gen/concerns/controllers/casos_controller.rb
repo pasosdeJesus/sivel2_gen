@@ -1383,7 +1383,7 @@ module Sivel2Gen
               datossal = {}
               relimportado = Hash.from_xml(relato.to_s)
               @caso = Sivel2Gen::Caso.new
-              menserror_uno = ""
+              menserror_uno = "".dup
               importado = @caso.importa(
                 relimportado["relato"],
                 datossal,

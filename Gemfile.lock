@@ -22,7 +22,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/mr519_gen.git
-  revision: 44e630bd2038c58dd2cd05227d69e58bdf0ebd94
+  revision: e4e23ac779234c41f7a200f364eb6709a37a3b2b
   branch: main
   specs:
     mr519_gen (2.3.0.alfa4)
@@ -31,7 +31,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/msip.git
-  revision: 5ca1d38be5070ae0de27b97d73fca602528b64d9
+  revision: 4ade41c424d0f7f2f9a1d1d50c515f89046c40ce
   branch: main
   specs:
     msip (2.3.0.alfa4)
@@ -234,7 +234,7 @@ GEM
     net-smtp (0.5.0)
       net-protocol
     nio4r (2.7.4)
-    nokogiri (1.18.2)
+    nokogiri (1.18.3)
       mini_portile2 (~> 2.8.2)
       racc (~> 1.4)
     odf-report (0.8.1)
