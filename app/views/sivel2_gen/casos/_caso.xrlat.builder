@@ -3,9 +3,9 @@
 xml.relato do
   xml.organizacion_responsable(Sivel2Gen::Ability.organizacion_responsable)
   xml.derechos(Sivel2Gen::Ability.derechos)
-  xml.id_relato(caso(["id"]))
+  xml.id_relato(caso["id"])
   xml.forma_compartir("publico")
-  xml.titulo(caso(["titulo"]))
+  xml.titulo(caso["titulo"])
   xml.hechos(caso["memo"])
 
   xml.comment!("Victimas personas individuales")

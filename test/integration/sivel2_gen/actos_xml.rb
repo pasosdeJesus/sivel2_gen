@@ -46,6 +46,8 @@ module Sivel2Gen
         created_at: "2014-09-09",
       )
       acto.save!
+      caso.acto=[acto]
+      caso.save!
       get caso_path(caso) + ".xrlat"
       puts @response.body
       file = guarda_xml(@response.body)
