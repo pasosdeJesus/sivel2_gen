@@ -29,6 +29,7 @@ module Sivel2Gen
       Caso.create!(PRUEBA_CASOV)
       Sivel2Gen::Conscaso.refresca_conscaso
       get casos_path
+
       assert_response :success
       puts @response.body
 
@@ -57,7 +58,7 @@ module Sivel2Gen
       assert_select "form" do
         assert_select("input#caso_fecha[name=?]", "caso[fecha]")
         assert_select("textarea#caso_memo[name=?]", "caso[memo]")
-        #verifica_formulario
+        # verifica_formulario
       end
     end
 
