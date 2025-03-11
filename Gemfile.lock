@@ -11,7 +11,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/heb412_gen.git
-  revision: 048507c62150d643fa9c668d942bca0548cacbf3
+  revision: e83863120ea0df40ca8f88c159583ef0f1641c12
   branch: main
   specs:
     heb412_gen (2.3.0.alfa4)
@@ -22,7 +22,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/mr519_gen.git
-  revision: 7b409706816a5f9d838bbd29bbe8fc1e432ae7b6
+  revision: 243b0381d65e1ffb5f41033761da171e00ab26ea
   branch: main
   specs:
     mr519_gen (2.3.0.alfa4)
@@ -31,7 +31,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/msip.git
-  revision: 9168e4cd45479cfc61737e3ec4ce143bc169e81c
+  revision: 5a24ec6e25e9f15106e9353fb0c4413835495c4b
   branch: main
   specs:
     msip (2.3.0.alfa4)
@@ -165,8 +165,9 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
-    devise-i18n (1.12.1)
+    devise-i18n (1.13.0)
       devise (>= 4.9.0)
+      rails-i18n
     docile (1.4.1)
     dotenv (3.1.7)
     dotenv-rails (3.1.7)
@@ -266,7 +267,7 @@ GEM
     puma (6.6.0)
       nio4r (~> 2.0)
     racc (1.8.1)
-    rack (2.2.12)
+    rack (2.2.13)
     rack-session (1.0.2)
       rack (< 3)
     rack-test (2.2.0)
@@ -353,8 +354,8 @@ GEM
       rack (>= 1.1)
       rubocop (>= 1.72.1, < 2.0)
       rubocop-ast (>= 1.38.0, < 2.0)
-    rubocop-shopify (2.15.1)
-      rubocop (~> 1.51)
+    rubocop-shopify (2.16.0)
+      rubocop (~> 1.62)
     ruby-graphviz (1.2.5)
       rexml
     ruby-progressbar (1.13.0)
