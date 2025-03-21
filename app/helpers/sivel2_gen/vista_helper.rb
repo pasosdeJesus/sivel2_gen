@@ -3,19 +3,13 @@ module Sivel2Gen
 
     include Rails.application.routes.url_helpers
 
-    def arreglar_ruta(ruta)
-      rr = Rails.configuration.relative_url_root.dup
-      if rr[0] != '/'
-        rr = "/#{rr}"
-      end
-      if rr.length > 1 && rr[-1] = "/"
-        rr = rr[0..-2]
-      end
-      re = "#{rr}#{rr}/assets"
-      res = ruta.sub(/^#{re}/, "#{rr}/assets")
-      return res
+    def anteponer_ruta_relativa(ruta)
+      File.join(
+        Rails.configuration.relative_url_root,
+        ruta
+      )
     end
-    module_function :arreglar_ruta
+    module_function :anteponer_ruta_relativa
 
     # Presenta arbol de presuntos responsables
     # Llamar dentro de <ul>..</ul>
