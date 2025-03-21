@@ -196,8 +196,8 @@ module Sivel2Gen
             :trimestre_caso,
             :ubicacion_caso,
           ]) : [],
-        controlador: 'Sivel2Gen::CasosController',
-        ruta: '/casos'
+        controlador: 'Sivel2Gen::VictimasController',
+        ruta: '/victimas'
       }
 
     }
