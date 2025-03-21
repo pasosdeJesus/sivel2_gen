@@ -113,14 +113,14 @@ module Sivel2Gen
           def procesa_filtros_fechas(where1)
             if (params[:filtro] && params[:filtro]['fechaini'] && 
                 params[:filtro]['fechaini'] != "") 
-              @pFechaini = fecha_local_estandar(params[:filtro]['fechaini'])
+              @pFechaini = params[:filtro]['fechaini']
             else
               @pFechaini = Sivel2Gen::Caso.minimum(:fecha).to_s
             end
             where1 = ampliar_where(where1, 'caso.fecha', @pFechaini, '>=')
             if (params[:filtro] && params[:filtro]['fechafin'] && 
                 params[:filtro]['fechafin'] != "") 
-              @pFechafin = fecha_local_estandar(params[:filtro]['fechafin'])
+              @pFechafin = params[:filtro]['fechafin']
             else
               @pFechafin = Sivel2Gen::Caso.maximum(:fecha).to_s
             end
