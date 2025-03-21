@@ -4,7 +4,9 @@
 
 <%= simple_form_for :filtro, 
   { remote: true, 
-    url: "#{Rails.configuration.relative_url_root}/conteos/victimizaciones",
+    url: File.join(
+      Rails.configuration.relative_url_root, "conteos/victimizaciones"
+    ),
     method: "get" } do |f| 
 %>
   <div class="container">
