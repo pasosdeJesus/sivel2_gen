@@ -4086,18 +4086,10 @@ CREATE MATERIALIZED VIEW public.sivel2_gen_consexpcaso AS
      JOIN public.sivel2_gen_caso caso ON ((caso.id = conscaso.caso_id)))
   WHERE (conscaso.caso_id IN ( SELECT sivel2_gen_conscaso.caso_id
            FROM public.sivel2_gen_conscaso
-          WHERE ((sivel2_gen_conscaso.caso_id IN ( SELECT sivel2_gen_caso.id
-                   FROM public.sivel2_gen_caso)) AND (sivel2_gen_conscaso.caso_id IN ( SELECT msip_ubicacion.caso_id
-                   FROM public.msip_ubicacion
-                  WHERE (msip_ubicacion.pais_id = 170))) AND (sivel2_gen_conscaso.caso_id IN ( SELECT sivel2_gen_victima.caso_id
-                   FROM (public.sivel2_gen_victima
-                     JOIN public.msip_persona ON ((sivel2_gen_victima.persona_id = msip_persona.id)))
-                  WHERE (public.unaccent((msip_persona.nombres)::text) ~~* (('%'::text || public.unaccent('WILFRIDO '::text)) || '%'::text)))) AND (sivel2_gen_conscaso.caso_id IN ( SELECT sivel2_gen_victima.caso_id
-                   FROM (public.sivel2_gen_victima
-                     JOIN public.msip_persona ON ((sivel2_gen_victima.persona_id = msip_persona.id)))
-                  WHERE (public.unaccent((msip_persona.apellidos)::text) ~~* (('%'::text || public.unaccent('ARROYO'::text)) || '%'::text)))))
-          ORDER BY sivel2_gen_conscaso.fecha, sivel2_gen_conscaso.caso_id))
-  ORDER BY conscaso.fecha, conscaso.caso_id
+          WHERE (sivel2_gen_conscaso.caso_id IN ( SELECT sivel2_gen_caso.id
+                   FROM public.sivel2_gen_caso))
+          ORDER BY sivel2_gen_conscaso.ubicaciones, sivel2_gen_conscaso.caso_id))
+  ORDER BY conscaso.ubicaciones, conscaso.caso_id
   WITH NO DATA;
 
 
