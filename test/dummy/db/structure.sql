@@ -1780,23 +1780,14 @@ CREATE VIEW public.cvt1 AS
     acto.persona_id,
     acto.categoria_id,
     supracategoria.tviolencia_id,
-    categoria.nombre AS categoria,
-    ubicacion.departamento_id,
-    departamento.deplocal_cod AS departamento_divipola,
-    departamento.nombre AS departamento_nombre,
-    ubicacion.municipio_id,
-    ((departamento.deplocal_cod * 1000) + municipio.munlocal_cod) AS municipio_divipola,
-    municipio.nombre AS municipio_nombre
-   FROM ((((((((public.sivel2_gen_acto acto
+    categoria.nombre AS categoria
+   FROM (((((public.sivel2_gen_acto acto
      JOIN public.sivel2_gen_caso caso ON ((acto.caso_id = caso.id)))
      JOIN public.sivel2_gen_categoria categoria ON ((acto.categoria_id = categoria.id)))
      JOIN public.sivel2_gen_supracategoria supracategoria ON ((categoria.supracategoria_id = supracategoria.id)))
      JOIN public.sivel2_gen_victima victima ON (((victima.persona_id = acto.persona_id) AND (victima.caso_id = caso.id))))
      JOIN public.msip_persona persona ON ((persona.id = acto.persona_id)))
-     LEFT JOIN public.msip_ubicacion ubicacion ON ((caso.ubicacion_id = ubicacion.id)))
-     LEFT JOIN public.msip_departamento departamento ON ((ubicacion.departamento_id = departamento.id)))
-     LEFT JOIN public.msip_municipio municipio ON ((ubicacion.municipio_id = municipio.id)))
-  WHERE ((caso.fecha >= '2024-01-01'::date) AND (caso.fecha <= '2024-10-31'::date) AND (categoria.id = ANY (ARRAY[527, 397, 777, 297, 427, 197, 296, 396, 526, 776, 426, 196, 15, 55, 35, 73, 25, 45, 65, 92, 50, 40, 67, 801, 90, 16, 46, 57, 26, 37, 80, 85, 66, 64, 703, 59, 706, 49, 38, 18, 28, 501, 401, 125, 135, 115, 904, 231, 17, 331, 402, 502, 705, 62, 503, 403, 906, 104, 713, 101, 21, 76, 11, 302, 903, 34, 27, 902, 102, 24, 301, 14, 20, 10, 30, 392, 522, 292, 772, 422, 192, 63, 93, 910, 525, 295, 395, 425, 775, 195, 714, 78, 524, 394, 294, 774, 424, 194, 89, 905, 86, 701, 68, 341, 241, 141, 715, 704, 702, 33, 13, 53, 43, 23, 88, 98, 84, 709, 711, 707, 708, 710, 87, 97, 717, 917, 716, 916, 91, 95, 718, 523, 393, 293, 193, 423, 773, 48, 58, 75, 69, 41, 74, 56, 47, 72, 12, 36, 22, 191, 421, 771, 291, 521, 391, 29, 520, 420, 77, 19, 39, 712])));
+  WHERE ((caso.fecha >= '2023-08-04'::date) AND (categoria.id = ANY (ARRAY[527, 397, 777, 297, 427, 197, 296, 396, 526, 776, 426, 196, 15, 55, 35, 73, 25, 45, 65, 92, 50, 40, 67, 801, 90, 16, 46, 57, 26, 37, 80, 85, 66, 64, 703, 59, 706, 49, 38, 18, 28, 501, 401, 125, 135, 115, 904, 231, 17, 331, 402, 502, 705, 62, 503, 403, 906, 104, 713, 101, 21, 76, 11, 302, 903, 34, 27, 902, 102, 24, 301, 14, 20, 10, 30, 392, 522, 292, 772, 422, 192, 63, 93, 910, 525, 295, 395, 425, 775, 195, 714, 78, 524, 394, 294, 774, 424, 194, 89, 905, 86, 701, 68, 341, 241, 141, 715, 704, 702, 33, 13, 53, 43, 23, 88, 98, 84, 709, 711, 707, 708, 710, 87, 97, 717, 917, 716, 916, 91, 95, 718, 523, 393, 293, 193, 423, 773, 48, 58, 75, 69, 41, 74, 56, 47, 72, 12, 36, 22, 191, 421, 771, 291, 521, 391, 29, 520, 420, 77, 19, 39, 712])));
 
 
 --
@@ -7456,14 +7447,6 @@ ALTER TABLE ONLY public.sivel2_gen_categoria
 
 
 --
--- Name: sivel2_gen_categoria categoria_contadaen_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.sivel2_gen_categoria
-    ADD CONSTRAINT categoria_contadaen_fkey FOREIGN KEY (contadaen) REFERENCES public.sivel2_gen_categoria(id);
-
-
---
 -- Name: sivel2_gen_contextovictima_victima contextovictima_victima_contextovictima_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -8248,14 +8231,6 @@ ALTER TABLE ONLY public.msip_persona
 
 
 --
--- Name: sivel2_gen_presponsable presponsable_papa_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.sivel2_gen_presponsable
-    ADD CONSTRAINT presponsable_papa_id_fkey FOREIGN KEY (papa_id) REFERENCES public.sivel2_gen_presponsable(id);
-
-
---
 -- Name: sivel2_gen_caso_presponsable presuntos_responsables_caso_id_caso_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -8269,6 +8244,14 @@ ALTER TABLE ONLY public.sivel2_gen_caso_presponsable
 
 ALTER TABLE ONLY public.sivel2_gen_caso_presponsable
     ADD CONSTRAINT presuntos_responsables_caso_id_p_responsable_fkey FOREIGN KEY (presponsable_id) REFERENCES public.sivel2_gen_presponsable(id);
+
+
+--
+-- Name: sivel2_gen_presponsable presuntos_responsables_id_papa_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.sivel2_gen_presponsable
+    ADD CONSTRAINT presuntos_responsables_id_papa_fkey FOREIGN KEY (papa_id) REFERENCES public.sivel2_gen_presponsable(id);
 
 
 --
