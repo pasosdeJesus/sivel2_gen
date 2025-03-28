@@ -61,3 +61,8 @@ reflocal
 .yardoc
 yard_doc
 test/dummy/public/assets
+test/dummy/app/assets/stylesheets/actiontext
+test/dummy/app/assets/stylesheets/heb412_gen
+test/dummy/app/assets/stylesheets/mr519_gen
+test/dummy/app/assets/stylesheets/msip
+test/dummy/app/assets/stylesheets/sivel2_gen

@@ -13,6 +13,8 @@ gem "cancancan" # Roles
 
 gem "color"
 
+gem 'cssbundling-rails'
+
 gem "csv"
 
 gem "devise" # Autenticación
@@ -42,9 +44,11 @@ gem "prawnto_2", require: "prawnto"
 
 gem "prawn-table"
 
+gem "propshaft"
+
 gem "rack", "~> 2"
 
-gem "rails", "~> 7.2"
+gem "rails", "~> 8.0"
 # git: 'https://github.com/rails/rails.git', branch: '6-1-stable'
 
 gem "rails-i18n"
@@ -55,11 +59,7 @@ gem "rspreadsheet"
 
 gem "rubyzip"
 
-gem "sassc-rails" # Hojas de estilo con SCSS
-
 gem "simple_form" # Formularios simples
-
-gem "sprockets-rails"
 
 gem "stimulus-rails"
 
@@ -76,18 +76,15 @@ gem "will_paginate" # Listados en páginas
 # lógico y no alfabetico como las gemas anteriores)
 
 gem "msip", # Motor generico,
-  git: "https://gitlab.com/pasosdeJesus/msip.git",
-  branch: "main"
+  git: "https://gitlab.com/pasosdeJesus/msip.git", branch: "rails8"
 # path: "../msip"
 
 gem "mr519_gen", # Motor de gestion de formularios y encuestas
-  git: "https://gitlab.com/pasosdeJesus/mr519_gen.git",
-  branch: "main"
+  git: "https://gitlab.com/pasosdeJesus/mr519_gen.git", branch: "rails8"
 # path: "../mr519_gen"
 
 gem "heb412_gen", # Motor de nube y llenado de plantillas
-  git: "https://gitlab.com/pasosdeJesus/heb412_gen.git",
-  branch: "main"
+  git: "https://gitlab.com/pasosdeJesus/heb412_gen.git", branch: "rails8"
 # path: "../heb412_gen"
 
 group :development, :test do
