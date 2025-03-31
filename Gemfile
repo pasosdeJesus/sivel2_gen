@@ -91,16 +91,15 @@ gem 'will_paginate' # Listados en páginas
 
 gem 'sip', # Motor generico,
   git: 'https://github.com/pasosdeJesus/sip.git', branch: 'v2.1'
-  #path: '../sip'
+  #path: '../sip-2.1'
 
 gem 'mr519_gen', # Motor de gestion de formularios y encuestas
   git: 'https://gitlab.com/pasosdeJesus/mr519_gen.git', branch: 'v2.1'
-  #path: '../mr519_gen'
+  #path: '../mr519_gen-2.1'
 
 gem 'heb412_gen',  # Motor de nube y llenado de plantillas
   git: 'https://gitlab.com/pasosdeJesus/heb412_gen.git', branch: 'v2.1'
-  #path: '../heb412_gen'
-
+  #path: '../heb412_gen-2.1'
 
 group :development do
   gem 'puma'
