@@ -596,9 +596,11 @@ module Sivel2Gen
             diasatras = Rails.configuration.x.sivel2_mapaosm_diasatras ?
               Rails.configuration.x.sivel2_mapaosm_diasatras.to_i : 182
 
-            @fechadesde = ENV['SIVEL2_MAPAOSM_FECHADESDE'] ? 
+            puts "ENV['SIVEL2_MAPAOSM_FECHADESDE']=#{ENV['SIVEL2_MAPAOSM_FECHADESDE']}"
+            @fechadesde = ENV['SIVEL2_MAPAOSM_FECHADESDE'] && ENV['SIVEL2_MAPAOSM_FECHADESDE'] != "" ?
               Date.parse(ENV['SIVEL2_MAPAOSM_FECHADESDE']) : Sip::FormatoFechaHelper.inicio_semestre(Date.today - diasatras)
-            @fechahasta = ENV['SIVEL2_MAPAOSM_FECHAHASTA'] ?
+            puts "ENV['SIVEL2_MAPAOSM_FECHAHASTA']=#{ENV['SIVEL2_MAPAOSM_FECHAHASTA']}"
+            @fechahasta = ENV['SIVEL2_MAPAOSM_FECHAHASTA'] && ENV['SIVEL2_MAPAOSM_FECHAHASTA'] != "" ?
               Date.parse(ENV['SIVEL2_MAPAOSM_FECHAHASTA']) : Sip::FormatoFechaHelper.fin_semestre(Date.today - diasatras)
             @clase_divcontenido = ''
             @margensup_divcontenido = '-9x'
