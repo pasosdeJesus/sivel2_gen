@@ -10,6 +10,8 @@ module Sivel2Gen
     include Engine.routes.url_helpers
 
     setup do
+      Rails.application.try(:reload_routes_unless_loaded)
+
       @routes = Engine.routes
       @current_usuario = Usuario.find_by(email: "usuario1@localhost")
       if @current_usuario.nil?
