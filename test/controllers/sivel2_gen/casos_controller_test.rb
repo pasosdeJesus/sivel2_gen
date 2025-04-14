@@ -8,6 +8,8 @@ module Sivel2Gen
     include Devise::Test::IntegrationHelpers
 
     setup do
+      Rails.application.try(:reload_routes_unless_loaded)
+
       @current_usuario = ::Usuario.create(PRUEBA_USUARIO)
       sign_in @current_usuario
     end
