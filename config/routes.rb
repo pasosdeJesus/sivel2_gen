@@ -78,14 +78,6 @@ Sivel2Gen::Engine.routes.draw do
     end
   end
 
-  resources :casos, path_names: { new: "nuevo", edit: "edita" } do
-    collection { post :importa }
-    member do
-      patch :guardar_y_editar
-      patch :resolver_solicitud
-    end
-  end
-
   get "/casos/busca", to: "casos#busca"
   get "/casos/cuenta", to: "casos#cuenta"
   get "/casos/datos-osm", to: "casos#presenta_datos_mapaosm"
@@ -102,6 +94,15 @@ Sivel2Gen::Engine.routes.draw do
   get "/casos/lista", to: "casos#lista"
   get "/casos/mapaosm", to: "casos#mapaosm", as: :casos_mapaosm
   get "/casos/refresca", to: "casos#refresca", as: :casos_refresca
+
+  resources :casos, path_names: { new: "nuevo", edit: "edita" } do
+    collection { post :importa }
+    member do
+      patch :guardar_y_editar
+      patch :resolver_solicitud
+    end
+  end
+
 
   resources :combatiente, only: [], param: :index do
     member do

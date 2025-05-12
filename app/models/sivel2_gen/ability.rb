@@ -285,22 +285,24 @@ module Sivel2Gen
       habilidad.can(:contar, Msip::Ubicacion)
       habilidad.can(:mundep, Msip::Ubicacionpre)
 
-      habilidad.can(:manage, [
-        Sivel2Gen::CasoEtiqueta,
-        Sivel2Gen::CasoFuenteprensa,
-        Sivel2Gen::CasoFotra,
-        Sivel2Gen::CasoPresponsable,
-        Sivel2Gen::CasoSolicitud,
-        Sivel2Gen::CasoUbicacionpre,
-        Sivel2Gen::Combatiente,
-        Sivel2Gen::Presponsable,
-        Sivel2Gen::Victima,
-        Sivel2Gen::Victimacolectiva,
-      ])
-      habilidad.can(:guardar_y_editar, Sivel2Gen::Caso)
-
       if usuario && usuario.rol
         habilidad.can(:nuevo, Msip::Ubicacion)
+
+        habilidad.can(:manage, [
+          Sivel2Gen::CasoEtiqueta,
+          Sivel2Gen::CasoFuenteprensa,
+          Sivel2Gen::CasoFotra,
+          Sivel2Gen::CasoPresponsable,
+          Sivel2Gen::CasoSolicitud,
+          Sivel2Gen::CasoUbicacionpre,
+          Sivel2Gen::Combatiente,
+          Sivel2Gen::Victima,
+          Sivel2Gen::Victimacolectiva,
+        ])
+        habilidad.can(:guardar_y_editar, Sivel2Gen::Caso)
+
+        habilidad.can(:read, Sivel2Gen::Presponsable)
+
         case usuario.rol
         when Ability::ROLANALI
           habilidad.can(:read, Heb412Gen::Doc)

@@ -47,9 +47,11 @@ module Sivel2Gen
             "M"
           end
 
+
           # Crea un nuevo registro para el caso que recibe por parámetro
           # params[:caso_id].  Pone valores simples en los campos requeridos
           def nuevo
+            authorize!(:new, Sivel2Gen:Presponsable)
             if !params[:caso_id].nil?
               @presponsable = CasoPresponsable.new
               @presponsable.caso_id = params[:caso_id]
