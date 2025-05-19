@@ -677,14 +677,35 @@ module Sivel2Gen
           end
 
           def cuenta
-            fechasinicial = Sivel2Gen::Caso.all.order(fecha: :asc).pluck(:fecha).uniq
-            fechafinal = params[:fechafin] ? params[:fechafin] : Date.today
-            fechainicial = if params[:fechaini]
-              params[:fechaini]
-            else
-              (fechasinicial.count > 0 ? fechasinicial[0] : "2001-01-01")
+            menserror = "".dup
+            fechamin = Sivel2Gen::Caso.all.minimum(:fecha)
+            fechafinal = params[:fechafin] ? 
+              Msip::FormatoFechaHelper.reconoce_adivindando_locale(
+                params[:fechafin], menserror
+              ) : Date.today
+            if menserror != ""
+              puts "Error: #{menserror}"
             end
-            sql = "select fecha, count(distinct sivel2_gen_caso.id) AS cuenta, msip_departamento.nombre FROM sivel2_gen_caso LEFT JOIN msip_ubicacion ON sivel2_gen_caso.ubicacion_id = msip_ubicacion.id LEFT JOIN msip_departamento ON msip_ubicacion.departamento_id = msip_departamento.id WHERE sivel2_gen_caso.fecha BETWEEN '" + fechainicial.to_s + "' AND '" + fechafinal.to_s + "' group by 1,3 order by 1;"
+            fechainicial = params[:fechaini] ? 
+              Msip::FormatoFechaHelper.reconoce_adivinando_locale(
+                params[:fechaini],menserror
+              ) : (fechasinicial.count > 0 ? fechasinicial[0] : '2001-01-01')
+            if menserror != ""
+              puts "Error: #{menserror}"
+            end
+            sql = <<-SQL
+              SELECT fecha, COUNT(DISTINCT sivel2_gen_caso.id) AS cuenta,
+                msip_departamento.nombre 
+              FROM sivel2_gen_caso 
+                LEFT JOIN msip_ubicacion ON 
+                  sivel2_gen_caso.ubicacion_id = msip_ubicacion.id 
+                LEFT JOIN msip_departamento ON 
+                  msip_ubicacion.departamento_id = msip_departamento.id 
+              WHERE sivel2_gen_caso.fecha BETWEEN '#{fechainicial.to_s}'
+                AND '#{fechafinal.to_s}'
+              GROUP BY 1,3 
+              ORDER BY 1;
+            SQL
             array_cuentas = ActiveRecord::Base.connection.execute(sql)
             respond_to do |format|
               format.html  { return }
