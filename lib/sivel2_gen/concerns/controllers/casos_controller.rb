@@ -689,7 +689,7 @@ module Sivel2Gen
             fechainicial = params[:fechaini] ? 
               Msip::FormatoFechaHelper.reconoce_adivinando_locale(
                 params[:fechaini],menserror
-              ) : (fechasinicial.count > 0 ? fechasinicial[0] : '2001-01-01')
+              ) : (fechamin ? fechamin : '2001-01-01')
             if menserror != ""
               puts "Error: #{menserror}"
             end
