@@ -8,28 +8,28 @@ module Sivel2Gen
 
           include Msip::Modelo
 
-          belongs_to :presponsable, 
+          belongs_to :presponsable,
             class_name: 'Sivel2Gen::Presponsable',
-            foreign_key: "presponsable_id", 
+            foreign_key: "presponsable_id",
             optional: false,
             validate: true
           accepts_nested_attributes_for :presponsable
 
-          belongs_to :persona, 
+          belongs_to :persona,
             class_name: 'Msip::Persona',
-            foreign_key: "persona_id", 
+            foreign_key: "persona_id",
             optional: false,
             validate: true
 
-          belongs_to :caso, 
-            class_name: 'Sivel2Gen::Caso', 
-            foreign_key: "caso_id", 
+          belongs_to :caso,
+            class_name: 'Sivel2Gen::Caso',
+            foreign_key: "caso_id",
             optional: false,
             validate: true
 
-          belongs_to :categoria, 
+          belongs_to :categoria,
             class_name: 'Sivel2Gen::Categoria',
-            foreign_key: "categoria_id", 
+            foreign_key: "categoria_id",
             optional: false,
             validate: true
 
@@ -55,10 +55,9 @@ module Sivel2Gen
                    ORDER BY Level, id;"
             descendientes_poloe = ActiveRecord::Base.connection.select_all(
               consl)
-            descpoloe_ids = descendientes_poloe.to_a.map{|de| de["id"]} 
+            descpoloe_ids = descendientes_poloe.to_a.map{|de| de["id"]}
             tv = self.categoria.supracategoria.tviolencia_id
             pr = self.presponsable.id
-            cat = self.categoria
             if tv == "A" && !descpoloe_ids.include?(pr) then
               errors.add(:acto, "Si el tipo de violencia es "\
                          "Derechos Humanos el presunto responsable debe "\
@@ -88,7 +87,7 @@ module Sivel2Gen
               end
               self.persona_id = victimas[d['id_victima_individual']]
               if self.save
-                self.save!          
+                self.save!
               else
                 menserror << "No pudo crearse acto. "
               end
