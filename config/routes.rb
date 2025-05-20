@@ -1,12 +1,11 @@
-# frozen_string_literal: true
 
 Sivel2Gen::Engine.routes.draw do
+
   get "/acercade" => "hogar#acercade"
 
   get "/buscarrepetidos" => "buscarrepetidos#reportar", as: :buscarrepetidos
   post "/buscarrepetidos" => "buscarrepetidos#reportar", as: :envia_buscarrepetidos
-  get "/victimas/nuevo"
-  get "victimas#nuevo"
+  get "/victimas/nuevo", "victimas#nuevo"
 
   get "/casos/busca" => "casos#busca"
   get "/casos/cuenta" => "casos#cuenta"
@@ -27,19 +26,19 @@ Sivel2Gen::Engine.routes.draw do
   get "/conteos/genvic" => "conteos#genvic", as: :conteos_genvic
   get "/conteos/personas" => "conteos#personas", as: :conteos_personas
   post "/conteos/personas" => "conteos#personas", as: :post_conteos_personas
-  get "/conteos/victimizaciones" => "conteos#victimizaciones",
+  get "/conteos/victimizaciones" => "conteos#victimizaciones", 
     as: :conteos_victimizaciones
 
   get "/fichacasovertical" => "hogar#fichacasovertical"
 
-  get "/graficar/actos_individuales" => "fil23_gen/graficar_plotly#actos_individuales",
+  get "/graficar/actos_individuales" => "fil23_gen/graficar_plotly#actos_individuales", 
     :as => "graficar_actos_individuales"
 
-  get "/graficar/victimizaciones_individuales" => "graficar_victimizaciones_individuales#graficar",
-    #  get '/graficar/victimizaciones_individuales' => 'fil23_gen/graficar_apexcharts#victimizaciones_individuales',
+  get "/graficar/victimizaciones_individuales" => "graficar_victimizaciones_individuales#graficar", 
+#  get "/graficar/victimizaciones_individuales" => "fil23_gen/graficar_apexcharts#victimizaciones_individuales", 
     :as => "graficar_victimizaciones_individuales"
 
-  post "/graficar/victimizaciones_individuales" => "graficar_victimizaciones_individuales#graficar",
+  post "/graficar/victimizaciones_individuales" => "graficar_victimizaciones_individuales#graficar", 
     :as => "enviar_graficar_victimizaciones_individuales"
 
   get "/hogar" => "hogar#index"
@@ -66,21 +65,21 @@ Sivel2Gen::Engine.routes.draw do
 
   get "/victimascolectivas/nuevo" => "victimascolectivas#nuevo"
 
-  resources :actos, only: [], param: :index do
+  resources :actos, only: [], param: :index do 
     member do
       delete "(:id)", to: "actos#destroy", as: "eliminar"
       post "/" => "actos#create", as: "crear"
     end
   end
 
-  resources :actoscolectivos, only: [], param: :index do
+  resources :actoscolectivos, only: [], param: :index do 
     member do
       delete "(:id)", to: "actoscolectivos#destroy", as: "eliminar"
       post "/" => "actoscolectivos#create", as: "crear"
     end
   end
 
-  resources :anexo_casos, only: [], param: :index do
+  resources :anexo_casos, only: [], param: :index do 
     member do
       delete "(:id)", to: "anexo_casos#destroy", as: "eliminar"
       post "/" => "anexo_casos#create", as: "crear"
@@ -95,42 +94,42 @@ Sivel2Gen::Engine.routes.draw do
     end
   end
 
-  resources :caso_etiqueta, only: [], param: :index do
+  resources :caso_etiqueta, only: [], param: :index do 
     member do
       delete "(:id)", to: "caso_etiquetas#destroy", as: "eliminar"
       post "/" => "caso_etiquetas#create", as: "crear"
     end
   end
 
-  resources :caso_fotra, only: [], param: :index do
+  resources :caso_fotra, only: [], param: :index do 
     member do
       delete "(:id)", to: "caso_fotras#destroy", as: "eliminar"
       post "/" => "caso_fotras#create", as: "crear"
     end
   end
 
-  resources :caso_fuentesprensa, only: [], param: :index do
+  resources :caso_fuentesprensa, only: [], param: :index do 
     member do
       delete "(:id)", to: "caso_fuentesprensa#destroy", as: "eliminar"
       post "/" => "caso_fuentesprensa#create", as: "crear"
     end
   end
 
-  resources :caso_presponsable, only: [], param: :index do
+  resources :caso_presponsable, only: [], param: :index do 
     member do
       delete "(:id)", to: "caso_presponsables#destroy", as: "eliminar"
       post "/" => "caso_presponsables#create", as: "crear"
     end
   end
 
-  resources :caso_solicitud, only: [], param: :index do
+  resources :caso_solicitud, only: [], param: :index do 
     member do
       delete "(:id)", to: "caso_solicitudes#destroy", as: "eliminar"
       post "/" => "caso_solicitudes#create", as: "crear"
     end
   end
 
-  resources :familiar, only: [], param: :index do
+  resources :familiar, only: [], param: :index do 
     member do
       delete "(:id)", to: "familiares#eliminar_familiar", as: "eliminar"
       post "/", to: "familiares#crear_familiar", as: "crear"
@@ -144,7 +143,7 @@ Sivel2Gen::Engine.routes.draw do
     end
   end
 
-  resources :victimascolectivas, only: [], param: :index do
+  resources :victimascolectivas, only: [], param: :index do 
     member do
       delete "(:id)", to: "victimascolectivas#destroy", as: "eliminar"
       post "/" => "victimascolectivas#create", as: "crear"
@@ -152,14 +151,16 @@ Sivel2Gen::Engine.routes.draw do
   end
   get "/victimas" => "victimas#index", as: "victimas"
 
-  namespace :admin do
-    ab = Ability.new
-    ab.tablasbasicas.each do |t|
-      next unless t[0] == "Sivel2Gen"
 
-      c = t[1].pluralize
-      resources c.to_sym,
-        path_names: { new: "nueva", edit: "edita" }
+  namespace :admin do
+    ab=::Ability.new
+    ab.tablasbasicas.each do |t|
+      if (t[0] == "Sivel2Gen") 
+        c = t[1].pluralize
+        resources c.to_sym, 
+          path_names: { new: "nueva", edit: "edita" }
+      end
     end
   end
+
 end
