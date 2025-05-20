@@ -1,5 +1,6 @@
+# frozen_string_literal: true
 
-require 'sivel2_gen/concerns/models/organizacion'
+require "sivel2_gen/concerns/models/organizacion"
 
 module Sivel2Gen
   # Tabla básica Organización

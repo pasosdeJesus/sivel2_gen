@@ -1,5 +1,6 @@
+# frozen_string_literal: true
 
-require 'sivel2_gen/concerns/models/combatiente'
+require "sivel2_gen/concerns/models/combatiente"
 
 module Sivel2Gen
   # Combatiente relacionado con un caso

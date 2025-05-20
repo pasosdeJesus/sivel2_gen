@@ -1,5 +1,7 @@
-require 'msip/concerns/controllers/personas_controller'
-require 'date'
+# frozen_string_literal: true
+
+require "msip/concerns/controllers/personas_controller"
+require "date"
 
 module Sivel2Gen
   module Concerns
@@ -21,7 +23,7 @@ module Sivel2Gen
           end
 
           def genclase
-            return 'F'
+            "F"
           end
 
           def update
@@ -32,11 +34,9 @@ module Sivel2Gen
           def prepara_familiar
             @victima = Sivel2Gen::Victima.new(persona: Msip::Persona.new)
             @caso = Sivel2Gen::Caso.new(victima: [@victima])
-            @victima.persona.personados = [Msip::Persona.new()]
+            @victima.persona.personados = [Msip::Persona.new]
           end
-
         end # included
-
       end
     end
   end

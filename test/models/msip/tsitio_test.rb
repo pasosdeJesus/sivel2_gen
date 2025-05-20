@@ -1,10 +1,10 @@
+# frozen_string_literal: true
 
-require_relative '../../test_helper'
+require_relative "../../test_helper"
 
 module Msip
   class TsitioTest < ActiveSupport::TestCase
-
-    PRUEBA_TSITIO= {
+    PRUEBA_TSITIO = {
       id: 1000,
       nombre: "Tsitio",
       fechacreacion: "2014-09-09",
@@ -12,22 +12,24 @@ module Msip
     }
 
     test "valido" do
-      tsitio = Tsitio.create PRUEBA_TSITIO
+      tsitio = Tsitio.create(PRUEBA_TSITIO)
+
       assert tsitio.valid?
       tsitio.destroy
     end
 
     test "no valido" do
-      tsitio = Tsitio.new PRUEBA_TSITIO
-      tsitio.nombre = ''
+      tsitio = Tsitio.new(PRUEBA_TSITIO)
+      tsitio.nombre = ""
+
       assert_not tsitio.valid?
       tsitio.destroy
     end
 
     test "existente" do
-      tsitio = Msip::Tsitio.where(id: 2).take
-      assert_equal tsitio.nombre, "URBANO"
-    end
+      tsitio = Msip::Tsitio.find_by(id: 2)
 
+      assert_equal "URBANO", tsitio.nombre
+    end
   end
 end

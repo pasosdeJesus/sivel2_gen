@@ -1,5 +1,6 @@
+# frozen_string_literal: true
 
-require 'sivel2_gen/concerns/models/presponsable'
+require "sivel2_gen/concerns/models/presponsable"
 
 module Sivel2Gen
   # Tabla Básica Presunto Responsable

@@ -1,9 +1,9 @@
 # frozen_string_literal:true
 
-require 'test_helper'
-require 'nokogiri'
-require 'open-uri'
-require 'compare-xml'
+require "test_helper"
+require "nokogiri"
+require "open-uri"
+require "compare-xml"
 
 module Sivel2Gen
   class PersonasXml < PruebaIntegracion
@@ -18,68 +18,68 @@ module Sivel2Gen
 
     PRUEBA_CASO_BASICOS = {
       id: 158_409,
-      fecha: '2018-01-01',
-      memo: 'En la vereda El Papayo, zona rural de Buenaventura, se registró una explosión que dejó un menor muerto y otros tres heridos. Los cuatro menores se desplazaban en una pequeña canoa hacia uno de los extremos del río Yurumanguí y resultaron gravemente heridos, luego de que encontraron en la orilla, un artefacto que les explotó al manipularlo. Según el padre de uno de los menores, Serapio Mosquera, son niños de una sola familia, yo estaba en la casa cuando ellos se fueron, luego escuchamos la explosión. Mosquera afirmó que uno de los niños, de siete años, murió, lo íbamos a traer para Buenaventura pero no alcanzamos, lo dejamos allá porque ya para qué lo traíamos. Uno de los menores que resultó con heridas leves fue dejado en la zona, mientras que en una embarcación, trasladaron a dos de los niños heridos, ambos de 12 años de edad. Uno de los menores fue dado de alta, pero él otro está bajo pronóstico reservado, tiene heridas muy graves en el abdomen explicó Marta Isabel Valencia, directora médica de la Clínica Santa Sofía de Buenaventura. Los médicos adelantan las gestiones para trasladar al menor a una clínica de mayor complejidad en Cali. El comandante de la Policía de Buenaventura, coronel Jorge Cabra, dijo que conformamos un equipo de trabajo con la Infantería de Marina, la Sijin, pero no se encontró ningún elemento que nos confirmara la versión de la persona que trajo a los menores a la clínica, la comunidad tampoco entrega mayor información sobre el hecho.',
-      created_at: '2014-11-11',
-      titulo: 'NIÑOS AFECTADOS POR EXPLOSIÓN DE GRANADA'
+      fecha: "2018-01-01",
+      memo: "En la vereda El Papayo, zona rural de Buenaventura, se registró una explosión que dejó un menor muerto y otros tres heridos. Los cuatro menores se desplazaban en una pequeña canoa hacia uno de los extremos del río Yurumanguí y resultaron gravemente heridos, luego de que encontraron en la orilla, un artefacto que les explotó al manipularlo. Según el padre de uno de los menores, Serapio Mosquera, son niños de una sola familia, yo estaba en la casa cuando ellos se fueron, luego escuchamos la explosión. Mosquera afirmó que uno de los niños, de siete años, murió, lo íbamos a traer para Buenaventura pero no alcanzamos, lo dejamos allá porque ya para qué lo traíamos. Uno de los menores que resultó con heridas leves fue dejado en la zona, mientras que en una embarcación, trasladaron a dos de los niños heridos, ambos de 12 años de edad. Uno de los menores fue dado de alta, pero él otro está bajo pronóstico reservado, tiene heridas muy graves en el abdomen explicó Marta Isabel Valencia, directora médica de la Clínica Santa Sofía de Buenaventura. Los médicos adelantan las gestiones para trasladar al menor a una clínica de mayor complejidad en Cali. El comandante de la Policía de Buenaventura, coronel Jorge Cabra, dijo que conformamos un equipo de trabajo con la Infantería de Marina, la Sijin, pero no se encontró ningún elemento que nos confirmara la versión de la persona que trajo a los menores a la clínica, la comunidad tampoco entrega mayor información sobre el hecho.",
+      created_at: "2014-11-11",
+      titulo: "NIÑOS AFECTADOS POR EXPLOSIÓN DE GRANADA",
     }
- 
+
     PRUEBA_PERSONA1 = {
       id: 249_236,
-      nombres: 'N',
-      apellidos: 'N',
+      nombres: "N",
+      apellidos: "N",
       anionac: 2006,
-      mesnac: '06',
-      dianac: '15',
-      sexo: 'S'
+      mesnac: "06",
+      dianac: "15",
+      sexo: "S",
     }
 
     PRUEBA_PERSONA2 = {
       id: 249_237,
-      nombres: 'N',
-      apellidos: 'N',
+      nombres: "N",
+      apellidos: "N",
       anionac: 2006,
-      mesnac: '06',
-      dianac: '15',
-      sexo: 'S'
+      mesnac: "06",
+      dianac: "15",
+      sexo: "S",
     }
 
     PRUEBA_PERSONA3 = {
       id: 249_238,
-      nombres: 'N',
-      apellidos: 'N',
+      nombres: "N",
+      apellidos: "N",
       anionac: 2011,
-      mesnac: '06',
-      dianac: '15',
-      sexo: 'S'
+      mesnac: "06",
+      dianac: "15",
+      sexo: "S",
     }
 
-    test 'Valida caso de prueba como uno de sivel12' do
-      caso = Sivel2Gen::Caso.create! PRUEBA_CASO_BASICOS
+    test "Valida caso de prueba como uno de sivel12" do
+      caso = Sivel2Gen::Caso.create!(PRUEBA_CASO_BASICOS)
       ubicaso = Msip::Ubicacion.create(
-        lugar: 'VEREDA EL PAPAYO',
-        sitio: 'UNO DE LOS EXTREMOS DEL RÍO YURUMANGUÍ EN LA RIVERA DEL RÍO',
+        lugar: "VEREDA EL PAPAYO",
+        sitio: "UNO DE LOS EXTREMOS DEL RÍO YURUMANGUÍ EN LA RIVERA DEL RÍO",
         caso_id: caso.id,
         tsitio_id: 3,
         pais_id: 170,
         departamento_id: 47,
         municipio_id: 86,
         centropoblado_id: 11_737,
-        created_at: '2019-01-01',
+        created_at: "2019-01-01",
         longitud: -77.0697417935442,
-        latitud: 3.89381723858445
+        latitud: 3.89381723858445,
       )
       ubicaso.save!
       caso.ubicacion_id = ubicaso.id
       caso.save!
-      persona1 =  Msip::Persona.create! PRUEBA_PERSONA1
-      persona2 =  Msip::Persona.create! PRUEBA_PERSONA2
-      persona3 =  Msip::Persona.create! PRUEBA_PERSONA3
-      rangoedad = Sivel2Gen::Rangoedad.create! PRUEBA_RANGOEDAD
-      profesion = Sivel2Gen::Profesion.create! PRUEBA_PROFESION
+      persona1 =  Msip::Persona.create!(PRUEBA_PERSONA1)
+      persona2 =  Msip::Persona.create!(PRUEBA_PERSONA2)
+      persona3 =  Msip::Persona.create!(PRUEBA_PERSONA3)
+      rangoedad = Sivel2Gen::Rangoedad.create!(PRUEBA_RANGOEDAD)
+      profesion = Sivel2Gen::Profesion.create!(PRUEBA_PROFESION)
       profesion1 = Sivel2Gen::Profesion.find(1)
       profesion2 = Sivel2Gen::Profesion.find(2)
-      sectorsocial = Sivel2Gen::Sectorsocial.create! PRUEBA_SECTORSOCIAL
+      sectorsocial = Sivel2Gen::Sectorsocial.create!(PRUEBA_SECTORSOCIAL)
       organizacion1 = Sivel2Gen::Organizacion.find(1)
       organizacion2 = Sivel2Gen::Organizacion.find(2)
       antecedente1 = Sivel2Gen::Antecedente.find(1)
@@ -91,55 +91,71 @@ module Sivel2Gen
         caso_id: caso.id,
         persona_id: persona1.id,
         iglesia_id: nil,
-        rangoedad_id: rangoedad.id
+        rangoedad_id: rangoedad.id,
       )
       victima2 = Sivel2Gen::Victima.create(
         caso_id: caso.id,
         persona_id: persona2.id,
         rangoedad_id: rangoedad.id,
         iglesia_id: nil,
-        orientacionsexual: 'S'
+        orientacionsexual: "S",
       )
       victima3 = Sivel2Gen::Victima.create(
         caso_id: caso.id,
         persona_id: persona3.id,
         rangoedad_id: rangoedad.id,
         iglesia_id: nil,
-        orientacionsexual: 'S'
+        orientacionsexual: "S",
       )
       profesec1 = Sivel2Gen::ProfesionVictima.create(
-        profesion_id: profesion1.id, victima_id: victima1.id)
-      assert !profesec1.nil?
+        profesion_id: profesion1.id, victima_id: victima1.id,
+      )
+
+      assert_not profesec1.nil?
       profesec2 = Sivel2Gen::ProfesionVictima.create(
-        profesion_id: profesion2.id, victima_id: victima1.id)
-      assert !profesec2.nil?
+        profesion_id: profesion2.id, victima_id: victima1.id,
+      )
+
+      assert_not profesec2.nil?
       otrasorg1 = Sivel2Gen::OtraorgaVictima.create(
-        organizacion_id: organizacion1.id, victima_id: victima1.id)
-      assert !otrasorg1.nil?
+        organizacion_id: organizacion1.id, victima_id: victima1.id,
+      )
+
+      assert_not otrasorg1.nil?
       otrasorg2 = Sivel2Gen::OtraorgaVictima.create(
-        organizacion_id: organizacion2.id, victima_id: victima1.id)
-      assert !otrasorg2.nil?
+        organizacion_id: organizacion2.id, victima_id: victima1.id,
+      )
+
+      assert_not otrasorg2.nil?
       antecedentevic1 = Sivel2Gen::AntecedenteVictima.create(
-        antecedente_id: antecedente1.id, victima_id: victima1.id)
-      assert !antecedentevic1 .nil?
+        antecedente_id: antecedente1.id, victima_id: victima1.id,
+      )
+
+      assert_not antecedentevic1.nil?
       antecedentevic2 = Sivel2Gen::AntecedenteVictima.create(
-        antecedente_id: antecedente2.id, victima_id: victima1.id)
-      assert !antecedentevic2 .nil?
+        antecedente_id: antecedente2.id, victima_id: victima1.id,
+      )
+
+      assert_not antecedentevic2.nil?
       sectorsocialsecvic1 = Sivel2Gen::SectorsocialsecVictima.create(
-        sectorsocial_id: sectorsocialsec1.id, victima_id: victima1.id)
-      assert !sectorsocialsecvic1.nil?
+        sectorsocial_id: sectorsocialsec1.id, victima_id: victima1.id,
+      )
+
+      assert_not sectorsocialsecvic1.nil?
       sectorsocialsecvic2 = Sivel2Gen::SectorsocialsecVictima.create(
-        sectorsocial_id: sectorsocialsec2.id, victima_id: victima1.id)
-      assert !sectorsocialsecvic2.nil?
+        sectorsocial_id: sectorsocialsec2.id, victima_id: victima1.id,
+      )
+
+      assert_not sectorsocialsecvic2.nil?
       presponsable = Sivel2Gen::Presponsable.find(39) # Polo Estatal
       pr = Sivel2Gen::CasoPresponsable.create(
         caso_id: caso.id,
         presponsable_id: presponsable.id,
-        tipo: 1
+        tipo: 1,
       )
       pr.save!
-      grupoper = Msip::Grupoper.create! PRUEBA_GRUPOPER
-      victimacolectiva1 = Sivel2Gen::Victimacolectiva.create PRUEBA_VICTIMACOLECTIVA
+      grupoper = Msip::Grupoper.create!(PRUEBA_GRUPOPER)
+      victimacolectiva1 = Sivel2Gen::Victimacolectiva.create(PRUEBA_VICTIMACOLECTIVA)
       victimacolectiva1.grupoper_id = grupoper.id
       victimacolectiva1.caso_id = caso.id
       victimacolectiva1.save!
@@ -222,21 +238,21 @@ module Sivel2Gen
         categoria_id: categoria1.id,
         persona_id: persona1.id,
         caso_id: caso.id,
-        created_at: '2019-01-01'
+        created_at: "2019-01-01",
       )
       acto2 = Sivel2Gen::Acto.create(
         presponsable_id: presponsable.id,
         categoria_id: categoria2.id,
         persona_id: persona2.id,
         caso_id: caso.id,
-        created_at: '2019-01-01'
+        created_at: "2019-01-01",
       )
       acto3 = Sivel2Gen::Acto.create(
         presponsable_id: presponsable.id,
         categoria_id: categoria2.id,
         persona_id: persona3.id,
         caso_id: caso.id,
-        created_at: '2019-01-01'
+        created_at: "2019-01-01",
       )
       intervalo = Sivel2Gen::Intervalo.find(2)
       caso.intervalo_id = intervalo.id
@@ -279,11 +295,11 @@ module Sivel2Gen
         organizacion_id: 10,
         vinculoestado_id: 13,
         organizacionarmada: 27,
-        antecedente_ids: [6, 4, 2]
+        antecedente_ids: [6, 4, 2],
       )
       caso.save!
-      get caso_path(caso) + '.xrlat'
-      d12 = 'test/dummy/public/relatos_ref.xrlat'
+      get caso_path(caso) + ".xrlat"
+      d12 = "test/dummy/public/relatos_ref.xrlat"
       puts @response.body
       file = guarda_xml(@response.body)
       docu = File.read(file)
@@ -314,9 +330,10 @@ module Sivel2Gen
       puts CompareXML.equivalent?(
         doc1, doc2, ignore_comments: false, verbose: true
       )
-      assert CompareXML.equivalent?(
+
+      assert(CompareXML.equivalent?(
         doc1, doc2, ignore_comments: false, verbose: true
-      )
+      ))
     end
   end
 end

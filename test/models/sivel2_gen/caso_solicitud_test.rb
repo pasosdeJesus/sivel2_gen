@@ -10,15 +10,18 @@ module Sivel2Gen
 
     test "valido" do
       solicitud = Msip::Solicitud.create(PRUEBA_SOLICITUD)
+
       assert_predicate solicitud, :valid?
 
       caso = Caso.create(PRUEBA_CASO)
+
       assert_predicate caso, :valid?
 
       cs = Sivel2Gen::CasoSolicitud.create(
         caso_id: caso.id,
         solicitud_id: solicitud.id,
       )
+
       assert_predicate cs, :valid?
 
       caso.destroy

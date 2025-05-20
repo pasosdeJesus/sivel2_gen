@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Sivel2Gen
   module Admin
     class ContextosvictimaController < Msip::Admin::BasicasController
@@ -13,15 +15,17 @@ module Sivel2Gen
       end
 
       def atributos_index
-        ["id",
-         "nombre",
-         "observaciones",
-         "fechacreacion_localizada",
-         "habilitado"]
+        [
+          "id",
+          "nombre",
+          "observaciones",
+          "fechacreacion_localizada",
+          "habilitado",
+        ]
       end
 
       def genclase
-        return 'M';
+        "M"
       end
 
       def contextovictima_params

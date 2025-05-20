@@ -1,26 +1,29 @@
+# frozen_string_literal: true
+
 # Grafica con R
 
 module Sivel2Gen
   module Fil23Gen
     class GraficarPlotlyController < ApplicationController
-
       # Control de acceso no estándar en función
 
       def actos_individuales
-        authorize! :contar, Sivel2Gen::Caso
+        authorize!(:contar, Sivel2Gen::Caso)
 
-        @rutadircsv = File.join(
-          Rails.root, "public#{Rails.configuration.relative_url_root}" +
-          "assets/csv").to_s
+        @rutadircsv = Rails.root.join(
+          "public#{Rails.configuration.relative_url_root}" +
+          "assets/csv",
+        ).to_s.to_s
         unless Dir.exist?(@rutadircsv)
           Dir.mkdir(@rutadircsv)
         end
 
-        @rutacsv = File.join(
-          Rails.root, "public#{Rails.configuration.relative_url_root}" +
-          "assets/csv/actos_individuales.csv").to_s
+        @rutacsv = Rails.root.join(
+          "public#{Rails.configuration.relative_url_root}" +
+          "assets/csv/actos_individuales.csv",
+        ).to_s.to_s
 
-        tarc = Tempfile.new(['actos_individuales', '.csv'], '/var/www/tmp/')
+        tarc = Tempfile.new(["actos_individuales", ".csv"], "/var/www/tmp/")
         rutatmp = tarc.path
         tarc.close
         tarc.unlink
@@ -45,16 +48,18 @@ module Sivel2Gen
           "LEFT JOIN msip_ubicacion AS ubicacion ON ubicacion.id=caso.ubicacion_id " \
           "LEFT JOIN msip_departamento AS departamento ON ubicacion.departamento_id=departamento.id " \
           "LEFT JOIN msip_municipio AS municipio ON ubicacion.municipio_id=municipio.id " \
-          "GROUP BY 1,2,3,4,5,6,7,8,9,10,11) " \
-          " TO '#{rutatmp}' DELIMITER ',' CSV HEADER;" 
+          "GROUP BY 1,2,3,4,5,6,7,8,9,10,11)  " \
+          "TO '#{rutatmp}' DELIMITER ',' CSV HEADER;"
         ActiveRecord::Base.connection.execute(sql)
         @rutadircsv = "/"
         if File.exist?(@rutacsv)
           File.unlink(@rutacsv)
         end
         FileUtils.cp(rutatmp, @rutacsv)
-        render 'fil23_gen/graficar_plotly/actos_individuales', 
-          layout: 'application'
+        render(
+          "fil23_gen/graficar_plotly/actos_individuales",
+          layout: "application",
+        )
       end
     end
   end

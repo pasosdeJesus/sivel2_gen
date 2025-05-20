@@ -1,5 +1,6 @@
+# frozen_string_literal: true
 
-require 'sivel2_gen/concerns/models/sectorsocial'
+require "sivel2_gen/concerns/models/sectorsocial"
 
 module Sivel2Gen
   # Tabla básica Sector social

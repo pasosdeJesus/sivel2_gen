@@ -10,16 +10,19 @@ module Sivel2Gen
 
     test "valido" do
       fuenteprensa = Msip::Fuenteprensa.create(PRUEBA_FUENTEPRENSA)
+
       assert fuenteprensa.valid?
 
       caso = Caso.create(PRUEBA_CASO)
+
       assert caso.valid?
 
       cf = Sivel2Gen::CasoFuenteprensa.create(
         caso_id: caso.id,
         fuenteprensa_id: fuenteprensa.id,
-        fecha: '2023-01-11',
+        fecha: "2023-01-11",
       )
+
       assert_predicate cf, :valid?
 
       cf.destroy

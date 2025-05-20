@@ -1,4 +1,6 @@
-require 'sivel2_gen/concerns/controllers/anexo_casos_controller'
+# frozen_string_literal: true
+
+require "sivel2_gen/concerns/controllers/anexo_casos_controller"
 
 module Sivel2Gen
   class AnexoCasosController < ApplicationController

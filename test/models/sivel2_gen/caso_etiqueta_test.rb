@@ -10,19 +10,23 @@ module Sivel2Gen
 
     test "valido" do
       etiqueta = Msip::Etiqueta.create(PRUEBA_ETIQUETA)
+
       assert etiqueta.valid?
 
       caso = Caso.create(PRUEBA_CASO)
+
       assert caso.valid?
 
       usuario = ::Usuario.create(PRUEBA_USUARIO)
+
       assert usuario.valid?
       cs = Sivel2Gen::CasoEtiqueta.create(
         caso_id: caso.id,
         etiqueta_id: etiqueta.id,
         usuario_id: usuario.id,
-        fecha: '2023-01-11',
+        fecha: "2023-01-11",
       )
+
       assert_predicate cs, :valid?
 
       caso.destroy

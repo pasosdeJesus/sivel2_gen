@@ -1,5 +1,6 @@
+# frozen_string_literal: true
 
-require 'sivel2_gen/concerns/models/victima'
+require "sivel2_gen/concerns/models/victima"
 
 module Sivel2Gen
   # Victima de un caso.  Relaciona una persona con un caso.  La misma persona

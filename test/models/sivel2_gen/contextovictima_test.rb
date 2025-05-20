@@ -16,8 +16,8 @@ module Sivel2Gen
     end
 
     test "no valido" do
-      contextovictima = Contextovictima.create(PRUEBA_CONTEXTOVICTIMA.
-                                               merge(nombre: nil))
+      contextovictima = Contextovictima.create(PRUEBA_CONTEXTOVICTIMA
+                                               .merge(nombre: nil))
 
       assert_not contextovictima.valid?
     end

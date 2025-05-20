@@ -1,5 +1,6 @@
+# frozen_string_literal: true
 
-require 'msip/concerns/models/etiqueta'
+require "msip/concerns/models/etiqueta"
 
 module Sivel2Gen
   module Concerns
@@ -9,14 +10,15 @@ module Sivel2Gen
         include Msip::Concerns::Models::Etiqueta
 
         included do
-          has_many :caso_etiqueta, class_name: 'Sivel2Gen::CasoEtiqueta',
-            foreign_key: 'etiqueta_id', dependent: :delete_all
-          has_many :caso, class_name: 'Sivel2Gen::Caso',
+          has_many :caso_etiqueta,
+            class_name: "Sivel2Gen::CasoEtiqueta",
+            foreign_key: "etiqueta_id",
+            dependent: :delete_all
+          has_many :caso,
+            class_name: "Sivel2Gen::Caso",
             through: :caso_etiqueta
-
         end
       end
     end
   end
 end
-

@@ -1,5 +1,6 @@
+# frozen_string_literal: true
 
-require 'sivel2_gen/concerns/models/victimacolectiva'
+require "sivel2_gen/concerns/models/victimacolectiva"
 
 module Sivel2Gen
   # Víctima colectiva en un caos. Relaciona un grupo de personas con un caso. El

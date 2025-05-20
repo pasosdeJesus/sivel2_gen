@@ -1,5 +1,6 @@
+# frozen_string_literal: true
 
-require 'sivel2_gen/concerns/models/rangoedad'
+require "sivel2_gen/concerns/models/rangoedad"
 
 module Sivel2Gen
   # Tabla básica Rango de Edad

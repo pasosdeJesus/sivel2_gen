@@ -1,5 +1,6 @@
+# frozen_string_literal: true
 
-require 'sivel2_gen/concerns/models/acto'
+require "sivel2_gen/concerns/models/acto"
 
 module Sivel2Gen
   # Acto de violencia contra una persona, basado en modelo de datos

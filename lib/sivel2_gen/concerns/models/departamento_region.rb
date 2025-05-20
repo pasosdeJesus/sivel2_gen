@@ -1,16 +1,18 @@
+# frozen_string_literal: true
 
 module Sivel2Gen
   module Concerns
     module Models
-      module DepartamentoRegion 
+      module DepartamentoRegion
         extend ActiveSupport::Concern
 
         included do
-          belongs_to :region, class_name: 'Sivel2Gen::Region', 
-            foreign_key: 'region_id', optional: false
-          belongs_to :departamento, 
-            class_name: 'Msip::Departamento',
-            foreign_key: 'departamento_id', optional: false
+          belongs_to :region,
+            class_name: "Sivel2Gen::Region",
+            optional: false
+          belongs_to :departamento,
+            class_name: "Msip::Departamento",
+            optional: false
         end
       end
     end

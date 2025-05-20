@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 
 module Sivel2Gen
   module Concerns
@@ -6,16 +7,16 @@ module Sivel2Gen
         extend ActiveSupport::Concern
 
         included do
-
           include Msip::Localizacion
           include Msip::FormatoFechaHelper
 
-          belongs_to :filiacion, foreign_key: "filiacion_id", 
-            class_name: 'Sivel2Gen::Filiacion', optional: false
-          belongs_to :victimacolectiva, foreign_key: "victimacolectiva_id", 
-            class_name: 'Sivel2Gen::Victimacolectiva', optional: false
+          belongs_to :filiacion,
+            class_name: "Sivel2Gen::Filiacion",
+            optional: false
+          belongs_to :victimacolectiva,
+            class_name: "Sivel2Gen::Victimacolectiva",
+            optional: false
         end # included
-
       end
     end
   end

@@ -1,5 +1,6 @@
+# frozen_string_literal: true
 
-require 'msip/concerns/controllers/personas_trelacion_controller'
+require "msip/concerns/controllers/personas_trelacion_controller"
 
 module Sivel2Gen
   module Concerns
@@ -10,7 +11,6 @@ module Sivel2Gen
         included do
           include Msip::Concerns::Controllers::PersonasController
         end # included
-
       end
     end
   end

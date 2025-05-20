@@ -1,5 +1,6 @@
+# frozen_string_literal: true
 
-require 'sivel2_gen/concerns/models/contexto'
+require "sivel2_gen/concerns/models/contexto"
 
 module Sivel2Gen
   # Tabla básica contexto (de un caso)

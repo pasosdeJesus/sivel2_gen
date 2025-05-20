@@ -1,5 +1,6 @@
+# frozen_string_literal: true
 
-require 'msip/concerns/controllers/gruposper_controller'
+require "msip/concerns/controllers/gruposper_controller"
 
 module Sivel2Gen
   module Concerns
@@ -12,7 +13,7 @@ module Sivel2Gen
 
           def remplazar_antes_destruir_gp
             true
-          end 
+          end
 
           def remplazar_antes_salvar_vc
             true
@@ -28,37 +29,37 @@ module Sivel2Gen
             @caso = Sivel2Gen::Caso.find(params[:caso_id].to_i)
             @vicol_posicion = params[:vicol_posicion].to_i
             @caso.current_usuario = current_usuario
-            if !remplazar_antes_salvar_vc
+            unless remplazar_antes_salvar_vc
               return
             end
-            if Sivel2Gen::Victimacolectiva.where(grupoper_id: @grupoper.id).
-                where(caso_id: @caso.id).count == 0
+
+            if Sivel2Gen::Victimacolectiva.where(grupoper_id: @grupoper.id)
+                .where(caso_id: @caso.id).count == 0
               @victimacolectiva = Sivel2Gen::Victimacolectiva.create(
-                grupoper_id: @grupoper.id, caso_id: @caso.id)
+                grupoper_id: @grupoper.id, caso_id: @caso.id,
+              )
               @victimacolectiva.save!
               grupoperant = @victimacolectiva.grupoper
-              if (grupoperant.nombre == 'N') || (grupoperant.nombre == '')
+              if (grupoperant.nombre == "N") || (grupoperant.nombre == "")
                 remplazar_antes_destruir_gp
                 grupoperant.destroy
               end
             else
               puts "Ya existe ese grupo de personas en el caso"
-              render json: "Ya existe ese grupo de personas en el caso",
-                status: :unprocessable_entity
-              return 
+              render(
+                json: "Ya existe ese grupo de personas en el caso",
+                status: :unprocessable_entity,
+              )
+              return
             end
             respond_to do |format|
-              format.html {
-                render('/msip/gruposper/remplazar', layout: false) 
+              format.html do
+                render("/msip/gruposper/remplazar", layout: false)
                 return
-              }
+              end
             end
           end
-
-
         end # included
-
-
       end
     end
   end

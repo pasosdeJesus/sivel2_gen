@@ -1,13 +1,15 @@
-require 'date'
+# frozen_string_literal: true
+
+require "date"
 
 module Msip
   module Admin
     class FuentesprensaController < Msip::Admin::BasicasController
-      before_action :set_fuenteprensa, 
+      before_action :set_fuenteprensa,
         only: [:show, :edit, :update, :destroy]
-      load_and_authorize_resource  class: Msip::Fuenteprensa
+      load_and_authorize_resource class: Msip::Fuenteprensa
 
-      def clase 
+      def clase
         "Msip::Fuenteprensa"
       end
 
@@ -17,16 +19,18 @@ module Msip
 
       def atributos_index
         [
-          "id", "nombre", "observaciones", "tfuente", 
-          "fechacreacion_localizada", 
-          "habilitado"
+          "id",
+          "nombre",
+          "observaciones",
+          "tfuente",
+          "fechacreacion_localizada",
+          "habilitado",
         ]
       end
 
       def fuenteprensa_params
         params.require(:fuenteprensa).permit(*atributos_form)
       end
-
     end # class FuentesprensaController
   end # module Admin
 end # module Msip

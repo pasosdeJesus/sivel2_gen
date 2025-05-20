@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 
 module Sivel2Gen
   module Concerns
@@ -7,10 +8,11 @@ module Sivel2Gen
 
         include Msip::Basica
         included do
-          has_many :combatiente, foreign_key: "resagresion_id", 
-            validate: true, class_name: 'Sivel2Gen::Combatiente'
+          has_many :combatiente,
+            foreign_key: "resagresion_id",
+            validate: true,
+            class_name: "Sivel2Gen::Combatiente"
         end
-
       end
     end
   end

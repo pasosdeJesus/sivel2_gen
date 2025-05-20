@@ -1,4 +1,6 @@
-require 'sivel2_gen/concerns/models/region'
+# frozen_string_literal: true
+
+require "sivel2_gen/concerns/models/region"
 
 module Sivel2Gen
   # Tabla básica Región

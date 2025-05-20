@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 
 module Sivel2Gen
   module Concerns
@@ -10,7 +11,6 @@ module Sivel2Gen
           attr_accessor :fechaini
           attr_accessor :fechafin
         end
-
       end
     end
   end

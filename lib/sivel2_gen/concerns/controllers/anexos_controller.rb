@@ -1,6 +1,7 @@
+# frozen_string_literal: true
 
-require 'msip/concerns/controllers/anexos_controller'
-require 'date'
+require "msip/concerns/controllers/anexos_controller"
+require "date"
 
 module Sivel2Gen
   module Concerns
@@ -13,14 +14,12 @@ module Sivel2Gen
 
           def remplazar_antes_salvar_v
             true
-          end 
+          end
 
           def remplazar_despues_salvar_v
             true
-          end 
-
+          end
         end # included
-
 
         class_methods do
         end # class_methods

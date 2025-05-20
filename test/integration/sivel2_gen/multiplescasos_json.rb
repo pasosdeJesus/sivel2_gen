@@ -1,13 +1,13 @@
 # frozen_string_literal:true
 
-require 'test_helper'
-require 'open-uri'
-require 'json_utilities'
-require 'minitest/autorun'
-require 'json'
+require "test_helper"
+require "open-uri"
+require "json_utilities"
+require "minitest/autorun"
+require "json"
 
 module Sivel2Gen
-  class PruebaXml < PruebaIntegracion 
+  class PruebaXml < PruebaIntegracion
     include Devise::Test::IntegrationHelpers
     include Engine.routes.url_helpers
 
@@ -18,28 +18,28 @@ module Sivel2Gen
 
     PRUEBA_CASO_BASICOS1 = {
       id: 1122,
-      fecha: '2019-08-30',
-      memo: 'a',
-      created_at: '2019-08-30',
-      titulo: 'Caso de prueba 1 con datos basicos',
-      hora: '6 pm',
-      duracion: '1 hora'
+      fecha: "2019-08-30",
+      memo: "a",
+      created_at: "2019-08-30",
+      titulo: "Caso de prueba 1 con datos basicos",
+      hora: "6 pm",
+      duracion: "1 hora",
     }
 
     PRUEBA_CASO_BASICOS2 = {
       id: 2222,
-      fecha: '2019-08-30',
-      memo: 'b',
-      created_at: '2019-08-30',
-      titulo: 'Caso de prueba 2 con datos basicos',
-      hora: '8 pm',
-      duracion: '2 horas'
+      fecha: "2019-08-30",
+      memo: "b",
+      created_at: "2019-08-30",
+      titulo: "Caso de prueba 2 con datos basicos",
+      hora: "8 pm",
+      duracion: "2 horas",
     }
 
-    test 'crea dos casos y genera reporte json' do
+    test "crea dos casos y genera reporte json" do
       skip
       Sivel2Gen::Conscaso.refresca_conscaso
-      caso1 = Sivel2Gen::Caso.create PRUEBA_CASO_BASICOS1
+      caso1 = Sivel2Gen::Caso.create(PRUEBA_CASO_BASICOS1)
 
       ubicacion1 = Msip::Ubicacion.create(
         longitud: 87.3423,
@@ -49,7 +49,7 @@ module Sivel2Gen
         tsitio_id: 1,
         departamento_id: 17,
         municipio_id: 1152,
-        created_at: '2014-11-06'
+        created_at: "2014-11-06",
       )
       ubicacion1.save!
       caso1.ubicacion_id = ubicacion1.id
@@ -58,15 +58,15 @@ module Sivel2Gen
       Sivel2Gen::CasoFrontera.create(
         frontera_id: frontera1.id,
         caso_id: caso1.id,
-        created_at: '2014-11-06',
-        updated_at: '2014-11-06'
+        created_at: "2014-11-06",
+        updated_at: "2014-11-06",
       )
       region1 = Sivel2Gen::Region.find(9)
       Sivel2Gen::CasoRegion.create(
         region_id: region1.id,
         caso_id: caso1.id,
       )
-      caso2 = Sivel2Gen::Caso.create PRUEBA_CASO_BASICOS2
+      caso2 = Sivel2Gen::Caso.create(PRUEBA_CASO_BASICOS2)
       ubicacion2 = Msip::Ubicacion.create(
         longitud: 77.3847,
         latitud: 3.3483,
@@ -75,7 +75,7 @@ module Sivel2Gen
         tsitio_id: 1,
         departamento_id: 17,
         municipio_id: 1152,
-        created_at: '2014-11-06'
+        created_at: "2014-11-06",
       )
       ubicacion2.save!
       caso2.ubicacion_id = ubicacion2.id
@@ -85,8 +85,8 @@ module Sivel2Gen
       Sivel2Gen::CasoFrontera.create(
         frontera_id: frontera2.id,
         caso_id: caso2.id,
-        created_at: '2014-11-06',
-        updated_at: '2014-11-06'
+        created_at: "2014-11-06",
+        updated_at: "2014-11-06",
       )
       Sivel2Gen::Conscaso.refresca_conscaso
       region2 = Sivel2Gen::Region.find(9)
@@ -103,8 +103,8 @@ EOS
       puts d12
       # get casos_path + '.json'
       ruta = "#{ENV.fetch("RUTA_RELATIVA", "sivel2")}casos.json?utf8=&" \
-          'filtro[fechaini]=2019-08-30&' \
-          'filtro[fechafin]=2019-08-30'
+        "filtro[fechaini]=2019-08-30&" \
+        "filtro[fechafin]=2019-08-30"
       get ruta
       puts @response.body
       file = guarda_json(@response.body)
@@ -119,8 +119,11 @@ EOS
 
     def compara(json_ob, json_es)
       debugger
-      assert(JsonUtilities.compare_json(json_ob, json_es), 
-             'Fallas en la comparación json')
+
+      assert(
+        JsonUtilities.compare_json(json_ob, json_es),
+        "Fallas en la comparación json",
+      )
     end
   end
 end

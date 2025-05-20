@@ -10,9 +10,11 @@ module Sivel2Gen
 
     test "valido" do
       presponsable = Sivel2Gen::Presponsable.create(PRUEBA_PRESPONSABLE)
+
       assert presponsable.valid?
 
       caso = Caso.create(PRUEBA_CASO)
+
       assert caso.valid?
 
       cs = Sivel2Gen::CasoPresponsable.create(
@@ -20,6 +22,7 @@ module Sivel2Gen
         presponsable_id: presponsable.id,
         tipo: 0,
       )
+
       assert_predicate cs, :valid?
 
       caso.destroy

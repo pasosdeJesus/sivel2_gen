@@ -1,4 +1,6 @@
-require 'sivel2_gen/concerns/controllers/victimascolectivas_controller'
+# frozen_string_literal: true
+
+require "sivel2_gen/concerns/controllers/victimascolectivas_controller"
 
 module Sivel2Gen
   class VictimascolectivasController < Heb412Gen::ModelosController

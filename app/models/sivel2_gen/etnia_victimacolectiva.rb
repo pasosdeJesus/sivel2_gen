@@ -1,5 +1,6 @@
+# frozen_string_literal: true
 
-require 'sivel2_gen/concerns/models/etnia_victimacolectiva'
+require "sivel2_gen/concerns/models/etnia_victimacolectiva"
 
 module Sivel2Gen
   # Relación n:n entre Etnia y Víctima Colectiva

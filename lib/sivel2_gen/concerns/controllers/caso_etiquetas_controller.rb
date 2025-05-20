@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 
 module Sivel2Gen
   module Concerns
@@ -20,22 +21,26 @@ module Sivel2Gen
               @casoetiqueta.fecha = Date.today
               if @casoetiqueta.save
                 respond_to do |format|
-                  format.js { render text: @casoetiqueta.id.to_s }
-                  format.json { render json: @casoetiqueta.id.to_s, status: :created }
-                  format.html { render inline: @casoetiqueta.id.to_s }
+                  format.js { render(text: @casoetiqueta.id.to_s) }
+                  format.json { render(json: @casoetiqueta.id.to_s, status: :created) }
+                  format.html { render(inline: @casoetiqueta.id.to_s) }
                 end
               else
                 respond_to do |format|
-                  format.html {
-                    render inline: "error: #{@casoetiqueta.errors.messages} "
-                  }
-                  format.json { render json: @casoetiqueta.errors.messages,
-                    status: :unprocessable_entity }
+                  format.html do
+                    render(inline: "error: #{@casoetiqueta.errors.messages} ")
+                  end
+                  format.json do
+                    render(
+                      json: @casoetiqueta.errors.messages,
+                      status: :unprocessable_entity,
+                    )
+                  end
                 end
               end
             else
               respond_to do |format|
-                format.html { render inline: 'Falta identificacion del caso' }
+                format.html { render(inline: "Falta identificacion del caso") }
               end
             end
           end # def nueva
@@ -56,14 +61,11 @@ module Sivel2Gen
 
           def prepara_caso
             @caso = Sivel2Gen::Caso.new(
-              caso_etiqueta: [Sivel2Gen::CasoEtiqueta.new])
+              caso_etiqueta: [Sivel2Gen::CasoEtiqueta.new],
+            )
           end
-
-
         end # included
-
       end
     end
   end
 end
-

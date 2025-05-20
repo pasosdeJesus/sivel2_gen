@@ -1,11 +1,11 @@
+# frozen_string_literal: true
 
-require 'msip/concerns/controllers/usuarios_controller'
+require "msip/concerns/controllers/usuarios_controller"
 
 module Sivel2Gen
   module Concerns
     module Controllers
       module UsuariosController
-
         extend ActiveSupport::Concern
 
         included do
@@ -17,7 +17,7 @@ module Sivel2Gen
               :nusuario,
               :nombre,
               :email,
-              :rol
+              :rol,
             ]
             if can?(:manage, Msip::Grupo)
               r += [:grupo]
@@ -25,7 +25,7 @@ module Sivel2Gen
             r += [
               :descripcion,
               :created_at_localizada,
-              :habilitado
+              :habilitado,
             ]
             r
           end
@@ -52,7 +52,7 @@ module Sivel2Gen
               :fechadeshabilitacion,
               :failed_attempts,
               :unlock_token,
-              :locked_at
+              :locked_at,
             ]
             r
           end
@@ -61,12 +61,12 @@ module Sivel2Gen
             [:id] + atributos_form +
               [:fechacreacion_localizada] +
               [:fechadeshabilitacion_localizada] -
-              [:fechacreacion]-
+              [:fechacreacion] -
               [:fechadeshabilitacion]
           end
 
           def vistas_manejadas
-            ['Usuario']
+            ["Usuario"]
           end
 
           private
@@ -75,19 +75,17 @@ module Sivel2Gen
             lista_params_msip + [
               :observadorffechaini,
               :observadorffechafin,
-              filtrodepartamento_ids: []
+              filtrodepartamento_ids: [],
             ]
           end
 
           def usuario_params
             p = params.require(:usuario).permit(
-              lista_params_sivel2_gen)
-            return p
+              lista_params_sivel2_gen,
+            )
+            p
           end
-
-
-        end  # included
-
+        end # included
       end
     end
   end

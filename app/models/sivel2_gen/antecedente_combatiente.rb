@@ -1,5 +1,6 @@
+# frozen_string_literal: true
 
-require 'sivel2_gen/concerns/models/antecedente_combatiente'
+require "sivel2_gen/concerns/models/antecedente_combatiente"
 
 module Sivel2Gen
   # Relación n:n entre antecedentes y combatientes

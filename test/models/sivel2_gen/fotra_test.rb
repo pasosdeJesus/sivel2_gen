@@ -18,6 +18,7 @@ module Sivel2Gen
 
     test "no valido" do
       fotra = Sivel2Gen::Fotra.create
+
       assert_not fotra.valid?
     end
   end

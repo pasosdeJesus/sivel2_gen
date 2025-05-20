@@ -1,5 +1,6 @@
+# frozen_string_literal: true
 
-require 'sivel2_gen/concerns/models/victimacolectiva_vinculoestado'
+require "sivel2_gen/concerns/models/victimacolectiva_vinculoestado"
 
 module Sivel2Gen
   # Relación n:n entre Víctima Colectiva y Vínculo con el Estado

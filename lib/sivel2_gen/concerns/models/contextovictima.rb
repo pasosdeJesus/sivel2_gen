@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 
 module Sivel2Gen
   module Concerns
@@ -8,7 +9,6 @@ module Sivel2Gen
         included do
           include Msip::Basica
         end
-
       end
     end
   end

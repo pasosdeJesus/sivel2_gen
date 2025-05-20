@@ -1,5 +1,6 @@
+# frozen_string_literal: true
 
-require 'sivel2_gen/concerns/models/grupoper'
+require "sivel2_gen/concerns/models/grupoper"
 
 module Msip
   class Grupoper < ActiveRecord::Base

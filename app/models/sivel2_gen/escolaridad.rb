@@ -1,5 +1,6 @@
+# frozen_string_literal: true
 
-require 'sivel2_gen/concerns/models/escolaridad'
+require "sivel2_gen/concerns/models/escolaridad"
 
 module Sivel2Gen
   # Tabla básica Escolaridad

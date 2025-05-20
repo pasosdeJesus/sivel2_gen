@@ -1,11 +1,14 @@
+# frozen_string_literal: true
+
 module Sivel2Gen
   # Tabla básica Intervalo
   class Intervalo < ActiveRecord::Base
     include Msip::Basica
 
-    has_many :caso, foreign_key: "intervalo_id", validate: true,
-      class_name: 'Sivel2Gen::Caso'
+    has_many :caso,
+      validate: true,
+      class_name: "Sivel2Gen::Caso"
 
-    validates_presence_of :rango
+    validates :rango, presence: true
   end
 end

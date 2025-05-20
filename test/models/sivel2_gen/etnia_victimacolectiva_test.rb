@@ -10,25 +10,30 @@ module Sivel2Gen
 
     test "valido" do
       etnia = Msip::Etnia.new(PRUEBA_ETNIA)
+
       assert_predicate etnia, :valid?
       etnia.save
 
-      caso = Caso.create PRUEBA_CASO
+      caso = Caso.create(PRUEBA_CASO)
+
       assert caso.valid?
 
-      grupoper = Msip::Grupoper.create PRUEBA_GRUPOPER
+      grupoper = Msip::Grupoper.create(PRUEBA_GRUPOPER)
+
       assert grupoper.valid?
 
-      victimacolectiva = Victimacolectiva.create PRUEBA_VICTIMACOLECTIVA.merge(
+      victimacolectiva = Victimacolectiva.create(PRUEBA_VICTIMACOLECTIVA.merge(
         caso_id: caso.id,
         grupoper_id: grupoper.id,
-      )
+      ))
+
       assert victimacolectiva.valid?
 
       av = EtniaVictimacolectiva.create(
         victimacolectiva_id: victimacolectiva.id,
         etnia_id: etnia.id,
       )
+
       assert_predicate av, :valid?
 
       victimacolectiva.destroy
