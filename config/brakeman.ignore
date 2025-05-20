@@ -26,6 +26,29 @@
     {
       "warning_type": "SQL Injection",
       "warning_code": 0,
+      "fingerprint": "00f867ebd3fdd1e99bca265e8723967ccf50ebd19d0a09791dba7c241a3bce1f",
+      "check_name": "SQL",
+      "message": "Possible SQL injection",
+      "file": "lib/sivel2_gen/concerns/controllers/casos_controller.rb",
+      "line": 628,
+      "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
+      "code": "ActiveRecord::Base.connection.execute(\"              SELECT fecha, COUNT(DISTINCT sivel2_gen_caso.id) AS cuenta,\\n                msip_departamento.nombre \\n              FROM sivel2_gen_caso \\n                LEFT JOIN msip_ubicacion ON \\n                  sivel2_gen_caso.ubicacion_id = msip_ubicacion.id \\n                LEFT JOIN msip_departamento ON \\n                  msip_ubicacion.departamento_id = msip_departamento.id \\n              WHERE sivel2_gen_caso.fecha BETWEEN '#{(Msip::FormatoFechaHelper.reconoce_adivinando_locale(params[:fechaini], \"\") or if Sivel2Gen::Caso.all.minimum(:fecha) then\n  Sivel2Gen::Caso.all.minimum(:fecha)\nelse\n  \"2001-01-01\"\nend).to_s}'\\n                AND '#{(Msip::FormatoFechaHelper.reconoce_adivindando_locale(params[:fechafin], \"\") or Date.today).to_s}'\\n              GROUP BY 1,3 \\n              ORDER BY 1;\\n\")",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "Sivel2Gen::Concerns::Controllers::CasosController",
+        "method": "cuenta"
+      },
+      "user_input": "params[:fechaini]",
+      "confidence": "High",
+      "cwe_id": [
+        89
+      ],
+      "note": ""
+    },
+    {
+      "warning_type": "SQL Injection",
+      "warning_code": 0,
       "fingerprint": "1072b24fbf1d0766a11a5b7725ed01faf1212c617a7edfd1de93f7172be94c1a",
       "check_name": "SQL",
       "message": "Possible SQL injection",
@@ -133,29 +156,6 @@
       },
       "user_input": "personas_cons2",
       "confidence": "Medium",
-      "cwe_id": [
-        89
-      ],
-      "note": ""
-    },
-    {
-      "warning_type": "SQL Injection",
-      "warning_code": 0,
-      "fingerprint": "20d277905a5932b23a02be741f8ca7cda9b746466f7cb050858463031d7c15f3",
-      "check_name": "SQL",
-      "message": "Possible SQL injection",
-      "file": "lib/sivel2_gen/concerns/controllers/casos_controller.rb",
-      "line": 628,
-      "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
-      "code": "ActiveRecord::Base.connection.execute(\"              SELECT fecha, COUNT(DISTINCT sivel2_gen_caso.id) AS cuenta,\\n                msip_departamento.nombre \\n              FROM sivel2_gen_caso \\n                LEFT JOIN msip_ubicacion ON \\n                  sivel2_gen_caso.ubicacion_id = msip_ubicacion.id \\n                LEFT JOIN msip_departamento ON \\n                  msip_ubicacion.departamento_id = msip_departamento.id \\n              WHERE sivel2_gen_caso.fecha BETWEEN '#{(Msip::FormatoFechaHelper.reconoce_adivinando_locale(params[:fechaini], \"\") or (fechasinicial.count > 0) ? (fechasinicial[0]) : (\"2001-01-01\")).to_s}'\\n                AND '#{(Msip::FormatoFechaHelper.reconoce_adivindando_locale(params[:fechafin], \"\") or Date.today).to_s}'\\n              GROUP BY 1,3 \\n              ORDER BY 1;\\n\")",
-      "render_path": null,
-      "location": {
-        "type": "method",
-        "class": "Sivel2Gen::Concerns::Controllers::CasosController",
-        "method": "cuenta"
-      },
-      "user_input": "params[:fechaini]",
-      "confidence": "High",
       "cwe_id": [
         89
       ],
@@ -373,52 +373,6 @@
       },
       "user_input": "ampliar_where(where, \"sivel2_gen_acto.categoria_id\", cat.to_i)",
       "confidence": "Medium",
-      "cwe_id": [
-        89
-      ],
-      "note": ""
-    },
-    {
-      "warning_type": "SQL Injection",
-      "warning_code": 0,
-      "fingerprint": "52d49db7ceef431fa3b9d82f8a8bcdedeb1fc82a780c266e530ff0c771c09bb8",
-      "check_name": "SQL",
-      "message": "Possible SQL injection",
-      "file": "app/controllers/sivel2_gen/casos_controller.rb",
-      "line": 628,
-      "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
-      "code": "ActiveRecord::Base.connection.execute(\"              SELECT fecha, COUNT(DISTINCT sivel2_gen_caso.id) AS cuenta,\\n                msip_departamento.nombre \\n              FROM sivel2_gen_caso \\n                LEFT JOIN msip_ubicacion ON \\n                  sivel2_gen_caso.ubicacion_id = msip_ubicacion.id \\n                LEFT JOIN msip_departamento ON \\n                  msip_ubicacion.departamento_id = msip_departamento.id \\n              WHERE sivel2_gen_caso.fecha BETWEEN '#{(Msip::FormatoFechaHelper.reconoce_adivinando_locale(params[:fechaini], \"\") or (fechasinicial.count > 0) ? (fechasinicial[0]) : (\"2001-01-01\")).to_s}'\\n                AND '#{(Msip::FormatoFechaHelper.reconoce_adivindando_locale(params[:fechafin], \"\") or Date.today).to_s}'\\n              GROUP BY 1,3 \\n              ORDER BY 1;\\n\")",
-      "render_path": null,
-      "location": {
-        "type": "method",
-        "class": "Sivel2Gen::CasosController",
-        "method": "cuenta"
-      },
-      "user_input": "params[:fechaini]",
-      "confidence": "High",
-      "cwe_id": [
-        89
-      ],
-      "note": ""
-    },
-    {
-      "warning_type": "SQL Injection",
-      "warning_code": 0,
-      "fingerprint": "52d49db7ceef431fa3b9d82f8a8bcdedeb1fc82a780c266e530ff0c771c09bb8",
-      "check_name": "SQL",
-      "message": "Possible SQL injection",
-      "file": "app/controllers/sivel2_gen/casos_controller.rb",
-      "line": 632,
-      "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
-      "code": "ActiveRecord::Base.connection.execute(\"              SELECT fecha, COUNT(DISTINCT sivel2_gen_caso.id) AS cuenta,\\n                msip_departamento.nombre \\n              FROM sivel2_gen_caso \\n                LEFT JOIN msip_ubicacion ON \\n                  sivel2_gen_caso.ubicacion_id = msip_ubicacion.id \\n                LEFT JOIN msip_departamento ON \\n                  msip_ubicacion.departamento_id = msip_departamento.id \\n              WHERE sivel2_gen_caso.fecha BETWEEN '#{(Msip::FormatoFechaHelper.reconoce_adivinando_locale(params[:fechaini], \"\") or (fechasinicial.count > 0) ? (fechasinicial[0]) : (\"2001-01-01\")).to_s}'\\n                AND '#{(Msip::FormatoFechaHelper.reconoce_adivindando_locale(params[:fechafin], \"\") or Date.today).to_s}'\\n              GROUP BY 1,3 \\n              ORDER BY 1;\\n\")",
-      "render_path": null,
-      "location": {
-        "type": "method",
-        "class": "Sivel2Gen::CasosController",
-        "method": "cuenta"
-      },
-      "user_input": "params[:fechaini]",
-      "confidence": "High",
       "cwe_id": [
         89
       ],
@@ -787,6 +741,52 @@
       },
       "user_input": "sol.join(\", \")",
       "confidence": "Medium",
+      "cwe_id": [
+        89
+      ],
+      "note": ""
+    },
+    {
+      "warning_type": "SQL Injection",
+      "warning_code": 0,
+      "fingerprint": "a2ace178dc4ece5662d97bb9e11f4d659a2a8a1576fa62f1934ca35b86f921a1",
+      "check_name": "SQL",
+      "message": "Possible SQL injection",
+      "file": "app/controllers/sivel2_gen/casos_controller.rb",
+      "line": 628,
+      "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
+      "code": "ActiveRecord::Base.connection.execute(\"              SELECT fecha, COUNT(DISTINCT sivel2_gen_caso.id) AS cuenta,\\n                msip_departamento.nombre \\n              FROM sivel2_gen_caso \\n                LEFT JOIN msip_ubicacion ON \\n                  sivel2_gen_caso.ubicacion_id = msip_ubicacion.id \\n                LEFT JOIN msip_departamento ON \\n                  msip_ubicacion.departamento_id = msip_departamento.id \\n              WHERE sivel2_gen_caso.fecha BETWEEN '#{(Msip::FormatoFechaHelper.reconoce_adivinando_locale(params[:fechaini], \"\") or if Sivel2Gen::Caso.all.minimum(:fecha) then\n  Sivel2Gen::Caso.all.minimum(:fecha)\nelse\n  \"2001-01-01\"\nend).to_s}'\\n                AND '#{(Msip::FormatoFechaHelper.reconoce_adivindando_locale(params[:fechafin], \"\") or Date.today).to_s}'\\n              GROUP BY 1,3 \\n              ORDER BY 1;\\n\")",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "Sivel2Gen::CasosController",
+        "method": "cuenta"
+      },
+      "user_input": "params[:fechaini]",
+      "confidence": "High",
+      "cwe_id": [
+        89
+      ],
+      "note": ""
+    },
+    {
+      "warning_type": "SQL Injection",
+      "warning_code": 0,
+      "fingerprint": "a2ace178dc4ece5662d97bb9e11f4d659a2a8a1576fa62f1934ca35b86f921a1",
+      "check_name": "SQL",
+      "message": "Possible SQL injection",
+      "file": "app/controllers/sivel2_gen/casos_controller.rb",
+      "line": 632,
+      "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
+      "code": "ActiveRecord::Base.connection.execute(\"              SELECT fecha, COUNT(DISTINCT sivel2_gen_caso.id) AS cuenta,\\n                msip_departamento.nombre \\n              FROM sivel2_gen_caso \\n                LEFT JOIN msip_ubicacion ON \\n                  sivel2_gen_caso.ubicacion_id = msip_ubicacion.id \\n                LEFT JOIN msip_departamento ON \\n                  msip_ubicacion.departamento_id = msip_departamento.id \\n              WHERE sivel2_gen_caso.fecha BETWEEN '#{(Msip::FormatoFechaHelper.reconoce_adivinando_locale(params[:fechaini], \"\") or if Sivel2Gen::Caso.all.minimum(:fecha) then\n  Sivel2Gen::Caso.all.minimum(:fecha)\nelse\n  \"2001-01-01\"\nend).to_s}'\\n                AND '#{(Msip::FormatoFechaHelper.reconoce_adivindando_locale(params[:fechafin], \"\") or Date.today).to_s}'\\n              GROUP BY 1,3 \\n              ORDER BY 1;\\n\")",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "Sivel2Gen::CasosController",
+        "method": "cuenta"
+      },
+      "user_input": "params[:fechaini]",
+      "confidence": "High",
       "cwe_id": [
         89
       ],
