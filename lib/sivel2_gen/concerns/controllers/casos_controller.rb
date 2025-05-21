@@ -1476,10 +1476,10 @@ module Sivel2Gen
               redirect_to(casos_path)
               return
             end
-            menserror = ""
-            mensexito = ""
+            menserror = "".dup
+            mensexito = "".dup
             sintaxis_errores = []
-            ids_importados = ""
+            ids_importados = "".dup
             formato_sexo = if params[:formatosexo]
               params[:formatosexo]
             else
