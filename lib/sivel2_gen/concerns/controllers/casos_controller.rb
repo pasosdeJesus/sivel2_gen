@@ -1365,7 +1365,7 @@ module Sivel2Gen
               datossal = {}
               relimportado = Hash.from_xml(relato.to_s)
               @caso = Sivel2Gen::Caso.new
-              menserror_uno = ""
+              menserror_uno = "".dup
               importado = @caso.importa(
                 relimportado["relato"],
                 datossal,
@@ -1437,10 +1437,10 @@ module Sivel2Gen
               redirect_to(casos_path)
               return
             end
-            menserror = ""
-            mensexito = ""
+            menserror = "".dup
+            mensexito = "".dup
             sintaxis_errores = []
-            ids_importados = ""
+            ids_importados = "".dup
             formato_sexo = if params[:formatosexo]
               params[:formatosexo]
             else

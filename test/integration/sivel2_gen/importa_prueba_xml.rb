@@ -30,10 +30,10 @@ module Sivel2Gen
       docnoko.at("relatos").children = old_noko.at("relatos").children
 
       verifica_dtd(docnoko.to_xml) # Pasa si es validado el dtd
-      menserror = ""
-      mensexito = ""
-      errsint = ""
-      ids = ""
+      menserror = "".dup
+      mensexito = "".dup
+      errsint = "".dup
+      ids = "".dup
       @current_usuario = Usuario.find_by(nusuario: "admin")
       Sivel2Gen::CasosController.importar_relato(
         docnoko.to_xml,
@@ -62,10 +62,10 @@ module Sivel2Gen
       docnoko.at("relatos").children = old_noko.at("relatos").children
 
       verifica_dtd(docnoko.to_xml) # Pasa si es validado el dtd
-      menserror = ""
-      mensexito = ""
-      errsint = ""
-      ids = ""
+      menserror = "".dup
+      mensexito = "".dup
+      errsint = "".dup
+      ids = "".dup
       @current_usuario = Usuario.find_by(nusuario: "admin")
       Sivel2Gen::CasosController.importar_relato(
         docnoko.to_xml,
@@ -94,10 +94,10 @@ module Sivel2Gen
       docnoko.at("relatos").children = old_noko.at("relatos").children
 
       verifica_dtd(docnoko.to_xml) # Pasa si es validado el dtd
-      menserror = ""
-      mensexito = ""
-      errsint = ""
-      ids = ""
+      menserror = "".dup
+      mensexito = "".dup
+      errsint = "".dup
+      ids = "".dup
       @current_usuario = Usuario.find_by(nusuario: "admin")
       Sivel2Gen::CasosController.importar_relato(
         docnoko.to_xml,
