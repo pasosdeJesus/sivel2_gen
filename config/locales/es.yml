@@ -24,9 +24,9 @@ es:
         one: Otra fuente
         other: Otras fuentes
     attributes:
-      "msip/ubicacion":
-        tsitio: Tipo de sitio
-        centropoblado: Centro poblado
+      "msip/fuenteprensa":
+        Fuenteprensa: Fuente frecuente
+        Fuentesprensa: Fuentes frecuentes
       "msip/persona":
         Persona: Víctima
         Personas: Víctimas
@@ -40,6 +40,9 @@ es:
         pais: País de nacimiento
         tdocumento_id: Tipo de documento
         caso_ids: Casos en los que es víctima
+      "msip/ubicacion":
+        tsitio: Tipo de sitio
+        centropoblado: Centro poblado
       "sivel2_gen/actividadarea": 
         Actividadarea: Área de Actividad
         Actividadareas: Áreas de Actividades
