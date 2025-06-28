@@ -11,6 +11,10 @@ module Sivel2Gen
     test "valido" do
       rangoedad = Rangoedad.new(PRUEBA_RANGOEDAD)
 
+      if !rangoedad.valid?
+        puts rangoedad
+        puts rangoedad.error.messages
+      end
       assert_predicate rangoedad, :valid?
       rangoedad.save
 

@@ -6,7 +6,9 @@ module Sivel2Gen
   class RangoedadTest < ActiveSupport::TestCase
     test "valido" do
       rangoedad = Rangoedad.create(PRUEBA_RANGOEDAD)
-
+      if !rangoedad.valid?
+        puts rangoedad.error.messages
+      end
       assert rangoedad.valid?
       rangoedad.destroy
     end
