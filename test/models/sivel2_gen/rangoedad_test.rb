@@ -7,7 +7,7 @@ module Sivel2Gen
     test "valido" do
       rangoedad = Rangoedad.create(PRUEBA_RANGOEDAD)
       if !rangoedad.valid?
-        puts rangoedad.error.messages
+        puts rangoedad.errors.messages
       end
       assert rangoedad.valid?
       rangoedad.destroy
