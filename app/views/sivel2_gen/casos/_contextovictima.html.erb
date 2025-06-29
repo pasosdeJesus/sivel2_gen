@@ -3,11 +3,10 @@
         Sivel2Gen::Contextovictima, f, :contextovictima
       ),
       include_blank: false,
-      label_method: :nombre,
-      value_method: :id,
-      include_blank: false,
       input_html: {
-        "data-toggle" => 'tooltip',
+        class: "tom-select",
+        "data-toggle": "tooltip",
         multiple: true,
-        class: 'tom-select'
-      } %>
+      },
+      label_method: :nombre,
+      value_method: :id %>
