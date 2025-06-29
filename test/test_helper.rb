@@ -253,7 +253,7 @@ PRUEBA_PROFESION = {
 
 PRUEBA_RANGOEDAD = {
   id: 1000,
-  nombre: "DE 0 a 15 AÑOS",
+  nombre: "DE 1 a 2 AÑOS",
   limiteinferior: 1,
   limitesuperior: 2,
   fechacreacion: "2014-09-09",
