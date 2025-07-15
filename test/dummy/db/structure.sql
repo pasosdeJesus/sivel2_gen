@@ -1167,6 +1167,15 @@ $_$;
 
 
 --
+-- Name: rand(); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION public.rand() RETURNS double precision
+    LANGUAGE sql
+    AS $$SELECT random();$$;
+
+
+--
 -- Name: sivel2_gen_polo_id(integer); Type: FUNCTION; Schema: public; Owner: -
 --
 
@@ -1340,6 +1349,15 @@ CREATE FUNCTION public.soundexespm(entrada text) RETURNS text
       	RETURN soundex;	
       END;	
       $$;
+
+
+--
+-- Name: substring_index(text, text, integer); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION public.substring_index(text, text, integer) RETURNS text
+    LANGUAGE sql
+    AS $_$SELECT array_to_string((string_to_array($1, $2)) [1:$3], $2);$_$;
 
 
 --
@@ -1787,7 +1805,7 @@ CREATE VIEW public.cvt1 AS
      JOIN public.sivel2_gen_supracategoria supracategoria ON ((categoria.supracategoria_id = supracategoria.id)))
      JOIN public.sivel2_gen_victima victima ON (((victima.persona_id = acto.persona_id) AND (victima.caso_id = caso.id))))
      JOIN public.msip_persona persona ON ((persona.id = acto.persona_id)))
-  WHERE ((caso.fecha >= '2023-08-04'::date) AND (categoria.id = ANY (ARRAY[527, 397, 777, 297, 427, 197, 296, 396, 526, 776, 426, 196, 15, 55, 35, 73, 25, 45, 65, 92, 50, 40, 67, 801, 90, 16, 46, 57, 26, 37, 80, 85, 66, 64, 703, 59, 706, 49, 38, 18, 28, 501, 401, 125, 135, 115, 904, 231, 17, 331, 402, 502, 705, 62, 503, 403, 906, 104, 713, 101, 21, 76, 11, 302, 903, 34, 27, 902, 102, 24, 301, 14, 20, 10, 30, 392, 522, 292, 772, 422, 192, 63, 93, 910, 525, 295, 395, 425, 775, 195, 714, 78, 524, 394, 294, 774, 424, 194, 89, 905, 86, 701, 68, 341, 241, 141, 715, 704, 702, 33, 13, 53, 43, 23, 88, 98, 84, 709, 711, 707, 708, 710, 87, 97, 717, 917, 716, 916, 91, 95, 718, 523, 393, 293, 193, 423, 773, 48, 58, 75, 69, 41, 74, 56, 47, 72, 12, 36, 22, 191, 421, 771, 291, 521, 391, 29, 520, 420, 77, 19, 39, 712])));
+  WHERE (categoria.id = ANY (ARRAY[527, 397, 777, 297, 427, 197, 296, 396, 526, 776, 426, 196, 15, 55, 35, 73, 25, 45, 65, 92, 50, 40, 67, 801, 90, 16, 46, 57, 26, 37, 80, 85, 66, 64, 703, 59, 706, 49, 38, 18, 28, 501, 401, 125, 135, 115, 904, 231, 17, 331, 402, 502, 705, 62, 503, 403, 906, 104, 713, 101, 21, 76, 11, 302, 903, 34, 27, 902, 102, 24, 301, 14, 20, 10, 30, 392, 522, 292, 772, 422, 192, 63, 93, 910, 525, 295, 395, 425, 775, 195, 714, 78, 524, 394, 294, 774, 424, 194, 89, 905, 86, 701, 68, 341, 241, 141, 715, 704, 702, 33, 13, 53, 43, 23, 88, 98, 84, 709, 711, 707, 708, 710, 87, 97, 717, 917, 716, 916, 91, 95, 718, 523, 393, 293, 193, 423, 773, 48, 58, 75, 69, 41, 74, 56, 47, 72, 12, 36, 22, 191, 421, 771, 291, 521, 391, 29, 520, 420, 77, 19, 39, 712]));
 
 
 --
@@ -3526,6 +3544,109 @@ CREATE MATERIALIZED VIEW public.nmujeres AS
 
 
 --
+-- Name: sivel2_gen_actocolectivo_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.sivel2_gen_actocolectivo_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: sivel2_gen_actocolectivo; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.sivel2_gen_actocolectivo (
+    presponsable_id integer NOT NULL,
+    categoria_id integer NOT NULL,
+    grupoper_id integer NOT NULL,
+    caso_id integer NOT NULL,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone,
+    id integer DEFAULT nextval('public.sivel2_gen_actocolectivo_id_seq'::regclass) NOT NULL
+);
+
+
+--
+-- Name: sivel2_gen_caso_categoria_presponsable_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.sivel2_gen_caso_categoria_presponsable_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: sivel2_gen_caso_categoria_presponsable; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.sivel2_gen_caso_categoria_presponsable (
+    categoria_id integer NOT NULL,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone,
+    caso_presponsable_id integer,
+    id integer DEFAULT nextval('public.sivel2_gen_caso_categoria_presponsable_id_seq'::regclass) NOT NULL
+);
+
+
+--
+-- Name: sivel2_gen_caso_presponsable_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.sivel2_gen_caso_presponsable_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: sivel2_gen_caso_presponsable; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.sivel2_gen_caso_presponsable (
+    caso_id integer NOT NULL,
+    presponsable_id integer NOT NULL,
+    tipo integer DEFAULT 0 NOT NULL,
+    bloque character varying(50),
+    frente character varying(50),
+    id integer DEFAULT nextval('public.sivel2_gen_caso_presponsable_id_seq'::regclass) NOT NULL,
+    otro character varying(500),
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone,
+    subdivision character varying
+);
+
+
+--
+-- Name: nobelicas; Type: VIEW; Schema: public; Owner: -
+--
+
+CREATE VIEW public.nobelicas AS
+ SELECT sivel2_gen_acto.caso_id
+   FROM public.sivel2_gen_acto
+UNION
+ SELECT sivel2_gen_actocolectivo.caso_id
+   FROM public.sivel2_gen_actocolectivo
+UNION
+( SELECT cp.caso_id
+   FROM (public.sivel2_gen_caso_presponsable cp
+     JOIN public.sivel2_gen_caso_categoria_presponsable ccp ON ((ccp.caso_presponsable_id = cp.id)))
+  WHERE (ccp.categoria_id IN ( SELECT cat.id
+           FROM (public.sivel2_gen_categoria cat
+             JOIN public.sivel2_gen_supracategoria sup ON ((sup.id = cat.supracategoria_id)))
+          WHERE ((sup.tviolencia_id)::text <> 'C'::text)))
+  ORDER BY cp.caso_id);
+
+
+--
 -- Name: persona_nomap; Type: MATERIALIZED VIEW; Schema: public; Owner: -
 --
 
@@ -3577,33 +3698,6 @@ CREATE SEQUENCE public.sivel2_gen_actividadoficio_id_seq
 --
 
 ALTER SEQUENCE public.sivel2_gen_actividadoficio_id_seq OWNED BY public.sivel2_gen_actividadoficio.id;
-
-
---
--- Name: sivel2_gen_actocolectivo_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public.sivel2_gen_actocolectivo_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: sivel2_gen_actocolectivo; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.sivel2_gen_actocolectivo (
-    presponsable_id integer NOT NULL,
-    categoria_id integer NOT NULL,
-    grupoper_id integer NOT NULL,
-    caso_id integer NOT NULL,
-    created_at timestamp without time zone,
-    updated_at timestamp without time zone,
-    id integer DEFAULT nextval('public.sivel2_gen_actocolectivo_id_seq'::regclass) NOT NULL
-);
 
 
 --
@@ -3700,31 +3794,6 @@ CREATE TABLE public.sivel2_gen_antecedente_victima (
 CREATE TABLE public.sivel2_gen_antecedente_victimacolectiva (
     antecedente_id integer NOT NULL,
     victimacolectiva_id integer NOT NULL
-);
-
-
---
--- Name: sivel2_gen_caso_categoria_presponsable_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public.sivel2_gen_caso_categoria_presponsable_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: sivel2_gen_caso_categoria_presponsable; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.sivel2_gen_caso_categoria_presponsable (
-    categoria_id integer NOT NULL,
-    created_at timestamp without time zone,
-    updated_at timestamp without time zone,
-    caso_presponsable_id integer,
-    id integer DEFAULT nextval('public.sivel2_gen_caso_categoria_presponsable_id_seq'::regclass) NOT NULL
 );
 
 
@@ -3836,36 +3905,6 @@ CREATE TABLE public.sivel2_gen_caso_fuenteprensa (
     updated_at timestamp without time zone,
     id integer DEFAULT nextval('public.sivel2_gen_caso_fuenteprensa_id_seq'::regclass) NOT NULL,
     anexo_caso_id integer
-);
-
-
---
--- Name: sivel2_gen_caso_presponsable_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public.sivel2_gen_caso_presponsable_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: sivel2_gen_caso_presponsable; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.sivel2_gen_caso_presponsable (
-    caso_id integer NOT NULL,
-    presponsable_id integer NOT NULL,
-    tipo integer DEFAULT 0 NOT NULL,
-    bloque character varying(50),
-    frente character varying(50),
-    id integer DEFAULT nextval('public.sivel2_gen_caso_presponsable_id_seq'::regclass) NOT NULL,
-    otro character varying(500),
-    created_at timestamp without time zone,
-    updated_at timestamp without time zone,
-    subdivision character varying
 );
 
 
@@ -4079,6 +4118,16 @@ CREATE MATERIALIZED VIEW public.sivel2_gen_conscaso AS
 
 
 --
+-- Name: sivel2_gen_sectorsocialsec_victima; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.sivel2_gen_sectorsocialsec_victima (
+    sectorsocial_id integer,
+    victima_id integer
+);
+
+
+--
 -- Name: sivel2_gen_consexpcaso; Type: MATERIALIZED VIEW; Schema: public; Owner: -
 --
 
@@ -4110,7 +4159,14 @@ CREATE MATERIALIZED VIEW public.sivel2_gen_consexpcaso AS
           WHERE ((sivel2_gen_conscaso.caso_id IN ( SELECT sivel2_gen_caso.id
                    FROM public.sivel2_gen_caso)) AND (sivel2_gen_conscaso.caso_id IN ( SELECT msip_ubicacion.caso_id
                    FROM public.msip_ubicacion
-                  WHERE (msip_ubicacion.pais_id = 170))) AND (sivel2_gen_conscaso.fecha >= '2024-10-01'::date) AND (sivel2_gen_conscaso.fecha <= '2024-10-31'::date))
+                  WHERE (msip_ubicacion.pais_id = 170))) AND (sivel2_gen_conscaso.fecha >= '2019-01-01'::date) AND (sivel2_gen_conscaso.fecha <= '2024-12-31'::date) AND (sivel2_gen_conscaso.caso_id IN ( SELECT sivel2_gen_victima.caso_id
+                   FROM public.sivel2_gen_victima
+                  WHERE (sivel2_gen_victima.sectorsocial_id = 107)
+                UNION
+                 SELECT sivel2_gen_victima.caso_id
+                   FROM (public.sivel2_gen_victima
+                     JOIN public.sivel2_gen_sectorsocialsec_victima ON ((sivel2_gen_victima.id = sivel2_gen_sectorsocialsec_victima.victima_id)))
+                  WHERE (sivel2_gen_sectorsocialsec_victima.sectorsocial_id = 107))))
           ORDER BY sivel2_gen_conscaso.fecha, sivel2_gen_conscaso.caso_id))
   ORDER BY conscaso.fecha, conscaso.caso_id
   WITH NO DATA;
@@ -4849,16 +4905,6 @@ CREATE TABLE public.sivel2_gen_sectorsocial (
 CREATE TABLE public.sivel2_gen_sectorsocial_victimacolectiva (
     sectorsocial_id integer NOT NULL,
     victimacolectiva_id integer NOT NULL
-);
-
-
---
--- Name: sivel2_gen_sectorsocialsec_victima; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.sivel2_gen_sectorsocialsec_victima (
-    sectorsocial_id integer,
-    victima_id integer
 );
 
 
