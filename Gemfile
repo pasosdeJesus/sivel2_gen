@@ -13,8 +13,6 @@ gem "cancancan" # Roles
 
 gem "color"
 
-gem 'cssbundling-rails'
-
 gem "csv"
 
 gem "devise" # Autenticación
@@ -24,8 +22,6 @@ gem "devise-i18n"
 gem "hotwire-rails"
 
 gem "jbuilder" # API JSON facil. Ver: https://github.com/rails/jbuilder
-
-gem "jsbundling-rails"
 
 gem "kt-paperclip", # Anexos
   git: "https://github.com/kreeti/kt-paperclip.git"
@@ -44,8 +40,6 @@ gem "prawnto_2", require: "prawnto"
 
 gem "prawn-table"
 
-gem "propshaft"
-
 gem "rack", "~> 2"
 
 gem "rails", "~> 8.0"
@@ -60,6 +54,8 @@ gem "rspreadsheet"
 gem "rubyzip"
 
 gem "simple_form" # Formularios simples
+
+gem "sprockets-rails"
 
 gem "stimulus-rails"
 
