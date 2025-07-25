@@ -35,7 +35,8 @@ export default class extends Controller {
     if (isNaN(dia)) {
       dia = 1
     }
-    let formatoFecha = window.formato_fecha;
+    // Campos fecha con HTML estandar no requiren 
+    // formatoFecha = window.formato_fecha; /
     let campoFechaCaso = document.querySelector('#caso_fecha');
     if (campoFechaCaso == null) {
       campoFechaCaso = document.querySelector('#caso_casosjr_attributes_fecharec');
@@ -45,7 +46,7 @@ export default class extends Controller {
     }
     let anioCaso, mesCaso, diaCaso;
     [anioCaso, mesCaso, diaCaso] = Msip__Motor.partirFechaLocalizada(
-      campoFechaCaso.value, formatoFecha
+      campoFechaCaso.value, "yyyy-mm-dd"
     );
     const hoy = new Date();
 
