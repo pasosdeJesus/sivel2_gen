@@ -63,7 +63,7 @@ gem "redcarpet" # Markdown
 
 gem "rspreadsheet"
 
-gem "rubyzip", "<=2.4.1"
+gem "rubyzip", "<=4.2.1"
 
 gem "sassc-rails" # Hojas de estilo con SCSS
 
