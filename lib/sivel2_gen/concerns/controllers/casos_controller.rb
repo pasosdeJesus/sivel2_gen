@@ -1070,20 +1070,25 @@ module Sivel2Gen
               end
 
               ## Por si cambia de pestania evita duplicidad de turbo
-              params_finales = if params[:_msip_enviarautomatico] == "1"
-                params[:caso].except(
-                  :anexo_caso_attributes,
-                  :caso_etiqueta_attributes,
-                  :caso_fuenteprensa_attributes,
-                  :caso_fotra_attributes,
-                  :caso_presponsable_attributes,
-                  :victima_attributes,
-                  :victimacolectiva_attributes,
-                )
-              else
-                params[:caso]
-              end
+              params_finales = 
+                if (params[:_msip_enviarautomatico] == "1") then
+                  params[:caso].except(
+                    :anexo_caso_attributes,
+                    :caso_etiqueta_attributes,
+                    :caso_fuenteprensa_attributes,
+                    :caso_fotra_attributes,
+                    :caso_presponsable_attributes,
+                    :victima_attributes,
+                    :victimacolectiva_attributes,
+                  )
+                else
+                  params[:caso]
+                end
 
+              if params[:_msip_enviarautomatico] == "1" && 
+                  params_finales[:memo] == ""
+                params_finales[:memo] = " "
+              end
               if @caso.update(params_finales)
                 if registrar_en_bitacora
                   Msip::Bitacora.agregar_actualizar(

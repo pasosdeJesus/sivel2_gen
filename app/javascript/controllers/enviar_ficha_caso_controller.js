@@ -10,7 +10,10 @@ export default class extends Controller {
     const pestanias = document.querySelectorAll('.fichacambia');
     pestanias.forEach(function(pestania) {
       pestania.setAttribute('data-enviar-ficha-caso-target', pestania.id);
-      pestania.setAttribute('data-action', 'click->sivel2-gen--enviar-ficha-caso#cambiarficha');
+      pestania.setAttribute(
+        'data-action', 
+        'click->sivel2-gen--enviar-ficha-caso#cambiarficha'
+      );
     });
 
     const pestanaActiva = localStorage.getItem('pestanaActiva');
@@ -46,26 +49,35 @@ export default class extends Controller {
     let diffechas = Math.abs(c-u)
     // Si el caso inicialmente no es válido debe validarse y guardarse
     let inicialmente_valido = document.querySelector(
-      'input#caso_bitacora_inicialmente_valido').value
+      'input#caso_bitacora_inicialmente_valido'
+    ).value
     // Si tiene cambios (excepto en controles para crear actividad)
     // debe validarse y guardarse
     let cambios = MsipCalcularCambiosParaBitacora()
-    return ( Object.keys(cambios).length > 0 || diffechas < 1000 ||
-      inicialmente_valido != 'true');
+    return ( 
+      Object.keys(cambios).length > 0 || diffechas < 1000 ||
+      inicialmente_valido != 'true'
+    );
   }
-  cambiarficha(){
+
+  cambiarficha() {
     if(event.target.dataset.enviarFichaCasoTarget == 'actos-pestana'){
-      document.getElementById("capa-cargando").style.display = 'flex';
+      document.getElementById("capa-cargando").style.display = 'flex'
       if(this.requiereGuardar()){
         let casoId = this.idcasoTarget.value
         let puntomontaje = window.puntomontaje
         let url = puntomontaje + 'casos/' + casoId + '/guardar_y_editar'
-        let datosFormulario = new FormData(document.querySelector('form'));
-        let objetoFormulario = Object.fromEntries(datosFormulario);
+        let form = document.querySelector('form')
+        let datosFormulario = new FormData(form)
+        let objetoFormulario = Object.fromEntries(datosFormulario)
+        console.log("OJO 1 objetoFormulario=", objetoFormulario)
+        
         for (let [key, value] of datosFormulario.entries()) {
           let coincidencia = key.match(/^caso\[(.+?)\]$/);
           if (coincidencia) {
-            let ruta = coincidencia[1].split(/\]\[|\[|\]/).filter(p => p !== "");
+            let ruta = coincidencia[1].split(
+              /\]\[|\[|\]/
+            ).filter(p => p !== "");
             let actual = objetoFormulario;
 
             for (let i = 0; i < ruta.length; i++) {
@@ -80,6 +92,12 @@ export default class extends Controller {
             }
           }
         }
+        if (objetoFormulario['caso[memo]'] == "") {
+          // Evitamos error de validación por memo vacío y que
+          // se pierda información --por eso.
+          objetoFormulario['caso[memo]'] = " "
+        }
+        console.log("OJO 2 objetoFormulario=", objetoFormulario)
 
         let datosCaso = { caso: objetoFormulario };
         fetch(url, {
