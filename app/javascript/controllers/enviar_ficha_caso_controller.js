@@ -10,7 +10,10 @@ export default class extends Controller {
     const pestanias = document.querySelectorAll('.fichacambia');
     pestanias.forEach(function(pestania) {
       pestania.setAttribute('data-enviar-ficha-caso-target', pestania.id);
-      pestania.setAttribute('data-action', 'click->sivel2-gen--enviar-ficha-caso#cambiarficha');
+      pestania.setAttribute(
+        'data-action', 
+        'click->sivel2-gen--enviar-ficha-caso#cambiarficha'
+      );
     });
 
     const pestanaActiva = localStorage.getItem('pestanaActiva');
@@ -46,49 +49,46 @@ export default class extends Controller {
     let diffechas = Math.abs(c-u)
     // Si el caso inicialmente no es válido debe validarse y guardarse
     let inicialmente_valido = document.querySelector(
-      'input#caso_bitacora_inicialmente_valido').value
+      'input#caso_bitacora_inicialmente_valido'
+    ).value
     // Si tiene cambios (excepto en controles para crear actividad)
     // debe validarse y guardarse
     let cambios = Msip__Motor.calcularCambiosParaBitacora()
-    return ( Object.keys(cambios).length > 0 || diffechas < 1000 ||
-      inicialmente_valido != 'true');
+    return ( 
+      Object.keys(cambios).length > 0 || diffechas < 1000 ||
+      inicialmente_valido != 'true'
+    );
   }
-  cambiarficha(){
+
+  cambiarficha() {
     if(event.target.dataset.enviarFichaCasoTarget == 'actos-pestana'){
-      document.getElementById("capa-cargando").style.display = 'flex';
+      document.getElementById("capa-cargando").style.display = 'flex'
       if(this.requiereGuardar()){
         let casoId = this.idcasoTarget.value
         let puntoMontaje = window.puntoMontaje
         let url = puntoMontaje + 'casos/' + casoId + '/guardar_y_editar'
         let datosFormulario = new FormData(document.querySelector('form'));
         let objetoFormulario = Object.fromEntries(datosFormulario);
-        for (let [key, value] of datosFormulario.entries()) {
-          let coincidencia = key.match(/^caso\[(.+?)\]$/);
-          if (coincidencia) {
-            let ruta = coincidencia[1].split(/\]\[|\[|\]/).filter(p => p !== "");
-            let actual = objetoFormulario;
 
-            for (let i = 0; i < ruta.length; i++) {
-              if (i === ruta.length - 1) {
-                actual[ruta[i]] = value;
-              } else {
-                if (!actual[ruta[i]]) {
-                  actual[ruta[i]] = (ruta[i + 1].match(/^\d+$/) ? [] : {});
-                }
-                actual = actual[ruta[i]];
-              }
-            }
-          }
+        // No sirve recodificar los datos y enviarlos como JSON
+        // Se usa formulario multiparte y truco para enviar como PATCH
+        // documentado en 
+        // https://www.nihardaily.com/25-laravel-formdata-with-putpatch-why-it-fails-and-how-to-fix-with-method-spoofing
+        datosFormulario.append('_method', 'PATCH'); 
+
+        if (objetoFormulario['caso[memo]'] == "") {
+          // Evitamos error de validación por memo vacío y que
+          // se pierda información --por eso.
+          objetoFormulario['caso[memo]'] = " "
         }
+        console.log("OJO 2 datosFormulario=", datosFormulario)
 
-        let datosCaso = { caso: objetoFormulario };
         fetch(url, {
-          method: 'PATCH',
+          method: 'POST',
           headers: {
             'X-CSRF-Token': Rails.csrfToken(),
-            'Content-Type': 'application/json'
           },
-          body: JSON.stringify(datosCaso)
+          body: datosFormulario
         }).then(response => {
           if (response.ok) {
             localStorage.setItem('pestanaActiva', 'actos-pestana');
@@ -96,6 +96,8 @@ export default class extends Controller {
           } else {
             document.getElementById("capa-cargando").style.display = 'none';
           }
+        }).then(data => {
+          console.log(data)
         });
 
       }
