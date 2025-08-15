@@ -51,7 +51,7 @@ gem "redcarpet" # Markdown
 
 gem "rspreadsheet"
 
-gem "rubyzip"
+gem "rubyzip", "<= 2.4.1"
 
 gem "simple_form" # Formularios simples
 
