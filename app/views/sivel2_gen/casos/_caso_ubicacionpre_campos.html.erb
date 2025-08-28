@@ -9,7 +9,7 @@
       <%= f.input :ubicacionpre_id, as: :hidden %>
 
       <% htmlid = f.index %>
-      <%= render partial: "msip/ubicacionespre/cuatro_filas", locals: {
+      <%= render partial: "msip/ubicacionespre/cuatro_filas_vereda", locals: {
         f: f,
         htmlid: "ubicacionpre-#{htmlid}",
         estilogen: "",
@@ -24,8 +24,10 @@
         idresto: "restoubicacionpre",
         campocentropoblado: :ubicacionpre_centropoblado,
         campocentropoblado_etiqueta: "Centro poblado",
+        campovereda: :ubicacionpre_vereda,
+        campovereda_etiqueta: "Vereda",
         campolugar: :ubicacionpre_lugar,
-        campolugar_etiqueta: "Barrio o vereda",
+        campolugar_etiqueta: "Barrio o zona",
         campoubicacionpre_id: :ubicacionpre_id,
         campositio: :ubicacionpre_sitio,
         campositio_etiqueta: "Dirección o finca",
