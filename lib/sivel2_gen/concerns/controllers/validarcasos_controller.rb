@@ -29,7 +29,7 @@ module Sivel2Gen
             if params[:validarcaso] && params[:validarcaso][:fechaini]
               if params[:validarcaso][:fechaini] != ""
                 pfi = params[:validarcaso][:fechaini]
-                pfid = Msip::FormatoFechaHelper.fecha_local_estandar(pfi)
+                pfid = pfi
               else
                 pfid = nil
               end
@@ -43,7 +43,7 @@ module Sivel2Gen
             if params[:validarcaso] && params[:validarcaso][:fechafin] &&
                 params[:validarcaso][:fechafin] != ""
               pff = params[:validarcaso][:fechafin]
-              pffd = Msip::FormatoFechaHelper.fecha_local_estandar(pff)
+              pffd = pff
               if pffd
                 casos = casos.where("#{cfecha} <= ?", pffd)
               end
