@@ -165,6 +165,8 @@ GEM
       execjs
     coffee-script-source (1.12.2)
     colorize (1.1.0)
+    compare-xml (0.66)
+      nokogiri (~> 1.8)
     concurrent-ruby (1.3.5)
     connection_pool (2.5.4)
     crass (1.0.6)
@@ -493,6 +495,7 @@ DEPENDENCIES
   code-scanning-rubocop
   coffee-rails (~> 5.0)
   colorize
+  compare-xml
   connection_pool
   csv
   debug

@@ -131,6 +131,8 @@ group :development do
 end
 
 group :test do
+  gem "compare-xml"
+
   gem "connection_pool"
 
   gem "minitest", "~> 5.16"

@@ -47,6 +47,8 @@ if (test "$SALTAPREPARA" != "1") then {
   } fi;
 } fi;
 
+(cd $rutaap; RAILS_ENV=test ${RAILS} msip:stimulus_motores assets:precompile)
+
 if (test "$SALTAUNITARIAS" != "1") then {
   echo "== Pruebas de regresión unitarias"
   mkdir -p cobertura-unitarias/

@@ -50,7 +50,7 @@ jobs:
         run: (cd test/dummy; cp .env.github .env; RAILS_ENV=test bin/rails db:drop db:create db:setup db:seed msip:indices; bin/rails msip:stimulus_motores; bin/rails assets:precompile)
       # Agregue o remplace ejecutores de pruebas aquí
       - name: Ejecutar pruebas
-        run: CONFIG_HOSTS=www.example.com RUTA_RELATIVA=/ bin/rails test
+        run: NOPRUEBAJS=1 bin/regresion.sh
 
   lint:
     runs-on: ubuntu-latest
