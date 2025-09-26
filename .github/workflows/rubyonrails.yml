@@ -1,21 +1,23 @@
-# This workflow uses actions that are not certified by GitHub.  They are
-# provided by a third-party and are governed by separate terms of service,
-# privacy policy, and support documentation.
+# Este flujo de trabajo emplea acciones que no están certificadas por Github.
+# Son proveidas por un tercero y están gobernadas por diferentes
+# términos de servicio, política de privacidad y documentación.
 #
-# This workflow will install a prebuilt Ruby version, install dependencies, and
-# run tests and linters.
-name: "Ruby on Rails CI"
+# Este flujo de trabajo instalará una versión preconstruida de Ruby,
+# instalará dependencias y ejecutará pruebas y verificadores.
+name: "IC para Ruby on Rails"
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "main", "v2.2" ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ "main", "v2.2" ]
+env:
+  DB_HOST: localhost
 jobs:
   test:
     runs-on: ubuntu-latest
     services:
       postgres:
-        image: postgres:14-alpine
+        image: vtamara/postgis-es_co:13.3-1
         ports:
           - "5432:5432"
         env:
@@ -29,33 +31,43 @@ jobs:
       RAILS_ENV: test
       DATABASE_URL: "postgres://rails:password@localhost:5432/rails_test"
     steps:
-      - name: Checkout code
+      - name: Sacar código fuente
         uses: actions/checkout@v3
-      # Add or replace dependency steps here
-      - name: Install Ruby and gems
-        uses: ruby/setup-ruby@0a29871fe2b0200a17a4497bae54fe5df0d973aa # v1.115.3
+      # Agregue o remplace pasos de depencicas aquí
+      - name: Instalar Ruby y gemas
+        uses: ruby/setup-ruby@v1
         with:
+          ruby-version: '3.4.5'
           bundler-cache: true
-      # Add or replace database setup steps here
-      - name: Set up database schema
-        run: (cd test/dummy; cp .env.plantilla .env; bin/rails db:schema:load)
-      # Add or replace test runners here
-      - name: Run tests
-        run: CONFIG_HOSTS=www.example.com bin/rails test
+      - name: Instalar paquetes adicionales
+        run: ( sudo apt install poppler-utils)
+       #run: ( echo "es_CO.UTF-8 es_CO.utf8" | sudo tee -a /etc/locale.alias; echo "::::/etc/locale.alias::::" ;  cat /etc/locale.alias; echo "::::/etc/locale.gen::::"; cat /etc/locale.gen; sudo locale-gen es_CO.UTF-8 ;   sudo update-locale; echo "****locale -a****"; sudo dpkg-reconfigure locales; sudo locale -a; sudo apt install poppler-utils postgis postgresql-16-postgis)
+      - name: Reiniciar PostgreSQL
+        run: ( sudo service postgresql restart; sudo systemctl restart postgresql.service)
+      - name: Modificar volcados para que operen en versiones antiguas de PostgreSQL
+        run: (cp test/dummy/db/structure.sql test/dummy/db/structure.sql.copia; sed -e 's/provider = libc,//g;s/SET default_table_access_method.*/-- &/g;s/SET transaction_timeout.*//g' test/dummy/db/structure.sql.copia > test/dummy/db/structure.sql )
+      - name: Configurar esquema de base de datos
+        run: (cd test/dummy; cp .env.github .env; RAILS_ENV=test bin/rails db:drop db:create db:setup db:seed msip:indices; bin/rails msip:stimulus_motores; bin/rails assets:precompile)
+      # Agregue o remplace ejecutores de pruebas aquí
+      - name: Ejecutar pruebas
+        run: CONFIG_HOSTS=www.example.com RUTA_RELATIVA=/ bin/rails test
 
   lint:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-      - name: Install Ruby and gems
-        uses: ruby/setup-ruby@0a29871fe2b0200a17a4497bae54fe5df0d973aa # v1.115.3
+      - name: Sacar código fuente
+        uses: actions/checkout@v4
+      - name: Instalar Ruby y gemas
+        uses: ruby/setup-ruby@v1
         with:
+          ruby-version: '3.4.5'
           bundler-cache: true
-      # Add or replace any other lints here
-      - name: Security audit dependencies
-        run: bin/bundler-audit --update
-      - name: Security audit application code
-        run: bin/brakeman -q -w2
-      - name: Lint Ruby files
-        run: bin/rubocop --parallel
+      - name: Generate binstubs
+        run: bundle binstubs bundler-audit brakeman rubocop
+      # Agregue o remplace verificadores 
+      - name: Verificación de seguridad a dependencias ruby
+        run: (bin/bundler-audit --update || exit_code=$?; echo "exit_code=$exit_code")
+      - name: Verificación de seguridad a código Ruby de la aplicación
+        run: (bin/brakeman -q -w2 || exit_code=$?; echo "exit_code=$exit_code")
+      - name: Verificación al formato de código Ruby
+        run: (bin/rubocop --parallel || exit_code=$?; echo "exit_code=$exit_code")

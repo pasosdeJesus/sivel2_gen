@@ -1,6 +1,6 @@
 # Motor SIVeL 2 Genérico
 
-[![Revisado por Hound](https://img.shields.io/badge/Reviewed_by-Hound-8E64B0.svg)](https://houndci.com) Pruebas y seguridad:[![Estado Construcción](https://gitlab.com/pasosdeJesus/sivel2_gen/badges/main/pipeline.svg)](https://gitlab.com/pasosdeJesus/sivel2_gen/-/pipelines?page=1&scope=all&ref=main) [![Clima del Código](https://codeclimate.com/github/pasosdeJesus/sivel2_gen/badges/gpa.svg)](https://codeclimate.com/github/pasosdeJesus/sivel2_gen) [![Cobertura de Pruebas](https://codeclimate.com/github/pasosdeJesus/sivel2_gen/badges/coverage.svg)](https://codeclimate.com/github/pasosdeJesus/sivel2_gen)
+[![Revisado por Hound](https://img.shields.io/badge/Reviewed_by-Hound-8E64B0.svg)](https://houndci.com) Pruebas y seguridad:[![Estado Construcción gitlab](https://gitlab.com/pasosdeJesus/sivel2_gen/badges/v2.2/pipeline.svg)](https://gitlab.com/pasosdeJesus/sivel2_gen/-/pipelines?page=1&scope=all&ref=v2.2) [![Integración continua github](https://github.com/pasosdeJesus/sivel2_gen/actions/workflows/rubyonrails.yml/badge.svg?branch=v2.2)](https://github.com/pasosdeJesus/sivel2_gen/actions/workflows/rubyonrails.yml) [![CodeQL en github](https://github.com/pasosdeJesus/sivel2_gen/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/pasosdeJesus/sivel2_gen/actions/workflows/codeql-analysis.yml)
 
 ![Logo de sivel2_gen](https://gitlab.com/pasosdeJesus/sivel2_gen/-/raw/main/test/dummy/app/assets/images/logo.jpg)
 

@@ -7,7 +7,6 @@ services:
     alias: postgres
 
 variables:
-  CC_TEST_REPORTER_ID: "1486a4589ae9326a7a567e9599edd0ecd306c65e5f359cc724855c2a34efe67b"
   CI: 'Si'
   NOKOGIRI_USE_SYSTEM_LIBRARIES: 'true'
   POSTGRES_DB: sivel2gen_pru
@@ -28,8 +27,8 @@ test:
       - node_modules
       - vendor/bundle
   before_script:
-    - uname -a
     - cat /etc/os-release
+    - uname -a
     - whoami
     - echo "HOME=${HOME}"
     - pwd
@@ -46,14 +45,12 @@ test:
     - apt-get update -qq && apt-get -o dir::cache::archives="$APT_CACHE_DIR" install -yqq yarn
     - gem install bundler dotenv --no-document
     - bundle install --jobs $(nproc) "${FLAGS[@]}"
-    - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
-    - chmod +x ./cc-test-reporter
-    - ./cc-test-reporter -v
-    - ./cc-test-reporter before-build
     - cd test/dummy
     - cp .env.gitlab .env
     - cp db/structure.sql db/structure.sql.copia 
-    - sed -e 's/provider = libc,//g;s/SET default_table_access_method.*/-- &/g' db/structure.sql.copia > db/structure.sql 
+    - sed -e 's/provider = libc,//g;s/SET default_table_access_method.*/-- &/g;s/SET transaction_timeout.*//g' db/structure.sql.copia > db/structure.sql 
+    - cp ../../db/datos-basicas.sql ../../db/datos-basicas.sql.copia 
+    - sed -e 's/provider = libc,//g;s/SET default_table_access_method.*/-- &/g;s/SET transaction_timeout.*//g' ../../db/datos-basicas.sql.copia > ../../db/datos-basicas.sql 
     - bin/rails db:drop db:create db:setup db:seed
     - bin/rails msip:indices
     - yarn
@@ -66,7 +63,8 @@ test:
     - NOPRUEBAJS=1 bin/regresion.sh
     - export exit_code=$?
   after_script:
-    - if (test "${exit_code}" == "") then { exit_code=0; } fi; ./cc-test-reporter after-build -t simplecov --exit-code "${exit_code}" || true
+    - echo "exit_code=$exit_code"
+    - exit $exit_code
 
 
 include:
