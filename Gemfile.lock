@@ -18,7 +18,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/heb412_gen.git
-  revision: cc9642d6f50fcd40314a57df9f2eaf192473ff69
+  revision: 077b6926abfdd884c54258f2303cdabe8810e4c5
   branch: v2.2
   specs:
     heb412_gen (2.2.0)
@@ -29,7 +29,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/mr519_gen.git
-  revision: a434fff681fa5c615a7121333caaa93db3e97e26
+  revision: 6b1486561806ec27fe4523f13de971009c22e250
   branch: v2.2
   specs:
     mr519_gen (2.2.0)
@@ -38,7 +38,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/msip.git
-  revision: b7b88d80d57cd366c5fa26b6720fd223b6900095
+  revision: f9f6b6ebd9569907f90e77e0bfa153daf3fd4fa4
   branch: v2.2
   specs:
     msip (2.2.0)
@@ -391,7 +391,7 @@ GEM
       lint_roller (~> 1.1)
       rubocop (>= 1.75.0, < 2.0)
       rubocop-ast (>= 1.38.0, < 2.0)
-    rubocop-rails (2.33.3)
+    rubocop-rails (2.33.4)
       activesupport (>= 4.2.0)
       lint_roller (~> 1.1)
       rack (>= 1.1)
@@ -402,7 +402,7 @@ GEM
     ruby-graphviz (1.2.5)
       rexml
     ruby-progressbar (1.13.0)
-    rubyzip (3.1.0)
+    rubyzip (3.1.1)
     sassc (2.4.0)
       ffi (~> 1.9)
     sassc-rails (2.1.2)
