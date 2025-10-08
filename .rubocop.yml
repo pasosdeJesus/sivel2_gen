@@ -18,6 +18,9 @@ Minitest/AssertPredicate:
     # La ventaja de assert_predicate es que presenta mejor
     # mensaje de error cuando la aserción falla.
 
+Minitest/TestMethodName:
+    Enabled: false
+
 Minitest/MultipleAssertions:
   Enabled: false
 
