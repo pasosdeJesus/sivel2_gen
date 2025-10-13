@@ -8,6 +8,10 @@
 echo "Ejecutando ambiente_github.sh"
 sudo apt update
 sudo apt install -y poppler-utils
+# Los dos siguientes son requeridos para convertir de .ods a .xlsx
+# Obligatorio en pruebas de cor1440_gen
+sudo apt-get install -y libreoffice libreoffice-java-common
+sudo apt-get install -y zip
 sudo locale-gen es_CO.UTF-8 && sudo update-locale
 
 # Instala PostgreSQL 17 y PostGIS 3 y las librerías requeridas
