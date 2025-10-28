@@ -265,9 +265,8 @@ module Sivel2Gen
             # Las 2 siguientes se agregaron para evaluar OBSERVADOR_PARTE
             # pero hacen demasiado ineficiente la consulta del listado
             # de casos --Una consulta de 35.000 casos pasa de 3s a 28s.
-            # casos = Sivel2Gen::Caso.accessible_by(current_ability)
-            # @conscaso = @conscaso.where(caso_id: casos.map(&:id))
-            # @conscaso = @conscaso.accessible_by(current_ability)
+            #casos = Sivel2Gen::Caso.accessible_by(current_ability)
+            #@conscaso = @conscaso.where(caso_id: casos.map(&:id))
 
             @conscaso = filtrar_ca(@conscaso)
             @conscasocount = @conscaso.count
