@@ -2,6 +2,7 @@
 
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
+git_source(:gitlab) { |repo| "https://gitlab.com/#{repo}.git" }
 
 # No usamos gemspec porque la aplicacón de prueba de un motor rails
 # no lo soporta.
