@@ -317,7 +317,8 @@ module Sivel2Gen
               [:read, :new, :edit, :update, :create],
               Msip::Orgsocial,
             )
-            habilidad.can(:create, Msip::Bitacora, usuario: { id: usuario.id })
+            #habilidad.can(:create, Msip::Bitacora, usuario: { id: usuario.id })
+            ## creación de registros en bitácora no es mediante interfaz
             habilidad.can(:read, Msip::Bitacora, usuario: { id: usuario.id })
             habilidad.can(:manage, Msip::Persona)
             habilidad.can(:manage, Msip::Grupoper)
@@ -401,7 +402,7 @@ module Sivel2Gen
           ])
 
           habilidad.can(:manage, Msip::Orgsocial)
-          habilidad.can(:manage, Msip::Bitacora)
+          habilidad.can(:read, Msip::Bitacora)
           habilidad.can(:manage, Msip::Persona)
           habilidad.can(:manage, Msip::Grupoper)
           habilidad.can(:manage, Msip::Respaldo7z)
