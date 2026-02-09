@@ -1,8 +1,8 @@
 GIT
   remote: https://github.com/kreeti/kt-paperclip.git
-  revision: cd5c4496d12894eafa218cb631c592b67c9c10a2
+  revision: 5d2dca49bf0483762cd4c84a9adb2f32a5378563
   specs:
-    kt-paperclip (7.2.2)
+    kt-paperclip (7.3.0)
       activemodel (>= 4.2.0)
       activesupport (>= 4.2.0)
       marcel (~> 1.0.1)
@@ -18,7 +18,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/heb412_gen.git
-  revision: 3b848835c4b51c92b6ee8074f1f62c941c2576d9
+  revision: 6a60f4a2260251126ee350d72e6343d76443518f
   branch: v2.2
   specs:
     heb412_gen (2.2.0)
@@ -29,7 +29,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/mr519_gen.git
-  revision: 6f6ac6110a881cf57ff713caa23b37566c40ce3d
+  revision: 00f3c32b3780240046131904bb573382a1397f14
   branch: v2.2
   specs:
     mr519_gen (2.2.0)
@@ -38,7 +38,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/msip.git
-  revision: 2906b6a60eed35dc0ee571b98ae6af484e2e791d
+  revision: a4d229bd113cafd74ab8a781ba7a5a575da9ed61
   branch: v2.2
   specs:
     msip (2.2.0)
@@ -145,9 +145,9 @@ GEM
     benchmark (0.5.0)
     bigdecimal (3.3.1)
     bindex (0.8.1)
-    bootsnap (1.21.1)
+    bootsnap (1.22.0)
       msgpack (~> 1.2)
-    brakeman (7.1.2)
+    brakeman (8.0.2)
       racc
     builder (3.3.0)
     bundler-audit (0.9.3)
@@ -217,8 +217,9 @@ GEM
     i18n (1.14.8)
       concurrent-ruby (~> 1.0)
     io-console (0.8.2)
-    irb (1.16.0)
+    irb (1.17.0)
       pp (>= 0.6.0)
+      prism (>= 1.3.0)
       rdoc (>= 4.0.0)
       reline (>= 0.4.2)
     jbuilder (2.14.1)
@@ -226,7 +227,7 @@ GEM
       activesupport (>= 7.0.0)
     jsbundling-rails (1.3.1)
       railties (>= 6.0.0)
-    json (2.18.0)
+    json (2.18.1)
     language_server-protocol (3.17.0.5)
     libxml-ruby (5.0.5)
     lint_roller (1.1.0)
@@ -245,7 +246,7 @@ GEM
     mime-types (3.7.0)
       logger
       mime-types-data (~> 3.2025, >= 3.2025.0507)
-    mime-types-data (3.2026.0113)
+    mime-types-data (3.2026.0203)
     mini_mime (1.1.5)
     mini_portile2 (2.8.9)
     minitest (5.27.0)
@@ -308,11 +309,11 @@ GEM
       pdf-core (~> 0.10.0)
       ttfunk (~> 1.8)
     prettyprint (0.2.0)
-    prism (1.8.0)
+    prism (1.9.0)
     psych (5.3.1)
       date
       stringio
-    puma (7.1.0)
+    puma (7.2.0)
       nio4r (~> 2.0)
     racc (1.8.1)
     rack (3.2.4)
@@ -368,7 +369,7 @@ GEM
       zeitwerk (~> 2.6)
     rainbow (3.1.1)
     rake (13.3.1)
-    rdoc (7.1.0)
+    rdoc (7.2.0)
       erb
       psych (>= 4.0.0)
       tsort
@@ -383,7 +384,7 @@ GEM
     rspreadsheet (0.5.3)
       andand (>= 1.3)
       rubyzip (>= 1.3)
-    rubocop (1.82.1)
+    rubocop (1.84.1)
       json (~> 2.3)
       language_server-protocol (~> 3.17.0.2)
       lint_roller (~> 1.1.0)
@@ -391,7 +392,7 @@ GEM
       parser (>= 3.3.0.2)
       rainbow (>= 2.2.2, < 4.0)
       regexp_parser (>= 2.9.3, < 3.0)
-      rubocop-ast (>= 1.48.0, < 2.0)
+      rubocop-ast (>= 1.49.0, < 2.0)
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 2.4.0, < 4.0)
     rubocop-ast (1.49.0)
@@ -558,4 +559,4 @@ RUBY VERSION
   ruby 3.4.5p51
 
 BUNDLED WITH
-  4.0.4
+  4.0.6
