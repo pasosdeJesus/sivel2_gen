@@ -305,15 +305,15 @@ module Sivel2Gen
             else
               self.fecha = datosent["fecha"]
             end
-            self.hora = datosent["hora"] if datosent["hora"]
-            self.duracion = datosent["duracion"] if datosent["duracion"]
+            self.hora = datosent["hora"][0..10] if datosent["hora"]
+            self.duracion = datosent["duracion"][0..10] if datosent["duracion"]
             if datosent["hechos"].nil?
               self.memo = ""
               menserror << "Falta descripción de hechos. "
             else
               self.memo = datosent["hechos"]
             end
-            self.titulo = datosent["titulo"] if datosent["titulo"]
+            self.titulo = datosent["titulo"][0..50] if datosent["titulo"]
             if datosent["observaciones"]
               datosent["observaciones"].each do |obs|
                 nombre = obs.split("_")

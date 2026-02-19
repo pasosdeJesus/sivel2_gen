@@ -555,7 +555,7 @@ module Sivel2Gen
               when "hijos"
                 self.hijos = ele[1]
               when "anotaciones"
-                self.anotaciones = ele[1]
+                self.anotaciones = ele[1][0..100]
               when "sectorsocialsec"
                 ele[1].split(";").each do |sec|
                   sectorsocial = Sivel2Gen::Sectorsocial.where(nombre: sec)
@@ -609,7 +609,10 @@ module Sivel2Gen
                   end
                 end
               when "orientacionsexual"
-                self.orientacionsexual = ele[1]
+                self.orientacionsexual = 
+                  ['L', 'G', 'B', 'T', 'H', 'I', 'O'].include?(
+                    ele[1][0..1].upcase
+                  ) ? ele[1][0..1].upcase : 'S'
               when "antecedente"
                 ele[1].split(";").each do |ante|
                   antecedente = Sivel2Gen::Antecedente.where(nombre: ante)
