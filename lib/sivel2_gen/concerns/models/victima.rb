@@ -555,7 +555,7 @@ module Sivel2Gen
               when "hijos"
                 self.hijos = ele[1]
               when "anotaciones"
-                self.anotaciones = ele[1][0..100]
+                self.anotaciones = ele[1] ? ele[1][0..100] : ""
               when "sectorsocialsec"
                 ele[1].split(";").each do |sec|
                   sectorsocial = Sivel2Gen::Sectorsocial.where(nombre: sec)
