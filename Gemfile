@@ -87,9 +87,8 @@ gem "will_paginate"             # Pagina listados
 # Motores que se sobrecargan vistas (deben ponerse en orden de apilamiento
 # lógico y no alfabetico como las gemas anteriores)
 gem "msip", # Motor generico
-  git: "https://gitlab.com/pasosdeJesus/msip.git",
-  branch: "v2.2"
-# path: "../msip-2.2"
+ git: "https://gitlab.com/pasosdeJesus/msip.git", branch: "v2.2"
+ #path: "../msip-2.2"
 
 gem "mr519_gen", # Motor generico
   git: "https://gitlab.com/pasosdeJesus/mr519_gen.git",
