@@ -24,19 +24,19 @@ export default class extends Controller {
   }
 
 
+  // Si `mes` no es suministrado supone 6
+  // Si `dia  no es suministrado supone 15
   actualizarEdad(event){
     let anio = parseInt(this.anionacTarget.value);
     let mes = parseInt(this.mesnacTarget.value) - 1;
     let dia = parseInt(this.dianacTarget.value);
 
     if (isNaN(mes)) {
-      mes = 0
+      mes = 5
     }
     if (isNaN(dia)) {
-      dia = 1
+      dia = 15
     }
-    // Campos fecha con HTML estandar no requiren 
-    // formatoFecha = window.formato_fecha; /
     let campoFechaCaso = document.querySelector('#caso_fecha');
     if (campoFechaCaso == null) {
       campoFechaCaso = document.querySelector('#caso_casosjr_attributes_fecharec');
@@ -49,23 +49,23 @@ export default class extends Controller {
       campoFechaCaso.value, "yyyy-mm-dd"
     );
     const hoy = new Date();
-
-    let fechaCaso = new Date(anioCaso, mesCaso, diaCaso);
+    // En javascript mes para Date es 0-indexado
+    let fechaCaso = new Date(anioCaso, mesCaso - 1, diaCaso);
     let fechaNacimiento = new Date(anio, mes, dia);
     // El campo cambiado fue edad
     if (event.target.dataset['sivel2Gen-EdadTarget'] == 'edad') {
       let edad = parseInt(this.edadTarget.value)
       anio = fechaCaso.getFullYear() - edad
-      mes = 0
-      dia = 1
+      mes = 5
+      dia = 15
       this.anionacTarget.value = anio
     }
     // El campo cambiado fue edadactual
     if (event.target.dataset['sivel2Gen-EdadTarget'] == 'edadactual') {
       let edadactual = parseInt(this.edadactualTarget.value)
       anio = hoy.getFullYear() - edadactual
-      mes = 0
-      dia = 1
+      mes = 5
+      dia = 15
       this.anionacTarget.value = anio
     }
     fechaNacimiento = new Date(anio, mes, dia);
