@@ -1267,7 +1267,8 @@ module Sivel2Gen
                 end
                 cuerpotabla = [fila]
 
-              elsif que3.count == 4
+              elsif que3.count == 4 || que3.count == 5
+                # pSegun o pDepartamento
                 # Si se desagrega, pone los desagregados en columnas
                 fila = que3.last[0]
                 fila_hum = que3.last[1]
