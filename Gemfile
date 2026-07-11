@@ -37,8 +37,8 @@ gem "jbuilder", ">= 2.7"        # Json
 
 gem "jsbundling-rails"
 
-gem "kt-paperclip",             # Anexos
-  git: "https://github.com/kreeti/kt-paperclip.git"
+gem "kt-paperclip"             # Anexos
+#  git: "https://github.com/kreeti/kt-paperclip.git"
 # git: 'https://github.com/vtamara/paperclip.git', branch: 'fix-ruby3'
 # path: '../tmp/paperclip'
 
