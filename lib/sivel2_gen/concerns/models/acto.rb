@@ -69,8 +69,9 @@ module Sivel2Gen
           def importa(datosent, datossal, menserror, opciones = {})
             victimas = datosent[0]
             d = datosent[1]
+            presp = datosent[2]
             if d["id_victima_individual"]
-              self.presponsable_id = d["id_presunto_responsable_individual"].to_i
+              self.presponsable_id = presp[d["id_presunto_grupo_responsable"]].to_i
               if Sivel2Gen::Presponsable.where(id: presponsable_id).count == 0
                 menserror << "No pudo crear acto porque no existe presunto responsable #{presponsable_id}. "
                 return
