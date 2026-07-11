@@ -349,7 +349,7 @@ module Sivel2Gen
             else
               self.memo = datosent["hechos"]
             end
-            self.titulo = datosent["titulo"] if datosent["titulo"]
+            self.titulo = datosent["titulo"][0..49] if datosent["titulo"]
             if datosent["observaciones"]
               datosent["observaciones"].each do |obs|
                 nombre = obs.split("_")

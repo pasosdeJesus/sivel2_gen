@@ -635,8 +635,10 @@ module Sivel2Gen
                 recorrer_observaciones_v(ele, menserror)
               end
             else
-              ele = v["observaciones"].split(/\_([^_]*)$/)
-              recorrer_observaciones_v(ele, menserror)
+              if v["observaciones"]
+                ele = v["observaciones"].split(/\_([^_]*)$/)
+                recorrer_observaciones_v(ele, menserror)
+              end
             end
             save ? save! : return
           end
