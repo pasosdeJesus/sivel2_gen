@@ -417,12 +417,14 @@ module Sivel2Gen
               end
             end
 
+            idspr = {}
             # Importa presuntos responsables
             prs = actos_colectivos.map do |prs|
               prs["id_presunto_grupo_responsable"]
             end | actos_individuales.map do |prs|
-              prs["id_presunto_responsable_individual"]
+              prs["id_presunto_grupo_responsable"]
             end
+            #debugger
             if datosent["grupo"]
               ldgrupo = if datosent["grupo"].is_a?(Array)
                 datosent["grupo"]
@@ -437,6 +439,7 @@ module Sivel2Gen
                 if casopresp.presponsable_id
                   casopresp.caso_id = id
                   casopresp.save!(validate: false)
+                  idspr[pr["id_grupo"]] = casopresp.presponsable_id
                 end
               end
             end
@@ -517,13 +520,13 @@ module Sivel2Gen
                 datosent["acto"].each do |ac|
                   acto = Sivel2Gen::Acto.new
                   acto.caso_id = id
-                  datosactos = [idsv, ac]
+                  datosactos = [idsv, ac, idspr]
                   acto.importa(datosactos, datossal, menserror, opciones)
                 end
               else
                 acto = Sivel2Gen::Acto.new
                 acto.caso_id = id
-                datosactos = [idsv, datosent["acto"]]
+                datosactos = [idsv, datosent["acto"], idspr]
                 acto.importa(datosactos, datossal, menserror, opciones)
               end
             end
