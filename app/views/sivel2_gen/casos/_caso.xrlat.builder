@@ -160,7 +160,7 @@ xml.relato do
             ac.categoria.id.to_s + ')'
         end
         xml.id_victima_individual ac.persona.id
-        xml.id_presunto_responsable_individual ac.presponsable.id
+        xml.id_presunto_grupo_responsable ac.presponsable.id if ac.presponsable
       end
     end
   end
