@@ -5,6 +5,7 @@
     <%= render partial: 'resumen_registros_bitacora' %>
 
   <% else %>
+    <% @incluir ||= ['fecha'] %>
     <%= render :partial => 'reporterevista', locals: {caso: @caso} %>
   <% end %>
 
