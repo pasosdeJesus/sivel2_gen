@@ -46,11 +46,13 @@ gem "kt-paperclip"             # Anexos
 
 gem "libxml-ruby", "< 6.0"
 
-gem "nokogiri", ">=1.11.1"
+gem "nokogiri", "1.19.4" # Fallan 1.19.5 a 1.19.7 en OpenBSD
 
 gem "odf-report"
 
 gem "pg" # PostgreSQL
+
+gem "prism", "~> 1.9" # 2.1 falla
 
 gem "prawn"
 
