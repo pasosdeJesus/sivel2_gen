@@ -17,9 +17,9 @@
   integrity sha512-qehxGkRj55h/ff8EMaJ+cYhyaKlHIxqYDn682wQD7RNp9UujOQsHog2uS0r2vzr4pW+sXf90NeeayjcNaX3fFg==
 
 "@babel/runtime@^7.12.5":
-  version "7.29.14"
-  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.29.14.tgz#9ad0cc2addbbc8c46adaec9e90b21bb76d42b483"
-  integrity sha512-Y5tqevQaUAZhhj82BpYMNC1ssvLQTVAfwKdm8iy8qwmhvC2/CpcAu8OC+QEtjM7pMk7knx83u1Qj8gzkicyelw==
+  version "7.29.15"
+  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.29.15.tgz#fd047349f32c2e89c28527e023af277e3dc747b6"
+  integrity sha512-304gsbbGVmQc+cNGHzwHBlqepYdWLKj3VXCQBGt/EGcV7PUPfKI7kAUNW1FZEOCwlQiLvQjg1JEaAlRQ616h+Q==
 
 "@esbuild/aix-ppc64@0.19.12":
   version "0.19.12"
@@ -350,9 +350,9 @@ is-glob@^4.0.3:
     is-extglob "^2.1.1"
 
 "jquery@>=3.4.0 <4.0.0", "jquery@^1.8 || 2 || 3", jquery@^3.7.1:
-  version "3.7.1"
-  resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.7.1.tgz#083ef98927c9a6a74d05a6af02806566d16274de"
-  integrity sha512-m4avr8yL8kmFN8psrbFFFmB/If14iN5o9nw/NgnnM+kybDJpRsAynV2BsfpTYrTRysYUdADVD7CkUUizgkpLfg==
+  version "3.8.0"
+  resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.8.0.tgz#3bf83324052cc9e7148718e9d6ea3cde1b2b9f5a"
+  integrity sha512-AOYt0viqPysMUTq45O8gF9DuOnBT3Il/8WtM/TT8z/2QeGsZ70ImwSJtNFxznn2R71v8yIgaEunOGo82OY/f0g==
 
 js-tokens@^4.0.0:
   version "4.0.0"
@@ -451,9 +451,9 @@ resolve@^1.19.0:
     supports-preserve-symlinks-flag "^1.0.0"
 
 source-map-js@^1.2.2:
-  version "1.2.2"
-  resolved "https://registry.yarnpkg.com/source-map-js/-/source-map-js-1.2.2.tgz#79fb88d97535a21cb27162cb05d211b67acea4ab"
-  integrity sha512-KGj/8Y43x35aZVDtt+J4mK1hoLGHULMYfSkODJNQjNDC3oW1PqPoxMwo0pLUsWM/UEGzON/NxeHywEfNXNP3Vw==
+  version "1.2.4"
+  resolved "https://registry.yarnpkg.com/source-map-js/-/source-map-js-1.2.4.tgz#b9303bf27115446da5e6ca3a4a2ee3e9f7b69633"
+  integrity sha512-J7ZjMvHd9O1fcT/5V09QWaaSl2BbWx3F6O08spde82Namf9UB0GxRVIPiNbVsdKkoizHiSpTodo3vp2bAy91MA==
 
 supports-preserve-symlinks-flag@^1.0.0:
   version "1.0.0"
